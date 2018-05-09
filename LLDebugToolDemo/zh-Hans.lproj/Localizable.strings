@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  LLDebugToolDemo
+
+  Created by Li on 2018/5/8.
+  Copyright © 2018年 li. All rights reserved.
+*/
+
+"initial.log" = "这是一条初始化的log";
+"normal.log.info" = "这是一条普通级别的log,可用于埋点或信息打印";
+"error.log.info" = "这是一条错误级别的log,可用于记录错误";
+"call" = "打电话";
+"call.log.info" = "这是一条关于\"打电话\"事件的log,用于针对某个问题的分析或记录";
+
+"normal.network" = "普通网络请求(AFNetworking/Json Response)";
+"image.network" = "图片网络请求(NSURLConnection/Image Response)";
+"HTML.network" = "HTML网络请求(NSURLSession/HTML Response)";
+
+"insert.log" = "插入一条Log";
+"insert.error.log" = "插入一条Error级别的Log";
+"insert.call.log" = "插入一条\"打电话\"事件的log";
+
+"try.array.crash" = "触发\"数组越界\"Crash";
+"try.pointer.crash" = "触发\"指针错误\"Crash";
+"crash.info" = "崩溃后请重新运行项目,再查看信息";
+
+"app.info" = "展示app信息";
+
+"sandbox.info" = "展示沙盒信息";
+
+"color.style" = "使用ColorStyle颜色颜色";
+"color.custom" = "使用自定义颜色配置";
+"color.none" = "不使用颜色配置";
