@@ -155,7 +155,7 @@ You can download and run the ["LLDebugToolDemo"](https://github.com/HDB-Li/LLDeb
 
 ## Requirements
 
-LLDebugTool works on iOS 9+ and requires ARC to build. It depends on the following Apple frameworks, which should already be included with most Xcode templates:
+LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the following Apple frameworks, which should already be included with most Xcode templates:
 
 * `UIKit`
 

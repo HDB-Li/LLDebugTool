@@ -155,7 +155,7 @@ LLDebugTool提供了一个快捷的方式来查看和操作沙盒文件，你可
 
 ## 要求
 
-LLDebugTool在支持ios9+，并且需要使用ARC模式。使用到的框架已经包含在大多数Xcode模板中:
+LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已经包含在大多数Xcode模板中:
 
 * `UIKit`
 
