@@ -10,6 +10,8 @@
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
+		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
+		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
 		367F94C7209AF38300CA1821 /* LLBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367F94C6209AF38300CA1821 /* LLBaseNavigationController.m */; };
 		36C5BF782099897F007A3188 /* LLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEEE2099897F007A3188 /* LLConfig.m */; };
 		36C5BF792099897F007A3188 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEF22099897F007A3188 /* LLCrashHelper.m */; };
@@ -85,6 +87,9 @@
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		367E27A420A1A8490032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		367E855420A68EC100E5B472 /* LLSubTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSubTitleTableViewCell.h; sourceTree = "<group>"; };
+		367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSubTitleTableViewCell.m; sourceTree = "<group>"; };
+		367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSubTitleTableViewCell.xib; sourceTree = "<group>"; };
 		367F94C5209AF38300CA1821 /* LLBaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseNavigationController.h; sourceTree = "<group>"; };
 		367F94C6209AF38300CA1821 /* LLBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseNavigationController.m; sourceTree = "<group>"; };
 		36C5BEEE2099897F007A3188 /* LLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLConfig.m; sourceTree = "<group>"; };
@@ -435,6 +440,9 @@
 				36C5BF3F2099897F007A3188 /* YWFilePreviewController.h */,
 				36C5BF5A2099897F007A3188 /* YWFilePreviewController.m */,
 				36C5BF5B2099897F007A3188 /* LLUITableViewLongPressGestureRecognizerDelegate.h */,
+				367E855420A68EC100E5B472 /* LLSubTitleTableViewCell.h */,
+				367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */,
+				367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -702,6 +710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36C5BF872099897F007A3188 /* LLNetworkCell.xib in Resources */,
+				367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */,
 				36C5BF922099897F007A3188 /* LLSandboxCell.xib in Resources */,
 				36C5BF862099897F007A3188 /* LLNetworkImageCell.xib in Resources */,
 				36C5BF972099897F007A3188 /* LLLogCell.xib in Resources */,
@@ -810,6 +819,7 @@
 				36C5BF962099897F007A3188 /* LLLogVC.m in Sources */,
 				C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
 				36C5BFA82099897F007A3188 /* UIButton+LL_Utils.m in Sources */,
+				367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */,
 				36C5BF7B2099897F007A3188 /* LLAppHelper.m in Sources */,
 				36C5BFAE2099897F007A3188 /* LLBaseModel.m in Sources */,
 				36C5BF7A2099897F007A3188 /* LLStorageManager.m in Sources */,
@@ -980,7 +990,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -998,7 +1008,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

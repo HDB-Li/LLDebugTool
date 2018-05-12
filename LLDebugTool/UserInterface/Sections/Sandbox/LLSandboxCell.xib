@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -59,13 +58,12 @@
                     <constraint firstAttribute="trailing" secondItem="ajv-Qp-EGh" secondAttribute="trailing" constant="5" id="LXb-rN-ELy"/>
                     <constraint firstItem="ajv-Qp-EGh" firstAttribute="leading" secondItem="sMU-ah-ZUO" secondAttribute="trailing" constant="10" id="OnL-sG-mMr"/>
                     <constraint firstItem="sMU-ah-ZUO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="i6q-xd-Myo"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cX5-ja-Ibu" secondAttribute="bottom" constant="5" id="lZF-M0-kAP"/>
+                    <constraint firstAttribute="bottom" secondItem="cX5-ja-Ibu" secondAttribute="bottom" constant="5" id="lZF-M0-kAP"/>
                     <constraint firstItem="Ada-eS-SMj" firstAttribute="top" secondItem="cX5-ja-Ibu" secondAttribute="top" id="r8g-2I-UUi"/>
                     <constraint firstItem="cX5-ja-Ibu" firstAttribute="top" secondItem="ajv-Qp-EGh" secondAttribute="bottom" constant="5" id="sL7-3a-t4W"/>
                     <constraint firstItem="sMU-ah-ZUO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sef-Uw-dgD"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="contentLabel" destination="cX5-ja-Ibu" id="rBe-DX-Yc7"/>
                 <outlet property="icon" destination="sMU-ah-ZUO" id="G1H-gV-3qE"/>

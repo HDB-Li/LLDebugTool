@@ -117,14 +117,14 @@ static NSString *const kCellID = @"cellID";
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     NSArray *array = @[@"a",@"b"];
-    NSString *str = array[3];
+    __unused NSString *str = array[3];
 }
 
 - (void)testPointErrorCrash {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    NSArray *a = @"dssdf";
-    NSString *b = [a firstObject];
+    NSArray *a = (NSArray *)@"dssdf";
+    __unused NSString *b = [a firstObject];
 }
 
 - (void)testAppInfo {

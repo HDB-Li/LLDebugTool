@@ -1,5 +1,5 @@
 //
-//  LLBaseNavigationController.m
+//  LLSubTitleTableViewCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,21 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseNavigationController.h"
-#import "LLConfig.h"
+#import "LLBaseTableViewCell.h"
 
-@interface LLBaseNavigationController ()
+@interface LLSubTitleTableViewCell : LLBaseTableViewCell
 
-@end
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@implementation LLBaseNavigationController
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return [LLConfig sharedConfig].statusBarStyle;
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return NO;
-}
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @end

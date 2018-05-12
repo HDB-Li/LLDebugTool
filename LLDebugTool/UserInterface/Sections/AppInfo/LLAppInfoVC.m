@@ -22,10 +22,10 @@
 //  SOFTWARE.
 
 #import "LLAppInfoVC.h"
+#import "LLBaseTableViewCell.h"
 #import "LLAppHelper.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
-#import "LLBaseTableViewCell.h"
 
 static NSString *const kLLAppInfoVCCellID = @"LLAppInfoVCCellID";
 static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
@@ -101,6 +101,8 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
     if (!cell) {
         cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kLLAppInfoVCCellID];
         cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+        cell.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        cell.detailTextLabel.minimumScaleFactor = 0.7;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSDictionary *dic = self.dataArray[indexPath.section][indexPath.row];

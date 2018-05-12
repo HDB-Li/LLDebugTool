@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLLogContentVC.h"
-#import "LLBaseTableViewCell.h"
+#import "LLSubTitleTableViewCell.h"
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
@@ -50,15 +50,10 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *content = self.contentArray[indexPath.row];
-    LLBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLogContentCellID];
-    if (!cell) {
-        cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kLogContentCellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:19];
-        cell.detailTextLabel.numberOfLines = 0;
-    }
-    cell.textLabel.text = self.titleArray[indexPath.row];
-    cell.detailTextLabel.text = content;
+    LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLogContentCellID];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.titleLabel.text = self.titleArray[indexPath.row];
+    cell.contentLabel.text = content;
     return cell;
 }
 
@@ -77,6 +72,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
  */
 - (void)initial {
     self.navigationItem.title = @"Details";
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:nil] forCellReuseIdentifier:kLogContentCellID];
     [self loadData];
 }
 

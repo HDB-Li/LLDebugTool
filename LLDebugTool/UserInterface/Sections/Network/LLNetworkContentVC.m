@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLNetworkContentVC.h"
+#import "LLSubTitleTableViewCell.h"
 #import "LLNetworkImageCell.h"
 #import "LLConfig.h"
 
@@ -61,15 +62,11 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     if ([obj isKindOfClass:[NSData class]]) {
         obj = [self convertDataToHexStr:obj];
     }
-    LLBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkContentCellID];
-    if (!cell) {
-        cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kNetworkContentCellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:19];
-        cell.detailTextLabel.numberOfLines = 0;
-    }
-    cell.textLabel.text = self.titleArray[indexPath.row];
-    cell.detailTextLabel.text = obj;
+    
+    LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkContentCellID];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.titleLabel.text = self.titleArray[indexPath.row];
+    cell.contentLabel.text = obj;
     return cell;
 }
 
@@ -98,6 +95,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 - (void)initial {
     self.navigationItem.title = @"Details";
     [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkImageCell" bundle:nil] forCellReuseIdentifier:kNetworkImageCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:nil] forCellReuseIdentifier:kNetworkContentCellID];
     [self loadData];
 }
 

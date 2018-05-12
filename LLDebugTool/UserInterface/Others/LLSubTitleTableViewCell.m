@@ -1,5 +1,5 @@
 //
-//  LLBaseNavigationController.m
+//  LLSubTitleTableViewCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,21 +21,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseNavigationController.h"
-#import "LLConfig.h"
+#import "LLSubTitleTableViewCell.h"
 
-@interface LLBaseNavigationController ()
+@implementation LLSubTitleTableViewCell
 
-@end
-
-@implementation LLBaseNavigationController
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return [LLConfig sharedConfig].statusBarStyle;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initial];
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return NO;
+#pragma mark - Primary
+- (void)initial {
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 @end
