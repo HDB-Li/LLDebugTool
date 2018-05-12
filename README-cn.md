@@ -2,8 +2,8 @@
   <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/header.png" alt="LLDebugTool" title="LLDebugTool">
 </p>
 
-[![Version](https://img.shields.io/badge/IOS-%3E%3D9.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D9.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.0-blue.svg)](https://img.shields.io/badge/pod-v1.0.0-blue.svg)
+[![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.1-blue.svg)](https://img.shields.io/badge/pod-v1.0.1-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 
