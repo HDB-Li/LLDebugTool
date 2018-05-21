@@ -1,3 +1,7 @@
+## [1.0.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.0.2) (05/21/2018)
+
+* Fix the side gesture recognizer bug when pop.
+
 ## [1.0.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.0.1) (05/12/2018)
 
 * Support iOS8+.
