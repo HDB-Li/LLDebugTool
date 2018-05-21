@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.1-blue.svg)](https://img.shields.io/badge/pod-v1.0.1-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.2-blue.svg)](https://img.shields.io/badge/pod-v1.0.2-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 
@@ -43,7 +43,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 [CocoaPods](http://cocoapods.org) is the recommended way to add `LLDebugTool` to your project.
 
 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool'`,If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' ,:configurations => ['Debug']`.
-2. Install the pod(s) by running `pod install`.
+2. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool`, running `pod repo update` before `pod install`.
 3. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
 
 ### Source files
