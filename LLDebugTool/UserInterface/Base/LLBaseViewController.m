@@ -134,20 +134,20 @@
 
 #pragma mark - Primary
 - (void)initNavigationItems {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.adjustsImageWhenHighlighted = NO;
-    btn.frame = CGRectMake(0, 0, 40, 40);
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.leftBarButtonItem = item;
-    UIImageRenderingMode mode = LLCONFIG_CUSTOM_COLOR ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
     if (self.navigationController.viewControllers.count <= 1) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        btn.showsTouchWhenHighlighted = NO;
+        btn.adjustsImageWhenHighlighted = NO;
+        btn.frame = CGRectMake(0, 0, 40, 40);
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.navigationItem.leftBarButtonItem = item;
+        UIImageRenderingMode mode = LLCONFIG_CUSTOM_COLOR ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
         [btn setImage:[[UIImage imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(leftItemClick) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        [btn setImage:[[UIImage imageNamed:kBackImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     }
+
+    self.navigationItem.hidesBackButton = NO;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
 }
 
 - (void)setUpTableView {

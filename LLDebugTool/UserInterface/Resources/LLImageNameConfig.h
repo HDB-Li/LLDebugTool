@@ -19,7 +19,6 @@ static NSString *const kSandboxImageName = @"LLDebugTool.bundle/LL-sandbox";
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LLDebugTool.bundle/LL-clear";
 static NSString *const kCloseImageName = @"LLDebugTool.bundle/LL-close";
-static NSString *const kBackImageName = @"LLDebugTool.bundle/LL-back";
 static NSString *const kEditImageName = @"LLDebugTool.bundle/LL-edit";
 static NSString *const kDoneImageName = @"LLDebugTool.bundle/LL-done";
 
