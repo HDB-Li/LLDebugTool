@@ -65,6 +65,9 @@
  */
 - (void)stopWorking;
 
+/**
+ Whether working or not.
+ */
 @property (nonatomic , assign , readonly) BOOL isWorking;
 
 /**
