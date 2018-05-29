@@ -71,6 +71,7 @@
             [array addObject:name];
         }
     }
+    free(properties);
     return array;
 }
 

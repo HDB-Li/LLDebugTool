@@ -60,9 +60,9 @@
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes filePath:(NSString *)filePath{
     if (self = [super init]) {
-        _filePath = filePath;
-        _name = [filePath lastPathComponent];
-        _fileType = attributes[NSFileType];
+        _filePath = [filePath copy];
+        _name = [[filePath lastPathComponent] copy];
+        _fileType = [attributes[NSFileType] copy];
         _isDirectory = [_fileType isEqualToString:NSFileTypeDirectory];
         _fileSize = [attributes[NSFileSize] unsignedLongLongValue];
         _totalFileSize = _fileSize;
@@ -86,9 +86,9 @@
     if (!_iconName) {
         if (_isDirectory) {
             if (_subModels.count) {
-                _iconName = kFolderName;
+                _iconName = [kFolderName copy];
             } else {
-                _iconName = kEmptyFolderName;
+                _iconName = [kEmptyFolderName copy];
             }
         } else {
             NSString *extension = self.filePath.pathExtension.lowercaseString;
@@ -112,7 +112,7 @@
                     imageName = kUnknownName;
                 }
             }
-            _iconName = imageName;
+            _iconName = [imageName copy];
         }
     }
     return _iconName;

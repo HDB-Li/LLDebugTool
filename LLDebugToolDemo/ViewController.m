@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import "LLDebug.h"
+
+// Used to example.
 #import <AFNetworking.h>
-#import "LLURLProtocol.h"
 
 static NSString *const kCellID = @"cellID";
 
@@ -17,6 +18,8 @@ static NSString *const kCellID = @"cellID";
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong , nonatomic) AFHTTPSessionManager *manager;
 
 @end
 
@@ -26,6 +29,7 @@ static NSString *const kCellID = @"cellID";
     [super viewDidLoad];
     // LLDebugTool need time to start.
     sleep(0.5);
+    __block __weak typeof(self) weakSelf = self;
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"openCrash"]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openCrash"];
@@ -43,17 +47,19 @@ static NSString *const kCellID = @"cellID";
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!connectionError) {
                 UIImage *image = [[UIImage alloc] initWithData:data];
-                self.imgView.image = image;
+                weakSelf.imgView.image = image;
             }
         });
     }];
 
     // Json Response
-    [[AFHTTPSessionManager manager] GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.manager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
     
-    // Log
+    // Log.
+    // NSLocalizedString is used for multiple languages.
+    // You can just use as LLog(@"What you want to pring").
     LLog(NSLocalizedString(@"initial.log", nil));
 }
 
@@ -62,7 +68,7 @@ static NSString *const kCellID = @"cellID";
     NSString *url = @"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600";
     
     // Use AFHttpSessionManager
-    [[AFHTTPSessionManager manager] GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
@@ -278,6 +284,14 @@ static NSString *const kCellID = @"cellID";
         return @"Config";
     }
     return nil;
+}
+
+#pragma mark - Lazy Load
+- (AFHTTPSessionManager *)manager {
+    if (!_manager) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
 }
 
 @end
