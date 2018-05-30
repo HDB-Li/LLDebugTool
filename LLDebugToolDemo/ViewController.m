@@ -10,7 +10,7 @@
 #import "LLDebug.h"
 
 // Used to example.
-#import <AFNetworking.h>
+#import "NetTool.h"
 
 static NSString *const kCellID = @"cellID";
 
@@ -19,14 +19,13 @@ static NSString *const kCellID = @"cellID";
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong , nonatomic) AFHTTPSessionManager *manager;
-
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // LLDebugTool need time to start.
     sleep(0.5);
     __block __weak typeof(self) weakSelf = self;
@@ -51,10 +50,13 @@ static NSString *const kCellID = @"cellID";
             }
         });
     }];
-
+    
+    
     // Json Response
-    [self.manager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetTool sharedTool].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
     }];
     
     // Log.
@@ -68,7 +70,7 @@ static NSString *const kCellID = @"cellID";
     NSString *url = @"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600";
     
     // Use AFHttpSessionManager
-    [self.manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetTool sharedTool].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
@@ -76,9 +78,8 @@ static NSString *const kCellID = @"cellID";
     
     // Use AFURLSessionManager
     /*
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] init];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    [[NetTool sharedTool].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
     }];
      */
@@ -95,10 +96,9 @@ static NSString *const kCellID = @"cellID";
 
 - (void)testHTMLNetworkRequest {
     //NSURLSession
-    NSURLSession *session = [NSURLSession sharedSession];
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     [urlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
     }];
     [dataTask resume];
@@ -284,14 +284,6 @@ static NSString *const kCellID = @"cellID";
         return @"Config";
     }
     return nil;
-}
-
-#pragma mark - Lazy Load
-- (AFHTTPSessionManager *)manager {
-    if (!_manager) {
-        _manager = [AFHTTPSessionManager manager];
-    }
-    return _manager;
 }
 
 @end
