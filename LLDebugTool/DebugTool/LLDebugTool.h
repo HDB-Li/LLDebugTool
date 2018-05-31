@@ -71,6 +71,11 @@
 @property (nonatomic , assign , readonly) BOOL isWorking;
 
 /**
+ LLDebugTool's version.
+ */
+@property (nonatomic , copy , readonly) NSString *version;
+
+/**
  Automatic open debug view controller with index.
  */
 - (void)showDebugViewControllerWithIndex:(NSInteger)index;
