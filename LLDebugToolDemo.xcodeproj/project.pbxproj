@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
+		3603254D20BFC69800987B80 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603254C20BFC69800987B80 /* NetTool.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -83,6 +84,8 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
+		3603254B20BFC69800987B80 /* NetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
+		3603254C20BFC69800987B80 /* NetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -612,6 +615,8 @@
 		C43BA809205AB095006307BE /* LLDebugToolDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3603254B20BFC69800987B80 /* NetTool.h */,
+				3603254C20BFC69800987B80 /* NetTool.m */,
 				C43BA80A205AB095006307BE /* AppDelegate.h */,
 				C43BA80B205AB095006307BE /* AppDelegate.m */,
 				C43BA80D205AB095006307BE /* ViewController.h */,
@@ -817,6 +822,7 @@
 				36C5BF7C2099897F007A3188 /* LLSandboxHelper.m in Sources */,
 				36C5BF982099897F007A3188 /* LLLogContentVC.m in Sources */,
 				36C5BF962099897F007A3188 /* LLLogVC.m in Sources */,
+				3603254D20BFC69800987B80 /* NetTool.m in Sources */,
 				C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
 				36C5BFA82099897F007A3188 /* UIButton+LL_Utils.m in Sources */,
 				367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */,
@@ -992,7 +998,7 @@
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "myCompany.HDB-Li.LLDebugToolDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1010,7 +1016,7 @@
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "myCompany.HDB-Li.LLDebugToolDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
