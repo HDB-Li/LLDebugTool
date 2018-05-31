@@ -27,6 +27,8 @@
 #import "LLImageNameConfig.h"
 #import "LLWindow.h"
 
+static NSString *const kEmptyCellID = @"emptyCellID";
+
 @interface LLBaseViewController ()
 
 @property (nonatomic , assign) UITableViewStyle style;
@@ -145,7 +147,6 @@
         [btn setImage:[[UIImage imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(leftItemClick) forControlEvents:UIControlEventTouchUpInside];
     }
-
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
 }
@@ -170,7 +171,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kEmptyCellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEmptyCellID];
+    }
+    return cell;
 }
 
 @end

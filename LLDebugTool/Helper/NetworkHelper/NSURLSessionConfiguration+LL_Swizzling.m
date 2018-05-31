@@ -33,12 +33,29 @@
     Method method1 = class_getClassMethod([NSURLSessionConfiguration class], @selector(defaultSessionConfiguration));
     Method method2 = class_getClassMethod([NSURLSessionConfiguration class], @selector(LL_defaultSessionConfiguration));
     method_exchangeImplementations(method1, method2);
+    
+    Method method3 = class_getClassMethod([NSURLSessionConfiguration class], @selector(ephemeralSessionConfiguration));
+    Method method4 = class_getClassMethod([NSURLSessionConfiguration class], @selector(LL_ephemeralSessionConfiguration));
+    method_exchangeImplementations(method3, method4);
 }
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration LL_defaultSessionConfiguration];
     if ([LLDebugTool sharedTool].isWorking) {
         NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:config.protocolClasses];
+        if (![protocols containsObject:[LLURLProtocol class]]) {
+            [protocols insertObject:[LLURLProtocol class] atIndex:0];
+        }
+        config.protocolClasses = protocols;
+    }
+    return config;
+}
+
++ (NSURLSessionConfiguration *)LL_ephemeralSessionConfiguration {
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration LL_ephemeralSessionConfiguration];
+    if ([LLDebugTool sharedTool].isWorking) {
+        NSMutableArray *protocols = [[NSMutableArray alloc] init];
+        [protocols addObjectsFromArray:config.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {
             [protocols insertObject:[LLURLProtocol class] atIndex:0];
         }

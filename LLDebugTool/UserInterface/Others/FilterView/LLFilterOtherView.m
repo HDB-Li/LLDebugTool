@@ -237,7 +237,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
         }
         return view;
     }
-    return nil;
+    return [[UICollectionReusableView alloc] init];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

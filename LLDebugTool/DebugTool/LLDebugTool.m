@@ -86,6 +86,10 @@ static LLDebugTool *_instance = nil;
     }
 }
 
+- (NSString *)version {
+    return @"1.0.3";
+}
+
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
     [self.window.windowViewController showDebugViewControllerWithIndex:index];
 }

@@ -3,11 +3,14 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.2-blue.svg)](https://img.shields.io/badge/pod-v1.0.2-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.3-blue.svg)](https://img.shields.io/badge/pod-v1.0.3-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
+[![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
 
-[English Introduction](https://github.com/HDB-Li/LLDebugTool)
+## 简介
+
+[Click here for an English introduction](https://github.com/HDB-Li/LLDebugTool)
 
 LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助你在非Xcode的情况下，进行数据分析和操作。
 
@@ -21,6 +24,10 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="15%"> </img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="15%"> </img>
 </div>
+
+## 最近更新 (1.0.3)
+
+- 修复一些内存泄漏问题。
 
 ## 我能用LLDebugTool做什么?
 

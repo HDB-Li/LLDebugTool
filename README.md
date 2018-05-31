@@ -3,11 +3,14 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.2-blue.svg)](https://img.shields.io/badge/pod-v1.0.2-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.3-blue.svg)](https://img.shields.io/badge/pod-v1.0.3-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
+[![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
 
-[中文简介](https://github.com/HDB-Li/LLDebugTool/blob/master/README-cn.md)
+## Introduction
+
+[点击查看中文简介](https://github.com/HDB-Li/LLDebugTool/blob/master/README-cn.md)
 
 LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations.
 
@@ -22,6 +25,10 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="15%"> </img>
 </div>
 
+## Recent updates (1.0.3) 
+
+- Fix some leaks.
+        
 ## What can you do with LLDebugTool?
 
 - Always check the network request or view log information for certain events without having to run under XCode. This is useful in solving the testers' problems..

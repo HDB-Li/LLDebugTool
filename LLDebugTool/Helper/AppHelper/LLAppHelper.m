@@ -82,7 +82,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     loadDate = [[NSDate date] timeIntervalSince1970];
     
     @autoreleasepool {
-        __block id<NSObject> obs;
+        __block __weak id<NSObject> obs;
         obs = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
                                                                 object:nil queue:nil
                                                             usingBlock:^(NSNotification *note) {
@@ -312,14 +312,18 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 - (NSString *)currentWifiSSID
 {
     NSString *ssid = nil;
-    NSArray *ifs = (__bridge   id)CNCopySupportedInterfaces();
+    CFArrayRef ifRef = CNCopySupportedInterfaces();
+    NSArray *ifs = (__bridge   id)ifRef;
     for (NSString *ifname in ifs) {
-        NSDictionary *info = (__bridge id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        CFDictionaryRef dictionaryRef = CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        NSDictionary *info = (__bridge id)dictionaryRef;
         if (info[@"SSIDD"])
         {
             ssid = info[@"SSID"];
         }
+        CFAutorelease(dictionaryRef);
     }
+    CFAutorelease(ifRef);
     return ssid;
 }
 
