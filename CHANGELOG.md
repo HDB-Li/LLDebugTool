@@ -1,3 +1,23 @@
+## [1.0.3](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.0.3) (05/31/2018)
+
+Fix some leaks.
+
+- Update
+
+    - LLDebugTool.h (Add annotation.)
+    - LLAppHelper (Forget call CFRelease.)
+    - LLURLProtocol (Manually release NSURLSession, Because the delegate of NSURLSession causes circular references.)
+    - NSURLSessionConfiguration+LLSwizzling (Add ephemeralSessionConfiguration.)
+    - LLSandboxModel (Call copy method.)
+    - LLBaseModel (Forget call free.)
+    - LLBaseViewController / LLFilterOtherView (Fix analyze warning.)
+    - LLTool / LLNetworkContentVC (Uncoupled code.)
+
+- Just For Demo
+
+    - NetTool (Use URLSession in a singleton.)
+    - ViewController (Fix a circular reference.)
+    
 ## [1.0.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.0.2) (05/21/2018)
 
 * Fix the side gesture recognizer bug when pop.
