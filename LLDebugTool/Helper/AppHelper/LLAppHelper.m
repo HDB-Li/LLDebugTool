@@ -321,9 +321,13 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
         {
             ssid = info[@"SSID"];
         }
-        CFAutorelease(dictionaryRef);
+        if (dictionaryRef) {
+            CFAutorelease(dictionaryRef);
+        }
     }
-    CFAutorelease(ifRef);
+    if (ifRef) {
+        CFAutorelease(ifRef);
+    }
     return ssid;
 }
 
