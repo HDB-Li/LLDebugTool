@@ -22,17 +22,18 @@
 //  SOFTWARE.
 
 #import "LLWindowViewController.h"
-#import "LLMacros.h"
-#import "LLWindow.h"
-#import "LLCrashVC.h"
+#import "LLBaseNavigationController.h"
+#import "LLScreenShotHelper.h"
+#import "LLImageNameConfig.h"
 #import "LLNetworkVC.h"
-#import "LLLogVC.h"
 #import "LLAppInfoVC.h"
 #import "LLSandboxVC.h"
 #import "LLAppHelper.h"
+#import "LLCrashVC.h"
+#import "LLMacros.h"
+#import "LLWindow.h"
 #import "LLConfig.h"
-#import "LLImageNameConfig.h"
-#import "LLBaseNavigationController.h"
+#import "LLLogVC.h"
 
 @interface LLWindowViewController ()
 
@@ -184,6 +185,12 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
     [self.sBallView addGestureRecognizer:tap];
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
+    tap2.numberOfTapsRequired = 2;
+    [self.sBallView addGestureRecognizer:tap2];
+
+    [tap requireGestureRecognizerToFail:tap2];
 }
 
 - (void)becomeActive {
@@ -267,6 +274,10 @@
 
 - (void)tapGR:(UITapGestureRecognizer *)gr {
     [self showDebugViewControllerWithIndex:0];
+}
+
+- (void)doubleTapGR:(UITapGestureRecognizer *)gr {
+    [[LLScreenShotHelper sharedHelper] simulateTakeScreenShot];
 }
 
 #pragma mark - Lazy load

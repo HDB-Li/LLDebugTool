@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
+		362453C920B3EC15002C102B /* LLScreenShotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 362453C820B3EC15002C102B /* LLScreenShotHelper.m */; };
+		362B5A9320BD41110002E8D7 /* LLScreenShotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8B20BD41110002E8D7 /* LLScreenShotView.m */; };
+		362B5A9420BD41110002E8D7 /* LLScreenShotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */; };
+		362B5A9520BD41110002E8D7 /* LLScreenShotActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */; };
+		362B5A9620BD41110002E8D7 /* LLScreenShotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
 		367F94C7209AF38300CA1821 /* LLBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367F94C6209AF38300CA1821 /* LLBaseNavigationController.m */; };
+		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36C5BF782099897F007A3188 /* LLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEEE2099897F007A3188 /* LLConfig.m */; };
 		36C5BF792099897F007A3188 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEF22099897F007A3188 /* LLCrashHelper.m */; };
 		36C5BF7A2099897F007A3188 /* LLStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEF52099897F007A3188 /* LLStorageManager.m */; };
@@ -83,6 +89,16 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
+		362453C720B3EC15002C102B /* LLScreenShotHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotHelper.h; sourceTree = "<group>"; };
+		362453C820B3EC15002C102B /* LLScreenShotHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotHelper.m; sourceTree = "<group>"; };
+		362B5A8B20BD41110002E8D7 /* LLScreenShotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotView.m; sourceTree = "<group>"; };
+		362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotToolbar.m; sourceTree = "<group>"; };
+		362B5A8D20BD41110002E8D7 /* LLScreenShotSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotSelectorView.h; sourceTree = "<group>"; };
+		362B5A8E20BD41110002E8D7 /* LLScreenShotActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotActionView.h; sourceTree = "<group>"; };
+		362B5A8F20BD41110002E8D7 /* LLScreenShotToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotToolbar.h; sourceTree = "<group>"; };
+		362B5A9020BD41110002E8D7 /* LLScreenShotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotView.h; sourceTree = "<group>"; };
+		362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotActionView.m; sourceTree = "<group>"; };
+		362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotSelectorView.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -92,6 +108,8 @@
 		367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLSubTitleTableViewCell.xib; sourceTree = "<group>"; };
 		367F94C5209AF38300CA1821 /* LLBaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseNavigationController.h; sourceTree = "<group>"; };
 		367F94C6209AF38300CA1821 /* LLBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseNavigationController.m; sourceTree = "<group>"; };
+		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
+		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		36C5BEEE2099897F007A3188 /* LLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLConfig.m; sourceTree = "<group>"; };
 		36C5BEEF2099897F007A3188 /* LLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLConfig.h; sourceTree = "<group>"; };
 		36C5BEF22099897F007A3188 /* LLCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelper.m; sourceTree = "<group>"; };
@@ -229,6 +247,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		362453C620B3EBF5002C102B /* ScreenShotHelper */ = {
+			isa = PBXGroup;
+			children = (
+				362453C720B3EC15002C102B /* LLScreenShotHelper.h */,
+				362453C820B3EC15002C102B /* LLScreenShotHelper.m */,
+			);
+			path = ScreenShotHelper;
+			sourceTree = "<group>";
+		};
+		362B5A8A20BD41110002E8D7 /* ScreenShotView */ = {
+			isa = PBXGroup;
+			children = (
+				362B5A9020BD41110002E8D7 /* LLScreenShotView.h */,
+				362B5A8B20BD41110002E8D7 /* LLScreenShotView.m */,
+				362B5A8F20BD41110002E8D7 /* LLScreenShotToolbar.h */,
+				362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */,
+				362B5A8E20BD41110002E8D7 /* LLScreenShotActionView.h */,
+				362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */,
+				362B5A8D20BD41110002E8D7 /* LLScreenShotSelectorView.h */,
+				362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */,
+			);
+			path = ScreenShotView;
+			sourceTree = "<group>";
+		};
 		36C5BEED2099897F007A3188 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +283,7 @@
 		36C5BEF02099897F007A3188 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				362453C620B3EBF5002C102B /* ScreenShotHelper */,
 				36C5BEF12099897F007A3188 /* CrashHelper */,
 				36C5BEF42099897F007A3188 /* StorageManager */,
 				36C5BEF72099897F007A3188 /* AppHelper */,
@@ -435,6 +478,7 @@
 		36C5BF3E2099897F007A3188 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				362B5A8A20BD41110002E8D7 /* ScreenShotView */,
 				36C5BF402099897F007A3188 /* FilterView */,
 				36C5BF592099897F007A3188 /* LLMacros.h */,
 				36C5BF3F2099897F007A3188 /* YWFilePreviewController.h */,
@@ -616,6 +660,8 @@
 				C43BA80B205AB095006307BE /* AppDelegate.m */,
 				C43BA80D205AB095006307BE /* ViewController.h */,
 				C43BA80E205AB095006307BE /* ViewController.m */,
+				36A0007520BE863700AE8810 /* NetTool.h */,
+				36A0007620BE863700AE8810 /* NetTool.m */,
 				C43BA810205AB095006307BE /* Main.storyboard */,
 				C43BA813205AB095006307BE /* Assets.xcassets */,
 				C43BA815205AB095006307BE /* LaunchScreen.storyboard */,
@@ -658,8 +704,6 @@
 				C43BA803205AB095006307BE /* Sources */,
 				C43BA804205AB095006307BE /* Frameworks */,
 				C43BA805205AB095006307BE /* Resources */,
-				26F08AEA5492BC3B938C7190 /* [CP] Embed Pods Frameworks */,
-				97DC28EB89EC5A3F8BA895DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -676,7 +720,7 @@
 		C43BA7FF205AB095006307BE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = li;
 				TargetAttributes = {
 					C43BA806205AB095006307BE = {
@@ -729,21 +773,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		26F08AEA5492BC3B938C7190 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6E3CB1D4BAA2CB6C13E12F68 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -762,21 +791,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		97DC28EB89EC5A3F8BA895DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -791,6 +805,7 @@
 				36C5BF9C2099897F007A3188 /* LLFilterOtherView.m in Sources */,
 				36C5BF7D2099897F007A3188 /* LLSandboxModel.m in Sources */,
 				36C5BFB02099897F007A3188 /* LLDebugTool.m in Sources */,
+				362B5A9420BD41110002E8D7 /* LLScreenShotToolbar.m in Sources */,
 				36C5BF8E2099897F007A3188 /* LLCrashVC.m in Sources */,
 				3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */,
 				36C5BF7F2099897F007A3188 /* LLLogHelper.m in Sources */,
@@ -803,9 +818,11 @@
 				36C5BFA22099897F007A3188 /* LLFilterView.m in Sources */,
 				36C5BF802099897F007A3188 /* LLURLProtocol.m in Sources */,
 				36C5BF932099897F007A3188 /* LLWindow.m in Sources */,
+				362453C920B3EC15002C102B /* LLScreenShotHelper.m in Sources */,
 				367F94C7209AF38300CA1821 /* LLBaseNavigationController.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				36C5BF992099897F007A3188 /* LLAppInfoVC.m in Sources */,
+				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				36C5BFA72099897F007A3188 /* YWFilePreviewController.m in Sources */,
 				36C5BF822099897F007A3188 /* LLNetworkHelper.m in Sources */,
 				36C5BFAC2099897F007A3188 /* LLNoneCopyTextField.m in Sources */,
@@ -819,6 +836,9 @@
 				36C5BF962099897F007A3188 /* LLLogVC.m in Sources */,
 				C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
 				36C5BFA82099897F007A3188 /* UIButton+LL_Utils.m in Sources */,
+				362B5A9320BD41110002E8D7 /* LLScreenShotView.m in Sources */,
+				362B5A9520BD41110002E8D7 /* LLScreenShotActionView.m in Sources */,
+				362B5A9620BD41110002E8D7 /* LLScreenShotSelectorView.m in Sources */,
 				367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */,
 				36C5BF7B2099897F007A3188 /* LLAppHelper.m in Sources */,
 				36C5BFAE2099897F007A3188 /* LLBaseModel.m in Sources */,
@@ -890,6 +910,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -897,6 +918,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -946,6 +968,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -953,6 +976,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -986,13 +1010,14 @@
 			baseConfigurationReference = 532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UU2K72AM2R;
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1004,13 +1029,14 @@
 			baseConfigurationReference = 0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UU2K72AM2R;
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
