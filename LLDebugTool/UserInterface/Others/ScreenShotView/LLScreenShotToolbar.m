@@ -22,14 +22,23 @@
 //  SOFTWARE.
 
 #import "LLScreenShotToolbar.h"
-#import "LLScreenShotActionView.h"
 #import "LLScreenShotSelectorView.h"
+#import "LLScreenShotActionView.h"
+#import "LLImageNameConfig.h"
 
-@interface LLScreenShotToolbar ()
+@interface LLScreenShotToolbar () <LLScreenShotActionViewDelegate>
 
 @property (nonatomic , strong) LLScreenShotActionView *actionView;
 
-@property (nonatomic , strong) NSArray *tools;
+@property (nonatomic , strong) UIView *selectorBackgroundView;
+
+@property (nonatomic , strong) NSMutableArray <LLScreenShotSelectorView *>*selectorViews;
+
+@property (nonatomic , strong) LLScreenShotSelectorView *lastSelectorView;
+
+@property (nonatomic , strong) UIImageView *triangleView;
+
+@property (nonatomic , assign) BOOL selectorViewShowed;
 
 @end
 
@@ -44,17 +53,98 @@
 
 #pragma mark - Primary
 - (void)initial {
-    CGFloat gap = 5;
+    self.clipsToBounds = YES;
+    self.selectorViews = [[NSMutableArray alloc] init];
+    
+    CGFloat gap = 10;
     CGFloat itemHeight = (self.frame.size.height - gap) /2.0;
     self.actionView = [[LLScreenShotActionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, itemHeight)];
+    self.actionView.delegate = self;
     [self addSubview:self.actionView];
+    
+    self.selectorBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight)];
+    self.selectorBackgroundView.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.selectorBackgroundView];
+    
+    CGFloat triangleHeight = 10;
+    self.triangleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kSelectorTriangleImageName]];
+    self.triangleView.frame = CGRectMake(0, 0, triangleHeight * 2, triangleHeight);
+    [self.selectorBackgroundView addSubview:self.triangleView];
+    
+    for (int i = 0; i < 5; i++) {
+        LLScreenShotSelectorView *selectorView = [[LLScreenShotSelectorView alloc] initWithFrame:CGRectMake(0, triangleHeight, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height - triangleHeight)];
+        [self.selectorViews addObject:selectorView];
+        [self.selectorBackgroundView addSubview:selectorView];
+    }
+
+    self.lastSelectorView = [self.selectorViews firstObject];
+    [self.selectorBackgroundView bringSubviewToFront:[self.selectorViews firstObject]];
 }
 
-- (NSArray *)tools {
-    if (!_tools) {
-        _tools = @[@"方",@"圆",@"箭头",@"画笔",@"文字",@"标签",@"分割",@"撤回",@"关闭",@"保存"];
+- (void)showSelectorView:(NSInteger)index position:(CGFloat)position {
+    LLScreenShotSelectorView *selectedView = self.selectorViews[index];
+    if (selectedView != self.lastSelectorView) {
+        self.lastSelectorView = selectedView;
+        [self.selectorBackgroundView bringSubviewToFront:selectedView];
     }
-    return _tools;
+    
+    if (self.selectorViewShowed) {
+        [UIView animateWithDuration:0.25 animations:^{
+            CGRect oriFrame = self.triangleView.frame;
+            self.triangleView.frame = CGRectMake(position - oriFrame.size.width / 2.0, oriFrame.origin.y, oriFrame.size.width, oriFrame.size.height);
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            CGRect oriFrame = self.triangleView.frame;
+            CGFloat actionViewBottom = self.actionView.frame.size.height + self.actionView.frame.origin.y;
+            self.triangleView.frame = CGRectMake(position - oriFrame.size.width / 2.0, oriFrame.origin.y, oriFrame.size.width, oriFrame.size.height);
+            self.selectorBackgroundView.frame = CGRectMake(0, actionViewBottom, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height);
+        } completion:^(BOOL finished) {
+            self.selectorViewShowed = YES;
+        }];
+    }
+}
+
+- (void)hideSelectorView {
+    if (self.selectorViewShowed) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.selectorBackgroundView.frame = CGRectMake(0, self.frame.size.height, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height);
+        } completion:^(BOOL finished) {
+            self.selectorViewShowed = NO;
+        }];
+    }
+}
+
+#pragma mark - LLScreenShotActionViewDelegate
+- (void)LLScreenShotActionView:(LLScreenShotActionView *)actionView didSelectedAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position {
+    switch (action) {
+        case LLScreenShotActionRect:
+        case LLScreenShotActionRound:
+        case LLScreenShotActionArrow:
+        case LLScreenShotActionPen:
+        case LLScreenShotActionText:{
+            if (isSelected) {
+                [self showSelectorView:action position:position];
+            } else {
+                [self hideSelectorView];
+            }
+        }
+            break;
+        case LLScreenShotActionBack:{
+            
+        }
+            break;
+        case LLScreenShotActionCancel:{
+            
+        }
+            break;
+        case LLScreenShotActionConfirm:{
+            
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 @end

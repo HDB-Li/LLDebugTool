@@ -22,6 +22,15 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "LLScreenShotActionView.h"
+
+@class LLScreenShotToolbar;
+
+@protocol LLScreenShotToolbarDelegate <NSObject>
+
+- (void)LLScreenShotToolbar:(LLScreenShotToolbar *)toolBar didSelectedAction:(LLScreenShotAction)action;
+
+@end
 
 @interface LLScreenShotToolbar : UIView
 

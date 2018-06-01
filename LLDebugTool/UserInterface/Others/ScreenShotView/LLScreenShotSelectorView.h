@@ -24,9 +24,15 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, LLScreenShotSelectorAction) {
-    LLScreenShotSelectorActionSmall,
-    LLScreenShotSelectorActionMedial,
-    LLScreenShotSelectorActionBig,
+    LLScreenShotSelectorActionSmall = 0,
+    LLScreenShotSelectorActionMedium = 1,
+    LLScreenShotSelectorActionBig = 2,
+    LLScreenShotSelectorActionRed = 3,      // d81e06
+    LLScreenShotSelectorActionBlue = 4,     // 1296db
+    LLScreenShotSelectorActionGreen = 5,    // 1afa29
+    LLScreenShotSelectorActionYellow = 6,   // f4ea2a
+    LLScreenShotSelectorActionGray = 7,     // 2c2c2c
+    LLScreenShotSelectorActionWhite = 8,    // ffffff
 };
 
 @interface LLScreenShotSelectorView : UIView
@@ -35,5 +41,16 @@ typedef NS_ENUM(NSUInteger, LLScreenShotSelectorAction) {
  Specifies the initialization method.
  */
 - (instancetype)initWithFrame:(CGRect)frame;
+
+
+/**
+ Return color by action. Used to draw line or tint color.
+ */
++ (UIColor *)colorWithAction:(LLScreenShotSelectorAction)action;
+
+/**
+ Return size by action. Used to control size of line or controls.
+ */
++ (CGFloat)sizeWithAction:(LLScreenShotSelectorAction)action;
 
 @end

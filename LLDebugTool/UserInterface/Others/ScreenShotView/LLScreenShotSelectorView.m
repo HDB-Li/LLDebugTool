@@ -22,12 +22,13 @@
 //  SOFTWARE.
 
 #import "LLScreenShotSelectorView.h"
+#import "LLImageNameConfig.h"
 
 @interface LLScreenShotSelectorView ()
 
-@property (nonatomic , strong) UIView *contentView;
+@property (nonatomic , strong) UIButton *lastSizeButton;
 
-
+@property (nonatomic , strong) UIButton *lastColorButton;
 
 @end
 
@@ -40,27 +41,126 @@
     return self;
 }
 
++ (UIColor *)colorWithAction:(LLScreenShotSelectorAction)action {
+    switch (action) {
+        case LLScreenShotSelectorActionRed:
+            return [UIColor colorWithRed:0xd8/255.0 green:0x1e/255.0 blue:0x06/255.0 alpha:1];
+        case LLScreenShotSelectorActionBlue:
+            return [UIColor colorWithRed:0x12/255.0 green:0x96/255.0 blue:0xdb/255.0 alpha:1];
+        case LLScreenShotSelectorActionGreen:
+            return [UIColor colorWithRed:0x1a/255.0 green:0xfa/255.0 blue:0x29/255.0 alpha:1];
+        case LLScreenShotSelectorActionYellow:
+            return [UIColor colorWithRed:0xf4/255.0 green:0xea/255.0 blue:0x2a/255.0 alpha:1];
+        case LLScreenShotSelectorActionGray:
+            return [UIColor colorWithRed:0x2c/255.0 green:0x2c/255.0 blue:0x2c/255.0 alpha:1];
+        case LLScreenShotSelectorActionWhite:
+            return [UIColor whiteColor];
+        default:
+            break;
+    }
+    return [UIColor whiteColor];
+}
+
+- (void)actionButtonClicked:(UIButton *)sender {
+    if (sender.tag <= LLScreenShotSelectorActionBig) {
+        // Size button
+        if (self.lastSizeButton != sender) {
+            self.lastSizeButton.selected = NO;
+            sender.selected = YES;
+            self.lastSizeButton = sender;
+        }
+    } else {
+        // Color button
+        if (self.lastColorButton != sender) {
+            self.lastColorButton.selected = NO;
+            self.lastColorButton.layer.borderWidth = 0;
+            sender.selected = YES;
+            sender.layer.borderWidth = 2;
+            self.lastColorButton = sender;
+        }
+    }
+}
+
 #pragma mark - Primary
 - (void)initial {
-    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 15, self.frame.size.width, self.frame.size.height - 15)];
-    self.contentView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    self.contentView.layer.cornerRadius = 5;
-    self.contentView.layer.masksToBounds = YES;
-    [self addSubview:self.contentView];
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    self.layer.cornerRadius = 5;
+    self.layer.masksToBounds = YES;
     
     NSInteger count = 9;
+    CGFloat gap = 10;
+    CGFloat itemWidth = 19;
+    CGFloat itemHeight = 19;
+    CGFloat itemGap = (self.frame.size.width - gap * 2 - itemWidth * count) / (count - 1);
+    CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
+    
     for (int i = 0; i < count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(gap + i * (itemWidth + itemGap), top, itemWidth, itemHeight);
+        NSString *imageName = @"";
+        NSString *selectImageName = @"";
+        switch (i) {
+            case LLScreenShotSelectorActionSmall:{
+                imageName = kSelectorSmallImageName;
+                selectImageName = kSelectorSmallSelectImageName;
+                button.selected = YES;
+                self.lastSizeButton = button;
+            }
+                break;
+            case LLScreenShotSelectorActionMedium:{
+                imageName = kSelectorMediumImageName;
+                selectImageName = kSelectorMediumSelectImageName;
+            }
+                break;
+            case LLScreenShotSelectorActionBig:{
+                imageName = kSelectorBigImageName;
+                selectImageName = kSelectorBigSelectImageName;
+            }
+                break;
+            case LLScreenShotSelectorActionRed:{
+                imageName = kSelectorRedImageName;
+                selectImageName = kSelectorRedImageName;
+                button.selected = YES;
+                button.layer.borderWidth = 2;
+                self.lastColorButton = button;
+            }
+                break;
+            case LLScreenShotSelectorActionBlue:{
+                imageName = kSelectorBlueImageName;
+                selectImageName = kSelectorBlueImageName;
+            }
+                break;
+            case LLScreenShotSelectorActionGreen:{
+                imageName = kSelectorGreenImageName;
+                selectImageName = kSelectorGreenImageName;
+            }
+                break;
+            case LLScreenShotSelectorActionYellow:{
+                imageName = kSelectorYellowImageName;
+                selectImageName = kSelectorYellowImageName;
+            }
+                break;
+            case LLScreenShotSelectorActionGray:{
+                imageName = kSelectorGrayImageName;
+                selectImageName = kSelectorGrayImageName;
+            }
+                break;
+            case LLScreenShotSelectorActionWhite:{
+                imageName = kSelectorWhiteImageName;
+                selectImageName = kSelectorWhiteImageName;
+            }
+                break;
+            default:
+                break;
+        }
+        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:selectImageName] forState:UIControlStateSelected];
         button.tag = i;
-//        switch (i) {
-//            case <#constant#>:
-//                <#statements#>
-//                break;
-//                
-//            default:
-//                break;
-//        }
-        [self.contentView addSubview:button];
+        button.showsTouchWhenHighlighted = NO;
+        button.adjustsImageWhenHighlighted = NO;
+        button.layer.borderColor = [UIColor whiteColor].CGColor;
+        [button addTarget:self action:@selector(actionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
     }
 }
 

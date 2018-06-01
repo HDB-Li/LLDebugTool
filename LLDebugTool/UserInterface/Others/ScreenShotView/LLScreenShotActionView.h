@@ -23,7 +23,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
+typedef NS_ENUM(NSUInteger, LLScreenShotAction) {    
     LLScreenShotActionRect      = 0,
     LLScreenShotActionRound     = 1,
     LLScreenShotActionArrow     = 2,
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
 /**
  Call when action button clicked.
  */
-- (void)LLScreenShotActionView:(LLScreenShotActionView *)actionView didSelectAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected;
+- (void)LLScreenShotActionView:(LLScreenShotActionView *)actionView didSelectedAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
 
 @end
 

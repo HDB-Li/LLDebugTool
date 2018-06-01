@@ -59,8 +59,9 @@
         default:
             break;
     }
-    if ([_delegate respondsToSelector:@selector(LLScreenShotActionView:didSelectAction:isSelected:)]) {
-        [_delegate LLScreenShotActionView:self didSelectAction:sender.tag isSelected:sender.isSelected];
+    if ([_delegate respondsToSelector:@selector(LLScreenShotActionView:didSelectedAction:isSelected:position:)]) {
+        CGFloat position = sender.frame.origin.x + sender.frame.size.width / 2.0;
+        [_delegate LLScreenShotActionView:self didSelectedAction:sender.tag isSelected:sender.isSelected position:position];
     }
 }
 

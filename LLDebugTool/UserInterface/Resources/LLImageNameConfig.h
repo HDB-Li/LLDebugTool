@@ -42,4 +42,19 @@ static NSString *const kTextSelectImageName = @"LLDebugTool.bundle/LL-text-selec
 static NSString *const kUndoImageName = @"LLDebugTool.bundle/LL-undo";
 static NSString *const kUndoDisableImageName = @"LLDebugTool.bundle/LL-undo-disable";
 
+// Selector
+static NSString *const kSelectorTriangleImageName = @"LLDebugTool.bundle/LL-selector-triangle";
+static NSString *const kSelectorSmallImageName = @"LLDebugTool.bundle/LL-selector-small";
+static NSString *const kSelectorSmallSelectImageName = @"LLDebugTool.bundle/LL-selector-small-select";
+static NSString *const kSelectorMediumImageName = @"LLDebugTool.bundle/LL-selector-medium";
+static NSString *const kSelectorMediumSelectImageName = @"LLDebugTool.bundle/LL-selector-medium-select";
+static NSString *const kSelectorBigImageName = @"LLDebugTool.bundle/LL-selector-big";
+static NSString *const kSelectorBigSelectImageName = @"LLDebugTool.bundle/LL-selector-big-select";
+static NSString *const kSelectorRedImageName = @"LLDebugTool.bundle/LL-selector-red";
+static NSString *const kSelectorBlueImageName = @"LLDebugTool.bundle/LL-selector-blue";
+static NSString *const kSelectorGreenImageName = @"LLDebugTool.bundle/LL-selector-green";
+static NSString *const kSelectorYellowImageName = @"LLDebugTool.bundle/LL-selector-yellow";
+static NSString *const kSelectorGrayImageName = @"LLDebugTool.bundle/LL-selector-gray";
+static NSString *const kSelectorWhiteImageName = @"LLDebugTool.bundle/LL-selector-white";
+
 #endif /* LLImageNameConfig_h */

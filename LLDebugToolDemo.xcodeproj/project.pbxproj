@@ -14,6 +14,7 @@
 		362B5A9420BD41110002E8D7 /* LLScreenShotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */; };
 		362B5A9520BD41110002E8D7 /* LLScreenShotActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */; };
 		362B5A9620BD41110002E8D7 /* LLScreenShotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */; };
+		366B5A2320C15B4F003461A7 /* LLScreenShotColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 366B5A2220C15B4F003461A7 /* LLScreenShotColor.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -99,6 +100,8 @@
 		362B5A9020BD41110002E8D7 /* LLScreenShotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotView.h; sourceTree = "<group>"; };
 		362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotActionView.m; sourceTree = "<group>"; };
 		362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotSelectorView.m; sourceTree = "<group>"; };
+		366B5A2120C15B4F003461A7 /* LLScreenShotColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotColor.h; sourceTree = "<group>"; };
+		366B5A2220C15B4F003461A7 /* LLScreenShotColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotColor.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 				362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */,
 				362B5A8D20BD41110002E8D7 /* LLScreenShotSelectorView.h */,
 				362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */,
+				366B5A2120C15B4F003461A7 /* LLScreenShotColor.h */,
+				366B5A2220C15B4F003461A7 /* LLScreenShotColor.m */,
 			);
 			path = ScreenShotView;
 			sourceTree = "<group>";
@@ -859,6 +864,7 @@
 				36C5BF782099897F007A3188 /* LLConfig.m in Sources */,
 				36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */,
 				36C5BF9B2099897F007A3188 /* LLFilterLevelView.m in Sources */,
+				366B5A2320C15B4F003461A7 /* LLScreenShotColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
