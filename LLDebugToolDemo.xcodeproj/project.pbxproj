@@ -14,6 +14,7 @@
 		362B5A9420BD41110002E8D7 /* LLScreenShotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */; };
 		362B5A9520BD41110002E8D7 /* LLScreenShotActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */; };
 		362B5A9620BD41110002E8D7 /* LLScreenShotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */; };
+		3603254D20BFC69800987B80 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603254C20BFC69800987B80 /* NetTool.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -99,6 +100,8 @@
 		362B5A9020BD41110002E8D7 /* LLScreenShotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotView.h; sourceTree = "<group>"; };
 		362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotActionView.m; sourceTree = "<group>"; };
 		362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotSelectorView.m; sourceTree = "<group>"; };
+		3603254B20BFC69800987B80 /* NetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
+		3603254C20BFC69800987B80 /* NetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -656,6 +659,8 @@
 		C43BA809205AB095006307BE /* LLDebugToolDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3603254B20BFC69800987B80 /* NetTool.h */,
+				3603254C20BFC69800987B80 /* NetTool.m */,
 				C43BA80A205AB095006307BE /* AppDelegate.h */,
 				C43BA80B205AB095006307BE /* AppDelegate.m */,
 				C43BA80D205AB095006307BE /* ViewController.h */,
@@ -834,6 +839,7 @@
 				36C5BF7C2099897F007A3188 /* LLSandboxHelper.m in Sources */,
 				36C5BF982099897F007A3188 /* LLLogContentVC.m in Sources */,
 				36C5BF962099897F007A3188 /* LLLogVC.m in Sources */,
+				3603254D20BFC69800987B80 /* NetTool.m in Sources */,
 				C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
 				36C5BFA82099897F007A3188 /* UIButton+LL_Utils.m in Sources */,
 				362B5A9320BD41110002E8D7 /* LLScreenShotView.m in Sources */,

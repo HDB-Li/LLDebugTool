@@ -52,14 +52,14 @@
     for (int i = 0; i < count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
-        switch (i) {
-            case <#constant#>:
-                <#statements#>
-                break;
-                
-            default:
-                break;
-        }
+//        switch (i) {
+//            case <#constant#>:
+//                <#statements#>
+//                break;
+//                
+//            default:
+//                break;
+//        }
         [self.contentView addSubview:button];
     }
 }

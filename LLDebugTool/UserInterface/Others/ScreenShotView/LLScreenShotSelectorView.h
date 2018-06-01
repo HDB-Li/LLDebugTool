@@ -26,7 +26,7 @@
 typedef NS_ENUM(NSUInteger, LLScreenShotSelectorAction) {
     LLScreenShotSelectorActionSmall,
     LLScreenShotSelectorActionMedial,
-    LLScreenShotSelectorAction,
+    LLScreenShotSelectorActionBig,
 };
 
 @interface LLScreenShotSelectorView : UIView
