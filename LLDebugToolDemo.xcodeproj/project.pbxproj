@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
-		3603254D20BFC69800987B80 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603254C20BFC69800987B80 /* NetTool.m */; };
 		362453C920B3EC15002C102B /* LLScreenShotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 362453C820B3EC15002C102B /* LLScreenShotHelper.m */; };
 		362B5A9320BD41110002E8D7 /* LLScreenShotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8B20BD41110002E8D7 /* LLScreenShotView.m */; };
 		362B5A9420BD41110002E8D7 /* LLScreenShotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */; };
@@ -90,8 +89,6 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
-		3603254B20BFC69800987B80 /* NetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
-		3603254C20BFC69800987B80 /* NetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		362453C720B3EC15002C102B /* LLScreenShotHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotHelper.h; sourceTree = "<group>"; };
 		362453C820B3EC15002C102B /* LLScreenShotHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotHelper.m; sourceTree = "<group>"; };
 		362B5A8B20BD41110002E8D7 /* LLScreenShotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotView.m; sourceTree = "<group>"; };
@@ -659,14 +656,12 @@
 		C43BA809205AB095006307BE /* LLDebugToolDemo */ = {
 			isa = PBXGroup;
 			children = (
-				3603254B20BFC69800987B80 /* NetTool.h */,
-				3603254C20BFC69800987B80 /* NetTool.m */,
+				36A0007520BE863700AE8810 /* NetTool.h */,
+				36A0007620BE863700AE8810 /* NetTool.m */,
 				C43BA80A205AB095006307BE /* AppDelegate.h */,
 				C43BA80B205AB095006307BE /* AppDelegate.m */,
 				C43BA80D205AB095006307BE /* ViewController.h */,
 				C43BA80E205AB095006307BE /* ViewController.m */,
-				36A0007520BE863700AE8810 /* NetTool.h */,
-				36A0007620BE863700AE8810 /* NetTool.m */,
 				C43BA810205AB095006307BE /* Main.storyboard */,
 				C43BA813205AB095006307BE /* Assets.xcassets */,
 				C43BA815205AB095006307BE /* LaunchScreen.storyboard */,
@@ -839,7 +834,6 @@
 				36C5BF7C2099897F007A3188 /* LLSandboxHelper.m in Sources */,
 				36C5BF982099897F007A3188 /* LLLogContentVC.m in Sources */,
 				36C5BF962099897F007A3188 /* LLLogVC.m in Sources */,
-				3603254D20BFC69800987B80 /* NetTool.m in Sources */,
 				C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
 				36C5BFA82099897F007A3188 /* UIButton+LL_Utils.m in Sources */,
 				362B5A9320BD41110002E8D7 /* LLScreenShotView.m in Sources */,
