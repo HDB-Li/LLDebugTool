@@ -22,21 +22,24 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLScreenShotActionView.h"
+#import "LLScreenShotDefine.h"
 
 @class LLScreenShotToolbar;
+@class LLScreenShotSelectorModel;
 
 @protocol LLScreenShotToolbarDelegate <NSObject>
 
-- (void)LLScreenShotToolbar:(LLScreenShotToolbar *)toolBar didSelectedAction:(LLScreenShotAction)action;
+- (void)LLScreenShotToolbar:(LLScreenShotToolbar *_Nonnull)toolBar didSelectedAction:(LLScreenShotAction)action selectorModel:(LLScreenShotSelectorModel *_Nullable)selectorModel;
 
 @end
 
 @interface LLScreenShotToolbar : UIView
 
+@property (nonatomic , weak , nullable) id <LLScreenShotToolbarDelegate> delegate;
+
 /**
  Specifies the initialization method.
  */
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull )initWithFrame:(CGRect)frame;
 
 @end

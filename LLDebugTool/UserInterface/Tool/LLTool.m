@@ -107,6 +107,25 @@ static LLTool *_instance = nil;
     return prettyString;
 }
 
++ (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint {
+    
+    CGFloat x = MIN(point.x, otherPoint.x);
+    CGFloat y = MIN(point.y, otherPoint.y);
+    CGFloat maxX = MAX(point.x, otherPoint.x);
+    CGFloat maxY = MAX(point.y, otherPoint.y);
+    CGFloat width = maxX - x;
+    CGFloat height = maxY - y;
+    // Return rect nearby
+    CGFloat gap = 1 / 2.0;
+    if (width == 0) {
+        width = gap;
+    }
+    if (height == 0) {
+        height = gap;
+    }
+    return CGRectMake(x, y, width, height);
+}
+
 #pragma mark - Lazy load
 - (NSDateFormatter *)dateFormatter {
     if (!_dateFormatter) {

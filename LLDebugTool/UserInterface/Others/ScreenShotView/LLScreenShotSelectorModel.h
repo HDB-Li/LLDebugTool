@@ -1,5 +1,5 @@
 //
-//  LLTool.h
+//  LLScreenShotSelectorModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,56 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "LLBaseModel.h"
+#import "LLScreenShotDefine.h"
 
-/**
- Work as factory.
- */
-@interface LLTool : NSObject
+@interface LLScreenShotSelectorModel : LLBaseModel
 
-/**
- Singleton to do simple repetitive tasks.
- 
- @return Singleton
- */
-+ (instancetype)sharedTool;
+@property (nonatomic , assign) LLScreenShotSelectorAction size;
 
-/**
- Identity to model. Deal with the same date, start at 1.
- */
-- (NSString *)absolutelyIdentity;
+@property (nonatomic , assign) LLScreenShotSelectorAction color;
 
+- (instancetype)initWithSize:(LLScreenShotSelectorAction)size color:(LLScreenShotSelectorAction)color;
 
-/**
- The only dateformatter for [LLConfig dateFormatter].
- */
-- (NSString *)stringFromDate:(NSDate *)date;
-- (NSDate *)dateFromString:(NSString *)string;
-
-/**
- The only dateformatter for "yyyy-MM-dd".
- */
-- (NSString *)dayStringFromDate:(NSDate *)date;
-
-/**
- The only dateformatter for "yyyy-MM-dd HH:mm:ss".
- */
-- (NSDate *)staticDateFromString:(NSString *)string;
-- (NSString *)staticStringFromDate:(NSDate *)date;
-
-/**
- Create lines of unity.
- */
-+ (UIView *)lineView:(CGRect)frame superView:(UIView *)superView;
-
-/**
- Convert data to JSONString.
- */
-+ (NSString *)prettyJSONStringFromData:(NSData *)data;
-
-/**
- Get rect from two point
- */
-+ (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
 @end

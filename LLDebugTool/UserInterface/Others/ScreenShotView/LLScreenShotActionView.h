@@ -22,17 +22,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM(NSUInteger, LLScreenShotAction) {    
-    LLScreenShotActionRect      = 0,
-    LLScreenShotActionRound     = 1,
-    LLScreenShotActionArrow     = 2,
-    LLScreenShotActionPen       = 3,
-    LLScreenShotActionText      = 4,
-    LLScreenShotActionBack      = 5,
-    LLScreenShotActionCancel    = 6,
-    LLScreenShotActionConfirm   = 7
-};
+#import "LLScreenShotDefine.h"
 
 @class LLScreenShotActionView;
 
@@ -42,7 +32,7 @@ typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
 /**
  Call when action button clicked.
  */
-- (void)LLScreenShotActionView:(LLScreenShotActionView *)actionView didSelectedAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
+- (void)LLScreenShotActionView:(LLScreenShotActionView *_Nonnull)actionView didSelectedAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
 
 @end
 
@@ -56,6 +46,6 @@ typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
 /**
  Specifies the initialization method.
  */
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull )initWithFrame:(CGRect)frame;
 
 @end

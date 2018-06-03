@@ -1,5 +1,5 @@
 //
-//  LLTool.h
+//  LLScreenShotDefine.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,56 +21,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#ifndef LLScreenShotDefine_h
+#define LLScreenShotDefine_h
 
-/**
- Work as factory.
- */
-@interface LLTool : NSObject
+typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
+    LLScreenShotActionRect      = 0,
+    LLScreenShotActionRound     = 1,
+    LLScreenShotActionArrow     = 2,
+    LLScreenShotActionPen       = 3,
+    LLScreenShotActionText      = 4,
+    LLScreenShotActionBack      = 5,
+    LLScreenShotActionCancel    = 6,
+    LLScreenShotActionConfirm   = 7
+};
 
-/**
- Singleton to do simple repetitive tasks.
- 
- @return Singleton
- */
-+ (instancetype)sharedTool;
+typedef NS_ENUM(NSUInteger, LLScreenShotSelectorAction) {
+    LLScreenShotSelectorActionSmall = 0,
+    LLScreenShotSelectorActionMedium = 1,
+    LLScreenShotSelectorActionBig = 2,
+    LLScreenShotSelectorActionRed = 3,      // d81e06
+    LLScreenShotSelectorActionBlue = 4,     // 1296db
+    LLScreenShotSelectorActionGreen = 5,    // 1afa29
+    LLScreenShotSelectorActionYellow = 6,   // f4ea2a
+    LLScreenShotSelectorActionGray = 7,     // 2c2c2c
+    LLScreenShotSelectorActionWhite = 8,    // ffffff
+};
 
-/**
- Identity to model. Deal with the same date, start at 1.
- */
-- (NSString *)absolutelyIdentity;
-
-
-/**
- The only dateformatter for [LLConfig dateFormatter].
- */
-- (NSString *)stringFromDate:(NSDate *)date;
-- (NSDate *)dateFromString:(NSString *)string;
-
-/**
- The only dateformatter for "yyyy-MM-dd".
- */
-- (NSString *)dayStringFromDate:(NSDate *)date;
-
-/**
- The only dateformatter for "yyyy-MM-dd HH:mm:ss".
- */
-- (NSDate *)staticDateFromString:(NSString *)string;
-- (NSString *)staticStringFromDate:(NSDate *)date;
-
-/**
- Create lines of unity.
- */
-+ (UIView *)lineView:(CGRect)frame superView:(UIView *)superView;
-
-/**
- Convert data to JSONString.
- */
-+ (NSString *)prettyJSONStringFromData:(NSData *)data;
-
-/**
- Get rect from two point
- */
-+ (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
-@end
+#endif /* LLScreenShotDefine_h */

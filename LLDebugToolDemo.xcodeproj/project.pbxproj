@@ -14,7 +14,7 @@
 		362B5A9420BD41110002E8D7 /* LLScreenShotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A8C20BD41110002E8D7 /* LLScreenShotToolbar.m */; };
 		362B5A9520BD41110002E8D7 /* LLScreenShotActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */; };
 		362B5A9620BD41110002E8D7 /* LLScreenShotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */; };
-		366B5A2320C15B4F003461A7 /* LLScreenShotColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 366B5A2220C15B4F003461A7 /* LLScreenShotColor.m */; };
+		366B5A2320C15B4F003461A7 /* LLScreenShotSelectorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 366B5A2220C15B4F003461A7 /* LLScreenShotSelectorModel.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -77,6 +77,7 @@
 		36C5BFAF2099897F007A3188 /* LLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF722099897F007A3188 /* LLTool.m */; };
 		36C5BFB02099897F007A3188 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF762099897F007A3188 /* LLDebugTool.m */; };
 		36C5BFB320999181007A3188 /* LLCrashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BFB220999181007A3188 /* LLCrashModel.m */; };
+		C427139120C2880400CF1343 /* LLScreenShotBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C427139020C2880400CF1343 /* LLScreenShotBaseOperation.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -100,8 +101,8 @@
 		362B5A9020BD41110002E8D7 /* LLScreenShotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenShotView.h; sourceTree = "<group>"; };
 		362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotActionView.m; sourceTree = "<group>"; };
 		362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotSelectorView.m; sourceTree = "<group>"; };
-		366B5A2120C15B4F003461A7 /* LLScreenShotColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotColor.h; sourceTree = "<group>"; };
-		366B5A2220C15B4F003461A7 /* LLScreenShotColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotColor.m; sourceTree = "<group>"; };
+		366B5A2120C15B4F003461A7 /* LLScreenShotSelectorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotSelectorModel.h; sourceTree = "<group>"; };
+		366B5A2220C15B4F003461A7 /* LLScreenShotSelectorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotSelectorModel.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -224,6 +225,8 @@
 		36C5BFB220999181007A3188 /* LLCrashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashModel.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C427138F20C2880400CF1343 /* LLScreenShotBaseOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotBaseOperation.h; sourceTree = "<group>"; };
+		C427139020C2880400CF1343 /* LLScreenShotBaseOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenShotBaseOperation.m; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -234,6 +237,7 @@
 		C43BA816205AB095006307BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C43BA818205AB095006307BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43BA819205AB095006307BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C4C890EE20C1A0490036FD92 /* LLScreenShotDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenShotDefine.h; sourceTree = "<group>"; };
 		C4D3B5E2209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+LL_Swizzling.h"; sourceTree = "<group>"; };
 		C4D3B5E3209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+LL_Swizzling.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -270,8 +274,11 @@
 				362B5A9120BD41110002E8D7 /* LLScreenShotActionView.m */,
 				362B5A8D20BD41110002E8D7 /* LLScreenShotSelectorView.h */,
 				362B5A9220BD41110002E8D7 /* LLScreenShotSelectorView.m */,
-				366B5A2120C15B4F003461A7 /* LLScreenShotColor.h */,
-				366B5A2220C15B4F003461A7 /* LLScreenShotColor.m */,
+				366B5A2120C15B4F003461A7 /* LLScreenShotSelectorModel.h */,
+				366B5A2220C15B4F003461A7 /* LLScreenShotSelectorModel.m */,
+				C427138F20C2880400CF1343 /* LLScreenShotBaseOperation.h */,
+				C427139020C2880400CF1343 /* LLScreenShotBaseOperation.m */,
+				C4C890EE20C1A0490036FD92 /* LLScreenShotDefine.h */,
 			);
 			path = ScreenShotView;
 			sourceTree = "<group>";
@@ -804,6 +811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
+				C427139120C2880400CF1343 /* LLScreenShotBaseOperation.m in Sources */,
 				36C5BF902099897F007A3188 /* LLSandboxCell.m in Sources */,
 				36C5BFAA2099897F007A3188 /* NSString+LL_Utils.m in Sources */,
 				36C5BFAD2099897F007A3188 /* LLBaseViewController.m in Sources */,
@@ -864,7 +872,7 @@
 				36C5BF782099897F007A3188 /* LLConfig.m in Sources */,
 				36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */,
 				36C5BF9B2099897F007A3188 /* LLFilterLevelView.m in Sources */,
-				366B5A2320C15B4F003461A7 /* LLScreenShotColor.m in Sources */,
+				366B5A2320C15B4F003461A7 /* LLScreenShotSelectorModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

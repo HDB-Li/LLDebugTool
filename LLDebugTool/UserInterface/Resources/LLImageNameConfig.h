@@ -26,7 +26,7 @@ static NSString *const kDoneImageName = @"LLDebugTool.bundle/LL-done";
 static NSString *const kFolderImageName = @"LLDebugTool.bundle/LL-folder";
 static NSString *const kEmptyFolderImageName = @"LLDebugTool.bundle/LL-folder-empty";
 
-// Draw
+// Draw   0x148816
 static NSString *const kArrowImageName = @"LLDebugTool.bundle/LL-arrow";
 static NSString *const kArrowSelectImageName = @"LLDebugTool.bundle/LL-arrow-select";
 static NSString *const kCancelImageName = @"LLDebugTool.bundle/LL-cancel";
@@ -56,5 +56,6 @@ static NSString *const kSelectorGreenImageName = @"LLDebugTool.bundle/LL-selecto
 static NSString *const kSelectorYellowImageName = @"LLDebugTool.bundle/LL-selector-yellow";
 static NSString *const kSelectorGrayImageName = @"LLDebugTool.bundle/LL-selector-gray";
 static NSString *const kSelectorWhiteImageName = @"LLDebugTool.bundle/LL-selector-white";
+static NSString *const kSelectorArrowImageName = @"LLDebugTool.bundle/LL-selector-arrow";
 
 #endif /* LLImageNameConfig_h */

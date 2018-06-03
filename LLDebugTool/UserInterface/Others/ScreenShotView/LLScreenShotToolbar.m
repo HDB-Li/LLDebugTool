@@ -145,6 +145,14 @@
         default:
             break;
     }
+    
+    if ([_delegate respondsToSelector:@selector(LLScreenShotToolbar:didSelectedAction:selectorModel:)]) {
+        LLScreenShotSelectorModel *model = nil;
+        if (action <= LLScreenShotActionText) {
+            model = [self.selectorViews[action] currentSelectorModel];
+        }
+        [_delegate LLScreenShotToolbar:self didSelectedAction:action selectorModel:model];
+    }
 }
 
 @end

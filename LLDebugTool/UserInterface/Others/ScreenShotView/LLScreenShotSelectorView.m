@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLScreenShotSelectorView.h"
+#import "LLScreenShotSelectorModel.h"
 #import "LLImageNameConfig.h"
 
 @interface LLScreenShotSelectorView ()
@@ -29,6 +30,8 @@
 @property (nonatomic , strong) UIButton *lastSizeButton;
 
 @property (nonatomic , strong) UIButton *lastColorButton;
+
+@property (nonatomic , strong) LLScreenShotSelectorModel *model;
 
 @end
 
@@ -41,24 +44,8 @@
     return self;
 }
 
-+ (UIColor *)colorWithAction:(LLScreenShotSelectorAction)action {
-    switch (action) {
-        case LLScreenShotSelectorActionRed:
-            return [UIColor colorWithRed:0xd8/255.0 green:0x1e/255.0 blue:0x06/255.0 alpha:1];
-        case LLScreenShotSelectorActionBlue:
-            return [UIColor colorWithRed:0x12/255.0 green:0x96/255.0 blue:0xdb/255.0 alpha:1];
-        case LLScreenShotSelectorActionGreen:
-            return [UIColor colorWithRed:0x1a/255.0 green:0xfa/255.0 blue:0x29/255.0 alpha:1];
-        case LLScreenShotSelectorActionYellow:
-            return [UIColor colorWithRed:0xf4/255.0 green:0xea/255.0 blue:0x2a/255.0 alpha:1];
-        case LLScreenShotSelectorActionGray:
-            return [UIColor colorWithRed:0x2c/255.0 green:0x2c/255.0 blue:0x2c/255.0 alpha:1];
-        case LLScreenShotSelectorActionWhite:
-            return [UIColor whiteColor];
-        default:
-            break;
-    }
-    return [UIColor whiteColor];
+- (LLScreenShotSelectorModel *)currentSelectorModel {
+    return _model;
 }
 
 - (void)actionButtonClicked:(UIButton *)sender {
@@ -68,6 +55,7 @@
             self.lastSizeButton.selected = NO;
             sender.selected = YES;
             self.lastSizeButton = sender;
+            self.model.size = sender.tag;
         }
     } else {
         // Color button
@@ -77,6 +65,7 @@
             sender.selected = YES;
             sender.layer.borderWidth = 2;
             self.lastColorButton = sender;
+            self.model.color = sender.tag;
         }
     }
 }
@@ -86,6 +75,7 @@
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+    self.model = [[LLScreenShotSelectorModel alloc] init];
     
     NSInteger count = 9;
     CGFloat gap = 10;

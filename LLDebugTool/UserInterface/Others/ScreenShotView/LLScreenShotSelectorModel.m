@@ -1,5 +1,5 @@
 //
-//  LLTool.h
+//  LLScreenShotSelectorModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,56 +21,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "LLScreenShotSelectorModel.h"
 
-/**
- Work as factory.
- */
-@interface LLTool : NSObject
+@implementation LLScreenShotSelectorModel
 
-/**
- Singleton to do simple repetitive tasks.
- 
- @return Singleton
- */
-+ (instancetype)sharedTool;
+- (instancetype)init {
+    if (self = [super init]) {
+        _size = LLScreenShotSelectorActionSmall;
+        _color = LLScreenShotSelectorActionRed;
+    }
+    return self;
+}
 
-/**
- Identity to model. Deal with the same date, start at 1.
- */
-- (NSString *)absolutelyIdentity;
+- (instancetype)initWithSize:(LLScreenShotSelectorAction)size color:(LLScreenShotSelectorAction)color {
+    if (self = [super init]) {
+        if (size >= LLScreenShotSelectorActionSmall && size <= LLScreenShotSelectorActionBig) {
+            _size = size;
+        }
+        if (color >= LLScreenShotSelectorActionRed && color <= LLScreenShotSelectorActionWhite) {
+            _color = color;
+        }
+    }
+    return self;
+}
 
-
-/**
- The only dateformatter for [LLConfig dateFormatter].
- */
-- (NSString *)stringFromDate:(NSDate *)date;
-- (NSDate *)dateFromString:(NSString *)string;
-
-/**
- The only dateformatter for "yyyy-MM-dd".
- */
-- (NSString *)dayStringFromDate:(NSDate *)date;
-
-/**
- The only dateformatter for "yyyy-MM-dd HH:mm:ss".
- */
-- (NSDate *)staticDateFromString:(NSString *)string;
-- (NSString *)staticStringFromDate:(NSDate *)date;
-
-/**
- Create lines of unity.
- */
-+ (UIView *)lineView:(CGRect)frame superView:(UIView *)superView;
-
-/**
- Convert data to JSONString.
- */
-+ (NSString *)prettyJSONStringFromData:(NSData *)data;
-
-/**
- Get rect from two point
- */
-+ (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
 @end
