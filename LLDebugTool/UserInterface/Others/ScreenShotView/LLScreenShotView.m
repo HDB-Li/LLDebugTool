@@ -23,16 +23,17 @@
 
 #import "LLScreenShotView.h"
 #import <Photos/PHPhotoLibrary.h>
+#import "LLScreenShotBaseOperation.h"
 #import "LLScreenShotToolbar.h"
 #import "LLStorageManager.h"
 #import "LLDebugTool.h"
 #import "LLWindow.h"
 #import "LLMacros.h"
-#import "LLScreenShotBaseOperation.h"
+#import "LLTool.h"
 
 @interface LLScreenShotView () <LLScreenShotToolbarDelegate>
 
-@property (nonatomic , strong , nonnull) UIImage *image;
+@property (nonatomic , strong) UIView *imageBackgroundView;
 
 @property (nonatomic , assign) LLScreenShotAction currentAction;
 
@@ -42,14 +43,15 @@
 
 @property (nonatomic , strong) NSMutableArray <LLScreenShotBaseOperation *>*operations;
 
+@property (nonatomic , strong) LLScreenShotToolbar *toolBar;
+
 @end
 
 @implementation LLScreenShotView
 
 - (instancetype)initWithImage:(UIImage *)image {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
-        _image = image;
-        [self initial];
+        [self initialWithImage:image];
     }
     return self;
 }
@@ -62,7 +64,8 @@
     [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
     } completion:^(BOOL finished) {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
     }];
 }
 
@@ -72,6 +75,7 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         [[LLDebugTool sharedTool].window showWindow];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }];
 }
 
@@ -80,14 +84,43 @@
 }
 
 - (void)confirmAction {
-    [[LLStorageManager sharedManager] saveScreenShots:self.image name:nil];
-    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
-        UIImageWriteToSavedPhotosAlbum(self.image, nil, nil, nil);
+    self.toolBar.hidden = YES;
+    UIImage *image = [self convertViewToImage:self];
+    if (image) {
+        [[LLStorageManager sharedManager] saveScreenShots:image name:nil];
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+            [[LLTool sharedTool] toastMessage:@"Save image in sandbox and album."];
+        } else {
+            [[LLTool sharedTool] toastMessage:@"Save image in sandbox."];
+        }
+        [self hide];
+    } else {
+        self.toolBar.hidden = NO;
+        [[LLTool sharedTool] toastMessage:@"Save image failed."];
     }
+}
+
+#pragma mark - NSNotification
+- (void)keyboardWillShowNotification:(NSNotification *)notifi {
+    
+}
+
+- (void)keyboardWillHideNotification:(NSNotification *)notifi {
+    
 }
 
 #pragma mark - Touches
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if ([self.currentOperation isKindOfClass:[LLScreenShotTextOperation class]]) {
+        LLScreenShotTextOperation *operation = (LLScreenShotTextOperation *)self.currentOperation;
+        [operation.textView resignFirstResponder];
+        if (self.currentAction == LLScreenShotActionText) {
+            self.currentOperation = nil;
+            return;
+        }
+    }
+    
     UITouch *touch = touches.anyObject;
     CGPoint point = [touch locationInView:self];
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
@@ -96,7 +129,7 @@
             LLScreenShotRectOperation *operation = [[LLScreenShotRectOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
             self.currentOperation = operation;
             [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
+            [self.imageBackgroundView.layer addSublayer:operation.layer];
             operation.startValue = pointValue;
             [self setNeedsDisplay];
         }
@@ -105,22 +138,36 @@
             LLScreenShotRoundOperation *operation = [[LLScreenShotRoundOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
             self.currentOperation = operation;
             [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
+            [self.imageBackgroundView.layer addSublayer:operation.layer];
             operation.startValue = pointValue;
             [self setNeedsDisplay];
         }
             break;
-        case LLScreenShotActionArrow:{
-            LLScreenShotArrowOperation *operation = [LLScreenShotArrowOperation]
+        case LLScreenShotActionLine:{
+            LLScreenShotLineOperation *operation = [[LLScreenShotLineOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
+            self.currentOperation = operation;
+            [self.operations addObject:operation];
+            [self.imageBackgroundView.layer addSublayer:operation.layer];
+            operation.startValue = pointValue;
+            [self setNeedsDisplay];
         }
             break;
         case LLScreenShotActionPen:{
             LLScreenShotPenOperation *operation = [[LLScreenShotPenOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
             self.currentOperation = operation;
             [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
+            [self.imageBackgroundView.layer addSublayer:operation.layer];
             [operation addValue:pointValue];
             [self setNeedsDisplay];
+        }
+            break;
+        case LLScreenShotActionText:{
+            LLScreenShotTextOperation *operation = [[LLScreenShotTextOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
+            self.currentOperation = operation;
+            [self.operations addObject:operation];
+            [self.imageBackgroundView addSubview:operation.textView];
+            operation.textView.frame = CGRectMake(point.x, point.y, LL_SCREEN_WIDTH - point.x - 10, 30);
+            [operation.textView becomeFirstResponder];
         }
             break;
         case LLScreenShotActionBack:
@@ -145,6 +192,12 @@
             break;
         case LLScreenShotActionRound:{
             LLScreenShotRoundOperation *operation = (LLScreenShotRoundOperation *)self.currentOperation;
+            operation.endValue = pointValue;
+            [self setNeedsDisplay];
+        }
+            break;
+        case LLScreenShotActionLine:{
+            LLScreenShotLineOperation *operation = (LLScreenShotLineOperation *)self.currentOperation;
             operation.endValue = pointValue;
             [self setNeedsDisplay];
         }
@@ -182,6 +235,12 @@
             [self setNeedsDisplay];
         }
             break;
+        case LLScreenShotActionLine:{
+            LLScreenShotLineOperation *operation = (LLScreenShotLineOperation *)self.currentOperation;
+            operation.endValue = pointValue;
+            [self setNeedsDisplay];
+        }
+            break;
         case LLScreenShotActionPen:{
             LLScreenShotPenOperation *operation = (LLScreenShotPenOperation *)self.currentOperation;
             [operation addValue:pointValue];
@@ -199,9 +258,13 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
+- (void)initialWithImage:(UIImage *)image {
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     self.operations = [[NSMutableArray alloc] init];
+    
+    self.imageBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
+    self.imageBackgroundView.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.imageBackgroundView];
     
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;
@@ -209,7 +272,7 @@
     CGFloat imgViewHeight = (1 - rate * 2) * LL_SCREEN_HEIGHT;
     CGFloat imgViewTop = (rate * 2 * LL_SCREEN_HEIGHT - toolBarHeight) / 2.0;
     // Init ImageView
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:self.image];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
     imgView.backgroundColor = [UIColor whiteColor];
     imgView.frame = CGRectMake(rate * LL_SCREEN_WIDTH, imgViewTop, imgViewWidth, imgViewHeight);
     CALayer *layer = imgView.layer;
@@ -218,12 +281,12 @@
     layer.shadowColor = [UIColor blackColor].CGColor;
     layer.shadowOffset = CGSizeZero;
     layer.shadowOpacity = 0.5;
-    [self addSubview:imgView];
+    [self.imageBackgroundView addSubview:imgView];
     
     // Init Controls
-    LLScreenShotToolbar *toolBar = [[LLScreenShotToolbar alloc] initWithFrame:CGRectMake(imgView.frame.origin.x, imgView.frame.origin.y + imgView.frame.size.height + 10, imgView.frame.size.width, toolBarHeight)];
-    toolBar.delegate = self;
-    [self addSubview:toolBar];
+    self.toolBar = [[LLScreenShotToolbar alloc] initWithFrame:CGRectMake(imgView.frame.origin.x, imgView.frame.origin.y + imgView.frame.size.height + 10, imgView.frame.size.width, toolBarHeight)];
+    self.toolBar.delegate = self;
+    [self addSubview:self.toolBar];
 }
 
 - (void)updateButtonStyle:(UIButton *)sender {
@@ -236,13 +299,41 @@
     sender.layer.masksToBounds = YES;
 }
 
+- (UIImage *)convertViewToImage:(UIView*)view{
+    CGSize size = view.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 #pragma mark - LLScreenShotToolbarDelegate
 - (void)LLScreenShotToolbar:(LLScreenShotToolbar *)toolBar didSelectedAction:(LLScreenShotAction)action selectorModel:(LLScreenShotSelectorModel *)selectorModel {
     if (action <= LLScreenShotActionText) {
         self.currentAction = action;
         self.currentSelectorModel = selectorModel;
     } else if (action == LLScreenShotActionBack) {
-        
+        LLScreenShotBaseOperation *operation = self.operations.lastObject;
+        switch (operation.action) {
+            case LLScreenShotActionRect:
+            case LLScreenShotActionRound:
+            case LLScreenShotActionLine:
+            case LLScreenShotActionPen:{
+                LLScreenShotTwoValueOperation *oper = (LLScreenShotTwoValueOperation *)operation;
+                [oper.layer removeFromSuperlayer];
+                [self.operations removeObject:oper];
+            }
+                break;
+            case LLScreenShotActionText:{
+                LLScreenShotTextOperation *oper = (LLScreenShotTextOperation *)operation;
+                [oper.textView removeFromSuperview];
+                [self.operations removeObject:oper];
+            }
+                break;
+            default:
+                break;
+        }
     } else if (action == LLScreenShotActionCancel) {
         [self cancelAction];
     } else if (action == LLScreenShotActionConfirm) {

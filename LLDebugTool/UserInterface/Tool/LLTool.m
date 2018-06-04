@@ -23,6 +23,7 @@
 
 #import "LLTool.h"
 #import "LLConfig.h"
+#import "LLMacros.h"
 
 static LLTool *_instance = nil;
 
@@ -33,6 +34,8 @@ static LLTool *_instance = nil;
 @property (nonatomic , strong) NSDateFormatter *dayDateFormatter;
 
 @property (nonatomic , strong) NSDateFormatter *staticDateFormatter;
+
+@property (nonatomic , strong) UILabel *toastLabel;
 
 @end
 
@@ -124,6 +127,40 @@ static LLTool *_instance = nil;
         height = gap;
     }
     return CGRectMake(x, y, width, height);
+}
+
+- (void)toastMessage:(NSString *)message {
+    if (self.toastLabel) {
+        [self.toastLabel removeFromSuperview];
+        self.toastLabel = nil;
+    }
+    
+    __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
+    label.text = message;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByCharWrapping;
+    [label sizeToFit];
+    label.frame = CGRectMake(0, 0, label.frame.size.width + 20, label.frame.size.height + 10);
+    label.layer.cornerRadius = label.font.lineHeight / 2.0;
+    label.layer.masksToBounds = YES;
+    label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
+    label.alpha = 0;
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:label];
+    self.toastLabel = label;
+    [UIView animateWithDuration:0.25 animations:^{
+        label.alpha = 1;
+    } completion:^(BOOL finished) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.1 animations:^{
+                label.alpha = 0;
+            } completion:^(BOOL finished) {
+                [label removeFromSuperview];
+            }];
+        });
+    }];
 }
 
 #pragma mark - Lazy load

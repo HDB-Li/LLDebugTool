@@ -27,7 +27,7 @@
 typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
     LLScreenShotActionRect      = 0,
     LLScreenShotActionRound     = 1,
-    LLScreenShotActionArrow     = 2,
+    LLScreenShotActionLine      = 2,
     LLScreenShotActionPen       = 3,
     LLScreenShotActionText      = 4,
     LLScreenShotActionBack      = 5,

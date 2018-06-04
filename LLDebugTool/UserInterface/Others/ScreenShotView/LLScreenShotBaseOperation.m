@@ -23,9 +23,10 @@
 
 #import "LLScreenShotBaseOperation.h"
 #import "LLImageNameConfig.h"
+#import "LLMacros.h"
 #import "LLTool.h"
 
-@interface LLScreenShotBaseOperation () <CALayerDelegate>
+@interface LLScreenShotBaseOperation ()
 
 @property (nonatomic , strong) LLScreenShotSelectorModel *selector;
 
@@ -43,6 +44,12 @@
 
 @property (nonatomic , strong) UIColor *whiteColor;
 
+@property (nonatomic , strong) UIFont *smallFont;
+
+@property (nonatomic , strong) UIFont *mediumFont;
+
+@property (nonatomic , strong) UIFont *bigFont;
+
 @end
 
 @implementation LLScreenShotBaseOperation
@@ -55,7 +62,6 @@
         _action = LLScreenShotActionRect;
         _path = [UIBezierPath bezierPath];
         _layer = [CAShapeLayer layer];
-        _layer.delegate = self;
     }
     return self;
 }
@@ -66,13 +72,12 @@
         _action = action;
         _path = [UIBezierPath bezierPath];
         _layer = [CAShapeLayer layer];
-        _layer.delegate = self;
     }
     return self;
 }
 
 - (void)drawImageView:(CGRect)rect {
-    
+    NSLog(@"%@ : Subclasses need to be rewritten.", NSStringFromSelector(_cmd));
 }
 
 - (LLScreenShotSelectorAction)size {
@@ -125,6 +130,27 @@
     return _whiteColor;
 }
 
+- (UIFont *)smallFont {
+    if (!_smallFont) {
+        _smallFont = [UIFont systemFontOfSize:12];
+    }
+    return _smallFont;
+}
+
+- (UIFont *)mediumFont {
+    if (!_mediumFont) {
+        _mediumFont = [UIFont systemFontOfSize:14];
+    }
+    return _mediumFont;
+}
+
+- (UIFont *)bigFont {
+    if (!_bigFont) {
+        _bigFont = [UIFont systemFontOfSize:17];
+    }
+    return _bigFont;
+}
+
 #pragma mark - Primary
 - (CGRect)rectWithPoint:(CGPoint)point {
     CGFloat size = [self sizeBySelector] / 2.0;
@@ -164,6 +190,24 @@
     }
     return self.whiteColor;
 }
+
+- (UIFont *)fontBySelector {
+    switch (self.size) {
+        case LLScreenShotSelectorActionSmall:
+            return self.smallFont;
+        case LLScreenShotSelectorActionMedium:
+            return self.mediumFont;
+        case LLScreenShotSelectorActionBig:
+            return self.bigFont;
+        default:
+            break;
+    }
+    return self.smallFont;
+}
+
+@end
+
+@implementation LLScreenShotTwoValueOperation
 
 @end
 
@@ -207,25 +251,18 @@
 
 @end
 
-@implementation LLScreenShotArrowOperation
+@implementation LLScreenShotLineOperation
 
 - (void)drawImageView:(CGRect)rect {
-    CGRect rectPath = CGRectZero;
     if (self.startValue && self.endValue) {
-        rectPath = [LLTool rectWithPoint:self.startValue.CGPointValue otherPoint:self.endValue.CGPointValue];
+        self.path = [UIBezierPath bezierPath];
+        [self.path moveToPoint:self.startValue.CGPointValue];
+        [self.path addLineToPoint:self.endValue.CGPointValue];
+        self.layer.lineWidth = [self sizeBySelector];
+        self.layer.strokeColor = [self colorBySelector].CGColor;
+        self.layer.fillColor = nil;
+        self.layer.path = self.path.CGPath;
     }
-    [self configPathWithRect:rectPath];
-}
-
-- (void)configPathWithRect:(CGRect)rect {
-    
-    UIImage *image = [UIImage imageNamed:kSelectorArrowImageName];
-    [image drawInRect:rect];
-//    self.path = [UIBezierPath bezierPathWithOvalInRect:rect];
-//    self.layer.lineWidth = [self sizeBySelector];
-//    self.layer.strokeColor = [self colorBySelector].CGColor;
-//    self.layer.fillColor = nil;
-//    self.layer.path = self.path.CGPath;
 }
 
 @end
@@ -253,6 +290,41 @@
     self.layer.strokeColor = [self colorBySelector].CGColor;
     self.layer.fillColor = nil;
     self.layer.path = self.path.CGPath;
+}
+
+@end
+
+@implementation LLScreenShotTextOperation
+
+- (instancetype)initWithSelector:(LLScreenShotSelectorModel *)selector action:(LLScreenShotAction)action {
+    if (self = [super initWithSelector:selector action:action]) {
+        _textView = [[UITextView alloc] init];
+        _textView.backgroundColor = [UIColor clearColor];
+        _textView.delegate = self;
+        _textView.showsHorizontalScrollIndicator = NO;
+        _textView.showsVerticalScrollIndicator = NO;
+    }
+    return self;
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textView.textColor = [self colorBySelector];
+    textView.font = [self fontBySelector];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView.text.length == 0) {
+        [textView removeFromSuperview];
+    } else {
+        textView.editable = NO;
+        textView.selectable = NO;
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGSize size = [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)];
+    textView.frame = CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, size.height);
 }
 
 @end

@@ -45,7 +45,7 @@
 
 @end
 
-@interface LLScreenShotRectOperation : LLScreenShotBaseOperation
+@interface LLScreenShotTwoValueOperation : LLScreenShotBaseOperation
 
 // CGPoint
 @property (nonatomic , strong) NSValue *startValue;
@@ -55,23 +55,15 @@
 
 @end
 
-@interface LLScreenShotRoundOperation : LLScreenShotBaseOperation
-
-// CGPoint
-@property (nonatomic , strong) NSValue *startValue;
-
-// CGPoint
-@property (nonatomic , strong) NSValue *endValue;
+@interface LLScreenShotRectOperation : LLScreenShotTwoValueOperation
 
 @end
 
-@interface LLScreenShotArrowOperation : LLScreenShotBaseOperation
+@interface LLScreenShotRoundOperation : LLScreenShotTwoValueOperation
 
-// CGPoint
-@property (nonatomic , strong) NSValue *startValue;
+@end
 
-// CGPoint
-@property (nonatomic , strong) NSValue *endValue;
+@interface LLScreenShotLineOperation : LLScreenShotTwoValueOperation
 
 @end
 
@@ -81,5 +73,11 @@
 @property (nonatomic , strong) NSMutableArray <NSValue *>*values;
 
 - (void)addValue:(NSValue *)value;
+
+@end
+
+@interface LLScreenShotTextOperation : LLScreenShotBaseOperation <UITextViewDelegate>
+
+@property (nonatomic , strong , readonly) UITextView *textView;
 
 @end

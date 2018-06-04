@@ -43,7 +43,7 @@
     switch (sender.tag) {
         case LLScreenShotActionRect:
         case LLScreenShotActionRound:
-        case LLScreenShotActionArrow:
+        case LLScreenShotActionLine:
         case LLScreenShotActionPen:
         case LLScreenShotActionText:{
             if (self.lastSelectButton != sender) {
@@ -93,9 +93,9 @@
                 selectImageName = kRoundSelectImageName;
                 break;
             }
-            case LLScreenShotActionArrow:{
-                imageName = kArrowImageName;
-                selectImageName = kArrowSelectImageName;
+            case LLScreenShotActionLine:{
+                imageName = kLineImageName;
+                selectImageName = kLineSelectImageName;
                 break;
             }
             case LLScreenShotActionPen:{

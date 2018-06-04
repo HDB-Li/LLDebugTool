@@ -73,4 +73,9 @@
  Get rect from two point
  */
 + (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
+
+/**
+ Show toast.
+ */
+- (void)toastMessage:(NSString *)message;
 @end

@@ -120,7 +120,7 @@
     switch (action) {
         case LLScreenShotActionRect:
         case LLScreenShotActionRound:
-        case LLScreenShotActionArrow:
+        case LLScreenShotActionLine:
         case LLScreenShotActionPen:
         case LLScreenShotActionText:{
             if (isSelected) {
