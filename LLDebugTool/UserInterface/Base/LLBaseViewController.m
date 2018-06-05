@@ -58,19 +58,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.navigationController.viewControllers.count > 1) {
-        self.tabBarController.tabBar.hidden = YES;
-    } else {
-        self.tabBarController.tabBar.hidden = NO;
-    }
-}
-
 #pragma mark - Public
 - (void)toastMessage:(NSString *)message {
     [[LLTool sharedTool] toastMessage:message];
