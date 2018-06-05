@@ -23,7 +23,7 @@
 
 #import "LLWindowViewController.h"
 #import "LLBaseNavigationController.h"
-#import "LLScreenShotHelper.h"
+#import "LLScreenshotHelper.h"
 #import "LLImageNameConfig.h"
 #import "LLNetworkVC.h"
 #import "LLAppInfoVC.h"
@@ -277,7 +277,7 @@
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)gr {
-    [[LLScreenShotHelper sharedHelper] simulateTakeScreenShot];
+    [[LLScreenshotHelper sharedHelper] simulateTakeScreenshot];
 }
 
 #pragma mark - Lazy load

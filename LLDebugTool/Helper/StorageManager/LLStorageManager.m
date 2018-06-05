@@ -58,6 +58,8 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 @property (copy , nonatomic) NSString *folderPath;
 
+@property (copy , nonatomic) NSString *screenshotFolderPath;
+
 @end
 
 @implementation LLStorageManager
@@ -275,13 +277,13 @@ static NSString *const kLaunchDateColumn = @"launchDate";
     return ret;
 }
 
-#pragma mark - ScreenShots
-- (BOOL)saveScreenShots:(UIImage *)image name:(NSString *)name {
+#pragma mark - Screenshot
+- (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name {
     if (name.length == 0) {
         name = [[LLTool sharedTool] staticStringFromDate:[NSDate date]];
     }
     name = [name stringByAppendingPathExtension:@"png"];
-    NSString *path = [self.folderPath stringByAppendingPathComponent:name];
+    NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];
     return [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
 }
 
@@ -301,14 +303,11 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 - (BOOL)initDatabase {
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     self.folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:self.folderPath]) {
-        NSError *error;
-        [[NSFileManager  defaultManager] createDirectoryAtPath:self.folderPath withIntermediateDirectories:YES attributes:nil error:&error];
-        if (error) {
-            NSLog(@"LLStorageManager create folder fail, error = %@",error.description);
-        }
-        NSAssert(!error, error.description);
-    }
+    [self createDirectoryAtPath:self.folderPath];
+    
+    self.screenshotFolderPath = [self.folderPath stringByAppendingPathComponent:@"Screenshot"];
+    [self createDirectoryAtPath:self.screenshotFolderPath];
+    
     NSString *filePath = [self.folderPath stringByAppendingPathComponent:@"LLDebugTool.db"];
     
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:filePath];
@@ -338,6 +337,19 @@ static NSString *const kLaunchDateColumn = @"launchDate";
     return ret1 && ret2 && ret3;
 }
 
+- (BOOL)createDirectoryAtPath:(NSString *)path {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSError *error;
+        [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"LLStorageManager create folder fail, path = %@, error = %@",path,error.description);
+            NSAssert(!error, error.description);
+            return NO;
+        }
+        return YES;
+    }
+    return YES;
+}
 
 /**
  * Remove unused log models and networks models.

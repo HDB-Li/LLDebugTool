@@ -1,5 +1,5 @@
 //
-//  LLScreenShotView.h
+//  LLScreenshotImageView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,22 +22,38 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "LLScreenshotBaseOperation.h"
 
-@interface LLScreenShotView : UIView
-
-/**
- Init with image.
- */
-- (instancetype)initWithImage:(UIImage *)image;
+@interface LLScreenshotImageView : UIView
 
 /**
- Show on window.
+ Image to show.
  */
-- (void)show;
+@property (nonatomic , strong , nullable) UIImage *image;
 
 /**
- Hide from window.
+ Current operation.
  */
-- (void)hide;
+@property (nonatomic , strong , readonly , nullable) LLScreenshotBaseOperation *currentOperation;
+
+/**
+ Current action.
+ */
+@property (nonatomic , assign) LLScreenshotAction currentAction;
+
+/**
+ Current selector model.
+ */
+@property (nonatomic , strong , nullable) LLScreenshotSelectorModel *currentSelectorModel;
+
+/**
+ Specifies the initialization method.
+ */
+- (instancetype)initWithFrame:(CGRect)frame;
+
+/**
+ Remove last operation in operations.
+ */
+- (void)removeLastOperation;
 
 @end

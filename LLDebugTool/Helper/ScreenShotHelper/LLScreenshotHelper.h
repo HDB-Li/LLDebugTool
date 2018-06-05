@@ -1,5 +1,5 @@
 //
-//  LLScreenShotDefine.h
+//  LLScreenshotHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,30 +21,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLScreenShotDefine_h
-#define LLScreenShotDefine_h
+#import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, LLScreenShotAction) {
-    LLScreenShotActionRect      = 0,
-    LLScreenShotActionRound     = 1,
-    LLScreenShotActionLine      = 2,
-    LLScreenShotActionPen       = 3,
-    LLScreenShotActionText      = 4,
-    LLScreenShotActionBack      = 5,
-    LLScreenShotActionCancel    = 6,
-    LLScreenShotActionConfirm   = 7
-};
+@interface LLScreenshotHelper : NSObject
 
-typedef NS_ENUM(NSUInteger, LLScreenShotSelectorAction) {
-    LLScreenShotSelectorActionSmall = 0,
-    LLScreenShotSelectorActionMedium = 1,
-    LLScreenShotSelectorActionBig = 2,
-    LLScreenShotSelectorActionRed = 3,      // d81e06
-    LLScreenShotSelectorActionBlue = 4,     // 1296db
-    LLScreenShotSelectorActionGreen = 5,    // 1afa29
-    LLScreenShotSelectorActionYellow = 6,   // f4ea2a
-    LLScreenShotSelectorActionGray = 7,     // 2c2c2c
-    LLScreenShotSelectorActionWhite = 8,    // ffffff
-};
+/**
+ Singleton to control screenshot.
+ 
+ @return Singleton
+ */
++ (instancetype)sharedHelper;
 
-#endif /* LLScreenShotDefine_h */
+/**
+ Set enable to screenshot.
+ */
+@property (nonatomic , assign) BOOL enable;
+
+/**
+ Simulate user screenshot.
+ */
+- (void)simulateTakeScreenshot;
+
+@end

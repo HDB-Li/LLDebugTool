@@ -1,5 +1,5 @@
 //
-//  LLScreenShotSelectorView.m
+//  LLScreenshotSelectorView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,21 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLScreenShotSelectorView.h"
-#import "LLScreenShotSelectorModel.h"
+#import "LLScreenshotSelectorView.h"
+#import "LLScreenshotSelectorModel.h"
 #import "LLImageNameConfig.h"
 
-@interface LLScreenShotSelectorView ()
+@interface LLScreenshotSelectorView ()
 
 @property (nonatomic , strong) UIButton *lastSizeButton;
 
 @property (nonatomic , strong) UIButton *lastColorButton;
 
-@property (nonatomic , strong) LLScreenShotSelectorModel *model;
+@property (nonatomic , strong) LLScreenshotSelectorModel *model;
 
 @end
 
-@implementation LLScreenShotSelectorView
+@implementation LLScreenshotSelectorView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -44,12 +44,12 @@
     return self;
 }
 
-- (LLScreenShotSelectorModel *)currentSelectorModel {
+- (LLScreenshotSelectorModel *)currentSelectorModel {
     return _model;
 }
 
 - (void)actionButtonClicked:(UIButton *)sender {
-    if (sender.tag <= LLScreenShotSelectorActionBig) {
+    if (sender.tag <= LLScreenshotSelectorActionBig) {
         // Size button
         if (self.lastSizeButton != sender) {
             self.lastSizeButton.selected = NO;
@@ -75,7 +75,7 @@
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
-    self.model = [[LLScreenShotSelectorModel alloc] init];
+    self.model = [[LLScreenshotSelectorModel alloc] init];
     
     NSInteger count = 9;
     CGFloat gap = 10;
@@ -90,24 +90,24 @@
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
-            case LLScreenShotSelectorActionSmall:{
+            case LLScreenshotSelectorActionSmall:{
                 imageName = kSelectorSmallImageName;
                 selectImageName = kSelectorSmallSelectImageName;
                 button.selected = YES;
                 self.lastSizeButton = button;
             }
                 break;
-            case LLScreenShotSelectorActionMedium:{
+            case LLScreenshotSelectorActionMedium:{
                 imageName = kSelectorMediumImageName;
                 selectImageName = kSelectorMediumSelectImageName;
             }
                 break;
-            case LLScreenShotSelectorActionBig:{
+            case LLScreenshotSelectorActionBig:{
                 imageName = kSelectorBigImageName;
                 selectImageName = kSelectorBigSelectImageName;
             }
                 break;
-            case LLScreenShotSelectorActionRed:{
+            case LLScreenshotSelectorActionRed:{
                 imageName = kSelectorRedImageName;
                 selectImageName = kSelectorRedImageName;
                 button.selected = YES;
@@ -115,27 +115,27 @@
                 self.lastColorButton = button;
             }
                 break;
-            case LLScreenShotSelectorActionBlue:{
+            case LLScreenshotSelectorActionBlue:{
                 imageName = kSelectorBlueImageName;
                 selectImageName = kSelectorBlueImageName;
             }
                 break;
-            case LLScreenShotSelectorActionGreen:{
+            case LLScreenshotSelectorActionGreen:{
                 imageName = kSelectorGreenImageName;
                 selectImageName = kSelectorGreenImageName;
             }
                 break;
-            case LLScreenShotSelectorActionYellow:{
+            case LLScreenshotSelectorActionYellow:{
                 imageName = kSelectorYellowImageName;
                 selectImageName = kSelectorYellowImageName;
             }
                 break;
-            case LLScreenShotSelectorActionGray:{
+            case LLScreenshotSelectorActionGray:{
                 imageName = kSelectorGrayImageName;
                 selectImageName = kSelectorGrayImageName;
             }
                 break;
-            case LLScreenShotSelectorActionWhite:{
+            case LLScreenshotSelectorActionWhite:{
                 imageName = kSelectorWhiteImageName;
                 selectImageName = kSelectorWhiteImageName;
             }

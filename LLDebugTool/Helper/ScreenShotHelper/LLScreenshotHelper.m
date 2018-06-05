@@ -1,5 +1,5 @@
 //
-//  LLScreenShotHelper.m
+//  LLScreenshotHelper.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,20 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLScreenShotHelper.h"
+#import "LLScreenshotHelper.h"
 #import <UIKit/UIKit.h>
-#import "LLScreenShotView.h"
+#import "LLScreenshotView.h"
 #import "LLDebugTool.h"
 #import "LLWindow.h"
 
-static LLScreenShotHelper *_instance = nil;
+static LLScreenshotHelper *_instance = nil;
 
-@implementation LLScreenShotHelper
+@implementation LLScreenshotHelper
 
 + (instancetype)sharedHelper {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _instance = [[LLScreenShotHelper alloc] init];
+        _instance = [[LLScreenshotHelper alloc] init];
     });
     return _instance;
 }
@@ -43,33 +43,33 @@ static LLScreenShotHelper *_instance = nil;
     if (_enable != enable) {
         _enable = enable;
         if (enable) {
-            [self registerScreenShots];
+            [self registerScreenshot];
         } else {
-            [self unregisterScreenShots];
+            [self unregisterScreenshot];
         }
     }
 }
 
-- (void)simulateTakeScreenShot {
+- (void)simulateTakeScreenshot {
     [[LLDebugTool sharedTool].window hideWindow];
     UIImage *image = [self imageFromScreen];
     if (image) {
-        LLScreenShotView *screenShot = [[LLScreenShotView alloc] initWithImage:image];
-        [screenShot show];
+        LLScreenshotView *screenshot = [[LLScreenshotView alloc] initWithImage:image];
+        [screenshot show];
     }
 }
 
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification
 - (void)receiveUserDidTakeScreenshotNotification:(NSNotification *)notification {
-    [self simulateTakeScreenShot];
+    [self simulateTakeScreenshot];
 }
 
 #pragma mark - Primary
-- (void)registerScreenShots {
+- (void)registerScreenshot {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveUserDidTakeScreenshotNotification:) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
 }
 
-- (void)unregisterScreenShots {
+- (void)unregisterScreenshot {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationUserDidTakeScreenshotNotification object:nil];
 }
 

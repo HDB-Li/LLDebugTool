@@ -1,5 +1,5 @@
 //
-//  LLScreenShotBaseOperation.m
+//  LLScreenshotBaseOperation.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,52 +21,52 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLScreenShotBaseOperation.h"
+#import "LLScreenshotBaseOperation.h"
 #import "LLImageNameConfig.h"
 #import "LLMacros.h"
 #import "LLTool.h"
 
-@interface LLScreenShotBaseOperation ()
+@interface LLScreenshotBaseOperation ()
 
-@property (nonatomic , strong) LLScreenShotSelectorModel *selector;
+@property (nonatomic , strong , nonnull) LLScreenshotSelectorModel *selector;
 
-@property (nonatomic , strong) UIBezierPath *path;
+@property (nonatomic , strong , nonnull) UIBezierPath *path;
 
-@property (nonatomic , strong) UIColor *redColor;
+@property (nonatomic , strong , nonnull) UIColor *redColor;
 
-@property (nonatomic , strong) UIColor *blueColor;
+@property (nonatomic , strong , nonnull) UIColor *blueColor;
 
-@property (nonatomic , strong) UIColor *greenColor;
+@property (nonatomic , strong , nonnull) UIColor *greenColor;
 
-@property (nonatomic , strong) UIColor *yellowColor;
+@property (nonatomic , strong , nonnull) UIColor *yellowColor;
 
-@property (nonatomic , strong) UIColor *grayColor;
+@property (nonatomic , strong , nonnull) UIColor *grayColor;
 
-@property (nonatomic , strong) UIColor *whiteColor;
+@property (nonatomic , strong , nonnull) UIColor *whiteColor;
 
-@property (nonatomic , strong) UIFont *smallFont;
+@property (nonatomic , strong , nonnull) UIFont *smallFont;
 
-@property (nonatomic , strong) UIFont *mediumFont;
+@property (nonatomic , strong , nonnull) UIFont *mediumFont;
 
-@property (nonatomic , strong) UIFont *bigFont;
+@property (nonatomic , strong , nonnull) UIFont *bigFont;
 
 @end
 
-@implementation LLScreenShotBaseOperation
+@implementation LLScreenshotBaseOperation
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        _selector = [[LLScreenShotSelectorModel alloc] initWithSize:LLScreenShotSelectorActionSmall color:LLScreenShotSelectorActionRed];
-        _action = LLScreenShotActionRect;
+        _selector = [[LLScreenshotSelectorModel alloc] initWithSize:LLScreenshotSelectorActionSmall color:LLScreenshotSelectorActionRed];
+        _action = LLScreenshotActionRect;
         _path = [UIBezierPath bezierPath];
         _layer = [CAShapeLayer layer];
     }
     return self;
 }
 
-- (instancetype)initWithSelector:(LLScreenShotSelectorModel *)selector action:(LLScreenShotAction)action {
+- (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action {
     if (self = [super init]) {
         _selector = selector;
         _action = action;
@@ -80,11 +80,11 @@
     NSLog(@"%@ : Subclasses need to be rewritten.", NSStringFromSelector(_cmd));
 }
 
-- (LLScreenShotSelectorAction)size {
+- (LLScreenshotSelectorAction)size {
     return _selector.size;
 }
 
-- (LLScreenShotSelectorAction)color {
+- (LLScreenshotSelectorAction)color {
     return _selector.color;
 }
 
@@ -159,11 +159,11 @@
 
 - (CGFloat)sizeBySelector {
     switch (self.size) {
-        case LLScreenShotSelectorActionSmall:
+        case LLScreenshotSelectorActionSmall:
             return 3;
-        case LLScreenShotSelectorActionMedium:
+        case LLScreenshotSelectorActionMedium:
             return 6;
-        case LLScreenShotSelectorActionBig:
+        case LLScreenshotSelectorActionBig:
             return 9;
         default:
             break;
@@ -173,17 +173,17 @@
 
 - (UIColor *)colorBySelector {
     switch (self.color) {
-        case LLScreenShotSelectorActionRed:
+        case LLScreenshotSelectorActionRed:
             return self.redColor;
-        case LLScreenShotSelectorActionBlue:
+        case LLScreenshotSelectorActionBlue:
             return self.blueColor;
-        case LLScreenShotSelectorActionGreen:
+        case LLScreenshotSelectorActionGreen:
             return self.greenColor;
-        case LLScreenShotSelectorActionYellow:
+        case LLScreenshotSelectorActionYellow:
             return self.yellowColor;
-        case LLScreenShotSelectorActionGray:
+        case LLScreenshotSelectorActionGray:
             return self.grayColor;
-        case LLScreenShotSelectorActionWhite:
+        case LLScreenshotSelectorActionWhite:
             return self.whiteColor;
         default:
             break;
@@ -193,11 +193,11 @@
 
 - (UIFont *)fontBySelector {
     switch (self.size) {
-        case LLScreenShotSelectorActionSmall:
+        case LLScreenshotSelectorActionSmall:
             return self.smallFont;
-        case LLScreenShotSelectorActionMedium:
+        case LLScreenshotSelectorActionMedium:
             return self.mediumFont;
-        case LLScreenShotSelectorActionBig:
+        case LLScreenshotSelectorActionBig:
             return self.bigFont;
         default:
             break;
@@ -207,11 +207,11 @@
 
 @end
 
-@implementation LLScreenShotTwoValueOperation
+@implementation LLScreenshotTwoValueOperation
 
 @end
 
-@implementation LLScreenShotRectOperation
+@implementation LLScreenshotRectOperation
 
 - (void)drawImageView:(CGRect)rect {
     CGRect rectPath = CGRectZero;
@@ -231,7 +231,7 @@
 
 @end
 
-@implementation LLScreenShotRoundOperation
+@implementation LLScreenshotRoundOperation
 
 - (void)drawImageView:(CGRect)rect {
     CGRect rectPath = CGRectZero;
@@ -251,7 +251,7 @@
 
 @end
 
-@implementation LLScreenShotLineOperation
+@implementation LLScreenshotLineOperation
 
 - (void)drawImageView:(CGRect)rect {
     if (self.startValue && self.endValue) {
@@ -267,9 +267,16 @@
 
 @end
 
-@implementation LLScreenShotPenOperation
+@interface LLScreenshotPenOperation ()
 
-- (instancetype)initWithSelector:(LLScreenShotSelectorModel *)selector action:(LLScreenShotAction)action {
+// CGPoint
+@property (nonatomic , strong , nonnull) NSMutableArray <NSValue *>*values;
+
+@end
+
+@implementation LLScreenshotPenOperation
+
+- (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action {
     if (self = [super initWithSelector:selector action:action]) {
         self.values = [[NSMutableArray alloc] init];
     }
@@ -294,9 +301,9 @@
 
 @end
 
-@implementation LLScreenShotTextOperation
+@implementation LLScreenshotTextOperation
 
-- (instancetype)initWithSelector:(LLScreenShotSelectorModel *)selector action:(LLScreenShotAction)action {
+- (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action {
     if (self = [super initWithSelector:selector action:action]) {
         _textView = [[UITextView alloc] init];
         _textView.backgroundColor = [UIColor clearColor];

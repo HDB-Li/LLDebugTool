@@ -1,5 +1,5 @@
 //
-//  LLScreenShotBaseOperation.h
+//  LLScreenshotBaseOperation.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,20 +23,23 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "LLScreenShotSelectorModel.h"
-#import "LLScreenShotDefine.h"
+#import "LLScreenshotSelectorModel.h"
+#import "LLScreenshotDefine.h"
 
-@interface LLScreenShotBaseOperation : NSObject
+@interface LLScreenshotBaseOperation : NSObject
 
-@property (nonatomic , assign , readonly) LLScreenShotAction action;
+@property (nonatomic , assign , readonly) LLScreenshotAction action;
 
-@property (nonatomic , assign , readonly) LLScreenShotSelectorAction size;
+@property (nonatomic , assign , readonly) LLScreenshotSelectorAction size;
 
-@property (nonatomic , assign , readonly) LLScreenShotSelectorAction color;
+@property (nonatomic , assign , readonly) LLScreenshotSelectorAction color;
 
-@property (nonatomic , strong , readonly) CAShapeLayer *layer;
+@property (nonatomic , strong , readonly , nonnull) CAShapeLayer *layer;
 
-- (instancetype)initWithSelector:(LLScreenShotSelectorModel *)selector action:(LLScreenShotAction)action;
+/**
+ Specifies the initialization method.
+ */
+- (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action;
 
 /**
  Subclasses need to be rewritten.
@@ -45,39 +48,48 @@
 
 @end
 
-@interface LLScreenShotTwoValueOperation : LLScreenShotBaseOperation
+@interface LLScreenshotTwoValueOperation : LLScreenshotBaseOperation
 
 // CGPoint
-@property (nonatomic , strong) NSValue *startValue;
 
-// CGPoint
-@property (nonatomic , strong) NSValue *endValue;
+/**
+ CGPoint value. Mark start point.
+ */
+@property (nonatomic , strong , nullable) NSValue *startValue;
 
-@end
-
-@interface LLScreenShotRectOperation : LLScreenShotTwoValueOperation
-
-@end
-
-@interface LLScreenShotRoundOperation : LLScreenShotTwoValueOperation
+/**
+ CGPoint value. Mark end point.
+ */
+@property (nonatomic , strong , nullable) NSValue *endValue;
 
 @end
 
-@interface LLScreenShotLineOperation : LLScreenShotTwoValueOperation
+@interface LLScreenshotRectOperation : LLScreenshotTwoValueOperation
 
 @end
 
-@interface LLScreenShotPenOperation : LLScreenShotBaseOperation
+@interface LLScreenshotRoundOperation : LLScreenshotTwoValueOperation
 
-// CGPoint
-@property (nonatomic , strong) NSMutableArray <NSValue *>*values;
+@end
 
+@interface LLScreenshotLineOperation : LLScreenshotTwoValueOperation
+
+@end
+
+@interface LLScreenshotPenOperation : LLScreenshotBaseOperation
+
+/**
+ CGPoint value. add operation point.
+ */
 - (void)addValue:(NSValue *)value;
 
 @end
 
-@interface LLScreenShotTextOperation : LLScreenShotBaseOperation <UITextViewDelegate>
+@interface LLScreenshotTextOperation : LLScreenshotBaseOperation <UITextViewDelegate>
 
-@property (nonatomic , strong , readonly) UITextView *textView;
+/**
+ Use to input text.
+ */
+@property (nonatomic , strong , readonly , nonnull) UITextView *textView;
 
 @end

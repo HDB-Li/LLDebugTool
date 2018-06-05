@@ -1,5 +1,5 @@
 //
-//  LLScreenShotHelper.h
+//  LLScreenshotToolbar.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,25 +21,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "LLScreenshotDefine.h"
 
-@interface LLScreenShotHelper : NSObject
+@class LLScreenshotToolbar;
+@class LLScreenshotSelectorModel;
+
+@protocol LLScreenshotToolbarDelegate <NSObject>
+
+- (void)LLScreenshotToolbar:(LLScreenshotToolbar *)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *)selectorModel;
+
+@end
+
+@interface LLScreenshotToolbar : UIView
+
+@property (nonatomic , weak , nullable) id <LLScreenshotToolbarDelegate> delegate;
 
 /**
- Singleton to control screenShot.
- 
- @return Singleton
+ Specifies the initialization method.
  */
-+ (instancetype)sharedHelper;
-
-/**
- Set enable to screenshots.
- */
-@property (nonatomic , assign) BOOL enable;
-
-/**
- Simulate user screenshots.
- */
-- (void)simulateTakeScreenShot;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 @end

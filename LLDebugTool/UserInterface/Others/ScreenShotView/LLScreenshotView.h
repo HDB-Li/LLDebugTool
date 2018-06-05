@@ -1,5 +1,5 @@
 //
-//  LLScreenShotActionView.h
+//  LLScreenshotView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,30 +22,22 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLScreenShotDefine.h"
 
-@class LLScreenShotActionView;
-
-@protocol LLScreenShotActionViewDelegate <NSObject>
-
-@optional
-/**
- Call when action button clicked.
- */
-- (void)LLScreenShotActionView:(LLScreenShotActionView *_Nonnull)actionView didSelectedAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
-
-@end
-
-@interface LLScreenShotActionView : UIView
+@interface LLScreenshotView : UIView
 
 /**
- Delegate to accept click events.
+ Init with image.
  */
-@property (nonatomic , weak , nullable) id <LLScreenShotActionViewDelegate> delegate;
+- (instancetype)initWithImage:(UIImage *)image;
 
 /**
- Specifies the initialization method.
+ Show on window.
  */
-- (instancetype _Nonnull )initWithFrame:(CGRect)frame;
+- (void)show;
+
+/**
+ Hide from window.
+ */
+- (void)hide;
 
 @end

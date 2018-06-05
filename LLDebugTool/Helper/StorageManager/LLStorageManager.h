@@ -105,11 +105,11 @@
  */
 - (BOOL)removeLogModels:(NSArray <LLLogModel *>*)models;
 
-#pragma mark - ScreenShots
+#pragma mark - Screenshot
 
 /**
  Save screenShots to sandbox.
  */
-- (BOOL)saveScreenShots:(UIImage *)image name:(NSString *)name;
+- (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name;
 
 @end

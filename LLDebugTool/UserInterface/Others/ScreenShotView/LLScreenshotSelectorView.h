@@ -1,5 +1,5 @@
 //
-//  LLScreenShotSelectorModel.m
+//  LLScreenshotSelectorView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,28 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLScreenShotSelectorModel.h"
+#import <UIKit/UIKit.h>
+#import "LLScreenshotDefine.h"
 
-@implementation LLScreenShotSelectorModel
+@class LLScreenshotSelectorModel;
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _size = LLScreenShotSelectorActionSmall;
-        _color = LLScreenShotSelectorActionRed;
-    }
-    return self;
-}
+@interface LLScreenshotSelectorView : UIView
 
-- (instancetype)initWithSize:(LLScreenShotSelectorAction)size color:(LLScreenShotSelectorAction)color {
-    if (self = [super init]) {
-        if (size >= LLScreenShotSelectorActionSmall && size <= LLScreenShotSelectorActionBig) {
-            _size = size;
-        }
-        if (color >= LLScreenShotSelectorActionRed && color <= LLScreenShotSelectorActionWhite) {
-            _color = color;
-        }
-    }
-    return self;
-}
+/**
+ Specifies the initialization method.
+ */
+- (instancetype)initWithFrame:(CGRect)frame;
+
+/**
+ Return current selector model.
+ */
+- (LLScreenshotSelectorModel *)currentSelectorModel;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLScreenShotToolbar.h
+//  LLScreenshotActionView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,24 +22,30 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLScreenShotDefine.h"
+#import "LLScreenshotDefine.h"
 
-@class LLScreenShotToolbar;
-@class LLScreenShotSelectorModel;
+@class LLScreenshotActionView;
 
-@protocol LLScreenShotToolbarDelegate <NSObject>
+@protocol LLScreenshotActionViewDelegate <NSObject>
 
-- (void)LLScreenShotToolbar:(LLScreenShotToolbar *_Nonnull)toolBar didSelectedAction:(LLScreenShotAction)action selectorModel:(LLScreenShotSelectorModel *_Nullable)selectorModel;
+@optional
+/**
+ Call when action button clicked.
+ */
+- (void)LLScreenshotActionView:(LLScreenshotActionView *_Nonnull)actionView didSelectedAction:(LLScreenshotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
 
 @end
 
-@interface LLScreenShotToolbar : UIView
+@interface LLScreenshotActionView : UIView
 
-@property (nonatomic , weak , nullable) id <LLScreenShotToolbarDelegate> delegate;
+/**
+ Delegate to accept click events.
+ */
+@property (nonatomic , weak , nullable) id <LLScreenshotActionViewDelegate> delegate;
 
 /**
  Specifies the initialization method.
  */
-- (instancetype _Nonnull )initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 @end

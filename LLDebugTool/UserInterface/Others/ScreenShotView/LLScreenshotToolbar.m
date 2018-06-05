@@ -1,5 +1,5 @@
 //
-//  LLScreenShotToolbar.m
+//  LLScreenshotToolbar.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,28 +21,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLScreenShotToolbar.h"
-#import "LLScreenShotSelectorView.h"
-#import "LLScreenShotActionView.h"
+#import "LLScreenshotToolbar.h"
+#import "LLScreenshotSelectorView.h"
+#import "LLScreenshotActionView.h"
 #import "LLImageNameConfig.h"
 
-@interface LLScreenShotToolbar () <LLScreenShotActionViewDelegate>
+@interface LLScreenshotToolbar () <LLScreenshotActionViewDelegate>
 
-@property (nonatomic , strong) LLScreenShotActionView *actionView;
+@property (nonatomic , strong , nonnull) LLScreenshotActionView *actionView;
 
-@property (nonatomic , strong) UIView *selectorBackgroundView;
+@property (nonatomic , strong , nonnull) UIView *selectorBackgroundView;
 
-@property (nonatomic , strong) NSMutableArray <LLScreenShotSelectorView *>*selectorViews;
+@property (nonatomic , strong , nonnull) NSMutableArray <LLScreenshotSelectorView *>*selectorViews;
 
-@property (nonatomic , strong) LLScreenShotSelectorView *lastSelectorView;
+@property (nonatomic , strong , nonnull) LLScreenshotSelectorView *lastSelectorView;
 
-@property (nonatomic , strong) UIImageView *triangleView;
+@property (nonatomic , strong , nonnull) UIImageView *triangleView;
 
 @property (nonatomic , assign) BOOL selectorViewShowed;
 
 @end
 
-@implementation LLScreenShotToolbar
+@implementation LLScreenshotToolbar
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -58,7 +58,7 @@
     
     CGFloat gap = 10;
     CGFloat itemHeight = (self.frame.size.height - gap) /2.0;
-    self.actionView = [[LLScreenShotActionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, itemHeight)];
+    self.actionView = [[LLScreenshotActionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, itemHeight)];
     self.actionView.delegate = self;
     [self addSubview:self.actionView];
     
@@ -72,7 +72,7 @@
     [self.selectorBackgroundView addSubview:self.triangleView];
     
     for (int i = 0; i < 5; i++) {
-        LLScreenShotSelectorView *selectorView = [[LLScreenShotSelectorView alloc] initWithFrame:CGRectMake(0, triangleHeight, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height - triangleHeight)];
+        LLScreenshotSelectorView *selectorView = [[LLScreenshotSelectorView alloc] initWithFrame:CGRectMake(0, triangleHeight, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height - triangleHeight)];
         [self.selectorViews addObject:selectorView];
         [self.selectorBackgroundView addSubview:selectorView];
     }
@@ -82,7 +82,7 @@
 }
 
 - (void)showSelectorView:(NSInteger)index position:(CGFloat)position {
-    LLScreenShotSelectorView *selectedView = self.selectorViews[index];
+    LLScreenshotSelectorView *selectedView = self.selectorViews[index - 1];
     if (selectedView != self.lastSelectorView) {
         self.lastSelectorView = selectedView;
         [self.selectorBackgroundView bringSubviewToFront:selectedView];
@@ -115,14 +115,14 @@
     }
 }
 
-#pragma mark - LLScreenShotActionViewDelegate
-- (void)LLScreenShotActionView:(LLScreenShotActionView *)actionView didSelectedAction:(LLScreenShotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position {
+#pragma mark - LLScreenshotActionViewDelegate
+- (void)LLScreenshotActionView:(LLScreenshotActionView *)actionView didSelectedAction:(LLScreenshotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position {
     switch (action) {
-        case LLScreenShotActionRect:
-        case LLScreenShotActionRound:
-        case LLScreenShotActionLine:
-        case LLScreenShotActionPen:
-        case LLScreenShotActionText:{
+        case LLScreenshotActionRect:
+        case LLScreenshotActionRound:
+        case LLScreenshotActionLine:
+        case LLScreenshotActionPen:
+        case LLScreenshotActionText:{
             if (isSelected) {
                 [self showSelectorView:action position:position];
             } else {
@@ -130,15 +130,15 @@
             }
         }
             break;
-        case LLScreenShotActionBack:{
+        case LLScreenshotActionBack:{
             
         }
             break;
-        case LLScreenShotActionCancel:{
+        case LLScreenshotActionCancel:{
             
         }
             break;
-        case LLScreenShotActionConfirm:{
+        case LLScreenshotActionConfirm:{
             
         }
             break;
@@ -146,12 +146,16 @@
             break;
     }
     
-    if ([_delegate respondsToSelector:@selector(LLScreenShotToolbar:didSelectedAction:selectorModel:)]) {
-        LLScreenShotSelectorModel *model = nil;
-        if (action <= LLScreenShotActionText) {
-            model = [self.selectorViews[action] currentSelectorModel];
+    if ([_delegate respondsToSelector:@selector(LLScreenshotToolbar:didSelectedAction:selectorModel:)]) {
+        LLScreenshotSelectorModel *model = nil;
+        if (action < LLScreenshotActionBack) {
+            if (isSelected) {
+                model = [self.selectorViews[action - 1] currentSelectorModel];
+            } else {
+                action = LLScreenshotActionNone;
+            }
         }
-        [_delegate LLScreenShotToolbar:self didSelectedAction:action selectorModel:model];
+        [_delegate LLScreenshotToolbar:self didSelectedAction:action selectorModel:model];
     }
 }
 

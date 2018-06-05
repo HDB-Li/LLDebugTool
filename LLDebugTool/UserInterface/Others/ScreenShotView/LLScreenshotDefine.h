@@ -1,5 +1,5 @@
 //
-//  LLScreenShotSelectorModel.h
+//  LLScreenshotDefine.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,15 +21,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
-#import "LLScreenShotDefine.h"
+#ifndef LLScreenshotDefine_h
+#define LLScreenshotDefine_h
 
-@interface LLScreenShotSelectorModel : LLBaseModel
+typedef NS_ENUM(NSUInteger, LLScreenshotAction) {
+    LLScreenshotActionNone      = 0,
+    LLScreenshotActionRect      = 1,
+    LLScreenshotActionRound     = 2,
+    LLScreenshotActionLine      = 3,
+    LLScreenshotActionPen       = 4,
+    LLScreenshotActionText      = 5,
+    LLScreenshotActionBack      = 6,
+    LLScreenshotActionCancel    = 7,
+    LLScreenshotActionConfirm   = 8
+};
 
-@property (nonatomic , assign) LLScreenShotSelectorAction size;
+typedef NS_ENUM(NSUInteger, LLScreenshotSelectorAction) {
+    LLScreenshotSelectorActionSmall     = 0,
+    LLScreenshotSelectorActionMedium    = 1,
+    LLScreenshotSelectorActionBig       = 2,
+    LLScreenshotSelectorActionRed       = 3,    // d81e06
+    LLScreenshotSelectorActionBlue      = 4,    // 1296db
+    LLScreenshotSelectorActionGreen     = 5,    // 1afa29
+    LLScreenshotSelectorActionYellow    = 6,    // f4ea2a
+    LLScreenshotSelectorActionGray      = 7,    // 2c2c2c
+    LLScreenshotSelectorActionWhite     = 8,    // ffffff
+};
 
-@property (nonatomic , assign) LLScreenShotSelectorAction color;
-
-- (instancetype)initWithSize:(LLScreenShotSelectorAction)size color:(LLScreenShotSelectorAction)color;
-
-@end
+#endif /* LLScreenshotDefine_h */

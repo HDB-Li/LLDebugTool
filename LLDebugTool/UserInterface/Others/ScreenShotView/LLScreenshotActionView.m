@@ -1,5 +1,5 @@
 //
-//  LLScreenShotActionView.m
+//  LLScreenshotActionView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,16 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLScreenShotActionView.h"
+#import "LLScreenshotActionView.h"
 #import "LLImageNameConfig.h"
 
-@interface LLScreenShotActionView ()
+@interface LLScreenshotActionView ()
 
 @property (nonatomic , strong , nullable) UIButton *lastSelectButton;
 
 @end
 
-@implementation LLScreenShotActionView
+@implementation LLScreenshotActionView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -41,11 +41,11 @@
 
 - (void)buttonClicked:(UIButton *)sender {
     switch (sender.tag) {
-        case LLScreenShotActionRect:
-        case LLScreenShotActionRound:
-        case LLScreenShotActionLine:
-        case LLScreenShotActionPen:
-        case LLScreenShotActionText:{
+        case LLScreenshotActionRect:
+        case LLScreenshotActionRound:
+        case LLScreenshotActionLine:
+        case LLScreenshotActionPen:
+        case LLScreenshotActionText:{
             if (self.lastSelectButton != sender) {
                 self.lastSelectButton.selected = NO;
                 sender.selected = YES;
@@ -59,9 +59,9 @@
         default:
             break;
     }
-    if ([_delegate respondsToSelector:@selector(LLScreenShotActionView:didSelectedAction:isSelected:position:)]) {
+    if ([_delegate respondsToSelector:@selector(LLScreenshotActionView:didSelectedAction:isSelected:position:)]) {
         CGFloat position = sender.frame.origin.x + sender.frame.size.width / 2.0;
-        [_delegate LLScreenShotActionView:self didSelectedAction:sender.tag isSelected:sender.isSelected position:position];
+        [_delegate LLScreenshotActionView:self didSelectedAction:sender.tag isSelected:sender.isSelected position:position];
     }
 }
 
@@ -77,48 +77,48 @@
     CGFloat itemHeight = self.frame.size.height;
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
     
-    for (int i = 0; i < count; i++) {
+    for (int i = 1; i <= count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(gap + i * itemWidth, top, itemWidth, itemHeight);
+        button.frame = CGRectMake(gap + (i - 1) * itemWidth, top, itemWidth, itemHeight);
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
-            case LLScreenShotActionRect:{
+            case LLScreenshotActionRect:{
                 imageName = kRectImageName;
                 selectImageName = kRectSelectImageName;
                 break;
             }
-            case LLScreenShotActionRound:{
+            case LLScreenshotActionRound:{
                 imageName = kRoundImageName;
                 selectImageName = kRoundSelectImageName;
                 break;
             }
-            case LLScreenShotActionLine:{
+            case LLScreenshotActionLine:{
                 imageName = kLineImageName;
                 selectImageName = kLineSelectImageName;
                 break;
             }
-            case LLScreenShotActionPen:{
+            case LLScreenshotActionPen:{
                 imageName = kPenImageName;
                 selectImageName = kPenSelectImageName;
                 break;
             }
-            case LLScreenShotActionText:{
+            case LLScreenshotActionText:{
                 imageName = kTextImageName;
                 selectImageName = kTextSelectImageName;
                 break;
             }
-            case LLScreenShotActionBack:{
+            case LLScreenshotActionBack:{
                 imageName = kUndoImageName;
                 selectImageName = kUndoDisableImageName;
                 break;
             }
-            case LLScreenShotActionCancel:{
+            case LLScreenshotActionCancel:{
                 imageName = kCancelImageName;
                 selectImageName = kCancelImageName;
                 break;
             }
-            case LLScreenShotActionConfirm:{
+            case LLScreenshotActionConfirm:{
                 imageName = kSureImageName;
                 selectImageName = kSureImageName;
                 break;
