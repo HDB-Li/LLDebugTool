@@ -11,6 +11,7 @@
 
 // Used to example.
 #import "NetTool.h"
+#import <Photos/PHPhotoLibrary.h>
 
 static NSString *const kCellID = @"cellID";
 
@@ -25,6 +26,11 @@ static NSString *const kCellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        
+    }];
     
     // LLDebugTool need time to start.
     sleep(0.5);

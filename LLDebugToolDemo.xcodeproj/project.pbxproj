@@ -20,6 +20,7 @@
 		3687522320C69B22002C6AD9 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521B20C69B22002C6AD9 /* LLScreenshotToolbar.m */; };
 		3687522420C69B22002C6AD9 /* LLScreenshotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521C20C69B22002C6AD9 /* LLScreenshotSelectorView.m */; };
 		3687522520C69B22002C6AD9 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521D20C69B22002C6AD9 /* LLScreenshotImageView.m */; };
+		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36AE43DB20C788E90066EA41 /* LLScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */; };
 		36C5BF782099897F007A3188 /* LLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEEE2099897F007A3188 /* LLConfig.m */; };
@@ -116,6 +117,8 @@
 		3687521C20C69B22002C6AD9 /* LLScreenshotSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotSelectorView.m; sourceTree = "<group>"; };
 		3687521D20C69B22002C6AD9 /* LLScreenshotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotImageView.m; sourceTree = "<group>"; };
 		3687521E20C69B22002C6AD9 /* LLScreenshotToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotToolbar.h; sourceTree = "<group>"; };
+		3691A61C20C7E63B00E22192 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3691A61E20C7E63D00E22192 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		36AE43D920C788E90066EA41 /* LLScreenshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelper.h; sourceTree = "<group>"; };
@@ -685,6 +688,7 @@
 				C43BA818205AB095006307BE /* Info.plist */,
 				C43BA819205AB095006307BE /* main.m */,
 				367E27A320A1A8480032EF0D /* Localizable.strings */,
+				3691A61D20C7E63B00E22192 /* InfoPlist.strings */,
 			);
 			path = LLDebugToolDemo;
 			sourceTree = "<group>";
@@ -774,6 +778,7 @@
 				367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */,
 				36C5BF922099897F007A3188 /* LLSandboxCell.xib in Resources */,
 				36C5BF862099897F007A3188 /* LLNetworkImageCell.xib in Resources */,
+				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				36C5BF972099897F007A3188 /* LLLogCell.xib in Resources */,
 				36C5BFA32099897F007A3188 /* LLFilterLabelCell.xib in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
@@ -892,6 +897,15 @@
 				367E27A420A1A8490032EF0D /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3691A61D20C7E63B00E22192 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3691A61C20C7E63B00E22192 /* en */,
+				3691A61E20C7E63D00E22192 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		C43BA810205AB095006307BE /* Main.storyboard */ = {

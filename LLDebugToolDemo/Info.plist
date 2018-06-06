@@ -50,5 +50,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Only for demo display. If you apply for photo album permission in your project, screenshot will be stored in photo album at the same time.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Only for demo display. If you apply for photo album permission in your project, screenshot will be stored in photo album at the same time</string>
 </dict>
 </plist>
