@@ -332,53 +332,61 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSString *)networkingStatesFromStatebar {
+    NSString *stateString = @"Unknown";
     UIApplication *app = [UIApplication sharedApplication];
     
-    NSArray *children;
     if ([[app valueForKeyPath:@"_statusBar"] isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
-        children = [[[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+        // For iPhoneX
+        NSArray *children = [[[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+        for (UIView *view in children) {
+            for (id child in view.subviews) {
+                if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarWifiSignalView")]) {
+                    stateString = @"WIFI";
+                    break;
+                }
+                if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarStringView")]) {
+                    if ([[child valueForKey:@"_originalText"] containsString:@"G"]) {
+                        stateString = [child valueForKey:@"_originalText"];
+                        break;
+                    }
+                }
+            }
+        }
     } else {
-        children = [[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
-    }
-    
-    int type = 0;
-    for (id child in children) {
-        if ([child isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
-            type = [[child valueForKeyPath:@"dataNetworkType"] intValue];
+        // For others iPhone
+        NSArray *children = [[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+        int type = -1;
+        for (id child in children) {
+            if ([child isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
+                type = [[child valueForKeyPath:@"dataNetworkType"] intValue];
+            }
+        }
+        switch (type) {
+            case 0:
+                stateString = @"Not Reachable";
+                break;
+            case 1:
+                stateString = @"2G";
+                break;
+            case 2:
+                stateString = @"3G";
+                break;
+            case 3:
+                stateString = @"4G";
+                break;
+            case 4:
+                stateString = @"LTE";
+                break;
+            case 5:
+                stateString = @"WIFI";
+                break;
+            default:
+                stateString = @"Unknown";
+                break;
         }
     }
     
-    NSString *stateString = @"wifi";
     
-    switch (type) {
-        case 0:
-            stateString = @"notReachable";
-            break;
-            
-        case 1:
-            stateString = @"2G";
-            break;
-            
-        case 2:
-            stateString = @"3G";
-            break;
-            
-        case 3:
-            stateString = @"4G";
-            break;
-            
-        case 4:
-            stateString = @"LTE";
-            break;
-            
-        case 5:
-            stateString = @"wifi";
-            break;
-            
-        default:
-            stateString = @"unknown";
-            break;
-    }
     
     return stateString;
 }
