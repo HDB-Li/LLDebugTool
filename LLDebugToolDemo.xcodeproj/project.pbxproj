@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
-		362453C920B3EC15002C102B /* LLScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 362453C820B3EC15002C102B /* LLScreenshotHelper.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -22,6 +21,7 @@
 		3687522420C69B22002C6AD9 /* LLScreenshotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521C20C69B22002C6AD9 /* LLScreenshotSelectorView.m */; };
 		3687522520C69B22002C6AD9 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521D20C69B22002C6AD9 /* LLScreenshotImageView.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
+		36AE43DB20C788E90066EA41 /* LLScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */; };
 		36C5BF782099897F007A3188 /* LLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEEE2099897F007A3188 /* LLConfig.m */; };
 		36C5BF792099897F007A3188 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEF22099897F007A3188 /* LLCrashHelper.m */; };
 		36C5BF7A2099897F007A3188 /* LLStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEF52099897F007A3188 /* LLStorageManager.m */; };
@@ -92,8 +92,6 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
-		362453C720B3EC15002C102B /* LLScreenshotHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelper.h; sourceTree = "<group>"; };
-		362453C820B3EC15002C102B /* LLScreenshotHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotHelper.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -120,6 +118,8 @@
 		3687521E20C69B22002C6AD9 /* LLScreenshotToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotToolbar.h; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
+		36AE43D920C788E90066EA41 /* LLScreenshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelper.h; sourceTree = "<group>"; };
+		36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotHelper.m; sourceTree = "<group>"; };
 		36C5BEEE2099897F007A3188 /* LLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLConfig.m; sourceTree = "<group>"; };
 		36C5BEEF2099897F007A3188 /* LLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLConfig.h; sourceTree = "<group>"; };
 		36C5BEF22099897F007A3188 /* LLCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelper.m; sourceTree = "<group>"; };
@@ -257,15 +257,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		362453C620B3EBF5002C102B /* ScreenShotHelper */ = {
-			isa = PBXGroup;
-			children = (
-				362453C720B3EC15002C102B /* LLScreenshotHelper.h */,
-				362453C820B3EC15002C102B /* LLScreenshotHelper.m */,
-			);
-			path = ScreenShotHelper;
-			sourceTree = "<group>";
-		};
 		3687520F20C69B12002C6AD9 /* ScreenshotView */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +279,15 @@
 			path = ScreenshotView;
 			sourceTree = "<group>";
 		};
+		36AE43D820C788E90066EA41 /* ScreenshotHelper */ = {
+			isa = PBXGroup;
+			children = (
+				36AE43D920C788E90066EA41 /* LLScreenshotHelper.h */,
+				36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */,
+			);
+			path = ScreenshotHelper;
+			sourceTree = "<group>";
+		};
 		36C5BEED2099897F007A3188 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,7 +300,7 @@
 		36C5BEF02099897F007A3188 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				362453C620B3EBF5002C102B /* ScreenShotHelper */,
+				36AE43D820C788E90066EA41 /* ScreenshotHelper */,
 				36C5BEF12099897F007A3188 /* CrashHelper */,
 				36C5BEF42099897F007A3188 /* StorageManager */,
 				36C5BEF72099897F007A3188 /* AppHelper */,
@@ -820,6 +820,7 @@
 				36C5BFAA2099897F007A3188 /* NSString+LL_Utils.m in Sources */,
 				36C5BFAD2099897F007A3188 /* LLBaseViewController.m in Sources */,
 				36C5BF9C2099897F007A3188 /* LLFilterOtherView.m in Sources */,
+				36AE43DB20C788E90066EA41 /* LLScreenshotHelper.m in Sources */,
 				36C5BF7D2099897F007A3188 /* LLSandboxModel.m in Sources */,
 				36C5BFB02099897F007A3188 /* LLDebugTool.m in Sources */,
 				36C5BF8E2099897F007A3188 /* LLCrashVC.m in Sources */,
@@ -835,7 +836,6 @@
 				36C5BFA22099897F007A3188 /* LLFilterView.m in Sources */,
 				36C5BF802099897F007A3188 /* LLURLProtocol.m in Sources */,
 				36C5BF932099897F007A3188 /* LLWindow.m in Sources */,
-				362453C920B3EC15002C102B /* LLScreenshotHelper.m in Sources */,
 				3687521F20C69B22002C6AD9 /* LLScreenshotView.m in Sources */,
 				367F94C7209AF38300CA1821 /* LLBaseNavigationController.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
