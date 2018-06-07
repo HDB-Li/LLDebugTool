@@ -51,12 +51,14 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 - (void)simulateTakeScreenshot {
-    [[LLDebugTool sharedTool].window hideWindow];
-    UIImage *image = [self imageFromScreen];
-    if (image) {
-        LLScreenshotView *screenshot = [[LLScreenshotView alloc] initWithImage:image];
-        [screenshot show];
-    }
+    if (self.enable) {
+        [[LLDebugTool sharedTool].window hideWindow];
+        UIImage *image = [self imageFromScreen];
+        if (image) {
+            LLScreenshotView *screenshot = [[LLScreenshotView alloc] initWithImage:image];
+            [screenshot show];
+        }
+    }    
 }
 
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification

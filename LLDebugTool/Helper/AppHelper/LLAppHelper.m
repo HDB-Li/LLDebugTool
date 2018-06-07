@@ -385,9 +385,6 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
                 break;
         }
     }
-    
-    
-    
     return stateString;
 }
 
