@@ -1,3 +1,23 @@
+## [1.1.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.0) (06/07/2018)
+
+Add screenshot function.
+
+#### Add
+
+* Add `LLScreenshotHelper` in `Helper` folder, used to control screenshot.
+* Add `LLScreenshotView` folder in `UserInterface/Others` folder, used to show and draw screenshot.
+* Add `LLDebugToolMacros.h`, used to manage public macros.
+
+#### Update
+
+* Update `LLBaseNavigationController` and `LLBaseViewController` to repair toolbar's frame is wrong when hiding tabbar.
+* Update `LLAppHelper` to fix iPhone X getting network status error.
+* Remove `LLog` macros in `LLDebugTool.h` and moved to `LLDebugToolMacros.h`
+
+#### Additional Changes
+
+* Update demo for saving screenshots to photo albums when screenshots are taken.
+
 ## [1.0.3](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.0.3) (05/31/2018)
 
 Fix some leaks.
