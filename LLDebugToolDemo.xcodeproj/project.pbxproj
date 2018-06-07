@@ -93,6 +93,7 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
+		365D4D7020C91B3900A5D59E /* LLDebugToolMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -642,6 +643,7 @@
 			children = (
 				36C5BF772099897F007A3188 /* LLDebugTool.h */,
 				36C5BF762099897F007A3188 /* LLDebugTool.m */,
+				365D4D7020C91B3900A5D59E /* LLDebugToolMacros.h */,
 			);
 			path = DebugTool;
 			sourceTree = "<group>";
