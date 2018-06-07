@@ -16,17 +16,22 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 为您的下一个项目选择LLDebugTool，或者迁移到您现有的项目中——您会为此感到惊喜！
 
-<div align="left">
+#### Gif
+
+<div align="center">
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
 </div>
-<div2 align="center">
+
+#### ScreenShots
+
+<div align="center">
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="15%"></img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="15%"> </img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="15%"> </img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="15%"> </img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="15%"> </img>
-</div2>
+</div>
 
 ## 最近更新 (1.1.0)
 
