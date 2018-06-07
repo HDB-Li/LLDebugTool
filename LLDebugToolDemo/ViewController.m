@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+
+// If you integrate with cocoapods, used #import <LLDebugTool/LLDebug.h>.
 #import "LLDebug.h"
 
 // Used to example.

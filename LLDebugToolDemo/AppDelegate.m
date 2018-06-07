@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+
+// If you integrate with cocoapods, used #import <LLDebugTool/LLDebug.h>.
 #import "LLDebug.h"
 
 @interface AppDelegate ()
@@ -15,17 +17,19 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
-    [LLConfig sharedConfig].userIdentity = @"123456789";
-//    [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
-//    [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-//    [LLConfig sharedConfig].useSystemColor = YES;
-    [[LLDebugTool sharedTool] startWorking];
 
-    // Override point for customization after application launch.
+    // Uncomment one of the following lines to change the color configuration.
+    // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
+    // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+    // [LLConfig sharedConfig].useSystemColor = YES;
+    
+    // Use this line to tag user. More config please see "LLConfig.h".
+    [LLConfig sharedConfig].userIdentity = @"Miss L";
+    
+    // Use this line to start working.
+    [[LLDebugTool sharedTool] startWorking];
+    
     return YES;
 }
 
