@@ -2,6 +2,10 @@
 
 Add screenshot function.
 
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
+</div>
+
 #### Add
 
 * Add `LLScreenshotHelper` in `Helper` folder, used to control screenshot.
