@@ -22,14 +22,13 @@
 //  SOFTWARE.
 
 #import "LLDebugTool.h"
+#import "LLScreenshotHelper.h"
 #import "LLStorageManager.h"
 #import "LLNetworkHelper.h"
 #import "LLCrashHelper.h"
+#import "LLLogHelper.h"
 #import "LLAppHelper.h"
 #import "LLWindow.h"
-#import "LLLogHelper.h"
-
-
 
 static LLDebugTool *_instance = nil;
 
@@ -65,6 +64,8 @@ static LLDebugTool *_instance = nil;
         [[LLNetworkHelper sharedHelper] setEnable:YES];
         // Open app monitoring
         [[LLAppHelper sharedHelper] startMonitoring];
+        // Open screenshot
+        [[LLScreenshotHelper sharedHelper] setEnable:YES];
         // show window
         [self.window showWindow];
     }
@@ -75,6 +76,8 @@ static LLDebugTool *_instance = nil;
         _isWorking = NO;
         // Close app monitoring
         [[LLAppHelper sharedHelper] stopMonitoring];
+        // Close screenshot
+        [[LLScreenshotHelper sharedHelper] setEnable:NO];
         // Close network monitoring
         [[LLNetworkHelper sharedHelper] setEnable:NO];
         // Close log helper
@@ -87,7 +90,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (NSString *)version {
-    return @"1.0.3";
+    return @"1.1.0";
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {

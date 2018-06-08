@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.3-blue.svg)](https://img.shields.io/badge/pod-v1.0.3-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.0-blue.svg)](https://img.shields.io/badge/pod-v1.1.0-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -16,18 +16,32 @@ LLDebugTool is a debugging tool for developers and testers that can help you ana
 
 Choose LLDebugTool for your next project, or migrate over your existing projects—you'll be happy you did!
 
-<div align="center">
-<img src="https://github.com/HDB-Li/HDBImageRepository/blob/master/LLDebugTool/screenGif.gif" width="15%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="15%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="15%"> </img>
+#### Gif
+
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
 </div>
 
-## Recent updates (1.0.3) 
+#### ScreenShots
 
-- Fix some leaks.
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="18%"> </img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="18%"> </img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="18%"> </img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
+</div>
+
+## Recent updates (1.1.0) 
+
+- Add screenshot function.
+
+    **You can by holding down the home button and power button at the same time to make screenshots, can also double-click the suspension ball to screenshots, screenshots for pictures after adding some simple annotation, eventually will save screenshots to sandbox or photo album. This feature allows testers to better mark bugs, UI issues, or other situations when testing an app.**
+
+<div>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif">
+</div>
         
 ## What can you do with LLDebugTool?
 
@@ -49,7 +63,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 
 [CocoaPods](http://cocoapods.org) is the recommended way to add `LLDebugTool` to your project.
 
-1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool'`,If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' ,:configurations => ['Debug']`.
+1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool'`,If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment).
 2. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool`, running `pod repo update` before `pod install`.
 3. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
 
@@ -158,7 +172,8 @@ LLDebugTool provides a quick way to view and manipulate sandbox, you can easily 
 
 ### More Usage
 
-You can download and run the ["LLDebugToolDemo"](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) to find more use with LLDebugTool. The demo is build under XCode9.3, ios 11.3 and cocoapods 1.5.0. If there is any version compatibility problem, please let me know.
+* You can get more help by looking at the [Wiki](https://github.com/HDB-Li/LLDebugTool/wiki).
+* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) to find more use with LLDebugTool. The demo is build under XCode9.3, ios 11.3 and cocoapods 1.5.0. If there is any version compatibility problem, please let me know.
 
 ## Requirements
 
@@ -169,6 +184,8 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 * `Foundation`
 
 * `SystemConfiguration`
+
+* `Photos`
 
 * `malloc`
 

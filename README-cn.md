@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.0.3-blue.svg)](https://img.shields.io/badge/pod-v1.0.3-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.0-blue.svg)](https://img.shields.io/badge/pod-v1.1.0-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -16,18 +16,32 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 为您的下一个项目选择LLDebugTool，或者迁移到您现有的项目中——您会为此感到惊喜！
 
-<div align="center">
-<img src="https://github.com/HDB-Li/HDBImageRepository/blob/master/LLDebugTool/screenGif.gif" width="15%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="15%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="15%"> </img>
+#### Gif
+
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
 </div>
 
-## 最近更新 (1.0.3)
+#### ScreenShots
 
-- 修复一些内存泄漏问题。
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="18%"> </img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="18%"> </img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="18%"> </img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
+</div>
+
+## 最近更新 (1.1.0)
+
+- 添加截屏功能。
+
+    **你可以通过同时按住home键和power键来进行截屏，也可以双击悬浮球来进行截屏，截屏后对图画添加一些简单的标注，最终将截图保存到沙盒或者相册中。 这项功能可以在测试人员测试app时，更好的标记Bug、UI问题或者其他情况。**
+    
+<div>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif">
+</div>
 
 ## 我能用LLDebugTool做什么?
 
@@ -49,7 +63,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 [CocoaPods](http://cocoapods.org) 是集成`LLDebugTool`的首选方式。
 
-1. 添加 `pod 'LLDebugTool'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' ,:configurations => ['Debug']` 到你的Podfile里。
+1. 添加 `pod 'LLDebugTool'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。
 2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`时，可先运行`pod repo update`，再执行`pod install`。
 3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
@@ -158,7 +172,8 @@ LLDebugTool提供了一个快捷的方式来查看和操作沙盒文件，你可
 
 ### 更多使用
 
-你可以下载并运行["LLDebugToolDemo"](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在XCode9.3，ios 11.3，cocoapods 1.5.0下运行的，如果有任何版本兼容问题，请告诉我。
+* 你可以通过查看[Wiki](https://github.com/HDB-Li/LLDebugTool/wiki)，获得更多帮助。
+* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在XCode9.3，ios 11.3，cocoapods 1.5.0下运行的，如果有任何版本兼容问题，请告诉我。
 
 ## 要求
 
@@ -169,6 +184,8 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 * `Foundation`
 
 * `SystemConfiguration`
+
+* `Photos`
 
 * `malloc`
 

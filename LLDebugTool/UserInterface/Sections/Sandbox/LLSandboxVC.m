@@ -68,6 +68,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         }
     } else {
         btn.selected = !btn.selected;
+        self.selectAllItem.title = @"Select All";
         [self.tableView setEditing:NO animated:YES];
         [self.navigationController setToolbarHidden:YES animated:YES];
     }

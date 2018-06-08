@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class LLLogModel;
 @class LLCrashModel;
@@ -103,5 +104,12 @@
  If any one fails, it returns to NO, and any failure will not affect others.
  */
 - (BOOL)removeLogModels:(NSArray <LLLogModel *>*)models;
+
+#pragma mark - Screenshot
+
+/**
+ Save screenShots to sandbox.
+ */
+- (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name;
 
 @end

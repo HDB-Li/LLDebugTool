@@ -22,18 +22,17 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
+#import "LLImageNameConfig.h"
 #import "LLDebugTool.h"
 #import "LLMacros.h"
-#import "LLImageNameConfig.h"
 #import "LLWindow.h"
+#import "LLTool.h"
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
 @interface LLBaseViewController ()
 
 @property (nonatomic , assign) UITableViewStyle style;
-
-@property (nonatomic , strong) UILabel *toastLabel;
 
 @end
 
@@ -59,52 +58,9 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.navigationController.viewControllers.count > 1) {
-        self.tabBarController.tabBar.hidden = YES;
-    } else {
-        self.tabBarController.tabBar.hidden = NO;
-    }
-}
-
 #pragma mark - Public
 - (void)toastMessage:(NSString *)message {
-    if (self.toastLabel) {
-        [self.toastLabel removeFromSuperview];
-        self.toastLabel = nil;
-    }
-    
-    __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
-    label.text = message;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByCharWrapping;
-    [label sizeToFit];
-    label.frame = CGRectMake(0, 0, label.frame.size.width + 20, label.frame.size.height + 10);
-    label.layer.cornerRadius = label.font.lineHeight / 2.0;
-    label.layer.masksToBounds = YES;
-    label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
-    label.alpha = 0;
-    label.backgroundColor = [UIColor blackColor];
-    label.textColor = [UIColor whiteColor];
-    [self.view addSubview:label];
-    self.toastLabel = label;
-    [UIView animateWithDuration:0.25 animations:^{
-        label.alpha = 1;
-    } completion:^(BOOL finished) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.1 animations:^{
-                label.alpha = 0;
-            } completion:^(BOOL finished) {
-                [label removeFromSuperview];
-            }];
-        });
-    }];
+    [[LLTool sharedTool] toastMessage:message];
 }
 
 - (void)showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
