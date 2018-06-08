@@ -63,7 +63,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 [CocoaPods](http://cocoapods.org) 是集成`LLDebugTool`的首选方式。
 
-1. 添加 `pod 'LLDebugTool'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' ,:configurations => ['Debug']` 到你的Podfile里。
+1. 添加 `pod 'LLDebugTool'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。
 2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`时，可先运行`pod repo update`，再执行`pod install`。
 3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
@@ -172,7 +172,8 @@ LLDebugTool提供了一个快捷的方式来查看和操作沙盒文件，你可
 
 ### 更多使用
 
-你可以下载并运行["LLDebugToolDemo"](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在XCode9.3，ios 11.3，cocoapods 1.5.0下运行的，如果有任何版本兼容问题，请告诉我。
+* 你可以通过查看[Wiki](https://github.com/HDB-Li/LLDebugTool/wiki)，获得更多帮助。
+* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在XCode9.3，ios 11.3，cocoapods 1.5.0下运行的，如果有任何版本兼容问题，请告诉我。
 
 ## 要求
 
