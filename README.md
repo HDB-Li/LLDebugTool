@@ -147,7 +147,6 @@ Print and save a log. More log macros details see [LLLogHelper.h](https://github
 ```
 #import "LLDebug.h"
 
-- (void)test
 - (void)testEventErrorLog {
     // Insert an LLog_Error_Event where you want to print an event and level log.
     LLog_Error_Event(@"The event that you want to mark. such as bugA, taskB or processC.",@"Message you want to save or print.");
