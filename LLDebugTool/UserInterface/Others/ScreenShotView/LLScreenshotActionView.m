@@ -126,8 +126,8 @@
             default:
                 break;
         }
-        [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:selectImageName] forState:UIControlStateSelected];
+        [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
+        [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
         button.tag = i;
         button.showsTouchWhenHighlighted = NO;
         button.adjustsImageWhenHighlighted = NO;
