@@ -223,12 +223,12 @@ static NSString *const kLogCellID = @"LLLogCell";
     // TableView
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:nil] forCellReuseIdentifier:kLogCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kLogCellID];
     
     // Navigation bar item
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imageNamed:kEditImageName] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:kDoneImageName] forState:UIControlStateSelected];
+    [btn setImage:[UIImage LL_imageNamed:kEditImageName] forState:UIControlStateNormal];
+    [btn setImage:[UIImage LL_imageNamed:kDoneImageName] forState:UIControlStateSelected];
     btn.showsTouchWhenHighlighted = NO;
     btn.adjustsImageWhenHighlighted = NO;
     btn.frame = CGRectMake(0, 0, 40, 40);
@@ -265,8 +265,8 @@ static NSString *const kLogCellID = @"LLLogCell";
         self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
         self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         btn.tintColor = LLCONFIG_TEXT_COLOR;
-        [btn setImage:[[UIImage imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        [btn setImage:[[UIImage imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+        [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
     }
     
     [self loadData];

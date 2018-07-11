@@ -58,6 +58,13 @@ static LLConfig *_instance = nil;
 - (void)initial {
     // Set default values
     _bundlePath = @"LLDebugTool.bundle";
+    NSString *path = [[NSBundle mainBundle] pathForResource:_bundlePath ofType:nil];
+    NSBundle *imageBundle = [NSBundle bundleWithPath:path];
+    
+    if (!imageBundle) {
+        _bundlePath = @"Frameworks/LLDebugTool.framework/LLDebugTool.bundle";
+    }
+    
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
     _systemTintColor = [[UIView alloc] init].tintColor;
     _colorStyle = LLConfigColorStyleHack;

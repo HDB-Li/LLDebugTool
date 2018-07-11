@@ -67,7 +67,7 @@
     [self addSubview:self.selectorBackgroundView];
     
     CGFloat triangleHeight = 10;
-    self.triangleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kSelectorTriangleImageName]];
+    self.triangleView = [[UIImageView alloc] initWithImage:[UIImage LL_imageNamed:kSelectorTriangleImageName]];
     self.triangleView.frame = CGRectMake(0, 0, triangleHeight * 2, triangleHeight);
     [self.selectorBackgroundView addSubview:self.triangleView];
     
