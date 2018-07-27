@@ -76,6 +76,8 @@ static LLConfig *_instance = nil;
     _normalAlpha = 0.9;
     _activeAlpha = 1.0;
     _suspensionBallMoveable = YES;
+    _showDebugToolLog = YES;
+    _windowStyle = LLConfigWindowSuspensionBall;
     [self updateColor];
 }
 

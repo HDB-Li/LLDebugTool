@@ -29,9 +29,9 @@
 
 @implementation LLWindow
 
-- (instancetype)initWithSuspensionBallWidth:(CGFloat)width {
-    if (self = [super initWithFrame:CGRectMake(0, 0, width, width)]) {
-        [self initialWithSuspensionBallWidth:width];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
     }
     return self;
 }
@@ -60,14 +60,16 @@
 }
 
 #pragma mark - Primary
-- (void)initialWithSuspensionBallWidth:(CGFloat)width {
+- (void)initial {
     // Set color
     self.backgroundColor = [UIColor clearColor];
+    self.layer.masksToBounds = YES;
     // Set level
     self.windowLevel = UIWindowLevelAlert + 2;
     // Set root
     LLWindowViewController *vc = [[LLWindowViewController alloc] init];
-    vc.sBallWidth = width;
+    vc.sBallWidth = [LLConfig sharedConfig].suspensionBallWidth;
+    vc.windowStyle = [LLConfig sharedConfig].windowStyle;
     vc.window = self;
     self.rootViewController = vc;
     _windowViewController = vc;

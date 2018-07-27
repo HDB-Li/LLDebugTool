@@ -25,9 +25,11 @@
 #define LLLogHelperEventDefine_h
 
 // Event
+static NSString *const kLLLogHelperDebugToolEvent = @"LLDebugTool";
 static NSString *const kLLLogHelperFailedLoadingResourceEvent = @"Resource Failed";
 
 // Define
+static NSString *const kLLLogHelperUseBetaAlert = @"You are using a Beta version, please use release version.";
 static NSString *const kLLLogHelperOpenIssueInGithub = @" Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.";
 
 #endif /* LLLogHelperEventDefine_h */

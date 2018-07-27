@@ -29,6 +29,8 @@
 #import "LLLogHelper.h"
 #import "LLAppHelper.h"
 #import "LLWindow.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -90,7 +92,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (NSString *)version {
-    return @"1.1.1";
+    return @"1.1.2(BETA)";
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
@@ -98,6 +100,12 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ...  {
+    if (![LLConfig sharedConfig].showDebugToolLog) {
+        NSArray *toolEvent = @[kLLLogHelperDebugToolEvent,kLLLogHelperFailedLoadingResourceEvent];
+        if ([toolEvent containsObject:onEvent]) {
+            return;
+        }
+    }
     [[LLLogHelper sharedHelper] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
@@ -109,9 +117,13 @@ static LLDebugTool *_instance = nil;
     // Restore the version.
     [[NSUserDefaults standardUserDefaults] setObject:[self version] forKey:@"LLDebugTool-Version"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    if ([[self version] containsString:@"BETA"]) {
+        // This method called in instancetype, can't use macros to log.
+        [self logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:kLLLogHelperDebugToolEvent message:kLLLogHelperUseBetaAlert];
+    }
     // Set window.
-    self.window = [[LLWindow alloc] initWithSuspensionBallWidth:[LLConfig sharedConfig].suspensionBallWidth];
+    CGFloat windowWidth = [LLConfig sharedConfig].suspensionBallWidth;
+    self.window = [[LLWindow alloc] initWithFrame:CGRectMake(0, 0, windowWidth, windowWidth)];
 }
 
 @end
