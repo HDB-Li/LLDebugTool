@@ -89,7 +89,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.socketDataArray = [[NSMutableArray alloc] init];
     [self initTitleView];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:nil] forCellReuseIdentifier:kNetworkCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkCellID];
     [self loadData];
 }
 
@@ -103,7 +103,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     self.navigationItem.title = @"Network Request";
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imageNamed:kClearImageName] forState:UIControlStateNormal];
+    [btn setImage:[UIImage LL_imageNamed:kClearImageName] forState:UIControlStateNormal];
     btn.showsTouchWhenHighlighted = NO;
     btn.adjustsImageWhenHighlighted = NO;
     btn.frame = CGRectMake(0, 0, 40, 40);
@@ -111,7 +111,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     if (LLCONFIG_CUSTOM_COLOR) {
         btn.tintColor = LLCONFIG_TEXT_COLOR;
-        [btn setImage:[[UIImage imageNamed:kClearImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [btn setImage:[[UIImage LL_imageNamed:kClearImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     }
 }
 

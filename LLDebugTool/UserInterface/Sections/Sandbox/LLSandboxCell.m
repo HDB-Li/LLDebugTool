@@ -48,7 +48,7 @@
 
 - (void)confirmWithModel:(LLSandboxModel *)model {
     _model = model;
-    self.icon.image = [UIImage imageNamed:model.iconName];
+    self.icon.image = [UIImage LL_imageNamed:model.iconName];
     self.titleLabel.text = model.name;
     self.contentLabel.text = [NSString stringWithFormat:@"%@",[[LLTool sharedTool] stringFromDate:model.modifiDate]];
     self.sizeLabel.text = [NSString stringWithFormat:@"Size:%@",model.totalFileSizeString];
@@ -64,7 +64,7 @@
     }
     if (LLCONFIG_CUSTOM_COLOR) {
         if ([model.iconName isEqualToString:kFolderImageName] || [model.iconName isEqualToString:kEmptyFolderImageName]) {
-            self.icon.image = [[UIImage imageNamed:model.iconName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            self.icon.image = [[UIImage LL_imageNamed:model.iconName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         }
     }
 }

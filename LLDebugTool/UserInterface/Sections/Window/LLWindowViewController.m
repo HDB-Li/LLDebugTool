@@ -34,6 +34,9 @@
 #import "LLWindow.h"
 #import "LLConfig.h"
 #import "LLLogVC.h"
+#import "LLDebugTool.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
 
 @interface LLWindowViewController ()
 
@@ -76,6 +79,13 @@
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
+    if (![LLConfig sharedConfig].XIBBundle) {
+        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the XIB bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+        return;
+    }
+    if (![LLConfig sharedConfig].imageBundle) {
+        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+    }
     if ([[NSThread currentThread] isMainThread]) {
         [self.window hideWindow];
         UIViewController* vc = [[[UIApplication sharedApplication].delegate window] rootViewController];
@@ -287,23 +297,23 @@
         
         LLNetworkVC *networkVC = [[LLNetworkVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *networkNav = [[LLBaseNavigationController alloc] initWithRootViewController:networkVC];
-        networkNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Network" image:[UIImage imageNamed:kNetworkImageName] selectedImage:nil];
+        networkNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Network" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
         
         LLLogVC *logVC = [[LLLogVC alloc] initWithStyle:UITableViewStylePlain];
         UINavigationController *logNav = [[LLBaseNavigationController alloc] initWithRootViewController:logVC];
-        logNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage imageNamed:kLogImageName] selectedImage:nil];
+        logNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage LL_imageNamed:kLogImageName] selectedImage:nil];
         
         LLCrashVC *crashVC = [[LLCrashVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *crashNav = [[LLBaseNavigationController alloc] initWithRootViewController:crashVC];
-        crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage imageNamed:kCrashImageName] selectedImage:nil];
+        crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage LL_imageNamed:kCrashImageName] selectedImage:nil];
         
         LLAppInfoVC *appInfoVC = [[LLAppInfoVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *appInfoNav = [[LLBaseNavigationController alloc] initWithRootViewController:appInfoVC];
-        appInfoNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"App" image:[UIImage imageNamed:kAppImageName] selectedImage:nil];
+        appInfoNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"App" image:[UIImage LL_imageNamed:kAppImageName] selectedImage:nil];
         
         LLSandboxVC *sandboxVC = [[LLSandboxVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *sandboxNav = [[LLBaseNavigationController alloc] initWithRootViewController:sandboxVC];
-        sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage imageNamed:kSandboxImageName] selectedImage:nil];
+        sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage LL_imageNamed:kSandboxImageName] selectedImage:nil];
         
         tab.viewControllers = @[networkNav,logNav,crashNav,appInfoNav,sandboxNav];
 

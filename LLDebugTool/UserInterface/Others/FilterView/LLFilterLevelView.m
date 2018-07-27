@@ -67,7 +67,7 @@ static NSString *const kLabelCellID = @"FilterLabelCell";
     self.collectionView.dataSource = self;
     self.collectionView.bounces = YES;
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:nil] forCellWithReuseIdentifier:kLabelCellID];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
     [self addSubview:self.collectionView];
     [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
     if (LLCONFIG_CUSTOM_COLOR) {

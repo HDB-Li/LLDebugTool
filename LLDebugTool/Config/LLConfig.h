@@ -33,7 +33,7 @@
 
 /**
  Color style enum
-
+ 
  - LLConfigColorStyleHack: Green backgroundColor and white textColor.
  - LLConfigColorStyleSimple: White backgroundColor and darkTextColor textColor.
  - LLConfigColorStyleSystem: White backgroundColor and system tint textColor.
@@ -151,8 +151,13 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 
 #pragma mark - Extension
 /**
- Image resource bundle name.
+ Image resource bundle.
  */
-@property (copy , nonatomic , readonly , nonnull) NSString *bundlePath;
+@property (strong , nonatomic , readonly , nullable) NSBundle *imageBundle;
+
+/**
+ XIB resource bundle.
+ */
+@property (strong , nonatomic , readonly , nullable) NSBundle *XIBBundle;
 
 @end

@@ -100,7 +100,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.leftBarButtonItem = item;
         UIImageRenderingMode mode = LLCONFIG_CUSTOM_COLOR ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
-        [btn setImage:[[UIImage imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+        [btn setImage:[[UIImage LL_imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(leftItemClick) forControlEvents:UIControlEventTouchUpInside];
     }
     self.navigationItem.hidesBackButton = NO;
