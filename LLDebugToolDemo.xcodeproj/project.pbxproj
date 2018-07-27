@@ -127,6 +127,7 @@
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		36AE43D920C788E90066EA41 /* LLScreenshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelper.h; sourceTree = "<group>"; };
 		36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotHelper.m; sourceTree = "<group>"; };
+		36B464F0210AAA2C00F72B30 /* LLLogHelperEventDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLogHelperEventDefine.h; sourceTree = "<group>"; };
 		36C5BEEE2099897F007A3188 /* LLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLConfig.m; sourceTree = "<group>"; };
 		36C5BEEF2099897F007A3188 /* LLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLConfig.h; sourceTree = "<group>"; };
 		36C5BEF22099897F007A3188 /* LLCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelper.m; sourceTree = "<group>"; };
@@ -374,6 +375,7 @@
 				36C5BF032099897F007A3188 /* LLLogHelper.m */,
 				36C5BF002099897F007A3188 /* LLLogModel.h */,
 				36C5BF022099897F007A3188 /* LLLogModel.m */,
+				36B464F0210AAA2C00F72B30 /* LLLogHelperEventDefine.h */,
 			);
 			path = LogHelper;
 			sourceTree = "<group>";

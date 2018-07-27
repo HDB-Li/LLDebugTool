@@ -133,7 +133,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     }
     // TableView
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kSandboxCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
     
     
     // Navigation bar item

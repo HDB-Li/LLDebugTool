@@ -72,7 +72,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
  */
 - (void)initial {
     self.navigationItem.title = @"Details";
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kLogContentCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kLogContentCellID];
     [self loadData];
 }
 

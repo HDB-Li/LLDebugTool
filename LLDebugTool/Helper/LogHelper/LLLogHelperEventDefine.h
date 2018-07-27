@@ -1,5 +1,5 @@
 //
-//  UIImage+LL_Utils.m
+//  LLLogHelperEventDefine.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "UIImage+LL_Utils.h"
-#import "LLConfig.h"
+#ifndef LLLogHelperEventDefine_h
+#define LLLogHelperEventDefine_h
 
-@implementation UIImage (LL_Utils)
+// Event
+static NSString *const kLLLogHelperFailedLoadingResourceEvent = @"Resource Failed";
 
-+ (UIImage *)LL_imageNamed:(NSString *)name {
-    return [UIImage imageNamed:name inBundle:[LLConfig sharedConfig].imageBundle compatibleWithTraitCollection:nil];
-}
+// Define
+static NSString *const kLLLogHelperOpenIssueInGithub = @" Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.";
 
-@end
+#endif /* LLLogHelperEventDefine_h */

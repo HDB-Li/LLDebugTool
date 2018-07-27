@@ -24,27 +24,7 @@
 #import "LLSandboxModel.h"
 #import <QuickLook/QuickLook.h>
 #import "LLConfig.h"
-
-
-#define kBundleName [LLConfig sharedConfig].bundlePath
-#define kUnknownName [kBundleName stringByAppendingPathComponent:@"LL-unknown"]
-#define kAviName [kBundleName stringByAppendingPathComponent:@"LL-avi"]
-#define kCssName [kBundleName stringByAppendingPathComponent:@"LL-css"]
-#define kDocName [kBundleName stringByAppendingPathComponent:@"LL-doc"]
-#define kGifName [kBundleName stringByAppendingPathComponent:@"LL-gif"]
-#define kHtmlName [kBundleName stringByAppendingPathComponent:@"LL-html"]
-#define kJpgName [kBundleName stringByAppendingPathComponent:@"LL-jpg"]
-#define kJsName [kBundleName stringByAppendingPathComponent:@"LL-js"]
-#define kMovName [kBundleName stringByAppendingPathComponent:@"LL-mov"]
-#define kMp3Name [kBundleName stringByAppendingPathComponent:@"LL-mp3"]
-#define kPdfName [kBundleName stringByAppendingPathComponent:@"LL-pdf"]
-#define kPngName [kBundleName stringByAppendingPathComponent:@"LL-png"]
-#define kSqlName [kBundleName stringByAppendingPathComponent:@"LL-sql"]
-#define kWavName [kBundleName stringByAppendingPathComponent:@"LL-wav"]
-#define kXlsName [kBundleName stringByAppendingPathComponent:@"LL-xls"]
-#define kZipName [kBundleName stringByAppendingPathComponent:@"LL-zip"]
-#define kFolderName [kBundleName stringByAppendingPathComponent:@"LL-folder"]
-#define kEmptyFolderName [kBundleName stringByAppendingPathComponent:@"LL-folder-empty"]
+#import "LLImageNameConfig.h"
 
 @interface LLSandboxModel ()
 
@@ -86,30 +66,30 @@
     if (!_iconName) {
         if (_isDirectory) {
             if (_subModels.count) {
-                _iconName = [kFolderName copy];
+                _iconName = kSandboxFileFolderImageName;
             } else {
-                _iconName = [kEmptyFolderName copy];
+                _iconName = kSandboxFileEmptyFolderImageName;
             }
         } else {
             NSString *extension = self.filePath.pathExtension.lowercaseString;
             
-            NSString *imageName = [kBundleName stringByAppendingPathComponent:[NSString stringWithFormat:@"LL-%@",extension]];
-            UIImage *image = [UIImage imageNamed:imageName];
+            NSString *imageName = [NSString stringWithFormat:@"LL-%@",extension];
+            UIImage *image = [UIImage LL_imageNamed:imageName];
             if (!image) {
                 if ([extension isEqualToString:@"docx"]) {
-                    imageName = kDocName;
+                    imageName = kSandboxFileDocImageName;
                 } else if ([extension isEqualToString:@"jpeg"]) {
-                    imageName = kJpgName;
+                    imageName = kSandboxFileJpgImageName;
                 } else if ([extension isEqualToString:@"mp4"]) {
-                    imageName = kMovName;
+                    imageName = kSandboxFileMovImageName;
                 } else if ([extension isEqualToString:@"db"] || [extension isEqualToString:@"sqlite"]) {
-                    imageName = kSqlName;
+                    imageName = kSandboxFileSqlImageName;
                 } else if ([extension isEqualToString:@"xlsx"]) {
-                    imageName = kXlsName;
+                    imageName = kSandboxFileXlsImageName;
                 } else if ([extension isEqualToString:@"rar"]) {
-                    imageName = kZipName;
+                    imageName = kSandboxFileZipImageName;
                 } else {
-                    imageName = kUnknownName;
+                    imageName = kSandboxFileUnknownImageName;
                 }
             }
             _iconName = [imageName copy];

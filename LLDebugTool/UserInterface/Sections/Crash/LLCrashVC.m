@@ -156,7 +156,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     // TableView
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kCrashCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashCellID];
     
     // Navigation bar item
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

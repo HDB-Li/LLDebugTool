@@ -128,7 +128,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     self.navigationItem.title = self.model.name;
     self.tableView.estimatedRowHeight = 50;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashContentCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kCrashContentCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashContentCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashContentCellID];
     
     self.titleArray = [[NSMutableArray alloc] init];
     self.contentArray = [[NSMutableArray alloc] init];

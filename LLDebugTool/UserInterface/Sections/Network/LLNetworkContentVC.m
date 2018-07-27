@@ -95,8 +95,8 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
  */
 - (void)initial {
     self.navigationItem.title = @"Details";
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkImageCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kNetworkImageCellID];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kNetworkContentCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkImageCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkImageCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkContentCellID];
     [self loadData];
 }
 

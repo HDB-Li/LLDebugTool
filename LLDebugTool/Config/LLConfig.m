@@ -22,6 +22,9 @@
 //  SOFTWARE.
 
 #import "LLConfig.h"
+#import "LLLogHelperEventDefine.h"
+#import "LLDebugToolMacros.h"
+#import "LLDebugTool.h"
 
 static LLConfig *_instance = nil;
 
@@ -37,11 +40,11 @@ static LLConfig *_instance = nil;
 }
 
 - (void)setColorStyle:(LLConfigColorStyle)colorStyle {
-//    if (_colorStyle != colorStyle) {
-        _colorStyle = colorStyle;
-        _useSystemColor = NO;
-        [self updateColor];
-//    }
+    //    if (_colorStyle != colorStyle) {
+    _colorStyle = colorStyle;
+    _useSystemColor = NO;
+    [self updateColor];
+    //    }
 }
 
 - (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
@@ -57,14 +60,15 @@ static LLConfig *_instance = nil;
  */
 - (void)initial {
     // Set default values
-    _bundlePath = @"LLDebugTool.bundle";
-    NSString *path = [[NSBundle mainBundle] pathForResource:_bundlePath ofType:nil];
-    NSBundle *imageBundle = [NSBundle bundleWithPath:path];
-    
-    if (!imageBundle) {
-        _bundlePath = @"Frameworks/LLDebugTool.framework/LLDebugTool.bundle";
+    _XIBBundle = [NSBundle bundleForClass:self.class];
+    NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
+    _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
+    if (!_XIBBundle) {
+        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the XIB bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
     }
-    
+    if (!_imageBundle) {
+        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+    }
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
     _systemTintColor = [[UIView alloc] init].tintColor;
     _colorStyle = LLConfigColorStyleHack;

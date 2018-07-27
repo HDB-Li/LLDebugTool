@@ -89,7 +89,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.socketDataArray = [[NSMutableArray alloc] init];
     [self initTitleView];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kNetworkCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkCellID];
     [self loadData];
 }
 

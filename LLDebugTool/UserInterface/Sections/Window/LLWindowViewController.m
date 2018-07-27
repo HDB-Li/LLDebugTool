@@ -34,6 +34,9 @@
 #import "LLWindow.h"
 #import "LLConfig.h"
 #import "LLLogVC.h"
+#import "LLDebugTool.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
 
 @interface LLWindowViewController ()
 
@@ -76,6 +79,13 @@
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
+    if (![LLConfig sharedConfig].XIBBundle) {
+        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the XIB bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+        return;
+    }
+    if (![LLConfig sharedConfig].imageBundle) {
+        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+    }
     if ([[NSThread currentThread] isMainThread]) {
         [self.window hideWindow];
         UIViewController* vc = [[[UIApplication sharedApplication].delegate window] rootViewController];

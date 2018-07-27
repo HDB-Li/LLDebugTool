@@ -223,7 +223,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     // TableView
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[NSBundle bundleForClass:[self class]]] forCellReuseIdentifier:kLogCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kLogCellID];
     
     // Navigation bar item
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
