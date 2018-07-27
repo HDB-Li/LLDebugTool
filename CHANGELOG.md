@@ -1,3 +1,16 @@
+## [1.1.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.1) (07/27/2018)
+
+Fix crash when use `use_frameworks!` in `CocoaPods`. (Failed resource loading)
+
+#### Add
+
+* Add `LLLogHelperEventDefine.h` to define and record LLDebugTool system event.
+
+#### Update
+
+* Use method `[UIImage LL_imageNamed:]` to replace method  `[UIImage imageNamed]`, to solve image resource loading failed.
+* Use `[LLConfig sharedConfig].XIBBundle` to register XIB file, to solve crash when use `use_frameworks!` in `CocoaPods`.
+
 ## [1.1.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.0) (06/07/2018)
 
 ### Add screenshot function.

@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.0-blue.svg)](https://img.shields.io/badge/pod-v1.1.0-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.1-blue.svg)](https://img.shields.io/badge/pod-v1.1.1-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -33,15 +33,22 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.1.0)
+## 最近更新 (1.1.1)
 
-- 添加截屏功能。
+修复当在`CocoaPods`中使用 `use_frameworks!`，造成的崩溃。(资源加载失败)
 
-    **你可以通过同时按住home键和power键来进行截屏，也可以双击悬浮球来进行截屏，截屏后对图画添加一些简单的标注，最终将截图保存到沙盒或者相册中。 这项功能可以在测试人员测试app时，更好的标记Bug、UI问题或者其他情况。**
-    
-<div>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif">
-</div>
+#### 添加
+
+* 添加 `LLLogHelperEventDefine.h` 用来定义LLDebugTool的事件Log。
+
+#### 更新
+
+* 用 `[UIImage LL_imageNamed:]` 替代  `[UIImage imageNamed]`， 解决图片资源加载失败。
+* 用 `[LLConfig sharedConfig].XIBBundle` 去注册XIB文件，当在`CocoaPods`中使用 `use_frameworks!`，造成的崩溃。
+
+#### Thanks
+
+* 感谢 [yangbo930204](https://github.com/yangbo930204) 的 pull request.
 
 ## 我能用LLDebugTool做什么?
 

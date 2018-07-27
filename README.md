@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.0-blue.svg)](https://img.shields.io/badge/pod-v1.1.0-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.1-blue.svg)](https://img.shields.io/badge/pod-v1.1.1-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -33,15 +33,22 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## Recent updates (1.1.0) 
+## Recent updates (1.1.1) 
 
-- Add screenshot function.
+Fix crash when use `use_frameworks!` in `CocoaPods`. (Failed resource loading)
 
-    **You can by holding down the home button and power button at the same time to make screenshots, can also double-click the suspension ball to screenshots, screenshots for pictures after adding some simple annotation, eventually will save screenshots to sandbox or photo album. This feature allows testers to better mark bugs, UI issues, or other situations when testing an app.**
+#### Add
 
-<div>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif">
-</div>
+* Add `LLLogHelperEventDefine.h` to define and record LLDebugTool system event.
+
+#### Update
+
+* Use method `[UIImage LL_imageNamed:]` to replace method  `[UIImage imageNamed]`, to solve image resource loading failed.
+* Use `[LLConfig sharedConfig].XIBBundle` to register XIB file, to solve crash when use `use_frameworks!` in `CocoaPods`.
+
+#### Thanks
+
+* Thanks [yangbo930204](https://github.com/yangbo930204)'s pull request.
         
 ## What can you do with LLDebugTool?
 

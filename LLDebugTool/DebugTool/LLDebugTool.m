@@ -90,7 +90,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (NSString *)version {
-    return @"1.1.1(BETA 1)";
+    return @"1.1.1";
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
@@ -106,6 +106,11 @@ static LLDebugTool *_instance = nil;
  Initial something.
  */
 - (void)initial {
+    // Restore the version.
+    [[NSUserDefaults standardUserDefaults] setObject:[self version] forKey:@"LLDebugTool-Version"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // Set window.
     self.window = [[LLWindow alloc] initWithSuspensionBallWidth:[LLConfig sharedConfig].suspensionBallWidth];
 }
 
