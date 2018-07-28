@@ -40,13 +40,13 @@
 
 @interface LLWindowViewController ()
 
-@property (nonatomic , strong) UIView *sBallView;
+@property (nonatomic , strong) UIView *contentView;
 
-@property (nonatomic , strong) UILabel *topLabel;
+@property (nonatomic , strong) UILabel *memoryLabel;
 
-@property (nonatomic , strong) UILabel *bottomLabel;
+@property (nonatomic , strong) UILabel *CPULabel;
 
-@property (nonatomic , strong) UILabel *fpsLabel;
+@property (nonatomic , strong) UILabel *FPSLabel;
 
 @property (nonatomic , assign) CGFloat sBallHideWidth;
 
@@ -109,9 +109,9 @@
     CGFloat cpu = [userInfo[LLAppHelperCPUKey] floatValue];
     CGFloat usedMemory = [userInfo[LLAppHelperMemoryUsedKey] floatValue];
     CGFloat fps = [userInfo[LLAppHelperFPSKey] floatValue];
-    self.topLabel.text = [NSString stringWithFormat:@"%@",[NSByteCountFormatter stringFromByteCount:usedMemory countStyle:NSByteCountFormatterCountStyleMemory]];
-    self.bottomLabel.text = [NSString stringWithFormat:@"CPU:%.2f%%",cpu];
-    self.fpsLabel.text = [NSString stringWithFormat:@"%ld",(long)fps];
+    self.memoryLabel.text = [NSString stringWithFormat:@"%@",[NSByteCountFormatter stringFromByteCount:usedMemory countStyle:NSByteCountFormatterCountStyleMemory]];
+    self.CPULabel.text = [NSString stringWithFormat:@"CPU:%.2f%%",cpu];
+    self.FPSLabel.text = [NSString stringWithFormat:@"%ld",(long)fps];
 }
 
 #pragma mark - Primary
@@ -120,7 +120,6 @@
  */
 - (void)initial {
     [self initialDefaultSettings];
-    self.view.frame = CGRectMake(0, 0, _sBallWidth, _sBallWidth);    
     [self createSubView];
     [self createGestureRecognizer];
 }
@@ -131,85 +130,111 @@
         _sBallWidth = 70;
     }
     self.sBallHideWidth = 10;
-    self.window.frame = CGRectMake(-self.sBallHideWidth, LL_SCREEN_HEIGHT / 3.0, _sBallWidth, _sBallWidth);
+    switch (self.windowStyle) {
+        case LLConfigWindowPowerBar:{
+            CGFloat width = 90;
+            CGRect rect = [UIApplication sharedApplication].statusBarFrame;
+            CGFloat gap = 0.5;
+            self.window.frame = CGRectMake(LL_SCREEN_WIDTH - width - 2, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
+        }
+            break;
+        case LLConfigWindowNetBar:{
+            CGFloat width = 90;
+            CGRect rect = [UIApplication sharedApplication].statusBarFrame;
+            CGFloat gap = 0.5;
+            self.window.frame = CGRectMake(gap, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
+        }
+            break;
+        case LLConfigWindowSuspensionBall:
+        default:{
+            self.windowStyle = LLConfigWindowSuspensionBall;
+            self.window.frame = CGRectMake(-self.sBallHideWidth, LL_SCREEN_HEIGHT / 3.0, _sBallWidth, _sBallWidth);
+        }
+            break;
+    }
+    self.view.frame = self.window.bounds;
 }
 
 - (void)createSubView {
-    // create sBallView
-    self.sBallView = [[UIView alloc] initWithFrame:self.view.bounds];
-    self.sBallView.backgroundColor = [UIColor whiteColor];
-    self.sBallView.layer.cornerRadius = _sBallWidth / 2.0;
-    self.sBallView.layer.borderWidth = 2;
-    self.sBallView.layer.borderColor = [LLConfig sharedConfig].systemTintColor.CGColor;
-    self.sBallView.layer.masksToBounds = YES;
-    self.sBallView.alpha = [LLConfig sharedConfig].normalAlpha;
-    [self.view addSubview:self.sBallView];
+    // Create contentView
+    self.contentView.frame = self.view.bounds;
+    [self.view addSubview:self.contentView];
     
-    // create memoryLabel
-    self.topLabel = [[UILabel alloc] initWithFrame:CGRectMake(_sBallWidth / 8.0, _sBallWidth / 4.0, _sBallWidth * 3 / 4.0, _sBallWidth / 4.0)];
-    self.topLabel.textAlignment = NSTextAlignmentCenter;
-    self.topLabel.textColor = [LLConfig sharedConfig].systemTintColor;
-    self.topLabel.font = [UIFont systemFontOfSize:12];
-    self.topLabel.adjustsFontSizeToFitWidth = YES;
-    self.topLabel.text = @"loading";
-    [self.sBallView addSubview:self.topLabel];
-    
-    self.bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0, _sBallWidth * 3 / 4.0, _sBallWidth / 4.0)];
-    self.bottomLabel.textAlignment = NSTextAlignmentCenter;
-    self.bottomLabel.textColor = [LLConfig sharedConfig].systemTintColor;
-    self.bottomLabel.font = [UIFont systemFontOfSize:10];
-    self.bottomLabel.adjustsFontSizeToFitWidth = YES;
-    self.bottomLabel.text = @"loading";
-    [self.sBallView addSubview:self.bottomLabel];
-    
-    self.fpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    self.fpsLabel.center = CGPointMake(_sBallWidth * 0.85 + _sBallView.frame.origin.x, _sBallWidth * 0.15 + _sBallView.frame.origin.y);
-    self.fpsLabel.textAlignment = NSTextAlignmentCenter;
-    self.fpsLabel.backgroundColor = [LLConfig sharedConfig].systemTintColor;
-    self.fpsLabel.textColor = [UIColor whiteColor];
-    self.fpsLabel.font = [UIFont systemFontOfSize:12];
-    self.fpsLabel.adjustsFontSizeToFitWidth = YES;
-    self.fpsLabel.text = @"60";
-    self.fpsLabel.layer.cornerRadius = self.fpsLabel.frame.size.height / 2.0;
-    self.fpsLabel.layer.masksToBounds = YES;
-    [self.view addSubview:self.fpsLabel];
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0 - 0.5, _sBallWidth * 3 / 4.0, 1)];
-    line.backgroundColor = [LLConfig sharedConfig].systemTintColor;
-    [self.sBallView addSubview:line];
-    
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.sBallView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        self.sBallView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-        self.topLabel.textColor = LLCONFIG_TEXT_COLOR;
-        self.bottomLabel.textColor = LLCONFIG_TEXT_COLOR;
-        line.backgroundColor = LLCONFIG_TEXT_COLOR;
-        self.fpsLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
-        self.fpsLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
+    // Set up views by windowStyle.
+    switch (self.windowStyle) {
+        case LLConfigWindowSuspensionBall:{
+            // Set ContentView
+            self.contentView.layer.cornerRadius = _sBallWidth / 2.0;
+            self.contentView.layer.borderWidth = 2;
+            
+            // Create memoryLabel
+            self.memoryLabel.frame = CGRectMake(_sBallWidth / 8.0, _sBallWidth / 4.0, _sBallWidth * 3 / 4.0, _sBallWidth / 4.0);
+            [self.contentView addSubview:self.memoryLabel];
+            
+            // Create CPULabel
+            self.CPULabel.frame = CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0, _sBallWidth * 3 / 4.0, _sBallWidth / 4.0);
+            [self.contentView addSubview:self.CPULabel];
+            
+            // Create FPSLabel
+            self.FPSLabel.frame = CGRectMake(0, 0, 20, 20);
+            self.FPSLabel.center = CGPointMake(_sBallWidth * 0.85 + _contentView.frame.origin.x, _sBallWidth * 0.15 + _contentView.frame.origin.y);
+            self.FPSLabel.layer.cornerRadius = self.FPSLabel.frame.size.height / 2.0;
+            [self.view addSubview:self.FPSLabel];
+            
+            // Create Line
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0 - 0.5, _sBallWidth * 3 / 4.0, 1)];
+            line.backgroundColor = LLCONFIG_CUSTOM_COLOR ? LLCONFIG_TEXT_COLOR : [LLConfig sharedConfig].systemTintColor;
+            [self.contentView addSubview:line];
+        }
+            break;
+        case LLConfigWindowPowerBar:
+        case LLConfigWindowNetBar:{
+            // Set ContentView
+            CGFloat gap = self.contentView.frame.size.height / 2.0;
+            self.contentView.layer.cornerRadius = gap;
+            
+            // Create memoryLabel
+            self.memoryLabel.frame = CGRectMake(gap, 0, self.contentView.frame.size.width - gap * 2, self.contentView.frame.size.height);
+            [self.contentView addSubview:self.memoryLabel];
+        }
+            break;
+        default:
+            break;
     }
 }
 
 - (void)createGestureRecognizer {
+    // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
-    [self.sBallView addGestureRecognizer:pan];
     
+    // Double tap, to screenshot.
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
+    doubleTap.numberOfTapsRequired = 2;
+    
+    // Tap, to show tool view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
-    [self.sBallView addGestureRecognizer:tap];
+    [tap requireGestureRecognizerToFail:doubleTap];
     
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
-    tap2.numberOfTapsRequired = 2;
-    [self.sBallView addGestureRecognizer:tap2];
-
-    [tap requireGestureRecognizerToFail:tap2];
+    [self.contentView addGestureRecognizer:tap];
+    [self.contentView addGestureRecognizer:doubleTap];
+    
+    switch (self.windowStyle) {
+        case LLConfigWindowSuspensionBall:{
+            [self.contentView addGestureRecognizer:pan];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)becomeActive {
-    self.sBallView.alpha = [LLConfig sharedConfig].activeAlpha;
+    self.contentView.alpha = [LLConfig sharedConfig].activeAlpha;
 }
 
 - (void)resignActive {
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.sBallView.alpha = [LLConfig sharedConfig].normalAlpha;
+        self.contentView.alpha = [LLConfig sharedConfig].normalAlpha;
         // Calculate End Point
         CGFloat x = self.window.center.x;
         CGFloat y = self.window.center.y;
@@ -245,8 +270,8 @@
         
         CGFloat horizontalPer = x1 < x ? 0.15 : 0.85;
         CGFloat verticalPer = endPoint.y > self.sBallWidth ? 0.15 : 0.85;
-        CGPoint fpsCenter = CGPointMake(self.sBallWidth * horizontalPer + self.sBallView.frame.origin.x, self.sBallWidth * verticalPer + self.sBallView.frame.origin.y);
-        self.fpsLabel.center = fpsCenter;
+        CGPoint fpsCenter = CGPointMake(self.sBallWidth * horizontalPer + self.contentView.frame.origin.x, self.sBallWidth * verticalPer + self.contentView.frame.origin.y);
+        self.FPSLabel.center = fpsCenter;
     } completion:^(BOOL finished) {
         
     }];
@@ -334,6 +359,69 @@
         _tabVC = tab;
     }
     return _tabVC;
+}
+
+- (UIView *)contentView {
+    if (!_contentView) {
+        _contentView = [[UIView alloc] init];
+        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.layer.borderColor = [LLConfig sharedConfig].systemTintColor.CGColor;
+        _contentView.layer.masksToBounds = YES;
+        _contentView.alpha = [LLConfig sharedConfig].normalAlpha;
+        if (LLCONFIG_CUSTOM_COLOR) {
+            _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+            _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+        }
+    }
+    return _contentView;
+}
+
+- (UILabel *)memoryLabel {
+    if (!_memoryLabel) {
+        _memoryLabel = [[UILabel alloc] init];
+        _memoryLabel.textAlignment = NSTextAlignmentCenter;
+        _memoryLabel.textColor = [LLConfig sharedConfig].systemTintColor;
+        _memoryLabel.font = [UIFont systemFontOfSize:12];
+        _memoryLabel.adjustsFontSizeToFitWidth = YES;
+        _memoryLabel.text = @"loading";
+        if (LLCONFIG_CUSTOM_COLOR) {
+            _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
+        }
+    }
+    return _memoryLabel;
+}
+
+- (UILabel *)CPULabel {
+    if (!_CPULabel) {
+        _CPULabel = [[UILabel alloc] init];
+        _CPULabel.textAlignment = NSTextAlignmentCenter;
+        _CPULabel.textColor = [LLConfig sharedConfig].systemTintColor;
+        _CPULabel.font = [UIFont systemFontOfSize:10];
+        _CPULabel.adjustsFontSizeToFitWidth = YES;
+        _CPULabel.text = @"loading";
+        if (LLCONFIG_CUSTOM_COLOR) {
+            _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
+        }
+    }
+    return _CPULabel;
+}
+
+- (UILabel *)FPSLabel {
+    if (!_FPSLabel) {
+        _FPSLabel = [[UILabel alloc] init];
+        _FPSLabel.textAlignment = NSTextAlignmentCenter;
+        _FPSLabel.backgroundColor = [LLConfig sharedConfig].systemTintColor;
+        _FPSLabel.textColor = [UIColor whiteColor];
+        _FPSLabel.font = [UIFont systemFontOfSize:12];
+        _FPSLabel.adjustsFontSizeToFitWidth = YES;
+        _FPSLabel.text = @"60";
+        _FPSLabel.layer.masksToBounds = YES;
+        if (LLCONFIG_CUSTOM_COLOR) {
+            _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
+            _FPSLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
+        }
+    }
+    return _FPSLabel;
 }
 
 @end

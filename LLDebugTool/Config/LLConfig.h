@@ -64,10 +64,12 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 
  - LLConfigWindowSuspensionBall: Show as a suspension ball. Moveable and clickable.
  - LLConfigWindowPowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigWindowNetBar: Show at network bar. Unmoveable but clickable.
  */
 typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
     LLConfigWindowSuspensionBall,
     LLConfigWindowPowerBar,
+    LLConfigWindowNetBar,
 };
 
 /**
