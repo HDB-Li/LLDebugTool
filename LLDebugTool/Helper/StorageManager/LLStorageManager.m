@@ -363,7 +363,10 @@ static NSString *const kLaunchDateColumn = @"launchDate";
             [launchDates addObject:model.launchDate];
         }
     }
-    [self removeLogModelAndNetworkModelNotIn:launchDates];
+    // Need to remove logs in a global queue.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self removeLogModelAndNetworkModelNotIn:launchDates];
+    });
 }
 
 - (BOOL)removeLogModelAndNetworkModelNotIn:(NSArray *)launchDates {
