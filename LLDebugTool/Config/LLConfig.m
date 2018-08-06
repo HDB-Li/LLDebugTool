@@ -60,6 +60,11 @@ static LLConfig *_instance = nil;
  */
 - (void)initial {
     // Set default values
+    // Set folder Path
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    _folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
+    
+    // Set XIB resources.
     _XIBBundle = [NSBundle bundleForClass:self.class];
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
@@ -69,15 +74,29 @@ static LLConfig *_instance = nil;
     if (!_imageBundle) {
         LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
     }
+    
+    // Set date formatter string.
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
+    
+    // Get system tint color.
     _systemTintColor = [[UIView alloc] init].tintColor;
+    
+    // Set default color style.
     _colorStyle = LLConfigColorStyleHack;
+    
+    // Set default suspension ball attributes.
     _suspensionBallWidth = 70;
     _normalAlpha = 0.9;
     _activeAlpha = 1.0;
     _suspensionBallMoveable = YES;
+    
+    // Show LLDebugTool's log.
     _showDebugToolLog = YES;
+    
+    // Set default window's style.
     _windowStyle = LLConfigWindowSuspensionBall;
+    
+    // Update color.
     [self updateColor];
 }
 

@@ -173,6 +173,13 @@ typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
  */
 @property (assign , nonatomic) LLConfigWindowStyle windowStyle;
 
+#pragma mark - Folder Path
+/**
+ The folder path for LLDebugTool. The database is created and read in this directory.
+ Default path is ../Documents/LLDebugTool/.
+ */
+@property (copy , nonatomic , nonnull) NSString *folderPath;
+
 #pragma mark - Extension
 /**
  Image resource bundle.

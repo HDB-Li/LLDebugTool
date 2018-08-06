@@ -35,7 +35,7 @@
 
 /**
  Singleton to operation database.
- Database file path is "../LLDebugTool/LLDebugTool.db".
+ Database file path is based on LLConfig's folderPath.
 
  @return Singleton
  */

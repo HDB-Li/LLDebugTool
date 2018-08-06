@@ -24,6 +24,8 @@
 #ifndef LLDebugToolMacros_h
 #define LLDebugToolMacros_h
 
+#import "LLDebugTool.h"
+
 #define LLog(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:nil message:(fmt, ##__VA_ARGS__)]
 #define LLog_Event(event , fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Alert(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:nil message:(fmt, ##__VA_ARGS__)]

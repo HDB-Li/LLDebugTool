@@ -291,6 +291,11 @@
     self.window.center = CGPointMake(point.x, point.y);
 }
 
+// Fix the bug of missing status bars under ios9.
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return [LLConfig sharedConfig].statusBarStyle;
+}
+
 #pragma mark - Action
 - (void)panGR:(UIPanGestureRecognizer *)gr {
     if ([LLConfig sharedConfig].suspensionBallMoveable) {

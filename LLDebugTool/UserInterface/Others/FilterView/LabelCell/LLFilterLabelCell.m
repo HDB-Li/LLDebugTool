@@ -63,6 +63,9 @@
 
 #pragma mark - Primary
 - (void)initial {
+    // Fix iPhone SE show incomplete problems.
+    _label.font = [UIFont systemFontOfSize:15];
+    
     _bgView.layer.cornerRadius = 5;
     _bgView.layer.borderWidth = 0.5;
     _bgView.layer.borderColor = self.tintColor.CGColor;

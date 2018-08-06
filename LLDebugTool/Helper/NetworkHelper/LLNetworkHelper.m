@@ -23,6 +23,8 @@
 
 #import "LLNetworkHelper.h"
 #import "LLURLProtocol.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
 
 static LLNetworkHelper *_instance = nil;
 
@@ -50,7 +52,7 @@ static LLNetworkHelper *_instance = nil;
 #pragma mark - Primary
 - (void)registerLLURLProtocol {
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
-        NSLog(@"LLNetworkHelper reigsiter URLProtocol fail.");
+        LLog_Alert_Event(kLLLogHelperDebugToolEvent, @"LLNetworkHelper reigsiter URLProtocol fail.");
     }
 }
 
