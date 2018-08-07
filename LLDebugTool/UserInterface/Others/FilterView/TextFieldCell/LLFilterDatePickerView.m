@@ -121,6 +121,18 @@
     return title;
 }
 
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *label = (UILabel *)view;
+    if (!label) {
+        label = [[UILabel alloc] init];
+        label.font = [UIFont systemFontOfSize:18];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.adjustsFontSizeToFitWidth = YES;
+    }
+    label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
+    return label;
+}
+
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     if (self.isSelectAll) {
         return LL_SCREEN_WIDTH;
