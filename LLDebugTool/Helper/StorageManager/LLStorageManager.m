@@ -77,6 +77,12 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Crash Model
 - (BOOL)saveCrashModel:(LLCrashModel *)model {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveCrashModel:model];
+        });
+        return YES;
+    }
     NSString *launchDate = [[LLAppHelper sharedHelper] launchDate];
     if (launchDate.length == 0) {
         [self log:@"Save crash model fail, because launchDate is null"];
@@ -144,6 +150,12 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Network Model
 - (BOOL)saveNetworkModel:(LLNetworkModel *)model {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveNetworkModel:model];
+        });
+        return YES;
+    }
     NSString *launchDate = [[LLAppHelper sharedHelper] launchDate];
     if (launchDate.length == 0) {
         return NO;
@@ -213,6 +225,12 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Log Model
 - (BOOL)saveLogModel:(LLLogModel *)model {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveLogModel:model];
+        });
+        return YES;
+    }
     NSString *launchDate = [[LLAppHelper sharedHelper] launchDate];
     if (model.message.length == 0 || launchDate.length == 0) {
         return NO;
