@@ -113,6 +113,7 @@
 
 /**
  Save screenShots to sandbox.
+ FIXME: It will always return YES when you call this method in the main thread.
  */
 - (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name;
 

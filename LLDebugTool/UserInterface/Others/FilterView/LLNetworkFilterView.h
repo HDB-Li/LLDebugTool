@@ -1,5 +1,5 @@
 //
-//  LLFilterLabelModel.m
+//  LLNetworkFilterView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,15 +21,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFilterLabelModel.h"
+#import <UIKit/UIKit.h>
 
-@implementation LLFilterLabelModel
+typedef void(^LLNetworkFilterChangeBlock)(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end);
 
-- (instancetype)initWithMessage:(NSString *)message {
-    if (self = [super init]) {
-        _message = message;
-    }
-    return self;
-}
+@interface LLNetworkFilterView : UIView
+
+@property (copy , nonatomic) LLNetworkFilterChangeBlock changeBlock;
+
+- (instancetype)initWithFrame:(CGRect)frame;
+
+- (void)configWithData:(NSArray *)data;
+
+- (BOOL)isFiltering;
+- (void)cancelFiltering;
 
 @end

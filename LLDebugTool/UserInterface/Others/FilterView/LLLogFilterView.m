@@ -1,5 +1,5 @@
 //
-//  LLFilterView.m
+//  LLLogFilterView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFilterView.h"
+#import "LLLogFilterView.h"
 #import "LLTool.h"
 #import "LLLogModel.h"
 #import "UIButton+LL_Utils.h"
@@ -31,7 +31,7 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 
-@interface LLFilterView()
+@interface LLLogFilterView()
 
 @property (nonatomic , strong) NSArray *titles;
 
@@ -62,7 +62,7 @@
 
 @end
 
-@implementation LLFilterView
+@implementation LLLogFilterView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -132,8 +132,7 @@
     // Event Part
     NSMutableArray *eventArray = [[NSMutableArray alloc] init];
     for (NSString *event in eventSet.allObjects) {
-        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] init];
-        model.message = event;
+        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:event];
         [eventArray addObject:model];
     }
     [self.filterViews addObject:self.eventView];

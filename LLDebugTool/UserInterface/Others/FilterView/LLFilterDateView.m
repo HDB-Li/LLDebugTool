@@ -1,5 +1,5 @@
 //
-//  LLFilterOtherView.m
+//  LLFilterDateView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,31 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFilterOtherView.h"
+#import "LLFilterDateView.h"
 #import "LLFilterTextFieldCell.h"
-#import "LLFilterLabelCell.h"
-#import "LLFilterLabelModel.h"
 #import "LLMacros.h"
 #import "LLTool.h"
 #import "LLConfig.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
-static NSString *const kLabelCellID = @"LabelCellID";
 
-@interface LLFilterOtherView () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@interface LLFilterDateView () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic , strong) UICollectionView *collectionView;
 
-@property (nonatomic , strong) NSMutableArray *userIdDataArray;
-
 @property (nonatomic , strong) NSArray *fileDataArray;
-
-@property (nonatomic , strong) NSDictionary *fileDictionary;
-
-@property (nonatomic , strong) LLFilterTextFieldModel *fileModel;
-
-@property (nonatomic , strong) LLFilterTextFieldModel *funcModel;
 
 @property (nonatomic , strong) LLFilterTextFieldModel *fromDateModel;
 
@@ -53,7 +42,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 @end
 
-@implementation LLFilterOtherView
+@implementation LLFilterDateView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -62,27 +51,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
     return self;
 }
 
-- (void)updateFileDataDictionary:(NSDictionary <NSString *, NSArray *>*)dataDictionary fromDate:(NSDate *)fromDate endDate:(NSDate *)endDate userIdentities:(NSArray *)userIdentities {
-    [self.userIdDataArray removeAllObjects];
-    for (NSString *userId in userIdentities) {
-        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:userId];
-        [self.userIdDataArray addObject:model];
-    }
-    _fileDataArray = dataDictionary.allKeys;
-    _fileDictionary = dataDictionary;
-    
-    LLFilterTextFieldModel *model = [[LLFilterTextFieldModel alloc] init];
-    model.title = @"File";
-    model.titleWidth = 60;
-    model.filters = dataDictionary.allKeys;
-    self.fileModel = model;
-    
-    LLFilterTextFieldModel *model2 = [[LLFilterTextFieldModel alloc] init];
-    model2.title = @"Function";
-    model2.titleWidth = 60;
-    model2.filters = nil;
-    self.funcModel = model2;
-    
+- (void)updateFromDate:(NSDate *)fromDate endDate:(NSDate *)endDate {
+
     self.fromDateModel = [[LLFilterTextFieldModel alloc] init];
     self.fromDateModel.title = @"From";
     self.fromDateModel.titleWidth = 60;
@@ -96,17 +66,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     self.endDateModel.useDatePicker = YES;
     self.endDateModel.fromDate = fromDate;
     self.endDateModel.endDate = endDate;
-    
-    
-    CGFloat headerHeight = 30;
-    CGFloat gap = 10;
-    CGFloat itemHeight = 25;
-    NSInteger idCount = ceilf(self.userIdDataArray.count / 3.0);
-    CGFloat height = headerHeight + gap + itemHeight + gap + itemHeight + gap + headerHeight + gap + itemHeight + gap + itemHeight + gap + headerHeight + gap + idCount * (itemHeight + gap);
-    if (height > LL_SCREEN_HEIGHT / 2.0) {
-        height = LL_SCREEN_HEIGHT / 2.0;
-    }
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, height);
+
     [self.collectionView reloadData];
 }
 
@@ -114,98 +74,33 @@ static NSString *const kLabelCellID = @"LabelCellID";
     if (_changeBlock) {
         NSDate *fromDate = [[LLTool sharedTool] staticDateFromString:_fromDateModel.currentFilter];
         NSDate *endDate = [[LLTool sharedTool] staticDateFromString:_endDateModel.currentFilter];
-        NSMutableArray *userIds = [[NSMutableArray alloc] init];
-        
-        for (LLFilterLabelModel *model in self.userIdDataArray) {
-            if (model.isSelected) {
-                [userIds addObject:model.message];
-            }
-        }
-        
-        _changeBlock(_fileModel.currentFilter,
-                     _funcModel.currentFilter,
-                     fromDate,endDate,
-                     userIds);
+        _changeBlock(fromDate,endDate);
     }
-}
-
-- (void)updateFuncModel {
-    NSString *filter = self.fileModel.currentFilter;
-    self.funcModel = [[LLFilterTextFieldModel alloc] init];
-    self.funcModel.titleWidth = 60;
-    self.funcModel.title = @"Function";
-    if (filter) {
-        NSArray *filters = self.fileDictionary[filter];
-        self.funcModel.filters = filters;
-        self.funcModel.currentFilter = nil;
-    } else {
-        self.funcModel.filters = nil;
-        self.funcModel.currentFilter = nil;
-    }
-    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate , UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 2;
-    } else if (section == 1) {
-        return 2;
-    }
-    return self.userIdDataArray.count;
+    return 2;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    // 0 -> File Function
-    // 1 -> Date
-    // 2 -> userIdentity
-    return 3;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     __weak typeof(self) weakSelf = self;
-    if (indexPath.section == 0 || indexPath.section == 1) {
-        LLFilterTextFieldCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTextFieldCellID forIndexPath:indexPath];
-        if (indexPath.section == 0) {
-            // File
-            if (indexPath.row == 0) {
-                [cell confirmWithModel:self.fileModel];
-                cell.confirmBlock = ^{
-                    [weakSelf updateFuncModel];
-                    [weakSelf reCalculateFilters];
-                };
-            } else {
-                [cell confirmWithModel:self.funcModel];
-                cell.confirmBlock = ^{
-                    [weakSelf reCalculateFilters];
-                };
-            }
-        } else if (indexPath.section == 1) {
-            // Date
-            if (indexPath.row == 0) {
-                [cell confirmWithModel:self.fromDateModel];
-            } else {
-                [cell confirmWithModel:self.endDateModel];
-            }
-            cell.confirmBlock = ^{
-                [weakSelf reCalculateFilters];
-            };
-        }
-        return cell;
+    LLFilterTextFieldCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kTextFieldCellID forIndexPath:indexPath];
+    // Date
+    if (indexPath.row == 0) {
+        [cell confirmWithModel:self.fromDateModel];
+    } else {
+        [cell confirmWithModel:self.endDateModel];
     }
-    LLFilterLabelCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kLabelCellID forIndexPath:indexPath];
-    [cell confirmWithModel:self.userIdDataArray[indexPath.item]];
+    cell.confirmBlock = ^{
+        [weakSelf reCalculateFilters];
+    };
+    
     return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2) {
-        LLFilterLabelModel *model = self.userIdDataArray[indexPath.item];
-        model.isSelected = !model.isSelected;
-        LLFilterLabelCell *cell = (LLFilterLabelCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        [cell confirmWithModel:model];
-        [self reCalculateFilters];
-    }
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -227,13 +122,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
             }
         }
         UILabel *label = [view viewWithTag:labelTag];
-        if (indexPath.section == 0) {
-            label.text = @"FILE";
-        } else if (indexPath.section == 1) {
-            label.text = @"DATE";
-        } else if (indexPath.section == 2) {
-            label.text = @"USERIDENTITY";
-        }
+        label.text = @"DATE";
         return view;
     }
     return [[UICollectionReusableView alloc] init];
@@ -248,29 +137,19 @@ static NSString *const kLabelCellID = @"LabelCellID";
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    if (section == 0 || section == 1) {
-        return 0;
-    }
-    return 10;
+    return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    if (section == 0 || section == 1) {
-        return UIEdgeInsetsMake(10, 0, 10, 0);
-    }
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(10, 0, 10, 0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 || indexPath.section == 1) {
-        return CGSizeMake(LL_SCREEN_WIDTH, 25);
-    }
-    return CGSizeMake((LL_SCREEN_WIDTH - 5 * 10) / 3.0, 25);
+    return CGSizeMake(LL_SCREEN_WIDTH, 25);
 }
 
 #pragma mark - Primary
 - (void)initial {
-    self.userIdDataArray = [[NSMutableArray alloc] init];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     self.collectionView.delegate = self;
@@ -278,7 +157,6 @@ static NSString *const kLabelCellID = @"LabelCellID";
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
     [self addSubview:self.collectionView];
     [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];

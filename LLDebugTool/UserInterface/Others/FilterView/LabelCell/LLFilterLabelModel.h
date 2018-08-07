@@ -25,8 +25,10 @@
 
 @interface LLFilterLabelModel : NSObject
 
-@property (nonatomic , copy) NSString *message;
+@property (nonatomic , copy , readonly) NSString *message;
 
 @property (nonatomic , assign) BOOL isSelected;
+
+- (instancetype)initWithMessage:(NSString *)message;
 
 @end

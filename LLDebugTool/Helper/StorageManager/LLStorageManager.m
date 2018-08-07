@@ -299,6 +299,12 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Screenshot
 - (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveScreenshot:image name:name];
+        });
+        return YES;
+    }
     if (name.length == 0) {
         name = [[LLTool sharedTool] staticStringFromDate:[NSDate date]];
     }

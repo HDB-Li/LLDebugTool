@@ -56,8 +56,7 @@ static NSString *const kLabelCellID = @"FilterLabelCell";
 - (void)initial {
     self.dataArray = [[NSMutableArray alloc] init];
     for (NSString *level in [LLLogHelper levelsDescription]) {
-        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] init];
-        model.message = level;
+        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:level];
         [self.dataArray addObject:model];
     }
     self.backgroundColor = [UIColor whiteColor];
