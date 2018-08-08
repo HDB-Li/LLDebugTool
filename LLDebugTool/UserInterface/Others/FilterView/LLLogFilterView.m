@@ -25,7 +25,6 @@
 #import "LLTool.h"
 #import "LLLogModel.h"
 #import "UIButton+LL_Utils.h"
-#import "LLFilterLevelView.h"
 #import "LLFilterEventView.h"
 #import "LLFilterOtherView.h"
 #import "LLMacros.h"
@@ -45,7 +44,7 @@
 // Details
 @property (nonatomic , strong) NSMutableArray *filterViews;
 
-@property (nonatomic , strong) LLFilterLevelView *levelView;
+@property (nonatomic , strong) LLFilterEventView *levelView;
 
 @property (nonatomic , strong) LLFilterEventView *eventView;
 
@@ -157,6 +156,19 @@
     }
 }
 
+- (void)updateFilterButton:(UIView *)filterView count:(NSInteger)count {
+    NSInteger index = [self.filterViews indexOfObject:filterView];
+    if (index != NSNotFound) {
+        UIButton *sender = self.filterBtns[index];
+        NSString *title = self.titles[index];
+        if (count == 0) {
+            [sender setTitle:title forState:UIControlStateNormal];
+        } else {
+            [sender setTitle:[NSString stringWithFormat:@"%@ - %ld",title,count] forState:UIControlStateNormal];
+        }
+    }
+}
+
 #pragma mark - Action
 - (void)filterButtonClick:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -244,13 +256,21 @@
     }];
 }
 
-- (LLFilterLevelView *)levelView {
+- (LLFilterEventView *)levelView {
     if (!_levelView) {
-        _levelView = [[LLFilterLevelView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 50)];
+        _levelView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 50)];
+        _levelView.averageCount = 4;
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        for (NSString *level in [LLLogHelper levelsDescription]) {
+            LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:level];
+            [dataArray addObject:model];
+        }
+        [_levelView updateDataArray:dataArray];
         __weak typeof(self) weakSelf = self;
         _levelView.changeBlock = ^(NSArray *levels) {
             weakSelf.currentLevels = levels;
             [weakSelf reCalculateFilters];
+            [weakSelf updateFilterButton:weakSelf.levelView count:levels.count];
         };
         [self addSubview:_levelView];
     }
@@ -264,6 +284,7 @@
         _eventView.changeBlock = ^(NSArray *events) {
             weakSelf.currentEvents = events;
             [weakSelf reCalculateFilters];
+            [weakSelf updateFilterButton:weakSelf.eventView count:events.count];
         };
         [self addSubview:_eventView];
     }
@@ -281,6 +302,13 @@
             weakSelf.currentEndDate = end;
             weakSelf.currentUserIds = userIdentities;
             [weakSelf reCalculateFilters];
+            NSInteger count = 0;
+            count += file.length ? 1 : 0;
+            count += func.length ? 1 : 0;
+            count += from ? 1 : 0;
+            count += end ? 1 : 0;
+            count += userIdentities.count;
+            [weakSelf updateFilterButton:weakSelf.otherView count:count];
         };
         [self addSubview:_otherView];
     }

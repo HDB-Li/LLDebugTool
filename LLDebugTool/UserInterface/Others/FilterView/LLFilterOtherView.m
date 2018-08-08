@@ -265,7 +265,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     if (indexPath.section == 0 || indexPath.section == 1) {
         return CGSizeMake(LL_SCREEN_WIDTH, 25);
     }
-    return CGSizeMake((LL_SCREEN_WIDTH - 5 * 10) / 3.0, 25);
+    return CGSizeMake((LL_SCREEN_WIDTH - 5 * 10) / 3.0, 30);
 }
 
 #pragma mark - Primary
@@ -276,7 +276,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.75];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
@@ -284,7 +284,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
     
     if (LLCONFIG_CUSTOM_COLOR) {
-        self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+        self.collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
     }
 }
 

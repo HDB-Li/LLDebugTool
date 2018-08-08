@@ -61,7 +61,6 @@
 		36C5BF982099897F007A3188 /* LLLogContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF372099897F007A3188 /* LLLogContentVC.m */; };
 		36C5BF992099897F007A3188 /* LLAppInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF392099897F007A3188 /* LLAppInfoVC.m */; };
 		36C5BF9A2099897F007A3188 /* LLDebugTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36C5BF3C2099897F007A3188 /* LLDebugTool.bundle */; };
-		36C5BF9B2099897F007A3188 /* LLFilterLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF412099897F007A3188 /* LLFilterLevelView.m */; };
 		36C5BF9C2099897F007A3188 /* LLFilterOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF422099897F007A3188 /* LLFilterOtherView.m */; };
 		36C5BF9D2099897F007A3188 /* LLFilterFilePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF472099897F007A3188 /* LLFilterFilePickerView.m */; };
 		36C5BF9E2099897F007A3188 /* LLFilterTextFieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF482099897F007A3188 /* LLFilterTextFieldModel.m */; };
@@ -197,7 +196,6 @@
 		36C5BF3C2099897F007A3188 /* LLDebugTool.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LLDebugTool.bundle; sourceTree = "<group>"; };
 		36C5BF3D2099897F007A3188 /* LLImageNameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLImageNameConfig.h; sourceTree = "<group>"; };
 		36C5BF3F2099897F007A3188 /* YWFilePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWFilePreviewController.h; sourceTree = "<group>"; };
-		36C5BF412099897F007A3188 /* LLFilterLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterLevelView.m; sourceTree = "<group>"; };
 		36C5BF422099897F007A3188 /* LLFilterOtherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterOtherView.m; sourceTree = "<group>"; };
 		36C5BF432099897F007A3188 /* LLFilterEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterEventView.h; sourceTree = "<group>"; };
 		36C5BF452099897F007A3188 /* LLFilterTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterTextFieldCell.h; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 		36C5BF4C2099897F007A3188 /* LLFilterFilePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterFilePickerView.h; sourceTree = "<group>"; };
 		36C5BF4D2099897F007A3188 /* LLFilterTextFieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterTextFieldModel.h; sourceTree = "<group>"; };
 		36C5BF4E2099897F007A3188 /* LLLogFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogFilterView.m; sourceTree = "<group>"; };
-		36C5BF4F2099897F007A3188 /* LLFilterLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLevelView.h; sourceTree = "<group>"; };
 		36C5BF512099897F007A3188 /* LLFilterLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLabelCell.h; sourceTree = "<group>"; };
 		36C5BF522099897F007A3188 /* LLFilterLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLabelModel.h; sourceTree = "<group>"; };
 		36C5BF532099897F007A3188 /* LLFilterLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLFilterLabelCell.xib; sourceTree = "<group>"; };
@@ -539,14 +536,12 @@
 				36C5BF442099897F007A3188 /* TextFieldCell */,
 				36C5BF582099897F007A3188 /* LLLogFilterView.h */,
 				36C5BF4E2099897F007A3188 /* LLLogFilterView.m */,
-				36C5BF4F2099897F007A3188 /* LLFilterLevelView.h */,
-				36C5BF412099897F007A3188 /* LLFilterLevelView.m */,
+				363FE42521196CC9005F9C0D /* LLNetworkFilterView.h */,
+				363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */,
 				36C5BF432099897F007A3188 /* LLFilterEventView.h */,
 				36C5BF572099897F007A3188 /* LLFilterEventView.m */,
 				36C5BF562099897F007A3188 /* LLFilterOtherView.h */,
 				36C5BF422099897F007A3188 /* LLFilterOtherView.m */,
-				363FE42521196CC9005F9C0D /* LLNetworkFilterView.h */,
-				363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */,
 				363FE42E21198AC5005F9C0D /* LLFilterDateView.h */,
 				363FE42F21198AC5005F9C0D /* LLFilterDateView.m */,
 			);
@@ -913,7 +908,6 @@
 				36C5BF782099897F007A3188 /* LLConfig.m in Sources */,
 				36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */,
 				3687522020C69B22002C6AD9 /* LLScreenshotActionView.m in Sources */,
-				36C5BF9B2099897F007A3188 /* LLFilterLevelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -328,10 +328,10 @@ static NSString *const kLaunchDateColumn = @"launchDate";
  */
 - (BOOL)initDatabase {
     self.folderPath = [LLConfig sharedConfig].folderPath;
-    [self createDirectoryAtPath:self.folderPath];
+    [LLTool createDirectoryAtPath:self.folderPath];
     
     self.screenshotFolderPath = [self.folderPath stringByAppendingPathComponent:@"Screenshot"];
-    [self createDirectoryAtPath:self.screenshotFolderPath];
+    [LLTool createDirectoryAtPath:self.screenshotFolderPath];
     
     NSString *filePath = [self.folderPath stringByAppendingPathComponent:@"LLDebugTool.db"];
     
@@ -360,20 +360,6 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         }
     }];
     return ret1 && ret2 && ret3;
-}
-
-- (BOOL)createDirectoryAtPath:(NSString *)path {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSError *error;
-        [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-        if (error) {
-            [self log:[NSString stringWithFormat:@"Create folder fail, path = %@, error = %@",path,error.description]];
-            NSAssert(!error, error.description);
-            return NO;
-        }
-        return YES;
-    }
-    return YES;
 }
 
 /**

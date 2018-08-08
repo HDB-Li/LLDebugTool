@@ -33,6 +33,7 @@
 #import "LLSearchBar.h"
 #import "LLNetworkFilterView.h"
 #import "LLMacros.h"
+#import "LLTool.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
@@ -61,6 +62,11 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.filterView cancelFiltering];
 }
 
 #pragma mark - Actions
@@ -95,6 +101,10 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self.filterView cancelFiltering];
@@ -115,6 +125,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.searchText = self.searchBar.text;
+    [self.filterView cancelFiltering];
     [self filterData];
     [searchBar resignFirstResponder];
     
@@ -131,6 +142,8 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         _launchDate = [LLAppHelper sharedHelper].launchDate;
     }
     self.httpDataArray = [[NSMutableArray alloc] init];
+    self.tempHttpDataArray = [[NSMutableArray alloc] init];
+    
     if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
         self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
         self.searchBar.delegate = self;
@@ -142,6 +155,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         self.searchBar.delegate = self;
         self.navigationItem.titleView = self.searchBar;
     }
+    self.searchBar.enablesReturnKeyAutomatically = NO;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkCellID];
     
@@ -160,7 +174,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
             weakSelf.currentFromDate = from;
             weakSelf.currentEndDate = end;
             [weakSelf filterData];
-        }
+        };
         [self.filterView configWithData:self.httpDataArray];
         [self.view addSubview:self.filterView];
     }
@@ -183,45 +197,49 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         for (LLNetworkModel *model in self.httpDataArray) {
+
+            // Filter Host
+            if (self.currentHost.count) {
+                NSString *host = model.url.host;
+                if (![self.currentHost containsObject:host]) {
+                    [tempArray addObject:model];
+                    continue;
+                }
+            }
+
             // Filter "Search"
             if (self.searchText.length) {
-                if (![model.message containsString:self.searchText]) {
+                NSMutableArray *filterArray = [[NSMutableArray alloc] initWithObjects:model.url.absoluteString ?:model.url.host, nil];
+                BOOL checkHeader = [self.currentTypes containsObject:@"Header"];
+                BOOL checkBody = [self.currentTypes containsObject:@"Body"];
+                BOOL checkResponse = [self.currentTypes containsObject:@"Response"];
+                BOOL needPop = YES;
+                
+                if (checkHeader && model.headerString.length) {
+                    [filterArray addObject:model.headerString];
+                }
+                
+                if (checkBody && model.requestBody.length) {
+                    [filterArray addObject:model.requestBody];
+                }
+                
+                if (checkResponse && model.responseString.length) {
+                    [filterArray addObject:model.responseString];
+                }
+                
+                for (NSString *filter in filterArray) {
+                    if ([filter.lowercaseString containsString:self.searchText.lowercaseString]) {
+                        needPop = NO;
+                        break;
+                    }
+                }
+                
+                if (needPop) {
                     [tempArray addObject:model];
                     continue;
                 }
             }
-            
-            // Filter Level
-            if (self.currentLevels.count) {
-                if (![self.currentLevels containsObject:model.levelDescription]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-            
-            // Filter Event
-            if (self.currentEvents.count) {
-                if (![self.currentEvents containsObject:model.event]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-            
-            // Filter File
-            if (self.currentFile.length) {
-                if (![model.file isEqualToString:self.currentFile]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-            
-            // Filter Func
-            if (self.currentFunc.length) {
-                if (![model.function isEqualToString:self.currentFunc]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
+
             
             // Filter Date
             if (self.currentFromDate) {
@@ -233,13 +251,6 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
             
             if (self.currentEndDate) {
                 if ([model.dateDescription compare:self.currentEndDate] == NSOrderedDescending) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-            
-            if (self.currentUserIdentities.count) {
-                if (![self.currentUserIdentities containsObject:model.userIdentity]) {
                     [tempArray addObject:model];
                     continue;
                 }

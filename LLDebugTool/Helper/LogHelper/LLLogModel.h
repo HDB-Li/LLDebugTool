@@ -79,6 +79,7 @@
  */
 @property (nonatomic , copy , readonly , nonnull) NSString *identity;
 
+#pragma mark - Quick Getter
 /**
  Convent [level] to NSString.
  */

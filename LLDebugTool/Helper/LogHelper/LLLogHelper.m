@@ -46,24 +46,27 @@ static LLLogHelper *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... {
+    NSString *date = [[LLTool sharedTool] stringFromDate:[NSDate date]];
     if (onEvent.length) {
         NSLog(@"\n--------Debug Tool--------\
               \nEvent:<%@>\
               \nFile:<%@>\
               \nLine:<%d>\
               \nFunc:<%@>\
+              \nDate:<%@>\
               \nDesc:%@\
-              \n--------------------------",onEvent,file,lineNo,function,message);
+              \n--------------------------",onEvent,file,lineNo,function,date,message);
     } else {
         NSLog(@"\n--------Debug Tool--------\
               \nFile:<%@>\
               \nLine:<%d>\
               \nFunc:<%@>\
+              \nDate:<%@>\
               \nDesc:%@\
-              \n--------------------------",file,lineNo,function,message);
+              \n--------------------------",file,lineNo,function,date,message);
     }
     if (_enable) {
-        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:[[LLTool sharedTool] stringFromDate:[NSDate date]] launchDate:[LLAppHelper sharedHelper].launchDate userIdentity:[LLConfig sharedConfig].userIdentity];
+        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[LLAppHelper sharedHelper].launchDate userIdentity:[LLConfig sharedConfig].userIdentity];
         [[LLStorageManager sharedManager] saveLogModel:model];
     }
 }

@@ -93,10 +93,10 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.headerFields = self.request.allHTTPHeaderFields;
     model.mineType = self.response.MIMEType;
     if (self.request.HTTPBody) {
-        model.requestBody = [LLTool prettyJSONStringFromData:self.request.HTTPBody];
+        model.requestBody = [LLTool convertJSONStringFromData:self.request.HTTPBody];
     } else if (self.request.HTTPBodyStream) {
         NSData* data = [self dataFromInputStream:self.request.HTTPBodyStream];
-        model.requestBody = [LLTool prettyJSONStringFromData:data];
+        model.requestBody = [LLTool convertJSONStringFromData:data];
     }
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];

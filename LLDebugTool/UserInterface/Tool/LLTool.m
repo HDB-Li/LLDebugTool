@@ -24,6 +24,8 @@
 #import "LLTool.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
 
 static LLTool *_instance = nil;
 
@@ -91,12 +93,12 @@ static LLTool *_instance = nil;
     return view;
 }
 
-+ (NSString *)prettyJSONStringFromData:(NSData *)data
++ (NSString *)convertJSONStringFromData:(NSData *)data
 {
     if ([data length] == 0) {
-        return nil;
+        return @"";
     }
-    NSString *prettyString = nil;
+    NSString *prettyString = @"";
     
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
     if ([NSJSONSerialization isValidJSONObject:jsonObject]) {
@@ -107,7 +109,41 @@ static LLTool *_instance = nil;
         prettyString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
     
-    return prettyString;
+    return prettyString ?: @"";
+}
+
++ (NSString *)convertJSONStringFromDictionary:(NSDictionary *)dictionary {
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                       options:0
+                                                         error:&error];
+
+    NSString *jsonString = @"";
+    
+    if (jsonData) {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    return jsonString ?: @"";
+}
+
++ (BOOL)createDirectoryAtPath:(NSString *)path {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSError *error;
+        [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            LLog_Alert_Event(kLLLogHelperDebugToolEvent, [NSString stringWithFormat:@"Create folder fail, path = %@, error = %@",path,error.description]);
+            NSAssert(!error, error.description);
+            return NO;
+        }
+        return YES;
+    }
+    return YES;
 }
 
 + (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint {

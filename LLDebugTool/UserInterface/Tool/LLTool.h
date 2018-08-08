@@ -65,10 +65,15 @@
 + (UIView *)lineView:(CGRect)frame superView:(UIView *)superView;
 
 /**
- Convert data to JSONString.
+ Convert data or dictionary to JSONString.
  */
-+ (NSString *)prettyJSONStringFromData:(NSData *)data;
++ (NSString *)convertJSONStringFromData:(NSData *)data;
++ (NSString *)convertJSONStringFromDictionary:(NSDictionary *)dictionary;
 
+/**
+ Create directory if not exist.
+ */
++ (BOOL)createDirectoryAtPath:(NSString *)path;
 /**
  Get rect from two point
  */

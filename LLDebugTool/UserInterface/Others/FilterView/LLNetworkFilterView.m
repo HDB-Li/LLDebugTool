@@ -137,6 +137,19 @@
     }
 }
 
+- (void)updateFilterButton:(UIView *)filterView count:(NSInteger)count {
+    NSInteger index = [self.filterViews indexOfObject:filterView];
+    if (index != NSNotFound) {
+        UIButton *sender = self.filterBtns[index];
+        NSString *title = self.titles[index];
+        if (count == 0) {
+            [sender setTitle:title forState:UIControlStateNormal];
+        } else {
+            [sender setTitle:[NSString stringWithFormat:@"%@ - %ld",title,count] forState:UIControlStateNormal];
+        }
+    }
+}
+
 #pragma mark - Action
 - (void)filterButtonClick:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -228,9 +241,10 @@
     if (!_hostView) {
         _hostView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
         __weak typeof(self) weakSelf = self;
-        _hostView.changeBlock = ^(NSArray *events) {
-            weakSelf.currentHost = events;
+        _hostView.changeBlock = ^(NSArray *hosts) {
+            weakSelf.currentHost = hosts;
             [weakSelf reCalculateFilters];
+            [weakSelf updateFilterButton:weakSelf.hostView count:hosts.count];
         };
         [self addSubview:_hostView];
     }
@@ -240,14 +254,16 @@
 - (LLFilterEventView *)typeView {
     if (!_typeView) {
         _typeView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
-        LLFilterLabelModel *model1 = [[LLFilterLabelModel alloc] initWithMessage:@"URL"];
-        LLFilterLabelModel *model2 = [[LLFilterLabelModel alloc] initWithMessage:@"Header"];
-        LLFilterLabelModel *model3 = [[LLFilterLabelModel alloc] initWithMessage:@"Body"];
+        _typeView.averageCount = 3;
+        LLFilterLabelModel *model1 = [[LLFilterLabelModel alloc] initWithMessage:@"Header"];
+        LLFilterLabelModel *model2 = [[LLFilterLabelModel alloc] initWithMessage:@"Body"];
+        LLFilterLabelModel *model3 = [[LLFilterLabelModel alloc] initWithMessage:@"Response"];
         [_typeView updateDataArray:@[model1,model2,model3]];
         __weak typeof(self) weakSelf = self;
-        _typeView.changeBlock = ^(NSArray *events) {
-            weakSelf.currentTypes = events;
+        _typeView.changeBlock = ^(NSArray *types) {
+            weakSelf.currentTypes = types;
             [weakSelf reCalculateFilters];
+            [weakSelf updateFilterButton:weakSelf.typeView count:types.count];
         };
         [self addSubview:_typeView];
     }
@@ -256,8 +272,17 @@
 
 - (LLFilterDateView *)dateView {
     if (!_dateView) {
-        _dateView = [[LLFilterDateView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
+        _dateView = [[LLFilterDateView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 110)];
         __weak typeof(self) weakSelf = self;
+        _dateView.changeBlock = ^(NSDate *from, NSDate *end) {
+            weakSelf.currentFromDate = from;
+            weakSelf.currentEndDate = end;
+            [weakSelf reCalculateFilters];
+            NSInteger count = 0;
+            count += from ? 1 : 0;
+            count += end ? 1 : 0;
+            [weakSelf updateFilterButton:weakSelf.dateView count:count];
+        };
         [self addSubview:_dateView];
     }
     return _dateView;
@@ -265,7 +290,7 @@
 
 - (NSArray *)titles {
     if (!_titles) {
-        _titles = @[@"Host",@"Search From",@"Date"];
+        _titles = @[@"Host",@"Filter",@"Date"];
     }
     return _titles;
 }

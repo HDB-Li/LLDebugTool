@@ -200,6 +200,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.searchText = self.searchBar.text;
+    [self.filterView cancelFiltering];
     [self filterData];
     [searchBar resignFirstResponder];
     
@@ -246,6 +247,8 @@ static NSString *const kLogCellID = @"LLLogCell";
         self.searchBar.delegate = self;
         self.navigationItem.titleView = self.searchBar;
     }
+    self.searchBar.enablesReturnKeyAutomatically = NO;
+    
     self.leftItem = self.navigationItem.leftBarButtonItem;
     self.rightItem = self.navigationItem.rightBarButtonItem;
     
@@ -312,7 +315,7 @@ static NSString *const kLogCellID = @"LLLogCell";
         for (LLLogModel *model in self.totalDataArray) {
             // Filter "Search"
             if (self.searchText.length) {
-                if (![model.message containsString:self.searchText]) {
+                if (![model.message.lowercaseString containsString:self.searchText.lowercaseString]) {
                     [tempArray addObject:model];
                     continue;
                 }

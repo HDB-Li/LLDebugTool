@@ -36,7 +36,7 @@
 /**
  Network request URL.
  */
-@property (nonatomic , copy , nullable) NSURL *url;
+@property (nonatomic , strong , nullable) NSURL *url;
 
 /**
  Network request method.
@@ -61,7 +61,7 @@
 /**
  Network request response data.
  */
-@property (nonatomic , copy , nullable) NSData *responseData;
+@property (nonatomic , strong , nullable) NSData *responseData;
 
 /**
  Is image or not.
@@ -81,11 +81,27 @@
 /**
  Network request header.
  */
-@property (nonatomic , copy , nullable) NSDictionary <NSString *,NSString *>*headerFields;
+@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*headerFields;
 
 /**
  Network request identity.
  */
 @property (nonatomic , copy , readonly , nonnull) NSString *identity;
+
+#pragma mark - Quick Getter
+/**
+ String converted from headerFields.
+ */
+@property (nonatomic , copy , readonly , nonnull) NSString *headerString;
+
+/**
+ String converted from responseData.
+ */
+@property (nonatomic , copy , readonly , nonnull) NSString *responseString;
+
+/**
+ Convent [date] to NSDate.
+ */
+- (NSDate *_Nullable)dateDescription;
 
 @end
