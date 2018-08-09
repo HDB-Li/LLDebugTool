@@ -145,7 +145,7 @@
         if (count == 0) {
             [sender setTitle:title forState:UIControlStateNormal];
         } else {
-            [sender setTitle:[NSString stringWithFormat:@"%@ - %ld",title,count] forState:UIControlStateNormal];
+            [sender setTitle:[NSString stringWithFormat:@"%@ - %ld",title,(long)count] forState:UIControlStateNormal];
         }
     }
 }
