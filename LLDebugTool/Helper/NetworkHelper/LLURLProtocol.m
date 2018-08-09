@@ -93,10 +93,10 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.headerFields = self.request.allHTTPHeaderFields;
     model.mineType = self.response.MIMEType;
     if (self.request.HTTPBody) {
-        model.requestBody = [LLTool prettyJSONStringFromData:self.request.HTTPBody];
+        model.requestBody = [LLTool convertJSONStringFromData:self.request.HTTPBody];
     } else if (self.request.HTTPBodyStream) {
         NSData* data = [self dataFromInputStream:self.request.HTTPBodyStream];
-        model.requestBody = [LLTool prettyJSONStringFromData:data];
+        model.requestBody = [LLTool convertJSONStringFromData:data];
     }
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
@@ -113,27 +113,28 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     [[LLStorageManager sharedManager] saveNetworkModel:model];
 }
 
-//#pragma mark - NSURLSessionDelegate
-//-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-//
-//    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-//    __block NSURLCredential *credential = nil;
-//
-//    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-//        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-//        if (credential) {
-//            disposition = NSURLSessionAuthChallengeUseCredential;
-//        } else {
-//            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-//        }
-//    } else {
-//        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-//    }
-//
-//    if (completionHandler) {
-//        completionHandler(disposition, credential);
-//    }
-//}
+#pragma mark - NSURLSessionDelegate
+// This method ignores certificate validation to resolve some untrusted HTTP requests that fail, and is recommended only in debug mode.
+-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
+
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    __block NSURLCredential *credential = nil;
+
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        if (credential) {
+            disposition = NSURLSessionAuthChallengeUseCredential;
+        } else {
+            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+        }
+    } else {
+        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    }
+
+    if (completionHandler) {
+        completionHandler(disposition, credential);
+    }
+}
 
 #pragma mark - NSURLSessionTaskDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {

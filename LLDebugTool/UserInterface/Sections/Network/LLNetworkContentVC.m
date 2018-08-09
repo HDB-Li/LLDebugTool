@@ -145,7 +145,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             if (self.model.isImage) {
                 [self.contentArray addObject:self.model.responseData];
             } else {
-                [self.contentArray addObject:[LLTool prettyJSONStringFromData:self.model.responseData] ?: self.model.responseData];
+                [self.contentArray addObject:self.model.responseString.length ? self.model.responseString : self.model.responseData];
             }
         }
         

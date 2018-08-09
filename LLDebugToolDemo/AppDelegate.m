@@ -27,6 +27,9 @@
     // Use this line to tag user. More config please see "LLConfig.h".
     [LLConfig sharedConfig].userIdentity = @"Miss L";
     
+    // Uncomment one of the following lines to change the window style.
+    // [LLConfig sharedConfig].windowStyle = LLConfigWindowNetBar;
+    
     // Use this line to start working.
     [[LLDebugTool sharedTool] startWorking];
     

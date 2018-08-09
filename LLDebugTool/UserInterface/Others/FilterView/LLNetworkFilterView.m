@@ -1,5 +1,5 @@
 //
-//  LLFilterView.m
+//  LLNetworkFilterView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFilterView.h"
-#import "LLTool.h"
-#import "LLLogModel.h"
-#import "UIButton+LL_Utils.h"
-#import "LLFilterLevelView.h"
+#import "LLNetworkFilterView.h"
 #import "LLFilterEventView.h"
-#import "LLFilterOtherView.h"
+#import "LLFilterDateView.h"
+#import "UIButton+LL_Utils.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
+#import "LLTool.h"
+#import "LLNetworkModel.h"
 
-@interface LLFilterView()
+@interface LLNetworkFilterView ()
 
 @property (nonatomic , strong) NSArray *titles;
 
@@ -45,24 +44,21 @@
 // Details
 @property (nonatomic , strong) NSMutableArray *filterViews;
 
-@property (nonatomic , strong) LLFilterLevelView *levelView;
+@property (nonatomic , strong) LLFilterEventView *hostView;
 
-@property (nonatomic , strong) LLFilterEventView *eventView;
+@property (nonatomic , strong) LLFilterEventView *typeView;
 
-@property (nonatomic , strong) LLFilterOtherView *otherView;
+@property (nonatomic , strong) LLFilterDateView *dateView;
 
 // Data
-@property (nonatomic , strong) NSArray *currentLevels;
-@property (nonatomic , strong) NSArray *currentEvents;
-@property (nonatomic , copy) NSString *currentFile;
-@property (nonatomic , copy) NSString *currentFunc;
+@property (nonatomic , strong) NSArray *currentHost;
+@property (nonatomic , strong) NSArray *currentTypes;
 @property (nonatomic , strong) NSDate *currentFromDate;
 @property (nonatomic , strong) NSDate *currentEndDate;
-@property (nonatomic , strong) NSArray *currentUserIds;
 
 @end
 
-@implementation LLFilterView
+@implementation LLNetworkFilterView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -92,12 +88,11 @@
 }
 
 - (void)configWithData:(NSArray *)data {
-    NSMutableSet *eventSet = [NSMutableSet set];
-    NSMutableSet *userIDSet = [NSMutableSet set];
-    NSMutableDictionary *fileDic = [[NSMutableDictionary alloc] init];
+  
+    NSMutableSet *hostSet = [NSMutableSet set];
     
-    NSDate *fromDate = [[LLTool sharedTool] dateFromString:((LLLogModel *)data.lastObject).date];
-    NSDate *endDate = [[LLTool sharedTool] dateFromString:((LLLogModel *)data.firstObject).date];
+    NSDate *fromDate = [[LLTool sharedTool] dateFromString:((LLNetworkModel *)data.lastObject).startDate];
+    NSDate *endDate = [[LLTool sharedTool] dateFromString:((LLNetworkModel *)data.firstObject).startDate];
     if (!fromDate) {
         fromDate = [NSDate date];
     }
@@ -105,45 +100,31 @@
         endDate = [NSDate date];
     }
     
-    for (LLLogModel *model in data) {
-        if (model.event.length) {
-            [eventSet addObject:model.event];
-        }
-        if (model.userIdentity.length) {
-            [userIDSet addObject:model.userIdentity];
-        }
-        if (model.file.length) {
-            NSMutableArray *funcArray = fileDic[model.file];
-            if (funcArray) {
-                if ([funcArray containsObject:model.function] == NO) {
-                    [funcArray addObject:model.function];
-                }
-            } else {
-                fileDic[model.file] = [[NSMutableArray alloc] initWithObjects:model.function, nil];
-            }
+    for (LLNetworkModel *model in data) {
+        if (model.url.host.length) {
+            [hostSet addObject:model.url.host];
         }
     }
     
-    // Level Part
+    // Host Part
     [self.filterViews removeAllObjects];
-    [self.filterViews addObject:self.levelView];
-    self.levelView.hidden = YES;
-    
-    // Event Part
-    NSMutableArray *eventArray = [[NSMutableArray alloc] init];
-    for (NSString *event in eventSet.allObjects) {
-        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] init];
-        model.message = event;
-        [eventArray addObject:model];
+    [self.filterViews addObject:self.hostView];
+    self.hostView.hidden = YES;
+    NSMutableArray *hostArray = [[NSMutableArray alloc] init];
+    for (NSString *host in hostSet.allObjects) {
+        LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:host];
+        [hostArray addObject:model];
     }
-    [self.filterViews addObject:self.eventView];
-    self.eventView.hidden = YES;
-    [self.eventView updateDataArray:eventArray];
+    [self.hostView updateDataArray:hostArray];
     
-    // Other Part
-    [self.filterViews addObject:self.otherView];
-    self.otherView.hidden = YES;
-    [self.otherView updateFileDataDictionary:fileDic fromDate:fromDate endDate:endDate userIdentities:userIDSet.allObjects];
+    // Type Part
+    [self.filterViews addObject:self.typeView];
+    self.typeView.hidden = YES;
+    
+    // Date Part
+    [self.filterViews addObject:self.dateView];
+    self.dateView.hidden = YES;
+    [self.dateView updateFromDate:fromDate endDate:endDate];
     
     // Final
     [self bringSubviewToFront:self.btnsBgView];
@@ -151,10 +132,21 @@
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        _changeBlock(self.currentLevels,self.currentEvents,
-                     self.currentFile,self.currentFunc,
-                     self.currentFromDate,self.currentEndDate,
-                     self.currentUserIds);
+        _changeBlock(self.currentHost,self.currentTypes,
+                     self.currentFromDate,self.currentEndDate);
+    }
+}
+
+- (void)updateFilterButton:(UIView *)filterView count:(NSInteger)count {
+    NSInteger index = [self.filterViews indexOfObject:filterView];
+    if (index != NSNotFound) {
+        UIButton *sender = self.filterBtns[index];
+        NSString *title = self.titles[index];
+        if (count == 0) {
+            [sender setTitle:title forState:UIControlStateNormal];
+        } else {
+            [sender setTitle:[NSString stringWithFormat:@"%@ - %ld",title,count] forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -245,52 +237,60 @@
     }];
 }
 
-- (LLFilterLevelView *)levelView {
-    if (!_levelView) {
-        _levelView = [[LLFilterLevelView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 50)];
+- (LLFilterEventView *)hostView {
+    if (!_hostView) {
+        _hostView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
         __weak typeof(self) weakSelf = self;
-        _levelView.changeBlock = ^(NSArray *levels) {
-            weakSelf.currentLevels = levels;
+        _hostView.changeBlock = ^(NSArray *hosts) {
+            weakSelf.currentHost = hosts;
             [weakSelf reCalculateFilters];
+            [weakSelf updateFilterButton:weakSelf.hostView count:hosts.count];
         };
-        [self addSubview:_levelView];
+        [self addSubview:_hostView];
     }
-    return _levelView;
+    return _hostView;
 }
 
-- (LLFilterEventView *)eventView {
-    if (!_eventView) {
-        _eventView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
+- (LLFilterEventView *)typeView {
+    if (!_typeView) {
+        _typeView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
+        _typeView.averageCount = 3;
+        LLFilterLabelModel *model1 = [[LLFilterLabelModel alloc] initWithMessage:@"Header"];
+        LLFilterLabelModel *model2 = [[LLFilterLabelModel alloc] initWithMessage:@"Body"];
+        LLFilterLabelModel *model3 = [[LLFilterLabelModel alloc] initWithMessage:@"Response"];
+        [_typeView updateDataArray:@[model1,model2,model3]];
         __weak typeof(self) weakSelf = self;
-        _eventView.changeBlock = ^(NSArray *events) {
-            weakSelf.currentEvents = events;
+        _typeView.changeBlock = ^(NSArray *types) {
+            weakSelf.currentTypes = types;
             [weakSelf reCalculateFilters];
+            [weakSelf updateFilterButton:weakSelf.typeView count:types.count];
         };
-        [self addSubview:_eventView];
+        [self addSubview:_typeView];
     }
-    return _eventView;
+    return _typeView;
 }
 
-- (LLFilterOtherView *)otherView {
-    if (!_otherView) {
-        _otherView = [[LLFilterOtherView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 295)];
+- (LLFilterDateView *)dateView {
+    if (!_dateView) {
+        _dateView = [[LLFilterDateView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 110)];
         __weak typeof(self) weakSelf = self;
-        _otherView.changeBlock = ^(NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
-            weakSelf.currentFile = file;
-            weakSelf.currentFunc = func;
+        _dateView.changeBlock = ^(NSDate *from, NSDate *end) {
             weakSelf.currentFromDate = from;
             weakSelf.currentEndDate = end;
-            weakSelf.currentUserIds = userIdentities;
             [weakSelf reCalculateFilters];
+            NSInteger count = 0;
+            count += from ? 1 : 0;
+            count += end ? 1 : 0;
+            [weakSelf updateFilterButton:weakSelf.dateView count:count];
         };
-        [self addSubview:_otherView];
+        [self addSubview:_dateView];
     }
-    return _otherView;
+    return _dateView;
 }
 
 - (NSArray *)titles {
     if (!_titles) {
-        _titles = @[@"Level",@"Event",@"Other"];
+        _titles = @[@"Host",@"Filter",@"Date"];
     }
     return _titles;
 }

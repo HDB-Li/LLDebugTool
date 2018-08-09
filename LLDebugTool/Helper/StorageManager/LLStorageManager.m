@@ -29,6 +29,8 @@
 #import "LLAppHelper.h"
 #import "LLLogModel.h"
 #import "LLTool.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
 
 static LLStorageManager *_instance = nil;
 
@@ -75,14 +77,20 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Crash Model
 - (BOOL)saveCrashModel:(LLCrashModel *)model {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveCrashModel:model];
+        });
+        return YES;
+    }
     NSString *launchDate = [[LLAppHelper sharedHelper] launchDate];
     if (launchDate.length == 0) {
-        NSLog(@"LLStorageManager save crash model fail, because launchDate is null");
+        [self log:@"Save crash model fail, because launchDate is null"];
         return NO;
     }
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
     if (data.length == 0) {
-        NSLog(@"LLStorageManager save crash model fail, because model's data is null");
+        [self log:@"Save crash model fail, because model's data is null"];
         return NO;
     }
     __block NSArray *arguments = @[data,launchDate];
@@ -91,9 +99,9 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@) VALUES (?,?);",kCrashModelTable,kObjectDataColumn,kLaunchDateColumn] values:arguments error:&error];
         if (!ret) {
-            NSLog(@"LLStorageManager save crash model fail,Error = %@",error.localizedDescription);
+            [self log:[NSString stringWithFormat:@"Save crash model fail,Error = %@",error.localizedDescription]];
         } else {
-            NSLog(@"LLStorageManager save crash success!");
+            [self log:@"Save crash success!"];
         }
     }];
     return ret;
@@ -131,7 +139,7 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ?",kCrashModelTable,kLaunchDateColumn] values:@[model.launchDate] error:&error];
         if (!ret) {
-            NSLog(@"Delete Crash model fail,error = %@",error);
+            [self log:[NSString stringWithFormat:@"Delete crash model fail,error = %@",error]];
         }
     }];
     if (ret) {
@@ -142,13 +150,19 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Network Model
 - (BOOL)saveNetworkModel:(LLNetworkModel *)model {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveNetworkModel:model];
+        });
+        return YES;
+    }
     NSString *launchDate = [[LLAppHelper sharedHelper] launchDate];
     if (launchDate.length == 0) {
         return NO;
     }
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
     if (data.length == 0) {
-        NSLog(@"LLStorageManager save network model fail, because model's data is null");
+        [self log:@"Save network model fail, because model's data is null"];
         return NO;
     }
     
@@ -158,7 +172,7 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@) VALUES (?,?,?);",kNetworkModelLabel,kObjectDataColumn,kLaunchDateColumn,kIdentityColumn] values:arguments error:&error];
         if (!ret) {
-            NSLog(@"LLStorageManager save network model fail,Error = %@",error.localizedDescription);
+            [self log:[NSString stringWithFormat:@"Save network model fail,Error = %@",error.localizedDescription]];
         }
     }];
     return ret;
@@ -203,7 +217,7 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ?",kNetworkModelLabel,kIdentityColumn] values:@[model.identity] error:&error];
         if (!ret) {
-            NSLog(@"LLStorageManager delete networkModel fail");
+            [self log:@"Delete networkModel fail"];
         }
     }];
     return ret;
@@ -211,13 +225,19 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Log Model
 - (BOOL)saveLogModel:(LLLogModel *)model {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveLogModel:model];
+        });
+        return YES;
+    }
     NSString *launchDate = [[LLAppHelper sharedHelper] launchDate];
     if (model.message.length == 0 || launchDate.length == 0) {
         return NO;
     }
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
     if (data.length == 0) {
-        NSLog(@"LLStorageManager save log model fail, because model's data is null");
+        [self log:@"Save log model fail, because model's data is null"];
         return NO;
     }
     __block NSArray *arguments = @[data,launchDate,model.identity];
@@ -226,7 +246,7 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@) VALUES (?,?,?);",kLogModelTable,kObjectDataColumn,kLaunchDateColumn,kIdentityColumn] values:arguments error:&error];
         if (!ret) {
-            NSLog(@"LLStorageManager save log model fail,Error = %@",error.localizedDescription);
+            [self log:[NSString stringWithFormat:@"Save log model fail,Error = %@",error.localizedDescription]];
         }
     }];
     return ret;
@@ -271,7 +291,7 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ?",kLogModelTable,kIdentityColumn] values:@[model.identity] error:&error];
         if (!ret) {
-            NSLog(@"LLStorageManager delete logModel fail");
+            [self log:@"Delete logModel fail"];
         }
     }];
     return ret;
@@ -279,6 +299,12 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 
 #pragma mark - Screenshot
 - (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name {
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self saveScreenshot:image name:name];
+        });
+        return YES;
+    }
     if (name.length == 0) {
         name = [[LLTool sharedTool] staticStringFromDate:[NSDate date]];
     }
@@ -301,12 +327,11 @@ static NSString *const kLaunchDateColumn = @"launchDate";
  Init database.
  */
 - (BOOL)initDatabase {
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    self.folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
-    [self createDirectoryAtPath:self.folderPath];
+    self.folderPath = [LLConfig sharedConfig].folderPath;
+    [LLTool createDirectoryAtPath:self.folderPath];
     
     self.screenshotFolderPath = [self.folderPath stringByAppendingPathComponent:@"Screenshot"];
-    [self createDirectoryAtPath:self.screenshotFolderPath];
+    [LLTool createDirectoryAtPath:self.screenshotFolderPath];
     
     NSString *filePath = [self.folderPath stringByAppendingPathComponent:@"LLDebugTool.db"];
     
@@ -319,36 +344,22 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         // ObjectData use to convert to LLCrashModel, launchDate use as identity
         ret1 = [db executeUpdate:kCreateCrashModelTableSQL];
         if (!ret1) {
-            NSLog(@"LLStorageManager create CrashModelTable fail");
+            [self log:@"Create CrashModelTable fail"];
         }
         
         // ObjectData use to convert to LLLogModel, launchDate use to find LLCrashModel, Identity use as identity
         ret2 = [db executeUpdate:kCreateLogModelTableSQL];
         if (!ret2) {
-            NSLog(@"LLStorageManager create LogModelTable fail");
+            [self log:@"Create LogModelTable fail"];
         }
         
         // ObjectData use to convert to LLNetworkModel, launchDate use to find LLCrashModel, Identity use as identity
         ret3 = [db executeUpdate:kCreateNetworkModelTableSQL];
         if (!ret3) {
-            NSLog(@"LLStorageManager create NetworkModelTable fail");
+            [self log:@"Create NetworkModelTable fail"];
         }
     }];
     return ret1 && ret2 && ret3;
-}
-
-- (BOOL)createDirectoryAtPath:(NSString *)path {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSError *error;
-        [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-        if (error) {
-            NSLog(@"LLStorageManager create folder fail, path = %@, error = %@",path,error.description);
-            NSAssert(!error, error.description);
-            return NO;
-        }
-        return YES;
-    }
-    return YES;
 }
 
 /**
@@ -362,7 +373,10 @@ static NSString *const kLaunchDateColumn = @"launchDate";
             [launchDates addObject:model.launchDate];
         }
     }
-    [self removeLogModelAndNetworkModelNotIn:launchDates];
+    // Need to remove logs in a global queue.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self removeLogModelAndNetworkModelNotIn:launchDates];
+    });
 }
 
 - (BOOL)removeLogModelAndNetworkModelNotIn:(NSArray *)launchDates {
@@ -382,15 +396,19 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         NSError *error;
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",kLogModelTable,kLaunchDateColumn,launchDates] values:nil error:&error];
         if (!ret) {
-            NSLog(@"LLStorageManager remove launch log fail, error = %@",error);
+            [self log:[NSString stringWithFormat:@"Remove launch log fail, error = %@",error]];
         }
         
         ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",kNetworkModelLabel,kLaunchDateColumn,launchDates] values:nil error:&error];
         if (!ret2) {
-            NSLog(@"LLStorageManager remove launch network fail, error = %@",error);
+            [self log:[NSString stringWithFormat:@"Remove launch network fail, error = %@",error]];
         }
     }];
     return ret && ret2;
+}
+
+- (void)log:(NSString *)message {
+    LLog_Alert_Event(kLLLogHelperDebugToolEvent, message);
 }
 
 @end

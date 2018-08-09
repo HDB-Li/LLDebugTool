@@ -29,16 +29,31 @@
 #import "LLImageNameConfig.h"
 #import "LLAppHelper.h"
 #import "LLConfig.h"
+#import "LLNetworkFilterView.h"
+#import "LLSearchBar.h"
+#import "LLNetworkFilterView.h"
+#import "LLMacros.h"
+#import "LLTool.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
-@interface LLNetworkVC ()
+@interface LLNetworkVC () <UISearchBarDelegate>
+
+@property (nonatomic , strong) UISearchBar *searchBar;
 
 @property (nonatomic , strong) NSMutableArray *httpDataArray;
 
-@property (nonatomic , strong) NSMutableArray *socketDataArray;
+@property (nonatomic , strong) NSMutableArray *tempHttpDataArray;
 
-@property (nonatomic , strong) UISegmentedControl *segment;
+@property (nonatomic , copy) NSString *searchText;
+
+@property (nonatomic , strong) LLNetworkFilterView *filterView;
+
+// Data
+@property (nonatomic , strong) NSArray *currentHost;
+@property (nonatomic , strong) NSArray *currentTypes;
+@property (nonatomic , strong) NSDate *currentFromDate;
+@property (nonatomic , strong) NSDate *currentEndDate;
 
 @end
 
@@ -49,13 +64,18 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [self initial];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.filterView cancelFiltering];
+}
+
 #pragma mark - Actions
 - (void)segmentValueChanged:(UISegmentedControl *)sender {
     [self.tableView reloadData];
 }
 
 - (void)rightItemClick {
-    NSArray *dataArray = self.segment.selectedSegmentIndex == 0 ? self.httpDataArray : self.socketDataArray;
+    NSArray *dataArray = self.tempHttpDataArray;
     NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
     for (int i = 0; i < dataArray.count; i++) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -65,20 +85,55 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.segment.selectedSegmentIndex == 0 ? self.httpDataArray.count : self.socketDataArray.count;
+    return self.tempHttpDataArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLNetworkCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkCellID forIndexPath:indexPath];
-    [cell confirmWithModel:self.segment.selectedSegmentIndex == 0 ? self.httpDataArray[indexPath.row] : self.socketDataArray[indexPath.row]];
+    [cell confirmWithModel:self.tempHttpDataArray[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LLNetworkContentVC *vc = [[LLNetworkContentVC alloc] init];
-    vc.model = self.segment.selectedSegmentIndex == 0 ? self.httpDataArray[indexPath.row] : self.socketDataArray[indexPath.row];
+    vc.model = self.tempHttpDataArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.filterView cancelFiltering];
+}
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    [self.filterView cancelFiltering];
+    if (self.tableView.isEditing) {
+        [self rightItemClick];
+    }
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.searchText = self.searchBar.text;
+    [self.filterView cancelFiltering];
+    [self filterData];
+    [searchBar resignFirstResponder];
+    
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    searchBar.text = self.searchText;
 }
 
 #pragma mark - Primary
@@ -87,20 +142,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         _launchDate = [LLAppHelper sharedHelper].launchDate;
     }
     self.httpDataArray = [[NSMutableArray alloc] init];
-    self.socketDataArray = [[NSMutableArray alloc] init];
-    [self initTitleView];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkCellID];
-    [self loadData];
-}
-
-- (void)initTitleView {
-    self.segment = [[UISegmentedControl alloc] initWithItems:@[@"Http",@"Socket"]];
-    self.segment.frame = CGRectMake(0, 0, 100, 30);
-    self.segment.selectedSegmentIndex = 0;
-    [self.segment addTarget:self action:@selector(segmentValueChanged:) forControlEvents:UIControlEventValueChanged];
-    // TODO config socket.
-//    self.navigationItem.titleView = self.segment;
-    self.navigationItem.title = @"Network Request";
+    self.tempHttpDataArray = [[NSMutableArray alloc] init];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setImage:[UIImage LL_imageNamed:kClearImageName] forState:UIControlStateNormal];
@@ -113,12 +155,122 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         btn.tintColor = LLCONFIG_TEXT_COLOR;
         [btn setImage:[[UIImage LL_imageNamed:kClearImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     }
+    
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
+        self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
+        self.searchBar.delegate = self;
+        UIView *titleView = [[LLSearchBarBackView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
+        [titleView addSubview:self.searchBar];
+        self.navigationItem.titleView = titleView;
+    } else {
+        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        self.searchBar.delegate = self;
+        self.navigationItem.titleView = self.searchBar;
+    }
+    self.searchBar.enablesReturnKeyAutomatically = NO;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkCellID];
+    
+    [self initFilterView];
+    
+    [self loadData];
+}
+
+- (void)initFilterView {
+    if (self.filterView == nil) {
+        self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, 40)];
+        __weak typeof(self) weakSelf = self;
+        self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
+            weakSelf.currentHost = hosts;
+            weakSelf.currentTypes = types;
+            weakSelf.currentFromDate = from;
+            weakSelf.currentEndDate = end;
+            [weakSelf filterData];
+        };
+        [self.filterView configWithData:self.httpDataArray];
+        [self.view addSubview:self.filterView];
+    }
 }
 
 - (void)loadData {
+    self.searchBar.text = nil;
     [self.httpDataArray removeAllObjects];
     [self.httpDataArray addObjectsFromArray:[[LLStorageManager sharedManager] getAllNetworkModelsWithLaunchDate:_launchDate]];
+    [self.tempHttpDataArray removeAllObjects];
+    [self.tempHttpDataArray addObjectsFromArray:self.httpDataArray];
+    [self.filterView configWithData:self.httpDataArray];
     [self.tableView reloadData];
+}
+
+- (void)filterData {
+    @synchronized (self) {
+        [self.tempHttpDataArray removeAllObjects];
+        [self.tempHttpDataArray addObjectsFromArray:self.httpDataArray];
+        
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        for (LLNetworkModel *model in self.httpDataArray) {
+
+            // Filter Host
+            if (self.currentHost.count) {
+                NSString *host = model.url.host;
+                if (![self.currentHost containsObject:host]) {
+                    [tempArray addObject:model];
+                    continue;
+                }
+            }
+
+            // Filter "Search"
+            if (self.searchText.length) {
+                NSMutableArray *filterArray = [[NSMutableArray alloc] initWithObjects:model.url.absoluteString ?:model.url.host, nil];
+                BOOL checkHeader = [self.currentTypes containsObject:@"Header"];
+                BOOL checkBody = [self.currentTypes containsObject:@"Body"];
+                BOOL checkResponse = [self.currentTypes containsObject:@"Response"];
+                BOOL needPop = YES;
+                
+                if (checkHeader && model.headerString.length) {
+                    [filterArray addObject:model.headerString];
+                }
+                
+                if (checkBody && model.requestBody.length) {
+                    [filterArray addObject:model.requestBody];
+                }
+                
+                if (checkResponse && model.responseString.length) {
+                    [filterArray addObject:model.responseString];
+                }
+                
+                for (NSString *filter in filterArray) {
+                    if ([filter.lowercaseString containsString:self.searchText.lowercaseString]) {
+                        needPop = NO;
+                        break;
+                    }
+                }
+                
+                if (needPop) {
+                    [tempArray addObject:model];
+                    continue;
+                }
+            }
+
+            
+            // Filter Date
+            if (self.currentFromDate) {
+                if ([model.dateDescription compare:self.currentFromDate] == NSOrderedAscending) {
+                    [tempArray addObject:model];
+                    continue;
+                }
+            }
+            
+            if (self.currentEndDate) {
+                if ([model.dateDescription compare:self.currentEndDate] == NSOrderedDescending) {
+                    [tempArray addObject:model];
+                    continue;
+                }
+            }
+        }
+        [self.tempHttpDataArray removeObjectsInArray:tempArray];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
@@ -132,13 +284,13 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    NSMutableArray *dataArray = self.segment.selectedSegmentIndex == 0 ? self.httpDataArray : self.socketDataArray;
     NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
-        [models addObject:dataArray[indexPath.row]];
+        [models addObject:self.tempHttpDataArray[indexPath.row]];
     }
     if ([[LLStorageManager sharedManager] removeNetworkModels:models]) {
-        [dataArray removeObjectsInArray:models];
+        [self.httpDataArray removeObjectsInArray:models];
+        [self.tempHttpDataArray removeObjectsInArray:models];
         [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     } else {
         [self showAlertControllerWithMessage:@"Remove network model fail" handler:^(NSInteger action) {

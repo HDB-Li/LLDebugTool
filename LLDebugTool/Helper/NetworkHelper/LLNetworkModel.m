@@ -24,6 +24,16 @@
 #import "LLNetworkModel.h"
 #import "LLTool.h"
 
+@interface LLNetworkModel ()
+
+@property (nonatomic , copy , nonnull) NSString *headerString;
+
+@property (nonatomic , copy , nonnull) NSString *responseString;
+
+@property (nonatomic , strong) NSDate *dateDescription;
+
+@end
+
 @implementation LLNetworkModel
 
 - (void)setStartDate:(NSString *)startDate {
@@ -33,6 +43,41 @@
             _identity = [startDate stringByAppendingString:[LLTool sharedTool].absolutelyIdentity];
         }
     }
+}
+
+- (void)setHeaderFields:(NSDictionary<NSString *,NSString *> *)headerFields {
+    if (_headerFields != headerFields) {
+        _headerFields = headerFields;
+        _headerString = nil;
+    }
+}
+
+- (void)setResponseData:(NSData *)responseData {
+    if (_responseData != responseData) {
+        _responseData = responseData;
+        _responseString = nil;
+    }
+}
+
+- (NSString *)headerString {
+    if (!_headerString) {
+        _headerString = [LLTool convertJSONStringFromDictionary:self.headerFields];
+    }
+    return _headerString;
+}
+
+- (NSString *)responseString {
+    if (!_responseString && !self.isImage) {
+        _responseString = [LLTool convertJSONStringFromData:self.responseData];
+    }
+    return _responseString;
+}
+
+- (NSDate *)dateDescription {
+    if (!_dateDescription && self.startDate.length) {
+        _dateDescription = [[LLTool sharedTool] dateFromString:self.startDate];
+    }
+    return _dateDescription;
 }
 
 @end

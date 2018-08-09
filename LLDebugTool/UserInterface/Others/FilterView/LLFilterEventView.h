@@ -28,6 +28,8 @@ typedef void(^LLFilterEventViewChangeBlock)(NSArray *events);
 
 @interface LLFilterEventView : UIView
 
+@property (assign , nonatomic) NSInteger averageCount;
+
 @property (copy , nonatomic) LLFilterEventViewChangeBlock changeBlock;
 
 - (void)updateDataArray:(NSArray <LLFilterLabelModel *>*)dataArray;

@@ -10,6 +10,8 @@
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		2313EF2F20F5ED170038AD06 /* UIImage+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
+		363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */; };
+		363FE43021198AC5005F9C0D /* LLFilterDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42F21198AC5005F9C0D /* LLFilterDateView.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -21,6 +23,7 @@
 		3687522320C69B22002C6AD9 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521B20C69B22002C6AD9 /* LLScreenshotToolbar.m */; };
 		3687522420C69B22002C6AD9 /* LLScreenshotSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521C20C69B22002C6AD9 /* LLScreenshotSelectorView.m */; };
 		3687522520C69B22002C6AD9 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521D20C69B22002C6AD9 /* LLScreenshotImageView.m */; };
+		368F9DE82119AAF4003F8264 /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF4E2099897F007A3188 /* LLLogFilterView.m */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36AE43DB20C788E90066EA41 /* LLScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */; };
@@ -58,14 +61,12 @@
 		36C5BF982099897F007A3188 /* LLLogContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF372099897F007A3188 /* LLLogContentVC.m */; };
 		36C5BF992099897F007A3188 /* LLAppInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF392099897F007A3188 /* LLAppInfoVC.m */; };
 		36C5BF9A2099897F007A3188 /* LLDebugTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36C5BF3C2099897F007A3188 /* LLDebugTool.bundle */; };
-		36C5BF9B2099897F007A3188 /* LLFilterLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF412099897F007A3188 /* LLFilterLevelView.m */; };
 		36C5BF9C2099897F007A3188 /* LLFilterOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF422099897F007A3188 /* LLFilterOtherView.m */; };
 		36C5BF9D2099897F007A3188 /* LLFilterFilePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF472099897F007A3188 /* LLFilterFilePickerView.m */; };
 		36C5BF9E2099897F007A3188 /* LLFilterTextFieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF482099897F007A3188 /* LLFilterTextFieldModel.m */; };
 		36C5BF9F2099897F007A3188 /* LLFilterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF492099897F007A3188 /* LLFilterDatePickerView.m */; };
 		36C5BFA02099897F007A3188 /* LLFilterTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF4A2099897F007A3188 /* LLFilterTextFieldCell.m */; };
 		36C5BFA12099897F007A3188 /* LLFilterTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C5BF4B2099897F007A3188 /* LLFilterTextFieldCell.xib */; };
-		36C5BFA22099897F007A3188 /* LLFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF4E2099897F007A3188 /* LLFilterView.m */; };
 		36C5BFA32099897F007A3188 /* LLFilterLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C5BF532099897F007A3188 /* LLFilterLabelCell.xib */; };
 		36C5BFA42099897F007A3188 /* LLFilterLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF542099897F007A3188 /* LLFilterLabelCell.m */; };
 		36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF552099897F007A3188 /* LLFilterLabelModel.m */; };
@@ -96,6 +97,10 @@
 		2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LL_Utils.m"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
+		363FE42521196CC9005F9C0D /* LLNetworkFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkFilterView.h; sourceTree = "<group>"; };
+		363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkFilterView.m; sourceTree = "<group>"; };
+		363FE42E21198AC5005F9C0D /* LLFilterDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterDateView.h; sourceTree = "<group>"; };
+		363FE42F21198AC5005F9C0D /* LLFilterDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterDateView.m; sourceTree = "<group>"; };
 		365D4D7020C91B3900A5D59E /* LLDebugToolMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -191,7 +196,6 @@
 		36C5BF3C2099897F007A3188 /* LLDebugTool.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LLDebugTool.bundle; sourceTree = "<group>"; };
 		36C5BF3D2099897F007A3188 /* LLImageNameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLImageNameConfig.h; sourceTree = "<group>"; };
 		36C5BF3F2099897F007A3188 /* YWFilePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWFilePreviewController.h; sourceTree = "<group>"; };
-		36C5BF412099897F007A3188 /* LLFilterLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterLevelView.m; sourceTree = "<group>"; };
 		36C5BF422099897F007A3188 /* LLFilterOtherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterOtherView.m; sourceTree = "<group>"; };
 		36C5BF432099897F007A3188 /* LLFilterEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterEventView.h; sourceTree = "<group>"; };
 		36C5BF452099897F007A3188 /* LLFilterTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterTextFieldCell.h; sourceTree = "<group>"; };
@@ -203,8 +207,7 @@
 		36C5BF4B2099897F007A3188 /* LLFilterTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLFilterTextFieldCell.xib; sourceTree = "<group>"; };
 		36C5BF4C2099897F007A3188 /* LLFilterFilePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterFilePickerView.h; sourceTree = "<group>"; };
 		36C5BF4D2099897F007A3188 /* LLFilterTextFieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterTextFieldModel.h; sourceTree = "<group>"; };
-		36C5BF4E2099897F007A3188 /* LLFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterView.m; sourceTree = "<group>"; };
-		36C5BF4F2099897F007A3188 /* LLFilterLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLevelView.h; sourceTree = "<group>"; };
+		36C5BF4E2099897F007A3188 /* LLLogFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogFilterView.m; sourceTree = "<group>"; };
 		36C5BF512099897F007A3188 /* LLFilterLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLabelCell.h; sourceTree = "<group>"; };
 		36C5BF522099897F007A3188 /* LLFilterLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLabelModel.h; sourceTree = "<group>"; };
 		36C5BF532099897F007A3188 /* LLFilterLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLFilterLabelCell.xib; sourceTree = "<group>"; };
@@ -212,7 +215,7 @@
 		36C5BF552099897F007A3188 /* LLFilterLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterLabelModel.m; sourceTree = "<group>"; };
 		36C5BF562099897F007A3188 /* LLFilterOtherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterOtherView.h; sourceTree = "<group>"; };
 		36C5BF572099897F007A3188 /* LLFilterEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterEventView.m; sourceTree = "<group>"; };
-		36C5BF582099897F007A3188 /* LLFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterView.h; sourceTree = "<group>"; };
+		36C5BF582099897F007A3188 /* LLLogFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogFilterView.h; sourceTree = "<group>"; };
 		36C5BF592099897F007A3188 /* LLMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMacros.h; sourceTree = "<group>"; };
 		36C5BF5A2099897F007A3188 /* YWFilePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWFilePreviewController.m; sourceTree = "<group>"; };
 		36C5BF5B2099897F007A3188 /* LLUITableViewLongPressGestureRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUITableViewLongPressGestureRecognizerDelegate.h; sourceTree = "<group>"; };
@@ -531,14 +534,16 @@
 			children = (
 				36C5BF502099897F007A3188 /* LabelCell */,
 				36C5BF442099897F007A3188 /* TextFieldCell */,
-				36C5BF582099897F007A3188 /* LLFilterView.h */,
-				36C5BF4E2099897F007A3188 /* LLFilterView.m */,
-				36C5BF4F2099897F007A3188 /* LLFilterLevelView.h */,
-				36C5BF412099897F007A3188 /* LLFilterLevelView.m */,
+				36C5BF582099897F007A3188 /* LLLogFilterView.h */,
+				36C5BF4E2099897F007A3188 /* LLLogFilterView.m */,
+				363FE42521196CC9005F9C0D /* LLNetworkFilterView.h */,
+				363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */,
 				36C5BF432099897F007A3188 /* LLFilterEventView.h */,
 				36C5BF572099897F007A3188 /* LLFilterEventView.m */,
 				36C5BF562099897F007A3188 /* LLFilterOtherView.h */,
 				36C5BF422099897F007A3188 /* LLFilterOtherView.m */,
+				363FE42E21198AC5005F9C0D /* LLFilterDateView.h */,
+				363FE42F21198AC5005F9C0D /* LLFilterDateView.m */,
 			);
 			path = FilterView;
 			sourceTree = "<group>";
@@ -838,6 +843,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
+				363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */,
 				36C5BF902099897F007A3188 /* LLSandboxCell.m in Sources */,
 				36C5BFAA2099897F007A3188 /* NSString+LL_Utils.m in Sources */,
 				36C5BFAD2099897F007A3188 /* LLBaseViewController.m in Sources */,
@@ -851,12 +857,12 @@
 				36C5BF7F2099897F007A3188 /* LLLogHelper.m in Sources */,
 				36C5BFA62099897F007A3188 /* LLFilterEventView.m in Sources */,
 				36C5BF842099897F007A3188 /* LLNetworkVC.m in Sources */,
+				368F9DE82119AAF4003F8264 /* LLLogFilterView.m in Sources */,
 				3687522120C69B22002C6AD9 /* LLScreenshotBaseOperation.m in Sources */,
 				36C5BF812099897F007A3188 /* LLNetworkModel.m in Sources */,
 				36C5BF9F2099897F007A3188 /* LLFilterDatePickerView.m in Sources */,
 				36C5BFAB2099897F007A3188 /* LLSearchBar.m in Sources */,
 				36C5BF912099897F007A3188 /* LLSandboxVC.m in Sources */,
-				36C5BFA22099897F007A3188 /* LLFilterView.m in Sources */,
 				36C5BF802099897F007A3188 /* LLURLProtocol.m in Sources */,
 				36C5BF932099897F007A3188 /* LLWindow.m in Sources */,
 				3687521F20C69B22002C6AD9 /* LLScreenshotView.m in Sources */,
@@ -887,6 +893,7 @@
 				36C5BF9D2099897F007A3188 /* LLFilterFilePickerView.m in Sources */,
 				36C5BF882099897F007A3188 /* LLNetworkContentVC.m in Sources */,
 				36C5BF8B2099897F007A3188 /* LLCrashContentCell.m in Sources */,
+				363FE43021198AC5005F9C0D /* LLFilterDateView.m in Sources */,
 				36C5BFA02099897F007A3188 /* LLFilterTextFieldCell.m in Sources */,
 				36C5BF942099897F007A3188 /* LLWindowViewController.m in Sources */,
 				36C5BFA92099897F007A3188 /* UIDevice+LL_Swizzling.m in Sources */,
@@ -901,7 +908,6 @@
 				36C5BF782099897F007A3188 /* LLConfig.m in Sources */,
 				36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */,
 				3687522020C69B22002C6AD9 /* LLScreenshotActionView.m in Sources */,
-				36C5BF9B2099897F007A3188 /* LLFilterLevelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

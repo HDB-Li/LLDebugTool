@@ -1,5 +1,5 @@
 //
-//  LLFilterLevelView.h
+//  LLLogFilterView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,13 +23,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^LLFilterLevelChangeBlock)(NSArray *levels);
+typedef void(^LLLogFilterChangeBlock)(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities);
 
-@interface LLFilterLevelView : UIView
+@interface LLLogFilterView : UIView
 
-/**  */
-@property (copy , nonatomic) LLFilterLevelChangeBlock changeBlock;
+@property (copy , nonatomic) LLLogFilterChangeBlock changeBlock;
 
 - (instancetype)initWithFrame:(CGRect)frame;
+
+- (void)configWithData:(NSArray *)data;
+
+- (BOOL)isFiltering;
+- (void)cancelFiltering;
 
 @end

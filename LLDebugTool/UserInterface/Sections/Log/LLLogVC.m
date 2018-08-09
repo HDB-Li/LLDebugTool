@@ -25,7 +25,7 @@
 #import "LLLogCell.h"
 #import "LLConfig.h"
 #import "LLStorageManager.h"
-#import "LLFilterView.h"
+#import "LLLogFilterView.h"
 #import "LLMacros.h"
 #import "LLLogContentVC.h"
 #import "LLImageNameConfig.h"
@@ -52,7 +52,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @property (nonatomic , copy) NSString *searchText;
 
-@property (nonatomic , strong) LLFilterView *filterView;
+@property (nonatomic , strong) LLLogFilterView *filterView;
 
 // Data
 @property (nonatomic , strong) NSArray *currentLevels;
@@ -70,7 +70,6 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
-    [self initFilterView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -201,6 +200,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.searchText = self.searchBar.text;
+    [self.filterView cancelFiltering];
     [self filterData];
     [searchBar resignFirstResponder];
     
@@ -247,6 +247,8 @@ static NSString *const kLogCellID = @"LLLogCell";
         self.searchBar.delegate = self;
         self.navigationItem.titleView = self.searchBar;
     }
+    self.searchBar.enablesReturnKeyAutomatically = NO;
+    
     self.leftItem = self.navigationItem.leftBarButtonItem;
     self.rightItem = self.navigationItem.rightBarButtonItem;
     
@@ -269,12 +271,14 @@ static NSString *const kLogCellID = @"LLLogCell";
         [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
     }
     
+    [self initFilterView];
+    
     [self loadData];
 }
 
 - (void)initFilterView {
     if (self.filterView == nil) {
-        self.filterView = [[LLFilterView alloc] initWithFrame:CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, 40)];
+        self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, 40)];
         __weak typeof(self) weakSelf = self;
         self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
             weakSelf.currentLevels = levels;
@@ -311,7 +315,7 @@ static NSString *const kLogCellID = @"LLLogCell";
         for (LLLogModel *model in self.totalDataArray) {
             // Filter "Search"
             if (self.searchText.length) {
-                if (![model.message containsString:self.searchText]) {
+                if (![model.message.lowercaseString containsString:self.searchText.lowercaseString]) {
                     [tempArray addObject:model];
                     continue;
                 }

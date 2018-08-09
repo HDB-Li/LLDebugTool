@@ -61,6 +61,20 @@ static NSString *const kEventCellID = @"EventCellID";
     self.lineView.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
 }
 
+- (void)setAverageCount:(NSInteger)averageCount {
+    if (_averageCount != averageCount) {
+        _averageCount = averageCount;
+        UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+        if (averageCount > 0) {
+            layout.estimatedItemSize = CGSizeZero;
+            layout.itemSize = CGSizeMake((LL_SCREEN_WIDTH - 10 * (averageCount + 1)) / averageCount, 30);
+        } else {
+            layout.itemSize = CGSizeZero;
+            layout.estimatedItemSize = CGSizeMake(50, 30);
+        }
+    }
+}
+
 - (void)updateDataArray:(NSArray <LLFilterLabelModel *>*)dataArray {
     [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:dataArray];
@@ -122,17 +136,17 @@ static NSString *const kEventCellID = @"EventCellID";
 - (void)initial {
     self.dataArray = [[NSMutableArray alloc] init];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.estimatedItemSize = CGSizeMake(50, [UIFont systemFontOfSize:17].lineHeight + 12);
+    layout.estimatedItemSize = CGSizeMake(50, 30);
     _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.bounces = YES;
-    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.75];
     [_collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kEventCellID];
     [self addSubview:_collectionView];
     self.lineView = [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
     if (LLCONFIG_CUSTOM_COLOR) {
-        self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+        self.collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
     }
 }
 

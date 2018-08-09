@@ -60,6 +60,19 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 };
 
 /**
+ Window style. Decide how the Window displays.
+
+ - LLConfigWindowSuspensionBall: Show as a suspension ball. Moveable and clickable.
+ - LLConfigWindowPowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigWindowNetBar: Show at network bar. Unmoveable but clickable.
+ */
+typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
+    LLConfigWindowSuspensionBall,
+    LLConfigWindowPowerBar,
+    LLConfigWindowNetBar,
+};
+
+/**
  Config file. Must config properties before [LLDebugTool enable].
  */
 @interface LLConfig : NSObject
@@ -148,6 +161,24 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
  Observer network in hosts, ignore others.
  */
 @property (strong , nonatomic , nullable) NSArray <NSString *>*hosts;
+
+#pragma mark - Settings
+/**
+ Whether to print LLDebugTool's log event. Default is YES.
+ */
+@property (assign , nonatomic) BOOL showDebugToolLog;
+
+/**
+ Window style. Decide how the Window displays. Default is LLConfigWindowSuspensionBall.
+ */
+@property (assign , nonatomic) LLConfigWindowStyle windowStyle;
+
+#pragma mark - Folder Path
+/**
+ The folder path for LLDebugTool. The database is created and read in this directory.
+ Default path is ../Documents/LLDebugTool/.
+ */
+@property (copy , nonatomic , nonnull) NSString *folderPath;
 
 #pragma mark - Extension
 /**

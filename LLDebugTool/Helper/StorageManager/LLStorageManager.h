@@ -31,11 +31,12 @@
 /**
  Operation database.
  */
+// TODO: Change from synchronous to asynchronous.
 @interface LLStorageManager : NSObject
 
 /**
  Singleton to operation database.
- Database file path is "../LLDebugTool/LLDebugTool.db".
+ Database file path is based on LLConfig's folderPath.
 
  @return Singleton
  */
@@ -45,6 +46,7 @@
 
 /**
  Save a crash model to database.
+ FIXME: It will always return YES when you call this method in the main thread.
  */
 - (BOOL)saveCrashModel:(LLCrashModel *)model;
 
@@ -63,6 +65,7 @@
 
 /**
  Save a network model to database.
+ FIXME: It will always return YES when you call this method in the main thread.
  */
 - (BOOL)saveNetworkModel:(LLNetworkModel *)model;
 
@@ -86,6 +89,7 @@
 
 /**
  Save a log model to database.
+ FIXME: It will always return YES when you call this method in the main thread.
  */
 - (BOOL)saveLogModel:(LLLogModel *)model;
 
@@ -109,6 +113,7 @@
 
 /**
  Save screenShots to sandbox.
+ FIXME: It will always return YES when you call this method in the main thread.
  */
 - (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name;
 

@@ -29,12 +29,18 @@
 #import "LLLogHelper.h"
 #import "LLAppHelper.h"
 #import "LLWindow.h"
+#import "LLDebugToolMacros.h"
+#import "LLLogHelperEventDefine.h"
+#import "LLConfig.h"
+#import "LLTool.h"
 
 static LLDebugTool *_instance = nil;
 
 @interface LLDebugTool ()
 
 @property (nonatomic , strong) LLWindow *window;
+
+@property (nonatomic , copy) NSString *versionNumber;
 
 @end
 
@@ -89,15 +95,17 @@ static LLDebugTool *_instance = nil;
     }
 }
 
-- (NSString *)version {
-    return @"1.1.1";
-}
-
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
     [self.window.windowViewController showDebugViewControllerWithIndex:index];
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ...  {
+    if (![LLConfig sharedConfig].showDebugToolLog) {
+        NSArray *toolEvent = @[kLLLogHelperDebugToolEvent,kLLLogHelperFailedLoadingResourceEvent];
+        if ([toolEvent containsObject:onEvent]) {
+            return;
+        }
+    }
     [[LLLogHelper sharedHelper] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
@@ -106,12 +114,47 @@ static LLDebugTool *_instance = nil;
  Initial something.
  */
 - (void)initial {
-    // Restore the version.
-    [[NSUserDefaults standardUserDefaults] setObject:[self version] forKey:@"LLDebugTool-Version"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    // Set Default
+    _isBetaVersion = NO;
+    _versionNumber = @"1.1.2";
+    _version = _isBetaVersion ? [_versionNumber stringByAppendingString:@"(BETA)"] : _versionNumber;
     
+    // Check version.
+    [self checkVersion];
     // Set window.
-    self.window = [[LLWindow alloc] initWithSuspensionBallWidth:[LLConfig sharedConfig].suspensionBallWidth];
+    CGFloat windowWidth = [LLConfig sharedConfig].suspensionBallWidth;
+    self.window = [[LLWindow alloc] initWithFrame:CGRectMake(0, 0, windowWidth, windowWidth)];
+}
+
+- (void)checkVersion {
+    [LLTool createDirectoryAtPath:[LLConfig sharedConfig].folderPath];
+    NSString *filePath = [[LLConfig sharedConfig].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
+    NSMutableDictionary *localInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+    if (!localInfo) {
+        localInfo = [[NSMutableDictionary alloc] init];
+    }
+    NSString *version = localInfo[@"version"];
+    // localInfo will be nil before version 1.1.2
+    if (!version) {
+        version = @"0.0.0";
+    }
+    
+    if ([self.versionNumber compare:version] == NSOrderedDescending) {
+        // Do update if needed.
+        [self updateSomethingWithVersion:version];
+        [localInfo setObject:self.versionNumber forKey:@"version"];
+        [localInfo writeToFile:filePath atomically:YES];
+    }
+    
+    if (self.isBetaVersion) {
+        // This method called in instancetype, can't use macros to log.
+        [self logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:kLLLogHelperDebugToolEvent message:kLLLogHelperUseBetaAlert];
+    }
+}
+
+- (NSString *)updateSomethingWithVersion:(NSString *)version {
+    // Code in future version. Return next necessary update version.
+    return @"1.1.2";
 }
 
 @end

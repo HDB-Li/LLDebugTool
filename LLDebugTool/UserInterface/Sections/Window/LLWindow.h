@@ -35,9 +35,9 @@
 @property (strong , nonatomic , readonly) LLWindowViewController *windowViewController;
 
 /**
- Init the window with suspension ball's width.
+ Init the window.
  */
-- (instancetype)initWithSuspensionBallWidth:(CGFloat)width;
+- (instancetype)initWithFrame:(CGRect)frame;
 
 /**
  Show window.

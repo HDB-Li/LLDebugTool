@@ -37,9 +37,14 @@
 @property (nonatomic , assign) CGFloat sBallWidth;
 
 /**
+ Window style.
+ */
+@property (nonatomic , assign) LLConfigWindowStyle windowStyle;
+
+/**
  Parent window.
  */
-@property (nonatomic , strong) LLWindow *window;
+@property (nonatomic , weak) LLWindow *window;
 
 /**
  Release current tabBarController.

@@ -49,6 +49,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [super viewDidLoad];
     [self initNavigationItems];
     [self setUpTableView];
+    [self resetDefaultSettings];
     if (LLCONFIG_CUSTOM_COLOR) {
         self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : LLCONFIG_TEXT_COLOR}];
@@ -117,8 +118,20 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedRowHeight = 50;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    // To Control subviews.
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
+}
+
+- (void)resetDefaultSettings {
+    // Used to solve problems caused by modifying some systems default values with Runtime in the project.
+    // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.navigationController.navigationBar.translucent = YES;
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    }
 }
 
 #pragma mark - UITableView

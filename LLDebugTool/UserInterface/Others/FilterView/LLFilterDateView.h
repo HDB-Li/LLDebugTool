@@ -1,5 +1,5 @@
 //
-//  LLFilterView.h
+//  LLFilterDateView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,17 +23,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^LLFilterChangeBlock)(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities);
+typedef void(^LLFilterDateViewChangeBlock)(NSDate *from, NSDate *end);
 
-@interface LLFilterView : UIView
+@interface LLFilterDateView : UIView
 
-@property (copy , nonatomic) LLFilterChangeBlock changeBlock;
+@property (copy , nonatomic) LLFilterDateViewChangeBlock changeBlock;
 
-- (instancetype)initWithFrame:(CGRect)frame;
-
-- (void)configWithData:(NSArray *)data;
-
-- (BOOL)isFiltering;
-- (void)cancelFiltering;
+- (void)updateFromDate:(NSDate *)fromDate endDate:(NSDate *)endDate ;
 
 @end

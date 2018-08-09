@@ -68,6 +68,11 @@
 @property (nonatomic , copy , readonly) NSString *version;
 
 /**
+ Whether is Beta.
+ */
+@property (nonatomic , assign , readonly) BOOL isBetaVersion;
+
+/**
  Automatic open debug view controller with index.
  */
 - (void)showDebugViewControllerWithIndex:(NSInteger)index;
