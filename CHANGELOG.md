@@ -1,3 +1,34 @@
+## [1.1.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.2) (08/09/2018)
+
+### Add window style
+
+Some time suspension ball is too big, so you can put `LLDebugTool` on power bar or network bar now. It can work like a suspension ball, just can't move.
+
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-windowStyle.png" width="20%"></img>
+</div>
+
+#### Add
+
+* Add window style enum. now you can show as suspension ball , power bar or network bar.
+* Add some `LLDebugTool` event log, you can close it in `LLConfig`.
+* Add `LLNetworkFilterView`, now you can filter network with url, header, body or response.
+
+#### Update
+
+* Update `LLURLProtocol` to fix some untrusted HTTP requests that fail.
+* Update `LLBaseViewController` to deal some bugs when project use runtime to change default settings.
+* Update `LLStorageManager` to ensure that database operations are not performed in the main thread.
+* Rename `LLFilterView` to `LLLogFilterView`.
+
+#### Remove
+
+* Remove `LLFilterLevelView`, use `LLFilterEventView` to replace.
+
+#### Extra
+
+* Adapter iPhone SE
+
 ## [1.1.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.1) (07/27/2018)
 
 Fix crash when use `use_frameworks!` in `CocoaPods`. (Failed resource loading)
