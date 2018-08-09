@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.1-blue.svg)](https://img.shields.io/badge/pod-v1.1.1-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.2-blue.svg)](https://img.shields.io/badge/pod-v1.1.2-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -33,22 +33,36 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.1.1)
+## 最近更新 (1.1.2)
 
-修复当在`CocoaPods`中使用 `use_frameworks!`，造成的崩溃。(资源加载失败)
+### 增加窗口样式
 
-#### 添加
+因为有的时候悬浮球显得太大了，所以现在你可以将`LLDebugTool`放到电源状态栏或者网络状态栏的位置。使用起来和悬浮球是一样的，只是不能移动。
 
-* 添加 `LLLogHelperEventDefine.h` 用来定义LLDebugTool的事件Log。
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-windowStyle.png" width="20%"></img>
+</div>
+
+#### 新增
+
+* 增加窗口样式枚举值，现在你可以使用悬浮球、电源状态栏或者网络状态栏。
+* 增加 `LLDebugTool` 内部的log事件，可以在 `LLConfig` 中关闭。
+* 增加 `LLNetworkFilterView` ，现在你可以通过url、header、body或者response来筛选网络信息。
 
 #### 更新
 
-* 用 `[UIImage LL_imageNamed:]` 替代  `[UIImage imageNamed]`， 解决图片资源加载失败。
-* 用 `[LLConfig sharedConfig].XIBBundle` 去注册XIB文件，当在`CocoaPods`中使用 `use_frameworks!`，造成的崩溃。
+* 更新 `LLURLProtocol` 来修复一些不被信任的http请求失败的问题。
+* 更新 `LLBaseViewController` 来解决一些项目中运用runtime修改了默认值的问题。
+* 更新 `LLStorageManager` 来确保数据库操作不会在主线程中运行。
+* 将 `LLFilterView` 改名为 `LLLogFilterView`。
 
-#### Thanks
+#### 删除
 
-* 感谢 [yangbo930204](https://github.com/yangbo930204) 的 pull request.
+* 删除 `LLFilterLevelView`，用 `LLFilterEventView` 来代替。
+
+#### 额外
+
+* 适配 iPhone SE
 
 ## 我能用LLDebugTool做什么?
 

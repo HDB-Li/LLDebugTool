@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.1-blue.svg)](https://img.shields.io/badge/pod-v1.1.1-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.2-blue.svg)](https://img.shields.io/badge/pod-v1.1.2-blue.svg)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -33,22 +33,36 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## Recent updates (1.1.1) 
+## Recent updates (1.1.2) 
 
-Fix crash when use `use_frameworks!` in `CocoaPods`. (Failed resource loading)
+### Add window style
+
+Some time suspension ball is too big, so you can put `LLDebugTool` on power bar or network bar now. It can work like a suspension ball, just can't move.
+
+<div align="left">
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-windowStyle.png" width="20%"></img>
+</div>
 
 #### Add
 
-* Add `LLLogHelperEventDefine.h` to define and record LLDebugTool system event.
+* Add window style enum. now you can show as suspension ball , power bar or network bar.
+* Add some `LLDebugTool` event log, you can close it in `LLConfig`.
+* Add `LLNetworkFilterView`, now you can filter network with url, header, body or response.
 
 #### Update
 
-* Use method `[UIImage LL_imageNamed:]` to replace method  `[UIImage imageNamed]`, to solve image resource loading failed.
-* Use `[LLConfig sharedConfig].XIBBundle` to register XIB file, to solve crash when use `use_frameworks!` in `CocoaPods`.
+* Update `LLURLProtocol` to fix some untrusted HTTP requests that fail.
+* Update `LLBaseViewController` to deal some bugs when project use runtime to change default settings.
+* Update `LLStorageManager` to ensure that database operations are not performed in the main thread.
+* Rename `LLFilterView` to `LLLogFilterView`.
 
-#### Thanks
+#### Remove
 
-* Thanks [yangbo930204](https://github.com/yangbo930204)'s pull request.
+* Remove `LLFilterLevelView`, use `LLFilterEventView` to replace.
+
+#### Extra
+
+* Adapter iPhone SE
         
 ## What can you do with LLDebugTool?
 
