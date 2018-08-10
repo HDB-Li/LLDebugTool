@@ -7,7 +7,7 @@
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
-[![Twitter](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)
+[![Twitter](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)](https://twitter.com/HdbLi)
 
 ## 简介
 
