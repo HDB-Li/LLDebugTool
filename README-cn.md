@@ -7,6 +7,7 @@
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
+[![Twitter](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)
 
 ## 简介
 
@@ -265,8 +266,9 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 
 ## 联系
 
+- 可以发邮件到[llworkinggroup1992@gmail.com](llworkinggroup1992@gmail.com)
+- 可以在twitter中[@HdbLi](https://twitter.com/HdbLi)发私信给我。
 - 可以在[简书](https://www.jianshu.com/u/a3c82fae85be)中发私信给我。
-- 可以发邮件到[llworkinggroup@qq.com](llworkinggroup@qq.com)
 
 ## 更新日志
 

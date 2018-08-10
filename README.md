@@ -7,6 +7,7 @@
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
+[![Twitter](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)
 
 ## Introduction
 
@@ -265,8 +266,9 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 
 ## Contact
 
+- Send email to [llworkinggroup1992@gmail.com](llworkinggroup1992@gmail.com)
+- Send message in twitter [@HdbLi](https://twitter.com/HdbLi)
 - Send message in [JianShu](https://www.jianshu.com/u/a3c82fae85be)
-- Send email to [llworkinggroup@qq.com](llworkinggroup@qq.com)
 
 ## Change-log
 
