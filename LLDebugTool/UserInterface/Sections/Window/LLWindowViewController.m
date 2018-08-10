@@ -296,6 +296,11 @@
     return [LLConfig sharedConfig].statusBarStyle;
 }
 
+// TODO: Know why does this method affect the statusBar for keywindow.
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 #pragma mark - Action
 - (void)panGR:(UIPanGestureRecognizer *)gr {
     if ([LLConfig sharedConfig].suspensionBallMoveable) {
