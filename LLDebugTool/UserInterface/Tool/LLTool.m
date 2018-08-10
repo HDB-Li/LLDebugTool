@@ -114,6 +114,10 @@ static LLTool *_instance = nil;
 
 + (NSString *)convertJSONStringFromDictionary:(NSDictionary *)dictionary {
     
+    if (dictionary.allKeys.count == 0) {
+        return @"";
+    }
+    
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
                                                        options:0
