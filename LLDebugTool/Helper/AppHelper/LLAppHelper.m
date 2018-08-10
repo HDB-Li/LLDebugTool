@@ -68,6 +68,8 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 
 @property (nonatomic , copy) NSString *cpuSubtypeString;
 
+@property (nonatomic , copy) NSString *networkState;
+
 @end
 
 @implementation LLAppHelper
@@ -135,7 +137,6 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos {
-    
     NSArray *dynamic = [[NSArray alloc] initWithObjects:@{@"CPU Usage" : [NSString stringWithFormat:@"%.2f%%",_cpu]},@{@"Memory Usage" : [NSString stringWithFormat:@"Used:%@, Free:%@",[NSByteCountFormatter stringFromByteCount:_usedMemory countStyle:NSByteCountFormatterCountStyleMemory],[NSByteCountFormatter stringFromByteCount:_freeMemory countStyle:NSByteCountFormatterCountStyleMemory]]},@{@"FPS" : [NSString stringWithFormat:@"%ld FPS",(long)_fps]}, nil];
     
     NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
@@ -154,7 +155,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
                          @{@"Battery Level" : [UIDevice currentDevice].batteryLevel != -1 ? [NSString stringWithFormat:@"%ld%%",(long)([UIDevice currentDevice].batteryLevel * 100)] : @"Unknown"},
                          @{@"CPU Type" : [self cpuSubtypeString] ?: @"Unknown"},
                          @{@"Disk" : [NSString stringWithFormat:@"%@ / %@", [NSByteCountFormatter stringFromByteCount:[self getFreeDisk] countStyle:NSByteCountFormatterCountStyleFile],[NSByteCountFormatter stringFromByteCount:[self getTotalDisk] countStyle:NSByteCountFormatterCountStyleFile]]},
-                         @{@"Network States" : [self networkingStatesFromStatebar]}];
+                         @{@"Network State" : [self networkStateFromStatebar]}];
     NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
     NSString *ssid = [self currentWifiSSID];
     if (ssid) {
@@ -331,22 +332,25 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     return ssid;
 }
 
-- (NSString *)networkingStatesFromStatebar {
-    NSString *stateString = @"Unknown";
+- (NSString *)networkStateFromStatebar {
+    if ([NSThread currentThread] != [NSThread mainThread]) {
+        [self performSelectorOnMainThread:@selector(networkStateFromStatebar) withObject:nil waitUntilDone:YES];
+        return _networkState;
+    }
+    _networkState = @"Unknown";
     UIApplication *app = [UIApplication sharedApplication];
-    
     if ([[app valueForKeyPath:@"_statusBar"] isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
         // For iPhoneX
         NSArray *children = [[[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
         for (UIView *view in children) {
             for (id child in view.subviews) {
                 if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarWifiSignalView")]) {
-                    stateString = @"WIFI";
+                    _networkState = @"WIFI";
                     break;
                 }
                 if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarStringView")]) {
                     if ([[child valueForKey:@"_originalText"] containsString:@"G"]) {
-                        stateString = [child valueForKey:@"_originalText"];
+                        _networkState = [child valueForKey:@"_originalText"] ?: @"Unknown";
                         break;
                     }
                 }
@@ -363,29 +367,29 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
         }
         switch (type) {
             case 0:
-                stateString = @"Not Reachable";
+                _networkState = @"Not Reachable";
                 break;
             case 1:
-                stateString = @"2G";
+                _networkState = @"2G";
                 break;
             case 2:
-                stateString = @"3G";
+                _networkState = @"3G";
                 break;
             case 3:
-                stateString = @"4G";
+                _networkState = @"4G";
                 break;
             case 4:
-                stateString = @"LTE";
+                _networkState = @"LTE";
                 break;
             case 5:
-                stateString = @"WIFI";
+                _networkState = @"WIFI";
                 break;
             default:
-                stateString = @"Unknown";
+                _networkState = @"Unknown";
                 break;
         }
     }
-    return stateString;
+    return _networkState;
 }
 
 @end
