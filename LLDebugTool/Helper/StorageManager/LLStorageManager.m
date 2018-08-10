@@ -408,7 +408,9 @@ static NSString *const kLaunchDateColumn = @"launchDate";
 }
 
 - (void)log:(NSString *)message {
-    LLog_Alert_Event(kLLLogHelperDebugToolEvent, message);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        LLog_Alert_Event(kLLLogHelperDebugToolEvent, message);
+    });
 }
 
 @end
