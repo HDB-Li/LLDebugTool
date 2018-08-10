@@ -87,7 +87,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     [self.dataTask cancel];
     self.dataTask           = nil;
     LLNetworkModel *model = [[LLNetworkModel alloc] init];
-    model.startDate = [[LLTool sharedTool] stringFromDate:self.startDate];
+    model.startDate = [LLTool stringFromDate:self.startDate];
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
     model.headerFields = self.request.allHTTPHeaderFields;

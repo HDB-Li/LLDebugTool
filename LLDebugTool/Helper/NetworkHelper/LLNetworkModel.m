@@ -40,7 +40,7 @@
     if (![_startDate isEqualToString:startDate]) {
         _startDate = [startDate copy];
         if (!_identity) {
-            _identity = [startDate stringByAppendingString:[LLTool sharedTool].absolutelyIdentity];
+            _identity = [startDate stringByAppendingString:[LLTool absolutelyIdentity]];
         }
     }
 }
@@ -75,7 +75,7 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.startDate.length) {
-        _dateDescription = [[LLTool sharedTool] dateFromString:self.startDate];
+        _dateDescription = [LLTool dateFromString:self.startDate];
     }
     return _dateDescription;
 }

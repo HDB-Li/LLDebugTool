@@ -50,7 +50,7 @@
     _model = model;
     self.icon.image = [UIImage LL_imageNamed:model.iconName];
     self.titleLabel.text = model.name;
-    self.contentLabel.text = [NSString stringWithFormat:@"%@",[[LLTool sharedTool] stringFromDate:model.modifiDate]];
+    self.contentLabel.text = [NSString stringWithFormat:@"%@",[LLTool stringFromDate:model.modifiDate]];
     self.sizeLabel.text = [NSString stringWithFormat:@"Size:%@",model.totalFileSizeString];
     if (model.isDirectory && model.subModels.count) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

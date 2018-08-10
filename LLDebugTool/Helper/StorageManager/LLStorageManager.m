@@ -306,7 +306,7 @@ static NSString *const kLaunchDateColumn = @"launchDate";
         return YES;
     }
     if (name.length == 0) {
-        name = [[LLTool sharedTool] staticStringFromDate:[NSDate date]];
+        name = [LLTool staticStringFromDate:[NSDate date]];
     }
     name = [name stringByAppendingPathExtension:@"png"];
     NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];

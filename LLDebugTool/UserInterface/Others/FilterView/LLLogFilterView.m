@@ -95,8 +95,8 @@
     NSMutableSet *userIDSet = [NSMutableSet set];
     NSMutableDictionary *fileDic = [[NSMutableDictionary alloc] init];
     
-    NSDate *fromDate = [[LLTool sharedTool] dateFromString:((LLLogModel *)data.lastObject).date];
-    NSDate *endDate = [[LLTool sharedTool] dateFromString:((LLLogModel *)data.firstObject).date];
+    NSDate *fromDate = [LLTool dateFromString:((LLLogModel *)data.lastObject).date];
+    NSDate *endDate = [LLTool dateFromString:((LLLogModel *)data.firstObject).date];
     if (!fromDate) {
         fromDate = [NSDate date];
     }

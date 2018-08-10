@@ -46,6 +46,8 @@ static LLTool *_instance = nil;
     unsigned long long _absolutelyIdentity;
 }
 
+#pragma mark - Class Method
+
 + (instancetype)sharedTool {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -54,31 +56,32 @@ static LLTool *_instance = nil;
     return _instance;
 }
 
-- (NSString *)absolutelyIdentity {
-    @synchronized (self) {
-        _absolutelyIdentity++;
-        return [NSString stringWithFormat:@"%lld",_absolutelyIdentity];
-    }
++ (NSString *)absolutelyIdentity {
+    return [[LLTool sharedTool] absolutelyIdentity];
 }
 
-- (NSString *)stringFromDate:(NSDate *)date {
-    return [self.dateFormatter stringFromDate:date];
++ (NSString *)stringFromDate:(NSDate *)date {
+    return [[LLTool sharedTool] stringFromDate:date];
 }
 
-- (NSDate *)dateFromString:(NSString *)string {
-    return [self.dateFormatter dateFromString:string];
++ (NSDate *)dateFromString:(NSString *)string {
+    return [[LLTool sharedTool] dateFromString:string];
 }
 
-- (NSString *)dayStringFromDate:(NSDate *)date {
-    return [self.dayDateFormatter stringFromDate:date];
++ (NSString *)dayStringFromDate:(NSDate *)date {
+    return [[LLTool sharedTool] dayStringFromDate:date];
 }
 
-- (NSDate *)staticDateFromString:(NSString *)string {
-    return [self.staticDateFormatter dateFromString:string];
++ (NSDate *)dayDateFromString:(NSString *)string {
+    return [[LLTool sharedTool] dayDateFromString:string];
 }
 
-- (NSString *)staticStringFromDate:(NSDate *)date {
-    return [self.staticDateFormatter stringFromDate:date];
++ (NSString *)staticStringFromDate:(NSDate *)date {
+    return [[LLTool sharedTool] staticStringFromDate:date];
+}
+
++ (NSDate *)staticDateFromString:(NSString *)string {
+    return [[LLTool sharedTool] staticDateFromString:string];
 }
 
 + (UIView *)lineView:(CGRect)frame superView:(UIView *)superView {
@@ -167,6 +170,42 @@ static LLTool *_instance = nil;
         height = gap;
     }
     return CGRectMake(x, y, width, height);
+}
+
++ (void)toastMessage:(NSString *)message {
+    [[LLTool sharedTool] toastMessage:message];
+}
+
+#pragma mark - Instance Method
+- (NSString *)absolutelyIdentity {
+    @synchronized (self) {
+        _absolutelyIdentity++;
+        return [NSString stringWithFormat:@"%lld",_absolutelyIdentity];
+    }
+}
+
+- (NSString *)stringFromDate:(NSDate *)date {
+    return [self.dateFormatter stringFromDate:date];
+}
+
+- (NSDate *)dateFromString:(NSString *)string {
+    return [self.dateFormatter dateFromString:string];
+}
+
+- (NSString *)dayStringFromDate:(NSDate *)date {
+    return [self.dayDateFormatter stringFromDate:date];
+}
+
+- (NSDate *)dayDateFromString:(NSString *)string {
+    return [self.dayDateFormatter dateFromString:string];
+}
+
+- (NSString *)staticStringFromDate:(NSDate *)date {
+    return [self.staticDateFormatter stringFromDate:date];
+}
+
+- (NSDate *)staticDateFromString:(NSString *)string {
+    return [self.staticDateFormatter dateFromString:string];
 }
 
 - (void)toastMessage:(NSString *)message {

@@ -61,7 +61,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 #pragma mark - Public
 - (void)toastMessage:(NSString *)message {
-    [[LLTool sharedTool] toastMessage:message];
+    [LLTool toastMessage:message];
 }
 
 - (void)showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {

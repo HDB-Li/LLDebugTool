@@ -91,8 +91,8 @@
   
     NSMutableSet *hostSet = [NSMutableSet set];
     
-    NSDate *fromDate = [[LLTool sharedTool] dateFromString:((LLNetworkModel *)data.lastObject).startDate];
-    NSDate *endDate = [[LLTool sharedTool] dateFromString:((LLNetworkModel *)data.firstObject).startDate];
+    NSDate *fromDate = [LLTool dateFromString:((LLNetworkModel *)data.lastObject).startDate];
+    NSDate *endDate = [LLTool dateFromString:((LLNetworkModel *)data.firstObject).startDate];
     if (!fromDate) {
         fromDate = [NSDate date];
     }

@@ -167,7 +167,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 
 - (NSString *)launchDate {
     if (!_launchDate) {
-        _launchDate = [[LLTool sharedTool] stringFromDate:[NSDate dateWithTimeIntervalSince1970:loadDate]];
+        _launchDate = [LLTool stringFromDate:[NSDate dateWithTimeIntervalSince1970:loadDate]];
         if (!_launchDate) {
             _launchDate = @"";
         }

@@ -25,39 +25,32 @@
 #import <UIKit/UIKit.h>
 
 /**
- Work as factory.
+ Work as tool.
  */
 @interface LLTool : NSObject
 
 /**
- Singleton to do simple repetitive tasks.
- 
- @return Singleton
- */
-+ (instancetype)sharedTool;
-
-/**
  Identity to model. Deal with the same date, start at 1.
  */
-- (NSString *)absolutelyIdentity;
-
++ (NSString *)absolutelyIdentity;
 
 /**
  The only dateformatter for [LLConfig dateFormatter].
  */
-- (NSString *)stringFromDate:(NSDate *)date;
-- (NSDate *)dateFromString:(NSString *)string;
++ (NSString *)stringFromDate:(NSDate *)date;
++ (NSDate *)dateFromString:(NSString *)string;
 
 /**
  The only dateformatter for "yyyy-MM-dd".
  */
-- (NSString *)dayStringFromDate:(NSDate *)date;
++ (NSString *)dayStringFromDate:(NSDate *)date;
++ (NSString *)dayDateFromString:(NSString *)string;
 
 /**
  The only dateformatter for "yyyy-MM-dd HH:mm:ss".
  */
-- (NSDate *)staticDateFromString:(NSString *)string;
-- (NSString *)staticStringFromDate:(NSDate *)date;
++ (NSDate *)staticDateFromString:(NSString *)string;
++ (NSString *)staticStringFromDate:(NSDate *)date;
 
 /**
  Create lines of unity.
@@ -74,6 +67,7 @@
  Create directory if not exist.
  */
 + (BOOL)createDirectoryAtPath:(NSString *)path;
+
 /**
  Get rect from two point
  */
@@ -82,5 +76,6 @@
 /**
  Show toast.
  */
-- (void)toastMessage:(NSString *)message;
++ (void)toastMessage:(NSString *)message;
+
 @end

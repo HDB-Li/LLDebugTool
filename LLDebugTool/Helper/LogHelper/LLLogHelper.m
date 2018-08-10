@@ -46,7 +46,7 @@ static LLLogHelper *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... {
-    NSString *date = [[LLTool sharedTool] stringFromDate:[NSDate date]];
+    NSString *date = [LLTool stringFromDate:[NSDate date]];
     if (onEvent.length) {
         NSLog(@"\n--------Debug Tool--------\
               \nEvent:<%@>\

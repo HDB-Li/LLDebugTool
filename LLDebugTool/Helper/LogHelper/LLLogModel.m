@@ -44,7 +44,7 @@
         _date = [date copy];
         _launchDate = [launchDate copy];
         _userIdentity = [userIdentity copy];
-        _identity = [date stringByAppendingString:[LLTool sharedTool].absolutelyIdentity];
+        _identity = [date stringByAppendingString:[LLTool absolutelyIdentity]];
     }
     return self;
 }
@@ -71,7 +71,7 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.date.length) {
-        _dateDescription = [[LLTool sharedTool] dateFromString:self.date];
+        _dateDescription = [LLTool dateFromString:self.date];
     }
     return _dateDescription;
 }

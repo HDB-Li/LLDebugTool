@@ -96,7 +96,7 @@ static LLCrashHelper *_instance = nil;
     {
         [detail setObject:exception.callStackSymbols forKey:@"stackSymbols"];
     }
-    NSString *date = [[LLTool sharedTool] stringFromDate:[NSDate date]];
+    NSString *date = [LLTool stringFromDate:[NSDate date]];
     if (date) {
         [detail setObject:date forKey:@"date"];
     }
