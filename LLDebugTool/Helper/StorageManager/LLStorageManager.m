@@ -318,8 +318,10 @@ static NSString *const kLaunchDateColumn = @"launchDate";
  Initialize something
  */
 - (void)initial {
-    __unused BOOL result = [self initDatabase];
-    NSAssert(result, @"Init Database fail");
+    BOOL result = [self initDatabase];
+    if (!result) {
+        [self log:@"Init Database fail"];
+    }
     [self reloadLogModelTable];
 }
 
@@ -366,6 +368,11 @@ static NSString *const kLaunchDateColumn = @"launchDate";
  * Remove unused log models and networks models.
  */
 - (void)reloadLogModelTable {
+    // Need to remove logs in a global queue.
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        [self performSelectorInBackground:@selector(reloadLogModelTable) withObject:nil];
+        return;
+    }
     NSArray *crashModels = [self getAllCrashModel];
     NSMutableArray *launchDates = [[NSMutableArray alloc] init];
     for (LLCrashModel *model in crashModels) {
@@ -373,10 +380,8 @@ static NSString *const kLaunchDateColumn = @"launchDate";
             [launchDates addObject:model.launchDate];
         }
     }
-    // Need to remove logs in a global queue.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self removeLogModelAndNetworkModelNotIn:launchDates];
-    });
+    [self removeLogModelAndNetworkModelNotIn:launchDates];
+
 }
 
 - (BOOL)removeLogModelAndNetworkModelNotIn:(NSArray *)launchDates {
