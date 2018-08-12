@@ -27,7 +27,7 @@
 #import "LLLogModel.h"
 #import "LLConfig.h"
 #import "LLTool.h"
-
+#import "LLConfig.h"
 
 static LLLogHelper *_instance = nil;
 
@@ -47,24 +47,38 @@ static LLLogHelper *_instance = nil;
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... {
     NSString *date = [LLTool stringFromDate:[NSDate date]];
-    if (onEvent.length) {
-        NSLog(@"\n--------Debug Tool--------\
-              \nEvent:<%@>\
-              \nFile:<%@>\
-              \nLine:<%d>\
-              \nFunc:<%@>\
-              \nDate:<%@>\
-              \nDesc:%@\
-              \n--------------------------",onEvent,file,lineNo,function,date,message);
-    } else {
-        NSLog(@"\n--------Debug Tool--------\
-              \nFile:<%@>\
-              \nLine:<%d>\
-              \nFunc:<%@>\
-              \nDate:<%@>\
-              \nDesc:%@\
-              \n--------------------------",file,lineNo,function,date,message);
+    switch ([LLConfig sharedConfig].logStyle) {
+        case LLConfigLogDetail:{
+            if (onEvent.length) {
+                NSLog(@"\n--------Debug Tool--------\
+                      \nEvent:<%@>\
+                      \nFile:<%@>\
+                      \nLine:<%d>\
+                      \nFunc:<%@>\
+                      \nDate:<%@>\
+                      \nDesc:%@\
+                      \n--------------------------",onEvent,file,lineNo,function,date,message);
+            } else {
+                NSLog(@"\n--------Debug Tool--------\
+                      \nFile:<%@>\
+                      \nLine:<%d>\
+                      \nFunc:<%@>\
+                      \nDate:<%@>\
+                      \nDesc:%@\
+                      \n--------------------------",file,lineNo,function,date,message);
+            }
+        }
+            break;
+        case LLConfigLogNone: {
+        }
+            break;
+        case LLConfigLogNormal:
+        default:{
+            NSLog(@"%@",message);
+        }
+            break;
     }
+
     if (_enable) {
         LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[LLAppHelper sharedHelper].launchDate userIdentity:[LLConfig sharedConfig].userIdentity];
         [[LLStorageManager sharedManager] saveLogModel:model];
