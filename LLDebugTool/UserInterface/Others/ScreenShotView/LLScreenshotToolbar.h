@@ -29,7 +29,7 @@
 
 @protocol LLScreenshotToolbarDelegate <NSObject>
 
-- (void)LLScreenshotToolbar:(LLScreenshotToolbar *)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *)selectorModel;
+- (void)LLScreenshotToolbar:(LLScreenshotToolbar *_Nonnull)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *_Nonnull)selectorModel;
 
 @end
 

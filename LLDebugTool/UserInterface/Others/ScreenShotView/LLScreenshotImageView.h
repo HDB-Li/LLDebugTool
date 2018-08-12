@@ -49,7 +49,7 @@
 /**
  Specifies the initialization method.
  */
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 /**
  Remove last operation in operations.

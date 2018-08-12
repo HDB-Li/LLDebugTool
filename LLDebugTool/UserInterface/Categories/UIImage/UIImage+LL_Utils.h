@@ -25,6 +25,6 @@
 
 @interface UIImage (LL_Utils)
 
-+ (nullable UIImage *)LL_imageNamed:(NSString *)name;
++ (nullable UIImage *)LL_imageNamed:(NSString *_Nonnull)name;
 
 @end
