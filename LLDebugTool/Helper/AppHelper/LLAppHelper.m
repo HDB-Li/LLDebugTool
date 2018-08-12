@@ -29,18 +29,9 @@
 #import "UIDevice+LL_Swizzling.h"
 #import "LLMacros.h"
 #import "LLTool.h"
+#import "NSObject+LL_Utils.h"
 
 static LLAppHelper *_instance = nil;
-
-static uint64_t loadTime;
-static NSTimeInterval startLoadTime;
-static uint64_t loadDate;
-static uint64_t applicationRespondedTime = -1;
-static mach_timebase_info_data_t timebaseInfo;
-
-static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
-    return ((machTime / 1e9) * timebaseInfo.numer) / timebaseInfo.denom;
-}
 
 NSNotificationName const LLAppHelperDidUpdateAppInfosNotificationName = @"LLAppHelperDidUpdateAppInfosNotificationName";
 NSString * const LLAppHelperCPUKey = @"LLAppHelperCPUKey";
@@ -59,7 +50,6 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     NSUInteger _count;
     NSTimeInterval _lastTime;
     float _fps;
-    NSString *_launchDate;
 }
 
 @property (nonatomic , strong) NSTimer *memoryTimer;
@@ -73,29 +63,6 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 @end
 
 @implementation LLAppHelper
-
-/**
- Record the launch time of App.
- */
-+ (void)load {
-    loadTime = mach_absolute_time();
-    mach_timebase_info(&timebaseInfo);
-    
-    loadDate = [[NSDate date] timeIntervalSince1970];
-    
-    @autoreleasepool {
-        __block __weak id<NSObject> obs;
-        obs = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
-                                                                object:nil queue:nil
-                                                            usingBlock:^(NSNotification *note) {
-                                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                                    applicationRespondedTime = mach_absolute_time();
-                                                                    startLoadTime = MachTimeToSeconds(applicationRespondedTime - loadTime);
-                                                                });
-                                                                [[NSNotificationCenter defaultCenter] removeObserver:obs];
-                                                            }];
-    }
-}
 
 + (instancetype)sharedHelper {
     static dispatch_once_t onceToken;
@@ -144,7 +111,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     NSArray *apps = @[@{@"App Name" : infoDic[@"CFBundleDisplayName"] ?: infoDic[@"CFBundleName"] ?: @"Unknown"},
                       @{@"Bundle Identifier" : infoDic[@"CFBundleIdentifier"] ?:@"Unknown"},
                       @{@"App Version" : [NSString stringWithFormat:@"%@(%@)",infoDic[@"CFBundleShortVersionString"]?:@"Unknown",infoDic[@"CFBundleVersion"]?:@"Unknown"]},
-                      @{@"App Start Time" : [NSString stringWithFormat:@"%.2f s",startLoadTime]}];
+                      @{@"App Start Time" : [NSString stringWithFormat:@"%.2f s",[NSObject startLoadTime]]}];
 
     // Device Info
     NSArray *devices = @[@{@"Device Model" : [UIDevice currentDevice].LL_modelName ?: @"Unknown"},
@@ -166,13 +133,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSString *)launchDate {
-    if (!_launchDate) {
-        _launchDate = [LLTool stringFromDate:[NSDate dateWithTimeIntervalSince1970:loadDate]];
-        if (!_launchDate) {
-            _launchDate = @"";
-        }
-    }
-    return _launchDate;
+    return [NSObject launchDate];
 }
 
 #pragma mark - Primary
