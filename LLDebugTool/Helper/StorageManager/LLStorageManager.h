@@ -23,6 +23,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "LLStorageModel.h"
+
+typedef void(^LLStorageManagerBoolBlock)(BOOL result);
+typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 
 @class LLLogModel;
 @class LLCrashModel;
@@ -42,79 +46,100 @@
  */
 + (instancetype)sharedManager;
 
-#pragma mark - Crash Model Actions
+/**
+ Register a class in database and auto create a table.
+ */
+- (BOOL)registerClass:(Class)cls;
+
+#pragma mark - SAVE
+/**
+ Save a model in database. Operation depend [model operationOnMainThread] on and callback in main thread.
+ */
+- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete;
+
+#pragma mark - GET
+/**
+ Get models in database. If nothing, it will return an emtpy array. Operation in child thread and callback in main thread.
+ */
+- (void)getModels:(Class)cls complete:(LLStorageManagerArrayBlock)complete;
+- (void)getModels:(Class)cls launchDate:(NSString *)launchDate complete:(LLStorageManagerArrayBlock)complete;
+- (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete;
+
+#pragma mark - DELETE
+/**
+ Remove models in database. Operation in child thread and callback in main thread.
+ */
+- (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete;
+
+#pragma mark - Screen Shot
 
 /**
- Save a crash model to database.
- FIXME: It will always return YES when you call this method in the main thread.
+ Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
-- (BOOL)saveCrashModel:(LLCrashModel *)model;
+- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(LLStorageManagerBoolBlock)complete;
+
+#pragma mark - DEPRECATED
+/**
+ Save a crash model to database.
+ */
+- (BOOL)saveCrashModel:(LLCrashModel *)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
 
 /**
  Get all crash models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLCrashModel *>*)getAllCrashModel;
+- (NSArray <LLCrashModel *>*)getAllCrashModel DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace, will return an empty array now.");
 
 /**
  According to the models to remove the crash models where happened in dataBase.
  If any one fails, it returns to NO, and any failure will not affect others.
  */
-- (BOOL)removeCrashModels:(NSArray <LLCrashModel *>*)models;
-
-#pragma mark - Network Model Actions
+- (BOOL)removeCrashModels:(NSArray <LLCrashModel *>*)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
 
 /**
  Save a network model to database.
- FIXME: It will always return YES when you call this method in the main thread.
  */
-- (BOOL)saveNetworkModel:(LLNetworkModel *)model;
+- (BOOL)saveNetworkModel:(LLNetworkModel *)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
 
 /**
  Get all network models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLNetworkModel *>*)getAllNetworkModels;
+- (NSArray <LLNetworkModel *>*)getAllNetworkModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace, will return an empty array now.");
 
 /**
   Get the network models in database via launchDate. If nothing, it will return an emtpy array.
  */
-- (NSArray <LLNetworkModel *>*)getAllNetworkModelsWithLaunchDate:(NSString *)launchDate;
+- (NSArray <LLNetworkModel *>*)getAllNetworkModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace, will return an empty array now.");
 
 /**
  According to the models to remove the network models where happened in dataBase.
  If any one fails, it returns to NO, and any failure will not affect others.
  */
-- (BOOL)removeNetworkModels:(NSArray <LLNetworkModel *>*)models;
-
-#pragma mark - Log Model Action
+- (BOOL)removeNetworkModels:(NSArray <LLNetworkModel *>*)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
 
 /**
  Save a log model to database.
- FIXME: It will always return YES when you call this method in the main thread.
  */
-- (BOOL)saveLogModel:(LLLogModel *)model;
+- (BOOL)saveLogModel:(LLLogModel *)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
 
 /**
  Get all log models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLLogModel *>*)getAllLogModels;
+- (NSArray <LLLogModel *>*)getAllLogModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace, will return an empty array now.");
 
 /**
  Get the log models in database via launchDate. If nothing, it will return an emtpy array.
  */
-- (NSArray <LLLogModel *>*)getAllLogModelsWithLaunchDate:(NSString *)launchDate;
+- (NSArray <LLLogModel *>*)getAllLogModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace, will return an empty array now.");
 
 /**
  According to the models to remove the log models where happened in dataBase.
  If any one fails, it returns to NO, and any failure will not affect others.
  */
-- (BOOL)removeLogModels:(NSArray <LLLogModel *>*)models;
-
-#pragma mark - Screenshot
+- (BOOL)removeLogModels:(NSArray <LLLogModel *>*)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
 
 /**
  Save screenShots to sandbox.
- FIXME: It will always return YES when you call this method in the main thread.
  */
-- (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name;
+- (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name DEPRECATED_MSG_ATTRIBUTE("Use saveScreenshot:name:complete: to replace");
 
 @end

@@ -76,4 +76,12 @@
     return _dateDescription;
 }
 
+- (NSString *)storageIdentity {
+    return self.identity;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[LLLogModel] \n message:%@,\n file:%@,\n function:%@,\n lineNo:%ld,\n event:%@,\n level:%@,\n date:%@,\n launchDate:%@,\n userIdentity:%@,\n identity:%@",self.message,self.file,self.function,(long)self.lineNo,self.event,self.levelDescription,self.dateDescription,self.launchDate,self.userIdentity,self.identity];
+}
+
 @end

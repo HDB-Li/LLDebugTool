@@ -10,6 +10,7 @@
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		2313EF2F20F5ED170038AD06 /* UIImage+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
+		362A79AF21211B8C002E06FF /* LLStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A79AE21211B8C002E06FF /* LLStorageModel.m */; };
 		363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */; };
 		363FE43021198AC5005F9C0D /* LLFilterDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42F21198AC5005F9C0D /* LLFilterDateView.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
@@ -98,6 +99,8 @@
 		2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LL_Utils.m"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
+		362A79AD21211B8C002E06FF /* LLStorageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLStorageModel.h; sourceTree = "<group>"; };
+		362A79AE21211B8C002E06FF /* LLStorageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLStorageModel.m; sourceTree = "<group>"; };
 		363FE42521196CC9005F9C0D /* LLNetworkFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkFilterView.h; sourceTree = "<group>"; };
 		363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkFilterView.m; sourceTree = "<group>"; };
 		363FE42E21198AC5005F9C0D /* LLFilterDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterDateView.h; sourceTree = "<group>"; };
@@ -350,6 +353,8 @@
 			children = (
 				36C5BEF62099897F007A3188 /* LLStorageManager.h */,
 				36C5BEF52099897F007A3188 /* LLStorageManager.m */,
+				362A79AD21211B8C002E06FF /* LLStorageModel.h */,
+				362A79AE21211B8C002E06FF /* LLStorageModel.m */,
 			);
 			path = StorageManager;
 			sourceTree = "<group>";
@@ -880,6 +885,7 @@
 				36C5BF802099897F007A3188 /* LLURLProtocol.m in Sources */,
 				36C5BF932099897F007A3188 /* LLWindow.m in Sources */,
 				3687521F20C69B22002C6AD9 /* LLScreenshotView.m in Sources */,
+				362A79AF21211B8C002E06FF /* LLStorageModel.m in Sources */,
 				367F94C7209AF38300CA1821 /* LLBaseNavigationController.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				36C5BF992099897F007A3188 /* LLAppInfoVC.m in Sources */,

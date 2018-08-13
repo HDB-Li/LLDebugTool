@@ -1,5 +1,5 @@
 //
-//  LLCrashModel.h
+//  LLStorageModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,58 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLStorageModel.h"
-
-@interface LLCrashModel : LLStorageModel
+#import "LLBaseModel.h"
 
 /**
- * Crash Name
+ Model can auto save in database.
  */
-@property (copy , nonatomic , readonly) NSString *name;
+@interface LLStorageModel : LLBaseModel
 
 /**
- * Crash reason
+ must recode.
  */
-@property (copy , nonatomic , readonly) NSString *reason;
+- (NSString * _Nonnull)storageIdentity;
 
 /**
- * Crash UserInfo
+ Whether save operation perform on MainThread. get and delete will must perform on child thread.
  */
-@property (strong , nonatomic , readonly) NSDictionary *userInfo;
-
-/**
- * Crash stack symbols
- */
-@property (strong , nonatomic , readonly) NSArray <NSString *>*stackSymbols;
-
-/**
- * Crash Date (yyyy-MM-dd HH:mm:ss)
- */
-@property (copy , nonatomic , readonly) NSString *date;
-
-/**
- * Custom User Identity
- */
-@property (copy , nonatomic , readonly) NSString *userIdentity;
-
-/**
- * App Infos
- */
-@property (strong , nonatomic , readonly) NSArray *appInfos;
-
-/**
- * App LaunchDate
- */
-@property (copy , nonatomic , readonly) NSString *launchDate;
-
-/**
- * Specail initial method
- */
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-
-/**
- * Foolish initial method
- */
-- (instancetype)initWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo stackSymbols:(NSArray *)stackSymbols date:(NSString *)date userIdentity:(NSString *)userIdentity appInfos:(NSArray *)appInfos launchDate:(NSString *)launchDate;
+- (BOOL)operationOnMainThread;
 
 @end

@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
+#import "LLStorageModel.h"
 
 /**
  Network model. Save and show network request infos.
  */
-@interface LLNetworkModel : LLBaseModel
+@interface LLNetworkModel : LLStorageModel
 
 /**
  Network request start date.

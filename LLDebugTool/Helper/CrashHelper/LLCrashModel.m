@@ -23,6 +23,7 @@
 
 #import "LLCrashModel.h"
 #import "NSObject+LL_Utils.h"
+#import "NSString+LL_Utils.h"
 
 @interface LLCrashModel ()
 
@@ -56,6 +57,18 @@
         _launchDate = launchDate;
     }
     return self;
+}
+
+- (NSString *)storageIdentity {
+    return self.launchDate;
+}
+
+- (BOOL)operationOnMainThread {
+    return YES;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfos:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_jsonString,self.stackSymbols.LL_jsonString,self.date,self.userIdentity,self.appInfos.LL_jsonString,self.launchDate];
 }
 
 @end

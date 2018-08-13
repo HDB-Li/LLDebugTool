@@ -80,4 +80,12 @@
     return _dateDescription;
 }
 
+- (NSString *)storageIdentity {
+    return self.identity;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.error.localizedDescription,self.identity];
+}
+
 @end
