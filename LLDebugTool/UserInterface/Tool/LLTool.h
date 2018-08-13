@@ -78,4 +78,15 @@
  */
 + (void)toastMessage:(NSString *)message;
 
+#pragma mark - DEPRECATED
+
++ (instancetype)sharedTool DEPRECATED_ATTRIBUTE;
+- (NSString *)absolutelyIdentity DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)stringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSDate *)dateFromString:(NSString *)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)dayStringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSDate *)staticDateFromString:(NSString *)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)staticStringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (void)toastMessage:(NSString *)message DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+
 @end
