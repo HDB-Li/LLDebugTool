@@ -294,7 +294,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSString *)networkStateFromStatebar {
-    if ([NSThread currentThread] != [NSThread mainThread]) {
+    if (![[NSThread currentThread] isMainThread]) {
         [self performSelectorOnMainThread:@selector(networkStateFromStatebar) withObject:nil waitUntilDone:YES];
         return _networkState;
     }
