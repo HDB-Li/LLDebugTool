@@ -22,8 +22,7 @@
 //  SOFTWARE.
 
 #import "LLCrashModel.h"
-#import "NSString+LL_Utils.h"
-#import "LLAppHelper.h"
+#import "NSObject+LL_Utils.h"
 
 @interface LLCrashModel ()
 
@@ -40,7 +39,7 @@
         _date = dictionary[@"date"];
         _userIdentity = dictionary[@"userIdentity"];
         _appInfos = dictionary[@"appInfos"];
-        _launchDate = [[LLAppHelper sharedHelper] launchDate];
+        _launchDate = [NSObject launchDate];
     }
     return self;
 }

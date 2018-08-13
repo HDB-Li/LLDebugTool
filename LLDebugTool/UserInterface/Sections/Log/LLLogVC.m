@@ -30,7 +30,7 @@
 #import "LLLogContentVC.h"
 #import "LLImageNameConfig.h"
 #import "LLSearchBar.h"
-#import "LLAppHelper.h"
+#import "NSObject+LL_Utils.h"
 
 static NSString *const kLogCellID = @"LLLogCell";
 
@@ -214,7 +214,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 #pragma mark - Primary
 - (void)initial {
     if (_launchDate == nil) {
-        _launchDate = [LLAppHelper sharedHelper].launchDate;
+        _launchDate = [NSObject launchDate];
     }
     
     self.dataArray = [[NSMutableArray alloc] init];

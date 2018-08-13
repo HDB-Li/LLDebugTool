@@ -23,11 +23,11 @@
 
 #import "LLLogHelper.h"
 #import "LLStorageManager.h"
-#import "LLAppHelper.h"
 #import "LLLogModel.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 #import "LLConfig.h"
+#import "NSObject+LL_Utils.h"
 
 static LLLogHelper *_instance = nil;
 
@@ -80,7 +80,7 @@ static LLLogHelper *_instance = nil;
     }
 
     if (_enable) {
-        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[LLAppHelper sharedHelper].launchDate userIdentity:[LLConfig sharedConfig].userIdentity];
+        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject launchDate] userIdentity:[LLConfig sharedConfig].userIdentity];
         [[LLStorageManager sharedManager] saveLogModel:model];
     }
 }

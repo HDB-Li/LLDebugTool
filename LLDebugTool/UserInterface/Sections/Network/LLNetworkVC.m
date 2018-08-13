@@ -27,13 +27,13 @@
 #import "LLStorageManager.h"
 #import "LLNetworkContentVC.h"
 #import "LLImageNameConfig.h"
-#import "LLAppHelper.h"
 #import "LLConfig.h"
 #import "LLNetworkFilterView.h"
 #import "LLSearchBar.h"
 #import "LLNetworkFilterView.h"
 #import "LLMacros.h"
 #import "LLTool.h"
+#import "NSObject+LL_Utils.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
@@ -139,7 +139,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 #pragma mark - Primary
 - (void)initial {
     if (_launchDate == nil) {
-        _launchDate = [LLAppHelper sharedHelper].launchDate;
+        _launchDate = [NSObject launchDate];
     }
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.tempHttpDataArray = [[NSMutableArray alloc] init];

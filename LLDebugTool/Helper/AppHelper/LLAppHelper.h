@@ -64,6 +64,7 @@ UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
  */
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos;
 
+#pragma mark - DEPRECATED
 /**
  Get this time launchDate. LaunchDate means the start time of the app, also it's the identity for crash model.
  */
