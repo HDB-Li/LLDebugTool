@@ -86,10 +86,14 @@ static NSString *const kDescriptionColumn = @"Desc";
 
 #pragma mark - SAVE
 - (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete {
+    [self saveModel:model complete:complete synchronous:NO];
+}
+
+- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous {
     __block Class cls = model.class;
     
     // Check thread.
-    if ([[NSThread currentThread] isMainThread] && model.operationOnMainThread) {
+    if (!synchronous && [[NSThread currentThread] isMainThread] && model.operationOnMainThread) {
         dispatch_async(_queue, ^{
             [self saveModel:model complete:complete];
         });
@@ -99,28 +103,28 @@ static NSString *const kDescriptionColumn = @"Desc";
     // Check datas.
     if (![self isRegisteredClass:cls]) {
         [self log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO)];
+        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSString *launchDate = [NSObject launchDate];
     if (launchDate.length == 0) {
         [self log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO)];
+        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
     if (data.length == 0) {
         [self log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO)];
+        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSString *identity = model.storageIdentity;
     if (identity.length == 0) {
         [self log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO)];
+        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
@@ -133,7 +137,7 @@ static NSString *const kDescriptionColumn = @"Desc";
             [self log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];
         }
     }];
-    [self performBoolComplete:complete param:@(ret)];
+    [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
 }
 
 #pragma mark - GET
@@ -147,9 +151,13 @@ static NSString *const kDescriptionColumn = @"Desc";
 }
 
 - (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete {
+    [self getModels:cls launchDate:launchDate storageIdentity:storageIdentity complete:complete synchronous:NO];
+}
+
+- (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete synchronous:(BOOL)synchronous {
     
     // Check thread.
-    if ([[NSThread currentThread] isMainThread]) {
+    if (!synchronous && [[NSThread currentThread] isMainThread]) {
         dispatch_async(_queue, ^{
             [self getModels:cls launchDate:launchDate storageIdentity:storageIdentity complete:complete];
         });
@@ -159,11 +167,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     // Check datas.
     if (![self isRegisteredClass:cls]) {
         [self log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister.",NSStringFromClass(cls)]];
-        [self performArrayComplete:complete param:@[]];
-        return;
-    }
-    if (launchDate.length == 0 && storageIdentity.length == 0) {
-        [self performArrayComplete:complete param:@[]];
+        [self performArrayComplete:complete param:@[] synchronous:synchronous];
         return;
     }
     
@@ -178,7 +182,7 @@ static NSString *const kDescriptionColumn = @"Desc";
         } else if (launchDate.length) {
             SQL = [SQL stringByAppendingFormat:@" WHERE %@ = ?",kLaunchDateColumn];
             values = @[launchDate];
-        } else {
+        } else if (storageIdentity.length) {
             SQL = [SQL stringByAppendingFormat:@" WHERE %@ = ?",kIdentityColumn];
             values = @[storageIdentity];
         }
@@ -192,14 +196,18 @@ static NSString *const kDescriptionColumn = @"Desc";
         }
     }];
     
-    [self performArrayComplete:complete param:modelArray];
+    [self performArrayComplete:complete param:modelArray synchronous:synchronous];
 }
 
 #pragma mark - DELETE
 - (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete {
+    [self removeModels:models complete:complete synchronous:NO];
+}
+
+- (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous {
     
     // Check thread.
-    if ([[NSThread currentThread] isMainThread]) {
+    if (!synchronous && [[NSThread currentThread] isMainThread]) {
         dispatch_async(_queue, ^{
             [self removeModels:models complete:complete];
         });
@@ -208,7 +216,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     
     // In background thread now. Check models.
     if (models.count == 0) {
-        [self performBoolComplete:complete param:@(YES)];
+        [self performBoolComplete:complete param:@(YES) synchronous:synchronous];
         return;
     }
     
@@ -216,7 +224,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     __block Class cls = [models.firstObject class];
     if (![self isRegisteredClass:cls]) {
         NSLog(@"Remove model failed, because model is unregister.");
-        [self performBoolComplete:complete param:@(NO)];
+        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
@@ -224,7 +232,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     for (LLStorageModel *model in models) {
         if (![model.class isEqual:cls]) {
             [self log:@"Remove %@ failed, because models in array isn't some class."];
-            [self performBoolComplete:complete param:@(NO)];
+            [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
             return;
         }
         [identities addObject:model.storageIdentity];
@@ -242,7 +250,7 @@ static NSString *const kDescriptionColumn = @"Desc";
         }
     }];
     
-    [self performBoolComplete:complete param:@(ret)];
+    [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
 }
 
 #pragma mark - Screenshot
@@ -259,7 +267,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     name = [name stringByAppendingPathExtension:@"png"];
     NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];
     BOOL ret = [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
-    [self performBoolComplete:complete param:@(ret)];
+    [self performBoolComplete:complete param:@(ret) synchronous:NO];
 }
 
 
@@ -353,25 +361,25 @@ static NSString *const kDescriptionColumn = @"Desc";
     return [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(%@ BLOB NOT NULL,%@ TEXT NOT NULL,%@ TEXT NOT NULL,%@ TEXT NOT NULL);",[self tableNameFromClass:cls],kObjectDataColumn,kIdentityColumn,kLaunchDateColumn,kDescriptionColumn];
 }
 
-- (void)performBoolComplete:(LLStorageManagerBoolBlock)complete param:(NSNumber *)param {
+- (void)performBoolComplete:(LLStorageManagerBoolBlock)complete param:(NSNumber *)param synchronous:(BOOL)synchronous {
     if (complete) {
-        if ([[NSThread currentThread] isMainThread]) {
+        if (synchronous || [[NSThread currentThread] isMainThread]) {
             complete(param.boolValue);
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self performBoolComplete:complete param:param];
+                [self performBoolComplete:complete param:param synchronous:synchronous];
             });
         }
     }
 }
 
-- (void)performArrayComplete:(LLStorageManagerArrayBlock)complete param:(NSArray *)param {
+- (void)performArrayComplete:(LLStorageManagerArrayBlock)complete param:(NSArray *)param synchronous:(BOOL)synchronous {
     if (complete) {
-        if ([[NSThread currentThread] isMainThread]) {
+        if (synchronous || [[NSThread currentThread] isMainThread]) {
             complete(param);
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self performArrayComplete:complete param:param];
+                [self performArrayComplete:complete param:param synchronous:synchronous];
             });
         }
     }
@@ -385,78 +393,93 @@ static NSString *const kDescriptionColumn = @"Desc";
 
 #pragma mark - DEPRECATED
 - (BOOL)saveCrashModel:(LLCrashModel *)model {
-    [self saveModel:model complete:nil];
-    return YES;
+    __block BOOL ret = YES;
+    [self saveModel:model complete:^(BOOL result) {
+        ret = result;
+    } synchronous:YES];
+    return ret;
 }
 
 - (NSArray <LLCrashModel *>*)getAllCrashModel {
     __block NSArray *datas = @[];
-    [self getModels:[LLCrashModel class] complete:^(NSArray<LLStorageModel *> *result) {
+    [self getModels:[LLCrashModel class] launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
         datas = result;
-    }];
+    } synchronous:YES];
     return datas;
 }
 
 - (BOOL)removeCrashModels:(NSArray <LLCrashModel *>*)models {
-    [self removeModels:models complete:nil];
-    return YES;
+    __block BOOL ret = YES;
+    [self removeModels:models complete:^(BOOL result) {
+        ret = result;
+    } synchronous:YES];
+    return ret;
 }
 
 - (BOOL)saveNetworkModel:(LLNetworkModel *)model {
-    [self saveModel:model complete:nil];
-    return YES;
+    __block BOOL ret = YES;
+    [self saveModel:model complete:^(BOOL result) {
+        ret = result;
+    } synchronous:YES];
+    return ret;
 }
 
 - (NSArray <LLNetworkModel *>*)getAllNetworkModels {
     __block NSArray *datas = @[];
-    [self getModels:[LLNetworkModel class] complete:^(NSArray<LLStorageModel *> *result) {
+    [self getModels:[LLNetworkModel class] launchDate:[NSObject launchDate] storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
         datas = result;
-    }];
+    } synchronous:YES];
     return datas;
 }
 
 - (NSArray <LLNetworkModel *>*)getAllNetworkModelsWithLaunchDate:(NSString *)launchDate {
     __block NSArray *datas = @[];
-    [self getModels:[LLNetworkModel class] launchDate:launchDate complete:^(NSArray<LLStorageModel *> *result) {
+    [self getModels:[LLNetworkModel class] launchDate:launchDate storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
         datas = result;
-    }];
+    } synchronous:YES];
     return datas;
 }
 
 - (BOOL)removeNetworkModels:(NSArray <LLNetworkModel *>*)models {
-    [self removeModels:models complete:nil];
-    return YES;
+    __block BOOL ret = YES;
+    [self removeModels:models complete:^(BOOL result) {
+        ret = result;
+    } synchronous:YES];
+    return ret;
 }
 
 - (BOOL)saveLogModel:(LLLogModel *)model {
-    [self saveModel:model complete:nil];
-    return YES;
+    __block BOOL ret = YES;
+    [self saveModel:model complete:^(BOOL result) {
+        ret = result;
+    } synchronous:YES];
+    return ret;
 }
 
 - (NSArray <LLLogModel *>*)getAllLogModels {
     __block NSArray *datas = @[];
-    [self getModels:[LLLogModel class] complete:^(NSArray<LLStorageModel *> *result) {
+    [self getModels:[LLLogModel class] launchDate:[NSObject launchDate] storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
         datas = result;
-    }];
+    } synchronous:YES];
     return datas;
 }
 
 - (NSArray <LLLogModel *>*)getAllLogModelsWithLaunchDate:(NSString *)launchDate {
-    // This will called a deadlock, Don't fix it anymore. All get method will return an empty array.
-//    __block dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     __block NSArray *datas = @[];
-    [self getModels:[LLLogModel class] launchDate:launchDate complete:^(NSArray<LLStorageModel *> *result) {
+    [self getModels:[LLLogModel class] launchDate:launchDate storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
         datas = result;
-//        dispatch_semaphore_signal(sema);
-    }];
-//    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    } synchronous:YES];
     return datas;
 }
 
 - (BOOL)removeLogModels:(NSArray <LLLogModel *>*)models {
-    [self removeModels:models complete:nil];
-    return YES;
+    __block BOOL ret = YES;
+    [self removeModels:models complete:^(BOOL result) {
+        ret = result;
+    } synchronous:YES];
+    return ret;
 }
+
 - (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name {
     [self saveScreenshot:image name:name complete:nil];
     return YES;

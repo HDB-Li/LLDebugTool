@@ -65,6 +65,11 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 - (void)getModels:(Class)cls launchDate:(NSString *)launchDate complete:(LLStorageManagerArrayBlock)complete;
 - (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete;
 
+/**
+ Get models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
+ */
+- (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete synchronous:(BOOL)synchronous;
+
 #pragma mark - DELETE
 /**
  Remove models in database. Operation in child thread and callback in main thread.
@@ -87,7 +92,7 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 /**
  Get all crash models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLCrashModel *>*)getAllCrashModel DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace, will return an empty array now.");
+- (NSArray <LLCrashModel *>*)getAllCrashModel DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
 
 /**
  According to the models to remove the crash models where happened in dataBase.
@@ -103,12 +108,12 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 /**
  Get all network models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLNetworkModel *>*)getAllNetworkModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace, will return an empty array now.");
+- (NSArray <LLNetworkModel *>*)getAllNetworkModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
 
 /**
   Get the network models in database via launchDate. If nothing, it will return an emtpy array.
  */
-- (NSArray <LLNetworkModel *>*)getAllNetworkModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace, will return an empty array now.");
+- (NSArray <LLNetworkModel *>*)getAllNetworkModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace.");
 
 /**
  According to the models to remove the network models where happened in dataBase.
@@ -124,12 +129,12 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 /**
  Get all log models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLLogModel *>*)getAllLogModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace, will return an empty array now.");
+- (NSArray <LLLogModel *>*)getAllLogModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
 
 /**
  Get the log models in database via launchDate. If nothing, it will return an emtpy array.
  */
-- (NSArray <LLLogModel *>*)getAllLogModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace, will return an empty array now.");
+- (NSArray <LLLogModel *>*)getAllLogModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace.");
 
 /**
  According to the models to remove the log models where happened in dataBase.
