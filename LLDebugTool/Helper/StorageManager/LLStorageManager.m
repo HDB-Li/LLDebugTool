@@ -270,7 +270,66 @@ static NSString *const kDescriptionColumn = @"Desc";
     [self performBoolComplete:complete param:@(ret) synchronous:NO];
 }
 
+#pragma mark - Table
+- (void)clearTable:(Class)cls complete:(LLStorageManagerBoolBlock)complete {
+    [self clearTable:cls complete:complete synchronous:NO];
+}
 
+- (void)clearTable:(Class)cls complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous {
+    // Check thread.
+    if (!synchronous && [[NSThread currentThread] isMainThread]) {
+        dispatch_async(_queue, ^{
+            [self clearTable:cls complete:complete synchronous:synchronous];
+        });
+        return;
+    }
+    
+    // Check datas.
+    if (![self isRegisteredClass:cls]) {
+        NSLog(@"Remove model failed, because model is unregister.");
+        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
+        return;
+    }
+    
+    // Perform database operations.
+    __block BOOL ret = NO;
+    
+    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        NSError *error;
+        NSString *tableName = [self tableNameFromClass:cls];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@;",tableName] values:nil error:&error];
+        if (!ret) {
+            [self log:[NSString stringWithFormat:@"Clear %@ failed, error = %@",NSStringFromClass(cls),error]];
+        }
+    }];
+    
+    [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
+}
+
+- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete {
+    [self clearDatabaseWithComplete:complete synchronous:NO];
+}
+
+- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous {
+    // Check thread.
+    if (!synchronous && [[NSThread currentThread] isMainThread]) {
+        dispatch_async(_queue, ^{
+            [self clearDatabaseWithComplete:complete synchronous:synchronous];
+        });
+        return;
+    }
+    
+    // Perform database operations
+    __block BOOL ret = YES;
+    
+    for (Class cls in self.registerClass) {
+        [self clearTable:cls complete:^(BOOL result) {
+            ret = ret && result;
+        } synchronous:YES];
+    }
+
+    [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
+}
 
 #pragma mark - Primary
 /**

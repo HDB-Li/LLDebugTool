@@ -57,6 +57,11 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
  */
 - (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete;
 
+/**
+ Save a model in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
+ */
+- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+
 #pragma mark - GET
 /**
  Get models in database. If nothing, it will return an emtpy array. Operation in child thread and callback in main thread.
@@ -76,12 +81,31 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
  */
 - (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete;
 
+/**
+ Remove models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
+ */
+- (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+
 #pragma mark - Screen Shot
 
 /**
  Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
 - (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(LLStorageManagerBoolBlock)complete;
+
+#pragma mark - Table
+
+/**
+ Clear table.
+ */
+- (void)clearTable:(Class)cls complete:(LLStorageManagerBoolBlock)complete;
+- (void)clearTable:(Class)cls complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+
+/**
+ Clear database.
+ */
+- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete;
+- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - DEPRECATED
 /**
