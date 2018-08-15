@@ -304,7 +304,8 @@
 #pragma mark - Action
 - (void)panGR:(UIPanGestureRecognizer *)gr {
     if ([LLConfig sharedConfig].suspensionBallMoveable) {
-        CGPoint panPoint = [gr locationInView:[[UIApplication sharedApplication] keyWindow]];
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        CGPoint panPoint = [gr locationInView:window];
         if (gr.state == UIGestureRecognizerStateBegan)
         {
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resignActive) object:nil];

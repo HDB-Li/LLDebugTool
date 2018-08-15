@@ -227,7 +227,7 @@ static LLTool *_instance = nil;
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
     label.textColor = [UIColor whiteColor];
-    [[UIApplication sharedApplication].keyWindow addSubview:label];
+    [[UIApplication sharedApplication].delegate.window addSubview:label];
     self.toastLabel = label;
     [UIView animateWithDuration:0.25 animations:^{
         label.alpha = 1;
