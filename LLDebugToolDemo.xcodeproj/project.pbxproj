@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		2313EF2F20F5ED170038AD06 /* UIImage+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */; };
+		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
 		362A79AF21211B8C002E06FF /* LLStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A79AE21211B8C002E06FF /* LLStorageModel.m */; };
 		363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */; };
@@ -83,6 +84,8 @@
 		36C5BFAF2099897F007A3188 /* LLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF722099897F007A3188 /* LLTool.m */; };
 		36C5BFB02099897F007A3188 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF762099897F007A3188 /* LLDebugTool.m */; };
 		36C5BFB320999181007A3188 /* LLCrashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BFB220999181007A3188 /* LLCrashModel.m */; };
+		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
+		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
 		C41B0A0921205BD700A058CF /* NSObject+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C41B0A0721205BD700A058CF /* NSObject+LL_Utils.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -91,12 +94,32 @@
 		C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA815205AB095006307BE /* LaunchScreen.storyboard */; };
 		C43BA81A205AB095006307BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA819205AB095006307BE /* main.m */; };
 		C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D3B5E3209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m */; };
+		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		36E2488A2123BAE300D03F44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C43BA7FF205AB095006307BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C43BA806205AB095006307BE;
+			remoteInfo = LLDebugToolDemo;
+		};
+		36E248982123BAE900D03F44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C43BA7FF205AB095006307BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C43BA806205AB095006307BE;
+			remoteInfo = LLDebugToolDemo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2313EF2D20F5ED160038AD06 /* UIImage+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LL_Utils.h"; sourceTree = "<group>"; };
 		2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LL_Utils.m"; sourceTree = "<group>"; };
+		250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
 		362A79AD21211B8C002E06FF /* LLStorageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLStorageModel.h; sourceTree = "<group>"; };
@@ -244,8 +267,17 @@
 		36C5BF772099897F007A3188 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
 		36C5BFB120999181007A3188 /* LLCrashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashModel.h; sourceTree = "<group>"; };
 		36C5BFB220999181007A3188 /* LLCrashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashModel.m; sourceTree = "<group>"; };
+		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoTests.m; sourceTree = "<group>"; };
+		36E248892123BAE300D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoUITests.m; sourceTree = "<group>"; };
+		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C41B0A0721205BD700A058CF /* NSObject+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LL_Utils.m"; sourceTree = "<group>"; };
 		C41B0A0821205BD700A058CF /* NSObject+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LL_Utils.h"; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,9 +292,26 @@
 		C43BA819205AB095006307BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4D3B5E2209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+LL_Swizzling.h"; sourceTree = "<group>"; };
 		C4D3B5E3209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+LL_Swizzling.m"; sourceTree = "<group>"; };
+		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		36E248822123BAE300D03F44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36E248902123BAE900D03F44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C43BA804205AB095006307BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,10 +726,30 @@
 			path = DebugTool;
 			sourceTree = "<group>";
 		};
+		36E248862123BAE300D03F44 /* LLDebugToolDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */,
+				36E248892123BAE300D03F44 /* Info.plist */,
+			);
+			path = LLDebugToolDemoTests;
+			sourceTree = "<group>";
+		};
+		36E248942123BAE900D03F44 /* LLDebugToolDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */,
+				36E248972123BAE900D03F44 /* Info.plist */,
+			);
+			path = LLDebugToolDemoUITests;
+			sourceTree = "<group>";
+		};
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */,
+				D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */,
+				250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,6 +768,8 @@
 			children = (
 				C43BA820205AB0EF006307BE /* LLDebugTool */,
 				C43BA809205AB095006307BE /* LLDebugToolDemo */,
+				36E248862123BAE300D03F44 /* LLDebugToolDemoTests */,
+				36E248942123BAE900D03F44 /* LLDebugToolDemoUITests */,
 				C43BA808205AB095006307BE /* Products */,
 				E99ABDA4555CAF38A3D78EE6 /* Pods */,
 				5DAB3E295118238CB64A77C2 /* Frameworks */,
@@ -709,6 +780,8 @@
 			isa = PBXGroup;
 			children = (
 				C43BA807205AB095006307BE /* LLDebugToolDemo.app */,
+				36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */,
+				36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -750,6 +823,10 @@
 			children = (
 				532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */,
 				0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */,
+				638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */,
+				7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */,
+				ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */,
+				34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -757,6 +834,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		36E248842123BAE300D03F44 /* LLDebugToolDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36E2488E2123BAE300D03F44 /* Build configuration list for PBXNativeTarget "LLDebugToolDemoTests" */;
+			buildPhases = (
+				82FFC20994708CA4B72E4308 /* [CP] Check Pods Manifest.lock */,
+				36E248812123BAE300D03F44 /* Sources */,
+				36E248822123BAE300D03F44 /* Frameworks */,
+				36E248832123BAE300D03F44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36E2488B2123BAE300D03F44 /* PBXTargetDependency */,
+			);
+			name = LLDebugToolDemoTests;
+			productName = LLDebugToolDemoTests;
+			productReference = 36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		36E248922123BAE900D03F44 /* LLDebugToolDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36E2489A2123BAE900D03F44 /* Build configuration list for PBXNativeTarget "LLDebugToolDemoUITests" */;
+			buildPhases = (
+				D88507F3CEB58B2391736619 /* [CP] Check Pods Manifest.lock */,
+				36E2488F2123BAE900D03F44 /* Sources */,
+				36E248902123BAE900D03F44 /* Frameworks */,
+				36E248912123BAE900D03F44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36E248992123BAE900D03F44 /* PBXTargetDependency */,
+			);
+			name = LLDebugToolDemoUITests;
+			productName = LLDebugToolDemoUITests;
+			productReference = 36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C43BA806205AB095006307BE /* LLDebugToolDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C43BA81D205AB095006307BE /* Build configuration list for PBXNativeTarget "LLDebugToolDemo" */;
@@ -784,6 +899,16 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = li;
 				TargetAttributes = {
+					36E248842123BAE300D03F44 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C43BA806205AB095006307BE;
+					};
+					36E248922123BAE900D03F44 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C43BA806205AB095006307BE;
+					};
 					C43BA806205AB095006307BE = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -805,11 +930,27 @@
 			projectRoot = "";
 			targets = (
 				C43BA806205AB095006307BE /* LLDebugToolDemo */,
+				36E248842123BAE300D03F44 /* LLDebugToolDemoTests */,
+				36E248922123BAE900D03F44 /* LLDebugToolDemoUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		36E248832123BAE300D03F44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36E248912123BAE900D03F44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C43BA805205AB095006307BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -853,9 +994,61 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		82FFC20994708CA4B72E4308 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLDebugToolDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D88507F3CEB58B2391736619 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLDebugToolDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		36E248812123BAE300D03F44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36E2488F2123BAE900D03F44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C43BA803205AB095006307BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -933,6 +1126,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		36E2488B2123BAE300D03F44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C43BA806205AB095006307BE /* LLDebugToolDemo */;
+			targetProxy = 36E2488A2123BAE300D03F44 /* PBXContainerItemProxy */;
+		};
+		36E248992123BAE900D03F44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C43BA806205AB095006307BE /* LLDebugToolDemo */;
+			targetProxy = 36E248982123BAE900D03F44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		367E27A320A1A8480032EF0D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -973,6 +1179,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		36E2488C2123BAE300D03F44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LLDebugToolDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LLDebugToolDemo.app/LLDebugToolDemo";
+			};
+			name = Debug;
+		};
+		36E2488D2123BAE300D03F44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LLDebugToolDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LLDebugToolDemo.app/LLDebugToolDemo";
+			};
+			name = Release;
+		};
+		36E2489B2123BAE900D03F44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LLDebugToolDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LLDebugToolDemo;
+			};
+			name = Debug;
+		};
+		36E2489C2123BAE900D03F44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LLDebugToolDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LLDebugToolDemo;
+			};
+			name = Release;
+		};
 		C43BA81B205AB095006307BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1124,6 +1396,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		36E2488E2123BAE300D03F44 /* Build configuration list for PBXNativeTarget "LLDebugToolDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36E2488C2123BAE300D03F44 /* Debug */,
+				36E2488D2123BAE300D03F44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36E2489A2123BAE900D03F44 /* Build configuration list for PBXNativeTarget "LLDebugToolDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36E2489B2123BAE900D03F44 /* Debug */,
+				36E2489C2123BAE900D03F44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C43BA802205AB095006307BE /* Build configuration list for PBXProject "LLDebugToolDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
