@@ -29,6 +29,8 @@
 
 static LLTool *_instance = nil;
 
+static CGFloat _toastTime = 2.0;
+
 @interface LLTool ()
 
 @property (nonatomic , strong) NSDateFormatter *dateFormatter;
@@ -38,6 +40,10 @@ static LLTool *_instance = nil;
 @property (nonatomic , strong) NSDateFormatter *staticDateFormatter;
 
 @property (nonatomic , strong) UILabel *toastLabel;
+
+@property (nonatomic , strong) UILabel *loadingLabel;
+
+@property (nonatomic , strong) NSTimer *loadingTimer;
 
 @end
 
@@ -176,6 +182,14 @@ static LLTool *_instance = nil;
     [[LLTool sharedTool] toastMessage:message];
 }
 
++ (void)loadingMessage:(NSString *)message {
+    [[LLTool sharedTool] loadingMessage:message];
+}
+
++ (void)hideLoadingMessage {
+    [[LLTool sharedTool] hideLoadingMessage];
+}
+
 #pragma mark - Instance Method
 - (NSString *)absolutelyIdentity {
     @synchronized (self) {
@@ -232,14 +246,80 @@ static LLTool *_instance = nil;
     [UIView animateWithDuration:0.25 animations:^{
         label.alpha = 1;
     } completion:^(BOOL finished) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_toastTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.1 animations:^{
-                label.alpha = 0;
+                self.toastLabel.alpha = 0;
             } completion:^(BOOL finished) {
-                [label removeFromSuperview];
+                [self.toastLabel removeFromSuperview];
+                self.toastLabel = nil;
             }];
         });
     }];
+}
+
+- (void)loadingMessage:(NSString *)message {
+    if (self.loadingLabel) {
+        [self.loadingLabel removeFromSuperview];
+        self.loadingLabel = nil;
+    }
+    
+    __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
+    label.text = message;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByCharWrapping;
+    [label sizeToFit];
+    label.frame = CGRectMake(0, 0, label.frame.size.width + 40, label.frame.size.height + 10);
+    label.layer.cornerRadius = label.font.lineHeight / 2.0;
+    label.layer.masksToBounds = YES;
+    label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
+    label.alpha = 0;
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
+    [[UIApplication sharedApplication].delegate.window addSubview:label];
+    self.loadingLabel = label;
+    [self startLoadingMessageTimer];
+    [UIView animateWithDuration:0.25 animations:^{
+        label.alpha = 1;
+    } completion:^(BOOL finished) {
+
+    }];
+}
+
+- (void)hideLoadingMessage {
+    if (self.loadingLabel.superview) {
+        [self removeLoadingMessageTimer];
+        [UIView animateWithDuration:0.1 animations:^{
+            self.loadingLabel.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self.loadingLabel removeFromSuperview];
+            self.loadingLabel = nil;
+        }];
+    }
+}
+
+- (void)startLoadingMessageTimer {
+    [self removeLoadingMessageTimer];
+    _loadingTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadingMessageTimerAction:) userInfo:nil repeats:YES];
+}
+
+- (void)removeLoadingMessageTimer {
+    if ([_loadingTimer isValid]) {
+        [_loadingTimer invalidate];
+        _loadingTimer = nil;
+    }
+}
+
+- (void)loadingMessageTimerAction:(NSTimer *)timer {
+    if (_loadingLabel.superview) {
+        if ([_loadingLabel.text hasSuffix:@"..."]) {
+            _loadingLabel.text = [_loadingLabel.text substringToIndex:_loadingLabel.text.length - 3];
+        } else {
+            _loadingLabel.text = [_loadingLabel.text stringByAppendingString:@"."];
+        }
+    } else {
+        [self removeLoadingMessageTimer];
+    }
 }
 
 #pragma mark - Lazy load

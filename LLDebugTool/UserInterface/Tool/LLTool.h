@@ -78,6 +78,12 @@
  */
 + (void)toastMessage:(NSString *)message;
 
+/**
+ Show or hide loading message.
+ */
++ (void)loadingMessage:(NSString *)message;
++ (void)hideLoadingMessage;
+
 #pragma mark - DEPRECATED
 
 + (instancetype)sharedTool DEPRECATED_ATTRIBUTE;
