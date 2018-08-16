@@ -298,12 +298,15 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)loadData {
     self.searchBar.text = nil;
-    [self.totalDataArray removeAllObjects];
-    [self.totalDataArray addObjectsFromArray:[[LLStorageManager sharedManager] getAllLogModelsWithLaunchDate:_launchDate]];
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:self.totalDataArray];
-    [self.filterView configWithData:self.totalDataArray];
-    [self.tableView reloadData];
+    __weak typeof(self) weakSelf = self;
+    [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [weakSelf.totalDataArray removeAllObjects];
+        [weakSelf.totalDataArray addObjectsFromArray:result];
+        [weakSelf.dataArray removeAllObjects];
+        [weakSelf.dataArray addObjectsFromArray:weakSelf.totalDataArray];
+        [weakSelf.filterView configWithData:weakSelf.totalDataArray];
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)filterData {

@@ -23,14 +23,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "LLStorageModel.h"
+#import "LLLogModel.h"
+#import "LLNetworkModel.h"
+#import "LLCrashModel.h"
 
 typedef void(^LLStorageManagerBoolBlock)(BOOL result);
 typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
-
-@class LLLogModel;
-@class LLCrashModel;
-@class LLNetworkModel;
 
 /**
  Operation database.

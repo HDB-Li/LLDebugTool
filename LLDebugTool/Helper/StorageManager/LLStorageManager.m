@@ -23,11 +23,7 @@
 
 #import "LLStorageManager.h"
 #import <FMDB/FMDB.h>
-#import "LLNetworkModel.h"
-#import "LLCrashModel.h"
-#import "LLLogModel.h"
 #import "NSObject+LL_Utils.h"
-
 #import "LLTool.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
@@ -195,7 +191,6 @@ static NSString *const kDescriptionColumn = @"Desc";
             }
         }
     }];
-    
     [self performArrayComplete:complete param:modelArray synchronous:synchronous];
 }
 
@@ -223,7 +218,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     // Check datas.
     __block Class cls = [models.firstObject class];
     if (![self isRegisteredClass:cls]) {
-        NSLog(@"Remove model failed, because model is unregister.");
+        [self log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -231,7 +226,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     __block NSMutableSet *identities = [NSMutableSet set];
     for (LLStorageModel *model in models) {
         if (![model.class isEqual:cls]) {
-            [self log:@"Remove %@ failed, because models in array isn't some class."];
+            [self log:[NSString stringWithFormat:@"Remove %@ failed, because models in array isn't some class.",NSStringFromClass(cls)]];
             [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
             return;
         }
@@ -244,7 +239,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
         NSError *error;
         NSString *tableName = [self tableNameFromClass:cls];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",tableName,kIdentityColumn,identities.allObjects] values:nil error:&error];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ IN %@;",tableName,kIdentityColumn,identities.allObjects] values:nil error:&error];
         if (!ret) {
             [self log:[NSString stringWithFormat:@"Remove %@ failed, error = %@",NSStringFromClass(cls),error]];
         }
@@ -286,7 +281,7 @@ static NSString *const kDescriptionColumn = @"Desc";
     
     // Check datas.
     if (![self isRegisteredClass:cls]) {
-        NSLog(@"Remove model failed, because model is unregister.");
+        [self log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -377,8 +372,15 @@ static NSString *const kDescriptionColumn = @"Desc";
         });
         return;
     }
-    NSArray *crashModels = [self getAllCrashModel];
-    NSMutableArray *launchDates = [[NSMutableArray alloc] init];
+    
+    
+    __block NSArray *crashModels = @[];
+    
+    [self getModels:[LLLogModel class] launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
+        crashModels = result;
+    } synchronous:YES];
+    
+    NSMutableArray *launchDates = [[NSMutableArray alloc] initWithObjects:[NSObject launchDate], nil];
     for (LLCrashModel *model in crashModels) {
         if (model.launchDate.length) {
             [launchDates addObject:model.launchDate];

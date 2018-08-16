@@ -29,6 +29,7 @@
 #import "LLStorageManager.h"
 #import "LLCrashContentVC.h"
 #import "LLImageNameConfig.h"
+#import "LLTool.h"
 
 static NSString *const kCrashCellID = @"CrashCellID";
 
@@ -190,9 +191,12 @@ static NSString *const kCrashCellID = @"CrashCellID";
 }
 
 - (void)_loadData {
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[LLStorageManager sharedManager] getAllCrashModel]];
-    [self.tableView reloadData];
+    __weak typeof(self) weakSelf = self;
+    [[LLStorageManager sharedManager] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
+        [weakSelf.dataArray removeAllObjects];
+        [weakSelf.dataArray addObjectsFromArray:result];
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)_showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
@@ -206,20 +210,26 @@ static NSString *const kCrashCellID = @"CrashCellID";
 }
 
 - (void)_deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    NSMutableArray *models = [[NSMutableArray alloc] init];
+    __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.dataArray[indexPath.row]];
     }
-    if ([[LLStorageManager sharedManager] removeCrashModels:models]) {
-        [self.dataArray removeObjectsInArray:models];
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        [self showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
-            if (action == 1) {
-                [self _loadData];
-            }
-        }];
-    }
+    
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Deleting"];
+    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+        [LLTool hideLoadingMessage];
+        if (result) {
+            [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        } else {
+            [weakSelf showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
+                if (action == 1) {
+                    [weakSelf _loadData];
+                }
+            }];
+        }
+    }];
 }
 
 @end

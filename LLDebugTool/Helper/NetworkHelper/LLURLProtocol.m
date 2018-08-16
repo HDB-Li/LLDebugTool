@@ -110,7 +110,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     }
     model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;
-    [[LLStorageManager sharedManager] saveNetworkModel:model];
+    [[LLStorageManager sharedManager] saveModel:model complete:nil];
 }
 
 #pragma mark - NSURLSessionDelegate

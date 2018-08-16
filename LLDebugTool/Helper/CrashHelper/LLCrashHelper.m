@@ -108,7 +108,9 @@ static LLCrashHelper *_instance = nil;
         [detail setObject:appInfos forKey:@"appInfos"];
     }
     LLCrashModel *model = [[LLCrashModel alloc] initWithDictionary:detail];
-    [[LLStorageManager sharedManager] saveCrashModel:model];
+    [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
+        NSLog(@"Save crash model success");
+    }];
 }
 
 void HandleException(NSException *exception)

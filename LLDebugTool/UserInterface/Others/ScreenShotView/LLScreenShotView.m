@@ -104,7 +104,7 @@
     self.toolBar.hidden = YES;
     UIImage *image = [self convertViewToImage:self.imageView];
     if (image) {
-        [[LLStorageManager sharedManager] saveScreenshot:image name:name];
+        [[LLStorageManager sharedManager] saveScreenshot:image name:name complete:nil];
         if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
             [LLTool toastMessage:@"Save image in sandbox and album."];
