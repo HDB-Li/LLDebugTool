@@ -112,8 +112,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [[LLTool sharedTool] staticDateFromString:_fromDateModel.currentFilter];
-        NSDate *endDate = [[LLTool sharedTool] staticDateFromString:_endDateModel.currentFilter];
+        NSDate *fromDate = [LLTool staticDateFromString:_fromDateModel.currentFilter];
+        NSDate *endDate = [LLTool staticDateFromString:_endDateModel.currentFilter];
         NSMutableArray *userIds = [[NSMutableArray alloc] init];
         
         for (LLFilterLabelModel *model in self.userIdDataArray) {

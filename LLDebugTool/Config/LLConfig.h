@@ -73,6 +73,19 @@ typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
 };
 
 /**
+ Log style for [LLDebugTool logInFile...]. Customize the log you want.
+
+ - LLConfigLogDetail: Show all detail info, contain event,file,line,func,date,desc.
+ - LLConfigLogNormal: Show as system NSLog
+ - LLConfigLogNone: Don't show anything.
+ */
+typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
+    LLConfigLogDetail,
+    LLConfigLogNormal,
+    LLConfigLogNone,
+};
+
+/**
  Config file. Must config properties before [LLDebugTool enable].
  */
 @interface LLConfig : NSObject
@@ -167,6 +180,11 @@ typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
  Whether to print LLDebugTool's log event. Default is YES.
  */
 @property (assign , nonatomic) BOOL showDebugToolLog;
+
+/**
+ Customize the log style. Default is LLConfigLogDetail.
+ */
+@property (assign , nonatomic) LLConfigLogStyle logStyle;
 
 /**
  Window style. Decide how the Window displays. Default is LLConfigWindowSuspensionBall.

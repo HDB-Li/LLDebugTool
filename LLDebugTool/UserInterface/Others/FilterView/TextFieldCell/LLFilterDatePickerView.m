@@ -51,7 +51,7 @@
             NSMutableArray *days = [[NSMutableArray alloc] init];
             NSDate *date = [fromDate copy];
             while ([endDate timeIntervalSinceDate:date] >= 0) {
-                NSString *dateString = [[LLTool sharedTool] dayStringFromDate:date];
+                NSString *dateString = [LLTool dayStringFromDate:date];
                 if (dateString.length) {
                     [days addObject:dateString];
                 }

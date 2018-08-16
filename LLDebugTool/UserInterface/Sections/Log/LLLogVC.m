@@ -30,7 +30,8 @@
 #import "LLLogContentVC.h"
 #import "LLImageNameConfig.h"
 #import "LLSearchBar.h"
-#import "LLAppHelper.h"
+#import "NSObject+LL_Utils.h"
+#import "LLTool.h"
 
 static NSString *const kLogCellID = @"LLLogCell";
 
@@ -214,7 +215,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 #pragma mark - Primary
 - (void)initial {
     if (_launchDate == nil) {
-        _launchDate = [LLAppHelper sharedHelper].launchDate;
+        _launchDate = [NSObject launchDate];
     }
     
     self.dataArray = [[NSMutableArray alloc] init];
@@ -298,12 +299,17 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)loadData {
     self.searchBar.text = nil;
-    [self.totalDataArray removeAllObjects];
-    [self.totalDataArray addObjectsFromArray:[[LLStorageManager sharedManager] getAllLogModelsWithLaunchDate:_launchDate]];
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:self.totalDataArray];
-    [self.filterView configWithData:self.totalDataArray];
-    [self.tableView reloadData];
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Loading"];
+    [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [LLTool hideLoadingMessage];
+        [weakSelf.totalDataArray removeAllObjects];
+        [weakSelf.totalDataArray addObjectsFromArray:result];
+        [weakSelf.dataArray removeAllObjects];
+        [weakSelf.dataArray addObjectsFromArray:weakSelf.totalDataArray];
+        [weakSelf.filterView configWithData:weakSelf.totalDataArray];
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)filterData {
@@ -391,21 +397,26 @@ static NSString *const kLogCellID = @"LLLogCell";
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    NSMutableArray *models = [[NSMutableArray alloc] init];
+    __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.dataArray[indexPath.row]];
     }
-    if ([[LLStorageManager sharedManager] removeLogModels:models]) {
-        [self.totalDataArray removeObjectsInArray:models];
-        [self.dataArray removeObjectsInArray:models];
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        [self showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
-            if (action == 1) {
-                [self loadData];
-            }
-        }];
-    }
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Deleting"];
+    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+        [LLTool hideLoadingMessage];
+        if (result) {
+            [weakSelf.totalDataArray removeObjectsInArray:models];
+            [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        } else {
+            [weakSelf showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
+                if (action == 1) {
+                    [weakSelf loadData];
+                }
+            }];
+        }
+    }];
 }
 
 @end

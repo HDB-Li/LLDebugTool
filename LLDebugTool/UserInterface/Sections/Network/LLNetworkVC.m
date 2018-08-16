@@ -27,13 +27,13 @@
 #import "LLStorageManager.h"
 #import "LLNetworkContentVC.h"
 #import "LLImageNameConfig.h"
-#import "LLAppHelper.h"
 #import "LLConfig.h"
 #import "LLNetworkFilterView.h"
 #import "LLSearchBar.h"
 #import "LLNetworkFilterView.h"
 #import "LLMacros.h"
 #import "LLTool.h"
+#import "NSObject+LL_Utils.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
@@ -139,7 +139,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 #pragma mark - Primary
 - (void)initial {
     if (_launchDate == nil) {
-        _launchDate = [LLAppHelper sharedHelper].launchDate;
+        _launchDate = [NSObject launchDate];
     }
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.tempHttpDataArray = [[NSMutableArray alloc] init];
@@ -194,12 +194,17 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 - (void)loadData {
     self.searchBar.text = nil;
-    [self.httpDataArray removeAllObjects];
-    [self.httpDataArray addObjectsFromArray:[[LLStorageManager sharedManager] getAllNetworkModelsWithLaunchDate:_launchDate]];
-    [self.tempHttpDataArray removeAllObjects];
-    [self.tempHttpDataArray addObjectsFromArray:self.httpDataArray];
-    [self.filterView configWithData:self.httpDataArray];
-    [self.tableView reloadData];
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Loading"];
+    [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [LLTool hideLoadingMessage];
+        [weakSelf.httpDataArray removeAllObjects];
+        [weakSelf.httpDataArray addObjectsFromArray:result];
+        [weakSelf.tempHttpDataArray removeAllObjects];
+        [weakSelf.tempHttpDataArray addObjectsFromArray:weakSelf.httpDataArray];
+        [weakSelf.filterView configWithData:weakSelf.httpDataArray];
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)filterData {
@@ -284,21 +289,27 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    NSMutableArray *models = [[NSMutableArray alloc] init];
+    __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.tempHttpDataArray[indexPath.row]];
     }
-    if ([[LLStorageManager sharedManager] removeNetworkModels:models]) {
-        [self.httpDataArray removeObjectsInArray:models];
-        [self.tempHttpDataArray removeObjectsInArray:models];
-        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        [self showAlertControllerWithMessage:@"Remove network model fail" handler:^(NSInteger action) {
-            if (action == 1) {
-                [self loadData];
-            }
-        }];
-    }
+    
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Deleting"];
+    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+        [LLTool hideLoadingMessage];
+        if (result) {
+            [weakSelf.httpDataArray removeObjectsInArray:models];
+            [weakSelf.tempHttpDataArray removeObjectsInArray:models];
+            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        } else {
+            [weakSelf showAlertControllerWithMessage:@"Remove network model fail" handler:^(NSInteger action) {
+                if (action == 1) {
+                    [weakSelf loadData];
+                }
+            }];
+        }
+    }];
 }
 
 @end

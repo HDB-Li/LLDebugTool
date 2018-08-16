@@ -39,7 +39,7 @@
 /**
  Specifies the initialization method.
  */
-- (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action;
+- (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *_Nonnull)selector action:(LLScreenshotAction)action;
 
 /**
  Subclasses need to be rewritten.
@@ -81,7 +81,7 @@
 /**
  CGPoint value. add operation point.
  */
-- (void)addValue:(NSValue *)value;
+- (void)addValue:(NSValue *_Nonnull)value;
 
 @end
 

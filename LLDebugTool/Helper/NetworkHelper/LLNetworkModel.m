@@ -40,7 +40,7 @@
     if (![_startDate isEqualToString:startDate]) {
         _startDate = [startDate copy];
         if (!_identity) {
-            _identity = [startDate stringByAppendingString:[LLTool sharedTool].absolutelyIdentity];
+            _identity = [startDate stringByAppendingString:[LLTool absolutelyIdentity]];
         }
     }
 }
@@ -75,9 +75,17 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.startDate.length) {
-        _dateDescription = [[LLTool sharedTool] dateFromString:self.startDate];
+        _dateDescription = [LLTool dateFromString:self.startDate];
     }
     return _dateDescription;
+}
+
+- (NSString *)storageIdentity {
+    return self.identity;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.error.localizedDescription,self.identity];
 }
 
 @end

@@ -26,7 +26,7 @@
 
 @implementation UIImage (LL_Utils)
 
-+ (UIImage *)LL_imageNamed:(NSString *)name {
++ (UIImage *)LL_imageNamed:(NSString *_Nonnull)name {
     return [UIImage imageNamed:name inBundle:[LLConfig sharedConfig].imageBundle compatibleWithTraitCollection:nil];
 }
 

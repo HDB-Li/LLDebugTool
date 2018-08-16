@@ -91,8 +91,8 @@
   
     NSMutableSet *hostSet = [NSMutableSet set];
     
-    NSDate *fromDate = [[LLTool sharedTool] dateFromString:((LLNetworkModel *)data.lastObject).startDate];
-    NSDate *endDate = [[LLTool sharedTool] dateFromString:((LLNetworkModel *)data.firstObject).startDate];
+    NSDate *fromDate = [LLTool dateFromString:((LLNetworkModel *)data.lastObject).startDate];
+    NSDate *endDate = [LLTool dateFromString:((LLNetworkModel *)data.firstObject).startDate];
     if (!fromDate) {
         fromDate = [NSDate date];
     }
@@ -239,7 +239,7 @@
 
 - (LLFilterEventView *)hostView {
     if (!_hostView) {
-        _hostView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
+        _hostView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 100)];
         __weak typeof(self) weakSelf = self;
         _hostView.changeBlock = ^(NSArray *hosts) {
             weakSelf.currentHost = hosts;

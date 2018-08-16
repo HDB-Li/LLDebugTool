@@ -93,6 +93,9 @@ static LLConfig *_instance = nil;
     // Show LLDebugTool's log.
     _showDebugToolLog = YES;
     
+    // Set log style.
+    _logStyle = LLConfigLogDetail;
+    
     // Set default window's style.
     _windowStyle = LLConfigWindowSuspensionBall;
     

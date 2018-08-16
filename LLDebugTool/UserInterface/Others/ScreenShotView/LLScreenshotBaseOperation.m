@@ -68,7 +68,7 @@
     return self;
 }
 
-- (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action {
+- (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *_Nonnull)selector action:(LLScreenshotAction)action {
     if (self = [super init]) {
         _selector = selector;
         _action = action;
@@ -285,7 +285,7 @@
     return self;
 }
 
-- (void)addValue:(NSValue *)value {
+- (void)addValue:(NSValue *_Nonnull)value {
     [self.values addObject:value];
     if (self.values.count == 1) {
         [self.path moveToPoint:value.CGPointValue];

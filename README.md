@@ -3,7 +3,8 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.2-blue.svg)](https://img.shields.io/badge/pod-v1.1.2-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.3-blue.svg)](https://img.shields.io/badge/pod-v1.1.3-blue.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -34,36 +35,23 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## Recent updates (1.1.2) 
+## Recent updates (1.1.3)
 
-### Add window style
+### Refactory database
 
-Some time suspension ball is too big, so you can put `LLDebugTool` on power bar or network bar now. It can work like a suspension ball, just can't move.
+Fix some bugs operation in database. It looks more friendlier now, you can watch model's description in Mac software. Someday, `LLLogHelper` will be separated into an online event-tracking tool used in release environment.
 
-<div align="left">
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-windowStyle.png" width="20%"></img>
-</div>
+The new version will delete the old version of the table in database, if you need the old data, please upgrade when you don't need it.
 
 #### Add
 
-* Add window style enum. now you can show as suspension ball , power bar or network bar.
-* Add some `LLDebugTool` event log, you can close it in `LLConfig`.
-* Add `LLNetworkFilterView`, now you can filter network with url, header, body or response.
+* Add UnitTests and UITests, Even now there's nothing.
 
 #### Update
 
-* Update `LLURLProtocol` to fix some untrusted HTTP requests that fail.
-* Update `LLBaseViewController` to deal some bugs when project use runtime to change default settings.
-* Update `LLStorageManager` to ensure that database operations are not performed in the main thread.
-* Rename `LLFilterView` to `LLLogFilterView`.
-
-#### Remove
-
-* Remove `LLFilterLevelView`, use `LLFilterEventView` to replace.
-
-#### Extra
-
-* Adapter iPhone SE
+* Refactory `LLStorageManager` to make sure it will work well in synchronous and asynchronous or main thread and child thread.
+* `DEPRECATED` some method in `LLStorageManager`, `LLTool` and `LLAppHelper`, More infomations please see`LLStorageManager.h`, `LLTool.h` and `LLAppHelper.h`.
+* Add a enumeration values in `LLConfig` to control `LLLogHelper`'s log style.
         
 ## What can you do with LLDebugTool?
 
@@ -88,6 +76,18 @@ Some time suspension ball is too big, so you can put `LLDebugTool` on power bar 
 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool'`,If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment).
 2. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool`, running `pod repo update` before `pod install`.
 3. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+1. To integrate LLDebugTool into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "LLDebugTool"
+```
+
+2. Run `carthage` to build the framework and drag the built `LLDebugTool.framework` into your Xcode project.
 
 ### Source files
 

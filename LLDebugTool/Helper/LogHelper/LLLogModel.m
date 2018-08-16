@@ -44,7 +44,7 @@
         _date = [date copy];
         _launchDate = [launchDate copy];
         _userIdentity = [userIdentity copy];
-        _identity = [date stringByAppendingString:[LLTool sharedTool].absolutelyIdentity];
+        _identity = [date stringByAppendingString:[LLTool absolutelyIdentity]];
     }
     return self;
 }
@@ -71,9 +71,17 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.date.length) {
-        _dateDescription = [[LLTool sharedTool] dateFromString:self.date];
+        _dateDescription = [LLTool dateFromString:self.date];
     }
     return _dateDescription;
+}
+
+- (NSString *)storageIdentity {
+    return self.identity;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[LLLogModel] \n message:%@,\n file:%@,\n function:%@,\n lineNo:%ld,\n event:%@,\n level:%@,\n date:%@,\n launchDate:%@,\n userIdentity:%@,\n identity:%@",self.message,self.file,self.function,(long)self.lineNo,self.event,self.levelDescription,self.dateDescription,self.launchDate,self.userIdentity,self.identity];
 }
 
 @end

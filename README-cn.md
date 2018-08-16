@@ -3,7 +3,8 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.2-blue.svg)](https://img.shields.io/badge/pod-v1.1.2-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.3-blue.svg)](https://img.shields.io/badge/pod-v1.1.3-blue.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
 [![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
@@ -34,36 +35,23 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.1.2)
+## 最近更新 (1.1.3)
 
-### 增加窗口样式
+### 重构数据库
 
-因为有的时候悬浮球显得太大了，所以现在你可以将`LLDebugTool`放到电源状态栏或者网络状态栏的位置。使用起来和悬浮球是一样的，只是不能移动。
+修复了一些数据库的问题。 现在他能表现的更加友好，你可以通过Mac上的软件查看模型的内容。以后某天，`LLLogHelper` 会单独分离出来，成一个可以在release环境使用的埋点工具。
 
-<div align="left">
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-windowStyle.png" width="20%"></img>
-</div>
+新的版本会将旧版本的数据库删除，如果你仍有数据需要使用，请在你不需要的时候再更新。
 
 #### 新增
 
-* 增加窗口样式枚举值，现在你可以使用悬浮球、电源状态栏或者网络状态栏。
-* 增加 `LLDebugTool` 内部的log事件，可以在 `LLConfig` 中关闭。
-* 增加 `LLNetworkFilterView` ，现在你可以通过url、header、body或者response来筛选网络信息。
+* 增加功能测试和UI测试，虽然它现在什么都没有。
 
 #### 更新
 
-* 更新 `LLURLProtocol` 来修复一些不被信任的http请求失败的问题。
-* 更新 `LLBaseViewController` 来解决一些项目中运用runtime修改了默认值的问题。
-* 更新 `LLStorageManager` 来确保数据库操作不会在主线程中运行。
-* 将 `LLFilterView` 改名为 `LLLogFilterView`。
-
-#### 删除
-
-* 删除 `LLFilterLevelView`，用 `LLFilterEventView` 来代替。
-
-#### 额外
-
-* 适配 iPhone SE
+* 重构了`LLStorageManager`确保他能够在同步/异步或者主线程/子线程中正常的工作。
+* `DEPRECATED`了一些`LLStorageManager`, `LLTool` 和 `LLAppHelper`中的方法，具体内容可以查看`LLStorageManager.h`, `LLTool.h` 和 `LLAppHelper.h`.
+* 在`LLConfig`中增加一个枚举值，用来控制`LLLogHelper`的log方式。
 
 ## 我能用LLDebugTool做什么?
 

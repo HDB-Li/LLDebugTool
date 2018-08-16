@@ -28,6 +28,7 @@
 #import "LLNetworkVC.h"
 #import "LLLogVC.h"
 #import "LLConfig.h"
+#import "LLTool.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -132,6 +133,29 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     
     self.titleArray = [[NSMutableArray alloc] init];
     self.contentArray = [[NSMutableArray alloc] init];
+    
+    [self loadData];
+}
+
+- (void)loadData {
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Loading"];
+    [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        // Get log models.
+        __block NSArray *logs = result;
+        [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+            [LLTool hideLoadingMessage];
+            // Get nework requests.
+            NSArray *networkRequests = result;
+            [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
+        }];
+    }];
+}
+
+- (void)updateDataWithLogs:(NSArray *)logs networkRequests:(NSArray *)networkRequests {
+    [self.titleArray removeAllObjects];
+    [self.contentArray removeAllObjects];
+    
     if (_model.name) {
         [self.titleArray addObject:@"Name"];
         [self.contentArray addObject:_model.name];
@@ -145,13 +169,11 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.contentArray addObject:_model.date];
     }
     
-    NSArray *logs = [[LLStorageManager sharedManager] getAllLogModelsWithLaunchDate:_model.launchDate];
     if (logs.count) {
         [self.titleArray addObject:@"Logs"];
         [self.contentArray addObject:[NSString stringWithFormat:@"%ld logs",(unsigned long)logs.count]];
     }
     
-    NSArray *networkRequests = [[LLStorageManager sharedManager] getAllNetworkModelsWithLaunchDate:_model.launchDate];
     if (networkRequests.count) {
         [self.titleArray addObject:@"Network Requests"];
         [self.contentArray addObject:[NSString stringWithFormat:@"%ld network requests",(unsigned long)networkRequests.count]];
@@ -190,6 +212,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         }
         [self.contentArray addObject:str];
     }
+    [self.tableView reloadData];
 }
 
 - (void)copyButtonClick:(UIButton *)sender {

@@ -104,17 +104,17 @@
     self.toolBar.hidden = YES;
     UIImage *image = [self convertViewToImage:self.imageView];
     if (image) {
-        [[LLStorageManager sharedManager] saveScreenshot:image name:name];
+        [[LLStorageManager sharedManager] saveScreenshot:image name:name complete:nil];
         if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-            [[LLTool sharedTool] toastMessage:@"Save image in sandbox and album."];
+            [LLTool toastMessage:@"Save image in sandbox and album."];
         } else {
-            [[LLTool sharedTool] toastMessage:@"Save image in sandbox."];
+            [LLTool toastMessage:@"Save image in sandbox."];
         }
         [self hide];
     } else {
         self.toolBar.hidden = NO;
-        [[LLTool sharedTool] toastMessage:@"Save image failed."];
+        [LLTool toastMessage:@"Save image failed."];
     }
 }
 
@@ -149,7 +149,7 @@
 #pragma mark - Primary
 - (void)initialWithImage:(UIImage *)image {
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    self.name = [[LLTool sharedTool] staticStringFromDate:[NSDate date]];
+    self.name = [LLTool staticStringFromDate:[NSDate date]];
     
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;

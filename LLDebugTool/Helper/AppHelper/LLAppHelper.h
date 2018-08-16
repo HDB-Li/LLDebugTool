@@ -60,13 +60,14 @@ UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
 - (void)stopMonitoring;
 
 /**
- Get current app infos.Include "CPU Usage","Memory Usage","FPS","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Phone Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network States" and "SSID".
+ Get current app infos.Include "CPU Usage","Memory Usage","FPS","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Phone Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
  */
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos;
 
+#pragma mark - DEPRECATED
 /**
  Get this time launchDate. LaunchDate means the start time of the app, also it's the identity for crash model.
  */
-- (NSString *)launchDate;
+- (NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
 
 @end

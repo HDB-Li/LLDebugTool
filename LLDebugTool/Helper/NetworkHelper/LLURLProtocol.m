@@ -87,7 +87,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     [self.dataTask cancel];
     self.dataTask           = nil;
     LLNetworkModel *model = [[LLNetworkModel alloc] init];
-    model.startDate = [[LLTool sharedTool] stringFromDate:self.startDate];
+    model.startDate = [LLTool stringFromDate:self.startDate];
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
     model.headerFields = self.request.allHTTPHeaderFields;
@@ -110,7 +110,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     }
     model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;
-    [[LLStorageManager sharedManager] saveNetworkModel:model];
+    [[LLStorageManager sharedManager] saveModel:model complete:nil];
 }
 
 #pragma mark - NSURLSessionDelegate

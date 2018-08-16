@@ -1,7 +1,7 @@
 //
-//  LLScreenshotImageView.h
+//  NSObject+LLBase_Utils.h
 //
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  Copyright (c) 2018 LLBaseFoundation Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,39 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
-#import "LLScreenshotBaseOperation.h"
+#import <Foundation/Foundation.h>
 
-@interface LLScreenshotImageView : UIView
+@interface NSObject (LL_Utils)
 
-/**
- Image to show.
- */
-@property (nonatomic , strong , nullable) UIImage *image;
++ (NSString *)launchDate;
 
-/**
- Current operation.
- */
-@property (nonatomic , strong , readonly , nullable) LLScreenshotBaseOperation *currentOperation;
-
-/**
- Current action.
- */
-@property (nonatomic , assign) LLScreenshotAction currentAction;
-
-/**
- Current selector model.
- */
-@property (nonatomic , strong , nullable) LLScreenshotSelectorModel *currentSelectorModel;
-
-/**
- Specifies the initialization method.
- */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-
-/**
- Remove last operation in operations.
- */
-- (void)removeLastOperation;
++ (NSTimeInterval)startLoadTime;
 
 @end
