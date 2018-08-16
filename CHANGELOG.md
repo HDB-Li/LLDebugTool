@@ -1,3 +1,21 @@
+## [1.1.3](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.3) (08/16/2018)
+
+### Refactory database
+
+Fix some bugs operation in database. It looks more friendlier now, you can watch model's description in Mac software. Someday, `LLLogHelper` will be separated into an online event-tracking tool used in release environment.
+
+The new version will delete the old version of the table in database, if you need the old data, please upgrade when you don't need it.
+
+#### Add
+
+* Add UnitTests and UITests, Even now there's nothing.
+
+#### Update
+
+* Refactory `LLStorageManager` to make sure it will work well in synchronous and asynchronous or main thread and child thread.
+* `DEPRECATED` some method in `LLStorageManager`, `LLTool` and `LLAppHelper`, More infomations please see`LLStorageManager.h`, `LLTool.h` and `LLAppHelper.h`.
+* Add a enumeration values in `LLConfig` to control `LLLogHelper`'s log style.
+
 ## [1.1.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.2) (08/09/2018)
 
 ### Add window style
@@ -96,10 +114,11 @@ Fix some leaks.
 
 * Initial release version.
 * Contains the following functions:
-  
-  * Monitoring network requests.
-  * Save and view log information.
-  * Crash information collection.
-  * Monitoring app properties.
-  * Operation of sandbox file.
-  
+ 
+ * Monitoring network requests.
+ * Save and view log information.
+ * Crash information collection.
+ * Monitoring app properties.
+ * Operation of sandbox file.
+ 
+
