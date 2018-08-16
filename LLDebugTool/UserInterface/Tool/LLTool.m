@@ -31,63 +31,48 @@ static LLTool *_instance = nil;
 
 static CGFloat _toastTime = 2.0;
 
-@interface LLTool ()
+static NSDateFormatter *_dateFormatter = nil;
+static NSDateFormatter *_dayDateFormatter = nil;
+static NSDateFormatter *_staticDateFormatter = nil;
 
-@property (nonatomic , strong) NSDateFormatter *dateFormatter;
+static UILabel *_toastLabel = nil;
+static UILabel *_loadingLabel = nil;
+static NSTimer *_loadingTimer = nil;
 
-@property (nonatomic , strong) NSDateFormatter *dayDateFormatter;
-
-@property (nonatomic , strong) NSDateFormatter *staticDateFormatter;
-
-@property (nonatomic , strong) UILabel *toastLabel;
-
-@property (nonatomic , strong) UILabel *loadingLabel;
-
-@property (nonatomic , strong) NSTimer *loadingTimer;
-
-@end
+static unsigned long long _absolutelyIdentity = 0;
 
 @implementation LLTool
-{
-    unsigned long long _absolutelyIdentity;
-}
 
 #pragma mark - Class Method
-
-+ (instancetype)sharedTool {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLTool alloc] init];
-    });
-    return _instance;
-}
-
 + (NSString *)absolutelyIdentity {
-    return [[LLTool sharedTool] absolutelyIdentity];
+    @synchronized (self) {
+        _absolutelyIdentity++;
+        return [NSString stringWithFormat:@"%lld",_absolutelyIdentity];
+    }
 }
 
 + (NSString *)stringFromDate:(NSDate *)date {
-    return [[LLTool sharedTool] stringFromDate:date];
+    return [[self dateFormatter] stringFromDate:date];
 }
 
 + (NSDate *)dateFromString:(NSString *)string {
-    return [[LLTool sharedTool] dateFromString:string];
+    return [[self dateFormatter] dateFromString:string];
 }
 
 + (NSString *)dayStringFromDate:(NSDate *)date {
-    return [[LLTool sharedTool] dayStringFromDate:date];
+    return [[self dayDateFormatter] stringFromDate:date];
 }
 
 + (NSDate *)dayDateFromString:(NSString *)string {
-    return [[LLTool sharedTool] dayDateFromString:string];
+    return [[self dayDateFormatter] dateFromString:string];
 }
 
 + (NSString *)staticStringFromDate:(NSDate *)date {
-    return [[LLTool sharedTool] staticStringFromDate:date];
+    return [[self staticDateFormatter] stringFromDate:date];
 }
 
 + (NSDate *)staticDateFromString:(NSString *)string {
-    return [[LLTool sharedTool] staticDateFromString:string];
+    return [[self staticDateFormatter] dateFromString:string];
 }
 
 + (UIView *)lineView:(CGRect)frame superView:(UIView *)superView {
@@ -179,53 +164,9 @@ static CGFloat _toastTime = 2.0;
 }
 
 + (void)toastMessage:(NSString *)message {
-    [[LLTool sharedTool] toastMessage:message];
-}
-
-+ (void)loadingMessage:(NSString *)message {
-    [[LLTool sharedTool] loadingMessage:message];
-}
-
-+ (void)hideLoadingMessage {
-    [[LLTool sharedTool] hideLoadingMessage];
-}
-
-#pragma mark - Instance Method
-- (NSString *)absolutelyIdentity {
-    @synchronized (self) {
-        _absolutelyIdentity++;
-        return [NSString stringWithFormat:@"%lld",_absolutelyIdentity];
-    }
-}
-
-- (NSString *)stringFromDate:(NSDate *)date {
-    return [self.dateFormatter stringFromDate:date];
-}
-
-- (NSDate *)dateFromString:(NSString *)string {
-    return [self.dateFormatter dateFromString:string];
-}
-
-- (NSString *)dayStringFromDate:(NSDate *)date {
-    return [self.dayDateFormatter stringFromDate:date];
-}
-
-- (NSDate *)dayDateFromString:(NSString *)string {
-    return [self.dayDateFormatter dateFromString:string];
-}
-
-- (NSString *)staticStringFromDate:(NSDate *)date {
-    return [self.staticDateFormatter stringFromDate:date];
-}
-
-- (NSDate *)staticDateFromString:(NSString *)string {
-    return [self.staticDateFormatter dateFromString:string];
-}
-
-- (void)toastMessage:(NSString *)message {
-    if (self.toastLabel) {
-        [self.toastLabel removeFromSuperview];
-        self.toastLabel = nil;
+    if (_toastLabel) {
+        [_toastLabel removeFromSuperview];
+        _toastLabel = nil;
     }
     
     __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
@@ -242,25 +183,25 @@ static CGFloat _toastTime = 2.0;
     label.backgroundColor = [UIColor blackColor];
     label.textColor = [UIColor whiteColor];
     [[UIApplication sharedApplication].delegate.window addSubview:label];
-    self.toastLabel = label;
+    _toastLabel = label;
     [UIView animateWithDuration:0.25 animations:^{
         label.alpha = 1;
     } completion:^(BOOL finished) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_toastTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.1 animations:^{
-                self.toastLabel.alpha = 0;
+                _toastLabel.alpha = 0;
             } completion:^(BOOL finished) {
-                [self.toastLabel removeFromSuperview];
-                self.toastLabel = nil;
+                [_toastLabel removeFromSuperview];
+                _toastLabel = nil;
             }];
         });
     }];
 }
 
-- (void)loadingMessage:(NSString *)message {
-    if (self.loadingLabel) {
-        [self.loadingLabel removeFromSuperview];
-        self.loadingLabel = nil;
++ (void)loadingMessage:(NSString *)message {
+    if (_loadingLabel) {
+        [_loadingLabel removeFromSuperview];
+        _loadingLabel = nil;
     }
     
     __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
@@ -277,40 +218,40 @@ static CGFloat _toastTime = 2.0;
     label.backgroundColor = [UIColor blackColor];
     label.textColor = [UIColor whiteColor];
     [[UIApplication sharedApplication].delegate.window addSubview:label];
-    self.loadingLabel = label;
-    [self startLoadingMessageTimer];
+    _loadingLabel = label;
     [UIView animateWithDuration:0.25 animations:^{
         label.alpha = 1;
     } completion:^(BOOL finished) {
-
+        
     }];
+    [self startLoadingMessageTimer];
 }
 
-- (void)hideLoadingMessage {
-    if (self.loadingLabel.superview) {
++ (void)hideLoadingMessage {
+    if (_loadingLabel.superview) {
         [self removeLoadingMessageTimer];
         [UIView animateWithDuration:0.1 animations:^{
-            self.loadingLabel.alpha = 0;
+            _loadingLabel.alpha = 0;
         } completion:^(BOOL finished) {
-            [self.loadingLabel removeFromSuperview];
-            self.loadingLabel = nil;
+            [_loadingLabel removeFromSuperview];
+            _loadingLabel = nil;
         }];
     }
 }
 
-- (void)startLoadingMessageTimer {
++ (void)startLoadingMessageTimer {
     [self removeLoadingMessageTimer];
     _loadingTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadingMessageTimerAction:) userInfo:nil repeats:YES];
 }
 
-- (void)removeLoadingMessageTimer {
++ (void)removeLoadingMessageTimer {
     if ([_loadingTimer isValid]) {
         [_loadingTimer invalidate];
         _loadingTimer = nil;
     }
 }
 
-- (void)loadingMessageTimerAction:(NSTimer *)timer {
++ (void)loadingMessageTimerAction:(NSTimer *)timer {
     if (_loadingLabel.superview) {
         if ([_loadingLabel.text hasSuffix:@"..."]) {
             _loadingLabel.text = [_loadingLabel.text substringToIndex:_loadingLabel.text.length - 3];
@@ -323,7 +264,7 @@ static CGFloat _toastTime = 2.0;
 }
 
 #pragma mark - Lazy load
-- (NSDateFormatter *)dateFormatter {
++ (NSDateFormatter *)dateFormatter {
     if (!_dateFormatter) {
         _dateFormatter = [[NSDateFormatter alloc] init];
         _dateFormatter.dateFormat = [LLConfig sharedConfig].dateFormatter;
@@ -331,7 +272,7 @@ static CGFloat _toastTime = 2.0;
     return _dateFormatter;
 }
 
-- (NSDateFormatter *)dayDateFormatter {
++ (NSDateFormatter *)dayDateFormatter {
     if (!_dayDateFormatter) {
         _dayDateFormatter = [[NSDateFormatter alloc] init];
         _dayDateFormatter.dateFormat = @"yyyy-MM-dd";
@@ -339,12 +280,50 @@ static CGFloat _toastTime = 2.0;
     return _dayDateFormatter;
 }
 
-- (NSDateFormatter *)staticDateFormatter {
++ (NSDateFormatter *)staticDateFormatter {
     if (!_staticDateFormatter) {
         _staticDateFormatter = [[NSDateFormatter alloc] init];
         _staticDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     }
     return _staticDateFormatter;
+}
+
+#pragma mark - DEPRECATED
+
++ (instancetype)sharedTool {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [[LLTool alloc] init];
+    });
+    return _instance;
+}
+
+- (NSString *)absolutelyIdentity {
+    return [LLTool absolutelyIdentity];
+}
+
+- (NSString *)stringFromDate:(NSDate *)date {
+    return [LLTool stringFromDate:date];
+}
+
+- (NSDate *)dateFromString:(NSString *)string {
+    return [LLTool dateFromString:string];
+}
+
+- (NSString *)dayStringFromDate:(NSDate *)date {
+    return [LLTool dayStringFromDate:date];
+}
+
+- (NSDate *)staticDateFromString:(NSString *)string {
+    return [LLTool staticDateFromString:string];
+}
+
+- (NSString *)staticStringFromDate:(NSDate *)date {
+    return [LLTool staticStringFromDate:date];
+}
+
+- (void)toastMessage:(NSString *)message {
+    [LLTool toastMessage:message];
 }
 
 @end
