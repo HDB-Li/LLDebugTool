@@ -192,7 +192,9 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 - (void)_loadData {
     __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
+        [LLTool hideLoadingMessage];
         [weakSelf.dataArray removeAllObjects];
         [weakSelf.dataArray addObjectsFromArray:result];
         [weakSelf.tableView reloadData];

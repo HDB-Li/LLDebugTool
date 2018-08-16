@@ -195,7 +195,9 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)loadData {
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [LLTool hideLoadingMessage];
         [weakSelf.httpDataArray removeAllObjects];
         [weakSelf.httpDataArray addObjectsFromArray:result];
         [weakSelf.tempHttpDataArray removeAllObjects];
@@ -293,7 +295,9 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     }
     
     __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Deleting"];
     [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+        [LLTool hideLoadingMessage];
         if (result) {
             [weakSelf.httpDataArray removeObjectsInArray:models];
             [weakSelf.tempHttpDataArray removeObjectsInArray:models];

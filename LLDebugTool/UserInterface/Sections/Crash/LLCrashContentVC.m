@@ -28,6 +28,7 @@
 #import "LLNetworkVC.h"
 #import "LLLogVC.h"
 #import "LLConfig.h"
+#import "LLTool.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -138,10 +139,13 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
         // Get log models.
         __block NSArray *logs = result;
         [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+            [LLTool hideLoadingMessage];
+            // Get nework requests.
             NSArray *networkRequests = result;
             [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
         }];
