@@ -36,6 +36,8 @@ static NSString *const kIdentityColumn = @"Identity";
 static NSString *const kLaunchDateColumn = @"LaunchDate";
 static NSString *const kDescriptionColumn = @"Desc";
 
+static NSString *const kDatabaseVersion = @"1";
+
 @interface LLStorageManager ()
 
 @property (strong , nonatomic) FMDatabaseQueue * dbQueue;
@@ -461,7 +463,7 @@ static NSString *const kDescriptionColumn = @"Desc";
 }
 
 - (NSString *)tableNameFromClass:(Class)cls {
-    return [NSString stringWithFormat:@"%@Table",NSStringFromClass(cls)];
+    return [NSString stringWithFormat:@"%@Table_%@",NSStringFromClass(cls),kDatabaseVersion];
 }
 
 - (NSString *)createTableSQLFromClass:(Class)cls {
