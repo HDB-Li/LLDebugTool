@@ -128,7 +128,7 @@ static LLDebugTool *_instance = nil;
 
 - (void)checkVersion {
     [LLTool createDirectoryAtPath:[LLConfig sharedConfig].folderPath];
-    NSString *filePath = [[LLConfig sharedConfig].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
+    __block NSString *filePath = [[LLConfig sharedConfig].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
     NSMutableDictionary *localInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
     if (!localInfo) {
         localInfo = [[NSMutableDictionary alloc] init];
@@ -141,9 +141,13 @@ static LLDebugTool *_instance = nil;
     
     if ([self.versionNumber compare:version] == NSOrderedDescending) {
         // Do update if needed.
-        [self updateSomethingWithVersion:version];
-        [localInfo setObject:self.versionNumber forKey:@"version"];
-        [localInfo writeToFile:filePath atomically:YES];
+        [self updateSomethingWithVersion:version completion:^(BOOL result) {
+            if (!result) {
+                NSLog(@"Failed to update old data");
+            }
+            [localInfo setObject:self.versionNumber forKey:@"version"];
+            [localInfo writeToFile:filePath atomically:YES];
+        }];
     }
     
     if (self.isBetaVersion) {
@@ -152,9 +156,15 @@ static LLDebugTool *_instance = nil;
     }
 }
 
-- (NSString *)updateSomethingWithVersion:(NSString *)version {
-    // Code in future version. Return next necessary update version.
-    return @"1.1.2";
+- (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {
+    // Refactory database. Need rename tableName and table structure.
+    if ([version compare:@"1.1.3"] == NSOrderedAscending) {
+        [[LLStorageManager sharedManager] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
+            if (completion) {
+                completion(result);
+            }
+        }];
+    }
 }
 
 @end

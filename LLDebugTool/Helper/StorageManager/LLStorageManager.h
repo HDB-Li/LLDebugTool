@@ -105,6 +105,9 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 - (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete;
 - (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
 
+#pragma mark -
+- (void)updateDatabaseWithVersion:(NSString *)version complete:(LLStorageManagerBoolBlock)complete;
+
 #pragma mark - DEPRECATED
 /**
  Save a crash model to database.
