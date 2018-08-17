@@ -77,6 +77,18 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`时，可先运行`pod repo update`，再执行`pod install`。
 3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) 是一个分散的依赖管理器，它构建您的依赖并为您提供framework框架。
+
+1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
+
+```ogdl
+github "LLDebugTool"
+```
+
+2. 运行 `carthage` 来构建框架，并将构建的`LLDebugTool.framework`拖到Xcode项目中。
+
 ### 源文件
 
 您可以直接将名为LLDebugTool文件夹的源文件添加到项目中。
