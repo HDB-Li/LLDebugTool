@@ -28,6 +28,8 @@
 - (NSDictionary *)LL_jsonDictionary;
 - (NSArray *)LL_jsonArray;
 
+- (unsigned long long)byteLength;
+
 @end
 
 @interface NSDictionary (LL_Utils)

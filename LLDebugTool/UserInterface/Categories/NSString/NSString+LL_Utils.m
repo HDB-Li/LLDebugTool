@@ -53,6 +53,24 @@
     return nil;
 }
 
+- (unsigned long long)byteLength {
+    if (self.length == 0) {
+        return 0;
+    }
+    unsigned long long length = 0;
+    char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
+    for (NSInteger i = 0 ; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding] ; i++)
+    {
+        if (*p) {
+            p++;
+            length++;
+        } else {
+            p++;
+        }
+    }
+    return (length + 1) / 2;
+}
+
 @end
 
 @implementation NSDictionary (LL_Utils)
