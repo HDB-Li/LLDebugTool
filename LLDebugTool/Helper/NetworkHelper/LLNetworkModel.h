@@ -84,6 +84,21 @@
 @property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*headerFields;
 
 /**
+ Network response header.
+ */
+@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*responseHeaderFields;
+
+@property (nonatomic , copy , readonly , nullable) NSString *requestDataTraffic;
+
+@property (nonatomic , copy , readonly , nullable) NSString *responseDataTraffic;
+
+@property (nonatomic , copy , readonly , nullable) NSString *totalDataTraffic;
+
+@property (nonatomic , assign , readonly) unsigned long long requestDataTrafficValue;
+@property (nonatomic , assign , readonly) unsigned long long responseDataTrafficValue;
+@property (nonatomic , assign , readonly) unsigned long long totalDataTrafficValue;
+
+/**
  Network request identity.
  */
 @property (nonatomic , copy , readonly , nonnull) NSString *identity;

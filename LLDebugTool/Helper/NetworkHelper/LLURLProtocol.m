@@ -88,19 +88,22 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     self.dataTask           = nil;
     LLNetworkModel *model = [[LLNetworkModel alloc] init];
     model.startDate = [LLTool stringFromDate:self.startDate];
+    // Request
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
-    model.headerFields = self.request.allHTTPHeaderFields;
-    model.mineType = self.response.MIMEType;
+    model.headerFields = [self.request.allHTTPHeaderFields mutableCopy];
     if (self.request.HTTPBody) {
         model.requestBody = [LLTool convertJSONStringFromData:self.request.HTTPBody];
     } else if (self.request.HTTPBodyStream) {
         NSData* data = [self dataFromInputStream:self.request.HTTPBodyStream];
         model.requestBody = [LLTool convertJSONStringFromData:data];
     }
+    // Response
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
+    model.mineType = self.response.MIMEType;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
     model.responseData = self.data;
+    model.responseHeaderFields = httpResponse.allHeaderFields;
     if (self.response.MIMEType) {
         model.isImage = [self.response.MIMEType rangeOfString:@"image"].location != NSNotFound;
     }

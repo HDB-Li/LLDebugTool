@@ -23,10 +23,25 @@
 
 #import "LLNetworkModel.h"
 #import "LLTool.h"
+#import "NSString+LL_Utils.h"
 
 @interface LLNetworkModel ()
 
+@property (nonatomic , copy , nullable) NSString *requestDataTraffic;
+
+@property (nonatomic , copy , nullable) NSString *responseDataTraffic;
+
+@property (nonatomic , copy , nullable) NSString *totalDataTraffic;
+
+@property (nonatomic , assign) unsigned long long requestDataTrafficValue;
+
+@property (nonatomic , assign) unsigned long long responseDataTrafficValue;
+
+@property (nonatomic , assign) unsigned long long totalDataTrafficValue;
+
 @property (nonatomic , copy , nonnull) NSString *headerString;
+
+@property (nonatomic , copy , nonnull) NSString *responseHeaderString;
 
 @property (nonatomic , copy , nonnull) NSString *responseString;
 
@@ -45,25 +60,18 @@
     }
 }
 
-- (void)setHeaderFields:(NSDictionary<NSString *,NSString *> *)headerFields {
-    if (_headerFields != headerFields) {
-        _headerFields = headerFields;
-        _headerString = nil;
-    }
-}
-
-- (void)setResponseData:(NSData *)responseData {
-    if (_responseData != responseData) {
-        _responseData = responseData;
-        _responseString = nil;
-    }
-}
-
 - (NSString *)headerString {
     if (!_headerString) {
         _headerString = [LLTool convertJSONStringFromDictionary:self.headerFields];
     }
     return _headerString;
+}
+
+- (NSString *)responseHeaderString {
+    if (!_responseHeaderString) {
+        _responseHeaderString = [LLTool convertJSONStringFromDictionary:self.responseHeaderFields];
+    }
+    return _responseHeaderString;
 }
 
 - (NSString *)responseString {
@@ -80,12 +88,63 @@
     return _dateDescription;
 }
 
+- (NSString *)requestDataTraffic {
+    if (!_requestDataTraffic) {
+        _requestDataTraffic = [NSByteCountFormatter stringFromByteCount:self.requestDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
+    }
+    return _requestDataTraffic;
+}
+
+- (NSString *)responseDataTraffic {
+    if (!_responseDataTraffic) {
+        _responseDataTraffic = [NSByteCountFormatter stringFromByteCount:self.responseDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
+    }
+    return _responseDataTraffic;
+}
+
+- (NSString *)totalDataTraffic {
+    if (!_totalDataTraffic) {
+        _totalDataTraffic = [NSByteCountFormatter stringFromByteCount:self.totalDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
+    }
+    return _totalDataTraffic;
+}
+
+- (unsigned long long)requestDataTrafficValue {
+    if (!_requestDataTrafficValue) {
+        unsigned long long urlTraffic = self.url.absoluteString.byteLength;
+        unsigned long long headerTraffic = self.headerString.byteLength;
+        unsigned long long bodyTraffic = self.requestBody.byteLength;
+        unsigned long long methodTraffic = self.method.byteLength;
+        // I had try observe the traffic by Charles.
+        // There're more headers in Charles than headers in request.headerFields.
+        // So request data traffic is a little smaller than real traffic, If you known how to deal this problem, please open a issue in github.
+        _requestDataTrafficValue = urlTraffic + headerTraffic + bodyTraffic + methodTraffic;
+    }
+    return _requestDataTrafficValue;
+}
+
+- (unsigned long long)responseDataTrafficValue {
+    if (!_responseDataTrafficValue) {
+        unsigned long long headerTraffic = self.responseHeaderString.byteLength;
+        unsigned long long bodyTraffic = self.responseData.length;
+        _responseDataTrafficValue = headerTraffic + bodyTraffic;
+    }
+    return _responseDataTrafficValue;
+}
+
+- (unsigned long long)totalDataTrafficValue {
+    if (!_totalDataTrafficValue) {
+        _totalDataTrafficValue = self.requestDataTrafficValue + self.responseDataTrafficValue;
+    }
+    return _totalDataTrafficValue;
+}
+
 - (NSString *)storageIdentity {
     return self.identity;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.error.localizedDescription,self.identity];
+    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.totalDataTraffic,self.error.localizedDescription,self.identity];
 }
 
 @end
