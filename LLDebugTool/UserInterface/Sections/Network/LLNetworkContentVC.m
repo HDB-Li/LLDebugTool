@@ -77,14 +77,17 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
         id obj = self.contentArray[indexPath.row];
         if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
             UIImage *image = [UIImage imageWithData:obj];
-            [UIPasteboard generalPasteboard].image = image;
-        } else {
+            if ([image isKindOfClass:[UIImage class]]) {
+                [UIPasteboard generalPasteboard].image = image;
+                [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+            }
+        } else if ([obj isKindOfClass:[NSData class]] || [obj isKindOfClass:[NSString class]]) {
             if ([obj isKindOfClass:[NSData class]]) {
                 obj = [self convertDataToHexStr:obj];
             }
             [UIPasteboard generalPasteboard].string = obj;
+            [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
         }
-        [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
 
 }
