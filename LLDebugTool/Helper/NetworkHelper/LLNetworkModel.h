@@ -88,14 +88,34 @@
  */
 @property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*responseHeaderFields;
 
+/**
+ Upload data traffic.
+ */
 @property (nonatomic , copy , readonly , nullable) NSString *requestDataTraffic;
 
+/**
+ Download data traffic.
+ */
 @property (nonatomic , copy , readonly , nullable) NSString *responseDataTraffic;
 
+/**
+ Total data traffic.
+ */
 @property (nonatomic , copy , readonly , nullable) NSString *totalDataTraffic;
 
+/**
+ Upload data traffic value.
+ */
 @property (nonatomic , assign , readonly) unsigned long long requestDataTrafficValue;
+
+/**
+ Download data traffic value.
+ */
 @property (nonatomic , assign , readonly) unsigned long long responseDataTrafficValue;
+
+/**
+ Total data traffic value.
+ */
 @property (nonatomic , assign , readonly) unsigned long long totalDataTrafficValue;
 
 /**
