@@ -60,9 +60,14 @@ UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
 - (void)stopMonitoring;
 
 /**
- Get current app infos.Include "CPU Usage","Memory Usage","FPS","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Phone Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
+ Get current app infos.Include "CPU Usage","Memory Usage","FPS","Data Traffic","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Phone Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
  */
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos;
+
+/**
+ Update data traffic.
+ */
+- (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
 #pragma mark - DEPRECATED
 /**
