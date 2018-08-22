@@ -74,16 +74,9 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 }
 
 - (void)didReceiveLLAppHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
-    NSDictionary *userInfo = notifi.userInfo;
-    CGFloat cpu = [userInfo[LLAppHelperCPUKey] floatValue];
-    CGFloat usedMemory = [userInfo[LLAppHelperMemoryUsedKey] floatValue];
-    CGFloat freeMemory = [userInfo[LLAppHelperMemoryFreeKey] floatValue];
-    CGFloat fps = [userInfo[LLAppHelperFPSKey] floatValue];
-    
-    NSArray *dynamic = [[NSArray alloc] initWithObjects:@{@"CPU Usage" : [NSString stringWithFormat:@"%.2f%%",cpu]},@{@"Memory Usage" : [NSString stringWithFormat:@"Used:%@, Free:%@",[NSByteCountFormatter stringFromByteCount:usedMemory countStyle:NSByteCountFormatterCountStyleMemory],[NSByteCountFormatter stringFromByteCount:freeMemory countStyle:NSByteCountFormatterCountStyleMemory]]},@{@"FPS" : [NSString stringWithFormat:@"%ld FPS",(long)fps]}, nil];
+    NSArray *dynamic = notifi.object;
     [self.dataArray replaceObjectAtIndex:0 withObject:dynamic];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-
 }
 
 #pragma mark - Table view data source

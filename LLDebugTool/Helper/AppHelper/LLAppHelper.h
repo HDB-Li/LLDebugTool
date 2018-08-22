@@ -36,6 +36,7 @@ UIKIT_EXTERN NSString * const LLAppHelperMemoryUsedKey;
 UIKIT_EXTERN NSString * const LLAppHelperMemoryFreeKey;
 UIKIT_EXTERN NSString * const LLAppHelperMemoryTotalKey;
 UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
+UIKIT_EXTERN NSString * const LLAppHelperDataTrafficKey;
 
 /**
  Monitoring app's properties.
@@ -65,7 +66,7 @@ UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos;
 
 /**
- Update data traffic.
+ Update data traffic when finish a network request.
  */
 - (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 

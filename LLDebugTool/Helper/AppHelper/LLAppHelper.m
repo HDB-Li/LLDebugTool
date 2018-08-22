@@ -30,6 +30,8 @@
 #import "LLMacros.h"
 #import "LLTool.h"
 #import "NSObject+LL_Utils.h"
+#import <ifaddrs.h>
+#import <net/if.h>
 
 static LLAppHelper *_instance = nil;
 
@@ -39,6 +41,7 @@ NSString * const LLAppHelperMemoryUsedKey = @"LLAppHelperMemoryUsedKey";
 NSString * const LLAppHelperMemoryFreeKey = @"LLAppHelperMemoryFreeKey";
 NSString * const LLAppHelperMemoryTotalKey = @"LLAppHelperMemoryTotalKey";
 NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
+NSString * const LLAppHelperDataTrafficKey = @"LLAppHelperDataTrafficKey";
 
 @interface LLAppHelper ()
 {
@@ -63,6 +66,8 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     NSString *_phoneName;
     NSString *_systemVersion;
     NSString *_screenResolution;
+    NSString *_languageCode;
+    NSString *_cpuType;
 }
 
 @property (nonatomic , strong) NSTimer *memoryTimer;
@@ -117,33 +122,14 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos {
-//    NSArray *dynamic = [[NSArray alloc] initWithObjects:@{@"CPU Usage" : [self CPUUsage]},@{@"Memory Usage" : [self MemoryUsage]},@{@"FPS" : [self FPS]},@{@"Data Traffic" : [self dataTraffic]},nil];
-    NSArray *dynamic = @[@{@"CPU Usage" : [self cpuUsage]},
-                         @{@"Memory Usage" : [self memoryUsage]},
-                         @{@"FPS" : [self fps]},
-                         @{@"Data Traffic" : [self dataTraffic]}];
+    
+    NSArray *dynamic = [self dynamicInfos];
     
     // App Info
-    NSArray *apps = @[@{@"App Name" : [self appName]},
-                      @{@"Bundle Identifier" : [self bundleIdentifier]},
-                      @{@"App Version" : [self appVersion]},
-                      @{@"App Start Time" : [self appStartTime]}];
+    NSArray *apps = [self applicationInfos];
 
     // Device Info
-    NSArray *devices = @[@{@"Device Model" : [self deviceModel]},
-                         @{@"Phone Name" : [self phoneName]},
-                         @{@"System Version" : [self systemVersion]},
-                         @{@"Screen Resolution" : [self screenResolution]},
-                         @{@"Language Code" : [NSLocale preferredLanguages].firstObject ?: @"Unknown"},
-                         @{@"Battery Level" : [UIDevice currentDevice].batteryLevel != -1 ? [NSString stringWithFormat:@"%ld%%",(long)([UIDevice currentDevice].batteryLevel * 100)] : @"Unknown"},
-                         @{@"CPU Type" : [self cpuSubtypeString] ?: @"Unknown"},
-                         @{@"Disk" : [NSString stringWithFormat:@"%@ / %@", [NSByteCountFormatter stringFromByteCount:[self getFreeDisk] countStyle:NSByteCountFormatterCountStyleFile],[NSByteCountFormatter stringFromByteCount:[self getTotalDisk] countStyle:NSByteCountFormatterCountStyleFile]]},
-                         @{@"Network State" : [self networkStateFromStatebar]}];
-    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
-    NSString *ssid = [self currentWifiSSID];
-    if (ssid) {
-        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
-    }
+    NSArray *devices = [self deviceInfos];
     
     return [[NSMutableArray alloc] initWithObjects:dynamic ,apps, devices, nil];
 }
@@ -171,6 +157,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSString *)dataTraffic {
+    return [self dataCounter];
     NSString *total = [NSByteCountFormatter stringFromByteCount:_totalDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
     NSString *request = [NSByteCountFormatter stringFromByteCount:_requestDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
     NSString *response = [NSByteCountFormatter stringFromByteCount:_responseDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
@@ -236,6 +223,44 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     return _screenResolution;
 }
 
+- (NSString *)languageCode {
+    if (!_languageCode) {
+        _languageCode = [NSLocale preferredLanguages].firstObject ?: @"Unknown";
+    }
+    return _languageCode;
+}
+
+- (NSString *)batteryLevel {
+    return [UIDevice currentDevice].batteryLevel != -1 ? [NSString stringWithFormat:@"%ld%%",(long)([UIDevice currentDevice].batteryLevel * 100)] : @"Unknown";
+}
+
+- (NSString *)cpuType {
+    return [self cpuSubtypeString] ?: @"Unknown";
+}
+
+- (NSString *)disk {
+    NSString *free = [NSByteCountFormatter stringFromByteCount:[self getFreeDisk] countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *total = [NSByteCountFormatter stringFromByteCount:[self getTotalDisk] countStyle:NSByteCountFormatterCountStyleFile];
+    return [NSString stringWithFormat:@"%@ / %@", free,total];
+}
+
+- (NSString *)networkState {
+    return [self networkStateFromStatebar];
+}
+
+- (NSString *)ssid {
+    return [self currentWifiSSID];
+}
+
+- (NSString *)dataCounter {
+    NSArray *datas = [self dataCounters];
+    NSString *wifiSent = [NSByteCountFormatter stringFromByteCount:[datas[0] unsignedLongLongValue] countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *wifiReceived = [NSByteCountFormatter stringFromByteCount:[datas[1] unsignedLongLongValue] countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *WWANSent = [NSByteCountFormatter stringFromByteCount:[datas[2] unsignedLongLongValue] countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *WWANReceived = [NSByteCountFormatter stringFromByteCount:[datas[3] unsignedLongLongValue] countStyle:NSByteCountFormatterCountStyleFile];
+    return [NSString stringWithFormat:@"%@,%@,%@,%@",wifiSent,wifiReceived,WWANSent,WWANReceived];
+}
+
 - (NSString *)launchDate {
     return [NSObject launchDate];
 }
@@ -246,6 +271,39 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
  */
 - (void)initial {
     _fps = 60;
+}
+
+- (NSArray *)dynamicInfos {
+    return @[@{@"CPU Usage" : [self cpuUsage]},
+             @{@"Memory Usage" : [self memoryUsage]},
+             @{@"FPS" : [self fps]},
+             @{@"Data Traffic" : [self dataTraffic]}];
+}
+
+- (NSArray *)applicationInfos {
+    return @[@{@"App Name" : [self appName]},
+             @{@"Bundle Identifier" : [self bundleIdentifier]},
+             @{@"App Version" : [self appVersion]},
+             @{@"App Start Time" : [self appStartTime]}];
+}
+
+- (NSArray *)deviceInfos {
+    NSArray *devices = @[@{@"Device Model" : [self deviceModel]},
+                         @{@"Phone Name" : [self phoneName]},
+                         @{@"System Version" : [self systemVersion]},
+                         @{@"Screen Resolution" : [self screenResolution]},
+                         @{@"Language Code" : [self languageCode]},
+                         @{@"Battery Level" : [self batteryLevel]},
+                         @{@"CPU Type" : [self cpuType]},
+                         @{@"Disk" : [self disk]},
+                         @{@"Network State" : [self networkStateFromStatebar]}];
+    
+    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
+    NSString *ssid = [self currentWifiSSID];
+    if (ssid) {
+        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
+    }
+    return mutDevices;
 }
 
 #pragma mark - CPU
@@ -290,7 +348,6 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     if (!_cpuTypeString) {
         _cpuTypeString = [self stringFromCpuType:[self getCpuType]];
     }
-    
     return _cpuTypeString;
 }
 
@@ -345,7 +402,7 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (void)postAppHelperDidUpdateAppInfosNotification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:LLAppHelperDidUpdateAppInfosNotificationName object:nil userInfo:@{LLAppHelperCPUKey:@(_cpu),LLAppHelperFPSKey:@(_fps),LLAppHelperMemoryFreeKey:@(_freeMemory),LLAppHelperMemoryUsedKey:@(_usedMemory),LLAppHelperMemoryTotalKey:@(_totalMemory)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLAppHelperDidUpdateAppInfosNotificationName object:[self dynamicInfos] userInfo:@{LLAppHelperCPUKey:@(_cpu),LLAppHelperFPSKey:@(_fps),LLAppHelperMemoryFreeKey:@(_freeMemory),LLAppHelperMemoryUsedKey:@(_usedMemory),LLAppHelperMemoryTotalKey:@(_totalMemory),LLAppHelperDataTrafficKey:[self dataCounter]}];
 }
 
 #pragma mark - FPS
@@ -456,5 +513,46 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     }
     return _networkState;
 }
+
+#pragma mark - DataTraffic
+- (NSArray *)dataCounters
+
+{
+    struct ifaddrs *addrs;
+    const struct ifaddrs *cursor;
+    
+    u_int32_t WiFiSent = 0;
+    u_int32_t WiFiReceived = 0;
+    u_int32_t WWANSent = 0;
+    u_int32_t WWANReceived = 0;
+    
+    if (getifaddrs(&addrs) == 0) {
+        cursor = addrs;
+        while (cursor != NULL) {
+            if (cursor->ifa_addr->sa_family == AF_LINK) {
+                // en0 is WiFi, pdp_ip0 is WWAN.
+                NSString *name = [NSString stringWithFormat:@"%s",cursor->ifa_name];
+                if ([name hasPrefix:@"en0"]) {
+                    const struct if_data *ifa_data = (struct if_data *)cursor->ifa_data;
+                    if (ifa_data != NULL) {
+                        WiFiSent += ifa_data->ifi_obytes;
+                        WiFiReceived += ifa_data->ifi_ibytes;
+                    }
+                } else if ([name hasPrefix:@"pdp_ip0"]) {
+                    const struct if_data *ifa_data = (struct if_data *)cursor->ifa_data;
+                    if(ifa_data != NULL) {
+                        WWANSent += ifa_data->ifi_obytes;
+                        WWANReceived += ifa_data->ifi_ibytes;
+                    }
+                }
+            }
+            cursor = cursor->ifa_next;
+        }
+        freeifaddrs(addrs);
+    }
+    
+    return @[[NSNumber numberWithUnsignedLongLong:WiFiSent],[NSNumber numberWithUnsignedLongLong:WiFiReceived],[NSNumber numberWithUnsignedLongLong:WWANSent],[NSNumber numberWithUnsignedLongLong:WWANReceived]];
+}
+
 
 @end
