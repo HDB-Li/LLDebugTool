@@ -25,18 +25,24 @@
 #import <UIKit/UIKit.h>
 
 /**
- Notifications when CPU / Memory / FPS updates.
+ Notifications will post each second on main thread.
  Cpu is between 0.0% to 100.0%.
  Memory's unit is byte.
- Fps is float between 0.0 to 60.0
+ Fps is float between 0.0 to 60.0.
+ Request data traffic is upload data.
+ Response data traffic is download data.
+ Total data traffic is total data.
  */
 UIKIT_EXTERN NSNotificationName const LLAppHelperDidUpdateAppInfosNotificationName;
+
 UIKIT_EXTERN NSString * const LLAppHelperCPUKey;
 UIKIT_EXTERN NSString * const LLAppHelperMemoryUsedKey;
 UIKIT_EXTERN NSString * const LLAppHelperMemoryFreeKey;
 UIKIT_EXTERN NSString * const LLAppHelperMemoryTotalKey;
 UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
-UIKIT_EXTERN NSString * const LLAppHelperDataTrafficKey;
+UIKIT_EXTERN NSString * const LLAppHelperRequestDataTrafficKey;
+UIKIT_EXTERN NSString * const LLAppHelperResponseDataTrafficKey;
+UIKIT_EXTERN NSString * const LLAppHelperTotalDataTrafficKey;
 
 /**
  Monitoring app's properties.
@@ -48,7 +54,7 @@ UIKIT_EXTERN NSString * const LLAppHelperDataTrafficKey;
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype _Nonnull)sharedHelper;
 
 /**
  Start monitoring CPU/FPS/Memory
@@ -61,19 +67,111 @@ UIKIT_EXTERN NSString * const LLAppHelperDataTrafficKey;
 - (void)stopMonitoring;
 
 /**
- Get current app infos.Include "CPU Usage","Memory Usage","FPS","Data Traffic","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Phone Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
+ Get current app infos. Include "CPU Usage","Memory Usage","FPS","Data Traffic","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Device Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
  */
-- (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos;
+- (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nonnull)appInfos;
 
 /**
- Update data traffic when finish a network request.
+ Current cpu usage.
  */
-- (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
+- (NSString *_Nonnull)cpuUsage;
+
+/**
+ Current memory usage.
+ */
+- (NSString *_Nonnull)memoryUsage;
+
+/**
+ Current FPS.
+ */
+- (NSString *_Nonnull)fps;
+
+/**
+ Current data traffic.
+ Format is "{totalDataTraffic}  (Upload : {requestDataTraffic} / Download : {responseDataTraffic})"
+ */
+- (NSString *_Nonnull)dataTraffic;
+
+/**
+ Application name.
+ */
+- (NSString *_Nonnull)appName;
+
+/**
+ Application bundle identifier.
+ */
+- (NSString *_Nonnull)bundleIdentifier;
+
+/**
+ Application version.
+ */
+- (NSString *_Nonnull)appVersion;
+
+/**
+ Application start time consuming.
+ */
+- (NSString *_Nonnull)appStartTimeConsuming;
+
+/**
+ Device model.
+ */
+- (NSString *_Nonnull)deviceModel;
+
+/**
+ Device name.
+ */
+- (NSString *_Nonnull)deviceName;
+
+/**
+ Device system version.
+ */
+- (NSString *_Nonnull)systemVersion;
+
+/**
+ Device screen resolution.
+ */
+- (NSString *_Nonnull)screenResolution;
+
+/**
+ Current languageCode.
+ */
+- (NSString *_Nonnull)languageCode;
+
+/**
+ Current battery level.
+ */
+- (NSString *_Nonnull)batteryLevel;
+
+/**
+ Current cpu type.
+ */
+- (NSString *_Nonnull)cpuType;
+
+/**
+ Current disk infos.
+ */
+- (NSString *_Nonnull)disk;
+
+/**
+ Current network state.
+ */
+- (NSString *_Nonnull)networkState;
+
+/**
+ Current ssid.
+ */
+- (NSString *_Nullable)ssid;
 
 #pragma mark - DEPRECATED
 /**
  Get this time launchDate. LaunchDate means the start time of the app, also it's the identity for crash model.
  */
-- (NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
+- (NSString *_Nonnull)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
+
+#pragma mark - PRIMARY (This part of the method is used for internal calls, and users do not actively invoke these interfaces, nor need to care about them.)
+/**
+ Update data traffic when finish a network request.
+ */
+- (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
 @end

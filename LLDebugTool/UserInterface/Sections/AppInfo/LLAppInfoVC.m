@@ -95,7 +95,7 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
         cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kLLAppInfoVCCellID];
         cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
         cell.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
-        cell.detailTextLabel.minimumScaleFactor = 0.7;
+        cell.detailTextLabel.minimumScaleFactor = 0.5;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSDictionary *dic = self.dataArray[indexPath.section][indexPath.row];

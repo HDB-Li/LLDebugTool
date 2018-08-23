@@ -26,6 +26,7 @@
 #import "LLNetworkModel.h"
 #import "LLConfig.h"
 #import "LLTool.h"
+#import "LLAppHelper.h"
 
 static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 
@@ -114,6 +115,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;
     [[LLStorageManager sharedManager] saveModel:model complete:nil];
+    [[LLAppHelper sharedHelper] updateRequestDataTraffic:model.requestDataTrafficValue responseDataTraffic:model.responseDataTrafficValue];
 }
 
 #pragma mark - NSURLSessionDelegate
