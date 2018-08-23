@@ -26,6 +26,7 @@
 #import "LLNetworkImageCell.h"
 #import "LLConfig.h"
 #import "LLTool.h"
+#import "UIImage+LL_Utils.h"
 
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
@@ -57,7 +58,11 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     // Config Image
     if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
         LLNetworkImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkImageCellID forIndexPath:indexPath];
-        [cell setUpImage:[UIImage imageWithData:obj]];
+        if ([self.model.url.absoluteString.lowercaseString hasSuffix:@"gif"]) {
+            [cell setUpImage:[UIImage LL_imageWithGIFData:obj]];
+        } else {
+            [cell setUpImage:[UIImage imageWithData:obj]];
+        }
         return cell;
     }
     if ([obj isKindOfClass:[NSData class]]) {
@@ -76,7 +81,12 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     if ([self.canCopyArray containsObject:title]) {
         id obj = self.contentArray[indexPath.row];
         if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
-            UIImage *image = [UIImage imageWithData:obj];
+            UIImage *image = nil;
+            if ([self.model.url.absoluteString.lowercaseString hasSuffix:@"gif"]) {
+                image = [UIImage LL_imageWithGIFData:obj];
+            } else {
+                image = [UIImage imageWithData:obj];
+            }
             if ([image isKindOfClass:[UIImage class]]) {
                 [UIPasteboard generalPasteboard].image = image;
                 [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
