@@ -106,7 +106,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.mineType = self.response.MIMEType;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
     model.responseData = self.data;
-    model.responseHeaderFields = httpResponse.allHeaderFields;
+    model.responseHeaderFields = [httpResponse.allHeaderFields mutableCopy];
     if (self.response.MIMEType) {
         model.isImage = [self.response.MIMEType rangeOfString:@"image"].location != NSNotFound;
     }
