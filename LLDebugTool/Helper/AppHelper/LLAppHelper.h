@@ -88,7 +88,7 @@ UIKIT_EXTERN NSString * const LLAppHelperTotalDataTrafficKey;
 
 /**
  Current data traffic.
- Format is "{totalDataTraffic}  (Upload : {requestDataTraffic} / Download : {responseDataTraffic})"
+ Format is "{total} ({upload}↑ / {download}↓)"
  */
 - (NSString *_Nonnull)dataTraffic;
 
