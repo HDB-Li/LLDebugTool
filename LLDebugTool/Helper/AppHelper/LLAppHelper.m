@@ -134,10 +134,16 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
 }
 
 - (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
-    @synchronized (self) {
-        _requestDataTraffic += requestDataTraffic;
-        _responseDataTraffic += responseDataTraffic;
-        _totalDataTraffic = _requestDataTraffic + _responseDataTraffic;
+    if ([[NSThread currentThread] isMainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
+        });
+    } else {
+        @synchronized (self) {
+            _requestDataTraffic += requestDataTraffic;
+            _responseDataTraffic += responseDataTraffic;
+            _totalDataTraffic = _requestDataTraffic + _responseDataTraffic;
+        }
     }
 }
 
