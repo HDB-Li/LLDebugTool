@@ -27,6 +27,7 @@
 #import "LLConfig.h"
 #import "LLTool.h"
 #import "LLAppHelper.h"
+#import "NSHTTPURLResponse+LL_Utils.h"
 
 static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 
@@ -101,6 +102,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     }
     // Response
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
+    model.stateLine = httpResponse.stateLine;
     model.mineType = self.response.MIMEType;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
     model.responseData = self.data;

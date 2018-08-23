@@ -28,6 +28,7 @@
  */
 @interface LLNetworkModel : LLStorageModel
 
+#pragma mark - Request
 /**
  Network request start date.
  */
@@ -44,14 +45,30 @@
 @property (nonatomic , copy , nullable) NSString *method;
 
 /**
- Network request mine type.
- */
-@property (nonatomic , copy , nullable) NSString *mineType;
-
-/**
  Network request request body.
  */
 @property (nonatomic , copy , nullable) NSString *requestBody;
+
+/**
+ Network request header.
+ */
+@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*headerFields;
+
+/**
+ Cookies.
+ */
+@property (nonatomic , strong , readonly , nullable) NSDictionary <NSString *, NSString *>*cookies;
+
+#pragma mark - Response
+/**
+ Http response protocol.
+ */
+@property (nonatomic , copy , nullable) NSString *stateLine;
+
+/**
+ Network request mine type.
+ */
+@property (nonatomic , copy , nullable) NSString *mineType;
 
 /**
  Network request status code.
@@ -79,15 +96,11 @@
 @property (nonatomic , strong , nullable) NSError *error;
 
 /**
- Network request header.
- */
-@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*headerFields;
-
-/**
  Network response header.
  */
 @property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*responseHeaderFields;
 
+#pragma mark - Data traffic
 /**
  Upload data traffic.
  */
@@ -104,20 +117,21 @@
 @property (nonatomic , copy , readonly , nullable) NSString *totalDataTraffic;
 
 /**
- Upload data traffic value.
+ Request line + headers + body.
  */
 @property (nonatomic , assign , readonly) unsigned long long requestDataTrafficValue;
 
 /**
- Download data traffic value.
+ Response state line + headers + response object.
  */
 @property (nonatomic , assign , readonly) unsigned long long responseDataTrafficValue;
 
 /**
- Total data traffic value.
+ Request data traffic + response data traffic.
  */
 @property (nonatomic , assign , readonly) unsigned long long totalDataTrafficValue;
 
+#pragma mark - Other
 /**
  Network request identity.
  */

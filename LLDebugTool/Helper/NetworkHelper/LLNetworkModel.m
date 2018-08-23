@@ -47,6 +47,8 @@
 
 @property (nonatomic , strong) NSDate *dateDescription;
 
+@property (nonatomic , strong , nullable) NSDictionary <NSString *, NSString *>*cookies;
+
 @end
 
 @implementation LLNetworkModel
@@ -88,6 +90,17 @@
     return _dateDescription;
 }
 
+- (NSDictionary<NSString *,NSString *> *)cookies {
+    if (!_cookies) {
+        NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSArray<NSHTTPCookie *> *cookies = [cookieStorage cookiesForURL:self.url];
+        if (cookies.count) {
+            _cookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+        }
+    }
+    return _cookies;
+}
+
 - (NSString *)requestDataTraffic {
     if (!_requestDataTraffic) {
         _requestDataTraffic = [NSByteCountFormatter stringFromByteCount:self.requestDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
@@ -111,23 +124,21 @@
 
 - (unsigned long long)requestDataTrafficValue {
     if (!_requestDataTrafficValue) {
-        unsigned long long urlTraffic = self.url.absoluteString.byteLength;
-        unsigned long long headerTraffic = self.headerString.byteLength;
+        // Can't get really header in a NSURLRequest, most of the missing headers are small, just add cookie.
+        unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_jsonString];
         unsigned long long bodyTraffic = self.requestBody.byteLength;
-        unsigned long long methodTraffic = self.method.byteLength;
-        // I had try observe the traffic by Charles.
-        // There're more headers in Charles than headers in request.headerFields.
-        // So request data traffic is a little smaller than real traffic, If you known how to deal this problem, please open a issue in github.
-        _requestDataTrafficValue = urlTraffic + headerTraffic + bodyTraffic + methodTraffic;
+        unsigned long long lineTraffic = [self dataTrafficLength:[self simulationHTTPRequestLine]];
+        _requestDataTrafficValue = headerTraffic + bodyTraffic + lineTraffic;
     }
     return _requestDataTrafficValue;
 }
 
 - (unsigned long long)responseDataTrafficValue {
     if (!_responseDataTrafficValue) {
-        unsigned long long headerTraffic = self.responseHeaderString.byteLength;
+        unsigned long long headerTraffic = [self dataTrafficLength:self.responseHeaderString];
         unsigned long long bodyTraffic = self.responseData.length;
-        _responseDataTrafficValue = headerTraffic + bodyTraffic;
+        unsigned long long stateLineTraffic = [self dataTrafficLength:self.stateLine];
+        _responseDataTrafficValue = headerTraffic + bodyTraffic + stateLineTraffic;
     }
     return _responseDataTrafficValue;
 }
@@ -145,6 +156,19 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.totalDataTraffic,self.error.localizedDescription,self.identity];
+}
+
+#pragma mark - Primary
+- (unsigned long long)dataTrafficLength:(NSString *)string {
+    if (string == nil || ![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return 0;
+    }
+    
+    return [string dataUsingEncoding:NSUTF8StringEncoding].length ?: string.byteLength;
+}
+
+- (NSString *)simulationHTTPRequestLine {
+    return [NSString stringWithFormat:@"%@ %@ %@\n", self.method, self.url.path, @"HTTP/1.1"];
 }
 
 @end
