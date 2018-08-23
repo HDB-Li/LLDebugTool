@@ -142,7 +142,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
         }
         if (self.model.totalDataTraffic) {
             [self.titleArray addObject:@"Data Traffic"];
-            [self.contentArray addObject:[NSString stringWithFormat:@"%@  (Upload : %@ / Download : %@)",self.model.totalDataTraffic,self.model.requestDataTraffic,self.model.responseDataTraffic]];
+            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)",self.model.totalDataTraffic,self.model.requestDataTraffic,self.model.responseDataTraffic]];
         }
         
         [self.titleArray addObject:@"Request Body"];
