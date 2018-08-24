@@ -91,6 +91,16 @@
 @property (nonatomic , assign) BOOL isGif;
 
 /**
+ Is html or not.
+ */
+@property (nonatomic , assign , readonly) BOOL isHTML;
+
+/**
+ Is txt or not.
+ */
+@property (nonatomic , assign , readonly) BOOL isTXT;
+
+/**
  Network request used duration.
  */
 @property (nonatomic , copy , nonnull) NSString *totalDuration;

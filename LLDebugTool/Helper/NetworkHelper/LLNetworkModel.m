@@ -62,6 +62,13 @@
     }
 }
 
+- (void)setMimeType:(NSString *)mimeType {
+    if (![_mimeType isEqualToString:mimeType]) {
+        _mimeType = [mimeType copy];
+        [self dealWithMimeType:mimeType];
+    }
+}
+
 - (NSString *)headerString {
     if (!_headerString) {
         _headerString = [LLTool convertJSONStringFromDictionary:self.headerFields];
@@ -159,6 +166,39 @@
 }
 
 #pragma mark - Primary
+- (void)dealWithMimeType:(NSString *)mimeType {
+    // See http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+    NSString *mime = mimeType.lowercaseString;
+    if ([mime isEqualToString:@"image/jpeg"] || [mime isEqualToString:@"image/png"] || [mime isEqualToString:@"image/jpg"]) {
+        _isImage = YES;
+    } else if ([mime isEqualToString:@"image/gif"]) {
+        _isImage = YES;
+        _isGif = YES;
+    } else if ([mime isEqualToString:@"text/html"]) {
+        _isHTML = YES;
+    } else if ([mime isEqualToString:@"text/plain"]) {
+        _isTXT = YES;
+    } else if ([mime isEqualToString:@"video/quicktime"]) {
+        
+    } else if ([mime isEqualToString:@"video/x-msvideo"]) {
+        
+    } else if ([mime isEqualToString:@"audio/mpeg"]) {
+        
+    } else if ([mime isEqualToString:@"audio/x-wav"]) {
+        
+    } else if ([mime isEqualToString:@"application/json"]) {
+        
+    } else if ([mime isEqualToString:@"application/pdf"]) {
+        
+    } else if ([mime isEqualToString:@"application/vnd.ms-excel"]) {
+        
+    } else if ([mime isEqualToString:@"application/vnd.ms-powerpoint"]) {
+        
+    } else if ([mime isEqualToString:@"application/msword"]) {
+        
+    }
+}
+
 - (unsigned long long)dataTrafficLength:(NSString *)string {
     if (string == nil || ![string isKindOfClass:[NSString class]] || string.length == 0) {
         return 0;
