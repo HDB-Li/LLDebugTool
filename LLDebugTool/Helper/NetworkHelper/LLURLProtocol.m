@@ -113,6 +113,9 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     NSString *absoluteString = self.request.URL.absoluteString.lowercaseString;
     if ([absoluteString hasSuffix:@".jpg"] || [absoluteString hasSuffix:@".jpeg"] || [absoluteString hasSuffix:@".png"] || [absoluteString hasSuffix:@".gif"]) {
         model.isImage = YES;
+        if ([absoluteString hasSuffix:@".gif"]) {
+            model.isGif = YES;
+        }
     }
     model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;

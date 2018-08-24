@@ -86,6 +86,11 @@
 @property (nonatomic , assign) BOOL isImage;
 
 /**
+ Is gif or not.
+ */
+@property (nonatomic , assign) BOOL isGif;
+
+/**
  Network request used duration.
  */
 @property (nonatomic , copy , nonnull) NSString *totalDuration;

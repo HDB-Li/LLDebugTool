@@ -58,7 +58,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     // Config Image
     if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
         LLNetworkImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkImageCellID forIndexPath:indexPath];
-        if ([self.model.url.absoluteString.lowercaseString hasSuffix:@"gif"]) {
+        if (self.model.isGif) {
             [cell setUpImage:[UIImage LL_imageWithGIFData:obj]];
         } else {
             [cell setUpImage:[UIImage imageWithData:obj]];
@@ -82,7 +82,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
         id obj = self.contentArray[indexPath.row];
         if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
             UIImage *image = nil;
-            if ([self.model.url.absoluteString.lowercaseString hasSuffix:@"gif"]) {
+            if (self.model.isGif) {
                 image = [UIImage LL_imageWithGIFData:obj];
             } else {
                 image = [UIImage imageWithData:obj];
