@@ -103,7 +103,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     // Response
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
     model.stateLine = httpResponse.stateLine;
-    model.mineType = self.response.MIMEType;
+    model.mimeType = self.response.MIMEType;
     model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
     model.responseData = self.data;
     model.responseHeaderFields = [httpResponse.allHeaderFields mutableCopy];

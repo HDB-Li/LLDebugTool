@@ -155,7 +155,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.totalDataTraffic,self.error.localizedDescription,self.identity];
+    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mimeType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mimeType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.totalDataTraffic,self.error.localizedDescription,self.identity];
 }
 
 #pragma mark - Primary

@@ -138,9 +138,9 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             }
             [self.contentArray addObject:string];
         }
-        if (self.model.mineType) {
-            [self.titleArray addObject:@"Mine Type"];
-            [self.contentArray addObject:self.model.mineType];
+        if (self.model.mimeType) {
+            [self.titleArray addObject:@"Mime Type"];
+            [self.contentArray addObject:self.model.mimeType];
         }
         if (self.model.startDate) {
             [self.titleArray addObject:@"Start Date"];

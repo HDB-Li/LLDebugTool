@@ -66,9 +66,9 @@
 @property (nonatomic , copy , nullable) NSString *stateLine;
 
 /**
- Network request mine type.
+ Network request mime type.
  */
-@property (nonatomic , copy , nullable) NSString *mineType;
+@property (nonatomic , copy , nullable) NSString *mimeType;
 
 /**
  Network request status code.
