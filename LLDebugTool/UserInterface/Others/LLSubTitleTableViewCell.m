@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLSubTitleTableViewCell.h"
+#import "LLConfig.h"
 
 @implementation LLSubTitleTableViewCell
 
@@ -34,6 +35,19 @@
 - (void)initial {
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.contentLabel.backgroundColor = nil;
+    if (LLCONFIG_CUSTOM_COLOR) {
+        self.contentLabel.textColor = LLCONFIG_TEXT_COLOR;
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.contentLabel.frame.size.height >= 300) {
+        self.contentLabel.scrollEnabled = YES;
+    } else {
+        self.contentLabel.scrollEnabled = NO;
+    }
 }
 
 @end
