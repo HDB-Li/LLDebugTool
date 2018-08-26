@@ -30,6 +30,6 @@
 /**
  This part is from SDWebImage.
  */
-+ (nullable UIImage *)LL_imageWithGIFData:(NSData *)data;
++ (nullable UIImage *)LL_imageWithGIFData:(NSData *_Nullable)data;
 
 @end

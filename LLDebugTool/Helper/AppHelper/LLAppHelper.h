@@ -33,16 +33,16 @@
  Response data traffic is download data.
  Total data traffic is total data.
  */
-UIKIT_EXTERN NSNotificationName const LLAppHelperDidUpdateAppInfosNotificationName;
+UIKIT_EXTERN NSNotificationName _Nonnull const LLAppHelperDidUpdateAppInfosNotificationName;
 
-UIKIT_EXTERN NSString * const LLAppHelperCPUKey;
-UIKIT_EXTERN NSString * const LLAppHelperMemoryUsedKey;
-UIKIT_EXTERN NSString * const LLAppHelperMemoryFreeKey;
-UIKIT_EXTERN NSString * const LLAppHelperMemoryTotalKey;
-UIKIT_EXTERN NSString * const LLAppHelperFPSKey;
-UIKIT_EXTERN NSString * const LLAppHelperRequestDataTrafficKey;
-UIKIT_EXTERN NSString * const LLAppHelperResponseDataTrafficKey;
-UIKIT_EXTERN NSString * const LLAppHelperTotalDataTrafficKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperCPUKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperMemoryUsedKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperMemoryFreeKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperMemoryTotalKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperFPSKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperRequestDataTrafficKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperResponseDataTrafficKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppHelperTotalDataTrafficKey;
 
 /**
  Monitoring app's properties.
