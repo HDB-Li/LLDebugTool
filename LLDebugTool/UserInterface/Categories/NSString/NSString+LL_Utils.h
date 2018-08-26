@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSString (LL_Utils)
 
@@ -29,6 +30,8 @@
 - (NSArray *)LL_jsonArray;
 
 - (unsigned long long)byteLength;
+
+- (CGFloat)heightWithAttributes:(NSDictionary *)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
 
 @end
 

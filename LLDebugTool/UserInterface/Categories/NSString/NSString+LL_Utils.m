@@ -71,6 +71,16 @@
     return (length + 1) / 2;
 }
 
+- (CGFloat)heightWithAttributes:(NSDictionary *)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight {
+    if (self.length == 0) {
+        return 0;
+    }
+    CGRect rect = [self boundingRectWithSize:CGSizeMake(maxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    // Sometime, it's a little small.
+    rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + 4, rect.size.height + 4);
+    return rect.size.height > minHeight ? rect.size.height : minHeight;
+}
+
 @end
 
 @implementation NSDictionary (LL_Utils)
