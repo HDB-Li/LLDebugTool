@@ -57,8 +57,6 @@
 - (void)initial {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
 }
 
 @end
