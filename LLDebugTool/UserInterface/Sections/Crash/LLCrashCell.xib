@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,17 +15,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="286" height="109.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="109.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*** -[__NSArrayM insertObject:atIndex:]: object cannot be nil" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEy-V6-PQ0">
-                        <rect key="frame" x="16" y="10" width="254" height="44.5"/>
+                        <rect key="frame" x="16" y="10" width="255" height="44.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3i-GP-Otw">
-                        <rect key="frame" x="16" y="59.5" width="254" height="20"/>
+                        <rect key="frame" x="16" y="59.5" width="255" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Ve9-m1-ZCT"/>
                         </constraints>
@@ -45,7 +45,7 @@
                 <constraints>
                     <constraint firstItem="iEy-V6-PQ0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5qI-HO-OM9"/>
                     <constraint firstItem="u3i-GP-Otw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="HY6-Zb-8pZ"/>
-                    <constraint firstAttribute="bottom" secondItem="0xW-RG-sJg" secondAttribute="bottom" constant="10" id="JaY-wr-qTe"/>
+                    <constraint firstAttribute="bottom" secondItem="0xW-RG-sJg" secondAttribute="bottom" priority="750" constant="10" id="JaY-wr-qTe"/>
                     <constraint firstAttribute="trailing" secondItem="u3i-GP-Otw" secondAttribute="trailing" constant="16" id="KD4-2Z-baq"/>
                     <constraint firstItem="u3i-GP-Otw" firstAttribute="top" secondItem="iEy-V6-PQ0" secondAttribute="bottom" constant="5" id="U3v-zp-xe1"/>
                     <constraint firstItem="0xW-RG-sJg" firstAttribute="top" secondItem="u3i-GP-Otw" secondAttribute="bottom" constant="5" id="XRj-aO-HvH"/>

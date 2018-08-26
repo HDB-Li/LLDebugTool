@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,25 +20,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="File" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-dU-POK">
-                        <rect key="frame" x="16" y="11" width="21.5" height="16"/>
+                        <rect key="frame" x="8" y="8" width="21.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Func" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLn-iM-HW1">
-                        <rect key="frame" x="16" y="32" width="30" height="16"/>
+                        <rect key="frame" x="8" y="29" width="30" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Date" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxb-xi-r9v">
-                        <rect key="frame" x="16" y="53" width="29" height="16"/>
+                        <rect key="frame" x="8" y="50" width="29" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dav-qA-0QV">
-                        <rect key="frame" x="16" y="74" width="288" height="29"/>
+                        <rect key="frame" x="8" y="71" width="304" height="34.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="PLn-iM-HW1" firstAttribute="top" secondItem="ZLi-dU-POK" secondAttribute="bottom" constant="5" id="3fN-Jg-ULG"/>
-                    <constraint firstItem="Dav-qA-0QV" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Cxh-TF-VkA"/>
+                    <constraint firstItem="Dav-qA-0QV" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" priority="750" id="Cxh-TF-VkA"/>
                     <constraint firstItem="ZLi-dU-POK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Kmr-wR-fiC"/>
                     <constraint firstItem="Oxb-xi-r9v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="QOC-XB-Pq1"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="PLn-iM-HW1" secondAttribute="trailing" id="S8j-Oy-Sla"/>
