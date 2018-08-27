@@ -39,7 +39,9 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 ### 增加网络流量监测功能
 
-现在你可以查看网络请求的流量，虽然他还不是很准确。另外修复了一些已知问题。更多的修改内容可以在[Project 1.1.4](https://github.com/HDB-Li/LLDebugTool/projects/3)中查看。
+现在你可以查看网络请求的流量，虽然他还不是很准确。另外修复了一些已知问题。
+
+更多的修改内容可以在[Project](https://github.com/HDB-Li/LLDebugTool/projects/3)中查看。
 
 #### 新增
 
