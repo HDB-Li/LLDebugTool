@@ -27,6 +27,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (weak, nonatomic) IBOutlet UITextView *contentLabel;
+@property (copy , nonatomic , nullable) NSString *contentText;
 
 @end

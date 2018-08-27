@@ -72,7 +72,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkContentCellID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
-    cell.contentLabel.text = obj;
+    cell.contentText = obj;
     return cell;
 }
 
@@ -99,7 +99,6 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
         }
     }
-
 }
 
 #pragma mark - Primary
