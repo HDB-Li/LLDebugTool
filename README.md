@@ -39,7 +39,9 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 
 ### Increase network traffic monitoring
 
-Now you can check your network request traffic, although it is not very accurate. Other some known problems have been fixed. More changes can be viewed in [Project 1.1.4](https://github.com/HDB-Li/LLDebugTool/projects/3).
+Now you can check your network request traffic, although it is not very accurate. 
+
+Other some known problems have been fixed. More changes can be viewed in [Project](https://github.com/HDB-Li/LLDebugTool/projects/3).
 
 #### Add
 
