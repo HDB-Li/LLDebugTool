@@ -39,17 +39,34 @@ NSString * const LLAppHelperMemoryUsedKey = @"LLAppHelperMemoryUsedKey";
 NSString * const LLAppHelperMemoryFreeKey = @"LLAppHelperMemoryFreeKey";
 NSString * const LLAppHelperMemoryTotalKey = @"LLAppHelperMemoryTotalKey";
 NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
+NSString * const LLAppHelperRequestDataTrafficKey = @"LLAppHelperRequestDataTrafficKey";
+NSString * const LLAppHelperResponseDataTrafficKey = @"LLAppHelperResponseDataTrafficKey";
+NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficKey";
 
 @interface LLAppHelper ()
 {
     unsigned long long _usedMemory;
     unsigned long long _freeMemory;
     unsigned long long _totalMemory;
+    unsigned long long _requestDataTraffic;
+    unsigned long long _responseDataTraffic;
+    unsigned long long _totalDataTraffic;
     CGFloat _cpu;
     CADisplayLink *_link;
     NSUInteger _count;
     NSTimeInterval _lastTime;
     float _fps;
+    
+    // Cache
+    NSString *_appName;
+    NSString *_bundleIdentifier;
+    NSString *_appVersion;
+    NSString *_appStartTimeConsuming;
+    NSString *_deviceModel;
+    NSString *_deviceName;
+    NSString *_systemVersion;
+    NSString *_screenResolution;
+    NSString *_cpuType;
 }
 
 @property (nonatomic , strong) NSTimer *memoryTimer;
@@ -104,32 +121,136 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
 }
 
 - (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos {
-    NSArray *dynamic = [[NSArray alloc] initWithObjects:@{@"CPU Usage" : [NSString stringWithFormat:@"%.2f%%",_cpu]},@{@"Memory Usage" : [NSString stringWithFormat:@"Used:%@, Free:%@",[NSByteCountFormatter stringFromByteCount:_usedMemory countStyle:NSByteCountFormatterCountStyleMemory],[NSByteCountFormatter stringFromByteCount:_freeMemory countStyle:NSByteCountFormatterCountStyleMemory]]},@{@"FPS" : [NSString stringWithFormat:@"%ld FPS",(long)_fps]}, nil];
     
-    NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+    NSArray *dynamic = [self dynamicInfos];
+    
     // App Info
-    NSArray *apps = @[@{@"App Name" : infoDic[@"CFBundleDisplayName"] ?: infoDic[@"CFBundleName"] ?: @"Unknown"},
-                      @{@"Bundle Identifier" : infoDic[@"CFBundleIdentifier"] ?:@"Unknown"},
-                      @{@"App Version" : [NSString stringWithFormat:@"%@(%@)",infoDic[@"CFBundleShortVersionString"]?:@"Unknown",infoDic[@"CFBundleVersion"]?:@"Unknown"]},
-                      @{@"App Start Time" : [NSString stringWithFormat:@"%.2f s",[NSObject startLoadTime]]}];
+    NSArray *apps = [self applicationInfos];
 
     // Device Info
-    NSArray *devices = @[@{@"Device Model" : [UIDevice currentDevice].LL_modelName ?: @"Unknown"},
-                         @{@"Phone Name" : [UIDevice currentDevice].name ?: @"Unknown"},
-                         @{@"System Version" : [UIDevice currentDevice].systemVersion ?: @"Unknown"},
-                         @{@"Screen Resolution" : [NSString stringWithFormat:@"%ld * %ld",(long)(LL_SCREEN_WIDTH * [UIScreen mainScreen].scale),(long)(LL_SCREEN_HEIGHT * [UIScreen mainScreen].scale)]},
-                         @{@"Language Code" : [NSLocale preferredLanguages].firstObject ?: @"Unknown"},
-                         @{@"Battery Level" : [UIDevice currentDevice].batteryLevel != -1 ? [NSString stringWithFormat:@"%ld%%",(long)([UIDevice currentDevice].batteryLevel * 100)] : @"Unknown"},
-                         @{@"CPU Type" : [self cpuSubtypeString] ?: @"Unknown"},
-                         @{@"Disk" : [NSString stringWithFormat:@"%@ / %@", [NSByteCountFormatter stringFromByteCount:[self getFreeDisk] countStyle:NSByteCountFormatterCountStyleFile],[NSByteCountFormatter stringFromByteCount:[self getTotalDisk] countStyle:NSByteCountFormatterCountStyleFile]]},
-                         @{@"Network State" : [self networkStateFromStatebar]}];
-    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
-    NSString *ssid = [self currentWifiSSID];
-    if (ssid) {
-        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
-    }
+    NSArray *devices = [self deviceInfos];
     
     return [[NSMutableArray alloc] initWithObjects:dynamic ,apps, devices, nil];
+}
+
+- (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
+    if ([[NSThread currentThread] isMainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
+        });
+    } else {
+        @synchronized (self) {
+            _requestDataTraffic += requestDataTraffic;
+            _responseDataTraffic += responseDataTraffic;
+            _totalDataTraffic = _requestDataTraffic + _responseDataTraffic;
+        }
+    }
+}
+
+- (NSString *)cpuUsage {
+    return [NSString stringWithFormat:@"%.2f%%",_cpu];
+}
+
+- (NSString *)memoryUsage {
+    NSString *used = [NSByteCountFormatter stringFromByteCount:_usedMemory countStyle:NSByteCountFormatterCountStyleMemory];
+    NSString *free = [NSByteCountFormatter stringFromByteCount:_freeMemory countStyle:NSByteCountFormatterCountStyleMemory];
+    return [NSString stringWithFormat:@"Used:%@, Free:%@",used,free];
+}
+
+- (NSString *)fps {
+    return [NSString stringWithFormat:@"%ld FPS",(long)_fps];
+}
+
+- (NSString *)dataTraffic {
+    NSString *total = [NSByteCountFormatter stringFromByteCount:_totalDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *request = [NSByteCountFormatter stringFromByteCount:_requestDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *response = [NSByteCountFormatter stringFromByteCount:_responseDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+    return [NSString stringWithFormat:@"%@ (%@↑ / %@↓)",total,request,response];
+}
+
+- (NSString *)appName {
+    if (!_appName) {
+        NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+        _appName = infoDic[@"CFBundleDisplayName"] ?: infoDic[@"CFBundleName"] ?: @"Unknown";
+    }
+    return _appName;
+}
+
+- (NSString *)bundleIdentifier {
+    if (!_bundleIdentifier) {
+        NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+        _bundleIdentifier = infoDic[@"CFBundleIdentifier"] ?:@"Unknown";
+    }
+    return _bundleIdentifier;
+}
+
+- (NSString *)appVersion {
+    if (!_appVersion) {
+        NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+        _appVersion = [NSString stringWithFormat:@"%@(%@)",infoDic[@"CFBundleShortVersionString"]?:@"Unknown",infoDic[@"CFBundleVersion"]?:@"Unknown"];
+    }
+    return _appVersion;
+}
+
+- (NSString *)appStartTimeConsuming {
+    if (!_appStartTimeConsuming) {
+        _appStartTimeConsuming = [NSString stringWithFormat:@"%.2f s",[NSObject startLoadTime]];
+    }
+    return _appStartTimeConsuming;
+}
+
+- (NSString *)deviceModel {
+    if (!_deviceModel) {
+        _deviceModel = [UIDevice currentDevice].LL_modelName ?: @"Unknown";
+    }
+    return _deviceModel;
+}
+
+- (NSString *)deviceName {
+    if (!_deviceName) {
+        _deviceName = [UIDevice currentDevice].name ?: @"Unknown";
+    }
+    return _deviceName;
+}
+
+- (NSString *)systemVersion {
+    if (!_systemVersion) {
+        _systemVersion = [UIDevice currentDevice].systemVersion ?: @"Unknown";
+    }
+    return _systemVersion;
+}
+
+- (NSString *)screenResolution {
+    if (!_screenResolution) {
+        _screenResolution = [NSString stringWithFormat:@"%ld * %ld",(long)(LL_SCREEN_WIDTH * [UIScreen mainScreen].scale),(long)(LL_SCREEN_HEIGHT * [UIScreen mainScreen].scale)];
+    }
+    return _screenResolution;
+}
+
+- (NSString *)languageCode {
+    return [NSLocale preferredLanguages].firstObject ?: @"Unknown";
+}
+
+- (NSString *)batteryLevel {
+    return [UIDevice currentDevice].batteryLevel != -1 ? [NSString stringWithFormat:@"%ld%%",(long)([UIDevice currentDevice].batteryLevel * 100)] : @"Unknown";
+}
+
+- (NSString *)cpuType {
+    return [self cpuSubtypeString] ?: @"Unknown";
+}
+
+- (NSString *)disk {
+    NSString *free = [NSByteCountFormatter stringFromByteCount:[self getFreeDisk] countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *total = [NSByteCountFormatter stringFromByteCount:[self getTotalDisk] countStyle:NSByteCountFormatterCountStyleFile];
+    return [NSString stringWithFormat:@"%@ / %@", free,total];
+}
+
+- (NSString *)networkState {
+    return [self networkStateFromStatebar];
+}
+
+- (NSString *)ssid {
+    return [self currentWifiSSID];
 }
 
 - (NSString *)launchDate {
@@ -142,6 +263,39 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
  */
 - (void)initial {
     _fps = 60;
+}
+
+- (NSArray *)dynamicInfos {
+    return @[@{@"CPU Usage" : [self cpuUsage]},
+             @{@"Memory Usage" : [self memoryUsage]},
+             @{@"FPS" : [self fps]},
+             @{@"Data Traffic" : [self dataTraffic]}];
+}
+
+- (NSArray *)applicationInfos {
+    return @[@{@"App Name" : [self appName]},
+             @{@"Bundle Identifier" : [self bundleIdentifier]},
+             @{@"App Version" : [self appVersion]},
+             @{@"App Start Time" : [self appStartTimeConsuming]}];
+}
+
+- (NSArray *)deviceInfos {
+    NSArray *devices = @[@{@"Device Model" : [self deviceModel]},
+                         @{@"Device Name" : [self deviceName]},
+                         @{@"System Version" : [self systemVersion]},
+                         @{@"Screen Resolution" : [self screenResolution]},
+                         @{@"Language Code" : [self languageCode]},
+                         @{@"Battery Level" : [self batteryLevel]},
+                         @{@"CPU Type" : [self cpuType]},
+                         @{@"Disk" : [self disk]},
+                         @{@"Network State" : [self networkState]}];
+    
+    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
+    NSString *ssid = [self ssid];
+    if (ssid) {
+        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
+    }
+    return mutDevices;
 }
 
 #pragma mark - CPU
@@ -186,7 +340,6 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     if (!_cpuTypeString) {
         _cpuTypeString = [self stringFromCpuType:[self getCpuType]];
     }
-    
     return _cpuTypeString;
 }
 
@@ -231,17 +384,17 @@ NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
     _freeMemory = stat.bytes_free;
     _totalMemory = stat.bytes_total;
     _cpu = [self getCpuUsage];
+    [self postAppHelperDidUpdateAppInfosNotification];
+}
+
+- (void)postAppHelperDidUpdateAppInfosNotification {
     if ([[NSThread currentThread] isMainThread]) {
-        [self postAppHelperDidUpdateAppInfosNotification];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLAppHelperDidUpdateAppInfosNotificationName object:[self dynamicInfos] userInfo:@{LLAppHelperCPUKey:@(_cpu),LLAppHelperFPSKey:@(_fps),LLAppHelperMemoryFreeKey:@(_freeMemory),LLAppHelperMemoryUsedKey:@(_usedMemory),LLAppHelperMemoryTotalKey:@(_totalMemory),LLAppHelperRequestDataTrafficKey:@(_requestDataTraffic),LLAppHelperResponseDataTrafficKey:@(_responseDataTraffic),LLAppHelperTotalDataTrafficKey:@(_totalDataTraffic)}];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self postAppHelperDidUpdateAppInfosNotification];
         });
     }
-}
-
-- (void)postAppHelperDidUpdateAppInfosNotification {
-    [[NSNotificationCenter defaultCenter] postNotificationName:LLAppHelperDidUpdateAppInfosNotificationName object:nil userInfo:@{LLAppHelperCPUKey:@(_cpu),LLAppHelperFPSKey:@(_fps),LLAppHelperMemoryFreeKey:@(_freeMemory),LLAppHelperMemoryUsedKey:@(_usedMemory),LLAppHelperMemoryTotalKey:@(_totalMemory)}];
 }
 
 #pragma mark - FPS

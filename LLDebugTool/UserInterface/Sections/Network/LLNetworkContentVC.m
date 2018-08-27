@@ -26,6 +26,7 @@
 #import "LLNetworkImageCell.h"
 #import "LLConfig.h"
 #import "LLTool.h"
+#import "UIImage+LL_Utils.h"
 
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
@@ -57,7 +58,11 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     // Config Image
     if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
         LLNetworkImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkImageCellID forIndexPath:indexPath];
-        [cell setUpImage:[UIImage imageWithData:obj]];
+        if (self.model.isGif) {
+            [cell setUpImage:[UIImage LL_imageWithGIFData:obj]];
+        } else {
+            [cell setUpImage:[UIImage imageWithData:obj]];
+        }
         return cell;
     }
     if ([obj isKindOfClass:[NSData class]]) {
@@ -67,7 +72,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkContentCellID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
-    cell.contentLabel.text = obj;
+    cell.contentText = obj;
     return cell;
 }
 
@@ -76,17 +81,24 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     if ([self.canCopyArray containsObject:title]) {
         id obj = self.contentArray[indexPath.row];
         if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
-            UIImage *image = [UIImage imageWithData:obj];
-            [UIPasteboard generalPasteboard].image = image;
-        } else {
+            UIImage *image = nil;
+            if (self.model.isGif) {
+                image = [UIImage LL_imageWithGIFData:obj];
+            } else {
+                image = [UIImage imageWithData:obj];
+            }
+            if ([image isKindOfClass:[UIImage class]]) {
+                [UIPasteboard generalPasteboard].image = image;
+                [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+            }
+        } else if ([obj isKindOfClass:[NSData class]] || [obj isKindOfClass:[NSString class]]) {
             if ([obj isKindOfClass:[NSData class]]) {
                 obj = [self convertDataToHexStr:obj];
             }
             [UIPasteboard generalPasteboard].string = obj;
+            [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
         }
-        [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
-
 }
 
 #pragma mark - Primary
@@ -125,9 +137,9 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             }
             [self.contentArray addObject:string];
         }
-        if (self.model.mineType) {
-            [self.titleArray addObject:@"Mine Type"];
-            [self.contentArray addObject:self.model.mineType];
+        if (self.model.mimeType) {
+            [self.titleArray addObject:@"Mime Type"];
+            [self.contentArray addObject:self.model.mimeType];
         }
         if (self.model.startDate) {
             [self.titleArray addObject:@"Start Date"];
@@ -136,6 +148,10 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
         if (self.model.totalDuration) {
             [self.titleArray addObject:@"Total Duration"];
             [self.contentArray addObject:self.model.totalDuration];
+        }
+        if (self.model.totalDataTraffic) {
+            [self.titleArray addObject:@"Data Traffic"];
+            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)",self.model.totalDataTraffic,self.model.requestDataTraffic,self.model.responseDataTraffic]];
         }
         
         [self.titleArray addObject:@"Request Body"];

@@ -23,14 +23,31 @@
 
 #import "LLNetworkModel.h"
 #import "LLTool.h"
+#import "NSString+LL_Utils.h"
 
 @interface LLNetworkModel ()
 
+@property (nonatomic , copy , nullable) NSString *requestDataTraffic;
+
+@property (nonatomic , copy , nullable) NSString *responseDataTraffic;
+
+@property (nonatomic , copy , nullable) NSString *totalDataTraffic;
+
+@property (nonatomic , assign) unsigned long long requestDataTrafficValue;
+
+@property (nonatomic , assign) unsigned long long responseDataTrafficValue;
+
+@property (nonatomic , assign) unsigned long long totalDataTrafficValue;
+
 @property (nonatomic , copy , nonnull) NSString *headerString;
+
+@property (nonatomic , copy , nonnull) NSString *responseHeaderString;
 
 @property (nonatomic , copy , nonnull) NSString *responseString;
 
 @property (nonatomic , strong) NSDate *dateDescription;
+
+@property (nonatomic , strong , nullable) NSDictionary <NSString *, NSString *>*cookies;
 
 @end
 
@@ -45,17 +62,10 @@
     }
 }
 
-- (void)setHeaderFields:(NSDictionary<NSString *,NSString *> *)headerFields {
-    if (_headerFields != headerFields) {
-        _headerFields = headerFields;
-        _headerString = nil;
-    }
-}
-
-- (void)setResponseData:(NSData *)responseData {
-    if (_responseData != responseData) {
-        _responseData = responseData;
-        _responseString = nil;
+- (void)setMimeType:(NSString *)mimeType {
+    if (![_mimeType isEqualToString:mimeType]) {
+        _mimeType = [mimeType copy];
+        [self dealWithMimeType:mimeType];
     }
 }
 
@@ -64,6 +74,13 @@
         _headerString = [LLTool convertJSONStringFromDictionary:self.headerFields];
     }
     return _headerString;
+}
+
+- (NSString *)responseHeaderString {
+    if (!_responseHeaderString) {
+        _responseHeaderString = [LLTool convertJSONStringFromDictionary:self.responseHeaderFields];
+    }
+    return _responseHeaderString;
 }
 
 - (NSString *)responseString {
@@ -80,12 +97,118 @@
     return _dateDescription;
 }
 
+- (NSDictionary<NSString *,NSString *> *)cookies {
+    if (!_cookies) {
+        NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSArray<NSHTTPCookie *> *cookies = [cookieStorage cookiesForURL:self.url];
+        if (cookies.count) {
+            _cookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+        }
+    }
+    return _cookies;
+}
+
+- (NSString *)requestDataTraffic {
+    if (!_requestDataTraffic) {
+        _requestDataTraffic = [NSByteCountFormatter stringFromByteCount:self.requestDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
+    }
+    return _requestDataTraffic;
+}
+
+- (NSString *)responseDataTraffic {
+    if (!_responseDataTraffic) {
+        _responseDataTraffic = [NSByteCountFormatter stringFromByteCount:self.responseDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
+    }
+    return _responseDataTraffic;
+}
+
+- (NSString *)totalDataTraffic {
+    if (!_totalDataTraffic) {
+        _totalDataTraffic = [NSByteCountFormatter stringFromByteCount:self.totalDataTrafficValue countStyle:NSByteCountFormatterCountStyleFile];
+    }
+    return _totalDataTraffic;
+}
+
+- (unsigned long long)requestDataTrafficValue {
+    if (!_requestDataTrafficValue) {
+        // Can't get really header in a NSURLRequest, most of the missing headers are small, just add cookie.
+        unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_jsonString];
+        unsigned long long bodyTraffic = self.requestBody.byteLength;
+        unsigned long long lineTraffic = [self dataTrafficLength:[self simulationHTTPRequestLine]];
+        _requestDataTrafficValue = headerTraffic + bodyTraffic + lineTraffic;
+    }
+    return _requestDataTrafficValue;
+}
+
+- (unsigned long long)responseDataTrafficValue {
+    if (!_responseDataTrafficValue) {
+        unsigned long long headerTraffic = [self dataTrafficLength:self.responseHeaderString];
+        unsigned long long bodyTraffic = self.responseData.length;
+        unsigned long long stateLineTraffic = [self dataTrafficLength:self.stateLine];
+        _responseDataTrafficValue = headerTraffic + bodyTraffic + stateLineTraffic;
+    }
+    return _responseDataTrafficValue;
+}
+
+- (unsigned long long)totalDataTrafficValue {
+    if (!_totalDataTrafficValue) {
+        _totalDataTrafficValue = self.requestDataTrafficValue + self.responseDataTrafficValue;
+    }
+    return _totalDataTrafficValue;
+}
+
 - (NSString *)storageIdentity {
     return self.identity;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mineType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mineType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.error.localizedDescription,self.identity];
+    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mimeType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mimeType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.totalDataTraffic,self.error.localizedDescription,self.identity];
+}
+
+#pragma mark - Primary
+- (void)dealWithMimeType:(NSString *)mimeType {
+    // See http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+    NSString *mime = mimeType.lowercaseString;
+    if ([mime isEqualToString:@"image/jpeg"] || [mime isEqualToString:@"image/png"] || [mime isEqualToString:@"image/jpg"]) {
+        _isImage = YES;
+    } else if ([mime isEqualToString:@"image/gif"]) {
+        _isImage = YES;
+        _isGif = YES;
+    } else if ([mime isEqualToString:@"text/html"]) {
+        _isHTML = YES;
+    } else if ([mime isEqualToString:@"text/plain"]) {
+        _isTXT = YES;
+    } else if ([mime isEqualToString:@"video/quicktime"]) {
+        
+    } else if ([mime isEqualToString:@"video/x-msvideo"]) {
+        
+    } else if ([mime isEqualToString:@"audio/mpeg"]) {
+        
+    } else if ([mime isEqualToString:@"audio/x-wav"]) {
+        
+    } else if ([mime isEqualToString:@"application/json"]) {
+        
+    } else if ([mime isEqualToString:@"application/pdf"]) {
+        
+    } else if ([mime isEqualToString:@"application/vnd.ms-excel"]) {
+        
+    } else if ([mime isEqualToString:@"application/vnd.ms-powerpoint"]) {
+        
+    } else if ([mime isEqualToString:@"application/msword"]) {
+        
+    }
+}
+
+- (unsigned long long)dataTrafficLength:(NSString *)string {
+    if (string == nil || ![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return 0;
+    }
+    
+    return [string dataUsingEncoding:NSUTF8StringEncoding].length ?: string.byteLength;
+}
+
+- (NSString *)simulationHTTPRequestLine {
+    return [NSString stringWithFormat:@"%@ %@ %@\n", self.method, self.url.path, @"HTTP/1.1"];
 }
 
 @end

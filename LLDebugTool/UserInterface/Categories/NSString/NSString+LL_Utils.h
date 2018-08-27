@@ -22,11 +22,16 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSString (LL_Utils)
 
 - (NSDictionary *)LL_jsonDictionary;
 - (NSArray *)LL_jsonArray;
+
+- (unsigned long long)byteLength;
+
+- (CGFloat)heightWithAttributes:(NSDictionary *)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
 
 @end
 

@@ -22,6 +22,13 @@
 //  SOFTWARE.
 
 #import "LLSubTitleTableViewCell.h"
+#import "LLConfig.h"
+
+@interface LLSubTitleTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UITextView *contentLabel;
+
+@end
 
 @implementation LLSubTitleTableViewCell
 
@@ -30,10 +37,35 @@
     [self initial];
 }
 
+- (void)setContentText:(NSString *)contentText {
+    if (![_contentText isEqualToString:contentText]) {
+        _contentText = [contentText copy];
+        self.contentLabel.scrollEnabled = NO;
+        self.contentLabel.text = _contentText;
+    }
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.contentLabel.backgroundColor = nil;
+    if (LLCONFIG_CUSTOM_COLOR) {
+        self.contentLabel.textColor = LLCONFIG_TEXT_COLOR;
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.contentLabel.constraints.count == 3) {
+        NSLayoutConstraint *systemHeightCons = self.contentLabel.constraints[1];
+        NSLayoutConstraint *heightCons = self.contentLabel.constraints[2];
+        if (systemHeightCons.constant > heightCons.constant) {
+            self.contentLabel.scrollEnabled = YES;
+        } else {
+            self.contentLabel.scrollEnabled = NO;
+        }
+    }
 }
 
 @end

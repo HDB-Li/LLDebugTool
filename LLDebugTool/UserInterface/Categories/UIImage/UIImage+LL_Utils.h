@@ -27,4 +27,9 @@
 
 + (nullable UIImage *)LL_imageNamed:(NSString *_Nonnull)name;
 
+/**
+ This part is from SDWebImage.
+ */
++ (nullable UIImage *)LL_imageWithGIFData:(NSData *_Nullable)data;
+
 @end

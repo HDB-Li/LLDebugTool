@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.3-blue.svg)](https://img.shields.io/badge/pod-v1.1.3-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.4-blue.svg)](https://img.shields.io/badge/pod-v1.1.4-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
@@ -35,23 +35,30 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.1.3)
+## 最近更新 (1.1.4)
 
-### 重构数据库
+### 增加网络流量监测功能
 
-修复了一些数据库的问题。 现在他能表现的更加友好，你可以通过Mac上的软件查看模型的内容。以后某天，`LLLogHelper` 会单独分离出来，成一个可以在release环境使用的埋点工具。
+现在你可以查看网络请求的流量，虽然他还不是很准确。另外修复了一些已知问题。
 
-新的版本会将旧版本的数据库删除，如果你仍有数据需要使用，请在你不需要的时候再更新。
+更多的修改内容可以在[Project](https://github.com/HDB-Li/LLDebugTool/projects/3)中查看。
 
 #### 新增
 
-* 增加功能测试和UI测试，虽然它现在什么都没有。
+* 增加流量监控功能，详细内容可以查看 `LLNetworkModel.m`。
 
 #### 更新
 
-* 重构了`LLStorageManager`确保他能够在同步/异步或者主线程/子线程中正常的工作。
-* `DEPRECATED`了一些`LLStorageManager`, `LLTool` 和 `LLAppHelper`中的方法，具体内容可以查看`LLStorageManager.h`, `LLTool.h` 和 `LLAppHelper.h`.
-* 在`LLConfig`中增加一个枚举值，用来控制`LLLogHelper`的log方式。
+* 更新所有XIB文件的约束，用来清除控制台中的约束警告。
+* 用 `UITextView` 代替 `LLSubTitleTableViewCell` 中的 `UILabel` ，用于解决`UILabel`在数据过多的时候显示不全的问题，例如1000行的时候。
+* 用 `MIMETYPE` 来判断一个网络请求数据的类型。
+* 修改 `LLAppHelper.h` ，暴露更多的接口。
+* 修改 `LLStorageManager`，重写了SQL语句。
+
+#### 其他
+
+* 现在可以展示GIF图片了。
+* 修复一些bug。
 
 ## 我能用LLDebugTool做什么?
 

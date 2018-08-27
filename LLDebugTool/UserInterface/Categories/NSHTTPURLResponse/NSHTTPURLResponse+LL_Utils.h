@@ -1,7 +1,7 @@
 //
-//  LLScreenshotToolbar.h
+//  NSHTTPURLResponse+LL_Utils.h
 //
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  Copyright (c) 2018 LLBaseFoundation Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,25 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
-#import "LLScreenshotDefine.h"
+#import <Foundation/Foundation.h>
 
-@class LLScreenshotToolbar;
-@class LLScreenshotSelectorModel;
-
-@protocol LLScreenshotToolbarDelegate <NSObject>
-
-- (void)LLScreenshotToolbar:(LLScreenshotToolbar *_Nonnull)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *_Nullable)selectorModel;
-
-@end
-
-@interface LLScreenshotToolbar : UIView
-
-@property (nonatomic , weak , nullable) id <LLScreenshotToolbarDelegate> delegate;
+@interface NSHTTPURLResponse (LL_Utils)
 
 /**
- Specifies the initialization method.
+ State line in NSHTTPURLResponse.
  */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
+- (NSString *_Nullable)stateLine;
 
 @end

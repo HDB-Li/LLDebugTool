@@ -27,6 +27,7 @@
 		3687522520C69B22002C6AD9 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3687521D20C69B22002C6AD9 /* LLScreenshotImageView.m */; };
 		368F9DE82119AAF4003F8264 /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BF4E2099897F007A3188 /* LLLogFilterView.m */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
+		369B258F212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 369B258E212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36AE43DB20C788E90066EA41 /* LLScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE43DA20C788E90066EA41 /* LLScreenshotHelper.m */; };
 		36C5BF782099897F007A3188 /* LLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C5BEEE2099897F007A3188 /* LLConfig.m */; };
@@ -155,6 +156,8 @@
 		3687521E20C69B22002C6AD9 /* LLScreenshotToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotToolbar.h; sourceTree = "<group>"; };
 		3691A61C20C7E63B00E22192 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3691A61E20C7E63D00E22192 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		369B258D212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+LL_Utils.h"; sourceTree = "<group>"; };
+		369B258E212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+LL_Utils.m"; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		36AE43D920C788E90066EA41 /* LLScreenshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelper.h; sourceTree = "<group>"; };
@@ -352,6 +355,15 @@
 				3687521620C69B21002C6AD9 /* LLScreenshotBaseOperation.m */,
 			);
 			path = ScreenshotView;
+			sourceTree = "<group>";
+		};
+		369B258C212E5D5B00E771D8 /* NSHTTPURLResponse */ = {
+			isa = PBXGroup;
+			children = (
+				369B258D212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.h */,
+				369B258E212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.m */,
+			);
+			path = NSHTTPURLResponse;
 			sourceTree = "<group>";
 		};
 		36AE43D820C788E90066EA41 /* ScreenshotHelper */ = {
@@ -636,6 +648,7 @@
 		36C5BF5C2099897F007A3188 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				369B258C212E5D5B00E771D8 /* NSHTTPURLResponse */,
 				C41B0A0621205BD700A058CF /* NSObject */,
 				2313EF2C20F5ED160038AD06 /* UIImage */,
 				36C5BF5D2099897F007A3188 /* UIButton */,
@@ -1117,6 +1130,7 @@
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
 				3687522220C69B22002C6AD9 /* LLScreenshotSelectorModel.m in Sources */,
 				36C5BF8F2099897F007A3188 /* LLCrashContentVC.m in Sources */,
+				369B258F212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
 				36C5BFA42099897F007A3188 /* LLFilterLabelCell.m in Sources */,
 				36C5BF782099897F007A3188 /* LLConfig.m in Sources */,
 				36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */,
@@ -1220,7 +1234,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LLDebugToolDemoUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1236,7 +1250,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LLDebugToolDemoUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.LLDebugToolDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

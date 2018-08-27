@@ -241,7 +241,8 @@ static NSString *const kDatabaseVersion = @"1";
     [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
         NSError *error;
         NSString *tableName = [self tableNameFromClass:cls];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ IN %@;",tableName,kIdentityColumn,identities.allObjects] values:nil error:&error];
+        NSString *identitiesString = [self convertArrayToSQL:identities.allObjects];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ IN %@;",tableName,kIdentityColumn,identitiesString] values:nil error:&error];
         if (!ret) {
             [self log:[NSString stringWithFormat:@"Remove %@ failed, error = %@",NSStringFromClass(cls),error]];
         }
@@ -334,6 +335,7 @@ static NSString *const kDatabaseVersion = @"1";
         [self update113VersionWithComplete:complete];
     }
 }
+
 - (void)update113VersionWithComplete:(LLStorageManagerBoolBlock)complete {
     // Check thread.
     if ([[NSThread currentThread] isMainThread]) {
@@ -444,13 +446,14 @@ static NSString *const kDatabaseVersion = @"1";
     [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
         NSError *error;
         NSString *logTableName = [self tableNameFromClass:[LLLogModel class]];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDates] values:nil error:&error];
+        NSString *launchDateString = [self convertArrayToSQL:launchDates];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString] values:nil error:&error];
         if (!ret) {
             [self log:[NSString stringWithFormat:@"Remove launch log fail, error = %@",error]];
         }
         
         NSString *networkTableName = [self tableNameFromClass:[LLNetworkModel class]];
-        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,launchDates] values:nil error:&error];
+        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,launchDateString] values:nil error:&error];
         if (!ret2) {
             [self log:[NSString stringWithFormat:@"Remove launch network fail, error = %@",error]];
         }
@@ -468,6 +471,17 @@ static NSString *const kDatabaseVersion = @"1";
 
 - (NSString *)createTableSQLFromClass:(Class)cls {
     return [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(%@ BLOB NOT NULL,%@ TEXT NOT NULL,%@ TEXT NOT NULL,%@ TEXT NOT NULL);",[self tableNameFromClass:cls],kObjectDataColumn,kIdentityColumn,kLaunchDateColumn,kDescriptionColumn];
+}
+
+- (NSString *)convertArrayToSQL:(NSArray *)array {
+    NSMutableString *SQL = [[NSMutableString alloc] init];
+    [SQL appendString:@"("];
+    for (NSString *item in array) {
+        [SQL appendFormat:@"\"%@\",",item];
+    }
+    [SQL deleteCharactersInRange:NSMakeRange(SQL.length - 1, 1)];
+    [SQL appendString:@")"];
+    return SQL;
 }
 
 - (void)performBoolComplete:(LLStorageManagerBoolBlock)complete param:(NSNumber *)param synchronous:(BOOL)synchronous {

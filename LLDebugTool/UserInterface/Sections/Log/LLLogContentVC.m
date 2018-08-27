@@ -53,7 +53,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
     LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLogContentCellID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
-    cell.contentLabel.text = content;
+    cell.contentText = content;
     return cell;
 }
 

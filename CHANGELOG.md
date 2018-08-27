@@ -1,3 +1,26 @@
+## [1.1.4](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.4) (08/27/2018)
+
+### Increase network traffic monitoring
+
+Now you can check your network request traffic, although it is not very accurate. Other some known problems have been fixed. More changes can be viewed in [Project 1.1.4](https://github.com/HDB-Li/LLDebugTool/projects/3).
+
+#### Add
+
+* Add data traffic function, details can see `LLNetworkModel.m`.
+
+#### Update
+
+* Update the constraints in all XIB files, remove constraint warnings from the console.
+* Use `UITextView` replace `UILabel` in `LLSubTitleTableViewCell`, used to solve the problem that `UILabel` does not show when there is too much data, such as 1000 lines.
+* Use `MIMETYPE` to judge the type of a network response.
+* Update `LLAppHelper.h`, expose more interfaces.
+* Update `LLStorageManager`, rewritten SQL statements.
+
+#### Extra
+
+* Now we can display GIF images.
+* Fix some bugs.
+
 ## [1.1.3](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.3) (08/16/2018)
 
 ### Refactory database

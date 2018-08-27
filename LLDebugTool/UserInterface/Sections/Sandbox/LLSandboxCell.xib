@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="286" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajv-Qp-EGh">
-                        <rect key="frame" x="50.5" y="5" width="230.5" height="19.5"/>
+                        <rect key="frame" x="50.5" y="5" width="231.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -33,7 +33,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX5-ja-Ibu">
-                        <rect key="frame" x="50" y="29.5" width="30.5" height="15"/>
+                        <rect key="frame" x="50" y="30.5" width="30.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="WdU-cw-cUz"/>
                         </constraints>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ada-eS-SMj">
-                        <rect key="frame" x="253.5" y="29.5" width="27.5" height="15"/>
+                        <rect key="frame" x="254.5" y="30.5" width="27.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="2h5-d3-eTW"/>
                         </constraints>
@@ -58,7 +58,7 @@
                     <constraint firstAttribute="trailing" secondItem="ajv-Qp-EGh" secondAttribute="trailing" constant="5" id="LXb-rN-ELy"/>
                     <constraint firstItem="ajv-Qp-EGh" firstAttribute="leading" secondItem="sMU-ah-ZUO" secondAttribute="trailing" constant="10" id="OnL-sG-mMr"/>
                     <constraint firstItem="sMU-ah-ZUO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="i6q-xd-Myo"/>
-                    <constraint firstAttribute="bottom" secondItem="cX5-ja-Ibu" secondAttribute="bottom" constant="5" id="lZF-M0-kAP"/>
+                    <constraint firstAttribute="bottom" secondItem="cX5-ja-Ibu" secondAttribute="bottom" priority="750" constant="5" id="lZF-M0-kAP"/>
                     <constraint firstItem="Ada-eS-SMj" firstAttribute="top" secondItem="cX5-ja-Ibu" secondAttribute="top" id="r8g-2I-UUi"/>
                     <constraint firstItem="cX5-ja-Ibu" firstAttribute="top" secondItem="ajv-Qp-EGh" secondAttribute="bottom" constant="5" id="sL7-3a-t4W"/>
                     <constraint firstItem="sMU-ah-ZUO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sef-Uw-dgD"/>

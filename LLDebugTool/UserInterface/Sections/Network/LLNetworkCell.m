@@ -47,7 +47,7 @@
     if (_model != model) {
         _model = model;
         self.hostLabel.text = _model.url.host;
-        self.paramLabel.text = _model.url.path.length ? _model.url.path : @"None";
+        self.paramLabel.text = _model.url.path;
         self.dateLabel.text = [_model.startDate substringFromIndex:11];
     }
 }

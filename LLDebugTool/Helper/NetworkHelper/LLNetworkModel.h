@@ -28,6 +28,7 @@
  */
 @interface LLNetworkModel : LLStorageModel
 
+#pragma mark - Request
 /**
  Network request start date.
  */
@@ -44,14 +45,30 @@
 @property (nonatomic , copy , nullable) NSString *method;
 
 /**
- Network request mine type.
- */
-@property (nonatomic , copy , nullable) NSString *mineType;
-
-/**
  Network request request body.
  */
 @property (nonatomic , copy , nullable) NSString *requestBody;
+
+/**
+ Network request header.
+ */
+@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*headerFields;
+
+/**
+ Cookies.
+ */
+@property (nonatomic , strong , readonly , nullable) NSDictionary <NSString *, NSString *>*cookies;
+
+#pragma mark - Response
+/**
+ Http response protocol.
+ */
+@property (nonatomic , copy , nullable) NSString *stateLine;
+
+/**
+ Network request mime type.
+ */
+@property (nonatomic , copy , nullable) NSString *mimeType;
 
 /**
  Network request status code.
@@ -69,6 +86,21 @@
 @property (nonatomic , assign) BOOL isImage;
 
 /**
+ Is gif or not.
+ */
+@property (nonatomic , assign) BOOL isGif;
+
+/**
+ Is html or not.
+ */
+@property (nonatomic , assign , readonly) BOOL isHTML;
+
+/**
+ Is txt or not.
+ */
+@property (nonatomic , assign , readonly) BOOL isTXT;
+
+/**
  Network request used duration.
  */
 @property (nonatomic , copy , nonnull) NSString *totalDuration;
@@ -79,10 +111,42 @@
 @property (nonatomic , strong , nullable) NSError *error;
 
 /**
- Network request header.
+ Network response header.
  */
-@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*headerFields;
+@property (nonatomic , strong , nullable) NSDictionary <NSString *,NSString *>*responseHeaderFields;
 
+#pragma mark - Data traffic
+/**
+ Upload data traffic.
+ */
+@property (nonatomic , copy , readonly , nullable) NSString *requestDataTraffic;
+
+/**
+ Download data traffic.
+ */
+@property (nonatomic , copy , readonly , nullable) NSString *responseDataTraffic;
+
+/**
+ Total data traffic.
+ */
+@property (nonatomic , copy , readonly , nullable) NSString *totalDataTraffic;
+
+/**
+ Request line + headers + body.
+ */
+@property (nonatomic , assign , readonly) unsigned long long requestDataTrafficValue;
+
+/**
+ Response state line + headers + response object.
+ */
+@property (nonatomic , assign , readonly) unsigned long long responseDataTrafficValue;
+
+/**
+ Request data traffic + response data traffic.
+ */
+@property (nonatomic , assign , readonly) unsigned long long totalDataTrafficValue;
+
+#pragma mark - Other
 /**
  Network request identity.
  */
