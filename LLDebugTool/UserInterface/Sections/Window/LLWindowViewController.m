@@ -48,6 +48,8 @@
 
 @property (nonatomic , strong) UILabel *FPSLabel;
 
+@property (nonatomic , strong) UIView *lineView;
+
 @property (nonatomic , assign) CGFloat sBallHideWidth;
 
 @property (nonatomic , strong) UITabBarController *tabVC;
@@ -121,6 +123,17 @@
     self.FPSLabel.text = [NSString stringWithFormat:@"%ld",(long)fps];
 }
 
+#pragma mark - LLConfigDidUpdateColorStyleNotification
+- (void)didReceiveregisterLLConfigDidUpdateColorStyleNotification {
+    _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
+    _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
+    _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
+    _FPSLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
+    _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+}
+
 #pragma mark - Primary
 /**
  * initial method
@@ -129,6 +142,7 @@
     [self initialDefaultSettings];
     [self createSubView];
     [self createGestureRecognizer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveregisterLLConfigDidUpdateColorStyleNotification) name:LLConfigDidUpdateColorStyleNotificationName object:nil];
 }
 
 - (void)initialDefaultSettings {
@@ -189,9 +203,8 @@
             [self.view addSubview:self.FPSLabel];
             
             // Create Line
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0 - 0.5, _sBallWidth * 3 / 4.0, 1)];
-            line.backgroundColor = LLCONFIG_CUSTOM_COLOR ? LLCONFIG_TEXT_COLOR : [LLConfig sharedConfig].systemTintColor;
-            [self.contentView addSubview:line];
+            self.lineView.frame = CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0 - 0.5, _sBallWidth * 3 / 4.0, 1);
+            [self.contentView addSubview:self.lineView];
         }
             break;
         case LLConfigWindowPowerBar:
@@ -462,6 +475,14 @@
         }
     }
     return _FPSLabel;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    }
+    return _lineView;
 }
 
 @end

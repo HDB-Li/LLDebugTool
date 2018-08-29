@@ -33,6 +33,8 @@
 
 static LLConfig *_instance = nil;
 
+NSNotificationName const LLConfigDidUpdateColorStyleNotificationName = @"LLConfigDidUpdateColorStyleNotificationName";
+
 @implementation LLConfig
 
 + (instancetype)sharedConfig {
@@ -45,11 +47,12 @@ static LLConfig *_instance = nil;
 }
 
 - (void)setColorStyle:(LLConfigColorStyle)colorStyle {
-    //    if (_colorStyle != colorStyle) {
-    _colorStyle = colorStyle;
-    _useSystemColor = NO;
-    [self updateColor];
-    //    }
+    if (colorStyle != LLConfigColorStyleCustom) {
+        _colorStyle = colorStyle;
+        _useSystemColor = NO;
+        [self updateColor];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
+    }
 }
 
 - (void)setAvailables:(LLConfigAvailableFeature)availables {
@@ -83,10 +86,12 @@ static LLConfig *_instance = nil;
 }
 
 - (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
+    _colorStyle = LLConfigColorStyleCustom;
     _useSystemColor = NO;
     _backgroundColor = backgroundColor;
     _textColor = textColor;
     _statusBarStyle = statusBarStyle;
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
 }
 
 #pragma mark - Primary
@@ -153,6 +158,10 @@ static LLConfig *_instance = nil;
             _backgroundColor = [UIColor whiteColor];
             _textColor = self.systemTintColor;
             _statusBarStyle = UIStatusBarStyleDefault;
+        }
+            break;
+        case LLConfigColorStyleCustom:{
+            
         }
             break;
         case LLConfigColorStyleHack:
