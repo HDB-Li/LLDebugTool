@@ -31,7 +31,7 @@
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
-@interface LLNetworkContentVC ()
+@interface LLNetworkContentVC () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -73,6 +73,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
     cell.contentText = obj;
+    cell.delegate = self;
     return cell;
 }
 
@@ -99,6 +100,12 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
         }
     }
+}
+
+#pragma mark - LLSubTitleTableViewCellDelegate
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Primary

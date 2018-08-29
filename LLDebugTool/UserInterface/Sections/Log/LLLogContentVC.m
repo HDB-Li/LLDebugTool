@@ -26,7 +26,7 @@
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
-@interface LLLogContentVC ()
+@interface LLLogContentVC () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -54,6 +54,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
     cell.contentText = content;
+    cell.delegate = self;
     return cell;
 }
 
@@ -64,6 +65,12 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
         [UIPasteboard generalPasteboard].string = content;
         [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
+}
+
+#pragma mark - LLSubTitleTableViewCellDelegate
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Primary
