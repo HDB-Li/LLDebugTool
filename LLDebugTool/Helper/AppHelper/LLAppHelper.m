@@ -90,33 +90,14 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
     return _instance;
 }
 
-- (void)startMonitoring {
-    if ([self.memoryTimer isValid]) {
-        [self.memoryTimer invalidate];
-        self.memoryTimer = nil;
-    }
-    self.memoryTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(memoryTimerAction:) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.memoryTimer forMode:NSRunLoopCommonModes];
-    [self.memoryTimer fire];
-    
-    if (_link) {
-        [_link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        [_link invalidate];
-        _link = nil;
-    }
-    _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(fpsDisplayLinkAction:)];
-    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-}
-
-- (void)stopMonitoring {
-    if ([self.memoryTimer isValid]) {
-        [self.memoryTimer invalidate];
-        self.memoryTimer = nil;
-    }
-    if (_link) {
-        [_link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        [_link invalidate];
-        _link = nil;
+- (void)setEnable:(BOOL)enable {
+    if (_enable != enable) {
+        _enable = enable;
+        if (enable) {
+            [self startTimers];
+        } else {
+            [self removeTimers];
+        }
     }
 }
 
@@ -253,16 +234,36 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
     return [self currentWifiSSID];
 }
 
-- (NSString *)launchDate {
-    return [NSObject launchDate];
-}
-
 #pragma mark - Primary
 /**
  Initialize something
  */
 - (void)initial {
     _fps = 60;
+}
+
+- (void)startTimers {
+
+    [self removeTimers];
+    
+    self.memoryTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(memoryTimerAction:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.memoryTimer forMode:NSRunLoopCommonModes];
+    [self.memoryTimer fire];
+    
+    _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(fpsDisplayLinkAction:)];
+    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (void)removeTimers {
+    if ([self.memoryTimer isValid]) {
+        [self.memoryTimer invalidate];
+        self.memoryTimer = nil;
+    }
+    if (_link) {
+        [_link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        [_link invalidate];
+        _link = nil;
+    }
 }
 
 - (NSArray *)dynamicInfos {
@@ -505,5 +506,19 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
     }
     return _networkState;
 }
+
+#pragma mark - DEPRECATED
+- (NSString *)launchDate {
+    return [NSObject launchDate];
+}
+
+- (void)startMonitoring {
+    [self setEnable:YES];
+}
+
+- (void)stopMonitoring {
+    [self setEnable:NO];
+}
+
 
 @end

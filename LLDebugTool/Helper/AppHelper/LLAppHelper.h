@@ -57,14 +57,9 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppHelperTotalDataTrafficKey;
 + (instancetype _Nonnull)sharedHelper;
 
 /**
- Start monitoring CPU/FPS/Memory
+ Set enable to monitoring network request.
  */
-- (void)startMonitoring;
-
-/**
- Stop monitoring CPU/FPS/Memory
- */
-- (void)stopMonitoring;
+@property (nonatomic , assign , getter=isEnabled) BOOL enable;
 
 /**
  Get current app infos. Include "CPU Usage","Memory Usage","FPS","Data Traffic","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Device Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
@@ -167,6 +162,16 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppHelperTotalDataTrafficKey;
  Get this time launchDate. LaunchDate means the start time of the app, also it's the identity for crash model.
  */
 - (NSString *_Nonnull)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
+
+/**
+ Start monitoring CPU/FPS/Memory
+ */
+- (void)startMonitoring DEPRECATED_MSG_ATTRIBUTE("Use [setEnable:YES] replace.");
+
+/**
+ Stop monitoring CPU/FPS/Memory
+ */
+- (void)stopMonitoring DEPRECATED_MSG_ATTRIBUTE("Use [setEnable:NO] replace.");
 
 #pragma mark - PRIMARY (This part of the method is used for internal calls, and users do not actively invoke these interfaces, nor need to care about them.)
 /**
