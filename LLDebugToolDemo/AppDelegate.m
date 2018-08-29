@@ -19,17 +19,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    //####################### Color Style #######################//
     // Uncomment one of the following lines to change the color configuration.
     // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
     // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-    // [LLConfig sharedConfig].useSystemColor = YES;
     
+    //####################### User Identity #######################//
     // Use this line to tag user. More config please see "LLConfig.h".
     [LLConfig sharedConfig].userIdentity = @"Miss L";
     
+    //####################### Window Style #######################//
     // Uncomment one of the following lines to change the window style.
     // [LLConfig sharedConfig].windowStyle = LLConfigWindowNetBar;
+
+    //####################### Features #######################//
+    // Uncomment this line to change the available features.
+    // [LLConfig sharedConfig].availables = LLConfigAvailableNoneAppInfo;
     
+    // ####################### Start LLDebugTool #######################//
     // Use this line to start working.
     [[LLDebugTool sharedTool] startWorking];
     

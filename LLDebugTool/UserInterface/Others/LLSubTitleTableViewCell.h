@@ -23,10 +23,21 @@
 
 #import "LLBaseTableViewCell.h"
 
+@class LLSubTitleTableViewCell;
+
+@protocol LLSubTitleTableViewCellDelegate<NSObject>
+
+@optional
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView;
+
+@end
+
 @interface LLSubTitleTableViewCell : LLBaseTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (copy , nonatomic , nullable) NSString *contentText;
+
+@property (weak , nonatomic , nullable) id <LLSubTitleTableViewCellDelegate> delegate;
 
 @end

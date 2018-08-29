@@ -25,8 +25,16 @@
 #import "LLLogHelperEventDefine.h"
 #import "LLDebugToolMacros.h"
 #import "LLDebugTool.h"
+#import "LLNetworkHelper.h"
+#import "LLLogHelper.h"
+#import "LLCrashHelper.h"
+#import "LLAppHelper.h"
+#import "LLScreenshotHelper.h"
 
 static LLConfig *_instance = nil;
+
+NSNotificationName const LLConfigDidUpdateColorStyleNotificationName = @"LLConfigDidUpdateColorStyleNotificationName";
+NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConfigDidUpdateWindowStyleNotificationName";
 
 @implementation LLConfig
 
@@ -40,18 +48,56 @@ static LLConfig *_instance = nil;
 }
 
 - (void)setColorStyle:(LLConfigColorStyle)colorStyle {
-    //    if (_colorStyle != colorStyle) {
-    _colorStyle = colorStyle;
-    _useSystemColor = NO;
-    [self updateColor];
-    //    }
+    if (colorStyle != LLConfigColorStyleCustom) {
+        _colorStyle = colorStyle;
+        [self updateColor];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
+    }
+}
+
+- (void)setWindowStyle:(LLConfigWindowStyle)windowStyle {
+    if (_windowStyle != windowStyle) {
+        _windowStyle = windowStyle;
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];
+    }
+}
+
+- (void)setAvailables:(LLConfigAvailableFeature)availables {
+    if (_availables != availables) {
+        BOOL networkEnable = availables & LLConfigAvailableNetwork;
+        BOOL logEnable = availables & LLConfigAvailableLog;
+        BOOL crashEnable = availables & LLConfigAvailableCrash;
+        BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
+        BOOL sandboxEnable = availables & LLConfigAvailableSandbox;
+        BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
+        if (!networkEnable && !logEnable && !crashEnable && !appInfoEnable && !sandboxEnable && !screenshotEnable) {
+            // Can't set none availables.
+            return;
+        }
+        BOOL allEnable = networkEnable && logEnable && crashEnable && appInfoEnable && sandboxEnable && screenshotEnable;
+        if (allEnable && (availables != LLConfigAvailableAll)) {
+            // Check if input wrong.
+            _availables = LLConfigAvailableAll;
+        } else {
+            _availables = availables;
+        }
+        // Start or close features.
+        if ([LLDebugTool sharedTool].isWorking) {
+            [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
+            [[LLLogHelper sharedHelper] setEnable:logEnable];
+            [[LLCrashHelper sharedHelper] setEnable:crashEnable];
+            [[LLAppHelper sharedHelper] setEnable:appInfoEnable];
+            [[LLScreenshotHelper sharedHelper] setEnable:screenshotEnable];
+        }
+    }
 }
 
 - (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
-    _useSystemColor = NO;
+    _colorStyle = LLConfigColorStyleCustom;
     _backgroundColor = backgroundColor;
     _textColor = textColor;
     _statusBarStyle = statusBarStyle;
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
 }
 
 #pragma mark - Primary
@@ -99,6 +145,9 @@ static LLConfig *_instance = nil;
     // Set default window's style.
     _windowStyle = LLConfigWindowSuspensionBall;
     
+    // Set default availables.
+    _availables = LLConfigAvailableAll;
+    
     // Update color.
     [self updateColor];
 }
@@ -117,6 +166,10 @@ static LLConfig *_instance = nil;
             _statusBarStyle = UIStatusBarStyleDefault;
         }
             break;
+        case LLConfigColorStyleCustom:{
+            
+        }
+            break;
         case LLConfigColorStyleHack:
         default:{
             _backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
@@ -124,6 +177,16 @@ static LLConfig *_instance = nil;
             _statusBarStyle = UIStatusBarStyleLightContent;
         }
             break;
+    }
+}
+
+#pragma mark - DEPRECATED
+- (void)setUseSystemColor:(BOOL)useSystemColor {
+    if (_useSystemColor != useSystemColor) {
+        _useSystemColor = useSystemColor;
+        if (useSystemColor && (self.colorStyle != LLConfigColorStyleSimple)) {
+            self.colorStyle = LLConfigColorStyleSimple;
+        }
     }
 }
 

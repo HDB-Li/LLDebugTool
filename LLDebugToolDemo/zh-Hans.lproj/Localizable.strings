@@ -12,7 +12,8 @@
 "call" = "打电话";
 "call.log.info" = "这是一条关于\"打电话\"事件的log,用于针对某个问题的分析或记录";
 
-"normal.network" = "普通网络请求(AFNetworking/Json Response)";
+"normal.network" = "普通网络请求(AFHTTPSessionManager/Json Response)";
+"normal.session.network" = "普通网络请求(AFURLSessionManager/Json Response)";
 "image.network" = "图片网络请求(NSURLConnection/Image Response)";
 "HTML.network" = "HTML网络请求(NSURLSession/HTML Response)";
 
@@ -31,3 +32,9 @@
 "color.style" = "使用ColorStyle颜色颜色";
 "color.custom" = "使用自定义颜色配置";
 "color.none" = "不使用颜色配置";
+
+"test.network.request" = "展示网络功能";
+"test.log" = "展示日志功能";
+"test.crash" = "展示崩溃收集功能";
+"test.color.style" = "展示ColorStyle配置";
+"test.window.style" = "展示WindowStyle配置";

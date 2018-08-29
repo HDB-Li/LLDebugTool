@@ -31,7 +31,7 @@
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
-@interface LLNetworkContentVC ()
+@interface LLNetworkContentVC () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -73,6 +73,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
     cell.contentText = obj;
+    cell.delegate = self;
     return cell;
 }
 
@@ -88,17 +89,23 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
                 image = [UIImage imageWithData:obj];
             }
             if ([image isKindOfClass:[UIImage class]]) {
-                [UIPasteboard generalPasteboard].image = image;
+                [[UIPasteboard generalPasteboard] setImage:image];
                 [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
             }
         } else if ([obj isKindOfClass:[NSData class]] || [obj isKindOfClass:[NSString class]]) {
             if ([obj isKindOfClass:[NSData class]]) {
                 obj = [self convertDataToHexStr:obj];
             }
-            [UIPasteboard generalPasteboard].string = obj;
+            [[UIPasteboard generalPasteboard] setString:obj];
             [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
         }
     }
+}
+
+#pragma mark - LLSubTitleTableViewCellDelegate
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Primary
@@ -164,8 +171,6 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
                 [self.contentArray addObject:self.model.responseString.length ? self.model.responseString : self.model.responseData];
             }
         }
-        
-
     }
 }
 

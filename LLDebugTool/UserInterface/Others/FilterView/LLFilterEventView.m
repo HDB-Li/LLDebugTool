@@ -141,13 +141,10 @@ static NSString *const kEventCellID = @"EventCellID";
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.bounces = YES;
-    _collectionView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.75];
+    _collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
     [_collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kEventCellID];
     [self addSubview:_collectionView];
     self.lineView = [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
-    }
 }
 
 @end

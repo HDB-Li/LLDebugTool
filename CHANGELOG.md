@@ -1,3 +1,24 @@
+## [1.1.5](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.5) (08/29/2018)
+
+###  Start/stop function module dynamically
+
+Add a options `LLConfigAvailableFeature` in `LLConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module. More changes can be viewed in [Version 1.1.5 Project](https://github.com/HDB-Li/LLDebugTool/projects/4).
+
+#### Add
+
+* Add a options `LLConfigAvailableFeature` in `LLConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module.
+* Add enumeration values `LLConfigLogFileFuncDesc` and `LLConfigLogFileDesc` in `LLConfigLogStyle`.
+
+#### Update
+
+* Update `LLAppHelper` and `LLConfig`, Cleaner code.
+* Update `LLConfig`, now you can dynamic change `colorStyle` and `windowStyle` in running, See demo for more effects.
+* Update `LLSubTitleTableViewCell` to fix UITextView bug under ios 8.
+
+#### Extra
+
+* Update demo file, It looks more comfortable now.
+
 ## [1.1.4](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.4) (08/27/2018)
 
 ### Increase network traffic monitoring

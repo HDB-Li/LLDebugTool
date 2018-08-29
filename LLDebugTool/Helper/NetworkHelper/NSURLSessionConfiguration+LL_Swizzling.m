@@ -24,7 +24,7 @@
 #import "NSURLSessionConfiguration+LL_Swizzling.h"
 #import <objc/runtime.h>
 #import "LLURLProtocol.h"
-#import "LLDebugTool.h"
+#import "LLNetworkHelper.h"
 
 
 @implementation NSURLSessionConfiguration (LL_Swizzling)
@@ -41,7 +41,7 @@
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration LL_defaultSessionConfiguration];
-    if ([LLDebugTool sharedTool].isWorking) {
+    if ([LLNetworkHelper sharedHelper].isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:config.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {
             [protocols insertObject:[LLURLProtocol class] atIndex:0];
@@ -53,7 +53,7 @@
 
 + (NSURLSessionConfiguration *)LL_ephemeralSessionConfiguration {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration LL_ephemeralSessionConfiguration];
-    if ([LLDebugTool sharedTool].isWorking) {
+    if ([LLNetworkHelper sharedHelper].isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] init];
         [protocols addObjectsFromArray:config.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {

@@ -15,6 +15,12 @@
 #import "NetTool.h"
 #import <Photos/PHPhotoLibrary.h>
 
+#import "TestNetworkViewController.h"
+#import "TestLogViewController.h"
+#import "TestCrashViewController.h"
+#import "TestColorStyleViewController.h"
+#import "TestWindowStyleViewController.h"
+
 static NSString *const kCellID = @"cellID";
 
 @interface ViewController () <UITableViewDelegate , UITableViewDataSource>
@@ -28,7 +34,7 @@ static NSString *const kCellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
@@ -73,95 +79,18 @@ static NSString *const kCellID = @"cellID";
     LLog(NSLocalizedString(@"initial.log", nil));
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 #pragma mark - Actions
-- (void)testNormalNetworkRequest {
-    NSString *url = @"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600";
-    
-    // Use AFHttpSessionManager
-    [[NetTool sharedTool].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-    }];
-    
-    // Use AFURLSessionManager
-    /*
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [[NetTool sharedTool].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-    }];
-     */
-}
-
-- (void)testImageNetworkRequest {
-    //NSURLConnection
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525346881086&di=b234c66c82427034962131d20e9f6b56&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F011cf15548caf50000019ae9c5c728.jpg%402o.jpg"]];
-    [urlRequest setHTTPMethod:@"GET"];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-    }];
-}
-
-- (void)testHTMLNetworkRequest {
-    //NSURLSession
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
-    [urlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-    }];
-    [dataTask resume];
-}
-
-- (void)testNormalLog {
-    LLog(NSLocalizedString(@"normal.log.info", nil));
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:1];
-}
-
-- (void)testErrorLog {
-    LLog_Error(NSLocalizedString(@"error.log.info", nil));
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:1];
-}
-
-- (void)testEventLog {
-    LLog_Error_Event(NSLocalizedString(@"call", nil),NSLocalizedString(@"call.log.info", nil));
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:1];
-}
-
-- (void)testArrayOutRangeCrash {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    NSArray *array = @[@"a",@"b"];
-    __unused NSString *str = array[3];
-}
-
-- (void)testPointErrorCrash {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    NSArray *a = (NSArray *)@"dssdf";
-    __unused NSString *b = [a firstObject];
-}
-
 - (void)testAppInfo {
     [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:3];
 }
 
 - (void)testSandbox {
     [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:4];
-}
-
-- (void)testColorStyle {
-    [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-}
-
-- (void)testCustomColorConfig {
-    [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
-}
-
-- (void)testSystemColorConfig {
-    [LLConfig sharedConfig].useSystemColor = YES;
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
 }
 
 #pragma mark - UITableView
@@ -171,13 +100,13 @@ static NSString *const kCellID = @"cellID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return 1;
     }
     if (section == 1) {
-        return 3;
+        return 1;
     }
     if (section == 2) {
-        return 2;
+        return 1;
     }
     if (section == 3) {
         return 1;
@@ -186,7 +115,7 @@ static NSString *const kCellID = @"cellID";
         return 1;
     }
     if (section == 5) {
-        return 3;
+        return 2;
     }
     return 0;
 }
@@ -198,42 +127,66 @@ static NSString *const kCellID = @"cellID";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.textLabel.text = nil;
+    cell.textLabel.numberOfLines = 0;
     cell.detailTextLabel.text = nil;
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"normal.network", nil);
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = NSLocalizedString(@"image.network", nil);
-        } else if (indexPath.row == 2) {
-            cell.textLabel.text = NSLocalizedString(@"HTML.network", nil);
-        }
+        cell.textLabel.text = NSLocalizedString(@"test.network.request", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"insert.log", nil);
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = NSLocalizedString(@"insert.error.log", nil);
-        } else if (indexPath.row == 2) {
-            cell.textLabel.text = NSLocalizedString(@"insert.call.log", nil);
-        }
+        cell.textLabel.text = NSLocalizedString(@"test.log", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"try.array.crash", nil);
-            cell.detailTextLabel.text = NSLocalizedString(@"crash.info", nil);
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = NSLocalizedString(@"try.pointer.crash", nil);
-            cell.detailTextLabel.text = NSLocalizedString(@"crash.info", nil);
-        }
+        cell.textLabel.text = NSLocalizedString(@"test.crash", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 3) {
         cell.textLabel.text = NSLocalizedString(@"app.info", nil);
     } else if (indexPath.section == 4) {
         cell.textLabel.text = NSLocalizedString(@"sandbox.info", nil);
     } else if (indexPath.section == 5) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"color.style", nil);
+            cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            switch ([LLConfig sharedConfig].colorStyle) {
+                case LLConfigColorStyleHack:{
+                    cell.detailTextLabel.text = @"LLConfigColorStyleHack";
+                }
+                    break;
+                case LLConfigColorStyleSimple:{
+                    cell.detailTextLabel.text = @"LLConfigColorStyleSimple";
+                }
+                    break;
+                case LLConfigColorStyleSystem:{
+                    cell.detailTextLabel.text = @"LLConfigColorStyleSystem";
+                }
+                    break;
+                case LLConfigColorStyleCustom:{
+                    cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
+                }
+                    break;
+                default:
+                    break;
+            }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = NSLocalizedString(@"color.custom", nil);
-        } else if (indexPath.row == 2) {
-            cell.textLabel.text = NSLocalizedString(@"color.none", nil);
+            cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            switch ([LLConfig sharedConfig].windowStyle) {
+                case LLConfigWindowSuspensionBall:{
+                    cell.detailTextLabel.text = @"LLConfigWindowSuspensionBall";
+                }
+                    break;
+                case LLConfigWindowPowerBar:{
+                    cell.detailTextLabel.text = @"LLConfigWindowPowerBar";
+                }
+                    break;
+                case LLConfigWindowNetBar:{
+                    cell.detailTextLabel.text = @"LLConfigWindowNetBar";
+                }
+                    break;
+                default:
+                    break;
+            }
         }
     }
     return cell;
@@ -241,40 +194,28 @@ static NSString *const kCellID = @"cellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            [self testNormalNetworkRequest];
-        } else if (indexPath.row == 1) {
-            [self testImageNetworkRequest];
-        } else if (indexPath.row == 2) {
-            [self testHTMLNetworkRequest];
-        }
+        TestNetworkViewController *vc = [[TestNetworkViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            [self testNormalLog];
-        } else if (indexPath.row == 1) {
-            [self testErrorLog];
-        } else if (indexPath.row == 2) {
-            [self testEventLog];
-        }
+        TestLogViewController *vc = [[TestLogViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            [self testArrayOutRangeCrash];
-        } else if (indexPath.row == 1) {
-            [self testPointErrorCrash];
-        }
+        TestCrashViewController *vc = [[TestCrashViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 3) {
         [self testAppInfo];
     } else if (indexPath.section == 4) {
         [self testSandbox];
     } else if (indexPath.section == 5) {
         if (indexPath.row == 0) {
-            [self testColorStyle];
+            TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
-            [self testCustomColorConfig];
-        } else if (indexPath.row == 2) {
-            [self testSystemColorConfig];
+            TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
+    [self.tableView reloadData];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -289,7 +230,7 @@ static NSString *const kCellID = @"cellID";
     } else if (section == 4) {
         return @"Sandbox Info";
     } else if (section == 5) {
-        return @"Config";
+        return @"LLConfig";
     }
     return nil;
 }

@@ -26,7 +26,7 @@
 
 @interface LLSubTitleTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UITextView *contentLabel;
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 
 @end
 
@@ -37,34 +37,54 @@
     [self initial];
 }
 
+- (void)dealloc {
+    [self.contentView removeObserver:self forKeyPath:@"frame" context:nil];
+}
+
 - (void)setContentText:(NSString *)contentText {
     if (![_contentText isEqualToString:contentText]) {
         _contentText = [contentText copy];
-        self.contentLabel.scrollEnabled = NO;
-        self.contentLabel.text = _contentText;
+        self.contentTextView.scrollEnabled = NO;
+        self.contentTextView.text = _contentText;
     }
 }
 
 #pragma mark - Primary
 - (void)initial {
+    [self.contentView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.contentLabel.backgroundColor = nil;
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.contentLabel.textColor = LLCONFIG_TEXT_COLOR;
+    
+    // You must set UITextView selectable to YES under ios 8, otherwise, you can't set textColor.
+    // See https://stackoverflow.com/questions/21221281/ios-7-cant-set-font-color-of-uitextview-in-custom-uitableview-cell
+    self.contentTextView.selectable = YES;
+    self.contentTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.contentTextView.backgroundColor = nil;
+    self.contentTextView.textColor = LLCONFIG_TEXT_COLOR;
+    self.contentTextView.selectable = NO;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentLabelTapAction:)];
+    [self.contentTextView addGestureRecognizer:tap];
+}
+
+- (void)contentLabelTapAction:(UITapGestureRecognizer *)tap {
+    if ([self.delegate respondsToSelector:@selector(LLSubTitleTableViewCell:didSelectedContentView:)]) {
+        [self.delegate LLSubTitleTableViewCell:self didSelectedContentView:self.contentTextView];
     }
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    if (self.contentLabel.constraints.count == 3) {
-        NSLayoutConstraint *systemHeightCons = self.contentLabel.constraints[1];
-        NSLayoutConstraint *heightCons = self.contentLabel.constraints[2];
-        if (systemHeightCons.constant > heightCons.constant) {
-            self.contentLabel.scrollEnabled = YES;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (object == self.contentView && [keyPath isEqualToString:@"frame"]) {
+        CGRect rect = [change[NSKeyValueChangeNewKey] CGRectValue];
+        // See LLSubTitleTableViewCell.xib
+        if (rect.size.height >= 10 + 25 + 5 + 300 + 5) {
+            self.contentTextView.scrollEnabled = YES;
         } else {
-            self.contentLabel.scrollEnabled = NO;
+            self.contentTextView.scrollEnabled = NO;
         }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 

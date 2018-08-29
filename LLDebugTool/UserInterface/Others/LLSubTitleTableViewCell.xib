@@ -32,6 +32,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" priority="750" constant="300" id="Muh-r2-csR"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="20" id="rbn-Ol-8SK"/>
                         </constraints>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -49,7 +50,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentLabel" destination="ZrM-wH-xaf" id="yw9-Sx-jfV"/>
+                <outlet property="contentTextView" destination="ZrM-wH-xaf" id="sGQ-u1-qcf"/>
                 <outlet property="titleLabel" destination="fZF-Si-7NL" id="DII-mv-vOR"/>
             </connections>
             <point key="canvasLocation" x="135" y="66"/>

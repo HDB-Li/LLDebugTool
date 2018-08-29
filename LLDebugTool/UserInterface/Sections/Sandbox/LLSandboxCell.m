@@ -48,7 +48,6 @@
 
 - (void)confirmWithModel:(LLSandboxModel *)model {
     _model = model;
-    self.icon.image = [UIImage LL_imageNamed:model.iconName];
     self.titleLabel.text = model.name;
     self.contentLabel.text = [NSString stringWithFormat:@"%@",[LLTool stringFromDate:model.modifiDate]];
     self.sizeLabel.text = [NSString stringWithFormat:@"Size:%@",model.totalFileSizeString];
@@ -62,10 +61,10 @@
     } else {
         self.contentView.alpha = 1.0;
     }
-    if (LLCONFIG_CUSTOM_COLOR) {
-        if ([model.iconName isEqualToString:kFolderImageName] || [model.iconName isEqualToString:kEmptyFolderImageName]) {
-            self.icon.image = [[UIImage LL_imageNamed:model.iconName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        }
+    if ([model.iconName isEqualToString:kFolderImageName] || [model.iconName isEqualToString:kEmptyFolderImageName]) {
+        self.icon.image = [[UIImage LL_imageNamed:model.iconName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    } else {
+        self.icon.image = [UIImage LL_imageNamed:model.iconName];
     }
 }
 
@@ -82,12 +81,12 @@
 - (void)initial {
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
     self.sizeLabel.hidden = YES;
+    self.icon.tintColor = LLCONFIG_TEXT_COLOR;
+    
     UILongPressGestureRecognizer *longPG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureAction:)];
     [self.contentView addGestureRecognizer:longPG];
     
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.icon.tintColor = LLCONFIG_TEXT_COLOR;
-    }
+    
 }
 
 - (void)longPressGestureAction:(UILongPressGestureRecognizer *)gr {

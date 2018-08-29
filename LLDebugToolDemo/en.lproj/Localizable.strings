@@ -12,7 +12,8 @@
 "call" = "call somebody";
 "call.log.info" = "This is a log on event \"call somebody\", can be used to analysis or record for a problem";
 
-"normal.network" = "Normal(AFNetworking/Json Response)";
+"normal.network" = "Normal(AFHTTPSessionManager/Json Response)";
+"normal.session.network" = "Normal(AFURLSessionManager/Json Response)";
 "image.network" = "Image(NSURLConnection/Image Response)";
 "HTML.network" = "HTML(NSURLSession/HTML Response)";
 
@@ -31,3 +32,9 @@
 "color.style" = "Use \"colorStyle\" to config color";
 "color.custom" = "Use custom color config";
 "color.none" = "Don't use color config";
+
+"test.network.request" = "Show network request function";
+"test.log" = "Show log function";
+"test.crash" = "Show crash catch function";
+"test.color.style" = "Show colorStyle configuration";
+"test.window.style" = "Show windowStyle configuration";

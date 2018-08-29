@@ -47,26 +47,38 @@ static LLLogHelper *_instance = nil;
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... {
     NSString *date = [LLTool stringFromDate:[NSDate date]];
-    switch ([LLConfig sharedConfig].logStyle) {
-        case LLConfigLogDetail:{
+    LLConfigLogStyle logStyle = [LLConfig sharedConfig].logStyle;
+    switch (logStyle) {
+        case LLConfigLogDetail:
+        case LLConfigLogFileFuncDesc:
+        case LLConfigLogFileDesc:{
+            
+            NSString *header = @"\n--------Debug Tool--------";
+            NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>",onEvent];
+            NSString *fileString = [NSString stringWithFormat:@"\nFile:<%@>",file];
+            NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%d>",lineNo];
+            NSString *funcString = [NSString stringWithFormat:@"\nFunc:<%@>",function];
+            NSString *dateString = [NSString stringWithFormat:@"\nDate:<%@>",date];
+            NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>",message];
+            NSString *footer = @"\n--------------------------";
+
+            NSMutableString *log = [[NSMutableString alloc] initWithString:header];
             if (onEvent.length) {
-                NSLog(@"\n--------Debug Tool--------\
-                      \nEvent:<%@>\
-                      \nFile:<%@>\
-                      \nLine:<%d>\
-                      \nFunc:<%@>\
-                      \nDate:<%@>\
-                      \nDesc:%@\
-                      \n--------------------------",onEvent,file,lineNo,function,date,message);
-            } else {
-                NSLog(@"\n--------Debug Tool--------\
-                      \nFile:<%@>\
-                      \nLine:<%d>\
-                      \nFunc:<%@>\
-                      \nDate:<%@>\
-                      \nDesc:%@\
-                      \n--------------------------",file,lineNo,function,date,message);
+                [log appendString:onEventString];
             }
+            [log appendString:fileString];
+            if (logStyle == LLConfigLogDetail) {
+                [log appendString:lineNoString];
+            }
+            if (logStyle == LLConfigLogDetail || logStyle == LLConfigLogFileFuncDesc) {
+                [log appendString:funcString];
+            }
+            if (logStyle == LLConfigLogDetail) {
+                [log appendString:dateString];
+            }
+            [log appendString:messageString];
+            [log appendString:footer];
+            NSLog(@"%@", log);
         }
             break;
         case LLConfigLogNone: {

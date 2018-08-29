@@ -40,14 +40,12 @@
 
 #pragma mark - Primary
 - (void)baseInitial {
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
-        self.selectedBackgroundView.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
-        self.textLabel.textColor = LLCONFIG_TEXT_COLOR;
-        self.detailTextLabel.textColor = LLCONFIG_TEXT_COLOR;
-        [self configSubviews:self];
-    }
+    self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
+    self.selectedBackgroundView.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
+    self.textLabel.textColor = LLCONFIG_TEXT_COLOR;
+    self.detailTextLabel.textColor = LLCONFIG_TEXT_COLOR;
+    [self configSubviews:self];
 }
 
 - (void)configSubviews:(UIView *)view {

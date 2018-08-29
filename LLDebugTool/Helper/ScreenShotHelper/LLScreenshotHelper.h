@@ -35,7 +35,7 @@
 /**
  Set enable to screenshot.
  */
-@property (nonatomic , assign) BOOL enable;
+@property (nonatomic , assign , getter=isEnabled) BOOL enable;
 
 /**
  Simulate user screenshot.

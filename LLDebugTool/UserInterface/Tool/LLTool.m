@@ -77,10 +77,7 @@ static unsigned long long _absolutelyIdentity = 0;
 
 + (UIView *)lineView:(CGRect)frame superView:(UIView *)superView {
     UIView *view = [[UIView alloc] initWithFrame:frame];
-    view.backgroundColor = [UIColor lightGrayColor];
-    if (LLCONFIG_CUSTOM_COLOR) {
-        view.backgroundColor = LLCONFIG_TEXT_COLOR;
-    }
+    view.backgroundColor = LLCONFIG_TEXT_COLOR;
     if (superView) {
         [superView addSubview:view];
     }

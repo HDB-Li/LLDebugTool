@@ -109,9 +109,7 @@
 #pragma mark - Primary
 - (void)initial {
     _textField.placeholder = @"Please Select";
-    if (LLCONFIG_CUSTOM_COLOR) {
-        _titleLabel.textColor = LLCONFIG_TEXT_COLOR;
-    }
+    _titleLabel.textColor = LLCONFIG_TEXT_COLOR;
 }
 
 #pragma mark - Lazy load
