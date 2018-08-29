@@ -139,11 +139,12 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     // Navigation bar item
     if (self.sandboxModel.subModels.count) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setImage:[UIImage LL_imageNamed:kEditImageName] forState:UIControlStateNormal];
-        [btn setImage:[UIImage LL_imageNamed:kDoneImageName] forState:UIControlStateSelected];
+        [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
         btn.showsTouchWhenHighlighted = NO;
         btn.adjustsImageWhenHighlighted = NO;
         btn.frame = CGRectMake(0, 0, 40, 40);
+        btn.tintColor = LLCONFIG_TEXT_COLOR;
         [btn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = item;
@@ -151,23 +152,20 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     
     // ToolBar
     self.selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
+    self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
+    
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
     self.shareItem = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
+    self.shareItem.tintColor = LLCONFIG_TEXT_COLOR;
     self.shareItem.enabled = NO;
+    
     self.deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
+    self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
     self.deleteItem.enabled = NO;
     [self setToolbarItems:@[self.selectAllItem,spaceItem,self.shareItem,self.deleteItem] animated:YES];
     
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
-        self.shareItem.tintColor = LLCONFIG_TEXT_COLOR;
-        self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
-        self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-        UIButton *btn = self.navigationItem.rightBarButtonItem.customView;
-        btn.tintColor = LLCONFIG_TEXT_COLOR;
-        [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    }
+    self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
 }
 
 

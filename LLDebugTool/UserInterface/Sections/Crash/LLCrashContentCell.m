@@ -47,10 +47,8 @@
 #pragma mark - Primary
 - (void)initial {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.textView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        self.textView.textColor = LLCONFIG_TEXT_COLOR;
-    }
+    self.textView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.textView.textColor = LLCONFIG_TEXT_COLOR;
 }
 
 @end

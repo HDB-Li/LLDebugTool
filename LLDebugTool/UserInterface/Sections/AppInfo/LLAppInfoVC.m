@@ -121,10 +121,7 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
     view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30);
     if (view.backgroundView == nil) {
         view.backgroundView = [[UIView alloc] initWithFrame:view.bounds];
-        view.backgroundView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        if (LLCONFIG_CUSTOM_COLOR) {
-            view.backgroundView.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
-        }
+        view.backgroundView.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
     }
 
     if (section == 0) {
@@ -138,11 +135,9 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    if (LLCONFIG_CUSTOM_COLOR) {
-        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-        if (![header.textLabel.textColor isEqual:LLCONFIG_TEXT_COLOR]) {
-            header.textLabel.textColor = LLCONFIG_TEXT_COLOR;
-        }
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    if (![header.textLabel.textColor isEqual:LLCONFIG_TEXT_COLOR]) {
+        header.textLabel.textColor = LLCONFIG_TEXT_COLOR;
     }
 }
 

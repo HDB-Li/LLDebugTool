@@ -174,7 +174,7 @@
     self.filterBtns = [[NSMutableArray alloc] init];
     
     self.btnsBgView = [[UIView alloc] initWithFrame:self.bounds];
-    self.btnsBgView.backgroundColor = [UIColor whiteColor];
+    self.btnsBgView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self addSubview:self.btnsBgView];
     
     CGFloat gap = 20;
@@ -185,32 +185,21 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i * (itemWidth + gap) + gap, (self.frame.size.height - itemHeight) / 2.0, itemWidth, itemHeight);
         btn.adjustsImageWhenHighlighted = NO;
-        [btn setTitleColor:self.tintColor forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-        [btn ll_setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn ll_setBackgroundColor:self.tintColor forState:UIControlStateSelected];
+        [btn setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
+        [btn setTitleColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateSelected];
+        [btn ll_setBackgroundColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateNormal];
+        [btn ll_setBackgroundColor:LLCONFIG_TEXT_COLOR forState:UIControlStateSelected];
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         btn.tag = i;
         btn.layer.cornerRadius = 5;
-        btn.layer.borderColor = self.tintColor.CGColor;
+        btn.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
         btn.layer.borderWidth = 0.5;
         btn.layer.masksToBounds = YES;
         [btn addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.filterBtns addObject:btn];
         [self.btnsBgView addSubview:btn];
-        if (LLCONFIG_CUSTOM_COLOR) {
-            [btn setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
-            [btn setTitleColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateSelected];
-            [btn ll_setBackgroundColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateNormal];
-            [btn ll_setBackgroundColor:LLCONFIG_TEXT_COLOR forState:UIControlStateSelected];
-            btn.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-        }
     }
     [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
-    
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.btnsBgView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    }
 }
 
 - (void)showDetailView:(NSInteger)index {

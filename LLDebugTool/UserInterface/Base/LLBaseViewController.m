@@ -50,13 +50,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self initNavigationItems];
     [self setUpTableView];
     [self resetDefaultSettings];
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : LLCONFIG_TEXT_COLOR}];
-        self.navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-        self.tableView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
-    }
+    self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
 }
 
 #pragma mark - Public
@@ -100,12 +94,14 @@ static NSString *const kEmptyCellID = @"emptyCellID";
         btn.frame = CGRectMake(0, 0, 40, 40);
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.leftBarButtonItem = item;
-        UIImageRenderingMode mode = LLCONFIG_CUSTOM_COLOR ? UIImageRenderingModeAlwaysTemplate : UIImageRenderingModeAlwaysOriginal;
+        UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
         [btn setImage:[[UIImage LL_imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(leftItemClick) forControlEvents:UIControlEventTouchUpInside];
     }
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : LLCONFIG_TEXT_COLOR}];
+    self.navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
 }
 
 - (void)setUpTableView {
@@ -122,6 +118,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
+    self.tableView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
 }
 
 - (void)resetDefaultSettings {

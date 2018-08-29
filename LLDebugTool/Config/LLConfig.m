@@ -50,7 +50,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 - (void)setColorStyle:(LLConfigColorStyle)colorStyle {
     if (colorStyle != LLConfigColorStyleCustom) {
         _colorStyle = colorStyle;
-        _useSystemColor = NO;
         [self updateColor];
         [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
     }
@@ -95,7 +94,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 
 - (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
     _colorStyle = LLConfigColorStyleCustom;
-    _useSystemColor = NO;
     _backgroundColor = backgroundColor;
     _textColor = textColor;
     _statusBarStyle = statusBarStyle;
@@ -179,6 +177,16 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             _statusBarStyle = UIStatusBarStyleLightContent;
         }
             break;
+    }
+}
+
+#pragma mark - DEPRECATED
+- (void)setUseSystemColor:(BOOL)useSystemColor {
+    if (_useSystemColor != useSystemColor) {
+        _useSystemColor = useSystemColor;
+        if (useSystemColor && (self.colorStyle != LLConfigColorStyleSimple)) {
+            self.colorStyle = LLConfigColorStyleSimple;
+        }
     }
 }
 

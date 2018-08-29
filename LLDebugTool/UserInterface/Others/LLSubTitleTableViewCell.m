@@ -52,17 +52,18 @@
 #pragma mark - Primary
 - (void)initial {
     [self.contentView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
     // You must set UITextView selectable to YES under ios 8, otherwise, you can't set textColor.
     // See https://stackoverflow.com/questions/21221281/ios-7-cant-set-font-color-of-uitextview-in-custom-uitableview-cell
     self.contentTextView.selectable = YES;
     self.contentTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.contentTextView.backgroundColor = nil;
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.contentTextView.textColor = LLCONFIG_TEXT_COLOR;
-    }
+    self.contentTextView.textColor = LLCONFIG_TEXT_COLOR;
     self.contentTextView.selectable = NO;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentLabelTapAction:)];
     [self.contentTextView addGestureRecognizer:tap];
 }
