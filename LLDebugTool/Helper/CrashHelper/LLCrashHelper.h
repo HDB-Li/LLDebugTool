@@ -38,6 +38,6 @@
 /**
  Set enable to catch crash.
  */
-@property (nonatomic , assign) BOOL enable;
+@property (nonatomic , assign , getter=isEnabled) BOOL enable;
 
 @end

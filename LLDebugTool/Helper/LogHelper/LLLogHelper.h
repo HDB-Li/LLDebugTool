@@ -40,7 +40,7 @@
 /**
  Set enable to save log model.
  */
-@property (nonatomic , assign) BOOL enable;
+@property (nonatomic , assign , getter=isEnabled) BOOL enable;
 
 /**
  Return log levels string.
