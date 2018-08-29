@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.4-blue.svg)](https://img.shields.io/badge/pod-v1.1.4-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.5-blue.svg)](https://img.shields.io/badge/pod-v1.1.5-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
@@ -35,30 +35,26 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## Recent updates (1.1.4)
+## Recent updates (1.1.5)
 
-### Increase network traffic monitoring
+###  Start/stop function module dynamically
 
-Now you can check your network request traffic, although it is not very accurate. 
-
-Other some known problems have been fixed. More changes can be viewed in [Project](https://github.com/HDB-Li/LLDebugTool/projects/3).
+Add a options `LLConfigAvailableFeature` in `LLConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module. More changes can be viewed in [Version 1.1.5 Project](https://github.com/HDB-Li/LLDebugTool/projects/4).
 
 #### Add
 
-* Add data traffic function, details can see `LLNetworkModel.m`.
+* Add a options `LLConfigAvailableFeature` in `LLConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module.
+* Add enumeration values `LLConfigLogFileFuncDesc` and `LLConfigLogFileDesc` in `LLConfigLogStyle`.
 
 #### Update
 
-* Update the constraints in all XIB files, remove constraint warnings from the console.
-* Use `UITextView` replace `UILabel` in `LLSubTitleTableViewCell`, used to solve the problem that `UILabel` does not show when there is too much data, such as 1000 lines.
-* Use `MIMETYPE` to judge the type of a network response.
-* Update `LLAppHelper.h`, expose more interfaces.
-* Update `LLStorageManager`, rewritten SQL statements.
+* Update `LLAppHelper` and `LLConfig`, Cleaner code.
+* Update `LLConfig`, now you can dynamic change `colorStyle` and `windowStyle` in running, See demo for more effects.
+* Update `LLSubTitleTableViewCell` to fix UITextView bug under ios 8.
 
 #### Extra
 
-* Now we can display GIF images.
-* Fix some bugs.
+* Update demo file, It looks more comfortable now.
         
 ## What can you do with LLDebugTool?
 
@@ -80,7 +76,7 @@ Other some known problems have been fixed. More changes can be viewed in [Projec
 
 [CocoaPods](http://cocoapods.org) is the recommended way to add `LLDebugTool` to your project.
 
-1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.1.4' ,:configurations => ['Debug']`.
+1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.1.5' ,:configurations => ['Debug']`.
 2. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool` or you can't find the newest release version, running `pod repo update` before `pod install`.
 3. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
 
