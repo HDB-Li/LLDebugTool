@@ -45,19 +45,11 @@
     _model = model;
     _label.text = model.message;
     if (_model.isSelected) {
-        _label.textColor = [UIColor whiteColor];
-        _bgView.backgroundColor = self.tintColor;
-        if (LLCONFIG_CUSTOM_COLOR) {
-            _label.textColor = LLCONFIG_BACKGROUND_COLOR;
-            _bgView.backgroundColor = LLCONFIG_TEXT_COLOR;
-        }
+        _label.textColor = LLCONFIG_BACKGROUND_COLOR;
+        _bgView.backgroundColor = LLCONFIG_TEXT_COLOR;
     } else {
-        _label.textColor = self.tintColor;
-        _bgView.backgroundColor = [UIColor whiteColor];
-        if (LLCONFIG_CUSTOM_COLOR) {
-            _label.textColor = LLCONFIG_TEXT_COLOR;
-            _bgView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        }
+        _label.textColor = LLCONFIG_TEXT_COLOR;
+        _bgView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     }
 }
 
@@ -68,11 +60,8 @@
     
     _bgView.layer.cornerRadius = 5;
     _bgView.layer.borderWidth = 0.5;
-    _bgView.layer.borderColor = self.tintColor.CGColor;
+    _bgView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     _bgView.layer.masksToBounds = YES;
-    if (LLCONFIG_CUSTOM_COLOR) {
-        _bgView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    }
 }
 
 @end

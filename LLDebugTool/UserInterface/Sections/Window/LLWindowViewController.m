@@ -377,22 +377,32 @@
         LLNetworkVC *networkVC = [[LLNetworkVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *networkNav = [[LLBaseNavigationController alloc] initWithRootViewController:networkVC];
         networkNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Network" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
+        networkNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+        networkNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
         LLLogVC *logVC = [[LLLogVC alloc] initWithStyle:UITableViewStylePlain];
         UINavigationController *logNav = [[LLBaseNavigationController alloc] initWithRootViewController:logVC];
         logNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage LL_imageNamed:kLogImageName] selectedImage:nil];
+        logNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+        logNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
         LLCrashVC *crashVC = [[LLCrashVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *crashNav = [[LLBaseNavigationController alloc] initWithRootViewController:crashVC];
         crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage LL_imageNamed:kCrashImageName] selectedImage:nil];
+        crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+        crashNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
         LLAppInfoVC *appInfoVC = [[LLAppInfoVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *appInfoNav = [[LLBaseNavigationController alloc] initWithRootViewController:appInfoVC];
         appInfoNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"App" image:[UIImage LL_imageNamed:kAppImageName] selectedImage:nil];
+        appInfoNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+        appInfoNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
         LLSandboxVC *sandboxVC = [[LLSandboxVC alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *sandboxNav = [[LLBaseNavigationController alloc] initWithRootViewController:sandboxVC];
         sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage LL_imageNamed:kSandboxImageName] selectedImage:nil];
+        sandboxNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+        sandboxNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
         NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
         LLConfigAvailableFeature availables = [LLConfig sharedConfig].availables;
@@ -417,21 +427,9 @@
         }
         
         tab.viewControllers = viewControllers;
-
-        if (LLCONFIG_CUSTOM_COLOR) {
-            crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-            crashNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-            networkNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-            networkNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-            logNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-            logNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-            appInfoNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-            appInfoNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-            sandboxNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-            sandboxNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-            tab.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
-            tab.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-        }
+        tab.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
+        tab.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+        
         _tabVC = tab;
     }
     return _tabVC;
@@ -440,14 +438,10 @@
 - (UIView *)contentView {
     if (!_contentView) {
         _contentView = [[UIView alloc] init];
-        _contentView.backgroundColor = [UIColor whiteColor];
-        _contentView.layer.borderColor = [LLConfig sharedConfig].systemTintColor.CGColor;
+        _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+        _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
         _contentView.layer.masksToBounds = YES;
         _contentView.alpha = [LLConfig sharedConfig].normalAlpha;
-        if (LLCONFIG_CUSTOM_COLOR) {
-            _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-            _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-        }
     }
     return _contentView;
 }
@@ -456,13 +450,10 @@
     if (!_memoryLabel) {
         _memoryLabel = [[UILabel alloc] init];
         _memoryLabel.textAlignment = NSTextAlignmentCenter;
-        _memoryLabel.textColor = [LLConfig sharedConfig].systemTintColor;
+        _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
         _memoryLabel.font = [UIFont systemFontOfSize:12];
         _memoryLabel.adjustsFontSizeToFitWidth = YES;
         _memoryLabel.text = @"loading";
-        if (LLCONFIG_CUSTOM_COLOR) {
-            _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
-        }
     }
     return _memoryLabel;
 }
@@ -471,13 +462,10 @@
     if (!_CPULabel) {
         _CPULabel = [[UILabel alloc] init];
         _CPULabel.textAlignment = NSTextAlignmentCenter;
-        _CPULabel.textColor = [LLConfig sharedConfig].systemTintColor;
+        _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
         _CPULabel.font = [UIFont systemFontOfSize:10];
         _CPULabel.adjustsFontSizeToFitWidth = YES;
         _CPULabel.text = @"loading";
-        if (LLCONFIG_CUSTOM_COLOR) {
-            _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
-        }
     }
     return _CPULabel;
 }
@@ -486,16 +474,12 @@
     if (!_FPSLabel) {
         _FPSLabel = [[UILabel alloc] init];
         _FPSLabel.textAlignment = NSTextAlignmentCenter;
-        _FPSLabel.backgroundColor = [LLConfig sharedConfig].systemTintColor;
-        _FPSLabel.textColor = [UIColor whiteColor];
+        _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
+        _FPSLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
         _FPSLabel.font = [UIFont systemFontOfSize:12];
         _FPSLabel.adjustsFontSizeToFitWidth = YES;
         _FPSLabel.text = @"60";
         _FPSLabel.layer.masksToBounds = YES;
-        if (LLCONFIG_CUSTOM_COLOR) {
-            _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
-            _FPSLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
-        }
     }
     return _FPSLabel;
 }

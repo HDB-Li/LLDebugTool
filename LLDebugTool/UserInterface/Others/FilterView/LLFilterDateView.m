@@ -107,19 +107,14 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         static NSInteger labelTag = 1000;
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kHeaderID forIndexPath:indexPath];
-        view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        if (LLCONFIG_CUSTOM_COLOR) {
-            view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
-        }
+        view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
+
         if (![view viewWithTag:labelTag]) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, view.frame.size.width - 12, view.frame.size.height)];
             label.font = [UIFont boldSystemFontOfSize:13];
-            label.textColor = [UIColor blackColor];
+            label.textColor = LLCONFIG_TEXT_COLOR;
             label.tag = labelTag;
             [view addSubview:label];
-            if (LLCONFIG_CUSTOM_COLOR) {
-                label.textColor = LLCONFIG_TEXT_COLOR;
-            }
         }
         UILabel *label = [view viewWithTag:labelTag];
         label.text = @"DATE";
@@ -155,15 +150,11 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
     [self addSubview:self.collectionView];
     [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
-    
-    if (LLCONFIG_CUSTOM_COLOR) {
-        self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    }
 }
 
 @end

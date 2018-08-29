@@ -76,8 +76,10 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     NSString *title = self.titleArray[section];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 30)];
+    view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, view.frame.size.width - 16 * 2, view.frame.size.height)];
-    label.textColor = [UIColor darkGrayColor];
+    label.textColor = LLCONFIG_TEXT_COLOR;
     label.font = [UIFont systemFontOfSize:13];
     label.text = title;
     [view addSubview:label];
@@ -89,15 +91,9 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         button.titleLabel.font = [UIFont systemFontOfSize:13];
         [button setTitle:@"Copy" forState:UIControlStateNormal];
         button.tag = section;
+        button.tintColor = LLCONFIG_TEXT_COLOR;
         [button addTarget:self action:@selector(copyButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:button];
-        if (LLCONFIG_CUSTOM_COLOR) {
-            button.tintColor = LLCONFIG_TEXT_COLOR;
-        }
-    }
-    if (LLCONFIG_CUSTOM_COLOR) {
-        label.textColor = LLCONFIG_TEXT_COLOR;
-        view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
     }
     
     return view;

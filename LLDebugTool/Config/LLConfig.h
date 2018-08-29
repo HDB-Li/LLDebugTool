@@ -25,11 +25,11 @@
 #import <UIKit/UIKit.h>
 
 #ifndef LLCONFIG_CUSTOM_COLOR
-#define LLCONFIG_CUSTOM_COLOR ([LLConfig sharedConfig].useSystemColor == NO)
-#define LLCONFIG_TEXT_COLOR [LLConfig sharedConfig].textColor
-#define LLCONFIG_BACKGROUND_COLOR [LLConfig sharedConfig].backgroundColor
+#define LLCONFIG_CUSTOM_COLOR (YES)
 #endif
 
+#define LLCONFIG_TEXT_COLOR [LLConfig sharedConfig].textColor
+#define LLCONFIG_BACKGROUND_COLOR [LLConfig sharedConfig].backgroundColor
 
 /**
  Color style enum
