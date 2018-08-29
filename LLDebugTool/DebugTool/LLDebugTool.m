@@ -62,16 +62,27 @@ static LLDebugTool *_instance = nil;
 - (void)startWorking{
     if (!_isWorking) {
         _isWorking = YES;
-        // Open crash helper
-        [[LLCrashHelper sharedHelper] setEnable:YES];
-        // Open log helper
-        [[LLLogHelper sharedHelper] setEnable:YES];
-        // Open network monitoring
-        [[LLNetworkHelper sharedHelper] setEnable:YES];
-        // Open app monitoring
-        [[LLAppHelper sharedHelper] startMonitoring];
-        // Open screenshot
-        [[LLScreenshotHelper sharedHelper] setEnable:YES];
+        LLConfigAvailableFeature available = [LLConfig sharedConfig].availables;
+        if (available & LLConfigAvailableCrash) {
+            // Open crash helper
+            [[LLCrashHelper sharedHelper] setEnable:YES];
+        }
+        if (available & LLConfigAvailableLog) {
+            // Open log helper
+            [[LLLogHelper sharedHelper] setEnable:YES];
+        }
+        if (available & LLConfigAvailableNetwork) {
+            // Open network monitoring
+            [[LLNetworkHelper sharedHelper] setEnable:YES];
+        }
+        if (available & LLConfigAvailableAppInfo) {
+            // Open app monitoring
+            [[LLAppHelper sharedHelper] setEnable:YES];
+        }
+        if (available & LLConfigAvailableScreenshot) {
+            // Open screenshot
+            [[LLScreenshotHelper sharedHelper] setEnable:YES];
+        }
         // show window
         [self.window showWindow];
     }
@@ -80,10 +91,10 @@ static LLDebugTool *_instance = nil;
 - (void)stopWorking {
     if (_isWorking) {
         _isWorking = NO;
-        // Close app monitoring
-        [[LLAppHelper sharedHelper] stopMonitoring];
         // Close screenshot
         [[LLScreenshotHelper sharedHelper] setEnable:NO];
+        // Close app monitoring
+        [[LLAppHelper sharedHelper] setEnable:NO];
         // Close network monitoring
         [[LLNetworkHelper sharedHelper] setEnable:NO];
         // Close log helper

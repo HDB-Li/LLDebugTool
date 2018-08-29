@@ -79,10 +79,17 @@
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
+    if ([LLConfig sharedConfig].availables == LLConfigAvailableScreenshot) {
+        // Screenshot only. Don't open the window.
+        LLog_Event(kLLLogHelperDebugToolEvent, @"Current availables is only screenshot, can't open the tabbar.");
+        return;
+    }
+    
     if (![LLConfig sharedConfig].XIBBundle) {
         LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the XIB bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
         return;
     }
+    
     if (![LLConfig sharedConfig].imageBundle) {
         LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
     }
@@ -351,7 +358,29 @@
         UINavigationController *sandboxNav = [[LLBaseNavigationController alloc] initWithRootViewController:sandboxVC];
         sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage LL_imageNamed:kSandboxImageName] selectedImage:nil];
         
-        tab.viewControllers = @[networkNav,logNav,crashNav,appInfoNav,sandboxNav];
+        NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+        LLConfigAvailableFeature availables = [LLConfig sharedConfig].availables;
+        if (availables & LLConfigAvailableNetwork) {
+            [viewControllers addObject:networkNav];
+        }
+        if (availables & LLConfigAvailableLog) {
+            [viewControllers addObject:logNav];
+        }
+        if (availables & LLConfigAvailableCrash) {
+            [viewControllers addObject:crashNav];
+        }
+        if (availables & LLConfigAvailableAppInfo) {
+            [viewControllers addObject:appInfoNav];
+        }
+        if (availables & LLConfigAvailableSandbox) {
+            [viewControllers addObject:sandboxNav];
+        }
+        if (viewControllers.count == 0) {
+            [LLConfig sharedConfig].availables = LLConfigAvailableAll;
+            [viewControllers addObjectsFromArray:@[networkNav,logNav,crashNav,appInfoNav,sandboxNav]];
+        }
+        
+        tab.viewControllers = viewControllers;
 
         if (LLCONFIG_CUSTOM_COLOR) {
             crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;

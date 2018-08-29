@@ -86,6 +86,35 @@ typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
 };
 
 /**
+ Customize available Features.
+
+ - LLConfigAvailableNetwork: Network functions available.
+ - LLConfigAvailableLog: Log functions avalable.
+ - LLConfigAvailableCrash: Crash functions available.
+ - LLConfigAvailableAppInfo: AppInfo functions available.
+ - LLConfigAvailableSandbox: Sandbox functions available.
+ - LLConfigAvailableScreenshot: Screenshot functions available.
+ - LLConfigAvailableAll: All available.
+ */
+typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
+    LLConfigAvailableNetwork    = 1 << 0,
+    LLConfigAvailableLog        = 1 << 1,
+    LLConfigAvailableCrash      = 1 << 2,
+    LLConfigAvailableAppInfo    = 1 << 3,
+    LLConfigAvailableSandbox    = 1 << 4,
+    LLConfigAvailableScreenshot = 1 << 5,
+    LLConfigAvailableAll        = 0xFF,
+    
+    // Quick options
+    LLConfigAvailableNoneNetwork    = 0xFF - (1 << 0),
+    LLConfigAvailableNoneLog        = 0xFF - (1 << 1),
+    LLConfigAvailableNoneCrash      = 0xFF - (1 << 2),
+    LLConfigAvailableNoneAppInfo    = 0xFF - (1 << 3),
+    LLConfigAvailableNoneSandbox    = 0xFF - (1 << 4),
+    LLConfigAvailableNoneScreenshot = 0xFF - (1 << 5),
+};
+
+/**
  Config file. Must config properties before [LLDebugTool enable].
  */
 @interface LLConfig : NSObject
@@ -190,6 +219,12 @@ typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
  Window style. Decide how the Window displays. Default is LLConfigWindowSuspensionBall.
  */
 @property (assign , nonatomic) LLConfigWindowStyle windowStyle;
+
+/**
+ Available features. Default is LLConfigAvailableAll.
+ It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
+ */
+@property (assign , nonatomic) LLConfigAvailableFeature availables;
 
 #pragma mark - Folder Path
 /**

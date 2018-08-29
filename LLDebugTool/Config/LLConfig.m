@@ -25,6 +25,11 @@
 #import "LLLogHelperEventDefine.h"
 #import "LLDebugToolMacros.h"
 #import "LLDebugTool.h"
+#import "LLNetworkHelper.h"
+#import "LLLogHelper.h"
+#import "LLCrashHelper.h"
+#import "LLAppHelper.h"
+#import "LLScreenshotHelper.h"
 
 static LLConfig *_instance = nil;
 
@@ -45,6 +50,36 @@ static LLConfig *_instance = nil;
     _useSystemColor = NO;
     [self updateColor];
     //    }
+}
+
+- (void)setAvailables:(LLConfigAvailableFeature)availables {
+    if (_availables != availables) {
+        BOOL networkEnable = availables & LLConfigAvailableNetwork;
+        BOOL logEnable = availables & LLConfigAvailableLog;
+        BOOL crashEnable = availables & LLConfigAvailableCrash;
+        BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
+        BOOL sandboxEnable = availables & LLConfigAvailableSandbox;
+        BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
+        if (!networkEnable && !logEnable && !crashEnable && !appInfoEnable && !sandboxEnable && !screenshotEnable) {
+            // Can't set none availables.
+            return;
+        }
+        BOOL allEnable = networkEnable && logEnable && crashEnable && appInfoEnable && sandboxEnable && screenshotEnable;
+        if (allEnable && (availables != LLConfigAvailableAll)) {
+            // Check if input wrong.
+            _availables = LLConfigAvailableAll;
+        } else {
+            _availables = availables;
+        }
+        // Start or close features.
+        if ([LLDebugTool sharedTool].isWorking) {
+            [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
+            [[LLLogHelper sharedHelper] setEnable:logEnable];
+            [[LLCrashHelper sharedHelper] setEnable:crashEnable];
+            [[LLAppHelper sharedHelper] setEnable:appInfoEnable];
+            [[LLScreenshotHelper sharedHelper] setEnable:screenshotEnable];
+        }
+    }
 }
 
 - (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
@@ -98,6 +133,9 @@ static LLConfig *_instance = nil;
     
     // Set default window's style.
     _windowStyle = LLConfigWindowSuspensionBall;
+    
+    // Set default availables.
+    _availables = LLConfigAvailableAll;
     
     // Update color.
     [self updateColor];
