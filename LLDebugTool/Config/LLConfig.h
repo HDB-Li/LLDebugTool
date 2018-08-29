@@ -121,6 +121,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
 };
 
 UIKIT_EXTERN NSNotificationName _Nonnull const LLConfigDidUpdateColorStyleNotificationName;
+UIKIT_EXTERN NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
 /**
  Config file. Must config properties before [LLDebugTool enable].

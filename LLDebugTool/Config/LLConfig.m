@@ -34,6 +34,7 @@
 static LLConfig *_instance = nil;
 
 NSNotificationName const LLConfigDidUpdateColorStyleNotificationName = @"LLConfigDidUpdateColorStyleNotificationName";
+NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConfigDidUpdateWindowStyleNotificationName";
 
 @implementation LLConfig
 
@@ -52,6 +53,13 @@ NSNotificationName const LLConfigDidUpdateColorStyleNotificationName = @"LLConfi
         _useSystemColor = NO;
         [self updateColor];
         [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
+    }
+}
+
+- (void)setWindowStyle:(LLConfigWindowStyle)windowStyle {
+    if (_windowStyle != windowStyle) {
+        _windowStyle = windowStyle;
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];
     }
 }
 

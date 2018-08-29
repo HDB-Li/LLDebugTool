@@ -124,7 +124,7 @@
 }
 
 #pragma mark - LLConfigDidUpdateColorStyleNotification
-- (void)didReceiveregisterLLConfigDidUpdateColorStyleNotification {
+- (void)didReceiveLLConfigDidUpdateColorStyleNotification {
     _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
@@ -134,18 +134,26 @@
     _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
 }
 
+#pragma mark - LLConfigDidUpdateWindowStyleNotificationName
+- (void)didReceiveLLConfigDidUpdateWindowStyleNotification {
+    self.windowStyle = [LLConfig sharedConfig].windowStyle;
+    [self updateSettings];
+    [self updateSubViews];
+    [self updateGestureRecognizers];
+}
+
 #pragma mark - Primary
 /**
  * initial method
  */
 - (void)initial {
-    [self initialDefaultSettings];
-    [self createSubView];
-    [self createGestureRecognizer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveregisterLLConfigDidUpdateColorStyleNotification) name:LLConfigDidUpdateColorStyleNotificationName object:nil];
+    [self updateSettings];
+    [self updateSubViews];
+    [self updateGestureRecognizers];
+    [self registerNotifications];
 }
 
-- (void)initialDefaultSettings {
+- (void)updateSettings {
     // Check sBallWidth
     if (_sBallWidth < 70) {
         _sBallWidth = 70;
@@ -176,7 +184,14 @@
     self.view.frame = self.window.bounds;
 }
 
-- (void)createSubView {
+- (void)updateSubViews {
+    for (UIView *subView in self.contentView.subviews) {
+        [subView removeFromSuperview];
+    }
+    for (UIView *subView in self.view.subviews) {
+        [subView removeFromSuperview];
+    }
+    
     // Create contentView
     self.contentView.frame = self.view.bounds;
     [self.view addSubview:self.contentView];
@@ -223,7 +238,10 @@
     }
 }
 
-- (void)createGestureRecognizer {
+- (void)updateGestureRecognizers {
+    for (UIGestureRecognizer *gr in self.contentView.gestureRecognizers) {
+        [self.contentView removeGestureRecognizer:gr];
+    }
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
     
@@ -246,6 +264,11 @@
         default:
             break;
     }
+}
+
+- (void)registerNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateColorStyleNotification) name:LLConfigDidUpdateColorStyleNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotification) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
 - (void)becomeActive {
