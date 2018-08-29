@@ -23,7 +23,6 @@
     // Uncomment one of the following lines to change the color configuration.
     // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
     // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-    // [LLConfig sharedConfig].useSystemColor = YES;
     
     //####################### User Identity #######################//
     // Use this line to tag user. More config please see "LLConfig.h".
@@ -35,7 +34,7 @@
 
     //####################### Features #######################//
     // Uncomment this line to change the available features.
-    // [LLConfig sharedConfig].availables = LLConfigAvailableNoneScreenshot;
+    // [LLConfig sharedConfig].availables = LLConfigAvailableNoneAppInfo;
     
     // ####################### Start LLDebugTool #######################//
     // Use this line to start working.

@@ -11,6 +11,12 @@
 		2313EF2F20F5ED170038AD06 /* UIImage+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */; };
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
 		3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */; };
+		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
+		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
+		3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */; };
+		3629E3952136830A00226C79 /* TestLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38B2136830A00226C79 /* TestLogViewController.m */; };
+		3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38E2136830A00226C79 /* TestNetworkViewController.m */; };
+		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
 		362A79AF21211B8C002E06FF /* LLStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A79AE21211B8C002E06FF /* LLStorageModel.m */; };
 		363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */; };
 		363FE43021198AC5005F9C0D /* LLFilterDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42F21198AC5005F9C0D /* LLFilterDateView.m */; };
@@ -123,6 +129,18 @@
 		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3602DC512099C4AF00F8CE50 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		3602DC522099C4AF00F8CE50 /* LLBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCell.m; sourceTree = "<group>"; };
+		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
+		3629E3872136830A00226C79 /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
+		3629E3882136830A00226C79 /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
+		3629E3892136830A00226C79 /* TestNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestNetworkViewController.h; sourceTree = "<group>"; };
+		3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestWindowStyleViewController.m; sourceTree = "<group>"; };
+		3629E38B2136830A00226C79 /* TestLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLogViewController.m; sourceTree = "<group>"; };
+		3629E38C2136830A00226C79 /* BaseTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestViewController.h; sourceTree = "<group>"; };
+		3629E38D2136830A00226C79 /* TestWindowStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestWindowStyleViewController.h; sourceTree = "<group>"; };
+		3629E38E2136830A00226C79 /* TestNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestNetworkViewController.m; sourceTree = "<group>"; };
+		3629E38F2136830A00226C79 /* TestCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCrashViewController.h; sourceTree = "<group>"; };
+		3629E3902136830A00226C79 /* TestColorStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestColorStyleViewController.m; sourceTree = "<group>"; };
+		3629E3912136830A00226C79 /* TestLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogViewController.h; sourceTree = "<group>"; };
 		362A79AD21211B8C002E06FF /* LLStorageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLStorageModel.h; sourceTree = "<group>"; };
 		362A79AE21211B8C002E06FF /* LLStorageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLStorageModel.m; sourceTree = "<group>"; };
 		363FE42521196CC9005F9C0D /* LLNetworkFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkFilterView.h; sourceTree = "<group>"; };
@@ -333,6 +351,25 @@
 				2313EF2E20F5ED160038AD06 /* UIImage+LL_Utils.m */,
 			);
 			path = UIImage;
+			sourceTree = "<group>";
+		};
+		3629E3852136830A00226C79 /* DemoViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3629E38C2136830A00226C79 /* BaseTestViewController.h */,
+				3629E3862136830A00226C79 /* BaseTestViewController.m */,
+				3629E3892136830A00226C79 /* TestNetworkViewController.h */,
+				3629E38E2136830A00226C79 /* TestNetworkViewController.m */,
+				3629E3912136830A00226C79 /* TestLogViewController.h */,
+				3629E38B2136830A00226C79 /* TestLogViewController.m */,
+				3629E38F2136830A00226C79 /* TestCrashViewController.h */,
+				3629E3872136830A00226C79 /* TestCrashViewController.m */,
+				3629E3882136830A00226C79 /* TestColorStyleViewController.h */,
+				3629E3902136830A00226C79 /* TestColorStyleViewController.m */,
+				3629E38D2136830A00226C79 /* TestWindowStyleViewController.h */,
+				3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */,
+			);
+			path = DemoViewControllers;
 			sourceTree = "<group>";
 		};
 		3687520F20C69B12002C6AD9 /* ScreenshotView */ = {
@@ -802,6 +839,7 @@
 		C43BA809205AB095006307BE /* LLDebugToolDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3629E3852136830A00226C79 /* DemoViewControllers */,
 				36A0007520BE863700AE8810 /* NetTool.h */,
 				36A0007620BE863700AE8810 /* NetTool.m */,
 				C43BA80A205AB095006307BE /* AppDelegate.h */,
@@ -1068,8 +1106,10 @@
 			files = (
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */,
+				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
 				36C5BF902099897F007A3188 /* LLSandboxCell.m in Sources */,
 				36C5BFAA2099897F007A3188 /* NSString+LL_Utils.m in Sources */,
+				3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */,
 				36C5BFAD2099897F007A3188 /* LLBaseViewController.m in Sources */,
 				36C5BF9C2099897F007A3188 /* LLFilterOtherView.m in Sources */,
 				2313EF2F20F5ED170038AD06 /* UIImage+LL_Utils.m in Sources */,
@@ -1077,6 +1117,7 @@
 				36C5BF7D2099897F007A3188 /* LLSandboxModel.m in Sources */,
 				C41B0A0921205BD700A058CF /* NSObject+LL_Utils.m in Sources */,
 				36C5BFB02099897F007A3188 /* LLDebugTool.m in Sources */,
+				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				36C5BF8E2099897F007A3188 /* LLCrashVC.m in Sources */,
 				3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */,
 				36C5BF7F2099897F007A3188 /* LLLogHelper.m in Sources */,
@@ -1114,11 +1155,13 @@
 				367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */,
 				36C5BF7B2099897F007A3188 /* LLAppHelper.m in Sources */,
 				36C5BFAE2099897F007A3188 /* LLBaseModel.m in Sources */,
+				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,
 				36C5BF7A2099897F007A3188 /* LLStorageManager.m in Sources */,
 				36C5BF9E2099897F007A3188 /* LLFilterTextFieldModel.m in Sources */,
 				36C5BF9D2099897F007A3188 /* LLFilterFilePickerView.m in Sources */,
 				36C5BF882099897F007A3188 /* LLNetworkContentVC.m in Sources */,
 				36C5BF8B2099897F007A3188 /* LLCrashContentCell.m in Sources */,
+				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
 				363FE43021198AC5005F9C0D /* LLFilterDateView.m in Sources */,
 				36C5BFA02099897F007A3188 /* LLFilterTextFieldCell.m in Sources */,
 				36C5BF942099897F007A3188 /* LLWindowViewController.m in Sources */,
@@ -1131,6 +1174,7 @@
 				3687522220C69B22002C6AD9 /* LLScreenshotSelectorModel.m in Sources */,
 				36C5BF8F2099897F007A3188 /* LLCrashContentVC.m in Sources */,
 				369B258F212E5D6700E771D8 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
+				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
 				36C5BFA42099897F007A3188 /* LLFilterLabelCell.m in Sources */,
 				36C5BF782099897F007A3188 /* LLConfig.m in Sources */,
 				36C5BFA52099897F007A3188 /* LLFilterLabelModel.m in Sources */,
