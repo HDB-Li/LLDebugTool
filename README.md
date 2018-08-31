@@ -41,6 +41,8 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 
 If you use versions between 1.1.3 and 1.1.5, you are strongly recommended to upgrade to 1.1.6.
 
+More changes can be viewed in [Version 1.1.6 Project](https://github.com/HDB-Li/LLDebugTool/projects/5).
+
 #### Update
 
 * Update `LLCrashHelper`, save a crash model must be synchronous.

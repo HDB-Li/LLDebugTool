@@ -41,6 +41,8 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 如果你使用1.1.3到1.1.5之间的版本，强烈建议你升级到1.1.6。
 
+更多的修改内容可以查看[Version 1.1.6 Project](https://github.com/HDB-Li/LLDebugTool/projects/5)。
+
 #### 更新
 
 * 更新 `LLCrashHelper` ，储存一个Crash模型必须采用同步方法。
