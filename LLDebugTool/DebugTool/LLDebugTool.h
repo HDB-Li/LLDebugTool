@@ -38,14 +38,14 @@
 /**
  Suspension ball window.
  */
-@property (nonatomic , strong , readonly) LLWindow *window;
+@property (nonatomic , strong , readonly , nonnull) LLWindow *window;
 
 /**
  Singleton to control debugTool.
  
  @return Singleton
  */
-+ (instancetype)sharedTool;
++ (instancetype _Nonnull)sharedTool;
 
 /**
  Start working.
@@ -65,7 +65,7 @@
 /**
  LLDebugTool's version.
  */
-@property (nonatomic , copy , readonly) NSString *version;
+@property (nonatomic , copy , readonly , nonnull) NSString * version;
 
 /**
  Whether is Beta.
@@ -87,6 +87,6 @@
  @param onEvent Event,can filter by this.
  @param message Message.
  */
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... ;
+- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 @end

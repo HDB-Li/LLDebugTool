@@ -45,7 +45,7 @@ static LLLogHelper *_instance = nil;
     return @[@"Default",@"Alert",@"Warning",@"Error"];
 }
 
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... {
+- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     NSString *date = [LLTool stringFromDate:[NSDate date]];
     LLConfigLogStyle logStyle = [LLConfig sharedConfig].logStyle;
     switch (logStyle) {

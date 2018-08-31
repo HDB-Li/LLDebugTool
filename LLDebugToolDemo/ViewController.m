@@ -73,6 +73,32 @@ static NSString *const kCellID = @"cellID";
         
     }];
     
+    //NSURLSession
+    NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
+    [htmlRequest setHTTPMethod:@"GET"];
+    NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        // Not important. Just check to see if the current Demo version is consistent with the latest version.
+        // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
+        NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
+        if (array.count > 2) {
+            NSString *str = array[1];
+            NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
+            if (array2.count >= 2) {
+                NSString *newVersion = array2[0];
+                if ([newVersion componentsSeparatedByString:@"."].count == 3) {
+                    if ([[LLDebugTool sharedTool].version compare:newVersion] == NSOrderedAscending) {
+                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool sharedTool].version] preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
+                        [vc addAction:action];
+                        [self presentViewController:vc animated:YES completion:nil];
+                    }
+                }
+            }
+        }
+    }];
+    [dataTask resume];
+    
     // Log.
     // NSLocalizedString is used for multiple languages.
     // You can just use as LLog(@"What you want to pring").

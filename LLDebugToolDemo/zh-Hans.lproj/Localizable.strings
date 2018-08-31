@@ -38,3 +38,5 @@
 "test.crash" = "展示崩溃收集功能";
 "test.color.style" = "展示ColorStyle配置";
 "test.window.style" = "展示WindowStyle配置";
+
+"new.version" = "有新版本Demo可用";
