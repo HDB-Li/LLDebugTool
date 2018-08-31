@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.5-blue.svg)](https://img.shields.io/badge/pod-v1.1.5-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.6-blue.svg)](https://img.shields.io/badge/pod-v1.1.6-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
@@ -35,26 +35,15 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.1.5)
+## 最近更新 (1.1.6)
 
-### 动态启用或停止功能模块
+### 修复了无法正常捕获Crash信息的问题
 
-在 `LLConfig` 中增加了一个options `LLConfigAvailableFeature` 用于控制是否启用`LLDebugTool`中的某个功能模块，现在你可以动态的启动/停止某个模块。更多的修改内容可以查看[Version 1.1.5 Project](https://github.com/HDB-Li/LLDebugTool/projects/4)。
-
-#### 新增
-
-* 在 `LLConfig` 中增加了一个options `LLConfigAvailableFeature` 用于控制是否启用`LLDebugTool`中的某个功能模块，现在你可以动态的启动/停止某个模块。
-* `LLConfigLogStyle` 增加2个枚举值，`LLConfigLogFileFuncDesc` and `LLConfigLogFileDesc`。
+如果你使用1.1.3到1.1.5之间的版本，强烈建议你升级到1.1.6。
 
 #### 更新
 
-* 更新 `LLAppHelper` 和 `LLConfig`，整理代码。
-* 修改 `LLConfig`，现在你可以在运行中动态的修改 `colorStyle` and `windowStyle`，更多效果可以查看demo。
-* 修改 `LLSubTitleTableViewCell` 解决UITextView在ios 8版本下的bug。
-
-#### 其他
-
-* 更新了demo，现在看起来舒服多了。
+* 更新 `LLCrashHelper` ，储存一个Crash模型必须采用同步方法。
 
 ## 我能用LLDebugTool做什么?
 
@@ -76,7 +65,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 [CocoaPods](http://cocoapods.org) 是集成`LLDebugTool`的首选方式。
 
-1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.1.5' ,:configurations => ['Debug']`。
+1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.1.6' ,:configurations => ['Debug']`。
 2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 

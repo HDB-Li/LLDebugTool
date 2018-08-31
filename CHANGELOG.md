@@ -1,3 +1,13 @@
+## [1.1.6](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.6) (08/31/2018)
+
+###  Fixed bug that could not catch crash information
+
+If you use versions between 1.1.3 and 1.1.5, you are strongly recommended to upgrade to 1.1.6.
+
+#### Update
+
+* Update `LLCrashHelper`, save a crash model must be synchronous.
+
 ## [1.1.5](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.5) (08/29/2018)
 
 ###  Start/stop function module dynamically
