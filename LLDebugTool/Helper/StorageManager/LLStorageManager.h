@@ -42,71 +42,71 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 
  @return Singleton
  */
-+ (instancetype)sharedManager;
++ (instancetype _Nonnull)sharedManager;
 
 /**
  Register a class in database and auto create a table.
  */
-- (BOOL)registerClass:(Class)cls;
+- (BOOL)registerClass:(Class _Nonnull)cls;
 
 #pragma mark - SAVE
 /**
  Save a model in database. Operation depend [model operationOnMainThread] on and callback in main thread.
  */
-- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete;
+- (void)saveModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 /**
  Save a model in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+- (void)saveModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - GET
 /**
  Get models in database. If nothing, it will return an emtpy array. Operation in child thread and callback in main thread.
  */
-- (void)getModels:(Class)cls complete:(LLStorageManagerArrayBlock)complete;
-- (void)getModels:(Class)cls launchDate:(NSString *)launchDate complete:(LLStorageManagerArrayBlock)complete;
-- (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete;
+- (void)getModels:(Class _Nonnull)cls complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nonnull)cls launchDate:(NSString * _Nullable)launchDate complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nonnull)cls launchDate:(NSString * _Nullable)launchDate storageIdentity:(NSString * _Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete;
 
 /**
  Get models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)getModels:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity complete:(LLStorageManagerArrayBlock)complete synchronous:(BOOL)synchronous;
+- (void)getModels:(Class _Nonnull)cls launchDate:(NSString *_Nullable)launchDate storageIdentity:(NSString *_Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - DELETE
 /**
  Remove models in database. Operation in child thread and callback in main thread.
  */
-- (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete;
+- (void)removeModels:(NSArray <LLStorageModel *>*_Nullable)models complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 /**
  Remove models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)removeModels:(NSArray <LLStorageModel *>*)models complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+- (void)removeModels:(NSArray <LLStorageModel *>*_Nullable)models complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - Screen Shot
 
 /**
  Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
-- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(LLStorageManagerBoolBlock)complete;
+- (void)saveScreenshot:(UIImage *_Nonnull)image name:(NSString *_Nullable)name complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 #pragma mark - Table
 
 /**
  Clear table.
  */
-- (void)clearTable:(Class)cls complete:(LLStorageManagerBoolBlock)complete;
-- (void)clearTable:(Class)cls complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+- (void)clearTable:(Class _Nonnull)cls complete:(LLStorageManagerBoolBlock _Nullable)complete;
+- (void)clearTable:(Class _Nonnull)cls complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 /**
  Clear database.
  */
-- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete;
-- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous;
+- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock _Nullable)complete;
+- (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark -
-- (void)updateDatabaseWithVersion:(NSString *)version complete:(LLStorageManagerBoolBlock)complete;
+- (void)updateDatabaseWithVersion:(NSString *_Nonnull)version complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 #pragma mark - DEPRECATED
 /**

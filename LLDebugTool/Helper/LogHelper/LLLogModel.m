@@ -33,7 +33,7 @@
 
 @implementation LLLogModel
 
-- (instancetype)initWithFile:(NSString *)file lineNo:(int)lineNo function:(NSString *)function level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *)userIdentity {
+- (instancetype)initWithFile:(NSString *)file lineNo:(NSInteger)lineNo function:(NSString *)function level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *)userIdentity {
     if (self = [super init]) {
         _file = [file copy];
         _lineNo = lineNo;
