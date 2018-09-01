@@ -28,7 +28,7 @@
 /**
  Init with image.
  */
-- (instancetype)initWithImage:(UIImage *)image;
+- (instancetype _Nonnull)initWithImage:(UIImage *_Nonnull)image;
 
 /**
  Show on window.

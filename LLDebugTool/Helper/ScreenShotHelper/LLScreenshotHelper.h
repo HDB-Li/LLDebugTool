@@ -30,7 +30,7 @@
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype _Nonnull)sharedHelper;
 
 /**
  Set enable to screenshot.

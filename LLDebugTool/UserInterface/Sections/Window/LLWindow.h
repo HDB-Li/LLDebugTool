@@ -32,12 +32,12 @@
 /**
  Root viewController.
  */
-@property (strong , nonatomic , readonly) LLWindowViewController *windowViewController;
+@property (strong , nonatomic , readonly , nonnull) LLWindowViewController *windowViewController;
 
 /**
  Init the window.
  */
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 /**
  Show window.

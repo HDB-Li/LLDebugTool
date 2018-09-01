@@ -31,11 +31,11 @@
 /**
  Specifies the initialization method.
  */
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 /**
  Return current selector model.
  */
-- (LLScreenshotSelectorModel *)currentSelectorModel;
+- (LLScreenshotSelectorModel *_Nonnull)currentSelectorModel;
 
 @end

@@ -23,15 +23,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^LLLogFilterChangeBlock)(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities);
+typedef void(^LLLogFilterChangeBlock)(NSArray *_Nullable levels, NSArray *_Nullable events, NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
 
 @interface LLLogFilterView : UIView
 
-@property (copy , nonatomic) LLLogFilterChangeBlock changeBlock;
+@property (copy , nonatomic , nullable) LLLogFilterChangeBlock changeBlock;
 
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
-- (void)configWithData:(NSArray *)data;
+- (void)configWithData:(NSArray *_Nullable)data;
 
 - (BOOL)isFiltering;
 - (void)cancelFiltering;

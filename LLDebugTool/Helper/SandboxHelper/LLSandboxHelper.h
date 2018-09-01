@@ -34,11 +34,11 @@
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype _Nonnull)sharedHelper;
 
 /**
  Get the sandbox data at this point.
  */
-- (LLSandboxModel *)getCurrentSandboxStructure;
+- (LLSandboxModel * _Nonnull)getCurrentSandboxStructure;
 
 @end

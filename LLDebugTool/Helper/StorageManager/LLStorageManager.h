@@ -28,7 +28,7 @@
 #import "LLCrashModel.h"
 
 typedef void(^LLStorageManagerBoolBlock)(BOOL result);
-typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
+typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable result);
 
 /**
  Operation database.
@@ -112,64 +112,64 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>*result);
 /**
  Save a crash model to database.
  */
-- (BOOL)saveCrashModel:(LLCrashModel *)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
+- (BOOL)saveCrashModel:(LLCrashModel *_Nonnull)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
 
 /**
  Get all crash models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLCrashModel *>*)getAllCrashModel DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
+- (NSArray <LLCrashModel *>*_Nonnull)getAllCrashModel DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
 
 /**
  According to the models to remove the crash models where happened in dataBase.
  If any one fails, it returns to NO, and any failure will not affect others.
  */
-- (BOOL)removeCrashModels:(NSArray <LLCrashModel *>*)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
+- (BOOL)removeCrashModels:(NSArray <LLCrashModel *>*_Nonnull)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
 
 /**
  Save a network model to database.
  */
-- (BOOL)saveNetworkModel:(LLNetworkModel *)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
+- (BOOL)saveNetworkModel:(LLNetworkModel *_Nonnull)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
 
 /**
  Get all network models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLNetworkModel *>*)getAllNetworkModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
+- (NSArray <LLNetworkModel *>*_Nonnull)getAllNetworkModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
 
 /**
   Get the network models in database via launchDate. If nothing, it will return an emtpy array.
  */
-- (NSArray <LLNetworkModel *>*)getAllNetworkModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace.");
+- (NSArray <LLNetworkModel *>*_Nonnull)getAllNetworkModelsWithLaunchDate:(NSString *_Nullable)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace.");
 
 /**
  According to the models to remove the network models where happened in dataBase.
  If any one fails, it returns to NO, and any failure will not affect others.
  */
-- (BOOL)removeNetworkModels:(NSArray <LLNetworkModel *>*)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
+- (BOOL)removeNetworkModels:(NSArray <LLNetworkModel *>*_Nonnull)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
 
 /**
  Save a log model to database.
  */
-- (BOOL)saveLogModel:(LLLogModel *)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
+- (BOOL)saveLogModel:(LLLogModel *_Nonnull)model DEPRECATED_MSG_ATTRIBUTE("Use saveModel:complete: to replace");
 
 /**
  Get all log models in database(this time). If nothing, it will return an emtpy array.
  */
-- (NSArray <LLLogModel *>*)getAllLogModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
+- (NSArray <LLLogModel *>*_Nonnull)getAllLogModels DEPRECATED_MSG_ATTRIBUTE("Use getModels:complete: to replace.");
 
 /**
  Get the log models in database via launchDate. If nothing, it will return an emtpy array.
  */
-- (NSArray <LLLogModel *>*)getAllLogModelsWithLaunchDate:(NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace.");
+- (NSArray <LLLogModel *>*_Nonnull)getAllLogModelsWithLaunchDate:(NSString *_Nullable)launchDate DEPRECATED_MSG_ATTRIBUTE("Use getModels:launchDate:complete: to replace.");
 
 /**
  According to the models to remove the log models where happened in dataBase.
  If any one fails, it returns to NO, and any failure will not affect others.
  */
-- (BOOL)removeLogModels:(NSArray <LLLogModel *>*)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
+- (BOOL)removeLogModels:(NSArray <LLLogModel *>*_Nonnull)models DEPRECATED_MSG_ATTRIBUTE("Use removeModels:complete: to replace");
 
 /**
  Save screenShots to sandbox.
  */
-- (BOOL)saveScreenshot:(UIImage *)image name:(NSString *)name DEPRECATED_MSG_ATTRIBUTE("Use saveScreenshot:name:complete: to replace");
+- (BOOL)saveScreenshot:(UIImage *_Nonnull)image name:(NSString *_Nullable)name DEPRECATED_MSG_ATTRIBUTE("Use saveScreenshot:name:complete: to replace");
 
 @end

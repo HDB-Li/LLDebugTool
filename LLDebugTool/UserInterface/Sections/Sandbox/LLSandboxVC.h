@@ -29,6 +29,6 @@
 /**
  * Sandbox model
  */
-@property (strong , nonatomic) LLSandboxModel *sandboxModel;
+@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
 
 @end

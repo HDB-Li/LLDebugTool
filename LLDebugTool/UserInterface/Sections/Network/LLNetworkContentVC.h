@@ -26,6 +26,6 @@
 
 @interface LLNetworkContentVC : LLBaseViewController
 
-@property (nonatomic , strong) LLNetworkModel *model;
+@property (nonatomic , strong , nonnull) LLNetworkModel *model;
 
 @end

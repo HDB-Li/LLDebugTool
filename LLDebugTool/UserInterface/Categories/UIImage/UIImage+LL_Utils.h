@@ -25,11 +25,11 @@
 
 @interface UIImage (LL_Utils)
 
-+ (nullable UIImage *)LL_imageNamed:(NSString *_Nonnull)name;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name;
 
 /**
  This part is from SDWebImage.
  */
-+ (nullable UIImage *)LL_imageWithGIFData:(NSData *_Nullable)data;
++ (UIImage *_Nullable)LL_imageWithGIFData:(NSData *_Nullable)data;
 
 @end

@@ -26,8 +26,8 @@
 
 @interface LLFilterDatePickerView : UIPickerView
 
-- (instancetype)initWithFrame:(CGRect)frame fromDate:(NSDate *)fromDate endDate:(NSDate *)endDate;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame fromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate;
 
-- (NSString *)currentDateString;
+- (NSString *_Nullable)currentDateString;
 
 @end

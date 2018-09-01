@@ -44,7 +44,7 @@
 /**
  Parent window.
  */
-@property (nonatomic , weak) LLWindow *window;
+@property (nonatomic , weak , nullable) LLWindow *window;
 
 /**
  Release current tabBarController.

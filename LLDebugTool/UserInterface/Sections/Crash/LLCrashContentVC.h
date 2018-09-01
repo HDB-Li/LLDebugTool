@@ -29,6 +29,6 @@
 /**
  * Model to show
  */
-@property (nonatomic , strong) LLCrashModel *model;
+@property (nonatomic , strong , nonnull) LLCrashModel *model;
 
 @end

@@ -25,14 +25,14 @@
 
 @interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate>
 
-@property (nonatomic , strong) UITableView *tableView;
+@property (nonatomic , strong , nonnull) UITableView *tableView;
 
 /**
  * Simple toast
  */
-- (void)toastMessage:(NSString *)message;
-- (void)showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler;
+- (void)toastMessage:(NSString *_Nullable)message;
+- (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
 
-- (instancetype)initWithStyle:(UITableViewStyle)style;
+- (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
 
 @end

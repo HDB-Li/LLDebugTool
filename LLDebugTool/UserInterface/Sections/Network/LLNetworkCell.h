@@ -26,6 +26,6 @@
 
 @interface LLNetworkCell : LLBaseTableViewCell
 
-- (void)confirmWithModel:(LLNetworkModel *)model;
+- (void)confirmWithModel:(LLNetworkModel *_Nonnull)model;
 
 @end
