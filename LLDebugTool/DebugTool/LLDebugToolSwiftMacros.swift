@@ -23,34 +23,36 @@
 
 import Foundation
 
-public func LLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.default, onEvent: nil, message: message)
-}
-
-public func LLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.default, onEvent: event, message: message)
-}
-
-public func LLAlertLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.alert, onEvent: nil, message: message)
-}
-
-public func LLAlertLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.alert, onEvent: event, message: message)
-}
-
-public func LLWarningLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.warning, onEvent: nil, message: message)
-}
-
-public func LLWarningLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.warning, onEvent: event, message: message)
-}
-
-public func LLErrorLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.error, onEvent: nil, message: message)
-}
-
-public func LLErrorLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
-    LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.error, onEvent: event, message: message)
+class LLog : NSObject {
+    public static func log(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.default, onEvent: nil, message: message)
+    }
+    
+    public static func log(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.default, onEvent: event, message: message)
+    }
+    
+    public static func alertLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.alert, onEvent: nil, message: message)
+    }
+    
+    public static func alertLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.alert, onEvent: event, message: message)
+    }
+    
+    public static func warningLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.warning, onEvent: nil, message: message)
+    }
+    
+    public static func warningLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.warning, onEvent: event, message: message)
+    }
+    
+    public static func errorLog(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.error, onEvent: nil, message: message)
+    }
+    
+    public static func errorLog(message : String? , event : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
+        LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.error, onEvent: event, message: message)
+    }
 }

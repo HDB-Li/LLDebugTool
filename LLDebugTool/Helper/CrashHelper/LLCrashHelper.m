@@ -60,22 +60,94 @@ static LLCrashHelper *_instance = nil;
 #pragma mark - Primary
 - (void)registerCatch {
     NSSetUncaughtExceptionHandler(&HandleException);
-    signal(SIGABRT, SignalHandler);
+    signal(SIGHUP, SignalHandler);
+    signal(SIGINT, SignalHandler);
+    signal(SIGQUIT, SignalHandler);
     signal(SIGILL, SignalHandler);
-    signal(SIGSEGV, SignalHandler);
+    signal(SIGTRAP, SignalHandler);
+    signal(SIGABRT, SignalHandler);
+#ifdef SIGPOLL
+    signal(SIGPOLL, SignalHandler);
+#endif
+#ifdef SIGEMT
+    signal(SIGEMT, SignalHandler);
+#endif
     signal(SIGFPE, SignalHandler);
+    signal(SIGKILL, SignalHandler);
     signal(SIGBUS, SignalHandler);
+    signal(SIGSEGV, SignalHandler);
+    signal(SIGSYS, SignalHandler);
     signal(SIGPIPE, SignalHandler);
+    signal(SIGALRM, SignalHandler);
+    signal(SIGTERM, SignalHandler);
+    signal(SIGURG, SignalHandler);
+    signal(SIGSTOP, SignalHandler);
+    signal(SIGTSTP, SignalHandler);
+    signal(SIGCONT, SignalHandler);
+    signal(SIGCHLD, SignalHandler);
+    signal(SIGTTIN, SignalHandler);
+    signal(SIGTTOU, SignalHandler);
+#ifdef SIGIO
+    signal(SIGIO, SignalHandler);
+#endif
+    signal(SIGXCPU, SignalHandler);
+    signal(SIGXFSZ, SignalHandler);
+    signal(SIGVTALRM, SignalHandler);
+    signal(SIGPROF, SignalHandler);
+#ifdef SIGWINCH
+    signal(SIGWINCH, SignalHandler);
+#endif
+#ifdef SIGINFO
+    signal(SIGINFO, SignalHandler);
+#endif
+    signal(SIGUSR1, SignalHandler);
+    signal(SIGUSR2, SignalHandler);
 }
 
 - (void)unregisterCatch {
     NSSetUncaughtExceptionHandler(nil);
-    signal(SIGABRT, SIG_DFL);
+    signal(SIGHUP, SIG_DFL);
+    signal(SIGINT, SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
     signal(SIGILL, SIG_DFL);
-    signal(SIGSEGV, SIG_DFL);
+    signal(SIGTRAP, SIG_DFL);
+    signal(SIGABRT, SIG_DFL);
+#ifdef SIGPOLL
+    signal(SIGPOLL, SIG_DFL);
+#endif
+#ifdef SIGEMT
+    signal(SIGEMT, SIG_DFL);
+#endif
     signal(SIGFPE, SIG_DFL);
+    signal(SIGKILL, SIG_DFL);
     signal(SIGBUS, SIG_DFL);
+    signal(SIGSEGV, SIG_DFL);
+    signal(SIGSYS, SIG_DFL);
     signal(SIGPIPE, SIG_DFL);
+    signal(SIGALRM, SIG_DFL);
+    signal(SIGTERM, SIG_DFL);
+    signal(SIGURG, SIG_DFL);
+    signal(SIGSTOP, SIG_DFL);
+    signal(SIGTSTP, SIG_DFL);
+    signal(SIGCONT, SIG_DFL);
+    signal(SIGCHLD, SIG_DFL);
+    signal(SIGTTIN, SIG_DFL);
+    signal(SIGTTOU, SIG_DFL);
+#ifdef SIGIO
+    signal(SIGIO, SIG_DFL);
+#endif
+    signal(SIGXCPU, SIG_DFL);
+    signal(SIGXFSZ, SIG_DFL);
+    signal(SIGVTALRM, SIG_DFL);
+    signal(SIGPROF, SIG_DFL);
+#ifdef SIGWINCH
+    signal(SIGWINCH, SIG_DFL);
+#endif
+#ifdef SIGINFO
+    signal(SIGINFO, SIG_DFL);
+#endif
+    signal(SIGUSR1, SIG_DFL);
+    signal(SIGUSR2, SIG_DFL);
 }
 
 - (void)saveException:(NSException *)exception {
@@ -121,6 +193,165 @@ void HandleException(NSException *exception)
 
 void SignalHandler(int sig)
 {
-
+    NSMutableDictionary *detail = [[NSMutableDictionary alloc] init];
+    NSString *name = @"Unknown signal";
+    switch (sig) {
+        case SIGHUP:{
+            name = @"SIGHUP";
+        }
+            break;
+        case SIGINT:{
+            name = @"SIGINT";
+        }
+            break;
+        case SIGQUIT:{
+            name = @"SIGQUIT";
+        }
+            break;
+        case SIGILL:{
+            name = @"SIGILL";
+        }
+            break;
+        case SIGTRAP:{
+            name = @"SIGTRAP";
+        }
+            break;
+        case SIGABRT:{
+            name = @"SIGABRT";
+        }
+            break;
+#ifdef SIGPOLL
+        case SIGPOLL:{
+            name = @"SIGPOLL";
+        }
+            break;
+#endif
+        case SIGEMT:{
+            name = @"SIGEMT";
+        }
+            break;
+        case SIGFPE:{
+            name = @"SIGFPE";
+        }
+            break;
+        case SIGKILL:{
+            name = @"SIGKILL";
+        }
+            break;
+        case SIGBUS:{
+            name = @"SIGBUS";
+        }
+            break;
+        case SIGSEGV:{
+            name = @"SIGSEGV";
+        }
+            break;
+        case SIGSYS:{
+            name = @"SIGSYS";
+        }
+            break;
+        case SIGPIPE:{
+            name = @"SIGPIPE";
+        }
+            break;
+        case SIGALRM:{
+            name = @"SIGALRM";
+        }
+            break;
+        case SIGTERM:{
+            name = @"SIGTERM";
+        }
+            break;
+        case SIGURG:{
+            name = @"SIGURG";
+        }
+            break;
+        case SIGSTOP:{
+            name = @"SIGSTOP";
+        }
+            break;
+        case SIGTSTP:{
+            name = @"SIGTSTP";
+        }
+            break;
+        case SIGCONT:{
+            name = @"SIGCONT";
+        }
+            break;
+        case SIGCHLD:{
+            name = @"SIGCHLD";
+        }
+            break;
+        case SIGTTIN:{
+            name = @"SIGTTIN";
+        }
+            break;
+        case SIGTTOU:{
+            name = @"SIGTTOU";
+        }
+            break;
+#ifdef SIGIO
+        case SIGIO:{
+            name = @"SIGIO";
+        }
+            break;
+#endif
+        case SIGXCPU:{
+            name = @"SIGXCPU";
+        }
+            break;
+        case SIGXFSZ:{
+            name = @"SIGXFSZ";
+        }
+            break;
+        case SIGVTALRM:{
+            name = @"SIGVTALRM";
+        }
+            break;
+        case SIGPROF:{
+            name = @"SIGPROF";
+        }
+            break;
+#ifdef SIGWINCH
+        case SIGWINCH:{
+            name = @"SIGWINCH";
+        }
+            break;
+#endif
+#ifdef SIGINFO
+        case SIGINFO:{
+            name = @"SIGINFO";
+        }
+            break;
+#endif
+        case SIGUSR1:{
+            name = @"SIGUSR1";
+        }
+            break;
+        case SIGUSR2:{
+            name = @"SIGUSR2";
+        }
+            break;
+        default:{}
+            break;
+    }
+    detail[@"name"] = name;
+    detail[@"stackSymbols"] = [NSThread callStackSymbols];
+    NSString *date = [LLTool stringFromDate:[NSDate date]];
+    if (date) {
+        [detail setObject:date forKey:@"date"];
+    }
+    if ([LLConfig sharedConfig].userIdentity) {
+        [detail setObject:[LLConfig sharedConfig].userIdentity forKey:@"userIdentity"];
+    }
+    NSArray *appInfos = [[LLAppHelper sharedHelper] appInfos];
+    if ([appInfos count]) {
+        [detail setObject:appInfos forKey:@"appInfos"];
+    }
+    LLCrashModel *model = [[LLCrashModel alloc] initWithDictionary:detail];
+    [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
+        NSLog(@"Save signal model success");
+    } synchronous:YES];
 }
+
 @end
