@@ -60,6 +60,17 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
  */
 - (void)saveModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
+#pragma mark - UPDATE
+/**
+ Replace a model by identity in database. Operation depend [model operationOnMainThread] on and callback in main thread.
+ */
+- (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete;
+
+/**
+ Replace a model by identity in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
+ */
+- (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
+
 #pragma mark - GET
 /**
  Get models in database. If nothing, it will return an emtpy array. Operation in child thread and callback in main thread.
