@@ -1,5 +1,5 @@
 //
-//  LLCrashHelper.h
+//  LLCrashSignalModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,38 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "LLCrashModel.h"
+#import "LLBaseModel.h"
+
+@interface LLCrashSignalModel : LLBaseModel
 
 /**
- Catch crash or not.
+ * Signal Name
  */
-@interface LLCrashHelper : NSObject
+@property (copy , nonatomic , readonly , nonnull) NSString *name;
 
 /**
- Singleton to control enable.
- 
- @return Singleton
+ * Signal stack symbols
  */
-+ (instancetype _Nonnull)sharedHelper;
+@property (strong , nonatomic , readonly , nullable) NSArray <NSString *>*stackSymbols;
 
 /**
- Set enable to catch crash.
+ * Crash Date (yyyy-MM-dd HH:mm:ss)
  */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
+@property (copy , nonatomic , readonly , nullable) NSString *date;
 
 /**
- This time crash model.
+ * Custom User Identity
  */
-@property (nonatomic , strong , nullable) LLCrashModel *crashModel;
+@property (copy , nonatomic , readonly , nullable) NSString *userIdentity;
+
+/**
+ * Dynamic app Infos
+ */
+@property (strong , nonatomic , readonly , nullable) NSDictionary <NSString *, NSString *>*appInfos;
+
+/**
+ Initial method.
+ */
+- (instancetype _Nonnull)initWithName:(NSString *_Nonnull)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*)appInfos;
 
 @end

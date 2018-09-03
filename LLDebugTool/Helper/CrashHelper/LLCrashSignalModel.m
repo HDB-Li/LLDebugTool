@@ -1,5 +1,5 @@
 //
-//  LLCrashHelper.h
+//  LLCrashSignalModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "LLCrashModel.h"
+#import "LLCrashSignalModel.h"
 
-/**
- Catch crash or not.
- */
-@interface LLCrashHelper : NSObject
+@implementation LLCrashSignalModel
 
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype _Nonnull)sharedHelper;
-
-/**
- Set enable to catch crash.
- */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
-
-/**
- This time crash model.
- */
-@property (nonatomic , strong , nullable) LLCrashModel *crashModel;
+- (instancetype _Nonnull)initWithName:(NSString *_Nonnull)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*)appInfos {
+    if (self = [super init]) {
+        _name = [name copy];
+        _stackSymbols = [stackSymbols copy];
+        _date = [date copy];
+        _userIdentity = [userIdentity copy];
+        _appInfos = [appInfos copy];
+    }
+    return self;
+}
 
 @end

@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLStorageModel.h"
+#import "LLCrashSignalModel.h"
 
 @interface LLCrashModel : LLStorageModel
 
@@ -61,18 +62,34 @@
 @property (strong , nonatomic , readonly , nullable) NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*appInfos;
 
 /**
+ Signal models.
+ */
+@property (strong , nonatomic , readonly , nonnull) NSArray <LLCrashSignalModel *>*signals;
+
+/**
  * App LaunchDate
  */
 @property (copy , nonatomic , readonly , nonnull) NSString *launchDate;
 
 /**
- * Specail initial method
- */
-- (instancetype _Nonnull)initWithDictionary:(NSDictionary <NSString *, id>*_Nullable)dictionary;
-
-/**
- * Foolish initial method
+ * Initial method
  */
 - (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *_Nonnull)launchDate;
+
+/**
+ Append a signal model.
+ */
+- (void)appendSignalModel:(LLCrashSignalModel *)model;
+
+/**
+ Update appInfo
+ */
+- (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos;
+
+#pragma mark - DEPRECATED
+/**
+ * Initial method
+ */
+- (instancetype _Nonnull)initWithDictionary:(NSDictionary <NSString *, id>*_Nullable)dictionary DEPRECATED_MSG_ATTRIBUTE("Use initWithName... replace.");
 
 @end
