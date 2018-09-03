@@ -114,6 +114,17 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
     return [[NSMutableArray alloc] initWithObjects:dynamic ,apps, devices, nil];
 }
 
+- (NSDictionary <NSString *, NSString *>*)dynamicAppInfos {
+    NSMutableDictionary *infos = [[NSMutableDictionary alloc] init];
+    for (NSDictionary *dic in [self dynamicAppInfos]) {
+        [infos addEntriesFromDictionary:dic];
+    }
+    
+    infos[@"Disk"] = [self disk];
+    infos[@"Network State"] = [self networkState];
+    return infos;
+}
+
 - (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
     if ([[NSThread currentThread] isMainThread]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
