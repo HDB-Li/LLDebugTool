@@ -79,12 +79,12 @@
 /**
  Append a signal model.
  */
-- (void)appendSignalModel:(LLCrashSignalModel *)model;
+- (void)appendSignalModel:(LLCrashSignalModel *_Nonnull)model;
 
 /**
  Update appInfo
  */
-- (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos;
+- (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
 
 #pragma mark - DEPRECATED
 /**

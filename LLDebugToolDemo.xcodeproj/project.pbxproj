@@ -101,6 +101,7 @@
 		C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA815205AB095006307BE /* LaunchScreen.storyboard */; };
 		C43BA81A205AB095006307BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA819205AB095006307BE /* main.m */; };
 		C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D3B5E3209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m */; };
+		C4ED0329213ED8FD00C0A2FC /* LLCrashSignalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4ED0328213ED8FD00C0A2FC /* LLCrashSignalModel.m */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -313,6 +314,8 @@
 		C43BA819205AB095006307BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4D3B5E2209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+LL_Swizzling.h"; sourceTree = "<group>"; };
 		C4D3B5E3209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+LL_Swizzling.m"; sourceTree = "<group>"; };
+		C4ED0327213ED8FC00C0A2FC /* LLCrashSignalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalModel.h; sourceTree = "<group>"; };
+		C4ED0328213ED8FD00C0A2FC /* LLCrashSignalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalModel.m; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -438,6 +441,8 @@
 		36C5BEF12099897F007A3188 /* CrashHelper */ = {
 			isa = PBXGroup;
 			children = (
+				C4ED0327213ED8FC00C0A2FC /* LLCrashSignalModel.h */,
+				C4ED0328213ED8FD00C0A2FC /* LLCrashSignalModel.m */,
 				36C5BEF32099897F007A3188 /* LLCrashHelper.h */,
 				36C5BEF22099897F007A3188 /* LLCrashHelper.m */,
 				36C5BFB120999181007A3188 /* LLCrashModel.h */,
@@ -1151,6 +1156,7 @@
 				36C5BF962099897F007A3188 /* LLLogVC.m in Sources */,
 				3687522520C69B22002C6AD9 /* LLScreenshotImageView.m in Sources */,
 				C4D3B5E4209ECE76006AF138 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
+				C4ED0329213ED8FD00C0A2FC /* LLCrashSignalModel.m in Sources */,
 				36C5BFA82099897F007A3188 /* UIButton+LL_Utils.m in Sources */,
 				367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */,
 				36C5BF7B2099897F007A3188 /* LLAppHelper.m in Sources */,

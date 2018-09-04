@@ -88,54 +88,7 @@ static NSString *const kDatabaseVersion = @"1";
 }
 
 - (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous {
-    __block Class cls = model.class;
-    
-    // Check thread.
-    if (!synchronous && [[NSThread currentThread] isMainThread] && model.operationOnMainThread) {
-        dispatch_async(_queue, ^{
-            [self saveModel:model complete:complete];
-        });
-        return;
-    }
-    
-    // Check datas.
-    if (![self isRegisteredClass:cls]) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    NSString *launchDate = [NSObject launchDate];
-    if (launchDate.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
-    if (data.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    NSString *identity = model.storageIdentity;
-    if (identity.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    __block NSArray *arguments = @[data,launchDate,identity,model.description?:@"None description"];
-    __block BOOL ret = NO;
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSError *error;
-        ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] values:arguments error:&error];
-        if (!ret) {
-            [self log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];
-        }
-    }];
-    [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
+    [self saveOrUpdateModel:model complete:complete synchronous:synchronous isSave:YES];
 }
 
 #pragma mark - UPDATE
@@ -144,54 +97,7 @@ static NSString *const kDatabaseVersion = @"1";
 }
 
 - (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous {
-    __block Class cls = model.class;
-    
-    // Check thread.
-    if (!synchronous && [[NSThread currentThread] isMainThread] && model.operationOnMainThread) {
-        dispatch_async(_queue, ^{
-            [self saveModel:model complete:complete];
-        });
-        return;
-    }
-    
-    // Check datas.
-    if (![self isRegisteredClass:cls]) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    NSString *launchDate = [NSObject launchDate];
-    if (launchDate.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
-    if (data.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    NSString *identity = model.storageIdentity;
-    if (identity.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil.",NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-    
-    __block NSArray *arguments = @[data,launchDate,identity,model.description?:@"None description"];
-    __block BOOL ret = NO;
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-        NSError *error;
-        ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] values:arguments error:&error];
-        if (!ret) {
-            [self log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];
-        }
-    }];
-    [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
+    [self saveOrUpdateModel:model complete:complete synchronous:synchronous isSave:NO];
 }
 
 #pragma mark - GET
@@ -616,7 +522,7 @@ static NSString *const kDatabaseVersion = @"1";
         if (isSave) {
             ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] values:arguments error:&error];
         } else {
-            ret = [db executeUpdate:[NSString stringWithFormat:@"REPLACE INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] values:arguments error:&error];
+            ret = [db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET %@ = ? ,%@ = ?,%@ = ?,%@ = ? WHERE %@ = \"%@\";",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn,kIdentityColumn,model.storageIdentity] values:arguments error:&error];
         }
         if (!ret) {
             [self log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];

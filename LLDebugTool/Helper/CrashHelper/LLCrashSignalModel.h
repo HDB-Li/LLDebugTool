@@ -53,6 +53,6 @@
 /**
  Initial method.
  */
-- (instancetype _Nonnull)initWithName:(NSString *_Nonnull)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*)appInfos;
+- (instancetype _Nonnull)initWithName:(NSString *_Nonnull)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*_Nullable)appInfos;
 
 @end

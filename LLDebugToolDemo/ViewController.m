@@ -21,6 +21,8 @@
 #import "TestColorStyleViewController.h"
 #import "TestWindowStyleViewController.h"
 
+#import "LLStorageManager.h"
+
 static NSString *const kCellID = @"cellID";
 
 @interface ViewController () <UITableViewDelegate , UITableViewDataSource>

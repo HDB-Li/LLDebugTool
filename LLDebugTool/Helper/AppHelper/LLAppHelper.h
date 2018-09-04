@@ -69,7 +69,7 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppHelperTotalDataTrafficKey;
 /**
  Get dynamic app infos this time.
  */
-- (NSDictionary <NSString *, NSString *>*)dynamicAppInfos;
+- (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos;
 
 /**
  Current cpu usage.
