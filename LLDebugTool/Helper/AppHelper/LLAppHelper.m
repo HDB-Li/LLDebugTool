@@ -116,7 +116,7 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
 
 - (NSDictionary <NSString *, NSString *>*)dynamicAppInfos {
     NSMutableDictionary *infos = [[NSMutableDictionary alloc] init];
-    for (NSDictionary *dic in [self dynamicAppInfos]) {
+    for (NSDictionary *dic in [self dynamicInfos]) {
         [infos addEntriesFromDictionary:dic];
     }
     

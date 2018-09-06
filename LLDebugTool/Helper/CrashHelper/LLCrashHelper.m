@@ -161,8 +161,7 @@ static LLCrashHelper *_instance = nil;
             [model appendSignalModel:signal];
         }
         self.crashModel = model;
-        // TODO : Use Update method.
-        [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
+        [[LLStorageManager sharedManager] updateModel:model complete:^(BOOL result) {
             NSLog(@"Save crash model success");
         } synchronous:YES];
     } else {
@@ -182,6 +181,7 @@ void HandleException(NSException *exception)
 
 void SignalHandler(int sig)
 {
+    // See https://stackoverflow.com/questions/40631334/how-to-intercept-exc-bad-instruction-when-unwrapping-nil.
     NSString *name = @"Unknown signal";
     switch (sig) {
         case SIGHUP:{
@@ -331,12 +331,11 @@ void SignalHandler(int sig)
     if ([LLCrashHelper sharedHelper].crashModel) {
         [[LLCrashHelper sharedHelper].crashModel updateAppInfos:[[LLAppHelper sharedHelper] appInfos]];
         [[LLCrashHelper sharedHelper].crashModel appendSignalModel:signalModel];
-        // TODO : Use Update method.
-        [[LLStorageManager sharedManager] saveModel:[LLCrashHelper sharedHelper].crashModel complete:^(BOOL result) {
+        [[LLStorageManager sharedManager] updateModel:[LLCrashHelper sharedHelper].crashModel complete:^(BOOL result) {
             NSLog(@"Save signal model success");
         } synchronous:YES];
     } else {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Find reason in signal stack symbols" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:[[LLAppHelper sharedHelper] appInfos] launchDate:[NSObject launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Catch Signal" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:[[LLAppHelper sharedHelper] appInfos] launchDate:[NSObject launchDate]];
         [model appendSignalModel:signalModel];
         [LLCrashHelper sharedHelper].crashModel = model;
         [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
