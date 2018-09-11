@@ -91,6 +91,7 @@ static LLLogHelper *_instance = nil;
             break;
     }
 
+    
     if (_enable) {
         LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject launchDate] userIdentity:[LLConfig sharedConfig].userIdentity];
         [[LLStorageManager sharedManager] saveModel:model complete:nil];
