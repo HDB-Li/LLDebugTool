@@ -176,7 +176,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 - (NSArray *)canCopyArray {
     if (!_canCopyArray) {
-        _canCopyArray = @[@"Request Url",@"Request Body",@"Response Body"];
+        _canCopyArray = @[@"Request Url" , @"Error" , @"Header Fields" ,@"Request Body",@"Response Body"];
     }
     return _canCopyArray;
 }

@@ -23,7 +23,9 @@
 
 "try.array.crash" = "触发\"数组越界\"Crash";
 "try.pointer.crash" = "触发\"指针错误\"Crash";
+"try.signal" = "触发 \"SIGTRAP\" signal";
 "crash.info" = "崩溃后请重新运行项目,再查看信息";
+"signal.info" = "你必须先添加一个Symbolic breakpoint";
 
 "app.info" = "展示app信息";
 

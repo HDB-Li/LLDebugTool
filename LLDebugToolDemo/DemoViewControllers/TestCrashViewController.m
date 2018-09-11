@@ -7,6 +7,7 @@
 //
 
 #import "TestCrashViewController.h"
+#import "LLDebugTool.h"
 
 @interface TestCrashViewController ()
 
@@ -20,7 +21,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -31,6 +32,9 @@
     } else if (indexPath.row == 1) {
         cell.textLabel.text = NSLocalizedString(@"try.pointer.crash", nil);
         cell.detailTextLabel.text = NSLocalizedString(@"crash.info", nil);
+    } else if (indexPath.row == 2) {
+        cell.textLabel.text = NSLocalizedString(@"try.signal", nil);
+        cell.detailTextLabel.text = NSLocalizedString(@"signal.info", nil);
     }
     
     return cell;
@@ -41,6 +45,8 @@
         [self testArrayOutRangeCrash];
     } else if (indexPath.row == 1) {
         [self testPointErrorCrash];
+    } else if (indexPath.row == 2) {
+        [self testSignalCrash];
     }
 }
 
@@ -57,6 +63,13 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     NSArray *a = (NSArray *)@"dssdf";
     __unused NSString *b = [a firstObject];
+}
+
+- (void)testSignalCrash {
+    kill(0, SIGTRAP);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:2];
+    });
 }
 
 @end
