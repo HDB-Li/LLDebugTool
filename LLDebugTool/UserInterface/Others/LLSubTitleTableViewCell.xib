@@ -51,6 +51,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentTextView" destination="ZrM-wH-xaf" id="sGQ-u1-qcf"/>
+                <outlet property="contentTextViewMaxHeightConstraint" destination="Muh-r2-csR" id="o8w-fM-A8q"/>
                 <outlet property="titleLabel" destination="fZF-Si-7NL" id="DII-mv-vOR"/>
             </connections>
             <point key="canvasLocation" x="135" y="66"/>
