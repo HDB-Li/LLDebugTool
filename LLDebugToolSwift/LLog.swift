@@ -1,5 +1,5 @@
 //
-//  LLDebugToolSwiftMacros.swift
+//  LLog.swift
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,10 +21,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-import Foundation
+import UIKit
 
-class LLog : NSObject {
-
+class LLog: NSObject {
+    
     public static func log(message : String? , file : String = #file , function : String = #function , lineNumber : Int = #line) {
         #if DEBUG
         LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.default, onEvent: nil, message: message)
@@ -72,4 +72,5 @@ class LLog : NSObject {
         LLDebugTool.shared().log(inFile: (file as NSString).lastPathComponent, function: function, lineNo: lineNumber, level: LLConfigLogLevel.error, onEvent: event, message: message)
         #endif
     }
+    
 }
