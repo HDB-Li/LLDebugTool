@@ -54,7 +54,7 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.contentTextViewMaxHeightConstraint.constant = (NSInteger)(LL_SCREEN_HEIGHT * 0.8);
+    self.contentTextViewMaxHeightConstraint.constant = (NSInteger)(LL_SCREEN_HEIGHT * 0.7);
     [self.contentView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
@@ -82,7 +82,8 @@
     if (object == self.contentView && [keyPath isEqualToString:@"frame"]) {
         CGRect rect = [change[NSKeyValueChangeNewKey] CGRectValue];
         // See LLSubTitleTableViewCell.xib
-        if (rect.size.height >= 10 + 25 + 5 + self.contentTextViewMaxHeightConstraint.constant + 5) {
+        // Subtraction 1 to avoid bug.
+        if (rect.size.height >= 10 + 25 + 5 + self.contentTextViewMaxHeightConstraint.constant + 5 - 1) {
             self.contentTextView.scrollEnabled = YES;
         } else {
             self.contentTextView.scrollEnabled = NO;

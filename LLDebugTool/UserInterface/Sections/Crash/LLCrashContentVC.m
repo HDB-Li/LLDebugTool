@@ -29,6 +29,7 @@
 #import "LLLogVC.h"
 #import "LLConfig.h"
 #import "LLTool.h"
+#import "LLCrashSignalContentVC.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -80,7 +81,17 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         vc.launchDate = self.model.launchDate;
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([title hasPrefix:@"Signal"]) {
-        
+        NSInteger index = 0;
+        for (NSString *str in self.titleArray) {
+            if ([str isEqualToString:title]) {
+                break;
+            } else if ([str hasPrefix:@"Signal"]) {
+                index++;
+            }
+        }
+        LLCrashSignalContentVC *vc = [[LLCrashSignalContentVC alloc] initWithStyle:UITableViewStyleGrouped];
+        vc.model = self.model.signals[index];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
         [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
