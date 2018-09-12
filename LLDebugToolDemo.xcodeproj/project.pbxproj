@@ -20,6 +20,7 @@
 		362A79AF21211B8C002E06FF /* LLStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A79AE21211B8C002E06FF /* LLStorageModel.m */; };
 		363FE42721196CC9005F9C0D /* LLNetworkFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42621196CC9005F9C0D /* LLNetworkFilterView.m */; };
 		363FE43021198AC5005F9C0D /* LLFilterDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363FE42F21198AC5005F9C0D /* LLFilterDateView.m */; };
+		367186EA2148AAD10043D971 /* LLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367186E92148AAD10043D971 /* LLog.swift */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		367E855720A68EC100E5B472 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367E855520A68EC100E5B472 /* LLSubTitleTableViewCell.m */; };
 		367E855820A68EC100E5B472 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367E855620A68EC100E5B472 /* LLSubTitleTableViewCell.xib */; };
@@ -150,6 +151,8 @@
 		363FE42E21198AC5005F9C0D /* LLFilterDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterDateView.h; sourceTree = "<group>"; };
 		363FE42F21198AC5005F9C0D /* LLFilterDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterDateView.m; sourceTree = "<group>"; };
 		365D4D7020C91B3900A5D59E /* LLDebugToolMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
+		367186E82148AA560043D971 /* LLDebugToolDemo-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLDebugToolDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		367186E92148AAD10043D971 /* LLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLog.swift; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -782,6 +785,7 @@
 				36C5BF772099897F007A3188 /* LLDebugTool.h */,
 				36C5BF762099897F007A3188 /* LLDebugTool.m */,
 				365D4D7020C91B3900A5D59E /* LLDebugToolMacros.h */,
+				367186E92148AAD10043D971 /* LLog.swift */,
 			);
 			path = DebugTool;
 			sourceTree = "<group>";
@@ -849,6 +853,7 @@
 		C43BA809205AB095006307BE /* LLDebugToolDemo */ = {
 			isa = PBXGroup;
 			children = (
+				367186E82148AA560043D971 /* LLDebugToolDemo-Bridging-Header.h */,
 				3629E3852136830A00226C79 /* DemoViewControllers */,
 				36A0007520BE863700AE8810 /* NetTool.h */,
 				36A0007620BE863700AE8810 /* NetTool.m */,
@@ -972,6 +977,7 @@
 					};
 					C43BA806205AB095006307BE = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1128,6 +1134,7 @@
 				C41B0A0921205BD700A058CF /* NSObject+LL_Utils.m in Sources */,
 				36C5BFB02099897F007A3188 /* LLDebugTool.m in Sources */,
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
+				367186EA2148AAD10043D971 /* LLog.swift in Sources */,
 				36C5BF8E2099897F007A3188 /* LLCrashVC.m in Sources */,
 				3602DC532099C4AF00F8CE50 /* LLBaseTableViewCell.m in Sources */,
 				36C5BF7F2099897F007A3188 /* LLLogHelper.m in Sources */,
@@ -1253,6 +1260,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1270,6 +1278,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1287,6 +1296,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LLDebugToolDemoUITests/Info.plist;
@@ -1303,6 +1313,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LLDebugToolDemoUITests/Info.plist;
@@ -1431,6 +1442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -1440,6 +1452,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LLDebugToolDemo/LLDebugToolDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1450,6 +1465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -1459,6 +1475,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LLDebugToolDemo/LLDebugToolDemo-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
