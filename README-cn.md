@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.6-blue.svg)](https://img.shields.io/badge/pod-v1.1.6-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.1.7-blue.svg)](https://img.shields.io/badge/pod-v1.1.7-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
@@ -35,17 +35,21 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.1.6)
+## 最近更新 (1.1.7)
 
-### 修复了无法正常捕获Crash信息的问题
+###  支持Swift，更多Swift的用法可以查看 [LLDebugToolSwift](https://github.com/HDB-Li/LLDebugToolSwift)。
 
-如果你使用1.1.3到1.1.5之间的版本，强烈建议你升级到1.1.6。
+`LLDebugToolSwift` 是一个 `LLDebugTool` 的swift组件，它提供了一个`LLog`的swift类，用于在swift中使用log。
 
-更多的修改内容可以查看[Version 1.1.6 Project](https://github.com/HDB-Li/LLDebugTool/projects/5)。
+更多的修改内容可以查看[Version 1.1.7 Project](https://github.com/HDB-Li/LLDebugTool/projects/6)。
+
+#### 新增
+
+* 增加 `LLog.swift`，用于解决 `LLDebugToolMacros` 无法在swift中使用。
 
 #### 更新
 
-* 更新 `LLCrashHelper` ，储存一个Crash模型必须采用同步方法。
+* 更新 `LLCrashHelper`，现在 `LLDebugTool` 可以正确的截获signal信息。
 
 ## 我能用LLDebugTool做什么?
 
@@ -67,13 +71,23 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 [CocoaPods](http://cocoapods.org) 是集成`LLDebugTool`的首选方式。
 
+#### Objective - C
+
 1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.1.6' ,:configurations => ['Debug']`。
 2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
+#### Swift
+
+1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.1.6' ,:configurations => ['Debug']`。
+2. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
+3. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
+
 ### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) 是一个分散的依赖管理器，它构建您的依赖并为您提供framework框架。
+
+#### Objective - C
 
 1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
 
@@ -82,6 +96,16 @@ github "LLDebugTool"
 ```
 
 2. 运行 `carthage` 来构建框架，并将构建的`LLDebugTool.framework`拖到Xcode项目中。
+
+#### Swift
+
+1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
+
+```ogdl
+github "LLDebugToolSwift"
+```
+
+2. 运行 `carthage` 来构建框架，并将构建的`LLDebugToolSwift.framework`拖到Xcode项目中。
 
 ### 源文件
 

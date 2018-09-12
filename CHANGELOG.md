@@ -1,3 +1,19 @@
+## [1.1.7](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.7) (09/12/2018)
+
+###  Support Swift now, More swift usage informations see [LLDebugToolSwift](https://github.com/HDB-Li/LLDebugToolSwift).
+
+`LLDebugToolSwift` is a swift component for `LLDebugTool`, It provide the `LLog` swift class that used to log function in swift.
+
+More changes can be viewed in [Version 1.1.7 Project](https://github.com/HDB-Li/LLDebugTool/projects/6).
+
+#### Add
+
+* Add `LLog.swift`, In order to solve `LLDebugToolMacros` can't work in swift.
+
+#### Update
+
+* Update `LLCrashHelper`, now `LLDebugTool` can crash signal correct.
+
 ## [1.1.6](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.6) (08/31/2018)
 
 ###  Fixed bug that could not catch crash information
