@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary             = "LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations."
   s.homepage            = "https://github.com/HDB-Li/LLDebugTool"
   s.license             = "MIT"
-  s.author              = { "HDB-Li" => "llworkinggroup@gmail.com" }
+  s.author              = { "HDB-Li" => "llworkinggroup1992@gmail.com" }
   s.social_media_url    = "https://github.com/HDB-Li"
   s.platform            = :ios, "8.0"
   s.source              = { :git => "https://github.com/HDB-Li/LLDebugTool.git", :tag => s.version }
