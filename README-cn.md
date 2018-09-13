@@ -7,7 +7,7 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
-[![Language](https://img.shields.io/badge/Language-Objective--C-yellow.svg)](https://img.shields.io/badge/Language-Objective--C-yellow.svg)
+[![Language](https://img.shields.io/badge/Language-Objective--C%20%7C%20Swift-yellow.svg)](https://img.shields.io/badge/Language-Objective--C%20%7C%20Swift-yellow.svg)
 [![Twitter](https://img.shields.io/badge/twitter-@HdbLi-1DA1F2.svg)](https://twitter.com/HdbLi)
 
 ## 简介
@@ -71,50 +71,57 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 [CocoaPods](http://cocoapods.org) 是集成`LLDebugTool`的首选方式。
 
-#### Objective - C
+##### Objective - C
 
-1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.1.6' ,:configurations => ['Debug']`。
-2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
-3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
+> 1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.1.6' ,:configurations => ['Debug']`。
+> 2. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
+> 3. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
-#### Swift
+##### Swift
 
-1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.1.6' ,:configurations => ['Debug']`。
-2. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
-3. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
+> 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.1.6' ,:configurations => ['Debug']`。
+> 2. 必须在Podfile中添加`use_frameworks!`。
+> 3. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
+> 4. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
 
 ### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) 是一个分散的依赖管理器，它构建您的依赖并为您提供framework框架。
 
-#### Objective - C
+##### Objective - C
 
-1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
+> 1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
+>
+>     `github "LLDebugTool"`
+>
+> 2. 运行 `carthage` 来构建框架，并将构建的`LLDebugTool.framework`拖到Xcode项目中。
 
-```ogdl
-github "LLDebugTool"
-```
+##### Swift
 
-2. 运行 `carthage` 来构建框架，并将构建的`LLDebugTool.framework`拖到Xcode项目中。
-
-#### Swift
-
-1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
-
-```ogdl
-github "LLDebugToolSwift"
-```
-
-2. 运行 `carthage` 来构建框架，并将构建的`LLDebugToolSwift.framework`拖到Xcode项目中。
+> 1. 要使用Carthage将LLDebugToolSwift集成到Xcode项目中，请在`Cartfile`中指定它:
+>
+>     `github "LLDebugToolSwift"`
+>
+> 2. 运行 `carthage` 来构建框架，并将构建的`LLDebugToolSwift.framework`拖到Xcode项目中。
 
 ### 源文件
 
 您可以直接将名为LLDebugTool文件夹的源文件添加到项目中。
 
-1. 下载[最新的代码版本](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或将存储库作为git子模块添加到您的git跟踪项目中。
-2. 在Xcode中打开项目，然后拖拽名为“LLDebugTool”的源文件夹到你的项目中。当提示Choose options for adding these files时，务必勾选Copy items if needed这项。
-3. 集成[FMDB](https://github.com/ccgus/fmdb)到项目中，FMDB是一个围绕SQLite的Objective-C包装器开源库。
-4. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
+##### Objective - C
+
+> 1. 下载[最新的代码版本](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或将存储库作为git子模块添加到您的git跟踪项目中。
+> 2. 在Xcode中打开项目，然后拖拽名为“LLDebugTool”的源文件夹到你的项目中。当提示Choose options for adding these files时，务必勾选Copy items if needed这项。
+> 3. 集成[FMDB](https://github.com/ccgus/fmdb)到项目中，FMDB是一个围绕SQLite的Objective-C包装器开源库。
+> 4. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
+
+##### Swift
+
+> 1. 下载[最新的Objective-C代码版本](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或将存储库作为git子模块添加到您的git跟踪项目中。
+> 2. 下载[最新的Swift扩展代码版本](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)或将存储库作为git子模块添加到您的git跟踪项目中。
+> 3. 在Xcode中打开项目，然后拖拽名为“LLDebugTool”和“LLDebugToolSwift”的源文件夹到你的项目中。当提示Choose options for adding these files时，务必勾选Copy items if needed这项。
+> 4. 集成[FMDB](https://github.com/ccgus/fmdb)到项目中，FMDB是一个围绕SQLite的Objective-C包装器开源库。
+> 5. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
 
 ## 如何使用
 
@@ -126,7 +133,9 @@ github "LLDebugToolSwift"
 
 * `快速启动`
 
-```
+In Objective-C
+
+```Objective-C
 #import "AppDelegate.h"
 #import "LLDebug.h"
 
@@ -141,30 +150,87 @@ github "LLDebugToolSwift"
 }
 ```
 
+In Swift
+
+```Swift
+import LLDebugToolSwift
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // ####################### Start LLDebugTool #######################//
+        // Use this line to start working.
+        LLDebugTool.shared().startWorking()
+        
+        // Write your project code here.
+        
+        return true
+    }
+```
+
 * `使用自定义的配置启动`
 
-```
+In Objective-C
+
+```Objective-C
 #import "AppDelegate.h"
 #import "LLDebug.h"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // The default color configuration is LLConfigColorStyleHack. 
-    
-    // If you want to use other color configurations, you can use the following line.
-    [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSimple;
-    
-    // If you want to use a custom color configuration, you can use the following line.
-    [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-    
-    // If you don't want to use color configuration, you can use the following line.
-    [LLConfig sharedConfig].useSystemColor = YES;
-    
-    // Start working.
-    [[LLDebugTool sharedTool] startWorking];
 
-    // Write your project code here.
+    //####################### Color Style #######################//
+    // Uncomment one of the following lines to change the color configuration.
+    // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
+    // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+    
+    //####################### User Identity #######################//
+    // Use this line to tag user. More config please see "LLConfig.h".
+    [LLConfig sharedConfig].userIdentity = @"Miss L";
+    
+    //####################### Window Style #######################//
+    // Uncomment one of the following lines to change the window style.
+    // [LLConfig sharedConfig].windowStyle = LLConfigWindowNetBar;
+
+    //####################### Features #######################//
+    // Uncomment this line to change the available features.
+    // [LLConfig sharedConfig].availables = LLConfigAvailableNoneAppInfo;
+    
+    // ####################### Start LLDebugTool #######################//
+    // Use this line to start working.
+    [[LLDebugTool sharedTool] startWorking];
+    
     return YES;
 }
+```
+
+In Swift
+
+```Swift
+import LLDebugToolSwift
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //####################### Color Style #######################//
+        // Uncomment one of the following lines to change the color configuration.
+        // LLConfig.shared().colorStyle = .system
+        // LLConfig.shared().configBackgroundColor(.orange, textColor: .white, statusBarStyle: .default)
+        
+        //####################### User Identity #######################//
+        // Use this line to tag user. More config please see "LLConfig.h".
+        LLConfig.shared().userIdentity = "Miss L";
+        
+        //####################### Window Style #######################//
+        // Uncomment one of the following lines to change the window style.
+        // LLConfig.shared().windowStyle = .netBar
+        
+        //####################### Features #######################//
+        // Uncomment this line to change the available features.
+        // LLConfig.shared().availables = .noneAppInfo
+        
+        // ####################### Start LLDebugTool #######################//
+        // Use this line to start working.
+        LLDebugTool.shared().startWorking()
+        
+        return true
+    }
 ```
 
 ### 日志
@@ -173,7 +239,9 @@ github "LLDebugToolSwift"
 
 * `保存日志`
 
-```
+In Objective-C
+
+```Objective-C
 #import "LLDebug.h"
 
 - (void)testNormalLog {
@@ -182,15 +250,40 @@ github "LLDebugToolSwift"
 }
 ```
 
-* `Save Log with event and level`
+In Swift
+
+```Swift
+import LLDebugToolSwift
+
+    func testNormalLog() {
+        // Insert an LLog where you want to print.
+        LLog.log(message: "Message you want to save or print.")
+    }
 
 ```
+
+* `Save Log with event and level`
+
+In Objective-C
+
+```Objective-C
 #import "LLDebug.h"
 
 - (void)testEventErrorLog {
     // Insert an LLog_Error_Event where you want to print an event and level log.
     LLog_Error_Event(@"The event that you want to mark. such as bugA, taskB or processC.",@"Message you want to save or print.");
 }
+```
+
+In Swift
+
+```Swift
+import LLDebugToolSwift
+
+    func testEventErrorLog() {
+        // Insert an LLog_Error_Event where you want to print an event and level log.
+        LLog.errorLog(message: "Message you want to save or print.", event: "The event that you want to mark. such as bugA, taskB or processC.")
+    }
 ```
 
 ### 网络请求
@@ -295,7 +388,3 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 ## 许可
 
 这段代码是根据 [MIT license](LICENSE) 的条款和条件发布的。
-
-## Thanks
-
-- [Dotzu](https://github.com/remirobert/Dotzu)
