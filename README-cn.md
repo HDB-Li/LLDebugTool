@@ -98,7 +98,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 ##### Swift
 
-> 1. 要使用Carthage将LLDebugTool集成到Xcode项目中，请在`Cartfile`中指定它:
+> 1. 要使用Carthage将LLDebugToolSwift集成到Xcode项目中，请在`Cartfile`中指定它:
 >
 >     `github "LLDebugToolSwift"`
 >
