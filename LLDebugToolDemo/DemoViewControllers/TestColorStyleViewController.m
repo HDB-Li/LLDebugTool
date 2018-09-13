@@ -32,7 +32,7 @@
         cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleHack ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Use \"LLConfigColorStyleSimple\"";
-        cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleSimple ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;;
+        cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleSimple ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Use \"LLConfigColorStyleSystem\"";
         cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleSystem ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
