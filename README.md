@@ -16,6 +16,10 @@
 
 LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations.
 
+[LLDebugToolSwift](https://github.com/HDB-Li/LLDebugToolSwift) is the extension of [LLDebugTool](https://github.com/HDB-Li/LLDebugTool), it provide swift interface for LLDebugTool, LLDebugToolSwift will release with LLDebugTool at same time. 
+
+If your project is a Objective-C project, you can use `LLDebugTool`, if your project is a Swift project or contains swift files, you can use `LLDebugToolSwift`.
+
 Choose LLDebugTool for your next project, or migrate over your existing projects—you'll be happy you did!
 
 #### Gif
@@ -80,7 +84,7 @@ More changes can be viewed in [Version 1.1.7 Project](https://github.com/HDB-Li/
 ##### Swift
 
 > 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.1.7' ,:configurations => ['Debug']`.
-> 2. Must be added in the Podfile `use_frameworks!`.
+> 2. Must be added in the Podfile **`use_frameworks!`**.
 > 3. Install the pod(s) by running `pod install`. If you can't search `LLDebugToolSwift` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 4. Include LLDebugTool wherever you need it with `import "LLDebugToolSwift`.
 
@@ -305,7 +309,7 @@ LLDebugTool provides a quick way to view and manipulate sandbox, you can easily 
 ### More Usage
 
 * You can get more help by looking at the [Wiki](https://github.com/HDB-Li/LLDebugTool/wiki).
-* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) to find more use with LLDebugTool. The demo is build under XCode9.3, ios 11.3 and cocoapods 1.5.0. If there is any version compatibility problem, please let me know.
+* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under XCode9.3, ios 11.3 and cocoapods 1.5.0. If there is any version compatibility problem, please let me know.
 
 ## Requirements
 
