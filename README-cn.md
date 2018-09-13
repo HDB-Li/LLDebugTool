@@ -16,6 +16,10 @@
 
 LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助你在非Xcode的情况下，进行数据分析和操作。
 
+[LLDebugToolSwift](https://github.com/HDB-Li/LLDebugToolSwift)是针对[LLDebugTool](https://github.com/HDB-Li/LLDebugTool)的Swift扩展，它提供了LLDebugTool的Swift接口，LLDebugToolSwift会和LLDebugTool同步更新。
+
+如果你的项目是一个Objective-C项目，你可以使用`LLDebugTool`，如果你的额项目是一个Swift项目或者包含Swift文件，你可以使用`LLDebugToolSwift`。
+
 为您的下一个项目选择LLDebugTool，或者迁移到您现有的项目中——您会为此感到惊喜！
 
 #### Gif
@@ -80,7 +84,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 ##### Swift
 
 > 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.1.6' ,:configurations => ['Debug']`。
-> 2. 必须在Podfile中添加`use_frameworks!`。
+> 2. 必须在Podfile中添加 **`use_frameworks!`** 。
 > 3. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 > 4. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
 
@@ -305,7 +309,7 @@ LLDebugTool提供了一个快捷的方式来查看和操作沙盒文件，你可
 ### 更多使用
 
 * 你可以通过查看[Wiki](https://github.com/HDB-Li/LLDebugTool/wiki)，获得更多帮助。
-* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在XCode9.3，ios 11.3，cocoapods 1.5.0下运行的，如果有任何版本兼容问题，请告诉我。
+* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或[LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在XCode9.3，ios 11.3，cocoapods 1.5.0下运行的，如果有任何版本兼容问题，请告诉我。
 
 ## 要求
 
