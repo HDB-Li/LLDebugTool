@@ -278,6 +278,8 @@ In Objective-C
 In Swift
 
 ```Swift
+import LLDebugToolSwift
+
     func testEventErrorLog() {
         // Insert an LLog_Error_Event where you want to print an event and level log.
         LLog.errorLog(message: "Message you want to save or print.", event: "The event that you want to mark. such as bugA, taskB or processC.")
