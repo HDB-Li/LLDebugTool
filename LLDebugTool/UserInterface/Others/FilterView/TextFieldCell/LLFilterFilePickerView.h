@@ -26,6 +26,6 @@
 
 @interface LLFilterFilePickerView : UIPickerView
 
-- (instancetype)initWithFrame:(CGRect)frame model:(LLFilterTextFieldModel *)model;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame model:(LLFilterTextFieldModel *_Nonnull)model;
 
 @end

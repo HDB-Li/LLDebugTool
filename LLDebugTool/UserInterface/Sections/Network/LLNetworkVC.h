@@ -25,6 +25,6 @@
 
 @interface LLNetworkVC : LLBaseViewController
 
-@property (nonatomic , copy) NSString *launchDate;
+@property (nonatomic , copy , nullable) NSString *launchDate;
 
 @end

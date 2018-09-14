@@ -25,6 +25,6 @@
 
 @interface LLCrashContentCell : LLBaseTableViewCell
 
-- (void)confirmContent:(NSString *)content;
+- (void)confirmContent:(NSString *_Nullable)content;
 
 @end

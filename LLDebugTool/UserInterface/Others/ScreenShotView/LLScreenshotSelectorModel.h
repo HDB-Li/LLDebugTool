@@ -30,6 +30,6 @@
 
 @property (nonatomic , assign) LLScreenshotSelectorAction color;
 
-- (instancetype)initWithSize:(LLScreenshotSelectorAction)size color:(LLScreenshotSelectorAction)color;
+- (instancetype _Nonnull)initWithSize:(LLScreenshotSelectorAction)size color:(LLScreenshotSelectorAction)color;
 
 @end

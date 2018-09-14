@@ -27,6 +27,6 @@
 /**
  * Change platform name to model name, such as change "iPhone10,6" to "iPhone X".
  */
-@property (nonatomic , copy , readonly) NSString *LL_modelName;
+@property (nonatomic , copy , readonly , nonnull) NSString *LL_modelName;
 
 @end

@@ -23,7 +23,9 @@
 
 "try.array.crash" = "Try crash with out of range in array";
 "try.pointer.crash" = "Try crash with pointer error";
+"try.signal" = "Try receive a SIGTRAP signal";
 "crash.info" = "Please rerun the project after the crash and check the information";
+"signal.info" = "You must insert a Symbolic breakpoint first";
 
 "app.info" = "Show app info";
 
@@ -38,3 +40,6 @@
 "test.crash" = "Show crash catch function";
 "test.color.style" = "Show colorStyle configuration";
 "test.window.style" = "Show windowStyle configuration";
+
+"new.version" = "A new version demo is available";
+

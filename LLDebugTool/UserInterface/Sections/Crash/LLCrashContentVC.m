@@ -22,17 +22,18 @@
 //  SOFTWARE.
 
 #import "LLCrashContentVC.h"
-#import "LLCrashContentCell.h"
+#import "LLSubTitleTableViewCell.h"
 #import "LLMacros.h"
 #import "LLStorageManager.h"
 #import "LLNetworkVC.h"
 #import "LLLogVC.h"
 #import "LLConfig.h"
 #import "LLTool.h"
+#import "LLCrashSignalContentVC.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
-@interface LLCrashContentVC ()
+@interface LLCrashContentVC () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -50,82 +51,62 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.titleArray.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLCrashContentCell *cell = [tableView dequeueReusableCellWithIdentifier:kCrashContentCellID forIndexPath:indexPath];
-    [cell confirmContent:self.contentArray[indexPath.section]];
-    if ([self.titleArray[indexPath.section] isEqualToString:@"Logs"] || [self.titleArray[indexPath.section] isEqualToString:@"Network Requests"]) {
+    LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCrashContentCellID];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.titleLabel.text = self.titleArray[indexPath.row];
+    cell.contentText = self.contentArray[indexPath.row];
+    cell.delegate = self;
+    NSString *title = self.titleArray[indexPath.row];
+    if ([title isEqualToString:@"Logs"] || [title isEqualToString:@"Network Requests"] || [title hasPrefix:@"Signal"]) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.contentView.userInteractionEnabled = NO;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.contentView.userInteractionEnabled = YES;
     }
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSString *title = self.titleArray[section];
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 30)];
-    view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, view.frame.size.width - 16 * 2, view.frame.size.height)];
-    label.textColor = LLCONFIG_TEXT_COLOR;
-    label.font = [UIFont systemFontOfSize:13];
-    label.text = title;
-    [view addSubview:label];
-    
-    if ([self.canCopyArray containsObject:title]) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(LL_SCREEN_WIDTH - 80 - 10, 0, 80, 30);
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.font = [UIFont systemFontOfSize:13];
-        [button setTitle:@"Copy" forState:UIControlStateNormal];
-        button.tag = section;
-        button.tintColor = LLCONFIG_TEXT_COLOR;
-        [button addTarget:self action:@selector(copyButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:button];
-    }
-    
-    return view;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([self.titleArray[indexPath.section] isEqualToString:@"Logs"]) {
+    NSString *title = self.titleArray[indexPath.row];
+    if ([title isEqualToString:@"Logs"]) {
         LLLogVC *vc = [[LLLogVC alloc] initWithStyle:UITableViewStyleGrouped];
         vc.launchDate = self.model.launchDate;
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([self.titleArray[indexPath.section] isEqualToString:@"Network Requests"]) {
+    } else if ([title isEqualToString:@"Network Requests"]) {
         LLNetworkVC *vc = [[LLNetworkVC alloc] initWithStyle:UITableViewStyleGrouped];
         vc.launchDate = self.model.launchDate;
         [self.navigationController pushViewController:vc animated:YES];
+    } else if ([title hasPrefix:@"Signal"]) {
+        NSInteger index = 0;
+        for (NSString *str in self.titleArray) {
+            if ([str isEqualToString:title]) {
+                break;
+            } else if ([str hasPrefix:@"Signal"]) {
+                index++;
+            }
+        }
+        LLCrashSignalContentVC *vc = [[LLCrashSignalContentVC alloc] initWithStyle:UITableViewStyleGrouped];
+        vc.model = self.model.signals[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.canCopyArray containsObject:title]) {
+        [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
+        [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
+}
+
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Primary
 - (void)initial {
     self.navigationItem.title = self.model.name;
-    self.tableView.estimatedRowHeight = 50;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashContentCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashContentCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashContentCellID];
     
     self.titleArray = [[NSMutableArray alloc] init];
     self.contentArray = [[NSMutableArray alloc] init];
@@ -175,6 +156,11 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.contentArray addObject:[NSString stringWithFormat:@"%ld network requests",(unsigned long)networkRequests.count]];
     }
     
+    for (LLCrashSignalModel *signal in _model.signals) {
+        [self.titleArray addObject:[NSString stringWithFormat:@"Signal (%@)",signal.name]];
+        [self.contentArray addObject:_model.date];
+    }
+    
     if (_model.userIdentity) {
         [self.titleArray addObject:@"User Identity"];
         [self.contentArray addObject:_model.userIdentity];
@@ -209,11 +195,6 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.contentArray addObject:str];
     }
     [self.tableView reloadData];
-}
-
-- (void)copyButtonClick:(UIButton *)sender {
-    [[UIPasteboard generalPasteboard] setString:self.contentArray[sender.tag]];
-    [self toastMessage:@"Copy Success"];
 }
 
 - (NSArray *)canCopyArray {

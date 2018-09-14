@@ -28,13 +28,13 @@
 @protocol LLSubTitleTableViewCellDelegate<NSObject>
 
 @optional
-- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView;
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *_Nonnull)cell didSelectedContentView:(UITextView *_Nonnull)contentTextView;
 
 @end
 
 @interface LLSubTitleTableViewCell : LLBaseTableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic , nullable) IBOutlet UILabel *titleLabel;
 
 @property (copy , nonatomic , nullable) NSString *contentText;
 

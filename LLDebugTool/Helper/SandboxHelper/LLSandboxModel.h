@@ -96,7 +96,7 @@
 /**
  Initialization of the model.
  */
-- (instancetype _Nonnull)initWithAttributes:(NSDictionary * _Nonnull)attributes filePath:(NSString * _Nonnull)filePath;
+- (instancetype _Nonnull)initWithAttributes:(NSDictionary <NSString *,id>* _Nonnull)attributes filePath:(NSString * _Nonnull)filePath;
 
 /**
  Convet file size to NSString.

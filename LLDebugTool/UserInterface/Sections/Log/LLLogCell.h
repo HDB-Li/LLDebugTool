@@ -26,6 +26,6 @@
 
 @interface LLLogCell : LLBaseTableViewCell
 
-- (void)confirmWithModel:(LLLogModel *)model;
+- (void)confirmWithModel:(LLLogModel *_Nonnull)model;
 
 @end

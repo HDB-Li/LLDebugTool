@@ -27,22 +27,22 @@
 @interface LLFilterTextFieldModel : NSObject
 
 // Normal
-@property (copy , nonatomic) NSString *title;
+@property (copy , nonatomic , nullable) NSString *title;
 
-@property (copy , nonatomic) NSString *currentFilter;
+@property (copy , nonatomic , nullable) NSString *currentFilter;
 
 @property (assign , nonatomic) CGFloat titleWidth;
 
 @property (assign , nonatomic) BOOL autoAdjustWidthToTitle;
 
 // File Part
-@property (copy , nonatomic) NSArray *filters;
+@property (copy , nonatomic , nullable) NSArray *filters;
 
 // Date Part
 @property (assign , nonatomic) BOOL useDatePicker;
 
-@property (strong , nonatomic) NSDate *fromDate;
+@property (strong , nonatomic , nullable) NSDate *fromDate;
 
-@property (strong , nonatomic) NSDate *endDate;
+@property (strong , nonatomic , nullable) NSDate *endDate;
 
 @end

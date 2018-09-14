@@ -37,7 +37,7 @@
 /**
  Line number.
  */
-@property (nonatomic , assign , readonly) int lineNo;
+@property (nonatomic , assign , readonly) NSInteger lineNo;
 
 /**
  Function name.
@@ -93,6 +93,6 @@
 /**
  Initialization of the model.
  */
-- (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(int)lineNo function:(NSString *_Nullable)function level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nonnull)message date:(NSString *_Nonnull)date launchDate:(NSString *_Nonnull)launchDate userIdentity:(NSString *_Nullable)userIdentity;
+- (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(NSInteger)lineNo function:(NSString *_Nullable)function level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message date:(NSString *_Nonnull)date launchDate:(NSString *_Nonnull)launchDate userIdentity:(NSString *_Nullable)userIdentity;
 
 @end

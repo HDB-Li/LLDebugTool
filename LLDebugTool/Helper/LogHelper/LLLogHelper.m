@@ -45,7 +45,7 @@ static LLLogHelper *_instance = nil;
     return @[@"Default",@"Alert",@"Warning",@"Error"];
 }
 
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... {
+- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     NSString *date = [LLTool stringFromDate:[NSDate date]];
     LLConfigLogStyle logStyle = [LLConfig sharedConfig].logStyle;
     switch (logStyle) {
@@ -56,7 +56,7 @@ static LLLogHelper *_instance = nil;
             NSString *header = @"\n--------Debug Tool--------";
             NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>",onEvent];
             NSString *fileString = [NSString stringWithFormat:@"\nFile:<%@>",file];
-            NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%d>",lineNo];
+            NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%ld>",(long)lineNo];
             NSString *funcString = [NSString stringWithFormat:@"\nFunc:<%@>",function];
             NSString *dateString = [NSString stringWithFormat:@"\nDate:<%@>",date];
             NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>",message];

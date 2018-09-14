@@ -27,8 +27,8 @@
 
 @interface LLSandboxCell : LLBaseTableViewCell
 
-@property (nonatomic , weak) id <LLUITableViewLongPressGestureRecognizerDelegate> delegate;
+@property (nonatomic , weak , nullable) id <LLUITableViewLongPressGestureRecognizerDelegate> delegate;
 
-- (void)confirmWithModel:(LLSandboxModel *)model;
+- (void)confirmWithModel:(LLSandboxModel *_Nonnull)model;
 
 @end

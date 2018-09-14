@@ -23,15 +23,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^LLNetworkFilterChangeBlock)(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end);
+typedef void(^LLNetworkFilterChangeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
 
 @interface LLNetworkFilterView : UIView
 
-@property (copy , nonatomic) LLNetworkFilterChangeBlock changeBlock;
+@property (copy , nonatomic , nullable) LLNetworkFilterChangeBlock changeBlock;
 
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
-- (void)configWithData:(NSArray *)data;
+- (void)configWithData:(NSArray *_Nullable)data;
 
 - (BOOL)isFiltering;
 - (void)cancelFiltering;

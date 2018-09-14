@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "LLCrashModel.h"
 
 /**
  Catch crash or not.
@@ -33,11 +34,16 @@
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype _Nonnull)sharedHelper;
 
 /**
  Set enable to catch crash.
  */
 @property (nonatomic , assign , getter=isEnabled) BOOL enable;
+
+/**
+ This time crash model.
+ */
+@property (nonatomic , strong , nullable) LLCrashModel *crashModel;
 
 @end

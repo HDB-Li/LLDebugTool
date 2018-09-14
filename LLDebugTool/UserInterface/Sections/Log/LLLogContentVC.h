@@ -26,6 +26,6 @@
 
 @interface LLLogContentVC : LLBaseViewController
 
-@property (nonatomic , strong) LLLogModel *model;
+@property (nonatomic , strong , nonnull) LLLogModel *model;
 
 @end

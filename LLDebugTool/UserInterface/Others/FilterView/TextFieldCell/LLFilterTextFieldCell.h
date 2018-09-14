@@ -28,8 +28,8 @@ typedef void(^LLFilterOtherTextFieldCellBlock)(void);
 
 @interface LLFilterTextFieldCell : UICollectionViewCell
 
-@property (copy , nonatomic) LLFilterOtherTextFieldCellBlock confirmBlock;
+@property (copy , nonatomic , nullable) LLFilterOtherTextFieldCellBlock confirmBlock;
 
-- (void)confirmWithModel:(LLFilterTextFieldModel *)model;
+- (void)confirmWithModel:(LLFilterTextFieldModel *_Nonnull)model;
 
 @end

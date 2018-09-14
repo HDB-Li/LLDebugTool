@@ -26,6 +26,6 @@
 
 @interface LLFilterLabelCell : UICollectionViewCell
 
-- (void)confirmWithModel:(LLFilterLabelModel *)model;
+- (void)confirmWithModel:(LLFilterLabelModel *_Nonnull)model;
 
 @end

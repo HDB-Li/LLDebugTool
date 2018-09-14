@@ -125,7 +125,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 - (void)resetDefaultSettings {
     // Used to solve problems caused by modifying some systems default values with Runtime in the project.
     // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.automaticallyAdjustsScrollViewInsets = YES;
+#pragma clang diagnostic pop
     self.navigationController.navigationBar.translucent = YES;
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;

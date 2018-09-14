@@ -27,36 +27,33 @@
 
 @interface LLCrashModel ()
 
+@property (strong , nonatomic , nonnull) NSMutableArray <LLCrashSignalModel *>*signals;
+
 @end
 
 @implementation LLCrashModel
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo stackSymbols:(NSArray *)stackSymbols date:(NSString *)date userIdentity:(NSString *)userIdentity appInfos:(NSArray *)appInfos launchDate:(NSString *)launchDate {
     if (self = [super init]) {
-        _name = dictionary[@"name"];
-        _reason = dictionary[@"reason"];
-        _userInfo = dictionary[@"userInfo"];
-        _stackSymbols = dictionary[@"stackSymbols"];
-        _date = dictionary[@"date"];
-        _userIdentity = dictionary[@"userIdentity"];
-        _appInfos = dictionary[@"appInfos"];
-        _launchDate = [NSObject launchDate];
+        _name = [name copy];
+        _reason = [reason copy];
+        _userInfo = [userInfo copy];
+        _stackSymbols = [stackSymbols copy];
+        _date = [date copy];
+        _userIdentity = [userIdentity copy];
+        _appInfos = [appInfos copy];
+        _launchDate = [launchDate copy];
+        _signals = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (instancetype)initWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo stackSymbols:(NSArray *)stackSymbols date:(NSString *)date userIdentity:(NSString *)userIdentity appInfos:(NSArray *)appInfos launchDate:(NSString *)launchDate {
-    if (self = [super init]) {
-        _name = [name length] ? name : nil;
-        _reason = [reason length] ? reason : nil;
-        _userInfo = userInfo.allKeys.count ? userInfo : nil;
-        _stackSymbols = stackSymbols.count ? stackSymbols : nil;
-        _date = [date length] ? date : nil;
-        _userIdentity = [userIdentity length] ? userIdentity : nil;
-        _appInfos = [appInfos count] ? appInfos : nil;
-        _launchDate = launchDate;
-    }
-    return self;
+- (void)appendSignalModel:(LLCrashSignalModel *)model {
+    [_signals addObject:model];
+}
+
+- (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
+    _appInfos = [appInfos copy];
 }
 
 - (NSString *)storageIdentity {
@@ -69,6 +66,19 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfos:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_jsonString,self.stackSymbols.LL_jsonString,self.date,self.userIdentity,self.appInfos.LL_jsonString,self.launchDate];
+}
+
+#pragma mark - DEPRECATED
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    NSString *name = dictionary[@"name"];
+    NSString *reason = dictionary[@"reason"];
+    NSDictionary *userInfo = dictionary[@"userInfo"];
+    NSArray *stackSymbols = dictionary[@"stackSymbols"];
+    NSString *date = dictionary[@"date"];
+    NSString *userIdentity = dictionary[@"userIdentity"];
+    NSArray *appInfos = dictionary[@"appInfos"];
+    NSString *launchDate = [NSObject launchDate];
+    return [self initWithName:name reason:reason userInfo:userInfo stackSymbols:stackSymbols date:date userIdentity:userIdentity appInfos:appInfos launchDate:launchDate];
 }
 
 @end

@@ -25,6 +25,6 @@
 
 @interface LLNetworkImageCell : LLBaseTableViewCell
 
-- (void)setUpImage:(UIImage *)image;
+- (void)setUpImage:(UIImage *_Nonnull)image;
 
 @end

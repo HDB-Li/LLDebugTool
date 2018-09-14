@@ -35,7 +35,7 @@
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype _Nonnull)sharedHelper;
 
 /**
  Set enable to save log model.
@@ -45,7 +45,7 @@
 /**
  Return log levels string.
  */
-+ (NSArray <NSString *>*)levelsDescription;
++ (NSArray <NSString *>*_Nonnull)levelsDescription;
 
 /**
  Print and save a log model with infos.
@@ -57,6 +57,6 @@
  @param onEvent Event,can filter by this.
  @param message Message.
  */
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(int)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message, ... ;
+- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 @end

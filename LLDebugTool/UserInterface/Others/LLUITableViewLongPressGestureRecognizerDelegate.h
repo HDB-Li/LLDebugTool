@@ -28,6 +28,6 @@
 
 @optional
 
-- (void)LL_tableViewCellDidLongPress:(UITableViewCell *)cell;
+- (void)LL_tableViewCellDidLongPress:(UITableViewCell *_Nonnull)cell;
 
 @end
