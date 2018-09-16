@@ -132,6 +132,7 @@ static LLDebugTool *_instance = nil;
     
     // Check version.
     [self checkVersion];
+    
     // Set window.
     CGFloat windowWidth = [LLConfig sharedConfig].suspensionBallWidth;
     self.window = [[LLWindow alloc] initWithFrame:CGRectMake(0, 0, windowWidth, windowWidth)];
@@ -165,6 +166,33 @@ static LLDebugTool *_instance = nil;
         // This method called in instancetype, can't use macros to log.
         [self logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:kLLLogHelperDebugToolEvent message:kLLLogHelperUseBetaAlert];
     }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // Check whether has a new LLDebugTool version.
+        if ([LLConfig sharedConfig].autoCheckDebugToolVersion) {
+            NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
+            NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error == nil && data != nil) {
+                    NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
+                    if (array.count > 2) {
+                        NSString *str = array[1];
+                        NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
+                        if (array2.count >= 2) {
+                            NSString *newVersion = array2[0];
+                            if ([newVersion componentsSeparatedByString:@"."].count == 3) {
+                                if ([self.version compare:newVersion] == NSOrderedAscending) {
+                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,self.version];
+                                    [self logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:kLLLogHelperDebugToolEvent message:message];
+                                }
+                            }
+                        }
+                    }
+                }
+            }];
+            [dataTask resume];
+        }
+    });
 }
 
 - (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {

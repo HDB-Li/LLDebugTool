@@ -214,6 +214,11 @@ UIKIT_EXTERN NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotif
 @property (assign , nonatomic) BOOL showDebugToolLog;
 
 /**
+ Whether check LLDebugTool has new version.
+ */
+@property (assign , nonatomic) BOOL autoCheckDebugToolVersion;
+
+/**
  Customize the log style. Default is LLConfigLogDetail.
  */
 @property (assign , nonatomic) LLConfigLogStyle logStyle;

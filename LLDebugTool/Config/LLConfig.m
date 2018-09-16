@@ -138,6 +138,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     
     // Show LLDebugTool's log.
     _showDebugToolLog = YES;
+    _autoCheckDebugToolVersion = YES;
     
     // Set log style.
     _logStyle = LLConfigLogDetail;
