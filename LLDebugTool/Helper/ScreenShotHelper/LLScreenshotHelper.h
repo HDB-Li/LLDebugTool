@@ -42,4 +42,9 @@
  */
 - (void)simulateTakeScreenshot;
 
+/**
+ Return a image from current screen.
+ */
+- (nullable UIImage *)imageFromScreen;
+
 @end
