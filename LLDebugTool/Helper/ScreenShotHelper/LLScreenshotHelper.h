@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface LLScreenshotHelper : NSObject
 
@@ -45,6 +46,6 @@
 /**
  Return a image from current screen.
  */
-- (nullable UIImage *)imageFromScreen;
+- (UIImage *_Nullable)imageFromScreen;
 
 @end
