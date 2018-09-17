@@ -61,6 +61,11 @@ static LLScreenshotHelper *_instance = nil;
     }    
 }
 
+- (nullable UIImage *)imageFromScreen {
+    NSData *data = [self dataWithScreenshotInPNGFormat];
+    return [UIImage imageWithData:data];
+}
+
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification
 - (void)receiveUserDidTakeScreenshotNotification:(NSNotification *)notification {
     [self simulateTakeScreenshot];
@@ -73,11 +78,6 @@ static LLScreenshotHelper *_instance = nil;
 
 - (void)unregisterScreenshot {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationUserDidTakeScreenshotNotification object:nil];
-}
-
-- (nullable UIImage *)imageFromScreen {
-    NSData *data = [self dataWithScreenshotInPNGFormat];
-    return [UIImage imageWithData:data];
 }
 
 - (nullable NSData *)dataWithScreenshotInPNGFormat
