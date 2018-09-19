@@ -44,6 +44,7 @@
 #import "LLAppHelper.h"
 #import "LLScreenshotHelper.h"
 #import "LLWindow.h"
+#import "LLDebugToolMacros.h"
 #elif __has_include("<LLDebugTool/LLDebugTool.h>")
 #import "<LLDebugTool/LLDebugTool.h>"
 #import "<LLDebugTool/LLNetworkHelper.h>"
@@ -52,12 +53,15 @@
 #import "<LLDebugTool/LLAppHelper.h>"
 #import "<LLDebugTool/LLScreenshotHelper.h>"
 #import "<LLDebugTool/LLWindow.h>"
+#import "<LLDebugTool/LLDebugToolMacros.h"
 #endif
 
 #if __has_include("LLLogHelper.h")
 #import "LLLogHelper.h"
+#import "LLDebugToolMacros.h"
 #elif __has_include("<LLDebugTool/LLLogHelper.h>")
 #import "<LLDebugTool/LLLogHelper.h>"
+#import "<LLDebugTool/LLDebugToolMacros.h"
 #endif
 
 #if __has_include("LLAppHelper.h")
@@ -87,6 +91,11 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 + (void)setNewAvailables:(LLConfigAvailableFeature)availables {
 #if INSTALLED_LLDEBUGTOOL
     if ([LLDebugTool sharedTool].isWorking) {
+        BOOL networkEnable = availables & LLConfigAvailableNetwork;
+        BOOL logEnable = availables & LLConfigAvailableLog;
+        BOOL crashEnable = availables & LLConfigAvailableCrash;
+        BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
+        BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
         [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
         [[LLLogHelper sharedHelper] setEnable:logEnable];
         [[LLCrashHelper sharedHelper] setEnable:crashEnable];
