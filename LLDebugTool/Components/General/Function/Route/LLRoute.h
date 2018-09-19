@@ -32,10 +32,10 @@ FOUNDATION_EXPORT NSString * _Nonnull const kLLFailedLoadingResourceEvent;
 FOUNDATION_EXPORT NSString * _Nonnull const kLLUseBetaAlertPrompt;
 FOUNDATION_EXPORT NSString * _Nonnull const kLLOpenIssueInGithubPrompt;
 
-static NSString *const kLLNetworkVCName = @"LLNetworkVC";
-static NSString *const kLLLogVCName = @"LLLogVC";
-static NSString *const kLLNetworkModelName = @"LLNetworkModel";
-static NSString *const kLLLogModelName = @"LLLogModel";
+static NSString * _Nonnull const kLLNetworkVCName = @"LLNetworkVC";
+static NSString * _Nonnull const kLLLogVCName = @"LLLogVC";
+static NSString * _Nonnull const kLLNetworkModelName = @"LLNetworkModel";
+static NSString * _Nonnull const kLLLogModelName = @"LLLogModel";
 
 @interface LLRoute : NSObject
 
@@ -78,6 +78,6 @@ static NSString *const kLLLogModelName = @"LLLogModel";
 + (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos;
 
 #pragma mark - Base
-+ (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*)params;
++ (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*_Nullable)params;
 
 @end

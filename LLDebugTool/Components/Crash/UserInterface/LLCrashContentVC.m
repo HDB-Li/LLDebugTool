@@ -112,16 +112,15 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 }
 
 - (void)loadData {
-    
     Class logModelClass = NSClassFromString(kLLLogModelName);
     Class networkModelClass = NSClassFromString(kLLNetworkModelName);
     if (logModelClass != nil && networkModelClass != nil) {
         __weak typeof(self) weakSelf = self;
         [LLTool loadingMessage:@"Loading"];
-        [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [[LLStorageManager sharedManager] getModels:logModelClass launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
             // Get log models.
             __block NSArray *logs = result;
-            [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+            [[LLStorageManager sharedManager] getModels:networkModelClass launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
                 [LLTool hideLoadingMessage];
                 // Get nework requests.
                 NSArray *networkRequests = result;
@@ -129,11 +128,25 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
             }];
         }];
     } else if (logModelClass != nil) {
-        
+        __weak typeof(self) weakSelf = self;
+        [LLTool loadingMessage:@"Loading"];
+        [[LLStorageManager sharedManager] getModels:logModelClass launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+            [LLTool hideLoadingMessage];
+            // Get log models.
+            __block NSArray *logs = result;
+            [weakSelf updateDataWithLogs:logs networkRequests:nil];
+        }];
     } else if (networkModelClass != nil) {
-        
+        __weak typeof(self) weakSelf = self;
+        [LLTool loadingMessage:@"Loading"];
+        [[LLStorageManager sharedManager] getModels:networkModelClass launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+            [LLTool hideLoadingMessage];
+            // Get nework requests.
+            NSArray *networkRequests = result;
+            [weakSelf updateDataWithLogs:nil networkRequests:networkRequests];
+        }];
     } else {
-        
+        [self updateDataWithLogs:nil networkRequests:nil];
     }
 }
 
