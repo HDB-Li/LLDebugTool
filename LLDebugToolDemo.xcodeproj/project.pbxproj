@@ -24,6 +24,7 @@
 		369D09372153853A001C9D4B /* LLLogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369D09302153853A001C9D4B /* LLLogCell.xib */; };
 		369D09382153853A001C9D4B /* LLLogContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09312153853A001C9D4B /* LLLogContentVC.m */; };
 		369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09392153855D001C9D4B /* LLLogFilterView.m */; };
+		369D093E2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D093D2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
@@ -160,6 +161,8 @@
 		369D09312153853A001C9D4B /* LLLogContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogContentVC.m; sourceTree = "<group>"; };
 		369D09392153855D001C9D4B /* LLLogFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogFilterView.m; sourceTree = "<group>"; };
 		369D093A2153855D001C9D4B /* LLLogFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogFilterView.h; sourceTree = "<group>"; };
+		369D093C2153AE14001C9D4B /* NSURLSession+LL_Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+LL_Swizzling.h"; sourceTree = "<group>"; };
+		369D093D2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+LL_Swizzling.m"; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -789,6 +792,8 @@
 				C44F40BF2152AA7000153F46 /* NSURLSessionConfiguration+LL_Swizzling.m */,
 				C44F40BB2152AA7000153F46 /* NSHTTPURLResponse+LL_Utils.h */,
 				C44F40C02152AA7000153F46 /* NSHTTPURLResponse+LL_Utils.m */,
+				369D093C2153AE14001C9D4B /* NSURLSession+LL_Swizzling.h */,
+				369D093D2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1245,6 +1250,7 @@
 				C44F41332152AA7000153F46 /* LLFilterTextFieldModel.m in Sources */,
 				C44F41432152AA7000153F46 /* LLNetworkHelper.m in Sources */,
 				C44F41652152AA7000153F46 /* LLDebugTool.m in Sources */,
+				369D093E2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m in Sources */,
 				C44F41302152AA7000153F46 /* LLNoneCopyTextField.m in Sources */,
 				C44F41222152AA7000153F46 /* LLScreenshotSelectorModel.m in Sources */,
 				C44F41552152AA7000153F46 /* LLSandboxHelper.m in Sources */,
