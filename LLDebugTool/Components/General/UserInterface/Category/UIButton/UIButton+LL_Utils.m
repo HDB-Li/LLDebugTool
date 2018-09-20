@@ -25,7 +25,7 @@
 
 @implementation UIButton (LL_Utils)
 
-- (void)ll_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
+- (void)LL_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
     [self setBackgroundImage:[UIButton ll_imageWithColor:backgroundColor] forState:state];
 }
 

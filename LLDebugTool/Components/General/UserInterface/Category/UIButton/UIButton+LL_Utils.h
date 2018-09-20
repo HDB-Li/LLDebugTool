@@ -25,6 +25,6 @@
 
 @interface UIButton (LL_Utils)
 
-- (void)ll_setBackgroundColor:(UIColor *_Nonnull)backgroundColor forState:(UIControlState)state;
+- (void)LL_setBackgroundColor:(UIColor *_Nonnull)backgroundColor forState:(UIControlState)state;
 
 @end

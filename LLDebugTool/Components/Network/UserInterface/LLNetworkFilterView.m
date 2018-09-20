@@ -187,8 +187,8 @@
         btn.adjustsImageWhenHighlighted = NO;
         [btn setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
         [btn setTitleColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateSelected];
-        [btn ll_setBackgroundColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateNormal];
-        [btn ll_setBackgroundColor:LLCONFIG_TEXT_COLOR forState:UIControlStateSelected];
+        [btn LL_setBackgroundColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateNormal];
+        [btn LL_setBackgroundColor:LLCONFIG_TEXT_COLOR forState:UIControlStateSelected];
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         btn.tag = i;
         btn.layer.cornerRadius = 5;
