@@ -53,7 +53,7 @@
     return nil;
 }
 
-- (unsigned long long)byteLength {
+- (unsigned long long)LL_byteLength {
     if (self.length == 0) {
         return 0;
     }

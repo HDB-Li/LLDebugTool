@@ -29,7 +29,7 @@
 - (NSDictionary *_Nullable)LL_jsonDictionary;
 - (NSArray *_Nullable)LL_jsonArray;
 
-- (unsigned long long)byteLength;
+- (unsigned long long)LL_byteLength;
 
 - (CGFloat)heightWithAttributes:(NSDictionary *_Nullable)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
 

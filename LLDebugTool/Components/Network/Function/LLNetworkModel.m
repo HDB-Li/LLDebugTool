@@ -133,7 +133,7 @@
     if (!_requestDataTrafficValue) {
         // Can't get really header in a NSURLRequest, most of the missing headers are small, just add cookie.
         unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_jsonString];
-        unsigned long long bodyTraffic = self.requestBody.byteLength;
+        unsigned long long bodyTraffic = self.requestBody.LL_byteLength;
         unsigned long long lineTraffic = [self dataTrafficLength:[self simulationHTTPRequestLine]];
         _requestDataTrafficValue = headerTraffic + bodyTraffic + lineTraffic;
     }
@@ -204,7 +204,7 @@
         return 0;
     }
     
-    return [string dataUsingEncoding:NSUTF8StringEncoding].length ?: string.byteLength;
+    return [string dataUsingEncoding:NSUTF8StringEncoding].length ?: string.LL_byteLength;
 }
 
 - (NSString *)simulationHTTPRequestLine {
