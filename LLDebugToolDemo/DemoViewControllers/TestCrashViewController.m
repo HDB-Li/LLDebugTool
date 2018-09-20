@@ -28,7 +28,7 @@
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.lineBreakMode = NSLineBreakByCharWrapping;
-    label.text = @"If your project/Demo under run XCode contains Exception Breakpoint, you need to after the program crashes, Continue to click on the XCode ` Continue program execution `(Tip 1), until the end of the program completely(Tip 2). This function can be used normally when non-xcode runs, and when run under XCode, Exception Breakpoint takes precedence over LLDebugTool intercept crash.\n\n如果你的项目/Demo在XCode运行下中包含Exception Breakpoint，你需要在程序崩溃后，继续点击XCode上的`Continue program execution`(Tip 1)，直到程序完全结束(Tip 2)。这个功能在非XCode运行时可以正常使用，在XCode下运行时Exception Breakpoint会优先于LLDebugTool拦截崩溃。";
+    label.text = NSLocalizedString(@"crash.tip", nil);
     CGSize size = [label sizeThatFits:CGSizeMake([UIScreen mainScreen].bounds.size.width - 20, CGFLOAT_MAX)];
     label.frame = CGRectMake(10, 10, size.width, size.height);
     header.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, size.height + 20);
