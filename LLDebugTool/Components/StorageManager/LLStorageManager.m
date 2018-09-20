@@ -28,6 +28,36 @@
 #import "LLConfig.h"
 #import "LLRoute.h"
 
+#ifndef LL_HAS_INCLUDE_CRASH_MODEL
+#define LL_HAS_INCLUDE_CRASH_MODEL (__has_include("LLCrashModel.h") || __has_include("<LLDebugTool/LLCrashModel.h>"))
+#endif
+
+#ifndef LL_HAS_INCLUDE_NETWORK_MODEL
+#define LL_HAS_INCLUDE_NETWORK_MODEL (__has_include("LLNetworkModel.h") || __has_include("<LLDebugTool/LLNetworkModel.h>"))
+#endif
+
+#ifndef LL_HAS_INCLUDE_LOG_MODEL
+#define LL_HAS_INCLUDE_LOG_MODEL (__has_include("LLLogModel.h") || __has_include("<LLDebugTool/LLLogModel.h>"))
+#endif
+
+#if __has_include("LLCrashModel.h")
+#import "LLCrashModel.h"
+#elif __has_include("<LLDebugTool/LLCrashModel.h>")
+#import "<LLDebugTool/LLCrashModel.h>"
+#endif
+
+#if __has_include("LLNetworkModel.h")
+#import "LLNetworkModel.h"
+#elif __has_include("<LLDebugTool/LLNetworkModel.h>")
+#import "<LLDebugTool/LLNetworkModel.h>"
+#endif
+
+#if __has_include("LLLogModel.h")
+#import "LLLogModel.h"
+#elif __has_include("<LLDebugTool/LLLogModel.h>")
+#import "<LLDebugTool/LLLogModel.h>"
+#endif
+
 static LLStorageManager *_instance = nil;
 
 // Column Name
@@ -357,7 +387,7 @@ static NSString *const kDatabaseVersion = @"1";
     ret2 = [self registerClass:[LLNetworkModel class]];
 #endif
     
-#if LL_HAS_INCLUDE_LLLOGMODEL
+#if LL_HAS_INCLUDE_LOG_MODEL
     ret3 = [self registerClass:[LLLogModel class]];
 #endif
     
@@ -397,7 +427,7 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret = YES;
     __block BOOL ret2 = YES;
     [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
-#if LL_HAS_INCLUDE_NETWORK_MODEL
+#if LL_HAS_INCLUDE_LOG_MODEL
         NSError *error1;
         NSString *logTableName = [self tableNameFromClass:[LLLogModel class]];
         NSString *launchDateString = [self convertArrayToSQL:launchDates];
@@ -406,10 +436,11 @@ static NSString *const kDatabaseVersion = @"1";
             [self log:[NSString stringWithFormat:@"Remove launch log fail, error = %@",error1]];
         }
 #endif
-#if LL_HAS_INCLUDE_LOG_MODEL
+#if LL_HAS_INCLUDE_NETWORK_MODEL
         NSError *error2;
         NSString *networkTableName = [self tableNameFromClass:[LLNetworkModel class]];
-        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,launchDateString] values:nil error:&error2];
+        NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];
+        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString] values:nil error:&error2];
         if (!ret2) {
             [self log:[NSString stringWithFormat:@"Remove launch network fail, error = %@",error2]];
         }

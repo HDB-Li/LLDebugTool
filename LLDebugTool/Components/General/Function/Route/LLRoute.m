@@ -140,7 +140,7 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 + (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*)params {
     Class cls = NSClassFromString(name);
     if (cls) {
-        if ([cls isKindOfClass:[LLBaseViewController class]]) {
+        if ([cls isSubclassOfClass:LLBaseViewController.class]) {
             LLBaseViewController *vc = [[cls alloc] initWithStyle:UITableViewStyleGrouped];
             for (NSString *key in params) {
                 id value = params[key];

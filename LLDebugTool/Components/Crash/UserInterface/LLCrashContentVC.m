@@ -73,10 +73,14 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     NSString *title = self.titleArray[indexPath.row];
     if ([title isEqualToString:@"Logs"]) {
         UIViewController *vc = [LLRoute viewControllerWithName:@"LLLogVC" params:@{@"launchDate" : self.model.launchDate}];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else if ([title isEqualToString:@"Network Requests"]) {
         UIViewController *vc = [LLRoute viewControllerWithName:@"LLNetworkVC" params:@{@"launchDate" : self.model.launchDate}];
-        [self.navigationController pushViewController:vc animated:YES];
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else if ([title hasPrefix:@"Signal"]) {
         NSInteger index = 0;
         for (NSString *str in self.titleArray) {
