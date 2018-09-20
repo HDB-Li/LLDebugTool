@@ -71,7 +71,7 @@
     return (length + 1) / 2;
 }
 
-- (CGFloat)heightWithAttributes:(NSDictionary *)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight {
+- (CGFloat)LL_heightWithAttributes:(NSDictionary *)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight {
     if (self.length == 0) {
         return 0;
     }

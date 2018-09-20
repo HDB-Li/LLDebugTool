@@ -27,11 +27,12 @@
 @interface NSString (LL_Utils)
 
 - (NSDictionary *_Nullable)LL_jsonDictionary;
+
 - (NSArray *_Nullable)LL_jsonArray;
 
 - (unsigned long long)LL_byteLength;
 
-- (CGFloat)heightWithAttributes:(NSDictionary *_Nullable)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
+- (CGFloat)LL_heightWithAttributes:(NSDictionary *_Nullable)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
 
 @end
 
