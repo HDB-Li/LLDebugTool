@@ -32,16 +32,16 @@ static const char * kModelNameKey = "modelName";
 - (NSString *)LL_modelName {
     NSString *name = objc_getAssociatedObject(self, kModelNameKey);
     if (name == nil) {
-        name = [self getCurrentDeviceModel];
+        name = [self LL_getCurrentDeviceModel];
         objc_setAssociatedObject(self, kModelNameKey, name, OBJC_ASSOCIATION_COPY);
     }
     return name;
 }
 
 #pragma mark - Primary
-- (NSString *)getCurrentDeviceModel
+- (NSString *)LL_getCurrentDeviceModel
 {
-    NSString *platform = [self platform];
+    NSString *platform = [self LL_platform];
     if ([platform hasPrefix:@"iPhone"]) {
         
         if ([platform isEqualToString:@"iPhone10,6"])    return @"iPhone X";
@@ -120,7 +120,8 @@ static const char * kModelNameKey = "modelName";
     }
     return @"unknown";
 }
-- (NSString *)platform
+
+- (NSString *)LL_platform
 {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
