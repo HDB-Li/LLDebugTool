@@ -102,7 +102,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     }
     // Response
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
-    model.stateLine = httpResponse.stateLine;
+    model.stateLine = httpResponse.LL_stateLine;
     model.mimeType = self.response.MIMEType;
     if (model.mimeType.length == 0) {
         NSString *absoluteString = self.request.URL.absoluteString.lowercaseString;

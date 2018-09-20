@@ -28,7 +28,7 @@ typedef CFHTTPMessageRef (*LLHTTPURLResponseGetHTTPProtocol)(CFURLRef response);
 
 @implementation NSHTTPURLResponse (LL_Utils)
 
-- (NSString *_Nullable)stateLine {
+- (NSString *_Nullable)LL_stateLine {
     
     NSString *stateLine = nil;
     

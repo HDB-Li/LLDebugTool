@@ -28,6 +28,6 @@
 /**
  State line in NSHTTPURLResponse.
  */
-- (NSString *_Nullable)stateLine;
+- (NSString *_Nullable)LL_stateLine;
 
 @end
