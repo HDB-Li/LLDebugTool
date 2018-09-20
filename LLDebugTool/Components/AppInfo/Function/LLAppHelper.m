@@ -186,7 +186,7 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
 
 - (NSString *)appStartTimeConsuming {
     if (!_appStartTimeConsuming) {
-        _appStartTimeConsuming = [NSString stringWithFormat:@"%.2f s",[NSObject startLoadTime]];
+        _appStartTimeConsuming = [NSString stringWithFormat:@"%.2f s",[NSObject LL_startLoadTime]];
     }
     return _appStartTimeConsuming;
 }

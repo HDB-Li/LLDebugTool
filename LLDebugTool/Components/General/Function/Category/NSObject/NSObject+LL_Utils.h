@@ -27,6 +27,6 @@
 
 + (NSString *_Nonnull)LL_launchDate;
 
-+ (NSTimeInterval)startLoadTime;
++ (NSTimeInterval)LL_startLoadTime;
 
 @end

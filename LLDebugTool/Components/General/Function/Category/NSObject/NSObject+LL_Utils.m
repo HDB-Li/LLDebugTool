@@ -73,7 +73,7 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
     return _launchDate;
 }
 
-+ (NSTimeInterval)startLoadTime {
++ (NSTimeInterval)LL_startLoadTime {
     return _startLoadTime;
 }
 
