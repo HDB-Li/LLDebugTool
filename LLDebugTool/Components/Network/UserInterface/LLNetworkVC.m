@@ -139,7 +139,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 #pragma mark - Primary
 - (void)initial {
     if (_launchDate == nil) {
-        _launchDate = [NSObject launchDate];
+        _launchDate = [NSObject LL_launchDate];
     }
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.tempHttpDataArray = [[NSMutableArray alloc] init];

@@ -130,7 +130,7 @@ static NSString *const kDatabaseVersion = @"1";
 
 #pragma mark - GET
 - (void)getModels:(Class)cls complete:(LLStorageManagerArrayBlock)complete {
-    NSString *launchDate = [NSObject launchDate];
+    NSString *launchDate = [NSObject LL_launchDate];
     [self getModels:cls launchDate:launchDate complete:complete];
 }
 
@@ -413,7 +413,7 @@ static NSString *const kDatabaseVersion = @"1";
         crashModels = result;
     } synchronous:YES];
 
-    NSMutableArray *launchDates = [[NSMutableArray alloc] initWithObjects:[NSObject launchDate], nil];
+    NSMutableArray *launchDates = [[NSMutableArray alloc] initWithObjects:[NSObject LL_launchDate], nil];
     for (LLCrashModel *model in crashModels) {
         if (model.launchDate.length) {
             [launchDates addObject:model.launchDate];
@@ -521,7 +521,7 @@ static NSString *const kDatabaseVersion = @"1";
         return;
     }
     
-    NSString *launchDate = [NSObject launchDate];
+    NSString *launchDate = [NSObject LL_launchDate];
     if (launchDate.length == 0) {
         [self log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];

@@ -156,7 +156,7 @@ static LLCrashHelper *_instance = nil;
     NSArray *appInfos = [LLRoute appInfos];
 
     if (self.crashModel) {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
         for (LLCrashSignalModel *signal in self.crashModel.signals) {
             [model appendSignalModel:signal];
         }
@@ -165,7 +165,7 @@ static LLCrashHelper *_instance = nil;
             NSLog(@"Save crash model success");
         } synchronous:YES];
     } else {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
         self.crashModel = model;
         [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
             NSLog(@"Save crash model success");
@@ -335,7 +335,7 @@ void SignalHandler(int sig)
             NSLog(@"Save signal model success");
         } synchronous:YES];
     } else {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Catch Signal" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:[LLRoute appInfos] launchDate:[NSObject launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Catch Signal" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:[LLRoute appInfos] launchDate:[NSObject LL_launchDate]];
         [model appendSignalModel:signalModel];
         [LLCrashHelper sharedHelper].crashModel = model;
         [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {

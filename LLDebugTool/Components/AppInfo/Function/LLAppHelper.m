@@ -520,7 +520,7 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
 
 #pragma mark - DEPRECATED
 - (NSString *)launchDate {
-    return [NSObject launchDate];
+    return [NSObject LL_launchDate];
 }
 
 - (void)startMonitoring {

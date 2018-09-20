@@ -215,7 +215,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 #pragma mark - Primary
 - (void)initial {
     if (_launchDate == nil) {
-        _launchDate = [NSObject launchDate];
+        _launchDate = [NSObject LL_launchDate];
     }
     
     self.dataArray = [[NSMutableArray alloc] init];

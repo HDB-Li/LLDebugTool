@@ -25,7 +25,7 @@
 
 @interface NSObject (LL_Utils)
 
-+ (NSString *_Nonnull)launchDate;
++ (NSString *_Nonnull)LL_launchDate;
 
 + (NSTimeInterval)startLoadTime;
 

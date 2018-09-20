@@ -77,7 +77,7 @@
     NSString *date = dictionary[@"date"];
     NSString *userIdentity = dictionary[@"userIdentity"];
     NSArray *appInfos = dictionary[@"appInfos"];
-    NSString *launchDate = [NSObject launchDate];
+    NSString *launchDate = [NSObject LL_launchDate];
     return [self initWithName:name reason:reason userInfo:userInfo stackSymbols:stackSymbols date:date userIdentity:userIdentity appInfos:appInfos launchDate:launchDate];
 }
 

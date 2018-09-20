@@ -63,7 +63,7 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
     }
 }
 
-+ (NSString *)launchDate {
++ (NSString *)LL_launchDate {
     if (!_launchDate) {
         _launchDate = [LLTool staticStringFromDate:[NSDate dateWithTimeIntervalSince1970:_loadDate]];
         if (!_launchDate) {
