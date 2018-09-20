@@ -18,6 +18,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"test.crash", nil);
+    [self initNoteView];
+}
+
+- (void)initNoteView {
+    UIView *header = [[UIView alloc] init];
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont systemFontOfSize:14];
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.lineBreakMode = NSLineBreakByCharWrapping;
+    label.text = @"If your project/Demo under run XCode contains Exception Breakpoint, you need to after the program crashes, Continue to click on the XCode ` Continue program execution `(Tip 1), until the end of the program completely(Tip 2). This function can be used normally when non-xcode runs, and when run under XCode, Exception Breakpoint takes precedence over LLDebugTool intercept crash.\n\n如果你的项目/Demo在XCode运行下中包含Exception Breakpoint，你需要在程序崩溃后，继续点击XCode上的`Continue program execution`(Tip 1)，直到程序完全结束(Tip 2)。这个功能在非XCode运行时可以正常使用，在XCode下运行时Exception Breakpoint会优先于LLDebugTool拦截崩溃。";
+    CGSize size = [label sizeThatFits:CGSizeMake([UIScreen mainScreen].bounds.size.width - 20, CGFLOAT_MAX)];
+    label.frame = CGRectMake(10, 10, size.width, size.height);
+    header.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, size.height + 20);
+    [header addSubview:label];
+    
+    UIView *footer = [[UIView alloc] init];
+    //1570 × 1050
+    CGFloat imageViewWidth = [UIScreen mainScreen].bounds.size.width - 20;
+    CGFloat imageViewHeight = imageViewWidth * 1050 / 1570;
+    CGFloat tipHeight = 30;
+    UIImageView *imageView1 = [[UIImageView alloc] init];
+    imageView1.image = [UIImage imageNamed:@"crash-1.jpg"];
+    imageView1.frame = CGRectMake(10, 10, imageViewWidth, imageViewHeight);
+    [footer addSubview:imageView1];
+    
+    UILabel *tip1 = [[UILabel alloc] init];
+    tip1.textAlignment = NSTextAlignmentCenter;
+    tip1.font = [UIFont systemFontOfSize:14];
+    tip1.text = @"Tip 1";
+    tip1.frame = CGRectMake(0, 10 + imageViewHeight, [UIScreen mainScreen].bounds.size.width, tipHeight);
+    [footer addSubview:tip1];
+    
+    UIImageView *imageView2 = [[UIImageView alloc] init];
+    imageView2.image = [UIImage imageNamed:@"crash-2.jpg"];
+    imageView2.frame = CGRectMake(10, 10 + imageViewHeight + tipHeight + 10, imageViewWidth, imageViewHeight);
+    [footer addSubview:imageView2];
+    
+    UILabel *tip2 = [[UILabel alloc] init];
+    tip2.textAlignment = NSTextAlignmentCenter;
+    tip2.font = [UIFont systemFontOfSize:14];
+    tip2.text = @"Tip 2";
+    tip2.frame = CGRectMake(0, 10 + imageViewHeight + tipHeight + 10 + imageViewHeight, [UIScreen mainScreen].bounds.size.width, tipHeight);
+    [footer addSubview:tip2];
+
+    footer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10 + imageViewHeight + tipHeight + 10 + imageViewHeight + tipHeight + 10);
+    self.tableView.tableHeaderView = header;
+    self.tableView.tableFooterView = footer;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -54,6 +102,7 @@
 - (void)testArrayOutRangeCrash {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    sleep(1);
     NSArray *array = @[@"a",@"b"];
     __unused NSString *str = array[3];
 }
@@ -61,6 +110,7 @@
 - (void)testPointErrorCrash {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    sleep(1);
     NSArray *a = (NSArray *)@"dssdf";
     __unused NSString *b = [a firstObject];
 }
