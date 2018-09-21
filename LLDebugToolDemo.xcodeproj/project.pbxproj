@@ -318,13 +318,13 @@
 		C44F410D2152AA7000153F46 /* LLAppInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoVC.m; sourceTree = "<group>"; };
 		C44F410E2152AA7000153F46 /* LLAppInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoVC.h; sourceTree = "<group>"; };
 		C44F41112152AA7000153F46 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
-		C44F41122152AA7000153F46 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C44F41132152AA7000153F46 /* LLDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebug.h; sourceTree = "<group>"; };
 		C44F41142152AA7000153F46 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
 		C44F41162152AA7000153F46 /* LLWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindowViewController.h; sourceTree = "<group>"; };
 		C44F41172152AA7000153F46 /* LLWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindow.m; sourceTree = "<group>"; };
 		C44F41182152AA7000153F46 /* LLWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindow.h; sourceTree = "<group>"; };
 		C44F41192152AA7000153F46 /* LLWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindowViewController.m; sourceTree = "<group>"; };
+		C4F8C661215533E800B07016 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -382,6 +382,7 @@
 				369D09292153853A001C9D4B /* LLLogHelper.m */,
 				369D09242153853A001C9D4B /* LLLogModel.h */,
 				369D09282153853A001C9D4B /* LLLogModel.m */,
+				C4F8C661215533E800B07016 /* LLDebugToolMacros.h */,
 				369D09262153853A001C9D4B /* LLLogHelperEventDefine.h */,
 			);
 			path = Function;
@@ -945,7 +946,6 @@
 				C44F41132152AA7000153F46 /* LLDebug.h */,
 				C44F41142152AA7000153F46 /* LLDebugTool.h */,
 				C44F41112152AA7000153F46 /* LLDebugTool.m */,
-				C44F41122152AA7000153F46 /* LLDebugToolMacros.h */,
 			);
 			path = PublicHeader;
 			sourceTree = "<group>";

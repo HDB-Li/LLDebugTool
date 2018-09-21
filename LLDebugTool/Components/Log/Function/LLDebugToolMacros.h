@@ -24,7 +24,13 @@
 #ifndef LLDebugToolMacros_h
 #define LLDebugToolMacros_h
 
+#if __has_include("LLDebugTool.h") || __has_include("<LLDebugTool.h>")
+
+#if __has_include("LLDebugTool.h")
 #import "LLDebugTool.h"
+#else
+#import "<LLDebugTool.h>"
+#endif
 
 #define LLog(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:nil message:(fmt, ##__VA_ARGS__)]
 #define LLog_Event(event , fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
@@ -35,6 +41,24 @@
 #define LLog_Error(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:nil message:(fmt, ##__VA_ARGS__)]
 #define LLog_Error_Event(event, fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:event message:(fmt, ##__VA_ARGS__)]
 
+#elif __has_include("LLLogHelper.h") || __has_include("<LLLogHelper.h>")
+
+#if __has_include("LLLogHelper.h")
+#import "LLLogHelper.h"
+#else
+#import "<LLLogHelper.h>"
+#endif
+
+#define LLog(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:nil message:(fmt, ##__VA_ARGS__)]
+#define LLog_Event(event , fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Alert(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:nil message:(fmt, ##__VA_ARGS__)]
+#define LLog_Alert_Event(event, fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Warning(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:nil message:(fmt, ##__VA_ARGS__)]
+#define LLog_Warning_Event(event, fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Error(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:nil message:(fmt, ##__VA_ARGS__)]
+#define LLog_Error_Event(event, fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:event message:(fmt, ##__VA_ARGS__)]
+
+#endif
 /*
  // If you only use LLDebugTool in Debug environment, you can copy the following part to your PCH file to resolve most Release environment errors.
  
