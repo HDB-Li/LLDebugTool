@@ -37,6 +37,13 @@
     Method method3 = class_getClassMethod([NSURLSessionConfiguration class], @selector(ephemeralSessionConfiguration));
     Method method4 = class_getClassMethod([NSURLSessionConfiguration class], @selector(LL_ephemeralSessionConfiguration));
     method_exchangeImplementations(method3, method4);
+    
+    Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ? : NSClassFromString(@"NSURLSessionConfiguration");
+    Method method5 = class_getInstanceMethod(cls, @selector(protocolClasses));
+    Method method6 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
+    if (method5 && method6) {
+        method_exchangeImplementations(method5, method6);
+    }
 }
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {
@@ -62,6 +69,17 @@
         config.protocolClasses = protocols;
     }
     return config;
+}
+
+- (NSArray<Class> *)LL_protocolClasses {
+    NSMutableArray *protocols = [[NSMutableArray alloc] init];
+    [protocols addObjectsFromArray:[self LL_protocolClasses]];
+    if ([LLNetworkHelper sharedHelper].isEnabled) {
+        if (![protocols containsObject:[LLURLProtocol class]]) {
+            [protocols insertObject:[LLURLProtocol class] atIndex:0];
+        }
+    }
+    return protocols;
 }
 
 @end
