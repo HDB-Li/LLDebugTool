@@ -2,13 +2,13 @@
 //  AppDelegate.m
 //  LLDebugToolDemo
 //
-//  Created by liuling on 2018/3/15.
+//  Created by Li on 2018/3/15.
 //  Copyright © 2018年 li. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
-// If you integrate with cocoapods, used #import <LLDebugTool/LLDebug.h>.
+// If you integrate with cocoapods, used #import <LLDebug.h>.
 #import "LLDebug.h"
 
 @interface AppDelegate ()
