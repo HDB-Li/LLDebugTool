@@ -112,7 +112,14 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
     
     // Get system tint color.
-    _systemTintColor = [[UIView alloc] init].tintColor;
+    if ([[NSThread currentThread] isMainThread]) {
+        _systemTintColor = [[UIView alloc] init].tintColor;
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self->_systemTintColor = [[UIView alloc] init].tintColor;
+        });
+    }
+
     
     // Set default color style.
     _colorStyle = LLConfigColorStyleHack;
