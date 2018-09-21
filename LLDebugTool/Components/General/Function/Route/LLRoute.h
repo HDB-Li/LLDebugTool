@@ -79,6 +79,10 @@ static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
 + (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos;
 
 #pragma mark - Base
+    
+/**
+ Return viewController if class is exist.
+ */
 + (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*_Nullable)params;
 
 @end

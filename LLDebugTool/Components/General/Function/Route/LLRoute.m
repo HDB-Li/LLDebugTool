@@ -25,15 +25,15 @@
 #import "LLBaseViewController.h"
 
 #ifndef INSTALLED_LLDEBUGTOOL
-#define INSTALLED_LLDEBUGTOOL (__has_include("LLDebugTool.h") || __has_include("<LLDebugTool/LLDebugTool.h>"))
+#define INSTALLED_LLDEBUGTOOL (__has_include("LLDebugTool.h") || __has_include("<LLDebugTool.h>"))
 #endif
 
 #ifndef LL_HAS_INCLUDE_LOG_HELPER
-#define LL_HAS_INCLUDE_LOG_HELPER (__has_include("LLLogHelper.h") || __has_include("<LLDebugTool/LLLogHelper.h>"))
+#define LL_HAS_INCLUDE_LOG_HELPER (__has_include("LLLogHelper.h") || __has_include("<LLLogHelper.h>"))
 #endif
 
 #ifndef LL_HAS_INCLUDE_APP_HELPER
-#define LL_HAS_INCLUDE_APP_HELPER (__has_include("LLAppHelper.h") || __has_include("<LLDebugTool/LLAppHelper.h>"))
+#define LL_HAS_INCLUDE_APP_HELPER (__has_include("LLAppHelper.h") || __has_include("<LLAppHelper.h>"))
 #endif
 
 #if __has_include("LLDebugTool.h")
@@ -45,29 +45,29 @@
 #import "LLScreenshotHelper.h"
 #import "LLWindow.h"
 #import "LLDebugToolMacros.h"
-#elif __has_include("<LLDebugTool/LLDebugTool.h>")
-#import "<LLDebugTool/LLDebugTool.h>"
-#import "<LLDebugTool/LLNetworkHelper.h>"
-#import "<LLDebugTool/LLLogHelper.h>"
-#import "<LLDebugTool/LLCrashHelper.h>"
-#import "<LLDebugTool/LLAppHelper.h>"
-#import "<LLDebugTool/LLScreenshotHelper.h>"
-#import "<LLDebugTool/LLWindow.h>"
-#import "<LLDebugTool/LLDebugToolMacros.h"
+#elif __has_include("<LLDebugTool.h>")
+#import "<LLDebugTool.h>"
+#import "<LLNetworkHelper.h>"
+#import "<LLLogHelper.h>"
+#import "<LLCrashHelper.h>"
+#import "<LLAppHelper.h>"
+#import "<LLScreenshotHelper.h>"
+#import "<LLWindow.h>"
+#import "<LLDebugToolMacros.h"
 #endif
 
 #if __has_include("LLLogHelper.h")
 #import "LLLogHelper.h"
 #import "LLDebugToolMacros.h"
-#elif __has_include("<LLDebugTool/LLLogHelper.h>")
-#import "<LLDebugTool/LLLogHelper.h>"
-#import "<LLDebugTool/LLDebugToolMacros.h"
+#elif __has_include("<LLLogHelper.h>")
+#import "<LLLogHelper.h>"
+#import "<LLDebugToolMacros.h>"
 #endif
 
 #if __has_include("LLAppHelper.h")
 #import "LLAppHelper.h"
-#elif __has_include("<LLDebugTool/LLAppHelper.h>")
-#import "<LLDebugTool/LLAppHelper.h>"
+#elif __has_include("<LLAppHelper.h>")
+#import "<LLAppHelper.h>"
 #endif
 
 // Event
