@@ -51,6 +51,6 @@
 /**
  Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
-- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^ __nullable)(BOOL finished))complete;
+- (void)saveScreenshot:(UIImage *_Nonnull)image name:(NSString *_Nullable)name complete:(void (^ __nullable)(BOOL finished))complete;
 
 @end
