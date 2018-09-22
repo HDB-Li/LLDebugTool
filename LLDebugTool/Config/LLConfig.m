@@ -22,14 +22,7 @@
 //  SOFTWARE.
 
 #import "LLConfig.h"
-#import "LLLogHelperEventDefine.h"
-#import "LLDebugToolMacros.h"
-#import "LLDebugTool.h"
-#import "LLNetworkHelper.h"
-#import "LLLogHelper.h"
-#import "LLCrashHelper.h"
-#import "LLAppHelper.h"
-#import "LLScreenshotHelper.h"
+#import "LLRoute.h"
 
 static LLConfig *_instance = nil;
 
@@ -82,13 +75,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             _availables = availables;
         }
         // Start or close features.
-        if ([LLDebugTool sharedTool].isWorking) {
-            [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
-            [[LLLogHelper sharedHelper] setEnable:logEnable];
-            [[LLCrashHelper sharedHelper] setEnable:crashEnable];
-            [[LLAppHelper sharedHelper] setEnable:appInfoEnable];
-            [[LLScreenshotHelper sharedHelper] setEnable:screenshotEnable];
-        }
+        [LLRoute setNewAvailables:availables];
     }
 }
 
@@ -115,17 +102,24 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
     if (!_XIBBundle) {
-        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the XIB bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+        [LLRoute logWithMessage:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
     }
     if (!_imageBundle) {
-        LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
+        [LLRoute logWithMessage:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
     }
     
     // Set date formatter string.
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
     
     // Get system tint color.
-    _systemTintColor = [[UIView alloc] init].tintColor;
+    if ([[NSThread currentThread] isMainThread]) {
+        _systemTintColor = [[UIView alloc] init].tintColor;
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self->_systemTintColor = [[UIView alloc] init].tintColor;
+        });
+    }
+
     
     // Set default color style.
     _colorStyle = LLConfigColorStyleHack;
@@ -138,6 +132,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     
     // Show LLDebugTool's log.
     _showDebugToolLog = YES;
+    _autoCheckDebugToolVersion = YES;
     
     // Set log style.
     _logStyle = LLConfigLogDetail;

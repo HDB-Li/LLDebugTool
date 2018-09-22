@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 
 /**
  Window style. Decide how the Window displays.
-
+ 
  - LLConfigWindowSuspensionBall: Show as a suspension ball. Moveable and clickable.
  - LLConfigWindowPowerBar: Show at power bar. Unmoveable but clickable.
  - LLConfigWindowNetBar: Show at network bar. Unmoveable but clickable.
@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
 
 /**
  Log style for [LLDebugTool logInFile...]. Customize the log you want.
-
+ 
  - LLConfigLogDetail: Show all detail info. Contain event, file, line, func, date and desc.
  - LLConfigLogFileFuncDesc : Show with event, file, func and desc.
  - LLConfigLogFileDesc : Show with event, file and desc.
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
 
 /**
  Customize available Features.
-
+ 
  - LLConfigAvailableNetwork: Network functions available.
  - LLConfigAvailableLog: Log functions avalable.
  - LLConfigAvailableCrash: Crash functions available.
@@ -120,8 +120,8 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
     LLConfigAvailableNoneScreenshot = 0xFF - (1 << 5),
 };
 
-UIKIT_EXTERN NSNotificationName _Nonnull const LLConfigDidUpdateColorStyleNotificationName;
-UIKIT_EXTERN NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
+FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateColorStyleNotificationName;
+FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
 /**
  Config file. Must config properties before [LLDebugTool enable].
@@ -212,6 +212,11 @@ UIKIT_EXTERN NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotif
  Whether to print LLDebugTool's log event. Default is YES.
  */
 @property (assign , nonatomic) BOOL showDebugToolLog;
+
+/**
+ Whether check LLDebugTool has new version.
+ */
+@property (assign , nonatomic) BOOL autoCheckDebugToolVersion;
 
 /**
  Customize the log style. Default is LLConfigLogDetail.
