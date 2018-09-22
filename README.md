@@ -85,14 +85,14 @@ More changes can be viewed in [Version 1.2.0 Project](https://github.com/HDB-Li/
 
 > 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.2.0' ,:configurations => ['Debug']`.
 > 2. If you want to use a module, add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool/{Component Name}'`, Currently supported components are
-```
-pod 'LLDebugTool/AppInfo'
-pod 'LLDebugTool/Crash'
-pod 'LLDebugTool/Log'
-pod 'LLDebugTool/Network'
-pod 'LLDebugTool/Sandbox'
-pod 'LLDebugTool/Screenshot'
-```
+> ```
+> pod 'LLDebugTool/AppInfo'
+> pod 'LLDebugTool/Crash'
+> pod 'LLDebugTool/Log'
+> pod 'LLDebugTool/Network'
+> pod 'LLDebugTool/Sandbox'
+> pod 'LLDebugTool/Screenshot'
+> ```
 > 3. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 4. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
 
@@ -100,14 +100,14 @@ pod 'LLDebugTool/Screenshot'
 
 > 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.2.0' ,:configurations => ['Debug']`.
 > 2. If you want to use a module, add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugToolSwift/{Component Name}'`, Currently supported components are
-```
-pod 'LLDebugToolSwift/AppInfo'
-pod 'LLDebugToolSwift/Crash'
-pod 'LLDebugToolSwift/Log'
-pod 'LLDebugToolSwift/Network'
-pod 'LLDebugToolSwift/Sandbox'
-pod 'LLDebugToolSwift/Screenshot'
-```
+> ```
+> pod 'LLDebugToolSwift/AppInfo'
+> pod 'LLDebugToolSwift/Crash'
+> pod 'LLDebugToolSwift/Log'
+> pod 'LLDebugToolSwift/Network'
+> pod 'LLDebugToolSwift/Sandbox'
+> pod 'LLDebugToolSwift/Screenshot'
+> ```
 > 3. Must be added in the Podfile **`use_frameworks!`**.
 > 4. Install the pod(s) by running `pod install`. If you can't search `LLDebugToolSwift` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 5. Include LLDebugTool wherever you need it with `import "LLDebugToolSwift`.
