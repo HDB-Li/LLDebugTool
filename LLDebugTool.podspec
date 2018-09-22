@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.source              = { :git => "https://github.com/HDB-Li/LLDebugTool.git", :tag => s.version }
   s.requires_arc        = true
   s.public_header_files = "LLDebugTool/**/*.h"
-#  s.source_files	    = "LLDebugTool/**/*.{h,m}"
-#  s.resources		    = "LLDebugTool/**/*.{xib,storyboard,bundle}"
+  s.source_files	    = "LLDebugTool/**/*.{h,m}"
+  s.resources		    = "LLDebugTool/**/*.{xib,storyboard,bundle}"
 #  s.dependency            "FMDB"
 
   s.subspec 'Network' do |ss|
