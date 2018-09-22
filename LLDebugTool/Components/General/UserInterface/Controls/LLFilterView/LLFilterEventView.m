@@ -67,7 +67,7 @@ static NSString *const kEventCellID = @"EventCellID";
         UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
         if (averageCount > 0) {
             layout.estimatedItemSize = CGSizeZero;
-            layout.itemSize = CGSizeMake((LL_SCREEN_WIDTH - 10 * (averageCount + 1)) / averageCount, 30);
+            layout.itemSize = CGSizeMake(floor((LL_SCREEN_WIDTH - 10.0 * (averageCount + 1)) / averageCount), 30);
         } else {
             layout.itemSize = CGSizeZero;
             layout.estimatedItemSize = CGSizeMake(50, 30);
