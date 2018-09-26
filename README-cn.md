@@ -347,17 +347,7 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 
 * `Photos`
 
-* `malloc`
-
-* `mach-o`
-
-* `mach`
-
 * `QuickLook`
-
-* `objc`
-
-* `sys`
 
 ## 结构
 
