@@ -347,17 +347,7 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 
 * `Photos`
 
-* `malloc`
-
-* `mach-o`
-
-* `mach`
-
 * `QuickLook`
-
-* `objc`
-
-* `sys`
 
 ## Architecture
 
