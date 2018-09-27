@@ -479,9 +479,7 @@ static NSString *const kDatabaseVersion = @"1";
 }
 
 - (void)log:(NSString *)message {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [LLRoute logWithMessage:message event:kLLDebugToolEvent];
-    });
+    [LLRoute logWithMessage:message event:kLLDebugToolEvent];
 }
 
 - (void)saveOrUpdateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous isSave:(BOOL)isSave {
