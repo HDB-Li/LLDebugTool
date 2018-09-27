@@ -102,10 +102,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
     if (!_XIBBundle) {
-        [LLRoute logWithMessage:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
+        [self log:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
     }
     if (!_imageBundle) {
-        [LLRoute logWithMessage:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
+        [self log:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
     }
     
     // Set date formatter string.
@@ -183,6 +183,12 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             self.colorStyle = LLConfigColorStyleSimple;
         }
     }
+}
+
+- (void)log:(NSString *)message event:(NSString *)event {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [LLRoute logWithMessage:message event:event];
+    });
 }
 
 @end
