@@ -28,10 +28,6 @@
 #define INSTALLED_LLDEBUGTOOL (__has_include("LLDebugTool.h") || __has_include("<LLDebugTool.h>"))
 #endif
 
-#ifndef LL_HAS_INCLUDE_LOG_HELPER
-#define LL_HAS_INCLUDE_LOG_HELPER (__has_include("LLLogHelper.h") || __has_include("<LLLogHelper.h>"))
-#endif
-
 #ifndef LL_HAS_INCLUDE_APP_HELPER
 #define LL_HAS_INCLUDE_APP_HELPER (__has_include("LLAppHelper.h") || __has_include("<LLAppHelper.h>"))
 #endif
@@ -81,11 +77,13 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 @implementation LLRoute
 
 + (void)logWithMessage:(NSString *_Nonnull)message event:(NSString *_Nullable)event {
-#if LL_HAS_INCLUDE_LOG_HELPER
-    LLog_Alert_Event(event, message);
-#else
-    NSLog(@"%@" , message);
-#endif
+    if ([LLConfig sharedConfig].showDebugToolLog) {
+        NSString *header = @"\n--------Debug Tool--------";
+        NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>",event];
+        NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>",message];
+        NSString *footer = @"\n--------------------------";
+        NSLog(@"%@%@%@%@",header,onEventString,messageString,footer);
+    }
 }
 
 + (void)setNewAvailables:(LLConfigAvailableFeature)availables {
