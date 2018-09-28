@@ -29,6 +29,7 @@
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
 		36FA262E215DB9F500462EA8 /* HierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA262D215DB9F500462EA8 /* HierarchyHelper.m */; };
+		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -174,6 +175,8 @@
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36FA262C215DB9F500462EA8 /* HierarchyHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HierarchyHelper.h; sourceTree = "<group>"; };
 		36FA262D215DB9F500462EA8 /* HierarchyHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HierarchyHelper.m; sourceTree = "<group>"; };
+		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
+		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				3629E3902136830A00226C79 /* TestColorStyleViewController.m */,
 				3629E38D2136830A00226C79 /* TestWindowStyleViewController.h */,
 				3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */,
+				36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */,
+				36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */,
 			);
 			path = DemoViewControllers;
 			sourceTree = "<group>";
@@ -1269,6 +1274,7 @@
 				369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */,
 				C44F41252152AA7000153F46 /* LLRoute.m in Sources */,
 				36FA262E215DB9F500462EA8 /* HierarchyHelper.m in Sources */,
+				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C44F413A2152AA7000153F46 /* LLFilterEventView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				C44F411A2152AA7000153F46 /* LLConfig.m in Sources */,

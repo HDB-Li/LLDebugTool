@@ -20,6 +20,7 @@
 #import "TestCrashViewController.h"
 #import "TestColorStyleViewController.h"
 #import "TestWindowStyleViewController.h"
+#import "TestHierarchyViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -123,7 +124,7 @@ static NSString *const kCellID = @"cellID";
 
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -143,6 +144,9 @@ static NSString *const kCellID = @"cellID";
         return 1;
     }
     if (section == 5) {
+        return 1;
+    }
+    if (section == 6) {
         return 2;
     }
     return 0;
@@ -173,6 +177,8 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 4) {
         cell.textLabel.text = NSLocalizedString(@"sandbox.info", nil);
     } else if (indexPath.section == 5) {
+        cell.textLabel.text = NSLocalizedString(@"test.hierarchy", nil);
+    } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -235,6 +241,9 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 4) {
         [self testSandbox];
     } else if (indexPath.section == 5) {
+        TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
             TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:vc animated:YES];
@@ -258,6 +267,8 @@ static NSString *const kCellID = @"cellID";
     } else if (section == 4) {
         return @"Sandbox Info";
     } else if (section == 5) {
+        return @"Hierarchy";
+    } else if (section == 6) {
         return @"LLConfig";
     }
     return nil;
