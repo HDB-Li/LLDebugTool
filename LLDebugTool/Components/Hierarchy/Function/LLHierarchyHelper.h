@@ -1,5 +1,5 @@
 //
-//  LLBaseModel.h
+//  LLHierarchyHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -24,9 +24,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**
- Base model. Save duplicated code to coding or copying.
- */
-@interface LLBaseModel : NSObject <NSCoding , NSCopying>
+@interface LLHierarchyHelper : NSObject
+
++ (instancetype _Nonnull)sharedHelper;
+
+- (NSArray <UIWindow *>*_Nonnull)allWindows;
+
+- (NSArray <UIView *>*_Nonnull)allViewsInHierarchy;
+
+- (NSArray <UIView *>*_Nonnull)allViewsInView:(UIView *_Nonnull)view;
 
 @end

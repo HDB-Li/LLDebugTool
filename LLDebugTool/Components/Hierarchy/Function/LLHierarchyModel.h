@@ -1,5 +1,5 @@
 //
-//  HierarchyHelper.m
+//  LLHierarchyModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,27 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "HierarchyHelper.h"
+#import "LLBaseModel.h"
 
-static HierarchyHelper *_instance = nil;
+@interface LLHierarchyModel : LLBaseModel
 
-@implementation HierarchyHelper
+@property (nonatomic , strong) UIView *view;
 
-+ (instancetype)sharedHelper {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[HierarchyHelper alloc] init];
-    });
-    return _instance;
-}
+@property (nonatomic , assign) NSInteger section;
 
-- (NSArray <UIWindow *>*)allWindows {
-    NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
-    UIView *statusBar = [[UIApplication sharedApplication] valueForKey:@"_statusBar"];
-    if ([statusBar isKindOfClass:[UIWindow class]]) {
-        [windows addObject:statusBar];
-    }
-    return windows;
-}
+@property (nonatomic , assign) NSInteger row;
+
+- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row;
 
 @end

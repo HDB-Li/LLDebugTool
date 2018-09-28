@@ -178,6 +178,7 @@ static NSString *const kCellID = @"cellID";
         cell.textLabel.text = NSLocalizedString(@"sandbox.info", nil);
     } else if (indexPath.section == 5) {
         cell.textLabel.text = NSLocalizedString(@"test.hierarchy", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);

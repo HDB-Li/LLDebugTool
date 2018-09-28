@@ -1,5 +1,5 @@
 //
-//  HierarchyHelper.h
+//  LLHierarchyModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "LLHierarchyModel.h"
 
-@interface HierarchyHelper : NSObject
+@implementation LLHierarchyModel
 
-+ (instancetype)sharedHelper;
-
-- (NSArray <UIWindow *>*)allWindows;
+- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row {
+    if (self = [super init]) {
+        _view = view;
+        _section = section;
+        _row = row;
+    }
+}
 
 @end

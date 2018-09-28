@@ -7,6 +7,7 @@
 //
 
 #import "TestHierarchyViewController.h"
+#import "LLHierarchyHelper.h"
 
 @interface TestHierarchyViewController ()
 
@@ -40,7 +41,9 @@
 
 #pragma mark - Actions
 - (void)testAllWindowHierarchy {
-    
+    NSArray *array = [[LLHierarchyHelper sharedHelper] allWindows];
+    NSArray *array2 = [[LLHierarchyHelper sharedHelper] allViewsInHierarchy];
+    NSLog(@"%@",array);
 }
 
 @end
