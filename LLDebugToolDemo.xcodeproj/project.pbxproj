@@ -28,6 +28,7 @@
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
+		36FA262E215DB9F500462EA8 /* HierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA262D215DB9F500462EA8 /* HierarchyHelper.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -171,6 +172,8 @@
 		36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoUITests.m; sourceTree = "<group>"; };
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36FA262C215DB9F500462EA8 /* HierarchyHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HierarchyHelper.h; sourceTree = "<group>"; };
+		36FA262D215DB9F500462EA8 /* HierarchyHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HierarchyHelper.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -422,6 +425,31 @@
 			path = LLDebugToolDemoUITests;
 			sourceTree = "<group>";
 		};
+		36FA2629215DB9D800462EA8 /* Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				36FA262A215DB9D800462EA8 /* Function */,
+				36FA262B215DB9D800462EA8 /* UserInterface */,
+			);
+			path = Hierarchy;
+			sourceTree = "<group>";
+		};
+		36FA262A215DB9D800462EA8 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				36FA262C215DB9F500462EA8 /* HierarchyHelper.h */,
+				36FA262D215DB9F500462EA8 /* HierarchyHelper.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		36FA262B215DB9D800462EA8 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +532,7 @@
 				C44F41062152AA7000153F46 /* AppInfo */,
 				C44F40E72152AA7000153F46 /* Sandbox */,
 				C44F405E2152AA7000153F46 /* Screenshot */,
+				36FA2629215DB9D800462EA8 /* Hierarchy */,
 				C44F40592152AA7000153F46 /* StorageManager */,
 				C44F40722152AA7000153F46 /* General */,
 			);
@@ -1239,6 +1268,7 @@
 				C44F41282152AA7000153F46 /* LLBaseModel.m in Sources */,
 				369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */,
 				C44F41252152AA7000153F46 /* LLRoute.m in Sources */,
+				36FA262E215DB9F500462EA8 /* HierarchyHelper.m in Sources */,
 				C44F413A2152AA7000153F46 /* LLFilterEventView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				C44F411A2152AA7000153F46 /* LLConfig.m in Sources */,
