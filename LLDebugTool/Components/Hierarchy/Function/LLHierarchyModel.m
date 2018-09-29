@@ -31,6 +31,7 @@
         _section = section;
         _row = row;
     }
+    return self;
 }
 
 @end

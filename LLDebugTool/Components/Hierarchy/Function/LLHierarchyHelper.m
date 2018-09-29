@@ -55,26 +55,27 @@ static LLHierarchyHelper *_instance = nil;
     return windows;
 }
 
-- (NSArray <UIView *>*)allViewsInHierarchy {
-    NSMutableArray <UIView *>*allViews = [NSMutableArray array];
+- (NSArray <LLHierarchyModel *>*)allViewsInHierarchy {
+    NSMutableArray <LLHierarchyModel *>*allViews = [NSMutableArray array];
     NSArray <UIWindow *>*windows = [self allWindows];
-    for (UIWindow *window in windows) {
-        [allViews addObject:window];
+    for (int i = 0; i < windows.count; i++) {
+        UIWindow *window = windows[i];
         [allViews addObjectsFromArray:[self allViewsInView:window]];
     }
     return allViews;
 }
 
-- (NSArray <UIView *>*)allViewsInView:(UIView *)view {
+- (NSArray <LLHierarchyModel *>*)allViewsInView:(UIView *)view {
     return [self allViewsInView:view section:0];
 }
 
 #pragma mark - Primary
-- (NSArray <UIView *>*)allViewsInView:(UIView *)view section:(NSInteger)section {
-    NSMutableArray <UIView *>*subviews = [NSMutableArray array];
-    for (UIView *subview in view.subviews) {
-        [subviews addObject:subview];
-        [subviews addObjectsFromArray:[self allViewsInView:subview section:section + 1]];
+- (NSArray <LLHierarchyModel *>*)allViewsInView:(UIView *)view section:(NSInteger)section {
+    NSMutableArray *subviews = [NSMutableArray array];
+    for (int i = 0; i < view.subviews.count; i++) {
+        UIView *subView = view.subviews[i];
+        [subviews addObject:[[LLHierarchyModel alloc] initWithView:subView section:section row:i]];
+        [subviews addObjectsFromArray:[self allViewsInView:subView section:section + 1]];
     }
     return subviews;
 }

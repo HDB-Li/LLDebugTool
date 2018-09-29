@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "LLHierarchyModel.h"
 
 @interface LLHierarchyHelper : NSObject
 
@@ -30,8 +31,8 @@
 
 - (NSArray <UIWindow *>*_Nonnull)allWindows;
 
-- (NSArray <UIView *>*_Nonnull)allViewsInHierarchy;
+- (NSArray <LLHierarchyModel *>*_Nonnull)allViewsInHierarchy;
 
-- (NSArray <UIView *>*_Nonnull)allViewsInView:(UIView *_Nonnull)view;
+- (NSArray <LLHierarchyModel *>*_Nonnull)allViewsInView:(UIView *_Nonnull)view;
 
 @end
