@@ -70,7 +70,18 @@ static LLHierarchyHelper *_instance = nil;
 }
 
 #pragma mark - Primary
-- (NSArray <LLHierarchyModel *>*)allViewsInView:(UIView *)view section:(NSInteger)section {
+- (LLHierarchyModel *)hierarchyInView:(UIView *)view section:(NSInteger)section row:(NSInteger)row {
+    
+    NSMutableArray *subModels = [[NSMutableArray alloc] init];
+    for (int i = 0; i < view.subviews.count; i++) {
+        UIView *subView = view.subviews[i];
+        [subViews addObject:[self allViewsInView:subView section:section + 1 row:i]];
+    }
+    LLHierarchyModel *model = [LLHierarchyModel alloc] initWithView:view section:section row:row subModels:su
+    
+    
+    
+    
     NSMutableArray *subviews = [NSMutableArray array];
     for (int i = 0; i < view.subviews.count; i++) {
         UIView *subView = view.subviews[i];

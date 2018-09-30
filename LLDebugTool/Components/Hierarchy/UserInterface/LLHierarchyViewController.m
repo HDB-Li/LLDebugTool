@@ -1,5 +1,5 @@
 //
-//  LLHierarchyModel.h
+//  LLHierarchyViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
+#import "LLHierarchyViewController.h"
 
-@interface LLHierarchyModel : LLBaseModel
+@interface LLHierarchyViewController ()
 
-@property (nonatomic , strong) UIView *view;
+@end
 
-@property (nonatomic , assign) NSInteger section;
+@implementation LLHierarchyViewController
 
-@property (nonatomic , assign) NSInteger row;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
 
-@property (nonatomic , strong) NSArray <LLHierarchyModel *>*subModels;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
-- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSArray <LLHierarchyModel *>*_Nullable)subModels;
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
