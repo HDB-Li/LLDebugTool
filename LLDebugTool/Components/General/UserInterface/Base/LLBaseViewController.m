@@ -114,7 +114,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 - (void)setUpTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:_style];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:_style];
     [self.view addSubview:self.tableView];
     self.tableView.bounces = NO;
     self.tableView.delegate = self;
