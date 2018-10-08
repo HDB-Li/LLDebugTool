@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
-		3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */; };
+		3611B42B21605A9200BEAB11 /* LLHierarchyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
 		3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */; };
@@ -133,8 +133,8 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3611B42921605A9200BEAB11 /* LLHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyViewController.h; sourceTree = "<group>"; };
-		3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
+		3611B42921605A9200BEAB11 /* LLHierarchyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyVC.h; sourceTree = "<group>"; };
+		3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyVC.m; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
 		3629E3872136830A00226C79 /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
 		3629E3882136830A00226C79 /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
@@ -459,8 +459,8 @@
 		36FA262B215DB9D800462EA8 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				3611B42921605A9200BEAB11 /* LLHierarchyViewController.h */,
-				3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */,
+				3611B42921605A9200BEAB11 /* LLHierarchyVC.h */,
+				3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1260,7 +1260,7 @@
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C44F41622152AA7000153F46 /* UIDevice+LL_Swizzling.m in Sources */,
 				C44F415A2152AA7000153F46 /* YWFilePreviewController.m in Sources */,
-				3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */,
+				3611B42B21605A9200BEAB11 /* LLHierarchyVC.m in Sources */,
 				C44F41542152AA7000153F46 /* LLCrashContentVC.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
 				C44F41572152AA7000153F46 /* LLSandboxCell.m in Sources */,
