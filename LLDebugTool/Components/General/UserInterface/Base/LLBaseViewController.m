@@ -57,7 +57,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNavigationItems];
-    [self setUpTableView];
+    [self initTableView];
+    if (self.useSearch) {
+        [self initSearch];
+    }
+    if (self.useSelectable) {
+        [self initSelectable];
+    }
     [self resetDefaultSettings];
     self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
 }
@@ -94,6 +100,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)rightItemClick:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
+
 #pragma mark - Primary
 - (void)initNavigationItems {
     if (self.navigationController.viewControllers.count <= 1) {
@@ -113,7 +123,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
 }
 
-- (void)setUpTableView {
+- (void)initTableView {
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:_style];
     [self.view addSubview:self.tableView];
     self.tableView.bounces = NO;
@@ -131,6 +141,28 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
 }
 
+- (void)initSearch {
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    self.searchBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.tableView.tableHeaderView = self.searchBar;
+}
+
+- (void)initSelectable {
+    // Navigation bar item
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+    btn.showsTouchWhenHighlighted = NO;
+    btn.adjustsImageWhenHighlighted = NO;
+    btn.frame = CGRectMake(0, 0, 40, 40);
+    btn.tintColor = LLCONFIG_TEXT_COLOR;
+    [btn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
 - (void)resetDefaultSettings {
     // Used to solve problems caused by modifying some systems default values with Runtime in the project.
     // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
@@ -142,6 +174,11 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
+    
+}
+
+- (UISearchBar *)searchBar {
+    return self.searchController.searchBar;
 }
 
 #pragma mark - UITableView
@@ -155,6 +192,11 @@ static NSString *const kEmptyCellID = @"emptyCellID";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEmptyCellID];
     }
     return cell;
+}
+
+#pragma mark - UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
 }
 
 @end

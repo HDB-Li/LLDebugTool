@@ -23,9 +23,32 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate>
+@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating>
 
+/**
+ * Whether use searchBar and searchController. Default is NO.
+ */
+@property (nonatomic , assign) BOOL useSearch;
+
+/**
+ * Whether selectable. Default is NO.
+ */
+@property (nonatomic , assign) BOOL useSelectable;
+
+/**
+ * The default tableView.
+ */
 @property (nonatomic , strong , nonnull , readonly) UITableView *tableView;
+
+/**
+ * The searchController while use search.
+ */
+@property (nonatomic , strong , nullable , readonly) UISearchController *searchController;
+
+/**
+ * The searchBar of searchController.
+ */
+@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
 
 /**
  * Simple toast.
@@ -41,6 +64,11 @@
  Initial method.
  */
 - (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
-- (instancetype _Nonnull)init;
+- (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
+
+/**
+ * Right item action.
+ */
+- (void)rightItemClick:(UIButton *)sender;
 
 @end

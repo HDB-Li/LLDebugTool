@@ -387,6 +387,7 @@
         logNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
         LLCrashVC *crashVC = [[LLCrashVC alloc] init];
+        crashVC.useSearch = YES;
         UINavigationController *crashNav = [[LLBaseNavigationController alloc] initWithRootViewController:crashVC];
         crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage LL_imageNamed:kCrashImageName] selectedImage:nil];
         crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
