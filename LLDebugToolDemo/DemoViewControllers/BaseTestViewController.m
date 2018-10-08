@@ -14,6 +14,13 @@
 
 @implementation BaseTestViewController
 
+- (instancetype)init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cellID = NSStringFromClass(self.class);

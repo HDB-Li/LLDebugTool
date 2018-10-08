@@ -221,7 +221,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         LLSandboxModel *model = self.sandboxModel.subModels[indexPath.row];
         if (model.isDirectory) {
             if (model.subModels.count) {
-                LLSandboxVC *vc = [[LLSandboxVC alloc] initWithStyle:UITableViewStyleGrouped];
+                LLSandboxVC *vc = [[LLSandboxVC alloc] init];
                 vc.sandboxModel = model;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {

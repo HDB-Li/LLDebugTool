@@ -139,7 +139,7 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
     Class cls = NSClassFromString(name);
     if (cls) {
         if ([cls isSubclassOfClass:LLBaseViewController.class]) {
-            LLBaseViewController *vc = [[cls alloc] initWithStyle:UITableViewStyleGrouped];
+            LLBaseViewController *vc = [[cls alloc] init];
             for (NSString *key in params) {
                 id value = params[key];
                 [vc setValue:value forKey:key];

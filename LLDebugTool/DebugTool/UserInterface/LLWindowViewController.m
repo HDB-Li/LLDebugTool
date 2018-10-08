@@ -374,31 +374,31 @@
     if (_tabVC == nil) {
         UITabBarController *tab = [[UITabBarController alloc] init];
         
-        LLNetworkVC *networkVC = [[LLNetworkVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLNetworkVC *networkVC = [[LLNetworkVC alloc] init];
         UINavigationController *networkNav = [[LLBaseNavigationController alloc] initWithRootViewController:networkVC];
         networkNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Network" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
         networkNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         networkNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLLogVC *logVC = [[LLLogVC alloc] initWithStyle:UITableViewStylePlain];
+        LLLogVC *logVC = [[LLLogVC alloc] init];
         UINavigationController *logNav = [[LLBaseNavigationController alloc] initWithRootViewController:logVC];
         logNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage LL_imageNamed:kLogImageName] selectedImage:nil];
         logNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         logNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLCrashVC *crashVC = [[LLCrashVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLCrashVC *crashVC = [[LLCrashVC alloc] init];
         UINavigationController *crashNav = [[LLBaseNavigationController alloc] initWithRootViewController:crashVC];
         crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage LL_imageNamed:kCrashImageName] selectedImage:nil];
         crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         crashNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLAppInfoVC *appInfoVC = [[LLAppInfoVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLAppInfoVC *appInfoVC = [[LLAppInfoVC alloc] init];
         UINavigationController *appInfoNav = [[LLBaseNavigationController alloc] initWithRootViewController:appInfoVC];
         appInfoNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"App" image:[UIImage LL_imageNamed:kAppImageName] selectedImage:nil];
         appInfoNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         appInfoNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLSandboxVC *sandboxVC = [[LLSandboxVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLSandboxVC *sandboxVC = [[LLSandboxVC alloc] init];
         UINavigationController *sandboxNav = [[LLBaseNavigationController alloc] initWithRootViewController:sandboxVC];
         sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage LL_imageNamed:kSandboxImageName] selectedImage:nil];
         sandboxNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;

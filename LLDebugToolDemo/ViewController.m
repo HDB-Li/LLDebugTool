@@ -229,27 +229,27 @@ static NSString *const kCellID = @"cellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        TestNetworkViewController *vc = [[TestNetworkViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestNetworkViewController *vc = [[TestNetworkViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 1) {
-        TestLogViewController *vc = [[TestLogViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestLogViewController *vc = [[TestLogViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 2) {
-        TestCrashViewController *vc = [[TestCrashViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestCrashViewController *vc = [[TestCrashViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 3) {
         [self testAppInfo];
     } else if (indexPath.section == 4) {
         [self testSandbox];
     } else if (indexPath.section == 5) {
-        TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
-            TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
-            TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

@@ -25,13 +25,15 @@
 
 @interface LLHierarchyModel : LLBaseModel
 
-@property (nonatomic , strong) UIView *view;
+@property (nonatomic , strong , readonly , nonnull) UIView *view;
 
-@property (nonatomic , assign) NSInteger section;
+@property (nonatomic , assign , readonly) NSInteger section;
 
-@property (nonatomic , assign) NSInteger row;
+@property (nonatomic , assign , readonly) NSInteger row;
 
-@property (nonatomic , strong) NSArray <LLHierarchyModel *>*subModels;
+@property (nonatomic , strong , readonly , nonnull) NSArray <LLHierarchyModel *>*subModels;
+
+@property (nonatomic , copy , readonly , nonnull) NSString *viewClass;
 
 - (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSArray <LLHierarchyModel *>*_Nullable)subModels;
 

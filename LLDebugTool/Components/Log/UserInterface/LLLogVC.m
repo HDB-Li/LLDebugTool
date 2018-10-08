@@ -151,7 +151,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing == NO) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        LLLogContentVC *vc = [[LLLogContentVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLLogContentVC *vc = [[LLLogContentVC alloc] init];
         vc.model = self.dataArray[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     } else {

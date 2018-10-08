@@ -120,7 +120,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing == NO) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        LLCrashContentVC *vc = [[LLCrashContentVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLCrashContentVC *vc = [[LLCrashContentVC alloc] init];
         vc.model = self.dataArray[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     } else {

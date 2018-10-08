@@ -90,7 +90,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
                 index++;
             }
         }
-        LLCrashSignalContentVC *vc = [[LLCrashSignalContentVC alloc] initWithStyle:UITableViewStyleGrouped];
+        LLCrashSignalContentVC *vc = [[LLCrashSignalContentVC alloc] init];
         vc.model = self.model.signals[index];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([self.canCopyArray containsObject:title]) {

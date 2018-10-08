@@ -35,4 +35,8 @@
     return self;
 }
 
+- (NSString *)viewClass {
+    return NSStringFromClass(_view.class);
+}
+
 @end
