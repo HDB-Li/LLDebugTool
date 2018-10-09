@@ -22,23 +22,36 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "LLBaseModel.h"
 
 @interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating>
 
 /**
  * Whether use searchBar and searchController. Default is NO.
  */
-@property (nonatomic , assign) BOOL useSearch;
+@property (nonatomic , assign) BOOL isSearchEnable;
 
 /**
  * Whether selectable. Default is NO.
  */
-@property (nonatomic , assign) BOOL useSelectable;
+@property (nonatomic , assign) BOOL isSelectEnable;
+
+@property (nonatomic , assign) BOOL isShareEnable;
+
+@property (nonatomic , assign) BOOL isDeleteEnable;
 
 /**
  * The default tableView.
  */
 @property (nonatomic , strong , nonnull , readonly) UITableView *tableView;
+
+@property (nonatomic , strong , nonnull , readonly) NSMutableArray *dataArray;
+
+@property (nonatomic , strong , nullable , readonly) UIBarButtonItem *selectAllItem;
+
+@property (nonatomic , strong , nullable , readonly) UIBarButtonItem *shareItem;
+
+@property (nonatomic , strong , nullable , readonly) UIBarButtonItem *deleteItem;
 
 /**
  * The searchController while use search.
@@ -48,7 +61,7 @@
 /**
  * The searchBar of searchController.
  */
-@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
+//@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
 
 /**
  * Simple toast.
@@ -70,5 +83,8 @@
  * Right item action.
  */
 - (void)rightItemClick:(UIButton *)sender;
+- (void)selectAllItemClick:(UIBarButtonItem *)sender;
+- (void)shareItemClick:(UIBarButtonItem *)sender;
+- (void)deleteItemClick:(UIBarButtonItem *)sender;
 
 @end

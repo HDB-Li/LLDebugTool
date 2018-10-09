@@ -32,8 +32,6 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 
 @interface LLAppInfoVC ()
 
-@property (nonatomic , strong) NSMutableArray *dataArray;
-
 @end
 
 @implementation LLAppInfoVC
@@ -45,7 +43,8 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.dataArray = [[LLAppHelper sharedHelper] appInfos];
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:[[LLAppHelper sharedHelper] appInfos]];
     self.navigationItem.title = [UIDevice currentDevice].name ? : @"App Infos";
     [self registerLLAppHelperNotification];
 }

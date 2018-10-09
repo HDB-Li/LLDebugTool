@@ -39,15 +39,6 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @property (nonatomic , strong) UISearchBar *searchBar;
 
-@property (nonatomic , strong) UIBarButtonItem *selectAllItem;
-
-@property (nonatomic , strong) UIBarButtonItem *deleteItem;
-
-@property (nonatomic , strong) UIBarButtonItem *leftItem;
-
-@property (nonatomic , strong) UIBarButtonItem *rightItem;
-
-@property (nonatomic , strong) NSMutableArray *dataArray;
 
 @property (nonatomic , strong) NSMutableArray *totalDataArray;
 
@@ -218,7 +209,6 @@ static NSString *const kLogCellID = @"LLLogCell";
         _launchDate = [NSObject LL_launchDate];
     }
     
-    self.dataArray = [[NSMutableArray alloc] init];
     self.totalDataArray = [[NSMutableArray alloc] init];
     
     // TableView
@@ -250,23 +240,6 @@ static NSString *const kLogCellID = @"LLLogCell";
         self.navigationItem.titleView = self.searchBar;
     }
     self.searchBar.enablesReturnKeyAutomatically = NO;
-    
-    self.leftItem = self.navigationItem.leftBarButtonItem;
-    self.rightItem = self.navigationItem.rightBarButtonItem;
-    
-    // ToolBar
-    self.selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
-    self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
-    
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    self.deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
-    self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
-    self.deleteItem.enabled = NO;
-    
-    [self setToolbarItems:@[self.selectAllItem,spaceItem,self.deleteItem] animated:YES];
-    
-    self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
     
     [self initFilterView];
     

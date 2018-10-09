@@ -40,6 +40,7 @@
 
 #pragma mark - Primary
 - (void)baseInitial {
+    self.tintColor = LLCONFIG_TEXT_COLOR;
     self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
     self.selectedBackgroundView.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];

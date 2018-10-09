@@ -33,12 +33,6 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 @interface LLSandboxVC () <LLUITableViewLongPressGestureRecognizerDelegate>
 
-@property (nonatomic , strong) UIBarButtonItem *selectAllItem;
-
-@property (nonatomic , strong) UIBarButtonItem *shareItem;
-
-@property (nonatomic , strong) UIBarButtonItem *deleteItem;
-
 @end
 
 @implementation LLSandboxVC
@@ -149,23 +143,6 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
         self.navigationItem.rightBarButtonItem = item;
     }
-    
-    // ToolBar
-    self.selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
-    self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
-    
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    self.shareItem = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
-    self.shareItem.tintColor = LLCONFIG_TEXT_COLOR;
-    self.shareItem.enabled = NO;
-    
-    self.deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
-    self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
-    self.deleteItem.enabled = NO;
-    [self setToolbarItems:@[self.selectAllItem,spaceItem,self.shareItem,self.deleteItem] animated:YES];
-    
-    self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
 }
 
 

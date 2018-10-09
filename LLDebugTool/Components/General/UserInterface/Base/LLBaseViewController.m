@@ -43,6 +43,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self = [super init];
     if (self) {
         _style = UITableViewStyleGrouped;
+        _dataArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -58,14 +59,23 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [super viewDidLoad];
     [self initNavigationItems];
     [self initTableView];
-    if (self.useSearch) {
+    if (self.isSearchEnable) {
         [self initSearch];
     }
-    if (self.useSelectable) {
+    if (self.isSelectEnable) {
         [self initSelectable];
     }
     [self resetDefaultSettings];
     self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isSelectEnable) {
+        if (self.tableView.isEditing) {
+            [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
+        }
+    }
 }
 
 #pragma mark - Public
@@ -96,12 +106,26 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)backAction {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)rightItemClick:(UIButton *)sender {
     sender.selected = !sender.selected;
+    [self.tableView setEditing:sender.isSelected animated:YES];
+    [self.navigationController setToolbarHidden:!sender.isSelected animated:YES];
+}
+
+- (void)selectAllItemClick:(UIBarButtonItem *)sender {
+    
+}
+
+- (void)shareItemClick:(UIBarButtonItem *)sender {
+    
+}
+
+- (void)deleteItemClick:(UIBarButtonItem *)sender {
+    
+}
+
+- (void)backAction {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Primary
@@ -161,6 +185,32 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [btn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
+    
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    
+    // ToolBar
+    _selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
+    self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
+    
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    _shareItem = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
+    self.shareItem.tintColor = LLCONFIG_TEXT_COLOR;
+    self.shareItem.enabled = NO;
+    
+    _deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
+    self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
+    self.deleteItem.enabled = NO;
+    NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:self.selectAllItem , spaceItem , nil];
+    if (self.isShareEnable) {
+        [items addObject:self.shareItem];
+    }
+    if (self.isDeleteEnable) {
+        [items addObject:self.deleteItem];
+    }
+    [self setToolbarItems:items];
+    
+    self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
 }
 
 - (void)resetDefaultSettings {

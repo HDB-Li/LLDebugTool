@@ -35,43 +35,24 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 @interface LLCrashVC ()
 
-@property (nonatomic , strong) UIBarButtonItem *selectAllItem;
-
-@property (nonatomic , strong) UIBarButtonItem *deleteItem;
-
-@property (nonatomic , strong) NSMutableArray *dataArray;
-
 @end
 
 @implementation LLCrashVC
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isSearchEnable = YES;
+        self.isSelectEnable = YES;
+        self.isDeleteEnable = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.tableView.isEditing) {
-        [self rightItemClick];
-    }
-}
-
-- (void)rightItemClick {
-    UIBarButtonItem *buttonItem = self.navigationItem.rightBarButtonItem;
-    UIButton *btn = buttonItem.customView;
-    if (!btn.isSelected) {
-        if (self.dataArray.count) {
-            btn.selected = !btn.selected;
-            [self.tableView setEditing:YES animated:YES];
-            self.deleteItem.enabled = NO;
-            [self.navigationController setToolbarHidden:NO animated:YES];
-        }
-    } else {
-        btn.selected = !btn.selected;
-        [self.tableView setEditing:NO animated:YES];
-        [self.navigationController setToolbarHidden:YES animated:YES];
-    }
 }
 
 - (void)selectAllItemClick:(UIBarButtonItem *)item {
@@ -95,7 +76,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 - (void)deleteItemClick:(UIBarButtonItem *)item {
     NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
     [self _showDeleteAlertWithIndexPaths:indexPaths];
-    [self rightItemClick];
+    [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
 }
 
 #pragma mark - Table view data source
@@ -153,36 +134,9 @@ static NSString *const kCrashCellID = @"CrashCellID";
 #pragma mark - Primary
 - (void)initial {
     self.navigationItem.title = @"Crash Report";
-    self.dataArray = [[NSMutableArray alloc] init];
-    // TableView
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashCellID];
-    
-    // Navigation bar item
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.adjustsImageWhenHighlighted = NO;
-    btn.frame = CGRectMake(0, 0, 40, 40);
-    btn.tintColor = LLCONFIG_TEXT_COLOR;
-    [btn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = item;
-    
-    // ToolBar
-    self.selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
-    self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
-    
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
-    self.deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
-    self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
-    self.deleteItem.enabled = NO;
-    [self setToolbarItems:@[self.selectAllItem,spaceItem,self.deleteItem] animated:YES];
-    
-    self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    // TableView
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashCellID];
     
     [self _loadData];
 }
