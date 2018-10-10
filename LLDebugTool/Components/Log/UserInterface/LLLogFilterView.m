@@ -269,6 +269,7 @@
 - (LLFilterEventView *)eventView {
     if (!_eventView) {
         _eventView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
+        _eventView.averageCount = 3;
         __weak typeof(self) weakSelf = self;
         _eventView.changeBlock = ^(NSArray *events) {
             weakSelf.currentEvents = events;
