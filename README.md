@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.2.0-blue.svg)](https://img.shields.io/badge/pod-v1.2.0-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.2.1-blue.svg)](https://img.shields.io/badge/pod-v1.2.1-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
@@ -39,27 +39,19 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## What's new in 1.2.0
+## What's new in 1.2.1
 
-### Supports component-based.
+### Fix a display bug.
 
 `LLDebugTool` supports component-based now. Now you can integrate only one or more modules into your own **Debug debugger**. You can directly use the view controller contained in each module, or just call the functions in `Function` folder and build UI yourself.
 
 How to use components, see Wiki[Use Components](https://github.com/HDB-Li/LLDebugTool/wiki/Use-Components) or [Adding LLDebugTool to your project](https://github.com/HDB-Li/LLDebugTool#adding-lldebugtool-to-your-project).
 
-More changes can be viewed in [Version 1.2.0 Project](https://github.com/HDB-Li/LLDebugTool/projects/7).
-
-#### Add
-
-* Add `LLRoute`, In order to solve mutual reference between components. When the relevant components exist, `LLRoute` will call the corresponding method, otherwise it will not do anything.
+More changes can be viewed in [Version 1.2.1 Project](https://github.com/HDB-Li/LLDebugTool/projects/7).
 
 #### Update
 
-* Update folder structure. Now the whole project is classified according to the components, Under each component folder, it is divided into `Function` and `UserInterface`.
-
-* Modify files referenced between components instead of `LLRoute`.
-
-* Update `NSURLSessionConfiguration.m` to hook protocolClasses method.
+* Update `LLFilterEventView.m` and add a default averageCount to fix FilterView showing incomplete questions.
         
 ## What can you do with LLDebugTool?
 
@@ -83,7 +75,7 @@ More changes can be viewed in [Version 1.2.0 Project](https://github.com/HDB-Li/
 
 ##### Objective - C
 
-> 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.2.0' ,:configurations => ['Debug']`.
+> 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.2.1' ,:configurations => ['Debug']`.
 > 2. If you want to use a module, add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool/{Component Name}'`, Currently supported components are
 > ```
 > pod 'LLDebugTool/AppInfo'
@@ -98,7 +90,7 @@ More changes can be viewed in [Version 1.2.0 Project](https://github.com/HDB-Li/
 
 ##### Swift
 
-> 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.2.0' ,:configurations => ['Debug']`.
+> 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0'`, If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.2.1' ,:configurations => ['Debug']`.
 > 2. If you want to use a module, add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugToolSwift/{Component Name}'`, Currently supported components are
 > ```
 > pod 'LLDebugToolSwift/AppInfo'

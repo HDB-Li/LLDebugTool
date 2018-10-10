@@ -1,3 +1,17 @@
+## [1.2.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.2.1) (10/10/2018)
+
+###  Fix a display bug.
+
+`LLDebugTool` supports component-based now. Now you can integrate only one or more modules into your own **Debug debugger**. You can directly use the view controller contained in each module, or just call the functions in `Function` folder and build UI yourself.
+
+How to use components, see Wiki[Use Components](https://github.com/HDB-Li/LLDebugTool/wiki/Use-Components) or [Adding LLDebugTool to your project](https://github.com/HDB-Li/LLDebugTool#adding-lldebugtool-to-your-project).
+
+More changes can be viewed in [Version 1.2.1 Project](https://github.com/HDB-Li/LLDebugTool/projects/7).
+
+#### Update
+
+* Update `LLFilterEventView.m` and add a default averageCount to fix FilterView showing incomplete questions.
+
 ## [1.2.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.2.0) (09/22/2018)
 
 ###  Supports component-based.

@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/IOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.2.0-blue.svg)](https://img.shields.io/badge/pod-v1.2.0-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.2.1-blue.svg)](https://img.shields.io/badge/pod-v1.2.1-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)](https://img.shields.io/badge/platform-ios-lightgrey.svg)
 [![License](https://img.shields.io/badge/license-MIT-91bc2b.svg)](https://img.shields.io/badge/license-MIT-91bc2b.svg)
@@ -39,27 +39,19 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.2.0)
+## 最近更新 (1.2.1)
 
-###  支持组件化。
+###  修复显示Bug。
 
 `LLDebugTool` 现在已经支持组件化了。现在你可以集成某一个或者多个模块到你自己的**Debug 工具**里。你可以直接使用每个模块内包含的视图控制器，或者只调用`Function`文件夹下的功能，然后自己搭建UI。
 
 如何使用组件化，具体请看Wiki[使用组件化](https://github.com/HDB-Li/LLDebugTool/wiki/%E4%BD%BF%E7%94%A8%E7%BB%84%E4%BB%B6%E5%8C%96)或者[添加 LLDebugTool 到你的项目中](https://github.com/HDB-Li/LLDebugTool/blob/master/README-cn.md#%E6%B7%BB%E5%8A%A0-lldebugtool-%E5%88%B0%E4%BD%A0%E7%9A%84%E9%A1%B9%E7%9B%AE%E4%B8%AD)。
 
-更多的修改内容可以查看[Version 1.2.0 Project](https://github.com/HDB-Li/LLDebugTool/projects/7)。
-
-#### 新增
-
-* 增加 `LLRoute`，用于解决组件间的相互引用。当相关组件存在时， `LLRoute` 会调用相关的方法，否则什么都不会做。
+更多的修改内容可以查看[Version 1.2.1 Project](https://github.com/HDB-Li/LLDebugTool/projects/7)。
 
 #### 更新
 
-* 更新文件夹目录。现在整个项目是根据组件来分类的，在每个组件文件夹下，又分为`Function` 和 `UserInterface`。
-
-* 修改组件间的相互引用的文件，改为由Route处理。
-
-* 更新了 `NSURLSessionConfiguration.m` ，hook了 `protocolClasses` 这个方法。
+* 更新 `LLFilterEventView.m` 并且增加一个averageCount的默认值，用来解决FilterView无法正常显示的问题。
 
 ## 我能用LLDebugTool做什么?
 
@@ -83,7 +75,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 ##### Objective - C
 
-> 1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.2.0' ,:configurations => ['Debug']`。
+> 1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.2.1' ,:configurations => ['Debug']`。
 > 2. 如果你想使用某一个模块，可是添加`pod 'LLDebugTool/{Component Name}' , '~> 1.0.0'`到你的Podfile里。目前支持的组件有
 > ```
 > pod 'LLDebugTool/AppInfo'
@@ -98,7 +90,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 ##### Swift
 
-> 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.2.0' ,:configurations => ['Debug']`。
+> 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.2.1' ,:configurations => ['Debug']`。
 > 2. 如果你想使用某一个模块，可是添加`pod 'LLDebugToolSwift/{Component Name}' , '~> 1.0.0'`到你的Podfile里。目前支持的组件有
 > ```
 > pod 'LLDebugToolSwift/AppInfo'

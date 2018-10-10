@@ -18,6 +18,7 @@
 		2A278FFEFF2A9625DD296E65D97B359B /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD0D231DED9BE0D6B82DA8912D20FB1 /* UIProgressView+AFNetworking.m */; };
 		2B83541D4E65BA7076A9A01F552AE0C9 /* AFImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = ACA2172F0F4C259E9EBCB8CA29BB2574 /* AFImageDownloader.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2BAF605CB29217726746221850A4A75E /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC61E47265E320C9A2EDD599CFF4FF8 /* FMResultSet.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2C41E93CF9F63753E9F5D4AF7410C9E6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2221E70873033994760D54CA23983 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2F2954EC3ABB147F09630F8DA88D1917 /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB2002B6C60DF4A6111B81960275ED1 /* AFAutoPurgingImageCache.m */; };
 		2F4B7C1A09BA30D02CD20B179F1B7C59 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A9374C39A6EFA90AD3F2E64799ECC5 /* Security.framework */; };
 		2F5E22D5AB7B2A2CC505832CDB88B64D /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 740272666162E040BA5E9272B549E084 /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -25,13 +26,10 @@
 		3888B8641B2C76DFD4A82E8CBE7A88D3 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 05FDC787017AF139F96238732F0DFD75 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3FECFDE87253334FA356C4898AA1478D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
 		4008D398A2802F2936BFC77BC87D264A /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = DF70337E9446413FD070C6640923C5E1 /* AFNetworking.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4B3B2EABA01FE0065CA6693CEE33CA92 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22BC0AA3CFEE59E2FAE7907AD03DC60 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		4DB541C1C41B1C597EC36CDAB5243D1A /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D987EE66047D1205072A1A12073D7A38 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		4E446AF686191153D62EAC9C3ABEF7A0 /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F9FD24F848462ADBCCCC8D4A2F10CC6 /* AFSecurityPolicy.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		54263A6404F9EB84DD1B5E164D4F7CE3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
 		553287D4AA043EFB3585DD432BE1DEF7 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 730A3867F7123FE1C006EF8C9C54ACAB /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5678B08B4C12855D2E8D3D8E4C805C8A /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C96CD6B885812543EF2A6A9DFB82AAA /* UIRefreshControl+AFNetworking.m */; };
-		6199817CB29DADBC9AB1D4C44E52F5BA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF2221E70873033994760D54CA23983 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		6205EE7021ED9E789E88292CC076847A /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D5BB22D5CF39CA62A2ACC0123F34764F /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		627B8656D435FF535E04971E846DA3A3 /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 3602224BFDBDD0EE3ABC850293F205D4 /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		62C0B858F723182DAC771AF27964FE42 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB706A5876E0840A6B12A8780967F365 /* AFURLSessionManager.m */; };
@@ -42,16 +40,17 @@
 		7265B55378088FD8421DA7EFA71AD9BF /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CA335032F2064758E0988E6A573409B /* FMDatabasePool.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		792AA849FC29C3614CF1ECBF5BFBEFDC /* Pods-LLDebugToolDemoUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 598239709C5CF26A51337E94046BDCFC /* Pods-LLDebugToolDemoUITests-dummy.m */; };
 		7A323F7415D6821718000F8E9BFD47AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
+		7CDBF7EA5C30D66F866F8E3BA32F1712 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D987EE66047D1205072A1A12073D7A38 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7D4B51B8183FFE043AC697A5538203AD /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F1272B1BFA83B1D4369577124B9931DB /* AFImageDownloader.m */; };
 		7F077E317B4CBAC0915261D757D22D58 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6E40B1D0F3CB342E3C5EFFB839EADF /* AFNetworkActivityIndicatorManager.m */; };
-		8021697A1557D425AC130472DA1317CC /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF7E96CA9FF9DF2828B9C0B7064165 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		88F8E81C7DA5722EB6B874515EF32C82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
 		8B3A9D07C4F622FDB95D4CE6CC3C73B9 /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D36D5F28722E42DD588B9C072927D81 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8F082E3A5A18A875BE483EC80B0D5E50 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 970770894C43CA9DC125949E3475B258 /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		903D16EEE10FFB91B8B4742586EDC09F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AC88E80A71CE81CD02B7ADDDAB674F /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		956B198769D86897A24368A5D7DD4F6E /* AFAutoPurgingImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = CC101828A0A8593B4428F42ECFB56419 /* AFAutoPurgingImageCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		976E340B23C62B27B7ED9BDB05E0606F /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = ED52AF1CC74C6EE5D0B4B2F0881EB0BC /* FMDB.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		98ABF277A45F1AB72A8D02D53FFE67BF /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AC88E80A71CE81CD02B7ADDDAB674F /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		9B82592971127A07C0DBEE79A0355DAA /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 437DD7879E767697329C8C96F71C8470 /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9C0908154FC1320D13F5FA40C47E47D7 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 64CF7E96CA9FF9DF2828B9C0B7064165 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A49342C70E684FEC485E89E139969B6B /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 80D5A997802E393126D3271DC4BD6F23 /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B7C7F5D6D9CB25DBA504BDA60131CB6F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B329784ACE5F0B78086CD61DF6607D /* UIWebView+AFNetworking.m */; };
 		BFF671705EC5731DBFF84BF0DE432BFC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8A7C0B6179467051ED95E59DB2AF9F /* SystemConfiguration.framework */; };
@@ -64,6 +63,7 @@
 		E0992B55C88DF962F785625CED11FA0B /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 553DE9361F79C5BAFB53288E75C3EB53 /* AFNetworkReachabilityManager.m */; };
 		E932C66420B67DD49BDD724B8C2771D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F921D275AC6AA48C031BF91FD4592584 /* Foundation.framework */; };
 		ECC4CEB25D97F6BA002E04DED3EE2556 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = E9789DCB0F47256BDC9144E22BB74ED3 /* UIImageView+AFNetworking.m */; };
+		F42D3D33B0FD8814A3C33FC46FE1690A /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22BC0AA3CFEE59E2FAE7907AD03DC60 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F5C708AF54ADB71E6A4BEFB9F629191C /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A85675902F8CE155870630BE238E06 /* AFURLRequestSerialization.m */; };
 		F96F80C73456E5D813B71A183A573929 /* UIKit+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DDA18A1AB3D053C4CB9C94132398754 /* UIKit+AFNetworking.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
@@ -687,12 +687,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6199817CB29DADBC9AB1D4C44E52F5BA /* FMDatabase.m in Sources */,
-				4DB541C1C41B1C597EC36CDAB5243D1A /* FMDatabaseAdditions.m in Sources */,
-				8021697A1557D425AC130472DA1317CC /* FMDatabasePool.m in Sources */,
-				98ABF277A45F1AB72A8D02D53FFE67BF /* FMDatabaseQueue.m in Sources */,
+				2C41E93CF9F63753E9F5D4AF7410C9E6 /* FMDatabase.m in Sources */,
+				7CDBF7EA5C30D66F866F8E3BA32F1712 /* FMDatabaseAdditions.m in Sources */,
+				9C0908154FC1320D13F5FA40C47E47D7 /* FMDatabasePool.m in Sources */,
+				903D16EEE10FFB91B8B4742586EDC09F /* FMDatabaseQueue.m in Sources */,
 				C40CFE1274D588CA1A9DF9394BF76EAE /* FMDB-dummy.m in Sources */,
-				4B3B2EABA01FE0065CA6693CEE33CA92 /* FMResultSet.m in Sources */,
+				F42D3D33B0FD8814A3C33FC46FE1690A /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
