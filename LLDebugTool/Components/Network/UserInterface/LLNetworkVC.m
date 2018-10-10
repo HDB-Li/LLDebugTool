@@ -59,6 +59,16 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 @implementation LLNetworkVC
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isSelectEnable = YES;
+        self.isDeleteEnable = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
@@ -143,15 +153,6 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     }
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.tempHttpDataArray = [[NSMutableArray alloc] init];
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[[UIImage LL_imageNamed:kClearImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.adjustsImageWhenHighlighted = NO;
-    btn.frame = CGRectMake(0, 0, 40, 40);
-    btn.tintColor = LLCONFIG_TEXT_COLOR;
-    [btn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     
     if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
         self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];

@@ -59,6 +59,16 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @implementation LLLogVC
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isSelectEnable = YES;
+        self.isDeleteEnable = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
@@ -212,21 +222,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     self.totalDataArray = [[NSMutableArray alloc] init];
     
     // TableView
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.allowsMultipleSelectionDuringEditing = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kLogCellID];
-    
-    // Navigation bar item
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.adjustsImageWhenHighlighted = NO;
-    btn.frame = CGRectMake(0, 0, 40, 40);
-    btn.tintColor = LLCONFIG_TEXT_COLOR;
-    [btn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = item;
     
     if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
         self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];

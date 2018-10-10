@@ -37,6 +37,17 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 @implementation LLSandboxVC
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isSelectEnable = YES;
+        self.isShareEnable = YES;
+        self.isDeleteEnable = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
@@ -126,23 +137,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         self.navigationItem.title = self.sandboxModel.name;
     }
     // TableView
-    self.tableView.allowsMultipleSelectionDuringEditing = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
-    
-    
-    // Navigation bar item
-    if (self.sandboxModel.subModels.count) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-        btn.showsTouchWhenHighlighted = NO;
-        btn.adjustsImageWhenHighlighted = NO;
-        btn.frame = CGRectMake(0, 0, 40, 40);
-        btn.tintColor = LLCONFIG_TEXT_COLOR;
-        [btn addTarget:self action:@selector(rightItemClick) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        self.navigationItem.rightBarButtonItem = item;
-    }
 }
 
 
