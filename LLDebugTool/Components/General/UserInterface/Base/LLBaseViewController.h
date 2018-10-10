@@ -24,7 +24,7 @@
 #import <UIKit/UIKit.h>
 #import "LLBaseModel.h"
 
-@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating>
+@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating , UISearchBarDelegate>
 
 /**
  * Whether use searchBar and searchController. Default is NO.
@@ -46,6 +46,8 @@
 @property (nonatomic , strong , nonnull , readonly) UITableView *tableView;
 
 @property (nonatomic , strong , nonnull , readonly) NSMutableArray *dataArray;
+
+@property (nonatomic , strong , nonnull , readonly) NSMutableArray *selectedDataArray;
 
 @property (nonatomic , strong , nullable , readonly) UIBarButtonItem *selectAllItem;
 

@@ -111,10 +111,6 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
     return 30;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLLAppInfoVCHeaderID];
     view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30);

@@ -55,24 +55,6 @@ static NSString *const kCrashCellID = @"CrashCellID";
     [self initial];
 }
 
-- (void)selectAllItemClick:(UIBarButtonItem *)item {
-    if ([item.title isEqualToString:@"Select All"]) {
-        item.title = @"Cancel All";
-        self.deleteItem.enabled = YES;
-        for (int i = 0; i < self.dataArray.count; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        }
-    } else {
-        item.title = @"Select All";
-        self.deleteItem.enabled = NO;
-        for (int i = 0; i < self.dataArray.count; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        }
-    }
-}
-
 - (void)deleteItemClick:(UIBarButtonItem *)item {
     NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
     [self _showDeleteAlertWithIndexPaths:indexPaths];
@@ -90,38 +72,12 @@ static NSString *const kCrashCellID = @"CrashCellID";
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.tableView.isEditing == NO) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    if (!self.tableView.isEditing) {
         LLCrashContentVC *vc = [[LLCrashContentVC alloc] init];
         vc.model = self.dataArray[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        self.deleteItem.enabled = YES;
-        if (self.tableView.indexPathsForSelectedRows.count == self.dataArray.count) {
-            if ([self.selectAllItem.title isEqualToString:@"Select All"]) {
-                self.selectAllItem.title = @"Cancel All";
-            }
-        }
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.tableView.isEditing) {
-        if ([self.selectAllItem.title isEqualToString:@"Select All"] == NO) {
-            self.selectAllItem.title = @"Select All";
-        }
-        if (self.tableView.indexPathsForSelectedRows.count == 0) {
-            self.deleteItem.enabled = NO;
-        }
     }
 }
 

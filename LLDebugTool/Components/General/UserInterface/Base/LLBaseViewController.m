@@ -34,6 +34,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 @property (nonatomic , assign) UITableViewStyle style;
 
+@property (nonatomic , copy) NSString *selectAllString;
+
+@property (nonatomic , copy) NSString *cancelAllString;
+
 @end
 
 @implementation LLBaseViewController
@@ -44,6 +48,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     if (self) {
         _style = UITableViewStyleGrouped;
         _dataArray = [[NSMutableArray alloc] init];
+        _selectedDataArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -101,6 +106,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 #pragma mark - Rewrite
+- (NSMutableArray *)data {
+    return self.dataArray;
+}
+
 - (void)leftItemClick {
     [LLRoute showWindow];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -110,10 +119,27 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     sender.selected = !sender.selected;
     [self.tableView setEditing:sender.isSelected animated:YES];
     [self.navigationController setToolbarHidden:!sender.isSelected animated:YES];
+    if (self.isSelectEnable) {
+        if (!sender.isSelected) {
+            self.selectAllItem.title = self.selectAllString;
+            self.shareItem.enabled = NO;
+            self.deleteItem.enabled = NO;
+        }
+    }
 }
 
 - (void)selectAllItemClick:(UIBarButtonItem *)sender {
-    
+    if ([sender.title isEqualToString:self.selectAllString]) {
+        sender.title = self.cancelAllString;
+        [self updateTableViewCellSelectedStyle:YES];
+        self.shareItem.enabled = YES;
+        self.deleteItem.enabled = YES;
+    } else {
+        sender.title = self.selectAllString;
+        [self updateTableViewCellSelectedStyle:NO];
+        self.shareItem.enabled = NO;
+        self.deleteItem.enabled = NO;
+    }
 }
 
 - (void)shareItemClick:(UIBarButtonItem *)sender {
@@ -170,10 +196,15 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.searchController.searchResultsUpdater = self;
     self.searchBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
     self.searchBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.searchBar.delegate = self;
     self.tableView.tableHeaderView = self.searchBar;
+    [self.searchBar sizeToFit];
 }
 
 - (void)initSelectable {
+    self.selectAllString = @"Select All";
+    self.cancelAllString = @"Cancel All";
+    
     // Navigation bar item
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -189,7 +220,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
     
     // ToolBar
-    _selectAllItem = [[UIBarButtonItem alloc] initWithTitle:@"Select All" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
+    _selectAllItem = [[UIBarButtonItem alloc] initWithTitle:self.selectAllString style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
     self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -231,7 +262,26 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     return self.searchController.searchBar;
 }
 
+- (void)updateTableViewCellSelectedStyle:(BOOL)selected {
+    NSInteger section = [self numberOfSectionsInTableView:self.tableView];
+    for (int i = 0; i < section; i++) {
+        NSInteger row = [self tableView:self.tableView numberOfRowsInSection:i];
+        for (int j = 0; j < row; j++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            if (selected) {
+                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            } else {
+                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+            }
+        }
+    }
+}
+
 #pragma mark - UITableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
 }
@@ -242,6 +292,42 @@ static NSString *const kEmptyCellID = @"emptyCellID";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEmptyCellID];
     }
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.tableView.isEditing) {
+        if (self.tableView.indexPathsForSelectedRows.count == self.dataArray.count) {
+            if ([self.selectAllItem.title isEqualToString:self.selectAllString]) {
+                self.selectAllItem.title = self.cancelAllString;
+            }
+        }
+        self.shareItem.enabled = YES;
+        self.deleteItem.enabled = YES;
+    } else {
+        if (self.isSelectEnable) {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.tableView.isEditing) {
+        if (![self.selectAllItem.title isEqualToString:self.selectAllString]) {
+            self.selectAllItem.title = self.selectAllString;
+        }
+        if (self.tableView.indexPathsForSelectedRows.count == 0) {
+            self.shareItem.enabled = NO;
+            self.deleteItem.enabled = NO;
+        }
+    }
 }
 
 #pragma mark - UISearchResultsUpdating

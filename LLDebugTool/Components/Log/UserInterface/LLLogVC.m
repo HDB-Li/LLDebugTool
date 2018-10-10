@@ -145,10 +145,6 @@ static NSString *const kLogCellID = @"LLLogCell";
     return 40;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing == NO) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
