@@ -8,7 +8,7 @@ target 'LLDebugToolDemo' do
   # Pods for LLDebugToolDemo
 
   # Request
-  pod 'FMDB'
+  pod 'FMDB',:inhibit_warnings => true
 
   # Only for demo
   pod 'AFNetworking'

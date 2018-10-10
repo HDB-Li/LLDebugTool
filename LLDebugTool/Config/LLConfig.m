@@ -102,10 +102,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
     if (!_XIBBundle) {
-        [LLRoute logWithMessage:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
+        NSLog(@"Failed to load the XIB bundle,%@",kLLOpenIssueInGithubPrompt);
     }
     if (!_imageBundle) {
-        [LLRoute logWithMessage:[@"Failed to load the XIB bundle," stringByAppendingString:kLLOpenIssueInGithubPrompt] event:kLLFailedLoadingResourceEvent];
+        NSLog(@"Failed to load the XIB bundle,%@",kLLOpenIssueInGithubPrompt);
     }
     
     // Set date formatter string.

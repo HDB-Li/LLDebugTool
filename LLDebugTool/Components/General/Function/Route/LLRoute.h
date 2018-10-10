@@ -58,7 +58,7 @@ static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
     
 #pragma mark - Log Route
 /**
- If LLLogHelper exists, LLLogHelper is called, otherwise NSLog is called.
+ Called NSLog.
  */
 + (void)logWithMessage:(NSString *_Nonnull)message event:(NSString *_Nullable)event;
 
