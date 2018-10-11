@@ -24,7 +24,7 @@
 #import <UIKit/UIKit.h>
 #import "LLBaseModel.h"
 
-@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating , UISearchBarDelegate>
+@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating , UISearchControllerDelegate , UISearchBarDelegate>
 
 /**
  * Whether use searchBar and searchController. Default is NO.
@@ -47,7 +47,9 @@
 
 @property (nonatomic , strong , nonnull , readonly) NSMutableArray *dataArray;
 
-@property (nonatomic , strong , nonnull , readonly) NSMutableArray *selectedDataArray;
+@property (nonatomic , strong , nonnull , readonly) NSMutableArray *searchDataArray;
+
+@property (nonatomic , strong , nonnull , readonly) NSMutableArray *datas;
 
 @property (nonatomic , strong , nullable , readonly) UIBarButtonItem *selectAllItem;
 
@@ -59,6 +61,12 @@
  * The searchController while use search.
  */
 @property (nonatomic , strong , nullable , readonly) UISearchController *searchController;
+
+/**
+ Initial method.
+ */
+- (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
+- (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
 
 /**
  * The searchBar of searchController.
@@ -75,12 +83,7 @@
  */
 - (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
 
-/**
- Initial method.
- */
-- (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
-- (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
-
+#pragma mark - Rewrite
 /**
  * Right item action.
  */
@@ -88,5 +91,6 @@
 - (void)selectAllItemClick:(UIBarButtonItem *)sender;
 - (void)shareItemClick:(UIBarButtonItem *)sender;
 - (void)deleteItemClick:(UIBarButtonItem *)sender;
+- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths;
 
 @end

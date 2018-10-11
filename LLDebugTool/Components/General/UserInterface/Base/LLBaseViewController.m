@@ -27,6 +27,7 @@
 #import "LLTool.h"
 #import "LLConfig.h"
 #import "LLRoute.h"
+#import "LLCrashVC.h"
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
@@ -48,7 +49,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     if (self) {
         _style = UITableViewStyleGrouped;
         _dataArray = [[NSMutableArray alloc] init];
-        _selectedDataArray = [[NSMutableArray alloc] init];
+        _searchDataArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -106,7 +107,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 #pragma mark - Rewrite
-- (NSMutableArray *)data {
+- (NSMutableArray *)datas {
+    if (self.isSearchEnable && self.searchController.isActive) {
+        return self.searchDataArray;
+    }
     return self.dataArray;
 }
 
@@ -147,11 +151,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 - (void)deleteItemClick:(UIBarButtonItem *)sender {
-    
+    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
+    [self showDeleteAlertWithIndexPaths:indexPaths];
+    [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
 }
 
-- (void)backAction {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
+    
 }
 
 #pragma mark - Primary
@@ -194,11 +200,17 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 - (void)initSearch {
     _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchController.searchResultsUpdater = self;
+    self.searchController.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
     self.searchBar.tintColor = LLCONFIG_TEXT_COLOR;
-    self.searchBar.delegate = self;
-    self.tableView.tableHeaderView = self.searchBar;
     [self.searchBar sizeToFit];
+
+    UIView *view = [[UIView alloc] init];
+    [view addSubview:self.searchBar];
+    view.frame = self.searchBar.bounds;
+    self.tableView.tableHeaderView = view;
 }
 
 - (void)initSelectable {
@@ -255,7 +267,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
-    
+}
+
+- (void)backAction {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UISearchBar *)searchBar {
@@ -263,17 +278,37 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 - (void)updateTableViewCellSelectedStyle:(BOOL)selected {
-    NSInteger section = [self numberOfSectionsInTableView:self.tableView];
-    for (int i = 0; i < section; i++) {
-        NSInteger row = [self tableView:self.tableView numberOfRowsInSection:i];
-        for (int j = 0; j < row; j++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
-            if (selected) {
-                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            } else {
-                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-            }
+    NSInteger row = [self tableView:self.tableView numberOfRowsInSection:0];
+    for (int j = 0; j < row; j++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:0];
+        if (selected) {
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        } else {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
+    }
+    
+//    NSInteger section = [self numberOfSectionsInTableView:self.tableView];
+//    for (int i = 0; i < section; i++) {
+//        NSInteger row = [self tableView:self.tableView numberOfRowsInSection:i];
+//        for (int j = 0; j < row; j++) {
+//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+//            if (selected) {
+//                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+//            } else {
+//                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+//            }
+//        }
+//    }
+}
+
+- (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
+    if (indexPaths.count) {
+        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete the %ld items?" , indexPaths.count] handler:^(NSInteger action) {
+            if (action == 1) {
+                [self deleteFilesWithIndexPaths:indexPaths];
+            }
+        }];
     }
 }
 
@@ -283,7 +318,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.datas.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -330,9 +365,34 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
 }
 
-#pragma mark - UISearchResultsUpdating
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isDeleteEnable) {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [self showDeleteAlertWithIndexPaths:@[indexPath]];
+        }
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isDeleteEnable) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
+
+
+#pragma mark - UISearchController
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     
+}
+
+- (void)willPresentSearchController:(UISearchController *)searchController {
+    if (self.tableView.isEditing) {
+        [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
+    }
+    [self.searchDataArray removeAllObjects];
+    [self.searchDataArray addObjectsFromArray:self.dataArray];
+    [self.tableView reloadData];
 }
 
 @end

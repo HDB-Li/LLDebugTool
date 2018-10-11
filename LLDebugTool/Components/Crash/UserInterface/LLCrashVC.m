@@ -55,38 +55,6 @@ static NSString *const kCrashCellID = @"CrashCellID";
     [self initial];
 }
 
-- (void)deleteItemClick:(UIBarButtonItem *)item {
-    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
-    [self _showDeleteAlertWithIndexPaths:indexPaths];
-    [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
-}
-
-#pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLCrashCell *cell = [tableView dequeueReusableCellWithIdentifier:kCrashCellID forIndexPath:indexPath];
-    [cell confirmWithModel:self.dataArray[indexPath.row]];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    if (!self.tableView.isEditing) {
-        LLCrashContentVC *vc = [[LLCrashContentVC alloc] init];
-        vc.model = self.dataArray[indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self _showDeleteAlertWithIndexPaths:@[indexPath]];
-    }
-}
-
 #pragma mark - Primary
 - (void)initial {
     self.navigationItem.title = @"Crash Report";
@@ -108,17 +76,8 @@ static NSString *const kCrashCellID = @"CrashCellID";
     }];
 }
 
-- (void)_showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
-    if (indexPaths.count) {
-        [self showAlertControllerWithMessage:@"Sure to remove items ?" handler:^(NSInteger action) {
-            if (action == 1) {
-                [self _deleteFilesWithIndexPaths:indexPaths];
-            }
-        }];
-    }
-}
-
-- (void)_deleteFilesWithIndexPaths:(NSArray *)indexPaths {
+#pragma mark - Rewrite
+- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
     __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.dataArray[indexPath.row]];
@@ -140,5 +99,45 @@ static NSString *const kCrashCellID = @"CrashCellID";
         }
     }];
 }
+
+#pragma mark - UITableView
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return self.dataArray.count;
+//}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LLCrashCell *cell = [tableView dequeueReusableCellWithIdentifier:kCrashCellID forIndexPath:indexPath];
+    [cell confirmWithModel:self.datas[indexPath.row]];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    if (!self.tableView.isEditing) {
+        self.searchController.active = NO;
+        LLCrashContentVC *vc = [[LLCrashContentVC alloc] init];
+        vc.model = self.datas[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+#pragma mark - UISearchController
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchText = self.searchController.searchBar.text.lowercaseString;
+    if (searchText.length == 0) {
+        [self.searchDataArray removeAllObjects];
+        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.tableView reloadData];
+    } else {
+        [self.searchDataArray removeAllObjects];
+        for (LLCrashModel *model in self.dataArray) {
+            if ([model.name.lowercaseString containsString:searchText] || [model.reason.lowercaseString containsString:searchText]) {
+                [self.searchDataArray addObject:model];
+            }
+        }
+        [self.tableView reloadData];
+    }
+}
+
 
 @end
