@@ -50,7 +50,7 @@
     _model = model;
     self.titleLabel.text = model.name;
     self.contentLabel.text = [NSString stringWithFormat:@"%@",[LLTool stringFromDate:model.modifiDate]];
-    self.sizeLabel.text = [NSString stringWithFormat:@"Size:%@",model.totalFileSizeString];
+    self.sizeLabel.text = [NSString stringWithFormat:@"%@",model.totalFileSizeString];
     if (model.isDirectory && model.subModels.count) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
@@ -68,25 +68,13 @@
     }
 }
 
-- (void)willTransitionToState:(UITableViewCellStateMask)state {
-    [super willTransitionToState:state];
-    if (state == UITableViewCellStateShowingEditControlMask) {
-        self.sizeLabel.hidden = NO;
-    } else {
-        self.sizeLabel.hidden = YES;
-    }
-}
-
 #pragma mark - Primary
 - (void)initial {
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
-    self.sizeLabel.hidden = YES;
     self.icon.tintColor = LLCONFIG_TEXT_COLOR;
     
     UILongPressGestureRecognizer *longPG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureAction:)];
     [self.contentView addGestureRecognizer:longPG];
-    
-    
 }
 
 - (void)longPressGestureAction:(UILongPressGestureRecognizer *)gr {
