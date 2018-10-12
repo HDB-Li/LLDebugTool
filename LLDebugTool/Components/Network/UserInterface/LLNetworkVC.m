@@ -39,7 +39,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 @interface LLNetworkVC () <UISearchBarDelegate>
 
-@property (nonatomic , strong) UISearchBar *searchBar;
+//@property (nonatomic , strong) UISearchBar *searchBar;
 
 @property (nonatomic , strong) NSMutableArray *httpDataArray;
 
@@ -154,17 +154,17 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     self.httpDataArray = [[NSMutableArray alloc] init];
     self.tempHttpDataArray = [[NSMutableArray alloc] init];
     
-    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
-        self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
-        self.searchBar.delegate = self;
-        UIView *titleView = [[LLSearchBarBackView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
-        [titleView addSubview:self.searchBar];
-        self.navigationItem.titleView = titleView;
-    } else {
-        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        self.searchBar.delegate = self;
-        self.navigationItem.titleView = self.searchBar;
-    }
+//    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
+//        self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
+//        self.searchBar.delegate = self;
+//        UIView *titleView = [[LLSearchBarBackView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
+//        [titleView addSubview:self.searchBar];
+//        self.navigationItem.titleView = titleView;
+//    } else {
+//        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+//        self.searchBar.delegate = self;
+//        self.navigationItem.titleView = self.searchBar;
+//    }
     self.searchBar.enablesReturnKeyAutomatically = NO;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kNetworkCellID];

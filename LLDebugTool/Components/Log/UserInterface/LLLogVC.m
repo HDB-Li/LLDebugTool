@@ -37,7 +37,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @interface LLLogVC () <UISearchBarDelegate>
 
-@property (nonatomic , strong) UISearchBar *searchBar;
+//@property (nonatomic , strong) UISearchBar *searchBar;
 
 
 @property (nonatomic , strong) NSMutableArray *totalDataArray;
@@ -220,18 +220,18 @@ static NSString *const kLogCellID = @"LLLogCell";
     // TableView
     [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kLogCellID];
     
-    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
-        self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
-        self.searchBar.delegate = self;
-        UIView *titleView = [[LLSearchBarBackView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
-        [titleView addSubview:self.searchBar];
-        self.navigationItem.titleView = titleView;
-    } else {
-        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        self.searchBar.delegate = self;
-        self.navigationItem.titleView = self.searchBar;
-    }
-    self.searchBar.enablesReturnKeyAutomatically = NO;
+//    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
+//        self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
+//        self.searchBar.delegate = self;
+//        UIView *titleView = [[LLSearchBarBackView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
+//        [titleView addSubview:self.searchBar];
+//        self.navigationItem.titleView = titleView;
+//    } else {
+//        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+//        self.searchBar.delegate = self;
+//        self.navigationItem.titleView = self.searchBar;
+//    }
+//    self.searchBar.enablesReturnKeyAutomatically = NO;
     
     [self initFilterView];
     

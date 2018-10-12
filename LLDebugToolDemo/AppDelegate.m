@@ -34,7 +34,7 @@
 
     //####################### Features #######################//
     // Uncomment this line to change the available features.
-    // [LLConfig sharedConfig].availables = LLConfigAvailableNoneAppInfo;
+     [LLConfig sharedConfig].availables = LLConfigAvailableCrash & LLConfigAvailableAppInfo;
     
     // ####################### Start LLDebugTool #######################//
     // Use this line to start working.

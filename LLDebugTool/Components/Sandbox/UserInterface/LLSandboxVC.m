@@ -41,6 +41,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 {
     self = [super init];
     if (self) {
+        self.isSearchEnable = YES;
         self.isSelectEnable = YES;
         self.isShareEnable = YES;
         self.isDeleteEnable = YES;
@@ -53,73 +54,27 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     [self initial];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.tableView.isEditing) {
-        [self rightItemClick];
-    }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
-- (void)rightItemClick {
-    UIBarButtonItem *buttonItem = self.navigationItem.rightBarButtonItem;
-    UIButton *btn = buttonItem.customView;
-    if (!btn.selected) {
-        if (self.sandboxModel.subModels.count) {
-            btn.selected = !btn.selected;
-            [self.tableView setEditing:YES animated:YES];
-            self.shareItem.enabled = NO;
-            self.deleteItem.enabled = NO;
-            [self.navigationController setToolbarHidden:NO animated:YES];
-        }
-    } else {
-        btn.selected = !btn.selected;
-        self.selectAllItem.title = @"Select All";
-        [self.tableView setEditing:NO animated:YES];
-        [self.navigationController setToolbarHidden:YES animated:YES];
+- (void)shareFilesWithIndexPaths:(NSArray *)indexPaths {
+    [super shareFilesWithIndexPaths:indexPaths];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:indexPaths.count];
+    for (NSIndexPath *indexPath in indexPaths) {
+        LLSandboxModel *model = self.datas[indexPath.row];
+        [array addObject:[NSURL fileURLWithPath:model.filePath]];
     }
-}
-
-- (void)selectAllItemClick:(UIBarButtonItem *)item {
-    if ([item.title isEqualToString:@"Select All"]) {
-        item.title = @"Cancel All";
-        self.shareItem.enabled = YES;
-        self.deleteItem.enabled = YES;
-        for (int i = 0; i < self.sandboxModel.subModels.count; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:array applicationActivities:nil];
+    __weak typeof(self) weakSelf = self;
+    vc.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+        [weakSelf rightItemClick:weakSelf.navigationItem.rightBarButtonItem.customView];
+        if (activityError) {
+            [weakSelf toastMessage:activityError.debugDescription];
         }
-    } else {
-        item.title = @"Select All";
-        self.shareItem.enabled = NO;
-        self.deleteItem.enabled = NO;
-        for (int i = 0; i < self.sandboxModel.subModels.count; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        }
-    }
-}
-
-- (void)shareItemClick:(UIBarButtonItem *)item {
-    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
-    if (indexPaths.count) {
-        NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:indexPaths.count];
-        for (NSIndexPath *indexPath in indexPaths) {
-            LLSandboxModel *model = self.sandboxModel.subModels[indexPath.row];
-            [array addObject:[NSURL fileURLWithPath:model.filePath]];
-        }
-        UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:array applicationActivities:nil];
-        __weak typeof(self) weakSelf = self;
-        vc.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
-            [weakSelf rightItemClick];
-        };
-        [self presentViewController:vc animated:YES completion:nil];
-    }
-}
-
-- (void)deleteItemClick:(UIBarButtonItem *)item {
-    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
-    [self showDeleteAlertWithIndexPaths:indexPaths];
-    [self rightItemClick];
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - Primary
@@ -140,57 +95,55 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
 }
 
-
-- (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
-    if (indexPaths.count) {
-        [self showAlertControllerWithMessage:@"Sure to remove items ?" handler:^(NSInteger action) {
-            if (action == 1) {
-                [self deleteFilesWithIndexPaths:indexPaths];
-            }
-        }];
-    }
-}
-
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    if (indexPaths.count) {
-        for (NSIndexPath *indexPath in indexPaths) {
-            [self deleteFile:indexPath];
+    [super deleteFilesWithIndexPaths:indexPaths];
+    NSMutableArray *finishedModels = [[NSMutableArray alloc] init];
+    NSMutableArray *finishedIndexPaths = [[NSMutableArray alloc] init];
+    
+    for (NSIndexPath *indexPath in indexPaths) {
+        LLSandboxModel *model = self.datas[indexPath.row];
+        BOOL ret = [self deleteFile:model];
+        if (ret) {
+            [finishedModels addObject:model];
+            [finishedIndexPaths addObject:indexPath];
         }
     }
+    [self.dataArray removeObjectsInArray:finishedModels];
+    [self.searchDataArray removeObjectsInArray:finishedModels];
+    [self.tableView deleteRowsAtIndexPaths:finishedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (BOOL)deleteFile:(NSIndexPath *)indexPath {
-    LLSandboxModel *model = self.sandboxModel.subModels[indexPath.row];
+- (NSMutableArray *)dataArray {
+    return self.sandboxModel.subModels;
+}
+
+- (BOOL)deleteFile:(LLSandboxModel *)model {
     NSError *error;
-    BOOL ret = [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:&error];
-    if (ret) {
-        [self.sandboxModel.subModels removeObject:model];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Delete file fail\nFilePath:%@\nError:%@",model.filePath,error.localizedDescription] handler:nil];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:model.filePath]) {
+        BOOL ret = [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:&error];
+        if (!ret) {
+            [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Delete file fail\nFilePath:%@\nError:%@",model.filePath,error.localizedDescription] handler:nil];
+        }
+        return ret;
     }
-    return ret;
+    return YES;
 }
 
-#pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _sandboxModel.subModels.count;
-}
-
-
+#pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLSandboxCell *cell = [tableView dequeueReusableCellWithIdentifier:kSandboxCellID forIndexPath:indexPath];
     if (TARGET_IPHONE_SIMULATOR) {
         cell.delegate = self;
     }
-    [cell confirmWithModel:self.sandboxModel.subModels[indexPath.row]];
+    [cell confirmWithModel:self.datas[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (self.tableView.isEditing == NO) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        LLSandboxModel *model = self.sandboxModel.subModels[indexPath.row];
+        LLSandboxModel *model = self.datas[indexPath.row];
         if (model.isDirectory) {
             if (model.subModels.count) {
                 LLSandboxVC *vc = [[LLSandboxVC alloc] init];
@@ -204,7 +157,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 YWFilePreviewController *vc = [[YWFilePreviewController alloc] init];
                 NSMutableArray *paths = [[NSMutableArray alloc] init];
                 NSInteger index = 0;
-                for (LLSandboxModel *mod in self.sandboxModel.subModels) {
+                for (LLSandboxModel *mod in self.datas) {
                     if (mod == model) {
                         [paths addObject:mod.filePath];
                         index = [paths indexOfObject:mod.filePath];
@@ -218,38 +171,40 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 [self presentViewController:vc animated:YES completion:nil];
             }
         }
+    }
+}
+
+#pragma mark - UISearchBar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [super searchBar:searchBar textDidChange:searchText];
+    if (searchText.length == 0) {
+        [self.searchDataArray removeAllObjects];
+        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.tableView reloadData];
     } else {
-        if (self.tableView.indexPathsForSelectedRows.count == self.sandboxModel.subModels.count) {
-            self.selectAllItem.title = @"Cancel All";
-        } else {
-            self.selectAllItem.title = @"Select All";
+        [self.searchDataArray removeAllObjects];
+        for (LLSandboxModel *model in self.dataArray) {
+            [self.searchDataArray addObjectsFromArray:[self modelsByFilter:searchText.lowercaseString model:model]];
         }
-        self.shareItem.enabled = YES;
-        self.deleteItem.enabled = YES;
+        [self.tableView reloadData];
     }
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.selectAllItem.title isEqualToString:@"Select All"] == NO) {
-        self.selectAllItem.title = @"Select All";
+- (NSMutableArray *)modelsByFilter:(NSString *)filter model:(LLSandboxModel *)model {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    if ([model.name.lowercaseString containsString:filter]) {
+        [array addObject:model];
     }
-    if (self.tableView.indexPathsForSelectedRows.count == 0) {
-        self.shareItem.enabled = NO;
-        self.deleteItem.enabled = NO;
+    for (LLSandboxModel *subModel in model.subModels) {
+        [array addObjectsFromArray:[self modelsByFilter:filter model:subModel]];
     }
-}
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self showDeleteAlertWithIndexPaths:@[indexPath]];
-    } 
+    return array;
 }
 
 #pragma mark - LLUITableViewLongPressGestureRecognizerDelegate
 - (void)LL_tableViewCellDidLongPress:(UITableViewCell *)cell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    LLSandboxModel *model = self.sandboxModel.subModels[indexPath.row];
+    LLSandboxModel *model = self.datas[indexPath.row];
     [UIPasteboard generalPasteboard].string = model.filePath;
     [self toastMessage:[NSString stringWithFormat:@"Copy File Path Success\n%@",model.filePath]];
 }

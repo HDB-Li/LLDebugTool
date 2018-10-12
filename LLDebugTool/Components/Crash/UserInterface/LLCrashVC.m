@@ -78,9 +78,10 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 #pragma mark - Rewrite
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
+    [super deleteFilesWithIndexPaths:indexPaths];
     __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
-        [models addObject:self.dataArray[indexPath.row]];
+        [models addObject:self.datas[indexPath.row]];
     }
     
     __weak typeof(self) weakSelf = self;
@@ -89,6 +90,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
         [LLTool hideLoadingMessage];
         if (result) {
             [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
             [weakSelf showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
@@ -101,10 +103,6 @@ static NSString *const kCrashCellID = @"CrashCellID";
 }
 
 #pragma mark - UITableView
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.dataArray.count;
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLCrashCell *cell = [tableView dequeueReusableCellWithIdentifier:kCrashCellID forIndexPath:indexPath];
     [cell confirmWithModel:self.datas[indexPath.row]];
@@ -114,7 +112,6 @@ static NSString *const kCrashCellID = @"CrashCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (!self.tableView.isEditing) {
-        self.searchController.active = NO;
         LLCrashContentVC *vc = [[LLCrashContentVC alloc] init];
         vc.model = self.datas[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
@@ -122,8 +119,8 @@ static NSString *const kCrashCellID = @"CrashCellID";
 }
 
 #pragma mark - UISearchController
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString *searchText = self.searchController.searchBar.text.lowercaseString;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [super searchBar:searchBar textDidChange:searchText];
     if (searchText.length == 0) {
         [self.searchDataArray removeAllObjects];
         [self.searchDataArray addObjectsFromArray:self.dataArray];
@@ -131,13 +128,12 @@ static NSString *const kCrashCellID = @"CrashCellID";
     } else {
         [self.searchDataArray removeAllObjects];
         for (LLCrashModel *model in self.dataArray) {
-            if ([model.name.lowercaseString containsString:searchText] || [model.reason.lowercaseString containsString:searchText]) {
+            if ([model.name.lowercaseString containsString:searchText.lowercaseString] || [model.reason.lowercaseString containsString:searchText.lowercaseString]) {
                 [self.searchDataArray addObject:model];
             }
         }
         [self.tableView reloadData];
     }
 }
-
 
 @end

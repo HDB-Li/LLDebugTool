@@ -24,7 +24,7 @@
 #import <UIKit/UIKit.h>
 #import "LLBaseModel.h"
 
-@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchResultsUpdating , UISearchControllerDelegate , UISearchBarDelegate>
+@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchBarDelegate>
 
 /**
  * Whether use searchBar and searchController. Default is NO.
@@ -60,7 +60,7 @@
 /**
  * The searchController while use search.
  */
-@property (nonatomic , strong , nullable , readonly) UISearchController *searchController;
+//@property (nonatomic , strong , nullable , readonly) UISearchController *searchController;
 
 /**
  Initial method.
@@ -71,7 +71,7 @@
 /**
  * The searchBar of searchController.
  */
-//@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
+@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
 
 /**
  * Simple toast.
@@ -91,6 +91,7 @@
 - (void)selectAllItemClick:(UIBarButtonItem *)sender;
 - (void)shareItemClick:(UIBarButtonItem *)sender;
 - (void)deleteItemClick:(UIBarButtonItem *)sender;
+- (void)shareFilesWithIndexPaths:(NSArray *)indexPaths;
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths;
 
 @end

@@ -66,10 +66,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self initNavigationItems];
     [self initTableView];
     if (self.isSearchEnable) {
-        [self initSearch];
+        [self initSearchEnableFunction];
     }
     if (self.isSelectEnable) {
-        [self initSelectable];
+        [self initSelectEnableFunction];
     }
     [self resetDefaultSettings];
     self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
@@ -77,10 +77,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    if (self.isSelectEnable) {
-        if (self.tableView.isEditing) {
-            [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
+    if (self.isSearchEnable) {
+        if (self.searchBar.isFirstResponder) {
+            [self.searchBar resignFirstResponder];
         }
+    }
+    if (self.isSelectEnable) {
+        [self endEditing];
     }
 }
 
@@ -108,13 +111,18 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 #pragma mark - Rewrite
 - (NSMutableArray *)datas {
-    if (self.isSearchEnable && self.searchController.isActive) {
+    if (self.isSearchEnable && self.searchBar.text.length != 0) {
         return self.searchDataArray;
     }
     return self.dataArray;
 }
 
 - (void)leftItemClick {
+    if (self.isSearchEnable) {
+        if (self.searchBar.isFirstResponder) {
+            [self.searchBar resignFirstResponder];
+        }
+    }
     [LLRoute showWindow];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -124,8 +132,9 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.tableView setEditing:sender.isSelected animated:YES];
     [self.navigationController setToolbarHidden:!sender.isSelected animated:YES];
     if (self.isSelectEnable) {
-        if (!sender.isSelected) {
+        if (sender.isSelected) {
             self.selectAllItem.title = self.selectAllString;
+            self.selectAllItem.enabled = (self.datas.count != 0);
             self.shareItem.enabled = NO;
             self.deleteItem.enabled = NO;
         }
@@ -147,17 +156,29 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 - (void)shareItemClick:(UIBarButtonItem *)sender {
-    
+    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
+    if (indexPaths.count) {
+        [self shareFilesWithIndexPaths:indexPaths];
+    }
 }
 
 - (void)deleteItemClick:(UIBarButtonItem *)sender {
     NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
     [self showDeleteAlertWithIndexPaths:indexPaths];
-    [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
+}
+
+- (void)shareFilesWithIndexPaths:(NSArray *)indexPaths {
+    
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    
+    [self endEditing];
+}
+
+- (void)endEditing {
+    if (self.tableView.isEditing) {
+        [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
+    }
 }
 
 #pragma mark - Primary
@@ -182,7 +203,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 - (void)initTableView {
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:_style];
     [self.view addSubview:self.tableView];
-    self.tableView.bounces = NO;
+//    self.tableView.bounces = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedSectionFooterHeight = 0;
@@ -197,14 +218,12 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
 }
 
-- (void)initSearch {
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
+- (void)initSearchEnableFunction {
+    _searchBar = [[UISearchBar alloc] init];
     self.searchBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
     self.searchBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.searchBar.delegate = self;
+    self.searchBar.enablesReturnKeyAutomatically = NO;
     [self.searchBar sizeToFit];
 
     UIView *view = [[UIView alloc] init];
@@ -213,7 +232,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.tableView.tableHeaderView = view;
 }
 
-- (void)initSelectable {
+- (void)initSelectEnableFunction {
     self.selectAllString = @"Select All";
     self.cancelAllString = @"Cancel All";
     
@@ -273,10 +292,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (UISearchBar *)searchBar {
-    return self.searchController.searchBar;
-}
-
 - (void)updateTableViewCellSelectedStyle:(BOOL)selected {
     NSInteger row = [self tableView:self.tableView numberOfRowsInSection:0];
     for (int j = 0; j < row; j++) {
@@ -304,7 +319,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
-        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete the %ld items?" , indexPaths.count] handler:^(NSInteger action) {
+        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?" , indexPaths.count] handler:^(NSInteger action) {
             if (action == 1) {
                 [self deleteFilesWithIndexPaths:indexPaths];
             }
@@ -380,19 +395,32 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     return UITableViewCellEditingStyleNone;
 }
 
-
-#pragma mark - UISearchController
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
+#pragma mark - UIScrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (self.isSearchEnable && self.searchBar.isFirstResponder) {
+        [self.searchBar resignFirstResponder];
+    }
 }
 
-- (void)willPresentSearchController:(UISearchController *)searchController {
-    if (self.tableView.isEditing) {
-        [self rightItemClick:self.navigationItem.rightBarButtonItem.customView];
+#pragma mark - UISearchBar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if ([self.selectAllItem.title isEqualToString:self.cancelAllString]) {
+        self.selectAllItem.title = self.selectAllString;
     }
-    [self.searchDataArray removeAllObjects];
-    [self.searchDataArray addObjectsFromArray:self.dataArray];
-    [self.tableView reloadData];
+    if (self.isDeleteEnable && self.deleteItem.isEnabled) {
+        self.deleteItem.enabled = NO;
+        self.shareItem.enabled = NO;
+    }
+//    if (self.datas.count == 0 && self.selectAllItem.isEnabled == YES) {
+//        self.selectAllItem.enabled = NO;
+//    } else if (self.datas.count != 0 && self.selectAllItem.isEnabled == NO){
+//        self.selectAllItem.enabled = YES;
+//    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    [self searchBar:searchBar textDidChange:searchBar.text];
 }
 
 @end
