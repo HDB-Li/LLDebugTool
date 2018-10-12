@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajv-Qp-EGh">
-                        <rect key="frame" x="65" y="5" width="216" height="22.5"/>
+                        <rect key="frame" x="60" y="5" width="221" height="22.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="gxP-SH-3an"/>
                         </constraints>
@@ -28,14 +28,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sMU-ah-ZUO">
-                        <rect key="frame" x="10" y="12.5" width="45" height="45"/>
+                        <rect key="frame" x="10" y="15" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="sMU-ah-ZUO" secondAttribute="height" multiplier="1:1" id="KF4-Gt-Q7G"/>
-                            <constraint firstAttribute="width" constant="45" id="ZJc-1u-Nsd"/>
+                            <constraint firstAttribute="width" constant="40" id="ZJc-1u-Nsd"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX5-ja-Ibu">
-                        <rect key="frame" x="65" y="49.5" width="30.5" height="15"/>
+                        <rect key="frame" x="60" y="49.5" width="30.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="WdU-cw-cUz"/>
                         </constraints>
@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ada-eS-SMj">
-                        <rect key="frame" x="65" y="32.5" width="27.5" height="15"/>
+                        <rect key="frame" x="60" y="32.5" width="27.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="1MR-rL-pzx"/>
                         </constraints>
