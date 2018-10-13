@@ -113,7 +113,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
         }
         
         [self.titleArray addObject:@"Level"];
-        [self.contentArray addObject:@"level"];
+        [self.contentArray addObject:self.model.levelDescription];
 
         if (self.model.userIdentity.length) {
             [self.titleArray addObject:@"UserIdentity"];
