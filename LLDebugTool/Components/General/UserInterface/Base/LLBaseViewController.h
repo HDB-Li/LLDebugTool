@@ -24,10 +24,10 @@
 #import <UIKit/UIKit.h>
 #import "LLBaseModel.h"
 
-@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate , UISearchBarDelegate>
+@interface LLBaseViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UISearchBarDelegate>
 
 /**
- * Whether use searchBar and searchController. Default is NO.
+ * Whether use searchBar. Default is NO.
  */
 @property (nonatomic , assign) BOOL isSearchEnable;
 
@@ -36,44 +36,66 @@
  */
 @property (nonatomic , assign) BOOL isSelectEnable;
 
+/**
+ * Whether shareable. Default is NO.
+ */
 @property (nonatomic , assign) BOOL isShareEnable;
 
+/**
+ * Whether deleteable. Default is NO.
+ */
 @property (nonatomic , assign) BOOL isDeleteEnable;
 
-@property (nonatomic , strong , nullable , readonly) UIView *headerView;
-
 /**
- * The default tableView.
+ * The default tableView in view controller.
  */
 @property (nonatomic , strong , nonnull , readonly) UITableView *tableView;
 
+/**
+ * Original data array.
+ */
 @property (nonatomic , strong , nonnull , readonly) NSMutableArray *dataArray;
 
+/**
+ * Filter data array.
+ */
 @property (nonatomic , strong , nonnull , readonly) NSMutableArray *searchDataArray;
 
+/**
+ * Automatic data array dealed by search or filter.
+ */
 @property (nonatomic , strong , nonnull , readonly) NSMutableArray *datas;
 
+/**
+ * Header view use to show searchBar and filter view.
+ */
+@property (nonatomic , strong , nullable , readonly) UIView *headerView;
+
+/**
+ * The searchBar in view controller.
+ */
+@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
+
+/**
+ * Select all item in toolbar.
+ */
 @property (nonatomic , strong , nullable , readonly) UIBarButtonItem *selectAllItem;
 
+/**
+ * Share item in toolbar.
+ */
 @property (nonatomic , strong , nullable , readonly) UIBarButtonItem *shareItem;
 
+/**
+ * Delete item in toolbar.
+ */
 @property (nonatomic , strong , nullable , readonly) UIBarButtonItem *deleteItem;
 
 /**
- * The searchController while use search.
- */
-//@property (nonatomic , strong , nullable , readonly) UISearchController *searchController;
-
-/**
- Initial method.
+ * Initial method.
  */
 - (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
 - (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
-
-/**
- * The searchBar of searchController.
- */
-@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
 
 /**
  * Simple toast.
@@ -87,15 +109,23 @@
 
 #pragma mark - Rewrite
 /**
- * Right item action.
+ * Right item action. Must call super method.
  */
 - (void)rightItemClick:(UIButton *_Nonnull)sender;
-- (void)selectAllItemClick:(UIBarButtonItem *_Nonnull)sender;
-- (void)shareItemClick:(UIBarButtonItem *_Nonnull)sender;
-- (void)deleteItemClick:(UIBarButtonItem *_Nonnull)sender;
+
+/**
+ * Share files action. Must call super method.
+ */
 - (void)shareFilesWithIndexPaths:(NSArray *_Nonnull)indexPaths;
+
+/**
+ * Delete files action. Must call super method.
+ */
 - (void)deleteFilesWithIndexPaths:(NSArray *_Nonnull)indexPaths;
 
+/**
+ * Rewrite method to control whether is searching. Must call super method.
+ */
 - (BOOL)isSearching;
 
 @end
