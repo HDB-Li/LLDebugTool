@@ -35,7 +35,7 @@
 
 static NSString *const kLogCellID = @"LLLogCell";
 
-@interface LLLogVC () <UISearchBarDelegate>
+@interface LLLogVC ()
 
 @property (nonatomic , strong) LLLogFilterView *filterView;
 
@@ -66,10 +66,6 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
