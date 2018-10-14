@@ -37,13 +37,6 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @interface LLLogVC () <UISearchBarDelegate>
 
-//@property (nonatomic , strong) UISearchBar *searchBar;
-
-
-@property (nonatomic , strong) NSMutableArray *totalDataArray;
-
-@property (nonatomic , copy) NSString *searchText;
-
 @property (nonatomic , strong) LLLogFilterView *filterView;
 
 // Data
@@ -63,6 +56,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 {
     self = [super init];
     if (self) {
+        self.isSearchEnable = YES;
         self.isSelectEnable = YES;
         self.isDeleteEnable = YES;
     }
@@ -80,133 +74,80 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    if (self.tableView.isEditing) {
-        [self rightItemClick];
-    }
     [self.filterView cancelFiltering];
 }
 
-- (void)rightItemClick {
+- (void)rightItemClick:(UIButton *)sender {
     if (self.filterView.isFiltering) {
         return;
     }
-    UIBarButtonItem *buttonItem = self.navigationItem.rightBarButtonItem;
-    UIButton *btn = buttonItem.customView;
-    if (!btn.isSelected) {
-        if (self.dataArray.count) {
-            btn.selected = !btn.selected;
-            [self.tableView setEditing:YES animated:YES];
-            self.deleteItem.enabled = NO;
-            [self.navigationController setToolbarHidden:NO animated:YES];
-        }
-    } else {
-        btn.selected = !btn.selected;
-        [self.tableView setEditing:NO animated:YES];
-        [self.navigationController setToolbarHidden:YES animated:YES];
+    [super rightItemClick:sender];
+}
+
+- (BOOL)isSearching {
+    return [super isSearching] || self.currentLevels.count || self.currentEvents.count || self.currentFile.length || self.currentFunc.length || self.currentFromDate || self.currentEndDate || self.currentUserIdentities.count;
+}
+
+- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
+    [super deleteFilesWithIndexPaths:indexPaths];
+    __block NSMutableArray *models = [[NSMutableArray alloc] init];
+    for (NSIndexPath *indexPath in indexPaths) {
+        [models addObject:self.datas[indexPath.row]];
     }
-}
-
-- (void)selectAllItemClick:(UIBarButtonItem *)item {
-    if ([item.title isEqualToString:@"Select All"]) {
-        item.title = @"Cancel All";
-        self.deleteItem.enabled = YES;
-        for (int i = 0; i < self.dataArray.count; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    __weak typeof(self) weakSelf = self;
+    [LLTool loadingMessage:@"Deleting"];
+    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+        [LLTool hideLoadingMessage];
+        if (result) {
+            [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.searchDataArray removeObjectsInArray:models];
+            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        } else {
+            [weakSelf showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
+                if (action == 1) {
+                    [weakSelf loadData];
+                }
+            }];
         }
-    } else {
-        item.title = @"Select All";
-        self.deleteItem.enabled = NO;
-        for (int i = 0; i < self.dataArray.count; i++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        }
-    }
+    }];
 }
 
-- (void)deleteItemClick:(UIBarButtonItem *)item {
-    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
-    [self showDeleteAlertWithIndexPaths:indexPaths];
-    [self rightItemClick];
-}
-
-#pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
-}
-
+#pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLLogCell *cell = [tableView dequeueReusableCellWithIdentifier:kLogCellID forIndexPath:indexPath];
-    [cell confirmWithModel:self.dataArray[indexPath.row]];
+    [cell confirmWithModel:self.datas[indexPath.row]];
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (self.tableView.isEditing == NO) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
         LLLogContentVC *vc = [[LLLogContentVC alloc] init];
-        vc.model = self.dataArray[indexPath.row];
+        vc.model = self.datas[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        self.deleteItem.enabled = YES;
-        if (self.tableView.indexPathsForSelectedRows.count == self.dataArray.count) {
-            if ([self.selectAllItem.title isEqualToString:@"Select All"]) {
-                self.selectAllItem.title = @"Cancel All";
-            }
-        }
     }
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.tableView.isEditing) {
-        if ([self.selectAllItem.title isEqualToString:@"Select All"] == NO) {
-            self.selectAllItem.title = @"Select All";
-        }
-        if (self.tableView.indexPathsForSelectedRows.count == 0) {
-            self.deleteItem.enabled = NO;
-        }
-    }
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self showDeleteAlertWithIndexPaths:@[indexPath]];
-    }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return self.searchBar.frame.size.height + 40;
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [super scrollViewWillBeginDragging:scrollView];
     [self.filterView cancelFiltering];
 }
 
 #pragma mark - UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [searchBar setShowsCancelButton:YES animated:YES];
     [self.filterView cancelFiltering];
-    if (self.tableView.isEditing) {
-        [self rightItemClick];
-    }
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    self.searchText = self.searchBar.text;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [super
+     searchBar:searchBar textDidChange:searchText];
     [self.filterView cancelFiltering];
     [self filterData];
-    [searchBar resignFirstResponder];
-    
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    searchBar.text = self.searchText;
 }
 
 #pragma mark - Primary
@@ -214,49 +155,29 @@ static NSString *const kLogCellID = @"LLLogCell";
     if (_launchDate == nil) {
         _launchDate = [NSObject LL_launchDate];
     }
-    
-    self.totalDataArray = [[NSMutableArray alloc] init];
-    
+        
     // TableView
     [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kLogCellID];
     
-//    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11) {
-//        self.searchBar = [[LLSearchBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
-//        self.searchBar.delegate = self;
-//        UIView *titleView = [[LLSearchBarBackView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH - 120, 40)];
-//        [titleView addSubview:self.searchBar];
-//        self.navigationItem.titleView = titleView;
-//    } else {
-//        self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-//        self.searchBar.delegate = self;
-//        self.navigationItem.titleView = self.searchBar;
-//    }
-//    self.searchBar.enablesReturnKeyAutomatically = NO;
+    self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
+    __weak typeof(self) weakSelf = self;
+    self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
+        weakSelf.currentLevels = levels;
+        weakSelf.currentEvents = events;
+        weakSelf.currentFile = file;
+        weakSelf.currentFunc = func;
+        weakSelf.currentFromDate= from;
+        weakSelf.currentEndDate = end;
+        weakSelf.currentUserIdentities = userIdentities;
+        [weakSelf filterData];
+    };
+    [self.filterView configWithData:self.dataArray];
     
-    [self initFilterView];
+    [self.headerView addSubview:self.filterView];
+    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
     
     [self loadData];
 }
-
-- (void)initFilterView {
-    if (self.filterView == nil) {
-        self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, 40)];
-        __weak typeof(self) weakSelf = self;
-        self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
-            weakSelf.currentLevels = levels;
-            weakSelf.currentEvents = events;
-            weakSelf.currentFile = file;
-            weakSelf.currentFunc = func;
-            weakSelf.currentFromDate= from;
-            weakSelf.currentEndDate = end;
-            weakSelf.currentUserIdentities = userIdentities;
-            [weakSelf filterData];
-        };
-        [self.filterView configWithData:self.totalDataArray];
-        [self.view addSubview:self.filterView];
-    }
-}
-
 
 - (void)loadData {
     self.searchBar.text = nil;
@@ -264,25 +185,25 @@ static NSString *const kLogCellID = @"LLLogCell";
     [LLTool loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
         [LLTool hideLoadingMessage];
-        [weakSelf.totalDataArray removeAllObjects];
-        [weakSelf.totalDataArray addObjectsFromArray:result];
         [weakSelf.dataArray removeAllObjects];
-        [weakSelf.dataArray addObjectsFromArray:weakSelf.totalDataArray];
-        [weakSelf.filterView configWithData:weakSelf.totalDataArray];
+        [weakSelf.dataArray addObjectsFromArray:result];
+        [weakSelf.searchDataArray removeAllObjects];
+        [weakSelf.searchDataArray addObjectsFromArray:weakSelf.dataArray];
+        [weakSelf.filterView configWithData:weakSelf.dataArray];
         [weakSelf.tableView reloadData];
     }];
 }
 
 - (void)filterData {
     @synchronized (self) {
-        [self.dataArray removeAllObjects];
-        [self.dataArray addObjectsFromArray:self.totalDataArray];
+        [self.searchDataArray removeAllObjects];
+        [self.searchDataArray addObjectsFromArray:self.dataArray];
         
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        for (LLLogModel *model in self.totalDataArray) {
+        for (LLLogModel *model in self.dataArray) {
             // Filter "Search"
-            if (self.searchText.length) {
-                if (![model.message.lowercaseString containsString:self.searchText.lowercaseString]) {
+            if (self.searchBar.text.length) {
+                if (![model.message.lowercaseString containsString:self.searchBar.text.lowercaseString]) {
                     [tempArray addObject:model];
                     continue;
                 }
@@ -342,42 +263,9 @@ static NSString *const kLogCellID = @"LLLogCell";
                 }
             }
         }
-        [self.dataArray removeObjectsInArray:tempArray];
+        [self.searchDataArray removeObjectsInArray:tempArray];
         [self.tableView reloadData];
     }
-}
-
-- (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
-    if (indexPaths.count) {
-        [self showAlertControllerWithMessage:@"Sure to remove items ?" handler:^(NSInteger action) {
-            if (action == 1) {
-                [self deleteFilesWithIndexPaths:indexPaths];
-            }
-        }];
-    }
-}
-
-- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
-    __block NSMutableArray *models = [[NSMutableArray alloc] init];
-    for (NSIndexPath *indexPath in indexPaths) {
-        [models addObject:self.dataArray[indexPath.row]];
-    }
-    __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Deleting"];
-    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
-        [LLTool hideLoadingMessage];
-        if (result) {
-            [weakSelf.totalDataArray removeObjectsInArray:models];
-            [weakSelf.dataArray removeObjectsInArray:models];
-            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        } else {
-            [weakSelf showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
-                if (action == 1) {
-                    [weakSelf loadData];
-                }
-            }];
-        }
-    }];
 }
 
 @end
