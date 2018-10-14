@@ -26,8 +26,6 @@
 
 @interface LLCrashCell : LLBaseTableViewCell
 
-@property (weak, nonatomic, readonly , nullable) IBOutlet UILabel *reasonLabel;
-
 - (void)confirmWithModel:(LLCrashModel *_Nonnull)model;
 
 @end

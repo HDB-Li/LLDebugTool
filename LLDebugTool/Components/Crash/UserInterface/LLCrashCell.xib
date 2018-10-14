@@ -57,7 +57,7 @@
             <connections>
                 <outlet property="dateLabel" destination="0xW-RG-sJg" id="vKD-CN-i8z"/>
                 <outlet property="nameLabel" destination="u3i-GP-Otw" id="N7C-cv-NWu"/>
-                <outlet property="reasonLabel" destination="iEy-V6-PQ0" id="26x-g1-8H7"/>
+                <outlet property="reasonLabel" destination="iEy-V6-PQ0" id="pE4-hh-7ox"/>
             </connections>
         </tableViewCell>
     </objects>
