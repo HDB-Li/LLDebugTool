@@ -40,6 +40,8 @@
 
 @property (nonatomic , assign) BOOL isDeleteEnable;
 
+@property (nonatomic , strong , nullable , readonly) UIView *headerView;
+
 /**
  * The default tableView.
  */
@@ -87,11 +89,13 @@
 /**
  * Right item action.
  */
-- (void)rightItemClick:(UIButton *)sender;
-- (void)selectAllItemClick:(UIBarButtonItem *)sender;
-- (void)shareItemClick:(UIBarButtonItem *)sender;
-- (void)deleteItemClick:(UIBarButtonItem *)sender;
-- (void)shareFilesWithIndexPaths:(NSArray *)indexPaths;
-- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths;
+- (void)rightItemClick:(UIButton *_Nonnull)sender;
+- (void)selectAllItemClick:(UIBarButtonItem *_Nonnull)sender;
+- (void)shareItemClick:(UIBarButtonItem *_Nonnull)sender;
+- (void)deleteItemClick:(UIBarButtonItem *_Nonnull)sender;
+- (void)shareFilesWithIndexPaths:(NSArray *_Nonnull)indexPaths;
+- (void)deleteFilesWithIndexPaths:(NSArray *_Nonnull)indexPaths;
+
+- (BOOL)isSearching;
 
 @end

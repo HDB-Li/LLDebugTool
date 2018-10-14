@@ -111,7 +111,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 #pragma mark - Rewrite
 - (NSMutableArray *)datas {
-    if (self.isSearchEnable && self.searchBar.text.length != 0) {
+    if (self.isSearchEnable && [self isSearching]) {
         return self.searchDataArray;
     }
     return self.dataArray;
@@ -181,6 +181,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
 }
 
+- (BOOL)isSearching {
+    return self.searchBar.text.length;
+}
+
 #pragma mark - Primary
 - (void)initNavigationItems {
     if (self.navigationController.viewControllers.count <= 1) {
@@ -216,6 +220,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
     self.tableView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
+
 }
 
 - (void)initSearchEnableFunction {
@@ -226,10 +231,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.searchBar.enablesReturnKeyAutomatically = NO;
     [self.searchBar sizeToFit];
 
-    UIView *view = [[UIView alloc] init];
-    [view addSubview:self.searchBar];
-    view.frame = self.searchBar.bounds;
-    self.tableView.tableHeaderView = view;
+    _headerView = [[UIView alloc] init];
+    [self.view addSubview:_headerView];
+    [self.headerView addSubview:self.searchBar];
+    self.headerView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height);
 }
 
 - (void)initSelectEnableFunction {
@@ -345,6 +350,9 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.isSearchEnable) {
+        return self.searchBar.frame.size.height;
+    }
     return CGFLOAT_MIN;
 }
 
