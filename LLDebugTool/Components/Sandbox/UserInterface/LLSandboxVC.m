@@ -109,8 +109,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         }
     }
     [self.dataArray removeObjectsInArray:finishedModels];
-    [self.searchDataArray removeObjectsInArray:finishedModels];
-    [self.tableView deleteRowsAtIndexPaths:finishedIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self searchBar:self.searchBar textDidChange:self.searchBar.text];
 }
 
 - (NSMutableArray *)dataArray {
