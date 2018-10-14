@@ -140,7 +140,7 @@ static NSString *const kEventCellID = @"EventCellID";
     _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.bounces = YES;
+//    _collectionView.bounces = YES;
     _collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
     [_collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kEventCellID];
     [self addSubview:_collectionView];

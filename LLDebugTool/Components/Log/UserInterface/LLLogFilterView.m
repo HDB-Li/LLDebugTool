@@ -136,6 +136,14 @@
     }
     [self.filterViews addObject:self.eventView];
     self.eventView.hidden = YES;
+    CGFloat lineNo = (eventArray.count / self.eventView.averageCount + (eventArray.count % self.eventView.averageCount == 0 ? 0 : 1));
+    if (lineNo > 6) {
+        lineNo = 6;
+    } else if (lineNo < 1) {
+        lineNo = 1;
+    }
+    CGFloat eventHeight = lineNo * 40 + 10;
+    self.eventView.frame = CGRectMake(self.eventView.frame.origin.x, self.eventView.frame.origin.y, self.eventView.frame.size.width, eventHeight);
     [self.eventView updateDataArray:eventArray];
     
     // Other Part
@@ -224,10 +232,14 @@
 - (void)showDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
     view.hidden = NO;
-    view.alpha = 0;
+//    view.alpha = 0;
+    CGRect rect = view.frame;
+    view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, 0);
     [UIView animateWithDuration:0.25 animations:^{
-        view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, view.bounds.size.height);
-        view.alpha = 1;
+        view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, rect.size.height);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, view.frame.size.height + self.normalFrame.size.height);
+        self.superview.frame = CGRectMake(self.superview.frame.origin.x, self.superview.frame.origin.y, self.superview.frame.size.width, self.superview.frame.size.height + rect.size.height);
+//        view.alpha = 1;
     } completion:^(BOOL finished) {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, view.frame.size.height + self.normalFrame.size.height);
         //        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, [UIScreen mainScreen].bounds.size.height - self.frame.origin.y);
@@ -236,11 +248,14 @@
 
 - (void)hideDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
+    CGRect rect = view.frame;
     [UIView animateWithDuration:0.1 animations:^{
-        view.frame = CGRectMake(0, -view.bounds.size.height, view.bounds.size.width, view.bounds.size.height);
-        view.alpha = 0;
-    } completion:^(BOOL finished) {
+        view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, 0);
         self.frame = self.normalFrame;
+        self.superview.frame = CGRectMake(self.superview.frame.origin.x, self.superview.frame.origin.y, self.superview.frame.size.width, self.superview.frame.size.height - rect.size.height);
+//        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        view.frame = CGRectMake(0, self.normalFrame.size.height, rect.size.width, rect.size.height);
         view.hidden = YES;
     }];
 }
@@ -249,6 +264,7 @@
     if (!_levelView) {
         _levelView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 50)];
         _levelView.averageCount = 4;
+        _levelView.clipsToBounds = YES;
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         for (NSString *level in [LLLogHelper levelsDescription]) {
             LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:level];
@@ -270,6 +286,7 @@
     if (!_eventView) {
         _eventView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
         _eventView.averageCount = 3;
+        _eventView.clipsToBounds = YES;
         __weak typeof(self) weakSelf = self;
         _eventView.changeBlock = ^(NSArray *events) {
             weakSelf.currentEvents = events;
@@ -284,6 +301,7 @@
 - (LLFilterOtherView *)otherView {
     if (!_otherView) {
         _otherView = [[LLFilterOtherView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 295)];
+        _otherView.clipsToBounds = YES;
         __weak typeof(self) weakSelf = self;
         _otherView.changeBlock = ^(NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
             weakSelf.currentFile = file;
