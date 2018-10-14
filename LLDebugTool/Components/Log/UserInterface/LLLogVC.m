@@ -152,6 +152,8 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 #pragma mark - Primary
 - (void)initial {
+    self.navigationItem.title = @"Log Tracker";
+    
     if (_launchDate == nil) {
         _launchDate = [NSObject LL_launchDate];
     }
