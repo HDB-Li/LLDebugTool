@@ -74,10 +74,8 @@ static NSString *const kLogCellID = @"LLLogCell";
 }
 
 - (void)rightItemClick:(UIButton *)sender {
-    if (self.filterView.isFiltering) {
-        return;
-    }
     [super rightItemClick:sender];
+    [self.filterView cancelFiltering];
 }
 
 - (BOOL)isSearching {
