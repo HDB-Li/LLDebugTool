@@ -115,6 +115,14 @@
         LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:host];
         [hostArray addObject:model];
     }
+    CGFloat lineNo = (hostArray.count / self.hostView.averageCount + (hostArray.count % self.hostView.averageCount == 0 ? 0 : 1));
+    if (lineNo > 6) {
+        lineNo = 6;
+    } else if (lineNo < 1) {
+        lineNo = 1;
+    }
+    CGFloat eventHeight = lineNo * 40 + 10;
+    self.hostView.frame = CGRectMake(self.hostView.frame.origin.x, self.hostView.frame.origin.y, self.hostView.frame.size.width, eventHeight);
     [self.hostView updateDataArray:hostArray];
     
     // Type Part
@@ -205,10 +213,14 @@
 - (void)showDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
     view.hidden = NO;
-    view.alpha = 0;
+    //    view.alpha = 0;
+    CGRect rect = view.frame;
+    view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, 0);
     [UIView animateWithDuration:0.25 animations:^{
-        view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, view.bounds.size.height);
-        view.alpha = 1;
+        view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, rect.size.height);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, view.frame.size.height + self.normalFrame.size.height);
+        self.superview.frame = CGRectMake(self.superview.frame.origin.x, self.superview.frame.origin.y, self.superview.frame.size.width, self.superview.frame.size.height + rect.size.height);
+        //        view.alpha = 1;
     } completion:^(BOOL finished) {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, view.frame.size.height + self.normalFrame.size.height);
         //        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, [UIScreen mainScreen].bounds.size.height - self.frame.origin.y);
@@ -217,11 +229,14 @@
 
 - (void)hideDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
+    CGRect rect = view.frame;
     [UIView animateWithDuration:0.1 animations:^{
-        view.frame = CGRectMake(0, -view.bounds.size.height, view.bounds.size.width, view.bounds.size.height);
-        view.alpha = 0;
-    } completion:^(BOOL finished) {
+        view.frame = CGRectMake(0, self.normalFrame.size.height, view.bounds.size.width, 0);
         self.frame = self.normalFrame;
+        self.superview.frame = CGRectMake(self.superview.frame.origin.x, self.superview.frame.origin.y, self.superview.frame.size.width, self.superview.frame.size.height - rect.size.height);
+        //        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        view.frame = CGRectMake(0, self.normalFrame.size.height, rect.size.width, rect.size.height);
         view.hidden = YES;
     }];
 }
@@ -229,6 +244,7 @@
 - (LLFilterEventView *)hostView {
     if (!_hostView) {
         _hostView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 100)];
+        _hostView.clipsToBounds = YES;
         _hostView.averageCount = 3;
         __weak typeof(self) weakSelf = self;
         _hostView.changeBlock = ^(NSArray *hosts) {
@@ -244,6 +260,7 @@
 - (LLFilterEventView *)typeView {
     if (!_typeView) {
         _typeView = [[LLFilterEventView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 50)];
+        _typeView.clipsToBounds = YES;
         _typeView.averageCount = 3;
         LLFilterLabelModel *model1 = [[LLFilterLabelModel alloc] initWithMessage:@"Header"];
         LLFilterLabelModel *model2 = [[LLFilterLabelModel alloc] initWithMessage:@"Body"];
@@ -263,6 +280,7 @@
 - (LLFilterDateView *)dateView {
     if (!_dateView) {
         _dateView = [[LLFilterDateView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 110)];
+        _dateView.clipsToBounds = YES;
         __weak typeof(self) weakSelf = self;
         _dateView.changeBlock = ^(NSDate *from, NSDate *end) {
             weakSelf.currentFromDate = from;
