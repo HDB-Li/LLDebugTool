@@ -27,8 +27,8 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 
-static NSString *const kLLAppInfoVCCellID = @"LLAppInfoVCCellID";
-static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
+static NSString *const kAppInfoCellID = @"LLAppInfoVCCellID";
+static NSString *const kAppInfoHeaderID = @"HeaderID";
 
 @interface LLAppInfoVC ()
 
@@ -60,7 +60,7 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 
 #pragma mark - Primary
 - (void)initial {
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kLLAppInfoVCHeaderID];
+    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kAppInfoHeaderID];
 }
 
 #pragma mark - LLAppHelperNotification
@@ -89,9 +89,9 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLLAppInfoVCCellID];
+    LLBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kAppInfoCellID];
     if (!cell) {
-        cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kLLAppInfoVCCellID];
+        cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kAppInfoCellID];
         cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
         cell.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         cell.detailTextLabel.minimumScaleFactor = 0.5;
@@ -112,7 +112,7 @@ static NSString *const kLLAppInfoVCHeaderID = @"HeaderID";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLLAppInfoVCHeaderID];
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kAppInfoHeaderID];
     view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30);
     if (view.backgroundView == nil) {
         view.backgroundView = [[UIView alloc] initWithFrame:view.bounds];
