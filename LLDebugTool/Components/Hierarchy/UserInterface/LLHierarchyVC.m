@@ -22,6 +22,10 @@
 //  SOFTWARE.
 
 #import "LLHierarchyVC.h"
+#import "LLHierarchyCell.h"
+#import "LLConfig.h"
+
+static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 @interface LLHierarchyVC ()
 
@@ -29,24 +33,54 @@
 
 @implementation LLHierarchyVC
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isSearchEnable = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initial];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Primary
+- (void)initial {
+    if (self.model.isRoot) {
+        self.navigationItem.title = @"Application";
+    } else {
+        self.navigationItem.title = self.model.viewClass;
+    }
+    
+    // TableView
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];
+    
+    [self loadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)loadData {
+    
 }
-*/
+
+- (NSMutableArray *)dataArray {
+    return self.model.subModels;
+}
+
+#pragma mark - TableView
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [super searchBar:searchBar textDidChange:searchText];
+}
 
 @end

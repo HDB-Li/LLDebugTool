@@ -55,14 +55,15 @@ static LLHierarchyHelper *_instance = nil;
     return windows;
 }
 
-- (NSArray <LLHierarchyModel *>*)hierarchyInApplication {
+- (LLHierarchyModel *)hierarchyInApplication {
     NSMutableArray <LLHierarchyModel *>*allViews = [NSMutableArray array];
     NSArray <UIWindow *>*windows = [self allWindows];
     for (int i = 0; i < windows.count; i++) {
         UIWindow *window = windows[i];
-        [allViews addObject:[self hierarchyInView:window]];
+        [allViews addObject:[self hierarchyInView:window section:0 row:i]];
     }
-    return allViews;
+    LLHierarchyModel *model = [[LLHierarchyModel alloc] initWithSubModels:allViews];
+    return model;
 }
 
 - (LLHierarchyModel *)hierarchyInView:(UIView *)view {

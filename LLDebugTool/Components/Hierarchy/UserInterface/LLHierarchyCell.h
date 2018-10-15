@@ -1,5 +1,5 @@
 //
-//  LLHierarchyModel.h
+//  LLHierarchyCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
+#import "LLBaseTableViewCell.h"
+#import "LLHierarchyModel.h"
 
-@interface LLHierarchyModel : LLBaseModel
+@interface LLHierarchyCell : LLBaseTableViewCell
 
-@property (nonatomic , strong , readonly , nonnull) NSMutableArray <LLHierarchyModel *>*subModels;
-
-@property (nonatomic , strong , readonly , nullable) UIView *view;
-
-@property (nonatomic , assign , readonly) NSInteger section;
-
-@property (nonatomic , assign , readonly) NSInteger row;
-
-@property (nonatomic , copy , readonly , nullable) NSString *viewClass;
-
-@property (nonatomic , assign , readonly) BOOL isRoot;
-
-- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSMutableArray <LLHierarchyModel *>*_Nullable)subModels;
-
-- (instancetype _Nonnull)initWithSubModels:(NSMutableArray <LLHierarchyModel *>*_Nonnull)subModels;
+- (void)confirmWithModel:(LLHierarchyModel *)model;
 
 @end

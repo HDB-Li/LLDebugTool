@@ -25,12 +25,20 @@
 
 @implementation LLHierarchyModel
 
-- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSArray <LLHierarchyModel *>*_Nullable)subModels {
+- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSMutableArray <LLHierarchyModel *>*_Nullable)subModels {
     if (self = [super init]) {
         _view = view;
         _section = section;
         _row = row;
         _subModels = subModels;
+    }
+    return self;
+}
+
+- (instancetype _Nonnull)initWithSubModels:(NSMutableArray <LLHierarchyModel *>*_Nonnull)subModels {
+    if (self = [super init]) {
+        _subModels = subModels;
+        _isRoot = YES;
     }
     return self;
 }

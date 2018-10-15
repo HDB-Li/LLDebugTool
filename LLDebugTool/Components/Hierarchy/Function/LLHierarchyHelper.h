@@ -31,7 +31,7 @@
 
 - (NSArray <UIWindow *>*_Nonnull)allWindows;
 
-- (NSArray <LLHierarchyModel *>*_Nonnull)hierarchyInApplication;
+- (LLHierarchyModel *_Nonnull)hierarchyInApplication;
 
 - (LLHierarchyModel *_Nonnull)hierarchyInView:(UIView *_Nonnull)view;
 

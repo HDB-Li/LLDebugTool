@@ -80,4 +80,14 @@ static NSString *const kSandboxFileZipImageName = @"LL-zip";
 static NSString *const kSandboxFileFolderImageName = @"LL-folder";
 static NSString *const kSandboxFileEmptyFolderImageName = @"LL-folder-empty";
 
+// Common 2c2c2c
+static NSString *const kLeftImageName = @"LL-left";
+static NSString *const kRightImageName = @"LL-right";
+static NSString *const kTopImageName = @"LL-top";
+static NSString *const kBottomImageName = @"LL-bottom";
+
+// Hierarchy
+static NSString *const kPickImageName = @"LL-pick";
+static NSString *const kInfoImageName = @"LL-info";
+
 #endif /* LLImageNameConfig_h */

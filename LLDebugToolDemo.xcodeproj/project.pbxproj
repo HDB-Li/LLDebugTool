@@ -27,6 +27,8 @@
 		369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09392153855D001C9D4B /* LLLogFilterView.m */; };
 		369D093E2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D093D2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
+		36B2373521749781008A5D96 /* LLHierarchyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B2373321749781008A5D96 /* LLHierarchyCell.m */; };
+		36B2373621749781008A5D96 /* LLHierarchyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B2373421749781008A5D96 /* LLHierarchyCell.xib */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
 		36FA262E215DB9F500462EA8 /* LLHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA262D215DB9F500462EA8 /* LLHierarchyHelper.m */; };
@@ -171,6 +173,9 @@
 		369D093D2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+LL_Swizzling.m"; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
+		36B2373221749781008A5D96 /* LLHierarchyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyCell.h; sourceTree = "<group>"; };
+		36B2373321749781008A5D96 /* LLHierarchyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyCell.m; sourceTree = "<group>"; };
+		36B2373421749781008A5D96 /* LLHierarchyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLHierarchyCell.xib; sourceTree = "<group>"; };
 		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoTests.m; sourceTree = "<group>"; };
 		36E248892123BAE300D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -461,6 +466,9 @@
 			children = (
 				3611B42921605A9200BEAB11 /* LLHierarchyVC.h */,
 				3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */,
+				36B2373221749781008A5D96 /* LLHierarchyCell.h */,
+				36B2373321749781008A5D96 /* LLHierarchyCell.m */,
+				36B2373421749781008A5D96 /* LLHierarchyCell.xib */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1153,6 +1161,7 @@
 				C44F41382152AA7000153F46 /* LLFilterTextFieldCell.xib in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				C44F41352152AA7000153F46 /* LLFilterLabelCell.xib in Resources */,
+				36B2373621749781008A5D96 /* LLHierarchyCell.xib in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				367E27A120A1A8480032EF0D /* Localizable.strings in Resources */,
 				C43BA812205AB095006307BE /* Main.storyboard in Resources */,
@@ -1251,6 +1260,7 @@
 				C44F41232152AA7000153F46 /* LLScreenshotActionView.m in Sources */,
 				C44F413E2152AA7000153F46 /* LLBaseNavigationController.m in Sources */,
 				C44F412B2152AA7000153F46 /* UIButton+LL_Utils.m in Sources */,
+				36B2373521749781008A5D96 /* LLHierarchyCell.m in Sources */,
 				369D09382153853A001C9D4B /* LLLogContentVC.m in Sources */,
 				C44F414B2152AA7000153F46 /* LLCrashHelper.m in Sources */,
 				C44F41442152AA7000153F46 /* LLNetworkImageCell.m in Sources */,

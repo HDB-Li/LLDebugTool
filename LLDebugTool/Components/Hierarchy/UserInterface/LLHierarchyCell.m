@@ -1,5 +1,5 @@
 //
-//  LLHierarchyModel.h
+//  LLHierarchyCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,48 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
+#import "LLHierarchyCell.h"
 
-@interface LLHierarchyModel : LLBaseModel
+@interface LLHierarchyCell ()
 
-@property (nonatomic , strong , readonly , nonnull) NSMutableArray <LLHierarchyModel *>*subModels;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
-@property (nonatomic , strong , readonly , nullable) UIView *view;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewWidthConstraint;
 
-@property (nonatomic , assign , readonly) NSInteger section;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
-@property (nonatomic , assign , readonly) NSInteger row;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
-@property (nonatomic , copy , readonly , nullable) NSString *viewClass;
+@property (weak, nonatomic) IBOutlet UIImageView *directionImageView;
 
-@property (nonatomic , assign , readonly) BOOL isRoot;
+@property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
-- (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSMutableArray <LLHierarchyModel *>*_Nullable)subModels;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
-- (instancetype _Nonnull)initWithSubModels:(NSMutableArray <LLHierarchyModel *>*_Nonnull)subModels;
+@property (nonatomic , strong) LLHierarchyModel *model;
+
+@end
+
+@implementation LLHierarchyCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initial];
+    // Initialization code
+}
+
+- (void)confirmWithModel:(LLHierarchyModel *)model {
+    _model = model;
+}
+
+#pragma mark - Primary
+- (void)initial {
+    
+}
+
+- (UIColor *)colorFromView:(UIView *)view {
+    CGFloat hue = (((NSUInteger)view >> 4) % 256) / 255.0;
+    return [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+}
 
 @end
