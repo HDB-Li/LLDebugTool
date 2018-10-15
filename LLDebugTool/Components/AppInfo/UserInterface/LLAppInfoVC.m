@@ -27,8 +27,8 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 
-static NSString *const kAppInfoCellID = @"LLAppInfoVCCellID";
-static NSString *const kAppInfoHeaderID = @"HeaderID";
+static NSString *const kAppInfoCellID = @"AppInfoCellID";
+static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 @interface LLAppInfoVC ()
 
