@@ -134,6 +134,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 #pragma mark - UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [super searchBarTextDidBeginEditing:searchBar];
     [self.filterView cancelFiltering];
 }
 

@@ -84,7 +84,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
     __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
-        [models addObject:self.searchDataArray[indexPath.row]];
+        [models addObject:self.datas[indexPath.row]];
     }
     
     __weak typeof(self) weakSelf = self;
@@ -108,7 +108,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 #pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLNetworkCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkCellID forIndexPath:indexPath];
-    [cell confirmWithModel:self.searchDataArray[indexPath.row]];
+    [cell confirmWithModel:self.datas[indexPath.row]];
     return cell;
 }
 
@@ -116,13 +116,13 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (self.tableView.isEditing == NO) {
         LLNetworkContentVC *vc = [[LLNetworkContentVC alloc] init];
-        vc.model = self.searchDataArray[indexPath.row];
+        vc.model = self.datas[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return self.searchBar.frame.size.height + 40;
+    return [super tableView:tableView heightForHeaderInSection:section] + 40;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -133,6 +133,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 #pragma mark - UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [super searchBarTextDidBeginEditing:searchBar];
     [self.filterView cancelFiltering];
 }
 

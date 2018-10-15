@@ -62,10 +62,10 @@ static NSString *const kCrashCellID = @"CrashCellID";
     // TableView
     [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashCellID];
     
-    [self _loadData];
+    [self loadData];
 }
 
-- (void)_loadData {
+- (void)loadData {
     __weak typeof(self) weakSelf = self;
     [LLTool loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
@@ -95,7 +95,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
         } else {
             [weakSelf showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
                 if (action == 1) {
-                    [weakSelf _loadData];
+                    [weakSelf loadData];
                 }
             }];
         }

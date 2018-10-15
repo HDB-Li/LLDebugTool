@@ -415,4 +415,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self searchBar:searchBar textDidChange:searchBar.text];
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+}
+
 @end
