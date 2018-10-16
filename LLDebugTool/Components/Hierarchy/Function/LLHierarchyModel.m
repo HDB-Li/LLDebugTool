@@ -43,8 +43,12 @@
     return self;
 }
 
-- (NSString *)viewClass {
+- (NSString *)name {
     return NSStringFromClass(_view.class);
+}
+
+- (NSString *)frame {
+    return NSStringFromCGRect(_view.frame);
 }
 
 @end

@@ -19,21 +19,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdf-LM-vaE">
-                        <rect key="frame" x="0.0" y="0.0" width="20" height="54.5"/>
+                        <rect key="frame" x="5" y="0.0" width="0.0" height="54.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="7b3-Fk-50D"/>
+                            <constraint firstAttribute="width" id="7b3-Fk-50D"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LL-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="qZW-pC-eAV">
-                        <rect key="frame" x="25" y="10" width="15" height="15"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qZW-pC-eAV">
+                        <rect key="frame" x="10" y="10" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="1wb-ZK-0H2"/>
-                            <constraint firstAttribute="height" constant="15" id="e1e-fj-8HV"/>
+                            <constraint firstAttribute="width" secondItem="qZW-pC-eAV" secondAttribute="height" multiplier="1:1" id="ypf-TM-32Y"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-Ou-xSh">
-                        <rect key="frame" x="45" y="34.5" width="209" height="15"/>
+                        <rect key="frame" x="30" y="34.5" width="224" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="cmS-Xf-QEh"/>
                         </constraints>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UIWindow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftN-lf-qjz">
-                        <rect key="frame" x="45" y="5" width="209" height="24.5"/>
+                        <rect key="frame" x="30" y="5" width="224" height="24.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="I07-oW-Ns6"/>
                         </constraints>
@@ -52,7 +52,6 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YF4-Uw-z1k">
                         <rect key="frame" x="259" y="12.5" width="30" height="30"/>
-                        <state key="normal" image="LL-pick.png"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5p2-Ym-LQg">
                         <rect key="frame" x="294" y="12.5" width="30" height="30"/>
@@ -60,7 +59,6 @@
                             <constraint firstAttribute="width" constant="30" id="24s-cr-u8O"/>
                             <constraint firstAttribute="height" constant="30" id="Ldu-To-448"/>
                         </constraints>
-                        <state key="normal" image="LL-info.png"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -72,7 +70,7 @@
                     <constraint firstItem="wdf-LM-vaE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Mdz-VR-qB7"/>
                     <constraint firstItem="5p2-Ym-LQg" firstAttribute="height" secondItem="YF4-Uw-z1k" secondAttribute="height" id="Oi6-2d-jzz"/>
                     <constraint firstItem="YF4-Uw-z1k" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QP6-tL-JzW"/>
-                    <constraint firstItem="wdf-LM-vaE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RsL-Wo-cqw"/>
+                    <constraint firstItem="wdf-LM-vaE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="RsL-Wo-cqw"/>
                     <constraint firstItem="ftN-lf-qjz" firstAttribute="centerY" secondItem="qZW-pC-eAV" secondAttribute="centerY" id="Swc-jF-Lo9"/>
                     <constraint firstItem="5p2-Ym-LQg" firstAttribute="leading" secondItem="YF4-Uw-z1k" secondAttribute="trailing" constant="5" id="ToJ-2X-2Qz"/>
                     <constraint firstItem="JyF-Ou-xSh" firstAttribute="trailing" secondItem="ftN-lf-qjz" secondAttribute="trailing" id="WeJ-d9-Br6"/>
@@ -87,6 +85,7 @@
             <connections>
                 <outlet property="contentLabel" destination="JyF-Ou-xSh" id="tWf-Wc-rDu"/>
                 <outlet property="directionImageView" destination="qZW-pC-eAV" id="QXl-ZK-4Te"/>
+                <outlet property="directionImageViewWidthConstraint" destination="1wb-ZK-0H2" id="Xj4-H1-H2X"/>
                 <outlet property="infoButton" destination="5p2-Ym-LQg" id="5hJ-iX-XHN"/>
                 <outlet property="lineView" destination="wdf-LM-vaE" id="Biw-KI-om3"/>
                 <outlet property="lineViewWidthConstraint" destination="7b3-Fk-50D" id="phi-8n-wGE"/>
@@ -96,9 +95,4 @@
             <point key="canvasLocation" x="60" y="60.719640179910051"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="LL-info.png" width="20" height="20"/>
-        <image name="LL-pick.png" width="20" height="20"/>
-        <image name="LL-right.png" width="20" height="20"/>
-    </resources>
 </document>

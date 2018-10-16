@@ -52,6 +52,11 @@ static LLHierarchyHelper *_instance = nil;
     
     __unsafe_unretained NSArray<UIWindow *> *windows = nil;
     [invocation getReturnValue:&windows];
+    
+    windows = [windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow * _Nonnull obj1, UIWindow * _Nonnull obj2) {
+        return obj1.windowLevel > obj2.windowLevel;
+    }];
+    
     return windows;
 }
 
@@ -72,7 +77,6 @@ static LLHierarchyHelper *_instance = nil;
 
 #pragma mark - Primary
 - (LLHierarchyModel *)hierarchyInView:(UIView *)view section:(NSInteger)section row:(NSInteger)row {
-    
     NSMutableArray *subModels = [[NSMutableArray alloc] init];
     for (int i = 0; i < view.subviews.count; i++) {
         UIView *subView = view.subviews[i];

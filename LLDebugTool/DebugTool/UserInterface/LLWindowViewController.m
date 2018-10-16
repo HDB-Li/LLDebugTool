@@ -34,6 +34,7 @@
 #import "LLWindow.h"
 #import "LLConfig.h"
 #import "LLLogVC.h"
+#import "LLHierarchyVC.h"
 #import "LLDebugTool.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
@@ -425,6 +426,14 @@
             [LLConfig sharedConfig].availables = LLConfigAvailableAll;
             [viewControllers addObjectsFromArray:@[networkNav,logNav,crashNav,appInfoNav,sandboxNav]];
         }
+        
+        LLHierarchyVC *hierarchyVC = [[LLHierarchyVC alloc] init];
+        UINavigationController *hierarchyNav = [[LLBaseNavigationController alloc] initWithRootViewController:hierarchyVC];
+        hierarchyNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Hierarchy" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
+        hierarchyNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+        hierarchyNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+        
+        [viewControllers addObject:hierarchyNav];
         
         tab.viewControllers = viewControllers;
         tab.tabBar.tintColor = LLCONFIG_TEXT_COLOR;

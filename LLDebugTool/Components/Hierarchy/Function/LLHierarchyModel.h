@@ -33,12 +33,16 @@
 
 @property (nonatomic , assign , readonly) NSInteger row;
 
-@property (nonatomic , copy , readonly , nullable) NSString *viewClass;
-
 @property (nonatomic , assign , readonly) BOOL isRoot;
+
+@property (nonatomic , assign , getter=isFold) BOOL fold;
 
 - (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSMutableArray <LLHierarchyModel *>*_Nullable)subModels;
 
 - (instancetype _Nonnull)initWithSubModels:(NSMutableArray <LLHierarchyModel *>*_Nonnull)subModels;
+
+- (NSString *)name;
+
+- (NSString *)frame;
 
 @end

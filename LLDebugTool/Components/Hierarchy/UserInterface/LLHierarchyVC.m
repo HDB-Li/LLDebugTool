@@ -24,6 +24,7 @@
 #import "LLHierarchyVC.h"
 #import "LLHierarchyCell.h"
 #import "LLConfig.h"
+#import "LLHierarchyHelper.h"
 
 static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
@@ -49,10 +50,14 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 #pragma mark - Primary
 - (void)initial {
+    if (!self.model) {
+        self.model = [LLHierarchyHelper sharedHelper].hierarchyInApplication;
+    }
+    
     if (self.model.isRoot) {
         self.navigationItem.title = @"Application";
     } else {
-        self.navigationItem.title = self.model.viewClass;
+        self.navigationItem.title = self.model.name;
     }
     
     // TableView
@@ -62,21 +67,85 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 }
 
 - (void)loadData {
-    
+    [self.dataArray removeAllObjects];
+    for (LLHierarchyModel *subModel in self.model.subModels) {
+        [self loadDataFromModel:subModel];
+    }
+//    [self.tableView reloadData];
 }
 
-- (NSMutableArray *)dataArray {
-    return self.model.subModels;
+- (void)loadDataFromModel:(LLHierarchyModel *)model {
+    [self.dataArray addObject:model];
+    if (!model.isFold) {
+        for (LLHierarchyModel *subModel in model.subModels) {
+            [self loadDataFromModel:subModel];
+        }
+    }
 }
+
+- (NSMutableArray *)allModelsFromModel:(LLHierarchyModel *)model {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:model];
+    for (LLHierarchyModel *subModel in model.subModels) {
+        [array addObjectsFromArray:[self allModelsFromModel:subModel]];
+    }
+    return array;
+}
+
+
+//- (NSMutableArray *)dataArray {
+//    return self.model.subModels;
+//}
 
 #pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
+    [cell confirmWithModel:self.datas[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    LLHierarchyModel *model = self.datas[indexPath.row];
+    if (model.subModels.count) {
+        model.fold = !model.isFold;
+    
+        [self.tableView beginUpdates];
+        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+        NSMutableArray *models = [[NSMutableArray alloc] init];
+        NSMutableArray *array = [self allModelsFromModel:model];
+        [array removeObject:model];
+        
+        if (model.isFold) {
+            for (LLHierarchyModel *subModel in array) {
+                if ([self.datas containsObject:subModel]) {
+                    NSInteger index = [self.datas indexOfObject:subModel];
+                    [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+                    [models addObject:subModel];
+                }
+            }
+            
+            [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self.datas removeObjectsInArray:models];
+        } else {
+            for (int i = 0; i < array.count; i++) {
+                LLHierarchyModel *subModel = array[i];
+                [indexPaths addObject:[NSIndexPath indexPathForRow:indexPath.row + i + 1 inSection:0]];
+                [models addObject:subModel];
+            }
+            
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self.datas insertObjects:models atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row + 1, array.count)]];
+        }
+
+        [self.tableView endUpdates];
+
+        LLHierarchyCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [cell updateDirection];
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];        
+    }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
