@@ -84,6 +84,11 @@
 + (void)loadingMessage:(NSString *_Nullable)message;
 + (void)hideLoadingMessage;
 
+/**
+ Format number.
+ */
++ (NSString *_Nonnull)formatNumber:(NSNumber *_Nonnull)number;
+
 #pragma mark - DEPRECATED
 
 + (instancetype _Nonnull)sharedTool DEPRECATED_ATTRIBUTE;

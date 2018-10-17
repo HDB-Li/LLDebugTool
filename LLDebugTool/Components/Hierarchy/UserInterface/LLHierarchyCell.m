@@ -37,8 +37,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *directionImageView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *directionImageViewWidthConstraint;
-
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -65,7 +63,7 @@
     }
         
     CGFloat lineWidth = 1.5;
-    CGFloat lineGap = 3;
+    CGFloat lineGap = 6;
     for (int i = 0; i < model.section; i++) {
         UIView *line = [[UIView alloc] init];
         line.backgroundColor = LLCONFIG_TEXT_COLOR;
@@ -85,9 +83,6 @@
     self.contentLabel.text = model.frame;
     
     if (model.subModels.count) {
-        if (self.directionImageViewWidthConstraint.constant != 15) {
-            self.directionImageViewWidthConstraint.constant = 15;
-        }
         self.directionImageView.hidden = NO;
         if (model.isFold) {
             self.directionImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
@@ -95,9 +90,6 @@
             self.directionImageView.transform = CGAffineTransformIdentity;
         }
     } else {
-        if (self.directionImageViewWidthConstraint.constant != 0) {
-            self.directionImageViewWidthConstraint.constant = 0;
-        }
         self.directionImageView.hidden = YES;
     }
     _isFold = model.isFold;

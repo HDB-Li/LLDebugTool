@@ -63,24 +63,27 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     // TableView
     [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];
     
-    [self loadData];
+    NSArray *datas = [self loadData];
+    [self.dataArray addObjectsFromArray:datas];
 }
 
-- (void)loadData {
-    [self.dataArray removeAllObjects];
+- (NSMutableArray *)loadData {
+    NSMutableArray *datas = [[NSMutableArray alloc] init];
     for (LLHierarchyModel *subModel in self.model.subModels) {
-        [self loadDataFromModel:subModel];
+        [datas addObjectsFromArray:[self loadDataFromModel:subModel]];
     }
-//    [self.tableView reloadData];
+    return datas;
 }
 
-- (void)loadDataFromModel:(LLHierarchyModel *)model {
-    [self.dataArray addObject:model];
+- (NSMutableArray *)loadDataFromModel:(LLHierarchyModel *)model {
+    NSMutableArray *datas = [[NSMutableArray alloc] init];
+    [datas addObject:model];
     if (!model.isFold) {
         for (LLHierarchyModel *subModel in model.subModels) {
-            [self loadDataFromModel:subModel];
+            [datas addObjectsFromArray:[self loadDataFromModel:subModel]];
         }
     }
+    return datas;
 }
 
 - (NSMutableArray *)allModelsFromModel:(LLHierarchyModel *)model {
@@ -111,40 +114,47 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
         model.fold = !model.isFold;
     
         [self.tableView beginUpdates];
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        NSMutableArray *models = [[NSMutableArray alloc] init];
-        NSMutableArray *array = [self allModelsFromModel:model];
-        [array removeObject:model];
         
-        if (model.isFold) {
-            for (LLHierarchyModel *subModel in array) {
-                if ([self.datas containsObject:subModel]) {
-                    NSInteger index = [self.datas indexOfObject:subModel];
-                    [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-                    [models addObject:subModel];
-                }
-            }
-            
-            [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-            
-            [self.datas removeObjectsInArray:models];
-        } else {
-            for (int i = 0; i < array.count; i++) {
-                LLHierarchyModel *subModel = array[i];
-                [indexPaths addObject:[NSIndexPath indexPathForRow:indexPath.row + i + 1 inSection:0]];
-                [models addObject:subModel];
-            }
-            
-            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-            
-            [self.datas insertObjects:models atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row + 1, array.count)]];
+        
+        NSArray *preData = [NSArray arrayWithArray:self.datas];
+        NSArray *newData = [NSArray arrayWithArray:[self loadData]];
+        
+        NSMutableSet *preSet = [NSMutableSet setWithArray:preData];// 1 4 5
+        NSMutableSet *newSet = [NSMutableSet setWithArray:newData];// 1 2 3
+        
+        NSMutableSet *intersectSet = [NSMutableSet setWithSet:preSet]; // 1 4 5
+        [intersectSet intersectSet:newSet];// 1
+        
+        [preSet minusSet:intersectSet]; // 4 5
+        [newSet minusSet:intersectSet]; // 2 3
+        
+        
+        NSMutableArray *deleteIndexPaths = [[NSMutableArray alloc] init];
+        NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
+        
+        for (LLHierarchyModel *model in preSet.allObjects) {
+            NSInteger index = [preData indexOfObject:model];
+            [deleteIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
         }
+        
+        for (LLHierarchyModel *model in newSet.allObjects) {
+            NSInteger index = [newData indexOfObject:model];
+            [insertIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+        }
+        
+        if (deleteIndexPaths.count) {
+            [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        }
+        if (insertIndexPaths) {
+            [self.tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        }
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:newData];
 
         [self.tableView endUpdates];
 
         LLHierarchyCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell updateDirection];
-//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];        
+        [cell updateDirection];      
     }
 }
 

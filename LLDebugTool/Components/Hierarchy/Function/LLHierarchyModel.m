@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLHierarchyModel.h"
+#import "LLTool.h"
 
 @implementation LLHierarchyModel
 
