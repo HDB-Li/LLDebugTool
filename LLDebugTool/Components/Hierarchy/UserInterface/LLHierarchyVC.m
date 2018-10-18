@@ -61,6 +61,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     }
     
     // TableView
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];
     
     NSArray *datas = [self loadData];
@@ -103,7 +104,8 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 #pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
-    [cell confirmWithModel:self.datas[indexPath.row]];
+    LLHierarchyModel *model = self.datas[indexPath.row];
+    [cell confirmWithModel:model];
     return cell;
 }
 

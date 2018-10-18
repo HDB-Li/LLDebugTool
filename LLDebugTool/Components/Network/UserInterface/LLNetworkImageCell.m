@@ -28,7 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgViewHeightCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
@@ -45,8 +45,8 @@
     if (image) {
         CGSize size = image.size;
         CGFloat height = LL_SCREEN_WIDTH * size.height / size.width;
-        if (height != self.imgViewHeightCons.constant) {
-            self.imgViewHeightCons.constant = height;
+        if (height != self.imgViewHeightConstraint.constant) {
+            self.imgViewHeightConstraint.constant = height;
             [self setNeedsLayout];
             [self layoutIfNeeded];
         }

@@ -37,11 +37,19 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *directionImageView;
 
-@property (weak, nonatomic) IBOutlet UIButton *selectButton;
+@property (weak, nonatomic) IBOutlet UIView *circleView;
 
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
+@property (weak, nonatomic) IBOutlet UIView *nextLineView;
+
+@property (weak, nonatomic) IBOutlet UIView *preLineView;
+
+@property (weak, nonatomic) IBOutlet UIView *secondPreLineView;
+
 @property (nonatomic , strong) LLHierarchyModel *model;
+
+
 
 @property (nonatomic , assign) BOOL isFold;
 
@@ -62,11 +70,11 @@
         [subView removeFromSuperview];
     }
         
-    CGFloat lineWidth = 1.5;
-    CGFloat lineGap = 6;
+    CGFloat lineWidth = 0;
+    CGFloat lineGap = 12;
     for (int i = 0; i < model.section; i++) {
         UIView *line = [[UIView alloc] init];
-        line.backgroundColor = LLCONFIG_TEXT_COLOR;
+//        line.backgroundColor = LLCONFIG_TEXT_COLOR;
         [self.lineView addSubview:line];
         line.frame = CGRectMake(lineWidth * i + lineGap * (i + 1), 0, lineWidth, self.contentView.frame.size.height);
         
@@ -77,13 +85,14 @@
 //        [line addConstraints:@[layout1,layout2,layout4]];
     }
     
-    _lineViewWidthConstraint.constant = lineWidth * model.section + lineGap * (model.section + 1);
+    _lineViewWidthConstraint.constant = lineWidth * model.section + lineGap * (model.section + 0);
     
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
     
     if (model.subModels.count) {
         self.directionImageView.hidden = NO;
+        
         if (model.isFold) {
             self.directionImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
         } else {
@@ -91,9 +100,28 @@
         }
     } else {
         self.directionImageView.hidden = YES;
+        self.circleView.backgroundColor = [self colorFromView:model.view];
+
     }
+    
+    if (model.section == 0) {
+        self.preLineView.hidden = YES;
+        self.secondPreLineView.hidden = YES;
+    } else {
+        self.preLineView.hidden = NO;
+        self.secondPreLineView.hidden = NO;
+    }
+    
     _isFold = model.isFold;
+    
 }
+
+- (void)updateForTopCell {
+    self.preLineView.hidden = YES;
+    self.secondPreLineView.hidden = YES;
+}
+
+
 
 - (void)updateDirection {
     if (self.model.isFold != self.isFold) {
@@ -117,9 +145,16 @@
     
     self.lineView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     
+    self.circleView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    self.circleView.layer.cornerRadius = 12 / 2.0;
+    self.circleView.layer.masksToBounds = YES;
+    
+    self.preLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    self.secondPreLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    self.nextLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
     self.directionImageView.image = [[UIImage LL_imageNamed:@"LL-bottom"] imageWithRenderingMode:mode];
-    [self.selectButton setImage:[[UIImage LL_imageNamed:@"LL-pick"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
     [self.infoButton setImage:[[UIImage LL_imageNamed:@"LL-info"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
 }
 

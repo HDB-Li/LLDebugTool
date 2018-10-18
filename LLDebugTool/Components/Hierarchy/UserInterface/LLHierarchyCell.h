@@ -28,6 +28,8 @@
 
 - (void)confirmWithModel:(LLHierarchyModel *)model;
 
+- (void)updateForTopCell;
+
 - (void)updateDirection;
 
 @end
