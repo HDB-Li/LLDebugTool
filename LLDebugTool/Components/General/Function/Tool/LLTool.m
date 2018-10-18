@@ -260,6 +260,10 @@ static unsigned long long _absolutelyIdentity = 0;
     }
 }
 
++ (NSString *_Nonnull)stringFromFrame:(CGRect)frame {
+    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[LLTool formatNumber:@(frame.origin.x)],[LLTool formatNumber:@(frame.origin.y)],[LLTool formatNumber:@(frame.size.width)],[LLTool formatNumber:@(frame.size.height)]];
+}
+
 + (NSString *)formatNumber:(NSNumber *)number {
     return [[self numberFormatter] stringFromNumber:number];
 }
@@ -294,7 +298,7 @@ static unsigned long long _absolutelyIdentity = 0;
         _numberFormatter = [[NSNumberFormatter alloc] init];
         _numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
         _numberFormatter.maximumFractionDigits = 2;
-        _numberFormatter.decimalSeparator = @"";
+        _numberFormatter.usesGroupingSeparator = NO;
     }
     return _numberFormatter;
 }

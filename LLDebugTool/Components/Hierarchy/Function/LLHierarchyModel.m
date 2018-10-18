@@ -49,7 +49,7 @@
 }
 
 - (NSString *)frame {
-    return NSStringFromCGRect(_view.frame);
+    return [LLTool stringFromFrame:_view.frame];
 }
 
 @end

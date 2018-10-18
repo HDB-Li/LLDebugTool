@@ -85,9 +85,9 @@
 + (void)hideLoadingMessage;
 
 /**
- Format number.
+ Frame fromat.
  */
-+ (NSString *_Nonnull)formatNumber:(NSNumber *_Nonnull)number;
++ (NSString *_Nonnull)stringFromFrame:(CGRect)frame;
 
 #pragma mark - DEPRECATED
 
