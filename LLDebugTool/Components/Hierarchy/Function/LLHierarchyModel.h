@@ -37,6 +37,8 @@
 
 @property (nonatomic , assign , getter=isFold) BOOL fold;
 
+@property (nonatomic , weak , readonly , nullable) LLHierarchyModel *parentModel;
+
 - (instancetype _Nonnull)initWithView:(UIView *_Nonnull)view section:(NSInteger)section row:(NSInteger)row subModels:(NSMutableArray <LLHierarchyModel *>*_Nullable)subModels;
 
 - (instancetype _Nonnull)initWithSubModels:(NSMutableArray <LLHierarchyModel *>*_Nonnull)subModels;

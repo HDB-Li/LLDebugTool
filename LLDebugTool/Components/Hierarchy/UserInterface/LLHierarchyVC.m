@@ -106,6 +106,14 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
     LLHierarchyModel *model = self.datas[indexPath.row];
     [cell confirmWithModel:model];
+    if (indexPath.row != self.datas.count - 1) {
+        LLHierarchyModel *nextModel = self.datas[indexPath.row + 1];
+        if (model.section == nextModel.section) {
+            [cell updateForNext];
+        }
+    } else {
+        
+    }
     return cell;
 }
 

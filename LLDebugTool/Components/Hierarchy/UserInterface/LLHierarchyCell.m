@@ -45,8 +45,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *preLineView;
 
-@property (weak, nonatomic) IBOutlet UIView *secondPreLineView;
-
 @property (nonatomic , strong) LLHierarchyModel *model;
 
 
@@ -85,14 +83,15 @@
 //        [line addConstraints:@[layout1,layout2,layout4]];
     }
     
-    _lineViewWidthConstraint.constant = lineWidth * model.section + lineGap * (model.section + 0);
+    CGFloat lineViewWidth = lineWidth * model.section + lineGap * (model.section + 0);
+    _lineViewWidthConstraint.constant = lineViewWidth;
     
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
+    self.circleView.backgroundColor = [self colorFromView:model.view];
     
     if (model.subModels.count) {
         self.directionImageView.hidden = NO;
-        
         if (model.isFold) {
             self.directionImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
         } else {
@@ -100,28 +99,32 @@
         }
     } else {
         self.directionImageView.hidden = YES;
-        self.circleView.backgroundColor = [self colorFromView:model.view];
-
     }
     
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    
+    CAShapeLayer *layer = self.lineView.layer.sublayers.firstObject;
     if (model.section == 0) {
+        layer.path = [UIBezierPath bezierPath].CGPath;
         self.preLineView.hidden = YES;
-        self.secondPreLineView.hidden = YES;
     } else {
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(lineViewWidth - 1, 0)];
+        [path addLineToPoint:CGPointMake(lineViewWidth - 1, self.circleView.center.y + 1)];
+        layer.path = path.CGPath;
         self.preLineView.hidden = NO;
-        self.secondPreLineView.hidden = NO;
     }
+    
+    self.nextLineView.hidden = NO;
     
     _isFold = model.isFold;
     
 }
 
-- (void)updateForTopCell {
-    self.preLineView.hidden = YES;
-    self.secondPreLineView.hidden = YES;
+- (void)updateForNext {
+    self.nextLineView.hidden = YES;
 }
-
-
 
 - (void)updateDirection {
     if (self.model.isFold != self.isFold) {
@@ -145,17 +148,29 @@
     
     self.lineView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     
+    self.contentLabel.adjustsFontSizeToFitWidth = YES;
+    self.contentLabel.minimumScaleFactor = 0.5;
+    
     self.circleView.backgroundColor = LLCONFIG_TEXT_COLOR;
     self.circleView.layer.cornerRadius = 12 / 2.0;
     self.circleView.layer.masksToBounds = YES;
     
     self.preLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
-    self.secondPreLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
     self.nextLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.lineWidth = 2;
+    layer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    [self.lineView.layer addSublayer:layer];
     
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
     self.directionImageView.image = [[UIImage LL_imageNamed:@"LL-bottom"] imageWithRenderingMode:mode];
     [self.infoButton setImage:[[UIImage LL_imageNamed:@"LL-info"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
 }
 
 - (UIColor *)colorFromView:(UIView *)view {

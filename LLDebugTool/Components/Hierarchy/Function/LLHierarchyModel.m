@@ -32,6 +32,9 @@
         _section = section;
         _row = row;
         _subModels = subModels;
+        for (LLHierarchyModel *model in subModels) {
+            [model setValue:self forKey:@"parentModel"];
+        }
     }
     return self;
 }
