@@ -55,4 +55,16 @@
     return [LLTool stringFromFrame:_view.frame];
 }
 
+- (BOOL)isSingleInCurrentSection {
+    return self.parentModel.subModels.count == 1;
+}
+
+- (BOOL)isFirstInCurrentSection {
+    return self.parentModel.subModels.firstObject == self;
+}
+
+- (BOOL)isLastInCurrentSection {
+    return self.parentModel.subModels.lastObject == self;
+}
+
 @end

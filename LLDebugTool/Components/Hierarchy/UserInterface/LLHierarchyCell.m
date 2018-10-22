@@ -41,9 +41,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
-@property (weak, nonatomic) IBOutlet UIView *nextLineView;
-
-@property (weak, nonatomic) IBOutlet UIView *preLineView;
+@property (strong , nonatomic) CAShapeLayer *lineLayer;
 
 @property (nonatomic , strong) LLHierarchyModel *model;
 
@@ -58,33 +56,18 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self initial];
-    // Initialization code
 }
 
 - (void)confirmWithModel:(LLHierarchyModel *)model {
     _model = model;
     
-    for (UIView *subView in self.lineView.subviews) {
-        [subView removeFromSuperview];
-    }
-        
-    CGFloat lineWidth = 0;
     CGFloat lineGap = 12;
-    for (int i = 0; i < model.section; i++) {
-        UIView *line = [[UIView alloc] init];
-//        line.backgroundColor = LLCONFIG_TEXT_COLOR;
-        [self.lineView addSubview:line];
-        line.frame = CGRectMake(lineWidth * i + lineGap * (i + 1), 0, lineWidth, self.contentView.frame.size.height);
-        
-        NSLayoutConstraint *layout1 = [NSLayoutConstraint constraintWithItem:line attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.lineView attribute:NSLayoutAttributeTop multiplier:1 constant:0];
-        NSLayoutConstraint *layout2 = [NSLayoutConstraint constraintWithItem:line attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.lineView attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
-        NSLayoutConstraint *layout3 = [NSLayoutConstraint constraintWithItem:line attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:lineWidth];
-        NSLayoutConstraint *layout4 = [NSLayoutConstraint constraintWithItem:line attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.lineView attribute:NSLayoutAttributeLeading multiplier:1 constant:lineWidth * 2 * i];
-//        [line addConstraints:@[layout1,layout2,layout4]];
-    }
     
-    CGFloat lineViewWidth = lineWidth * model.section + lineGap * (model.section + 0);
-    _lineViewWidthConstraint.constant = lineViewWidth;
+//    CGFloat lineViewWidth = lineWidth * model.section + lineGap * (model.section + 0);
+    _lineViewWidthConstraint.constant = lineGap * (model.section + 1);
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
     
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
@@ -101,29 +84,12 @@
         self.directionImageView.hidden = YES;
     }
     
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    
-    CAShapeLayer *layer = self.lineView.layer.sublayers.firstObject;
-    if (model.section == 0) {
-        layer.path = [UIBezierPath bezierPath].CGPath;
-        self.preLineView.hidden = YES;
-    } else {
-        UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(lineViewWidth - 1, 0)];
-        [path addLineToPoint:CGPointMake(lineViewWidth - 1, self.circleView.center.y + 1)];
-        layer.path = path.CGPath;
-        self.preLineView.hidden = NO;
-    }
-    
-    self.nextLineView.hidden = NO;
-    
     _isFold = model.isFold;
     
 }
 
 - (void)updateForNext {
-    self.nextLineView.hidden = YES;
+
 }
 
 - (void)updateDirection {
@@ -155,13 +121,11 @@
     self.circleView.layer.cornerRadius = 12 / 2.0;
     self.circleView.layer.masksToBounds = YES;
     
-    self.preLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
-    self.nextLineView.backgroundColor = LLCONFIG_TEXT_COLOR;
-    
-    CAShapeLayer *layer = [CAShapeLayer layer];
-    layer.lineWidth = 2;
-    layer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
-    [self.lineView.layer addSublayer:layer];
+    self.lineLayer = [CAShapeLayer layer];
+    self.lineLayer.lineWidth = 2;
+    self.lineLayer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.lineLayer.fillColor = nil;
+    [self.lineView.layer insertSublayer:self.lineLayer atIndex:0];
     
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
     self.directionImageView.image = [[UIImage LL_imageNamed:@"LL-bottom"] imageWithRenderingMode:mode];
@@ -170,7 +134,62 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    CGFloat lineGap = 12;
+    
+    BOOL isFirstInCurrentSection = self.model.isFirstInCurrentSection;
+    BOOL isLastInCurrentSection = self.model.isLastInCurrentSection;
+    BOOL isSingleInCurrentSection = self.model.isSingleInCurrentSection;
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    if (self.model.section == 0) {
+        // Handle the first row separately
+        [path moveToPoint:self.circleView.center];
+        [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+    } else {
+        // Handle normal rows.
+        if (isFirstInCurrentSection) {
+            // If is first in current section, draw left top line to connect last cell.
+            [path moveToPoint:self.circleView.center];
+            [path addLineToPoint:CGPointMake(self.circleView.center.x - lineGap, self.circleView.center.y)];
+            [path addLineToPoint:CGPointMake(self.circleView.center.x - lineGap, 0)];
+        }
+        
+        if (self.model.subModels.count != 0 || !isLastInCurrentSection) {
+            // If current row has sub models or current row isn't the last one.
+            [path moveToPoint:self.circleView.center];
+            [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+        }
+        
+        if (!isSingleInCurrentSection) {
+            // Isn't a single.
+            if (isLastInCurrentSection) {
+                // If is last, draw line to last cell.
+                [path moveToPoint:self.circleView.center];
+                [path addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+            } else if (!isFirstInCurrentSection) {
+                // If isn't the last and the first.
+                [path moveToPoint:CGPointMake(self.circleView.center.x, 0)];
+                [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+            }
+        }
+        
+        LLHierarchyModel *parentModel = self.model.parentModel;
+        if (parentModel.section != 0) {
+            if (![parentModel isLastInCurrentSection]) {
+                
+                UIBezierPath *path2 = [UIBezierPath bezierPath];
+                [path2 moveToPoint:CGPointMake(self.circleView.center.x - (self.model.section - parentModel.section) * lineGap, 0)];
+                [path2 addLineToPoint:CGPointMake(self.circleView.center.x - (self.model.section - parentModel.section) * lineGap, self.contentView.frame.size.height)];
+                CGFloat dashLineConfig[] = {8.0, 4.0};
+                [path2 setLineDash:dashLineConfig count:2 phase:0];
+                [path appendPath:path2];
+            }
+        }
+    }
 
+    self.lineLayer.path = path.CGPath;
 }
 
 - (UIColor *)colorFromView:(UIView *)view {

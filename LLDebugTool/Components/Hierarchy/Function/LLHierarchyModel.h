@@ -47,4 +47,10 @@
 
 - (NSString *)frame;
 
+- (BOOL)isSingleInCurrentSection;
+
+- (BOOL)isFirstInCurrentSection;
+
+- (BOOL)isLastInCurrentSection;
+
 @end
