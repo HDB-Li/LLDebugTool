@@ -65,12 +65,16 @@
     
     CGFloat lineGap = 12;
     
-//    CGFloat lineViewWidth = lineWidth * model.section + lineGap * (model.section + 0);
     _lineViewWidthConstraint.constant = lineGap * (model.section + 1);
     
-//    [self setNeedsLayout];
-//    [self layoutIfNeeded];
-//
+    if (model.view.isHidden) {
+        self.nameLabel.alpha = 0.5;
+        self.contentLabel.alpha = 0.5;
+    } else {
+        self.nameLabel.alpha = 0.5 + model.view.alpha * 0.5;
+        self.contentLabel.alpha = 0.5 + model.view.alpha * 0.5;
+    }
+
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
     self.circleView.backgroundColor = [self colorFromView:model.view];
