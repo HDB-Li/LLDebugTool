@@ -106,21 +106,18 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
     LLHierarchyModel *model = self.datas[indexPath.row];
     [cell confirmWithModel:model];
-    if (indexPath.row != self.datas.count - 1) {
-        LLHierarchyModel *nextModel = self.datas[indexPath.row + 1];
-        if (model.section == nextModel.section) {
-            [cell updateForNext];
-        }
-    } else {
-        
-    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     LLHierarchyModel *model = self.datas[indexPath.row];
+    LLHierarchyModel *nextModel = nil;
     if (model.subModels.count) {
+        if (self.datas.count > indexPath.row + 1) {
+            nextModel = self.datas[indexPath.row + 1];
+        }
+        
         model.fold = !model.isFold;
     
         [self.tableView beginUpdates];
@@ -160,11 +157,25 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
         }
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:newData];
-
+        
         [self.tableView endUpdates];
 
         LLHierarchyCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell updateDirection];      
+        [cell updateDirection];
+        
+        NSMutableArray *reloadIndexPaths = [[NSMutableArray alloc] init];
+        if (self.datas.count > indexPath.row + 1) {
+            NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0];
+            [reloadIndexPaths addObject:nextIndexPath];
+        }
+        if (nextModel != nil && [self.datas containsObject:nextModel]) {
+            NSInteger index = [self.datas indexOfObject:nextModel];
+            NSIndexPath *preNextIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [reloadIndexPaths addObject:preNextIndexPath];
+        }
+        if (reloadIndexPaths.count) {
+            [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
 }
 

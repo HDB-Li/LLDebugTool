@@ -68,9 +68,9 @@
 //    CGFloat lineViewWidth = lineWidth * model.section + lineGap * (model.section + 0);
     _lineViewWidthConstraint.constant = lineGap * (model.section + 1);
     
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    
+//    [self setNeedsLayout];
+//    [self layoutIfNeeded];
+//
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
     self.circleView.backgroundColor = [self colorFromView:model.view];
@@ -86,12 +86,10 @@
         self.directionImageView.hidden = YES;
     }
     
+    [self updateLines];
+    
     _isFold = model.isFold;
     
-}
-
-- (void)updateForNext {
-
 }
 
 - (void)updateDirection {
@@ -106,6 +104,7 @@
                 self.directionImageView.transform = CGAffineTransformIdentity;
             }];
         }
+        [self updateLines];
     }
 }
 
@@ -141,10 +140,10 @@
     [self.infoButton setImage:[[UIImage LL_imageNamed:@"LL-info"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)updateLines {
     
     CGFloat lineGap = 12;
+    CGPoint center = CGPointMake(lineGap * (self.model.section + 0.5), 9 + lineGap / 2.0);
     
     BOOL isFirstInCurrentSection = self.model.isFirstInCurrentSection;
     BOOL isLastInCurrentSection = self.model.isLastInCurrentSection;
@@ -156,29 +155,29 @@
     if (self.model.section == 0) {
         // Handle the first row separately
         if (self.model.isFold) {
-            [path moveToPoint:CGPointMake(self.circleView.center.x + lineGap / 2.0, self.circleView.center.y)];
-            [path addLineToPoint:CGPointMake(self.circleView.center.x + lineGap, self.circleView.center.y)];
+            [path moveToPoint:CGPointMake(center.x + lineGap / 2.0, center.y)];
+            [path addLineToPoint:CGPointMake(center.x + lineGap, center.y)];
         } else {
-            [path moveToPoint:self.circleView.center];
-            [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+            [path moveToPoint:center];
+            [path addLineToPoint:CGPointMake(center.x, self.contentView.frame.size.height)];
         }
     } else {
         // Handle normal rows.
         if (isFirstInCurrentSection) {
             // If is first in current section, draw left top line to connect last cell.
-            [path moveToPoint:self.circleView.center];
-            [path addLineToPoint:CGPointMake(self.circleView.center.x - lineGap, self.circleView.center.y)];
-            [path addLineToPoint:CGPointMake(self.circleView.center.x - lineGap, 0)];
+            [path moveToPoint:center];
+            [path addLineToPoint:CGPointMake(center.x - lineGap, center.y)];
+            [path addLineToPoint:CGPointMake(center.x - lineGap, 0)];
         }
         
         if (self.model.subModels.count != 0 && !self.model.isFold) {
-            [path moveToPoint:self.circleView.center];
-            [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+            [path moveToPoint:center];
+            [path addLineToPoint:CGPointMake(center.x, self.contentView.frame.size.height)];
         }
         
         if (self.model.isFold) {
-            [path moveToPoint:CGPointMake(self.circleView.center.x + lineGap / 2.0, self.circleView.center.y)];
-            [path addLineToPoint:CGPointMake(self.circleView.center.x + lineGap, self.circleView.center.y)];
+            [path moveToPoint:CGPointMake(center.x + lineGap / 2.0, center.y)];
+            [path addLineToPoint:CGPointMake(center.x + lineGap, center.y)];
         }
         
         if (!isSingleInCurrentSection) {
@@ -187,25 +186,25 @@
             if (isLastInCurrentSection) {
                 // If is last, draw line to last cell.
                 if (!lastModel.isFold && lastModel.subModels.count != 0) {
-                    [path2 moveToPoint:self.circleView.center];
-                    [path2 addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                    [path2 moveToPoint:center];
+                    [path2 addLineToPoint:CGPointMake(center.x, 0)];
                 } else {
-                    [path moveToPoint:self.circleView.center];
-                    [path addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                    [path moveToPoint:center];
+                    [path addLineToPoint:CGPointMake(center.x, 0)];
                 }
             } else if (isFirstInCurrentSection) {
-                [path moveToPoint:self.circleView.center];
-                [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+                [path moveToPoint:center];
+                [path addLineToPoint:CGPointMake(center.x, self.contentView.frame.size.height)];
             } else {
                 // If isn't the last and the first.
-                [path moveToPoint:self.circleView.center];
-                [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+                [path moveToPoint:center];
+                [path addLineToPoint:CGPointMake(center.x, self.contentView.frame.size.height)];
                 if (!lastModel.isFold && lastModel.subModels.count != 0) {
-                    [path2 moveToPoint:self.circleView.center];
-                    [path2 addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                    [path2 moveToPoint:center];
+                    [path2 addLineToPoint:CGPointMake(center.x, 0)];
                 } else {
-                    [path moveToPoint:self.circleView.center];
-                    [path addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                    [path moveToPoint:center];
+                    [path addLineToPoint:CGPointMake(center.x, 0)];
                 }
             }
         }
@@ -213,8 +212,8 @@
         LLHierarchyModel *parentModel = self.model.parentModel;
         while (parentModel.section != 0 && parentModel != nil) {
             if (![parentModel isLastInCurrentSection]) {
-                [path2 moveToPoint:CGPointMake(self.circleView.center.x - (self.model.section - parentModel.section) * lineGap, 0)];
-                [path2 addLineToPoint:CGPointMake(self.circleView.center.x - (self.model.section - parentModel.section) * lineGap, self.contentView.frame.size.height)];
+                [path2 moveToPoint:CGPointMake(center.x - (self.model.section - parentModel.section) * lineGap, 0)];
+                [path2 addLineToPoint:CGPointMake(center.x - (self.model.section - parentModel.section) * lineGap, self.contentView.frame.size.height)];
             }
             parentModel = parentModel.parentModel;
         }

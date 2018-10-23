@@ -30,8 +30,4 @@
 
 - (void)updateDirection;
 
-- (void)updateForNext;
-
-- (void)updateForLast;
-
 @end
