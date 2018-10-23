@@ -53,4 +53,6 @@
 
 - (BOOL)isLastInCurrentSection;
 
+- (LLHierarchyModel *)lastModelInCurrentSection;
+
 @end

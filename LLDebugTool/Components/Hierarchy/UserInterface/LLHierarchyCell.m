@@ -43,6 +43,8 @@
 
 @property (strong , nonatomic) CAShapeLayer *lineLayer;
 
+@property (strong , nonatomic) CAShapeLayer *dashLineLayer;
+
 @property (nonatomic , strong) LLHierarchyModel *model;
 
 
@@ -127,6 +129,13 @@
     self.lineLayer.fillColor = nil;
     [self.lineView.layer insertSublayer:self.lineLayer atIndex:0];
     
+    self.dashLineLayer = [CAShapeLayer layer];
+    self.dashLineLayer.lineWidth = 2;
+    self.dashLineLayer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.dashLineLayer.fillColor = nil;
+    self.dashLineLayer.lineDashPattern = @[@(5),@(5)];
+    [self.lineView.layer insertSublayer:self.dashLineLayer atIndex:0];
+    
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
     self.directionImageView.image = [[UIImage LL_imageNamed:@"LL-bottom"] imageWithRenderingMode:mode];
     [self.infoButton setImage:[[UIImage LL_imageNamed:@"LL-info"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
@@ -142,11 +151,14 @@
     BOOL isSingleInCurrentSection = self.model.isSingleInCurrentSection;
     
     UIBezierPath *path = [UIBezierPath bezierPath];
+    UIBezierPath *path2 = [UIBezierPath bezierPath];
     
     if (self.model.section == 0) {
         // Handle the first row separately
-        [path moveToPoint:self.circleView.center];
-        [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+        if (!self.model.isFold) {
+            [path moveToPoint:self.circleView.center];
+            [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+        }
     } else {
         // Handle normal rows.
         if (isFirstInCurrentSection) {
@@ -156,40 +168,52 @@
             [path addLineToPoint:CGPointMake(self.circleView.center.x - lineGap, 0)];
         }
         
-        if (self.model.subModels.count != 0 || !isLastInCurrentSection) {
-            // If current row has sub models or current row isn't the last one.
+        if (self.model.subModels.count != 0 && !self.model.isFold) {
             [path moveToPoint:self.circleView.center];
             [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
         }
         
         if (!isSingleInCurrentSection) {
+            LLHierarchyModel *lastModel = self.model.lastModelInCurrentSection;
             // Isn't a single.
             if (isLastInCurrentSection) {
                 // If is last, draw line to last cell.
+                if (!lastModel.isFold && lastModel.subModels.count != 0) {
+                    [path2 moveToPoint:self.circleView.center];
+                    [path2 addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                } else {
+                    [path moveToPoint:self.circleView.center];
+                    [path addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                }
+            } else if (isFirstInCurrentSection) {
                 [path moveToPoint:self.circleView.center];
-                [path addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
-            } else if (!isFirstInCurrentSection) {
-                // If isn't the last and the first.
-                [path moveToPoint:CGPointMake(self.circleView.center.x, 0)];
                 [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+            } else {
+                // If isn't the last and the first.
+                [path moveToPoint:self.circleView.center];
+                [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+                if (!lastModel.isFold && lastModel.subModels.count != 0) {
+                    [path2 moveToPoint:self.circleView.center];
+                    [path2 addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                } else {
+                    [path moveToPoint:self.circleView.center];
+                    [path addLineToPoint:CGPointMake(self.circleView.center.x, 0)];
+                }
             }
         }
         
         LLHierarchyModel *parentModel = self.model.parentModel;
-        if (parentModel.section != 0) {
+        while (parentModel.section != 0 && parentModel != nil) {
             if (![parentModel isLastInCurrentSection]) {
-                
-                UIBezierPath *path2 = [UIBezierPath bezierPath];
                 [path2 moveToPoint:CGPointMake(self.circleView.center.x - (self.model.section - parentModel.section) * lineGap, 0)];
                 [path2 addLineToPoint:CGPointMake(self.circleView.center.x - (self.model.section - parentModel.section) * lineGap, self.contentView.frame.size.height)];
-                CGFloat dashLineConfig[] = {8.0, 4.0};
-                [path2 setLineDash:dashLineConfig count:2 phase:0];
-                [path appendPath:path2];
             }
+            parentModel = parentModel.parentModel;
         }
     }
 
     self.lineLayer.path = path.CGPath;
+    self.dashLineLayer.path = path2.CGPath;
 }
 
 - (UIColor *)colorFromView:(UIView *)view {

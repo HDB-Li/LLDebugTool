@@ -67,4 +67,12 @@
     return self.parentModel.subModels.lastObject == self;
 }
 
+- (LLHierarchyModel *)lastModelInCurrentSection {
+    if ([self isFirstInCurrentSection]) {
+        return nil;
+    }
+    NSInteger index = [self.parentModel.subModels indexOfObject:self];
+    return [self.parentModel.subModels objectAtIndex:index - 1];
+}
+
 @end
