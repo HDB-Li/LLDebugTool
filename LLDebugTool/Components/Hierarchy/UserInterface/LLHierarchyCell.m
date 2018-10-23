@@ -155,7 +155,10 @@
     
     if (self.model.section == 0) {
         // Handle the first row separately
-        if (!self.model.isFold) {
+        if (self.model.isFold) {
+            [path moveToPoint:CGPointMake(self.circleView.center.x + lineGap / 2.0, self.circleView.center.y)];
+            [path addLineToPoint:CGPointMake(self.circleView.center.x + lineGap, self.circleView.center.y)];
+        } else {
             [path moveToPoint:self.circleView.center];
             [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
         }
@@ -171,6 +174,11 @@
         if (self.model.subModels.count != 0 && !self.model.isFold) {
             [path moveToPoint:self.circleView.center];
             [path addLineToPoint:CGPointMake(self.circleView.center.x, self.contentView.frame.size.height)];
+        }
+        
+        if (self.model.isFold) {
+            [path moveToPoint:CGPointMake(self.circleView.center.x + lineGap / 2.0, self.circleView.center.y)];
+            [path addLineToPoint:CGPointMake(self.circleView.center.x + lineGap, self.circleView.center.y)];
         }
         
         if (!isSingleInCurrentSection) {
