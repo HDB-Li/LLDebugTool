@@ -1,3 +1,17 @@
+## [1.2.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.2.2) (10/23/2018)
+
+###  Fix LLWindow become keywindow's bug.
+
+`LLDebugTool` supports component-based now. Now you can integrate only one or more modules into your own **Debug debugger**. You can directly use the view controller contained in each module, or just call the functions in `Function` folder and build UI yourself.
+
+How to use components, see Wiki[Use Components](https://github.com/HDB-Li/LLDebugTool/wiki/Use-Components) or [Adding LLDebugTool to your project](https://github.com/HDB-Li/LLDebugTool#adding-lldebugtool-to-your-project).
+
+More changes can be viewed in [Version 1.2.2 Project](https://github.com/HDB-Li/LLDebugTool/projects/7).
+
+#### Update
+
+* Update `LLWindow.m` and make `[UIApplication sharedApplication].delegate.window` become key window when `LLWindow` become key window.
+
 ## [1.2.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.2.1) (10/10/2018)
 
 ###  Fix a display bug.

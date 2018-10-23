@@ -65,7 +65,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.layer.masksToBounds = YES;
     // Set level
-    self.windowLevel = UIWindowLevelAlert + 2;
+    self.windowLevel = UIWindowLevelStatusBar + 200;
     // Set root
     LLWindowViewController *vc = [[LLWindowViewController alloc] init];
     vc.sBallWidth = [LLConfig sharedConfig].suspensionBallWidth;
@@ -73,6 +73,11 @@
     vc.window = self;
     self.rootViewController = vc;
     _windowViewController = vc;
+}
+
+- (void)becomeKeyWindow {
+    [super becomeKeyWindow];
+    [[UIApplication sharedApplication].delegate.window makeKeyWindow];
 }
 
 @end
