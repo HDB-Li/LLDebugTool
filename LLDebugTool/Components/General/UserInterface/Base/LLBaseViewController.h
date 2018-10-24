@@ -97,6 +97,7 @@
 - (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
 - (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
 
+#pragma mark - Quick tool
 /**
  * Simple toast.
  */
@@ -106,6 +107,11 @@
  * Simple alert.
  */
 - (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
+
+/**
+ * Init a navigation item.
+ */
+- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName;
 
 #pragma mark - Rewrite
 /**

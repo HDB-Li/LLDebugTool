@@ -48,6 +48,10 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     [self initial];
 }
 
+- (void)rightItemClick:(UIButton *)sender {
+    sender.selected = !sender.isSelected;
+}
+
 #pragma mark - Primary
 - (void)initial {
     if (!self.model) {
@@ -59,6 +63,8 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     } else {
         self.navigationItem.title = self.model.name;
     }
+    
+    [self initRightNavigationItemWithImageName:@"LL-pick" selectedImageName:@"LL-done"];
     
     // TableView
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 0);
@@ -95,11 +101,6 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     }
     return array;
 }
-
-
-//- (NSMutableArray *)dataArray {
-//    return self.model.subModels;
-//}
 
 #pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

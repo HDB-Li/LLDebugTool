@@ -67,12 +67,12 @@
     
     _lineViewWidthConstraint.constant = lineGap * (model.section + 1);
     
-    if (model.view.isHidden) {
+    if (model.view.isHidden || model.view.alpha < 0.01) {
         self.nameLabel.alpha = 0.5;
         self.contentLabel.alpha = 0.5;
     } else {
-        self.nameLabel.alpha = 0.5 + model.view.alpha * 0.5;
-        self.contentLabel.alpha = 0.5 + model.view.alpha * 0.5;
+        self.nameLabel.alpha = 1;
+        self.contentLabel.alpha = 1;
     }
 
     self.nameLabel.text = model.name;

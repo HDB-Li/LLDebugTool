@@ -138,6 +138,19 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     return self.searchBar.text.length;
 }
 
+- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [btn setImage:[[UIImage LL_imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+    btn.showsTouchWhenHighlighted = NO;
+    btn.adjustsImageWhenHighlighted = NO;
+    btn.frame = CGRectMake(0, 0, 40, 40);
+    btn.tintColor = LLCONFIG_TEXT_COLOR;
+    [btn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
 #pragma mark - Primary
 - (void)initNavigationItems {
     if (self.navigationController.viewControllers.count <= 1) {
