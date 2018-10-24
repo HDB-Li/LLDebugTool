@@ -66,4 +66,5 @@
  */
 - (void)showDebugViewControllerWithIndex:(NSInteger)index;
 
+- (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates;
 @end

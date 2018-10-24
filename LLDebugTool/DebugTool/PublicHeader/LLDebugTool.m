@@ -29,6 +29,7 @@
 #import "LLLogHelper.h"
 #import "LLAppHelper.h"
 #import "LLWindow.h"
+#import "LLWindowViewController.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
 #import "LLConfig.h"
@@ -36,9 +37,11 @@
 
 static LLDebugTool *_instance = nil;
 
-@interface LLDebugTool ()
+@interface LLDebugTool () <LLWindowDelegate>
 
 @property (nonatomic , strong , nonnull) LLWindow *window;
+
+@property (nonatomic , strong , nonnull) LLWindowViewController *windowViewController;
 
 @property (nonatomic , copy , nonnull) NSString *versionNumber;
 
@@ -120,6 +123,15 @@ static LLDebugTool *_instance = nil;
     [[LLLogHelper sharedHelper] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
+#pragma mark - LLWindowDelegate
+- (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow {
+    return [self.windowViewController shouldReceiveTouchAtWindowPoint:pointInWindow];
+}
+
+- (BOOL)canBecomeKeyWindow {
+    return YES;
+}
+
 #pragma mark - Primary
 /**
  Initial something.
@@ -135,9 +147,9 @@ static LLDebugTool *_instance = nil;
     // Check version.
     [self checkVersion];
     
-    // Set window.
-    CGFloat windowWidth = [LLConfig sharedConfig].suspensionBallWidth;
-    self.window = [[LLWindow alloc] initWithFrame:CGRectMake(0, 0, windowWidth, windowWidth)];
+//    // Set window.
+//    CGFloat windowWidth = [LLConfig sharedConfig].suspensionBallWidth;
+////    self.window = [[LLWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 }
 
 - (void)checkVersion {
@@ -155,13 +167,8 @@ static LLDebugTool *_instance = nil;
     
     if ([self.versionNumber compare:version] == NSOrderedDescending) {
         // Do update if needed.
-        [self updateSomethingWithVersion:version completion:^(BOOL result) {
-            if (!result) {
-                NSLog(@"Failed to update old data");
-            }
-            [localInfo setObject:self.versionNumber forKey:@"version"];
-            [localInfo writeToFile:filePath atomically:YES];
-        }];
+        [localInfo setObject:self.versionNumber forKey:@"version"];
+        [localInfo writeToFile:filePath atomically:YES];
     }
     
     if (self.isBetaVersion) {
@@ -197,15 +204,23 @@ static LLDebugTool *_instance = nil;
     });
 }
 
-- (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {
-    // Refactory database. Need rename tableName and table structure.
-    if ([version compare:@"1.1.3"] == NSOrderedAscending) {
-        [[LLStorageManager sharedManager] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
-            if (completion) {
-                completion(result);
-            }
-        }];
+#pragma mark - Lazy
+- (LLWindow *)window {
+    if (!_window) {
+        _window = [[LLWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _window.rootViewController = self.windowViewController;
+        _window.delegate = self;
     }
+    return _window;
+}
+
+- (LLWindowViewController *)windowViewController {
+    if (!_windowViewController) {
+        _windowViewController = [[LLWindowViewController alloc] init];
+        _windowViewController.sBallWidth = [LLConfig sharedConfig].suspensionBallWidth;
+        _windowViewController.windowStyle = [LLConfig sharedConfig].windowStyle;
+    }
+    return _windowViewController;
 }
 
 @end

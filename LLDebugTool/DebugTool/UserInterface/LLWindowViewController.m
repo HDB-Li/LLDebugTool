@@ -100,17 +100,31 @@
         [self.window hideWindow];
         UIViewController* vc = [[[UIApplication sharedApplication].delegate window] rootViewController];
         UIViewController* vc2 = vc.presentedViewController;
-        [vc2?:vc presentViewController:self.tabVC animated:YES completion:nil];
+//        [vc2?:vc presentViewController:self.tabVC animated:YES completion:nil];
+        [self presentViewController:self.tabVC animated:YES completion:nil];
         self.tabVC.selectedIndex = index;
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.window hideWindow];
             UIViewController* vc = [[[UIApplication sharedApplication].delegate window] rootViewController];
             UIViewController* vc2 = vc.presentedViewController;
-            [vc2?:vc presentViewController:self.tabVC animated:YES completion:nil];
+//            [vc2?:vc presentViewController:self.tabVC animated:YES completion:nil];
+            [self presentViewController:self.tabVC animated:YES completion:nil];
             self.tabVC.selectedIndex = index;
         });
     }
+}
+
+- (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates {
+    BOOL shouldReceiveTouch = NO;
+    CGPoint pointInLocalCoordinates = [self.view convertPoint:pointInWindowCoordinates fromView:nil];
+    if (CGRectContainsPoint(self.contentView.frame, pointInLocalCoordinates)) {
+        shouldReceiveTouch = YES;
+    }
+    if (!shouldReceiveTouch && self.presentedViewController) {
+        shouldReceiveTouch = YES;
+    }
+    return shouldReceiveTouch;
 }
 
 #pragma mark - LLAppHelperNotification
@@ -165,24 +179,23 @@
             CGFloat width = 90;
             CGRect rect = [UIApplication sharedApplication].statusBarFrame;
             CGFloat gap = 0.5;
-            self.window.frame = CGRectMake(LL_SCREEN_WIDTH - width - 2, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
+            self.contentView.frame = CGRectMake(LL_SCREEN_WIDTH - width - 2, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
         }
             break;
         case LLConfigWindowNetBar:{
             CGFloat width = 90;
             CGRect rect = [UIApplication sharedApplication].statusBarFrame;
             CGFloat gap = 0.5;
-            self.window.frame = CGRectMake(gap, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
+            self.contentView.frame = CGRectMake(gap, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
         }
             break;
         case LLConfigWindowSuspensionBall:
         default:{
             self.windowStyle = LLConfigWindowSuspensionBall;
-            self.window.frame = CGRectMake(-self.sBallHideWidth, LL_SCREEN_HEIGHT / 3.0, _sBallWidth, _sBallWidth);
+            self.contentView.frame = CGRectMake(-self.sBallHideWidth, LL_SCREEN_HEIGHT / 3.0, _sBallWidth, _sBallWidth);
         }
             break;
     }
-    self.view.frame = self.window.bounds;
 }
 
 - (void)updateSubViews {
@@ -194,7 +207,6 @@
     }
     
     // Create contentView
-    self.contentView.frame = self.view.bounds;
     [self.view addSubview:self.contentView];
     
     // Set up views by windowStyle.
@@ -280,8 +292,8 @@
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.contentView.alpha = [LLConfig sharedConfig].normalAlpha;
         // Calculate End Point
-        CGFloat x = self.window.center.x;
-        CGFloat y = self.window.center.y;
+        CGFloat x = self.contentView.center.x;
+        CGFloat y = self.contentView.center.y;
         CGFloat x1 = LL_SCREEN_WIDTH / 2.0;
         CGFloat y1 = LL_SCREEN_HEIGHT / 2.0;
         
@@ -294,23 +306,23 @@
             endPoint.y = y;
             if (x1 < x) {
                 // to right
-                endPoint.x = LL_SCREEN_WIDTH - self.window.frame.size.width / 2.0 + self.sBallHideWidth;
+                endPoint.x = LL_SCREEN_WIDTH - self.contentView.frame.size.width / 2.0 + self.sBallHideWidth;
             } else {
                 // to left
-                endPoint.x = self.window.frame.size.width / 2.0 - self.sBallHideWidth;
+                endPoint.x = self.contentView.frame.size.width / 2.0 - self.sBallHideWidth;
             }
         } else {
             // animation to top or bottom
             endPoint.x = x;
             if (y1 < y) {
                 // to bottom
-                endPoint.y = LL_SCREEN_HEIGHT - self.window.frame.size.height / 2.0 + self.sBallHideWidth;
+                endPoint.y = LL_SCREEN_HEIGHT - self.contentView.frame.size.height / 2.0 + self.sBallHideWidth;
             } else {
                 // to top
-                endPoint.y = self.window.frame.size.height / 2.0 - self.sBallHideWidth;
+                endPoint.y = self.contentView.frame.size.height / 2.0 - self.sBallHideWidth;
             }
         }
-        self.window.center = endPoint;
+        self.contentView.center = endPoint;
         
         CGFloat horizontalPer = x1 < x ? 0.15 : 0.85;
         CGFloat verticalPer = endPoint.y > self.sBallWidth ? 0.15 : 0.85;
@@ -332,7 +344,7 @@
     } else if (point.y < 0) {
         point.y = 0;
     }
-    self.window.center = CGPointMake(point.x, point.y);
+    self.contentView.center = CGPointMake(point.x, point.y);
 }
 
 // Fix the bug of missing status bars under ios9.

@@ -28,7 +28,7 @@
 #define LLSharedDebugTool [LLDebugTool sharedTool]
 #endif
 
-@class LLWindow;
+@class LLWindow , LLWindowViewController;
 
 /**
  Control whether DebugTool is started.
@@ -36,9 +36,14 @@
 @interface LLDebugTool : NSObject
 
 /**
- Suspension ball window.
+ Explorer window.
  */
 @property (nonatomic , strong , readonly , nonnull) LLWindow *window;
+
+/**
+ Explorer window view controller.
+ */
+@property (nonatomic , strong , readonly , nonnull) LLWindowViewController *windowViewController;
 
 /**
  Singleton to control debugTool.
