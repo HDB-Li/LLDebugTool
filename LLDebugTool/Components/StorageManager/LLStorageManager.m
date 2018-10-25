@@ -278,6 +278,53 @@ static NSString *const kDatabaseVersion = @"1";
     [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
 }
 
+- (void)updateDatabaseWithVersion:(NSString *)version complete:(LLStorageManagerBoolBlock)complete {
+    if ([version isEqualToString:@"1.1.3"]) {
+        // Update to version 1.1.3
+        [self update113VersionWithComplete:complete];
+    }
+}
+
+- (void)update113VersionWithComplete:(LLStorageManagerBoolBlock)complete {
+    // Check thread.
+    if ([[NSThread currentThread] isMainThread]) {
+        dispatch_async(_queue, ^{
+            [self update113VersionWithComplete:complete];
+        });
+        return;
+    }
+    
+    // Perform database operations
+    __block NSMutableArray *tables = [[NSMutableArray alloc] init];
+    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        FMResultSet *set = [db executeQuery:@"select name from sqlite_master where type='table' order by name;"];
+        while ([set next]) {
+            NSString *name = [set stringForColumn:@"name"];
+            if (name) {
+                [tables addObject:name];
+            }
+        }
+    }];
+    
+    __block BOOL ret1 = YES;
+    __block BOOL ret2 = YES;
+    __block BOOL ret3 = YES;
+    
+    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        if ([tables containsObject:@"CrashModelTable"]) {
+            ret1 = [db executeUpdate:@"DROP TABLE CrashModelTable"];
+        }
+        if ([tables containsObject:@"LogModelTable"]) {
+            ret2 = [db executeUpdate:@"DROP TABLE LogModelTable"];
+        }
+        if ([tables containsObject:@"NetworkModelTable"]) {
+            ret3 = [db executeUpdate:@"DROP TABLE NetworkModelTable"];
+        }
+    }];
+    
+    [self performBoolComplete:complete param:@(ret1 && ret2 && ret3) synchronous:NO];
+}
+
 #pragma mark - Primary
 /**
  Initialize something

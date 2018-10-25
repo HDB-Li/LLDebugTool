@@ -167,8 +167,13 @@ static LLDebugTool *_instance = nil;
     
     if ([self.versionNumber compare:version] == NSOrderedDescending) {
         // Do update if needed.
-        [localInfo setObject:self.versionNumber forKey:@"version"];
-        [localInfo writeToFile:filePath atomically:YES];
+        [self updateSomethingWithVersion:version completion:^(BOOL result) {
+            if (!result) {
+                NSLog(@"Failed to update old data");
+            }
+            [localInfo setObject:self.versionNumber forKey:@"version"];
+            [localInfo writeToFile:filePath atomically:YES];
+        }];
     }
     
     if (self.isBetaVersion) {
@@ -202,6 +207,21 @@ static LLDebugTool *_instance = nil;
             [dataTask resume];
         }
     });
+}
+
+- (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {
+    // Refactory database. Need rename tableName and table structure.
+    if ([version compare:@"1.1.3"] == NSOrderedAscending) {
+        [[LLStorageManager sharedManager] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
+            if (completion) {
+                completion(result);
+            }
+        }];
+    } else {
+        if (completion) {
+            completion(YES);
+        }
+    }
 }
 
 #pragma mark - Lazy
