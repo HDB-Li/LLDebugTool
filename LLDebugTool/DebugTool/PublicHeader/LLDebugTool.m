@@ -110,7 +110,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
-    [self.window.windowViewController showDebugViewControllerWithIndex:index];
+    [self.windowViewController presentTabbarWithIndex:index];
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
@@ -129,7 +129,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (BOOL)canBecomeKeyWindow {
-    return YES;
+    return [self.windowViewController wantsWindowToBecomeKey];
 }
 
 #pragma mark - Primary

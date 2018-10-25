@@ -64,7 +64,10 @@
 /**
  Automatic open debug view controller with index.
  */
-- (void)showDebugViewControllerWithIndex:(NSInteger)index;
+- (void)presentTabbarWithIndex:(NSInteger)index;
 
 - (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates;
+
+- (BOOL)wantsWindowToBecomeKey;
+
 @end

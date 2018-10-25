@@ -41,6 +41,10 @@
 
 @interface LLWindowViewController ()
 
+@property (nonatomic, strong) UIWindow *previousKeyWindow;
+
+@property (nonatomic, assign) UIStatusBarStyle previousStatusBarStyle;
+
 @property (nonatomic , strong) UIView *contentView;
 
 @property (nonatomic , strong) UILabel *memoryLabel;
@@ -64,6 +68,11 @@
     [self initial];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self resignKeyWindow];
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -81,7 +90,7 @@
     _tabVC = nil;
 }
 
-- (void)showDebugViewControllerWithIndex:(NSInteger)index {
+- (void)presentTabbarWithIndex:(NSInteger)index {
     if ([LLConfig sharedConfig].availables == LLConfigAvailableScreenshot) {
         // Screenshot only. Don't open the window.
         LLog_Event(kLLLogHelperDebugToolEvent, @"Current availables is only screenshot, can't open the tabbar.");
@@ -96,23 +105,8 @@
     if (![LLConfig sharedConfig].imageBundle) {
         LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
     }
-    if ([[NSThread currentThread] isMainThread]) {
-        [self.window hideWindow];
-        UIViewController* vc = [[[UIApplication sharedApplication].delegate window] rootViewController];
-        UIViewController* vc2 = vc.presentedViewController;
-//        [vc2?:vc presentViewController:self.tabVC animated:YES completion:nil];
-        [self presentViewController:self.tabVC animated:YES completion:nil];
-        self.tabVC.selectedIndex = index;
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.window hideWindow];
-            UIViewController* vc = [[[UIApplication sharedApplication].delegate window] rootViewController];
-            UIViewController* vc2 = vc.presentedViewController;
-//            [vc2?:vc presentViewController:self.tabVC animated:YES completion:nil];
-            [self presentViewController:self.tabVC animated:YES completion:nil];
-            self.tabVC.selectedIndex = index;
-        });
-    }
+    
+    [self makeKeyAndPresentTabbarControllerWithIndex:index];
 }
 
 - (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates {
@@ -125,6 +119,11 @@
         shouldReceiveTouch = YES;
     }
     return shouldReceiveTouch;
+}
+
+- (BOOL)wantsWindowToBecomeKey
+{
+    return self.previousKeyWindow != nil;
 }
 
 #pragma mark - LLAppHelperNotification
@@ -347,6 +346,7 @@
     self.contentView.center = CGPointMake(point.x, point.y);
 }
 
+#pragma mark - Recode
 // Fix the bug of missing status bars under ios9.
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return [LLConfig sharedConfig].statusBarStyle;
@@ -355,6 +355,46 @@
 // TODO: Know why does this method affect the statusBar for keywindow.
 - (BOOL)prefersStatusBarHidden {
     return NO;
+}
+
+- (UIWindow *)statusWindow
+{
+    return [[UIApplication sharedApplication] valueForKey:@"_statusBarWindow"];
+}
+
+- (void)makeKeyAndPresentTabbarControllerWithIndex:(NSInteger)index {
+    if (![[NSThread currentThread] isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self makeKeyAndPresentTabbarControllerWithIndex:index];
+        });
+        return;
+    }
+    
+    self.previousKeyWindow = [[UIApplication sharedApplication] keyWindow];
+    
+    [self.view.window makeKeyWindow];
+    
+    [[self statusWindow] setWindowLevel:self.view.window.windowLevel + 1.0];
+    
+    self.previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:[LLConfig sharedConfig].statusBarStyle];
+    
+    self.tabVC.selectedIndex = index;
+    [self presentViewController:self.tabVC animated:YES completion:nil];
+}
+
+- (void)resignKeyWindow {
+    UIWindow *previousKeyWindow = self.previousKeyWindow;
+    self.previousKeyWindow = nil;
+    if (previousKeyWindow) {
+        [previousKeyWindow makeKeyWindow];
+        [[previousKeyWindow rootViewController] setNeedsStatusBarAppearanceUpdate];
+        
+        [[self statusWindow] setWindowLevel:UIWindowLevelStatusBar];
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:self.previousStatusBarStyle];
+    }
 }
 
 #pragma mark - Action
@@ -375,7 +415,7 @@
 }
 
 - (void)tapGR:(UITapGestureRecognizer *)gr {
-    [self showDebugViewControllerWithIndex:0];
+    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)gr {
