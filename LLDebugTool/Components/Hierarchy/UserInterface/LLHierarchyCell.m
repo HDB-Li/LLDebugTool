@@ -23,6 +23,7 @@
 
 #import "LLHierarchyCell.h"
 #import "LLConfig.h"
+#import "LLTool.h"
 #import "UIImage+LL_Utils.h"
 
 @interface LLHierarchyCell ()
@@ -77,7 +78,7 @@
 
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
-    self.circleView.backgroundColor = [self colorFromView:model.view];
+    self.circleView.backgroundColor = [LLTool colorFromObject:model.view];
     
     if (model.subModels.count) {
         self.directionImageView.hidden = NO;
@@ -227,11 +228,6 @@
 
     self.lineLayer.path = path.CGPath;
     self.dashLineLayer.path = path2.CGPath;
-}
-
-- (UIColor *)colorFromView:(UIView *)view {
-    CGFloat hue = (((NSUInteger)view >> 4) % 256) / 255.0;
-    return [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
 }
 
 @end

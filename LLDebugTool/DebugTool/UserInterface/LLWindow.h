@@ -22,7 +22,6 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLWindowViewController.h"
 
 @protocol LLWindowDelegate;
 
@@ -30,11 +29,6 @@
  Suspension ball window.
  */
 @interface LLWindow : UIWindow
-
-/**
- Root viewController.
- */
-@property (strong , nonatomic , readonly , nonnull) LLWindowViewController *windowViewController;
 
 /**
  Delegate.
@@ -46,21 +40,12 @@
  */
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
-/**
- Show window.
- */
-- (void)showWindow;
-
-/**
- Hide window.
- */
-- (void)hideWindow;
-
 @end
 
 @protocol LLWindowDelegate <NSObject>
 
 - (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow;
+
 - (BOOL)canBecomeKeyWindow;
 
 @end

@@ -105,13 +105,13 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 
 + (void)showWindow {
 #if INSTALLED_LLDEBUGTOOL
-    [[LLDebugTool sharedTool].window showWindow];
+    [[LLDebugTool sharedTool] showWindow];
 #endif
 }
 
 + (void)hideWindow {
 #if INSTALLED_LLDEBUGTOOL
-    [[LLDebugTool sharedTool].window hideWindow];
+    [[LLDebugTool sharedTool] hideWindow];
 #endif
 }
 

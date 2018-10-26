@@ -89,6 +89,11 @@
  */
 + (NSString *_Nonnull)stringFromFrame:(CGRect)frame;
 
+/**
+ Random color from object.
+ */
++ (UIColor *_Nonnull)colorFromObject:(NSObject *_Nonnull)object;
+
 #pragma mark - DEPRECATED
 
 + (instancetype _Nonnull)sharedTool DEPRECATED_ATTRIBUTE;

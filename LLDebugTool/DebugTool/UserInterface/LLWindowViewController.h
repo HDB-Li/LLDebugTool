@@ -32,21 +32,6 @@
 @interface LLWindowViewController : UIViewController
 
 /**
- SuspensionBall width.
- */
-@property (nonatomic , assign) CGFloat sBallWidth;
-
-/**
- Window style.
- */
-@property (nonatomic , assign) LLConfigWindowStyle windowStyle;
-
-/**
- Parent window.
- */
-@property (nonatomic , weak , nullable) LLWindow *window;
-
-/**
  Release current tabBarController.
  */
 - (void)reloadTabbar;

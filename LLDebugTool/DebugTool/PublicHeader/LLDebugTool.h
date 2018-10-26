@@ -63,6 +63,16 @@
 - (void)stopWorking;
 
 /**
+ Show explorer window.
+ */
+- (void)showWindow;
+
+/**
+ Hide explorer window.
+ */
+- (void)hideWindow;
+
+/**
  Whether working or not.
  */
 @property (nonatomic , assign , readonly) BOOL isWorking;

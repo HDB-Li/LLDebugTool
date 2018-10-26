@@ -58,7 +58,6 @@ static LLScreenshotHelper *_instance = nil;
 
 - (void)simulateTakeScreenshot {
     if (self.enable) {
-        [LLRoute hideWindow];
         UIImage *image = [self imageFromScreen];
         if (image) {
             LLScreenshotView *screenshot = [[LLScreenshotView alloc] initWithImage:image];

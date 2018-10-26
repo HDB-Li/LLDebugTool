@@ -29,6 +29,7 @@
 #import "LLAppInfoVC.h"
 #import "LLSandboxVC.h"
 #import "LLAppHelper.h"
+#import "LLHierarchyHelper.h"
 #import "LLCrashVC.h"
 #import "LLMacros.h"
 #import "LLWindow.h"
@@ -38,6 +39,13 @@
 #import "LLDebugTool.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
+#import "LLTool.h"
+
+typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
+    LLWindowViewControllerModeDefault,
+    LLWindowViewControllerModeSelect,
+    LLWindowViewControllerModeMove,
+};
 
 @interface LLWindowViewController ()
 
@@ -59,6 +67,24 @@
 
 @property (nonatomic , strong) UITabBarController *tabVC;
 
+@property (nonatomic , assign) LLConfigWindowStyle windowStyle;
+
+@property (nonatomic , assign) CGFloat sBallWidth;
+
+@property (nonatomic , assign , getter=isRegisterNotification) BOOL registerNotification;
+
+@property (nonatomic , assign , getter=currentMode) LLWindowViewControllerMode mode;
+
+@property (nonatomic, strong) NSDictionary<NSValue *, UIView *> *outlineViewsForVisibleViews;
+
+@property (nonatomic, strong) NSArray<UIView *> *viewsAtTapPoint;
+
+@property (nonatomic, strong) UIView *selectedView;
+
+@property (nonatomic, strong) UIView *selectedViewOverlay;
+
+@property (nonatomic, strong) NSMutableSet<UIView *> *observedViews;
+
 @end
 
 @implementation LLWindowViewController
@@ -71,6 +97,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self resignKeyWindow];
+    [self registerLLAppHelperNotification];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self unregisterLLAppHelperNotification];
 }
 
 - (void)dealloc {
@@ -79,11 +111,17 @@
 
 #pragma mark - Public
 - (void)registerLLAppHelperNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppHelperDidUpdateAppInfosNotification:) name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+    if (!self.isRegisterNotification) {
+        self.registerNotification = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppHelperDidUpdateAppInfosNotification:) name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+    }
 }
 
 - (void)unregisterLLAppHelperNotification {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+    if (self.isRegisterNotification) {
+        self.registerNotification = NO;
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+    }
 }
 
 - (void)reloadTabbar {
@@ -111,10 +149,23 @@
 
 - (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates {
     BOOL shouldReceiveTouch = NO;
+    
     CGPoint pointInLocalCoordinates = [self.view convertPoint:pointInWindowCoordinates fromView:nil];
+    
     if (CGRectContainsPoint(self.contentView.frame, pointInLocalCoordinates)) {
         shouldReceiveTouch = YES;
     }
+    
+    // Always if we're in selection mode
+    if (!shouldReceiveTouch && self.currentMode == LLWindowViewControllerModeSelect) {
+        shouldReceiveTouch = YES;
+    }
+    
+    // Always in move mode too
+    if (!shouldReceiveTouch && self.currentMode == LLWindowViewControllerModeMove) {
+        shouldReceiveTouch = YES;
+    }
+    
     if (!shouldReceiveTouch && self.presentedViewController) {
         shouldReceiveTouch = YES;
     }
@@ -161,14 +212,18 @@
  * initial method
  */
 - (void)initial {
+    self.windowStyle = [LLConfig sharedConfig].windowStyle;
+    self.mode = LLWindowViewControllerModeSelect;
     [self updateSettings];
     [self updateSubViews];
+    [self initGestureRecognizers];
     [self updateGestureRecognizers];
     [self registerNotifications];
 }
 
 - (void)updateSettings {
     // Check sBallWidth
+    _sBallWidth = [LLConfig sharedConfig].suspensionBallWidth;
     if (_sBallWidth < 70) {
         _sBallWidth = 70;
     }
@@ -250,7 +305,14 @@
     }
 }
 
+- (void)initGestureRecognizers {
+    // View selection
+    UITapGestureRecognizer *selectionTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectionTap:)];
+    [self.view addGestureRecognizer:selectionTapGR];
+}
+
 - (void)updateGestureRecognizers {
+    // Update contentView recognizers
     for (UIGestureRecognizer *gr in self.contentView.gestureRecognizers) {
         [self.contentView removeGestureRecognizer:gr];
     }
@@ -346,6 +408,198 @@
     self.contentView.center = CGPointMake(point.x, point.y);
 }
 
+- (void)updateOutlineViewsForSelectionPoint:(CGPoint)selectionPointInWindow
+{
+    [self removeAndClearOutlineViews];
+    
+    // Include hidden views in the "viewsAtTapPoint" array so we can show them in the hierarchy list.
+    self.viewsAtTapPoint = [self viewsAtPoint:selectionPointInWindow skipHiddenViews:NO];
+    
+    // For outlined views and the selected view, only use visible views.
+    // Outlining hidden views adds clutter and makes the selection behavior confusing.
+    NSArray<UIView *> *visibleViewsAtTapPoint = [self viewsAtPoint:selectionPointInWindow skipHiddenViews:YES];
+    NSMutableDictionary<NSValue *, UIView *> *newOutlineViewsForVisibleViews = [NSMutableDictionary dictionary];
+    for (UIView *view in visibleViewsAtTapPoint) {
+        UIView *outlineView = [self outlineViewForView:view];
+        [self.view addSubview:outlineView];
+        NSValue *key = [NSValue valueWithNonretainedObject:view];
+        [newOutlineViewsForVisibleViews setObject:outlineView forKey:key];
+    }
+    self.outlineViewsForVisibleViews = newOutlineViewsForVisibleViews;
+    self.selectedView = [self viewForSelectionAtPoint:selectionPointInWindow];
+    
+    // Make sure the explorer toolbar doesn't end up behind the newly added outline views.
+//    [self.view bringSubviewToFront:self.explorerToolbar];
+    
+    [self updateButtonStates];
+}
+
+- (UIView *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow
+{
+    // Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.
+    // Default to the the application's key window if none of the windows want the touch.
+    UIWindow *windowForSelection = [[UIApplication sharedApplication] keyWindow];
+    for (UIWindow *window in [[[LLHierarchyHelper sharedHelper] allWindows] reverseObjectEnumerator]) {
+        // Ignore the explorer's own window.
+        if (window != self.view.window) {
+            if ([window hitTest:tapPointInWindow withEvent:nil]) {
+                windowForSelection = window;
+                break;
+            }
+        }
+    }
+    
+    // Select the deepest visible view at the tap point. This generally corresponds to what the user wants to select.
+    return [[self recursiveSubviewsAtPoint:tapPointInWindow inView:windowForSelection skipHiddenViews:YES] lastObject];
+}
+
+- (void)removeAndClearOutlineViews
+{
+    for (NSValue *key in self.outlineViewsForVisibleViews) {
+        UIView *outlineView = self.outlineViewsForVisibleViews[key];
+        [outlineView removeFromSuperview];
+    }
+    self.outlineViewsForVisibleViews = nil;
+}
+
+- (NSArray<UIView *> *)viewsAtPoint:(CGPoint)tapPointInWindow skipHiddenViews:(BOOL)skipHidden
+{
+    NSMutableArray<UIView *> *views = [NSMutableArray array];
+    for (UIWindow *window in [[LLHierarchyHelper sharedHelper] allWindows]) {
+        // Don't include the explorer's own window or subviews.
+        if (window != self.view.window && [window pointInside:tapPointInWindow withEvent:nil]) {
+            [views addObject:window];
+            [views addObjectsFromArray:[self recursiveSubviewsAtPoint:tapPointInWindow inView:window skipHiddenViews:skipHidden]];
+        }
+    }
+    return views;
+}
+
+- (NSArray<UIView *> *)recursiveSubviewsAtPoint:(CGPoint)pointInView inView:(UIView *)view skipHiddenViews:(BOOL)skipHidden
+{
+    NSMutableArray<UIView *> *subviewsAtPoint = [NSMutableArray array];
+    for (UIView *subview in view.subviews) {
+        BOOL isHidden = subview.hidden || subview.alpha < 0.01;
+        if (skipHidden && isHidden) {
+            continue;
+        }
+        
+        BOOL subviewContainsPoint = CGRectContainsPoint(subview.frame, pointInView);
+        if (subviewContainsPoint) {
+            [subviewsAtPoint addObject:subview];
+        }
+        
+        // If this view doesn't clip to its bounds, we need to check its subviews even if it doesn't contain the selection point.
+        // They may be visible and contain the selection point.
+        if (subviewContainsPoint || !subview.clipsToBounds) {
+            CGPoint pointInSubview = [view convertPoint:pointInView toView:subview];
+            [subviewsAtPoint addObjectsFromArray:[self recursiveSubviewsAtPoint:pointInSubview inView:subview skipHiddenViews:skipHidden]];
+        }
+    }
+    return subviewsAtPoint;
+}
+
+- (UIView *)outlineViewForView:(UIView *)view
+{
+    CGRect outlineFrame = [self frameInLocalCoordinatesForView:view];
+    UIView *outlineView = [[UIView alloc] initWithFrame:outlineFrame];
+    outlineView.backgroundColor = [UIColor clearColor];
+    outlineView.layer.borderColor = [[LLTool colorFromObject:view] CGColor];
+    outlineView.layer.borderWidth = 1.0;
+    return outlineView;
+}
+
+- (CGRect)frameInLocalCoordinatesForView:(UIView *)view
+{
+    // First convert to window coordinates since the view may be in a different window than our view.
+    CGRect frameInWindow = [view convertRect:view.bounds toView:nil];
+    // Then convert from the window to our view's coordinate space.
+    return [self.view convertRect:frameInWindow fromView:nil];
+}
+
+- (void)updateButtonStates {
+    
+}
+
+- (void)setSelectedView:(UIView *)selectedView
+{
+    if (![_selectedView isEqual:selectedView]) {
+        if (![self.viewsAtTapPoint containsObject:_selectedView]) {
+            [self stopObservingView:_selectedView];
+        }
+        
+        _selectedView = selectedView;
+        
+        [self beginObservingView:selectedView];
+        
+        // Update the toolbar and selected overlay
+#warning Need Update
+//        self.explorerToolbar.selectedViewDescription = [FLEXUtility descriptionForView:selectedView includingFrame:YES];
+//        self.explorerToolbar.selectedViewOverlayColor = [FLEXUtility consistentRandomColorForObject:selectedView];
+        
+        if (selectedView) {
+            if (!self.selectedViewOverlay) {
+                self.selectedViewOverlay = [[UIView alloc] init];
+                [self.view addSubview:self.selectedViewOverlay];
+                self.selectedViewOverlay.layer.borderWidth = 1.0;
+            }
+            UIColor *outlineColor = [LLTool colorFromObject:selectedView];
+            self.selectedViewOverlay.backgroundColor = [outlineColor colorWithAlphaComponent:0.2];
+            self.selectedViewOverlay.layer.borderColor = [outlineColor CGColor];
+            self.selectedViewOverlay.frame = [self.view convertRect:selectedView.bounds fromView:selectedView];
+            
+            // Make sure the selected overlay is in front of all the other subviews except the toolbar, which should always stay on top.
+            [self.view bringSubviewToFront:self.selectedViewOverlay];
+#warning Need Update
+//            [self.view bringSubviewToFront:self.explorerToolbar];
+        } else {
+            [self.selectedViewOverlay removeFromSuperview];
+            self.selectedViewOverlay = nil;
+        }
+        
+        // Some of the button states depend on whether we have a selected view.
+        [self updateButtonStates];
+    }
+}
+
+- (void)beginObservingView:(UIView *)view
+{
+    // Bail if we're already observing this view or if there's nothing to observe.
+    if (!view || [self.observedViews containsObject:view]) {
+        return;
+    }
+    
+    for (NSString *keyPath in [[self class] viewKeyPathsToTrack]) {
+        [view addObserver:self forKeyPath:keyPath options:0 context:NULL];
+    }
+    
+    [self.observedViews addObject:view];
+}
+
+- (void)stopObservingView:(UIView *)view
+{
+    if (!view) {
+        return;
+    }
+    
+    for (NSString *keyPath in [[self class] viewKeyPathsToTrack]) {
+        [view removeObserver:self forKeyPath:keyPath];
+    }
+    
+    [self.observedViews removeObject:view];
+}
+
++ (NSArray<NSString *> *)viewKeyPathsToTrack
+{
+    static NSArray<NSString *> *trackedViewKeyPaths = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *frameKeyPath = NSStringFromSelector(@selector(frame));
+        trackedViewKeyPaths = @[frameKeyPath];
+    });
+    return trackedViewKeyPaths;
+}
+
 #pragma mark - Recode
 // Fix the bug of missing status bars under ios9.
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -380,6 +634,10 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:[LLConfig sharedConfig].statusBarStyle];
     
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self reloadTabbar];
+    
     self.tabVC.selectedIndex = index;
     [self presentViewController:self.tabVC animated:YES completion:nil];
 }
@@ -389,6 +647,7 @@
     self.previousKeyWindow = nil;
     if (previousKeyWindow) {
         [previousKeyWindow makeKeyWindow];
+        
         [[previousKeyWindow rootViewController] setNeedsStatusBarAppearanceUpdate];
         
         [[self statusWindow] setWindowLevel:UIWindowLevelStatusBar];
@@ -398,6 +657,16 @@
 }
 
 #pragma mark - Action
+- (void)handleSelectionTap:(UITapGestureRecognizer *)gr
+{
+    // Only if we're in selection mode
+    if (self.currentMode == LLWindowViewControllerModeSelect && gr.state == UIGestureRecognizerStateEnded) {
+        CGPoint tapPointInView = [gr locationInView:self.view];
+        CGPoint tapPointInWindow = [self.view convertPoint:tapPointInView toView:nil];
+        [self updateOutlineViewsForSelectionPoint:tapPointInWindow];
+    }
+}
+
 - (void)panGR:(UIPanGestureRecognizer *)gr {
     if ([LLConfig sharedConfig].suspensionBallMoveable) {
         UIWindow *window = [UIApplication sharedApplication].delegate.window;

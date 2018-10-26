@@ -87,7 +87,7 @@ static LLDebugTool *_instance = nil;
             [[LLScreenshotHelper sharedHelper] setEnable:YES];
         }
         // show window
-        [self.window showWindow];
+        [self showWindow];
     }
 }
 
@@ -105,8 +105,20 @@ static LLDebugTool *_instance = nil;
         // Close crash helper
         [[LLCrashHelper sharedHelper] setEnable:NO];
         // hide window
-        [self.window hideWindow];
+        [self hideWindow];
     }
+}
+
+- (void)showWindow
+{
+    self.window.hidden = NO;
+    [self.windowViewController registerLLAppHelperNotification];
+}
+
+- (void)hideWindow
+{
+    self.window.hidden = YES;
+    [self.windowViewController unregisterLLAppHelperNotification];
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
@@ -237,8 +249,6 @@ static LLDebugTool *_instance = nil;
 - (LLWindowViewController *)windowViewController {
     if (!_windowViewController) {
         _windowViewController = [[LLWindowViewController alloc] init];
-        _windowViewController.sBallWidth = [LLConfig sharedConfig].suspensionBallWidth;
-        _windowViewController.windowStyle = [LLConfig sharedConfig].windowStyle;
     }
     return _windowViewController;
 }
