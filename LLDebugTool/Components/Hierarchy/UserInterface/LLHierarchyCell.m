@@ -162,8 +162,10 @@
             [path moveToPoint:CGPointMake(center.x + lineGap / 2.0, center.y)];
             [path addLineToPoint:CGPointMake(center.x + lineGap, center.y)];
         } else {
-            [path moveToPoint:center];
-            [path addLineToPoint:CGPointMake(center.x, self.contentView.frame.size.height)];
+            if (self.model.subModels.count != 0) {
+                [path moveToPoint:center];
+                [path addLineToPoint:CGPointMake(center.x, self.contentView.frame.size.height)];
+            }
         }
     } else {
         // Handle normal rows.
