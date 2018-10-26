@@ -213,7 +213,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
  */
 - (void)initial {
     self.windowStyle = [LLConfig sharedConfig].windowStyle;
-    self.mode = LLWindowViewControllerModeSelect;
+//    self.mode = LLWindowViewControllerModeSelect;
     [self updateSettings];
     [self updateSubViews];
     [self initGestureRecognizers];

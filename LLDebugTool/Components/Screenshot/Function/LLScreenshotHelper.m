@@ -131,7 +131,7 @@ static LLScreenshotHelper *_instance = nil;
     }
     for (UIView *window in windows)
     {
-        if (!window.isHidden) {
+        if (!window.isHidden && ![NSStringFromClass([window class]) isEqualToString:@"LLWindow"]) {
             CGContextSaveGState(context);
             CGContextTranslateCTM(context, window.center.x, window.center.y);
             CGContextConcatCTM(context, window.transform);
