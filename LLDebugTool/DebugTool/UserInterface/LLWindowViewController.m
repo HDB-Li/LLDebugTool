@@ -40,6 +40,7 @@
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
 #import "LLTool.h"
+#import "LLWindowTabBarController.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -65,7 +66,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic , assign) CGFloat sBallHideWidth;
 
-@property (nonatomic , strong) UITabBarController *tabBarController;
+@property (nonatomic , strong) LLWindowTabBarController *tabBarController;
 
 @property (nonatomic , assign) LLConfigWindowStyle windowStyle;
 
@@ -900,9 +901,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 #pragma mark - Lazy load
-- (UITabBarController *)tabBarController {
+- (LLWindowTabBarController *)tabBarController {
     if (_tabBarController == nil) {
-        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        LLWindowTabBarController *tabBarController = [[LLWindowTabBarController alloc] init];
         
         LLNetworkViewController *networkVC = [[LLNetworkViewController alloc] init];
         UINavigationController *networkNav = [[LLBaseNavigationController alloc] initWithRootViewController:networkVC];
