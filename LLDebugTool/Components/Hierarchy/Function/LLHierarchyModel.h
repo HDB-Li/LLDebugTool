@@ -43,9 +43,9 @@
 
 - (instancetype _Nonnull)initWithSubModels:(NSMutableArray <LLHierarchyModel *>*_Nonnull)subModels;
 
-- (NSString *)name;
+- (NSString *_Nullable)name;
 
-- (NSString *)frame;
+- (NSString *_Nullable)frame;
 
 - (BOOL)isSingleInCurrentSection;
 
@@ -53,6 +53,6 @@
 
 - (BOOL)isLastInCurrentSection;
 
-- (LLHierarchyModel *)lastModelInCurrentSection;
+- (LLHierarchyModel *_Nullable)lastModelInCurrentSection;
 
 @end

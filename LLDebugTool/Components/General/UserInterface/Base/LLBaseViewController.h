@@ -111,7 +111,7 @@
 /**
  * Init a navigation item.
  */
-- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName;
+- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *_Nonnull)selectedImageName;
 
 #pragma mark - Rewrite
 /**

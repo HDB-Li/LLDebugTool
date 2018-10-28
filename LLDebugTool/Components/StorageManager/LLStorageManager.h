@@ -108,6 +108,6 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
 - (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark -
-- (void)updateDatabaseWithVersion:(NSString *)version complete:(LLStorageManagerBoolBlock)complete;
+- (void)updateDatabaseWithVersion:(NSString *_Nonnull)version complete:(LLStorageManagerBoolBlock)complete;
 
 @end
