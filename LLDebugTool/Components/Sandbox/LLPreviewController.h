@@ -1,5 +1,5 @@
 //
-//  LLCrashContentVC.h
+//  LLPreviewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
-#import "LLCrashModel.h"
+#import <QuickLook/QuickLook.h>
 
-@interface LLCrashContentVC : LLBaseViewController
+typedef NS_ENUM(NSUInteger, LLPreviewControllerPresentMode) {
+    LLPreviewControllerPresentModeAnimatedPush,
+    LLPreviewControllerPresentModePush,
+    LLPreviewControllerPresentModeAnimatedPresent,
+    LLPreviewControllerPresentModePresent,
+};
 
-/**
- * Model to show
- */
-@property (nonatomic , strong , nonnull) LLCrashModel *model;
+@interface LLPreviewController : QLPreviewController
+
+@property (nonatomic , strong , nullable) NSArray <NSString *>*filePaths;
+
+///**
+// Preview files.
+// */
+//- (void)previewFilesWithPaths:(NSArray <NSString *>*)filePaths on:(UIViewController *)viewController mode:(LLPreviewControllerPresentMode)mode index:(NSInteger)index;
 
 @end

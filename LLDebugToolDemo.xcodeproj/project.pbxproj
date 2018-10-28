@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
-		3611B42B21605A9200BEAB11 /* LLHierarchyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */; };
+		3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
 		3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */; };
@@ -21,9 +21,9 @@
 		369D09332153853A001C9D4B /* LLLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09282153853A001C9D4B /* LLLogModel.m */; };
 		369D09342153853A001C9D4B /* LLLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09292153853A001C9D4B /* LLLogHelper.m */; };
 		369D09352153853A001C9D4B /* LLLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D092E2153853A001C9D4B /* LLLogCell.m */; };
-		369D09362153853A001C9D4B /* LLLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D092F2153853A001C9D4B /* LLLogVC.m */; };
+		369D09362153853A001C9D4B /* LLLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D092F2153853A001C9D4B /* LLLogViewController.m */; };
 		369D09372153853A001C9D4B /* LLLogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369D09302153853A001C9D4B /* LLLogCell.xib */; };
-		369D09382153853A001C9D4B /* LLLogContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09312153853A001C9D4B /* LLLogContentVC.m */; };
+		369D09382153853A001C9D4B /* LLLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09312153853A001C9D4B /* LLLogDetailViewController.m */; };
 		369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09392153855D001C9D4B /* LLLogFilterView.m */; };
 		369D093E2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D093D2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
@@ -83,34 +83,34 @@
 		C44F41432152AA7000153F46 /* LLNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40C32152AA7000153F46 /* LLNetworkHelper.m */; };
 		C44F41442152AA7000153F46 /* LLNetworkImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40C62152AA7000153F46 /* LLNetworkImageCell.m */; };
 		C44F41452152AA7000153F46 /* LLNetworkFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40C72152AA7000153F46 /* LLNetworkFilterView.m */; };
-		C44F41462152AA7000153F46 /* LLNetworkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40C92152AA7000153F46 /* LLNetworkVC.m */; };
+		C44F41462152AA7000153F46 /* LLNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40C92152AA7000153F46 /* LLNetworkViewController.m */; };
 		C44F41472152AA7000153F46 /* LLNetworkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40CA2152AA7000153F46 /* LLNetworkCell.m */; };
 		C44F41482152AA7000153F46 /* LLNetworkImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F40CB2152AA7000153F46 /* LLNetworkImageCell.xib */; };
 		C44F41492152AA7000153F46 /* LLNetworkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F40CC2152AA7000153F46 /* LLNetworkCell.xib */; };
-		C44F414A2152AA7000153F46 /* LLNetworkContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40D12152AA7000153F46 /* LLNetworkContentVC.m */; };
+		C44F414A2152AA7000153F46 /* LLNetworkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40D12152AA7000153F46 /* LLNetworkDetailViewController.m */; };
 		C44F414B2152AA7000153F46 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40D42152AA7000153F46 /* LLCrashHelper.m */; };
 		C44F414C2152AA7000153F46 /* LLCrashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40D52152AA7000153F46 /* LLCrashModel.m */; };
 		C44F414D2152AA7000153F46 /* LLCrashSignalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40D82152AA7000153F46 /* LLCrashSignalModel.m */; };
-		C44F414E2152AA7000153F46 /* LLCrashSignalContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40DC2152AA7000153F46 /* LLCrashSignalContentVC.m */; };
+		C44F414E2152AA7000153F46 /* LLCrashSignalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40DC2152AA7000153F46 /* LLCrashSignalDetailViewController.m */; };
 		C44F414F2152AA7000153F46 /* LLCrashContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F40DD2152AA7000153F46 /* LLCrashContentCell.xib */; };
 		C44F41502152AA7000153F46 /* LLCrashContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40E02152AA7000153F46 /* LLCrashContentCell.m */; };
 		C44F41512152AA7000153F46 /* LLCrashCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F40E12152AA7000153F46 /* LLCrashCell.xib */; };
 		C44F41522152AA7000153F46 /* LLCrashCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40E32152AA7000153F46 /* LLCrashCell.m */; };
-		C44F41532152AA7000153F46 /* LLCrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40E42152AA7000153F46 /* LLCrashVC.m */; };
-		C44F41542152AA7000153F46 /* LLCrashContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40E62152AA7000153F46 /* LLCrashContentVC.m */; };
+		C44F41532152AA7000153F46 /* LLCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40E42152AA7000153F46 /* LLCrashViewController.m */; };
+		C44F41542152AA7000153F46 /* LLCrashDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40E62152AA7000153F46 /* LLCrashDetailViewController.m */; };
 		C44F41552152AA7000153F46 /* LLSandboxHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40EB2152AA7000153F46 /* LLSandboxHelper.m */; };
 		C44F41562152AA7000153F46 /* LLSandboxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40EC2152AA7000153F46 /* LLSandboxModel.m */; };
 		C44F41572152AA7000153F46 /* LLSandboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40EE2152AA7000153F46 /* LLSandboxCell.m */; };
-		C44F41582152AA7000153F46 /* LLSandboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40F02152AA7000153F46 /* LLSandboxVC.m */; };
+		C44F41582152AA7000153F46 /* LLSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40F02152AA7000153F46 /* LLSandboxViewController.m */; };
 		C44F41592152AA7000153F46 /* LLSandboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F40F22152AA7000153F46 /* LLSandboxCell.xib */; };
-		C44F415A2152AA7000153F46 /* YWFilePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40F42152AA7000153F46 /* YWFilePreviewController.m */; };
 		C44F41622152AA7000153F46 /* UIDevice+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41092152AA7000153F46 /* UIDevice+LL_Swizzling.m */; };
 		C44F41632152AA7000153F46 /* LLAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F410A2152AA7000153F46 /* LLAppHelper.m */; };
-		C44F41642152AA7000153F46 /* LLAppInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F410D2152AA7000153F46 /* LLAppInfoVC.m */; };
+		C44F41642152AA7000153F46 /* LLAppInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F410D2152AA7000153F46 /* LLAppInfoViewController.m */; };
 		C44F41652152AA7000153F46 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41112152AA7000153F46 /* LLDebugTool.m */; };
 		C44F41662152AA7000153F46 /* LLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41172152AA7000153F46 /* LLWindow.m */; };
 		C44F41672152AA7000153F46 /* LLWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41192152AA7000153F46 /* LLWindowViewController.m */; };
 		C49B691C215E843400E82794 /* LLHierarchyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49B691B215E843400E82794 /* LLHierarchyModel.m */; };
+		C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA30632185977D00B2A847 /* LLPreviewController.m */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -135,8 +135,8 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3611B42921605A9200BEAB11 /* LLHierarchyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyVC.h; sourceTree = "<group>"; };
-		3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyVC.m; sourceTree = "<group>"; };
+		3611B42921605A9200BEAB11 /* LLHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyViewController.h; sourceTree = "<group>"; };
+		3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
 		3629E3872136830A00226C79 /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
 		3629E3882136830A00226C79 /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
@@ -161,12 +161,12 @@
 		369D09282153853A001C9D4B /* LLLogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogModel.m; sourceTree = "<group>"; };
 		369D09292153853A001C9D4B /* LLLogHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogHelper.m; sourceTree = "<group>"; };
 		369D092B2153853A001C9D4B /* LLLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogCell.h; sourceTree = "<group>"; };
-		369D092C2153853A001C9D4B /* LLLogVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogVC.h; sourceTree = "<group>"; };
-		369D092D2153853A001C9D4B /* LLLogContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogContentVC.h; sourceTree = "<group>"; };
+		369D092C2153853A001C9D4B /* LLLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogViewController.h; sourceTree = "<group>"; };
+		369D092D2153853A001C9D4B /* LLLogDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogDetailViewController.h; sourceTree = "<group>"; };
 		369D092E2153853A001C9D4B /* LLLogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogCell.m; sourceTree = "<group>"; };
-		369D092F2153853A001C9D4B /* LLLogVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogVC.m; sourceTree = "<group>"; };
+		369D092F2153853A001C9D4B /* LLLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogViewController.m; sourceTree = "<group>"; };
 		369D09302153853A001C9D4B /* LLLogCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLLogCell.xib; sourceTree = "<group>"; };
-		369D09312153853A001C9D4B /* LLLogContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogContentVC.m; sourceTree = "<group>"; };
+		369D09312153853A001C9D4B /* LLLogDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogDetailViewController.m; sourceTree = "<group>"; };
 		369D09392153855D001C9D4B /* LLLogFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogFilterView.m; sourceTree = "<group>"; };
 		369D093A2153855D001C9D4B /* LLLogFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogFilterView.h; sourceTree = "<group>"; };
 		369D093C2153AE14001C9D4B /* NSURLSession+LL_Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+LL_Swizzling.h"; sourceTree = "<group>"; };
@@ -287,16 +287,16 @@
 		C44F40C42152AA7000153F46 /* NSURLSessionConfiguration+LL_Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+LL_Swizzling.h"; sourceTree = "<group>"; };
 		C44F40C62152AA7000153F46 /* LLNetworkImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkImageCell.m; sourceTree = "<group>"; };
 		C44F40C72152AA7000153F46 /* LLNetworkFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkFilterView.m; sourceTree = "<group>"; };
-		C44F40C82152AA7000153F46 /* LLNetworkContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkContentVC.h; sourceTree = "<group>"; };
-		C44F40C92152AA7000153F46 /* LLNetworkVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkVC.m; sourceTree = "<group>"; };
+		C44F40C82152AA7000153F46 /* LLNetworkDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkDetailViewController.h; sourceTree = "<group>"; };
+		C44F40C92152AA7000153F46 /* LLNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkViewController.m; sourceTree = "<group>"; };
 		C44F40CA2152AA7000153F46 /* LLNetworkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkCell.m; sourceTree = "<group>"; };
 		C44F40CB2152AA7000153F46 /* LLNetworkImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLNetworkImageCell.xib; sourceTree = "<group>"; };
 		C44F40CC2152AA7000153F46 /* LLNetworkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLNetworkCell.xib; sourceTree = "<group>"; };
 		C44F40CD2152AA7000153F46 /* LLNetworkFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkFilterView.h; sourceTree = "<group>"; };
 		C44F40CE2152AA7000153F46 /* LLNetworkImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkImageCell.h; sourceTree = "<group>"; };
 		C44F40CF2152AA7000153F46 /* LLNetworkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkCell.h; sourceTree = "<group>"; };
-		C44F40D02152AA7000153F46 /* LLNetworkVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkVC.h; sourceTree = "<group>"; };
-		C44F40D12152AA7000153F46 /* LLNetworkContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkContentVC.m; sourceTree = "<group>"; };
+		C44F40D02152AA7000153F46 /* LLNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNetworkViewController.h; sourceTree = "<group>"; };
+		C44F40D12152AA7000153F46 /* LLNetworkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkDetailViewController.m; sourceTree = "<group>"; };
 		C44F40D42152AA7000153F46 /* LLCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelper.m; sourceTree = "<group>"; };
 		C44F40D52152AA7000153F46 /* LLCrashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashModel.m; sourceTree = "<group>"; };
 		C44F40D62152AA7000153F46 /* LLCrashSignalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalModel.h; sourceTree = "<group>"; };
@@ -304,34 +304,32 @@
 		C44F40D82152AA7000153F46 /* LLCrashSignalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalModel.m; sourceTree = "<group>"; };
 		C44F40D92152AA7000153F46 /* LLCrashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashModel.h; sourceTree = "<group>"; };
 		C44F40DB2152AA7000153F46 /* LLCrashCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashCell.h; sourceTree = "<group>"; };
-		C44F40DC2152AA7000153F46 /* LLCrashSignalContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalContentVC.m; sourceTree = "<group>"; };
+		C44F40DC2152AA7000153F46 /* LLCrashSignalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalDetailViewController.m; sourceTree = "<group>"; };
 		C44F40DD2152AA7000153F46 /* LLCrashContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLCrashContentCell.xib; sourceTree = "<group>"; };
-		C44F40DE2152AA7000153F46 /* LLCrashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashVC.h; sourceTree = "<group>"; };
-		C44F40DF2152AA7000153F46 /* LLCrashContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashContentVC.h; sourceTree = "<group>"; };
+		C44F40DE2152AA7000153F46 /* LLCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashViewController.h; sourceTree = "<group>"; };
+		C44F40DF2152AA7000153F46 /* LLCrashDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashDetailViewController.h; sourceTree = "<group>"; };
 		C44F40E02152AA7000153F46 /* LLCrashContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashContentCell.m; sourceTree = "<group>"; };
 		C44F40E12152AA7000153F46 /* LLCrashCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLCrashCell.xib; sourceTree = "<group>"; };
-		C44F40E22152AA7000153F46 /* LLCrashSignalContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalContentVC.h; sourceTree = "<group>"; };
+		C44F40E22152AA7000153F46 /* LLCrashSignalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalDetailViewController.h; sourceTree = "<group>"; };
 		C44F40E32152AA7000153F46 /* LLCrashCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashCell.m; sourceTree = "<group>"; };
-		C44F40E42152AA7000153F46 /* LLCrashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashVC.m; sourceTree = "<group>"; };
+		C44F40E42152AA7000153F46 /* LLCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashViewController.m; sourceTree = "<group>"; };
 		C44F40E52152AA7000153F46 /* LLCrashContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashContentCell.h; sourceTree = "<group>"; };
-		C44F40E62152AA7000153F46 /* LLCrashContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashContentVC.m; sourceTree = "<group>"; };
+		C44F40E62152AA7000153F46 /* LLCrashDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashDetailViewController.m; sourceTree = "<group>"; };
 		C44F40E92152AA7000153F46 /* LLSandboxHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxHelper.h; sourceTree = "<group>"; };
 		C44F40EA2152AA7000153F46 /* LLSandboxModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxModel.h; sourceTree = "<group>"; };
 		C44F40EB2152AA7000153F46 /* LLSandboxHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHelper.m; sourceTree = "<group>"; };
 		C44F40EC2152AA7000153F46 /* LLSandboxModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxModel.m; sourceTree = "<group>"; };
 		C44F40EE2152AA7000153F46 /* LLSandboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxCell.m; sourceTree = "<group>"; };
-		C44F40EF2152AA7000153F46 /* YWFilePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWFilePreviewController.h; sourceTree = "<group>"; };
-		C44F40F02152AA7000153F46 /* LLSandboxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxVC.m; sourceTree = "<group>"; };
+		C44F40F02152AA7000153F46 /* LLSandboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxViewController.m; sourceTree = "<group>"; };
 		C44F40F12152AA7000153F46 /* LLSandboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxCell.h; sourceTree = "<group>"; };
 		C44F40F22152AA7000153F46 /* LLSandboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLSandboxCell.xib; sourceTree = "<group>"; };
-		C44F40F32152AA7000153F46 /* LLSandboxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxVC.h; sourceTree = "<group>"; };
-		C44F40F42152AA7000153F46 /* YWFilePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWFilePreviewController.m; sourceTree = "<group>"; };
+		C44F40F32152AA7000153F46 /* LLSandboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxViewController.h; sourceTree = "<group>"; };
 		C44F41082152AA7000153F46 /* LLAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppHelper.h; sourceTree = "<group>"; };
 		C44F41092152AA7000153F46 /* UIDevice+LL_Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LL_Swizzling.m"; sourceTree = "<group>"; };
 		C44F410A2152AA7000153F46 /* LLAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppHelper.m; sourceTree = "<group>"; };
 		C44F410B2152AA7000153F46 /* UIDevice+LL_Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LL_Swizzling.h"; sourceTree = "<group>"; };
-		C44F410D2152AA7000153F46 /* LLAppInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoVC.m; sourceTree = "<group>"; };
-		C44F410E2152AA7000153F46 /* LLAppInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoVC.h; sourceTree = "<group>"; };
+		C44F410D2152AA7000153F46 /* LLAppInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoViewController.m; sourceTree = "<group>"; };
+		C44F410E2152AA7000153F46 /* LLAppInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoViewController.h; sourceTree = "<group>"; };
 		C44F41112152AA7000153F46 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
 		C44F41132152AA7000153F46 /* LLDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebug.h; sourceTree = "<group>"; };
 		C44F41142152AA7000153F46 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
@@ -342,6 +340,8 @@
 		C49B691A215E843400E82794 /* LLHierarchyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyModel.h; sourceTree = "<group>"; };
 		C49B691B215E843400E82794 /* LLHierarchyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyModel.m; sourceTree = "<group>"; };
 		C4F8C661215533E800B07016 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
+		C4FA30622185977D00B2A847 /* LLPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPreviewController.h; sourceTree = "<group>"; };
+		C4FA30632185977D00B2A847 /* LLPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPreviewController.m; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -410,13 +410,13 @@
 		369D092A2153853A001C9D4B /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				369D092C2153853A001C9D4B /* LLLogVC.h */,
-				369D092F2153853A001C9D4B /* LLLogVC.m */,
+				369D092C2153853A001C9D4B /* LLLogViewController.h */,
+				369D092F2153853A001C9D4B /* LLLogViewController.m */,
 				369D092B2153853A001C9D4B /* LLLogCell.h */,
 				369D092E2153853A001C9D4B /* LLLogCell.m */,
 				369D09302153853A001C9D4B /* LLLogCell.xib */,
-				369D092D2153853A001C9D4B /* LLLogContentVC.h */,
-				369D09312153853A001C9D4B /* LLLogContentVC.m */,
+				369D092D2153853A001C9D4B /* LLLogDetailViewController.h */,
+				369D09312153853A001C9D4B /* LLLogDetailViewController.m */,
 				369D093A2153855D001C9D4B /* LLLogFilterView.h */,
 				369D09392153855D001C9D4B /* LLLogFilterView.m */,
 			);
@@ -464,8 +464,8 @@
 		36FA262B215DB9D800462EA8 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				3611B42921605A9200BEAB11 /* LLHierarchyVC.h */,
-				3611B42A21605A9200BEAB11 /* LLHierarchyVC.m */,
+				3611B42921605A9200BEAB11 /* LLHierarchyViewController.h */,
+				3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */,
 				36B2373221749781008A5D96 /* LLHierarchyCell.h */,
 				36B2373321749781008A5D96 /* LLHierarchyCell.m */,
 				36B2373421749781008A5D96 /* LLHierarchyCell.xib */,
@@ -854,16 +854,16 @@
 		C44F40C52152AA7000153F46 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				C44F40D02152AA7000153F46 /* LLNetworkVC.h */,
-				C44F40C92152AA7000153F46 /* LLNetworkVC.m */,
+				C44F40D02152AA7000153F46 /* LLNetworkViewController.h */,
+				C44F40C92152AA7000153F46 /* LLNetworkViewController.m */,
 				C44F40CF2152AA7000153F46 /* LLNetworkCell.h */,
 				C44F40CA2152AA7000153F46 /* LLNetworkCell.m */,
 				C44F40CC2152AA7000153F46 /* LLNetworkCell.xib */,
 				C44F40CE2152AA7000153F46 /* LLNetworkImageCell.h */,
 				C44F40C62152AA7000153F46 /* LLNetworkImageCell.m */,
 				C44F40CB2152AA7000153F46 /* LLNetworkImageCell.xib */,
-				C44F40C82152AA7000153F46 /* LLNetworkContentVC.h */,
-				C44F40D12152AA7000153F46 /* LLNetworkContentVC.m */,
+				C44F40C82152AA7000153F46 /* LLNetworkDetailViewController.h */,
+				C44F40D12152AA7000153F46 /* LLNetworkDetailViewController.m */,
 				C44F40CD2152AA7000153F46 /* LLNetworkFilterView.h */,
 				C44F40C72152AA7000153F46 /* LLNetworkFilterView.m */,
 			);
@@ -895,15 +895,15 @@
 		C44F40DA2152AA7000153F46 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				C44F40DE2152AA7000153F46 /* LLCrashVC.h */,
-				C44F40E42152AA7000153F46 /* LLCrashVC.m */,
+				C44F40DE2152AA7000153F46 /* LLCrashViewController.h */,
+				C44F40E42152AA7000153F46 /* LLCrashViewController.m */,
 				C44F40DB2152AA7000153F46 /* LLCrashCell.h */,
 				C44F40E32152AA7000153F46 /* LLCrashCell.m */,
 				C44F40E12152AA7000153F46 /* LLCrashCell.xib */,
-				C44F40E22152AA7000153F46 /* LLCrashSignalContentVC.h */,
-				C44F40DC2152AA7000153F46 /* LLCrashSignalContentVC.m */,
-				C44F40DF2152AA7000153F46 /* LLCrashContentVC.h */,
-				C44F40E62152AA7000153F46 /* LLCrashContentVC.m */,
+				C44F40E22152AA7000153F46 /* LLCrashSignalDetailViewController.h */,
+				C44F40DC2152AA7000153F46 /* LLCrashSignalDetailViewController.m */,
+				C44F40DF2152AA7000153F46 /* LLCrashDetailViewController.h */,
+				C44F40E62152AA7000153F46 /* LLCrashDetailViewController.m */,
 				C44F40E52152AA7000153F46 /* LLCrashContentCell.h */,
 				C44F40E02152AA7000153F46 /* LLCrashContentCell.m */,
 				C44F40DD2152AA7000153F46 /* LLCrashContentCell.xib */,
@@ -934,13 +934,13 @@
 		C44F40ED2152AA7000153F46 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				C44F40F32152AA7000153F46 /* LLSandboxVC.h */,
-				C44F40F02152AA7000153F46 /* LLSandboxVC.m */,
+				C44F40F32152AA7000153F46 /* LLSandboxViewController.h */,
+				C44F40F02152AA7000153F46 /* LLSandboxViewController.m */,
 				C44F40F12152AA7000153F46 /* LLSandboxCell.h */,
 				C44F40EE2152AA7000153F46 /* LLSandboxCell.m */,
 				C44F40F22152AA7000153F46 /* LLSandboxCell.xib */,
-				C44F40EF2152AA7000153F46 /* YWFilePreviewController.h */,
-				C44F40F42152AA7000153F46 /* YWFilePreviewController.m */,
+				C4FA30622185977D00B2A847 /* LLPreviewController.h */,
+				C4FA30632185977D00B2A847 /* LLPreviewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -977,8 +977,8 @@
 		C44F410C2152AA7000153F46 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				C44F410E2152AA7000153F46 /* LLAppInfoVC.h */,
-				C44F410D2152AA7000153F46 /* LLAppInfoVC.m */,
+				C44F410E2152AA7000153F46 /* LLAppInfoViewController.h */,
+				C44F410D2152AA7000153F46 /* LLAppInfoViewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1249,29 +1249,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C44F414A2152AA7000153F46 /* LLNetworkContentVC.m in Sources */,
+				C44F414A2152AA7000153F46 /* LLNetworkDetailViewController.m in Sources */,
 				C44F41562152AA7000153F46 /* LLSandboxModel.m in Sources */,
 				C44F41212152AA7000153F46 /* LLScreenshotBaseOperation.m in Sources */,
 				C44F412F2152AA7000153F46 /* LLSearchBar.m in Sources */,
 				C44F413C2152AA7000153F46 /* LLBaseViewController.m in Sources */,
-				C44F41462152AA7000153F46 /* LLNetworkVC.m in Sources */,
+				C44F41462152AA7000153F46 /* LLNetworkViewController.m in Sources */,
 				C44F41202152AA7000153F46 /* LLScreenshotImageView.m in Sources */,
-				C44F41582152AA7000153F46 /* LLSandboxVC.m in Sources */,
+				C44F41582152AA7000153F46 /* LLSandboxViewController.m in Sources */,
 				C44F41232152AA7000153F46 /* LLScreenshotActionView.m in Sources */,
 				C44F413E2152AA7000153F46 /* LLBaseNavigationController.m in Sources */,
 				C44F412B2152AA7000153F46 /* UIButton+LL_Utils.m in Sources */,
 				36B2373521749781008A5D96 /* LLHierarchyCell.m in Sources */,
-				369D09382153853A001C9D4B /* LLLogContentVC.m in Sources */,
+				369D09382153853A001C9D4B /* LLLogDetailViewController.m in Sources */,
 				C44F414B2152AA7000153F46 /* LLCrashHelper.m in Sources */,
 				C44F41442152AA7000153F46 /* LLNetworkImageCell.m in Sources */,
-				369D09362153853A001C9D4B /* LLLogVC.m in Sources */,
+				369D09362153853A001C9D4B /* LLLogViewController.m in Sources */,
 				C44F413F2152AA7000153F46 /* LLURLProtocol.m in Sources */,
 				C44F41452152AA7000153F46 /* LLNetworkFilterView.m in Sources */,
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C44F41622152AA7000153F46 /* UIDevice+LL_Swizzling.m in Sources */,
-				C44F415A2152AA7000153F46 /* YWFilePreviewController.m in Sources */,
-				3611B42B21605A9200BEAB11 /* LLHierarchyVC.m in Sources */,
-				C44F41542152AA7000153F46 /* LLCrashContentVC.m in Sources */,
+				3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */,
+				C44F41542152AA7000153F46 /* LLCrashDetailViewController.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
 				C44F41572152AA7000153F46 /* LLSandboxCell.m in Sources */,
 				C44F414D2152AA7000153F46 /* LLCrashSignalModel.m in Sources */,
@@ -1283,14 +1282,14 @@
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				C44F413D2152AA7000153F46 /* LLBaseTableViewCell.m in Sources */,
-				C44F41642152AA7000153F46 /* LLAppInfoVC.m in Sources */,
+				C44F41642152AA7000153F46 /* LLAppInfoViewController.m in Sources */,
 				C44F41662152AA7000153F46 /* LLWindow.m in Sources */,
 				C44F411D2152AA7000153F46 /* LLScreenshotHelper.m in Sources */,
 				C44F41522152AA7000153F46 /* LLCrashCell.m in Sources */,
 				C44F41272152AA7000153F46 /* NSObject+LL_Utils.m in Sources */,
 				C44F41262152AA7000153F46 /* NSString+LL_Utils.m in Sources */,
 				C44F41632152AA7000153F46 /* LLAppHelper.m in Sources */,
-				C44F41532152AA7000153F46 /* LLCrashVC.m in Sources */,
+				C44F41532152AA7000153F46 /* LLCrashViewController.m in Sources */,
 				C44F41282152AA7000153F46 /* LLBaseModel.m in Sources */,
 				369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */,
 				C44F41252152AA7000153F46 /* LLRoute.m in Sources */,
@@ -1308,13 +1307,14 @@
 				C44F41432152AA7000153F46 /* LLNetworkHelper.m in Sources */,
 				C44F41652152AA7000153F46 /* LLDebugTool.m in Sources */,
 				369D093E2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m in Sources */,
+				C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */,
 				C44F41302152AA7000153F46 /* LLNoneCopyTextField.m in Sources */,
 				C44F41222152AA7000153F46 /* LLScreenshotSelectorModel.m in Sources */,
 				C44F41552152AA7000153F46 /* LLSandboxHelper.m in Sources */,
 				C44F41412152AA7000153F46 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
 				C44F411F2152AA7000153F46 /* LLScreenshotToolbar.m in Sources */,
 				C44F41402152AA7000153F46 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
-				C44F414E2152AA7000153F46 /* LLCrashSignalContentVC.m in Sources */,
+				C44F414E2152AA7000153F46 /* LLCrashSignalDetailViewController.m in Sources */,
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
 				369D09352153853A001C9D4B /* LLLogCell.m in Sources */,

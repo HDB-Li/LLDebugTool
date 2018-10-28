@@ -1,5 +1,5 @@
 //
-//  LLCrashContentVC.m
+//  LLCrashDetailViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLCrashContentVC.h"
+#import "LLCrashDetailViewController.h"
 #import "LLSubTitleTableViewCell.h"
 #import "LLMacros.h"
 #import "LLStorageManager.h"
 #import "LLConfig.h"
 #import "LLTool.h"
-#import "LLCrashSignalContentVC.h"
+#import "LLCrashSignalDetailViewController.h"
 #import "LLRoute.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
-@interface LLCrashContentVC () <LLSubTitleTableViewCellDelegate>
+@interface LLCrashDetailViewController () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -42,7 +42,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 @end
 
-@implementation LLCrashContentVC
+@implementation LLCrashDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,12 +72,12 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *title = self.titleArray[indexPath.row];
     if ([title isEqualToString:@"Logs"]) {
-        UIViewController *vc = [LLRoute viewControllerWithName:@"LLLogVC" params:@{@"launchDate" : self.model.launchDate}];
+        UIViewController *vc = [LLRoute viewControllerWithName:kLLLogViewControllerName params:@{@"launchDate" : self.model.launchDate}];
         if (vc) {
             [self.navigationController pushViewController:vc animated:YES];
         }
     } else if ([title isEqualToString:@"Network Requests"]) {
-        UIViewController *vc = [LLRoute viewControllerWithName:@"LLNetworkVC" params:@{@"launchDate" : self.model.launchDate}];
+        UIViewController *vc = [LLRoute viewControllerWithName:kLLNetworkViewControllerName params:@{@"launchDate" : self.model.launchDate}];
         if (vc) {
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -90,7 +90,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
                 index++;
             }
         }
-        LLCrashSignalContentVC *vc = [[LLCrashSignalContentVC alloc] init];
+        LLCrashSignalDetailViewController *vc = [[LLCrashSignalDetailViewController alloc] init];
         vc.model = self.model.signals[index];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([self.canCopyArray containsObject:title]) {

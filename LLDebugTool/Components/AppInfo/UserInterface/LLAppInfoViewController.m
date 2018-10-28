@@ -1,5 +1,5 @@
 //
-//  LLAppInfoVC.m
+//  LLAppInfoViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLAppInfoVC.h"
+#import "LLAppInfoViewController.h"
 #import "LLBaseTableViewCell.h"
 #import "LLAppHelper.h"
 #import "LLMacros.h"
@@ -30,11 +30,11 @@
 static NSString *const kAppInfoCellID = @"AppInfoCellID";
 static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
-@interface LLAppInfoVC ()
+@interface LLAppInfoViewController ()
 
 @end
 
-@implementation LLAppInfoVC
+@implementation LLAppInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

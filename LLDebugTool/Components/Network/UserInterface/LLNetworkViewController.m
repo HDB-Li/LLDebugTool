@@ -1,5 +1,5 @@
 //
-//  LLNetworkVC.m
+//  LLNetworkViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLNetworkVC.h"
+#import "LLNetworkViewController.h"
 #import "LLNetworkCell.h"
 #import "LLNetworkModel.h"
 #import "LLStorageManager.h"
-#import "LLNetworkContentVC.h"
+#import "LLNetworkDetailViewController.h"
 #import "LLImageNameConfig.h"
 #import "LLConfig.h"
 #import "LLNetworkFilterView.h"
@@ -37,7 +37,7 @@
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
-@interface LLNetworkVC ()
+@interface LLNetworkViewController ()
 
 @property (nonatomic , strong) LLNetworkFilterView *filterView;
 
@@ -49,7 +49,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 @end
 
-@implementation LLNetworkVC
+@implementation LLNetworkViewController
 
 - (instancetype)init
 {
@@ -115,7 +115,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (self.tableView.isEditing == NO) {
-        LLNetworkContentVC *vc = [[LLNetworkContentVC alloc] init];
+        LLNetworkDetailViewController *vc = [[LLNetworkDetailViewController alloc] init];
         vc.model = self.datas[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }

@@ -25,17 +25,17 @@
 #import "LLBaseNavigationController.h"
 #import "LLScreenshotHelper.h"
 #import "LLImageNameConfig.h"
-#import "LLNetworkVC.h"
-#import "LLAppInfoVC.h"
-#import "LLSandboxVC.h"
+#import "LLNetworkViewController.h"
+#import "LLAppInfoViewController.h"
+#import "LLSandboxViewController.h"
 #import "LLAppHelper.h"
 #import "LLHierarchyHelper.h"
-#import "LLCrashVC.h"
+#import "LLCrashViewController.h"
 #import "LLMacros.h"
 #import "LLWindow.h"
 #import "LLConfig.h"
-#import "LLLogVC.h"
-#import "LLHierarchyVC.h"
+#import "LLLogViewController.h"
+#import "LLHierarchyViewController.h"
 #import "LLDebugTool.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic , assign) CGFloat sBallHideWidth;
 
-@property (nonatomic , strong) UITabBarController *tabVC;
+@property (nonatomic , strong) UITabBarController *tabBarController;
 
 @property (nonatomic , assign) LLConfigWindowStyle windowStyle;
 
@@ -132,7 +132,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 - (void)reloadTabbar {
-    _tabVC = nil;
+    _tabBarController = nil;
 }
 
 - (void)presentTabbarWithIndex:(NSInteger)index {
@@ -819,8 +819,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     
     [self reloadTabbar];
     
-    self.tabVC.selectedIndex = index;
-    [self presentViewController:self.tabVC animated:YES completion:nil];
+    self.tabBarController.selectedIndex = index;
+    [self presentViewController:self.tabBarController animated:YES completion:nil];
 }
 
 - (void)resignKeyWindow {
@@ -900,35 +900,35 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 #pragma mark - Lazy load
-- (UITabBarController *)tabVC {
-    if (_tabVC == nil) {
-        UITabBarController *tab = [[UITabBarController alloc] init];
+- (UITabBarController *)tabBarController {
+    if (_tabBarController == nil) {
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
         
-        LLNetworkVC *networkVC = [[LLNetworkVC alloc] init];
+        LLNetworkViewController *networkVC = [[LLNetworkViewController alloc] init];
         UINavigationController *networkNav = [[LLBaseNavigationController alloc] initWithRootViewController:networkVC];
         networkNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Network" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
         networkNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         networkNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLLogVC *logVC = [[LLLogVC alloc] init];
+        LLLogViewController *logVC = [[LLLogViewController alloc] init];
         UINavigationController *logNav = [[LLBaseNavigationController alloc] initWithRootViewController:logVC];
         logNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage LL_imageNamed:kLogImageName] selectedImage:nil];
         logNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         logNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLCrashVC *crashVC = [[LLCrashVC alloc] init];
+        LLCrashViewController *crashVC = [[LLCrashViewController alloc] init];
         UINavigationController *crashNav = [[LLBaseNavigationController alloc] initWithRootViewController:crashVC];
         crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage LL_imageNamed:kCrashImageName] selectedImage:nil];
         crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         crashNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLAppInfoVC *appInfoVC = [[LLAppInfoVC alloc] init];
+        LLAppInfoViewController *appInfoVC = [[LLAppInfoViewController alloc] init];
         UINavigationController *appInfoNav = [[LLBaseNavigationController alloc] initWithRootViewController:appInfoVC];
         appInfoNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"App" image:[UIImage LL_imageNamed:kAppImageName] selectedImage:nil];
         appInfoNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
         appInfoNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        LLSandboxVC *sandboxVC = [[LLSandboxVC alloc] init];
+        LLSandboxViewController *sandboxVC = [[LLSandboxViewController alloc] init];
         UINavigationController *sandboxNav = [[LLBaseNavigationController alloc] initWithRootViewController:sandboxVC];
         sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage LL_imageNamed:kSandboxImageName] selectedImage:nil];
         sandboxNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
@@ -956,7 +956,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             [viewControllers addObjectsFromArray:@[networkNav,logNav,crashNav,appInfoNav,sandboxNav]];
         }
         
-        LLHierarchyVC *hierarchyVC = [[LLHierarchyVC alloc] init];
+        LLHierarchyViewController *hierarchyVC = [[LLHierarchyViewController alloc] init];
         UINavigationController *hierarchyNav = [[LLBaseNavigationController alloc] initWithRootViewController:hierarchyVC];
         hierarchyNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Hierarchy" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
         hierarchyNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
@@ -964,13 +964,13 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         
         [viewControllers addObject:hierarchyNav];
         
-        tab.viewControllers = viewControllers;
-        tab.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
-        tab.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+        tabBarController.viewControllers = viewControllers;
+        tabBarController.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
+        tabBarController.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
         
-        _tabVC = tab;
+        _tabBarController = tabBarController;
     }
-    return _tabVC;
+    return _tabBarController;
 }
 
 - (UIView *)contentView {

@@ -1,5 +1,5 @@
 //
-//  LLLogContentVC.m
+//  LLLogDetailViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLogContentVC.h"
+#import "LLLogDetailViewController.h"
 #import "LLSubTitleTableViewCell.h"
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
-@interface LLLogContentVC () <LLSubTitleTableViewCellDelegate>
+@interface LLLogDetailViewController () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -36,7 +36,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 @end
 
-@implementation LLLogContentVC
+@implementation LLLogDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

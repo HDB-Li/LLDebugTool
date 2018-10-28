@@ -1,5 +1,5 @@
 //
-//  LLCrashSignalContentVC.h
+//  LLAppInfoViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,10 +22,7 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
-#import "LLCrashSignalModel.h"
 
-@interface LLCrashSignalContentVC : LLBaseViewController
-
-@property (nonatomic , strong , nonnull) LLCrashSignalModel *model;
+@interface LLAppInfoViewController : LLBaseViewController
 
 @end

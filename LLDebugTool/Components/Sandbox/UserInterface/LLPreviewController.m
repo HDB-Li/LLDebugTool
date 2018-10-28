@@ -1,5 +1,5 @@
 //
-//  LLCrashVC.h
+//  LLPreviewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,8 +21,40 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLPreviewController.h"
 
-@interface LLCrashVC : LLBaseViewController
+@interface LLPreviewController () <QLPreviewControllerDataSource, QLPreviewControllerDelegate>
+
+@end
+
+@implementation LLPreviewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.delegate = self;
+        self.dataSource = self;
+    }
+    return self;
+}
+
+#pragma mark - QLPreviewControllerDataSource
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller{
+    return self.filePaths.count;
+}
+
+- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index{
+    NSURL *url = [NSURL fileURLWithPath:self.filePaths[index]];
+    return url;
+}
+
+//#pragma mark - Setter
+//- (void)setFilePaths:(NSArray<NSString *> *)filePaths {
+//    if (_filePaths != filePaths) {
+//        _filePaths = filePaths;
+////        [self reloadData];
+//    }
+//}
 
 @end

@@ -1,5 +1,5 @@
 //
-//  YWFilePreviewController.h
+//  LLCrashViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,27 +21,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <QuickLook/QuickLook.h>
+#import "LLBaseViewController.h"
 
-typedef enum : NSUInteger {
-    YWJumpPush,//push 无动画
-    YWJumpPushAnimat,//push 有动画
-    YWJumpPresent,//Present 无动画
-    YWJumpPresentAnimat,//Present 有动画
-} YWJumpMode;
-
-@interface YWFilePreviewController : QLPreviewController
-
-/** 预览多个文件 单个文件时数组传一个 */
-- (void)previewFileWithPaths:(NSArray <NSString *>*)filePathArr on:(UIViewController *)vc jump:(YWJumpMode)jump index:(NSInteger)index;
-
-/** 将要退出 */
-- (void)setWillDismissBlock:(void (^)(void))willDismissBlock;
-
-/** 已经退出 */
-- (void)setDidDismissBlock:(void (^)(void))didDismissBlock;
-
-/** 将要访问文件中的Url回调  BOOL 是否允许访问*/
-- (void)setShouldOpenUrlBlock:(BOOL (^)(NSURL *, id<QLPreviewItem>))shouldOpenUrlBlock;
+@interface LLCrashViewController : LLBaseViewController
 
 @end

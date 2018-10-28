@@ -1,5 +1,5 @@
 //
-//  LLCrashSignalContentVC.m
+//  LLCrashSignalDetailViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLCrashSignalContentVC.h"
+#import "LLCrashSignalDetailViewController.h"
 #import "LLSubTitleTableViewCell.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 
 static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
-@interface LLCrashSignalContentVC ()<LLSubTitleTableViewCellDelegate>
+@interface LLCrashSignalDetailViewController ()<LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -38,7 +38,7 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
 @end
 
-@implementation LLCrashSignalContentVC
+@implementation LLCrashSignalDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

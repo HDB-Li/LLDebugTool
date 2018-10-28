@@ -1,5 +1,5 @@
 //
-//  LLLogVC.m
+//  LLLogViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLogVC.h"
+#import "LLLogViewController.h"
 #import "LLLogCell.h"
 #import "LLConfig.h"
 #import "LLStorageManager.h"
 #import "LLLogFilterView.h"
 #import "LLMacros.h"
-#import "LLLogContentVC.h"
+#import "LLLogDetailViewController.h"
 #import "LLImageNameConfig.h"
 #import "LLSearchBar.h"
 #import "NSObject+LL_Utils.h"
@@ -35,7 +35,7 @@
 
 static NSString *const kLogCellID = @"LLLogCell";
 
-@interface LLLogVC ()
+@interface LLLogViewController ()
 
 @property (nonatomic , strong) LLLogFilterView *filterView;
 
@@ -50,7 +50,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @end
 
-@implementation LLLogVC
+@implementation LLLogViewController
 
 - (instancetype)init
 {
@@ -116,7 +116,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (self.tableView.isEditing == NO) {
-        LLLogContentVC *vc = [[LLLogContentVC alloc] init];
+        LLLogDetailViewController *vc = [[LLLogDetailViewController alloc] init];
         vc.model = self.datas[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }

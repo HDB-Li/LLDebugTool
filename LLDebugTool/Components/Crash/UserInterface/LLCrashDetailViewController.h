@@ -1,5 +1,5 @@
 //
-//  LLLogContentVC.h
+//  LLCrashDetailViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,10 +22,13 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
-#import "LLLogModel.h"
+#import "LLCrashModel.h"
 
-@interface LLLogContentVC : LLBaseViewController
+@interface LLCrashDetailViewController : LLBaseViewController
 
-@property (nonatomic , strong , nonnull) LLLogModel *model;
+/**
+ * Model to show
+ */
+@property (nonatomic , strong , nonnull) LLCrashModel *model;
 
 @end

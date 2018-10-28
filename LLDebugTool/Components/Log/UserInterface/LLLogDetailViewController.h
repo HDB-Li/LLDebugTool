@@ -1,5 +1,5 @@
 //
-//  LLAppInfoVC.h
+//  LLLogDetailViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,7 +22,10 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
+#import "LLLogModel.h"
 
-@interface LLAppInfoVC : LLBaseViewController
+@interface LLLogDetailViewController : LLBaseViewController
+
+@property (nonatomic , strong , nonnull) LLLogModel *model;
 
 @end

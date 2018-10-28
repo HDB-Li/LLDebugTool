@@ -1,5 +1,5 @@
 //
-//  LLNetworkContentVC.m
+//  LLNetworkDetailViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLNetworkContentVC.h"
+#import "LLNetworkDetailViewController.h"
 #import "LLSubTitleTableViewCell.h"
 #import "LLNetworkImageCell.h"
 #import "LLConfig.h"
@@ -31,7 +31,7 @@
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
-@interface LLNetworkContentVC () <LLSubTitleTableViewCellDelegate>
+@interface LLNetworkDetailViewController () <LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic , strong) NSMutableArray *titleArray;
 
@@ -41,7 +41,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 @end
 
-@implementation LLNetworkContentVC
+@implementation LLNetworkDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

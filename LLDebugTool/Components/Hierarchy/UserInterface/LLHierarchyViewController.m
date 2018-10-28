@@ -1,5 +1,5 @@
 //
-//  LLHierarchyVC.m
+//  LLHierarchyViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyVC.h"
+#import "LLHierarchyViewController.h"
 #import "LLHierarchyCell.h"
 #import "LLConfig.h"
 #import "LLHierarchyHelper.h"
 
 static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
-@interface LLHierarchyVC ()
+@interface LLHierarchyViewController ()
 
 @end
 
-@implementation LLHierarchyVC
+@implementation LLHierarchyViewController
 
 - (instancetype)init
 {

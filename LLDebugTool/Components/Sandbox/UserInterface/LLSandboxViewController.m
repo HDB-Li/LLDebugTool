@@ -1,5 +1,5 @@
 //
-//  LLSandboxVC.m
+//  LLSandboxViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,21 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSandboxVC.h"
+#import "LLSandboxViewController.h"
 #import "LLSandboxCell.h"
 #import "LLSandboxHelper.h"
-#import "YWFilePreviewController.h"
+#import "LLPreviewController.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 
 static NSString *const kSandboxCellID = @"LLSandboxCell";
 
-@interface LLSandboxVC () <LLUITableViewLongPressGestureRecognizerDelegate>
+@interface LLSandboxViewController () <LLUITableViewLongPressGestureRecognizerDelegate>
 
 @end
 
-@implementation LLSandboxVC
+@implementation LLSandboxViewController
 
 - (instancetype)init
 {
@@ -145,7 +145,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         LLSandboxModel *model = self.datas[indexPath.row];
         if (model.isDirectory) {
             if (model.subModels.count) {
-                LLSandboxVC *vc = [[LLSandboxVC alloc] init];
+                LLSandboxViewController *vc = [[LLSandboxViewController alloc] init];
                 vc.sandboxModel = model;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
@@ -153,7 +153,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
             }
         } else {
             if (model.canPreview) {
-                YWFilePreviewController *vc = [[YWFilePreviewController alloc] init];
+                LLPreviewController *vc = [[LLPreviewController alloc] init];
                 NSMutableArray *paths = [[NSMutableArray alloc] init];
                 NSInteger index = 0;
                 for (LLSandboxModel *mod in self.datas) {
@@ -164,7 +164,9 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                         [paths addObject:mod.filePath];
                     }
                 }
-                [vc previewFileWithPaths:paths on:self jump:YWJumpPushAnimat index:index];
+                vc.filePaths = paths;
+                vc.currentPreviewItemIndex = index;
+                [self.navigationController pushViewController:vc animated:YES];
             } else {
                 UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:model.filePath]] applicationActivities:nil];
                 [self presentViewController:vc animated:YES completion:nil];

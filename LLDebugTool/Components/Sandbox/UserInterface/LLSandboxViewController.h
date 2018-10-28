@@ -1,5 +1,5 @@
 //
-//  LLNetworkVC.h
+//  LLSandboxViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,9 +22,13 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
+#import "LLSandboxModel.h"
 
-@interface LLNetworkVC : LLBaseViewController
+@interface LLSandboxViewController : LLBaseViewController
 
-@property (nonatomic , copy , nullable) NSString *launchDate;
+/**
+ * Sandbox model
+ */
+@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
 
 @end

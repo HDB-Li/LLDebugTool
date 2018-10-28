@@ -32,8 +32,8 @@ FOUNDATION_EXPORT NSString * _Nonnull const kLLFailedLoadingResourceEvent;
 FOUNDATION_EXPORT NSString * _Nonnull const kLLUseBetaAlertPrompt;
 FOUNDATION_EXPORT NSString * _Nonnull const kLLOpenIssueInGithubPrompt;
 
-static NSString * _Nonnull const kLLNetworkVCName = @"LLNetworkVC";
-static NSString * _Nonnull const kLLLogVCName = @"LLLogVC";
+static NSString * _Nonnull const kLLNetworkViewControllerName = @"LLNetworkViewController";
+static NSString * _Nonnull const kLLLogViewControllerName = @"LLLogViewController";
 static NSString * _Nonnull const kLLNetworkModelName = @"LLNetworkModel";
 static NSString * _Nonnull const kLLLogModelName = @"LLLogModel";
 static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";

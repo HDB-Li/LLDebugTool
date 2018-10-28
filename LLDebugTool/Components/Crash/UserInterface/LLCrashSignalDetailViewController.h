@@ -1,5 +1,5 @@
 //
-//  LLSandboxVC.h
+//  LLCrashSignalDetailViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,13 +22,10 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
-#import "LLSandboxModel.h"
+#import "LLCrashSignalModel.h"
 
-@interface LLSandboxVC : LLBaseViewController
+@interface LLCrashSignalDetailViewController : LLBaseViewController
 
-/**
- * Sandbox model
- */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+@property (nonatomic , strong , nonnull) LLCrashSignalModel *model;
 
 @end

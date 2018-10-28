@@ -1,5 +1,5 @@
 //
-//  LLHierarchyVC.h
+//  LLNetworkViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,10 +22,9 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
-#import "LLHierarchyModel.h"
 
-@interface LLHierarchyVC : LLBaseViewController
+@interface LLNetworkViewController : LLBaseViewController
 
-@property (nonatomic , strong , nullable) LLHierarchyModel *model;
+@property (nonatomic , copy , nullable) NSString *launchDate;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLLogVC.h
+//  LLNetworkDetailViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
+#import "LLNetworkModel.h"
 
-@interface LLLogVC : LLBaseViewController
+@interface LLNetworkDetailViewController : LLBaseViewController
 
-@property (nonatomic , copy , nullable) NSString *launchDate;
+@property (nonatomic , strong , nonnull) LLNetworkModel *model;
 
 @end

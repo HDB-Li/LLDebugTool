@@ -1,5 +1,5 @@
 //
-//  LLCrashVC.m
+//  LLCrashViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLCrashVC.h"
+#import "LLCrashViewController.h"
 #import "LLCrashCell.h"
 #import "LLCrashModel.h"
 #import "LLConfig.h"
 #import "LLCrashHelper.h"
 #import "LLStorageManager.h"
-#import "LLCrashContentVC.h"
+#import "LLCrashDetailViewController.h"
 #import "LLImageNameConfig.h"
 #import "LLTool.h"
 
 static NSString *const kCrashCellID = @"CrashCellID";
 
-@interface LLCrashVC ()
+@interface LLCrashViewController ()
 
 @end
 
-@implementation LLCrashVC
+@implementation LLCrashViewController
 
 - (instancetype)init
 {
@@ -112,7 +112,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     if (!self.tableView.isEditing) {
-        LLCrashContentVC *vc = [[LLCrashContentVC alloc] init];
+        LLCrashDetailViewController *vc = [[LLCrashDetailViewController alloc] init];
         vc.model = self.datas[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
