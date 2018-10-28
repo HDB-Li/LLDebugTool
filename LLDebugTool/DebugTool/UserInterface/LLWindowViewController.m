@@ -405,7 +405,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     } else if (point.y < 0) {
         point.y = 0;
     }
+    CGPoint offset = CGPointMake(self.FPSLabel.center.x - self.contentView.center.x, self.FPSLabel.center.y - self.contentView.center.y);
     self.contentView.center = CGPointMake(point.x, point.y);
+    self.FPSLabel.center = CGPointMake(self.contentView.center.x + offset.x, self.contentView.center.y + offset.y);
 }
 
 - (void)updateOutlineViewsForSelectionPoint:(CGPoint)selectionPointInWindow
