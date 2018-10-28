@@ -55,4 +55,12 @@
 
 - (BOOL)wantsWindowToBecomeKey;
 
+- (void)handleDownArrowKeyPressed;
+
+- (void)handleUpArrowKeyPressed;
+
+- (void)handleRightArrowKeyPressed;
+
+- (void)handleLeftArrowKeyPressed;
+
 @end

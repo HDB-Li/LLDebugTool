@@ -75,6 +75,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic , assign , getter=currentMode) LLWindowViewControllerMode mode;
 
+@property (nonatomic, strong) UIPanGestureRecognizer *movePanGR;
+
 @property (nonatomic, strong) NSDictionary<NSValue *, UIView *> *outlineViewsForVisibleViews;
 
 @property (nonatomic, strong) NSArray<UIView *> *viewsAtTapPoint;
@@ -84,6 +86,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 @property (nonatomic, strong) UIView *selectedViewOverlay;
 
 @property (nonatomic, strong) NSMutableSet<UIView *> *observedViews;
+
+@property (nonatomic, assign) CGRect selectedViewFrameBeforeDragging;
 
 @end
 
@@ -107,6 +111,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    for (UIView *view in self.observedViews) {
+        [self stopObservingView:view];
+    }
 }
 
 #pragma mark - Public
@@ -175,6 +182,52 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (BOOL)wantsWindowToBecomeKey
 {
     return self.previousKeyWindow != nil;
+}
+
+- (void)handleDownArrowKeyPressed
+{
+    if (self.currentMode == LLWindowViewControllerModeMove) {
+        CGRect frame = self.selectedView.frame;
+        frame.origin.y += 1.0 / [[UIScreen mainScreen] scale];
+        self.selectedView.frame = frame;
+    } else if (self.currentMode == LLWindowViewControllerModeSelect && [self.viewsAtTapPoint count] > 0) {
+        NSInteger selectedViewIndex = [self.viewsAtTapPoint indexOfObject:self.selectedView];
+        if (selectedViewIndex > 0) {
+            self.selectedView = [self.viewsAtTapPoint objectAtIndex:selectedViewIndex - 1];
+        }
+    }
+}
+
+- (void)handleUpArrowKeyPressed
+{
+    if (self.currentMode == LLWindowViewControllerModeMove) {
+        CGRect frame = self.selectedView.frame;
+        frame.origin.y -= 1.0 / [[UIScreen mainScreen] scale];
+        self.selectedView.frame = frame;
+    } else if (self.currentMode == LLWindowViewControllerModeSelect && [self.viewsAtTapPoint count] > 0) {
+        NSInteger selectedViewIndex = [self.viewsAtTapPoint indexOfObject:self.selectedView];
+        if (selectedViewIndex < [self.viewsAtTapPoint count] - 1) {
+            self.selectedView = [self.viewsAtTapPoint objectAtIndex:selectedViewIndex + 1];
+        }
+    }
+}
+
+- (void)handleRightArrowKeyPressed
+{
+    if (self.currentMode == LLWindowViewControllerModeMove) {
+        CGRect frame = self.selectedView.frame;
+        frame.origin.x += 1.0 / [[UIScreen mainScreen] scale];
+        self.selectedView.frame = frame;
+    }
+}
+
+- (void)handleLeftArrowKeyPressed
+{
+    if (self.currentMode == LLWindowViewControllerModeMove) {
+        CGRect frame = self.selectedView.frame;
+        frame.origin.x -= 1.0 / [[UIScreen mainScreen] scale];
+        self.selectedView.frame = frame;
+    }
 }
 
 #pragma mark - LLAppHelperNotification
@@ -309,6 +362,11 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     // View selection
     UITapGestureRecognizer *selectionTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectionTap:)];
     [self.view addGestureRecognizer:selectionTapGR];
+    
+    // View moving
+    self.movePanGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleMovePan:)];
+    self.movePanGR.enabled = self.currentMode == LLWindowViewControllerModeMove;
+    [self.view addGestureRecognizer:self.movePanGR];
 }
 
 - (void)updateGestureRecognizers {
@@ -520,7 +578,12 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 - (void)updateButtonStates {
-    
+    // Move and details only active when an object is selected.
+    BOOL hasSelectedObject = self.selectedView != nil;
+#warning NEED UPDATE
+//    self.explorerToolbar.moveItem.enabled = hasSelectedObject;
+//    self.explorerToolbar.selectItem.selected = self.currentMode == FLEXExplorerModeSelect;
+//    self.explorerToolbar.moveItem.selected = self.currentMode == FLEXExplorerModeMove;
 }
 
 - (void)setSelectedView:(UIView *)selectedView
@@ -564,6 +627,54 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     }
 }
 
+- (void)setViewsAtTapPoint:(NSArray<UIView *> *)viewsAtTapPoint
+{
+    if (![_viewsAtTapPoint isEqual:viewsAtTapPoint]) {
+        for (UIView *view in _viewsAtTapPoint) {
+            if (view != self.selectedView) {
+                [self stopObservingView:view];
+            }
+        }
+        
+        _viewsAtTapPoint = viewsAtTapPoint;
+        
+        for (UIView *view in viewsAtTapPoint) {
+            [self beginObservingView:view];
+        }
+    }
+}
+
+- (void)setMode:(LLWindowViewControllerMode)mode {
+    if (_mode != mode) {
+        _mode = mode;
+        switch (mode) {
+            case LLWindowViewControllerModeDefault:
+                [self removeAndClearOutlineViews];
+                self.viewsAtTapPoint = nil;
+                self.selectedView = nil;
+                break;
+                
+            case LLWindowViewControllerModeSelect:
+                // Make sure the outline views are unhidden in case we came from the move mode.
+                for (NSValue *key in self.outlineViewsForVisibleViews) {
+                    UIView *outlineView = self.outlineViewsForVisibleViews[key];
+                    outlineView.hidden = NO;
+                }
+                break;
+                
+            case LLWindowViewControllerModeMove:
+                // Hide all the outline views to focus on the selected view, which is the only one that will move.
+                for (NSValue *key in self.outlineViewsForVisibleViews) {
+                    UIView *outlineView = self.outlineViewsForVisibleViews[key];
+                    outlineView.hidden = YES;
+                }
+                break;
+        }
+        self.movePanGR.enabled = mode == LLWindowViewControllerModeMove;
+        [self updateButtonStates];
+    }
+}
+
 - (void)beginObservingView:(UIView *)view
 {
     // Bail if we're already observing this view or if there's nothing to observe.
@@ -602,7 +713,75 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     return trackedViewKeyPaths;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context
+{
+    [self updateOverlayAndDescriptionForObjectIfNeeded:object];
+}
+
+- (void)updateOverlayAndDescriptionForObjectIfNeeded:(id)object
+{
+    NSUInteger indexOfView = [self.viewsAtTapPoint indexOfObject:object];
+    if (indexOfView != NSNotFound) {
+        UIView *view = self.viewsAtTapPoint[indexOfView];
+        NSValue *key = [NSValue valueWithNonretainedObject:view];
+        UIView *outline = self.outlineViewsForVisibleViews[key];
+        if (outline) {
+            outline.frame = [self frameInLocalCoordinatesForView:view];
+        }
+    }
+    if (object == self.selectedView) {
+        // Update the selected view description since we show the frame value there.
+#warning NEED UPDATE
+//        self.explorerToolbar.selectedViewDescription = [FLEXUtility descriptionForView:self.selectedView includingFrame:YES];
+        CGRect selectedViewOutlineFrame = [self frameInLocalCoordinatesForView:self.selectedView];
+        self.selectedViewOverlay.frame = selectedViewOutlineFrame;
+    }
+}
+
+
 #pragma mark - Recode
+- (UIViewController *)viewControllerForRotationAndOrientation
+{
+    UIWindow *window = self.previousKeyWindow ?: [[UIApplication sharedApplication] keyWindow];
+    UIViewController *viewController = window.rootViewController;
+    NSString *viewControllerSelectorString = [@[@"_vie", @"wContro", @"llerFor", @"Supported", @"Interface", @"Orientations"] componentsJoinedByString:@""];
+    SEL viewControllerSelector = NSSelectorFromString(viewControllerSelectorString);
+    if ([viewController respondsToSelector:viewControllerSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        viewController = [viewController performSelector:viewControllerSelector];
+#pragma clang diagnostic pop
+    }
+    return viewController;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    UIViewController *viewControllerToAsk = [self viewControllerForRotationAndOrientation];
+    UIInterfaceOrientationMask supportedOrientations = [LLTool infoPlistSupportedInterfaceOrientationsMask];
+    if (viewControllerToAsk && viewControllerToAsk != self) {
+        supportedOrientations = [viewControllerToAsk supportedInterfaceOrientations];
+    }
+    
+    // The UIViewController docs state that this method must not return zero.
+    // If we weren't able to get a valid value for the supported interface orientations, default to all supported.
+    if (supportedOrientations == 0) {
+        supportedOrientations = UIInterfaceOrientationMaskAll;
+    }
+    
+    return supportedOrientations;
+}
+
+- (BOOL)shouldAutorotate
+{
+    UIViewController *viewControllerToAsk = [self viewControllerForRotationAndOrientation];
+    BOOL shouldAutorotate = YES;
+    if (viewControllerToAsk && viewControllerToAsk != self) {
+        shouldAutorotate = [viewControllerToAsk shouldAutorotate];
+    }
+    return shouldAutorotate;
+}
+
 // Fix the bug of missing status bars under ios9.
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return [LLConfig sharedConfig].statusBarStyle;
@@ -667,6 +846,33 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         CGPoint tapPointInWindow = [self.view convertPoint:tapPointInView toView:nil];
         [self updateOutlineViewsForSelectionPoint:tapPointInWindow];
     }
+}
+
+- (void)handleMovePan:(UIPanGestureRecognizer *)movePanGR
+{
+    switch (movePanGR.state) {
+        case UIGestureRecognizerStateBegan:
+            self.selectedViewFrameBeforeDragging = self.selectedView.frame;
+            [self updateSelectedViewPositionWithDragGesture:movePanGR];
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+        case UIGestureRecognizerStateEnded:
+            [self updateSelectedViewPositionWithDragGesture:movePanGR];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)updateSelectedViewPositionWithDragGesture:(UIPanGestureRecognizer *)movePanGR
+{
+    CGPoint translation = [movePanGR translationInView:self.selectedView.superview];
+    CGRect newSelectedViewFrame = self.selectedViewFrameBeforeDragging;
+    newSelectedViewFrame.origin.x = newSelectedViewFrame.origin.x + translation.x;
+    newSelectedViewFrame.origin.y = newSelectedViewFrame.origin.y + translation.y;
+    self.selectedView.frame = newSelectedViewFrame;
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)gr {
@@ -822,6 +1028,13 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
     }
     return _lineView;
+}
+
+- (NSMutableSet<UIView *> *)observedViews {
+    if (!_observedViews) {
+        _observedViews = [NSMutableSet set];
+    }
+    return _observedViews;
 }
 
 @end

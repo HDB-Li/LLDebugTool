@@ -269,6 +269,26 @@ static unsigned long long _absolutelyIdentity = 0;
     return [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
 }
 
++ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask
+{
+    NSArray<NSString *> *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+    UIInterfaceOrientationMask supportedOrientationsMask = 0;
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortrait"]) {
+        supportedOrientationsMask |= UIInterfaceOrientationMaskPortrait;
+    }
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationMaskLandscapeRight"]) {
+        supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeRight;
+    }
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationMaskPortraitUpsideDown"]) {
+        supportedOrientationsMask |= UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
+    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeLeft"]) {
+        supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeLeft;
+    }
+    return supportedOrientationsMask;
+}
+
+#pragma mark - Primary
 + (NSString *)formatNumber:(NSNumber *)number {
     return [[self numberFormatter] stringFromNumber:number];
 }

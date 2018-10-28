@@ -94,6 +94,11 @@
  */
 + (UIColor *_Nonnull)colorFromObject:(NSObject *_Nonnull)object;
 
+/**
+ Supported interface orientations in info.plist.
+ */
++ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
+
 #pragma mark - DEPRECATED
 
 + (instancetype _Nonnull)sharedTool DEPRECATED_ATTRIBUTE;
