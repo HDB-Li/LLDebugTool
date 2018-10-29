@@ -94,7 +94,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
     model.headerFields = [self.request.allHTTPHeaderFields mutableCopy];
-    if (self.request.HTTPBody) {
+    if (self.request.HTTPBody != nil) {
         model.requestBody = [LLTool convertJSONStringFromData:self.request.HTTPBody];
     } else if (self.request.HTTPBodyStream) {
         NSData* data = [self dataFromInputStream:self.request.HTTPBodyStream];
