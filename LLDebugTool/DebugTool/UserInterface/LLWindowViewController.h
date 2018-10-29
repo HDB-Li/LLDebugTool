@@ -24,8 +24,6 @@
 #import <UIKit/UIKit.h>
 #import "LLConfig.h"
 
-@class LLWindow;
-
 /**
  Root View Controller.
  */

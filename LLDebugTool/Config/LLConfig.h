@@ -109,6 +109,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
     LLConfigAvailableAppInfo    = 1 << 3,
     LLConfigAvailableSandbox    = 1 << 4,
     LLConfigAvailableScreenshot = 1 << 5,
+    LLConfigAvailableHierarchy  = 1 << 6,
     LLConfigAvailableAll        = 0xFF,
     
     // Quick options
@@ -118,6 +119,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
     LLConfigAvailableNoneAppInfo    = 0xFF - (1 << 3),
     LLConfigAvailableNoneSandbox    = 0xFF - (1 << 4),
     LLConfigAvailableNoneScreenshot = 0xFF - (1 << 5),
+    LLConfigAvailableNoneHierarchy  = 0xFF - (1 << 6),
 };
 
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateColorStyleNotificationName;

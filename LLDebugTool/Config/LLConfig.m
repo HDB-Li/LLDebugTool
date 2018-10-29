@@ -63,11 +63,12 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
         BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
         BOOL sandboxEnable = availables & LLConfigAvailableSandbox;
         BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
-        if (!networkEnable && !logEnable && !crashEnable && !appInfoEnable && !sandboxEnable && !screenshotEnable) {
+        BOOL hierarchyEnable = availables & LLConfigAvailableHierarchy;
+        if (!networkEnable && !logEnable && !crashEnable && !appInfoEnable && !sandboxEnable && !screenshotEnable && !hierarchyEnable) {
             // Can't set none availables.
             return;
         }
-        BOOL allEnable = networkEnable && logEnable && crashEnable && appInfoEnable && sandboxEnable && screenshotEnable;
+        BOOL allEnable = networkEnable && logEnable && crashEnable && appInfoEnable && sandboxEnable && screenshotEnable && hierarchyEnable;
         if (allEnable && (availables != LLConfigAvailableAll)) {
             // Check if input wrong.
             _availables = LLConfigAvailableAll;

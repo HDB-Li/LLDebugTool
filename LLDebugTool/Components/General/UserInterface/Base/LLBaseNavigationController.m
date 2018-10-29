@@ -30,6 +30,12 @@
 
 @implementation LLBaseNavigationController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;

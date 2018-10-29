@@ -23,6 +23,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LLWindowTabBarDelegate;
+
 @interface LLWindowTabBar : UITabBar
+
+@property (nonatomic , weak , nullable) id <LLWindowTabBarDelegate> actionDelegate;
+
+/**
+ * Calculate subview's frame if needed.
+ */
+- (void)calculateSubviewsIfNeeded;
+
+@end
+
+@protocol LLWindowTabBarDelegate <NSObject>
+
+- (void)LLWindowTabBar:(LLWindowTabBar *)windowTabBar didSelectPreviousItem:(UIButton *)sender;
+
+- (void)LLWindowTabBar:(LLWindowTabBar *)windowTabBar didSelectNextItem:(UIButton *)sender;
 
 @end

@@ -23,8 +23,20 @@
 
 #import "LLWindowTabBarController.h"
 #import "LLWindowTabBar.h"
+#import "LLNetworkViewController.h"
+#import "LLLogViewController.h"
+#import "LLCrashViewController.h"
+#import "LLAppInfoViewController.h"
+#import "LLSandboxViewController.h"
+#import "LLHierarchyViewController.h"
+#import "LLBaseNavigationController.h"
+#import "UIImage+LL_Utils.h"
+#import "LLConfig.h"
+#import "LLImageNameConfig.h"
 
-@interface LLWindowTabBarController ()
+@interface LLWindowTabBarController () <LLWindowTabBarDelegate>
+
+@property (nonatomic , strong , nonnull) LLWindowTabBar *windowTabBar;
 
 @end
 
@@ -34,20 +46,120 @@
 {
     self = [super init];
     if (self) {
-//            [self setValue:@(6) forKey:@"_defaultMaxItems"];
         [self setValue:@(6) forKey:@"_customMaxItems"];
-        [self setValue:[[LLWindowTabBar alloc] init] forKey:@"tabBar"];
+        [self setValue:self.windowTabBar forKey:@"tabBar"];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self setValue:@(6) forKey:@"_defaultMaxItems"];
-//    [self setValue:@(6) forKey:@"_customMaxItems"];
-//    [self setValue:[[LLWindowTabBar alloc] init] forKey:@"tabBar"];
-//    [self setValue:@(YES) forKey:@"_scrollsItems"];
-    // Do any additional setup after loading the view.
+    [self initial];
+}
+
+#pragma mark - UITabBarDelegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    [self.windowTabBar calculateSubviewsIfNeeded];
+}
+
+#pragma mark - LLWindowTabBarDelegate
+- (void)LLWindowTabBar:(LLWindowTabBar *)windowTabBar didSelectPreviousItem:(UIButton *)sender {
+    if (self.selectedIndex > 0) {
+        self.selectedIndex = self.selectedIndex - 1;
+        [self.windowTabBar calculateSubviewsIfNeeded];
+    }
+}
+
+- (void)LLWindowTabBar:(LLWindowTabBar *)windowTabBar didSelectNextItem:(UIButton *)sender {
+    if (self.selectedIndex < self.viewControllers.count - 1) {
+        self.selectedIndex = self.selectedIndex + 1;
+        [self.windowTabBar calculateSubviewsIfNeeded];
+    }
+}
+
+#pragma mark - Primary
+- (void)initial {
+    LLConfigAvailableFeature availables = [LLConfig sharedConfig].availables;
+    if (availables & LLConfigAvailableNetwork) {
+        [self addNetworkViewController];
+    }
+    if (availables & LLConfigAvailableLog) {
+        [self addLogViewController];
+    }
+    if (availables & LLConfigAvailableCrash) {
+        [self addCrashViewController];
+    }
+    if (availables & LLConfigAvailableAppInfo) {
+        [self addAppInfoViewController];
+    }
+    if (availables & LLConfigAvailableSandbox) {
+        [self addSandboxViewController];
+    }
+    if (availables & LLConfigAvailableHierarchy) {
+        [self addHierarchyViewController];
+    }
+    if (self.viewControllers.count == 0) {
+        [LLConfig sharedConfig].availables = LLConfigAvailableAll;
+        [self addNetworkViewController];
+        [self addLogViewController];
+        [self addCrashViewController];
+        [self addAppInfoViewController];
+        [self addSandboxViewController];
+        [self addHierarchyViewController];
+    }
+}
+
+- (void)addNetworkViewController {
+    LLNetworkViewController *vc = [[LLNetworkViewController alloc] init];
+    LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"Network" barImageName:kNetworkImageName];
+    [self addChildViewController:nav];
+}
+
+- (void)addLogViewController {
+    LLLogViewController *vc = [[LLLogViewController alloc] init];
+    LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"Log" barImageName:kLogImageName];
+    [self addChildViewController:nav];
+}
+
+- (void)addCrashViewController {
+    LLCrashViewController *vc = [[LLCrashViewController alloc] init];
+    LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"Crash" barImageName:kCrashImageName];
+    [self addChildViewController:nav];
+}
+
+- (void)addAppInfoViewController {
+    LLAppInfoViewController *vc = [[LLAppInfoViewController alloc] init];
+    LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"App" barImageName:kAppImageName];
+    [self addChildViewController:nav];
+}
+
+- (void)addSandboxViewController {
+    LLSandboxViewController *vc = [[LLSandboxViewController alloc] init];
+    LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"Sandbox" barImageName:kSandboxImageName];
+    [self addChildViewController:nav];
+}
+
+- (void)addHierarchyViewController {
+    LLHierarchyViewController *vc = [[LLHierarchyViewController alloc] init];
+    LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"Hierarchy" barImageName:kNetworkImageName];
+    [self addChildViewController:nav];
+}
+
+- (LLBaseNavigationController *)navigationControllerWithRootViewController:(LLBaseViewController *)viewController barTitle:(NSString *)barTitle barImageName:(NSString *)barImageName {
+    LLBaseNavigationController *navigationController = [[LLBaseNavigationController alloc] initWithRootViewController:viewController];
+    navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:barTitle image:[UIImage LL_imageNamed:barImageName] selectedImage:nil];
+//    navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+//    navigationController.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    return navigationController;
+}
+
+#pragma mark - Lazy load
+- (LLWindowTabBar *)windowTabBar {
+    if (!_windowTabBar) {
+        _windowTabBar = [[LLWindowTabBar alloc] init];
+        _windowTabBar.actionDelegate = self;
+    }
+    return _windowTabBar;
 }
 
 @end
