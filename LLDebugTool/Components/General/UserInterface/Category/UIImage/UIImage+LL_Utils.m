@@ -30,6 +30,18 @@
     return [UIImage imageNamed:name inBundle:[LLConfig sharedConfig].imageBundle compatibleWithTraitCollection:nil];
 }
 
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size {
+    return [[self LL_imageNamed:name] LL_resizeTo:size];
+}
+
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name color:(UIColor *)color {
+    return [[self LL_imageNamed:name] LL_colorTo:color];
+}
+
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size color:(UIColor *)color {
+    return [[self LL_imageNamed:name size:size] LL_colorTo:color];
+}
+
 + (nullable UIImage *)LL_imageWithGIFData:(NSData *)data {
     if (!data) {
         return nil;
@@ -82,5 +94,33 @@
     return frameDuration;
 }
 
+- (UIImage *)LL_resizeTo:(CGSize)size {
+    // Create a context for the bitmap and set it to the current context being used.
+    UIGraphicsBeginImageContext(size);
+    // Draws a resizing image.
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // Create a resized image from the current context.
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    // Causes the current context to exit the stack
+    UIGraphicsEndImageContext();
+    // Return new image.
+    return newImage;
+}
+
+- (UIImage *)LL_colorTo:(UIColor *)color
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0, self.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextClipToMask(context, rect, self.CGImage);
+    [color setFill];
+    CGContextFillRect(context, rect);
+    UIImage*newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 @end

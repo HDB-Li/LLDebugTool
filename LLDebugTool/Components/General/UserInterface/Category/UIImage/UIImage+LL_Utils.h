@@ -25,11 +25,39 @@
 
 @interface UIImage (LL_Utils)
 
+/**
+ * Image in LLDebugTool's bundle.
+ */
 + (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name;
 
 /**
- This part is from SDWebImage.
+ * Image in LLDebugTool's bundle with the specified size.
+ */
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size;
+
+/**
+ * Image in LLDebugTool's bundle with the specified color.
+ */
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name color:(UIColor *)color;
+
+/**
+ * Image in LLDebugTool's bundle with the specified size and color.
+ */
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size color:(UIColor *)color;
+
+/**
+ * Image from data.
  */
 + (UIImage *_Nullable)LL_imageWithGIFData:(NSData *_Nullable)data;
+
+/**
+ * Get a image with the specified size..
+ */
+- (UIImage *)LL_resizeTo:(CGSize)size;
+
+/**
+ * Get a image with the specified color.
+ */
+- (UIImage *)LL_colorTo:(UIColor *)color;
 
 @end
