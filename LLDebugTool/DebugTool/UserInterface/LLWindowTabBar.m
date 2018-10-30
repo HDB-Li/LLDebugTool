@@ -26,13 +26,15 @@
 #import "UIImage+LL_Utils.h"
 #import "LLConfig.h"
 
-@interface LLWindowTabBar ()
+@interface LLWindowTabBar () <UIScrollViewDelegate>
 
 @property (nonatomic , assign) NSInteger maxCount;
 
 @property (nonatomic , strong) UIButton *leftButton;
 
 @property (nonatomic , strong) UIButton *rightButton;
+
+@property (nonatomic , strong) UIScrollView *scrollView;
 
 @property (nonatomic , assign) NSInteger currentOffset;
 
@@ -86,19 +88,39 @@
     self.leftSpacing = self.gap / 2.0 + self.directionButtonWidth;
     self.tintColor = LLCONFIG_TEXT_COLOR;
     self.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    [self addSubview:self.scrollView];
     [self addSubview:self.leftButton];
     [self addSubview:self.rightButton];
 }
 
 - (void)calculateSubviews {
+    
+    // Update scrollView frame.
+    self.scrollView.frame = CGRectMake(self.directionButtonWidth + self.gap, 0, LL_SCREEN_WIDTH - (self.directionButtonWidth + self.gap) * 2, self.bounds.size.height);
+    
     // Calculate UITabBarButton width.
-    self.tabBarButtonWidth = (LL_SCREEN_WIDTH - self.directionButtonWidth * 2) / self.maxCount - self.gap;
+    self.tabBarButtonWidth = self.scrollView.frame.size.width / self.maxCount - self.gap;
+
+    // Update scrollView contentSize.
+    self.scrollView.contentSize = CGSizeMake((self.tabBarButtonWidth + self.gap) * self.items.count, 0);
     
     // Get all UITabBarButtons.
     NSMutableArray <UIView *>*tabBarButtons = [[NSMutableArray alloc] init];
-    for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-            [tabBarButtons addObject:view];
+    if (self.scrollView.subviews.count == 0) {
+        for (UIView *view in self.subviews) {
+            if ([view isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+                [tabBarButtons addObject:view];
+            }
+        }
+        for (UIView *view in tabBarButtons) {
+            [view removeFromSuperview];
+            [self.scrollView addSubview:view];
+        }
+    } else {
+        for (UIView *view in self.scrollView.subviews) {
+            if ([view isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+                [tabBarButtons addObject:view];
+            }
         }
     }
     
@@ -106,45 +128,18 @@
     self.leftButton.frame = CGRectMake(self.gap / 2, tabBarButtons[0].frame.origin.y, self.directionButtonWidth, tabBarButtons[0].frame.size.height);
     self.rightButton.frame = CGRectMake(LL_SCREEN_WIDTH - self.gap / 2 - self.directionButtonWidth, tabBarButtons[0].frame.origin.y, self.directionButtonWidth, tabBarButtons[0].frame.size.height);
     
-    // Reply to last frames.
-    [self updateTabBarButtons:tabBarButtons animated:NO];
+    
+    for (int i = 0; i < tabBarButtons.count; i++) {
+        UIView *tabBarButton = tabBarButtons[i];
+        tabBarButton.frame = CGRectMake(self.gap / 2 + (self.tabBarButtonWidth + self.gap) * i, tabBarButton.frame.origin.y, self.tabBarButtonWidth, tabBarButton.frame.size.height);
+    }
     
     // Record current offset.
     self.currentOffset = [self offsetCount];
     
-    // Calculate new frames.
-    [self updateTabBarButtons:tabBarButtons animated:YES];
+    // Update scrollView content offset animated.
+    [self.scrollView setContentOffset:CGPointMake((self.tabBarButtonWidth + self.gap) * self.currentOffset, 0) animated:YES];
     
-    // Bring Left/Right button to front.
-    [self bringSubviewToFront:self.leftButton];
-    [self bringSubviewToFront:self.rightButton];
-}
-
-- (void)updateTabBarButtons:(NSArray *)tabBarButtons animated:(BOOL)animated {
-    for (int i = 0; i < tabBarButtons.count; i++) {
-        UIView *tabBarButton = tabBarButtons[i];
-        NSInteger offset = i - self.currentOffset;
-        if (animated) {
-            [UIView animateWithDuration:0.25 animations:^{
-                [self updateTabBarButton:tabBarButton offset:offset];
-            }];
-        } else {
-            [self updateTabBarButton:tabBarButton offset:offset];
-        }
-    }
-}
-
-- (void)updateTabBarButton:(UIView *)tabBarButton offset:(NSInteger)offset {
-    if (offset >= 0 && offset < self.maxCount) {
-        // If displayed, calculate frame.
-        tabBarButton.frame = CGRectMake(self.leftSpacing + (self.tabBarButtonWidth + self.gap) * offset, tabBarButton.frame.origin.y, self.tabBarButtonWidth, tabBarButton.frame.size.height);
-    } else if (offset < 0) {
-        // If don't displayed, Out of the screen.
-        tabBarButton.frame = CGRectMake(-self.tabBarButtonWidth, tabBarButton.frame.origin.y, self.tabBarButtonWidth, tabBarButton.frame.size.height);
-    } else {
-        // If don't displayed, Out of the screen.
-        tabBarButton.frame = CGRectMake(LL_SCREEN_WIDTH, tabBarButton.frame.origin.y, self.tabBarButtonWidth, tabBarButton.frame.size.height);
-    }
 }
 
 - (void)updateLeftAndRightButtonStatus {
@@ -183,6 +178,19 @@
     return selectedIndex < self.items.count - 1;
 }
 
+- (CGPoint)nearestTargetOffsetForOffset:(CGPoint)offset {
+    CGFloat pageSize = self.tabBarButtonWidth + self.gap;
+    NSInteger page = roundf(offset.x / pageSize);
+    CGFloat targetX = pageSize * page;
+    return CGPointMake(targetX, offset.y);
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    CGPoint newPoint = [self nearestTargetOffsetForOffset:*targetContentOffset];
+    *targetContentOffset = newPoint;
+}
+
 #pragma mark - Actions
 - (void)leftButtonTouchUpInside:(UIButton *)sender {
     [self.actionDelegate LLWindowTabBar:self didSelectPreviousItem:self.leftButton];
@@ -209,6 +217,16 @@
         [_rightButton addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.delegate = self;
+    }
+    return _scrollView;
 }
 
 @end
