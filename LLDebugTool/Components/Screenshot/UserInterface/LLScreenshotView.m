@@ -56,7 +56,7 @@
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     self.frame = CGRectMake(0, LL_SCREEN_HEIGHT, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
     [window addSubview:self];
-    [LLRoute hideWindow];
+    [LLRoute hideExplorerView];
     [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
     } completion:^(BOOL finished) {
@@ -70,7 +70,7 @@
         self.frame = CGRectMake(0, LL_SCREEN_HEIGHT, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
-        [LLRoute showWindow];
+        [LLRoute showExplorerView];
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }];
 }

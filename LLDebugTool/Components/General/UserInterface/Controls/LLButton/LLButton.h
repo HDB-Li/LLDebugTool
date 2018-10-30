@@ -1,5 +1,5 @@
 //
-//  LLWindowTabBarController.h
+//  LLButton.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,19 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol LLWindowTabBarControllerDelegate;
+@interface LLButton : UIButton
 
-@interface LLWindowTabBarController : UITabBarController
-
-@property (nonatomic , weak , nullable) id <LLWindowTabBarControllerDelegate> actionDelegate;
-
-@end
-
-
-@class LLHierarchyModel;
-
-@protocol LLWindowTabBarControllerDelegate <NSObject>
-
-- (void)LLWindowTabBarController:(LLWindowTabBarController *)tabBarController didSelectedHierarchyModel:(LLHierarchyModel *)model;
++ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font color:(UIColor *)color;
 
 @end

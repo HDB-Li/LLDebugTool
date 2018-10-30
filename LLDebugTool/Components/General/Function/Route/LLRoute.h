@@ -47,14 +47,14 @@ static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
 + (void)setNewAvailables:(LLConfigAvailableFeature)availables;
 
 /**
- If LLDebugTool exists, LLDebugTool's window called showWindow method, otherwise nothing will be done.
+ If LLDebugTool exists, Called LLDebugTool's showExplorerView method, otherwise nothing will be done.
  */
-+ (void)showWindow;
++ (void)showExplorerView;
 
 /**
- If LLDebugTool exists, LLDebugTool's window called hideWindow method, otherwise nothing will be done.
+ If LLDebugTool exists, Called LLDebugTool's hideExplorerView method, otherwise nothing will be done.
  */
-+ (void)hideWindow;
++ (void)hideExplorerView;
     
 #pragma mark - Log Route
 /**

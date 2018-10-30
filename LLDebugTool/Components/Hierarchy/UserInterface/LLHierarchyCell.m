@@ -36,7 +36,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *directionImageView;
+@property (weak, nonatomic) IBOutlet UIButton *foldButton;
 
 @property (weak, nonatomic) IBOutlet UIView *circleView;
 
@@ -47,8 +47,6 @@
 @property (strong , nonatomic) CAShapeLayer *dashLineLayer;
 
 @property (nonatomic , strong) LLHierarchyModel *model;
-
-
 
 @property (nonatomic , assign) BOOL isFold;
 
@@ -81,14 +79,14 @@
     self.circleView.backgroundColor = [LLTool colorFromObject:model.view];
     
     if (model.subModels.count) {
-        self.directionImageView.hidden = NO;
+        self.foldButton.hidden = NO;
         if (model.isFold) {
-            self.directionImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+            self.foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
         } else {
-            self.directionImageView.transform = CGAffineTransformIdentity;
+            self.foldButton.transform = CGAffineTransformIdentity;
         }
     } else {
-        self.directionImageView.hidden = YES;
+        self.foldButton.hidden = YES;
     }
     
     [self updateLines];
@@ -102,15 +100,23 @@
         self.isFold = self.model.isFold;
         if (self.model.isFold) {
             [UIView animateWithDuration:0.25 animations:^{
-                self.directionImageView.transform = CGAffineTransformMakeRotation(-M_PI_2);
+                self.foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
             }];
         } else {
             [UIView animateWithDuration:0.25 animations:^{
-                self.directionImageView.transform = CGAffineTransformIdentity;
+                self.foldButton.transform = CGAffineTransformIdentity;
             }];
         }
         [self updateLines];
     }
+}
+
+- (IBAction)foldButtonTouchUpInside:(UIButton *)sender {
+    [self.delegate LLHierarchyCellDidSelectFoldButton:self];
+}
+
+- (IBAction)infoButtonTouchUpInside:(UIButton *)sender {
+    [self.delegate LLHierarchyCellDidSelectInfoButton:self];
 }
 
 #pragma mark - Primary
@@ -141,7 +147,7 @@
     [self.lineView.layer insertSublayer:self.dashLineLayer atIndex:0];
     
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-    self.directionImageView.image = [[UIImage LL_imageNamed:@"LL-bottom"] imageWithRenderingMode:mode];
+    [self.foldButton setImage:[[UIImage LL_imageNamed:@"LL-bottom" size:CGSizeMake(12, 12)] imageWithRenderingMode:mode] forState:UIControlStateNormal];
     [self.infoButton setImage:[[UIImage LL_imageNamed:@"LL-info"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
 }
 

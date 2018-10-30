@@ -63,14 +63,14 @@
 - (void)stopWorking;
 
 /**
- Show explorer window.
+ Show explorer view.
  */
-- (void)showWindow;
+- (void)showExplorerView;
 
 /**
- Hide explorer window.
+ Hide explorer view.
  */
-- (void)hideWindow;
+- (void)hideExplorerView;
 
 /**
  Whether working or not.

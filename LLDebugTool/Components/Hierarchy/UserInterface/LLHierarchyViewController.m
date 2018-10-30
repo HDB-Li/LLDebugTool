@@ -28,7 +28,7 @@
 
 static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
-@interface LLHierarchyViewController ()
+@interface LLHierarchyViewController () <LLHierarchyCellDelegate>
 
 @end
 
@@ -102,16 +102,9 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     return array;
 }
 
-#pragma mark - TableView
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
-    LLHierarchyModel *model = self.datas[indexPath.row];
-    [cell confirmWithModel:model];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+#pragma mark - LLHierarchyCellDelegate
+- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *)cell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LLHierarchyModel *model = self.datas[indexPath.row];
     LLHierarchyModel *nextModel = nil;
     if (model.subModels.count) {
@@ -120,9 +113,8 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
         }
         
         model.fold = !model.isFold;
-    
-        [self.tableView beginUpdates];
         
+        [self.tableView beginUpdates];
         
         NSArray *preData = [NSArray arrayWithArray:self.datas];
         NSArray *newData = [NSArray arrayWithArray:[self loadData]];
@@ -160,7 +152,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
         [self.dataArray addObjectsFromArray:newData];
         
         [self.tableView endUpdates];
-
+        
         LLHierarchyCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         [cell updateDirection];
         
@@ -178,6 +170,25 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
             [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationFade];
         }
     }
+}
+
+- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *)cell {
+    
+}
+
+#pragma mark - TableView
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
+    cell.delegate = self;
+    LLHierarchyModel *model = self.datas[indexPath.row];
+    [cell confirmWithModel:model];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [self leftItemClick];
+    [self.delegate LLHierarchyViewController:self didFinishWithSelectedModel:self.datas[indexPath.row]];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {

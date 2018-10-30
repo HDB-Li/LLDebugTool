@@ -110,7 +110,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark - Rewrite
+#pragma mark - Override
 - (void)rightItemClick:(UIButton *)sender {
     sender.selected = !sender.selected;
     [self.tableView setEditing:sender.isSelected animated:YES];
@@ -268,7 +268,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
             [self.searchBar resignFirstResponder];
         }
     }
-    [LLRoute showWindow];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

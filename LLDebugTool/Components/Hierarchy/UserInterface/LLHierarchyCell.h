@@ -24,10 +24,22 @@
 #import "LLBaseTableViewCell.h"
 #import "LLHierarchyModel.h"
 
+@protocol LLHierarchyCellDelegate;
+
 @interface LLHierarchyCell : LLBaseTableViewCell
+
+@property (nonatomic , weak , nullable) id <LLHierarchyCellDelegate> delegate;
 
 - (void)confirmWithModel:(LLHierarchyModel *)model;
 
 - (void)updateDirection;
+
+@end
+
+@protocol LLHierarchyCellDelegate <NSObject>
+
+- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *)cell;
+
+- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *)cell;
 
 @end

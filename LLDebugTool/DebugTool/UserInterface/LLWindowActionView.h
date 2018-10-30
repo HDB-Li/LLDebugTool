@@ -1,5 +1,5 @@
 //
-//  LLWindowTabBarController.h
+//  LLWindowActionView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,19 +23,24 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol LLWindowTabBarControllerDelegate;
+@protocol LLWindowActionViewDelegate;
 
-@interface LLWindowTabBarController : UITabBarController
+@interface LLWindowActionView : UIView
 
-@property (nonatomic , weak , nullable) id <LLWindowTabBarControllerDelegate> actionDelegate;
+@property (nonatomic , weak , nullable) id <LLWindowActionViewDelegate> delegate;
 
 @end
 
+@class LLWindowActionView;
 
-@class LLHierarchyModel;
+@protocol LLWindowActionViewDelegate <NSObject>
 
-@protocol LLWindowTabBarControllerDelegate <NSObject>
+- (void)LLWindowActionViewDidSelectViewButton:(LLWindowActionView*)windowActionView;
 
-- (void)LLWindowTabBarController:(LLWindowTabBarController *)tabBarController didSelectedHierarchyModel:(LLHierarchyModel *)model;
+- (void)LLWindowActionViewDidSelectSelectButton:(LLWindowActionView*)windowActionView;
+
+- (void)LLWindowActionViewDidSelectMoveButton:(LLWindowActionView*)windowActionView;
+
+- (void)LLWindowActionViewDidSelectCloseButton:(LLWindowActionView*)windowActionView;
 
 @end

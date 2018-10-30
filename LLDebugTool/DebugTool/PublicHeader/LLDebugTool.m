@@ -112,13 +112,21 @@ static LLDebugTool *_instance = nil;
 - (void)showWindow
 {
     self.window.hidden = NO;
-    [self.windowViewController registerLLAppHelperNotification];
+    [self.windowViewController showExplorerView];
 }
 
 - (void)hideWindow
 {
     self.window.hidden = YES;
-    [self.windowViewController unregisterLLAppHelperNotification];
+    [self.windowViewController hideExplorerView];
+}
+
+- (void)showExplorerView {
+    [self.windowViewController showExplorerView];
+}
+
+- (void)hideExplorerView {
+    [self.windowViewController hideExplorerView];
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {

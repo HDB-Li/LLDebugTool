@@ -30,7 +30,7 @@
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
 #import "LLTool.h"
-
+#import "LLWindowActionView.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeMove,
 };
 
-@interface LLWindowViewController ()
+@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , LLWindowActionViewDelegate>
 
 @property (nonatomic, strong) UIWindow *previousKeyWindow;
 
@@ -80,6 +80,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic, assign) CGRect selectedViewFrameBeforeDragging;
 
+@property (nonatomic , strong) LLWindowActionView *windowActionView;
+
 @end
 
 @implementation LLWindowViewController
@@ -108,18 +110,20 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 #pragma mark - Public
-- (void)registerLLAppHelperNotification {
-    if (!self.isRegisterNotification) {
-        self.registerNotification = YES;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppHelperDidUpdateAppInfosNotification:) name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+- (void)showExplorerView {
+    self.contentView.hidden = NO;
+    if (self.windowStyle == LLConfigWindowSuspensionBall) {
+        self.FPSLabel.hidden = NO;
     }
+    [self registerLLAppHelperNotification];
 }
 
-- (void)unregisterLLAppHelperNotification {
-    if (self.isRegisterNotification) {
-        self.registerNotification = NO;
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+- (void)hideExplorerView {
+    self.contentView.hidden = YES;
+    if (self.windowStyle == LLConfigWindowSuspensionBall) {
+        self.FPSLabel.hidden = YES;
     }
+    [self unregisterLLAppHelperNotification];
 }
 
 - (void)reloadTabbar {
@@ -249,6 +253,42 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     [self updateSettings];
     [self updateSubViews];
     [self updateGestureRecognizers];
+}
+
+#pragma mark - LLWindowTabBarControllerDelegate
+- (void)LLWindowTabBarController:(LLWindowTabBarController *)tabBarController didSelectedHierarchyModel:(LLHierarchyModel *)model {
+    UIView *selectedView = model.view;
+    if (![self.viewsAtTapPoint containsObject:selectedView]) {
+        self.viewsAtTapPoint = nil;
+        [self removeAndClearOutlineViews];
+    }
+    
+    // If we now have a selected view and we didn't have one previously, go to "select" mode.
+    if (self.currentMode == LLWindowViewControllerModeDefault && selectedView) {
+        self.mode = LLWindowViewControllerModeSelect;
+    }
+    
+    // The selected view setter will also update the selected view overlay appropriately.
+    self.selectedView = selectedView;
+    
+    [self showWindowActionView];
+}
+
+#pragma mark - LLWindowActionViewDelegate
+- (void)LLWindowActionViewDidSelectViewButton:(LLWindowActionView *)windowActionView {
+    
+}
+
+- (void)LLWindowActionViewDidSelectSelectButton:(LLWindowActionView *)windowActionView {
+    
+}
+
+- (void)LLWindowActionViewDidSelectMoveButton:(LLWindowActionView *)windowActionView {
+    
+}
+
+- (void)LLWindowActionViewDidSelectCloseButton:(LLWindowActionView *)windowActionView {
+    [self.windowActionView removeFromSuperview];
 }
 
 #pragma mark - Primary
@@ -392,6 +432,20 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (void)registerNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateColorStyleNotification) name:LLConfigDidUpdateColorStyleNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotification) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
+}
+
+- (void)registerLLAppHelperNotification {
+    if (!self.isRegisterNotification) {
+        self.registerNotification = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppHelperDidUpdateAppInfosNotification:) name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+    }
+}
+
+- (void)unregisterLLAppHelperNotification {
+    if (self.isRegisterNotification) {
+        self.registerNotification = NO;
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+    }
 }
 
 - (void)becomeActive {
@@ -828,6 +882,14 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     }
 }
 
+#pragma mark - Hierarchy Part
+- (void)showWindowActionView {
+    [self.view addSubview:self.windowActionView];
+    CGFloat actionViewWidth = LL_SCREEN_WIDTH;
+    CGFloat actionViewHeight = 40;
+    self.windowActionView.frame = CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight);
+}
+
 #pragma mark - Action
 - (void)handleSelectionTap:(UITapGestureRecognizer *)gr
 {
@@ -894,72 +956,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (LLWindowTabBarController *)tabBarController {
     if (_tabBarController == nil) {
         _tabBarController = [[LLWindowTabBarController alloc] init];
-        
-//        LLNetworkViewController *networkVC = [[LLNetworkViewController alloc] init];
-//        UINavigationController *networkNav = [[LLBaseNavigationController alloc] initWithRootViewController:networkVC];
-//        networkNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Network" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
-//        networkNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        networkNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        LLLogViewController *logVC = [[LLLogViewController alloc] init];
-//        UINavigationController *logNav = [[LLBaseNavigationController alloc] initWithRootViewController:logVC];
-//        logNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Log" image:[UIImage LL_imageNamed:kLogImageName] selectedImage:nil];
-//        logNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        logNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        LLCrashViewController *crashVC = [[LLCrashViewController alloc] init];
-//        UINavigationController *crashNav = [[LLBaseNavigationController alloc] initWithRootViewController:crashVC];
-//        crashNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Crash" image:[UIImage LL_imageNamed:kCrashImageName] selectedImage:nil];
-//        crashNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        crashNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        LLAppInfoViewController *appInfoVC = [[LLAppInfoViewController alloc] init];
-//        UINavigationController *appInfoNav = [[LLBaseNavigationController alloc] initWithRootViewController:appInfoVC];
-//        appInfoNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"App" image:[UIImage LL_imageNamed:kAppImageName] selectedImage:nil];
-//        appInfoNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        appInfoNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        LLSandboxViewController *sandboxVC = [[LLSandboxViewController alloc] init];
-//        UINavigationController *sandboxNav = [[LLBaseNavigationController alloc] initWithRootViewController:sandboxVC];
-//        sandboxNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Sandbox" image:[UIImage LL_imageNamed:kSandboxImageName] selectedImage:nil];
-//        sandboxNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        sandboxNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
-//        LLConfigAvailableFeature availables = [LLConfig sharedConfig].availables;
-//        if (availables & LLConfigAvailableNetwork) {
-//            [viewControllers addObject:networkNav];
-//        }
-//        if (availables & LLConfigAvailableLog) {
-//            [viewControllers addObject:logNav];
-//        }
-//        if (availables & LLConfigAvailableCrash) {
-//            [viewControllers addObject:crashNav];
-//        }
-//        if (availables & LLConfigAvailableAppInfo) {
-//            [viewControllers addObject:appInfoNav];
-//        }
-//        if (availables & LLConfigAvailableSandbox) {
-//            [viewControllers addObject:sandboxNav];
-//        }
-//        if (viewControllers.count == 0) {
-//            [LLConfig sharedConfig].availables = LLConfigAvailableAll;
-//            [viewControllers addObjectsFromArray:@[networkNav,logNav,crashNav,appInfoNav,sandboxNav]];
-//        }
-//
-//        LLHierarchyViewController *hierarchyVC = [[LLHierarchyViewController alloc] init];
-//        UINavigationController *hierarchyNav = [[LLBaseNavigationController alloc] initWithRootViewController:hierarchyVC];
-//        hierarchyNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Hierarchy" image:[UIImage LL_imageNamed:kNetworkImageName] selectedImage:nil];
-//        hierarchyNav.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        hierarchyNav.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        [viewControllers addObject:hierarchyNav];
-//
-//        tabBarController.viewControllers = viewControllers;
-//        tabBarController.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
-//        tabBarController.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-//
-//        _tabBarController = tabBarController;
+        _tabBarController.actionDelegate = self;
     }
     return _tabBarController;
 }
@@ -1026,6 +1023,23 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         _observedViews = [NSMutableSet set];
     }
     return _observedViews;
+}
+
+- (LLWindowActionView *)windowActionView {
+    if (!_windowActionView) {
+        _windowActionView = [[LLWindowActionView alloc] init];
+        _windowActionView.delegate = self;
+    }
+    return _windowActionView;
+}
+
+- (UIEdgeInsets)safeArea {
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    if (@available(iOS 11.0, *)) {
+        // Can't call this method at begining. safeAreaInsets will be updated later.
+        insets = self.view.safeAreaInsets;
+    }
+    return insets;
 }
 
 @end

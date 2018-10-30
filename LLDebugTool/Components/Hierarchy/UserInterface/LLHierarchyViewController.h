@@ -24,8 +24,18 @@
 #import "LLBaseViewController.h"
 #import "LLHierarchyModel.h"
 
+@protocol LLHierarchyViewControllerDelegate;
+
 @interface LLHierarchyViewController : LLBaseViewController
 
+@property (nonatomic , weak , nullable) id <LLHierarchyViewControllerDelegate> delegate;
+
 @property (nonatomic , strong , nullable) LLHierarchyModel *model;
+
+@end
+
+@protocol LLHierarchyViewControllerDelegate <NSObject>
+
+- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel;
 
 @end

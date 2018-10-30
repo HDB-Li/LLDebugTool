@@ -114,6 +114,8 @@
 - (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *_Nonnull)selectedImageName;
 
 #pragma mark - Rewrite
+
+- (void)leftItemClick;
 /**
  * Right item action. Must call super method.
  */

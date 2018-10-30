@@ -35,14 +35,14 @@
 - (void)reloadTabbar;
 
 /**
- Register app helper notification.
+ Show explorer view.
  */
-- (void)registerLLAppHelperNotification;
+- (void)showExplorerView;
 
 /**
- Unregister app helper notification.
+ Hide explorer view.
  */
-- (void)unregisterLLAppHelperNotification;
+- (void)hideExplorerView;
 
 /**
  Automatic open debug view controller with index.

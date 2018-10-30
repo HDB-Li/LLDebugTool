@@ -34,7 +34,7 @@
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 
-@interface LLWindowTabBarController () <LLWindowTabBarDelegate>
+@interface LLWindowTabBarController () <LLWindowTabBarDelegate , LLHierarchyViewControllerDelegate>
 
 @property (nonatomic , strong , nonnull) LLWindowTabBar *windowTabBar;
 
@@ -75,6 +75,11 @@
         self.selectedIndex = self.selectedIndex + 1;
         [self.windowTabBar calculateSubviewsIfNeeded];
     }
+}
+
+#pragma mark - LLHierarchyViewControllerDelegate
+- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel {
+    [self.actionDelegate LLWindowTabBarController:self didSelectedHierarchyModel:selectedModel];
 }
 
 #pragma mark - Primary
@@ -141,6 +146,7 @@
 
 - (void)addHierarchyViewController {
     LLHierarchyViewController *vc = [[LLHierarchyViewController alloc] init];
+    vc.delegate = self;
     LLBaseNavigationController *nav = [self navigationControllerWithRootViewController:vc barTitle:@"Hierarchy" barImageName:kNetworkImageName];
     [self addChildViewController:nav];
 }
@@ -148,8 +154,6 @@
 - (LLBaseNavigationController *)navigationControllerWithRootViewController:(LLBaseViewController *)viewController barTitle:(NSString *)barTitle barImageName:(NSString *)barImageName {
     LLBaseNavigationController *navigationController = [[LLBaseNavigationController alloc] initWithRootViewController:viewController];
     navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:barTitle image:[UIImage LL_imageNamed:barImageName] selectedImage:nil];
-//    navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-//    navigationController.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
     return navigationController;
 }
 
