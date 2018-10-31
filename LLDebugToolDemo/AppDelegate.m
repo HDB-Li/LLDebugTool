@@ -21,7 +21,7 @@
 
     //####################### Color Style #######################//
     // Uncomment one of the following lines to change the color configuration.
-    // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
+//     [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
     // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
     
     //####################### User Identity #######################//

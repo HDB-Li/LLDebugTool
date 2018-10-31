@@ -93,6 +93,11 @@
 - (void)showDebugViewControllerWithIndex:(NSInteger)index;
 
 /**
+ Automatic open debug view controller with index and params.
+ */
+- (void)showDebugViewControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params;
+
+/**
  Print and save a log model with infos.
  
  @param file File name.

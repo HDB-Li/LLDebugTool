@@ -47,7 +47,7 @@
 /**
  Automatic open debug view controller with index.
  */
-- (void)presentTabbarWithIndex:(NSInteger)index;
+- (void)presentTabbarWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params;
 
 - (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates;
 

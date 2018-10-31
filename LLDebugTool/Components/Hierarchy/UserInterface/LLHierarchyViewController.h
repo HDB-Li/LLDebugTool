@@ -30,7 +30,7 @@
 
 @property (nonatomic , weak , nullable) id <LLHierarchyViewControllerDelegate> delegate;
 
-@property (nonatomic , strong , nullable) LLHierarchyModel *model;
+@property (nonatomic , strong , nullable) UIView *selectView;
 
 @end
 

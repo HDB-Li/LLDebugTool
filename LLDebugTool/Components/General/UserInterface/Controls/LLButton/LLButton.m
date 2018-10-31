@@ -29,46 +29,56 @@
 
 @property (nonatomic, strong) UIImage *image;
 
+@property (nonatomic , strong) UIColor *selectedBackgroundColor;
+
+@property (nonatomic , strong) UIColor *normalBackgroundColor;
+
 @end
 
 @implementation LLButton
 
 #pragma mark - Public
-+ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font color:(UIColor *)color
++ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font tintColor:(UIColor *)tintColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor
 {
     LLButton *button = [self buttonWithType:UIButtonTypeCustom];
-    button.tintColor = color;
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : font, NSForegroundColorAttributeName : color}];
+    button.tintColor = tintColor;
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : font, NSForegroundColorAttributeName : tintColor}];
     button.attributedTitle = attributedTitle;
     button.image = image;
+    button.selectedBackgroundColor = selectedBackgroundColor;
     [button setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     [button setImage:image forState:UIControlStateNormal];
     return button;
 }
 
-#pragma mark - UIButton Layout Overrides
+#pragma mark - Primary
 
+
+#pragma mark - Overrides
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
-    // Bottom aligned and centered.
-    CGRect titleRect = CGRectZero;
-    CGSize titleSize = [self.attributedTitle boundingRectWithSize:contentRect.size options:0 context:nil].size;
-    titleSize = CGSizeMake(ceil(titleSize.width), ceil(titleSize.height));
-    titleRect.size = titleSize;
-    titleRect.origin.y = contentRect.origin.y + CGRectGetMaxY(contentRect) - titleSize.height;
-    titleRect.origin.x = contentRect.origin.x + (contentRect.size.width - titleSize.width) / 2.0;
-    return titleRect;
+    // The label height in tab bar.
+    CGFloat titleHeight = 12;
+    // The bottom margin in tab bar.
+    CGFloat bottomMargin = 1;
+    // Calculate label width.
+    CGFloat titleWidth = ceil([self.attributedTitle boundingRectWithSize:contentRect.size options:0 context:nil].size.width);
+    // Calculate left margin.
+    CGFloat leftMargin = (contentRect.size.width - titleWidth) / 2.0;
+    // Return new rect.
+    return CGRectMake(leftMargin, contentRect.size.height - titleHeight - bottomMargin, titleWidth, titleHeight);
 }
 
 - (CGRect)imageRectForContentRect:(CGRect)contentRect
 {
-    CGSize imageSize = self.image.size;
-    CGRect titleRect = [self titleRectForContentRect:contentRect];
-    CGFloat availableHeight = contentRect.size.height - titleRect.size.height - 2;
-    CGFloat originY = 2 + (availableHeight - imageSize.height) / 2.0;
-    CGFloat originX = (contentRect.size.width - imageSize.width) / 2.0;
-    CGRect imageRect = CGRectMake(originX, originY, imageSize.width, imageSize.height);
-    return imageRect;
+    // The icon size in tab bar.
+    CGSize imageSize = CGSizeMake(25, 25);
+    // The top margin in tab bar.
+    CGFloat topMargin = 5.5;
+    // Calculate left margin.
+    CGFloat leftMargin = (contentRect.size.width - imageSize.width) / 2.0;
+    // Return new rect.
+    return CGRectMake(leftMargin, topMargin, imageSize.width, imageSize.height);
 }
 
 @end

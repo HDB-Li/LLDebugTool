@@ -30,6 +30,8 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 @interface LLHierarchyViewController () <LLHierarchyCellDelegate>
 
+@property (nonatomic , strong , nonnull) LLHierarchyModel *model;
+
 @end
 
 @implementation LLHierarchyViewController
@@ -39,6 +41,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     self = [super init];
     if (self) {
         self.isSearchEnable = YES;
+        self.isSelectEnable = YES;
     }
     return self;
 }
@@ -48,58 +51,59 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     [self initial];
 }
 
-- (void)rightItemClick:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadData];
 }
 
 #pragma mark - Primary
 - (void)initial {
-    if (!self.model) {
-        self.model = [LLHierarchyHelper sharedHelper].hierarchyInApplication;
-    }
-    
-    if (self.model.isRoot) {
-        self.navigationItem.title = @"Application";
-    } else {
-        self.navigationItem.title = self.model.name;
-    }
-    
-    [self initRightNavigationItemWithImageName:@"LL-pick" selectedImageName:@"LL-done"];
-    
     // TableView
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 0);
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];
-    
-    NSArray *datas = [self loadData];
-    [self.dataArray addObjectsFromArray:datas];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];    
 }
 
-- (NSMutableArray *)loadData {
+- (void)loadData {
+
+    self.model = [LLHierarchyHelper sharedHelper].hierarchyInApplication;
+    
+    self.navigationItem.title = @"View Hierarchy";
+    
+    NSArray *datas = [self datasFromCurrentModel];
+    [self.dataArray addObjectsFromArray:datas];
+    
+    self.selectView = [self.datas[21] view];
+    
+    [self.tableView reloadData];
+    
+    if (self.selectView) {
+        for (int i = 0; i < self.datas.count; i++) {
+            LLHierarchyModel *model = self.datas[i];
+            if (model.view == self.selectView) {
+                [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
+                break;
+            }
+        }
+    }
+}
+
+- (NSMutableArray *)datasFromCurrentModel {
     NSMutableArray *datas = [[NSMutableArray alloc] init];
     for (LLHierarchyModel *subModel in self.model.subModels) {
-        [datas addObjectsFromArray:[self loadDataFromModel:subModel]];
+        [datas addObjectsFromArray:[self unfoldModelsFromModel:subModel]];
     }
     return datas;
 }
 
-- (NSMutableArray *)loadDataFromModel:(LLHierarchyModel *)model {
+- (NSMutableArray *)unfoldModelsFromModel:(LLHierarchyModel *)model {
     NSMutableArray *datas = [[NSMutableArray alloc] init];
     [datas addObject:model];
     if (!model.isFold) {
         for (LLHierarchyModel *subModel in model.subModels) {
-            [datas addObjectsFromArray:[self loadDataFromModel:subModel]];
+            [datas addObjectsFromArray:[self unfoldModelsFromModel:subModel]];
         }
     }
     return datas;
-}
-
-- (NSMutableArray *)allModelsFromModel:(LLHierarchyModel *)model {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObject:model];
-    for (LLHierarchyModel *subModel in model.subModels) {
-        [array addObjectsFromArray:[self allModelsFromModel:subModel]];
-    }
-    return array;
 }
 
 #pragma mark - LLHierarchyCellDelegate
@@ -117,7 +121,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
         [self.tableView beginUpdates];
         
         NSArray *preData = [NSArray arrayWithArray:self.datas];
-        NSArray *newData = [NSArray arrayWithArray:[self loadData]];
+        NSArray *newData = [NSArray arrayWithArray:[self datasFromCurrentModel]];
         
         NSMutableSet *preSet = [NSMutableSet setWithArray:preData];// 1 4 5
         NSMutableSet *newSet = [NSMutableSet setWithArray:newData];// 1 2 3

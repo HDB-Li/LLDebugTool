@@ -1,5 +1,5 @@
 //
-//  LLWindowActionView.h
+//  LLHierarchyExplorerToolBar.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,24 +23,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol LLWindowActionViewDelegate;
-
-@interface LLWindowActionView : UIView
-
-@property (nonatomic , weak , nullable) id <LLWindowActionViewDelegate> delegate;
-
-@end
-
-@class LLWindowActionView;
-
-@protocol LLWindowActionViewDelegate <NSObject>
-
-- (void)LLWindowActionViewDidSelectViewButton:(LLWindowActionView*)windowActionView;
-
-- (void)LLWindowActionViewDidSelectSelectButton:(LLWindowActionView*)windowActionView;
-
-- (void)LLWindowActionViewDidSelectMoveButton:(LLWindowActionView*)windowActionView;
-
-- (void)LLWindowActionViewDidSelectCloseButton:(LLWindowActionView*)windowActionView;
+@interface LLHierarchyExplorerToolBar : UITabBar
 
 @end

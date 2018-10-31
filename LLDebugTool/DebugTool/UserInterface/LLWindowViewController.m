@@ -30,7 +30,7 @@
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
 #import "LLTool.h"
-#import "LLWindowActionView.h"
+#import "LLHierarchyExplorerToolBar.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeMove,
 };
 
-@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , LLWindowActionViewDelegate>
+@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , UITabBarDelegate , UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIWindow *previousKeyWindow;
 
@@ -66,6 +66,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic , assign , getter=currentMode) LLWindowViewControllerMode mode;
 
+@property (nonatomic , strong) UITapGestureRecognizer *selectTapGR;
+
 @property (nonatomic, strong) UIPanGestureRecognizer *movePanGR;
 
 @property (nonatomic, strong) NSDictionary<NSValue *, UIView *> *outlineViewsForVisibleViews;
@@ -80,7 +82,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic, assign) CGRect selectedViewFrameBeforeDragging;
 
-@property (nonatomic , strong) LLWindowActionView *windowActionView;
+@property (nonatomic , strong) LLHierarchyExplorerToolBar *hierarchyToolBar;
 
 @end
 
@@ -130,7 +132,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     _tabBarController = nil;
 }
 
-- (void)presentTabbarWithIndex:(NSInteger)index {
+- (void)presentTabbarWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params{
     if ([LLConfig sharedConfig].availables == LLConfigAvailableScreenshot) {
         // Screenshot only. Don't open the window.
         LLog_Event(kLLLogHelperDebugToolEvent, @"Current availables is only screenshot, can't open the tabbar.");
@@ -146,7 +148,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         LLog_Warning_Event(kLLLogHelperFailedLoadingResourceEvent, [@"Failed to load the image bundle," stringByAppendingString:kLLLogHelperOpenIssueInGithub]);
     }
     
-    [self makeKeyAndPresentTabbarControllerWithIndex:index];
+    [self makeKeyAndPresentTabbarControllerWithIndex:index params:params];
 }
 
 - (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates {
@@ -274,21 +276,46 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     [self showWindowActionView];
 }
 
-#pragma mark - LLWindowActionViewDelegate
-- (void)LLWindowActionViewDidSelectViewButton:(LLWindowActionView *)windowActionView {
-    
+#pragma mark - UITabBarDelegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if (tabBar == self.hierarchyToolBar) {
+        NSInteger index = [tabBar.items indexOfObject:item];
+        switch (index) {
+            case 0:{
+                [self.hierarchyToolBar removeFromSuperview];
+                self.mode = LLWindowViewControllerModeDefault;
+                [self makeKeyAndPresentTabbarControllerWithIndex:5 params:self.selectedView ? @{@"selectView" : self.selectedView} : nil];
+            }
+                break;
+            case 1:{
+                self.mode = LLWindowViewControllerModeSelect;
+            }
+                break;
+            case 2:{
+                self.mode = LLWindowViewControllerModeMove;
+            }
+                break;
+            case 3:{
+                [self.hierarchyToolBar removeFromSuperview];
+                self.mode = LLWindowViewControllerModeDefault;
+            }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
-- (void)LLWindowActionViewDidSelectSelectButton:(LLWindowActionView *)windowActionView {
-    
-}
-
-- (void)LLWindowActionViewDidSelectMoveButton:(LLWindowActionView *)windowActionView {
-    
-}
-
-- (void)LLWindowActionViewDidSelectCloseButton:(LLWindowActionView *)windowActionView {
-    [self.windowActionView removeFromSuperview];
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (gestureRecognizer == self.selectTapGR) {
+        CGPoint tapPointInView = [touch locationInView:self.view];
+        if (CGRectContainsPoint(self.hierarchyToolBar.frame, tapPointInView)) {
+            return NO;
+        }
+        return YES;
+    }
+    return YES;
 }
 
 #pragma mark - Primary
@@ -391,8 +418,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (void)initGestureRecognizers {
     // View selection
-    UITapGestureRecognizer *selectionTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectionTap:)];
-    [self.view addGestureRecognizer:selectionTapGR];
+    self.selectTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectionTap:)];
+    self.selectTapGR.delegate = self;
+    [self.view addGestureRecognizer:self.selectTapGR];
     
     // View moving
     self.movePanGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleMovePan:)];
@@ -626,6 +654,16 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     // Move and details only active when an object is selected.
     BOOL hasSelectedObject = self.selectedView != nil;
 #warning NEED UPDATE
+    NSInteger selectedIndex = [self.hierarchyToolBar.items indexOfObject:self.hierarchyToolBar.selectedItem];
+    if (selectedIndex == 0) {
+        self.hierarchyToolBar.selectedItem = nil;
+    }
+    self.hierarchyToolBar.items[2].enabled = hasSelectedObject;
+    if (self.currentMode == LLWindowViewControllerModeSelect) {
+        self.hierarchyToolBar.selectedItem = self.hierarchyToolBar.items[1];
+    } else if (self.currentMode == LLWindowViewControllerModeMove) {
+        self.hierarchyToolBar.selectedItem = self.hierarchyToolBar.items[2];
+    }
 //    self.explorerToolbar.moveItem.enabled = hasSelectedObject;
 //    self.explorerToolbar.selectItem.selected = self.currentMode == FLEXExplorerModeSelect;
 //    self.explorerToolbar.moveItem.selected = self.currentMode == FLEXExplorerModeMove;
@@ -661,7 +699,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             // Make sure the selected overlay is in front of all the other subviews except the toolbar, which should always stay on top.
             [self.view bringSubviewToFront:self.selectedViewOverlay];
 #warning Need Update
-//            [self.view bringSubviewToFront:self.explorerToolbar];
+            [self.view bringSubviewToFront:self.hierarchyToolBar];
         } else {
             [self.selectedViewOverlay removeFromSuperview];
             self.selectedViewOverlay = nil;
@@ -842,10 +880,10 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     return [[UIApplication sharedApplication] valueForKey:@"_statusBarWindow"];
 }
 
-- (void)makeKeyAndPresentTabbarControllerWithIndex:(NSInteger)index {
+- (void)makeKeyAndPresentTabbarControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params{
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self makeKeyAndPresentTabbarControllerWithIndex:index];
+            [self makeKeyAndPresentTabbarControllerWithIndex:index params:params];
         });
         return;
     }
@@ -863,6 +901,14 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     [self setNeedsStatusBarAppearanceUpdate];
     
     self.tabBarController.selectedIndex = index;
+    if (params.count) {
+        UINavigationController *nav = self.tabBarController.viewControllers[index];
+        UIViewController *vc = nav.viewControllers[0];
+        for (NSString *key in params.allKeys) {
+            id value = params[key];
+            [vc setValue:value forKey:key];
+        }
+    }
     [self presentViewController:self.tabBarController animated:YES completion:nil];
 }
 
@@ -884,10 +930,10 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 #pragma mark - Hierarchy Part
 - (void)showWindowActionView {
-    [self.view addSubview:self.windowActionView];
     CGFloat actionViewWidth = LL_SCREEN_WIDTH;
-    CGFloat actionViewHeight = 40;
-    self.windowActionView.frame = CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight);
+    CGFloat actionViewHeight = 50;
+    self.hierarchyToolBar.frame = CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight);
+    [self.view addSubview:self.hierarchyToolBar];
 }
 
 #pragma mark - Action
@@ -897,7 +943,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     if (self.currentMode == LLWindowViewControllerModeSelect && gr.state == UIGestureRecognizerStateEnded) {
         CGPoint tapPointInView = [gr locationInView:self.view];
         CGPoint tapPointInWindow = [self.view convertPoint:tapPointInView toView:nil];
-        [self updateOutlineViewsForSelectionPoint:tapPointInWindow];
+        if (!CGRectContainsPoint(self.hierarchyToolBar.frame, tapPointInView)) {
+            [self updateOutlineViewsForSelectionPoint:tapPointInWindow];
+        }
     }
 }
 
@@ -1025,12 +1073,12 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     return _observedViews;
 }
 
-- (LLWindowActionView *)windowActionView {
-    if (!_windowActionView) {
-        _windowActionView = [[LLWindowActionView alloc] init];
-        _windowActionView.delegate = self;
+- (LLHierarchyExplorerToolBar *)hierarchyToolBar {
+    if (!_hierarchyToolBar) {
+        _hierarchyToolBar = [[LLHierarchyExplorerToolBar alloc] init];
+        _hierarchyToolBar.delegate = self;
     }
-    return _windowActionView;
+    return _hierarchyToolBar;
 }
 
 - (UIEdgeInsets)safeArea {

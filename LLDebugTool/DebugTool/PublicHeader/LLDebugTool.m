@@ -130,7 +130,11 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
-    [self.windowViewController presentTabbarWithIndex:index];
+    [self showDebugViewControllerWithIndex:index params:nil];
+}
+
+- (void)showDebugViewControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params {
+    [self.windowViewController presentTabbarWithIndex:index params:params];
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {

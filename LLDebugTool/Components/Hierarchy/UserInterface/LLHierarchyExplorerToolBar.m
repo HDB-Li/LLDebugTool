@@ -1,5 +1,5 @@
 //
-//  LLButton.h
+//  LLHierarchyExplorerToolBar.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,10 +21,45 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLHierarchyExplorerToolBar.h"
+#import "LLConfig.h"
+#import "UIImage+LL_Utils.h"
+#import "LLImageNameConfig.h"
 
-@interface LLButton : UIButton
+@implementation LLHierarchyExplorerToolBar
 
-+ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font tintColor:(UIColor *)tintColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initial];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initial];
+    }
+    return self;
+}
+
+#pragma mark - Primary
+- (void)initial {
+    self.tintColor = LLCONFIG_TEXT_COLOR;
+    self.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    [items addObject:[self itemWithTitle:@"Views" imageName:kPickImageName]];
+    [items addObject:[self itemWithTitle:@"Select" imageName:kPickImageName]];
+    [items addObject:[self itemWithTitle:@"Move" imageName:kPickImageName]];
+    [items addObject:[self itemWithTitle:@"Close" imageName:kPickImageName]];
+    [self setItems:items];
+}
+
+- (UITabBarItem *)itemWithTitle:(NSString *)title imageName:(NSString *)imageName {
+    return [[UITabBarItem alloc] initWithTitle:title image:[UIImage LL_imageNamed:imageName] selectedImage:nil];
+}
 
 @end

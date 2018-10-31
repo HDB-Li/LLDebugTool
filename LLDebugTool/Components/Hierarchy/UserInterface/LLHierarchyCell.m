@@ -121,7 +121,6 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.clipsToBounds = YES;
     
     self.lineView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
