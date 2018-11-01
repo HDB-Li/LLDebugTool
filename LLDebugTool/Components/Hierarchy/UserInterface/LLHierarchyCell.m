@@ -25,6 +25,7 @@
 #import "LLConfig.h"
 #import "LLTool.h"
 #import "UIImage+LL_Utils.h"
+#import "LLImageNameConfig.h"
 
 @interface LLHierarchyCell ()
 
@@ -89,10 +90,13 @@
         self.foldButton.hidden = YES;
     }
     
-    [self updateLines];
-    
     _isFold = model.isFold;
     
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self updateLines];
 }
 
 - (void)updateDirection {
@@ -146,8 +150,9 @@
     [self.lineView.layer insertSublayer:self.dashLineLayer atIndex:0];
     
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-    [self.foldButton setImage:[[UIImage LL_imageNamed:@"LL-bottom" size:CGSizeMake(12, 12)] imageWithRenderingMode:mode] forState:UIControlStateNormal];
-    [self.infoButton setImage:[[UIImage LL_imageNamed:@"LL-info"] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+    [self.foldButton setImage:[[UIImage LL_imageNamed:kFoldArrowImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+
+    [self.infoButton setImage:[[UIImage LL_imageNamed:kInfoImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
 }
 
 - (void)updateLines {

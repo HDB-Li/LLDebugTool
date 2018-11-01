@@ -23,6 +23,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LLHierarchyExplorerToolBarDelegate;
+
 @interface LLHierarchyExplorerToolBar : UITabBar
+
+@property (nullable, nonatomic, weak) id <UITabBarDelegate , LLHierarchyExplorerToolBarDelegate> delegate;
+
+@end
+
+@protocol LLHierarchyExplorerToolBarDelegate <NSObject>
+
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar handlePanOffset:(CGPoint)offset;
 
 @end

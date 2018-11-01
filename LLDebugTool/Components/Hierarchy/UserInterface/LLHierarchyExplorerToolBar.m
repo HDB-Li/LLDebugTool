@@ -26,7 +26,16 @@
 #import "UIImage+LL_Utils.h"
 #import "LLImageNameConfig.h"
 
+
+@interface LLHierarchyExplorerToolBar ()
+
+@property (nonatomic , strong) UIPanGestureRecognizer *panGR;
+
+@end
+
 @implementation LLHierarchyExplorerToolBar
+
+@synthesize delegate = _delegate;
 
 - (instancetype)init
 {
@@ -56,10 +65,27 @@
     [items addObject:[self itemWithTitle:@"Move" imageName:kPickImageName]];
     [items addObject:[self itemWithTitle:@"Close" imageName:kPickImageName]];
     [self setItems:items];
+    
+    self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGRHandle:)];
+    [self addGestureRecognizer:self.panGR];
+}
+
+- (void)panGRHandle:(UIPanGestureRecognizer *)gestureRecognize {
+    [self.delegate LLHierarchyExplorerToolBar:self handlePanOffset:[gestureRecognize translationInView:self]];
+    [gestureRecognize setTranslation:CGPointZero inView:self];
 }
 
 - (UITabBarItem *)itemWithTitle:(NSString *)title imageName:(NSString *)imageName {
     return [[UITabBarItem alloc] initWithTitle:title image:[UIImage LL_imageNamed:imageName] selectedImage:nil];
+}
+
+- (void)setDelegate:(id<UITabBarDelegate,LLHierarchyExplorerToolBarDelegate>)delegate {
+    [super setDelegate:delegate];
+    _delegate = delegate;
+}
+
+- (id<UITabBarDelegate,LLHierarchyExplorerToolBarDelegate>)delegate {
+    return _delegate;
 }
 
 @end

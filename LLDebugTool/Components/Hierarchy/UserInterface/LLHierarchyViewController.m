@@ -32,6 +32,8 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 @property (nonatomic , strong , nonnull) LLHierarchyModel *model;
 
+@property (nonatomic , strong , nonnull) NSMutableArray *selectViewRouteModels;
+
 @end
 
 @implementation LLHierarchyViewController
@@ -41,7 +43,6 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     self = [super init];
     if (self) {
         self.isSearchEnable = YES;
-        self.isSelectEnable = YES;
     }
     return self;
 }
@@ -53,6 +54,9 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self updateModel];
+    [self prepareForSelectView];
     [self loadData];
 }
 
@@ -63,27 +67,126 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];    
 }
 
-- (void)loadData {
-
+- (void)updateModel {
     self.model = [LLHierarchyHelper sharedHelper].hierarchyInApplication;
     
     self.navigationItem.title = @"View Hierarchy";
-    
+}
+
+- (void)loadData {
+
     NSArray *datas = [self datasFromCurrentModel];
-    [self.dataArray addObjectsFromArray:datas];
     
-    self.selectView = [self.datas[21] view];
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:datas];
     
     [self.tableView reloadData];
     
-    if (self.selectView) {
+    [self scrollToSelectView];
+}
+
+- (void)scrollToSelectView {
+    if (self.selectView != nil) {
+        LLHierarchyModel *resultModel = nil;
         for (int i = 0; i < self.datas.count; i++) {
             LLHierarchyModel *model = self.datas[i];
             if (model.view == self.selectView) {
-                [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
+                resultModel = model;
                 break;
             }
         }
+        if (resultModel != nil) {
+            LLHierarchyModel *parentModel = resultModel.parentModel;
+            while (parentModel != nil) {
+                if (<#condition#>) {
+                    <#statements#>
+                }
+            }
+            
+            
+            
+            NSInteger index = [self.datas indexOfObject:resultModel];
+            
+            
+            
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if (self.selectViewRouteModels.count != 0) {
+        LLHierarchyModel *model = self.selectViewRouteModels[0];
+        NSInteger index = [self.datas indexOfObject:model];
+        if (index != NSNotFound) {
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        } else {
+            [self unfoldAllModelsInModel:self.model];
+//            [self loadData];
+        }
+    }
+//    if (self.selectView) {
+//        for (int i = 0; i < self.datas.count; i++) {
+//            LLHierarchyModel *model = self.datas[i];
+//            if (model.view == self.selectView) {
+//                [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+//                break;
+//            }
+//        }
+//    }
+}
+
+- (void)prepareForSelectView {
+    [self.selectViewRouteModels removeAllObjects];
+    LLHierarchyModel *model = [self findSelectModelFromModel:self.model];
+    if (model != nil) {
+        LLHierarchyModel *parentModel = model;
+        while (parentModel != nil) {
+            [self.selectViewRouteModels addObject:parentModel];
+            parentModel = parentModel.parentModel;
+        }
+    }
+    [self foldUnselectModelsFromModel:self.model];
+}
+
+- (LLHierarchyModel *)findSelectModelFromModel:(LLHierarchyModel *)model {
+    if (model.view == self.selectView) {
+        return model;
+    }
+
+    for (LLHierarchyModel *subModel in model.subModels) {
+        LLHierarchyModel *resultModel = [self findSelectModelFromModel:subModel];
+        if (resultModel != nil) {
+            return resultModel;
+        }
+    }
+    return nil;
+}
+
+- (void)foldUnselectModelsFromModel:(LLHierarchyModel *)model {
+    if (![self.selectViewRouteModels containsObject:model]) {
+        if (model.subModels.count != 0) {
+            model.fold = YES;
+        }
+    } else {
+        for (LLHierarchyModel *subModel in model.subModels) {
+            [self foldUnselectModelsFromModel:subModel];
+        }
+    }
+}
+
+- (void)unfoldAllModelsInModel:(LLHierarchyModel *)model {
+    if (model.isFold) {
+        model.fold = NO;
+    }
+    for (LLHierarchyModel *subModel in model.subModels) {
+        [self unfoldAllModelsInModel:subModel];
     }
 }
 
@@ -106,6 +209,12 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     return datas;
 }
 
+- (NSMutableArray *)selectViewRouteModels {
+    if (!_selectViewRouteModels) {
+        _selectViewRouteModels = [[NSMutableArray alloc] init];
+    }
+    return _selectViewRouteModels;
+}
 #pragma mark - LLHierarchyCellDelegate
 - (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *)cell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];

@@ -87,6 +87,7 @@ static NSString *const kTopImageName = @"LL-top";
 static NSString *const kBottomImageName = @"LL-bottom";
 
 // Hierarchy
+static NSString *const kFoldArrowImageName = @"LL-foldArrow";
 static NSString *const kPickImageName = @"LL-pick";
 static NSString *const kInfoImageName = @"LL-info";
 

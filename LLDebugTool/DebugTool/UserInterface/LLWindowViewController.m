@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeMove,
 };
 
-@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , UITabBarDelegate , UIGestureRecognizerDelegate>
+@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , UITabBarDelegate , UIGestureRecognizerDelegate , LLHierarchyExplorerToolBarDelegate>
 
 @property (nonatomic, strong) UIWindow *previousKeyWindow;
 
@@ -282,9 +282,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         NSInteger index = [tabBar.items indexOfObject:item];
         switch (index) {
             case 0:{
+                [self makeKeyAndPresentTabbarControllerWithIndex:5 params:self.selectedView ? @{@"selectView" : self.selectedView} : nil];
                 [self.hierarchyToolBar removeFromSuperview];
                 self.mode = LLWindowViewControllerModeDefault;
-                [self makeKeyAndPresentTabbarControllerWithIndex:5 params:self.selectedView ? @{@"selectView" : self.selectedView} : nil];
             }
                 break;
             case 1:{
@@ -304,6 +304,14 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
                 break;
         }
     }
+}
+
+#pragma mark - LLHierarchyExplorerToolBarDelegate
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar handlePanOffset:(CGPoint)offset {
+    CGFloat targetY = toolBar.frame.origin.y + offset.y;
+    targetY = MIN(targetY, LL_SCREEN_HEIGHT - [self safeArea].bottom - toolBar.frame.size.height);
+    targetY = MAX(0, targetY);
+    self.hierarchyToolBar.frame = CGRectMake(toolBar.frame.origin.x, targetY, toolBar.frame.size.width, toolBar.frame.size.height);
 }
 
 #pragma mark - UIGestureRecognizerDelegate

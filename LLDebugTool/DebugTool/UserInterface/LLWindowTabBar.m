@@ -25,6 +25,7 @@
 #import "LLMacros.h"
 #import "UIImage+LL_Utils.h"
 #import "LLConfig.h"
+#import "LLImageNameConfig.h"
 
 @interface LLWindowTabBar () <UIScrollViewDelegate>
 
@@ -204,7 +205,7 @@
 - (UIButton *)leftButton {
     if (!_leftButton) {
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_leftButton setImage:[[UIImage LL_imageNamed:@"LL-left" size:CGSizeMake(self.directionButtonWidth, self.directionButtonWidth)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [_leftButton setImage:[[UIImage LL_imageNamed:kLeftImageName size:CGSizeMake(self.directionButtonWidth, self.directionButtonWidth)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         [_leftButton addTarget:self action:@selector(leftButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftButton;
@@ -213,7 +214,7 @@
 - (UIButton *)rightButton {
     if (!_rightButton) {
         _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rightButton setImage:[[UIImage LL_imageNamed:@"LL-right" size:CGSizeMake(self.directionButtonWidth, self.directionButtonWidth)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [_rightButton setImage:[[UIImage LL_imageNamed:kRightImageName size:CGSizeMake(self.directionButtonWidth, self.directionButtonWidth)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         [_rightButton addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;

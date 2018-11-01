@@ -42,7 +42,6 @@
 #pragma mark - Actions
 - (void)testAllWindowHierarchy {
     NSArray *array = [[LLHierarchyHelper sharedHelper] allWindows];
-    NSArray *array2 = [[LLHierarchyHelper sharedHelper] hierarchyInApplication];
     NSLog(@"%@",array);
 }
 
