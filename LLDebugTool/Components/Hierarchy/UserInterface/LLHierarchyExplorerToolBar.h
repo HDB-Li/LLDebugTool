@@ -23,16 +23,30 @@
 
 #import <UIKit/UIKit.h>
 
+@class LLHierarchyModel;
+
 @protocol LLHierarchyExplorerToolBarDelegate;
 
-@interface LLHierarchyExplorerToolBar : UITabBar
+@interface LLHierarchyExplorerToolBar : UIView
 
-@property (nullable, nonatomic, weak) id <UITabBarDelegate , LLHierarchyExplorerToolBarDelegate> delegate;
+@property (nonatomic , weak , nullable) id <LLHierarchyExplorerToolBarDelegate> delegate;
+
+@property (nonatomic , strong , nullable) UITabBarItem *selectedItem;
+
+@property (nonatomic , strong , nonnull) UITabBarItem *selectItem;
+
+@property (nonatomic , strong , nonnull) UITabBarItem *moveItem;
+
+@property (nonatomic , assign) NSInteger selectedIndex;
+
+- (void)confirmWithView:(UIView *)selectView;
 
 @end
 
 @protocol LLHierarchyExplorerToolBarDelegate <NSObject>
 
 - (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar handlePanOffset:(CGPoint)offset;
+
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar didSelectIndex:(NSInteger)index;
 
 @end

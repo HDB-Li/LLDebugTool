@@ -146,7 +146,7 @@
     self.dashLineLayer.lineWidth = 2;
     self.dashLineLayer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
     self.dashLineLayer.fillColor = nil;
-    self.dashLineLayer.lineDashPattern = @[@(5),@(5)];
+//    self.dashLineLayer.lineDashPattern = @[@(self.frame.size.height / 10),@(self.frame.size.height / 10)];
     [self.lineView.layer insertSublayer:self.dashLineLayer atIndex:0];
     
     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
@@ -238,6 +238,7 @@
 
     self.lineLayer.path = path.CGPath;
     self.dashLineLayer.path = path2.CGPath;
+    self.dashLineLayer.lineDashPattern = @[@(self.frame.size.height / 10),@(self.frame.size.height / 10)];
 }
 
 @end

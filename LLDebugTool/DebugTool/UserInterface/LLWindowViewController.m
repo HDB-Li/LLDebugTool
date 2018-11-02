@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeMove,
 };
 
-@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , UITabBarDelegate , UIGestureRecognizerDelegate , LLHierarchyExplorerToolBarDelegate>
+@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , UIGestureRecognizerDelegate , LLHierarchyExplorerToolBarDelegate>
 
 @property (nonatomic, strong) UIWindow *previousKeyWindow;
 
@@ -273,37 +273,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     // The selected view setter will also update the selected view overlay appropriately.
     self.selectedView = selectedView;
     
-    [self showWindowActionView];
-}
-
-#pragma mark - UITabBarDelegate
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    if (tabBar == self.hierarchyToolBar) {
-        NSInteger index = [tabBar.items indexOfObject:item];
-        switch (index) {
-            case 0:{
-                [self makeKeyAndPresentTabbarControllerWithIndex:5 params:self.selectedView ? @{@"selectView" : self.selectedView} : nil];
-                [self.hierarchyToolBar removeFromSuperview];
-                self.mode = LLWindowViewControllerModeDefault;
-            }
-                break;
-            case 1:{
-                self.mode = LLWindowViewControllerModeSelect;
-            }
-                break;
-            case 2:{
-                self.mode = LLWindowViewControllerModeMove;
-            }
-                break;
-            case 3:{
-                [self.hierarchyToolBar removeFromSuperview];
-                self.mode = LLWindowViewControllerModeDefault;
-            }
-                break;
-            default:
-                break;
-        }
-    }
+    [self showHierarchyToolBar];
 }
 
 #pragma mark - LLHierarchyExplorerToolBarDelegate
@@ -314,11 +284,37 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     self.hierarchyToolBar.frame = CGRectMake(toolBar.frame.origin.x, targetY, toolBar.frame.size.width, toolBar.frame.size.height);
 }
 
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar didSelectIndex:(NSInteger)index {
+    switch (index) {
+        case 0:{
+            [self makeKeyAndPresentTabbarControllerWithIndex:5 params:self.selectedView ? @{@"selectView" : self.selectedView} : nil];
+            [self hideHierarchyToolBar];
+            self.mode = LLWindowViewControllerModeDefault;
+        }
+            break;
+        case 1:{
+            self.mode = LLWindowViewControllerModeSelect;
+        }
+            break;
+        case 2:{
+            self.mode = LLWindowViewControllerModeMove;
+        }
+            break;
+        case 3:{
+            [self.hierarchyToolBar removeFromSuperview];
+            self.mode = LLWindowViewControllerModeDefault;
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if (gestureRecognizer == self.selectTapGR) {
         CGPoint tapPointInView = [touch locationInView:self.view];
-        if (CGRectContainsPoint(self.hierarchyToolBar.frame, tapPointInView)) {
+        if (CGRectContainsPoint(_hierarchyToolBar.frame, tapPointInView)) {
             return NO;
         }
         return YES;
@@ -661,20 +657,12 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (void)updateButtonStates {
     // Move and details only active when an object is selected.
     BOOL hasSelectedObject = self.selectedView != nil;
-#warning NEED UPDATE
-    NSInteger selectedIndex = [self.hierarchyToolBar.items indexOfObject:self.hierarchyToolBar.selectedItem];
-    if (selectedIndex == 0) {
-        self.hierarchyToolBar.selectedItem = nil;
-    }
-    self.hierarchyToolBar.items[2].enabled = hasSelectedObject;
+    self.hierarchyToolBar.moveItem.enabled = hasSelectedObject;
     if (self.currentMode == LLWindowViewControllerModeSelect) {
-        self.hierarchyToolBar.selectedItem = self.hierarchyToolBar.items[1];
+        self.hierarchyToolBar.selectedItem = self.hierarchyToolBar.selectItem;
     } else if (self.currentMode == LLWindowViewControllerModeMove) {
-        self.hierarchyToolBar.selectedItem = self.hierarchyToolBar.items[2];
+        self.hierarchyToolBar.selectedItem = self.hierarchyToolBar.moveItem;
     }
-//    self.explorerToolbar.moveItem.enabled = hasSelectedObject;
-//    self.explorerToolbar.selectItem.selected = self.currentMode == FLEXExplorerModeSelect;
-//    self.explorerToolbar.moveItem.selected = self.currentMode == FLEXExplorerModeMove;
 }
 
 - (void)setSelectedView:(UIView *)selectedView
@@ -689,6 +677,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         [self beginObservingView:selectedView];
         
         // Update the toolbar and selected overlay
+        [self.hierarchyToolBar confirmWithView:selectedView];
 #warning Need Update
 //        self.explorerToolbar.selectedViewDescription = [FLEXUtility descriptionForView:selectedView includingFrame:YES];
 //        self.explorerToolbar.selectedViewOverlayColor = [FLEXUtility consistentRandomColorForObject:selectedView];
@@ -743,6 +732,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
                 [self removeAndClearOutlineViews];
                 self.viewsAtTapPoint = nil;
                 self.selectedView = nil;
+                [self showExplorerView];
                 break;
                 
             case LLWindowViewControllerModeSelect:
@@ -751,6 +741,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
                     UIView *outlineView = self.outlineViewsForVisibleViews[key];
                     outlineView.hidden = NO;
                 }
+                [self hideExplorerView];
                 break;
                 
             case LLWindowViewControllerModeMove:
@@ -937,11 +928,15 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 #pragma mark - Hierarchy Part
-- (void)showWindowActionView {
+- (void)showHierarchyToolBar {
     CGFloat actionViewWidth = LL_SCREEN_WIDTH;
-    CGFloat actionViewHeight = 50;
+    CGFloat actionViewHeight = 69;
     self.hierarchyToolBar.frame = CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight);
     [self.view addSubview:self.hierarchyToolBar];
+}
+
+- (void)hideHierarchyToolBar {
+    [self.hierarchyToolBar removeFromSuperview];
 }
 
 #pragma mark - Action
@@ -1083,7 +1078,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (LLHierarchyExplorerToolBar *)hierarchyToolBar {
     if (!_hierarchyToolBar) {
-        _hierarchyToolBar = [[LLHierarchyExplorerToolBar alloc] init];
+        CGFloat actionViewWidth = LL_SCREEN_WIDTH;
+        CGFloat actionViewHeight = 69;
+        _hierarchyToolBar = [[LLHierarchyExplorerToolBar alloc] initWithFrame:CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight)];
         _hierarchyToolBar.delegate = self;
     }
     return _hierarchyToolBar;

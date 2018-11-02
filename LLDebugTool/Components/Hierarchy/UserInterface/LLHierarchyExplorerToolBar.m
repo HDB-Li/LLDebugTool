@@ -25,17 +25,25 @@
 #import "LLConfig.h"
 #import "UIImage+LL_Utils.h"
 #import "LLImageNameConfig.h"
+#import "LLHierarchyModel.h"
+#import "LLMacros.h"
+#import "LLTool.h"
 
+@interface LLHierarchyExplorerToolBar () <UITabBarDelegate>
 
-@interface LLHierarchyExplorerToolBar ()
+@property (nonatomic , strong) UITabBar *tabBar;
 
 @property (nonatomic , strong) UIPanGestureRecognizer *panGR;
+
+@property (nonatomic , strong) UIView *descriptionBackgroundView;
+
+@property (nonatomic , strong) UIView *descriptionTintView;
+
+@property (nonatomic , strong) UILabel *descriptionLabel;
 
 @end
 
 @implementation LLHierarchyExplorerToolBar
-
-@synthesize delegate = _delegate;
 
 - (instancetype)init
 {
@@ -55,16 +63,47 @@
     return self;
 }
 
+- (void)confirmWithView:(UIView *)selectView {
+    self.descriptionTintView.backgroundColor = [LLTool colorFromObject:selectView];
+    self.descriptionLabel.text = [NSString stringWithFormat:@"%@ , %@",NSStringFromClass(selectView.class),[LLTool stringFromFrame:selectView.frame]];
+}
+
 #pragma mark - Primary
 - (void)initial {
-    self.tintColor = LLCONFIG_TEXT_COLOR;
-    self.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    
+    self.tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 49)];
+    self.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    self.tabBar.delegate = self;
     NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:[self itemWithTitle:@"Views" imageName:kPickImageName]];
-    [items addObject:[self itemWithTitle:@"Select" imageName:kPickImageName]];
-    [items addObject:[self itemWithTitle:@"Move" imageName:kPickImageName]];
+    self.selectItem = [self itemWithTitle:@"Select" imageName:kPickImageName];
+    [items addObject:self.selectItem];
+    self.moveItem = [self itemWithTitle:@"Move" imageName:kPickImageName];
+    [items addObject:self.moveItem];
     [items addObject:[self itemWithTitle:@"Close" imageName:kPickImageName]];
-    [self setItems:items];
+    [self.tabBar setItems:items];
+    [self addSubview:self.tabBar];
+    
+    self.descriptionBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 49, LL_SCREEN_WIDTH, 30)];
+    self.descriptionBackgroundView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:[LLConfig sharedConfig].normalAlpha];
+    [self addSubview:self.descriptionBackgroundView];
+    
+    CGFloat itemsMargin = 15;
+    CGFloat tintWidth = 15;
+    CGRect tintViewFrame = CGRectMake(itemsMargin, (self.descriptionBackgroundView.frame.size.height - tintWidth) / 2.0, tintWidth , tintWidth);
+    self.descriptionTintView = [[UIView alloc] initWithFrame:tintViewFrame];
+    self.descriptionTintView.layer.cornerRadius = tintWidth / 2.0;
+    self.descriptionTintView.layer.masksToBounds = YES;
+    [self.descriptionBackgroundView addSubview:self.descriptionTintView];
+    
+    CGFloat labelLeftMargin = tintViewFrame.origin.x + tintViewFrame.size.width + itemsMargin;
+    self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height)];
+    self.descriptionLabel.font = [UIFont systemFontOfSize:12];
+    self.descriptionLabel.numberOfLines = 2;
+    self.descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.descriptionLabel.textColor = LLCONFIG_TEXT_COLOR;
+    [self.descriptionBackgroundView addSubview:self.descriptionLabel];
     
     self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGRHandle:)];
     [self addGestureRecognizer:self.panGR];
@@ -79,13 +118,22 @@
     return [[UITabBarItem alloc] initWithTitle:title image:[UIImage LL_imageNamed:imageName] selectedImage:nil];
 }
 
-- (void)setDelegate:(id<UITabBarDelegate,LLHierarchyExplorerToolBarDelegate>)delegate {
-    [super setDelegate:delegate];
-    _delegate = delegate;
+#pragma mark - UITabBarDelegate
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    [self.delegate LLHierarchyExplorerToolBar:self didSelectIndex:[tabBar.items indexOfObject:item]];
 }
 
-- (id<UITabBarDelegate,LLHierarchyExplorerToolBarDelegate>)delegate {
-    return _delegate;
+#pragma mark - Override
+- (NSInteger)selectedIndex {
+    return [self.tabBar.items indexOfObject:self.selectedItem];
+}
+
+- (void)setSelectedItem:(UITabBarItem *)selectedItem {
+    self.tabBar.selectedItem = selectedItem;
+}
+
+- (UITabBarItem *)selectedItem {
+    return self.tabBar.selectedItem;
 }
 
 @end
