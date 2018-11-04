@@ -36,6 +36,6 @@
 
 @protocol LLHierarchyViewControllerDelegate <NSObject>
 
-- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel;
+- (void)LLHierarchyViewController:(LLHierarchyViewController *_Nonnull)viewController didFinishWithSelectedModel:(LLHierarchyModel *_Nonnull)selectedModel;
 
 @end

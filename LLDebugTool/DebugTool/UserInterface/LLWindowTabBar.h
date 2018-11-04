@@ -38,8 +38,8 @@
 
 @protocol LLWindowTabBarDelegate <NSObject>
 
-- (void)LLWindowTabBar:(LLWindowTabBar *)windowTabBar didSelectPreviousItem:(UIButton *)sender;
+- (void)LLWindowTabBar:(LLWindowTabBar *_Nonnull)windowTabBar didSelectPreviousItem:(UIButton *_Nonnull)sender;
 
-- (void)LLWindowTabBar:(LLWindowTabBar *)windowTabBar didSelectNextItem:(UIButton *)sender;
+- (void)LLWindowTabBar:(LLWindowTabBar *_Nonnull)windowTabBar didSelectNextItem:(UIButton *_Nonnull)sender;
 
 @end

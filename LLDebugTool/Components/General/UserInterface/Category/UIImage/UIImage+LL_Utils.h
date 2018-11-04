@@ -38,12 +38,12 @@
 /**
  * Image in LLDebugTool's bundle with the specified color.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name color:(UIColor *)color;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name color:(UIColor *_Nonnull)color;
 
 /**
  * Image in LLDebugTool's bundle with the specified size and color.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size color:(UIColor *)color;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size color:(UIColor *_Nonnull)color;
 
 /**
  * Image from data.
@@ -53,11 +53,11 @@
 /**
  * Get a image with the specified size..
  */
-- (UIImage *)LL_resizeTo:(CGSize)size;
+- (UIImage *_Nonnull)LL_resizeTo:(CGSize)size;
 
 /**
  * Get a image with the specified color.
  */
-- (UIImage *)LL_colorTo:(UIColor *)color;
+- (UIImage *_Nonnull)LL_colorTo:(UIColor *_Nonnull)color;
 
 @end

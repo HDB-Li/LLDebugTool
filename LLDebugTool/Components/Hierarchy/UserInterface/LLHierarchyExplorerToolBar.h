@@ -39,14 +39,14 @@
 
 @property (nonatomic , assign) NSInteger selectedIndex;
 
-- (void)confirmWithView:(UIView *)selectView;
+- (void)confirmWithView:(UIView *_Nonnull)selectView;
 
 @end
 
 @protocol LLHierarchyExplorerToolBarDelegate <NSObject>
 
-- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar handlePanOffset:(CGPoint)offset;
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *_Nonnull)toolBar handlePanOffset:(CGPoint)offset;
 
-- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar didSelectIndex:(NSInteger)index;
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *_Nonnull)toolBar didSelectIndex:(NSInteger)index;
 
 @end

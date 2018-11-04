@@ -36,6 +36,6 @@
 
 @protocol LLWindowTabBarControllerDelegate <NSObject>
 
-- (void)LLWindowTabBarController:(LLWindowTabBarController *)tabBarController didSelectedHierarchyModel:(LLHierarchyModel *)model;
+- (void)LLWindowTabBarController:(LLWindowTabBarController *_Nonnull)tabBarController didSelectedHierarchyModel:(LLHierarchyModel *_Nonnull)model;
 
 @end

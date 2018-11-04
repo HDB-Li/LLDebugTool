@@ -30,7 +30,7 @@
 
 @property (nonatomic , weak , nullable) id <LLHierarchyCellDelegate> delegate;
 
-- (void)confirmWithModel:(LLHierarchyModel *)model;
+- (void)confirmWithModel:(LLHierarchyModel *_Nonnull)model;
 
 - (void)updateDirection;
 
@@ -38,8 +38,8 @@
 
 @protocol LLHierarchyCellDelegate <NSObject>
 
-- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *)cell;
+- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *_Nonnull)cell;
 
-- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *)cell;
+- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *_Nonnull)cell;
 
 @end
