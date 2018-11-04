@@ -301,7 +301,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         }
             break;
         case 3:{
-            [self.hierarchyToolBar removeFromSuperview];
+            [self hideHierarchyToolBar];
             self.mode = LLWindowViewControllerModeDefault;
         }
             break;
@@ -929,14 +929,19 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 #pragma mark - Hierarchy Part
 - (void)showHierarchyToolBar {
-    CGFloat actionViewWidth = LL_SCREEN_WIDTH;
-    CGFloat actionViewHeight = 69;
-    self.hierarchyToolBar.frame = CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight);
+    self.hierarchyToolBar.frame = CGRectMake(-LL_SCREEN_WIDTH, self.hierarchyToolBar.frame.origin.y, self.hierarchyToolBar.frame.size.width, self.hierarchyToolBar.frame.size.height);
     [self.view addSubview:self.hierarchyToolBar];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.hierarchyToolBar.frame = CGRectMake(LL_SCREEN_WIDTH/2.0, self.hierarchyToolBar.frame.origin.y, self.hierarchyToolBar.frame.size.width, self.hierarchyToolBar.frame.size.height);
+    }];
 }
 
 - (void)hideHierarchyToolBar {
-    [self.hierarchyToolBar removeFromSuperview];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.hierarchyToolBar.frame = CGRectMake(-LL_SCREEN_WIDTH, self.hierarchyToolBar.frame.origin.y, self.hierarchyToolBar.frame.size.width, self.hierarchyToolBar.frame.size.height);
+    } completion:^(BOOL finished) {
+        [self.hierarchyToolBar removeFromSuperview];
+    }];
 }
 
 #pragma mark - Action
@@ -1078,9 +1083,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (LLHierarchyExplorerToolBar *)hierarchyToolBar {
     if (!_hierarchyToolBar) {
-        CGFloat actionViewWidth = LL_SCREEN_WIDTH;
-        CGFloat actionViewHeight = 69;
-        _hierarchyToolBar = [[LLHierarchyExplorerToolBar alloc] initWithFrame:CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, actionViewWidth, actionViewHeight)];
+        CGFloat actionViewHeight = 79;
+        _hierarchyToolBar = [[LLHierarchyExplorerToolBar alloc] initWithFrame:CGRectMake(0, LL_SCREEN_HEIGHT - [self safeArea].bottom - actionViewHeight, LL_SCREEN_WIDTH, actionViewHeight)];
         _hierarchyToolBar.delegate = self;
     }
     return _hierarchyToolBar;
