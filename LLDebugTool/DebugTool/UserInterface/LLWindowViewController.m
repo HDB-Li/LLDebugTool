@@ -932,7 +932,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     self.hierarchyToolBar.frame = CGRectMake(-LL_SCREEN_WIDTH, self.hierarchyToolBar.frame.origin.y, self.hierarchyToolBar.frame.size.width, self.hierarchyToolBar.frame.size.height);
     [self.view addSubview:self.hierarchyToolBar];
     [UIView animateWithDuration:0.25 animations:^{
-        self.hierarchyToolBar.frame = CGRectMake(LL_SCREEN_WIDTH/2.0, self.hierarchyToolBar.frame.origin.y, self.hierarchyToolBar.frame.size.width, self.hierarchyToolBar.frame.size.height);
+        self.hierarchyToolBar.frame = CGRectMake(0, self.hierarchyToolBar.frame.origin.y, self.hierarchyToolBar.frame.size.width, self.hierarchyToolBar.frame.size.height);
     }];
 }
 
