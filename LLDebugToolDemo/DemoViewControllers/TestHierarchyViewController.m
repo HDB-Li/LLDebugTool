@@ -8,6 +8,7 @@
 
 #import "TestHierarchyViewController.h"
 #import "LLHierarchyHelper.h"
+#import "LLDebugTool.h"
 
 @interface TestHierarchyViewController ()
 
@@ -27,7 +28,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.row == 0) {
-//        cell.textLabel.text = NSLocalizedString(@"insert.log", nil);
+        cell.textLabel.text = NSLocalizedString(@"hierarchy.info", nil);
     }
     
     return cell;
@@ -37,12 +38,12 @@
     if (indexPath.row == 0) {
         [self testAllWindowHierarchy];
     }
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 #pragma mark - Actions
 - (void)testAllWindowHierarchy {
-    NSArray *array = [[LLHierarchyHelper sharedHelper] allWindows];
-    NSLog(@"%@",array);
+    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:5];
 }
 
 @end

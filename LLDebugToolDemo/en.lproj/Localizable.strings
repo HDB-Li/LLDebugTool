@@ -31,6 +31,8 @@
 
 "sandbox.info" = "Show sandbox info";
 
+"hierarchy.info" = "Hierarchy info";
+
 "color.style" = "Use \"colorStyle\" to config color";
 "color.custom" = "Use custom color config";
 "color.none" = "Don't use color config";

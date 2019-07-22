@@ -25,6 +25,7 @@
 #import "LLHierarchyCell.h"
 #import "LLConfig.h"
 #import "LLHierarchyHelper.h"
+#import "LLMacros.h"
 
 static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
@@ -34,7 +35,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 @property (nonatomic , strong , nullable) LLHierarchyModel *selectModel;
 
-@property (nonatomic , strong , nonnull) UISwitch *filterSwitch;
+@property (nonatomic , strong , nonnull) UISegmentedControl *filterView;
 
 @end
 
@@ -62,6 +63,10 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 #pragma mark - Primary
 - (void)initial {
     // TableView
+    self.filterView.frame = CGRectMake(8, self.searchBar.frame.size.height, LL_SCREEN_WIDTH - 8 * 2, 30);
+    [self.headerView addSubview:self.filterView];
+    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+    
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];    
 }
@@ -69,18 +74,40 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 - (void)loadData {
     [self updateModel];
     [self reloadData];
-    [self scrollToSelectView];
+//    [self scrollToSelectView];
 }
 
 - (void)updateModel {
     self.model = [LLHierarchyHelper sharedHelper].hierarchyInApplication;
     self.navigationItem.title = @"View Hierarchy";
+    if (self.selectView) {
+        self.filterView.selectedSegmentIndex = 1;
+    } else {
+        self.filterView.selectedSegmentIndex = 0;
+    }
 }
 
 - (void)reloadData {
-    NSArray *datas = [self datasFromCurrentModel];
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:datas];
+    if (self.selectView != nil) {
+        NSArray *datas = [self datasFromCurrentModel];
+        LLHierarchyModel *resultModel = nil;
+        for (int i = 0; i < datas.count; i++) {
+            LLHierarchyModel *model = datas[i];
+            if (model.view == self.selectView) {
+                resultModel = model;
+                break;
+            }
+        }
+        self.selectModel = resultModel;
+    }
+    if (self.selectModel && self.filterView.selectedSegmentIndex == 1) {
+        NSArray *datas = [self datasFilterWithCurrentSelectView];
+        [self.dataArray addObjectsFromArray:datas];
+    } else {
+        NSArray *datas = [self datasFilterWithFold];
+        [self.dataArray addObjectsFromArray:datas];
+    }
     [self.tableView reloadData];
 }
 
@@ -124,18 +151,37 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 - (NSMutableArray *)datasFromCurrentModel {
     NSMutableArray *datas = [[NSMutableArray alloc] init];
     for (LLHierarchyModel *subModel in self.model.subModels) {
-        [datas addObjectsFromArray:[self unfoldModelsFromModel:subModel]];
+        [datas addObjectsFromArray:[self modelsFromModel:subModel checkFold:NO]];
     }
     return datas;
 }
 
-- (NSMutableArray *)unfoldModelsFromModel:(LLHierarchyModel *)model {
+- (NSMutableArray *)datasFilterWithFold {
+    NSMutableArray *datas = [[NSMutableArray alloc] init];
+    for (LLHierarchyModel *subModel in self.model.subModels) {
+        [datas addObjectsFromArray:[self modelsFromModel:subModel checkFold:YES]];
+    }
+    return datas;
+}
+
+- (NSMutableArray *)modelsFromModel:(LLHierarchyModel *)model checkFold:(BOOL)checkFold {
     NSMutableArray *datas = [[NSMutableArray alloc] init];
     [datas addObject:model];
-    if (!model.isFold) {
+    if (!checkFold || !model.isFold) {
         for (LLHierarchyModel *subModel in model.subModels) {
-            [datas addObjectsFromArray:[self unfoldModelsFromModel:subModel]];
+            [datas addObjectsFromArray:[self modelsFromModel:subModel checkFold:checkFold]];
         }
+    }
+    return datas;
+}
+
+- (NSMutableArray *)datasFilterWithCurrentSelectView {
+    NSMutableArray *datas = [[NSMutableArray alloc] init];
+    [datas addObject:self.selectModel];
+    LLHierarchyModel *parent = self.selectModel.parentModel;
+    while (parent) {
+        [datas insertObject:parent atIndex:0];
+        parent = parent.parentModel;
     }
     return datas;
 }
@@ -155,7 +201,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
         [self.tableView beginUpdates];
         
         NSArray *preData = [NSArray arrayWithArray:self.datas];
-        NSArray *newData = [NSArray arrayWithArray:[self datasFromCurrentModel]];
+        NSArray *newData = [NSArray arrayWithArray:[self datasFilterWithFold]];
         
         NSMutableSet *preSet = [NSMutableSet setWithArray:preData];
         NSMutableSet *newSet = [NSMutableSet setWithArray:newData];
@@ -219,6 +265,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
     cell.delegate = self;
     LLHierarchyModel *model = self.datas[indexPath.row];
+    model.isSelectSection = self.filterView.selectedSegmentIndex == 1;
     [cell confirmWithModel:model];
     return cell;
 }
@@ -240,6 +287,30 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [super searchBar:searchBar textDidChange:searchText];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return [super tableView:tableView heightForHeaderInSection:section] + 40;
+}
+
+#pragma mark - Action
+- (void)segmentedControlValueChanged:(UISegmentedControl *)segmentedControl {
+    if (segmentedControl.selectedSegmentIndex == 1 && self.selectModel == nil) {
+        segmentedControl.selectedSegmentIndex = 0;
+    } else {
+        [self reloadData];
+    }
+}
+
+#pragma mark - Lazy
+- (UISegmentedControl *)filterView {
+    if (!_filterView) {
+        _filterView = [[UISegmentedControl alloc] initWithItems:@[@"In application",@"At tap"]];
+        _filterView.tintColor = LLCONFIG_TEXT_COLOR;
+        _filterView.selectedSegmentIndex = 0;
+        [_filterView addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _filterView;
 }
 
 @end

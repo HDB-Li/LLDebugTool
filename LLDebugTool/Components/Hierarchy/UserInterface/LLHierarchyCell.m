@@ -91,7 +91,6 @@
     }
     
     _isFold = model.isFold;
-    
 }
 
 - (void)layoutSubviews {
@@ -99,7 +98,17 @@
     [self updateLines];
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    // Circleview will auto set nil to backgroundColor while selected.
+    self.circleView.backgroundColor = [LLTool colorFromObject:self.model.view];
+}
+
 - (void)updateDirection {
+    if (self.model.isSelectSection) {
+        return;
+    }
+    
     if (self.model.isFold != self.isFold) {
         self.isFold = self.model.isFold;
         if (self.model.isFold) {
@@ -156,6 +165,12 @@
 }
 
 - (void)updateLines {
+    
+    if (self.model.isSelectSection) {
+        self.lineLayer.path = [UIBezierPath bezierPath].CGPath;
+        self.dashLineLayer.path = [UIBezierPath bezierPath].CGPath;
+        return;
+    }
     
     CGFloat lineGap = 12;
     CGPoint center = CGPointMake(lineGap * (self.model.section + 0.5), 9 + lineGap / 2.0);

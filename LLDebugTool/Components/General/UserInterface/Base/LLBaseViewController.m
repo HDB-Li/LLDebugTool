@@ -197,6 +197,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.searchBar sizeToFit];
 
     _headerView = [[UIView alloc] init];
+    _headerView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self.view addSubview:_headerView];
     [self.headerView addSubview:self.searchBar];
     self.headerView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height);
