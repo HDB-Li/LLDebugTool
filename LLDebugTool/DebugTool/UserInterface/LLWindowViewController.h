@@ -24,8 +24,9 @@
 #import <UIKit/UIKit.h>
 #import "LLConfig.h"
 
+
 /**
- Root View Controller.
+ Root ViewController of LLWindow, controlling and displaying the UI.
  */
 @interface LLWindowViewController : UIViewController
 
@@ -35,12 +36,12 @@
 - (void)reloadTabbar;
 
 /**
- Show explorer view.
+ Displays suspended window on the screen.
  */
 - (void)showExplorerView;
 
 /**
- Hide explorer view.
+ Hide suspended window on the screen.
  */
 - (void)hideExplorerView;
 

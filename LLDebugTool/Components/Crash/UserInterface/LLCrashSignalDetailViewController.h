@@ -21,10 +21,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLCrashSignalModel.h"
 
-@interface LLCrashSignalDetailViewController : LLBaseViewController
+@interface LLCrashSignalDetailViewController : LLBaseTableViewController
 
 @property (nonatomic , strong , nonnull) LLCrashSignalModel *model;
 

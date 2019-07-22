@@ -1,5 +1,5 @@
 //
-//  LLSandboxViewController.h
+//  LLFunctionModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLSandboxModel.h"
+#import "LLFunctionModel.h"
 
-@interface LLSandboxViewController : LLBaseTableViewController
+@implementation LLFunctionModel
 
-/**
- * Sandbox model
- */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+- (instancetype _Nonnull )initWithImageName:(NSString *_Nonnull)imageName title:(NSString *_Nonnull)title action:(LLFunctionAction)action {
+    if (self = [super init]) {
+        self.imageName = imageName;
+        self.title = title;
+        self.action = action;
+    }
+    return self;
+}
 
 @end

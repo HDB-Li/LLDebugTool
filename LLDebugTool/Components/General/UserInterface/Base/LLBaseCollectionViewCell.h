@@ -1,5 +1,5 @@
 //
-//  LLSandboxViewController.h
+//  LLBaseCollectionViewCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLSandboxModel.h"
+#import <UIKit/UIKit.h>
+#import <Masonry/Masonry.h>
 
-@interface LLSandboxViewController : LLBaseTableViewController
-
-/**
- * Sandbox model
- */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+@interface LLBaseCollectionViewCell : UICollectionViewCell
 
 @end

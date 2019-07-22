@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLRoute.h"
-#import "LLBaseViewController.h"
+#import "LLBaseTableViewController.h"
 
 #ifndef INSTALLED_LLDEBUGTOOL
 #define INSTALLED_LLDEBUGTOOL (__has_include("LLDebugTool.h") || __has_include("<LLDebugTool.h>"))
@@ -138,8 +138,8 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 + (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*)params {
     Class cls = NSClassFromString(name);
     if (cls) {
-        if ([cls isSubclassOfClass:LLBaseViewController.class]) {
-            LLBaseViewController *vc = [[cls alloc] init];
+        if ([cls isSubclassOfClass:LLBaseTableViewController.class]) {
+            LLBaseTableViewController *vc = [[cls alloc] init];
             for (NSString *key in params) {
                 id value = params[key];
                 [vc setValue:value forKey:key];

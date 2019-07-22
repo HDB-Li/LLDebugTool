@@ -26,26 +26,43 @@
 @protocol LLWindowDelegate;
 
 /**
- Suspension ball window.
+ The LLWindow class is used to display suspended window and functional interface entries.
  */
 @interface LLWindow : UIWindow
 
 /**
- Delegate.
+ Proxy properties.
  */
 @property (weak , nonatomic , nullable) id <LLWindowDelegate> delegate;
 
 /**
- Init the window.
+ Specifies the initialization method.
+
+ @param frame Specified frame.
+ @return Instance object.
  */
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 @end
 
+/**
+ This represents the behaviour of the window.
+ */
 @protocol LLWindowDelegate <NSObject>
 
+/**
+ Whether LLWindow corresponds to a touch event.
+
+ @param pointInWindow The point in window.
+ @return The result.
+ */
 - (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow;
 
+/**
+ Whether LLWindow be changed to KeyWindow.
+
+ @return The result.
+ */
 - (BOOL)canBecomeKeyWindow;
 
 @end

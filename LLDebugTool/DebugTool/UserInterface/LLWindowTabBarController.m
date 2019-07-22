@@ -151,7 +151,7 @@
     [self addChildViewController:nav];
 }
 
-- (LLBaseNavigationController *)navigationControllerWithRootViewController:(LLBaseViewController *)viewController barTitle:(NSString *)barTitle barImageName:(NSString *)barImageName {
+- (LLBaseNavigationController *)navigationControllerWithRootViewController:(LLBaseTableViewController *)viewController barTitle:(NSString *)barTitle barImageName:(NSString *)barImageName {
     LLBaseNavigationController *navigationController = [[LLBaseNavigationController alloc] initWithRootViewController:viewController];
     navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:barTitle image:[UIImage LL_imageNamed:barImageName] selectedImage:nil];
     return navigationController;

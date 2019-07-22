@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLHierarchyModel.h"
 
 @protocol LLHierarchyViewControllerDelegate;
 
-@interface LLHierarchyViewController : LLBaseViewController
+@interface LLHierarchyViewController : LLBaseTableViewController
 
 @property (nonatomic , weak , nullable) id <LLHierarchyViewControllerDelegate> delegate;
 

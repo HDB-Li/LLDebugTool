@@ -1,5 +1,5 @@
 //
-//  LLSandboxViewController.h
+//  LLBaseCollectionViewCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLSandboxModel.h"
+#import "LLBaseCollectionViewCell.h"
 
-@interface LLSandboxViewController : LLBaseTableViewController
+@implementation LLBaseCollectionViewCell
 
-/**
- * Sandbox model
- */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
 
 @end

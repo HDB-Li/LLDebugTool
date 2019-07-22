@@ -1,5 +1,5 @@
 //
-//  LLSandboxViewController.h
+//  LLFunctionCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,39 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLSandboxModel.h"
+#import "LLFunctionCell.h"
+#import "UIImage+LL_Utils.h"
 
-@interface LLSandboxViewController : LLBaseTableViewController
+@interface LLFunctionCell ()
 
-/**
- * Sandbox model
- */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@end
+
+@implementation LLFunctionCell
+
+- (void)setModel:(LLFunctionModel *)model {
+    if (_model != model) {
+        _model = model;
+        [self updateUI:model];
+    }
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initial];
+}
+
+#pragma mark - Primary
+- (void)initial {
+    
+}
+
+- (void)updateUI:(LLFunctionModel *)model {
+    self.imgView.image = [UIImage LL_imageNamed:model.imageName];
+    self.titleLabel.text = model.title;
+}
 
 @end

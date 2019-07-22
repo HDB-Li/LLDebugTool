@@ -21,10 +21,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLNetworkModel.h"
 
-@interface LLNetworkDetailViewController : LLBaseViewController
+@interface LLNetworkDetailViewController : LLBaseTableViewController
 
 @property (nonatomic , strong , nonnull) LLNetworkModel *model;
 

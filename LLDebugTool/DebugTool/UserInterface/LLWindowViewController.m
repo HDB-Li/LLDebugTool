@@ -31,6 +31,7 @@
 #import "LLLogHelperEventDefine.h"
 #import "LLTool.h"
 #import "LLHierarchyExplorerToolBar.h"
+#import "LLFunctionViewController.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -57,6 +58,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 @property (nonatomic , assign) CGFloat sBallHideWidth;
 
 @property (nonatomic , strong) LLWindowTabBarController *tabBarController;
+
+@property (nonatomic, strong, nonnull) LLFunctionViewController *functionViewController;
 
 @property (nonatomic , assign) LLConfigWindowStyle windowStyle;
 
@@ -908,7 +911,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             [vc setValue:value forKey:key];
         }
     }
-    [self presentViewController:self.tabBarController animated:YES completion:nil];
+    [self presentViewController:self.functionViewController animated:YES completion:nil];
 }
 
 - (void)resignKeyWindow {
@@ -1015,6 +1018,13 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         _tabBarController.actionDelegate = self;
     }
     return _tabBarController;
+}
+
+- (LLFunctionViewController *)functionViewController {
+    if (_functionViewController == nil) {
+        _functionViewController = [[LLFunctionViewController alloc] init];
+    }
+    return _functionViewController;
 }
 
 - (UIView *)contentView {

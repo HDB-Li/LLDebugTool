@@ -1,5 +1,5 @@
 //
-//  LLSandboxViewController.h
+//  LLFunctionViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLSandboxModel.h"
-
-@interface LLSandboxViewController : LLBaseTableViewController
+#import "LLBaseViewController.h"
 
 /**
- * Sandbox model
+ Function list display viewController.
  */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+@interface LLFunctionViewController : LLBaseViewController
 
 @end

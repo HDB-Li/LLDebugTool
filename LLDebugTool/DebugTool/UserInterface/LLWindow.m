@@ -46,16 +46,6 @@
     self.windowLevel = UIWindowLevelStatusBar + 200;
 }
 
-- (void)becomeKeyWindow {
-    [super becomeKeyWindow];
-    NSLog(@"becomeKeyWindow");
-}
-
-- (void)resignKeyWindow {
-    [super resignKeyWindow];
-    NSLog(@"resignKeyWindow");
-}
-
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     BOOL pointInside = NO;
     if ([self.delegate shouldHandleTouchAtPoint:point]) {

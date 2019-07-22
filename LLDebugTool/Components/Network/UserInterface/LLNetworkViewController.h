@@ -21,9 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseTableViewController.h"
 
-@interface LLNetworkViewController : LLBaseViewController
+@interface LLNetworkViewController : LLBaseTableViewController
 
 @property (nonatomic , copy , nullable) NSString *launchDate;
 
