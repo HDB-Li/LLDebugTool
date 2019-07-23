@@ -1,5 +1,5 @@
 //
-//  LLAppHelper.h
+//  LLAppInfoHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -33,21 +33,21 @@
  Response data traffic is download data.
  Total data traffic is total data.
  */
-UIKIT_EXTERN NSNotificationName _Nonnull const LLAppHelperDidUpdateAppInfosNotificationName;
+UIKIT_EXTERN NSNotificationName _Nonnull const LLAppInfoHelperDidUpdateAppInfosNotificationName;
 
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperCPUKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperMemoryUsedKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperMemoryFreeKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperMemoryTotalKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperFPSKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperRequestDataTrafficKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperResponseDataTrafficKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppHelperTotalDataTrafficKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperCPUKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperMemoryUsedKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperMemoryFreeKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperMemoryTotalKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperFPSKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperRequestDataTrafficKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperResponseDataTrafficKey;
+UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperTotalDataTrafficKey;
 
 /**
  Monitoring app's properties.
  */
-@interface LLAppHelper : NSObject
+@interface LLAppInfoHelper : NSObject
 
 /**
  Singleton to monitoring appinfos.

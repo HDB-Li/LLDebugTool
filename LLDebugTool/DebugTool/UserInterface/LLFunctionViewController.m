@@ -37,7 +37,7 @@
 
 static NSString *const kCellID = @"cellID";
 
-@interface LLFunctionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface LLFunctionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, LLHierarchyViewControllerDelegate>
 
 @property (nonatomic, strong, nonnull) UICollectionView *collectionView;
 
@@ -112,6 +112,7 @@ static NSString *const kCellID = @"cellID";
 
 - (void)goToHierarchyViewController {
     LLHierarchyViewController *vc = [[LLHierarchyViewController alloc] init];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -153,6 +154,11 @@ static NSString *const kCellID = @"cellID";
         default:
             break;
     }
+}
+
+#pragma mark - LLHierarchyViewControllerDelegate
+- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel {
+    [self.delegate LLFunctionViewController:self didSelectedHierarchyModel:selectedModel];
 }
 
 @end

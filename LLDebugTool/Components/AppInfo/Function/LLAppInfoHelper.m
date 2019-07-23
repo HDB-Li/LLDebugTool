@@ -1,5 +1,5 @@
 //
-//  LLAppHelper.m
+//  LLAppInfoHelper.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLAppHelper.h"
+#import "LLAppInfoHelper.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 #import <malloc/malloc.h>
 #import <mach-o/arch.h>
@@ -31,19 +31,19 @@
 #import "LLTool.h"
 #import "NSObject+LL_Utils.h"
 
-static LLAppHelper *_instance = nil;
+static LLAppInfoHelper *_instance = nil;
 
-NSNotificationName const LLAppHelperDidUpdateAppInfosNotificationName = @"LLAppHelperDidUpdateAppInfosNotificationName";
-NSString * const LLAppHelperCPUKey = @"LLAppHelperCPUKey";
-NSString * const LLAppHelperMemoryUsedKey = @"LLAppHelperMemoryUsedKey";
-NSString * const LLAppHelperMemoryFreeKey = @"LLAppHelperMemoryFreeKey";
-NSString * const LLAppHelperMemoryTotalKey = @"LLAppHelperMemoryTotalKey";
-NSString * const LLAppHelperFPSKey = @"LLAppHelperFPSKey";
-NSString * const LLAppHelperRequestDataTrafficKey = @"LLAppHelperRequestDataTrafficKey";
-NSString * const LLAppHelperResponseDataTrafficKey = @"LLAppHelperResponseDataTrafficKey";
-NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficKey";
+NSNotificationName const LLAppInfoHelperDidUpdateAppInfosNotificationName = @"LLAppInfoHelperDidUpdateAppInfosNotificationName";
+NSString * const LLAppInfoHelperCPUKey = @"LLAppInfoHelperCPUKey";
+NSString * const LLAppInfoHelperMemoryUsedKey = @"LLAppInfoHelperMemoryUsedKey";
+NSString * const LLAppInfoHelperMemoryFreeKey = @"LLAppInfoHelperMemoryFreeKey";
+NSString * const LLAppInfoHelperMemoryTotalKey = @"LLAppInfoHelperMemoryTotalKey";
+NSString * const LLAppInfoHelperFPSKey = @"LLAppInfoHelperFPSKey";
+NSString * const LLAppInfoHelperRequestDataTrafficKey = @"LLAppInfoHelperRequestDataTrafficKey";
+NSString * const LLAppInfoHelperResponseDataTrafficKey = @"LLAppInfoHelperResponseDataTrafficKey";
+NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalDataTrafficKey";
 
-@interface LLAppHelper ()
+@interface LLAppInfoHelper ()
 {
     unsigned long long _usedMemory;
     unsigned long long _freeMemory;
@@ -79,12 +79,12 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
 
 @end
 
-@implementation LLAppHelper
+@implementation LLAppInfoHelper
 
 + (instancetype)sharedHelper {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _instance = [[LLAppHelper alloc] init];
+        _instance = [[LLAppInfoHelper alloc] init];
         [_instance initial];
     });
     return _instance;
@@ -396,15 +396,15 @@ NSString * const LLAppHelperTotalDataTrafficKey = @"LLAppHelperTotalDataTrafficK
     _freeMemory = stat.bytes_free;
     _totalMemory = stat.bytes_total;
     _cpu = [self getCpuUsage];
-    [self postAppHelperDidUpdateAppInfosNotification];
+    [self postAppInfoHelperDidUpdateAppInfosNotification];
 }
 
-- (void)postAppHelperDidUpdateAppInfosNotification {
+- (void)postAppInfoHelperDidUpdateAppInfosNotification {
     if ([[NSThread currentThread] isMainThread]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LLAppHelperDidUpdateAppInfosNotificationName object:[self dynamicInfos] userInfo:@{LLAppHelperCPUKey:@(_cpu),LLAppHelperFPSKey:@(_fps),LLAppHelperMemoryFreeKey:@(_freeMemory),LLAppHelperMemoryUsedKey:@(_usedMemory),LLAppHelperMemoryTotalKey:@(_totalMemory),LLAppHelperRequestDataTrafficKey:@(_requestDataTraffic),LLAppHelperResponseDataTrafficKey:@(_responseDataTraffic),LLAppHelperTotalDataTrafficKey:@(_totalDataTraffic)}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLAppInfoHelperDidUpdateAppInfosNotificationName object:[self dynamicInfos] userInfo:@{LLAppInfoHelperCPUKey:@(_cpu),LLAppInfoHelperFPSKey:@(_fps),LLAppInfoHelperMemoryFreeKey:@(_freeMemory),LLAppInfoHelperMemoryUsedKey:@(_usedMemory),LLAppInfoHelperMemoryTotalKey:@(_totalMemory),LLAppInfoHelperRequestDataTrafficKey:@(_requestDataTraffic),LLAppInfoHelperResponseDataTrafficKey:@(_responseDataTraffic),LLAppInfoHelperTotalDataTrafficKey:@(_totalDataTraffic)}];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self postAppHelperDidUpdateAppInfosNotification];
+            [self postAppInfoHelperDidUpdateAppInfosNotification];
         });
     }
 }

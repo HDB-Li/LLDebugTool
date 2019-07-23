@@ -113,7 +113,7 @@
 		C44F41582152AA7000153F46 /* LLSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F40F02152AA7000153F46 /* LLSandboxViewController.m */; };
 		C44F41592152AA7000153F46 /* LLSandboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F40F22152AA7000153F46 /* LLSandboxCell.xib */; };
 		C44F41622152AA7000153F46 /* UIDevice+LL_Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41092152AA7000153F46 /* UIDevice+LL_Swizzling.m */; };
-		C44F41632152AA7000153F46 /* LLAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F410A2152AA7000153F46 /* LLAppHelper.m */; };
+		C44F41632152AA7000153F46 /* LLAppInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F410A2152AA7000153F46 /* LLAppInfoHelper.m */; };
 		C44F41642152AA7000153F46 /* LLAppInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F410D2152AA7000153F46 /* LLAppInfoViewController.m */; };
 		C44F41652152AA7000153F46 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41112152AA7000153F46 /* LLDebugTool.m */; };
 		C44F41662152AA7000153F46 /* LLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41172152AA7000153F46 /* LLWindow.m */; };
@@ -121,8 +121,6 @@
 		C49B691C215E843400E82794 /* LLHierarchyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49B691B215E843400E82794 /* LLHierarchyModel.m */; };
 		C4B4B2BB22E6062C00D58BBE /* LLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4B2BA22E6062C00D58BBE /* LLFactory.m */; };
 		C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA30632185977D00B2A847 /* LLPreviewController.m */; };
-		C4FA306A2185FEE500B2A847 /* LLWindowTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA30692185FEE500B2A847 /* LLWindowTabBarController.m */; };
-		C4FA306D2185FF3900B2A847 /* LLWindowTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA306C2185FF3900B2A847 /* LLWindowTabBar.m */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -353,9 +351,9 @@
 		C44F40F12152AA7000153F46 /* LLSandboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxCell.h; sourceTree = "<group>"; };
 		C44F40F22152AA7000153F46 /* LLSandboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLSandboxCell.xib; sourceTree = "<group>"; };
 		C44F40F32152AA7000153F46 /* LLSandboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxViewController.h; sourceTree = "<group>"; };
-		C44F41082152AA7000153F46 /* LLAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppHelper.h; sourceTree = "<group>"; };
+		C44F41082152AA7000153F46 /* LLAppInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoHelper.h; sourceTree = "<group>"; };
 		C44F41092152AA7000153F46 /* UIDevice+LL_Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LL_Swizzling.m"; sourceTree = "<group>"; };
-		C44F410A2152AA7000153F46 /* LLAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppHelper.m; sourceTree = "<group>"; };
+		C44F410A2152AA7000153F46 /* LLAppInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoHelper.m; sourceTree = "<group>"; };
 		C44F410B2152AA7000153F46 /* UIDevice+LL_Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LL_Swizzling.h"; sourceTree = "<group>"; };
 		C44F410D2152AA7000153F46 /* LLAppInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoViewController.m; sourceTree = "<group>"; };
 		C44F410E2152AA7000153F46 /* LLAppInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoViewController.h; sourceTree = "<group>"; };
@@ -373,10 +371,6 @@
 		C4F8C661215533E800B07016 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C4FA30622185977D00B2A847 /* LLPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPreviewController.h; sourceTree = "<group>"; };
 		C4FA30632185977D00B2A847 /* LLPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPreviewController.m; sourceTree = "<group>"; };
-		C4FA30682185FEE500B2A847 /* LLWindowTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWindowTabBarController.h; sourceTree = "<group>"; };
-		C4FA30692185FEE500B2A847 /* LLWindowTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowTabBarController.m; sourceTree = "<group>"; };
-		C4FA306B2185FF3900B2A847 /* LLWindowTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWindowTabBar.h; sourceTree = "<group>"; };
-		C4FA306C2185FF3900B2A847 /* LLWindowTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowTabBar.m; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1036,8 +1030,8 @@
 		C44F41072152AA7000153F46 /* Function */ = {
 			isa = PBXGroup;
 			children = (
-				C44F41082152AA7000153F46 /* LLAppHelper.h */,
-				C44F410A2152AA7000153F46 /* LLAppHelper.m */,
+				C44F41082152AA7000153F46 /* LLAppInfoHelper.h */,
+				C44F410A2152AA7000153F46 /* LLAppInfoHelper.m */,
 				C44F41092152AA7000153F46 /* UIDevice+LL_Swizzling.m */,
 				C44F410B2152AA7000153F46 /* UIDevice+LL_Swizzling.h */,
 			);
@@ -1079,10 +1073,6 @@
 				C44F41172152AA7000153F46 /* LLWindow.m */,
 				C44F41162152AA7000153F46 /* LLWindowViewController.h */,
 				C44F41192152AA7000153F46 /* LLWindowViewController.m */,
-				C4FA30682185FEE500B2A847 /* LLWindowTabBarController.h */,
-				C4FA30692185FEE500B2A847 /* LLWindowTabBarController.m */,
-				C4FA306B2185FF3900B2A847 /* LLWindowTabBar.h */,
-				C4FA306C2185FF3900B2A847 /* LLWindowTabBar.m */,
 				36FA704A22E5B04E00988C92 /* LLFunctionViewController.h */,
 				36FA704B22E5B04E00988C92 /* LLFunctionViewController.m */,
 				36FA705022E5BAB300988C92 /* LLFunctionModel.h */,
@@ -1383,13 +1373,12 @@
 				C44F41272152AA7000153F46 /* NSObject+LL_Utils.m in Sources */,
 				36FA705522E5BF4B00988C92 /* LLBaseCollectionViewCell.m in Sources */,
 				C44F41262152AA7000153F46 /* NSString+LL_Utils.m in Sources */,
-				C44F41632152AA7000153F46 /* LLAppHelper.m in Sources */,
+				C44F41632152AA7000153F46 /* LLAppInfoHelper.m in Sources */,
 				C44F41532152AA7000153F46 /* LLCrashViewController.m in Sources */,
 				C44F41282152AA7000153F46 /* LLBaseModel.m in Sources */,
 				369D093B2153855D001C9D4B /* LLLogFilterView.m in Sources */,
 				36FA705222E5BAB300988C92 /* LLFunctionModel.m in Sources */,
 				C44F41252152AA7000153F46 /* LLRoute.m in Sources */,
-				C4FA306A2185FEE500B2A847 /* LLWindowTabBarController.m in Sources */,
 				36FA262E215DB9F500462EA8 /* LLHierarchyHelper.m in Sources */,
 				36FA705922E5C20B00988C92 /* LLFunctionCell.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
@@ -1429,7 +1418,6 @@
 				C44F41322152AA7000153F46 /* LLFilterFilePickerView.m in Sources */,
 				C49B691C215E843400E82794 /* LLHierarchyModel.m in Sources */,
 				C44F411C2152AA7000153F46 /* LLStorageModel.m in Sources */,
-				C4FA306D2185FF3900B2A847 /* LLWindowTabBar.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
 				C44F412D2152AA7000153F46 /* LLSubTitleTableViewCell.m in Sources */,
 				369D09342153853A001C9D4B /* LLLogHelper.m in Sources */,

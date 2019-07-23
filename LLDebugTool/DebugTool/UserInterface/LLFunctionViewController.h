@@ -23,9 +23,19 @@
 
 #import "LLBaseViewController.h"
 
+@class LLFunctionViewController, LLHierarchyModel;
+
+@protocol LLFunctionViewControllerDelegate <NSObject>
+
+- (void)LLFunctionViewController:(LLFunctionViewController *_Nonnull)viewController didSelectedHierarchyModel:(LLHierarchyModel *_Nonnull)model;
+
+@end
+
 /**
  Function list display viewController.
  */
 @interface LLFunctionViewController : LLBaseViewController
+
+@property (nonatomic, weak, nullable) id<LLFunctionViewControllerDelegate> delegate;
 
 @end

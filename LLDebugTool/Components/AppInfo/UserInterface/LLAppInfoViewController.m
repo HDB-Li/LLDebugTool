@@ -23,7 +23,7 @@
 
 #import "LLAppInfoViewController.h"
 #import "LLBaseTableViewCell.h"
-#import "LLAppHelper.h"
+#import "LLAppInfoHelper.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
@@ -45,14 +45,14 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[LLAppHelper sharedHelper] appInfos]];
+    [self.dataArray addObjectsFromArray:[[LLAppInfoHelper sharedHelper] appInfos]];
     self.navigationItem.title = [UIDevice currentDevice].name ? : @"App Infos";
-    [self registerLLAppHelperNotification];
+    [self registerLLAppInfoHelperNotification];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self unregisterLLAppHelperNotification];
+    [self unregisterLLAppInfoHelperNotification];
 }
 
 - (void)dealloc {
@@ -64,16 +64,16 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
     [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kAppInfoHeaderID];
 }
 
-#pragma mark - LLAppHelperNotification
-- (void)registerLLAppHelperNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppHelperDidUpdateAppInfosNotification:) name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+#pragma mark - LLAppInfoHelperNotification
+- (void)registerLLAppInfoHelperNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:) name:LLAppInfoHelperDidUpdateAppInfosNotificationName object:nil];
 }
 
-- (void)unregisterLLAppHelperNotification {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+- (void)unregisterLLAppInfoHelperNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppInfoHelperDidUpdateAppInfosNotificationName object:nil];
 }
 
-- (void)didReceiveLLAppHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
+- (void)didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
     NSArray *dynamic = notifi.object;
     [self.dataArray replaceObjectAtIndex:0 withObject:dynamic];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];

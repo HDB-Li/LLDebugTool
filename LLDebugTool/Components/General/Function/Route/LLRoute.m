@@ -29,7 +29,7 @@
 #endif
 
 #ifndef LL_HAS_INCLUDE_APP_HELPER
-#define LL_HAS_INCLUDE_APP_HELPER (__has_include("LLAppHelper.h") || __has_include("<LLAppHelper.h>"))
+#define LL_HAS_INCLUDE_APP_HELPER (__has_include("LLAppInfoHelper.h") || __has_include("<LLAppInfoHelper.h>"))
 #endif
 
 #if __has_include("LLDebugTool.h")
@@ -37,7 +37,7 @@
 #import "LLNetworkHelper.h"
 #import "LLLogHelper.h"
 #import "LLCrashHelper.h"
-#import "LLAppHelper.h"
+#import "LLAppInfoHelper.h"
 #import "LLScreenshotHelper.h"
 #import "LLWindow.h"
 #import "LLDebugToolMacros.h"
@@ -46,7 +46,7 @@
 #import "<LLNetworkHelper.h>"
 #import "<LLLogHelper.h>"
 #import "<LLCrashHelper.h>"
-#import "<LLAppHelper.h>"
+#import "<LLAppInfoHelper.h>"
 #import "<LLScreenshotHelper.h>"
 #import "<LLWindow.h>"
 #import "<LLDebugToolMacros.h"
@@ -60,10 +60,10 @@
 #import "<LLDebugToolMacros.h>"
 #endif
 
-#if __has_include("LLAppHelper.h")
-#import "LLAppHelper.h"
-#elif __has_include("<LLAppHelper.h>")
-#import "<LLAppHelper.h>"
+#if __has_include("LLAppInfoHelper.h")
+#import "LLAppInfoHelper.h"
+#elif __has_include("<LLAppInfoHelper.h>")
+#import "<LLAppInfoHelper.h>"
 #endif
 
 // Event
@@ -97,7 +97,7 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
         [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
         [[LLLogHelper sharedHelper] setEnable:logEnable];
         [[LLCrashHelper sharedHelper] setEnable:crashEnable];
-        [[LLAppHelper sharedHelper] setEnable:appInfoEnable];
+        [[LLAppInfoHelper sharedHelper] setEnable:appInfoEnable];
         [[LLScreenshotHelper sharedHelper] setEnable:screenshotEnable];
     }
 #endif
@@ -117,20 +117,20 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
 #if LL_HAS_INCLUDE_APP_HELPER
-    [[LLAppHelper sharedHelper] updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
+    [[LLAppInfoHelper sharedHelper] updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
 #endif
 }
     
 + (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nonnull)appInfos {
 #if LL_HAS_INCLUDE_APP_HELPER
-    return [[LLAppHelper sharedHelper] appInfos];
+    return [[LLAppInfoHelper sharedHelper] appInfos];
 #endif
     return nil;
 }
     
 + (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos {
 #if LL_HAS_INCLUDE_APP_HELPER
-    return [[LLAppHelper sharedHelper] dynamicAppInfos];
+    return [[LLAppInfoHelper sharedHelper] dynamicAppInfos];
 #endif
     return nil;
 }

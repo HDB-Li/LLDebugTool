@@ -64,17 +64,17 @@ static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
 
 #pragma mark - App Route
 /**
- If LLAppHelper exists, LLAppHelper is called, otherwise nothing will be done.
+ If LLAppInfoHelper exists, LLAppInfoHelper is called, otherwise nothing will be done.
  */
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
 /**
- If LLAppHelper exists, LLAppHelper is called, otherwise nothing will be done.
+ If LLAppInfoHelper exists, LLAppInfoHelper is called, otherwise nothing will be done.
  */
 + (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nonnull)appInfos;
     
 /**
- If LLAppHelper exists, LLAppHelper is called, otherwise nothing will be done.
+ If LLAppInfoHelper exists, LLAppInfoHelper is called, otherwise nothing will be done.
  */
 + (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos;
 

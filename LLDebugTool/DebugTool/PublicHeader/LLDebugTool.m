@@ -27,7 +27,7 @@
 #import "LLNetworkHelper.h"
 #import "LLCrashHelper.h"
 #import "LLLogHelper.h"
-#import "LLAppHelper.h"
+#import "LLAppInfoHelper.h"
 #import "LLWindow.h"
 #import "LLWindowViewController.h"
 #import "LLDebugToolMacros.h"
@@ -80,7 +80,7 @@ static LLDebugTool *_instance = nil;
         }
         if (available & LLConfigAvailableAppInfo) {
             // Open app monitoring
-            [[LLAppHelper sharedHelper] setEnable:YES];
+            [[LLAppInfoHelper sharedHelper] setEnable:YES];
         }
         if (available & LLConfigAvailableScreenshot) {
             // Open screenshot
@@ -97,7 +97,7 @@ static LLDebugTool *_instance = nil;
         // Close screenshot
         [[LLScreenshotHelper sharedHelper] setEnable:NO];
         // Close app monitoring
-        [[LLAppHelper sharedHelper] setEnable:NO];
+        [[LLAppInfoHelper sharedHelper] setEnable:NO];
         // Close network monitoring
         [[LLNetworkHelper sharedHelper] setEnable:NO];
         // Close log helper

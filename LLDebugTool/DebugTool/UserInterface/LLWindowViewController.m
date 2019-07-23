@@ -22,9 +22,8 @@
 //  SOFTWARE.
 
 #import "LLWindowViewController.h"
-#import "LLWindowTabBarController.h"
 #import "LLScreenshotHelper.h"
-#import "LLAppHelper.h"
+#import "LLAppInfoHelper.h"
 #import "LLHierarchyHelper.h"
 #import "LLMacros.h"
 #import "LLDebugToolMacros.h"
@@ -41,7 +40,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeMove,
 };
 
-@interface LLWindowViewController () <LLWindowTabBarControllerDelegate , UIGestureRecognizerDelegate , LLHierarchyExplorerToolBarDelegate>
+@interface LLWindowViewController () <LLFunctionViewControllerDelegate , UIGestureRecognizerDelegate , LLHierarchyExplorerToolBarDelegate>
 
 @property (nonatomic, strong) UIWindow *previousKeyWindow;
 
@@ -53,13 +52,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic , strong) UILabel *CPULabel;
 
-@property (nonatomic , strong) UILabel *FPSLabel;
-
 @property (nonatomic , strong) UIView *lineView;
 
 @property (nonatomic , assign) CGFloat sBallHideWidth;
-
-@property (nonatomic , strong) LLWindowTabBarController *tabBarController;
 
 @property (nonatomic, strong, nonnull) LLFunctionViewController *functionViewController;
 
@@ -101,12 +96,12 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self resignKeyWindow];
-    [self registerLLAppHelperNotification];
+    [self registerLLAppInfoHelperNotification];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self unregisterLLAppHelperNotification];
+    [self unregisterLLAppInfoHelperNotification];
 }
 
 - (void)dealloc {
@@ -119,22 +114,16 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 #pragma mark - Public
 - (void)showExplorerView {
     self.contentView.hidden = NO;
-    if (self.windowStyle == LLConfigWindowSuspensionBall) {
-        self.FPSLabel.hidden = NO;
-    }
-    [self registerLLAppHelperNotification];
+    [self registerLLAppInfoHelperNotification];
 }
 
 - (void)hideExplorerView {
     self.contentView.hidden = YES;
-    if (self.windowStyle == LLConfigWindowSuspensionBall) {
-        self.FPSLabel.hidden = YES;
-    }
-    [self unregisterLLAppHelperNotification];
+    [self unregisterLLAppInfoHelperNotification];
 }
 
 - (void)reloadTabbar {
-    _tabBarController = nil;
+    _functionViewController = nil;
 }
 
 - (void)presentTabbarWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params{
@@ -232,15 +221,14 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     }
 }
 
-#pragma mark - LLAppHelperNotification
-- (void)didReceiveLLAppHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
+#pragma mark - LLAppInfoHelperNotification
+- (void)didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
     NSDictionary *userInfo = notifi.userInfo;
-    CGFloat cpu = [userInfo[LLAppHelperCPUKey] floatValue];
-    CGFloat usedMemory = [userInfo[LLAppHelperMemoryUsedKey] floatValue];
-    CGFloat fps = [userInfo[LLAppHelperFPSKey] floatValue];
+    CGFloat cpu = [userInfo[LLAppInfoHelperCPUKey] floatValue];
+    CGFloat usedMemory = [userInfo[LLAppInfoHelperMemoryUsedKey] floatValue];
+    __unused CGFloat fps = [userInfo[LLAppInfoHelperFPSKey] floatValue];
     self.memoryLabel.text = [NSString stringWithFormat:@"%@",[NSByteCountFormatter stringFromByteCount:usedMemory countStyle:NSByteCountFormatterCountStyleMemory]];
     self.CPULabel.text = [NSString stringWithFormat:@"CPU:%.2f%%",cpu];
-    self.FPSLabel.text = [NSString stringWithFormat:@"%ld",(long)fps];
 }
 
 #pragma mark - LLConfigDidUpdateColorStyleNotification
@@ -248,10 +236,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
-    _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
-    _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
-    _FPSLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
-    _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    _CPULabel.textColor = LLCONFIG_TEXT_COLOR;    _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
 }
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName
@@ -262,8 +247,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     [self updateGestureRecognizers];
 }
 
-#pragma mark - LLWindowTabBarControllerDelegate
-- (void)LLWindowTabBarController:(LLWindowTabBarController *)tabBarController didSelectedHierarchyModel:(LLHierarchyModel *)model {
+#pragma mark - LLFunctionViewControllerDelegate
+- (void)LLFunctionViewController:(LLFunctionViewController *)viewController didSelectedHierarchyModel:(LLHierarchyModel *)model {
     UIView *selectedView = model.view;
     if (![self.viewsAtTapPoint containsObject:selectedView]) {
         self.viewsAtTapPoint = nil;
@@ -398,12 +383,6 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             self.CPULabel.frame = CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0, _sBallWidth * 3 / 4.0, _sBallWidth / 4.0);
             [self.contentView addSubview:self.CPULabel];
             
-            // Create FPSLabel
-            self.FPSLabel.frame = CGRectMake(0, 0, 20, 20);
-            self.FPSLabel.center = CGPointMake(_sBallWidth * 0.85 + _contentView.frame.origin.x, _sBallWidth * 0.15 + _contentView.frame.origin.y);
-            self.FPSLabel.layer.cornerRadius = self.FPSLabel.frame.size.height / 2.0;
-            [self.view addSubview:self.FPSLabel];
-            
             // Create Line
             self.lineView.frame = CGRectMake(_sBallWidth / 8.0, _sBallWidth / 2.0 - 0.5, _sBallWidth * 3 / 4.0, 1);
             [self.contentView addSubview:self.lineView];
@@ -471,17 +450,17 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotification) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
-- (void)registerLLAppHelperNotification {
+- (void)registerLLAppInfoHelperNotification {
     if (!self.isRegisterNotification) {
         self.registerNotification = YES;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppHelperDidUpdateAppInfosNotification:) name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:) name:LLAppInfoHelperDidUpdateAppInfosNotificationName object:nil];
     }
 }
 
-- (void)unregisterLLAppHelperNotification {
+- (void)unregisterLLAppInfoHelperNotification {
     if (self.isRegisterNotification) {
         self.registerNotification = NO;
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppHelperDidUpdateAppInfosNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppInfoHelperDidUpdateAppInfosNotificationName object:nil];
     }
 }
 
@@ -524,11 +503,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             }
         }
         self.contentView.center = endPoint;
-        
-        CGFloat horizontalPer = x1 < x ? 0.15 : 0.85;
-        CGFloat verticalPer = endPoint.y > self.sBallWidth ? 0.15 : 0.85;
-        CGPoint fpsCenter = CGPointMake(self.sBallWidth * horizontalPer + self.contentView.frame.origin.x, self.sBallWidth * verticalPer + self.contentView.frame.origin.y);
-        self.FPSLabel.center = fpsCenter;
+    
     } completion:^(BOOL finished) {
         
     }];
@@ -545,9 +520,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     } else if (point.y < 0) {
         point.y = 0;
     }
-    CGPoint offset = CGPointMake(self.FPSLabel.center.x - self.contentView.center.x, self.FPSLabel.center.y - self.contentView.center.y);
     self.contentView.center = CGPointMake(point.x, point.y);
-    self.FPSLabel.center = CGPointMake(self.contentView.center.x + offset.x, self.contentView.center.y + offset.y);
 }
 
 - (void)updateOutlineViewsForSelectionPoint:(CGPoint)selectionPointInWindow
@@ -1011,14 +984,6 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 #pragma mark - Lazy load
-- (LLWindowTabBarController *)tabBarController {
-    if (_tabBarController == nil) {
-        _tabBarController = [[LLWindowTabBarController alloc] init];
-        _tabBarController.actionDelegate = self;
-    }
-    return _tabBarController;
-}
-
 - (LLFunctionViewController *)functionViewController {
     if (_functionViewController == nil) {
         _functionViewController = [[LLFunctionViewController alloc] init];
@@ -1052,17 +1017,6 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         _CPULabel.adjustsFontSizeToFitWidth = YES;
     }
     return _CPULabel;
-}
-
-- (UILabel *)FPSLabel {
-    if (!_FPSLabel) {
-        _FPSLabel = [LLFactory getLabel:nil frame:CGRectZero text:@"60" font:12 textColor:LLCONFIG_TEXT_COLOR];
-        _FPSLabel.textAlignment = NSTextAlignmentCenter;
-        _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
-        _FPSLabel.adjustsFontSizeToFitWidth = YES;
-        _FPSLabel.layer.masksToBounds = YES;
-    }
-    return _FPSLabel;
 }
 
 - (UIView *)lineView {
