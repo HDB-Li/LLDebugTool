@@ -121,10 +121,9 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             self->_systemTintColor = [LLFactory getView].tintColor;
         });
     }
-
     
     // Set default color style.
-    _colorStyle = LLConfigColorStyleSimple;
+    _colorStyle = LLConfigColorStyleHack;
     
     // Set default suspension ball attributes.
     _suspensionBallWidth = 70;
@@ -152,7 +151,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 - (void)updateColor {
     switch (self.colorStyle) {
         case LLConfigColorStyleSimple:{
-            _backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+            _backgroundColor = [UIColor whiteColor];
             _textColor = [UIColor darkTextColor];
             _statusBarStyle = UIStatusBarStyleDefault;
         }

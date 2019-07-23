@@ -1,7 +1,7 @@
 //
-//  UIView+LL_Utils.h
+//  UIColor+Utils.h
 //
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  Copyright (c) 2018 LLBaseFoundation Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,37 +25,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (LL_Utils)
+@interface UIColor (Utils)
 
-@property (nonatomic, assign) CGFloat LL_horizontalPadding;
-
-@property (nonatomic, assign) CGFloat LL_verticalPadding;
-
-@property (nonatomic, assign) CGFloat LL_x;
-
-@property (nonatomic, assign) CGFloat LL_y;
-
-@property (nonatomic, assign) CGFloat LL_centerX;
-
-@property (nonatomic, assign) CGFloat LL_centerY;
-
-@property (nonatomic, assign) CGFloat LL_width;
-
-@property (nonatomic, assign) CGFloat LL_height;
-
-@property (nonatomic, assign) CGSize LL_size;
-
-@property (nonatomic, assign) CGFloat LL_top;
-
-@property (nonatomic, assign) CGFloat LL_bottom;
-
-@property (nonatomic, assign) CGFloat LL_left;
-
-@property (nonatomic, assign) CGFloat LL_right;
-
-- (void)setCornerRadius:(CGFloat)cornerRadius;
-
-- (void)removeAllSubviews;
++ (UIColor *)colorWithHex:(NSString *)hex;
 
 @end
 

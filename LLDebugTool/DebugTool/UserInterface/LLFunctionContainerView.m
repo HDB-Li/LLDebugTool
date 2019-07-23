@@ -1,5 +1,5 @@
 //
-//  UIView+LL_Utils.h
+//  LLFunctionContainerView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,42 +21,35 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLFunctionContainerView.h"
+#import "UIView+LL_Utils.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLFunctionContainerView
 
-@interface UIView (LL_Utils)
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initial];
+    }
+    return self;
+}
 
-@property (nonatomic, assign) CGFloat LL_horizontalPadding;
+- (void)setDataArray:(NSArray<LLFunctionModel *> *)dataArray {
+    if (_dataArray != dataArray) {
+        _dataArray = dataArray;
+        [self updateUI];
+    }
+}
 
-@property (nonatomic, assign) CGFloat LL_verticalPadding;
+#pragma mark - Primary
+- (void)initial {
+    [self setCornerRadius:5];
+}
 
-@property (nonatomic, assign) CGFloat LL_x;
-
-@property (nonatomic, assign) CGFloat LL_y;
-
-@property (nonatomic, assign) CGFloat LL_centerX;
-
-@property (nonatomic, assign) CGFloat LL_centerY;
-
-@property (nonatomic, assign) CGFloat LL_width;
-
-@property (nonatomic, assign) CGFloat LL_height;
-
-@property (nonatomic, assign) CGSize LL_size;
-
-@property (nonatomic, assign) CGFloat LL_top;
-
-@property (nonatomic, assign) CGFloat LL_bottom;
-
-@property (nonatomic, assign) CGFloat LL_left;
-
-@property (nonatomic, assign) CGFloat LL_right;
-
-- (void)setCornerRadius:(CGFloat)cornerRadius;
-
-- (void)removeAllSubviews;
+- (void)updateUI {
+    [self removeAllSubviews];
+    
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  UIView+LL_Utils.h
+//  LLFunctionItem.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,42 +21,46 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLFunctionItem.h"
+#import "LLFactory.h"
+#import "LLConfig.h"
+#import "UIImage+LL_Utils.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface LLFunctionItem ()
 
-@interface UIView (LL_Utils)
+@property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic, assign) CGFloat LL_horizontalPadding;
-
-@property (nonatomic, assign) CGFloat LL_verticalPadding;
-
-@property (nonatomic, assign) CGFloat LL_x;
-
-@property (nonatomic, assign) CGFloat LL_y;
-
-@property (nonatomic, assign) CGFloat LL_centerX;
-
-@property (nonatomic, assign) CGFloat LL_centerY;
-
-@property (nonatomic, assign) CGFloat LL_width;
-
-@property (nonatomic, assign) CGFloat LL_height;
-
-@property (nonatomic, assign) CGSize LL_size;
-
-@property (nonatomic, assign) CGFloat LL_top;
-
-@property (nonatomic, assign) CGFloat LL_bottom;
-
-@property (nonatomic, assign) CGFloat LL_left;
-
-@property (nonatomic, assign) CGFloat LL_right;
-
-- (void)setCornerRadius:(CGFloat)cornerRadius;
-
-- (void)removeAllSubviews;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLFunctionItem
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initial];
+    }
+    return self;
+}
+
+- (void)setModel:(LLFunctionModel *)model {
+    if (_model != model) {
+        _model = model;
+        [self updateUI:model];
+    }
+}
+
+#pragma mark - Primary
+- (void)initial {
+    self.imageView = [LLFactory getImageView:self];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:LLCONFIG_TEXT_COLOR];
+}
+
+- (void)updateUI:(LLFunctionModel *)model {
+    self.imageView.image = [UIImage LL_imageNamed:model.imageName color:LLCONFIG_TEXT_COLOR];
+    self.titleLabel.text = model.title;
+}
+
+@end

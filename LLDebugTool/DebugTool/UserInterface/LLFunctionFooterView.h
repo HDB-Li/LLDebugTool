@@ -1,5 +1,5 @@
 //
-//  UIView+LL_Utils.h
+//  LLFunctionFooterView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,37 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (LL_Utils)
-
-@property (nonatomic, assign) CGFloat LL_horizontalPadding;
-
-@property (nonatomic, assign) CGFloat LL_verticalPadding;
-
-@property (nonatomic, assign) CGFloat LL_x;
-
-@property (nonatomic, assign) CGFloat LL_y;
-
-@property (nonatomic, assign) CGFloat LL_centerX;
-
-@property (nonatomic, assign) CGFloat LL_centerY;
-
-@property (nonatomic, assign) CGFloat LL_width;
-
-@property (nonatomic, assign) CGFloat LL_height;
-
-@property (nonatomic, assign) CGSize LL_size;
-
-@property (nonatomic, assign) CGFloat LL_top;
-
-@property (nonatomic, assign) CGFloat LL_bottom;
-
-@property (nonatomic, assign) CGFloat LL_left;
-
-@property (nonatomic, assign) CGFloat LL_right;
-
-- (void)setCornerRadius:(CGFloat)cornerRadius;
-
-- (void)removeAllSubviews;
+@interface LLFunctionFooterView : UICollectionReusableView
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  UIView+LL_Utils.h
+//  LLThemeManager.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,41 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (LL_Utils)
+@interface LLThemeManager : NSObject
 
-@property (nonatomic, assign) CGFloat LL_horizontalPadding;
+@property (nonatomic, copy, readonly) UIColor *primaryColor;
 
-@property (nonatomic, assign) CGFloat LL_verticalPadding;
+@property (nonatomic, copy, readonly) UIColor *backgroundColor;
 
-@property (nonatomic, assign) CGFloat LL_x;
+@property (nonatomic, copy, readonly) UIColor *grayBackgroundColor;
 
-@property (nonatomic, assign) CGFloat LL_y;
+@property (nonatomic, copy, readonly) UIColor *backgroundBColor;
 
-@property (nonatomic, assign) CGFloat LL_centerX;
+@property (nonatomic, copy, readonly) UIColor *backgroundWColor;
 
-@property (nonatomic, assign) CGFloat LL_centerY;
-
-@property (nonatomic, assign) CGFloat LL_width;
-
-@property (nonatomic, assign) CGFloat LL_height;
-
-@property (nonatomic, assign) CGSize LL_size;
-
-@property (nonatomic, assign) CGFloat LL_top;
-
-@property (nonatomic, assign) CGFloat LL_bottom;
-
-@property (nonatomic, assign) CGFloat LL_left;
-
-@property (nonatomic, assign) CGFloat LL_right;
-
-- (void)setCornerRadius:(CGFloat)cornerRadius;
-
-- (void)removeAllSubviews;
++ (instancetype)shared;
 
 @end
 

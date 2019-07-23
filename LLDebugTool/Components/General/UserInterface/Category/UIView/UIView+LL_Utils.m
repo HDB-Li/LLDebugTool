@@ -60,9 +60,124 @@ static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
     return [objc_getAssociatedObject(self, kLLVerticalPaddingKey) floatValue];
 }
 
+- (void)setLL_x:(CGFloat)LL_x {
+    CGRect frame = self.frame;
+    frame.origin.x = LL_x;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_x {
+    return self.frame.origin.x;
+}
+
+- (void)setLL_y:(CGFloat)LL_y {
+    CGRect frame = self.frame;
+    frame.origin.y = LL_y;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_y {
+    return self.frame.origin.y;
+}
+
+- (void)setLL_centerX:(CGFloat)LL_centerX {
+    CGPoint center = self.center;
+    center.x = LL_centerX;
+    self.center = center;
+}
+
+- (CGFloat)LL_centerX {
+    return self.center.x;
+}
+
+- (void)setLL_centerY:(CGFloat)LL_centerY {
+    CGPoint center = self.center;
+    center.y = LL_centerY;
+    self.center = center;
+}
+
+- (CGFloat)LL_centerY {
+    return self.center.y;
+}
+
+- (void)setLL_width:(CGFloat)LL_width {
+    CGRect frame = self.frame;
+    frame.size.width = LL_width;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_width {
+    return self.frame.size.width;
+}
+
+- (void)setLL_height:(CGFloat)LL_height {
+    CGRect frame = self.frame;
+    frame.size.height = LL_height;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_height {
+    return self.frame.size.height;
+}
+
+- (void)setLL_size:(CGSize)LL_size {
+    CGRect frame = self.frame;
+    frame.size = LL_size;
+    self.frame = frame;
+}
+
+- (CGSize)LL_size {
+    return self.frame.size;
+}
+
+- (void)setLL_top:(CGFloat)LL_top {
+    CGRect frame = self.frame;
+    frame.origin.y = LL_top;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_top {
+    return self.frame.origin.y;
+}
+
+- (void)setLL_bottom:(CGFloat)LL_bottom {
+    CGRect frame = self.frame;
+    frame.origin.y = LL_bottom - frame.size.height;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_bottom {
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (void)setLL_left:(CGFloat)LL_left {
+    CGRect frame = self.frame;
+    frame.origin.x = LL_left;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_left {
+    return self.frame.origin.x;
+}
+
+- (void)setLL_right:(CGFloat)LL_right {
+    CGRect frame = self.frame;
+    frame.origin.x = LL_right - frame.size.width;
+    self.frame = frame;
+}
+
+- (CGFloat)LL_right {
+    return self.frame.origin.x + self.frame.size.width;
+}
+
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;
 }
 
+- (void)removeAllSubviews {
+    for (UIView *subview in self.subviews) {
+        [subview removeFromSuperview];
+    }
+}
 @end

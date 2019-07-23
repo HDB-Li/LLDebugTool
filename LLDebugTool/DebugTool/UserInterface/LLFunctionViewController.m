@@ -34,10 +34,12 @@
 #import "LLAppInfoViewController.h"
 #import "LLSandboxViewController.h"
 #import "LLHierarchyViewController.h"
+#import "LLFunctionFooterView.h"
 
 static NSString *const kCellID = @"cellID";
+static NSString *const kFooterID = @"footerID";
 
-@interface LLFunctionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, LLHierarchyViewControllerDelegate>
+@interface LLFunctionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, LLHierarchyViewControllerDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -64,7 +66,7 @@ static NSString *const kCellID = @"cellID";
     self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFunctionCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kCellID];
-    
+    [self.collectionView registerClass:[LLFunctionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kFooterID];
     [self loadData];
 }
 
@@ -124,6 +126,18 @@ static NSString *const kCellID = @"cellID";
     LLFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
     cell.model = self.dataArray[indexPath.item];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        LLFunctionFooterView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kFooterID forIndexPath:indexPath];
+        return footer;
+    }
+    return nil;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(LL_SCREEN_WIDTH, 60);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
