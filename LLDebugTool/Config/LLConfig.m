@@ -124,7 +124,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 
     
     // Set default color style.
-    _colorStyle = LLConfigColorStyleHack;
+    _colorStyle = LLConfigColorStyleSimple;
     
     // Set default suspension ball attributes.
     _suspensionBallWidth = 70;
