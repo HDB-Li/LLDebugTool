@@ -31,15 +31,15 @@
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
 
-@interface LLFilterDateView () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@interface LLFilterDateView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic , strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic , strong) NSArray *fileDataArray;
+@property (nonatomic, strong) NSArray *fileDataArray;
 
-@property (nonatomic , strong) LLFilterTextFieldModel *fromDateModel;
+@property (nonatomic, strong) LLFilterTextFieldModel *fromDateModel;
 
-@property (nonatomic , strong) LLFilterTextFieldModel *endDateModel;
+@property (nonatomic, strong) LLFilterTextFieldModel *endDateModel;
 
 @end
 
@@ -79,7 +79,7 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     }
 }
 
-#pragma mark - UICollectionViewDelegate , UICollectionViewDataSource
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 2;
 }

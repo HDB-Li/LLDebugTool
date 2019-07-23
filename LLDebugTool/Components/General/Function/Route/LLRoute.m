@@ -76,7 +76,7 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 
 @implementation LLRoute
 
-+ (void)logWithMessage:(NSString *_Nonnull)message event:(NSString *_Nullable)event {
++ (void)logWithMessage:(NSString *)message event:(NSString *_Nullable)event {
     if ([LLConfig sharedConfig].showDebugToolLog) {
         NSString *header = @"\n--------Debug Tool--------";
         NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>",event];
@@ -121,21 +121,21 @@ NSString * const kLLOpenIssueInGithubPrompt = @" Open an issue in \"https://gith
 #endif
 }
     
-+ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nonnull)appInfos {
++ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
 #if LL_HAS_INCLUDE_APP_HELPER
     return [[LLAppInfoHelper sharedHelper] appInfos];
 #endif
     return nil;
 }
     
-+ (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos {
++ (NSDictionary <NSString *, NSString *>*)dynamicAppInfos {
 #if LL_HAS_INCLUDE_APP_HELPER
     return [[LLAppInfoHelper sharedHelper] dynamicAppInfos];
 #endif
     return nil;
 }
 
-+ (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*)params {
++ (UIViewController *_Nullable)viewControllerWithName:(NSString *)name params:(NSDictionary <NSString *,id>*)params {
     Class cls = NSClassFromString(name);
     if (cls) {
         if ([cls isSubclassOfClass:LLBaseTableViewController.class]) {

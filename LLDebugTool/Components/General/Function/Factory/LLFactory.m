@@ -28,23 +28,23 @@
 @implementation LLFactory
 
 #pragma mark - UIView
-+ (UIView *_Nonnull)getView {
++ (UIView *)getView {
     return [self getView:nil];
 }
 
-+ (UIView *_Nonnull)getView:(UIView *_Nullable)toView {
++ (UIView *)getView:(UIView *_Nullable)toView {
     return [self getView:toView
                    frame:CGRectZero];
 }
 
-+ (UIView *_Nonnull)getView:(UIView *_Nullable)toView
++ (UIView *)getView:(UIView *_Nullable)toView
                       frame:(CGRect)frame {
     return [self getView:toView
                    frame:frame
          backgroundColor:nil];
 }
 
-+ (UIView *_Nonnull)getView:(UIView *_Nullable)toView
++ (UIView *)getView:(UIView *_Nullable)toView
                       frame:(CGRect)frame
             backgroundColor:(UIColor *_Nullable)backgroundColor {
     UIView *view = [[UIView alloc] initWithFrame:frame];
@@ -53,46 +53,46 @@
     return view;
 }
 
-+ (UIView *_Nonnull)getPrimaryView {
++ (UIView *)getPrimaryView {
     return [self getPrimaryView:nil];
 }
 
-+ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView {
++ (UIView *)getPrimaryView:(UIView *_Nullable)toView {
     return [self getPrimaryView:toView
                           frame:CGRectZero];
 }
 
-+ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView
++ (UIView *)getPrimaryView:(UIView *_Nullable)toView
                              frame:(CGRect)frame {
     return [self getPrimaryView:toView
                           frame:frame
                           alpha:1];
 }
 
-+ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView
++ (UIView *)getPrimaryView:(UIView *_Nullable)toView
                              frame:(CGRect)frame alpha:(CGFloat)alpha {
     return [self getView:toView
                    frame:frame
          backgroundColor:[LLCONFIG_TEXT_COLOR colorWithAlphaComponent:alpha]];
 }
 
-+ (UIView *_Nonnull)getBackgroundView {
++ (UIView *)getBackgroundView {
     return [self getBackgroundView:nil];
 }
 
-+ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView {
++ (UIView *)getBackgroundView:(UIView *_Nullable)toView {
     return [self getBackgroundView:toView
                              frame:CGRectZero];
 }
 
-+ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView
++ (UIView *)getBackgroundView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame {
     return [self getBackgroundView:toView
                              frame:frame
                              alpha:1];
 }
 
-+ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView
++ (UIView *)getBackgroundView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                                 alpha:(CGFloat)alpha {
     return [self getView:toView
@@ -100,28 +100,28 @@
          backgroundColor:[LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:alpha]];
 }
 
-+ (UIView *_Nonnull)lineView:(CGRect)frame
++ (UIView *)lineView:(CGRect)frame
                    superView:(UIView *_Nullable)superView {
     UIView *view = [self getPrimaryView:superView];
     return view;
 }
 
 #pragma mark - UILabel
-+ (UILabel *_Nonnull)getLabel {
++ (UILabel *)getLabel {
     return [self getLabel:nil];
 }
 
-+ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView {
++ (UILabel *)getLabel:(UIView *_Nullable)toView {
     return [self getLabel:toView
                     frame:CGRectZero];
 }
 
-+ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView
++ (UILabel *)getLabel:(UIView *_Nullable)toView
                         frame:(CGRect)frame {
     return [self getLabel:toView frame:CGRectZero text:nil font:17 textColor:nil];
 }
 
-+ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView
++ (UILabel *)getLabel:(UIView *_Nullable)toView
                         frame:(CGRect)frame
                          text:(NSString *_Nullable)text
                          font:(CGFloat)fontSize
@@ -137,20 +137,20 @@
 }
 
 #pragma mark - UITextView
-+ (UITextView *_Nonnull)getTextView {
++ (UITextView *)getTextView {
     return [self getTextView:nil];
 }
 
-+ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView {
++ (UITextView *)getTextView:(UITextView *_Nullable)toView {
     return [self getTextView:toView frame:CGRectZero];
 }
 
-+ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView
++ (UITextView *)getTextView:(UITextView *_Nullable)toView
                               frame:(CGRect)frame {
     return [self getTextView:toView frame:frame delegate:nil];
 }
 
-+ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView
++ (UITextView *)getTextView:(UITextView *_Nullable)toView
                               frame:(CGRect)frame
                            delegate:(id<UITextViewDelegate>_Nullable)delegate {
     UITextView *textView = [[UITextView alloc] initWithFrame:frame];
@@ -160,20 +160,20 @@
 }
 
 #pragma mark - UIImageView
-+ (UIImageView *_Nonnull)getImageView {
++ (UIImageView *)getImageView {
     return [self getImageView:nil];
 }
 
-+ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView {
++ (UIImageView *)getImageView:(UIView *_Nullable)toView {
     return [self getImageView:toView frame:CGRectZero];
 }
 
-+ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView
++ (UIImageView *)getImageView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame {
     return [self getImageView:toView frame:frame image:nil];
 }
 
-+ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView
++ (UIImageView *)getImageView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                                 image:(UIImage *_Nullable)image {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
@@ -183,19 +183,19 @@
 }
 
 #pragma mark - UIButton
-+ (UIButton *_Nonnull)getButton {
++ (UIButton *)getButton {
     return [self getButton:nil];
 }
 
-+ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView {
++ (UIButton *)getButton:(UIView *_Nullable)toView {
     return [self getButton:toView frame:CGRectZero];
 }
 
-+ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView frame:(CGRect)frame {
++ (UIButton *)getButton:(UIView *_Nullable)toView frame:(CGRect)frame {
     return [self getButton:toView frame:frame target:nil action:nil];
 }
 
-+ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView frame:(CGRect)frame target:(id _Nullable)target action:(SEL _Nullable)action {
++ (UIButton *)getButton:(UIView *_Nullable)toView frame:(CGRect)frame target:(id _Nullable)target action:(SEL _Nullable)action {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [toView addSubview:button];
     button.frame = frame;
@@ -207,26 +207,26 @@
 }
 
 #pragma mark - UITableView
-+ (UITableView *_Nonnull)getTableView {
++ (UITableView *)getTableView {
     return [self getTableView:nil];
 }
 
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView {
++ (UITableView *)getTableView:(UIView *_Nullable)toView {
     return [self getTableView:toView frame:CGRectZero];
 }
 
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
++ (UITableView *)getTableView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame {
     return [self getTableView:toView frame:frame delegate:nil];
 }
 
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
++ (UITableView *)getTableView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                              delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate {
     return [self getTableView:toView frame:frame delegate:delegate style:UITableViewStylePlain];
 }
 
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
++ (UITableView *)getTableView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                              delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate
                                 style:(UITableViewStyle)style {
@@ -246,25 +246,25 @@
 }
 
 #pragma mark - UICollectionView
-+ (UICollectionView *_Nonnull)getCollectionViewWithLayout:(UICollectionViewFlowLayout *_Nonnull)layout {
++ (UICollectionView *)getCollectionViewWithLayout:(UICollectionViewFlowLayout *)layout {
     return [self getCollectionView:nil layout:layout];
 }
 
-+ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
-                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout {
++ (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
+                                         layout:(UICollectionViewFlowLayout *)layout {
     return [self getCollectionView:toView frame:CGRectZero layout:layout];
 }
 
-+ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
++ (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
                                           frame:(CGRect)frame
-                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout {
+                                         layout:(UICollectionViewFlowLayout *)layout {
     return [self getCollectionView:toView frame:frame delegate:nil layout:layout];
 }
 
-+ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
++ (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
                                           frame:(CGRect)frame
                                        delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>_Nullable)delegate
-                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout {
+                                         layout:(UICollectionViewFlowLayout *)layout {
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
     [toView addSubview:collectionView];
     collectionView.delegate = delegate;

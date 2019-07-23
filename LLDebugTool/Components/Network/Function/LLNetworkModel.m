@@ -27,27 +27,27 @@
 
 @interface LLNetworkModel ()
 
-@property (nonatomic , copy , nullable) NSString *requestDataTraffic;
+@property (nonatomic, copy, nullable) NSString *requestDataTraffic;
 
-@property (nonatomic , copy , nullable) NSString *responseDataTraffic;
+@property (nonatomic, copy, nullable) NSString *responseDataTraffic;
 
-@property (nonatomic , copy , nullable) NSString *totalDataTraffic;
+@property (nonatomic, copy, nullable) NSString *totalDataTraffic;
 
-@property (nonatomic , assign) unsigned long long requestDataTrafficValue;
+@property (nonatomic, assign) unsigned long long requestDataTrafficValue;
 
-@property (nonatomic , assign) unsigned long long responseDataTrafficValue;
+@property (nonatomic, assign) unsigned long long responseDataTrafficValue;
 
-@property (nonatomic , assign) unsigned long long totalDataTrafficValue;
+@property (nonatomic, assign) unsigned long long totalDataTrafficValue;
 
-@property (nonatomic , copy , nonnull) NSString *headerString;
+@property (nonatomic, copy) NSString *headerString;
 
-@property (nonatomic , copy , nonnull) NSString *responseHeaderString;
+@property (nonatomic, copy) NSString *responseHeaderString;
 
-@property (nonatomic , copy , nonnull) NSString *responseString;
+@property (nonatomic, copy) NSString *responseString;
 
-@property (nonatomic , strong) NSDate *dateDescription;
+@property (nonatomic, strong) NSDate *dateDescription;
 
-@property (nonatomic , strong , nullable) NSDictionary <NSString *, NSString *>*cookies;
+@property (nonatomic, strong, nullable) NSDictionary <NSString *, NSString *>*cookies;
 
 @end
 

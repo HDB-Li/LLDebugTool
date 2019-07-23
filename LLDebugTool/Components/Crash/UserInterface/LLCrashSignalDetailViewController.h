@@ -24,8 +24,12 @@
 #import "LLBaseTableViewController.h"
 #import "LLCrashSignalModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLCrashSignalDetailViewController : LLBaseTableViewController
 
-@property (nonatomic , strong , nonnull) LLCrashSignalModel *model;
+@property (nonatomic, strong) LLCrashSignalModel *model;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -30,7 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
-@property (nonatomic , strong) LLFilterLabelModel *model;
+@property (nonatomic, strong) LLFilterLabelModel *model;
 
 @end
 

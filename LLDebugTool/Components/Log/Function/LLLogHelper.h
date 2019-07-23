@@ -25,6 +25,8 @@
 #import <UIKit/UIKit.h>
 #import "LLConfig.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Quick print and save log.
  */
@@ -35,17 +37,17 @@
  
  @return Singleton
  */
-+ (instancetype _Nonnull)sharedHelper;
++ (instancetype)sharedHelper;
 
 /**
  Set enable to save log model.
  */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 /**
  Return log levels string.
  */
-+ (NSArray <NSString *>*_Nonnull)levelsDescription;
++ (NSArray <NSString *>*)levelsDescription;
 
 /**
  Print and save a log model with infos.
@@ -60,3 +62,5 @@
 - (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 @end
+
+NS_ASSUME_NONNULL_END

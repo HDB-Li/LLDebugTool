@@ -24,12 +24,16 @@
 #import <UIKit/UIKit.h>
 #import "LLFilterTextFieldModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^LLFilterOtherTextFieldCellBlock)(void);
 
 @interface LLFilterTextFieldCell : UICollectionViewCell
 
-@property (copy , nonatomic , nullable) LLFilterOtherTextFieldCellBlock confirmBlock;
+@property (copy, nonatomic, nullable) LLFilterOtherTextFieldCellBlock confirmBlock;
 
-- (void)confirmWithModel:(LLFilterTextFieldModel *_Nonnull)model;
+- (void)confirmWithModel:(LLFilterTextFieldModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

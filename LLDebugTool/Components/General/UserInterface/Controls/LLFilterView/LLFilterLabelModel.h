@@ -23,12 +23,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFilterLabelModel : NSObject
 
-@property (nonatomic , copy , readonly , nullable) NSString *message;
+@property (nonatomic, copy, readonly, nullable) NSString *message;
 
-@property (nonatomic , assign) BOOL isSelected;
+@property (nonatomic, assign) BOOL isSelected;
 
 - (instancetype _Nonnull)initWithMessage:(NSString *_Nullable)message;
 
 @end
+
+NS_ASSUME_NONNULL_END

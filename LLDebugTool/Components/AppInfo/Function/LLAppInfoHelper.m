@@ -69,13 +69,13 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
     NSString *_cpuType;
 }
 
-@property (nonatomic , strong) NSTimer *memoryTimer;
+@property (nonatomic, strong) NSTimer *memoryTimer;
 
-@property (nonatomic , copy) NSString *cpuTypeString;
+@property (nonatomic, copy) NSString *cpuTypeString;
 
-@property (nonatomic , copy) NSString *cpuSubtypeString;
+@property (nonatomic, copy) NSString *cpuSubtypeString;
 
-@property (nonatomic , copy) NSString *networkState;
+@property (nonatomic, copy) NSString *networkState;
 
 @end
 

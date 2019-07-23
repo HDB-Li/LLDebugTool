@@ -24,62 +24,64 @@
 #import "LLStorageModel.h"
 #import "LLCrashSignalModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLCrashModel : LLStorageModel
 
 /**
  * Crash Name
  */
-@property (copy , nonatomic , readonly , nullable) NSString *name;
+@property (copy, nonatomic, readonly, nullable) NSString *name;
 
 /**
  * Crash reason
  */
-@property (copy , nonatomic , readonly , nullable) NSString *reason;
+@property (copy, nonatomic, readonly, nullable) NSString *reason;
 
 /**
  * Crash UserInfo
  */
-@property (strong , nonatomic , readonly , nullable) NSDictionary <NSString *,id>*userInfo;
+@property (strong, nonatomic, readonly, nullable) NSDictionary <NSString *,id>*userInfo;
 
 /**
  * Crash stack symbols
  */
-@property (strong , nonatomic , readonly , nullable) NSArray <NSString *>*stackSymbols;
+@property (strong, nonatomic, readonly, nullable) NSArray <NSString *>*stackSymbols;
 
 /**
  * Crash Date (yyyy-MM-dd HH:mm:ss)
  */
-@property (copy , nonatomic , readonly , nullable) NSString *date;
+@property (copy, nonatomic, readonly, nullable) NSString *date;
 
 /**
  * Custom User Identity
  */
-@property (copy , nonatomic , readonly , nullable) NSString *userIdentity;
+@property (copy, nonatomic, readonly, nullable) NSString *userIdentity;
 
 /**
  * App Infos
  */
-@property (strong , nonatomic , readonly , nullable) NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*appInfos;
+@property (strong, nonatomic, readonly, nullable) NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*appInfos;
 
 /**
  Signal models.
  */
-@property (strong , nonatomic , readonly , nonnull) NSArray <LLCrashSignalModel *>*signals;
+@property (strong, nonatomic, readonly) NSArray <LLCrashSignalModel *>*signals;
 
 /**
  * App LaunchDate
  */
-@property (copy , nonatomic , readonly , nonnull) NSString *launchDate;
+@property (copy, nonatomic, readonly) NSString *launchDate;
 
 /**
  * Initial method
  */
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *_Nonnull)launchDate;
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate;
 
 /**
  Append a signal model.
  */
-- (void)appendSignalModel:(LLCrashSignalModel *_Nonnull)model;
+- (void)appendSignalModel:(LLCrashSignalModel *)model;
 
 /**
  Update appInfo
@@ -93,3 +95,5 @@
 - (instancetype _Nonnull)initWithDictionary:(NSDictionary <NSString *, id>*_Nullable)dictionary DEPRECATED_MSG_ATTRIBUTE("Use initWithName... replace.");
 
 @end
+
+NS_ASSUME_NONNULL_END

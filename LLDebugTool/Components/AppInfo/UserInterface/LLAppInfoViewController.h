@@ -23,6 +23,10 @@
 
 #import "LLBaseTableViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLAppInfoViewController : LLBaseTableViewController
 
 @end
+
+NS_ASSUME_NONNULL_END

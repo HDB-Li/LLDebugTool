@@ -33,13 +33,13 @@
 
 @interface LLScreenshotView () <LLScreenshotToolbarDelegate>
 
-@property (nonatomic , strong , nonnull) LLScreenshotImageView *imageView;
+@property (nonatomic, strong) LLScreenshotImageView *imageView;
 
-@property (nonatomic , strong , nonnull) LLScreenshotToolbar *toolBar;
+@property (nonatomic, strong) LLScreenshotToolbar *toolBar;
 
-@property (nonatomic , assign) CGRect originalImageFrame;
+@property (nonatomic, assign) CGRect originalImageFrame;
 
-@property (nonatomic , copy , nonnull) NSString *name;
+@property (nonatomic, copy) NSString *name;
 
 @end
 
@@ -83,13 +83,13 @@
     self.hidden = YES;
     __weak __block typeof(self) weakSelf = self;
     __block UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Note" message:@"Enter the image name" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * textField) {
         textField.text = weakSelf.name;
     }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
         weakSelf.hidden = NO;
     }];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         weakSelf.hidden = NO;
         [weakSelf doConfirmAction:alert.textFields.firstObject.text];
     }];

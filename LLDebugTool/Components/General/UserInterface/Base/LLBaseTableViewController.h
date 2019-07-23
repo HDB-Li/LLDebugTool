@@ -24,72 +24,74 @@
 #import "LLBaseViewController.h"
 #import "LLBaseModel.h"
 
-@interface LLBaseTableViewController : LLBaseViewController <UITableViewDelegate , UITableViewDataSource , UISearchBarDelegate>
+NS_ASSUME_NONNULL_BEGIN
+
+@interface LLBaseTableViewController : LLBaseViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 /**
  * Whether use searchBar. Default is NO.
  */
-@property (nonatomic , assign) BOOL isSearchEnable;
+@property (nonatomic, assign) BOOL isSearchEnable;
 
 /**
  * Whether selectable. Default is NO.
  */
-@property (nonatomic , assign) BOOL isSelectEnable;
+@property (nonatomic, assign) BOOL isSelectEnable;
 
 /**
  * Whether shareable. Default is NO.
  */
-@property (nonatomic , assign) BOOL isShareEnable;
+@property (nonatomic, assign) BOOL isShareEnable;
 
 /**
  * Whether deleteable. Default is NO.
  */
-@property (nonatomic , assign) BOOL isDeleteEnable;
+@property (nonatomic, assign) BOOL isDeleteEnable;
 
 /**
  * The default tableView in view controller.
  */
-@property (nonatomic , strong , nonnull , readonly) UITableView *tableView;
+@property (nonatomic, strong, readonly) UITableView *tableView;
 
 /**
  * Original data array.
  */
-@property (nonatomic , strong , nonnull , readonly) NSMutableArray *dataArray;
+@property (nonatomic, strong, readonly) NSMutableArray *dataArray;
 
 /**
  * Filter data array.
  */
-@property (nonatomic , strong , nonnull , readonly) NSMutableArray *searchDataArray;
+@property (nonatomic, strong, readonly) NSMutableArray *searchDataArray;
 
 /**
  * Automatic data array dealed by search or filter.
  */
-@property (nonatomic , strong , nonnull , readonly) NSMutableArray *datas;
+@property (nonatomic, strong, readonly) NSMutableArray *datas;
 
 /**
  * Header view use to show searchBar and filter view.
  */
-@property (nonatomic , strong , nullable , readonly) UIView *headerView;
+@property (nonatomic, strong, nullable, readonly) UIView *headerView;
 
 /**
  * The searchBar in view controller.
  */
-@property (nonatomic , strong , nullable , readonly) UISearchBar *searchBar;
+@property (nonatomic, strong, nullable, readonly) UISearchBar *searchBar;
 
 /**
  * Select all item in toolbar.
  */
-@property (nonatomic , strong , nullable , readonly) UIBarButtonItem *selectAllItem;
+@property (nonatomic, strong, nullable, readonly) UIBarButtonItem *selectAllItem;
 
 /**
  * Share item in toolbar.
  */
-@property (nonatomic , strong , nullable , readonly) UIBarButtonItem *shareItem;
+@property (nonatomic, strong, nullable, readonly) UIBarButtonItem *shareItem;
 
 /**
  * Delete item in toolbar.
  */
-@property (nonatomic , strong , nullable , readonly) UIBarButtonItem *deleteItem;
+@property (nonatomic, strong, nullable, readonly) UIBarButtonItem *deleteItem;
 
 /**
  * Initial method.
@@ -100,24 +102,24 @@
 /**
  * Init a navigation item.
  */
-- (void)initRightNavigationItemWithImageName:(NSString *_Nonnull)imageName selectedImageName:(NSString *_Nonnull)selectedImageName;
+- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName;
 
 #pragma mark - Rewrite
 - (void)leftItemClick;
 /**
  * Right item action. Must call super method.
  */
-- (void)rightItemClick:(UIButton *_Nonnull)sender;
+- (void)rightItemClick:(UIButton *)sender;
 
 /**
  * Share files action. Must call super method.
  */
-- (void)shareFilesWithIndexPaths:(NSArray *_Nonnull)indexPaths;
+- (void)shareFilesWithIndexPaths:(NSArray *)indexPaths;
 
 /**
  * Delete files action. Must call super method.
  */
-- (void)deleteFilesWithIndexPaths:(NSArray *_Nonnull)indexPaths;
+- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths;
 
 /**
  * Rewrite method to control whether is searching. Must call super method.
@@ -125,3 +127,5 @@
 - (BOOL)isSearching;
 
 @end
+
+NS_ASSUME_NONNULL_END

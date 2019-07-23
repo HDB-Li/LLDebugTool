@@ -24,6 +24,8 @@
 #import <UIKit/UIKit.h>
 #import "LLFilterTextFieldModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFilterDatePickerView : UIPickerView
 
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame fromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate;
@@ -31,3 +33,5 @@
 - (NSString *_Nullable)currentDateString;
 
 @end
+
+NS_ASSUME_NONNULL_END

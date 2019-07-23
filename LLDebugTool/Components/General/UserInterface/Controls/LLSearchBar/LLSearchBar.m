@@ -40,7 +40,7 @@
             if ([subView isKindOfClass:[UITextField class]]) {
                 CGRect frame = subView.frame;
                 if (frame.size.height != 28) {
-                    CGRect newFrame = CGRectMake(frame.origin.x, (frame.origin.y * 2 + frame.size.height - 28 ) / 2.0 , frame.size.width, 28);
+                    CGRect newFrame = CGRectMake(frame.origin.x, (frame.origin.y * 2 + frame.size.height - 28 ) / 2.0, frame.size.width, 28);
                     subView.frame = newFrame;
                 }
             }

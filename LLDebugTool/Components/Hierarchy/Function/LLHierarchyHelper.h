@@ -25,14 +25,18 @@
 #import <UIKit/UIKit.h>
 #import "LLHierarchyModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLHierarchyHelper : NSObject
 
 + (instancetype _Nonnull)sharedHelper;
 
-- (NSArray <UIWindow *>*_Nonnull)allWindows;
+- (NSArray <UIWindow *>*)allWindows;
 
-- (LLHierarchyModel *_Nonnull)hierarchyInApplication;
+- (LLHierarchyModel *)hierarchyInApplication;
 
-- (LLHierarchyModel *_Nonnull)hierarchyInView:(UIView *_Nonnull)view;
+- (LLHierarchyModel *)hierarchyInView:(UIView *)view;
 
 @end
+
+NS_ASSUME_NONNULL_END

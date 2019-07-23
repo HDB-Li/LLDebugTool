@@ -24,25 +24,29 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFilterTextFieldModel : NSObject
 
 // Normal
-@property (copy , nonatomic , nullable) NSString *title;
+@property (copy, nonatomic, nullable) NSString *title;
 
-@property (copy , nonatomic , nullable) NSString *currentFilter;
+@property (copy, nonatomic, nullable) NSString *currentFilter;
 
-@property (assign , nonatomic) CGFloat titleWidth;
+@property (assign, nonatomic) CGFloat titleWidth;
 
-@property (assign , nonatomic) BOOL autoAdjustWidthToTitle;
+@property (assign, nonatomic) BOOL autoAdjustWidthToTitle;
 
 // File Part
-@property (copy , nonatomic , nullable) NSArray *filters;
+@property (copy, nonatomic, nullable) NSArray *filters;
 
 // Date Part
-@property (assign , nonatomic) BOOL useDatePicker;
+@property (assign, nonatomic) BOOL useDatePicker;
 
-@property (strong , nonatomic , nullable) NSDate *fromDate;
+@property (strong, nonatomic, nullable) NSDate *fromDate;
 
-@property (strong , nonatomic , nullable) NSDate *endDate;
+@property (strong, nonatomic, nullable) NSDate *endDate;
 
 @end
+
+NS_ASSUME_NONNULL_END

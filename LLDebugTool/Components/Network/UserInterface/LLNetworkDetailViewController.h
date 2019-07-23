@@ -24,8 +24,12 @@
 #import "LLBaseTableViewController.h"
 #import "LLNetworkModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLNetworkDetailViewController : LLBaseTableViewController
 
-@property (nonatomic , strong , nonnull) LLNetworkModel *model;
+@property (nonatomic, strong) LLNetworkModel *model;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -24,8 +24,12 @@
 #import "LLBaseTableViewController.h"
 #import "LLLogModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLLogDetailViewController : LLBaseTableViewController
 
-@property (nonatomic , strong , nonnull) LLLogModel *model;
+@property (nonatomic, strong) LLLogModel *model;
 
 @end
+
+NS_ASSUME_NONNULL_END

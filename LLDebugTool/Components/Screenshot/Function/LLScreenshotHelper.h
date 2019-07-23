@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLScreenshotHelper : NSObject
 
 /**
@@ -36,7 +38,7 @@
 /**
  Set enable to screenshot.
  */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 /**
  Simulate user screenshot.
@@ -51,6 +53,8 @@
 /**
  Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
-- (void)saveScreenshot:(UIImage *_Nonnull)image name:(NSString *_Nullable)name complete:(void (^ __nullable)(BOOL finished))complete;
+- (void)saveScreenshot:(UIImage *)image name:(NSString *_Nullable)name complete:(void (^ __nullable)(BOOL finished))complete;
 
 @end
+
+NS_ASSUME_NONNULL_END

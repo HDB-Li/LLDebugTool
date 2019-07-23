@@ -26,19 +26,19 @@
 
 @implementation UIImage (LL_Utils)
 
-+ (UIImage *)LL_imageNamed:(NSString *_Nonnull)name {
++ (UIImage *)LL_imageNamed:(NSString *)name {
     return [UIImage imageNamed:name inBundle:[LLConfig sharedConfig].imageBundle compatibleWithTraitCollection:nil];
 }
 
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size {
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size {
     return [[self LL_imageNamed:name] LL_resizeTo:size];
 }
 
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name color:(UIColor *)color {
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name color:(UIColor *)color {
     return [[self LL_imageNamed:name] LL_colorTo:color];
 }
 
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size color:(UIColor *)color {
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size color:(UIColor *)color {
     return [[self LL_imageNamed:name size:size] LL_colorTo:color];
 }
 

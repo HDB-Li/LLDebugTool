@@ -28,11 +28,11 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 @interface LLLogDetailViewController () <LLSubTitleTableViewCellDelegate>
 
-@property (nonatomic , strong) NSMutableArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *titleArray;
 
-@property (nonatomic , strong) NSMutableArray *contentArray;
+@property (nonatomic, strong) NSMutableArray *contentArray;
 
-@property (nonatomic , strong) NSArray *canCopyArray;
+@property (nonatomic, strong) NSArray *canCopyArray;
 
 @end
 

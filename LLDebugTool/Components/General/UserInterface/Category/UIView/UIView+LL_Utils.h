@@ -23,6 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (LL_Utils)
 
 @property (nonatomic, assign) CGFloat LL_horizontalPadding;
@@ -33,3 +35,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END

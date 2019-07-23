@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "LLCrashModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Catch crash or not.
  */
@@ -39,11 +41,13 @@
 /**
  Set enable to catch crash.
  */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 /**
  This time crash model.
  */
-@property (nonatomic , strong , nullable) LLCrashModel *crashModel;
+@property (nonatomic, strong, nullable) LLCrashModel *crashModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

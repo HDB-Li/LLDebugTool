@@ -42,13 +42,13 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
-@property (strong , nonatomic) CAShapeLayer *lineLayer;
+@property (strong, nonatomic) CAShapeLayer *lineLayer;
 
-@property (strong , nonatomic) CAShapeLayer *dashLineLayer;
+@property (strong, nonatomic) CAShapeLayer *dashLineLayer;
 
-@property (nonatomic , strong) LLHierarchyModel *model;
+@property (nonatomic, strong) LLHierarchyModel *model;
 
-@property (nonatomic , assign) BOOL isFold;
+@property (nonatomic, assign) BOOL isFold;
 
 @end
 

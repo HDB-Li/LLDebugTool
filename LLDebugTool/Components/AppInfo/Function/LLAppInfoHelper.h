@@ -44,6 +44,8 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperRequestDataTrafficKey;
 UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperResponseDataTrafficKey;
 UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperTotalDataTrafficKey;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Monitoring app's properties.
  */
@@ -59,103 +61,103 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperTotalDataTrafficKey;
 /**
  Set enable to monitoring network request.
  */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 /**
  Get current app infos. Include "CPU Usage","Memory Usage","FPS","Data Traffic","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Device Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
  */
-- (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nonnull)appInfos;
+- (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos;
 
 /**
  Get dynamic app infos this time.
  */
-- (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos;
+- (NSDictionary <NSString *, NSString *>*)dynamicAppInfos;
 
 /**
  Current cpu usage.
  */
-- (NSString *_Nonnull)cpuUsage;
+- (NSString *)cpuUsage;
 
 /**
  Current memory usage.
  */
-- (NSString *_Nonnull)memoryUsage;
+- (NSString *)memoryUsage;
 
 /**
  Current FPS.
  */
-- (NSString *_Nonnull)fps;
+- (NSString *)fps;
 
 /**
  Current data traffic.
  Format is "{total} ({upload}↑ / {download}↓)"
  */
-- (NSString *_Nonnull)dataTraffic;
+- (NSString *)dataTraffic;
 
 /**
  Application name.
  */
-- (NSString *_Nonnull)appName;
+- (NSString *)appName;
 
 /**
  Application bundle identifier.
  */
-- (NSString *_Nonnull)bundleIdentifier;
+- (NSString *)bundleIdentifier;
 
 /**
  Application version.
  */
-- (NSString *_Nonnull)appVersion;
+- (NSString *)appVersion;
 
 /**
  Application start time consuming.
  */
-- (NSString *_Nonnull)appStartTimeConsuming;
+- (NSString *)appStartTimeConsuming;
 
 /**
  Device model.
  */
-- (NSString *_Nonnull)deviceModel;
+- (NSString *)deviceModel;
 
 /**
  Device name.
  */
-- (NSString *_Nonnull)deviceName;
+- (NSString *)deviceName;
 
 /**
  Device system version.
  */
-- (NSString *_Nonnull)systemVersion;
+- (NSString *)systemVersion;
 
 /**
  Device screen resolution.
  */
-- (NSString *_Nonnull)screenResolution;
+- (NSString *)screenResolution;
 
 /**
  Current languageCode.
  */
-- (NSString *_Nonnull)languageCode;
+- (NSString *)languageCode;
 
 /**
  Current battery level.
  */
-- (NSString *_Nonnull)batteryLevel;
+- (NSString *)batteryLevel;
 
 /**
  Current cpu type.
  */
-- (NSString *_Nonnull)cpuType;
+- (NSString *)cpuType;
 
 /**
  Current disk infos.
  */
-- (NSString *_Nonnull)disk;
+- (NSString *)disk;
 
 /**
  Current network state.
  */
-- (NSString *_Nonnull)networkState;
+- (NSString *)networkState;
 
 /**
  Current ssid.
@@ -166,7 +168,7 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperTotalDataTrafficKey;
 /**
  Get this time launchDate. LaunchDate means the start time of the app, also it's the identity for crash model.
  */
-- (NSString *_Nonnull)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
+- (NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
 
 /**
  Start monitoring CPU/FPS/Memory
@@ -185,3 +187,5 @@ UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperTotalDataTrafficKey;
 - (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
 @end
+
+NS_ASSUME_NONNULL_END

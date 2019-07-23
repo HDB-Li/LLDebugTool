@@ -125,6 +125,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateColorStyleNotificationName;
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
+NS_ASSUME_NONNULL_BEGIN
 /**
  Config file. Must config properties before [LLDebugTool enable].
  */
@@ -135,130 +136,132 @@ FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyle
  
  @return Singleton
  */
-+ (instancetype _Nonnull)sharedConfig;
++ (instancetype)sharedConfig;
 
 #pragma mark - StautsBarSytle
 /**
  Window's statusBarStyle when show.
  */
-@property (assign , nonatomic , readonly) UIStatusBarStyle statusBarStyle;
+@property (nonatomic, assign, readonly) UIStatusBarStyle statusBarStyle;
 
 #pragma mark - Color
 /**
  Use preset the color configuration. For details, please see LLConfigColorStyle.
  */
-@property (assign , nonatomic) LLConfigColorStyle colorStyle;
+@property (nonatomic, assign) LLConfigColorStyle colorStyle;
 
 /**
  UIControl's background color. Default is [UIColor blackColor]..
  */
-@property (strong , nonatomic , nonnull , readonly) UIColor *backgroundColor;
+@property (nonatomic, strong, readonly) UIColor *backgroundColor;
 
 /**
  UIControl's text color. Default is [UIColor greenColor].
  */
-@property (strong , nonatomic , nonnull , readonly) UIColor *textColor;
+@property (nonatomic, strong, readonly) UIColor *textColor;
 
 /**
  System tint color.
  */
-@property (strong , nonatomic , readonly , nonnull) UIColor *systemTintColor;
+@property (nonatomic, strong, readonly) UIColor *systemTintColor;
 
 /**
  Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
  */
-- (void)configBackgroundColor:(UIColor *_Nonnull)backgroundColor textColor:(UIColor *_Nonnull)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
+- (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
 #pragma mark - Date Formatter
 /**
  Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".
  If this value is modified, the old data is not compatible.
  */
-@property (copy , nonatomic , nonnull) NSString *dateFormatter;
+@property (nonatomic, copy) NSString *dateFormatter;
 
 #pragma mark - Window
 /**
  Suspension ball width, must greater than 70.
  */
-@property (assign , nonatomic) CGFloat suspensionBallWidth;
+@property (nonatomic, assign) CGFloat suspensionBallWidth;
 
 /**
  Suspension Ball alpha(not active), default is 0.9.
  */
-@property (assign , nonatomic) CGFloat normalAlpha;
+@property (nonatomic, assign) CGFloat normalAlpha;
 
 /**
  Suspension Ball alpha(active), default is 1.0.
  */
-@property (assign , nonatomic) CGFloat activeAlpha;
+@property (nonatomic, assign) CGFloat activeAlpha;
 
 /**
  Whether the suspension ball can be moved, default is YES.
  */
-@property (assign , nonatomic) BOOL suspensionBallMoveable;
+@property (nonatomic, assign) BOOL suspensionBallMoveable;
 
 #pragma mark - User Identity
 /**
  Tag user name is used to create the crash/network/log model.
  */
-@property (copy , nonatomic , nullable) NSString *userIdentity;
+@property (nonatomic, copy, nullable) NSString *userIdentity;
 
 #pragma mark - Network
 /**
  Observer network in hosts, ignore others.
  */
-@property (strong , nonatomic , nullable) NSArray <NSString *>*hosts;
+@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts;
 
 #pragma mark - Settings
 /**
  Whether to print LLDebugTool's log event. Default is YES.
  */
-@property (assign , nonatomic) BOOL showDebugToolLog;
+@property (nonatomic, assign) BOOL showDebugToolLog;
 
 /**
  Whether check LLDebugTool has new version.
  */
-@property (assign , nonatomic) BOOL autoCheckDebugToolVersion;
+@property (nonatomic, assign) BOOL autoCheckDebugToolVersion;
 
 /**
  Customize the log style. Default is LLConfigLogDetail.
  */
-@property (assign , nonatomic) LLConfigLogStyle logStyle;
+@property (nonatomic, assign) LLConfigLogStyle logStyle;
 
 /**
  Window style. Decide how the Window displays. Default is LLConfigWindowSuspensionBall.
  */
-@property (assign , nonatomic) LLConfigWindowStyle windowStyle;
+@property (nonatomic, assign) LLConfigWindowStyle windowStyle;
 
 /**
  Available features. Default is LLConfigAvailableAll.
  It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
  */
-@property (assign , nonatomic) LLConfigAvailableFeature availables;
+@property (nonatomic, assign) LLConfigAvailableFeature availables;
 
 #pragma mark - Folder Path
 /**
  The folder path for LLDebugTool. The database is created and read in this directory.
  Default path is ../Documents/LLDebugTool/.
  */
-@property (copy , nonatomic , nonnull) NSString *folderPath;
+@property (nonatomic, copy) NSString *folderPath;
 
 #pragma mark - Extension
 /**
  Image resource bundle.
  */
-@property (strong , nonatomic , readonly , nullable) NSBundle *imageBundle;
+@property (nonatomic, strong, readonly, nullable) NSBundle *imageBundle;
 
 /**
  XIB resource bundle.
  */
-@property (strong , nonatomic , readonly , nullable) NSBundle *XIBBundle;
+@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle;
 
 #pragma mark - DEPRECATED
 /**
  Use system color or not. If YES, window will draw by system tint color. If NO, window will draw by [backgroundColor] and [textColor].
  Default is NO.
  */
-@property (assign , nonatomic) BOOL useSystemColor DEPRECATED_MSG_ATTRIBUTE("Unsupported, Use colorStyle LLConfigColorStyleSimple replace.");;
+@property (nonatomic, assign) BOOL useSystemColor DEPRECATED_MSG_ATTRIBUTE("Unsupported, Use colorStyle LLConfigColorStyleSimple replace.");;
 
 @end
+
+NS_ASSUME_NONNULL_END

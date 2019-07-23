@@ -33,13 +33,13 @@
 #endif
 
 #define LLog(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Event(event , fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Event(event, fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Alert(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Alert_Event(event, fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Alert_Event(event, fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Warning(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Warning_Event(event, fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Warning_Event(event, fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Error(fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Error_Event(event, fmt , ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Error_Event(event, fmt, ...) [LLSharedDebugTool logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:event message:(fmt, ##__VA_ARGS__)]
 
 #elif __has_include("LLLogHelper.h") || __has_include("<LLLogHelper.h>")
 
@@ -50,13 +50,13 @@
 #endif
 
 #define LLog(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Event(event , fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Event(event, fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelDefault onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Alert(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Alert_Event(event, fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Alert_Event(event, fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Warning(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Warning_Event(event, fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Warning_Event(event, fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelWarning onEvent:event message:(fmt, ##__VA_ARGS__)]
 #define LLog_Error(fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:nil message:(fmt, ##__VA_ARGS__)]
-#define LLog_Error_Event(event, fmt , ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:event message:(fmt, ##__VA_ARGS__)]
+#define LLog_Error_Event(event, fmt, ...) [[LLLogHelper sharedHelper] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelError onEvent:event message:(fmt, ##__VA_ARGS__)]
 
 #endif
 /*
@@ -64,13 +64,13 @@
  
  #ifndef DEBUG
  #define LLog(fmt, ...) NSLog(fmt)
- #define LLog_Event(event , fmt , ...) NSLog(fmt)
+ #define LLog_Event(event, fmt, ...) NSLog(fmt)
  #define LLog_Alert(fmt, ...) NSLog(fmt)
- #define LLog_Alert_Event(event, fmt , ...) NSLog(fmt)
+ #define LLog_Alert_Event(event, fmt, ...) NSLog(fmt)
  #define LLog_Warning(fmt, ...) NSLog(fmt)
- #define LLog_Warning_Event(event, fmt , ...) NSLog(fmt)
+ #define LLog_Warning_Event(event, fmt, ...) NSLog(fmt)
  #define LLog_Error(fmt, ...) NSLog(fmt)
- #define LLog_Error_Event(event, fmt , ...) NSLog(fmt)
+ #define LLog_Error_Event(event, fmt, ...) NSLog(fmt)
  #endif
  
  */

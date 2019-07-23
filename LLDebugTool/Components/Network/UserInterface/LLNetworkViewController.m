@@ -39,13 +39,13 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 @interface LLNetworkViewController ()
 
-@property (nonatomic , strong) LLNetworkFilterView *filterView;
+@property (nonatomic, strong) LLNetworkFilterView *filterView;
 
 // Data
-@property (nonatomic , strong) NSArray *currentHost;
-@property (nonatomic , strong) NSArray *currentTypes;
-@property (nonatomic , strong) NSDate *currentFromDate;
-@property (nonatomic , strong) NSDate *currentEndDate;
+@property (nonatomic, strong) NSArray *currentHost;
+@property (nonatomic, strong) NSArray *currentTypes;
+@property (nonatomic, strong) NSDate *currentFromDate;
+@property (nonatomic, strong) NSDate *currentEndDate;
 
 @end
 

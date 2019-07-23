@@ -34,11 +34,11 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 @interface LLCrashDetailViewController () <LLSubTitleTableViewCellDelegate>
 
-@property (nonatomic , strong) NSMutableArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *titleArray;
 
-@property (nonatomic , strong) NSMutableArray *contentArray;
+@property (nonatomic, strong) NSMutableArray *contentArray;
 
-@property (nonatomic , strong) NSArray *canCopyArray;
+@property (nonatomic, strong) NSArray *canCopyArray;
 
 @end
 

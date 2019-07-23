@@ -23,8 +23,12 @@
 
 #import "LLBaseTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLNetworkImageCell : LLBaseTableViewCell
 
-- (void)setUpImage:(UIImage *_Nonnull)image;
+- (void)setUpImage:(UIImage *)image;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -24,18 +24,22 @@
 #import "LLBaseTableViewController.h"
 #import "LLHierarchyModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol LLHierarchyViewControllerDelegate;
 
 @interface LLHierarchyViewController : LLBaseTableViewController
 
-@property (nonatomic , weak , nullable) id <LLHierarchyViewControllerDelegate> delegate;
+@property (nonatomic, weak, nullable) id <LLHierarchyViewControllerDelegate> delegate;
 
-@property (nonatomic , strong , nullable) UIView *selectView;
+@property (nonatomic, strong, nullable) UIView *selectView;
 
 @end
 
 @protocol LLHierarchyViewControllerDelegate <NSObject>
 
-- (void)LLHierarchyViewController:(LLHierarchyViewController *_Nonnull)viewController didFinishWithSelectedModel:(LLHierarchyModel *_Nonnull)selectedModel;
+- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -34,23 +34,23 @@ static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
 static NSString *const kLabelCellID = @"LabelCellID";
 
-@interface LLFilterOtherView () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@interface LLFilterOtherView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic , strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic , strong) NSMutableArray *userIdDataArray;
+@property (nonatomic, strong) NSMutableArray *userIdDataArray;
 
-@property (nonatomic , strong) NSArray *fileDataArray;
+@property (nonatomic, strong) NSArray *fileDataArray;
 
-@property (nonatomic , strong) NSDictionary *fileDictionary;
+@property (nonatomic, strong) NSDictionary *fileDictionary;
 
-@property (nonatomic , strong) LLFilterTextFieldModel *fileModel;
+@property (nonatomic, strong) LLFilterTextFieldModel *fileModel;
 
-@property (nonatomic , strong) LLFilterTextFieldModel *funcModel;
+@property (nonatomic, strong) LLFilterTextFieldModel *funcModel;
 
-@property (nonatomic , strong) LLFilterTextFieldModel *fromDateModel;
+@property (nonatomic, strong) LLFilterTextFieldModel *fromDateModel;
 
-@property (nonatomic , strong) LLFilterTextFieldModel *endDateModel;
+@property (nonatomic, strong) LLFilterTextFieldModel *endDateModel;
 
 @end
 
@@ -146,7 +146,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     [self.collectionView reloadData];
 }
 
-#pragma mark - UICollectionViewDelegate , UICollectionViewDataSource
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0) {
         return 2;

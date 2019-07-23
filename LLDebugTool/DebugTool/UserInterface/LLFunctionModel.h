@@ -44,6 +44,8 @@ typedef NS_ENUM(NSUInteger, LLFunctionAction) {
     LLFunctionActionHierarchy
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  The model of LLFunctionCell.
  */
@@ -52,12 +54,12 @@ typedef NS_ENUM(NSUInteger, LLFunctionAction) {
 /**
  The name of the display image.
  */
-@property (nonatomic, copy, nonnull) NSString *imageName;
+@property (nonatomic, copy) NSString *imageName;
 
 /**
  The title to display.
  */
-@property (nonatomic, copy, nonnull) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 /**
  Specified action.
@@ -72,6 +74,8 @@ typedef NS_ENUM(NSUInteger, LLFunctionAction) {
  @param action Specified action.
  @return Instance object.
  */
-- (instancetype _Nonnull )initWithImageName:(NSString *_Nonnull)imageName title:(NSString *_Nonnull)title action:(LLFunctionAction)action;
+- (instancetype _Nonnull )initWithImageName:(NSString *)imageName title:(NSString *)title action:(LLFunctionAction)action;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,27 +23,29 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImage (LL_Utils)
 
 /**
  * Image in LLDebugTool's bundle.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name;
 
 /**
  * Image in LLDebugTool's bundle with the specified size.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size;
 
 /**
  * Image in LLDebugTool's bundle with the specified color.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name color:(UIColor *_Nonnull)color;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name color:(UIColor *)color;
 
 /**
  * Image in LLDebugTool's bundle with the specified size and color.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *_Nonnull)name size:(CGSize)size color:(UIColor *_Nonnull)color;
++ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size color:(UIColor *)color;
 
 /**
  * Image from data.
@@ -53,11 +55,13 @@
 /**
  * Get a image with the specified size..
  */
-- (UIImage *_Nonnull)LL_resizeTo:(CGSize)size;
+- (UIImage *)LL_resizeTo:(CGSize)size;
 
 /**
  * Get a image with the specified color.
  */
-- (UIImage *_Nonnull)LL_colorTo:(UIColor *_Nonnull)color;
+- (UIImage *)LL_colorTo:(UIColor *)color;
 
 @end
+
+NS_ASSUME_NONNULL_END

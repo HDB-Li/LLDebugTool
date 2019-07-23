@@ -39,11 +39,11 @@ static LLDebugTool *_instance = nil;
 
 @interface LLDebugTool () <LLWindowDelegate>
 
-@property (nonatomic , strong , nonnull) LLWindow *window;
+@property (nonatomic, strong) LLWindow *window;
 
-@property (nonatomic , strong , nonnull) LLWindowViewController *windowViewController;
+@property (nonatomic, strong) LLWindowViewController *windowViewController;
 
-@property (nonatomic , copy , nonnull) NSString *versionNumber;
+@property (nonatomic, copy) NSString *versionNumber;
 
 @end
 

@@ -31,15 +31,15 @@
 
 @interface LLHierarchyExplorerToolBar () <UITabBarDelegate>
 
-@property (nonatomic , strong) UITabBar *tabBar;
+@property (nonatomic, strong) UITabBar *tabBar;
 
-@property (nonatomic , strong) UIPanGestureRecognizer *panGR;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGR;
 
-@property (nonatomic , strong) UIView *descriptionBackgroundView;
+@property (nonatomic, strong) UIView *descriptionBackgroundView;
 
-@property (nonatomic , strong) UIView *descriptionTintView;
+@property (nonatomic, strong) UIView *descriptionTintView;
 
-@property (nonatomic , strong) UILabel *descriptionLabel;
+@property (nonatomic, strong) UILabel *descriptionLabel;
 
 @end
 
@@ -65,7 +65,7 @@
 
 - (void)confirmWithView:(UIView *)selectView {
     self.descriptionTintView.backgroundColor = [LLTool colorFromObject:selectView];
-    self.descriptionLabel.text = [NSString stringWithFormat:@"%@ , %@",NSStringFromClass(selectView.class),[LLTool stringFromFrame:selectView.frame]];
+    self.descriptionLabel.text = [NSString stringWithFormat:@"%@, %@",NSStringFromClass(selectView.class),[LLTool stringFromFrame:selectView.frame]];
 }
 
 #pragma mark - Primary
@@ -89,7 +89,7 @@
     
     CGFloat itemsMargin = 15;
     CGFloat tintWidth = 15;
-    CGRect tintViewFrame = CGRectMake(itemsMargin, (self.descriptionBackgroundView.frame.size.height - tintWidth) / 2.0, tintWidth , tintWidth);
+    CGRect tintViewFrame = CGRectMake(itemsMargin, (self.descriptionBackgroundView.frame.size.height - tintWidth) / 2.0, tintWidth, tintWidth);
     self.descriptionTintView = [LLFactory getView:self.descriptionBackgroundView frame:tintViewFrame];
     [LLTool setView:self.descriptionTintView cornerRadius:tintWidth / 2.0];
     

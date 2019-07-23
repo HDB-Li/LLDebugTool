@@ -23,10 +23,14 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (LL_Utils)
 
-+ (NSString *_Nonnull)LL_launchDate;
++ (NSString *)LL_launchDate;
 
 + (NSTimeInterval)LL_startLoadTime;
 
 @end
+
+NS_ASSUME_NONNULL_END

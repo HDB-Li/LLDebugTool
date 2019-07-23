@@ -38,6 +38,8 @@ static NSString * _Nonnull const kLLNetworkModelName = @"LLNetworkModel";
 static NSString * _Nonnull const kLLLogModelName = @"LLLogModel";
 static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLRoute : NSObject
 
 #pragma mark - DebugTool Route
@@ -60,7 +62,7 @@ static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
 /**
  Called NSLog.
  */
-+ (void)logWithMessage:(NSString *_Nonnull)message event:(NSString *_Nullable)event;
++ (void)logWithMessage:(NSString *)message event:(NSString *_Nullable)event;
 
 #pragma mark - App Route
 /**
@@ -71,18 +73,20 @@ static NSString * _Nonnull const kLLCrashModelName = @"LLCrashModel";
 /**
  If LLAppInfoHelper exists, LLAppInfoHelper is called, otherwise nothing will be done.
  */
-+ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nonnull)appInfos;
++ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos;
     
 /**
  If LLAppInfoHelper exists, LLAppInfoHelper is called, otherwise nothing will be done.
  */
-+ (NSDictionary <NSString *, NSString *>*_Nonnull)dynamicAppInfos;
++ (NSDictionary <NSString *, NSString *>*)dynamicAppInfos;
 
 #pragma mark - Base
     
 /**
  Return viewController if class is exist.
  */
-+ (UIViewController *_Nullable)viewControllerWithName:(NSString *_Nonnull)name params:(NSDictionary <NSString *,id>*_Nullable)params;
++ (UIViewController *_Nullable)viewControllerWithName:(NSString *)name params:(NSDictionary <NSString *,id>*_Nullable)params;
 
 @end
+
+NS_ASSUME_NONNULL_END

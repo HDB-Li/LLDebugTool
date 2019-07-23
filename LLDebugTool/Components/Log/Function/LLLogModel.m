@@ -27,7 +27,7 @@
 
 @interface LLLogModel ()
 
-@property (nonatomic , strong) NSDate *dateDescription;
+@property (nonatomic, strong) NSDate *dateDescription;
 
 @end
 

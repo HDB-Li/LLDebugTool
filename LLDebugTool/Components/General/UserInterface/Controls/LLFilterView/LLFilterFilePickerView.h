@@ -24,8 +24,12 @@
 #import <UIKit/UIKit.h>
 #import "LLFilterTextFieldModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFilterFilePickerView : UIPickerView
 
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame model:(LLFilterTextFieldModel *_Nonnull)model;
+- (instancetype _Nonnull)initWithFrame:(CGRect)frame model:(LLFilterTextFieldModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

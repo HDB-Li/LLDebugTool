@@ -23,9 +23,9 @@
 
 #import "LLFilterFilePickerView.h"
 
-@interface LLFilterFilePickerView() <UIPickerViewDelegate , UIPickerViewDataSource>
+@interface LLFilterFilePickerView() <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic , strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
@@ -40,7 +40,7 @@
     return self;
 }
 
-#pragma mark - UIPickerViewDelegate , UIPickerViewDataSource>
+#pragma mark - UIPickerViewDelegate, UIPickerViewDataSource>
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }

@@ -23,12 +23,16 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^LLFilterDateViewChangeBlock)(NSDate *_Nullable from, NSDate *_Nullable end);
 
 @interface LLFilterDateView : UIView
 
-@property (copy , nonatomic , nullable) LLFilterDateViewChangeBlock changeBlock;
+@property (copy, nonatomic, nullable) LLFilterDateViewChangeBlock changeBlock;
 
 - (void)updateFromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate ;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,6 +23,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSHTTPURLResponse (LL_Utils)
 
 /**
@@ -31,3 +33,5 @@
 - (NSString *_Nullable)LL_stateLine;
 
 @end
+
+NS_ASSUME_NONNULL_END

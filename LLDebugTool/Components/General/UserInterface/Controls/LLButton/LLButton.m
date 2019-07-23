@@ -29,9 +29,9 @@
 
 @property (nonatomic, strong) UIImage *image;
 
-@property (nonatomic , strong) UIColor *selectedBackgroundColor;
+@property (nonatomic, strong) UIColor *selectedBackgroundColor;
 
-@property (nonatomic , strong) UIColor *normalBackgroundColor;
+@property (nonatomic, strong) UIColor *normalBackgroundColor;
 
 @end
 

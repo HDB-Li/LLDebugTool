@@ -39,9 +39,9 @@ static NSString *const kCellID = @"cellID";
 
 @interface LLFunctionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, LLHierarchyViewControllerDelegate>
 
-@property (nonatomic, strong, nonnull) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong, nonnull) NSArray <LLFunctionModel *>*dataArray;
+@property (nonatomic, strong) NSArray <LLFunctionModel *>*dataArray;
 
 @end
 

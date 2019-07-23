@@ -24,8 +24,12 @@
 #import <UIKit/UIKit.h>
 #import "LLFilterLabelModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFilterLabelCell : UICollectionViewCell
 
-- (void)confirmWithModel:(LLFilterLabelModel *_Nonnull)model;
+- (void)confirmWithModel:(LLFilterLabelModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

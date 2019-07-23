@@ -24,9 +24,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Base model. Save duplicated code to coding or copying.
  */
-@interface LLBaseModel : NSObject <NSCoding , NSCopying>
+@interface LLBaseModel : NSObject <NSCoding, NSCopying>
 
 @end
+
+NS_ASSUME_NONNULL_END

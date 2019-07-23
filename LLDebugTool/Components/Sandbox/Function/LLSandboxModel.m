@@ -28,11 +28,11 @@
 
 @interface LLSandboxModel ()
 
-@property (nonatomic , assign) BOOL previewEnable;
+@property (nonatomic, assign) BOOL previewEnable;
 
-@property (nonatomic , assign) BOOL previewCalculated;
+@property (nonatomic, assign) BOOL previewCalculated;
 
-@property (copy , nonatomic) NSString *iconName;
+@property (copy, nonatomic) NSString *iconName;
 
 @end
 

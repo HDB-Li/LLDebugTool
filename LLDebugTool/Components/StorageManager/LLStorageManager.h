@@ -25,6 +25,8 @@
 #import <UIKit/UIKit.h>
 #import "LLStorageModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^LLStorageManagerBoolBlock)(BOOL result);
 typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable result);
 
@@ -51,23 +53,23 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
 /**
  Save a model in database. Operation depend [model operationOnMainThread] on and callback in main thread.
  */
-- (void)saveModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete;
+- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 /**
  Save a model in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)saveModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
+- (void)saveModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - UPDATE
 /**
  Replace a model by identity in database. Operation depend [model operationOnMainThread] on and callback in main thread.
  */
-- (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete;
+- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 /**
  Replace a model by identity in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
+- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - GET
 /**
@@ -108,6 +110,8 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
 - (void)clearDatabaseWithComplete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark -
-- (void)updateDatabaseWithVersion:(NSString *_Nonnull)version complete:(LLStorageManagerBoolBlock _Nullable )complete;
+- (void)updateDatabaseWithVersion:(NSString *)version complete:(LLStorageManagerBoolBlock _Nullable )complete;
 
 @end
+
+NS_ASSUME_NONNULL_END

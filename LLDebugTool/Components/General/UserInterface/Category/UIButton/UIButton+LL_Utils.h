@@ -23,8 +23,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIButton (LL_Utils)
 
-- (void)LL_setBackgroundColor:(UIColor *_Nonnull)backgroundColor forState:(UIControlState)state;
+- (void)LL_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -24,14 +24,18 @@
 #import <UIKit/UIKit.h>
 #import "LLFilterLabelModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^LLFilterEventViewChangeBlock)(NSArray *_Nullable events);
 
 @interface LLFilterEventView : UIView
 
-@property (assign , nonatomic) NSInteger averageCount;
+@property (assign, nonatomic) NSInteger averageCount;
 
-@property (copy , nonatomic , nullable) LLFilterEventViewChangeBlock changeBlock;
+@property (copy, nonatomic, nullable) LLFilterEventViewChangeBlock changeBlock;
 
 - (void)updateDataArray:(NSArray <LLFilterLabelModel *>*_Nullable)dataArray;
 
 @end
+
+NS_ASSUME_NONNULL_END

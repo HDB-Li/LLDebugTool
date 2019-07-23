@@ -24,6 +24,8 @@
 #import <UIKit/UIKit.h>
 #import "LLScreenshotDefine.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LLScreenshotSelectorModel;
 
 @interface LLScreenshotSelectorView : UIView
@@ -36,6 +38,8 @@
 /**
  Return current selector model.
  */
-- (LLScreenshotSelectorModel *_Nonnull)currentSelectorModel;
+- (LLScreenshotSelectorModel *)currentSelectorModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

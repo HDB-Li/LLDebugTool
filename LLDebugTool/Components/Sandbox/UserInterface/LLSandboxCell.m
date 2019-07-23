@@ -35,7 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
 
-@property (strong , nonatomic) LLSandboxModel *model;
+@property (strong, nonatomic) LLSandboxModel *model;
 
 @end
 

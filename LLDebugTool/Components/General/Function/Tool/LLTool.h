@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Work as tool.
  */
@@ -32,36 +34,36 @@
 /**
  Identity to model. Deal with the same date, start at 1.
  */
-+ (NSString *_Nonnull)absolutelyIdentity;
++ (NSString *)absolutelyIdentity;
 
 /**
  The only dateformatter for [LLConfig dateFormatter].
  */
-+ (NSString *_Nonnull)stringFromDate:(NSDate *_Nonnull)date;
-+ (NSDate *_Nullable)dateFromString:(NSString *_Nonnull)string;
++ (NSString *)stringFromDate:(NSDate *)date;
++ (NSDate *_Nullable)dateFromString:(NSString *)string;
 
 /**
  The only dateformatter for "yyyy-MM-dd".
  */
-+ (NSString *_Nonnull)dayStringFromDate:(NSDate *_Nonnull)date;
-+ (NSData *_Nullable)dayDateFromString:(NSString *_Nonnull)string;
++ (NSString *)dayStringFromDate:(NSDate *)date;
++ (NSData *_Nullable)dayDateFromString:(NSString *)string;
 
 /**
  The only dateformatter for "yyyy-MM-dd HH:mm:ss".
  */
-+ (NSString *_Nonnull)staticStringFromDate:(NSDate *_Nonnull)date;
-+ (NSDate *_Nullable)staticDateFromString:(NSString *_Nonnull)string;
++ (NSString *)staticStringFromDate:(NSDate *)date;
++ (NSDate *_Nullable)staticDateFromString:(NSString *)string;
 
 /**
  Convert data or dictionary to JSONString.
  */
-+ (NSString *_Nonnull)convertJSONStringFromData:(NSData *_Nullable)data;
-+ (NSString *_Nonnull)convertJSONStringFromDictionary:(NSDictionary *_Nullable)dictionary;
++ (NSString *)convertJSONStringFromData:(NSData *_Nullable)data;
++ (NSString *)convertJSONStringFromDictionary:(NSDictionary *_Nullable)dictionary;
 
 /**
  Create directory if not exist.
  */
-+ (BOOL)createDirectoryAtPath:(NSString *_Nonnull)path;
++ (BOOL)createDirectoryAtPath:(NSString *)path;
 
 /**
  Get rect from two point
@@ -82,12 +84,12 @@
 /**
  Frame fromat.
  */
-+ (NSString *_Nonnull)stringFromFrame:(CGRect)frame;
++ (NSString *)stringFromFrame:(CGRect)frame;
 
 /**
  Random color from object.
  */
-+ (UIColor *_Nonnull)colorFromObject:(NSObject *_Nonnull)object;
++ (UIColor *)colorFromObject:(NSObject *)object;
 
 /**
  Supported interface orientations in info.plist.
@@ -100,7 +102,7 @@
  @param view The view.
  @param cornerRadius Corner radius value.
  */
-+ (void)setView:(UIView *_Nonnull)view cornerRadius:(CGFloat)cornerRadius;
++ (void)setView:(UIView *)view cornerRadius:(CGFloat)cornerRadius;
 
 /**
  Set border width.
@@ -108,7 +110,7 @@
  @param view UIView.
  @param borderWidth Border width.
  */
-+ (void)setView:(UIView *_Nonnull)view borderWidth:(CGFloat)borderWidth;
++ (void)setView:(UIView *)view borderWidth:(CGFloat)borderWidth;
 
 /**
  Set border color and width.
@@ -117,7 +119,7 @@
  @param color Border color.
  @param borderWidth Border width.
  */
-+ (void)setView:(UIView *_Nonnull)view borderColor:(UIColor *_Nullable)color borderWidth:(CGFloat)borderWidth;
++ (void)setView:(UIView *)view borderColor:(UIColor *_Nullable)color borderWidth:(CGFloat)borderWidth;
 
 /**
  Set numberOfLines.
@@ -125,18 +127,20 @@
  @param label UILabel
  @param numberOfLines number of lines.
  */
-+ (void)setLabel:(UILabel *_Nonnull)label
++ (void)setLabel:(UILabel *)label
            numberOfLines:(NSInteger)numberOfLines;
 
 #pragma mark - DEPRECATED
 
 + (instancetype _Nonnull)sharedTool DEPRECATED_ATTRIBUTE;
-- (NSString *_Nonnull)absolutelyIdentity DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSString *_Nonnull)stringFromDate:(NSDate *_Nonnull)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSDate *_Nullable)dateFromString:(NSString *_Nonnull)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSString *_Nonnull)dayStringFromDate:(NSDate *_Nonnull)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSDate *_Nullable)staticDateFromString:(NSString *_Nonnull)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSString *_Nonnull)staticStringFromDate:(NSDate *_Nonnull)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)absolutelyIdentity DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)stringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSDate *_Nullable)dateFromString:(NSString *)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)dayStringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSDate *_Nullable)staticDateFromString:(NSString *)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
+- (NSString *)staticStringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
 - (void)toastMessage:(NSString *_Nullable)message DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
 
 @end
+
+NS_ASSUME_NONNULL_END

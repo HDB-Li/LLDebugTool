@@ -24,6 +24,8 @@
 #import "LLStorageModel.h"
 #import "LLLogHelper.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Log model. Save and show log infos.
  */
@@ -32,58 +34,58 @@
 /**
  File name.
  */
-@property (nonatomic , copy , readonly , nullable) NSString *file;
+@property (nonatomic, copy, readonly, nullable) NSString *file;
 
 /**
  Line number.
  */
-@property (nonatomic , assign , readonly) NSInteger lineNo;
+@property (nonatomic, assign, readonly) NSInteger lineNo;
 
 /**
  Function name.
  */
-@property (nonatomic , copy , readonly , nullable) NSString *function;
+@property (nonatomic, copy, readonly, nullable) NSString *function;
 
 /**
  Log level.
  */
-@property (nonatomic , assign , readonly) LLConfigLogLevel level;
+@property (nonatomic, assign, readonly) LLConfigLogLevel level;
 
 /**
  Event.
  */
-@property (nonatomic , copy , readonly , nullable) NSString *event;
+@property (nonatomic, copy, readonly, nullable) NSString *event;
 
 /**
  Message.
  */
-@property (nonatomic , copy , readonly , nonnull) NSString *message;
+@property (nonatomic, copy, readonly) NSString *message;
 
 /**
  Print log's date.
  */
-@property (nonatomic , copy , readonly , nonnull) NSString *date;
+@property (nonatomic, copy, readonly) NSString *date;
 
 /**
  App launch date.
  */
-@property (nonatomic , copy , readonly , nonnull) NSString *launchDate;
+@property (nonatomic, copy, readonly) NSString *launchDate;
 
 /**
  User identity in LLConfig when printing.
  */
-@property (nonatomic , copy , readonly , nullable) NSString *userIdentity;
+@property (nonatomic, copy, readonly, nullable) NSString *userIdentity;
 
 /**
  Model identity.
  */
-@property (nonatomic , copy , readonly , nonnull) NSString *identity;
+@property (nonatomic, copy, readonly) NSString *identity;
 
 #pragma mark - Quick Getter
 /**
  Convent [level] to NSString.
  */
-- (NSString *_Nonnull)levelDescription;
+- (NSString *)levelDescription;
 
 /**
  Convent [date] to NSDate.
@@ -93,6 +95,8 @@
 /**
  Initialization of the model.
  */
-- (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(NSInteger)lineNo function:(NSString *_Nullable)function level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message date:(NSString *_Nonnull)date launchDate:(NSString *_Nonnull)launchDate userIdentity:(NSString *_Nullable)userIdentity;
+- (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(NSInteger)lineNo function:(NSString *_Nullable)function level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *_Nullable)userIdentity;
 
 @end
+
+NS_ASSUME_NONNULL_END

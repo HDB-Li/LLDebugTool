@@ -247,7 +247,7 @@ static unsigned long long _absolutelyIdentity = 0;
     }
 }
 
-+ (NSString *_Nonnull)stringFromFrame:(CGRect)frame {
++ (NSString *)stringFromFrame:(CGRect)frame {
     return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[LLTool formatNumber:@(frame.origin.x)],[LLTool formatNumber:@(frame.origin.y)],[LLTool formatNumber:@(frame.size.width)],[LLTool formatNumber:@(frame.size.height)]];
 }
 
@@ -275,27 +275,27 @@ static unsigned long long _absolutelyIdentity = 0;
     return supportedOrientationsMask;
 }
 
-+ (void)setView:(UIView *_Nonnull)view
++ (void)setView:(UIView *)view
            cornerRadius:(CGFloat)cornerRadius {
     view.layer.cornerRadius = cornerRadius;
     view.layer.masksToBounds = YES;
 }
 
-+ (void)setView:(UIView *_Nonnull)view
++ (void)setView:(UIView *)view
            borderWidth:(CGFloat)borderWidth {
     [self setView:view
                    borderColor:nil
              borderWidth:borderWidth];
 }
 
-+ (void)setView:(UIView *_Nonnull)view
++ (void)setView:(UIView *)view
                  borderColor:(UIColor *_Nullable)color
            borderWidth:(CGFloat)borderWidth {
     view.layer.borderColor = color.CGColor;
     view.layer.borderWidth = borderWidth;
 }
 
-+ (void)setLabel:(UILabel *_Nonnull)label
++ (void)setLabel:(UILabel *)label
            numberOfLines:(NSInteger)numberOfLines {
     label.numberOfLines = numberOfLines;
     if (numberOfLines != 1) {

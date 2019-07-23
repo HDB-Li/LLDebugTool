@@ -27,7 +27,7 @@
 
 @interface LLCrashModel ()
 
-@property (strong , nonatomic , nonnull) NSMutableArray <LLCrashSignalModel *>*signals;
+@property (strong, nonatomic) NSMutableArray <LLCrashSignalModel *>*signals;
 
 @end
 

@@ -38,13 +38,13 @@
 
 @property (weak, nonatomic) IBOutlet LLNoneCopyTextField *textField;
 
-@property (strong , nonatomic) LLFilterTextFieldModel *model;
+@property (strong, nonatomic) LLFilterTextFieldModel *model;
 
-@property (strong , nonatomic) LLFilterFilePickerView *pickerView;
+@property (strong, nonatomic) LLFilterFilePickerView *pickerView;
 
-@property (strong , nonatomic) LLFilterDatePickerView *datePicker;
+@property (strong, nonatomic) LLFilterDatePickerView *datePicker;
 
-@property (strong , nonatomic) UIView *accessoryView;
+@property (strong, nonatomic) UIView *accessoryView;
 
 @end
 

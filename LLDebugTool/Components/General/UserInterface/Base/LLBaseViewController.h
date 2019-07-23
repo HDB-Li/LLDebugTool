@@ -23,12 +23,14 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLBaseViewController : UIViewController
 
 /**
  * Simple toast.
  */
-- (void)toastMessage:(NSString *_Nonnull)message;
+- (void)toastMessage:(NSString *)message;
 
 /**
  * Simple alert.
@@ -41,3 +43,5 @@
 - (void)leftItemClick;
 
 @end
+
+NS_ASSUME_NONNULL_END

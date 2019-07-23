@@ -25,7 +25,7 @@
 
 @implementation LLStorageModel
 
-- (NSString * _Nonnull)storageIdentity {
+- (NSString *)storageIdentity {
     NSLog(@"%@",[NSString stringWithFormat:@"%@ must recode storageIdentity",NSStringFromClass(self.class)]);
     return @"";
 }

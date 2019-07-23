@@ -24,8 +24,12 @@
 #import "LLBaseTableViewCell.h"
 #import "LLNetworkModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLNetworkCell : LLBaseTableViewCell
 
-- (void)confirmWithModel:(LLNetworkModel *_Nonnull)model;
+- (void)confirmWithModel:(LLNetworkModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

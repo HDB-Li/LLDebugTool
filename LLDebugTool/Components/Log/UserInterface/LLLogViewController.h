@@ -23,8 +23,12 @@
 
 #import "LLBaseTableViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLLogViewController : LLBaseTableViewController
 
-@property (nonatomic , copy , nullable) NSString *launchDate;
+@property (nonatomic, copy, nullable) NSString *launchDate;
 
 @end
+
+NS_ASSUME_NONNULL_END

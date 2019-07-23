@@ -30,7 +30,7 @@ static LLScreenshotHelper *_instance = nil;
 
 @interface LLScreenshotHelper ()
     
-@property (copy , nonatomic) NSString *screenshotFolderPath;
+@property (copy, nonatomic) NSString *screenshotFolderPath;
     
 @end
 

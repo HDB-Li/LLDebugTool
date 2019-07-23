@@ -32,7 +32,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
-@property (nonatomic , strong) LLCrashModel *model;
+@property (nonatomic, strong) LLCrashModel *model;
 
 @end
 

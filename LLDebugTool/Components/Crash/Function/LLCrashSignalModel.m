@@ -25,7 +25,7 @@
 
 @implementation LLCrashSignalModel
 
-- (instancetype _Nonnull)initWithName:(NSString *_Nonnull)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*)appInfos {
+- (instancetype _Nonnull)initWithName:(NSString *)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*)appInfos {
     if (self = [super init]) {
         _name = [name copy];
         _stackSymbols = [stackSymbols copy];

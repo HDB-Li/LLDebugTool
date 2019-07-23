@@ -23,6 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLSearchBarBackView : UIView
 
 @end
@@ -30,3 +32,5 @@
 @interface LLSearchBar : UISearchBar
 
 @end
+
+NS_ASSUME_NONNULL_END

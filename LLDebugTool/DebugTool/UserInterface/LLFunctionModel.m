@@ -25,7 +25,7 @@
 
 @implementation LLFunctionModel
 
-- (instancetype _Nonnull )initWithImageName:(NSString *_Nonnull)imageName title:(NSString *_Nonnull)title action:(LLFunctionAction)action {
+- (instancetype _Nonnull )initWithImageName:(NSString *)imageName title:(NSString *)title action:(LLFunctionAction)action {
     if (self = [super init]) {
         self.imageName = imageName;
         self.title = title;

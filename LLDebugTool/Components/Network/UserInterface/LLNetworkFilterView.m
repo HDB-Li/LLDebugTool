@@ -34,29 +34,29 @@
 
 @interface LLNetworkFilterView ()
 
-@property (nonatomic , strong) NSArray *titles;
+@property (nonatomic, strong) NSArray *titles;
 
-@property (nonatomic , assign) CGRect normalFrame;
+@property (nonatomic, assign) CGRect normalFrame;
 
 // Buttons
-@property (nonatomic , strong) UIView *btnsBgView;
+@property (nonatomic, strong) UIView *btnsBgView;
 
-@property (nonatomic , strong) NSMutableArray *filterBtns;
+@property (nonatomic, strong) NSMutableArray *filterBtns;
 
 // Details
-@property (nonatomic , strong) NSMutableArray *filterViews;
+@property (nonatomic, strong) NSMutableArray *filterViews;
 
-@property (nonatomic , strong) LLFilterEventView *hostView;
+@property (nonatomic, strong) LLFilterEventView *hostView;
 
-@property (nonatomic , strong) LLFilterEventView *typeView;
+@property (nonatomic, strong) LLFilterEventView *typeView;
 
-@property (nonatomic , strong) LLFilterDateView *dateView;
+@property (nonatomic, strong) LLFilterDateView *dateView;
 
 // Data
-@property (nonatomic , strong) NSArray *currentHost;
-@property (nonatomic , strong) NSArray *currentTypes;
-@property (nonatomic , strong) NSDate *currentFromDate;
-@property (nonatomic , strong) NSDate *currentEndDate;
+@property (nonatomic, strong) NSArray *currentHost;
+@property (nonatomic, strong) NSArray *currentTypes;
+@property (nonatomic, strong) NSDate *currentFromDate;
+@property (nonatomic, strong) NSDate *currentEndDate;
 
 @end
 

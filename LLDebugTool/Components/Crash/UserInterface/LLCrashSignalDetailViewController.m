@@ -30,11 +30,11 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
 @interface LLCrashSignalDetailViewController ()<LLSubTitleTableViewCellDelegate>
 
-@property (nonatomic , strong) NSMutableArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *titleArray;
 
-@property (nonatomic , strong) NSMutableArray *contentArray;
+@property (nonatomic, strong) NSMutableArray *contentArray;
 
-@property (nonatomic , strong) NSArray *canCopyArray;
+@property (nonatomic, strong) NSArray *canCopyArray;
 
 @end
 

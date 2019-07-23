@@ -26,11 +26,11 @@
 #import "LLMacros.h"
 #import "LLFactory.h"
 
-@interface LLFilterDatePickerView () <UIPickerViewDelegate , UIPickerViewDataSource>
+@interface LLFilterDatePickerView () <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic , strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *dataArray;
 
-@property (assign , nonatomic) BOOL isSelectAll;
+@property (assign, nonatomic) BOOL isSelectAll;
 
 @end
 
@@ -89,7 +89,7 @@
     return nil;
 }
 
-#pragma mark - UIPickerViewDelegate , UIPickerViewDataSource
+#pragma mark - UIPickerViewDelegate, UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     if (self.isSelectAll) {
         return 1;

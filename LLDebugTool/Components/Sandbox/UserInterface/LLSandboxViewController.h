@@ -24,11 +24,15 @@
 #import "LLBaseTableViewController.h"
 #import "LLSandboxModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLSandboxViewController : LLBaseTableViewController
 
 /**
  * Sandbox model
  */
-@property (strong , nonatomic , nullable) LLSandboxModel *sandboxModel;
+@property (strong, nonatomic, nullable) LLSandboxModel *sandboxModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

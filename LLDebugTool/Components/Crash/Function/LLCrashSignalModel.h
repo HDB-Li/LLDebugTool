@@ -23,36 +23,40 @@
 
 #import "LLBaseModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLCrashSignalModel : LLBaseModel
 
 /**
  * Signal Name
  */
-@property (copy , nonatomic , readonly , nonnull) NSString *name;
+@property (copy, nonatomic, readonly) NSString *name;
 
 /**
  * Signal stack symbols
  */
-@property (strong , nonatomic , readonly , nullable) NSArray <NSString *>*stackSymbols;
+@property (strong, nonatomic, readonly, nullable) NSArray <NSString *>*stackSymbols;
 
 /**
  * Crash Date (yyyy-MM-dd HH:mm:ss)
  */
-@property (copy , nonatomic , readonly , nullable) NSString *date;
+@property (copy, nonatomic, readonly, nullable) NSString *date;
 
 /**
  * Custom User Identity
  */
-@property (copy , nonatomic , readonly , nullable) NSString *userIdentity;
+@property (copy, nonatomic, readonly, nullable) NSString *userIdentity;
 
 /**
  * Dynamic app Infos
  */
-@property (strong , nonatomic , readonly , nullable) NSDictionary <NSString *, NSString *>*appInfos;
+@property (strong, nonatomic, readonly, nullable) NSDictionary <NSString *, NSString *>*appInfos;
 
 /**
  Initial method.
  */
-- (instancetype _Nonnull)initWithName:(NSString *_Nonnull)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*_Nullable)appInfos;
+- (instancetype _Nonnull)initWithName:(NSString *)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*_Nullable)appInfos;
 
 @end
+
+NS_ASSUME_NONNULL_END

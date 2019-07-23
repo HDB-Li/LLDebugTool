@@ -23,11 +23,13 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^LLLogFilterChangeBlock)(NSArray *_Nullable levels, NSArray *_Nullable events, NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
 
 @interface LLLogFilterView : UIView
 
-@property (copy , nonatomic , nullable) LLLogFilterChangeBlock changeBlock;
+@property (copy, nonatomic, nullable) LLLogFilterChangeBlock changeBlock;
 
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
@@ -37,3 +39,5 @@ typedef void(^LLLogFilterChangeBlock)(NSArray *_Nullable levels, NSArray *_Nulla
 - (void)cancelFiltering;
 
 @end
+
+NS_ASSUME_NONNULL_END

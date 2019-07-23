@@ -24,27 +24,29 @@
 #import <UIKit/UIKit.h>
 #import "LLScreenshotBaseOperation.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLScreenshotImageView : UIView
 
 /**
  Image to show.
  */
-@property (nonatomic , strong , nullable) UIImage *image;
+@property (nonatomic, strong, nullable) UIImage *image;
 
 /**
  Current operation.
  */
-@property (nonatomic , strong , readonly , nullable) LLScreenshotBaseOperation *currentOperation;
+@property (nonatomic, strong, readonly, nullable) LLScreenshotBaseOperation *currentOperation;
 
 /**
  Current action.
  */
-@property (nonatomic , assign) LLScreenshotAction currentAction;
+@property (nonatomic, assign) LLScreenshotAction currentAction;
 
 /**
  Current selector model.
  */
-@property (nonatomic , strong , nullable) LLScreenshotSelectorModel *currentSelectorModel;
+@property (nonatomic, strong, nullable) LLScreenshotSelectorModel *currentSelectorModel;
 
 /**
  Specifies the initialization method.
@@ -57,3 +59,5 @@
 - (void)removeLastOperation;
 
 @end
+
+NS_ASSUME_NONNULL_END

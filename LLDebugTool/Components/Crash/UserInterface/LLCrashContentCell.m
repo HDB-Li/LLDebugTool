@@ -26,9 +26,9 @@
 
 @interface LLCrashContentCell ()
 
-@property (weak , nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
-@property (copy , nonatomic) NSString *content;
+@property (copy, nonatomic) NSString *content;
 
 @end
 

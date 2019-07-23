@@ -24,8 +24,12 @@
 #import "LLBaseTableViewCell.h"
 #import "LLCrashModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLCrashCell : LLBaseTableViewCell
 
-- (void)confirmWithModel:(LLCrashModel *_Nonnull)model;
+- (void)confirmWithModel:(LLCrashModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

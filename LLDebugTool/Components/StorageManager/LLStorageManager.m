@@ -40,19 +40,19 @@ static NSString *const kDatabaseVersion = @"1";
 
 @interface LLStorageManager ()
 
-@property (strong , nonatomic) FMDatabaseQueue * dbQueue;
+@property (strong, nonatomic) FMDatabaseQueue * dbQueue;
 
-@property (strong , nonatomic) dispatch_queue_t queue;
+@property (strong, nonatomic) dispatch_queue_t queue;
 
-@property (strong , nonatomic) NSMutableArray <Class>*registerClass;
+@property (strong, nonatomic) NSMutableArray <Class>*registerClass;
 
-@property (copy , nonatomic) NSString *folderPath;
+@property (copy, nonatomic) NSString *folderPath;
 
-@property (assign , nonatomic) BOOL includeCrash;
+@property (assign, nonatomic) BOOL includeCrash;
 
-@property (assign , nonatomic) BOOL includeNetwork;
+@property (assign, nonatomic) BOOL includeNetwork;
 
-@property (assign , nonatomic) BOOL includeLog;
+@property (assign, nonatomic) BOOL includeLog;
 
 @end
 
@@ -71,7 +71,7 @@ static NSString *const kDatabaseVersion = @"1";
 - (BOOL)registerClass:(Class)cls {
     if (![self isRegisteredClass:cls]) {
         __block BOOL ret = NO;
-        [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+        [_dbQueue inDatabase:^(FMDatabase * db) {
             NSError *error;
             ret = [db executeUpdate:[self createTableSQLFromClass:cls] values:nil error:&error];
             if (!ret) {
@@ -96,11 +96,11 @@ static NSString *const kDatabaseVersion = @"1";
 }
 
 #pragma mark - UPDATE
-- (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete {
+- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete {
     [self updateModel:model complete:complete synchronous:NO];
 }
 
-- (void)updateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous {
+- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous {
     [self saveOrUpdateModel:model complete:complete synchronous:synchronous isSave:NO];
 }
 
@@ -136,7 +136,7 @@ static NSString *const kDatabaseVersion = @"1";
     }
     
     __block NSMutableArray *modelArray = [[NSMutableArray alloc] init];
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         NSError *error;
         NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM %@",[self tableNameFromClass:cls]];
         NSArray *values = @[];
@@ -204,7 +204,7 @@ static NSString *const kDatabaseVersion = @"1";
     // Perform database operations.
     __block BOOL ret = NO;
 
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         NSError *error;
         NSString *tableName = [self tableNameFromClass:cls];
         NSString *identitiesString = [self convertArrayToSQL:identities.allObjects];
@@ -241,7 +241,7 @@ static NSString *const kDatabaseVersion = @"1";
     // Perform database operations.
     __block BOOL ret = NO;
     
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         NSError *error;
         NSString *tableName = [self tableNameFromClass:cls];
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@;",tableName] values:nil error:&error];
@@ -296,7 +296,7 @@ static NSString *const kDatabaseVersion = @"1";
     
     // Perform database operations
     __block NSMutableArray *tables = [[NSMutableArray alloc] init];
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         FMResultSet *set = [db executeQuery:@"select name from sqlite_master where type='table' order by name;"];
         while ([set next]) {
             NSString *name = [set stringForColumn:@"name"];
@@ -310,7 +310,7 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret2 = YES;
     __block BOOL ret3 = YES;
     
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         if ([tables containsObject:@"CrashModelTable"]) {
             ret1 = [db executeUpdate:@"DROP TABLE CrashModelTable"];
         }
@@ -406,7 +406,7 @@ static NSString *const kDatabaseVersion = @"1";
 - (BOOL)removeLogModelAndNetworkModelNotIn:(NSArray *)launchDates {
     __block BOOL ret = YES;
     __block BOOL ret2 = YES;
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         if (self.includeLog) {
             NSError *error1;
             NSString *logTableName = [self tableNameFromClass:[self logModelClass]];
@@ -482,7 +482,7 @@ static NSString *const kDatabaseVersion = @"1";
     [LLRoute logWithMessage:message event:kLLDebugToolEvent];
 }
 
-- (void)saveOrUpdateModel:(LLStorageModel *_Nonnull)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous isSave:(BOOL)isSave {
+- (void)saveOrUpdateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous isSave:(BOOL)isSave {
     __block Class cls = model.class;
     
     // Check thread.
@@ -523,7 +523,7 @@ static NSString *const kDatabaseVersion = @"1";
     
     __block NSArray *arguments = @[data,launchDate,identity,model.description?:@"None description"];
     __block BOOL ret = NO;
-    [_dbQueue inDatabase:^(FMDatabase * _Nonnull db) {
+    [_dbQueue inDatabase:^(FMDatabase * db) {
         NSError *error;
         if (isSave) {
             ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] values:arguments error:&error];

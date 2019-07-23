@@ -23,30 +23,34 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LLHierarchyModel;
 
 @protocol LLHierarchyExplorerToolBarDelegate;
 
 @interface LLHierarchyExplorerToolBar : UIView
 
-@property (nonatomic , weak , nullable) id <LLHierarchyExplorerToolBarDelegate> delegate;
+@property (nonatomic, weak, nullable) id <LLHierarchyExplorerToolBarDelegate> delegate;
 
-@property (nonatomic , strong , nullable) UITabBarItem *selectedItem;
+@property (nonatomic, strong, nullable) UITabBarItem *selectedItem;
 
-@property (nonatomic , strong , nonnull) UITabBarItem *selectItem;
+@property (nonatomic, strong) UITabBarItem *selectItem;
 
-@property (nonatomic , strong , nonnull) UITabBarItem *moveItem;
+@property (nonatomic, strong) UITabBarItem *moveItem;
 
-@property (nonatomic , assign) NSInteger selectedIndex;
+@property (nonatomic, assign) NSInteger selectedIndex;
 
-- (void)confirmWithView:(UIView *_Nonnull)selectView;
+- (void)confirmWithView:(UIView *)selectView;
 
 @end
 
 @protocol LLHierarchyExplorerToolBarDelegate <NSObject>
 
-- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *_Nonnull)toolBar handlePanOffset:(CGPoint)offset;
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar handlePanOffset:(CGPoint)offset;
 
-- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *_Nonnull)toolBar didSelectIndex:(NSInteger)index;
+- (void)LLHierarchyExplorerToolBar:(LLHierarchyExplorerToolBar *)toolBar didSelectIndex:(NSInteger)index;
 
 @end
+
+NS_ASSUME_NONNULL_END

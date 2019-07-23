@@ -23,6 +23,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Monitoring network request or not.
  */
@@ -33,11 +35,13 @@
  
  @return Singleton
  */
-+ (instancetype _Nonnull)sharedHelper;
++ (instancetype)sharedHelper;
 
 /**
  Set enable to monitoring network request.
  */
-@property (nonatomic , assign , getter=isEnabled) BOOL enable;
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 @end
+
+NS_ASSUME_NONNULL_END

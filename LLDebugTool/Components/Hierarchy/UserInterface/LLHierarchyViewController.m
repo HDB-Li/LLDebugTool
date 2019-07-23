@@ -31,11 +31,11 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 @interface LLHierarchyViewController () <LLHierarchyCellDelegate>
 
-@property (nonatomic , strong , nonnull) LLHierarchyModel *model;
+@property (nonatomic, strong) LLHierarchyModel *model;
 
-@property (nonatomic , strong , nullable) LLHierarchyModel *selectModel;
+@property (nonatomic, strong, nullable) LLHierarchyModel *selectModel;
 
-@property (nonatomic , strong , nonnull) UISegmentedControl *filterView;
+@property (nonatomic, strong) UISegmentedControl *filterView;
 
 @end
 

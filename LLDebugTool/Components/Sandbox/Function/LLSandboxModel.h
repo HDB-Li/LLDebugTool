@@ -23,6 +23,8 @@
 
 #import "LLBaseModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Sandbox model. Save and show sandbox infos.
  */
@@ -31,81 +33,83 @@
 /**
  File path.
  */
-@property (copy , nonatomic , readonly , nonnull) NSString *filePath;
+@property (copy, nonatomic, readonly) NSString *filePath;
 
 /**
  File name.
  */
-@property (copy , nonatomic , readonly , nonnull) NSString *name;
+@property (copy, nonatomic, readonly) NSString *name;
 
 /**
  NSFileAttributeType.
  */
-@property (copy , nonatomic , readonly , nullable) NSString *fileType;
+@property (copy, nonatomic, readonly, nullable) NSString *fileType;
 
 /**
  Is Directory or not.
  */
-@property (assign , nonatomic , readonly) BOOL isDirectory;
+@property (assign, nonatomic, readonly) BOOL isDirectory;
 
 /**
  File size, byte.
  */
-@property (assign , nonatomic , readonly) unsigned long long fileSize;
+@property (assign, nonatomic, readonly) unsigned long long fileSize;
 
 /**
  File size contain sub files, byte.
  */
-@property (assign , nonatomic) unsigned long long totalFileSize;
+@property (assign, nonatomic) unsigned long long totalFileSize;
 
 /**
  File or folder create date.
  */
-@property (strong , nonatomic , readonly , nullable) NSDate *createDate;
+@property (strong, nonatomic, readonly, nullable) NSDate *createDate;
 
 /**
  File or folder modifi date.
  */
-@property (strong , nonatomic , readonly , nullable) NSDate *modifiDate;
+@property (strong, nonatomic, readonly, nullable) NSDate *modifiDate;
 
 /**
  File or folder is hidden or not.
  */
-@property (assign , nonatomic , readonly) BOOL isHidden;
+@property (assign, nonatomic, readonly) BOOL isHidden;
 
 /**
  Is NSHomeDirectory() or not.
  */
-@property (assign , nonatomic , readonly) BOOL isHomeDirectory;
+@property (assign, nonatomic, readonly) BOOL isHomeDirectory;
 
 /**
  Icon name.
  */
-@property (copy , nonatomic , readonly , nonnull) NSString *iconName;
+@property (copy, nonatomic, readonly) NSString *iconName;
 
 /**
  Can preview or not.
  */
-@property (assign , nonatomic , readonly) BOOL canPreview;
+@property (assign, nonatomic, readonly) BOOL canPreview;
 
 /**
  Submodels in the path.
  */
-@property (strong , nonatomic , nonnull) NSMutableArray <LLSandboxModel *> *subModels;
+@property (strong, nonatomic) NSMutableArray <LLSandboxModel *> *subModels;
 
 /**
  Initialization of the model.
  */
-- (instancetype _Nonnull)initWithAttributes:(NSDictionary <NSString *,id>* _Nonnull)attributes filePath:(NSString * _Nonnull)filePath;
+- (instancetype _Nonnull)initWithAttributes:(NSDictionary <NSString *,id>*)attributes filePath:(NSString *)filePath;
 
 /**
  Convet file size to NSString.
  */
-- (NSString * _Nonnull)fileSizeString;
+- (NSString *)fileSizeString;
 
 /**
  Convent total file size to NSString.
  */
-- (NSString * _Nonnull)totalFileSizeString;
+- (NSString *)totalFileSizeString;
 
 @end
+
+NS_ASSUME_NONNULL_END

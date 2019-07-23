@@ -37,16 +37,16 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @interface LLLogViewController ()
 
-@property (nonatomic , strong) LLLogFilterView *filterView;
+@property (nonatomic, strong) LLLogFilterView *filterView;
 
 // Data
-@property (nonatomic , strong) NSArray *currentLevels;
-@property (nonatomic , strong) NSArray *currentEvents;
-@property (nonatomic , copy) NSString *currentFile;
-@property (nonatomic , copy) NSString *currentFunc;
-@property (nonatomic , strong) NSDate *currentFromDate;
-@property (nonatomic , strong) NSDate *currentEndDate;
-@property (nonatomic , strong) NSArray *currentUserIdentities;
+@property (nonatomic, strong) NSArray *currentLevels;
+@property (nonatomic, strong) NSArray *currentEvents;
+@property (nonatomic, copy) NSString *currentFile;
+@property (nonatomic, copy) NSString *currentFunc;
+@property (nonatomic, strong) NSDate *currentFromDate;
+@property (nonatomic, strong) NSDate *currentEndDate;
+@property (nonatomic, strong) NSArray *currentUserIdentities;
 
 @end
 

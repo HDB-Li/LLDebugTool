@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFactory : NSObject
 
 #pragma mark - UIView
@@ -32,7 +34,7 @@
 
  @return UIView.
  */
-+ (UIView *_Nonnull)getView;
++ (UIView *)getView;
 
 /**
  Get view with superview.
@@ -40,7 +42,7 @@
  @param toView superview.
  @return UIView.
  */
-+ (UIView *_Nonnull)getView:(UIView *_Nullable)toView;
++ (UIView *)getView:(UIView *_Nullable)toView;
 
 /**
  Get view with params.
@@ -49,7 +51,7 @@
  @param frame frame size.
  @return UIView.
  */
-+ (UIView *_Nonnull)getView:(UIView *_Nullable)toView
++ (UIView *)getView:(UIView *_Nullable)toView
                       frame:(CGRect)frame;
 
 /**
@@ -60,7 +62,7 @@
  @param backgroundColor background color.
  @return UIView
  */
-+ (UIView *_Nonnull)getView:(UIView *_Nullable)toView
++ (UIView *)getView:(UIView *_Nullable)toView
                       frame:(CGRect)frame
             backgroundColor:(UIColor *_Nullable)backgroundColor;
 
@@ -69,7 +71,7 @@
 
  @return UIView.
  */
-+ (UIView *_Nonnull)getPrimaryView;
++ (UIView *)getPrimaryView;
 
 /**
  Get primary view with superview.
@@ -77,7 +79,7 @@
  @param toView superview.
  @return UIView.
  */
-+ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView;
++ (UIView *)getPrimaryView:(UIView *_Nullable)toView;
 
 /**
  Get primary view with params.
@@ -86,7 +88,7 @@
  @param frame frame size.
  @return UIView
  */
-+ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView
++ (UIView *)getPrimaryView:(UIView *_Nullable)toView
                              frame:(CGRect)frame;
 
 /**
@@ -97,7 +99,7 @@
  @param alpha alpha value.
  @return UIView.
  */
-+ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView
++ (UIView *)getPrimaryView:(UIView *_Nullable)toView
                              frame:(CGRect)frame
                              alpha:(CGFloat)alpha;
 
@@ -106,7 +108,7 @@
 
  @return UIView.
  */
-+ (UIView *_Nonnull)getBackgroundView;
++ (UIView *)getBackgroundView;
 
 /**
  Get background view with superview.
@@ -114,7 +116,7 @@
  @param toView superview.
  @return UIView.
  */
-+ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView;
++ (UIView *)getBackgroundView:(UIView *_Nullable)toView;
 
 /**
  Get background view with params.
@@ -123,7 +125,7 @@
  @param frame frame size.
  @return UIView.
  */
-+ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView
++ (UIView *)getBackgroundView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame;
 
 /**
@@ -134,14 +136,14 @@
  @param alpha alpha value.
  @return UIView.
  */
-+ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView
++ (UIView *)getBackgroundView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                                 alpha:(CGFloat)alpha;
 
 /**
  Create lines of unity.
  */
-+ (UIView *_Nonnull)lineView:(CGRect)frame
++ (UIView *)lineView:(CGRect)frame
                    superView:(UIView *_Nullable)superView;
 
 #pragma mark - UILabel
@@ -150,7 +152,7 @@
 
  @return UILabel.
  */
-+ (UILabel *_Nonnull)getLabel;
++ (UILabel *)getLabel;
 
 /**
  Get label with superview.
@@ -158,7 +160,7 @@
  @param toView superview.
  @return UILabel.
  */
-+ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView;
++ (UILabel *)getLabel:(UIView *_Nullable)toView;
 
 /**
  Get label with params.
@@ -167,7 +169,7 @@
  @param frame frame size.
  @return UILabel
  */
-+ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView
++ (UILabel *)getLabel:(UIView *_Nullable)toView
                         frame:(CGRect)frame;
 
 /**
@@ -180,7 +182,7 @@
  @param textColor text color.
  @return UILabel
  */
-+ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView
++ (UILabel *)getLabel:(UIView *_Nullable)toView
                         frame:(CGRect)frame
                          text:(NSString *_Nullable)text
                          font:(CGFloat)fontSize
@@ -192,7 +194,7 @@
 
  @return UITextView.
  */
-+ (UITextView *_Nonnull)getTextView;
++ (UITextView *)getTextView;
 
 /**
  Get textView with superview.
@@ -200,7 +202,7 @@
  @param toView superview.
  @return UITextView.
  */
-+ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView;
++ (UITextView *)getTextView:(UITextView *_Nullable)toView;
 
 /**
  Get textView with params.
@@ -209,7 +211,7 @@
  @param frame frame size.
  @return UITextView.
  */
-+ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView
++ (UITextView *)getTextView:(UITextView *_Nullable)toView
                               frame:(CGRect)frame;
 
 /**
@@ -220,7 +222,7 @@
  @param delegate Delegate.
  @return UITextView.
  */
-+ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView
++ (UITextView *)getTextView:(UITextView *_Nullable)toView
                               frame:(CGRect)frame
                            delegate:(id<UITextViewDelegate>_Nullable)delegate;
 
@@ -230,7 +232,7 @@
 
  @return UIImageView.
  */
-+ (UIImageView *_Nonnull)getImageView;
++ (UIImageView *)getImageView;
 
 /**
  Get imageView with superview.
@@ -238,7 +240,7 @@
  @param toView superview.
  @return UIImageView.
  */
-+ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView;
++ (UIImageView *)getImageView:(UIView *_Nullable)toView;
 
 /**
  Get imageView with params.
@@ -247,7 +249,7 @@
  @param frame frame size.
  @return UIImageView.
  */
-+ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView
++ (UIImageView *)getImageView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame;
 
 /**
@@ -258,7 +260,7 @@
  @param image image
  @return UIImage.
  */
-+ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView
++ (UIImageView *)getImageView:(UIView *_Nullable)toView
                         frame:(CGRect)frame
                         image:(UIImage *_Nullable)image;
 
@@ -269,7 +271,7 @@
 
  @return UIButton.
  */
-+ (UIButton *_Nonnull)getButton;
++ (UIButton *)getButton;
 
 /**
  Get button with superview.
@@ -277,7 +279,7 @@
  @param toView superview.
  @return UIButton
  */
-+ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView;
++ (UIButton *)getButton:(UIView *_Nullable)toView;
 
 /**
  Get button with params.
@@ -286,7 +288,7 @@
  @param frame frame size.
  @return UIButton
  */
-+ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView
++ (UIButton *)getButton:(UIView *_Nullable)toView
                           frame:(CGRect)frame;
 
 /**
@@ -298,7 +300,7 @@
  @param action action.
  @return UIButton.
  */
-+ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView
++ (UIButton *)getButton:(UIView *_Nullable)toView
                           frame:(CGRect)frame
                          target:(id _Nullable)target
                          action:(SEL _Nullable)action;
@@ -309,7 +311,7 @@
 
  @return UITableView.
  */
-+ (UITableView *_Nonnull)getTableView;
++ (UITableView *)getTableView;
 
 /**
  Get tableView with superview.
@@ -317,7 +319,7 @@
  @param toView superview.
  @return UITableView.
  */
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView;
++ (UITableView *)getTableView:(UIView *_Nullable)toView;
 
 /**
  Get tableView with params.
@@ -326,7 +328,7 @@
  @param frame frame size.
  @return UITableView.
  */
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
++ (UITableView *)getTableView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame;
 
 /**
@@ -337,7 +339,7 @@
  @param delegate Delegate.
  @return UITableView.
  */
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
++ (UITableView *)getTableView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                              delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate;
 /**
@@ -349,7 +351,7 @@
  @param style style of table.
  @return UITableView.
  */
-+ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
++ (UITableView *)getTableView:(UIView *_Nullable)toView
                                 frame:(CGRect)frame
                              delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate
                                 style:(UITableViewStyle)style;
@@ -362,7 +364,7 @@
  @param layout collectionView layout.
  @return UICollectionView.
  */
-+ (UICollectionView *_Nonnull)getCollectionViewWithLayout:(UICollectionViewFlowLayout *_Nonnull)layout;
++ (UICollectionView *)getCollectionViewWithLayout:(UICollectionViewFlowLayout *)layout;
 
 /**
  Get collectionView with superview.
@@ -371,8 +373,8 @@
  @param layout collectionView layout.
  @return UICollectionView.
  */
-+ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
-                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout;
++ (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
+                                         layout:(UICollectionViewFlowLayout *)layout;
 
 /**
  Get collectionView with params.
@@ -382,9 +384,9 @@
  @param layout collectionView layout.
  @return UICollectionView.
  */
-+ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
++ (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
                                           frame:(CGRect)frame
-                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout;
+                                         layout:(UICollectionViewFlowLayout *)layout;
 
 /**
  Get collectionView with params.
@@ -395,10 +397,11 @@
  @param layout collectionView layout.
  @return UICollectionView.
  */
-+ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
++ (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
                                           frame:(CGRect)frame
                                        delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>_Nullable)delegate
-                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout;
+                                         layout:(UICollectionViewFlowLayout *)layout;
 
 @end
 
+NS_ASSUME_NONNULL_END

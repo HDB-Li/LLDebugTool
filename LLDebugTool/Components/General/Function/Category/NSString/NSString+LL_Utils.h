@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (LL_Utils)
 
 - (NSDictionary *_Nullable)LL_jsonDictionary;
@@ -47,3 +49,5 @@
 - (NSString *_Nullable)LL_jsonString;
 
 @end
+
+NS_ASSUME_NONNULL_END

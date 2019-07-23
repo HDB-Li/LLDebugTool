@@ -40,33 +40,33 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeMove,
 };
 
-@interface LLWindowViewController () <LLFunctionViewControllerDelegate , UIGestureRecognizerDelegate , LLHierarchyExplorerToolBarDelegate>
+@interface LLWindowViewController () <LLFunctionViewControllerDelegate, UIGestureRecognizerDelegate, LLHierarchyExplorerToolBarDelegate>
 
 @property (nonatomic, strong) UIWindow *previousKeyWindow;
 
 @property (nonatomic, assign) UIStatusBarStyle previousStatusBarStyle;
 
-@property (nonatomic , strong) UIView *contentView;
+@property (nonatomic, strong) UIView *contentView;
 
-@property (nonatomic , strong) UILabel *memoryLabel;
+@property (nonatomic, strong) UILabel *memoryLabel;
 
-@property (nonatomic , strong) UILabel *CPULabel;
+@property (nonatomic, strong) UILabel *CPULabel;
 
-@property (nonatomic , strong) UIView *lineView;
+@property (nonatomic, strong) UIView *lineView;
 
-@property (nonatomic , assign) CGFloat sBallHideWidth;
+@property (nonatomic, assign) CGFloat sBallHideWidth;
 
-@property (nonatomic, strong, nonnull) LLFunctionViewController *functionViewController;
+@property (nonatomic, strong) LLFunctionViewController *functionViewController;
 
-@property (nonatomic , assign) LLConfigWindowStyle windowStyle;
+@property (nonatomic, assign) LLConfigWindowStyle windowStyle;
 
-@property (nonatomic , assign) CGFloat sBallWidth;
+@property (nonatomic, assign) CGFloat sBallWidth;
 
-@property (nonatomic , assign , getter=isRegisterNotification) BOOL registerNotification;
+@property (nonatomic, assign, getter=isRegisterNotification) BOOL registerNotification;
 
-@property (nonatomic , assign , getter=currentMode) LLWindowViewControllerMode mode;
+@property (nonatomic, assign, getter=currentMode) LLWindowViewControllerMode mode;
 
-@property (nonatomic , strong) UITapGestureRecognizer *selectTapGR;
+@property (nonatomic, strong) UITapGestureRecognizer *selectTapGR;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *movePanGR;
 
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic, assign) CGRect selectedViewFrameBeforeDragging;
 
-@property (nonatomic , strong) LLHierarchyExplorerToolBar *hierarchyToolBar;
+@property (nonatomic, strong) LLHierarchyExplorerToolBar *hierarchyToolBar;
 
 @end
 

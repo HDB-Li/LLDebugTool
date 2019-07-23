@@ -23,11 +23,13 @@
 
 #import "LLBaseViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LLFunctionViewController, LLHierarchyModel;
 
 @protocol LLFunctionViewControllerDelegate <NSObject>
 
-- (void)LLFunctionViewController:(LLFunctionViewController *_Nonnull)viewController didSelectedHierarchyModel:(LLHierarchyModel *_Nonnull)model;
+- (void)LLFunctionViewController:(LLFunctionViewController *)viewController didSelectedHierarchyModel:(LLHierarchyModel *)model;
 
 @end
 
@@ -39,3 +41,5 @@
 @property (nonatomic, weak, nullable) id<LLFunctionViewControllerDelegate> delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

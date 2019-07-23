@@ -24,10 +24,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol LLUITableViewLongPressGestureRecognizerDelegate <NSObject>
 
 @optional
 
-- (void)LL_tableViewCellDidLongPress:(UITableViewCell *_Nonnull)cell;
+- (void)LL_tableViewCellDidLongPress:(UITableViewCell *)cell;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -24,8 +24,12 @@
 #import "LLBaseCollectionViewCell.h"
 #import "LLFunctionModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLFunctionCell : LLBaseCollectionViewCell
 
-@property (nonatomic , strong, nonnull) LLFunctionModel *model;
+@property (nonatomic, strong) LLFunctionModel *model;
 
 @end
+
+NS_ASSUME_NONNULL_END

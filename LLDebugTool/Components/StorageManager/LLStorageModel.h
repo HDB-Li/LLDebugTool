@@ -23,6 +23,8 @@
 
 #import "LLBaseModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Model can auto save in database.
  */
@@ -31,7 +33,7 @@
 /**
  must recode.
  */
-- (NSString * _Nonnull)storageIdentity;
+- (NSString *)storageIdentity;
 
 /**
  Whether save operation perform on MainThread. get and delete will must perform on child thread.
@@ -39,3 +41,5 @@
 - (BOOL)operationOnMainThread;
 
 @end
+
+NS_ASSUME_NONNULL_END

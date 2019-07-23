@@ -10,6 +10,6 @@
 
 @interface BaseTestViewController : UITableViewController
 
-@property (nonatomic , copy) NSString *cellID;
+@property (nonatomic, copy) NSString *cellID;
 
 @end

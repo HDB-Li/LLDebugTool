@@ -24,13 +24,15 @@
 #import "LLBaseTableViewCell.h"
 #import "LLHierarchyModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol LLHierarchyCellDelegate;
 
 @interface LLHierarchyCell : LLBaseTableViewCell
 
-@property (nonatomic , weak , nullable) id <LLHierarchyCellDelegate> delegate;
+@property (nonatomic, weak, nullable) id <LLHierarchyCellDelegate> delegate;
 
-- (void)confirmWithModel:(LLHierarchyModel *_Nonnull)model;
+- (void)confirmWithModel:(LLHierarchyModel *)model;
 
 - (void)updateDirection;
 
@@ -38,8 +40,10 @@
 
 @protocol LLHierarchyCellDelegate <NSObject>
 
-- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *_Nonnull)cell;
+- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *)cell;
 
-- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *_Nonnull)cell;
+- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *)cell;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,12 +23,14 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLScreenshotView : UIView
 
 /**
  Init with image.
  */
-- (instancetype _Nonnull)initWithImage:(UIImage *_Nonnull)image;
+- (instancetype _Nonnull)initWithImage:(UIImage *)image;
 
 /**
  Show on window.
@@ -41,3 +43,5 @@
 - (void)hide;
 
 @end
+
+NS_ASSUME_NONNULL_END

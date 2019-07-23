@@ -32,11 +32,11 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 @interface LLBaseTableViewController ()
 
-@property (nonatomic , assign) UITableViewStyle style;
+@property (nonatomic, assign) UITableViewStyle style;
 
-@property (nonatomic , copy) NSString *selectAllString;
+@property (nonatomic, copy) NSString *selectAllString;
 
-@property (nonatomic , copy) NSString *cancelAllString;
+@property (nonatomic, copy) NSString *cancelAllString;
 
 @end
 
@@ -167,7 +167,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     _deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
     self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
     self.deleteItem.enabled = NO;
-    NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:self.selectAllItem , spaceItem , nil];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:self.selectAllItem, spaceItem, nil];
     if (self.isShareEnable) {
         [items addObject:self.shareItem];
     }
@@ -241,7 +241,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
-        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?" , indexPaths.count] handler:^(NSInteger action) {
+        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", indexPaths.count] handler:^(NSInteger action) {
             if (action == 1) {
                 [self deleteFilesWithIndexPaths:indexPaths];
             }

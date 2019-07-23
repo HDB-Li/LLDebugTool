@@ -28,11 +28,11 @@
 
 @interface LLScreenshotSelectorView ()
 
-@property (nonatomic , strong) UIButton *lastSizeButton;
+@property (nonatomic, strong) UIButton *lastSizeButton;
 
-@property (nonatomic , strong) UIButton *lastColorButton;
+@property (nonatomic, strong) UIButton *lastColorButton;
 
-@property (nonatomic , strong) LLScreenshotSelectorModel *model;
+@property (nonatomic, strong) LLScreenshotSelectorModel *model;
 
 @end
 

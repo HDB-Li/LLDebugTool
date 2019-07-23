@@ -32,7 +32,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
-@property (strong , nonatomic) LLNetworkModel *model;
+@property (strong, nonatomic) LLNetworkModel *model;
 
 @end
 

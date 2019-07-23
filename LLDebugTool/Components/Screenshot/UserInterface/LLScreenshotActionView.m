@@ -28,7 +28,7 @@
 
 @interface LLScreenshotActionView ()
 
-@property (nonatomic , strong , nullable) UIButton *lastSelectButton;
+@property (nonatomic, strong, nullable) UIButton *lastSelectButton;
 
 @end
 

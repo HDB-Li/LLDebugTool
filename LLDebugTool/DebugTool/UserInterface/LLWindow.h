@@ -23,6 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol LLWindowDelegate;
 
 /**
@@ -33,7 +35,7 @@
 /**
  Proxy properties.
  */
-@property (weak , nonatomic , nullable) id <LLWindowDelegate> delegate;
+@property (weak, nonatomic, nullable) id <LLWindowDelegate> delegate;
 
 /**
  Specifies the initialization method.
@@ -66,3 +68,5 @@
 - (BOOL)canBecomeKeyWindow;
 
 @end
+
+NS_ASSUME_NONNULL_END

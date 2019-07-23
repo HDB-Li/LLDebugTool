@@ -23,8 +23,12 @@
 
 #import <QuickLook/QuickLook.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLPreviewController : QLPreviewController
 
-@property (nonatomic , strong , nullable) NSArray <NSString *>*filePaths;
+@property (nonatomic, strong, nullable) NSArray <NSString *>*filePaths;
 
 @end
+
+NS_ASSUME_NONNULL_END

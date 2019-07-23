@@ -33,11 +33,11 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 @interface LLNetworkDetailViewController () <LLSubTitleTableViewCellDelegate>
 
-@property (nonatomic , strong) NSMutableArray *titleArray;
+@property (nonatomic, strong) NSMutableArray *titleArray;
 
-@property (nonatomic , strong) NSMutableArray *contentArray;
+@property (nonatomic, strong) NSMutableArray *contentArray;
 
-@property (nonatomic , strong) NSArray *canCopyArray;
+@property (nonatomic, strong) NSArray *canCopyArray;
 
 @end
 
@@ -176,7 +176,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 - (NSArray *)canCopyArray {
     if (!_canCopyArray) {
-        _canCopyArray = @[@"Request Url" , @"Error" , @"Header Fields" ,@"Request Body",@"Response Body"];
+        _canCopyArray = @[@"Request Url", @"Error", @"Header Fields" ,@"Request Body",@"Response Body"];
     }
     return _canCopyArray;
 }

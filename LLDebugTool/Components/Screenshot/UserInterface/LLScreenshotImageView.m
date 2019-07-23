@@ -27,11 +27,11 @@
 
 @interface LLScreenshotImageView ()
 
-@property (nonatomic , strong , nonnull) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic , strong , nullable) LLScreenshotBaseOperation *currentOperation;
+@property (nonatomic, strong, nullable) LLScreenshotBaseOperation *currentOperation;
 
-@property (nonatomic , strong , nonnull) NSMutableArray <LLScreenshotBaseOperation *>*operations;
+@property (nonatomic, strong) NSMutableArray <LLScreenshotBaseOperation *>*operations;
 
 @end
 

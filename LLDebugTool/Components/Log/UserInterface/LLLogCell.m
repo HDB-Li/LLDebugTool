@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *funcLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
-@property (strong , nonatomic) LLLogModel *model;
+@property (strong, nonatomic) LLLogModel *model;
 
 @end
 

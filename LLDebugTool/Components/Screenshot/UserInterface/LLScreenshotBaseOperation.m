@@ -30,27 +30,27 @@
 
 @interface LLScreenshotBaseOperation ()
 
-@property (nonatomic , strong , nonnull) LLScreenshotSelectorModel *selector;
+@property (nonatomic, strong) LLScreenshotSelectorModel *selector;
 
-@property (nonatomic , strong , nonnull) UIBezierPath *path;
+@property (nonatomic, strong) UIBezierPath *path;
 
-@property (nonatomic , strong , nonnull) UIColor *redColor;
+@property (nonatomic, strong) UIColor *redColor;
 
-@property (nonatomic , strong , nonnull) UIColor *blueColor;
+@property (nonatomic, strong) UIColor *blueColor;
 
-@property (nonatomic , strong , nonnull) UIColor *greenColor;
+@property (nonatomic, strong) UIColor *greenColor;
 
-@property (nonatomic , strong , nonnull) UIColor *yellowColor;
+@property (nonatomic, strong) UIColor *yellowColor;
 
-@property (nonatomic , strong , nonnull) UIColor *grayColor;
+@property (nonatomic, strong) UIColor *grayColor;
 
-@property (nonatomic , strong , nonnull) UIColor *whiteColor;
+@property (nonatomic, strong) UIColor *whiteColor;
 
-@property (nonatomic , strong , nonnull) UIFont *smallFont;
+@property (nonatomic, strong) UIFont *smallFont;
 
-@property (nonatomic , strong , nonnull) UIFont *mediumFont;
+@property (nonatomic, strong) UIFont *mediumFont;
 
-@property (nonatomic , strong , nonnull) UIFont *bigFont;
+@property (nonatomic, strong) UIFont *bigFont;
 
 @end
 
@@ -68,7 +68,7 @@
     return self;
 }
 
-- (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *_Nonnull)selector action:(LLScreenshotAction)action {
+- (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action {
     if (self = [super init]) {
         _selector = selector;
         _action = action;
@@ -272,7 +272,7 @@
 @interface LLScreenshotPenOperation ()
 
 // CGPoint
-@property (nonatomic , strong , nonnull) NSMutableArray <NSValue *>*values;
+@property (nonatomic, strong) NSMutableArray <NSValue *>*values;
 
 @end
 
@@ -285,7 +285,7 @@
     return self;
 }
 
-- (void)addValue:(NSValue *_Nonnull)value {
+- (void)addValue:(NSValue *)value {
     [self.values addObject:value];
     if (self.values.count == 1) {
         [self.path moveToPoint:value.CGPointValue];

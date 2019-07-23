@@ -28,7 +28,9 @@
 #define LLSharedDebugTool [LLDebugTool sharedTool]
 #endif
 
-@class LLWindow , LLWindowViewController;
+NS_ASSUME_NONNULL_BEGIN
+
+@class LLWindow, LLWindowViewController;
 
 /**
  Control whether DebugTool is started.
@@ -38,12 +40,12 @@
 /**
  Explorer window.
  */
-@property (nonatomic , strong , readonly , nonnull) LLWindow *window;
+@property (nonatomic, strong, readonly) LLWindow *window;
 
 /**
  Explorer window view controller.
  */
-@property (nonatomic , strong , readonly , nonnull) LLWindowViewController *windowViewController;
+@property (nonatomic, strong, readonly) LLWindowViewController *windowViewController;
 
 /**
  Singleton to control debugTool.
@@ -75,17 +77,17 @@
 /**
  Whether working or not.
  */
-@property (nonatomic , assign , readonly) BOOL isWorking;
+@property (nonatomic, assign, readonly) BOOL isWorking;
 
 /**
  LLDebugTool's version.
  */
-@property (nonatomic , copy , readonly , nonnull) NSString * version;
+@property (nonatomic, copy, readonly) NSString * version;
 
 /**
  Whether is Beta.
  */
-@property (nonatomic , assign , readonly) BOOL isBetaVersion;
+@property (nonatomic, assign, readonly) BOOL isBetaVersion;
 
 /**
  Automatic open debug view controller with index.
@@ -110,3 +112,5 @@
 - (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -26,20 +26,22 @@
 #import "LLScreenshotSelectorModel.h"
 #import "LLScreenshotDefine.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLScreenshotBaseOperation : NSObject
 
-@property (nonatomic , assign , readonly) LLScreenshotAction action;
+@property (nonatomic, assign, readonly) LLScreenshotAction action;
 
-@property (nonatomic , assign , readonly) LLScreenshotSelectorAction size;
+@property (nonatomic, assign, readonly) LLScreenshotSelectorAction size;
 
-@property (nonatomic , assign , readonly) LLScreenshotSelectorAction color;
+@property (nonatomic, assign, readonly) LLScreenshotSelectorAction color;
 
-@property (nonatomic , strong , readonly , nonnull) CAShapeLayer *layer;
+@property (nonatomic, strong, readonly) CAShapeLayer *layer;
 
 /**
  Specifies the initialization method.
  */
-- (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *_Nonnull)selector action:(LLScreenshotAction)action;
+- (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action;
 
 /**
  Subclasses need to be rewritten.
@@ -55,12 +57,12 @@
 /**
  CGPoint value. Mark start point.
  */
-@property (nonatomic , strong , nullable) NSValue *startValue;
+@property (nonatomic, strong, nullable) NSValue *startValue;
 
 /**
  CGPoint value. Mark end point.
  */
-@property (nonatomic , strong , nullable) NSValue *endValue;
+@property (nonatomic, strong, nullable) NSValue *endValue;
 
 @end
 
@@ -81,7 +83,7 @@
 /**
  CGPoint value. add operation point.
  */
-- (void)addValue:(NSValue *_Nonnull)value;
+- (void)addValue:(NSValue *)value;
 
 @end
 
@@ -90,6 +92,8 @@
 /**
  Use to input text.
  */
-@property (nonatomic , strong , readonly , nonnull) UITextView *textView;
+@property (nonatomic, strong, readonly) UITextView *textView;
 
 @end
+
+NS_ASSUME_NONNULL_END

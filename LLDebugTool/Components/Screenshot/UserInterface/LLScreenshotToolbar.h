@@ -24,18 +24,20 @@
 #import <UIKit/UIKit.h>
 #import "LLScreenshotDefine.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LLScreenshotToolbar;
 @class LLScreenshotSelectorModel;
 
 @protocol LLScreenshotToolbarDelegate <NSObject>
 
-- (void)LLScreenshotToolbar:(LLScreenshotToolbar *_Nonnull)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *_Nullable)selectorModel;
+- (void)LLScreenshotToolbar:(LLScreenshotToolbar *)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *_Nullable)selectorModel;
 
 @end
 
 @interface LLScreenshotToolbar : UIView
 
-@property (nonatomic , weak , nullable) id <LLScreenshotToolbarDelegate> delegate;
+@property (nonatomic, weak, nullable) id <LLScreenshotToolbarDelegate> delegate;
 
 /**
  Specifies the initialization method.
@@ -43,3 +45,5 @@
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 @end
+
+NS_ASSUME_NONNULL_END

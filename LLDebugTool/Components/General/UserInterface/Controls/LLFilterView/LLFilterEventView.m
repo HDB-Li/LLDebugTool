@@ -30,13 +30,13 @@
 
 static NSString *const kEventCellID = @"EventCellID";
 
-@interface LLFilterEventView () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@interface LLFilterEventView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic , strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic , strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
-@property (nonatomic , strong) UIView *lineView;
+@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -101,7 +101,7 @@ static NSString *const kEventCellID = @"EventCellID";
     }
 }
 
-#pragma mark - UICollectionViewDelegate , UICollectionViewDataSource
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.dataArray.count;
 }

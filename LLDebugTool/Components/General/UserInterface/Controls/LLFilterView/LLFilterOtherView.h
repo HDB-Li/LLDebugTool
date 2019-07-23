@@ -23,12 +23,16 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^LLFilterOtherViewChangeBlock)(NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
 
 @interface LLFilterOtherView : UIView
 
-@property (copy , nonatomic , nullable) LLFilterOtherViewChangeBlock changeBlock;
+@property (copy, nonatomic, nullable) LLFilterOtherViewChangeBlock changeBlock;
 
 - (void)updateFileDataDictionary:(NSDictionary <NSString *, NSArray *>*_Nullable)dataDictionary fromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate userIdentities:(NSArray *_Nullable)userIdentities;
 
 @end
+
+NS_ASSUME_NONNULL_END

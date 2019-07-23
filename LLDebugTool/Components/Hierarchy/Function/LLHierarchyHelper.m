@@ -53,7 +53,7 @@ static LLHierarchyHelper *_instance = nil;
     __unsafe_unretained NSArray<UIWindow *> *windows = nil;
     [invocation getReturnValue:&windows];
     
-    windows = [windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow * _Nonnull obj1, UIWindow * _Nonnull obj2) {
+    windows = [windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow * obj1, UIWindow * obj2) {
         return obj1.windowLevel > obj2.windowLevel;
     }];
     

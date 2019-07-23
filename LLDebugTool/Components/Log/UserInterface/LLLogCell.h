@@ -24,8 +24,12 @@
 #import "LLBaseTableViewCell.h"
 #import "LLLogModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLLogCell : LLBaseTableViewCell
 
-- (void)confirmWithModel:(LLLogModel *_Nonnull)model;
+- (void)confirmWithModel:(LLLogModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

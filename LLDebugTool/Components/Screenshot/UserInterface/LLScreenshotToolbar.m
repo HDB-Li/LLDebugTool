@@ -29,17 +29,17 @@
 
 @interface LLScreenshotToolbar () <LLScreenshotActionViewDelegate>
 
-@property (nonatomic , strong , nonnull) LLScreenshotActionView *actionView;
+@property (nonatomic, strong) LLScreenshotActionView *actionView;
 
-@property (nonatomic , strong , nonnull) UIView *selectorBackgroundView;
+@property (nonatomic, strong) UIView *selectorBackgroundView;
 
-@property (nonatomic , strong , nonnull) NSMutableArray <LLScreenshotSelectorView *>*selectorViews;
+@property (nonatomic, strong) NSMutableArray <LLScreenshotSelectorView *>*selectorViews;
 
-@property (nonatomic , strong , nonnull) LLScreenshotSelectorView *lastSelectorView;
+@property (nonatomic, strong) LLScreenshotSelectorView *lastSelectorView;
 
-@property (nonatomic , strong , nonnull) UIImageView *triangleView;
+@property (nonatomic, strong) UIImageView *triangleView;
 
-@property (nonatomic , assign) BOOL selectorViewShowed;
+@property (nonatomic, assign) BOOL selectorViewShowed;
 
 @end
 

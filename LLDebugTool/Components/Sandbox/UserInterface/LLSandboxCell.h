@@ -25,10 +25,14 @@
 #import "LLSandboxModel.h"
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LLSandboxCell : LLBaseTableViewCell
 
-@property (nonatomic , weak , nullable) id <LLUITableViewLongPressGestureRecognizerDelegate> delegate;
+@property (nonatomic, weak, nullable) id <LLUITableViewLongPressGestureRecognizerDelegate> delegate;
 
-- (void)confirmWithModel:(LLSandboxModel *_Nonnull)model;
+- (void)confirmWithModel:(LLSandboxModel *)model;
 
 @end
+
+NS_ASSUME_NONNULL_END

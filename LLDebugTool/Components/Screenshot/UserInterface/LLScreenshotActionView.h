@@ -24,6 +24,8 @@
 #import <UIKit/UIKit.h>
 #import "LLScreenshotDefine.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LLScreenshotActionView;
 
 @protocol LLScreenshotActionViewDelegate <NSObject>
@@ -32,7 +34,7 @@
 /**
  Call when action button clicked.
  */
-- (void)LLScreenshotActionView:(LLScreenshotActionView *_Nonnull)actionView didSelectedAction:(LLScreenshotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
+- (void)LLScreenshotActionView:(LLScreenshotActionView *)actionView didSelectedAction:(LLScreenshotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position;
 
 @end
 
@@ -41,7 +43,7 @@
 /**
  Delegate to accept click events.
  */
-@property (nonatomic , weak , nullable) id <LLScreenshotActionViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id <LLScreenshotActionViewDelegate> delegate;
 
 /**
  Specifies the initialization method.
@@ -49,3 +51,5 @@
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 @end
+
+NS_ASSUME_NONNULL_END

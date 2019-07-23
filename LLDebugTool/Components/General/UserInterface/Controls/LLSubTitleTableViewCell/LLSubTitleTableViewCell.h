@@ -23,21 +23,25 @@
 
 #import "LLBaseTableViewCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class LLSubTitleTableViewCell;
 
 @protocol LLSubTitleTableViewCellDelegate<NSObject>
 
 @optional
-- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *_Nonnull)cell didSelectedContentView:(UITextView *_Nonnull)contentTextView;
+- (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView;
 
 @end
 
 @interface LLSubTitleTableViewCell : LLBaseTableViewCell
 
-@property (weak, nonatomic , nullable) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic, nullable) IBOutlet UILabel *titleLabel;
 
-@property (copy , nonatomic , nullable) NSString *contentText;
+@property (copy, nonatomic, nullable) NSString *contentText;
 
-@property (weak , nonatomic , nullable) id <LLSubTitleTableViewCellDelegate> delegate;
+@property (weak, nonatomic, nullable) id <LLSubTitleTableViewCellDelegate> delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END
