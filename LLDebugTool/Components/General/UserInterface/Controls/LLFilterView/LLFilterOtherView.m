@@ -26,8 +26,9 @@
 #import "LLFilterLabelCell.h"
 #import "LLFilterLabelModel.h"
 #import "LLMacros.h"
-#import "LLTool.h"
+#import "LLFactory.h"
 #import "LLConfig.h"
+#import "LLTool.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
@@ -214,7 +215,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kHeaderID forIndexPath:indexPath];
         view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
         if (![view viewWithTag:labelTag]) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, view.frame.size.width - 12, view.frame.size.height)];
+            UILabel *label = [LLFactory getLabel:view frame:CGRectMake(12, 0, view.frame.size.width - 12, view.frame.size.height) text:nil font:13 textColor:LLCONFIG_TEXT_COLOR];
             label.font = [UIFont boldSystemFontOfSize:13];
             label.textColor = LLCONFIG_TEXT_COLOR;
             label.tag = labelTag;
@@ -266,16 +267,13 @@ static NSString *const kLabelCellID = @"LabelCellID";
 - (void)initial {
     self.userIdDataArray = [[NSMutableArray alloc] init];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+    self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
-    [self addSubview:self.collectionView];
-    [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];    
+    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 @end

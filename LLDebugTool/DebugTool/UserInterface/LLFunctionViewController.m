@@ -27,6 +27,13 @@
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLMacros.h"
+#import "LLFactory.h"
+#import "LLNetworkViewController.h"
+#import "LLLogViewController.h"
+#import "LLCrashViewController.h"
+#import "LLAppInfoViewController.h"
+#import "LLSandboxViewController.h"
+#import "LLHierarchyViewController.h"
 
 static NSString *const kCellID = @"cellID";
 
@@ -49,17 +56,15 @@ static NSString *const kCellID = @"cellID";
 
 #pragma mark - Primary
 - (void)initial {
+    self.navigationItem.title = @"LLDebugTool";
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((LL_SCREEN_WIDTH - 10 * 2) / 4.0, 110);
+    layout.itemSize = CGSizeMake((LL_SCREEN_WIDTH - 10 * 2) / 3.0, 90);
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+    self.collectionView = [LLFactory getCollectionView:self.view frame:self.view.bounds delegate:self layout:layout];
+    self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFunctionCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kCellID];
-    [self.view addSubview:self.collectionView];
     
     [self loadData];
 }
@@ -76,6 +81,40 @@ static NSString *const kCellID = @"cellID";
     self.dataArray = [items copy];
 }
 
+- (void)goToNetworkViewController {
+    LLNetworkViewController *vc = [[LLNetworkViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)goToLogViewController {
+    LLLogViewController *vc = [[LLLogViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)goToCrashViewController {
+    LLCrashViewController *vc = [[LLCrashViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)goToAppInfoViewController {
+    LLAppInfoViewController *vc = [[LLAppInfoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)goToSandboxViewController {
+    LLSandboxViewController *vc = [[LLSandboxViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)doScreenshot {
+    
+}
+
+- (void)goToHierarchyViewController {
+    LLHierarchyViewController *vc = [[LLHierarchyViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.dataArray.count;
@@ -85,6 +124,35 @@ static NSString *const kCellID = @"cellID";
     LLFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
     cell.model = self.dataArray[indexPath.item];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    LLFunctionModel *model = self.dataArray[indexPath.item];
+    switch (model.action) {
+        case LLFunctionActionNetwork:
+            [self goToNetworkViewController];
+            break;
+        case LLFunctionActionLog:
+            [self goToLogViewController];
+            break;
+        case LLFunctionActionCrash:
+            [self goToCrashViewController];
+            break;
+        case LLFunctionActionAppInfo:
+            [self goToAppInfoViewController];
+            break;
+        case LLFunctionActionSandbox:
+            [self goToSandboxViewController];
+            break;
+        case LLFunctionActionScreenshot:
+            [self doScreenshot];
+            break;
+        case LLFunctionActionHierarchy:
+            [self goToHierarchyViewController];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

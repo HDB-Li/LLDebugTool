@@ -24,7 +24,6 @@
 #import "LLHierarchyCell.h"
 #import "LLConfig.h"
 #import "LLTool.h"
-#import "UIImage+LL_Utils.h"
 #import "LLImageNameConfig.h"
 
 @interface LLHierarchyCell ()

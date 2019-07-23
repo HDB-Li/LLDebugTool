@@ -53,11 +53,6 @@
 + (NSDate *_Nullable)staticDateFromString:(NSString *_Nonnull)string;
 
 /**
- Create lines of unity.
- */
-+ (UIView *_Nonnull)lineView:(CGRect)frame superView:(UIView *_Nullable)superView;
-
-/**
  Convert data or dictionary to JSONString.
  */
 + (NSString *_Nonnull)convertJSONStringFromData:(NSData *_Nullable)data;
@@ -98,6 +93,40 @@
  Supported interface orientations in info.plist.
  */
 + (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
+
+/**
+ Set corner radius to view.
+
+ @param view The view.
+ @param cornerRadius Corner radius value.
+ */
++ (void)setView:(UIView *_Nonnull)view cornerRadius:(CGFloat)cornerRadius;
+
+/**
+ Set border width.
+
+ @param view UIView.
+ @param borderWidth Border width.
+ */
++ (void)setView:(UIView *_Nonnull)view borderWidth:(CGFloat)borderWidth;
+
+/**
+ Set border color and width.
+
+ @param view UIView.
+ @param color Border color.
+ @param borderWidth Border width.
+ */
++ (void)setView:(UIView *_Nonnull)view borderColor:(UIColor *_Nullable)color borderWidth:(CGFloat)borderWidth;
+
+/**
+ Set numberOfLines.
+
+ @param label UILabel
+ @param numberOfLines number of lines.
+ */
++ (void)setLabel:(UILabel *_Nonnull)label
+           numberOfLines:(NSInteger)numberOfLines;
 
 #pragma mark - DEPRECATED
 

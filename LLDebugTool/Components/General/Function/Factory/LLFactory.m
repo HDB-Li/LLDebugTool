@@ -1,0 +1,275 @@
+//
+//  LLFactory.m
+//
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+
+#import "LLFactory.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
+
+@implementation LLFactory
+
+#pragma mark - UIView
++ (UIView *_Nonnull)getView {
+    return [self getView:nil];
+}
+
++ (UIView *_Nonnull)getView:(UIView *_Nullable)toView {
+    return [self getView:toView
+                   frame:CGRectZero];
+}
+
++ (UIView *_Nonnull)getView:(UIView *_Nullable)toView
+                      frame:(CGRect)frame {
+    return [self getView:toView
+                   frame:frame
+         backgroundColor:nil];
+}
+
++ (UIView *_Nonnull)getView:(UIView *_Nullable)toView
+                      frame:(CGRect)frame
+            backgroundColor:(UIColor *_Nullable)backgroundColor {
+    UIView *view = [[UIView alloc] initWithFrame:frame];
+    [toView addSubview:view];
+    view.backgroundColor = backgroundColor;
+    return view;
+}
+
++ (UIView *_Nonnull)getPrimaryView {
+    return [self getPrimaryView:nil];
+}
+
++ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView {
+    return [self getPrimaryView:toView
+                          frame:CGRectZero];
+}
+
++ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView
+                             frame:(CGRect)frame {
+    return [self getPrimaryView:toView
+                          frame:frame
+                          alpha:1];
+}
+
++ (UIView *_Nonnull)getPrimaryView:(UIView *_Nullable)toView
+                             frame:(CGRect)frame alpha:(CGFloat)alpha {
+    return [self getView:toView
+                   frame:frame
+         backgroundColor:[LLCONFIG_TEXT_COLOR colorWithAlphaComponent:alpha]];
+}
+
++ (UIView *_Nonnull)getBackgroundView {
+    return [self getBackgroundView:nil];
+}
+
++ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView {
+    return [self getBackgroundView:toView
+                             frame:CGRectZero];
+}
+
++ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame {
+    return [self getBackgroundView:toView
+                             frame:frame
+                             alpha:1];
+}
+
++ (UIView *_Nonnull)getBackgroundView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame
+                                alpha:(CGFloat)alpha {
+    return [self getView:toView
+                   frame:frame
+         backgroundColor:[LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:alpha]];
+}
+
++ (UIView *_Nonnull)lineView:(CGRect)frame
+                   superView:(UIView *_Nullable)superView {
+    UIView *view = [self getPrimaryView:superView];
+    return view;
+}
+
+#pragma mark - UILabel
++ (UILabel *_Nonnull)getLabel {
+    return [self getLabel:nil];
+}
+
++ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView {
+    return [self getLabel:toView
+                    frame:CGRectZero];
+}
+
++ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView
+                        frame:(CGRect)frame {
+    return [self getLabel:toView frame:CGRectZero text:nil font:17 textColor:nil];
+}
+
++ (UILabel *_Nonnull)getLabel:(UIView *_Nullable)toView
+                        frame:(CGRect)frame
+                         text:(NSString *_Nullable)text
+                         font:(CGFloat)fontSize
+                    textColor:(UIColor *_Nullable)textColor {
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    [toView addSubview:label];
+    label.text = text;
+    label.font = [UIFont systemFontOfSize:fontSize];
+    if (textColor) {
+        label.textColor = textColor;
+    }
+    return label;
+}
+
+#pragma mark - UITextView
++ (UITextView *_Nonnull)getTextView {
+    return [self getTextView:nil];
+}
+
++ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView {
+    return [self getTextView:toView frame:CGRectZero];
+}
+
++ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView
+                              frame:(CGRect)frame {
+    return [self getTextView:toView frame:frame delegate:nil];
+}
+
++ (UITextView *_Nonnull)getTextView:(UITextView *_Nullable)toView
+                              frame:(CGRect)frame
+                           delegate:(id<UITextViewDelegate>_Nullable)delegate {
+    UITextView *textView = [[UITextView alloc] initWithFrame:frame];
+    [toView addSubview:textView];
+    textView.delegate = delegate;
+    return textView;
+}
+
+#pragma mark - UIImageView
++ (UIImageView *_Nonnull)getImageView {
+    return [self getImageView:nil];
+}
+
++ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView {
+    return [self getImageView:toView frame:CGRectZero];
+}
+
++ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame {
+    return [self getImageView:toView frame:frame image:nil];
+}
+
++ (UIImageView *_Nonnull)getImageView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame
+                                image:(UIImage *_Nullable)image {
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+    [toView addSubview:imageView];
+    imageView.image = image;
+    return imageView;
+}
+
+#pragma mark - UIButton
++ (UIButton *_Nonnull)getButton {
+    return [self getButton:nil];
+}
+
++ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView {
+    return [self getButton:toView frame:CGRectZero];
+}
+
++ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView frame:(CGRect)frame {
+    return [self getButton:toView frame:frame target:nil action:nil];
+}
+
++ (UIButton *_Nonnull)getButton:(UIView *_Nullable)toView frame:(CGRect)frame target:(id _Nullable)target action:(SEL _Nullable)action {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [toView addSubview:button];
+    button.frame = frame;
+    button.adjustsImageWhenHighlighted = NO;
+    if (target && action) {
+        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    }
+    return button;
+}
+
+#pragma mark - UITableView
++ (UITableView *_Nonnull)getTableView {
+    return [self getTableView:nil];
+}
+
++ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView {
+    return [self getTableView:toView frame:CGRectZero];
+}
+
++ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame {
+    return [self getTableView:toView frame:frame delegate:nil];
+}
+
++ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame
+                             delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate {
+    return [self getTableView:toView frame:frame delegate:delegate style:UITableViewStylePlain];
+}
+
++ (UITableView *_Nonnull)getTableView:(UIView *_Nullable)toView
+                                frame:(CGRect)frame
+                             delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate
+                                style:(UITableViewStyle)style {
+    UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:style];
+    [toView addSubview:tableView];
+    tableView.delegate = delegate;
+    tableView.dataSource = delegate;
+    tableView.estimatedSectionFooterHeight = 0;
+    tableView.estimatedSectionHeaderHeight = 0;
+    tableView.estimatedRowHeight = 50;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    // To Control subviews.
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    tableView.tableHeaderView = [LLFactory getView:nil frame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
+    tableView.tableFooterView = [LLFactory getView:nil frame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
+    return tableView;
+}
+
+#pragma mark - UICollectionView
++ (UICollectionView *_Nonnull)getCollectionViewWithLayout:(UICollectionViewFlowLayout *_Nonnull)layout {
+    return [self getCollectionView:nil layout:layout];
+}
+
++ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
+                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout {
+    return [self getCollectionView:toView frame:CGRectZero layout:layout];
+}
+
++ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
+                                          frame:(CGRect)frame
+                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout {
+    return [self getCollectionView:toView frame:frame delegate:nil layout:layout];
+}
+
++ (UICollectionView *_Nonnull)getCollectionView:(UIView *_Nullable)toView
+                                          frame:(CGRect)frame
+                                       delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>_Nullable)delegate
+                                         layout:(UICollectionViewFlowLayout *_Nonnull)layout {
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
+    [toView addSubview:collectionView];
+    collectionView.delegate = delegate;
+    collectionView.dataSource = delegate;
+    return collectionView;
+}
+
+@end

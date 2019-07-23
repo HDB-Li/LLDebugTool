@@ -23,6 +23,7 @@
 
 #import "LLFunctionCell.h"
 #import "UIImage+LL_Utils.h"
+#import "LLConfig.h"
 
 @interface LLFunctionCell ()
 
@@ -48,11 +49,11 @@
 
 #pragma mark - Primary
 - (void)initial {
-    
+    self.titleLabel.textColor = LLCONFIG_TEXT_COLOR;
 }
 
 - (void)updateUI:(LLFunctionModel *)model {
-    self.imgView.image = [UIImage LL_imageNamed:model.imageName];
+    self.imgView.image = [UIImage LL_imageNamed:model.imageName color:LLCONFIG_TEXT_COLOR];
     self.titleLabel.text = model.title;
 }
 

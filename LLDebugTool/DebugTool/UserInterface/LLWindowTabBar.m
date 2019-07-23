@@ -23,9 +23,9 @@
 
 #import "LLWindowTabBar.h"
 #import "LLMacros.h"
-#import "UIImage+LL_Utils.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
+#import "LLFactory.h"
 
 @interface LLWindowTabBar () <UIScrollViewDelegate>
 
@@ -204,18 +204,16 @@
 #pragma mark - Lazy
 - (UIButton *)leftButton {
     if (!_leftButton) {
-        _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(leftButtonTouchUpInside:)];
         [_leftButton setImage:[[UIImage LL_imageNamed:kLeftImageName size:CGSizeMake(self.directionButtonWidth, self.directionButtonWidth)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        [_leftButton addTarget:self action:@selector(leftButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _leftButton;
 }
 
 - (UIButton *)rightButton {
     if (!_rightButton) {
-        _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _rightButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(rightButtonTouchUpInside:)];
         [_rightButton setImage:[[UIImage LL_imageNamed:kRightImageName size:CGSizeMake(self.directionButtonWidth, self.directionButtonWidth)] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        [_rightButton addTarget:self action:@selector(rightButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;
 }

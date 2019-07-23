@@ -1,5 +1,5 @@
 //
-//  LLBaseCollectionViewCell.h
+//  UIView+LL_Utils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,6 +23,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLBaseCollectionViewCell : UICollectionViewCell
+@interface UIView (LL_Utils)
+
+@property (nonatomic, assign) CGFloat LL_horizontalPadding;
+
+@property (nonatomic, assign) CGFloat LL_verticalPadding;
+
+- (void)setCornerRadius:(CGFloat)cornerRadius;
 
 @end
+

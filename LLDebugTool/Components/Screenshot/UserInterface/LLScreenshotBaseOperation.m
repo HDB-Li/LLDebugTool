@@ -26,6 +26,7 @@
 #import "LLMacros.h"
 #import "LLTool.h"
 #import "LLRoute.h"
+#import "LLFactory.h"
 
 @interface LLScreenshotBaseOperation ()
 
@@ -306,9 +307,8 @@
 
 - (instancetype)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action {
     if (self = [super initWithSelector:selector action:action]) {
-        _textView = [[UITextView alloc] init];
+        _textView = [LLFactory getTextView:nil frame:CGRectZero delegate:self];
         _textView.backgroundColor = [UIColor clearColor];
-        _textView.delegate = self;
         _textView.showsHorizontalScrollIndicator = NO;
         _textView.showsVerticalScrollIndicator = NO;
     }

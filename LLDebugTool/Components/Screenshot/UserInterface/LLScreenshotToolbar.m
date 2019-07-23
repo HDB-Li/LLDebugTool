@@ -25,6 +25,7 @@
 #import "LLScreenshotSelectorView.h"
 #import "LLScreenshotActionView.h"
 #import "LLImageNameConfig.h"
+#import "LLFactory.h"
 
 @interface LLScreenshotToolbar () <LLScreenshotActionViewDelegate>
 
@@ -62,14 +63,10 @@
     self.actionView.delegate = self;
     [self addSubview:self.actionView];
     
-    self.selectorBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight)];
-    self.selectorBackgroundView.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.selectorBackgroundView];
+    self.selectorBackgroundView = [LLFactory getView:self frame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight)];
     
     CGFloat triangleHeight = 10;
-    self.triangleView = [[UIImageView alloc] initWithImage:[UIImage LL_imageNamed:kSelectorTriangleImageName]];
-    self.triangleView.frame = CGRectMake(0, 0, triangleHeight * 2, triangleHeight);
-    [self.selectorBackgroundView addSubview:self.triangleView];
+    self.triangleView = [LLFactory getImageView:self.selectorBackgroundView frame:CGRectMake(0, 0, triangleHeight * 2, triangleHeight) image:[UIImage LL_imageNamed:kSelectorTriangleImageName]];
     
     for (int i = 0; i < 5; i++) {
         LLScreenshotSelectorView *selectorView = [[LLScreenshotSelectorView alloc] initWithFrame:CGRectMake(0, triangleHeight, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height - triangleHeight)];

@@ -26,6 +26,7 @@
 #import "LLAppHelper.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
+#import "LLFactory.h"
 
 static NSString *const kAppInfoCellID = @"AppInfoCellID";
 static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
@@ -115,8 +116,7 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
     UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kAppInfoHeaderID];
     view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30);
     if (view.backgroundView == nil) {
-        view.backgroundView = [[UIView alloc] initWithFrame:view.bounds];
-        view.backgroundView.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
+        view.backgroundView = [LLFactory getPrimaryView:nil frame:view.bounds alpha:0.2];
     }
 
     if (section == 0) {

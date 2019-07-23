@@ -29,6 +29,8 @@
 #import "LLConfig.h"
 #import "LLTool.h"
 #import "LLNetworkModel.h"
+#import "LLFactory.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLNetworkFilterView ()
 
@@ -153,7 +155,7 @@
         if (count == 0) {
             [sender setTitle:title forState:UIControlStateNormal];
         } else {
-            [sender setTitle:[NSString stringWithFormat:@"%@ - %ld",title,(long)count] forState:UIControlStateNormal];
+            [sender setTitle:[NSString stringWithFormat:@"%@ (%ld)",title,(long)count] forState:UIControlStateNormal];
         }
     }
 }
@@ -181,33 +183,26 @@
     self.filterViews = [[NSMutableArray alloc] init];
     self.filterBtns = [[NSMutableArray alloc] init];
     
-    self.btnsBgView = [[UIView alloc] initWithFrame:self.bounds];
-    self.btnsBgView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    [self addSubview:self.btnsBgView];
+    self.btnsBgView = [LLFactory getBackgroundView:self frame:self.bounds];
     
     CGFloat gap = 20;
     CGFloat itemHeight = 25;
     NSInteger count = self.titles.count;
     CGFloat itemWidth = (self.frame.size.width - gap * (count + 1)) / count;
     for (int i = 0; i < self.titles.count; i++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(i * (itemWidth + gap) + gap, (self.frame.size.height - itemHeight) / 2.0, itemWidth, itemHeight);
-        btn.adjustsImageWhenHighlighted = NO;
+        UIButton *btn = [LLFactory getButton:self.btnsBgView frame:CGRectMake(i * (itemWidth + gap) + gap, (self.frame.size.height - itemHeight) / 2.0, itemWidth, itemHeight) target:self action:@selector(filterButtonClick:)];
         [btn setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
         [btn setTitleColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateSelected];
         [btn LL_setBackgroundColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateNormal];
         [btn LL_setBackgroundColor:LLCONFIG_TEXT_COLOR forState:UIControlStateSelected];
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         btn.tag = i;
-        btn.layer.cornerRadius = 5;
+        [btn setCornerRadius:5];
         btn.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
         btn.layer.borderWidth = 0.5;
-        btn.layer.masksToBounds = YES;
-        [btn addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.filterBtns addObject:btn];
-        [self.btnsBgView addSubview:btn];
     }
-    [LLTool lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
+    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
 }
 
 - (void)showDetailView:(NSInteger)index {

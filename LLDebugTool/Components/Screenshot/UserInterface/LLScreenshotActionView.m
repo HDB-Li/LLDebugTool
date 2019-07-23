@@ -23,6 +23,8 @@
 
 #import "LLScreenshotActionView.h"
 #import "LLImageNameConfig.h"
+#import "LLFactory.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLScreenshotActionView ()
 
@@ -68,8 +70,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
+    [self setCornerRadius:5];
     
     int count = 8;
     CGFloat gap = 10;
@@ -78,8 +79,7 @@
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
     
     for (int i = 1; i <= count; i++) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(gap + (i - 1) * itemWidth, top, itemWidth, itemHeight);
+        UIButton *button = [LLFactory getButton:self frame:CGRectMake(gap + (i - 1) * itemWidth, top, itemWidth, itemHeight) target:self action:@selector(buttonClicked:)];
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
@@ -130,9 +130,6 @@
         [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
         button.tag = i;
         button.showsTouchWhenHighlighted = NO;
-        button.adjustsImageWhenHighlighted = NO;
-        [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
     }
 }
 

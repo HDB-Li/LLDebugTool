@@ -25,6 +25,8 @@
 #import "LLConfig.h"
 #import "LLMacros.h"
 #import "LLRoute.h"
+#import "LLFactory.h"
+#import "UIView+LL_Utils.h"
 
 static LLTool *_instance = nil;
 
@@ -73,15 +75,6 @@ static unsigned long long _absolutelyIdentity = 0;
 
 + (NSDate *)staticDateFromString:(NSString *)string {
     return [[self staticDateFormatter] dateFromString:string];
-}
-
-+ (UIView *)lineView:(CGRect)frame superView:(UIView *)superView {
-    UIView *view = [[UIView alloc] initWithFrame:frame];
-    view.backgroundColor = LLCONFIG_TEXT_COLOR;
-    if (superView) {
-        [superView addSubview:view];
-    }
-    return view;
 }
 
 + (NSString *)convertJSONStringFromData:(NSData *)data
@@ -166,20 +159,14 @@ static unsigned long long _absolutelyIdentity = 0;
         _toastLabel = nil;
     }
     
-    __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
-    label.text = message;
+    __block UILabel *label = [LLFactory getLabel:[UIApplication sharedApplication].delegate.window frame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100) text:message font:17 textColor:[UIColor whiteColor]];
+    [LLTool setLabel:label numberOfLines:0];
     label.textAlignment = NSTextAlignmentCenter;
-    label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByCharWrapping;
-    [label sizeToFit];
-    label.frame = CGRectMake(0, 0, label.frame.size.width + 20, label.frame.size.height + 10);
-    label.layer.cornerRadius = label.font.lineHeight / 2.0;
-    label.layer.masksToBounds = YES;
-    label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
-    label.textColor = [UIColor whiteColor];
-    [[UIApplication sharedApplication].delegate.window addSubview:label];
+    [label sizeToFit];
+    [label setCornerRadius:label.font.lineHeight / 2.0];
+    label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
     _toastLabel = label;
     [UIView animateWithDuration:0.25 animations:^{
         label.alpha = 1;
@@ -201,13 +188,13 @@ static unsigned long long _absolutelyIdentity = 0;
         _loadingLabel = nil;
     }
     
-    __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100)];
-    label.text = message;
+    __block UILabel *label = [LLFactory getLabel:[UIApplication sharedApplication].delegate.window frame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100) text:message font:17 textColor:[UIColor whiteColor]];
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByCharWrapping;
+    label.LL_horizontalPadding = 20;
+    label.LL_verticalPadding = 5;
     [label sizeToFit];
-    label.frame = CGRectMake(0, 0, label.frame.size.width + 40, label.frame.size.height + 10);
+    
     label.layer.cornerRadius = label.font.lineHeight / 2.0;
     label.layer.masksToBounds = YES;
     label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
@@ -286,6 +273,34 @@ static unsigned long long _absolutelyIdentity = 0;
         supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
     return supportedOrientationsMask;
+}
+
++ (void)setView:(UIView *_Nonnull)view
+           cornerRadius:(CGFloat)cornerRadius {
+    view.layer.cornerRadius = cornerRadius;
+    view.layer.masksToBounds = YES;
+}
+
++ (void)setView:(UIView *_Nonnull)view
+           borderWidth:(CGFloat)borderWidth {
+    [self setView:view
+                   borderColor:nil
+             borderWidth:borderWidth];
+}
+
++ (void)setView:(UIView *_Nonnull)view
+                 borderColor:(UIColor *_Nullable)color
+           borderWidth:(CGFloat)borderWidth {
+    view.layer.borderColor = color.CGColor;
+    view.layer.borderWidth = borderWidth;
+}
+
++ (void)setLabel:(UILabel *_Nonnull)label
+           numberOfLines:(NSInteger)numberOfLines {
+    label.numberOfLines = numberOfLines;
+    if (numberOfLines != 1) {
+        label.lineBreakMode = NSLineBreakByCharWrapping;
+    }
 }
 
 #pragma mark - Primary

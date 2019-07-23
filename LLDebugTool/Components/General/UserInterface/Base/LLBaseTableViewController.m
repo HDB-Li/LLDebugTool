@@ -22,11 +22,11 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
-#import "LLImageNameConfig.h"
 #import "LLMacros.h"
-#import "LLTool.h"
 #import "LLConfig.h"
 #import "LLRoute.h"
+#import "LLImageNameConfig.h"
+#import "LLFactory.h"
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
@@ -44,13 +44,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-        _style = UITableViewStyleGrouped;
-        _dataArray = [[NSMutableArray alloc] init];
-        _searchDataArray = [[NSMutableArray alloc] init];
-    }
-    return self;
+    return [self initWithStyle:UITableViewStyleGrouped];
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style {
@@ -64,7 +58,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initNavigationItems];
     [self initTableView];
     if (self.isSearchEnable) {
         [self initSearchEnableFunction];
@@ -89,25 +82,14 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 #pragma mark - Public
-- (void)toastMessage:(NSString *)message {
-    [LLTool toastMessage:message];
-}
-
-- (void)showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Note" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        if (handler) {
-            handler(0);
-        }
-    }];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        if (handler) {
-            handler(1);
-        }
-    }];
-    [alert addAction:cancel];
-    [alert addAction:confirm];
-    [self presentViewController:alert animated:YES completion:nil];
+- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName {
+    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:self action:@selector(rightItemClick:)];
+    [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [btn setImage:[[UIImage LL_imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
+    btn.showsTouchWhenHighlighted = NO;
+    btn.tintColor = LLCONFIG_TEXT_COLOR;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 #pragma mark - Override
@@ -137,55 +119,12 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     return self.searchBar.text.length;
 }
 
-- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [btn setImage:[[UIImage LL_imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.adjustsImageWhenHighlighted = NO;
-    btn.frame = CGRectMake(0, 0, 40, 40);
-    btn.tintColor = LLCONFIG_TEXT_COLOR;
-    [btn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
 #pragma mark - Primary
-- (void)initNavigationItems {
-    if (self.navigationController.viewControllers.count <= 1) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-        btn.showsTouchWhenHighlighted = NO;
-        btn.adjustsImageWhenHighlighted = NO;
-        btn.frame = CGRectMake(0, 0, 40, 40);
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        self.navigationItem.leftBarButtonItem = item;
-        UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-        [btn setImage:[[UIImage LL_imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(leftItemClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    self.navigationItem.hidesBackButton = NO;
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : LLCONFIG_TEXT_COLOR}];
-    self.navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-}
-
 - (void)initTableView {
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:_style];
-    [self.view addSubview:self.tableView];
+    _tableView = [LLFactory getTableView:self.view frame:self.view.bounds delegate:self style:_style];
 //    self.tableView.bounces = NO;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
-    self.tableView.estimatedRowHeight = 50;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    // To Control subviews.
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
     self.tableView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
-
 }
 
 - (void)initSearchEnableFunction {
@@ -196,11 +135,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.searchBar.enablesReturnKeyAutomatically = NO;
     [self.searchBar sizeToFit];
 
-    _headerView = [[UIView alloc] init];
-    _headerView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    [self.view addSubview:_headerView];
+    _headerView = [LLFactory getBackgroundView:self.view frame:CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height)];
     [self.headerView addSubview:self.searchBar];
-    self.headerView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height);
 }
 
 - (void)initSelectEnableFunction {
@@ -208,14 +144,11 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.cancelAllString = @"Cancel All";
     
     // Navigation bar item
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:self action:@selector(rightItemClick:)];
     [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
     btn.showsTouchWhenHighlighted = NO;
-    btn.adjustsImageWhenHighlighted = NO;
-    btn.frame = CGRectMake(0, 0, 40, 40);
     btn.tintColor = LLCONFIG_TEXT_COLOR;
-    [btn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
     
@@ -259,17 +192,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
 }
 
-- (void)backAction {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)leftItemClick {
     if (self.isSearchEnable) {
         if (self.searchBar.isFirstResponder) {
             [self.searchBar resignFirstResponder];
         }
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [super leftItemClick];
 }
 
 - (void)selectAllItemClick:(UIBarButtonItem *)sender {

@@ -24,6 +24,7 @@
 #import "LLFilterDatePickerView.h"
 #import "LLTool.h"
 #import "LLMacros.h"
+#import "LLFactory.h"
 
 @interface LLFilterDatePickerView () <UIPickerViewDelegate , UIPickerViewDataSource>
 
@@ -124,8 +125,7 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
     UILabel *label = (UILabel *)view;
     if (!label) {
-        label = [[UILabel alloc] init];
-        label.font = [UIFont systemFontOfSize:18];
+        label = [LLFactory getLabel:nil frame:CGRectZero text:nil font:18 textColor:nil];
         label.textAlignment = NSTextAlignmentCenter;
         label.adjustsFontSizeToFitWidth = YES;
     }

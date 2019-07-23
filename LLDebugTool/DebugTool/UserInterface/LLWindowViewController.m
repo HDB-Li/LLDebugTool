@@ -32,6 +32,8 @@
 #import "LLTool.h"
 #import "LLHierarchyExplorerToolBar.h"
 #import "LLFunctionViewController.h"
+#import "LLBaseNavigationController.h"
+#import "LLFactory.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -642,10 +644,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (UIView *)outlineViewForView:(UIView *)view
 {
     CGRect outlineFrame = [self frameInLocalCoordinatesForView:view];
-    UIView *outlineView = [[UIView alloc] initWithFrame:outlineFrame];
-    outlineView.backgroundColor = [UIColor clearColor];
-    outlineView.layer.borderColor = [[LLTool colorFromObject:view] CGColor];
-    outlineView.layer.borderWidth = 1.0;
+    UIView *outlineView = [LLFactory getView:nil frame:outlineFrame backgroundColor:[UIColor clearColor]];
+    [LLTool setView:outlineView borderColor:[LLTool colorFromObject:view] borderWidth:1];
     return outlineView;
 }
 
@@ -687,9 +687,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         
         if (selectedView) {
             if (!self.selectedViewOverlay) {
-                self.selectedViewOverlay = [[UIView alloc] init];
-                [self.view addSubview:self.selectedViewOverlay];
-                self.selectedViewOverlay.layer.borderWidth = 1.0;
+                self.selectedViewOverlay = [LLFactory getView:self.view];
+                [LLTool setView:self.selectedViewOverlay borderWidth:1];
             }
             UIColor *outlineColor = [LLTool colorFromObject:selectedView];
             self.selectedViewOverlay.backgroundColor = [outlineColor colorWithAlphaComponent:0.2];
@@ -911,7 +910,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             [vc setValue:value forKey:key];
         }
     }
-    [self presentViewController:self.functionViewController animated:YES completion:nil];
+    [self presentViewController:[[LLBaseNavigationController alloc] initWithRootViewController:self.functionViewController] animated:YES completion:nil];
 }
 
 - (void)resignKeyWindow {
@@ -1029,9 +1028,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (UIView *)contentView {
     if (!_contentView) {
-        _contentView = [[UIView alloc] init];
-        _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-        _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+        _contentView = [LLFactory getBackgroundView:nil frame:CGRectZero];
+        [LLTool setView:_contentView borderColor:LLCONFIG_TEXT_COLOR borderWidth:0];
         _contentView.layer.masksToBounds = YES;
         _contentView.alpha = [LLConfig sharedConfig].normalAlpha;
     }
@@ -1040,37 +1038,28 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (UILabel *)memoryLabel {
     if (!_memoryLabel) {
-        _memoryLabel = [[UILabel alloc] init];
+        _memoryLabel = [LLFactory getLabel:nil frame:CGRectZero text:@"loading" font:12 textColor:LLCONFIG_TEXT_COLOR];
         _memoryLabel.textAlignment = NSTextAlignmentCenter;
-        _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
-        _memoryLabel.font = [UIFont systemFontOfSize:12];
         _memoryLabel.adjustsFontSizeToFitWidth = YES;
-        _memoryLabel.text = @"loading";
     }
     return _memoryLabel;
 }
 
 - (UILabel *)CPULabel {
     if (!_CPULabel) {
-        _CPULabel = [[UILabel alloc] init];
+        _CPULabel = [LLFactory getLabel:nil frame:CGRectZero text:@"loading" font:10 textColor:LLCONFIG_TEXT_COLOR];
         _CPULabel.textAlignment = NSTextAlignmentCenter;
-        _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
-        _CPULabel.font = [UIFont systemFontOfSize:10];
         _CPULabel.adjustsFontSizeToFitWidth = YES;
-        _CPULabel.text = @"loading";
     }
     return _CPULabel;
 }
 
 - (UILabel *)FPSLabel {
     if (!_FPSLabel) {
-        _FPSLabel = [[UILabel alloc] init];
+        _FPSLabel = [LLFactory getLabel:nil frame:CGRectZero text:@"60" font:12 textColor:LLCONFIG_TEXT_COLOR];
         _FPSLabel.textAlignment = NSTextAlignmentCenter;
         _FPSLabel.backgroundColor = LLCONFIG_TEXT_COLOR;
-        _FPSLabel.textColor = LLCONFIG_BACKGROUND_COLOR;
-        _FPSLabel.font = [UIFont systemFontOfSize:12];
         _FPSLabel.adjustsFontSizeToFitWidth = YES;
-        _FPSLabel.text = @"60";
         _FPSLabel.layer.masksToBounds = YES;
     }
     return _FPSLabel;
@@ -1078,8 +1067,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (UIView *)lineView {
     if (!_lineView) {
-        _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+        _lineView = [LLFactory getPrimaryView];
     }
     return _lineView;
 }

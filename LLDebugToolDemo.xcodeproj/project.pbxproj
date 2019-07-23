@@ -10,6 +10,7 @@
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
 		3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */; };
+		362933B922E6D8B900317C1F /* UIView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 362933B822E6D8B900317C1F /* UIView+LL_Utils.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
 		3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */; };
@@ -118,6 +119,7 @@
 		C44F41662152AA7000153F46 /* LLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41172152AA7000153F46 /* LLWindow.m */; };
 		C44F41672152AA7000153F46 /* LLWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41192152AA7000153F46 /* LLWindowViewController.m */; };
 		C49B691C215E843400E82794 /* LLHierarchyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49B691B215E843400E82794 /* LLHierarchyModel.m */; };
+		C4B4B2BB22E6062C00D58BBE /* LLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4B2BA22E6062C00D58BBE /* LLFactory.m */; };
 		C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA30632185977D00B2A847 /* LLPreviewController.m */; };
 		C4FA306A2185FEE500B2A847 /* LLWindowTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA30692185FEE500B2A847 /* LLWindowTabBarController.m */; };
 		C4FA306D2185FF3900B2A847 /* LLWindowTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA306C2185FF3900B2A847 /* LLWindowTabBar.m */; };
@@ -147,6 +149,8 @@
 		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3611B42921605A9200BEAB11 /* LLHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyViewController.h; sourceTree = "<group>"; };
 		3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
+		362933B722E6D8B900317C1F /* UIView+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LL_Utils.h"; sourceTree = "<group>"; };
+		362933B822E6D8B900317C1F /* UIView+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Utils.m"; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
 		3629E3872136830A00226C79 /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
 		3629E3882136830A00226C79 /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
@@ -364,6 +368,8 @@
 		C44F41192152AA7000153F46 /* LLWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindowViewController.m; sourceTree = "<group>"; };
 		C49B691A215E843400E82794 /* LLHierarchyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyModel.h; sourceTree = "<group>"; };
 		C49B691B215E843400E82794 /* LLHierarchyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyModel.m; sourceTree = "<group>"; };
+		C4B4B2B922E6062C00D58BBE /* LLFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFactory.h; sourceTree = "<group>"; };
+		C4B4B2BA22E6062C00D58BBE /* LLFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFactory.m; sourceTree = "<group>"; };
 		C4F8C661215533E800B07016 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C4FA30622185977D00B2A847 /* LLPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPreviewController.h; sourceTree = "<group>"; };
 		C4FA30632185977D00B2A847 /* LLPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPreviewController.m; sourceTree = "<group>"; };
@@ -402,6 +408,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		362933B622E6D8AA00317C1F /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				362933B722E6D8B900317C1F /* UIView+LL_Utils.h */,
+				362933B822E6D8B900317C1F /* UIView+LL_Utils.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		3629E3852136830A00226C79 /* DemoViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +445,13 @@
 				364A561021886002004C1071 /* LLButton.m */,
 			);
 			path = LLButton;
+			sourceTree = "<group>";
+		};
+		364ECF5122E6982400B65E9C /* Others */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		369D09222153853A001C9D4B /* Function */ = {
@@ -665,6 +687,8 @@
 		C44F40732152AA7000153F46 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				364ECF5122E6982400B65E9C /* Others */,
+				C4B4B2B822E6061000D58BBE /* Factory */,
 				C44F40742152AA7000153F46 /* Route */,
 				C44F40772152AA7000153F46 /* Category */,
 				C44F407E2152AA7000153F46 /* Macros */,
@@ -750,6 +774,7 @@
 		C44F40872152AA7000153F46 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				362933B622E6D8AA00317C1F /* UIView */,
 				C44F40882152AA7000153F46 /* UIImage */,
 				C44F408B2152AA7000153F46 /* UIButton */,
 			);
@@ -1069,6 +1094,15 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
+		C4B4B2B822E6061000D58BBE /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4B2B922E6062C00D58BBE /* LLFactory.h */,
+				C4B4B2BA22E6062C00D58BBE /* LLFactory.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		E99ABDA4555CAF38A3D78EE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,6 +1352,7 @@
 				C44F41232152AA7000153F46 /* LLScreenshotActionView.m in Sources */,
 				C44F413E2152AA7000153F46 /* LLBaseNavigationController.m in Sources */,
 				C44F412B2152AA7000153F46 /* UIButton+LL_Utils.m in Sources */,
+				C4B4B2BB22E6062C00D58BBE /* LLFactory.m in Sources */,
 				36B2373521749781008A5D96 /* LLHierarchyCell.m in Sources */,
 				369D09382153853A001C9D4B /* LLLogDetailViewController.m in Sources */,
 				C44F414B2152AA7000153F46 /* LLCrashHelper.m in Sources */,
@@ -1360,6 +1395,7 @@
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C44F413A2152AA7000153F46 /* LLFilterEventView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
+				362933B922E6D8B900317C1F /* UIView+LL_Utils.m in Sources */,
 				C44F411A2152AA7000153F46 /* LLConfig.m in Sources */,
 				C44F41242152AA7000153F46 /* LLScreenshotSelectorView.m in Sources */,
 				C44F41672152AA7000153F46 /* LLWindowViewController.m in Sources */,
@@ -1642,6 +1678,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1661,6 +1698,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

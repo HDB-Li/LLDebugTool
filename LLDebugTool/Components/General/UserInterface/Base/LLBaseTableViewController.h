@@ -21,11 +21,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseViewController.h"
 #import "LLBaseModel.h"
-#import <Masonry/Masonry.h>
 
-@interface LLBaseTableViewController : UIViewController <UITableViewDelegate , UITableViewDataSource , UISearchBarDelegate>
+@interface LLBaseTableViewController : LLBaseViewController <UITableViewDelegate , UITableViewDataSource , UISearchBarDelegate>
 
 /**
  * Whether use searchBar. Default is NO.
@@ -98,24 +97,12 @@
 - (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
 - (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
 
-#pragma mark - Quick tool
-/**
- * Simple toast.
- */
-- (void)toastMessage:(NSString *_Nullable)message;
-
-/**
- * Simple alert.
- */
-- (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
-
 /**
  * Init a navigation item.
  */
 - (void)initRightNavigationItemWithImageName:(NSString *_Nonnull)imageName selectedImageName:(NSString *_Nonnull)selectedImageName;
 
 #pragma mark - Rewrite
-
 - (void)leftItemClick;
 /**
  * Right item action. Must call super method.

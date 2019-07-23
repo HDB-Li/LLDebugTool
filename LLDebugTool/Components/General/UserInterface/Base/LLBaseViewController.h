@@ -25,4 +25,19 @@
 
 @interface LLBaseViewController : UIViewController
 
+/**
+ * Simple toast.
+ */
+- (void)toastMessage:(NSString *_Nonnull)message;
+
+/**
+ * Simple alert.
+ */
+- (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
+
+/**
+ * Left navigation item action.
+ */
+- (void)leftItemClick;
+
 @end

@@ -24,6 +24,7 @@
 #import "LLScreenshotSelectorView.h"
 #import "LLScreenshotSelectorModel.h"
 #import "LLImageNameConfig.h"
+#import "LLFactory.h"
 
 @interface LLScreenshotSelectorView ()
 
@@ -85,8 +86,7 @@
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
     
     for (int i = 0; i < count; i++) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(gap + i * (itemWidth + itemGap), top, itemWidth, itemHeight);
+        UIButton *button = [LLFactory getButton:self frame:CGRectMake(gap + i * (itemWidth + itemGap), top, itemWidth, itemHeight) target:self action:@selector(actionButtonClicked:)];
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
@@ -147,10 +147,7 @@
         [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
         button.tag = i;
         button.showsTouchWhenHighlighted = NO;
-        button.adjustsImageWhenHighlighted = NO;
         button.layer.borderColor = [UIColor whiteColor].CGColor;
-        [button addTarget:self action:@selector(actionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
     }
 }
 

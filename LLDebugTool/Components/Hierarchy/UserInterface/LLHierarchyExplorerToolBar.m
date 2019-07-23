@@ -23,11 +23,11 @@
 
 #import "LLHierarchyExplorerToolBar.h"
 #import "LLConfig.h"
-#import "UIImage+LL_Utils.h"
 #import "LLImageNameConfig.h"
 #import "LLHierarchyModel.h"
 #import "LLMacros.h"
 #import "LLTool.h"
+#import "LLFactory.h"
 
 @interface LLHierarchyExplorerToolBar () <UITabBarDelegate>
 
@@ -85,25 +85,17 @@
     [self.tabBar setItems:items];
     [self addSubview:self.tabBar];
     
-    self.descriptionBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 49, LL_SCREEN_WIDTH, 30)];
-    self.descriptionBackgroundView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:[LLConfig sharedConfig].normalAlpha];
-    [self addSubview:self.descriptionBackgroundView];
+    self.descriptionBackgroundView = [LLFactory getBackgroundView:self frame:CGRectMake(0, 49, LL_SCREEN_WIDTH, 30) alpha:[LLConfig sharedConfig].normalAlpha];
     
     CGFloat itemsMargin = 15;
     CGFloat tintWidth = 15;
     CGRect tintViewFrame = CGRectMake(itemsMargin, (self.descriptionBackgroundView.frame.size.height - tintWidth) / 2.0, tintWidth , tintWidth);
-    self.descriptionTintView = [[UIView alloc] initWithFrame:tintViewFrame];
-    self.descriptionTintView.layer.cornerRadius = tintWidth / 2.0;
-    self.descriptionTintView.layer.masksToBounds = YES;
-    [self.descriptionBackgroundView addSubview:self.descriptionTintView];
+    self.descriptionTintView = [LLFactory getView:self.descriptionBackgroundView frame:tintViewFrame];
+    [LLTool setView:self.descriptionTintView cornerRadius:tintWidth / 2.0];
     
     CGFloat labelLeftMargin = tintViewFrame.origin.x + tintViewFrame.size.width + itemsMargin;
-    self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height)];
-    self.descriptionLabel.font = [UIFont systemFontOfSize:12];
-    self.descriptionLabel.numberOfLines = 2;
-    self.descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.descriptionLabel.textColor = LLCONFIG_TEXT_COLOR;
-    [self.descriptionBackgroundView addSubview:self.descriptionLabel];
+    self.descriptionLabel = [LLFactory getLabel:self.descriptionBackgroundView frame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height) text:nil font:2 textColor:LLCONFIG_TEXT_COLOR];
+    [LLTool setLabel:self.descriptionLabel numberOfLines:2];
     
     self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGRHandle:)];
     [self addGestureRecognizer:self.panGR];

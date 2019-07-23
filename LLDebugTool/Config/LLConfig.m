@@ -23,6 +23,7 @@
 
 #import "LLConfig.h"
 #import "LLRoute.h"
+#import "LLFactory.h"
 
 static LLConfig *_instance = nil;
 
@@ -114,10 +115,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     
     // Get system tint color.
     if ([[NSThread currentThread] isMainThread]) {
-        _systemTintColor = [[UIView alloc] init].tintColor;
+        _systemTintColor = [LLFactory getView].tintColor;
     } else {
         dispatch_sync(dispatch_get_main_queue(), ^{
-            self->_systemTintColor = [[UIView alloc] init].tintColor;
+            self->_systemTintColor = [LLFactory getView].tintColor;
         });
     }
 

@@ -28,6 +28,7 @@
 #import "LLMacros.h"
 #import "LLTool.h"
 #import "LLConfig.h"
+#import "LLFactory.h"
 
 @interface LLFilterTextFieldCell ()
 
@@ -129,26 +130,18 @@
 
 - (UIView *)accessoryView {
     if (!_accessoryView) {
-        _accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40)];
-        _accessoryView.backgroundColor = [UIColor whiteColor];
-        UIButton *cancel = [UIButton buttonWithType:UIButtonTypeCustom];
+        _accessoryView = [LLFactory getView:nil frame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40) backgroundColor:[UIColor whiteColor]];
+        UIButton *cancel = [LLFactory getButton:_accessoryView frame:CGRectMake(12, 0, 60, _accessoryView.frame.size.height) target:self action:@selector(cancelButtonClick:)];
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        cancel.frame = CGRectMake(12, 0, 60, _accessoryView.frame.size.height);
         cancel.titleLabel.font = [UIFont systemFontOfSize:15];
-        [cancel addTarget:self action:@selector(cancelButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_accessoryView addSubview:cancel];
         
-        UIButton *confirm = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *confirm = [LLFactory getButton:_accessoryView frame:CGRectMake(_accessoryView.frame.size.width - 60 - 12, 0, 60, _accessoryView.frame.size.height) target:self action:@selector(confirmButtonClick:)];
         [confirm setTitle:@"Confirm" forState:UIControlStateNormal];
         [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        confirm.frame = CGRectMake(_accessoryView.frame.size.width - 60 - 12, 0, 60, _accessoryView.frame.size.height);
         confirm.titleLabel.font = [UIFont systemFontOfSize:15];
-        [confirm addTarget:self action:@selector(confirmButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_accessoryView addSubview:confirm];
         
-        [LLTool lineView:CGRectMake(0, 0, _accessoryView.frame.size.width, 1) superView:_accessoryView];
-//        [LLTool lineView:CGRectMake(0, _accessoryView.frame.size.height - 1, _accessoryView.frame.size.width, 1) superView:_accessoryView];
+        [LLFactory lineView:CGRectMake(0, 0, _accessoryView.frame.size.width, 1) superView:_accessoryView];
     }
     return _accessoryView;
 }
