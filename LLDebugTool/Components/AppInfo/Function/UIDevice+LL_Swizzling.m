@@ -25,15 +25,15 @@
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
 
-static const char * kModelNameKey = "modelName";
+static const char * kLLModelNameKey = "kLLModelNameKey";
 
 @implementation UIDevice (LL_Swizzling)
 
 - (NSString *)LL_modelName {
-    NSString *name = objc_getAssociatedObject(self, kModelNameKey);
+    NSString *name = objc_getAssociatedObject(self, kLLModelNameKey);
     if (name == nil) {
         name = [self LL_getCurrentDeviceModel];
-        objc_setAssociatedObject(self, kModelNameKey, name, OBJC_ASSOCIATION_COPY);
+        objc_setAssociatedObject(self, kLLModelNameKey, name, OBJC_ASSOCIATION_COPY);
     }
     return name;
 }

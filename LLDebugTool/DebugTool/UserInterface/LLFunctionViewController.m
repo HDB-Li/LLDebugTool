@@ -52,11 +52,10 @@ static NSString *const kCellID = @"cellID";
     [self initial];
 }
 
-#pragma mark - Public
-
 #pragma mark - Primary
 - (void)initial {
-    self.navigationItem.title = @"LLDebugTool";
+    self.title = @"LLDebugTool";
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((LL_SCREEN_WIDTH - 10 * 2) / 3.0, 90);
     layout.minimumLineSpacing = 0;

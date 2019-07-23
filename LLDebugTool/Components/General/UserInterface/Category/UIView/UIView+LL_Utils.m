@@ -24,8 +24,8 @@
 #import "UIView+LL_Utils.h"
 #import <objc/runtime.h>
 
-static const char *kLLHorizontalPaddingKey = "horizontalPadding";
-static const char *kLLVerticalPaddingKey = "verticalPadding";
+static const char *kLLHorizontalPaddingKey = "kLLHorizontalPaddingKey";
+static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
 
 @implementation UIView (LL_Utils)
 

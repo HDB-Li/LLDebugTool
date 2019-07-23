@@ -11,6 +11,7 @@
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
 		3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */; };
 		362933B922E6D8B900317C1F /* UIView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 362933B822E6D8B900317C1F /* UIView+LL_Utils.m */; };
+		362933C022E7083A00317C1F /* UILabel+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 362933BF22E7083A00317C1F /* UILabel+LL_Utils.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
 		3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */; };
@@ -149,6 +150,8 @@
 		3611B42A21605A9200BEAB11 /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
 		362933B722E6D8B900317C1F /* UIView+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LL_Utils.h"; sourceTree = "<group>"; };
 		362933B822E6D8B900317C1F /* UIView+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Utils.m"; sourceTree = "<group>"; };
+		362933BE22E7083A00317C1F /* UILabel+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LL_Utils.h"; sourceTree = "<group>"; };
+		362933BF22E7083A00317C1F /* UILabel+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LL_Utils.m"; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
 		3629E3872136830A00226C79 /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
 		3629E3882136830A00226C79 /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
@@ -409,6 +412,15 @@
 				362933B822E6D8B900317C1F /* UIView+LL_Utils.m */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		362933BD22E7082C00317C1F /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				362933BE22E7083A00317C1F /* UILabel+LL_Utils.h */,
+				362933BF22E7083A00317C1F /* UILabel+LL_Utils.m */,
+			);
+			path = UILabel;
 			sourceTree = "<group>";
 		};
 		3629E3852136830A00226C79 /* DemoViewControllers */ = {
@@ -768,6 +780,7 @@
 		C44F40872152AA7000153F46 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				362933BD22E7082C00317C1F /* UILabel */,
 				362933B622E6D8AA00317C1F /* UIView */,
 				C44F40882152AA7000153F46 /* UIImage */,
 				C44F408B2152AA7000153F46 /* UIButton */,
@@ -1384,6 +1397,7 @@
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C44F413A2152AA7000153F46 /* LLFilterEventView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
+				362933C022E7083A00317C1F /* UILabel+LL_Utils.m in Sources */,
 				362933B922E6D8B900317C1F /* UIView+LL_Utils.m in Sources */,
 				C44F411A2152AA7000153F46 /* LLConfig.m in Sources */,
 				C44F41242152AA7000153F46 /* LLScreenshotSelectorView.m in Sources */,
