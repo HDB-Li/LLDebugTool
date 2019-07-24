@@ -55,7 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setCornerRadius:(CGFloat)cornerRadius;
 
+- (void)setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
+
 - (void)removeAllSubviews;
+
+- (UIView *_Nullable)bottomView;
+
+- (void)LL_AddClickListener:(id)target action:(SEL)action;
 
 @end
 

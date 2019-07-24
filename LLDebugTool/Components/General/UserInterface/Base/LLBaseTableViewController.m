@@ -65,8 +65,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     if (self.isSelectEnable) {
         [self initSelectEnableFunction];
     }
-    [self resetDefaultSettings];
-    self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -125,6 +123,9 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 //    self.tableView.bounces = NO;
     self.tableView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    }
 }
 
 - (void)initSearchEnableFunction {
@@ -177,19 +178,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self setToolbarItems:items];
     
     self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-}
-
-- (void)resetDefaultSettings {
-    // Used to solve problems caused by modifying some systems default values with Runtime in the project.
-    // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.automaticallyAdjustsScrollViewInsets = YES;
-#pragma clang diagnostic pop
-    self.navigationController.navigationBar.translucent = YES;
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-    }
 }
 
 - (void)leftItemClick {

@@ -175,9 +175,31 @@ static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
     self.layer.masksToBounds = YES;
 }
 
+- (void)setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth {
+    self.layer.borderColor = borderColor.CGColor;
+    self.layer.borderWidth = borderWidth;
+}
+
 - (void)removeAllSubviews {
     for (UIView *subview in self.subviews) {
         [subview removeFromSuperview];
     }
 }
+
+- (UIView *_Nullable)bottomView {
+    UIView *view = nil;
+    for (UIView *subview in self.subviews) {
+        if (subview.LL_bottom > view.LL_bottom) {
+            view = subview;
+        }
+    }
+    return view;
+}
+
+- (void)LL_AddClickListener:(id)target action:(SEL)action {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
+    [self addGestureRecognizer:tap];
+    self.userInteractionEnabled = YES;
+}
+
 @end

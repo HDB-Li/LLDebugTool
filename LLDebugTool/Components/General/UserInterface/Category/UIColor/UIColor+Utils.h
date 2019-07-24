@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)colorWithHex:(NSString *)hex;
 
+- (NSArray *)getRGBA;
+
 @end
 
 NS_ASSUME_NONNULL_END

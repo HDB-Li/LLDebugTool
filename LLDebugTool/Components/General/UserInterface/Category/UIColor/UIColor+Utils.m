@@ -60,4 +60,13 @@
                            alpha:1.0f];
 }
 
+- (NSArray *)getRGBA {
+    CGFloat r = 0;
+    CGFloat g = 0;
+    CGFloat b = 0;
+    CGFloat a = 0;
+    [self getRed:&r green:&g blue:&b alpha:&a];
+    return @[@(r),@(g),@(b),@(a)];
+}
+
 @end

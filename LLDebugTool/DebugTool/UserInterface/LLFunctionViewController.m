@@ -23,7 +23,6 @@
 
 #import "LLFunctionViewController.h"
 #import "LLFunctionModel.h"
-#import "LLFunctionCell.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLMacros.h"
@@ -34,16 +33,16 @@
 #import "LLAppInfoViewController.h"
 #import "LLSandboxViewController.h"
 #import "LLHierarchyViewController.h"
-#import "LLFunctionFooterView.h"
+#import "LLFunctionContainerView.h"
+#import "UIView+LL_Utils.h"
 
-static NSString *const kCellID = @"cellID";
-static NSString *const kFooterID = @"footerID";
+@interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
 
-@interface LLFunctionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, LLHierarchyViewControllerDelegate>
+@property (nonatomic, strong) LLFunctionContainerView *toolContainerView;
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) LLFunctionContainerView *shortCutContainerView;
 
-@property (nonatomic, strong) NSArray <LLFunctionModel *>*dataArray;
+@property (nonatomic, strong) UIButton *settingButton;
 
 @end
 
@@ -54,19 +53,42 @@ static NSString *const kFooterID = @"footerID";
     [self initial];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGRect toolContainerRect = CGRectMake(10, LL_NAVIGATION_HEIGHT + 10, self.view.LL_width - 10 * 2, self.toolContainerView.LL_height);
+    if (!CGRectEqualToRect(self.toolContainerView.frame, toolContainerRect)) {
+        self.toolContainerView.frame = toolContainerRect;
+    }
+    
+    CGRect shortCutContainerRect = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + 10, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
+    if (!CGRectEqualToRect(self.shortCutContainerView.frame, shortCutContainerRect)) {
+        self.shortCutContainerView.frame = shortCutContainerRect;
+    }
+    
+    CGRect settingButtonRect = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + 30, self.toolContainerView.LL_width, 40);
+    if (!CGRectEqualToRect(self.settingButton.frame, settingButtonRect)) {
+        self.settingButton.frame = settingButtonRect;
+    }
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.title = @"LLDebugTool";
+ 
+    self.toolContainerView = [[LLFunctionContainerView alloc] initWithFrame:CGRectZero];
+    self.toolContainerView.delegate = self;
+    [self.view addSubview:self.toolContainerView];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((LL_SCREEN_WIDTH - 10 * 2) / 3.0, 90);
-    layout.minimumLineSpacing = 0;
-    layout.minimumInteritemSpacing = 0;
-    self.collectionView = [LLFactory getCollectionView:self.view frame:self.view.bounds delegate:self layout:layout];
-    self.collectionView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFunctionCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kCellID];
-    [self.collectionView registerClass:[LLFunctionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kFooterID];
+    self.shortCutContainerView = [[LLFunctionContainerView alloc] initWithFrame:CGRectZero];
+    self.shortCutContainerView.delegate = self;
+    [self.view addSubview:self.shortCutContainerView];
+    
+    self.settingButton = [LLFactory getButton:self.view frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
+    [self.settingButton setCornerRadius:5];
+    [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
+    [self.settingButton setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
+    [self.settingButton setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:1];
+    
     [self loadData];
 }
 
@@ -77,9 +99,15 @@ static NSString *const kFooterID = @"footerID";
     [items addObject:[[LLFunctionModel alloc] initWithImageName:kCrashImageName title:@"Crash" action:LLFunctionActionCrash]];
     [items addObject:[[LLFunctionModel alloc] initWithImageName:kAppImageName title:@"App Info" action:LLFunctionActionAppInfo]];
     [items addObject:[[LLFunctionModel alloc] initWithImageName:kSandboxImageName title:@"Sandbox" action:LLFunctionActionSandbox]];
+    
+    self.toolContainerView.dataArray = [items copy];
+    
+    [items removeAllObjects];
+    
     [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Screenshot" action:LLFunctionActionScreenshot]];
     [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Hierarchy" action:LLFunctionActionHierarchy]];
-    self.dataArray = [items copy];
+    
+    self.shortCutContainerView.dataArray = [items copy];
 }
 
 - (void)goToNetworkViewController {
@@ -117,56 +145,37 @@ static NSString *const kFooterID = @"footerID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count;
+- (void)settingButtonClicked:(UIButton *)sender {
+    
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LLFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-    cell.model = self.dataArray[indexPath.item];
-    return cell;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        LLFunctionFooterView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kFooterID forIndexPath:indexPath];
-        return footer;
-    }
-    return nil;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return CGSizeMake(LL_SCREEN_WIDTH, 60);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    LLFunctionModel *model = self.dataArray[indexPath.item];
-    switch (model.action) {
-        case LLFunctionActionNetwork:
-            [self goToNetworkViewController];
-            break;
-        case LLFunctionActionLog:
-            [self goToLogViewController];
-            break;
-        case LLFunctionActionCrash:
-            [self goToCrashViewController];
-            break;
-        case LLFunctionActionAppInfo:
-            [self goToAppInfoViewController];
-            break;
-        case LLFunctionActionSandbox:
-            [self goToSandboxViewController];
-            break;
-        case LLFunctionActionScreenshot:
-            [self doScreenshot];
-            break;
-        case LLFunctionActionHierarchy:
-            [self goToHierarchyViewController];
-            break;
-        default:
-            break;
-    }
+#pragma mark - LLFunctionContainerViewDelegate
+- (void)llFunctionContainerView:(LLFunctionContainerView *)view didSelectAt:(LLFunctionModel *)model {
+        switch (model.action) {
+            case LLFunctionActionNetwork:
+                [self goToNetworkViewController];
+                break;
+            case LLFunctionActionLog:
+                [self goToLogViewController];
+                break;
+            case LLFunctionActionCrash:
+                [self goToCrashViewController];
+                break;
+            case LLFunctionActionAppInfo:
+                [self goToAppInfoViewController];
+                break;
+            case LLFunctionActionSandbox:
+                [self goToSandboxViewController];
+                break;
+            case LLFunctionActionScreenshot:
+                [self doScreenshot];
+                break;
+            case LLFunctionActionHierarchy:
+                [self goToHierarchyViewController];
+                break;
+            default:
+                break;
+        }
 }
 
 #pragma mark - LLHierarchyViewControllerDelegate

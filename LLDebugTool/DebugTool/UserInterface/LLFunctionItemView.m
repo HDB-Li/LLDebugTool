@@ -1,5 +1,5 @@
 //
-//  LLFunctionItem.m
+//  LLFunctionItemView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFunctionItem.h"
+#import "LLFunctionItemView.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
 #import "UIImage+LL_Utils.h"
+#import "UIView+LL_Utils.h"
 
-@interface LLFunctionItem ()
+@interface LLFunctionItemView ()
 
 @property (nonatomic, strong) UIImageView *imageView;
 
@@ -34,7 +35,7 @@
 
 @end
 
-@implementation LLFunctionItem
+@implementation LLFunctionItemView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -52,10 +53,18 @@
     }
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.imageView.frame = CGRectMake(0, 10, 40, 40);
+    self.imageView.LL_centerX = self.LL_width / 2.0;
+    self.titleLabel.frame = CGRectMake(0, self.imageView.LL_bottom + 10, self.LL_width, 20);
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.imageView = [LLFactory getImageView:self];
     self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:LLCONFIG_TEXT_COLOR];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)updateUI:(LLFunctionModel *)model {

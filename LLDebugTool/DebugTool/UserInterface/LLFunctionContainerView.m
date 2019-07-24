@@ -23,6 +23,15 @@
 
 #import "LLFunctionContainerView.h"
 #import "UIView+LL_Utils.h"
+#import "LLFunctionItemView.h"
+#import "LLMacros.h"
+#import "LLThemeManager.h"
+
+@interface LLFunctionContainerView ()
+
+@property (nonatomic, strong) NSMutableArray *itemViews;
+
+@end
 
 @implementation LLFunctionContainerView
 
@@ -38,18 +47,52 @@
 - (void)setDataArray:(NSArray<LLFunctionModel *> *)dataArray {
     if (_dataArray != dataArray) {
         _dataArray = dataArray;
-        [self updateUI];
+        [self updateUI:dataArray];
     }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    NSInteger count = 3;
+    CGFloat itemWidth = self.LL_width / count;
+    CGFloat itemHeight = 90;
+    for (int i = 0; i < self.itemViews.count; i++) {
+        NSInteger section = i / count;
+        NSInteger row = i % count;
+        LLFunctionItemView *view = self.itemViews[i];
+        view.frame = CGRectMake(row * itemWidth, section * itemHeight, itemWidth, itemHeight);
+    }
+    self.LL_size = CGSizeMake(self.LL_width, [self bottomView].LL_bottom);
 }
 
 #pragma mark - Primary
 - (void)initial {
+    self.backgroundColor = [LLThemeManager shared].containerColor;
+    self.itemViews = [[NSMutableArray alloc] init];
     [self setCornerRadius:5];
 }
 
-- (void)updateUI {
+- (void)updateUI:(NSArray<LLFunctionModel *> *)dataArray {
     [self removeAllSubviews];
-    
+    [self.itemViews removeAllObjects];
+    for (int i = 0; i < dataArray.count; i++) {
+        LLFunctionModel *model = dataArray[i];
+        LLFunctionItemView *itemView = [[LLFunctionItemView alloc] initWithFrame:CGRectZero];
+        [itemView LL_AddClickListener:self action:@selector(itemViewClicked:)];
+        itemView.model = model;
+        [self addSubview:itemView];
+        [self.itemViews addObject:itemView];
+    }
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
+- (void)itemViewClicked:(UITapGestureRecognizer *)tap {
+    UIView *view = tap.view;
+    if ([view isKindOfClass:[LLFunctionItemView class]]) {
+        LLFunctionItemView *itemView = (LLFunctionItemView *)view;
+        [self.delegate llFunctionContainerView:self didSelectAt:itemView.model];
+    }
 }
 
 @end

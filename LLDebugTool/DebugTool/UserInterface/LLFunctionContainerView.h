@@ -26,7 +26,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class LLFunctionContainerView;
+
+@protocol LLFunctionContainerViewControllerDelegate <NSObject>
+
+- (void)llFunctionContainerView:(LLFunctionContainerView *)view didSelectAt:(LLFunctionModel *)model;
+
+@end
+
 @interface LLFunctionContainerView : UIView
+
+@property (nonatomic, weak) id<LLFunctionContainerViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSArray <LLFunctionModel *>*dataArray;
 

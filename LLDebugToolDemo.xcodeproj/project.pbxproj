@@ -40,8 +40,6 @@
 		36FA704C22E5B04E00988C92 /* LLFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA704B22E5B04E00988C92 /* LLFunctionViewController.m */; };
 		36FA705222E5BAB300988C92 /* LLFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705122E5BAB300988C92 /* LLFunctionModel.m */; };
 		36FA705522E5BF4B00988C92 /* LLBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705422E5BF4B00988C92 /* LLBaseCollectionViewCell.m */; };
-		36FA705922E5C20B00988C92 /* LLFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705722E5C20B00988C92 /* LLFunctionCell.m */; };
-		36FA705A22E5C20B00988C92 /* LLFunctionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FA705822E5C20B00988C92 /* LLFunctionCell.xib */; };
 		36FA705D22E5C5FF00988C92 /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705C22E5C5FF00988C92 /* LLBaseViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -119,11 +117,10 @@
 		C44F41652152AA7000153F46 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41112152AA7000153F46 /* LLDebugTool.m */; };
 		C44F41662152AA7000153F46 /* LLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41172152AA7000153F46 /* LLWindow.m */; };
 		C44F41672152AA7000153F46 /* LLWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C44F41192152AA7000153F46 /* LLWindowViewController.m */; };
-		C48F1B2A22E73354007FB9CC /* LLFunctionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F1B2922E73354007FB9CC /* LLFunctionFooterView.m */; };
 		C48F1B2E22E73B42007FB9CC /* LLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F1B2D22E73B42007FB9CC /* LLThemeManager.m */; };
 		C48F1B3222E73DC9007FB9CC /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F1B3122E73DC9007FB9CC /* UIColor+Utils.m */; };
 		C48F1B3522E74670007FB9CC /* LLFunctionContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F1B3422E74670007FB9CC /* LLFunctionContainerView.m */; };
-		C48F1B3822E74790007FB9CC /* LLFunctionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F1B3722E74790007FB9CC /* LLFunctionItem.m */; };
+		C48F1B3822E74790007FB9CC /* LLFunctionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C48F1B3722E74790007FB9CC /* LLFunctionItemView.m */; };
 		C49B691C215E843400E82794 /* LLHierarchyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49B691B215E843400E82794 /* LLHierarchyModel.m */; };
 		C4B4B2BB22E6062C00D58BBE /* LLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4B2BA22E6062C00D58BBE /* LLFactory.m */; };
 		C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FA30632185977D00B2A847 /* LLPreviewController.m */; };
@@ -216,9 +213,6 @@
 		36FA705122E5BAB300988C92 /* LLFunctionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionModel.m; sourceTree = "<group>"; };
 		36FA705322E5BF4B00988C92 /* LLBaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseCollectionViewCell.h; sourceTree = "<group>"; };
 		36FA705422E5BF4B00988C92 /* LLBaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseCollectionViewCell.m; sourceTree = "<group>"; };
-		36FA705622E5C20B00988C92 /* LLFunctionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionCell.h; sourceTree = "<group>"; };
-		36FA705722E5C20B00988C92 /* LLFunctionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionCell.m; sourceTree = "<group>"; };
-		36FA705822E5C20B00988C92 /* LLFunctionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLFunctionCell.xib; sourceTree = "<group>"; };
 		36FA705B22E5C5FF00988C92 /* LLBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseViewController.h; sourceTree = "<group>"; };
 		36FA705C22E5C5FF00988C92 /* LLBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -372,16 +366,14 @@
 		C44F41172152AA7000153F46 /* LLWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindow.m; sourceTree = "<group>"; };
 		C44F41182152AA7000153F46 /* LLWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindow.h; sourceTree = "<group>"; };
 		C44F41192152AA7000153F46 /* LLWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindowViewController.m; sourceTree = "<group>"; };
-		C48F1B2822E73354007FB9CC /* LLFunctionFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionFooterView.h; sourceTree = "<group>"; };
-		C48F1B2922E73354007FB9CC /* LLFunctionFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionFooterView.m; sourceTree = "<group>"; };
 		C48F1B2C22E73B42007FB9CC /* LLThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLThemeManager.h; sourceTree = "<group>"; };
 		C48F1B2D22E73B42007FB9CC /* LLThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLThemeManager.m; sourceTree = "<group>"; };
 		C48F1B3022E73DC9007FB9CC /* UIColor+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
 		C48F1B3122E73DC9007FB9CC /* UIColor+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
 		C48F1B3322E74670007FB9CC /* LLFunctionContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionContainerView.h; sourceTree = "<group>"; };
 		C48F1B3422E74670007FB9CC /* LLFunctionContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionContainerView.m; sourceTree = "<group>"; };
-		C48F1B3622E74790007FB9CC /* LLFunctionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionItem.h; sourceTree = "<group>"; };
-		C48F1B3722E74790007FB9CC /* LLFunctionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItem.m; sourceTree = "<group>"; };
+		C48F1B3622E74790007FB9CC /* LLFunctionItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionItemView.h; sourceTree = "<group>"; };
+		C48F1B3722E74790007FB9CC /* LLFunctionItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItemView.m; sourceTree = "<group>"; };
 		C49B691A215E843400E82794 /* LLHierarchyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyModel.h; sourceTree = "<group>"; };
 		C49B691B215E843400E82794 /* LLHierarchyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyModel.m; sourceTree = "<group>"; };
 		C4B4B2B922E6062C00D58BBE /* LLFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFactory.h; sourceTree = "<group>"; };
@@ -1099,15 +1091,10 @@
 				36FA704B22E5B04E00988C92 /* LLFunctionViewController.m */,
 				36FA705022E5BAB300988C92 /* LLFunctionModel.h */,
 				36FA705122E5BAB300988C92 /* LLFunctionModel.m */,
-				36FA705622E5C20B00988C92 /* LLFunctionCell.h */,
-				36FA705722E5C20B00988C92 /* LLFunctionCell.m */,
-				36FA705822E5C20B00988C92 /* LLFunctionCell.xib */,
-				C48F1B2822E73354007FB9CC /* LLFunctionFooterView.h */,
-				C48F1B2922E73354007FB9CC /* LLFunctionFooterView.m */,
 				C48F1B3322E74670007FB9CC /* LLFunctionContainerView.h */,
 				C48F1B3422E74670007FB9CC /* LLFunctionContainerView.m */,
-				C48F1B3622E74790007FB9CC /* LLFunctionItem.h */,
-				C48F1B3722E74790007FB9CC /* LLFunctionItem.m */,
+				C48F1B3622E74790007FB9CC /* LLFunctionItemView.h */,
+				C48F1B3722E74790007FB9CC /* LLFunctionItemView.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1287,7 +1274,6 @@
 				C44F41382152AA7000153F46 /* LLFilterTextFieldCell.xib in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				C44F41352152AA7000153F46 /* LLFilterLabelCell.xib in Resources */,
-				36FA705A22E5C20B00988C92 /* LLFunctionCell.xib in Resources */,
 				36B2373621749781008A5D96 /* LLHierarchyCell.xib in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				367E27A120A1A8480032EF0D /* Localizable.strings in Resources */,
@@ -1428,7 +1414,6 @@
 				36FA705222E5BAB300988C92 /* LLFunctionModel.m in Sources */,
 				C44F41252152AA7000153F46 /* LLRoute.m in Sources */,
 				36FA262E215DB9F500462EA8 /* LLHierarchyHelper.m in Sources */,
-				36FA705922E5C20B00988C92 /* LLFunctionCell.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C44F413A2152AA7000153F46 /* LLFilterEventView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
@@ -1448,7 +1433,7 @@
 				369D093E2153AE14001C9D4B /* NSURLSession+LL_Swizzling.m in Sources */,
 				C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */,
 				C44F41302152AA7000153F46 /* LLNoneCopyTextField.m in Sources */,
-				C48F1B3822E74790007FB9CC /* LLFunctionItem.m in Sources */,
+				C48F1B3822E74790007FB9CC /* LLFunctionItemView.m in Sources */,
 				C44F41222152AA7000153F46 /* LLScreenshotSelectorModel.m in Sources */,
 				C44F41552152AA7000153F46 /* LLSandboxHelper.m in Sources */,
 				C44F41412152AA7000153F46 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
@@ -1473,7 +1458,6 @@
 				C44F412D2152AA7000153F46 /* LLSubTitleTableViewCell.m in Sources */,
 				369D09342153853A001C9D4B /* LLLogHelper.m in Sources */,
 				C44F413B2152AA7000153F46 /* LLFilterLabelModel.m in Sources */,
-				C48F1B2A22E73354007FB9CC /* LLFunctionFooterView.m in Sources */,
 				C44F41292152AA7000153F46 /* LLTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

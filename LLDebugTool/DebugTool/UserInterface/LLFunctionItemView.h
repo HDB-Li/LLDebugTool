@@ -1,5 +1,5 @@
 //
-//  LLFunctionFooterView.h
+//  LLFunctionItemView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,10 +22,13 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "LLFunctionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFunctionFooterView : UICollectionReusableView
+@interface LLFunctionItemView : UIView
+
+@property (nonatomic, strong) LLFunctionModel *model;
 
 @end
 

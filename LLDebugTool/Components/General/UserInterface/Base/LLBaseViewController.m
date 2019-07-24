@@ -67,6 +67,8 @@
 
 #pragma mark - Primary
 - (void)baseInitial {
+    [self resetDefaultSettings];
+    self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     [self initNavigationItems];
 }
 
@@ -82,7 +84,18 @@
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : LLCONFIG_TEXT_COLOR}];
+    self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+}
+
+- (void)resetDefaultSettings {
+    // Used to solve problems caused by modifying some systems default values with Runtime in the project.
+    // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    self.automaticallyAdjustsScrollViewInsets = YES;
+#pragma clang diagnostic pop
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)backAction {

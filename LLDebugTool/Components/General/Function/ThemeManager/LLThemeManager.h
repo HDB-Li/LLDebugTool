@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) UIColor *backgroundColor;
 
+@property (nonatomic, copy, readonly) UIColor *containerColor;
+
 @property (nonatomic, copy, readonly) UIColor *grayBackgroundColor;
 
 @property (nonatomic, copy, readonly) UIColor *backgroundBColor;
