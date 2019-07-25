@@ -179,17 +179,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Window
 /**
- Suspension ball width, must greater than 70.
+ Suspension ball width, default is kLLSuspensionWindowWidth, must greater than kLLSuspensionWindowMinWidth.
  */
 @property (nonatomic, assign) CGFloat suspensionBallWidth;
 
 /**
- Suspension Ball alpha(not active), default is 0.9.
+ Suspension window hide width, default is kLLSuspensionWindowHideWidth.
+ */
+@property (nonatomic, assign) CGFloat suspensionWindowHideWidth;
+
+/**
+ Suspension default top, default is kLLSuspensionWindowTop.
+ */
+@property (nonatomic, assign) CGFloat suspensionWindowTop;
+
+/**
+ Suspension Ball alpha(not active), default is kLLSuspensionWindowNormalAlpha.
  */
 @property (nonatomic, assign) CGFloat normalAlpha;
 
 /**
- Suspension Ball alpha(active), default is 1.0.
+ Suspension Ball alpha(active), default is kLLSuspensionWindowActiveAlpha.
  */
 @property (nonatomic, assign) CGFloat activeAlpha;
 
@@ -197,6 +207,11 @@ NS_ASSUME_NONNULL_BEGIN
  Whether the suspension ball can be moved, default is YES.
  */
 @property (nonatomic, assign) BOOL suspensionBallMoveable;
+
+/**
+ Automatic adjust suspension window's frame, default is YES.
+ */
+@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow;
 
 #pragma mark - User Identity
 /**

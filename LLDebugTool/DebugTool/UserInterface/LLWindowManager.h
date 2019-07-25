@@ -1,5 +1,5 @@
 //
-//  LLWindow.h
+//  LLWindowManager.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,52 +21,50 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol LLWindowDelegate;
+/**
+ Manager windows.
+ */
+@interface LLWindowManager : NSObject
 
 /**
- The LLWindow class is used to display suspended window and functional interface entries.
+ Singleton
+
+ @return LLWindowManager.
  */
-@interface LLWindow : UIWindow
++ (instancetype)shared;
 
-///**
-// Proxy properties.
-// */
-//@property (weak, nonatomic, nullable) id <LLWindowDelegate> delegate;
-//
-///**
-// Specifies the initialization method.
-//
-// @param frame Specified frame.
-// @return Instance object.
-// */
-//- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-//
-//@end
-//
-///**
-// This represents the behaviour of the window.
-// */
-//@protocol LLWindowDelegate <NSObject>
-//
-///**
-// Whether LLWindow corresponds to a touch event.
-//
-// @param pointInWindow The point in window.
-// @return The result.
-// */
-//- (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow;
-//
-///**
-// Whether LLWindow be changed to KeyWindow.
-//
-// @return The result.
-// */
-//- (BOOL)canBecomeKeyWindow;
+/**
+ Show suspension window.
+ 
+ @param animated Animated.
+ */
+- (void)showSuspensionWindow:(BOOL)animated;
 
+/**
+ Hide suspension window.
+ 
+ @param animated Animated.
+ */
+- (void)hideSuspensionWindow:(BOOL)animated;
+
+/**
+ Show function window.
+ 
+ @param animated Animated.
+ */
+- (void)showFunctionWindow:(BOOL)animated;
+
+
+/**
+ Hide function window
+
+ @param animated Animated.
+ */
+- (void)hideFunctionWindow:(BOOL)animated;
 @end
 
 NS_ASSUME_NONNULL_END

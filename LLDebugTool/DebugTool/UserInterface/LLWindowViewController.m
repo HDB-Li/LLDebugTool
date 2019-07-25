@@ -236,7 +236,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
-    _CPULabel.textColor = LLCONFIG_TEXT_COLOR;    _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
+    _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
 }
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName

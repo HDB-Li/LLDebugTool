@@ -34,14 +34,15 @@
 #import "LLLogHelperEventDefine.h"
 #import "LLConfig.h"
 #import "LLTool.h"
+#import "LLWindowManager.h"
 
 static LLDebugTool *_instance = nil;
 
-@interface LLDebugTool () <LLWindowDelegate>
+@interface LLDebugTool ()// <LLWindowDelegate>
 
-@property (nonatomic, strong) LLWindow *window;
-
-@property (nonatomic, strong) LLWindowViewController *windowViewController;
+//@property (nonatomic, strong) LLWindow *window;
+//
+//@property (nonatomic, strong) LLWindowViewController *windowViewController;
 
 @property (nonatomic, copy) NSString *versionNumber;
 
@@ -111,8 +112,7 @@ static LLDebugTool *_instance = nil;
 
 - (void)showWindow
 {
-    self.window.hidden = NO;
-    [self.windowViewController showExplorerView];
+    [[LLWindowManager shared] showSuspensionWindow:NO];
 }
 
 - (void)hideWindow
@@ -245,20 +245,20 @@ static LLDebugTool *_instance = nil;
 }
 
 #pragma mark - Lazy
-- (LLWindow *)window {
-    if (!_window) {
-        _window = [[LLWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _window.rootViewController = self.windowViewController;
-        _window.delegate = self;
-    }
-    return _window;
-}
-
-- (LLWindowViewController *)windowViewController {
-    if (!_windowViewController) {
-        _windowViewController = [[LLWindowViewController alloc] init];
-    }
-    return _windowViewController;
-}
+//- (LLWindow *)window {
+//    if (!_window) {
+//        _window = [[LLWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        _window.rootViewController = self.windowViewController;
+//        _window.delegate = self;
+//    }
+//    return _window;
+//}
+//
+//- (LLWindowViewController *)windowViewController {
+//    if (!_windowViewController) {
+//        _windowViewController = [[LLWindowViewController alloc] init];
+//    }
+//    return _windowViewController;
+//}
 
 @end

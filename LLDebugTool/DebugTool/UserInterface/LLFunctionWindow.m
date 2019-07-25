@@ -1,5 +1,5 @@
 //
-//  LLWindow.h
+//  LLFunctionWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,52 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLFunctionWindow.h"
+#import "LLFunctionViewController.h"
+#import "LLBaseNavigationController.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLFunctionWindow
 
-@protocol LLWindowDelegate;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
+}
 
-/**
- The LLWindow class is used to display suspended window and functional interface entries.
- */
-@interface LLWindow : UIWindow
-
-///**
-// Proxy properties.
-// */
-//@property (weak, nonatomic, nullable) id <LLWindowDelegate> delegate;
-//
-///**
-// Specifies the initialization method.
-//
-// @param frame Specified frame.
-// @return Instance object.
-// */
-//- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-//
-//@end
-//
-///**
-// This represents the behaviour of the window.
-// */
-//@protocol LLWindowDelegate <NSObject>
-//
-///**
-// Whether LLWindow corresponds to a touch event.
-//
-// @param pointInWindow The point in window.
-// @return The result.
-// */
-//- (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow;
-//
-///**
-// Whether LLWindow be changed to KeyWindow.
-//
-// @return The result.
-// */
-//- (BOOL)canBecomeKeyWindow;
-
+#pragma mark - Primary
+- (void)initial {
+    self.windowLevel = UIWindowLevelStatusBar + 300;
+    if (!self.rootViewController) {
+        self.rootViewController = [[LLBaseNavigationController alloc] initWithRootViewController:[[LLFunctionViewController alloc] init]];
+    }
+}
 @end
-
-NS_ASSUME_NONNULL_END

@@ -30,54 +30,54 @@
 
 @implementation LLWindow
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-#pragma mark - Primary
-- (void)initial {
-    // Set color
-    self.backgroundColor = [UIColor clearColor];
-    self.layer.masksToBounds = YES;
-    // Set level
-    self.windowLevel = UIWindowLevelStatusBar + 200;
-}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    BOOL pointInside = NO;
-    if ([self.delegate shouldHandleTouchAtPoint:point]) {
-        pointInside = [super pointInside:point withEvent:event];
-    }
-    return pointInside;;
-}
-
-- (BOOL)shouldAffectStatusBarAppearance
-{
-    return [self isKeyWindow];
-}
-
-- (BOOL)canBecomeKeyWindow
-{
-    return [self.delegate canBecomeKeyWindow];
-}
-
-+ (void)initialize
-{
-    NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
-    SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
-    Method shouldAffectMethod = class_getInstanceMethod(self, @selector(shouldAffectStatusBarAppearance));
-    IMP canAffectImplementation = method_getImplementation(shouldAffectMethod);
-    class_addMethod(self, canAffectSelector, canAffectImplementation, method_getTypeEncoding(shouldAffectMethod));
-    
-    // One more...
-    NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
-    SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
-    Method canBecomeKeyMethod = class_getInstanceMethod(self, @selector(canBecomeKeyWindow));
-    IMP canBecomeKeyImplementation = method_getImplementation(canBecomeKeyMethod);
-    class_addMethod(self, canBecomeKeySelector, canBecomeKeyImplementation, method_getTypeEncoding(canBecomeKeyMethod));
-}
+//- (instancetype)initWithFrame:(CGRect)frame {
+//    if (self = [super initWithFrame:frame]) {
+//        [self initial];
+//    }
+//    return self;
+//}
+//
+//#pragma mark - Primary
+//- (void)initial {
+//    // Set color
+//    self.backgroundColor = [UIColor clearColor];
+//    self.layer.masksToBounds = YES;
+//    // Set level
+//    self.windowLevel = UIWindowLevelStatusBar + 200;
+//}
+////
+////- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+////    BOOL pointInside = NO;
+////    if ([self.delegate shouldHandleTouchAtPoint:point]) {
+////        pointInside = [super pointInside:point withEvent:event];
+////    }
+////    return pointInside;;
+////}
+//
+//- (BOOL)shouldAffectStatusBarAppearance
+//{
+//    return [self isKeyWindow];
+//}
+//
+//- (BOOL)canBecomeKeyWindow
+//{
+//    return [self.delegate canBecomeKeyWindow];
+//}
+//
+//+ (void)initialize
+//{
+//    NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
+//    SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
+//    Method shouldAffectMethod = class_getInstanceMethod(self, @selector(shouldAffectStatusBarAppearance));
+//    IMP canAffectImplementation = method_getImplementation(shouldAffectMethod);
+//    class_addMethod(self, canAffectSelector, canAffectImplementation, method_getTypeEncoding(shouldAffectMethod));
+//    
+//    // One more...
+//    NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
+//    SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
+//    Method canBecomeKeyMethod = class_getInstanceMethod(self, @selector(canBecomeKeyWindow));
+//    IMP canBecomeKeyImplementation = method_getImplementation(canBecomeKeyMethod);
+//    class_addMethod(self, canBecomeKeySelector, canBecomeKeyImplementation, method_getTypeEncoding(canBecomeKeyMethod));
+//}
 
 @end

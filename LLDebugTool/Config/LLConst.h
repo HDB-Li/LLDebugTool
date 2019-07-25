@@ -1,5 +1,5 @@
 //
-//  LLWindow.h
+//  LLConst.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -20,53 +20,17 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@protocol LLWindowDelegate;
-
-/**
- The LLWindow class is used to display suspended window and functional interface entries.
- */
-@interface LLWindow : UIWindow
-
-///**
-// Proxy properties.
-// */
-//@property (weak, nonatomic, nullable) id <LLWindowDelegate> delegate;
-//
-///**
-// Specifies the initialization method.
-//
-// @param frame Specified frame.
-// @return Instance object.
-// */
-//- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-//
-//@end
-//
-///**
-// This represents the behaviour of the window.
-// */
-//@protocol LLWindowDelegate <NSObject>
-//
-///**
-// Whether LLWindow corresponds to a touch event.
-//
-// @param pointInWindow The point in window.
-// @return The result.
-// */
-//- (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow;
-//
-///**
-// Whether LLWindow be changed to KeyWindow.
-//
-// @return The result.
-// */
-//- (BOOL)canBecomeKeyWindow;
-
-@end
-
-NS_ASSUME_NONNULL_END
+// Default suspension window width.
+UIKIT_EXTERN CGFloat const kLLSuspensionWindowWidth;
+// Min width of suspension window.
+UIKIT_EXTERN CGFloat const kLLSuspensionWindowMinWidth;
+// The distance between Suspension window and UIScreen.
+UIKIT_EXTERN CGFloat const kLLSuspensionWindowHideWidth;
+// Normal status alpha of suspension window.
+UIKIT_EXTERN CGFloat const kLLSuspensionWindowNormalAlpha;
+// Active status alpha of suspension window.
+UIKIT_EXTERN CGFloat const kLLSuspensionWindowActiveAlpha;
+// Default top of suspension window.
+UIKIT_EXTERN CGFloat const kLLSuspensionWindowTop;

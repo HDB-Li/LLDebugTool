@@ -24,6 +24,7 @@
 #import "LLConfig.h"
 #import "LLRoute.h"
 #import "LLFactory.h"
+#import "LLConst.h"
 
 static LLConfig *_instance = nil;
 
@@ -89,6 +90,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
 }
 
+- (CGFloat)suspensionBallWidth {
+    return MAX(_suspensionBallWidth, kLLSuspensionWindowMinWidth);
+}
+
 #pragma mark - Primary
 /**
  Initialize something.
@@ -126,10 +131,13 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _colorStyle = LLConfigColorStyleHack;
     
     // Set default suspension ball attributes.
-    _suspensionBallWidth = 70;
-    _normalAlpha = 0.9;
-    _activeAlpha = 1.0;
+    _suspensionBallWidth = kLLSuspensionWindowWidth;
+    _suspensionWindowHideWidth = kLLSuspensionWindowHideWidth;
+    _suspensionWindowTop = kLLSuspensionWindowTop;
+    _normalAlpha = kLLSuspensionWindowNormalAlpha;
+    _activeAlpha = kLLSuspensionWindowActiveAlpha;
     _suspensionBallMoveable = YES;
+    _autoAdjustSuspensionWindow = YES;
     
     // Show LLDebugTool's log.
     _showDebugToolLog = YES;

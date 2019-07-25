@@ -35,6 +35,7 @@
 #import "LLHierarchyViewController.h"
 #import "LLFunctionContainerView.h"
 #import "UIView+LL_Utils.h"
+#import "LLWindowManager.h"
 
 @interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
 
@@ -69,6 +70,11 @@
     if (!CGRectEqualToRect(self.settingButton.frame, settingButtonRect)) {
         self.settingButton.frame = settingButtonRect;
     }
+}
+
+- (void)leftItemClick {
+    [[LLWindowManager shared] hideFunctionWindow:YES];
+    [[LLWindowManager shared] showSuspensionWindow:YES];
 }
 
 #pragma mark - Primary

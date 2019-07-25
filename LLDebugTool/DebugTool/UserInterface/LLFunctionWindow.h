@@ -1,5 +1,5 @@
 //
-//  LLWindow.h
+//  LLFunctionWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -20,52 +20,11 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-
-#import <UIKit/UIKit.h>
+#import "LLBaseWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol LLWindowDelegate;
-
-/**
- The LLWindow class is used to display suspended window and functional interface entries.
- */
-@interface LLWindow : UIWindow
-
-///**
-// Proxy properties.
-// */
-//@property (weak, nonatomic, nullable) id <LLWindowDelegate> delegate;
-//
-///**
-// Specifies the initialization method.
-//
-// @param frame Specified frame.
-// @return Instance object.
-// */
-//- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-//
-//@end
-//
-///**
-// This represents the behaviour of the window.
-// */
-//@protocol LLWindowDelegate <NSObject>
-//
-///**
-// Whether LLWindow corresponds to a touch event.
-//
-// @param pointInWindow The point in window.
-// @return The result.
-// */
-//- (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow;
-//
-///**
-// Whether LLWindow be changed to KeyWindow.
-//
-// @return The result.
-// */
-//- (BOOL)canBecomeKeyWindow;
+@interface LLFunctionWindow : LLBaseWindow
 
 @end
 

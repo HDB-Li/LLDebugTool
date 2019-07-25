@@ -20,7 +20,12 @@
 		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
 		364A561121886002004C1071 /* LLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 364A561021886002004C1071 /* LLButton.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
+		3681441722E9B90F00CA4A9C /* LLFunctionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3681441622E9B90F00CA4A9C /* LLFunctionWindow.m */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
+		36926C2B22E9395400CC58EF /* LLBaseWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 36926C2A22E9395400CC58EF /* LLBaseWindow.m */; };
+		36926C2E22E93B1400CC58EF /* LLSuspensionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 36926C2D22E93B1400CC58EF /* LLSuspensionWindow.m */; };
+		36926C3122E93D0200CC58EF /* LLWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 36926C3022E93D0200CC58EF /* LLWindowManager.m */; };
+		36926C3522E9409E00CC58EF /* LLConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 36926C3422E9409E00CC58EF /* LLConst.m */; };
 		369D09332153853A001C9D4B /* LLLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09282153853A001C9D4B /* LLLogModel.m */; };
 		369D09342153853A001C9D4B /* LLLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D09292153853A001C9D4B /* LLLogHelper.m */; };
 		369D09352153853A001C9D4B /* LLLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369D092E2153853A001C9D4B /* LLLogCell.m */; };
@@ -172,8 +177,18 @@
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		367E27A420A1A8490032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3681441522E9B90F00CA4A9C /* LLFunctionWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionWindow.h; sourceTree = "<group>"; };
+		3681441622E9B90F00CA4A9C /* LLFunctionWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionWindow.m; sourceTree = "<group>"; };
 		3691A61C20C7E63B00E22192 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3691A61E20C7E63D00E22192 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		36926C2922E9395400CC58EF /* LLBaseWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseWindow.h; sourceTree = "<group>"; };
+		36926C2A22E9395400CC58EF /* LLBaseWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseWindow.m; sourceTree = "<group>"; };
+		36926C2C22E93B1400CC58EF /* LLSuspensionWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSuspensionWindow.h; sourceTree = "<group>"; };
+		36926C2D22E93B1400CC58EF /* LLSuspensionWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSuspensionWindow.m; sourceTree = "<group>"; };
+		36926C2F22E93D0200CC58EF /* LLWindowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWindowManager.h; sourceTree = "<group>"; };
+		36926C3022E93D0200CC58EF /* LLWindowManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManager.m; sourceTree = "<group>"; };
+		36926C3322E9409E00CC58EF /* LLConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLConst.h; sourceTree = "<group>"; };
+		36926C3422E9409E00CC58EF /* LLConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLConst.m; sourceTree = "<group>"; };
 		369D09242153853A001C9D4B /* LLLogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogModel.h; sourceTree = "<group>"; };
 		369D09252153853A001C9D4B /* LLLogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogHelper.h; sourceTree = "<group>"; };
 		369D09262153853A001C9D4B /* LLLogHelperEventDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogHelperEventDefine.h; sourceTree = "<group>"; };
@@ -610,6 +625,8 @@
 			children = (
 				C44F40572152AA7000153F46 /* LLConfig.h */,
 				C44F40562152AA7000153F46 /* LLConfig.m */,
+				36926C3322E9409E00CC58EF /* LLConst.h */,
+				36926C3422E9409E00CC58EF /* LLConst.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1095,6 +1112,14 @@
 				C48F1B3422E74670007FB9CC /* LLFunctionContainerView.m */,
 				C48F1B3622E74790007FB9CC /* LLFunctionItemView.h */,
 				C48F1B3722E74790007FB9CC /* LLFunctionItemView.m */,
+				36926C2922E9395400CC58EF /* LLBaseWindow.h */,
+				36926C2A22E9395400CC58EF /* LLBaseWindow.m */,
+				36926C2C22E93B1400CC58EF /* LLSuspensionWindow.h */,
+				36926C2D22E93B1400CC58EF /* LLSuspensionWindow.m */,
+				3681441522E9B90F00CA4A9C /* LLFunctionWindow.h */,
+				3681441622E9B90F00CA4A9C /* LLFunctionWindow.m */,
+				36926C2F22E93D0200CC58EF /* LLWindowManager.h */,
+				36926C3022E93D0200CC58EF /* LLWindowManager.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1398,7 +1423,9 @@
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				36FA705D22E5C5FF00988C92 /* LLBaseViewController.m in Sources */,
+				36926C2B22E9395400CC58EF /* LLBaseWindow.m in Sources */,
 				C44F413D2152AA7000153F46 /* LLBaseTableViewCell.m in Sources */,
+				3681441722E9B90F00CA4A9C /* LLFunctionWindow.m in Sources */,
 				C44F41642152AA7000153F46 /* LLAppInfoViewController.m in Sources */,
 				C44F41662152AA7000153F46 /* LLWindow.m in Sources */,
 				C44F411D2152AA7000153F46 /* LLScreenshotHelper.m in Sources */,
@@ -1416,7 +1443,9 @@
 				36FA262E215DB9F500462EA8 /* LLHierarchyHelper.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C44F413A2152AA7000153F46 /* LLFilterEventView.m in Sources */,
+				36926C3122E93D0200CC58EF /* LLWindowManager.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
+				36926C2E22E93B1400CC58EF /* LLSuspensionWindow.m in Sources */,
 				362933C022E7083A00317C1F /* UILabel+LL_Utils.m in Sources */,
 				362933B922E6D8B900317C1F /* UIView+LL_Utils.m in Sources */,
 				C44F411A2152AA7000153F46 /* LLConfig.m in Sources */,
@@ -1434,6 +1463,7 @@
 				C4FA30642185977D00B2A847 /* LLPreviewController.m in Sources */,
 				C44F41302152AA7000153F46 /* LLNoneCopyTextField.m in Sources */,
 				C48F1B3822E74790007FB9CC /* LLFunctionItemView.m in Sources */,
+				36926C3522E9409E00CC58EF /* LLConst.m in Sources */,
 				C44F41222152AA7000153F46 /* LLScreenshotSelectorModel.m in Sources */,
 				C44F41552152AA7000153F46 /* LLSandboxHelper.m in Sources */,
 				C44F41412152AA7000153F46 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
