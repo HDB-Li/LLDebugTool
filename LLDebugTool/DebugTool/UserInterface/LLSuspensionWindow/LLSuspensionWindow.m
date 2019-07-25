@@ -57,7 +57,7 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.windowLevel = UIWindowLevelStatusBar + 300;
+    self.windowLevel = UIWindowLevelStatusBar + 301;
     if (!self.rootViewController) {
         self.rootViewController = [[UIViewController alloc] init];
     }
@@ -83,27 +83,29 @@
     [self addGestureRecognizer:pan];
 }
 
-- (void)panGR:(UIPanGestureRecognizer *)gr {
+- (void)panGR:(UIPanGestureRecognizer *)sender {
     if ([LLConfig sharedConfig].suspensionBallMoveable) {
-        UIWindow *window = [UIApplication sharedApplication].delegate.window;
-        CGPoint panPoint = [gr locationInView:window];
-        if (gr.state == UIGestureRecognizerStateBegan)
+        
+        CGPoint offsetPoint = [sender translationInView:sender.view];
+        [sender setTranslation:CGPointZero inView:sender.view];
+        
+        if (sender.state == UIGestureRecognizerStateBegan)
         {
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resignActive) object:nil];
             [self becomeActive];
-        } else if (gr.state == UIGestureRecognizerStateChanged) {
-            [self changeSBallViewFrameWithPoint:panPoint];
-        } else if (gr.state == UIGestureRecognizerStateEnded || gr.state == UIGestureRecognizerStateCancelled || gr.state == UIGestureRecognizerStateFailed) {
+        } else if (sender.state == UIGestureRecognizerStateChanged) {
+            [self changeFrameWithPoint:offsetPoint];
+        } else if (sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled || sender.state == UIGestureRecognizerStateFailed) {
             [self resignActive];
         }
     }
 }
 
-- (void)tapGR:(UITapGestureRecognizer *)gr {
+- (void)tapGR:(UITapGestureRecognizer *)sender {
     [_delegate llSuspensionWindow:self didTapAt:1];
 }
 
-- (void)doubleTapGR:(UITapGestureRecognizer *)gr {
+- (void)doubleTapGR:(UITapGestureRecognizer *)sender {
     [_delegate llSuspensionWindow:self didTapAt:2];
 }
 
@@ -155,18 +157,18 @@
     }];
 }
 
-- (void)changeSBallViewFrameWithPoint:(CGPoint)point {
-    if (point.x > LL_SCREEN_WIDTH) {
-        point.x = LL_SCREEN_WIDTH;
-    } else if (point.x < 0) {
-        point.x = 0;
-    }
-    if (point.y > LL_SCREEN_HEIGHT) {
-        point.y = LL_SCREEN_HEIGHT;
-    } else if (point.y < 0) {
-        point.y = 0;
-    }
-    self.center = CGPointMake(point.x, point.y);
+- (void)changeFrameWithPoint:(CGPoint)point {
+    CGPoint center = self.center;
+    center.x += point.x;
+    center.y += point.y;
+    
+    center.x = MIN(center.x, LL_SCREEN_WIDTH);
+    center.x = MAX(center.x, 0);
+    
+    center.y = MIN(center.y, LL_SCREEN_HEIGHT);
+    center.y = MAX(center.y, 0);
+    
+    self.center = center;
 }
 
 

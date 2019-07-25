@@ -72,7 +72,7 @@
     [self.contentTextView addGestureRecognizer:tap];
 }
 
-- (void)contentLabelTapAction:(UITapGestureRecognizer *)tap {
+- (void)contentLabelTapAction:(UITapGestureRecognizer *)sender {
     if ([self.delegate respondsToSelector:@selector(LLSubTitleTableViewCell:didSelectedContentView:)]) {
         [self.delegate LLSubTitleTableViewCell:self didSelectedContentView:self.contentTextView];
     }

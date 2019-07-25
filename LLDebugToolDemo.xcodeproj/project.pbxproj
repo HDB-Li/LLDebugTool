@@ -46,6 +46,11 @@
 		36FA705222E5BAB300988C92 /* LLFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705122E5BAB300988C92 /* LLFunctionModel.m */; };
 		36FA705522E5BF4B00988C92 /* LLBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705422E5BF4B00988C92 /* LLBaseCollectionViewCell.m */; };
 		36FA705D22E5C5FF00988C92 /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA705C22E5C5FF00988C92 /* LLBaseViewController.m */; };
+		C42972A322E9DC800018483B /* LLSelectorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C42972A222E9DC800018483B /* LLSelectorWindow.m */; };
+		C42972A722E9DCBA0018483B /* LLSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42972A622E9DCBA0018483B /* LLSelectorViewController.m */; };
+		C42972AE22E9E1DE0018483B /* LLContentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C42972AD22E9E1DE0018483B /* LLContentWindow.m */; };
+		C42972B222E9E8520018483B /* LLMagnifierWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C42972B122E9E8520018483B /* LLMagnifierWindow.m */; };
+		C42972B522E9E8720018483B /* LLMagnifierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C42972B422E9E8720018483B /* LLMagnifierLayer.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -235,6 +240,16 @@
 		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C42972A122E9DC800018483B /* LLSelectorWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSelectorWindow.h; sourceTree = "<group>"; };
+		C42972A222E9DC800018483B /* LLSelectorWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSelectorWindow.m; sourceTree = "<group>"; };
+		C42972A522E9DCBA0018483B /* LLSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSelectorViewController.h; sourceTree = "<group>"; };
+		C42972A622E9DCBA0018483B /* LLSelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSelectorViewController.m; sourceTree = "<group>"; };
+		C42972AC22E9E1DE0018483B /* LLContentWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLContentWindow.h; sourceTree = "<group>"; };
+		C42972AD22E9E1DE0018483B /* LLContentWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLContentWindow.m; sourceTree = "<group>"; };
+		C42972B022E9E8520018483B /* LLMagnifierWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierWindow.h; sourceTree = "<group>"; };
+		C42972B122E9E8520018483B /* LLMagnifierWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierWindow.m; sourceTree = "<group>"; };
+		C42972B322E9E8720018483B /* LLMagnifierLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierLayer.h; sourceTree = "<group>"; };
+		C42972B422E9E8720018483B /* LLMagnifierLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierLayer.m; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -564,6 +579,63 @@
 				250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C42972A822E9DD1A0018483B /* LLFunctionWindow */ = {
+			isa = PBXGroup;
+			children = (
+				36FA704A22E5B04E00988C92 /* LLFunctionViewController.h */,
+				36FA704B22E5B04E00988C92 /* LLFunctionViewController.m */,
+				36FA705022E5BAB300988C92 /* LLFunctionModel.h */,
+				36FA705122E5BAB300988C92 /* LLFunctionModel.m */,
+				C48F1B3322E74670007FB9CC /* LLFunctionContainerView.h */,
+				C48F1B3422E74670007FB9CC /* LLFunctionContainerView.m */,
+				C48F1B3622E74790007FB9CC /* LLFunctionItemView.h */,
+				C48F1B3722E74790007FB9CC /* LLFunctionItemView.m */,
+				3681441522E9B90F00CA4A9C /* LLFunctionWindow.h */,
+				3681441622E9B90F00CA4A9C /* LLFunctionWindow.m */,
+			);
+			path = LLFunctionWindow;
+			sourceTree = "<group>";
+		};
+		C42972A922E9DD330018483B /* LLSuspensionWindow */ = {
+			isa = PBXGroup;
+			children = (
+				36926C2C22E93B1400CC58EF /* LLSuspensionWindow.h */,
+				36926C2D22E93B1400CC58EF /* LLSuspensionWindow.m */,
+			);
+			path = LLSuspensionWindow;
+			sourceTree = "<group>";
+		};
+		C42972AA22E9DD410018483B /* LLSelectorWindow */ = {
+			isa = PBXGroup;
+			children = (
+				C42972A122E9DC800018483B /* LLSelectorWindow.h */,
+				C42972A222E9DC800018483B /* LLSelectorWindow.m */,
+				C42972A522E9DCBA0018483B /* LLSelectorViewController.h */,
+				C42972A622E9DCBA0018483B /* LLSelectorViewController.m */,
+			);
+			path = LLSelectorWindow;
+			sourceTree = "<group>";
+		};
+		C42972AB22E9E1900018483B /* LLContentWindow */ = {
+			isa = PBXGroup;
+			children = (
+				C42972AC22E9E1DE0018483B /* LLContentWindow.h */,
+				C42972AD22E9E1DE0018483B /* LLContentWindow.m */,
+			);
+			path = LLContentWindow;
+			sourceTree = "<group>";
+		};
+		C42972AF22E9E8400018483B /* LLMagnifierWindow */ = {
+			isa = PBXGroup;
+			children = (
+				C42972B022E9E8520018483B /* LLMagnifierWindow.h */,
+				C42972B122E9E8520018483B /* LLMagnifierWindow.m */,
+				C42972B322E9E8720018483B /* LLMagnifierLayer.h */,
+				C42972B422E9E8720018483B /* LLMagnifierLayer.m */,
+			);
+			path = LLMagnifierWindow;
 			sourceTree = "<group>";
 		};
 		C43BA7FE205AB095006307BE = {
@@ -1100,24 +1172,17 @@
 		C44F41152152AA7000153F46 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				C42972AF22E9E8400018483B /* LLMagnifierWindow */,
+				C42972AB22E9E1900018483B /* LLContentWindow */,
+				C42972AA22E9DD410018483B /* LLSelectorWindow */,
+				C42972A922E9DD330018483B /* LLSuspensionWindow */,
+				C42972A822E9DD1A0018483B /* LLFunctionWindow */,
 				C44F41182152AA7000153F46 /* LLWindow.h */,
 				C44F41172152AA7000153F46 /* LLWindow.m */,
 				C44F41162152AA7000153F46 /* LLWindowViewController.h */,
 				C44F41192152AA7000153F46 /* LLWindowViewController.m */,
-				36FA704A22E5B04E00988C92 /* LLFunctionViewController.h */,
-				36FA704B22E5B04E00988C92 /* LLFunctionViewController.m */,
-				36FA705022E5BAB300988C92 /* LLFunctionModel.h */,
-				36FA705122E5BAB300988C92 /* LLFunctionModel.m */,
-				C48F1B3322E74670007FB9CC /* LLFunctionContainerView.h */,
-				C48F1B3422E74670007FB9CC /* LLFunctionContainerView.m */,
-				C48F1B3622E74790007FB9CC /* LLFunctionItemView.h */,
-				C48F1B3722E74790007FB9CC /* LLFunctionItemView.m */,
 				36926C2922E9395400CC58EF /* LLBaseWindow.h */,
 				36926C2A22E9395400CC58EF /* LLBaseWindow.m */,
-				36926C2C22E93B1400CC58EF /* LLSuspensionWindow.h */,
-				36926C2D22E93B1400CC58EF /* LLSuspensionWindow.m */,
-				3681441522E9B90F00CA4A9C /* LLFunctionWindow.h */,
-				3681441622E9B90F00CA4A9C /* LLFunctionWindow.m */,
 				36926C2F22E93D0200CC58EF /* LLWindowManager.h */,
 				36926C3022E93D0200CC58EF /* LLWindowManager.m */,
 			);
@@ -1395,6 +1460,7 @@
 				36D090232189793B00554374 /* LLHierarchyExplorerToolBar.m in Sources */,
 				C44F41462152AA7000153F46 /* LLNetworkViewController.m in Sources */,
 				C44F41202152AA7000153F46 /* LLScreenshotImageView.m in Sources */,
+				C42972A322E9DC800018483B /* LLSelectorWindow.m in Sources */,
 				C44F41582152AA7000153F46 /* LLSandboxViewController.m in Sources */,
 				C44F41232152AA7000153F46 /* LLScreenshotActionView.m in Sources */,
 				C44F413E2152AA7000153F46 /* LLBaseNavigationController.m in Sources */,
@@ -1409,6 +1475,7 @@
 				C44F41452152AA7000153F46 /* LLNetworkFilterView.m in Sources */,
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C44F41622152AA7000153F46 /* UIDevice+LL_Swizzling.m in Sources */,
+				C42972B522E9E8720018483B /* LLMagnifierLayer.m in Sources */,
 				3611B42B21605A9200BEAB11 /* LLHierarchyViewController.m in Sources */,
 				C48F1B2E22E73B42007FB9CC /* LLThemeManager.m in Sources */,
 				C44F41542152AA7000153F46 /* LLCrashDetailViewController.m in Sources */,
@@ -1434,6 +1501,7 @@
 				C44F41272152AA7000153F46 /* NSObject+LL_Utils.m in Sources */,
 				36FA705522E5BF4B00988C92 /* LLBaseCollectionViewCell.m in Sources */,
 				C44F41262152AA7000153F46 /* NSString+LL_Utils.m in Sources */,
+				C42972AE22E9E1DE0018483B /* LLContentWindow.m in Sources */,
 				C44F41632152AA7000153F46 /* LLAppInfoHelper.m in Sources */,
 				C44F41532152AA7000153F46 /* LLCrashViewController.m in Sources */,
 				C44F41282152AA7000153F46 /* LLBaseModel.m in Sources */,
@@ -1467,6 +1535,7 @@
 				C44F41222152AA7000153F46 /* LLScreenshotSelectorModel.m in Sources */,
 				C44F41552152AA7000153F46 /* LLSandboxHelper.m in Sources */,
 				C44F41412152AA7000153F46 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
+				C42972B222E9E8520018483B /* LLMagnifierWindow.m in Sources */,
 				C44F411F2152AA7000153F46 /* LLScreenshotToolbar.m in Sources */,
 				C44F41402152AA7000153F46 /* NSURLSessionConfiguration+LL_Swizzling.m in Sources */,
 				C44F414E2152AA7000153F46 /* LLCrashSignalDetailViewController.m in Sources */,
@@ -1487,6 +1556,7 @@
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
 				C44F412D2152AA7000153F46 /* LLSubTitleTableViewCell.m in Sources */,
 				369D09342153853A001C9D4B /* LLLogHelper.m in Sources */,
+				C42972A722E9DCBA0018483B /* LLSelectorViewController.m in Sources */,
 				C44F413B2152AA7000153F46 /* LLFilterLabelModel.m in Sources */,
 				C44F41292152AA7000153F46 /* LLTool.m in Sources */,
 			);

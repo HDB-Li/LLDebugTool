@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLSelectorWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLSelectorWindow.h"
+#import "LLSelectorViewController.h"
 
-CGFloat const kLLSuspensionWindowWidth = 50;
-CGFloat const kLLSuspensionWindowMinWidth = 30;
-CGFloat const kLLSuspensionWindowHideWidth = 10;
-CGFloat const kLLSuspensionWindowNormalAlpha = 0.9;
-CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
-CGFloat const kLLSuspensionWindowTop = 200;
+@implementation LLSelectorWindow
 
-CGFloat const kLLMagnifierWindowScale = 10;
-NSInteger const kLLMagnifierWindowNumberPerRow = 15;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
+}
+
+#pragma mark - Primary
+- (void)initial {
+    self.windowLevel = UIWindowLevelStatusBar + 300;
+    if (!self.rootViewController) {
+        self.rootViewController = [[LLSelectorViewController alloc] init];
+    }
+}
+
+@end

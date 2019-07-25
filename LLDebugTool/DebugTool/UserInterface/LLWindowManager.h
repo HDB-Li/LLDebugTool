@@ -65,6 +65,21 @@ NS_ASSUME_NONNULL_BEGIN
  @param animated Animated.
  */
 - (void)hideFunctionWindow:(BOOL)animated;
+
+/**
+ Show magnifierWindow.
+
+ @param animated Animated.
+ */
+- (void)showMagnifierWindow:(BOOL)animated;
+
+/**
+ Hide magnifierWindow.
+ 
+ @param animated Animated.
+ */
+- (void)hideMagnifierWindow:(BOOL)animated;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -24,6 +24,7 @@
 #import "LLWindowManager.h"
 #import "LLSuspensionWindow.h"
 #import "LLFunctionWindow.h"
+#import "LLMagnifierWindow.h"
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
@@ -35,6 +36,8 @@ static LLWindowManager *_instance = nil;
 @property (nonatomic, strong) LLSuspensionWindow *suspensionWindow;
 
 @property (nonatomic, strong) LLFunctionWindow *functionWindow;
+
+@property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
 
 @end
 
@@ -98,6 +101,31 @@ static LLWindowManager *_instance = nil;
     }
 }
 
+- (void)showMagnifierWindow:(BOOL)animated {
+    if (animated) {
+        self.magnifierWindow.alpha = 0;
+        self.magnifierWindow.hidden = NO;
+        [UIView animateWithDuration:0.25 animations:^{
+            self.magnifierWindow.alpha = 1;
+        } completion:nil];
+    } else {
+        self.magnifierWindow.hidden = NO;
+    }
+}
+
+- (void)hideMagnifierWindow:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.magnifierWindow.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.magnifierWindow.hidden = YES;
+            self.magnifierWindow.alpha = 1;
+        }];
+    } else {
+        self.magnifierWindow.hidden = YES;
+    }
+}
+
 #pragma mark - Lazy
 - (LLSuspensionWindow *)suspensionWindow {
     if (!_suspensionWindow) {
@@ -114,6 +142,14 @@ static LLWindowManager *_instance = nil;
     return _functionWindow;
 }
 
+- (LLMagnifierWindow *)magnifierWindow {
+    if (!_magnifierWindow) {
+        CGFloat width = ceil([LLConfig sharedConfig].magnifierScale * [LLConfig sharedConfig].magnifierNumberPerRow);
+        _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
+    }
+    return _magnifierWindow;
+}
+
 #pragma mark - LLSuspensionWindowDelegate
 - (void)llSuspensionWindow:(LLSuspensionWindow *)window didTapAt:(NSInteger)numberOfTap {
     switch (numberOfTap) {
@@ -122,6 +158,7 @@ static LLWindowManager *_instance = nil;
             [self showFunctionWindow:YES];
             break;
         case 2:
+            [self showMagnifierWindow:YES];
             break;
         default:
             break;

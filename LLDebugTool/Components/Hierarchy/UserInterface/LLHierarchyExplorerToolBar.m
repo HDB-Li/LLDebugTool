@@ -101,9 +101,9 @@
     [self addGestureRecognizer:self.panGR];
 }
 
-- (void)panGRHandle:(UIPanGestureRecognizer *)gestureRecognize {
-    [self.delegate LLHierarchyExplorerToolBar:self handlePanOffset:[gestureRecognize translationInView:self]];
-    [gestureRecognize setTranslation:CGPointZero inView:self];
+- (void)panGRHandle:(UIPanGestureRecognizer *)sender {
+    [self.delegate LLHierarchyExplorerToolBar:self handlePanOffset:[sender translationInView:self]];
+    [sender setTranslation:CGPointZero inView:self];
 }
 
 - (UITabBarItem *)itemWithTitle:(NSString *)title imageName:(NSString *)imageName {

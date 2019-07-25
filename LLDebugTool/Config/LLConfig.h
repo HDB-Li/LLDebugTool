@@ -177,7 +177,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *dateFormatter;
 
-#pragma mark - Window
+#pragma mark - Suspension Window
 /**
  Suspension ball width, default is kLLSuspensionWindowWidth, must greater than kLLSuspensionWindowMinWidth.
  */
@@ -212,6 +212,17 @@ NS_ASSUME_NONNULL_BEGIN
  Automatic adjust suspension window's frame, default is YES.
  */
 @property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow;
+
+#pragma mark - Magnifier Window
+/**
+ Magnifier window scale, number of pixels per color, default is kLLMagnifierWindowScale.
+ */
+@property (nonatomic, assign) CGFloat magnifierScale;
+
+/**
+ Number of rows per magnifier window, default is kLLMagnifierWindowNumberPerRow.
+ */
+@property (nonatomic, assign) NSInteger magnifierNumberPerRow;
 
 #pragma mark - User Identity
 /**

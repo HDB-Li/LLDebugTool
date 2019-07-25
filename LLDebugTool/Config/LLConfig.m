@@ -139,6 +139,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _suspensionBallMoveable = YES;
     _autoAdjustSuspensionWindow = YES;
     
+    // Set default magnifier properties.
+    _magnifierScale = kLLMagnifierWindowScale;
+    _magnifierNumberPerRow = kLLMagnifierWindowNumberPerRow;
+    
     // Show LLDebugTool's log.
     _showDebugToolLog = YES;
     _autoCheckDebugToolVersion = YES;

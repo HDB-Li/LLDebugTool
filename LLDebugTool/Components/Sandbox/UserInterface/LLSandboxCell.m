@@ -77,8 +77,8 @@
     [self.contentView addGestureRecognizer:longPG];
 }
 
-- (void)longPressGestureAction:(UILongPressGestureRecognizer *)gr {
-    if (gr.state == UIGestureRecognizerStateBegan) {
+- (void)longPressGestureAction:(UILongPressGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
         if ([_delegate respondsToSelector:@selector(LL_tableViewCellDidLongPress:)]) {
             [_delegate LL_tableViewCellDidLongPress:self];
         }

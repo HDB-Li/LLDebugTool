@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLContentWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLContentWindow.h"
 
-CGFloat const kLLSuspensionWindowWidth = 50;
-CGFloat const kLLSuspensionWindowMinWidth = 30;
-CGFloat const kLLSuspensionWindowHideWidth = 10;
-CGFloat const kLLSuspensionWindowNormalAlpha = 0.9;
-CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
-CGFloat const kLLSuspensionWindowTop = 200;
+@implementation LLContentWindow
 
-CGFloat const kLLMagnifierWindowScale = 10;
-NSInteger const kLLMagnifierWindowNumberPerRow = 15;
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end
