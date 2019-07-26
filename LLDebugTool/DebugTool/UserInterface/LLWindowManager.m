@@ -144,7 +144,7 @@ static LLWindowManager *_instance = nil;
 
 - (LLMagnifierWindow *)magnifierWindow {
     if (!_magnifierWindow) {
-        CGFloat width = ceil([LLConfig sharedConfig].magnifierScale * [LLConfig sharedConfig].magnifierNumberPerRow);
+        CGFloat width = ceil([LLConfig sharedConfig].magnifierZoomLevel * [LLConfig sharedConfig].magnifierSize);
         _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     }
     return _magnifierWindow;

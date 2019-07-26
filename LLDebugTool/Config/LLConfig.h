@@ -215,14 +215,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Magnifier Window
 /**
- Magnifier window scale, number of pixels per color, default is kLLMagnifierWindowScale.
+ Magnifier window zoom level, number of pixels per color, default is kLLMagnifierWindowZoomLevel.
  */
-@property (nonatomic, assign) CGFloat magnifierScale;
+@property (nonatomic, assign) CGFloat magnifierZoomLevel;
 
 /**
- Number of rows per magnifier window, default is kLLMagnifierWindowNumberPerRow.
+ Number of rows per magnifier window, default is kLLMagnifierWindowSize.
  */
-@property (nonatomic, assign) NSInteger magnifierNumberPerRow;
+@property (nonatomic, assign) NSInteger magnifierSize;
 
 #pragma mark - User Identity
 /**

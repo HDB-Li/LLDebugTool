@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLThemeManager.h"
-#import "UIColor+Utils.h"
+#import "UIColor+LL_Utils.h"
 #import "LLConfig.h"
 
 static LLThemeManager *_instance = nil;

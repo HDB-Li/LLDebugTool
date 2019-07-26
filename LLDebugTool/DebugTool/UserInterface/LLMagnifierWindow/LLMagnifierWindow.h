@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLMagnifierWindow : LLBaseWindow
 
+@property (nonatomic, assign) CGPoint targetPoint;
+
 @end
 
 NS_ASSUME_NONNULL_END

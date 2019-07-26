@@ -140,8 +140,8 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _autoAdjustSuspensionWindow = YES;
     
     // Set default magnifier properties.
-    _magnifierScale = kLLMagnifierWindowScale;
-    _magnifierNumberPerRow = kLLMagnifierWindowNumberPerRow;
+    _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
+    _magnifierSize = kLLMagnifierWindowSize;
     
     // Show LLDebugTool's log.
     _showDebugToolLog = YES;

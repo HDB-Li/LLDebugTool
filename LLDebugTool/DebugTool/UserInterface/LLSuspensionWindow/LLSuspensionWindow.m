@@ -86,15 +86,15 @@
 - (void)panGR:(UIPanGestureRecognizer *)sender {
     if ([LLConfig sharedConfig].suspensionBallMoveable) {
         
-        CGPoint offsetPoint = [sender translationInView:sender.view];
-        [sender setTranslation:CGPointZero inView:sender.view];
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        CGPoint point = [sender locationInView:window];
         
         if (sender.state == UIGestureRecognizerStateBegan)
         {
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resignActive) object:nil];
             [self becomeActive];
         } else if (sender.state == UIGestureRecognizerStateChanged) {
-            [self changeFrameWithPoint:offsetPoint];
+            [self changeFrameWithPoint:point];
         } else if (sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled || sender.state == UIGestureRecognizerStateFailed) {
             [self resignActive];
         }
@@ -158,9 +158,8 @@
 }
 
 - (void)changeFrameWithPoint:(CGPoint)point {
-    CGPoint center = self.center;
-    center.x += point.x;
-    center.y += point.y;
+    
+    CGPoint center = point;
     
     center.x = MIN(center.x, LL_SCREEN_WIDTH);
     center.x = MAX(center.x, 0);

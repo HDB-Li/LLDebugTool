@@ -67,10 +67,14 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 - (UIImage *_Nullable)imageFromScreen {
-    NSData *data = [self dataWithScreenshotInPNGFormat];
-    return [UIImage imageWithData:data];
+    return [self imageFromScreen:[UIScreen mainScreen].scale];
 }
-    
+
+- (UIImage *_Nullable)imageFromScreen:(CGFloat)scale {
+    NSData *data = [self dataWithScreenshotInPNGFormat];
+    return [UIImage imageWithData:data scale:scale];
+}
+
 #pragma mark - Screenshot
 - (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^ __nullable)(BOOL finished))complete {
     if ([[NSThread currentThread] isMainThread]) {
@@ -131,7 +135,8 @@ static LLScreenshotHelper *_instance = nil;
     }
     for (UIView *window in windows)
     {
-        if (!window.isHidden && ![NSStringFromClass([window class]) isEqualToString:@"LLWindow"]) {
+        Class cls = NSClassFromString(@"LLBaseWindow");
+        if (!window.isHidden && cls != nil && ![window isKindOfClass:cls]) {
             CGContextSaveGState(context);
             CGContextTranslateCTM(context, window.center.x, window.center.y);
             CGContextConcatCTM(context, window.transform);

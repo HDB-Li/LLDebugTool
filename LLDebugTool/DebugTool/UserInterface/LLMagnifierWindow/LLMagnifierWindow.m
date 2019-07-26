@@ -26,6 +26,8 @@
 #import "LLConfig.h"
 #import "LLMacros.h"
 #import "LLScreenshotHelper.h"
+#import "UIImage+LL_Utils.h"
+#import "UIColor+LL_Utils.h"
 
 @interface LLMagnifierWindow ()
 
@@ -42,6 +44,49 @@
     return self;
 }
 
+- (void)drawRect:(CGRect)rect {
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGFloat zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    NSInteger size = [LLConfig sharedConfig].magnifierSize;
+    NSInteger skip = 1;
+    
+    CGPoint currentPoint = CGPointMake(self.targetPoint.x * scale, self.targetPoint.y * scale);
+    currentPoint.x = round(currentPoint.x - size * skip / 2.0 * scale);
+    currentPoint.y = round(currentPoint.y - size * skip / 2.0 * scale);
+    int i,j;
+    
+    // 放大镜中画出网格，并使用当前点和周围点的颜色进行填充
+    for (j = 0; j < size; j++) {
+        for (i = 0; i < size; i++) {
+            CGRect gridRect = CGRectMake(zoomLevel * i, zoomLevel * j, zoomLevel, zoomLevel);
+            UIColor *gridColor = [UIColor clearColor];
+            NSString *hexColorAtPoint = [self.screenshot LL_hexColorAt:currentPoint];
+            if (hexColorAtPoint) {
+                gridColor = [UIColor colorWithHex:hexColorAtPoint];
+            }
+            CGContextSetFillColorWithColor(context, gridColor.CGColor);
+            CGContextFillRect(context, gridRect);
+            // 横向寻找下一个相邻点
+            currentPoint.x += round(skip * scale);
+        }
+        // 一行绘制完毕，横向回归起始点，纵向寻找下一个点
+        currentPoint.x -= round(size * skip * scale);
+        currentPoint.y += round(skip * scale);
+    }
+}
+
+- (void)setHidden:(BOOL)hidden {
+    [super setHidden:hidden];
+    if (!hidden) {
+        [self updateScreenshot];
+        self.targetPoint = self.center;
+        [self setNeedsDisplay];
+    }
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.windowLevel = UIWindowLevelStatusBar + 299;
@@ -51,7 +96,9 @@
     self.layer.cornerRadius = self.LL_width / 2.0;
     self.layer.masksToBounds = YES;
     self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    self.layer.borderWidth = [LLConfig sharedConfig].magnifierScale / 2;
+    self.layer.borderWidth = [LLConfig sharedConfig].magnifierZoomLevel / 2;
+    
+    self.targetPoint = CGPointZero;
     
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
@@ -63,20 +110,21 @@
     if (sender.state == UIGestureRecognizerStateBegan) {
         [self updateScreenshot];
     } else {
-        CGPoint offsetPoint = [sender translationInView:sender.view];
         
-        [sender setTranslation:CGPointZero inView:sender.view];
+        CGPoint point = [sender locationInView:[[UIApplication sharedApplication].delegate window]];
         
-        [self changeFrameWithPoint:offsetPoint];
+        self.targetPoint = point;
+                
+        [self setNeedsDisplay];
+        
+        [self changeFrameWithPoint:point];
     }
 }
 
 - (void)changeFrameWithPoint:(CGPoint)point {
     
-    CGPoint center = self.center;
-    center.x += point.x;
-    center.y += point.y;
-    
+    CGPoint center = point;
+
     center.x = MIN(center.x, LL_SCREEN_WIDTH);
     center.x = MAX(center.x, 0);
     
@@ -87,42 +135,7 @@
 }
 
 - (void)updateScreenshot {
-    self.screenshot = [[LLScreenshotHelper sharedHelper] imageFromScreen];
-}
-
-- (NSString *)colorAtPoint:(CGPoint)point count:(NSInteger)count image:(UIImage *)image {
-    if (!image || !CGRectContainsPoint(CGRectMake(0.0f, 0.0f, image.size.width, image.size.height), point)) {
-        return nil;
-    }
-    
-    NSInteger pointX = trunc(point.x);
-    NSInteger pointY = trunc(point.y);
-    CGImageRef cgImage = image.CGImage;
-    NSUInteger width = image.size.width;
-    NSUInteger height = image.size.height;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    int bytesPerPixel = 4;
-    int bytesPerRow = bytesPerPixel * 1;
-    NSUInteger bitsPerComponent = 8;
-    unsigned char pixelData[4] = {0};
-    CGContextRef context = CGBitmapContextCreate(pixelData,
-                                                 1,
-                                                 1,
-                                                 bitsPerComponent,
-                                                 bytesPerRow,
-                                                 colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-    CGContextSetBlendMode(context, kCGBlendModeCopy);
-    
-    // Draw the pixel we are interested in onto the bitmap context
-    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
-    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
-    CGContextRelease(context);
-    
-    NSString *hexColor = [NSString stringWithFormat:@"#%02x%02x%02x",pixelData[0],pixelData[1],pixelData[2]];
-    //NSLog(@"color == %@",hexColor);
-    return hexColor;
+    self.screenshot = [[LLScreenshotHelper sharedHelper] imageFromScreen:1];
 }
 
 @end

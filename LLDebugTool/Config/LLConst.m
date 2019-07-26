@@ -30,5 +30,5 @@ CGFloat const kLLSuspensionWindowNormalAlpha = 0.9;
 CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
 CGFloat const kLLSuspensionWindowTop = 200;
 
-CGFloat const kLLMagnifierWindowScale = 10;
-NSInteger const kLLMagnifierWindowNumberPerRow = 15;
+CGFloat const kLLMagnifierWindowZoomLevel = 10;
+NSInteger const kLLMagnifierWindowSize = 15;

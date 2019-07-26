@@ -123,4 +123,82 @@
     return newImage;
 }
 
+- (NSArray <NSArray <NSString *>*>*)LL_hexColors {
+    
+    CGImageRef cgimage = [self CGImage];
+    size_t width = CGImageGetWidth(cgimage);
+    size_t height = CGImageGetHeight(cgimage);
+    unsigned char *data = calloc(width * height * 4, sizeof(unsigned char));
+    size_t bitsPerComponent = 8;
+    size_t bytesPerRow = width * 4; // RGBA
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(data,
+                                                 width,
+                                                 height,
+                                                 bitsPerComponent,
+                                                 bytesPerRow,
+                                                 space,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgimage);
+    NSMutableArray *hexColors = [[NSMutableArray alloc] initWithCapacity:height];
+    for (size_t i = 0; i < height; i++) {
+        NSMutableArray *colors = [[NSMutableArray alloc] initWithCapacity:width];
+        for (size_t j = 0; j < width; j++) {
+            size_t pixelIndex = i * width * 4 + j * 4;
+            unsigned char red = data[pixelIndex];
+            unsigned char green = data[pixelIndex + 1];
+            unsigned char blue = data[pixelIndex + 2];
+            
+            NSString *hexColor = [NSString stringWithFormat:@"#%02x%02x%02x",red,green,blue];
+            [colors addObject:hexColor];
+        }
+        [hexColors addObject:colors];
+    }
+    
+    CGColorSpaceRelease(space);
+    CGContextRelease(context);
+    free(data);
+    return hexColors;
+}
+
+- (NSString *)LL_hexColorAt:(CGPoint)point {
+
+    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), point)) {
+        return nil;
+    }
+    
+    NSString *hexColor = nil;
+    
+    @synchronized (self) {
+        NSInteger pointX = trunc(point.x);
+        NSInteger pointY = trunc(point.y);
+        CGImageRef cgImage = self.CGImage;
+        NSUInteger width = self.size.width;
+        NSUInteger height = self.size.height;
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        int bytesPerPixel = 4;
+        int bytesPerRow = bytesPerPixel * 1;
+        NSUInteger bitsPerComponent = 8;
+        unsigned char pixelData[4] = { 0 };
+        CGContextRef context = CGBitmapContextCreate(pixelData,
+                                                     1,
+                                                     1,
+                                                     bitsPerComponent,
+                                                     bytesPerRow,
+                                                     colorSpace,
+                                                     kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+        CGColorSpaceRelease(colorSpace);
+        CGContextSetBlendMode(context, kCGBlendModeCopy);
+        
+        CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
+        CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
+        CGContextRelease(context);
+        
+        // Here is a bug, The first row pixelData will always be "#000000", but the second row data is real first row data.
+        hexColor = [NSString stringWithFormat:@"#%02x%02x%02x",pixelData[0],pixelData[1],pixelData[2]];
+    }
+    return hexColor;
+}
+
 @end

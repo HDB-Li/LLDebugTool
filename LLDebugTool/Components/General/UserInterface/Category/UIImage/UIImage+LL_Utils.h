@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -61,6 +62,21 @@ NS_ASSUME_NONNULL_BEGIN
  * Get a image with the specified color.
  */
 - (UIImage *)LL_colorTo:(UIColor *)color;
+
+/**
+ All hex colors.
+
+ @return Hex colors.
+ */
+- (NSArray <NSArray <NSString *>*>*)LL_hexColors;
+
+/**
+ Hex color at point, return nil if image's frame didn't contain point.
+
+ @param point Point.
+ @return Hex color string.
+ */
+- (NSString *_Nullable)LL_hexColorAt:(CGPoint)point;
 
 @end
 

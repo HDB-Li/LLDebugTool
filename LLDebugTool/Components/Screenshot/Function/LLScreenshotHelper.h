@@ -51,6 +51,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *_Nullable)imageFromScreen;
 
 /**
+ Return a image from current screen with scale.
+
+ @param scale Scale
+ @return UIImage.
+ */
+- (UIImage *_Nullable)imageFromScreen:(CGFloat)scale;
+
+/**
  Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
 - (void)saveScreenshot:(UIImage *)image name:(NSString *_Nullable)name complete:(void (^ __nullable)(BOOL finished))complete;
