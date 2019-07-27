@@ -67,12 +67,11 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 - (UIImage *_Nullable)imageFromScreen {
-    return [self imageFromScreen:[UIScreen mainScreen].scale];
+    return [self imageFromScreen:0];
 }
 
 - (UIImage *_Nullable)imageFromScreen:(CGFloat)scale {
-    NSData *data = [self dataWithScreenshotInPNGFormat];
-    return [UIImage imageWithData:data scale:scale];
+    return [self screenshotWithScale:scale];
 }
 
 #pragma mark - Screenshot
@@ -116,7 +115,7 @@ static LLScreenshotHelper *_instance = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationUserDidTakeScreenshotNotification object:nil];
 }
 
-- (nullable NSData *)dataWithScreenshotInPNGFormat
+- (nullable UIImage *)screenshotWithScale:(CGFloat)scale
 {
     CGSize imageSize = CGSizeZero;
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
@@ -125,7 +124,7 @@ static LLScreenshotHelper *_instance = nil;
     else
         imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
     
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
@@ -168,8 +167,7 @@ static LLScreenshotHelper *_instance = nil;
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    return UIImagePNGRepresentation(image);
+    return image;
 }
 
 @end

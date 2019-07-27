@@ -217,7 +217,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Magnifier window zoom level, number of pixels per color, default is kLLMagnifierWindowZoomLevel.
  */
-@property (nonatomic, assign) CGFloat magnifierZoomLevel;
+@property (nonatomic, assign) NSInteger magnifierZoomLevel;
 
 /**
  Number of rows per magnifier window, default is kLLMagnifierWindowSize.

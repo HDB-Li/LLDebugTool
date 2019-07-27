@@ -36,6 +36,6 @@ UIKIT_EXTERN CGFloat const kLLSuspensionWindowActiveAlpha;
 UIKIT_EXTERN CGFloat const kLLSuspensionWindowTop;
 
 // Default magnifier window zoom level.
-UIKIT_EXTERN CGFloat const kLLMagnifierWindowZoomLevel;
+UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;
 // Number of rows per magnifier window.
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;

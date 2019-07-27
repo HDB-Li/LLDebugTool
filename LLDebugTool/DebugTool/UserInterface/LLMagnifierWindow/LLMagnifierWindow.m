@@ -48,17 +48,20 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGFloat zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
-    CGFloat scale = [UIScreen mainScreen].scale;
+    CGContextClearRect(context, self.frame);
+    
+    NSInteger zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
+    // Image's scale, default screenshot's scale is [UIScreen mainScreen].scale, but we only use 1.0 is ok.
+    CGFloat scale = 1.0;
     NSInteger size = [LLConfig sharedConfig].magnifierSize;
     NSInteger skip = 1;
-    
+
     CGPoint currentPoint = CGPointMake(self.targetPoint.x * scale, self.targetPoint.y * scale);
+
     currentPoint.x = round(currentPoint.x - size * skip / 2.0 * scale);
     currentPoint.y = round(currentPoint.y - size * skip / 2.0 * scale);
-    int i,j;
+    int i, j;
     
-    // 放大镜中画出网格，并使用当前点和周围点的颜色进行填充
     for (j = 0; j < size; j++) {
         for (i = 0; i < size; i++) {
             CGRect gridRect = CGRectMake(zoomLevel * i, zoomLevel * j, zoomLevel, zoomLevel);
@@ -69,13 +72,14 @@
             }
             CGContextSetFillColorWithColor(context, gridColor.CGColor);
             CGContextFillRect(context, gridRect);
-            // 横向寻找下一个相邻点
             currentPoint.x += round(skip * scale);
         }
-        // 一行绘制完毕，横向回归起始点，纵向寻找下一个点
+
         currentPoint.x -= round(size * skip * scale);
         currentPoint.y += round(skip * scale);
     }
+    
+    UIGraphicsEndImageContext();
 }
 
 - (void)setHidden:(BOOL)hidden {
@@ -96,7 +100,12 @@
     self.layer.cornerRadius = self.LL_width / 2.0;
     self.layer.masksToBounds = YES;
     self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    self.layer.borderWidth = [LLConfig sharedConfig].magnifierZoomLevel / 2;
+    self.layer.borderWidth = 2;
+    
+    UIImage *image = [self maskImage];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+    [self addSubview:imgView];
+    imgView.frame = self.bounds;
     
     self.targetPoint = CGPointZero;
     
@@ -107,23 +116,30 @@
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {
+    
     if (sender.state == UIGestureRecognizerStateBegan) {
         [self updateScreenshot];
-    } else {
-        
-        CGPoint point = [sender locationInView:[[UIApplication sharedApplication].delegate window]];
-        
-        self.targetPoint = point;
-                
+        self.targetPoint = self.center;
+    }
+    
+    CGPoint offsetPoint = [sender translationInView:sender.view];
+    
+    [sender setTranslation:CGPointZero inView:sender.view];
+    
+    [self changeFrameWithPoint:offsetPoint];
+    
+    CGPoint newTargetPoint = CGPointMake(self.targetPoint.x + offsetPoint.x, self.targetPoint.y + offsetPoint.y);
+    if (!CGPointEqualToPoint(newTargetPoint, self.targetPoint)) {
+        self.targetPoint = newTargetPoint;
         [self setNeedsDisplay];
-        
-        [self changeFrameWithPoint:point];
     }
 }
 
 - (void)changeFrameWithPoint:(CGPoint)point {
     
-    CGPoint center = point;
+    CGPoint center = self.center;
+    center.x += point.x;
+    center.y += point.y;
 
     center.x = MIN(center.x, LL_SCREEN_WIDTH);
     center.x = MAX(center.x, 0);
@@ -136,6 +152,24 @@
 
 - (void)updateScreenshot {
     self.screenshot = [[LLScreenshotHelper sharedHelper] imageFromScreen:1];
+}
+
+- (UIImage *)maskImage {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    NSInteger zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
+    
+    NSInteger centerX = self.LL_width / 2.0;
+    NSInteger centerY = self.LL_height / 2.0;
+    
+    CGContextSetStrokeColorWithColor(context, LLCONFIG_TEXT_COLOR.CGColor);
+    CGContextStrokeRectWithWidth(context, CGRectMake(centerX - zoomLevel / 2.0, centerY - zoomLevel / 2.0, zoomLevel, zoomLevel), 2);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

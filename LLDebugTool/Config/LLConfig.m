@@ -94,6 +94,16 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     return MAX(_suspensionBallWidth, kLLSuspensionWindowMinWidth);
 }
 
+- (void)setMagnifierSize:(NSInteger)magnifierSize {
+    if (_magnifierSize != magnifierSize) {
+        if (magnifierSize % 2 == 0) {
+            _magnifierSize = magnifierSize + 1;
+        } else {
+            _magnifierSize = magnifierSize;
+        }
+    }
+}
+
 #pragma mark - Primary
 /**
  Initialize something.

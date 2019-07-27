@@ -28,6 +28,7 @@
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
+#import "LLContentWindow.h"
 
 static LLWindowManager *_instance = nil;
 
@@ -38,6 +39,8 @@ static LLWindowManager *_instance = nil;
 @property (nonatomic, strong) LLFunctionWindow *functionWindow;
 
 @property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
+
+@property (nonatomic, strong) LLContentWindow *contentWindow;
 
 @end
 
@@ -126,6 +129,31 @@ static LLWindowManager *_instance = nil;
     }
 }
 
+- (void)showContentWindow:(BOOL)animated {
+    if (animated) {
+        self.contentWindow.alpha = 0;
+        self.contentWindow.hidden = NO;
+        [UIView animateWithDuration:0.25 animations:^{
+            self.contentWindow.alpha = 1;
+        } completion:nil];
+    } else {
+        self.contentWindow.hidden = NO;
+    }
+}
+
+- (void)hideContentWindow:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.contentWindow.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.contentWindow.hidden = YES;
+            self.contentWindow.alpha = 1;
+        }];
+    } else {
+        self.contentWindow.hidden = YES;
+    }
+}
+
 #pragma mark - Lazy
 - (LLSuspensionWindow *)suspensionWindow {
     if (!_suspensionWindow) {
@@ -144,10 +172,18 @@ static LLWindowManager *_instance = nil;
 
 - (LLMagnifierWindow *)magnifierWindow {
     if (!_magnifierWindow) {
-        CGFloat width = ceil([LLConfig sharedConfig].magnifierZoomLevel * [LLConfig sharedConfig].magnifierSize);
+        NSInteger width = [LLConfig sharedConfig].magnifierZoomLevel * [LLConfig sharedConfig].magnifierSize;
         _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     }
     return _magnifierWindow;
+}
+
+- (LLContentWindow *)contentWindow {
+    if (!_contentWindow) {
+        CGFloat gap = 20;
+        _contentWindow = [[LLContentWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap - 100, LL_SCREEN_WIDTH - gap * 2, 100)];
+    }
+    return _contentWindow;
 }
 
 #pragma mark - LLSuspensionWindowDelegate
@@ -159,6 +195,7 @@ static LLWindowManager *_instance = nil;
             break;
         case 2:
             [self showMagnifierWindow:YES];
+            [self showContentWindow:YES];
             break;
         default:
             break;
