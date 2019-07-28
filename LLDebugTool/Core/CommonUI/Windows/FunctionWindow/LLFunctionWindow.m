@@ -23,7 +23,7 @@
 
 #import "LLFunctionWindow.h"
 #import "LLFunctionViewController.h"
-#import "LLBaseNavigationController.h"
+#import "LLNavigationController.h"
 
 @implementation LLFunctionWindow
 
@@ -36,9 +36,8 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.windowLevel = UIWindowLevelStatusBar + 300;
     if (!self.rootViewController) {
-        self.rootViewController = [[LLBaseNavigationController alloc] initWithRootViewController:[[LLFunctionViewController alloc] init]];
+        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLFunctionViewController alloc] init]];
     }
 }
 @end

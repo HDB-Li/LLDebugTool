@@ -1,5 +1,5 @@
 //
-//  LLSelectorWindow.m
+//  LLComponent.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSelectorWindow.h"
-#import "LLSelectorViewController.h"
+#import <Foundation/Foundation.h>
 
-@implementation LLSelectorWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@protocol LLComponentDelegate <NSObject>
 
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLSelectorViewController alloc] init];
-    }
-}
+- (void)componentDidLoad:(NSDictionary *_Nullable)data;
 
 @end
+
+@interface LLComponent : NSObject <LLComponentDelegate>
+
+@end
+
+NS_ASSUME_NONNULL_END

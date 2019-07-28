@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLBaseModel.h"
+#import "LLComponent.h"
 
 /**
  Function action enums.
@@ -41,7 +42,8 @@ typedef NS_ENUM(NSUInteger, LLFunctionAction) {
     LLFunctionActionAppInfo,
     LLFunctionActionSandbox,
     LLFunctionActionScreenshot,
-    LLFunctionActionHierarchy
+    LLFunctionActionHierarchy,
+    LLFunctionActionMagnifier
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -65,6 +67,11 @@ NS_ASSUME_NONNULL_BEGIN
  Specified action.
  */
 @property (nonatomic, assign) LLFunctionAction action;
+
+/**
+ Action component.
+ */
+@property (nonatomic, strong, readonly) LLComponent *component;
 
 /**
  Specifies the initialization method.

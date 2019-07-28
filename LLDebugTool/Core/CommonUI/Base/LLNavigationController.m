@@ -1,5 +1,5 @@
 //
-//  LLSelectorWindow.m
+//  LLNavigationController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,34 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSelectorWindow.h"
-#import "LLSelectorViewController.h"
+#import "LLNavigationController.h"
+#import "LLConfig.h"
 
-@implementation LLSelectorWindow
+@interface LLNavigationController ()
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
+@end
+
+@implementation LLNavigationController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
 }
 
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLSelectorViewController alloc] init];
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (self.viewControllers.count > 0) {
+        viewController.hidesBottomBarWhenPushed = YES;
     }
+    [super pushViewController:viewController animated:animated];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return [LLConfig sharedConfig].statusBarStyle;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO;
 }
 
 @end

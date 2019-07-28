@@ -1,5 +1,5 @@
 //
-//  LLBaseNavigationController.m
+//  LLNetworkComponent.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,34 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseNavigationController.h"
-#import "LLConfig.h"
+#import "LLComponent.h"
 
-@interface LLBaseNavigationController ()
+NS_ASSUME_NONNULL_BEGIN
 
-@end
-
-@implementation LLBaseNavigationController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-    self.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-}
-
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if (self.viewControllers.count > 0) {
-        viewController.hidesBottomBarWhenPushed = YES;
-    }
-    [super pushViewController:viewController animated:animated];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return [LLConfig sharedConfig].statusBarStyle;
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return NO;
-}
+@interface LLNetworkComponent : LLComponent
 
 @end
+
+NS_ASSUME_NONNULL_END

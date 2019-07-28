@@ -31,7 +31,7 @@
 #import "LLTool.h"
 #import "LLHierarchyExplorerToolBar.h"
 #import "LLFunctionViewController.h"
-#import "LLBaseNavigationController.h"
+#import "LLNavigationController.h"
 #import "LLFactory.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
@@ -884,7 +884,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             [vc setValue:value forKey:key];
         }
     }
-    [self presentViewController:[[LLBaseNavigationController alloc] initWithRootViewController:self.functionViewController] animated:YES completion:nil];
+    [self presentViewController:[[LLNavigationController alloc] initWithRootViewController:self.functionViewController] animated:YES completion:nil];
 }
 
 - (void)resignKeyWindow {

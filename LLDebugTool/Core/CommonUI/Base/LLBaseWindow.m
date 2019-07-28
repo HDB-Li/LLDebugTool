@@ -25,6 +25,13 @@
 
 @implementation LLBaseWindow
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.windowLevel = UIWindowLevelStatusBar + 300;
+    }
+    return self;
+}
+
 - (void)becomeKeyWindow {
     [self resignKeyWindow];
 }

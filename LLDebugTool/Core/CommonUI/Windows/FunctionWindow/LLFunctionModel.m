@@ -22,6 +22,14 @@
 //  SOFTWARE.
 
 #import "LLFunctionModel.h"
+#import "LLNetworkComponent.h"
+#import "LLLogComponent.h"
+#import "LLNetworkComponent.h"
+#import "LLAppInfoComponent.h"
+#import "LLSandboxComponent.h"
+#import "LLScreenshotComponent.h"
+#import "LLHierarchyComponent.h"
+#import "LLMagnifierComponent.h"
 
 @implementation LLFunctionModel
 
@@ -32,6 +40,29 @@
         self.action = action;
     }
     return self;
+}
+
+- (LLComponent *)componentFromAction:(LLFunctionAction)action {
+    switch (action) {
+        case LLFunctionActionNetwork:
+            return [[LLNetworkComponent alloc] init];
+        case LLFunctionActionLog:
+            return [[LLLogComponent alloc] init];
+        case LLFunctionActionCrash:
+            return [[LLNetworkComponent alloc] init];
+        case LLFunctionActionAppInfo:
+            return [[LLAppInfoComponent alloc] init];
+        case LLFunctionActionSandbox:
+            return [[LLSandboxComponent alloc] init];
+        case LLFunctionActionScreenshot:
+            return [[LLScreenshotComponent alloc] init];
+        case LLFunctionActionHierarchy:
+            return [[LLHierarchyComponent alloc] init];
+        case LLFunctionActionMagnifier:
+            return [[LLMagnifierComponent alloc] init];
+        default:
+            break;
+    }
 }
 
 @end

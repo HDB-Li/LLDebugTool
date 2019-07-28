@@ -1,5 +1,5 @@
 //
-//  LLSelectorWindow.m
+//  LLHierarchyComponent.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSelectorWindow.h"
-#import "LLSelectorViewController.h"
+#import "LLHierarchyComponent.h"
 
-@implementation LLSelectorWindow
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLSelectorViewController alloc] init];
-    }
-}
+@implementation LLHierarchyComponent
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLBaseNavigationController.h
+//  LLNavigationController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseNavigationController : UINavigationController
+@interface LLNavigationController : UINavigationController
 
 @end
 

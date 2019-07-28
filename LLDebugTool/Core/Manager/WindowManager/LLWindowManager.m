@@ -29,6 +29,12 @@
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
 #import "LLContentWindow.h"
+#import "LLAppInfoWindow.h"
+#import "LLNetworkWindow.h"
+#import "LLLogWindow.h"
+#import "LLSandboxWindow.h"
+#import "LLCrashWindow.h"
+#import "LLHierarchyWindow.h"
 
 static LLWindowManager *_instance = nil;
 
@@ -41,6 +47,18 @@ static LLWindowManager *_instance = nil;
 @property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
 
 @property (nonatomic, strong) LLContentWindow *contentWindow;
+
+@property (nonatomic, strong) LLNetworkWindow *networkWindow;
+
+@property (nonatomic, strong) LLLogWindow *logWindow;
+
+@property (nonatomic, strong) LLCrashWindow *crashWindow;
+
+@property (nonatomic, strong) LLAppInfoWindow *appInfoWindow;
+
+@property (nonatomic, strong) LLSandboxWindow *sandboxWindow;
+
+@property (nonatomic, strong) LLHierarchyWindow *hierarchyWindow;
 
 @end
 
@@ -184,6 +202,49 @@ static LLWindowManager *_instance = nil;
         _contentWindow = [[LLContentWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap - 100, LL_SCREEN_WIDTH - gap * 2, 100)];
     }
     return _contentWindow;
+}
+
+- (LLNetworkWindow *)networkWindow {
+    if (!_networkWindow) {
+        _networkWindow = [[LLNetworkWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _networkWindow;
+}
+
+- (LLLogWindow *)logWindow {
+    if (!_logWindow) {
+        _logWindow = [[LLLogWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _logWindow;
+}
+
+- (LLCrashWindow *)crashWindow {
+    if (!_crashWindow) {
+        _crashWindow = [[LLCrashWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _crashWindow;
+}
+
+- (LLAppInfoWindow *)appInfoWindow {
+    if (!_appInfoWindow) {
+        _appInfoWindow = [[LLAppInfoWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _appInfoWindow;
+}
+
+- (LLSandboxWindow *)sandboxWindow {
+    if (!_sandboxWindow) {
+        _sandboxWindow = [[LLSandboxWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        
+    }
+    return _sandboxWindow;
+}
+
+- (LLHierarchyWindow *)hierarchyWindow {
+    if (!_hierarchyWindow) {
+        _hierarchyWindow = [[LLHierarchyWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _hierarchyWindow;
 }
 
 #pragma mark - LLSuspensionWindowDelegate

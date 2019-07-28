@@ -93,7 +93,6 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.windowLevel = UIWindowLevelStatusBar + 299;
     if (!self.rootViewController) {
         self.rootViewController = [[UIViewController alloc] init];
     }
