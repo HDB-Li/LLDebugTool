@@ -73,8 +73,9 @@
 }
 
 - (void)leftItemClick {
-    [[LLWindowManager shared] hideFunctionWindow:YES];
-    [[LLWindowManager shared] showSuspensionWindow:YES];
+    [[LLWindowManager shared] dismissWindow:self.view.window animated:YES completion:^{
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+    }];
 }
 
 #pragma mark - Primary
@@ -157,31 +158,33 @@
 
 #pragma mark - LLFunctionContainerViewDelegate
 - (void)llFunctionContainerView:(LLFunctionContainerView *)view didSelectAt:(LLFunctionModel *)model {
-        switch (model.action) {
-            case LLFunctionActionNetwork:
-                [self goToNetworkViewController];
-                break;
-            case LLFunctionActionLog:
-                [self goToLogViewController];
-                break;
-            case LLFunctionActionCrash:
-                [self goToCrashViewController];
-                break;
-            case LLFunctionActionAppInfo:
-                [self goToAppInfoViewController];
-                break;
-            case LLFunctionActionSandbox:
-                [self goToSandboxViewController];
-                break;
-            case LLFunctionActionScreenshot:
-                [self doScreenshot];
-                break;
-            case LLFunctionActionHierarchy:
-                [self goToHierarchyViewController];
-                break;
-            default:
-                break;
-        }
+    LLComponent *component = model.component;
+    [component componentDidLoad:nil];
+//        switch (model.action) {
+//            case LLFunctionActionNetwork:
+//                [self goToNetworkViewController];
+//                break;
+//            case LLFunctionActionLog:
+//                [self goToLogViewController];
+//                break;
+//            case LLFunctionActionCrash:
+//                [self goToCrashViewController];
+//                break;
+//            case LLFunctionActionAppInfo:
+//                [self goToAppInfoViewController];
+//                break;
+//            case LLFunctionActionSandbox:
+//                [self goToSandboxViewController];
+//                break;
+//            case LLFunctionActionScreenshot:
+//                [self doScreenshot];
+//                break;
+//            case LLFunctionActionHierarchy:
+//                [self goToHierarchyViewController];
+//                break;
+//            default:
+//                break;
+//        }
 }
 
 #pragma mark - LLHierarchyViewControllerDelegate

@@ -22,11 +22,14 @@
 //  SOFTWARE.
 
 #import "LLLogComponent.h"
+#import "LLWindowManager.h"
 
 @implementation LLLogComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    
+    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].logWindow animated:YES completion:^() {
+        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
+    }];
 }
 
 @end

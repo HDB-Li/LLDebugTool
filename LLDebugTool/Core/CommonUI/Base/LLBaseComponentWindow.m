@@ -1,5 +1,5 @@
 //
-//  LLLogWindow.m
+//  LLBaseComponentWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,31 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLogWindow.h"
-#import "LLLogViewController.h"
-#import "LLNavigationController.h"
-#import "LLWindowManager.h"
+#import "LLBaseComponentWindow.h"
 
-@implementation LLLogWindow
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@implementation LLBaseComponentWindow
 
 - (void)componentDidFinish {
-    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
-    }];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLLogViewController alloc] init]];
-    }
+    NSAssert(NO, @"Sub class must rewrite componentDidFinish:");
 }
 
 @end

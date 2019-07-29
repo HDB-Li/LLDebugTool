@@ -1,5 +1,5 @@
 //
-//  LLLogWindow.m
+//  LLBaseComponentViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,30 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLogWindow.h"
-#import "LLLogViewController.h"
-#import "LLNavigationController.h"
-#import "LLWindowManager.h"
+#import "LLBaseComponentViewController.h"
+#import "LLBaseComponentWindow.h"
 
-@implementation LLLogWindow
+@interface LLBaseComponentViewController ()
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@end
 
-- (void)componentDidFinish {
-    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
-    }];
-}
+@implementation LLBaseComponentViewController
 
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLLogViewController alloc] init]];
+- (void)leftItemClick {
+    if ([self.view.window isKindOfClass:[LLBaseComponentWindow class]]) {
+        LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;
+        [window componentDidFinish];
+    } else {
+        [super leftItemClick];
     }
 }
 

@@ -38,6 +38,7 @@
         self.imageName = imageName;
         self.title = title;
         self.action = action;
+        _component = [self componentFromAction:action];
     }
     return self;
 }

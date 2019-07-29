@@ -112,7 +112,7 @@ static LLDebugTool *_instance = nil;
 
 - (void)showWindow
 {
-    [[LLWindowManager shared] showSuspensionWindow:NO];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
 }
 
 - (void)hideWindow

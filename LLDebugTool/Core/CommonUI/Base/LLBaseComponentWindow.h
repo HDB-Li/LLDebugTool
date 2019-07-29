@@ -1,5 +1,5 @@
 //
-//  LLLogWindow.m
+//  LLBaseComponentWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,31 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLogWindow.h"
-#import "LLLogViewController.h"
-#import "LLNavigationController.h"
-#import "LLWindowManager.h"
+#import "LLBaseWindow.h"
 
-@implementation LLLogWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@protocol LLComponentCompleteDelegate <NSObject>
 
-- (void)componentDidFinish {
-    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
-    }];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLLogViewController alloc] init]];
-    }
-}
+- (void)componentDidFinish;
 
 @end
+
+@interface LLBaseComponentWindow : LLBaseWindow<LLComponentCompleteDelegate>
+
+@end
+
+NS_ASSUME_NONNULL_END

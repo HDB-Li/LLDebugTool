@@ -22,6 +22,16 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "LLSuspensionWindow.h"
+#import "LLFunctionWindow.h"
+#import "LLMagnifierWindow.h"
+#import "LLNetworkWindow.h"
+#import "LLLogWindow.h"
+#import "LLAppInfoWindow.h"
+#import "LLSandboxWindow.h"
+#import "LLCrashWindow.h"
+#import "LLHierarchyWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -37,63 +47,125 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)shared;
 
+@property (nonatomic, strong, readonly) LLSuspensionWindow *suspensionWindow;
+
+@property (nonatomic, strong, readonly) LLFunctionWindow *functionWindow;
+
+@property (nonatomic, strong, readonly) LLMagnifierWindow *magnifierWindow;
+
+@property (nonatomic, strong, readonly) LLNetworkWindow *networkWindow;
+
+@property (nonatomic, strong, readonly) LLLogWindow *logWindow;
+
+@property (nonatomic, strong, readonly) LLCrashWindow *crashWindow;
+
+@property (nonatomic, strong, readonly) LLAppInfoWindow *appInfoWindow;
+
+@property (nonatomic, strong, readonly) LLSandboxWindow *sandboxWindow;
+
+@property (nonatomic, strong, readonly) LLHierarchyWindow *hierarchyWindow;
+
 /**
- Show suspension window.
+ Show window with alpha animate if needed.
+
+ @param window LLBaseWindow.
+ @param animated Animated.
+ */
+- (void)showWindow:(UIWindow *)window animated:(BOOL)animated;
+
+/**
+ Show window with alpha animate if needed.
  
+ @param window LLBaseWindow.
  @param animated Animated.
+ @param completion Completion block.
  */
-- (void)showSuspensionWindow:(BOOL)animated;
+- (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 
 /**
- Hide suspension window.
+ Hide window with alpha animate if needed.
  
+ @param window LLBaseWindow.
  @param animated Animated.
  */
-- (void)hideSuspensionWindow:(BOOL)animated;
+- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated;
 
 /**
- Show function window.
+ Hide window with alpha animate if needed.
  
+ @param window LLBaseWindow.
  @param animated Animated.
+ @param completion Completion block.
  */
-- (void)showFunctionWindow:(BOOL)animated;
-
+- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 
 /**
- Hide function window
-
- @param animated Animated.
- */
-- (void)hideFunctionWindow:(BOOL)animated;
-
-/**
- Show magnifier window.
-
- @param animated Animated.
- */
-- (void)showMagnifierWindow:(BOOL)animated;
-
-/**
- Hide magnifier window.
+ Present window animate if needed.
  
+ @param window LLBaseWindow.
  @param animated Animated.
  */
-- (void)hideMagnifierWindow:(BOOL)animated;
+- (void)presentWindow:(UIWindow *)window animated:(BOOL)animated;
 
 /**
- Show content window.
+ Present window animate if needed.
  
+ @param window LLBaseWindow.
  @param animated Animated.
+ @param completion Completion block.
  */
-- (void)showContentWindow:(BOOL)animated;
+- (void)presentWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 
 /**
- Hide content window.
+ Dismiss window animate if needed.
  
+ @param window LLBaseWindow.
  @param animated Animated.
  */
+- (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated;
 
-- (void)hideContentWindow:(BOOL)animated;
+/**
+ Dismiss window animate if needed.
+ 
+ @param window LLBaseWindow.
+ @param animated Animated.
+ @param completion Completion block.
+ */
+- (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+
+/**
+ Push window animate if needed.
+ 
+ @param window LLBaseWindow.
+ @param animated Animated.
+ */
+- (void)pushWindow:(UIWindow *)window animated:(BOOL)animated;
+
+/**
+ Push window animate if needed.
+ 
+ @param window LLBaseWindow.
+ @param animated Animated.
+ @param completion Completion block.
+ */
+- (void)pushWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
+
+/**
+ Pop window animate if needed.
+ 
+ @param window LLBaseWindow.
+ @param animated Animated.
+ */
+- (void)popWindow:(UIWindow *)window animated:(BOOL)animated;
+
+/**
+ Push window animate if needed.
+ 
+ @param window LLBaseWindow.
+ @param animated Animated.
+ @param completion Completion block.
+ */
+- (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
 
 @end
 

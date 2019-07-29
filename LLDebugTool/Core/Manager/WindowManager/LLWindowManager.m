@@ -22,19 +22,9 @@
 //  SOFTWARE.
 
 #import "LLWindowManager.h"
-#import "LLSuspensionWindow.h"
-#import "LLFunctionWindow.h"
-#import "LLMagnifierWindow.h"
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
-#import "LLContentWindow.h"
-#import "LLAppInfoWindow.h"
-#import "LLNetworkWindow.h"
-#import "LLLogWindow.h"
-#import "LLSandboxWindow.h"
-#import "LLCrashWindow.h"
-#import "LLHierarchyWindow.h"
 
 static LLWindowManager *_instance = nil;
 
@@ -45,8 +35,6 @@ static LLWindowManager *_instance = nil;
 @property (nonatomic, strong) LLFunctionWindow *functionWindow;
 
 @property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
-
-@property (nonatomic, strong) LLContentWindow *contentWindow;
 
 @property (nonatomic, strong) LLNetworkWindow *networkWindow;
 
@@ -60,6 +48,12 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLHierarchyWindow *hierarchyWindow;
 
+@property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
+
+@property (nonatomic, assign) UIWindowLevel presentWindowLevel;
+
+@property (nonatomic, assign) UIWindowLevel normalWindowLevel;
+
 @end
 
 @implementation LLWindowManager
@@ -72,103 +66,156 @@ static LLWindowManager *_instance = nil;
     return _instance;
 }
 
-- (void)showSuspensionWindow:(BOOL)animated {
-    if (animated) {
-        self.suspensionWindow.alpha = 0;
-        self.suspensionWindow.hidden = NO;
-        [UIView animateWithDuration:0.25 animations:^{
-            self.suspensionWindow.alpha = 1;
-        } completion:nil];
-    } else {
-        self.suspensionWindow.hidden = NO;
-    }
+- (void)showWindow:(UIWindow *)window animated:(BOOL)animated {
+    [self showWindow:window animated:animated completion:nil];
 }
 
-- (void)hideSuspensionWindow:(BOOL)animated {
+- (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        window.alpha = 0;
+        window.hidden = NO;
+        window.windowLevel = self.presentingWindowLevel;
         [UIView animateWithDuration:0.25 animations:^{
-            self.suspensionWindow.alpha = 0;
+            window.alpha = 1;
         } completion:^(BOOL finished) {
-            self.suspensionWindow.hidden = YES;
-            self.suspensionWindow.alpha = 1;
+            window.windowLevel = self.presentWindowLevel;
+            if (completion) {
+                completion();
+            }
         }];
     } else {
-        self.suspensionWindow.hidden = YES;
+        window.hidden = NO;
+        window.windowLevel = self.presentWindowLevel;
+        if (completion) {
+            completion();
+        }
     }
 }
 
-- (void)showFunctionWindow:(BOOL)animated {
-    if (animated) {
-        self.functionWindow.LL_y = LL_SCREEN_HEIGHT;
-        self.functionWindow.hidden = NO;
-        [UIView animateWithDuration:0.25 animations:^{
-            self.functionWindow.LL_y = 0;
-        } completion:nil];
-    } else {
-        self.functionWindow.hidden = NO;
-    }
+- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated {
+    [self hideWindow:window animated:animated completion:nil];
 }
 
-- (void)hideFunctionWindow:(BOOL)animated {
+- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.functionWindow.LL_y = LL_SCREEN_HEIGHT;
+            window.alpha = 0;
         } completion:^(BOOL finished) {
-            self.functionWindow.hidden = YES;
-            self.functionWindow.LL_y = 0;
+            window.hidden = YES;
+            window.alpha = 1;
+            window.windowLevel = self.normalWindowLevel;
+            if (completion) {
+                completion();
+            }
         }];
     } else {
-        self.functionWindow.hidden = YES;
+        window.hidden = YES;
+        window.windowLevel = self.normalWindowLevel;
+        if (completion) {
+            completion();
+        }
     }
 }
 
-- (void)showMagnifierWindow:(BOOL)animated {
-    if (animated) {
-        self.magnifierWindow.alpha = 0;
-        self.magnifierWindow.hidden = NO;
-        [UIView animateWithDuration:0.25 animations:^{
-            self.magnifierWindow.alpha = 1;
-        } completion:nil];
-    } else {
-        self.magnifierWindow.hidden = NO;
-    }
+- (void)presentWindow:(UIWindow *)window animated:(BOOL)animated {
+    [self presentWindow:window animated:animated completion:nil];
 }
 
-- (void)hideMagnifierWindow:(BOOL)animated {
+- (void)presentWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        window.LL_y = LL_SCREEN_HEIGHT;
+        window.hidden = NO;
+        window.windowLevel = self.presentingWindowLevel;
         [UIView animateWithDuration:0.25 animations:^{
-            self.magnifierWindow.alpha = 0;
+            window.LL_y = 0;
         } completion:^(BOOL finished) {
-            self.magnifierWindow.hidden = YES;
-            self.magnifierWindow.alpha = 1;
+            window.windowLevel = self.presentWindowLevel;
+            if (completion) {
+                completion();
+            }
         }];
     } else {
-        self.magnifierWindow.hidden = YES;
+        window.hidden = NO;
+        window.windowLevel = self.presentWindowLevel;
+        if (completion) {
+            completion();
+        }
     }
 }
 
-- (void)showContentWindow:(BOOL)animated {
-    if (animated) {
-        self.contentWindow.alpha = 0;
-        self.contentWindow.hidden = NO;
-        [UIView animateWithDuration:0.25 animations:^{
-            self.contentWindow.alpha = 1;
-        } completion:nil];
-    } else {
-        self.contentWindow.hidden = NO;
-    }
+- (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated {
+    [self dismissWindow:window animated:animated completion:nil];
 }
 
-- (void)hideContentWindow:(BOOL)animated {
+- (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.contentWindow.alpha = 0;
+            window.LL_y = LL_SCREEN_HEIGHT;
         } completion:^(BOOL finished) {
-            self.contentWindow.hidden = YES;
-            self.contentWindow.alpha = 1;
+            window.hidden = YES;
+            window.LL_y = 0;
+            window.windowLevel = self.normalWindowLevel;
+            if (completion) {
+                completion();
+            }
         }];
     } else {
-        self.contentWindow.hidden = YES;
+        window.hidden = YES;
+        window.windowLevel = self.normalWindowLevel;
+        if (completion) {
+            completion();
+        }
+    }
+}
+
+- (void)pushWindow:(UIWindow *)window animated:(BOOL)animated {
+    [self pushWindow:window animated:animated completion:nil];
+}
+
+- (void)pushWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (animated) {
+        window.LL_x = LL_SCREEN_WIDTH;
+        window.hidden = NO;
+        window.windowLevel = self.presentingWindowLevel;
+        [UIView animateWithDuration:0.25 animations:^{
+            window.LL_x = 0;
+        } completion:^(BOOL finished) {
+            window.windowLevel = self.presentWindowLevel;
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        window.hidden = NO;
+        window.windowLevel = self.presentWindowLevel;
+        if (completion) {
+            completion();
+        }
+    }
+}
+
+- (void)popWindow:(UIWindow *)window animated:(BOOL)animated {
+    [self popWindow:window animated:animated completion:nil];
+}
+
+- (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (animated) {
+        [UIView animateWithDuration:0.25 animations:^{
+            window.LL_x = LL_SCREEN_WIDTH;
+        } completion:^(BOOL finished) {
+            window.hidden = YES;
+            window.LL_x = 0;
+            window.windowLevel = self.normalWindowLevel;
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        window.hidden = YES;
+        window.windowLevel = self.normalWindowLevel;
+        if (completion) {
+            completion();
+        }
     }
 }
 
@@ -194,14 +241,6 @@ static LLWindowManager *_instance = nil;
         _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     }
     return _magnifierWindow;
-}
-
-- (LLContentWindow *)contentWindow {
-    if (!_contentWindow) {
-        CGFloat gap = 20;
-        _contentWindow = [[LLContentWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap - 100, LL_SCREEN_WIDTH - gap * 2, 100)];
-    }
-    return _contentWindow;
 }
 
 - (LLNetworkWindow *)networkWindow {
@@ -247,16 +286,37 @@ static LLWindowManager *_instance = nil;
     return _hierarchyWindow;
 }
 
+- (UIWindowLevel)presentingWindowLevel {
+    if (!_presentingWindowLevel) {
+        _presentingWindowLevel = UIWindowLevelStatusBar + 300;
+    }
+    return _presentingWindowLevel;
+}
+
+- (UIWindowLevel)presentWindowLevel {
+    if (!_presentWindowLevel) {
+        _presentWindowLevel = UIWindowLevelStatusBar + 200;
+    }
+    return _presentWindowLevel;
+}
+
+- (UIWindowLevel)normalWindowLevel {
+    if (!_normalWindowLevel) {
+        _normalWindowLevel = UIWindowLevelStatusBar + 100;
+    }
+    return _normalWindowLevel;
+}
+
 #pragma mark - LLSuspensionWindowDelegate
 - (void)llSuspensionWindow:(LLSuspensionWindow *)window didTapAt:(NSInteger)numberOfTap {
     switch (numberOfTap) {
         case 1:
-            [self hideSuspensionWindow:YES];
-            [self showFunctionWindow:YES];
+            [[LLWindowManager shared] presentWindow:[LLWindowManager shared].functionWindow animated:YES completion:^{
+                [[LLWindowManager shared] hideWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+            }];
             break;
         case 2:
-            [self showMagnifierWindow:YES];
-            [self showContentWindow:YES];
+            [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:NO];
             break;
         default:
             break;

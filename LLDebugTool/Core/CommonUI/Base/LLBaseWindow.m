@@ -27,13 +27,17 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.windowLevel = UIWindowLevelStatusBar + 300;
+        self.windowLevel = UIWindowLevelStatusBar + 200;
     }
     return self;
 }
 
 - (void)becomeKeyWindow {
     [self resignKeyWindow];
+}
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
 }
 
 @end
