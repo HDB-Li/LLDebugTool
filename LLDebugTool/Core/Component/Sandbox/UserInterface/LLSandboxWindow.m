@@ -24,6 +24,7 @@
 #import "LLSandboxWindow.h"
 #import "LLSandboxViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLSandboxWindow
 
@@ -32,6 +33,13 @@
         [self initial];
     }
     return self;
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
+        [[LLWindowManager shared] reloadSandboxWindow];
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+    }];
 }
 
 #pragma mark - Primary

@@ -24,6 +24,7 @@
 #import "LLNetworkWindow.h"
 #import "LLNetworkViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLNetworkWindow
 
@@ -32,6 +33,13 @@
         [self initial];
     }
     return self;
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
+        [[LLWindowManager shared] reloadNetworkWindow];
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+    }];
 }
 
 #pragma mark - Primary

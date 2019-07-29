@@ -24,6 +24,7 @@
 #import "LLHierarchyWindow.h"
 #import "LLHierarchyViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLHierarchyWindow
 
@@ -32,6 +33,13 @@
         [self initial];
     }
     return self;
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
+        [[LLWindowManager shared] reloadHierarchyWindow];
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+    }];
 }
 
 #pragma mark - Primary

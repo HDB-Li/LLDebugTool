@@ -22,11 +22,15 @@
 //  SOFTWARE.
 
 #import "LLSandboxComponent.h"
+#import "LLWindowManager.h"
 
 @implementation LLSandboxComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    
+    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].sandboxWindow animated:YES completion:^() {
+        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
+        [[LLWindowManager shared] reloadFunctionWindow];
+    }];
 }
 
 @end

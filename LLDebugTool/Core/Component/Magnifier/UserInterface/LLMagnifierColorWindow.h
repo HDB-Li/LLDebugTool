@@ -1,5 +1,5 @@
 //
-//  LLMagnifierComponent.m
+//  LLMagnifierColorWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMagnifierComponent.h"
-#import "LLWindowManager.h"
+#import "LLBaseWindow.h"
 
-@implementation LLMagnifierComponent
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:YES completion:^() {
-        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
-    
-}
+@interface LLMagnifierColorWindow : LLBaseWindow
+
+/**
+ Update color and point.
+
+ @param color Color
+ @param point Point.
+ */
+- (void)updateColor:(UIColor *)color point:(CGPoint)point;
 
 @end
+
+NS_ASSUME_NONNULL_END

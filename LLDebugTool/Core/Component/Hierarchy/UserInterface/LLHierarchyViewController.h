@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
+#import "LLBaseComponentViewController.h"
 #import "LLHierarchyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol LLHierarchyViewControllerDelegate;
 
-@interface LLHierarchyViewController : LLBaseTableViewController
+@interface LLHierarchyViewController : LLBaseComponentViewController
 
 @property (nonatomic, weak, nullable) id <LLHierarchyViewControllerDelegate> delegate;
 

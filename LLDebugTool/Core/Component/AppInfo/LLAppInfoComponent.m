@@ -29,6 +29,7 @@
 - (void)componentDidLoad:(NSDictionary *)data {
     [[LLWindowManager shared] presentWindow:[LLWindowManager shared].appInfoWindow animated:YES completion:^() {
         [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
+        [[LLWindowManager shared] reloadFunctionWindow];
     }];
 }
 

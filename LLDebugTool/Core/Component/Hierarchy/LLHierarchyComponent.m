@@ -22,7 +22,15 @@
 //  SOFTWARE.
 
 #import "LLHierarchyComponent.h"
+#import "LLWindowManager.h"
 
 @implementation LLHierarchyComponent
+
+- (void)componentDidLoad:(NSDictionary *)data {
+    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].hierarchyWindow animated:YES completion:^() {
+        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
+        [[LLWindowManager shared] reloadFunctionWindow];
+    }];
+}
 
 @end

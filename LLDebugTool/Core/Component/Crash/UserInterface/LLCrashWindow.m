@@ -24,6 +24,7 @@
 #import "LLCrashWindow.h"
 #import "LLCrashViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLCrashWindow
 
@@ -32,6 +33,13 @@
         [self initial];
     }
     return self;
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
+        [[LLWindowManager shared] reloadCrashWindow];
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+    }];
 }
 
 #pragma mark - Primary

@@ -32,6 +32,7 @@
 #import "LLSandboxWindow.h"
 #import "LLCrashWindow.h"
 #import "LLHierarchyWindow.h"
+#import "LLMagnifierColorWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LLFunctionWindow *functionWindow;
 
 @property (nonatomic, strong, readonly) LLMagnifierWindow *magnifierWindow;
+
+@property (nonatomic, strong, readonly) LLMagnifierColorWindow *magnifierColorWindow;
 
 @property (nonatomic, strong, readonly) LLNetworkWindow *networkWindow;
 
@@ -166,6 +169,51 @@ NS_ASSUME_NONNULL_BEGIN
  @param completion Completion block.
  */
 - (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
+
+/**
+ Reload function window.
+ */
+- (void)reloadFunctionWindow;
+
+/**
+ Reload magnifier window.
+ */
+- (void)reloadMagnifierWindow;
+
+/**
+ Reload network window.
+ */
+- (void)reloadNetworkWindow;
+
+/**
+ Reload log window.
+ */
+- (void)reloadLogWindow;
+
+/**
+ Reload crash window.
+ */
+- (void)reloadCrashWindow;
+
+/**
+ Reload appInfo window.
+ */
+- (void)reloadAppInfoWindow;
+
+/**
+ Reload sandbox window.
+ */
+- (void)reloadSandboxWindow;
+
+/**
+ Reload hierarchy window.
+ */
+- (void)reloadHierarchyWindow;
+
+/**
+ Reload magnifier color window.
+ */
+- (void)reloadMagnifierColorWindow;
 
 @end
 

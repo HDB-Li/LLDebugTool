@@ -36,6 +36,8 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
 
+@property (nonatomic, strong) LLMagnifierColorWindow *magnifierColorWindow;
+
 @property (nonatomic, strong) LLNetworkWindow *networkWindow;
 
 @property (nonatomic, strong) LLLogWindow *logWindow;
@@ -219,6 +221,42 @@ static LLWindowManager *_instance = nil;
     }
 }
 
+- (void)reloadFunctionWindow {
+    _functionWindow = nil;
+}
+
+- (void)reloadMagnifierWindow {
+    _magnifierWindow = nil;
+}
+
+- (void)reloadNetworkWindow {
+    _networkWindow = nil;
+}
+
+- (void)reloadLogWindow {
+    _logWindow = nil;
+}
+
+- (void)reloadCrashWindow {
+    _crashWindow = nil;
+}
+
+- (void)reloadAppInfoWindow {
+    _appInfoWindow = nil;
+}
+
+- (void)reloadSandboxWindow {
+    _sandboxWindow = nil;
+}
+
+- (void)reloadHierarchyWindow {
+    _hierarchyWindow = nil;
+}
+
+- (void)reloadMagnifierColorWindow {
+    _magnifierColorWindow = nil;
+}
+
 #pragma mark - Lazy
 - (LLSuspensionWindow *)suspensionWindow {
     if (!_suspensionWindow) {
@@ -241,6 +279,13 @@ static LLWindowManager *_instance = nil;
         _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     }
     return _magnifierWindow;
+}
+
+- (LLMagnifierColorWindow *)magnifierColorWindow {
+    if (!_magnifierColorWindow) {
+        _magnifierColorWindow = [[LLMagnifierColorWindow alloc] initWithFrame:CGRectZero];
+    }
+    return _magnifierColorWindow;
 }
 
 - (LLNetworkWindow *)networkWindow {

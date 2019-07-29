@@ -37,6 +37,7 @@
 
 - (void)componentDidFinish {
     [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
+        [[LLWindowManager shared] reloadAppInfoWindow];
         [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
     }];
 }

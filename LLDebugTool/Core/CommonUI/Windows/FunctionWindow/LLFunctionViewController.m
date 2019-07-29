@@ -117,41 +117,6 @@
     self.shortCutContainerView.dataArray = [items copy];
 }
 
-- (void)goToNetworkViewController {
-    LLNetworkViewController *vc = [[LLNetworkViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)goToLogViewController {
-    LLLogViewController *vc = [[LLLogViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)goToCrashViewController {
-    LLCrashViewController *vc = [[LLCrashViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)goToAppInfoViewController {
-    LLAppInfoViewController *vc = [[LLAppInfoViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)goToSandboxViewController {
-    LLSandboxViewController *vc = [[LLSandboxViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)doScreenshot {
-    
-}
-
-- (void)goToHierarchyViewController {
-    LLHierarchyViewController *vc = [[LLHierarchyViewController alloc] init];
-    vc.delegate = self;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)settingButtonClicked:(UIButton *)sender {
     
 }
@@ -160,31 +125,6 @@
 - (void)llFunctionContainerView:(LLFunctionContainerView *)view didSelectAt:(LLFunctionModel *)model {
     LLComponent *component = model.component;
     [component componentDidLoad:nil];
-//        switch (model.action) {
-//            case LLFunctionActionNetwork:
-//                [self goToNetworkViewController];
-//                break;
-//            case LLFunctionActionLog:
-//                [self goToLogViewController];
-//                break;
-//            case LLFunctionActionCrash:
-//                [self goToCrashViewController];
-//                break;
-//            case LLFunctionActionAppInfo:
-//                [self goToAppInfoViewController];
-//                break;
-//            case LLFunctionActionSandbox:
-//                [self goToSandboxViewController];
-//                break;
-//            case LLFunctionActionScreenshot:
-//                [self doScreenshot];
-//                break;
-//            case LLFunctionActionHierarchy:
-//                [self goToHierarchyViewController];
-//                break;
-//            default:
-//                break;
-//        }
 }
 
 #pragma mark - LLHierarchyViewControllerDelegate
