@@ -33,6 +33,7 @@
 #import "LLCrashWindow.h"
 #import "LLHierarchyWindow.h"
 #import "LLMagnifierColorWindow.h"
+#import "LLHierarchyPickerWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -67,6 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LLSandboxWindow *sandboxWindow;
 
 @property (nonatomic, strong, readonly) LLHierarchyWindow *hierarchyWindow;
+
+@property (nonatomic, strong, readonly) LLHierarchyPickerWindow *hierarchyPickerWindow;
 
 /**
  Show window with alpha animate if needed.
@@ -214,6 +217,11 @@ NS_ASSUME_NONNULL_BEGIN
  Reload magnifier color window.
  */
 - (void)reloadMagnifierColorWindow;
+
+/**
+ Reload hierarchy picker window.
+ */
+- (void)reloadHierarchyPickerWindow;
 
 @end
 

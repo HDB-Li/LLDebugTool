@@ -196,7 +196,7 @@
         CGContextRelease(context);
         
         // Here is a bug, The first row pixelData will always be "#000000", but the second row data is real first row data.
-        hexColor = [NSString stringWithFormat:@"#%02x%02x%02x",pixelData[0],pixelData[1],pixelData[2]];
+        hexColor = [NSString stringWithFormat:@"#%02X%02X%02X",pixelData[0],pixelData[1],pixelData[2]];
     }
     return hexColor;
 }

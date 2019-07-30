@@ -50,6 +50,8 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLHierarchyWindow *hierarchyWindow;
 
+@property (nonatomic, strong) LLHierarchyPickerWindow *hierarchyPickerWindow;
+
 @property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
@@ -74,11 +76,12 @@ static LLWindowManager *_instance = nil;
 
 - (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        CGFloat alpha = window.alpha;
         window.alpha = 0;
         window.hidden = NO;
         window.windowLevel = self.presentingWindowLevel;
         [UIView animateWithDuration:0.25 animations:^{
-            window.alpha = 1;
+            window.alpha = alpha;
         } completion:^(BOOL finished) {
             window.windowLevel = self.presentWindowLevel;
             if (completion) {
@@ -100,11 +103,12 @@ static LLWindowManager *_instance = nil;
 
 - (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        CGFloat alpha = window.alpha;
         [UIView animateWithDuration:0.25 animations:^{
             window.alpha = 0;
         } completion:^(BOOL finished) {
             window.hidden = YES;
-            window.alpha = 1;
+            window.alpha = alpha;
             window.windowLevel = self.normalWindowLevel;
             if (completion) {
                 completion();
@@ -125,11 +129,12 @@ static LLWindowManager *_instance = nil;
 
 - (void)presentWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        CGFloat y = window.LL_y;
         window.LL_y = LL_SCREEN_HEIGHT;
         window.hidden = NO;
         window.windowLevel = self.presentingWindowLevel;
         [UIView animateWithDuration:0.25 animations:^{
-            window.LL_y = 0;
+            window.LL_y = y;
         } completion:^(BOOL finished) {
             window.windowLevel = self.presentWindowLevel;
             if (completion) {
@@ -151,11 +156,12 @@ static LLWindowManager *_instance = nil;
 
 - (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        CGFloat y = window.LL_y;
         [UIView animateWithDuration:0.25 animations:^{
             window.LL_y = LL_SCREEN_HEIGHT;
         } completion:^(BOOL finished) {
             window.hidden = YES;
-            window.LL_y = 0;
+            window.LL_y = y;
             window.windowLevel = self.normalWindowLevel;
             if (completion) {
                 completion();
@@ -176,11 +182,12 @@ static LLWindowManager *_instance = nil;
 
 - (void)pushWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        CGFloat x = window.LL_x;
         window.LL_x = LL_SCREEN_WIDTH;
         window.hidden = NO;
         window.windowLevel = self.presentingWindowLevel;
         [UIView animateWithDuration:0.25 animations:^{
-            window.LL_x = 0;
+            window.LL_x = x;
         } completion:^(BOOL finished) {
             window.windowLevel = self.presentWindowLevel;
             if (completion) {
@@ -202,11 +209,12 @@ static LLWindowManager *_instance = nil;
 
 - (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
+        CGFloat x = window.LL_x;
         [UIView animateWithDuration:0.25 animations:^{
             window.LL_x = LL_SCREEN_WIDTH;
         } completion:^(BOOL finished) {
             window.hidden = YES;
-            window.LL_x = 0;
+            window.LL_x = x;
             window.windowLevel = self.normalWindowLevel;
             if (completion) {
                 completion();
@@ -257,6 +265,10 @@ static LLWindowManager *_instance = nil;
     _magnifierColorWindow = nil;
 }
 
+- (void)reloadHierarchyPickerWindow {
+    _hierarchyPickerWindow = nil;
+}
+
 #pragma mark - Lazy
 - (LLSuspensionWindow *)suspensionWindow {
     if (!_suspensionWindow) {
@@ -283,7 +295,9 @@ static LLWindowManager *_instance = nil;
 
 - (LLMagnifierColorWindow *)magnifierColorWindow {
     if (!_magnifierColorWindow) {
-        _magnifierColorWindow = [[LLMagnifierColorWindow alloc] initWithFrame:CGRectZero];
+        CGFloat gap = 10;
+        CGFloat height = 60;
+        _magnifierColorWindow = [[LLMagnifierColorWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
     }
     return _magnifierColorWindow;
 }
@@ -331,23 +345,31 @@ static LLWindowManager *_instance = nil;
     return _hierarchyWindow;
 }
 
+- (LLHierarchyPickerWindow *)hierarchyPickerWindow {
+    if (!_hierarchyPickerWindow) {
+        CGFloat width = 60;
+        _hierarchyPickerWindow = [[LLHierarchyPickerWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2.0, (LL_SCREEN_HEIGHT - width) / 2.0, width, width)];
+    }
+    return _hierarchyPickerWindow;
+}
+
 - (UIWindowLevel)presentingWindowLevel {
     if (!_presentingWindowLevel) {
-        _presentingWindowLevel = UIWindowLevelStatusBar + 300;
+        _presentingWindowLevel = UIWindowLevelStatusBar - 100;
     }
     return _presentingWindowLevel;
 }
 
 - (UIWindowLevel)presentWindowLevel {
     if (!_presentWindowLevel) {
-        _presentWindowLevel = UIWindowLevelStatusBar + 200;
+        _presentWindowLevel = UIWindowLevelStatusBar - 200;
     }
     return _presentWindowLevel;
 }
 
 - (UIWindowLevel)normalWindowLevel {
     if (!_normalWindowLevel) {
-        _normalWindowLevel = UIWindowLevelStatusBar + 100;
+        _normalWindowLevel = UIWindowLevelStatusBar - 300;
     }
     return _normalWindowLevel;
 }

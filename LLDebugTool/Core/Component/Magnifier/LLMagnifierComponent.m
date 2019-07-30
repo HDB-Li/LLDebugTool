@@ -27,11 +27,11 @@
 @implementation LLMagnifierComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:YES completion:^() {
-        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
-    
+    [[LLWindowManager shared] dismissWindow:[LLWindowManager shared].functionWindow animated:YES];
+    [[LLWindowManager shared] reloadFunctionWindow];
+    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierColorWindow animated:YES];
 }
 
 @end

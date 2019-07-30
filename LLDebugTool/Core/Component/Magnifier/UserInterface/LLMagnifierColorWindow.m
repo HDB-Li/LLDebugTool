@@ -49,14 +49,9 @@
     return self;
 }
 
-- (void)updateColor:(UIColor *)color point:(CGPoint)point {
-    self.colorView.backgroundColor = color;
-    NSArray *rgb = [color getRGBA];
-    NSInteger r = [rgb[0] integerValue];
-    NSInteger g = [rgb[1] integerValue];
-    NSInteger b = [rgb[2] integerValue];
-    
-    self.colorLabel.text = [NSString stringWithFormat:@"R: %@, G: %@, B: %@. (#%02lx%02lx%02lx)\nX: %0.1f, Y: %0.1f", rgb[0], rgb[1], rgb[2],(long)r,(long)g,(long)b, point.x, point.y];
+- (void)updateColor:(NSString *)hexColor point:(CGPoint)point {
+    self.colorView.backgroundColor = [UIColor colorWithHex:hexColor];
+    self.colorLabel.text = [NSString stringWithFormat:@"%@\nX: %0.1f, Y: %0.1f", hexColor, point.x, point.y];
 }
 
 - (void)layoutSubviews {
@@ -77,21 +72,31 @@
     }
 }
 
+- (void)componentDidFinish {
+    [[LLWindowManager shared] hideWindow:self animated:YES];
+    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].magnifierWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] reloadMagnifierColorWindow];
+    [[LLWindowManager shared] reloadMagnifierWindow];
+}
+
 #pragma mark - Primary
 - (void)initial {
     if (!self.rootViewController) {
         self.rootViewController = [[UIViewController alloc] init];
+        self.rootViewController.view.userInteractionEnabled = NO;
     }
     self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     self.layer.borderWidth = 2;
     self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
     self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     
     self.closeButton = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(closeButtonClicked:)];
     [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:LLCONFIG_TEXT_COLOR] forState:UIControlStateNormal];
     
     self.colorView = [LLFactory getView:self frame:CGRectZero];
+    self.colorView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.colorView.layer.borderWidth = 0.5;
     
     self.colorLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:LLCONFIG_TEXT_COLOR];
     self.colorLabel.numberOfLines = 0;
@@ -135,7 +140,7 @@
 }
 
 - (void)closeButtonClicked:(UIButton *)sender {
-    
+    [self componentDidFinish];
 }
 
 @end

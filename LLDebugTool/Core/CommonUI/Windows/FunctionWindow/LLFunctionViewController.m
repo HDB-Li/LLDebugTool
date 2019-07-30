@@ -75,6 +75,7 @@
 - (void)leftItemClick {
     [[LLWindowManager shared] dismissWindow:self.view.window animated:YES completion:^{
         [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+        [[LLWindowManager shared] reloadFunctionWindow];
     }];
 }
 
@@ -113,6 +114,7 @@
     
     [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Screenshot" action:LLFunctionActionScreenshot]];
     [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Hierarchy" action:LLFunctionActionHierarchy]];
+    [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Magnifier" action:LLFunctionActionMagnifier]];
     
     self.shortCutContainerView.dataArray = [items copy];
 }

@@ -27,7 +27,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.windowLevel = UIWindowLevelStatusBar + 200;
+        self.windowLevel = UIWindowLevelStatusBar - 200;
+        self.layer.masksToBounds = YES;
     }
     return self;
 }

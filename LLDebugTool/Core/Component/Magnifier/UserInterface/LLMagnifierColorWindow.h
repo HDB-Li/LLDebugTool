@@ -21,19 +21,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseWindow.h"
+#import "LLBaseComponentWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLMagnifierColorWindow : LLBaseWindow
+@interface LLMagnifierColorWindow : LLBaseComponentWindow
 
 /**
  Update color and point.
 
- @param color Color
+ @param hexColor Hex color
  @param point Point.
  */
-- (void)updateColor:(UIColor *)color point:(CGPoint)point;
+- (void)updateColor:(NSString *)hexColor point:(CGPoint)point;
 
 @end
 

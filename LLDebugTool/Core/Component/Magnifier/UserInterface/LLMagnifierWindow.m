@@ -28,6 +28,7 @@
 #import "LLScreenshotHelper.h"
 #import "UIImage+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
+#import "LLWindowManager.h"
 
 @interface LLMagnifierWindow ()
 
@@ -61,6 +62,7 @@
     currentPoint.x = round(currentPoint.x - size * skip / 2.0 * scale);
     currentPoint.y = round(currentPoint.y - size * skip / 2.0 * scale);
     int i, j;
+    NSInteger center = size / 2;
     
     for (j = 0; j < size; j++) {
         for (i = 0; i < size; i++) {
@@ -72,6 +74,11 @@
             }
             CGContextSetFillColorWithColor(context, gridColor.CGColor);
             CGContextFillRect(context, gridRect);
+            if (i == center && j == center) {
+                if (hexColorAtPoint) {
+                    [[LLWindowManager shared].magnifierColorWindow updateColor:hexColorAtPoint point:currentPoint];
+                }
+            }
             currentPoint.x += round(skip * scale);
         }
 
@@ -97,7 +104,6 @@
         self.rootViewController = [[UIViewController alloc] init];
     }
     self.layer.cornerRadius = self.LL_width / 2.0;
-    self.layer.masksToBounds = YES;
     self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     self.layer.borderWidth = 2;
     
