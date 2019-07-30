@@ -36,7 +36,7 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
 
-@property (nonatomic, strong) LLMagnifierColorWindow *magnifierColorWindow;
+@property (nonatomic, strong) LLMagnifierInfoWindow *magnifierColorWindow;
 
 @property (nonatomic, strong) LLNetworkWindow *networkWindow;
 
@@ -293,11 +293,11 @@ static LLWindowManager *_instance = nil;
     return _magnifierWindow;
 }
 
-- (LLMagnifierColorWindow *)magnifierColorWindow {
+- (LLMagnifierInfoWindow *)magnifierColorWindow {
     if (!_magnifierColorWindow) {
         CGFloat gap = 10;
         CGFloat height = 60;
-        _magnifierColorWindow = [[LLMagnifierColorWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
+        _magnifierColorWindow = [[LLMagnifierInfoWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
     }
     return _magnifierColorWindow;
 }
@@ -347,8 +347,7 @@ static LLWindowManager *_instance = nil;
 
 - (LLHierarchyPickerWindow *)hierarchyPickerWindow {
     if (!_hierarchyPickerWindow) {
-        CGFloat width = 60;
-        _hierarchyPickerWindow = [[LLHierarchyPickerWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2.0, (LL_SCREEN_HEIGHT - width) / 2.0, width, width)];
+        _hierarchyPickerWindow = [[LLHierarchyPickerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _hierarchyPickerWindow;
 }

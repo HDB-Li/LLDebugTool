@@ -32,7 +32,7 @@
 #import "LLSandboxWindow.h"
 #import "LLCrashWindow.h"
 #import "LLHierarchyWindow.h"
-#import "LLMagnifierColorWindow.h"
+#import "LLMagnifierInfoWindow.h"
 #import "LLHierarchyPickerWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) LLMagnifierWindow *magnifierWindow;
 
-@property (nonatomic, strong, readonly) LLMagnifierColorWindow *magnifierColorWindow;
+@property (nonatomic, strong, readonly) LLMagnifierInfoWindow *magnifierColorWindow;
 
 @property (nonatomic, strong, readonly) LLNetworkWindow *networkWindow;
 

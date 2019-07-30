@@ -30,7 +30,9 @@
 		C43BA814205AB095006307BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43BA813205AB095006307BE /* Assets.xcassets */; };
 		C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA815205AB095006307BE /* LaunchScreen.storyboard */; };
 		C43BA81A205AB095006307BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA819205AB095006307BE /* main.m */; };
-		C44D9BE622EF2EAB00794BF2 /* LLMagnifierColorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44D9BE522EF2EAB00794BF2 /* LLMagnifierColorWindow.m */; };
+		C44D9BE622EF2EAB00794BF2 /* LLMagnifierInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44D9BE522EF2EAB00794BF2 /* LLMagnifierInfoWindow.m */; };
+		C45C96CF22F09379002F43E9 /* LLHierarchyInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */; };
+		C45C96D222F093CE002F43E9 /* LLBaseComponentInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45C96D122F093CE002F43E9 /* LLBaseComponentInfoWindow.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
 		C49855DB22ED8D0E00E9FBE2 /* LLRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = C498551822ED8D0E00E9FBE2 /* LLRoute.m */; };
 		C49855DC22ED8D0E00E9FBE2 /* LLDebugTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C498551C22ED8D0E00E9FBE2 /* LLDebugTool.bundle */; };
@@ -226,8 +228,12 @@
 		C43BA816205AB095006307BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C43BA818205AB095006307BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43BA819205AB095006307BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C44D9BE422EF2EAB00794BF2 /* LLMagnifierColorWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierColorWindow.h; sourceTree = "<group>"; };
-		C44D9BE522EF2EAB00794BF2 /* LLMagnifierColorWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierColorWindow.m; sourceTree = "<group>"; };
+		C44D9BE422EF2EAB00794BF2 /* LLMagnifierInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierInfoWindow.h; sourceTree = "<group>"; };
+		C44D9BE522EF2EAB00794BF2 /* LLMagnifierInfoWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoWindow.m; sourceTree = "<group>"; };
+		C45C96CD22F09379002F43E9 /* LLHierarchyInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoWindow.h; sourceTree = "<group>"; };
+		C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoWindow.m; sourceTree = "<group>"; };
+		C45C96D022F093CE002F43E9 /* LLBaseComponentInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentInfoWindow.h; sourceTree = "<group>"; };
+		C45C96D122F093CE002F43E9 /* LLBaseComponentInfoWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentInfoWindow.m; sourceTree = "<group>"; };
 		C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
 		C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
@@ -874,6 +880,8 @@
 				36CBA51B22EE9850005134FB /* LLBaseComponentViewController.m */,
 				C498557522ED8D0E00E9FBE2 /* LLNavigationController.h */,
 				C498557F22ED8D0E00E9FBE2 /* LLNavigationController.m */,
+				C45C96D022F093CE002F43E9 /* LLBaseComponentInfoWindow.h */,
+				C45C96D122F093CE002F43E9 /* LLBaseComponentInfoWindow.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1090,6 +1098,8 @@
 				C498570922EDB41500E9FBE2 /* LLHierarchyWindow.m */,
 				362F3CE422F01AF70087B0E4 /* LLHierarchyPickerWindow.h */,
 				362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */,
+				C45C96CD22F09379002F43E9 /* LLHierarchyInfoWindow.h */,
+				C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1337,8 +1347,8 @@
 			children = (
 				C498571622EDE3F800E9FBE2 /* LLMagnifierWindow.h */,
 				C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */,
-				C44D9BE422EF2EAB00794BF2 /* LLMagnifierColorWindow.h */,
-				C44D9BE522EF2EAB00794BF2 /* LLMagnifierColorWindow.m */,
+				C44D9BE422EF2EAB00794BF2 /* LLMagnifierInfoWindow.h */,
+				C44D9BE522EF2EAB00794BF2 /* LLMagnifierInfoWindow.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1579,6 +1589,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45C96D222F093CE002F43E9 /* LLBaseComponentInfoWindow.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
 				C49855DD22ED8D0E00E9FBE2 /* LLStorageManager.m in Sources */,
 				C498560022ED8D0E00E9FBE2 /* LLBaseTableViewController.m in Sources */,
@@ -1654,6 +1665,7 @@
 				C49855EC22ED8D0E00E9FBE2 /* LLFilterDatePickerView.m in Sources */,
 				C498569B22ED8D4800E9FBE2 /* LLCrashCell.m in Sources */,
 				C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */,
+				C45C96CF22F09379002F43E9 /* LLHierarchyInfoWindow.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C498560122ED8D0E00E9FBE2 /* LLBaseCollectionViewCell.m in Sources */,
 				C49855F322ED8D0E00E9FBE2 /* LLFunctionWindow.m in Sources */,
@@ -1684,7 +1696,7 @@
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,
 				C49855E922ED8D0E00E9FBE2 /* LLFilterTextFieldModel.m in Sources */,
 				C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */,
-				C44D9BE622EF2EAB00794BF2 /* LLMagnifierColorWindow.m in Sources */,
+				C44D9BE622EF2EAB00794BF2 /* LLMagnifierInfoWindow.m in Sources */,
 				C49855F222ED8D0E00E9FBE2 /* LLFunctionViewController.m in Sources */,
 				C498568822ED8D4800E9FBE2 /* LLHierarchyCell.m in Sources */,
 				C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  LLMagnifierColorWindow.h
+//  LLBaseComponentInfoWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,20 +21,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLBaseComponentInfoWindow.h"
+#import "LLFactory.h"
+#import "LLImageNameConfig.h"
+#import "UIView+LL_Utils.h"
+#import "LLConfig.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface LLBaseComponentInfoWindow ()
 
-@interface LLMagnifierColorWindow : LLBaseComponentWindow
-
-/**
- Update color and point.
-
- @param hexColor Hex color
- @param point Point.
- */
-- (void)updateColor:(NSString *)hexColor point:(CGPoint)point;
+@property (nonatomic, strong) UIButton *closeButton;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLBaseComponentInfoWindow
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - 10 - 30, 10, 30, 30) target:self action:@selector(closeButtonClicked:)];
+        [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:LLCONFIG_TEXT_COLOR] forState:UIControlStateNormal];
+    }
+    return self;
+}
+
+#pragma mark - Primary
+- (void)closeButtonClicked:(UIButton *)sender {
+    [self componentDidFinish];
+}
+
+@end

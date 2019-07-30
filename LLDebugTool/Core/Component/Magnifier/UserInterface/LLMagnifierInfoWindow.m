@@ -1,5 +1,5 @@
 //
-//  LLMagnifierColorWindow.m
+//  LLMagnifierInfoWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMagnifierColorWindow.h"
+#import "LLMagnifierInfoWindow.h"
 #import "LLMacros.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
@@ -30,9 +30,7 @@
 #import "UIColor+LL_Utils.h"
 #import "LLWindowManager.h"
 
-@interface LLMagnifierColorWindow ()
-
-@property (nonatomic, strong) UIButton *closeButton;
+@interface LLMagnifierInfoWindow ()
 
 @property (nonatomic, strong) UIView *colorView;
 
@@ -40,7 +38,7 @@
 
 @end
 
-@implementation LLMagnifierColorWindow
+@implementation LLMagnifierInfoWindow
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -56,10 +54,6 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGRect closeButtonRect = CGRectMake(self.LL_width - 10 - 30, 10, 30, 30);
-    if (!CGRectEqualToRect(self.closeButton.frame, closeButtonRect)) {
-        self.closeButton.frame = closeButtonRect;
-    }
     
     CGRect colorRect = CGRectMake(20, (self.LL_height - 20) / 2.0, 20, 20);
     if (!CGRectEqualToRect(self.colorView.frame, colorRect)) {
@@ -90,9 +84,6 @@
     self.layer.borderWidth = 2;
     self.layer.cornerRadius = 5;
     self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    
-    self.closeButton = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(closeButtonClicked:)];
-    [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:LLCONFIG_TEXT_COLOR] forState:UIControlStateNormal];
     
     self.colorView = [LLFactory getView:self frame:CGRectZero];
     self.colorView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
@@ -137,10 +128,6 @@
     if (self.LL_right > LL_SCREEN_WIDTH) {
         self.LL_right = LL_SCREEN_WIDTH;
     }
-}
-
-- (void)closeButtonClicked:(UIButton *)sender {
-    [self componentDidFinish];
 }
 
 @end

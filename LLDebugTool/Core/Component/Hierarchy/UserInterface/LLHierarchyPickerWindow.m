@@ -29,6 +29,8 @@
 
 @interface LLHierarchyPickerWindow ()
 
+@property (nonatomic, strong) UIView *circleView;
+
 @property (nonatomic, strong) UIView *pointView;
 
 @end
@@ -42,21 +44,14 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGRect pointRect = CGRectMake((self.LL_width - 16) / 2.0, (self.LL_height - 16) / 2.0, 16, 16);
-    if (!CGRectEqualToRect(self.pointView.frame, pointRect)) {
-        self.pointView.frame = pointRect;
-    }
-}
-
 #pragma mark - Primary
 - (void)initial {
-    self.layer.cornerRadius = self.LL_height / 2.0;
-    self.layer.borderWidth = 2;
-    self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.circleView = [LLFactory getView:self frame:CGRectMake((self.LL_width - 60) / 2.0, (self.LL_height - 60) / 2.0, 60, 60) backgroundColor:[UIColor clearColor]];
+    self.circleView.layer.cornerRadius = 60 / 2.0;
+    self.circleView.layer.borderWidth = 2;
+    self.circleView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     
-    self.pointView = [LLFactory getView:self frame:CGRectZero backgroundColor:LLCONFIG_TEXT_COLOR];
+    self.pointView = [LLFactory getView:self frame:CGRectMake((self.LL_width - 16) / 2.0, (self.LL_height - 16) / 2.0, 16, 16) backgroundColor:LLCONFIG_TEXT_COLOR];
     self.pointView.layer.cornerRadius = 16 / 2.0;
     self.pointView.layer.borderWidth = 0.5;
     self.pointView.layer.borderColor = LLCONFIG_BACKGROUND_COLOR.CGColor;
