@@ -25,7 +25,7 @@
 
 @implementation UIColor (LL_Utils)
 
-+ (UIColor *)colorWithHex:(NSString *)hex {
++ (UIColor *)LL_colorWithHex:(NSString *)hex {
     if ([hex length] < 6){//长度不合法
         return [UIColor blackColor];
     }
@@ -54,19 +54,39 @@
     [[NSScanner scannerWithString:rString] scanHexInt:&r];
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
-    return [UIColor colorWithRed:((float) r /255.0f)
-                           green:((float) g /255.0f)
-                            blue:((float) b /255.0f)
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
                            alpha:1.0f];
 }
 
-- (NSArray *)getRGBA {
+- (NSArray *)LL_RGBA {
     CGFloat r = 0;
     CGFloat g = 0;
     CGFloat b = 0;
     CGFloat a = 0;
     [self getRed:&r green:&g blue:&b alpha:&a];
     return @[@(r),@(g),@(b),@(a)];
+}
+
+- (NSString *)LL_HexString {
+    NSArray *rgba = [self LL_RGBA];
+    int r = [rgba[0] doubleValue] * 255.0;
+    int g = [rgba[1] doubleValue] * 255.0;
+    int b = [rgba[2] doubleValue] * 255.0;
+    return [NSString stringWithFormat:@"#%02X%02X%02X",r, g, b];
+}
+
+- (NSString *)LL_description {
+    NSArray *rgba = [self LL_RGBA];
+    int r = [rgba[0] doubleValue] * 255.0;
+    int g = [rgba[1] doubleValue] * 255.0;
+    int b = [rgba[2] doubleValue] * 255.0;
+    int a = [rgba[3] doubleValue] * 255.0;
+    if (a == 255) {
+        return [NSString stringWithFormat:@"#%02X%02X%02X",r, g, b];
+    }
+    return [NSString stringWithFormat:@"#%02X%02X%02X, Alpha: %d",r, g, b, a];
 }
 
 @end

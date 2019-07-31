@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) UIButton *closeButton;
 
+@property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
+
 @end
 
 NS_ASSUME_NONNULL_END

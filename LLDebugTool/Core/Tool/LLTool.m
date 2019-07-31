@@ -303,7 +303,6 @@ static unsigned long long _absolutelyIdentity = 0;
     }
 }
 
-#pragma mark - Primary
 + (NSString *)formatNumber:(NSNumber *)number {
     return [[self numberFormatter] stringFromNumber:number];
 }

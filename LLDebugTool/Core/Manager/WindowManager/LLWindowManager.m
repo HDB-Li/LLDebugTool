@@ -52,6 +52,8 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLHierarchyPickerWindow *hierarchyPickerWindow;
 
+@property (nonatomic, strong) LLHierarchyInfoWindow *hierarchyInfoWindow;
+
 @property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
@@ -350,6 +352,15 @@ static LLWindowManager *_instance = nil;
         _hierarchyPickerWindow = [[LLHierarchyPickerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _hierarchyPickerWindow;
+}
+
+- (LLHierarchyInfoWindow *)hierarchyInfoWindow {
+    if (!_hierarchyInfoWindow) {
+        CGFloat gap = 10;
+        CGFloat height = 60;
+        _hierarchyInfoWindow = [[LLHierarchyInfoWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
+    }
+    return _hierarchyInfoWindow;
 }
 
 - (UIWindowLevel)presentingWindowLevel {

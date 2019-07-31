@@ -70,7 +70,7 @@
             UIColor *gridColor = [UIColor clearColor];
             NSString *hexColorAtPoint = [self.screenshot LL_hexColorAt:currentPoint];
             if (hexColorAtPoint) {
-                gridColor = [UIColor colorWithHex:hexColorAtPoint];
+                gridColor = [UIColor LL_colorWithHex:hexColorAtPoint];
             }
             CGContextSetFillColorWithColor(context, gridColor.CGColor);
             CGContextFillRect(context, gridRect);

@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray <UIWindow *>*)allWindows;
 
+- (NSArray <UIWindow *>*)allWindowsIgnoreClass:(Class _Nullable)cls;
+
 - (LLHierarchyModel *)hierarchyInApplication;
 
 - (LLHierarchyModel *)hierarchyInView:(UIView *)view;

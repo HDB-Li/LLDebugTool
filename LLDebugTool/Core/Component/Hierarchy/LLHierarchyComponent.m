@@ -31,6 +31,7 @@
         [[LLWindowManager shared] reloadFunctionWindow];
     }];
     [[LLWindowManager shared] showWindow:[LLWindowManager shared].hierarchyPickerWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].hierarchyInfoWindow animated:YES];
 }
 
 @end

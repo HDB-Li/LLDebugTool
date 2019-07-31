@@ -22,15 +22,99 @@
 //  SOFTWARE.
 
 #import "LLHierarchyInfoWindow.h"
+#import "LLWindowManager.h"
+#import "LLFactory.h"
+#import "UIView+LL_Utils.h"
+#import "LLConfig.h"
+#import "LLTool.h"
+#import "LLMacros.h"
+#import "UIColor+LL_Utils.h"
+
+@interface LLHierarchyInfoWindow ()
+
+@property (nonatomic, weak) UIView *selectedView;
+
+@property (nonatomic, strong) UILabel *contentLabel;
+
+@end
 
 @implementation LLHierarchyInfoWindow
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
 }
-*/
+
+- (void)updateView:(UIView *)view {
+    
+    if (self.selectedView == view) {
+        return;
+    }
+    
+    self.selectedView = view;
+    
+    NSMutableArray *attributes = [[NSMutableArray alloc] init];
+    NSString *name = [NSString stringWithFormat:@"Name: %@",NSStringFromClass(view.class)];
+    [attributes addObject:name];
+    
+    NSString *frame = [NSString stringWithFormat:@"Frame: %@",[LLTool stringFromFrame:view.frame]];
+    [attributes addObject:frame];
+    
+    NSMutableString *color = [NSMutableString string];
+    
+    if (view.backgroundColor) {
+        [color appendFormat:@"Background: %@",[view.backgroundColor LL_description]];
+    }
+    if ([view isKindOfClass:[UILabel class]]) {
+        UILabel *label = (UILabel *)view;
+        [color appendFormat:@", Color: %@, Font: %0.2f", [label.textColor LL_description], label.font.pointSize];
+    }
+    if ([color length]) {
+        [attributes addObject:color];
+    }
+    
+    if (view.tag != 0) {
+        NSString *tag = [NSString stringWithFormat:@"Tag: %ld", (long)view.tag];
+        [attributes addObject:tag];
+    }
+    
+    self.contentLabel.text = [attributes componentsJoinedByString:@"\n"];
+    [self.contentLabel sizeToFit];
+    
+    CGFloat height = self.contentLabel.LL_height + 10 * 2;
+    if (height != self.LL_height) {
+        self.LL_height = height;
+        if (!self.isMoved) {
+            if (self.LL_bottom != LL_SCREEN_HEIGHT - 10 * 2) {
+                self.LL_bottom = LL_SCREEN_HEIGHT - 10 * 2;
+            }
+        }
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGFloat gap = 10;
+    CGRect contentRect = CGRectMake(gap, gap, self.closeButton.LL_x - gap - gap, self.LL_height - gap * 2);
+    if (!CGRectEqualToRect(self.contentLabel.frame, contentRect)) {
+        self.contentLabel.frame = contentRect;
+    }
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] hideWindow:self animated:YES];
+    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].hierarchyPickerWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] reloadHierarchyPickerWindow];
+}
+
+#pragma mark - Primary
+- (void)initial {
+    self.contentLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLConfig sharedConfig].textColor];
+    self.contentLabel.numberOfLines = 0;
+    self.contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
+}
 
 @end

@@ -27,9 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (LL_Utils)
 
-+ (UIColor *)colorWithHex:(NSString *)hex;
++ (UIColor *)LL_colorWithHex:(NSString *)hex;
 
-- (NSArray *)getRGBA;
+- (NSArray *)LL_RGBA;
+
+- (NSString *)LL_HexString;
+
+- (NSString *)LL_description;
 
 @end
 

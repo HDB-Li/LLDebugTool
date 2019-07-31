@@ -34,6 +34,7 @@
 #import "LLHierarchyWindow.h"
 #import "LLMagnifierInfoWindow.h"
 #import "LLHierarchyPickerWindow.h"
+#import "LLHierarchyInfoWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -70,6 +71,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LLHierarchyWindow *hierarchyWindow;
 
 @property (nonatomic, strong, readonly) LLHierarchyPickerWindow *hierarchyPickerWindow;
+
+@property (nonatomic, strong, readonly) LLHierarchyInfoWindow *hierarchyInfoWindow;
 
 /**
  Show window with alpha animate if needed.
@@ -222,6 +225,11 @@ NS_ASSUME_NONNULL_BEGIN
  Reload hierarchy picker window.
  */
 - (void)reloadHierarchyPickerWindow;
+
+/**
+ Reload hierarchy info window.
+ */
+- (void)reloadHierarchyInfoWindow;
 
 @end
 

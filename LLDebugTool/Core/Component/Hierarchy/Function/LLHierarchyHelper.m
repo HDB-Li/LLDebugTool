@@ -36,6 +36,10 @@ static LLHierarchyHelper *_instance = nil;
 }
 
 - (NSArray <UIWindow *>*)allWindows {
+    return [self allWindowsIgnoreClass:nil];
+}
+
+- (NSArray <UIWindow *>*)allWindowsIgnoreClass:(Class)cls {
     BOOL includeInternalWindows = YES;
     BOOL onlyVisibleWindows = NO;
     
@@ -57,7 +61,18 @@ static LLHierarchyHelper *_instance = nil;
         return obj1.windowLevel > obj2.windowLevel;
     }];
     
-    return windows;
+    NSMutableArray *results = [[NSMutableArray alloc] initWithArray:windows];
+    NSMutableArray *removeResults = [[NSMutableArray alloc] init];
+    if (cls != nil) {
+        for (UIWindow *window in results) {
+            if ([window isKindOfClass:cls]) {
+                [removeResults addObject:window];
+            }
+        }
+    }
+    [results removeObjectsInArray:removeResults];
+    
+    return [NSArray arrayWithArray:results];
 }
 
 - (LLHierarchyModel *)hierarchyInApplication {

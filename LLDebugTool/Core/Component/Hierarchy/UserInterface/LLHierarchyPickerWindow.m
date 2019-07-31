@@ -26,12 +26,16 @@
 #import "LLConfig.h"
 #import "LLFactory.h"
 #import "LLMacros.h"
+#import "LLHierarchyHelper.h"
+#import "LLWindowManager.h"
 
 @interface LLHierarchyPickerWindow ()
 
 @property (nonatomic, strong) UIView *circleView;
 
 @property (nonatomic, strong) UIView *pointView;
+
+@property (nonatomic, strong) UIView *borderView;
 
 @end
 
@@ -46,16 +50,23 @@
 
 #pragma mark - Primary
 - (void)initial {
+    
+    self.borderView = [LLFactory getView:self frame:CGRectZero backgroundColor:[UIColor clearColor]];
+    self.borderView.layer.borderWidth = 2;
+    self.borderView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    
     self.circleView = [LLFactory getView:self frame:CGRectMake((self.LL_width - 60) / 2.0, (self.LL_height - 60) / 2.0, 60, 60) backgroundColor:[UIColor clearColor]];
     self.circleView.layer.cornerRadius = 60 / 2.0;
     self.circleView.layer.borderWidth = 2;
     self.circleView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.circleView.alpha = [LLConfig sharedConfig].normalAlpha;
     
     self.pointView = [LLFactory getView:self frame:CGRectMake((self.LL_width - 16) / 2.0, (self.LL_height - 16) / 2.0, 16, 16) backgroundColor:LLCONFIG_TEXT_COLOR];
     self.pointView.layer.cornerRadius = 16 / 2.0;
     self.pointView.layer.borderWidth = 0.5;
     self.pointView.layer.borderColor = LLCONFIG_BACKGROUND_COLOR.CGColor;
     self.pointView.layer.masksToBounds = YES;
+    self.pointView.alpha = [LLConfig sharedConfig].normalAlpha;
     
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
@@ -70,11 +81,23 @@
     [sender setTranslation:CGPointZero inView:sender.view];
     
     [self changeFrameWithPoint:offsetPoint];
+    
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    
+    UIView *view = [self viewForSelectionAtPoint:self.pointView.center];
+    
+    CGRect rect = [view convertRect:view.bounds toView:window];
+    
+    rect = [self convertRect:rect fromView:window];
+    
+    self.borderView.frame = rect;
+    
+    [[LLWindowManager shared].hierarchyInfoWindow updateView:view];
 }
 
 - (void)changeFrameWithPoint:(CGPoint)point {
     
-    CGPoint center = self.center;
+    CGPoint center = self.pointView.center;
     center.x += point.x;
     center.y += point.y;
     
@@ -84,7 +107,48 @@
     center.y = MIN(center.y, LL_SCREEN_HEIGHT);
     center.y = MAX(center.y, 0);
     
-    self.center = center;
+    self.pointView.center = center;
+    self.circleView.center = self.pointView.center;
+}
+
+- (UIView *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow
+{
+    // Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.
+    // Default to the the application's key window if none of the windows want the touch.
+    UIWindow *windowForSelection = [[UIApplication sharedApplication] keyWindow];
+    for (UIWindow *window in [[[LLHierarchyHelper sharedHelper] allWindowsIgnoreClass:[LLBaseWindow class]] reverseObjectEnumerator]) {
+        if ([window hitTest:tapPointInWindow withEvent:nil]) {
+            windowForSelection = window;
+            break;
+        }
+    }
+    
+    // Select the deepest visible view at the tap point. This generally corresponds to what the user wants to select.
+    return [[self recursiveSubviewsAtPoint:tapPointInWindow inView:windowForSelection skipHiddenViews:YES] lastObject];
+}
+
+- (NSArray<UIView *> *)recursiveSubviewsAtPoint:(CGPoint)pointInView inView:(UIView *)view skipHiddenViews:(BOOL)skipHidden
+{
+    NSMutableArray<UIView *> *subviewsAtPoint = [NSMutableArray array];
+    for (UIView *subview in view.subviews) {
+        BOOL isHidden = subview.hidden || subview.alpha < 0.01;
+        if (skipHidden && isHidden) {
+            continue;
+        }
+        
+        BOOL subviewContainsPoint = CGRectContainsPoint(subview.frame, pointInView);
+        if (subviewContainsPoint) {
+            [subviewsAtPoint addObject:subview];
+        }
+        
+        // If this view doesn't clip to its bounds, we need to check its subviews even if it doesn't contain the selection point.
+        // They may be visible and contain the selection point.
+        if (subviewContainsPoint || !subview.clipsToBounds) {
+            CGPoint pointInSubview = [view convertPoint:pointInView toView:subview];
+            [subviewsAtPoint addObjectsFromArray:[self recursiveSubviewsAtPoint:pointInSubview inView:subview skipHiddenViews:skipHidden]];
+        }
+    }
+    return subviewsAtPoint;
 }
 
 @end

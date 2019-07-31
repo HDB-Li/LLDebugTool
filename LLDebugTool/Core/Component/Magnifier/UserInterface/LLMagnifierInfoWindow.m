@@ -48,7 +48,7 @@
 }
 
 - (void)updateColor:(NSString *)hexColor point:(CGPoint)point {
-    self.colorView.backgroundColor = [UIColor colorWithHex:hexColor];
+    self.colorView.backgroundColor = [UIColor LL_colorWithHex:hexColor];
     self.colorLabel.text = [NSString stringWithFormat:@"%@\nX: %0.1f, Y: %0.1f", hexColor, point.x, point.y];
 }
 
@@ -80,10 +80,6 @@
         self.rootViewController = [[UIViewController alloc] init];
         self.rootViewController.view.userInteractionEnabled = NO;
     }
-    self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    self.layer.borderWidth = 2;
-    self.layer.cornerRadius = 5;
-    self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
     
     self.colorView = [LLFactory getView:self frame:CGRectZero];
     self.colorView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
@@ -91,43 +87,6 @@
     
     self.colorLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:LLCONFIG_TEXT_COLOR];
     self.colorLabel.numberOfLines = 0;
-    
-    // Pan, to moveable.
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
-    
-    [self addGestureRecognizer:pan];
-}
-
-- (void)panGR:(UIPanGestureRecognizer *)sender {
-    
-    CGPoint offsetPoint = [sender translationInView:sender.view];
-    
-    [sender setTranslation:CGPointZero inView:sender.view];
-    
-    [self changeFrameWithPoint:offsetPoint];
-    
-}
-
-- (void)changeFrameWithPoint:(CGPoint)point {
-    
-    CGPoint center = self.center;
-    center.x += point.x;
-    center.y += point.y;
-    
-    center.x = MIN(center.x, LL_SCREEN_WIDTH);
-    center.x = MAX(center.x, 0);
-    
-    center.y = MIN(center.y, LL_SCREEN_HEIGHT);
-    center.y = MAX(center.y, 0);
-    
-    self.center = center;
-    
-    if (self.LL_left < 0) {
-        self.LL_left = 0;
-    }
-    if (self.LL_right > LL_SCREEN_WIDTH) {
-        self.LL_right = LL_SCREEN_WIDTH;
-    }
 }
 
 @end

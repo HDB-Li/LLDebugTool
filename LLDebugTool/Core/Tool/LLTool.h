@@ -130,6 +130,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setLabel:(UILabel *)label
            numberOfLines:(NSInteger)numberOfLines;
 
+/**
+ Format number.
+
+ @param number Number
+ @return String
+ */
++ (NSString *)formatNumber:(NSNumber *)number;
+
 #pragma mark - DEPRECATED
 
 + (instancetype _Nonnull)sharedTool DEPRECATED_ATTRIBUTE;

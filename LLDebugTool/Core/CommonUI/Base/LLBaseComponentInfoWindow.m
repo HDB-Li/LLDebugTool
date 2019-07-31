@@ -26,10 +26,13 @@
 #import "LLImageNameConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLConfig.h"
+#import "LLMacros.h"
 
 @interface LLBaseComponentInfoWindow ()
 
 @property (nonatomic, strong) UIButton *closeButton;
+
+@property (nonatomic, assign) BOOL moved;
 
 @end
 
@@ -37,15 +40,67 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+        self.layer.borderWidth = 2;
+        self.layer.cornerRadius = 5;
+        self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+        
         self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - 10 - 30, 10, 30, 30) target:self action:@selector(closeButtonClicked:)];
         [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:LLCONFIG_TEXT_COLOR] forState:UIControlStateNormal];
+        
+        // Pan, to moveable.
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
+        
+        [self addGestureRecognizer:pan];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect closeRect = CGRectMake(self.LL_width - 10 - 30, 10, 30, 30);
+    if (!CGRectEqualToRect(self.closeButton.frame, closeRect)) {
+        self.closeButton.frame = closeRect;
+    }
 }
 
 #pragma mark - Primary
 - (void)closeButtonClicked:(UIButton *)sender {
     [self componentDidFinish];
+}
+
+- (void)panGR:(UIPanGestureRecognizer *)sender {
+    if (!self.isMoved) {
+        self.moved = YES;
+    }
+    CGPoint offsetPoint = [sender translationInView:sender.view];
+    
+    [sender setTranslation:CGPointZero inView:sender.view];
+    
+    [self changeFrameWithPoint:offsetPoint];
+    
+}
+
+- (void)changeFrameWithPoint:(CGPoint)point {
+    
+    CGPoint center = self.center;
+    center.x += point.x;
+    center.y += point.y;
+    
+    center.x = MIN(center.x, LL_SCREEN_WIDTH);
+    center.x = MAX(center.x, 0);
+    
+    center.y = MIN(center.y, LL_SCREEN_HEIGHT);
+    center.y = MAX(center.y, 0);
+    
+    self.center = center;
+    
+    if (self.LL_left < 0) {
+        self.LL_left = 0;
+    }
+    if (self.LL_right > LL_SCREEN_WIDTH) {
+        self.LL_right = LL_SCREEN_WIDTH;
+    }
 }
 
 @end
