@@ -33,8 +33,6 @@
 
 @property (nonatomic, strong) UIView *circleView;
 
-@property (nonatomic, strong) UIView *pointView;
-
 @property (nonatomic, strong) UIView *borderView;
 
 @end
@@ -59,22 +57,29 @@
     self.circleView.layer.cornerRadius = 60 / 2.0;
     self.circleView.layer.borderWidth = 2;
     self.circleView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    self.circleView.alpha = [LLConfig sharedConfig].normalAlpha;
     
-    self.pointView = [LLFactory getView:self frame:CGRectMake((self.LL_width - 16) / 2.0, (self.LL_height - 16) / 2.0, 16, 16) backgroundColor:LLCONFIG_TEXT_COLOR];
-    self.pointView.layer.cornerRadius = 16 / 2.0;
-    self.pointView.layer.borderWidth = 0.5;
-    self.pointView.layer.borderColor = LLCONFIG_BACKGROUND_COLOR.CGColor;
-    self.pointView.layer.masksToBounds = YES;
-    self.pointView.alpha = [LLConfig sharedConfig].normalAlpha;
+    UIView *pointView = [LLFactory getView:self.circleView frame:CGRectMake((self.circleView.LL_width - 16) / 2.0, (self.circleView.LL_height - 16) / 2.0, 16, 16) backgroundColor:LLCONFIG_TEXT_COLOR];
+    pointView.layer.cornerRadius = 16 / 2.0;
+    pointView.layer.borderWidth = 0.5;
+    pointView.layer.borderColor = LLCONFIG_BACKGROUND_COLOR.CGColor;
+    pointView.layer.masksToBounds = YES;
     
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
     
-    [self addGestureRecognizer:pan];
+    [self.circleView addGestureRecognizer:pan];
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {
+    
+    switch (sender.state) {
+        case UIGestureRecognizerStateChanged:
+            self.circleView.alpha = [LLConfig sharedConfig].activeAlpha;
+            break;
+        default:
+            self.circleView.alpha = [LLConfig sharedConfig].normalAlpha;
+            break;
+    }
     
     CGPoint offsetPoint = [sender translationInView:sender.view];
     
@@ -84,7 +89,7 @@
     
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     
-    UIView *view = [self viewForSelectionAtPoint:self.pointView.center];
+    UIView *view = [self viewForSelectionAtPoint:self.circleView.center];
     
     CGRect rect = [view convertRect:view.bounds toView:window];
     
@@ -97,7 +102,7 @@
 
 - (void)changeFrameWithPoint:(CGPoint)point {
     
-    CGPoint center = self.pointView.center;
+    CGPoint center = self.circleView.center;
     center.x += point.x;
     center.y += point.y;
     
@@ -107,8 +112,7 @@
     center.y = MIN(center.y, LL_SCREEN_HEIGHT);
     center.y = MAX(center.y, 0);
     
-    self.pointView.center = center;
-    self.circleView.center = self.pointView.center;
+    self.circleView.center = center;
 }
 
 - (UIView *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow

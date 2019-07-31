@@ -31,6 +31,8 @@
 		C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA815205AB095006307BE /* LaunchScreen.storyboard */; };
 		C43BA81A205AB095006307BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA819205AB095006307BE /* main.m */; };
 		C44D9BE622EF2EAB00794BF2 /* LLMagnifierInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44D9BE522EF2EAB00794BF2 /* LLMagnifierInfoWindow.m */; };
+		C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */; };
+		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
 		C45C96CF22F09379002F43E9 /* LLHierarchyInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */; };
 		C45C96D222F093CE002F43E9 /* LLBaseComponentInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45C96D122F093CE002F43E9 /* LLBaseComponentInfoWindow.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
@@ -230,6 +232,10 @@
 		C43BA819205AB095006307BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C44D9BE422EF2EAB00794BF2 /* LLMagnifierInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierInfoWindow.h; sourceTree = "<group>"; };
 		C44D9BE522EF2EAB00794BF2 /* LLMagnifierInfoWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoWindow.m; sourceTree = "<group>"; };
+		C45537F122F1E39A001A9749 /* LLHierarchyDetailWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailWindow.h; sourceTree = "<group>"; };
+		C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailWindow.m; sourceTree = "<group>"; };
+		C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailViewController.h; sourceTree = "<group>"; };
+		C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailViewController.m; sourceTree = "<group>"; };
 		C45C96CD22F09379002F43E9 /* LLHierarchyInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoWindow.h; sourceTree = "<group>"; };
 		C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoWindow.m; sourceTree = "<group>"; };
 		C45C96D022F093CE002F43E9 /* LLBaseComponentInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentInfoWindow.h; sourceTree = "<group>"; };
@@ -1100,6 +1106,10 @@
 				362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */,
 				C45C96CD22F09379002F43E9 /* LLHierarchyInfoWindow.h */,
 				C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */,
+				C45537F122F1E39A001A9749 /* LLHierarchyDetailWindow.h */,
+				C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */,
+				C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */,
+				C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1624,6 +1634,7 @@
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
 				C498560422ED8D0E00E9FBE2 /* LLNavigationController.m in Sources */,
 				C49856DB22ED90DD00E9FBE2 /* LLNetworkHelper.m in Sources */,
+				C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */,
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
@@ -1639,6 +1650,7 @@
 				C498560D22ED8D0E00E9FBE2 /* UIDevice+LL_Utils.m in Sources */,
 				C49856EC22EDAEFE00E9FBE2 /* LLAppInfoWindow.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
+				C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */,
 				C49855E422ED8D0E00E9FBE2 /* LLSearchBar.m in Sources */,
 				C49856EF22EDB07300E9FBE2 /* LLLogComponent.m in Sources */,
 				C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */,

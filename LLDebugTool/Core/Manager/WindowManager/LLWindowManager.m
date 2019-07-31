@@ -54,6 +54,8 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLHierarchyInfoWindow *hierarchyInfoWindow;
 
+@property (nonatomic, strong) LLHierarchyDetailWindow *hierarchyDetailWindow;
+
 @property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
@@ -271,6 +273,14 @@ static LLWindowManager *_instance = nil;
     _hierarchyPickerWindow = nil;
 }
 
+- (void)reloadHierarchyInfoWindow {
+    _hierarchyInfoWindow = nil;
+}
+
+- (void)reloadHierarchyDetailWindow {
+    _hierarchyDetailWindow = nil;
+}
+
 #pragma mark - Lazy
 - (LLSuspensionWindow *)suspensionWindow {
     if (!_suspensionWindow) {
@@ -357,10 +367,17 @@ static LLWindowManager *_instance = nil;
 - (LLHierarchyInfoWindow *)hierarchyInfoWindow {
     if (!_hierarchyInfoWindow) {
         CGFloat gap = 10;
-        CGFloat height = 60;
+        CGFloat height = 100;
         _hierarchyInfoWindow = [[LLHierarchyInfoWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
     }
     return _hierarchyInfoWindow;
+}
+
+- (LLHierarchyDetailWindow *)hierarchyDetailWindow {
+    if (!_hierarchyDetailWindow) {
+        _hierarchyDetailWindow = [[LLHierarchyDetailWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _hierarchyDetailWindow;
 }
 
 - (UIWindowLevel)presentingWindowLevel {

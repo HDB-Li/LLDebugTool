@@ -36,6 +36,8 @@
 
 @property (nonatomic, strong) UILabel *contentLabel;
 
+@property (nonatomic, strong) UIButton *moreButton;
+
 @end
 
 @implementation LLHierarchyInfoWindow
@@ -54,34 +56,47 @@
     }
     
     self.selectedView = view;
+
+    NSDictionary *boldAttri = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]};
+    NSDictionary *attri = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     
-    NSMutableArray *attributes = [[NSMutableArray alloc] init];
-    NSString *name = [NSString stringWithFormat:@"Name: %@",NSStringFromClass(view.class)];
-    [attributes addObject:name];
+    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] init];
     
-    NSString *frame = [NSString stringWithFormat:@"Frame: %@",[LLTool stringFromFrame:view.frame]];
-    [attributes addObject:frame];
+    NSMutableAttributedString *name = [[NSMutableAttributedString alloc] initWithString:@"Name: " attributes:boldAttri];
+    [name appendAttributedString:[[NSAttributedString alloc] initWithString:NSStringFromClass(view.class) attributes:attri]];
+    
+    [attribute appendAttributedString:name];
+    
+    NSMutableAttributedString *frame = [[NSMutableAttributedString alloc] initWithString:@"\nFrame: " attributes:boldAttri];
+    [frame appendAttributedString:[[NSAttributedString alloc] initWithString:[LLTool stringFromFrame:view.frame] attributes:attri]];
+    [attribute appendAttributedString:frame];
     
     if (view.backgroundColor) {
-        NSString *color = [NSString stringWithFormat:@"Background: %@", [view.backgroundColor LL_description]];
-        [attributes addObject:color];
+        NSMutableAttributedString *color = [[NSMutableAttributedString alloc] initWithString:@"\nBackground: " attributes:boldAttri];
+        [color appendAttributedString:[[NSAttributedString alloc] initWithString:[view.backgroundColor LL_description] attributes:attri]];
+        [attribute appendAttributedString:color];
     }
     
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
-        NSString *font = [NSString stringWithFormat:@"Text Color: %@, Font: %0.2f", [label.textColor LL_description], label.font.pointSize];
-        [attributes addObject:font];
+        NSMutableAttributedString *font = [[NSMutableAttributedString alloc] initWithString:@"\nText Color: " attributes:boldAttri];
+        [font appendAttributedString:[[NSAttributedString alloc] initWithString:[label.textColor LL_description] attributes:attri]];
+        [font appendAttributedString:[[NSAttributedString alloc] initWithString:@"\nFont: " attributes:boldAttri]];
+        [font appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%0.2f", label.font.pointSize] attributes:attri]];
+        [attribute appendAttributedString:font];
     }
     
     if (view.tag != 0) {
-        NSString *tag = [NSString stringWithFormat:@"Tag: %ld", (long)view.tag];
-        [attributes addObject:tag];
+        NSMutableAttributedString *tag = [[NSMutableAttributedString alloc] initWithString:@"\nTag: " attributes:boldAttri];
+        [tag appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld",(long)view.tag] attributes:attri]];
+        [attribute appendAttributedString:tag];
     }
     
-    self.contentLabel.text = [attributes componentsJoinedByString:@"\n"];
+    self.contentLabel.attributedText = attribute;
+
     [self.contentLabel sizeToFit];
     
-    CGFloat height = self.contentLabel.LL_height + 10 * 2;
+    CGFloat height = self.contentLabel.LL_height + 10 * 3 + 35;
     if (height != self.LL_height) {
         self.LL_height = height;
         if (!self.isMoved) {
@@ -95,7 +110,13 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat gap = 10;
-    CGRect contentRect = CGRectMake(gap, gap, self.closeButton.LL_x - gap - gap, self.LL_height - gap * 2);
+    CGFloat moreHeight = 35;
+    CGRect moreRect = CGRectMake(gap, self.LL_height - moreHeight - gap, self.LL_width - gap - gap, moreHeight);
+    if (!CGRectEqualToRect(self.moreButton.frame, moreRect)) {
+        self.moreButton.frame = moreRect;
+    }
+    
+    CGRect contentRect = CGRectMake(gap, gap, self.closeButton.LL_x - gap - gap, self.moreButton.LL_y - gap - gap);
     if (!CGRectEqualToRect(self.contentLabel.frame, contentRect)) {
         self.contentLabel.frame = contentRect;
     }
@@ -106,6 +127,7 @@
     [[LLWindowManager shared] hideWindow:[LLWindowManager shared].hierarchyPickerWindow animated:YES];
     [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
     [[LLWindowManager shared] reloadHierarchyPickerWindow];
+    [[LLWindowManager shared] reloadHierarchyInfoWindow];
 }
 
 #pragma mark - Primary
@@ -113,6 +135,23 @@
     self.contentLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLConfig sharedConfig].textColor];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    
+    self.moreButton = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(moreButtonClicked:)];
+    [self.moreButton setTitle:@"More Info" forState:UIControlStateNormal];
+    [self.moreButton setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
+    self.moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    self.moreButton.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.moreButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.moreButton.layer.borderWidth = 1;
+    self.moreButton.layer.cornerRadius = 5;
+    self.moreButton.layer.masksToBounds = YES;
+}
+
+- (void)moreButtonClicked:(UIButton *)sender {
+    if (!self.selectedView) {
+        return;
+    }
+    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].hierarchyDetailWindow animated:YES];
 }
 
 @end
