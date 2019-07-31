@@ -62,17 +62,15 @@
     NSString *frame = [NSString stringWithFormat:@"Frame: %@",[LLTool stringFromFrame:view.frame]];
     [attributes addObject:frame];
     
-    NSMutableString *color = [NSMutableString string];
-    
     if (view.backgroundColor) {
-        [color appendFormat:@"Background: %@",[view.backgroundColor LL_description]];
+        NSString *color = [NSString stringWithFormat:@"Background: %@", [view.backgroundColor LL_description]];
+        [attributes addObject:color];
     }
+    
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
-        [color appendFormat:@", Color: %@, Font: %0.2f", [label.textColor LL_description], label.font.pointSize];
-    }
-    if ([color length]) {
-        [attributes addObject:color];
+        NSString *font = [NSString stringWithFormat:@"Text Color: %@, Font: %0.2f", [label.textColor LL_description], label.font.pointSize];
+        [attributes addObject:font];
     }
     
     if (view.tag != 0) {
