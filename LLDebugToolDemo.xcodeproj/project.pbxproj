@@ -160,6 +160,7 @@
 		C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570F22EDB4B600E9FBE2 /* LLScreenshotWindow.m */; };
 		C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */; };
 		C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */; };
+		C4FDD55422F330BA00E10C25 /* LLBaseMoveableWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FDD55322F330BA00E10C25 /* LLBaseMoveableWindow.m */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -488,6 +489,8 @@
 		C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierComponent.m; sourceTree = "<group>"; };
 		C498571622EDE3F800E9FBE2 /* LLMagnifierWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMagnifierWindow.h; sourceTree = "<group>"; };
 		C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierWindow.m; sourceTree = "<group>"; };
+		C4FDD55222F330BA00E10C25 /* LLBaseMoveableWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseMoveableWindow.h; sourceTree = "<group>"; };
+		C4FDD55322F330BA00E10C25 /* LLBaseMoveableWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseMoveableWindow.m; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -914,6 +917,8 @@
 				C498557F22ED8D0E00E9FBE2 /* LLNavigationController.m */,
 				C45C96D022F093CE002F43E9 /* LLBaseComponentInfoWindow.h */,
 				C45C96D122F093CE002F43E9 /* LLBaseComponentInfoWindow.m */,
+				C4FDD55222F330BA00E10C25 /* LLBaseMoveableWindow.h */,
+				C4FDD55322F330BA00E10C25 /* LLBaseMoveableWindow.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1704,6 +1709,7 @@
 				C45C96CF22F09379002F43E9 /* LLHierarchyInfoWindow.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C498560122ED8D0E00E9FBE2 /* LLBaseCollectionViewCell.m in Sources */,
+				C4FDD55422F330BA00E10C25 /* LLBaseMoveableWindow.m in Sources */,
 				C49855F322ED8D0E00E9FBE2 /* LLFunctionWindow.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,

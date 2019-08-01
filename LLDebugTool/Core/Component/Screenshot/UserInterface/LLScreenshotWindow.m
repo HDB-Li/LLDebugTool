@@ -42,14 +42,18 @@
     return self;
 }
 
+- (void)componentDidFinish {
+    
+}
+
 #pragma mark - Primary
 - (void)initial {
     if (!self.rootViewController) {
         self.rootViewController = [[UIViewController alloc] init];
     }
     
-    self.captureButton = [LLFactory getButton:self frame:CGRectMake((self.LL_width - 60) / 2.0, self.LL_height - kGeneralMargin * 2 - 60, 60, 60) target:self action:@selector(captureButtonClicked:)];
-    self.captureButton.layer.cornerRadius = 30;
+    self.captureButton = [LLFactory getButton:self frame:self.bounds target:self action:@selector(captureButtonClicked:)];
+    self.captureButton.layer.cornerRadius = self.LL_width / 2.0;
     self.captureButton.layer.masksToBounds = YES;
     self.captureButton.layer.borderWidth = 1;
     self.captureButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
@@ -57,7 +61,7 @@
 }
 
 - (void)captureButtonClicked:(UIButton *)sender {
-    
+    [self componentDidFinish];
 }
 
 @end

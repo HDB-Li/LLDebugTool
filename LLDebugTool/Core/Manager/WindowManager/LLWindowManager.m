@@ -25,6 +25,7 @@
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
+#import "LLConst.h"
 
 static LLWindowManager *_instance = nil;
 
@@ -388,7 +389,8 @@ static LLWindowManager *_instance = nil;
 
 - (LLScreenshotWindow *)screenshotWindow {
     if (!_screenshotWindow) {
-        _screenshotWindow = [[LLScreenshotWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        CGFloat width = 60;
+        _screenshotWindow = [[LLScreenshotWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2.0, LL_SCREEN_HEIGHT - width - kGeneralMargin * 2, width, width)];
     }
     return _screenshotWindow;
 }
