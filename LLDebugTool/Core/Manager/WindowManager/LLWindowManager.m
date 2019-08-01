@@ -56,6 +56,8 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLHierarchyDetailWindow *hierarchyDetailWindow;
 
+@property (nonatomic, strong) LLScreenshotWindow *screenshotWindow;
+
 @property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
@@ -281,6 +283,10 @@ static LLWindowManager *_instance = nil;
     _hierarchyDetailWindow = nil;
 }
 
+- (void)reloadScreenshotWindow {
+    _screenshotWindow = nil;
+}
+
 #pragma mark - Lazy
 - (LLSuspensionWindow *)suspensionWindow {
     if (!_suspensionWindow) {
@@ -378,6 +384,13 @@ static LLWindowManager *_instance = nil;
         _hierarchyDetailWindow = [[LLHierarchyDetailWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _hierarchyDetailWindow;
+}
+
+- (LLScreenshotWindow *)screenshotWindow {
+    if (!_screenshotWindow) {
+        _screenshotWindow = [[LLScreenshotWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _screenshotWindow;
 }
 
 - (UIWindowLevel)presentingWindowLevel {
