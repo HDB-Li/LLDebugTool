@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLSandboxModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSandboxViewController : LLBaseComponentViewController
+@interface LLSandboxViewController : LLBaseTableViewController
 
 /**
  * Sandbox model

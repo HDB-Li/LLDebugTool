@@ -272,4 +272,24 @@
     return collectionView;
 }
 
+#pragma mark - UISegmentedControl
++ (UISegmentedControl *)getSegmentedControl {
+    return [self getSegmentedControl:nil];
+}
+
++ (UISegmentedControl *)getSegmentedControl:(UIView *)toView {
+    return [self getSegmentedControl:toView frame:CGRectZero];
+}
+
++ (UISegmentedControl *)getSegmentedControl:(UIView *)toView frame:(CGRect)frame {
+    return [self getSegmentedControl:toView frame:frame items:nil];
+}
+
++ (UISegmentedControl *)getSegmentedControl:(UIView *)toView frame:(CGRect)frame items:(NSArray *)items {
+    UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:items];
+    [toView addSubview:control];
+    control.frame = frame;
+    return control;
+}
+
 @end

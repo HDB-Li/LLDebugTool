@@ -40,6 +40,18 @@
     [[LLWindowManager shared] reloadHierarchyDetailWindow];
 }
 
+- (void)setSelectView:(UIView *)selectView {
+    LLNavigationController *nav = (LLNavigationController *)self.rootViewController;
+    LLHierarchyDetailViewController *vc = (LLHierarchyDetailViewController *)[nav.viewControllers firstObject];
+    vc.selectView = selectView;
+}
+
+- (UIView *)selectView {
+    LLNavigationController *nav = (LLNavigationController *)self.rootViewController;
+    LLHierarchyDetailViewController *vc = (LLHierarchyDetailViewController *)[nav.viewControllers firstObject];
+    return vc.selectView;
+}
+
 #pragma mark - Primary
 - (void)initial {
     if (!self.rootViewController) {

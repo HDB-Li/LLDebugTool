@@ -27,7 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (LL_Utils)
 
-@property (nonatomic, assign) NSInteger LL_numberOfLines;
+- (NSString *_Nullable)LL_textAlignmentDescription;
+
+- (NSString *_Nullable)LL_baselineAdjustmentDescription;
+
+- (NSString *_Nullable)LL_lineBreakModeDescription;
 
 @end
 

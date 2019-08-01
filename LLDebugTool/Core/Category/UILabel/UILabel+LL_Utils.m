@@ -22,18 +22,56 @@
 //  SOFTWARE.
 
 #import "UILabel+LL_Utils.h"
-#import <objc/runtime.h>
-
-static const char *kLLNumberOfLinesKey = "kLLNumberOfLinesKey";
 
 @implementation UILabel (LL_Utils)
 
-- (void)setLL_numberOfLines:(NSInteger)LL_numberOfLines {
-    objc_setAssociatedObject(self, kLLNumberOfLinesKey, @(LL_numberOfLines), OBJC_ASSOCIATION_ASSIGN);
+- (NSString *)LL_textAlignmentDescription {
+    switch (self.textAlignment) {
+        case NSTextAlignmentLeft:
+            return @"Left";
+        case NSTextAlignmentRight:
+            return @"Right";
+        case NSTextAlignmentCenter:
+            return @"Center";
+        case NSTextAlignmentJustified:
+            return @"Justified";
+        case NSTextAlignmentNatural:
+            return @"Natural";
+        default:
+            return nil;
+    }
 }
 
-- (NSInteger)LL_numberOfLines {
-    return [objc_getAssociatedObject(self, kLLNumberOfLinesKey) integerValue];
+- (NSString *)LL_baselineAdjustmentDescription {
+    switch (self.baselineAdjustment) {
+        case UIBaselineAdjustmentAlignBaselines:
+            return @"Baselines";
+        case UIBaselineAdjustmentAlignCenters:
+            return @"Centers";
+        case UIBaselineAdjustmentNone:
+            return @"None";
+        default:
+            return nil;
+    }
+}
+
+- (NSString *_Nullable)LL_lineBreakModeDescription {
+    switch (self.lineBreakMode) {
+        case NSLineBreakByWordWrapping:
+            return @"Word Wrapping";
+        case NSLineBreakByCharWrapping:
+            return @"Char Wrapping";
+        case NSLineBreakByClipping:
+            return @"Clipping";
+        case NSLineBreakByTruncatingHead:
+            return @"Truncate Head";
+        case NSLineBreakByTruncatingTail:
+            return @"Truncate Tail";
+        case NSLineBreakByTruncatingMiddle:
+            return @"Truncate Middle";
+        default:
+            return nil;
+    }
 }
 
 @end

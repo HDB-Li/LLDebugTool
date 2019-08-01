@@ -54,6 +54,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *_Nullable)LL_imageWithGIFData:(NSData *_Nullable)data;
 
 /**
+ Image with color.
+
+ @param color UIColor.
+ @return UIImage.
+ */
++ (UIImage *)LL_imageWithColor:(UIColor *)color;
+
+/**
  * Get a image with the specified size..
  */
 - (UIImage *)LL_resizeTo:(CGSize)size;

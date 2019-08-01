@@ -32,3 +32,5 @@ CGFloat const kLLSuspensionWindowTop = 200;
 
 NSInteger const kLLMagnifierWindowZoomLevel = 10;
 NSInteger const kLLMagnifierWindowSize = 15;
+
+CGFloat const kGeneralMargin = 10;

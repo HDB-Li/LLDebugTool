@@ -402,6 +402,45 @@ NS_ASSUME_NONNULL_BEGIN
                                        delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>_Nullable)delegate
                                          layout:(UICollectionViewFlowLayout *)layout;
 
+#pragma mark - UISegmentedControl
+
+/**
+ Get SegmentedControl
+
+ @return UISegmentedControl.
+ */
++ (UISegmentedControl *)getSegmentedControl;
+
+/**
+ Get SegmentedControl with superview.
+
+ @param toView superview.
+ @return UISegmentedControl.
+ */
++ (UISegmentedControl *)getSegmentedControl:(UIView *_Nullable)toView;
+
+/**
+ Get SegmentedControl with params.
+
+ @param toView superview.
+ @param frame frame size.
+ @return UISegmentedControl.
+ */
++ (UISegmentedControl *)getSegmentedControl:(UIView *)toView
+                                      frame:(CGRect)frame;
+
+/**
+ Get SegmentedControl with params.
+
+ @param toView superview.
+ @param frame frame size.
+ @param items items.
+ @return UISegmentedControl.
+ */
++ (UISegmentedControl *)getSegmentedControl:(UIView *)toView
+                                      frame:(CGRect)frame
+                                      items:(nullable NSArray *)items;
+
 @end
 
 NS_ASSUME_NONNULL_END

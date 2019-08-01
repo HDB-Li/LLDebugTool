@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseComponentViewController.h"
 #import "LLBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseTableViewController : LLBaseViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface LLBaseTableViewController : LLBaseComponentViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 /**
  * Whether use searchBar. Default is NO.

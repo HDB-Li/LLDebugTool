@@ -1,5 +1,5 @@
 //
-//  LLHierarchyViewController.h
+//  UIControl+LL_Utils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLHierarchyModel.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol LLHierarchyViewControllerDelegate;
+@interface UIControl (LL_Utils)
 
-@interface LLHierarchyViewController : LLBaseTableViewController
+- (NSString *_Nullable)LL_contentVerticalAlignmentDescription;
 
-@property (nonatomic, weak, nullable) id <LLHierarchyViewControllerDelegate> delegate;
-
-@property (nonatomic, strong, nullable) UIView *selectView;
-
-@end
-
-@protocol LLHierarchyViewControllerDelegate <NSObject>
-
-- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel;
+- (NSString *_Nullable)LL_contentHorizontalAlignmentDescription;
 
 @end
 

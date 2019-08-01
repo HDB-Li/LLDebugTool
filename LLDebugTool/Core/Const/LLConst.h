@@ -39,3 +39,6 @@ UIKIT_EXTERN CGFloat const kLLSuspensionWindowTop;
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;
 // Number of rows per magnifier window.
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;
+
+// General margin.
+UIKIT_EXTERN CGFloat const kGeneralMargin;

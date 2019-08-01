@@ -151,7 +151,9 @@
     if (!self.selectedView) {
         return;
     }
-    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].hierarchyDetailWindow animated:YES];
+    LLHierarchyDetailWindow *window = [LLWindowManager shared].hierarchyDetailWindow;
+    window.selectView = self.selectedView;
+    [[LLWindowManager shared] presentWindow:window animated:YES];
 }
 
 @end
