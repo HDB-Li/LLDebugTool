@@ -203,23 +203,23 @@ static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
     }
 }
 
-- (void)setCornerRadius:(CGFloat)cornerRadius {
+- (void)LL_setCornerRadius:(CGFloat)cornerRadius {
     self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;
 }
 
-- (void)setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth {
+- (void)LL_setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth {
     self.layer.borderColor = borderColor.CGColor;
     self.layer.borderWidth = borderWidth;
 }
 
-- (void)removeAllSubviews {
+- (void)LL_removeAllSubviews {
     for (UIView *subview in self.subviews) {
         [subview removeFromSuperview];
     }
 }
 
-- (UIView *_Nullable)bottomView {
+- (UIView *_Nullable)LL_bottomView {
     UIView *view = nil;
     for (UIView *subview in self.subviews) {
         if (subview.LL_bottom > view.LL_bottom) {
@@ -233,6 +233,15 @@ static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
     [self addGestureRecognizer:tap];
     self.userInteractionEnabled = YES;
+}
+
+- (UIImage *)LL_convertViewToImage {
+    CGSize size = self.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(size, YES, [UIScreen mainScreen].scale);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end

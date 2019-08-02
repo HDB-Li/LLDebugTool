@@ -55,15 +55,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly, nullable) NSString *LL_contentModeDescription;
 
-- (void)setCornerRadius:(CGFloat)cornerRadius;
+- (void)LL_setCornerRadius:(CGFloat)cornerRadius;
 
-- (void)setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
+- (void)LL_setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
 
-- (void)removeAllSubviews;
+- (void)LL_removeAllSubviews;
 
-- (UIView *_Nullable)bottomView;
+- (UIView *_Nullable)LL_bottomView;
 
 - (void)LL_AddClickListener:(id)target action:(SEL)action;
+
+- (UIImage *)LL_convertViewToImage;
 
 @end
 

@@ -92,10 +92,10 @@
     [self.view addSubview:self.shortCutContainerView];
     
     self.settingButton = [LLFactory getButton:self.view frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
-    [self.settingButton setCornerRadius:5];
+    [self.settingButton LL_setCornerRadius:5];
     [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
     [self.settingButton setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
-    [self.settingButton setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:1];
+    [self.settingButton LL_setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:1];
     
     [self loadData];
 }

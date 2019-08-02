@@ -30,6 +30,13 @@
 
 @implementation LLBaseComponentViewController
 
+- (void)componentDidLoad:(NSDictionary *)data {
+    if ([self.view.window isKindOfClass:[LLBaseComponentWindow class]]) {
+        LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;
+        [window componentDidFinish];
+    }
+}
+
 - (void)leftItemClick {
     if ([self.view.window isKindOfClass:[LLBaseComponentWindow class]]) {
         LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;

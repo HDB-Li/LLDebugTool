@@ -62,18 +62,18 @@
         LLFunctionItemView *view = self.itemViews[i];
         view.frame = CGRectMake(row * itemWidth, section * itemHeight, itemWidth, itemHeight);
     }
-    self.LL_size = CGSizeMake(self.LL_width, [self bottomView].LL_bottom);
+    self.LL_size = CGSizeMake(self.LL_width, [self LL_bottomView].LL_bottom);
 }
 
 #pragma mark - Primary
 - (void)initial {
     self.backgroundColor = [LLThemeManager shared].containerColor;
     self.itemViews = [[NSMutableArray alloc] init];
-    [self setCornerRadius:5];
+    [self LL_setCornerRadius:5];
 }
 
 - (void)updateUI:(NSArray<LLFunctionModel *> *)dataArray {
-    [self removeAllSubviews];
+    [self LL_removeAllSubviews];
     [self.itemViews removeAllObjects];
     for (int i = 0; i < dataArray.count; i++) {
         LLFunctionModel *model = dataArray[i];

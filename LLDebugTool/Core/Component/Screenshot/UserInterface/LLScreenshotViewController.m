@@ -28,6 +28,7 @@
 #import "LLConfig.h"
 #import "LLMacros.h"
 #import "LLScreenshotPreviewViewController.h"
+#import "LLScreenshotHelper.h"
 
 @interface LLScreenshotViewController ()
 
@@ -69,8 +70,10 @@
 
 - (void)captureButtonClicked:(UIButton *)sender {
     LLScreenshotPreviewViewController *vc = [[LLScreenshotPreviewViewController alloc] init];
+    vc.image = [[LLScreenshotHelper sharedHelper] imageFromScreen];
     [self presentViewController:vc animated:YES completion:nil];
 }
+
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {
     CGPoint offsetPoint = [sender translationInView:sender.view];

@@ -70,7 +70,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    [self setCornerRadius:5];
+    [self LL_setCornerRadius:5];
     
     int count = 8;
     CGFloat gap = 10;

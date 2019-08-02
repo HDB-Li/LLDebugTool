@@ -61,8 +61,8 @@
         self.rootViewController = [[UIViewController alloc] init];
     }
     self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    [self setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:2];
-    [self setCornerRadius:self.LL_width / 2];
+    [self LL_setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:2];
+    [self LL_setCornerRadius:self.LL_width / 2];
     
     self.logoImageView = [LLFactory getImageView:self frame:CGRectZero image:[UIImage LL_imageNamed:kLogoImageName color:LLCONFIG_TEXT_COLOR]];
     

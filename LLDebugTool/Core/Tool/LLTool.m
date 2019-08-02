@@ -165,7 +165,7 @@ static unsigned long long _absolutelyIdentity = 0;
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
     [label sizeToFit];
-    [label setCornerRadius:label.font.lineHeight / 2.0];
+    [label LL_setCornerRadius:label.font.lineHeight / 2.0];
     label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
     _toastLabel = label;
     [UIView animateWithDuration:0.25 animations:^{
