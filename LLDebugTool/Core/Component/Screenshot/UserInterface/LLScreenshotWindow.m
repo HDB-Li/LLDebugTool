@@ -22,14 +22,9 @@
 //  SOFTWARE.
 
 #import "LLScreenshotWindow.h"
-#import "LLFactory.h"
-#import "UIView+LL_Utils.h"
-#import "LLConst.h"
-#import "LLConfig.h"
+#import "LLScreenshotViewController.h"
 
 @interface LLScreenshotWindow ()
-
-@property (nonatomic, strong) UIButton *captureButton;
 
 @end
 
@@ -49,19 +44,8 @@
 #pragma mark - Primary
 - (void)initial {
     if (!self.rootViewController) {
-        self.rootViewController = [[UIViewController alloc] init];
+        self.rootViewController = [[LLScreenshotViewController alloc] init];
     }
-    
-    self.captureButton = [LLFactory getButton:self frame:self.bounds target:self action:@selector(captureButtonClicked:)];
-    self.captureButton.layer.cornerRadius = self.LL_width / 2.0;
-    self.captureButton.layer.masksToBounds = YES;
-    self.captureButton.layer.borderWidth = 1;
-    self.captureButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    self.captureButton.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-}
-
-- (void)captureButtonClicked:(UIButton *)sender {
-    [self componentDidFinish];
 }
 
 @end

@@ -22,6 +22,8 @@
 //  SOFTWARE.
 
 #import "LLBaseMoveableWindow.h"
+#import "LLMacros.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLBaseMoveableWindow ()
 

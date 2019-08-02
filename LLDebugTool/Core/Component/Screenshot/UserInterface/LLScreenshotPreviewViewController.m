@@ -1,5 +1,5 @@
 //
-//  LLScreenshotWindow.h
+//  LLScreenshotPreviewViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLScreenshotPreviewViewController.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface LLScreenshotWindow : LLBaseComponentWindow
+@interface LLScreenshotPreviewViewController ()
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLScreenshotPreviewViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

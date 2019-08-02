@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLBaseMoveableWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseComponentInfoWindow : LLBaseComponentWindow
+@interface LLBaseComponentInfoWindow : LLBaseMoveableWindow
 
 @property (nonatomic, strong, readonly) UIButton *closeButton;
 

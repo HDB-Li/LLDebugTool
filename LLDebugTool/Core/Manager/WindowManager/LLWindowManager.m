@@ -389,8 +389,7 @@ static LLWindowManager *_instance = nil;
 
 - (LLScreenshotWindow *)screenshotWindow {
     if (!_screenshotWindow) {
-        CGFloat width = 60;
-        _screenshotWindow = [[LLScreenshotWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2.0, LL_SCREEN_HEIGHT - width - kGeneralMargin * 2, width, width)];
+        _screenshotWindow = [[LLScreenshotWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _screenshotWindow;
 }

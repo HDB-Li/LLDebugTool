@@ -1,5 +1,5 @@
 //
-//  LLScreenshotWindow.h
+//  LLScreenshotViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,39 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLScreenshotViewController.h"
+#import "LLFactory.h"
+#import "UIView+LL_Utils.h"
+#import "LLConst.h"
+#import "LLConfig.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface LLScreenshotViewController ()
 
-@interface LLScreenshotWindow : LLBaseComponentWindow
+@property (nonatomic, strong) UIButton *captureButton;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLScreenshotViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initial];
+}
+
+#pragma mark - Primary
+- (void)initial {
+    self.view.backgroundColor = [UIColor clearColor];
+    CGFloat width = 60;
+    self.captureButton = [LLFactory getButton:self.view frame:CGRectMake((self.view.LL_width - 60) / 2.0, self.view.LL_bottom - kGeneralMargin * 2 - width, width, width) target:self action:@selector(captureButtonClicked:)];
+    self.captureButton.layer.cornerRadius = width / 2.0;
+    self.captureButton.layer.masksToBounds = YES;
+    self.captureButton.layer.borderWidth = 1;
+    self.captureButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.captureButton.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+}
+
+- (void)captureButtonClicked:(UIButton *)sender {
+    
+}
+
+@end

@@ -37,6 +37,8 @@
 		C44D9BE622EF2EAB00794BF2 /* LLMagnifierInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C44D9BE522EF2EAB00794BF2 /* LLMagnifierInfoWindow.m */; };
 		C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */; };
 		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
+		C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */; };
+		C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */; };
 		C45C96CF22F09379002F43E9 /* LLHierarchyInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */; };
 		C45C96D222F093CE002F43E9 /* LLBaseComponentInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45C96D122F093CE002F43E9 /* LLBaseComponentInfoWindow.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
@@ -247,6 +249,10 @@
 		C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailWindow.m; sourceTree = "<group>"; };
 		C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailViewController.h; sourceTree = "<group>"; };
 		C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailViewController.m; sourceTree = "<group>"; };
+		C45BA2CC22F47986006B833A /* LLScreenshotViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotViewController.h; sourceTree = "<group>"; };
+		C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotViewController.m; sourceTree = "<group>"; };
+		C45BA2CF22F47997006B833A /* LLScreenshotPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotPreviewViewController.h; sourceTree = "<group>"; };
+		C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewViewController.m; sourceTree = "<group>"; };
 		C45C96CD22F09379002F43E9 /* LLHierarchyInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoWindow.h; sourceTree = "<group>"; };
 		C45C96CE22F09379002F43E9 /* LLHierarchyInfoWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoWindow.m; sourceTree = "<group>"; };
 		C45C96D022F093CE002F43E9 /* LLBaseComponentInfoWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentInfoWindow.h; sourceTree = "<group>"; };
@@ -1098,6 +1104,10 @@
 				C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */,
 				C498570E22EDB4B600E9FBE2 /* LLScreenshotWindow.h */,
 				C498570F22EDB4B600E9FBE2 /* LLScreenshotWindow.m */,
+				C45BA2CC22F47986006B833A /* LLScreenshotViewController.h */,
+				C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */,
+				C45BA2CF22F47997006B833A /* LLScreenshotPreviewViewController.h */,
+				C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1646,6 +1656,7 @@
 				C49856FE22EDB2DD00E9FBE2 /* LLCrashWindow.m in Sources */,
 				C498560622ED8D0E00E9FBE2 /* LLTool.m in Sources */,
 				C49855DE22ED8D0E00E9FBE2 /* LLStorageModel.m in Sources */,
+				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
 				C49855EF22ED8D0E00E9FBE2 /* LLFilterLabelCell.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
 				C49855F522ED8D0E00E9FBE2 /* LLFunctionItemView.m in Sources */,
@@ -1655,6 +1666,7 @@
 				C49855F022ED8D0E00E9FBE2 /* LLFilterEventView.m in Sources */,
 				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,
 				362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */,
+				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
 				C49855E022ED8D0E00E9FBE2 /* LLThemeManager.m in Sources */,
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
 				C49855ED22ED8D0E00E9FBE2 /* LLFilterTextFieldCell.m in Sources */,
