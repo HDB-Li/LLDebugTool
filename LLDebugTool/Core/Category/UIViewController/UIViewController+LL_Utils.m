@@ -1,5 +1,5 @@
 //
-//  LLBaseWindow.m
+//  UIViewController+LL_Utils.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,35 +21,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseWindow.h"
-#import "UIWindow+LL_Utils.h"
-#import "LLBaseViewController.h"
+#import "UIViewController+LL_Utils.h"
 
-@implementation LLBaseWindow
+@implementation UIViewController (LL_Utils)
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.windowLevel = UIWindowLevelStatusBar - 200;
-        self.layer.masksToBounds = YES;
+- (UIViewController *)LL_currentShowingViewController {
+    
+    UIViewController *vc = self;
+    if ([self presentedViewController]) {
+        vc = [[self presentedViewController] LL_currentShowingViewController];
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBar = (UITabBarController *)vc;
+        vc = [tabBar.selectedViewController LL_currentShowingViewController];
+    } else if ([vc isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nav = (UINavigationController *)vc;
+        vc = [[nav visibleViewController] LL_currentShowingViewController];
     }
-    return self;
-}
-
-- (void)becomeKeyWindow {
-    [self resignKeyWindow];
-}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    UIViewController *vc = [self LL_currentShowingViewController];
-    if ([vc isKindOfClass:[LLBaseViewController class]]) {
-        LLBaseViewController *viewController = (LLBaseViewController *)vc;
-        return [viewController pointInside:point withEvent:event];
-    }
-    return YES;
-}
-
-- (void)dealloc {
-    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
+    return vc;
 }
 
 @end

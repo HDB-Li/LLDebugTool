@@ -27,6 +27,7 @@
 #import "LLConst.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
+#import "LLScreenshotPreviewViewController.h"
 
 @interface LLScreenshotViewController ()
 
@@ -39,6 +40,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    CGPoint capturePoint = [self.view convertPoint:point toView:self.captureButton];
+    if ([self.captureButton pointInside:capturePoint withEvent:event]) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - Primary
@@ -59,7 +68,8 @@
 }
 
 - (void)captureButtonClicked:(UIButton *)sender {
-    
+    LLScreenshotPreviewViewController *vc = [[LLScreenshotPreviewViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {

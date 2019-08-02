@@ -1,5 +1,5 @@
 //
-//  LLBaseWindow.m
+//  UIViewController+LL_Utils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,35 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseWindow.h"
-#import "UIWindow+LL_Utils.h"
-#import "LLBaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation LLBaseWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.windowLevel = UIWindowLevelStatusBar - 200;
-        self.layer.masksToBounds = YES;
-    }
-    return self;
-}
+@interface UIViewController (LL_Utils)
 
-- (void)becomeKeyWindow {
-    [self resignKeyWindow];
-}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    UIViewController *vc = [self LL_currentShowingViewController];
-    if ([vc isKindOfClass:[LLBaseViewController class]]) {
-        LLBaseViewController *viewController = (LLBaseViewController *)vc;
-        return [viewController pointInside:point withEvent:event];
-    }
-    return YES;
-}
-
-- (void)dealloc {
-    NSLog(@"%@ dealloc", NSStringFromClass([self class]));
-}
+- (UIViewController *_Nullable)LL_currentShowingViewController;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -42,6 +42,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)leftItemClick;
 
+/**
+ Whether hit test at point with event.
+
+ @param point Point
+ @param event Event
+ @return Result.
+ */
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -65,6 +65,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    return YES;
+}
+
 #pragma mark - Primary
 - (void)baseInitial {
     [self resetDefaultSettings];
