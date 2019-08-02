@@ -26,6 +26,7 @@
 #import "UIView+LL_Utils.h"
 #import "LLConst.h"
 #import "LLConfig.h"
+#import "LLMacros.h"
 
 @interface LLScreenshotViewController ()
 
@@ -50,10 +51,47 @@
     self.captureButton.layer.borderWidth = 1;
     self.captureButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     self.captureButton.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    
+    // Pan, to moveable.
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
+    
+    [self.captureButton addGestureRecognizer:pan];
 }
 
 - (void)captureButtonClicked:(UIButton *)sender {
     
 }
+
+- (void)panGR:(UIPanGestureRecognizer *)sender {
+    CGPoint offsetPoint = [sender translationInView:sender.view];
+    
+    [sender setTranslation:CGPointZero inView:sender.view];
+    
+    [self changeFrameWithPoint:offsetPoint];
+    
+}
+
+- (void)changeFrameWithPoint:(CGPoint)point {
+    
+    CGPoint center = self.captureButton.center;
+    center.x += point.x;
+    center.y += point.y;
+    
+    center.x = MIN(center.x, LL_SCREEN_WIDTH);
+    center.x = MAX(center.x, 0);
+    
+    center.y = MIN(center.y, LL_SCREEN_HEIGHT);
+    center.y = MAX(center.y, 0);
+    
+    self.captureButton.center = center;
+    
+    if (self.captureButton.LL_left < 0) {
+        self.captureButton.LL_left = 0;
+    }
+    if (self.captureButton.LL_right > LL_SCREEN_WIDTH) {
+        self.captureButton.LL_right = LL_SCREEN_WIDTH;
+    }
+}
+
 
 @end
