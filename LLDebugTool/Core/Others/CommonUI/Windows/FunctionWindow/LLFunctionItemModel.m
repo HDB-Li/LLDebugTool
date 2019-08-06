@@ -1,5 +1,5 @@
 //
-//  LLFunctionModel.m
+//  LLFunctionItemModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFunctionModel.h"
+#import "LLFunctionItemModel.h"
 #import "LLNetworkComponent.h"
 #import "LLLogComponent.h"
 #import "LLNetworkComponent.h"
@@ -32,7 +32,7 @@
 #import "LLHierarchyComponent.h"
 #import "LLMagnifierComponent.h"
 
-@implementation LLFunctionModel
+@implementation LLFunctionItemModel
 
 - (instancetype _Nonnull )initWithImageName:(NSString *)imageName title:(NSString *)title action:(LLFunctionAction)action {
     if (self = [super init]) {

@@ -46,7 +46,7 @@
     return self;
 }
 
-- (void)setModel:(LLFunctionModel *)model {
+- (void)setModel:(LLFunctionItemModel *)model {
     if (_model != model) {
         _model = model;
         [self updateUI:model];
@@ -67,7 +67,7 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)updateUI:(LLFunctionModel *)model {
+- (void)updateUI:(LLFunctionItemModel *)model {
     self.imageView.image = [UIImage LL_imageNamed:model.imageName color:LLCONFIG_TEXT_COLOR];
     self.titleLabel.text = model.title;
 }

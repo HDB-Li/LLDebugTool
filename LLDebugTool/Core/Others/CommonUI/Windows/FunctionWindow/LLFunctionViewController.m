@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLFunctionViewController.h"
-#import "LLFunctionModel.h"
+#import "LLFunctionItemModel.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLMacros.h"
@@ -33,15 +33,15 @@
 #import "LLAppInfoViewController.h"
 #import "LLSandboxViewController.h"
 #import "LLHierarchyViewController.h"
-#import "LLFunctionContainerView.h"
+#import "LLFunctionItemContainerView.h"
 #import "UIView+LL_Utils.h"
 #import "LLWindowManager.h"
 
 @interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
 
-@property (nonatomic, strong) LLFunctionContainerView *toolContainerView;
+@property (nonatomic, strong) LLFunctionItemContainerView *toolContainerView;
 
-@property (nonatomic, strong) LLFunctionContainerView *shortCutContainerView;
+@property (nonatomic, strong) LLFunctionItemContainerView *shortCutContainerView;
 
 @property (nonatomic, strong) UIButton *settingButton;
 
@@ -83,11 +83,11 @@
 - (void)initial {
     self.title = @"LLDebugTool";
  
-    self.toolContainerView = [[LLFunctionContainerView alloc] initWithFrame:CGRectZero];
+    self.toolContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
     self.toolContainerView.delegate = self;
     [self.view addSubview:self.toolContainerView];
     
-    self.shortCutContainerView = [[LLFunctionContainerView alloc] initWithFrame:CGRectZero];
+    self.shortCutContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
     self.shortCutContainerView.delegate = self;
     [self.view addSubview:self.shortCutContainerView];
     
@@ -102,19 +102,19 @@
 
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:kNetworkImageName title:@"Net" action:LLFunctionActionNetwork]];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:kLogImageName title:@"Log" action:LLFunctionActionLog]];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:kCrashImageName title:@"Crash" action:LLFunctionActionCrash]];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:kAppImageName title:@"App Info" action:LLFunctionActionAppInfo]];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:kSandboxImageName title:@"Sandbox" action:LLFunctionActionSandbox]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kNetworkImageName title:@"Net" action:LLFunctionActionNetwork]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kLogImageName title:@"Log" action:LLFunctionActionLog]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kCrashImageName title:@"Crash" action:LLFunctionActionCrash]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kAppImageName title:@"App Info" action:LLFunctionActionAppInfo]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kSandboxImageName title:@"Sandbox" action:LLFunctionActionSandbox]];
     
     self.toolContainerView.dataArray = [items copy];
     
     [items removeAllObjects];
     
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Screenshot" action:LLFunctionActionScreenshot]];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Hierarchy" action:LLFunctionActionHierarchy]];
-    [items addObject:[[LLFunctionModel alloc] initWithImageName:@"" title:@"Magnifier" action:LLFunctionActionMagnifier]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:@"" title:@"Screenshot" action:LLFunctionActionScreenshot]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:@"" title:@"Hierarchy" action:LLFunctionActionHierarchy]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:@"" title:@"Magnifier" action:LLFunctionActionMagnifier]];
     
     self.shortCutContainerView.dataArray = [items copy];
 }
@@ -124,7 +124,7 @@
 }
 
 #pragma mark - LLFunctionContainerViewDelegate
-- (void)llFunctionContainerView:(LLFunctionContainerView *)view didSelectAt:(LLFunctionModel *)model {
+- (void)llFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
     LLComponent *component = model.component;
     [component componentDidLoad:nil];
 }

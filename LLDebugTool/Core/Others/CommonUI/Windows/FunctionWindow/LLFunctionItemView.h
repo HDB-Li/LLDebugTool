@@ -22,13 +22,13 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLFunctionModel.h"
+#import "LLFunctionItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLFunctionItemView : UIView
 
-@property (nonatomic, strong) LLFunctionModel *model;
+@property (nonatomic, strong) LLFunctionItemModel *model;
 
 @end
 
