@@ -28,6 +28,7 @@
 #import "LLMacros.h"
 #import "LLTool.h"
 #import "LLFactory.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLHierarchyExplorerToolBar () <UITabBarDelegate>
 
@@ -91,7 +92,7 @@
     CGFloat tintWidth = 15;
     CGRect tintViewFrame = CGRectMake(itemsMargin, (self.descriptionBackgroundView.frame.size.height - tintWidth) / 2.0, tintWidth, tintWidth);
     self.descriptionTintView = [LLFactory getView:self.descriptionBackgroundView frame:tintViewFrame];
-    [LLTool setView:self.descriptionTintView cornerRadius:tintWidth / 2.0];
+    [self.descriptionTintView LL_setCornerRadius:tintWidth / 2.0];
     
     CGFloat labelLeftMargin = tintViewFrame.origin.x + tintViewFrame.size.width + itemsMargin;
     self.descriptionLabel = [LLFactory getLabel:self.descriptionBackgroundView frame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height) text:nil font:2 textColor:LLCONFIG_TEXT_COLOR];

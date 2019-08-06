@@ -91,31 +91,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
 
 /**
- Set corner radius to view.
-
- @param view The view.
- @param cornerRadius Corner radius value.
- */
-+ (void)setView:(UIView *)view cornerRadius:(CGFloat)cornerRadius;
-
-/**
- Set border width.
-
- @param view UIView.
- @param borderWidth Border width.
- */
-+ (void)setView:(UIView *)view borderWidth:(CGFloat)borderWidth;
-
-/**
- Set border color and width.
-
- @param view UIView.
- @param color Border color.
- @param borderWidth Border width.
- */
-+ (void)setView:(UIView *)view borderColor:(UIColor *_Nullable)color borderWidth:(CGFloat)borderWidth;
-
-/**
  Format number.
 
  @param number Number

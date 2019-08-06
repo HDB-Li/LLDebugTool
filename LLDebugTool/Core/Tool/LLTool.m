@@ -235,26 +235,6 @@ static unsigned long long _absolutelyIdentity = 0;
     return supportedOrientationsMask;
 }
 
-+ (void)setView:(UIView *)view
-           cornerRadius:(CGFloat)cornerRadius {
-    view.layer.cornerRadius = cornerRadius;
-    view.layer.masksToBounds = YES;
-}
-
-+ (void)setView:(UIView *)view
-           borderWidth:(CGFloat)borderWidth {
-    [self setView:view
-                   borderColor:nil
-             borderWidth:borderWidth];
-}
-
-+ (void)setView:(UIView *)view
-                 borderColor:(UIColor *_Nullable)color
-           borderWidth:(CGFloat)borderWidth {
-    view.layer.borderColor = color.CGColor;
-    view.layer.borderWidth = borderWidth;
-}
-
 + (NSString *)formatNumber:(NSNumber *)number {
     return [[self numberFormatter] stringFromNumber:number];
 }

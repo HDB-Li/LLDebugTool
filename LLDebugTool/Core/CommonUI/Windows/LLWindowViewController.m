@@ -33,6 +33,7 @@
 #import "LLFunctionViewController.h"
 #import "LLNavigationController.h"
 #import "LLFactory.h"
+#import "UIView+LL_Utils.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -619,7 +620,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 {
     CGRect outlineFrame = [self frameInLocalCoordinatesForView:view];
     UIView *outlineView = [LLFactory getView:nil frame:outlineFrame backgroundColor:[UIColor clearColor]];
-    [LLTool setView:outlineView borderColor:[LLTool colorFromObject:view] borderWidth:1];
+    [outlineView LL_setBorderColor:[LLTool colorFromObject:view] borderWidth:1];
     return outlineView;
 }
 
@@ -662,7 +663,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
         if (selectedView) {
             if (!self.selectedViewOverlay) {
                 self.selectedViewOverlay = [LLFactory getView:self.view];
-                [LLTool setView:self.selectedViewOverlay borderWidth:1];
+                [self.selectedViewOverlay LL_setBorderColor:[UIColor clearColor] borderWidth:1];
             }
             UIColor *outlineColor = [LLTool colorFromObject:selectedView];
             self.selectedViewOverlay.backgroundColor = [outlineColor colorWithAlphaComponent:0.2];
@@ -995,7 +996,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (UIView *)contentView {
     if (!_contentView) {
         _contentView = [LLFactory getBackgroundView:nil frame:CGRectZero];
-        [LLTool setView:_contentView borderColor:LLCONFIG_TEXT_COLOR borderWidth:0];
+        [_contentView LL_setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:0];
         _contentView.layer.masksToBounds = YES;
         _contentView.alpha = [LLConfig sharedConfig].normalAlpha;
     }
