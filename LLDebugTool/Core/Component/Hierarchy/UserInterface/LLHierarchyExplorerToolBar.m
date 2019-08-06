@@ -95,7 +95,8 @@
     
     CGFloat labelLeftMargin = tintViewFrame.origin.x + tintViewFrame.size.width + itemsMargin;
     self.descriptionLabel = [LLFactory getLabel:self.descriptionBackgroundView frame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height) text:nil font:2 textColor:LLCONFIG_TEXT_COLOR];
-    [LLTool setLabel:self.descriptionLabel numberOfLines:2];
+    self.descriptionLabel.numberOfLines = 2;
+    self.descriptionLabel.lineBreakMode = NSLineBreakByCharWrapping;
     
     self.panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGRHandle:)];
     [self addGestureRecognizer:self.panGR];

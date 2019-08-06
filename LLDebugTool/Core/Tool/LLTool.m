@@ -160,7 +160,8 @@ static unsigned long long _absolutelyIdentity = 0;
     }
     
     __block UILabel *label = [LLFactory getLabel:[UIApplication sharedApplication].delegate.window frame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100) text:message font:17 textColor:[UIColor whiteColor]];
-    [LLTool setLabel:label numberOfLines:0];
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByCharWrapping;
     label.textAlignment = NSTextAlignmentCenter;
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
@@ -295,14 +296,6 @@ static unsigned long long _absolutelyIdentity = 0;
            borderWidth:(CGFloat)borderWidth {
     view.layer.borderColor = color.CGColor;
     view.layer.borderWidth = borderWidth;
-}
-
-+ (void)setLabel:(UILabel *)label
-           numberOfLines:(NSInteger)numberOfLines {
-    label.numberOfLines = numberOfLines;
-    if (numberOfLines != 1) {
-        label.lineBreakMode = NSLineBreakByCharWrapping;
-    }
 }
 
 + (NSString *)formatNumber:(NSNumber *)number {

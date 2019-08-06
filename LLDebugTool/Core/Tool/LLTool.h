@@ -122,15 +122,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setView:(UIView *)view borderColor:(UIColor *_Nullable)color borderWidth:(CGFloat)borderWidth;
 
 /**
- Set numberOfLines.
-
- @param label UILabel
- @param numberOfLines number of lines.
- */
-+ (void)setLabel:(UILabel *)label
-           numberOfLines:(NSInteger)numberOfLines;
-
-/**
  Format number.
 
  @param number Number
