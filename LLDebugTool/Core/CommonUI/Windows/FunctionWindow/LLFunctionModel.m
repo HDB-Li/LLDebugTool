@@ -26,6 +26,7 @@
 #import "LLLogComponent.h"
 #import "LLNetworkComponent.h"
 #import "LLAppInfoComponent.h"
+#import "LLCrashComponent.h"
 #import "LLSandboxComponent.h"
 #import "LLScreenshotComponent.h"
 #import "LLHierarchyComponent.h"
@@ -50,7 +51,7 @@
         case LLFunctionActionLog:
             return [[LLLogComponent alloc] init];
         case LLFunctionActionCrash:
-            return [[LLNetworkComponent alloc] init];
+            return [[LLCrashComponent alloc] init];
         case LLFunctionActionAppInfo:
             return [[LLAppInfoComponent alloc] init];
         case LLFunctionActionSandbox:
