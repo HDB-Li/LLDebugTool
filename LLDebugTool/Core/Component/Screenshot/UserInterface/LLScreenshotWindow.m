@@ -23,6 +23,7 @@
 
 #import "LLScreenshotWindow.h"
 #import "LLScreenshotViewController.h"
+#import "LLWindowManager.h"
 
 @interface LLScreenshotWindow ()
 
@@ -38,7 +39,9 @@
 }
 
 - (void)componentDidFinish {
-    
+    [[LLWindowManager shared] hideWindow:self animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] reloadScreenshotWindow];
 }
 
 #pragma mark - Primary

@@ -111,11 +111,11 @@
         } else {
             [LLTool toastMessage:@"Save image in sandbox."];
         }
-        [self componentDidLoad:nil];
     } else {
         self.toolBar.hidden = NO;
         [LLTool toastMessage:@"Save image failed."];
     }
+    [self componentDidLoad:nil];
 }
 
 #pragma mark - LLScreenshotToolbarDelegate
