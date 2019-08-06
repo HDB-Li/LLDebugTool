@@ -164,22 +164,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *_Nullable)ssid;
 
-#pragma mark - DEPRECATED
-/**
- Get this time launchDate. LaunchDate means the start time of the app, also it's the identity for crash model.
- */
-- (NSString *)launchDate DEPRECATED_MSG_ATTRIBUTE("Use [NSObject launchDate] replace.");
-
-/**
- Start monitoring CPU/FPS/Memory
- */
-- (void)startMonitoring DEPRECATED_MSG_ATTRIBUTE("Use [setEnable:YES] replace.");
-
-/**
- Stop monitoring CPU/FPS/Memory
- */
-- (void)stopMonitoring DEPRECATED_MSG_ATTRIBUTE("Use [setEnable:NO] replace.");
-
 #pragma mark - PRIMARY (This part of the method is used for internal calls, and users do not actively invoke these interfaces, nor need to care about them.)
 /**
  Update data traffic when finish a network request.

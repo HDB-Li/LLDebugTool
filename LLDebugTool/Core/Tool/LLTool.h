@@ -98,17 +98,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)formatNumber:(NSNumber *)number;
 
-#pragma mark - DEPRECATED
-
-+ (instancetype _Nonnull)sharedTool DEPRECATED_ATTRIBUTE;
-- (NSString *)absolutelyIdentity DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSString *)stringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSDate *_Nullable)dateFromString:(NSString *)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSString *)dayStringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSDate *_Nullable)staticDateFromString:(NSString *)string DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (NSString *)staticStringFromDate:(NSDate *)date DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-- (void)toastMessage:(NSString *_Nullable)message DEPRECATED_MSG_ATTRIBUTE("Use class method replace");
-
 @end
 
 NS_ASSUME_NONNULL_END

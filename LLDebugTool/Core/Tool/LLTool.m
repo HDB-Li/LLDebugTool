@@ -28,8 +28,6 @@
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 
-static LLTool *_instance = nil;
-
 static CGFloat _toastTime = 2.0;
 
 static NSDateFormatter *_dateFormatter = nil;
@@ -272,44 +270,6 @@ static unsigned long long _absolutelyIdentity = 0;
         _numberFormatter.usesGroupingSeparator = NO;
     }
     return _numberFormatter;
-}
-
-#pragma mark - DEPRECATED
-
-+ (instancetype)sharedTool {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLTool alloc] init];
-    });
-    return _instance;
-}
-
-- (NSString *)absolutelyIdentity {
-    return [LLTool absolutelyIdentity];
-}
-
-- (NSString *)stringFromDate:(NSDate *)date {
-    return [LLTool stringFromDate:date];
-}
-
-- (NSDate *)dateFromString:(NSString *)string {
-    return [LLTool dateFromString:string];
-}
-
-- (NSString *)dayStringFromDate:(NSDate *)date {
-    return [LLTool dayStringFromDate:date];
-}
-
-- (NSDate *)staticDateFromString:(NSString *)string {
-    return [LLTool staticDateFromString:string];
-}
-
-- (NSString *)staticStringFromDate:(NSDate *)date {
-    return [LLTool staticStringFromDate:date];
-}
-
-- (void)toastMessage:(NSString *)message {
-    [LLTool toastMessage:message];
 }
 
 @end

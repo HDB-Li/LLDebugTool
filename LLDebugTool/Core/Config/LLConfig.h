@@ -281,13 +281,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle;
 
-#pragma mark - DEPRECATED
-/**
- Use system color or not. If YES, window will draw by system tint color. If NO, window will draw by [backgroundColor] and [textColor].
- Default is NO.
- */
-@property (nonatomic, assign) BOOL useSystemColor DEPRECATED_MSG_ATTRIBUTE("Unsupported, Use colorStyle LLConfigColorStyleSimple replace.");;
-
 @end
 
 NS_ASSUME_NONNULL_END

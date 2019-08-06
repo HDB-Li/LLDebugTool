@@ -88,12 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
 
-#pragma mark - DEPRECATED
-/**
- * Initial method
- */
-- (instancetype _Nonnull)initWithDictionary:(NSDictionary <NSString *, id>*_Nullable)dictionary DEPRECATED_MSG_ATTRIBUTE("Use initWithName... replace.");
-
 @end
 
 NS_ASSUME_NONNULL_END

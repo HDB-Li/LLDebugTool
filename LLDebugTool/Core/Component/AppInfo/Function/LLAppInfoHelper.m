@@ -518,18 +518,4 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
     return _networkState;
 }
 
-#pragma mark - DEPRECATED
-- (NSString *)launchDate {
-    return [NSObject LL_launchDate];
-}
-
-- (void)startMonitoring {
-    [self setEnable:YES];
-}
-
-- (void)stopMonitoring {
-    [self setEnable:NO];
-}
-
-
 @end

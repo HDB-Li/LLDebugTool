@@ -70,17 +70,4 @@
     return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfos:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_toJsonString,self.stackSymbols.LL_toJsonString,self.date,self.userIdentity,self.appInfos.LL_toJsonString,self.launchDate];
 }
 
-#pragma mark - DEPRECATED
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-    NSString *name = dictionary[@"name"];
-    NSString *reason = dictionary[@"reason"];
-    NSDictionary *userInfo = dictionary[@"userInfo"];
-    NSArray *stackSymbols = dictionary[@"stackSymbols"];
-    NSString *date = dictionary[@"date"];
-    NSString *userIdentity = dictionary[@"userIdentity"];
-    NSArray *appInfos = dictionary[@"appInfos"];
-    NSString *launchDate = [NSObject LL_launchDate];
-    return [self initWithName:name reason:reason userInfo:userInfo stackSymbols:stackSymbols date:date userIdentity:userIdentity appInfos:appInfos launchDate:launchDate];
-}
-
 @end

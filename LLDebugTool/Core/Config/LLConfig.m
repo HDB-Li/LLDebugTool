@@ -198,14 +198,4 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     }
 }
 
-#pragma mark - DEPRECATED
-- (void)setUseSystemColor:(BOOL)useSystemColor {
-    if (_useSystemColor != useSystemColor) {
-        _useSystemColor = useSystemColor;
-        if (useSystemColor && (self.colorStyle != LLConfigColorStyleSimple)) {
-            self.colorStyle = LLConfigColorStyleSimple;
-        }
-    }
-}
-
 @end
