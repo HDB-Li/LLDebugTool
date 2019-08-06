@@ -54,7 +54,7 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+//    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.hostLabel.font = [UIFont boldSystemFontOfSize:19];
     self.hostLabel.adjustsFontSizeToFitWidth = YES;
 }
