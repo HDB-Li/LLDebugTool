@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Json string.
  */
-- (NSString *)LL_toJsonString;
+- (NSString *_Nullable)LL_toJsonString;
 
 @end
 

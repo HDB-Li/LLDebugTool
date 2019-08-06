@@ -1,5 +1,5 @@
 //
-//  NSData+LL_Utils.m
+//  NSArray+LL_Utils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSData+LL_Utils.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSData (LL_Utils)
+NS_ASSUME_NONNULL_BEGIN
 
-- (NSString *)LL_toJsonString {
-    
-    NSString *string = nil;
-    
-    id json = [NSJSONSerialization JSONObjectWithData:self options:0 error:NULL];
-    if ([NSJSONSerialization isValidJSONObject:json]) {
-        string = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
-        // NSJSONSerialization escapes forward slashes. We want pretty json, so run through and unescape the slashes.
-        string = [string stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    } else {
-        string = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
-    }
-    
-    return string;
-}
+@interface NSArray (LL_Utils)
+
+- (NSString *_Nullable)LL_toJsonString;
 
 @end
+
+NS_ASSUME_NONNULL_END

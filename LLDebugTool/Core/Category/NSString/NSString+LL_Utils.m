@@ -25,7 +25,7 @@
 
 @implementation NSString (LL_Utils)
 
-- (NSDictionary *)LL_jsonDictionary {
+- (NSDictionary *)LL_toJsonDictionary {
     NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
     if (jsonData) {
         NSError *error;
@@ -79,38 +79,6 @@
     // Sometime, it's a little small.
     rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width + 4, rect.size.height + 4);
     return rect.size.height > minHeight ? rect.size.height : minHeight;
-}
-
-@end
-
-@implementation NSDictionary (LL_Utils)
-
-- (NSString *)LL_jsonString {
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
-    if (!error) {
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        return jsonString;
-    }
-    return nil;
-}
-
-@end
-
-@implementation NSArray (LL_Utils)
-
-- (NSString *)LL_jsonString {
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
-    if (!error) {
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        return jsonString;
-    }
-    return nil;
 }
 
 @end

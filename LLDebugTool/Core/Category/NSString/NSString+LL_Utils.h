@@ -28,25 +28,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (LL_Utils)
 
-- (NSDictionary *_Nullable)LL_jsonDictionary;
+/**
+ Convert to json dictionary.
 
+ @return Json Dictionary.
+ */
+- (NSDictionary *_Nullable)LL_toJsonDictionary;
+
+/**
+ Convert to json array.
+
+ @return Json array.
+ */
 - (NSArray *_Nullable)LL_jsonArray;
 
+/**
+ Byte length.
+
+ @return Length.
+ */
 - (unsigned long long)LL_byteLength;
 
 - (CGFloat)LL_heightWithAttributes:(NSDictionary *_Nullable)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
-
-@end
-
-@interface NSDictionary (LL_Utils)
-
-- (NSString *_Nullable)LL_jsonString;
-
-@end
-
-@interface NSArray (LL_Utils)
-
-- (NSString *_Nullable)LL_jsonString;
 
 @end
 

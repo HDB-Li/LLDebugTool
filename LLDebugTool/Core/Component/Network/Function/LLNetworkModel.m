@@ -25,6 +25,7 @@
 #import "LLTool.h"
 #import "NSString+LL_Utils.h"
 #import "NSData+LL_Utils.h"
+#import "NSDictionary+LL_Utils.h"
 
 @interface LLNetworkModel ()
 
@@ -133,7 +134,7 @@
 - (unsigned long long)requestDataTrafficValue {
     if (!_requestDataTrafficValue) {
         // Can't get really header in a NSURLRequest, most of the missing headers are small, just add cookie.
-        unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_jsonString];
+        unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_toJsonString];
         unsigned long long bodyTraffic = self.requestBody.LL_byteLength;
         unsigned long long lineTraffic = [self dataTrafficLength:[self simulationHTTPRequestLine]];
         _requestDataTrafficValue = headerTraffic + bodyTraffic + lineTraffic;

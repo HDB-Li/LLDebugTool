@@ -24,6 +24,8 @@
 #import "LLCrashModel.h"
 #import "NSObject+LL_Utils.h"
 #import "NSString+LL_Utils.h"
+#import "NSDictionary+LL_Utils.h"
+#import "NSArray+LL_Utils.h"
 
 @interface LLCrashModel ()
 
@@ -65,7 +67,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfos:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_jsonString,self.stackSymbols.LL_jsonString,self.date,self.userIdentity,self.appInfos.LL_jsonString,self.launchDate];
+    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfos:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_toJsonString,self.stackSymbols.LL_toJsonString,self.date,self.userIdentity,self.appInfos.LL_toJsonString,self.launchDate];
 }
 
 #pragma mark - DEPRECATED

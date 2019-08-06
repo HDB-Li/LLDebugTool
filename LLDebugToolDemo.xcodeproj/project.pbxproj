@@ -29,6 +29,8 @@
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
 		36EA5F9222F966D6007E04A2 /* NSData+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */; };
+		36EA5F9622F969CD007E04A2 /* NSDictionary+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9522F969CD007E04A2 /* NSDictionary+LL_Utils.m */; };
+		36EA5F9A22F977F2007E04A2 /* NSArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9922F977F2007E04A2 /* NSArray+LL_Utils.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -234,6 +236,10 @@
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36EA5F9022F966D6007E04A2 /* NSData+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LL_Utils.h"; sourceTree = "<group>"; };
 		36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LL_Utils.m"; sourceTree = "<group>"; };
+		36EA5F9422F969CD007E04A2 /* NSDictionary+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LL_Utils.h"; sourceTree = "<group>"; };
+		36EA5F9522F969CD007E04A2 /* NSDictionary+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LL_Utils.m"; sourceTree = "<group>"; };
+		36EA5F9822F977F2007E04A2 /* NSArray+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LL_Utils.h"; sourceTree = "<group>"; };
+		36EA5F9922F977F2007E04A2 /* NSArray+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LL_Utils.m"; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -604,6 +610,24 @@
 				36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */,
 			);
 			path = NSData;
+			sourceTree = "<group>";
+		};
+		36EA5F9322F969BD007E04A2 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				36EA5F9422F969CD007E04A2 /* NSDictionary+LL_Utils.h */,
+				36EA5F9522F969CD007E04A2 /* NSDictionary+LL_Utils.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		36EA5F9722F977E8007E04A2 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				36EA5F9822F977F2007E04A2 /* NSArray+LL_Utils.h */,
+				36EA5F9922F977F2007E04A2 /* NSArray+LL_Utils.m */,
+			);
+			path = NSArray;
 			sourceTree = "<group>";
 		};
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
@@ -989,6 +1013,8 @@
 		C498558622ED8D0E00E9FBE2 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				36EA5F9722F977E8007E04A2 /* NSArray */,
+				36EA5F9322F969BD007E04A2 /* NSDictionary */,
 				36EA5F8F22F96676007E04A2 /* NSData */,
 				C45BA2D622F47E56006B833A /* UIWindow */,
 				C45BA2D222F47CCD006B833A /* UIViewController */,
@@ -1724,6 +1750,7 @@
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
 				C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */,
+				36EA5F9622F969CD007E04A2 /* NSDictionary+LL_Utils.m in Sources */,
 				C45BA2D522F47CED006B833A /* UIViewController+LL_Utils.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,
 				C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */,
@@ -1739,6 +1766,7 @@
 				C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */,
 				C49855E422ED8D0E00E9FBE2 /* LLSearchBar.m in Sources */,
 				C49856EF22EDB07300E9FBE2 /* LLLogComponent.m in Sources */,
+				36EA5F9A22F977F2007E04A2 /* NSArray+LL_Utils.m in Sources */,
 				C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */,
 				C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */,
 				C49855FD22ED8D0E00E9FBE2 /* LLSuspensionWindow.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  NSData+LL_Utils.m
+//  NSDictionary+LL_Utils.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSData+LL_Utils.h"
+#import "NSDictionary+LL_Utils.h"
 
-@implementation NSData (LL_Utils)
+@implementation NSDictionary (LL_Utils)
 
 - (NSString *)LL_toJsonString {
     
-    NSString *string = nil;
-    
-    id json = [NSJSONSerialization JSONObjectWithData:self options:0 error:NULL];
-    if ([NSJSONSerialization isValidJSONObject:json]) {
-        string = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
-        // NSJSONSerialization escapes forward slashes. We want pretty json, so run through and unescape the slashes.
-        string = [string stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    } else {
-        string = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+    if (!error) {
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        return jsonString;
     }
-    
-    return string;
+    return nil;
 }
 
 @end
