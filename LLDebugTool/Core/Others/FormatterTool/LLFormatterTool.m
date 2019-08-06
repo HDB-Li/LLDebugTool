@@ -78,6 +78,10 @@ static LLFormatterTool *_instance = nil;
     return nil;
 }
 
+- (NSString *)formatNumber:(NSNumber *)number {
+    return [self.numberFormatter stringFromNumber:number];
+}
+
 #pragma mark - Lazy load
 - (NSNumberFormatter *)numberFormatter {
     if (!_numberFormatter) {

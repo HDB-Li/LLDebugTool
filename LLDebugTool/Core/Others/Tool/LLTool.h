@@ -72,14 +72,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
 
-/**
- Format number.
-
- @param number Number
- @return String
- */
-+ (NSString *)formatNumber:(NSNumber *)number;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -27,13 +27,9 @@
 #import "LLRoute.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
+#import "LLFormatterTool.h"
 
 static CGFloat _toastTime = 2.0;
-
-static NSDateFormatter *_dateFormatter = nil;
-static NSDateFormatter *_dayDateFormatter = nil;
-static NSDateFormatter *_staticDateFormatter = nil;
-static NSNumberFormatter *_numberFormatter = nil;
 
 static UILabel *_toastLabel = nil;
 static UILabel *_loadingLabel = nil;
@@ -182,7 +178,7 @@ static unsigned long long _absolutelyIdentity = 0;
 }
 
 + (NSString *)stringFromFrame:(CGRect)frame {
-    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[LLTool formatNumber:@(frame.origin.x)],[LLTool formatNumber:@(frame.origin.y)],[LLTool formatNumber:@(frame.size.width)],[LLTool formatNumber:@(frame.size.height)]];
+    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[[LLFormatterTool sharedTool] formatNumber:@(frame.origin.x)],[[LLFormatterTool sharedTool] formatNumber:@(frame.origin.y)],[[LLFormatterTool sharedTool] formatNumber:@(frame.size.width)],[[LLFormatterTool sharedTool] formatNumber:@(frame.size.height)]];
 }
 
 + (UIColor *)colorFromObject:(NSObject *)object {
@@ -207,45 +203,6 @@ static unsigned long long _absolutelyIdentity = 0;
         supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeLeft;
     }
     return supportedOrientationsMask;
-}
-
-+ (NSString *)formatNumber:(NSNumber *)number {
-    return [[self numberFormatter] stringFromNumber:number];
-}
-
-#pragma mark - Lazy load
-+ (NSDateFormatter *)dateFormatter {
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        _dateFormatter.dateFormat = [LLConfig sharedConfig].dateFormatter;
-    }
-    return _dateFormatter;
-}
-
-+ (NSDateFormatter *)dayDateFormatter {
-    if (!_dayDateFormatter) {
-        _dayDateFormatter = [[NSDateFormatter alloc] init];
-        _dayDateFormatter.dateFormat = @"yyyy-MM-dd";
-    }
-    return _dayDateFormatter;
-}
-
-+ (NSDateFormatter *)staticDateFormatter {
-    if (!_staticDateFormatter) {
-        _staticDateFormatter = [[NSDateFormatter alloc] init];
-        _staticDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    }
-    return _staticDateFormatter;
-}
-
-+ (NSNumberFormatter *)numberFormatter {
-    if (!_numberFormatter) {
-        _numberFormatter = [[NSNumberFormatter alloc] init];
-        _numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-        _numberFormatter.maximumFractionDigits = 2;
-        _numberFormatter.usesGroupingSeparator = NO;
-    }
-    return _numberFormatter;
 }
 
 @end

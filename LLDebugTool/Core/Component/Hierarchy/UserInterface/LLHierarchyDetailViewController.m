@@ -33,6 +33,7 @@
 #import "UILabel+LL_Utils.h"
 #import "UIControl+LL_Utils.h"
 #import "UIButton+LL_Utils.h"
+#import "LLFormatterTool.h"
 
 @interface LLHierarchyDetailViewController ()
 
@@ -105,7 +106,7 @@
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Tag" content:[NSString stringWithFormat:@"%ld",view.tag]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Interaction" content:[NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:nil content:[NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"]]];
-    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Alpha" content:[LLTool formatNumber:@(view.alpha)]]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Alpha" content:[[LLFormatterTool sharedTool] formatNumber:@(view.alpha)]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Background" content:[self colorDescription:view.backgroundColor]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Tint" content:[self colorDescription:view.tintColor]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Drawing" content:[NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"]]];
@@ -128,10 +129,10 @@
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:nil content:[NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Baseline" content:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Line Break" content:label.LL_lineBreakModeDescription]];
-    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Min Font Scale" content:[LLTool formatNumber:@(label.minimumScaleFactor)]]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Min Font Scale" content:[[LLFormatterTool sharedTool] formatNumber:@(label.minimumScaleFactor)]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Highlighted" content:label.highlightedTextColor.LL_description]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Shadow" content:label.shadowColor.LL_description]];
-    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Shadow Offset" content:[NSString stringWithFormat:@"w %@   h %@",[LLTool formatNumber:@(label.shadowOffset.width)], [LLTool formatNumber:@(label.shadowOffset.height)]]]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Shadow Offset" content:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool sharedTool] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool sharedTool] formatNumber:@(label.shadowOffset.height)]]]];
     return [[LLHierarchyDetailSectionModel alloc] initWithTitle:@"Label" models:section];
 }
 
@@ -166,7 +167,7 @@
     }
     
     NSArray *rgba = [color LL_RGBA];
-    return [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [LLTool formatNumber:rgba[0]], [LLTool formatNumber:rgba[1]], [LLTool formatNumber:rgba[2]], [LLTool formatNumber:rgba[3]]];
+    return [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [[LLFormatterTool sharedTool] formatNumber:rgba[0]], [[LLFormatterTool sharedTool] formatNumber:rgba[1]], [[LLFormatterTool sharedTool] formatNumber:rgba[2]], [[LLFormatterTool sharedTool] formatNumber:rgba[3]]];
 }
 
 @end
