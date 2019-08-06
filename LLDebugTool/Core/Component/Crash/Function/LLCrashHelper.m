@@ -28,7 +28,7 @@
 #import "LLCrashModel.h"
 #import "LLRoute.h"
 #import "LLConfig.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "NSObject+LL_Utils.h"
 
 static LLCrashHelper *_instance = nil;
@@ -152,7 +152,7 @@ static LLCrashHelper *_instance = nil;
 }
 
 - (void)saveException:(NSException *)exception {
-    NSString *date = [LLTool stringFromDate:[NSDate date]];
+    NSString *date = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
     NSArray *appInfos = [LLRoute appInfos];
 
     if (self.crashModel) {
@@ -325,7 +325,7 @@ void SignalHandler(int sig)
     }
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
-    NSString *date = [LLTool stringFromDate:[NSDate date]];
+    NSString *date = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
     NSDictionary *appInfos = [LLRoute dynamicAppInfos];
     LLCrashSignalModel *signalModel = [[LLCrashSignalModel alloc] initWithName:name stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos];
     if ([LLCrashHelper sharedHelper].crashModel) {

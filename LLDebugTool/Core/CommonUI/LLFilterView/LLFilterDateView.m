@@ -24,7 +24,7 @@
 #import "LLFilterDateView.h"
 #import "LLFilterTextFieldCell.h"
 #import "LLMacros.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
 
@@ -73,8 +73,8 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [LLTool staticDateFromString:_fromDateModel.currentFilter];
-        NSDate *endDate = [LLTool staticDateFromString:_endDateModel.currentFilter];
+        NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         _changeBlock(fromDate,endDate);
     }
 }

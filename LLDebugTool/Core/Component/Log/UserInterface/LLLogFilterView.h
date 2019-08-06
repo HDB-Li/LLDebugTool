@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "LLLogModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +34,7 @@ typedef void(^LLLogFilterChangeBlock)(NSArray *_Nullable levels, NSArray *_Nulla
 
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
-- (void)configWithData:(NSArray *_Nullable)data;
+- (void)configWithData:(NSArray <LLLogModel *>*)data;
 
 - (BOOL)isFiltering;
 - (void)cancelFiltering;

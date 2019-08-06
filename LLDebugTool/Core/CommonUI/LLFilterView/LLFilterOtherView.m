@@ -28,7 +28,7 @@
 #import "LLMacros.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
@@ -113,8 +113,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [LLTool staticDateFromString:_fromDateModel.currentFilter];
-        NSDate *endDate = [LLTool staticDateFromString:_endDateModel.currentFilter];
+        NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         NSMutableArray *userIds = [[NSMutableArray alloc] init];
         
         for (LLFilterLabelModel *model in self.userIdDataArray) {

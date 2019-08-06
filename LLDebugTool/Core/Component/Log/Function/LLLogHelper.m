@@ -25,7 +25,7 @@
 #import "LLStorageManager.h"
 #import "LLLogModel.h"
 #import "LLConfig.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLConfig.h"
 #import "NSObject+LL_Utils.h"
 
@@ -46,7 +46,7 @@ static LLLogHelper *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    NSString *date = [LLTool stringFromDate:[NSDate date]];
+    NSString *date = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
     LLConfigLogStyle logStyle = [LLConfig sharedConfig].logStyle;
     switch (logStyle) {
         case LLConfigLogDetail:

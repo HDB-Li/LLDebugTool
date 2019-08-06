@@ -25,6 +25,7 @@
 #import "LLScreenshotView.h"
 #import "LLRoute.h"
 #import "LLTool.h"
+#import "LLFormatterTool.h"
 
 static LLScreenshotHelper *_instance = nil;
 
@@ -83,7 +84,7 @@ static LLScreenshotHelper *_instance = nil;
         return;
     }
     if (name.length == 0) {
-        name = [LLTool staticStringFromDate:[NSDate date]];
+        name = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     }
     name = [name stringByAppendingPathExtension:@"png"];
     NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];

@@ -22,8 +22,9 @@
 //  SOFTWARE.
 
 #import "LLLogModel.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLConfig.h"
+#import "LLTool.h"
 
 @interface LLLogModel ()
 
@@ -71,7 +72,7 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.date.length) {
-        _dateDescription = [LLTool dateFromString:self.date];
+        _dateDescription = [[LLFormatterTool sharedTool] dateFromString:self.date style:FormatterToolDateStyle1];
     }
     return _dateDescription;
 }

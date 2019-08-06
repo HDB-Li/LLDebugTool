@@ -27,7 +27,7 @@
 #import "UIButton+LL_Utils.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLNetworkModel.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
@@ -89,12 +89,15 @@
     }
 }
 
-- (void)configWithData:(NSArray *)data {
+- (void)configWithData:(NSArray <LLNetworkModel *>*)data {
   
     NSMutableSet *hostSet = [NSMutableSet set];
     
-    NSDate *fromDate = [LLTool dateFromString:((LLNetworkModel *)data.lastObject).startDate];
-    NSDate *endDate = [LLTool dateFromString:((LLNetworkModel *)data.firstObject).startDate];
+    NSString *fromString = data.lastObject.startDate;
+    NSString *endString = data.firstObject.startDate;
+    
+    NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:fromString style:FormatterToolDateStyle1];
+    NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:endString style:FormatterToolDateStyle1];
     if (!fromDate) {
         fromDate = [NSDate date];
     }

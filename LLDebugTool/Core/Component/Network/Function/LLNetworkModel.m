@@ -26,6 +26,7 @@
 #import "NSString+LL_Utils.h"
 #import "NSData+LL_Utils.h"
 #import "NSDictionary+LL_Utils.h"
+#import "LLFormatterTool.h"
 
 @interface LLNetworkModel ()
 
@@ -94,7 +95,7 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.startDate.length) {
-        _dateDescription = [LLTool dateFromString:self.startDate];
+        _dateDescription = [[LLFormatterTool sharedTool] dateFromString:self.startDate style:FormatterToolDateStyle1];
     }
     return _dateDescription;
 }

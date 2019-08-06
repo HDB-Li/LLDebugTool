@@ -25,6 +25,7 @@
 #import "LLTool.h"
 #import "LLMacros.h"
 #import "LLFactory.h"
+#import "LLFormatterTool.h"
 
 @interface LLFilterDatePickerView () <UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -52,7 +53,7 @@
             NSMutableArray *days = [[NSMutableArray alloc] init];
             NSDate *date = [fromDate copy];
             while ([endDate timeIntervalSinceDate:date] >= 0) {
-                NSString *dateString = [LLTool dayStringFromDate:date];
+                NSString *dateString = [[LLFormatterTool sharedTool] stringFromDate:date style:FormatterToolDateStyle2];
                 if (dateString.length) {
                     [days addObject:dateString];
                 }

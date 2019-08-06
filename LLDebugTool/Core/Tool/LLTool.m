@@ -51,30 +51,6 @@ static unsigned long long _absolutelyIdentity = 0;
     }
 }
 
-+ (NSString *)stringFromDate:(NSDate *)date {
-    return [[self dateFormatter] stringFromDate:date];
-}
-
-+ (NSDate *)dateFromString:(NSString *)string {
-    return [[self dateFormatter] dateFromString:string];
-}
-
-+ (NSString *)dayStringFromDate:(NSDate *)date {
-    return [[self dayDateFormatter] stringFromDate:date];
-}
-
-+ (NSDate *)dayDateFromString:(NSString *)string {
-    return [[self dayDateFormatter] dateFromString:string];
-}
-
-+ (NSString *)staticStringFromDate:(NSDate *)date {
-    return [[self staticDateFormatter] stringFromDate:date];
-}
-
-+ (NSDate *)staticDateFromString:(NSString *)string {
-    return [[self staticDateFormatter] dateFromString:string];
-}
-
 + (BOOL)createDirectoryAtPath:(NSString *)path {
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSError *error;

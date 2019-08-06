@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLLogFilterView.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLLogModel.h"
 #import "UIButton+LL_Utils.h"
 #import "LLFilterEventView.h"
@@ -92,13 +92,16 @@
     }
 }
 
-- (void)configWithData:(NSArray *)data {
+- (void)configWithData:(NSArray <LLLogModel *>*)data {
     NSMutableSet *eventSet = [NSMutableSet set];
     NSMutableSet *userIDSet = [NSMutableSet set];
     NSMutableDictionary *fileDic = [[NSMutableDictionary alloc] init];
     
-    NSDate *fromDate = [LLTool dateFromString:((LLLogModel *)data.lastObject).date];
-    NSDate *endDate = [LLTool dateFromString:((LLLogModel *)data.firstObject).date];
+    NSString *fromDateString = data.lastObject.date;
+    NSString *endDateString = data.firstObject.date;
+
+    NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:fromDateString style:FormatterToolDateStyle1];
+    NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:endDateString style:FormatterToolDateStyle1];
     if (!fromDate) {
         fromDate = [NSDate date];
     }

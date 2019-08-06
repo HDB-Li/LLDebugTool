@@ -1,5 +1,5 @@
 //
-//  LLTool.h
+//  LLFormatterTool.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,64 +22,48 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Work as tool.
+ Date formatter style.
+
+ - FormatterToolDateStyle1: LLConfig.dateFormatter
+ - FormatterToolDateStyle2: "yyyy-MM-dd"
+ - FormatterToolDateStyle3: "yyyy-MM-dd HH:mm:ss"
  */
-@interface LLTool : NSObject
+typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
+    FormatterToolDateStyle1,
+    FormatterToolDateStyle2,
+    FormatterToolDateStyle3
+};
+
+@interface LLFormatterTool : NSObject
 
 /**
- Identity to model. Deal with the same date, start at 1.
+ Singleton
+
+ @return Singleton.
  */
-+ (NSString *)absolutelyIdentity;
++ (instancetype)sharedTool;
 
 /**
- Create directory if not exist.
+ Format date use style.
+
+ @param date Date.
+ @param style FormatterToolDateStyle.
+ @return Format string.
  */
-+ (BOOL)createDirectoryAtPath:(NSString *)path;
+- (NSString *_Nullable)stringFromDate:(NSDate *)date style:(FormatterToolDateStyle)style;
 
 /**
- Get rect from two point
+ Get date use formatted string use style
+
+ @param string Formatted string.
+ @param style FormatterToolDateStyle
+ @return Date.
  */
-+ (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
-
-/**
- Show toast.
- */
-+ (void)toastMessage:(NSString *_Nullable)message;
-
-/**
- Show or hide loading message.
- */
-+ (void)loadingMessage:(NSString *_Nullable)message;
-+ (void)hideLoadingMessage;
-
-/**
- Frame fromat.
- */
-+ (NSString *)stringFromFrame:(CGRect)frame;
-
-/**
- Random color from object.
- */
-+ (UIColor *)colorFromObject:(NSObject *)object;
-
-/**
- Supported interface orientations in info.plist.
- */
-+ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
-
-/**
- Format number.
-
- @param number Number
- @return String
- */
-+ (NSString *)formatNumber:(NSNumber *)number;
-
+- (NSDate *_Nullable)dateFromString:(NSString *)string style:(FormatterToolDateStyle)style;
 @end
 
 NS_ASSUME_NONNULL_END

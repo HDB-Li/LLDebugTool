@@ -25,7 +25,7 @@
 #import "LLStorageManager.h"
 #import "LLNetworkModel.h"
 #import "LLConfig.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLRoute.h"
 #import "NSHTTPURLResponse+LL_Utils.h"
 #import "NSData+LL_Utils.h"
@@ -90,7 +90,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     [self.dataTask cancel];
     self.dataTask           = nil;
     LLNetworkModel *model = [[LLNetworkModel alloc] init];
-    model.startDate = [LLTool stringFromDate:self.startDate];
+    model.startDate = [[LLFormatterTool sharedTool] stringFromDate:self.startDate style:FormatterToolDateStyle1];
     // Request
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;

@@ -31,6 +31,7 @@
 #import "LLTool.h"
 #import "LLRoute.h"
 #import "UIView+LL_Utils.h"
+#import "LLFormatterTool.h"
 
 @interface LLScreenshotPreviewViewController () <LLScreenshotToolbarDelegate>
 
@@ -54,7 +55,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    self.name = [LLTool staticStringFromDate:[NSDate date]];
+    self.name = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;

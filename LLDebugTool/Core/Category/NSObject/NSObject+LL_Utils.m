@@ -25,7 +25,7 @@
 #import <mach-o/arch.h>
 #import <UIKit/UIKit.h>
 #import <mach/mach.h>
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 
 static uint64_t _loadTime;
 static NSTimeInterval _startLoadTime;
@@ -65,7 +65,7 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
 
 + (NSString *)LL_launchDate {
     if (!_launchDate) {
-        _launchDate = [LLTool staticStringFromDate:[NSDate dateWithTimeIntervalSince1970:_loadDate]];
+        _launchDate = [[LLFormatterTool sharedTool] stringFromDate:[NSDate dateWithTimeIntervalSince1970:_loadDate] style:FormatterToolDateStyle3];
         if (!_launchDate) {
             _launchDate = @"";
         }

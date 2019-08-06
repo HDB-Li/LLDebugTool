@@ -31,6 +31,7 @@
 		36EA5F9222F966D6007E04A2 /* NSData+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */; };
 		36EA5F9622F969CD007E04A2 /* NSDictionary+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9522F969CD007E04A2 /* NSDictionary+LL_Utils.m */; };
 		36EA5F9A22F977F2007E04A2 /* NSArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9922F977F2007E04A2 /* NSArray+LL_Utils.m */; };
+		36EA5F9E22F97FC5007E04A2 /* LLFormatterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9D22F97FC5007E04A2 /* LLFormatterTool.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -240,6 +241,8 @@
 		36EA5F9522F969CD007E04A2 /* NSDictionary+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LL_Utils.m"; sourceTree = "<group>"; };
 		36EA5F9822F977F2007E04A2 /* NSArray+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LL_Utils.h"; sourceTree = "<group>"; };
 		36EA5F9922F977F2007E04A2 /* NSArray+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LL_Utils.m"; sourceTree = "<group>"; };
+		36EA5F9C22F97FC5007E04A2 /* LLFormatterTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFormatterTool.h; sourceTree = "<group>"; };
+		36EA5F9D22F97FC5007E04A2 /* LLFormatterTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFormatterTool.m; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -630,6 +633,15 @@
 			path = NSArray;
 			sourceTree = "<group>";
 		};
+		36EA5F9B22F97F8E007E04A2 /* FormatterTool */ = {
+			isa = PBXGroup;
+			children = (
+				36EA5F9C22F97FC5007E04A2 /* LLFormatterTool.h */,
+				36EA5F9D22F97FC5007E04A2 /* LLFormatterTool.m */,
+			);
+			path = FormatterTool;
+			sourceTree = "<group>";
+		};
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +737,7 @@
 		C498551522ED8D0E00E9FBE2 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				36EA5F9B22F97F8E007E04A2 /* FormatterTool */,
 				C49856AE22ED8DEC00E9FBE2 /* Config */,
 				C498561222ED8D4700E9FBE2 /* Component */,
 				C498551622ED8D0E00E9FBE2 /* Route */,
@@ -1730,6 +1743,7 @@
 				C49855EF22ED8D0E00E9FBE2 /* LLFilterLabelCell.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
 				C49855F522ED8D0E00E9FBE2 /* LLFunctionItemView.m in Sources */,
+				36EA5F9E22F97FC5007E04A2 /* LLFormatterTool.m in Sources */,
 				C49855E122ED8D0E00E9FBE2 /* LLConst.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
 				36EA5F9222F966D6007E04A2 /* NSData+LL_Utils.m in Sources */,

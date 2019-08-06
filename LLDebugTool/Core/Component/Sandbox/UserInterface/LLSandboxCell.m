@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLSandboxCell.h"
-#import "LLTool.h"
+#import "LLFormatterTool.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 
@@ -49,7 +49,7 @@
 - (void)confirmWithModel:(LLSandboxModel *)model {
     _model = model;
     self.titleLabel.text = model.name;
-    self.contentLabel.text = [NSString stringWithFormat:@"%@",[LLTool stringFromDate:model.modifiDate]];
+    self.contentLabel.text = [NSString stringWithFormat:@"%@", [[LLFormatterTool sharedTool] stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
     self.sizeLabel.text = [NSString stringWithFormat:@"%@",model.totalFileSizeString];
     if (model.isDirectory && model.subModels.count) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

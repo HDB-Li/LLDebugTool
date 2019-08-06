@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "LLNetworkModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +34,7 @@ typedef void(^LLNetworkFilterChangeBlock)(NSArray *_Nullable hosts, NSArray *_Nu
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
-- (void)configWithData:(NSArray *_Nullable)data;
+- (void)configWithData:(NSArray <LLNetworkModel *>*_Nullable)data;
 
 - (BOOL)isFiltering;
 - (void)cancelFiltering;
