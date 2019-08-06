@@ -63,11 +63,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)stringFromFrame:(CGRect)frame;
 
 /**
- Random color from object.
- */
-+ (UIColor *)colorFromObject:(NSObject *)object;
-
-/**
  Supported interface orientations in info.plist.
  */
 + (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;

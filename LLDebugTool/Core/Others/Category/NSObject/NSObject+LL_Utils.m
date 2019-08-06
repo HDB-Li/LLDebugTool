@@ -77,4 +77,9 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
     return _startLoadTime;
 }
 
+- (UIColor *)LL_hashColor {
+    CGFloat hue = ((self.hash >> 4) % 256) / 255.0;
+    return [UIColor colorWithHue:hue saturation:1.0 brightness:1.0 alpha:1.0];
+}
+
 @end

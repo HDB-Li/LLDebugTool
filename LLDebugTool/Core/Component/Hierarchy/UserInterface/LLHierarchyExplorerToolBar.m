@@ -29,6 +29,7 @@
 #import "LLTool.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
+#import "NSObject+LL_Utils.h"
 
 @interface LLHierarchyExplorerToolBar () <UITabBarDelegate>
 
@@ -65,7 +66,7 @@
 }
 
 - (void)confirmWithView:(UIView *)selectView {
-    self.descriptionTintView.backgroundColor = [LLTool colorFromObject:selectView];
+    self.descriptionTintView.backgroundColor = selectView.LL_hashColor;
     self.descriptionLabel.text = [NSString stringWithFormat:@"%@, %@",NSStringFromClass(selectView.class),[LLTool stringFromFrame:selectView.frame]];
 }
 

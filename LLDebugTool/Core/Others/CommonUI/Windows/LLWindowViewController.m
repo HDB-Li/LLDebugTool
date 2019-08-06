@@ -34,6 +34,7 @@
 #import "LLNavigationController.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
+#import "NSObject+LL_Utils.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -620,7 +621,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 {
     CGRect outlineFrame = [self frameInLocalCoordinatesForView:view];
     UIView *outlineView = [LLFactory getView:nil frame:outlineFrame backgroundColor:[UIColor clearColor]];
-    [outlineView LL_setBorderColor:[LLTool colorFromObject:view] borderWidth:1];
+    [outlineView LL_setBorderColor:view.LL_hashColor borderWidth:1];
     return outlineView;
 }
 
@@ -665,7 +666,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
                 self.selectedViewOverlay = [LLFactory getView:self.view];
                 [self.selectedViewOverlay LL_setBorderColor:[UIColor clearColor] borderWidth:1];
             }
-            UIColor *outlineColor = [LLTool colorFromObject:selectedView];
+            UIColor *outlineColor = selectedView.LL_hashColor;
             self.selectedViewOverlay.backgroundColor = [outlineColor colorWithAlphaComponent:0.2];
             self.selectedViewOverlay.layer.borderColor = [outlineColor CGColor];
             self.selectedViewOverlay.frame = [self.view convertRect:selectedView.bounds fromView:selectedView];

@@ -25,6 +25,7 @@
 #import "LLConfig.h"
 #import "LLTool.h"
 #import "LLImageNameConfig.h"
+#import "NSObject+LL_Utils.h"
 
 @interface LLHierarchyCell ()
 
@@ -76,7 +77,7 @@
 
     self.nameLabel.text = model.name;
     self.contentLabel.text = model.frame;
-    self.circleView.backgroundColor = [LLTool colorFromObject:model.view];
+    self.circleView.backgroundColor = model.view.LL_hashColor;
     
     if (model.subModels.count) {
         self.foldButton.hidden = NO;
@@ -100,7 +101,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Circleview will auto set nil to backgroundColor while selected.
-    self.circleView.backgroundColor = [LLTool colorFromObject:self.model.view];
+    self.circleView.backgroundColor = self.model.view.LL_hashColor;
 }
 
 - (void)updateDirection {
