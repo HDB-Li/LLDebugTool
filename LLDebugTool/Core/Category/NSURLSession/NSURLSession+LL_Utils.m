@@ -22,16 +22,14 @@
 //  SOFTWARE.
 
 #import "NSURLSession+LL_Utils.h"
-#import <objc/runtime.h>
+#import "NSObject+LL_Runtime.h"
 #import "LLNetworkHelper.h"
 #import "LLURLProtocol.h"
 
 @implementation NSURLSession (LL_Utils)
 
 + (void)load {
-    Method method1 = class_getClassMethod([NSURLSession class], @selector(sessionWithConfiguration:delegate:delegateQueue:));
-    Method method2 = class_getClassMethod([NSURLSession class], @selector(LL_sessionWithConfiguration:delegate:delegateQueue:));
-    method_exchangeImplementations(method1, method2);
+    [self LL_swizzleClassMethodWithOriginSel:@selector(sessionWithConfiguration:delegate:delegateQueue:) swizzledSel:@selector(LL_sessionWithConfiguration:delegate:delegateQueue:)];
 }
 
 + (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue {

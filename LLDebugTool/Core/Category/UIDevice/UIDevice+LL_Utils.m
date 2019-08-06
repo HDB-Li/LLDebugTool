@@ -22,18 +22,18 @@
 //  SOFTWARE.
 
 #import "UIDevice+LL_Utils.h"
-#import <objc/runtime.h>
 #import <sys/sysctl.h>
+#import "NSObject+LL_Runtime.h"
 
-static const char * kLLModelNameKey = "kLLModelNameKey";
+static const char kLLModelNameKey;
 
 @implementation UIDevice (LL_Utils)
 
 - (NSString *)LL_modelName {
-    NSString *name = objc_getAssociatedObject(self, kLLModelNameKey);
+    NSString *name = [self LL_getStringProperty:&kLLModelNameKey];
     if (name == nil) {
         name = [self LL_getCurrentDeviceModel];
-        objc_setAssociatedObject(self, kLLModelNameKey, name, OBJC_ASSOCIATION_COPY);
+        [self LL_setStringProperty:name key:&kLLModelNameKey];
     }
     return name;
 }
@@ -43,7 +43,10 @@ static const char * kLLModelNameKey = "kLLModelNameKey";
 {
     NSString *platform = [self LL_platform];
     if ([platform hasPrefix:@"iPhone"]) {
-        
+        if ([platform isEqualToString:@"iPhone11,8"])   return @"iPhone XR";
+        if ([platform isEqualToString:@"iPhone11,6"])   return @"iPhone XS Max";
+        if ([platform isEqualToString:@"iPhone11,4"])   return @"iPhone XS Max";
+        if ([platform isEqualToString:@"iPhone11,2"])   return @"iPhone XS";
         if ([platform isEqualToString:@"iPhone10,6"])    return @"iPhone X";
         if ([platform isEqualToString:@"iPhone10,5"])    return @"iPhone 8 Plus";
         if ([platform isEqualToString:@"iPhone10,4"])    return @"iPhone 8";

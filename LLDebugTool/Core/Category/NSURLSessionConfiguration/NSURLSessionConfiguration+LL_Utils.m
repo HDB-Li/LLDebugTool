@@ -22,28 +22,23 @@
 //  SOFTWARE.
 
 #import "NSURLSessionConfiguration+LL_Utils.h"
-#import <objc/runtime.h>
 #import "LLURLProtocol.h"
 #import "LLNetworkHelper.h"
-
+#import "NSObject+LL_Runtime.h"
 
 @implementation NSURLSessionConfiguration (LL_Utils)
 
 + (void)load {
-    Method method1 = class_getClassMethod([NSURLSessionConfiguration class], @selector(defaultSessionConfiguration));
-    Method method2 = class_getClassMethod([NSURLSessionConfiguration class], @selector(LL_defaultSessionConfiguration));
-    method_exchangeImplementations(method1, method2);
+    [self LL_swizzleClassMethodWithOriginSel:@selector(defaultSessionConfiguration) swizzledSel:@selector(LL_defaultSessionConfiguration)];
     
-    Method method3 = class_getClassMethod([NSURLSessionConfiguration class], @selector(ephemeralSessionConfiguration));
-    Method method4 = class_getClassMethod([NSURLSessionConfiguration class], @selector(LL_ephemeralSessionConfiguration));
-    method_exchangeImplementations(method3, method4);
+    [self LL_swizzleClassMethodWithOriginSel:@selector(ephemeralSessionConfiguration) swizzledSel:@selector(LL_ephemeralSessionConfiguration)];
     
     Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ? : NSClassFromString(@"NSURLSessionConfiguration");
-    Method method5 = class_getInstanceMethod(cls, @selector(protocolClasses));
-    Method method6 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
-    if (method5 && method6) {
-        method_exchangeImplementations(method5, method6);
-    }
+    
+    Method method1 = class_getInstanceMethod(cls, @selector(protocolClasses));
+    Method method2 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
+    
+    [self LL_swizzleMethodWithOriginSel:@selector(protocolClasses) oriMethod:method1 swizzledSel:@selector(LL_protocolClasses) swizzledMethod:method2 class:self.class];
 }
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {

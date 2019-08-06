@@ -22,19 +22,15 @@
 //  SOFTWARE.
 
 #import "UIView+LL_Utils.h"
-#import <objc/runtime.h>
+#import "NSObject+LL_Runtime.h"
 
-static const char *kLLHorizontalPaddingKey = "kLLHorizontalPaddingKey";
-static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
+static const char kLLHorizontalPaddingKey;
+static const char kLLVerticalPaddingKey;
 
 @implementation UIView (LL_Utils)
 
 + (void)load {
-    Method method5 = class_getInstanceMethod([self class], @selector(sizeToFit));
-    Method method6 = class_getInstanceMethod([self class], @selector(LL_sizeToFit));
-    if (method5 && method6) {
-        method_exchangeImplementations(method5, method6);
-    }
+    [self LL_swizzleInstanceMethodWithOriginSel:@selector(sizeToFit) swizzledSel:@selector(LL_sizeToFit)];
 }
 
 - (void)LL_sizeToFit {
@@ -45,19 +41,19 @@ static const char *kLLVerticalPaddingKey = "kLLVerticalPaddingKey";
 }
 
 - (void)setLL_horizontalPadding:(CGFloat)LL_horizontalPadding {
-    objc_setAssociatedObject(self, kLLHorizontalPaddingKey, @(LL_horizontalPadding), OBJC_ASSOCIATION_ASSIGN);
+    [self LL_setCGFloatProperty:LL_horizontalPadding key:&kLLHorizontalPaddingKey];
 }
 
 - (CGFloat)LL_horizontalPadding {
-    return [objc_getAssociatedObject(self, kLLHorizontalPaddingKey) floatValue];
+    return [self LL_getCGFloatProperty:&kLLHorizontalPaddingKey];
 }
 
 - (void)setLL_verticalPadding:(CGFloat)LL_verticalPadding {
-    objc_setAssociatedObject(self, kLLVerticalPaddingKey, @(LL_verticalPadding), OBJC_ASSOCIATION_ASSIGN);
+    [self LL_setCGFloatProperty:LL_verticalPadding key:&kLLVerticalPaddingKey];
 }
 
 - (CGFloat)LL_verticalPadding {
-    return [objc_getAssociatedObject(self, kLLVerticalPaddingKey) floatValue];
+    return [self LL_getCGFloatProperty:&kLLVerticalPaddingKey];
 }
 
 - (void)setLL_x:(CGFloat)LL_x {

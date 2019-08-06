@@ -164,7 +164,7 @@ static unsigned long long _absolutelyIdentity = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
-    label.LL_horizontalPadding = 20;
+    label.LL_horizontalPadding = 10;
     label.LL_verticalPadding = 5;
     [label sizeToFit];
     
@@ -194,7 +194,7 @@ static unsigned long long _absolutelyIdentity = 0;
     __block UILabel *label = [LLFactory getLabel:[UIApplication sharedApplication].delegate.window frame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100) text:message font:17 textColor:[UIColor whiteColor]];
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
-    label.LL_horizontalPadding = 20;
+    label.LL_horizontalPadding = 10;
     label.LL_verticalPadding = 5;
     [label sizeToFit];
     
