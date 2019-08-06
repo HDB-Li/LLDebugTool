@@ -28,6 +28,7 @@
 #import "LLTool.h"
 #import "LLRoute.h"
 #import "NSHTTPURLResponse+LL_Utils.h"
+#import "NSData+LL_Utils.h"
 
 static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 
@@ -94,12 +95,15 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
     model.headerFields = [self.request.allHTTPHeaderFields mutableCopy];
-    if (self.request.HTTPBody != nil) {
-        model.requestBody = [LLTool convertJSONStringFromData:self.request.HTTPBody];
-    } else if (self.request.HTTPBodyStream) {
-        NSData* data = [self dataFromInputStream:self.request.HTTPBodyStream];
-        model.requestBody = [LLTool convertJSONStringFromData:data];
+    
+    NSData *data = [self.request.HTTPBody copy];
+    if (data == nil && self.request.HTTPBodyStream) {
+        data = [self dataFromInputStream:self.request.HTTPBodyStream];
     }
+    if (data && [data length] > 0) {
+        model.requestBody = [data LL_toJsonString];
+    }
+    
     // Response
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
     model.stateLine = httpResponse.LL_stateLine;

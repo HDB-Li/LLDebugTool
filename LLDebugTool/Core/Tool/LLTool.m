@@ -77,25 +77,6 @@ static unsigned long long _absolutelyIdentity = 0;
     return [[self staticDateFormatter] dateFromString:string];
 }
 
-+ (NSString *)convertJSONStringFromData:(NSData *)data
-{
-    if ([data length] == 0) {
-        return @"";
-    }
-    NSString *prettyString = @"";
-    
-    id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-    if ([NSJSONSerialization isValidJSONObject:jsonObject]) {
-        prettyString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:jsonObject options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
-        // NSJSONSerialization escapes forward slashes. We want pretty json, so run through and unescape the slashes.
-        prettyString = [prettyString stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    } else {
-        prettyString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    }
-    
-    return prettyString ?: @"";
-}
-
 + (NSString *)convertJSONStringFromDictionary:(NSDictionary *)dictionary {
     
     if (dictionary.allKeys.count == 0) {

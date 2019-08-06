@@ -57,7 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Convert data or dictionary to JSONString.
  */
-+ (NSString *)convertJSONStringFromData:(NSData *_Nullable)data;
 + (NSString *)convertJSONStringFromDictionary:(NSDictionary *_Nullable)dictionary;
 
 /**

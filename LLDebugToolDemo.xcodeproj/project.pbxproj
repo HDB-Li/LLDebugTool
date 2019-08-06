@@ -28,6 +28,7 @@
 		36CBA51C22EE9850005134FB /* LLBaseComponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CBA51B22EE9850005134FB /* LLBaseComponentViewController.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
+		36EA5F9222F966D6007E04A2 /* NSData+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -231,6 +232,8 @@
 		36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoUITests.m; sourceTree = "<group>"; };
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36EA5F9022F966D6007E04A2 /* NSData+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+LL_Utils.h"; sourceTree = "<group>"; };
+		36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+LL_Utils.m"; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -592,6 +595,15 @@
 				36E248972123BAE900D03F44 /* Info.plist */,
 			);
 			path = LLDebugToolDemoUITests;
+			sourceTree = "<group>";
+		};
+		36EA5F8F22F96676007E04A2 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				36EA5F9022F966D6007E04A2 /* NSData+LL_Utils.h */,
+				36EA5F9122F966D6007E04A2 /* NSData+LL_Utils.m */,
+			);
+			path = NSData;
 			sourceTree = "<group>";
 		};
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
@@ -977,6 +989,7 @@
 		C498558622ED8D0E00E9FBE2 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				36EA5F8F22F96676007E04A2 /* NSData */,
 				C45BA2D622F47E56006B833A /* UIWindow */,
 				C45BA2D222F47CCD006B833A /* UIViewController */,
 				36C0259122F2E7780015F3BC /* UIControl */,
@@ -1693,6 +1706,7 @@
 				C49855F522ED8D0E00E9FBE2 /* LLFunctionItemView.m in Sources */,
 				C49855E122ED8D0E00E9FBE2 /* LLConst.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
+				36EA5F9222F966D6007E04A2 /* NSData+LL_Utils.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
 				C49855F022ED8D0E00E9FBE2 /* LLFilterEventView.m in Sources */,
 				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,

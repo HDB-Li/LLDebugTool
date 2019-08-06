@@ -24,6 +24,7 @@
 #import "LLNetworkModel.h"
 #import "LLTool.h"
 #import "NSString+LL_Utils.h"
+#import "NSData+LL_Utils.h"
 
 @interface LLNetworkModel ()
 
@@ -85,7 +86,7 @@
 
 - (NSString *)responseString {
     if (!_responseString && !self.isImage) {
-        _responseString = [LLTool convertJSONStringFromData:self.responseData];
+        _responseString = [self.responseData LL_toJsonString];
     }
     return _responseString;
 }
