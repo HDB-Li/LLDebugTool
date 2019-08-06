@@ -164,8 +164,11 @@ static unsigned long long _absolutelyIdentity = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
+    label.LL_horizontalPadding = 20;
+    label.LL_verticalPadding = 5;
     [label sizeToFit];
-    [label LL_setCornerRadius:label.font.lineHeight / 2.0];
+    
+    [label LL_setCornerRadius:5];
     label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
     _toastLabel = label;
     [UIView animateWithDuration:0.25 animations:^{
@@ -195,8 +198,7 @@ static unsigned long long _absolutelyIdentity = 0;
     label.LL_verticalPadding = 5;
     [label sizeToFit];
     
-    label.layer.cornerRadius = label.font.lineHeight / 2.0;
-    label.layer.masksToBounds = YES;
+    [label LL_setCornerRadius:5];
     label.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
     label.alpha = 0;
     label.backgroundColor = [UIColor blackColor];
