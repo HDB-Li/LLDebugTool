@@ -73,14 +73,14 @@
 
 - (NSString *)headerString {
     if (!_headerString) {
-        _headerString = [LLTool convertJSONStringFromDictionary:self.headerFields];
+        _headerString = [self.headerFields LL_toJsonString];
     }
     return _headerString;
 }
 
 - (NSString *)responseHeaderString {
     if (!_responseHeaderString) {
-        _responseHeaderString = [LLTool convertJSONStringFromDictionary:self.responseHeaderFields];
+        _responseHeaderString = [self.responseHeaderFields LL_toJsonString];
     }
     return _responseHeaderString;
 }

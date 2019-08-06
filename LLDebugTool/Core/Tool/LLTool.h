@@ -55,11 +55,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDate *_Nullable)staticDateFromString:(NSString *)string;
 
 /**
- Convert data or dictionary to JSONString.
- */
-+ (NSString *)convertJSONStringFromDictionary:(NSDictionary *_Nullable)dictionary;
-
-/**
  Create directory if not exist.
  */
 + (BOOL)createDirectoryAtPath:(NSString *)path;

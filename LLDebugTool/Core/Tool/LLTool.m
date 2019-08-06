@@ -77,30 +77,6 @@ static unsigned long long _absolutelyIdentity = 0;
     return [[self staticDateFormatter] dateFromString:string];
 }
 
-+ (NSString *)convertJSONStringFromDictionary:(NSDictionary *)dictionary {
-    
-    if (dictionary.allKeys.count == 0) {
-        return @"";
-    }
-    
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                       options:0
-                                                         error:&error];
-
-    NSString *jsonString = @"";
-    
-    if (jsonData) {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    
-    jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-    return jsonString ?: @"";
-}
-
 + (BOOL)createDirectoryAtPath:(NSString *)path {
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSError *error;
