@@ -35,6 +35,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)LL_description;
 
+/**
+ Mixture with another color, radio is between 0.0 to 1.0
+
+ @param color Another color.
+ @param radio Mixture radio
+ @return New color.
+ */
+- (UIColor *)LL_mixtureWithColor:(UIColor *)color radio:(CGFloat)radio;
+
 @end
 
 NS_ASSUME_NONNULL_END

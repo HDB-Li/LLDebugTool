@@ -27,6 +27,12 @@
 
 static LLThemeManager *_instance = nil;
 
+@interface LLThemeManager ()
+
+@property (nonatomic, strong) NSHashTable *primaryColorItems;
+
+@end
+
 @implementation LLThemeManager
 
 + (instancetype)shared {
@@ -42,10 +48,14 @@ static LLThemeManager *_instance = nil;
 - (void)initial {
     _primaryColor = LLCONFIG_TEXT_COLOR;
     _backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    _containerColor = [self calculateContainerColor:LLCONFIG_TEXT_COLOR color2:LLCONFIG_BACKGROUND_COLOR];
-    _grayBackgroundColor = [UIColor LL_colorWithHex:@"#EBEEF5"];
-    _backgroundBColor = [UIColor blackColor];
-    _backgroundWColor = [UIColor whiteColor];
+    _containerColor = [LLCONFIG_BACKGROUND_COLOR LL_mixtureWithColor:LLCONFIG_TEXT_COLOR radio:0.1];
+    _primaryColorItems = [NSHashTable weakObjectsHashTable];
+}
+
+- (void)addPrimaryColorObject:(id)object {
+    @synchronized (self) {
+        [self.primaryColorItems addObject:object];
+    }
 }
 
 - (UIColor *)calculateContainerColor:(UIColor *)color1 color2:(UIColor *)color2 {

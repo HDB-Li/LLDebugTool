@@ -28,19 +28,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLThemeManager : NSObject
 
+/**
+ Primary color, use on text and border.
+ */
 @property (nonatomic, copy, readonly) UIColor *primaryColor;
 
+/**
+ Background color, use on background.
+ */
 @property (nonatomic, copy, readonly) UIColor *backgroundColor;
 
+/**
+ Container color, use on containerView, should different with backgroundColor.
+ */
 @property (nonatomic, copy, readonly) UIColor *containerColor;
 
-@property (nonatomic, copy, readonly) UIColor *grayBackgroundColor;
+/**
+ Singleton
 
-@property (nonatomic, copy, readonly) UIColor *backgroundBColor;
-
-@property (nonatomic, copy, readonly) UIColor *backgroundWColor;
-
+ @return singleton.
+ */
 + (instancetype)shared;
+
+- (void)addPrimaryColorObject:(id)object;
 
 @end
 
