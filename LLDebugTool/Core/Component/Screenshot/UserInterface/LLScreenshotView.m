@@ -28,9 +28,9 @@
 #import "LLScreenshotToolbar.h"
 #import "LLScreenshotHelper.h"
 #import "LLMacros.h"
-#import "LLTool.h"
 #import "LLRoute.h"
 #import "LLFormatterTool.h"
+#import "LLToastUtils.h"
 
 @interface LLScreenshotView () <LLScreenshotToolbarDelegate>
 
@@ -107,14 +107,14 @@
         [[LLScreenshotHelper sharedHelper] saveScreenshot:image name:name complete:nil];
         if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-            [LLTool toastMessage:@"Save image in sandbox and album."];
+            [[LLToastUtils shared] toastMessage:@"Save image in sandbox and album."];
         } else {
-            [LLTool toastMessage:@"Save image in sandbox."];
+            [[LLToastUtils shared] toastMessage:@"Save image in sandbox."];
         }
         [self hide];
     } else {
         self.toolBar.hidden = NO;
-        [LLTool toastMessage:@"Save image failed."];
+        [[LLToastUtils shared] toastMessage:@"Save image failed."];
     }
 }
 

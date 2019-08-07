@@ -1,5 +1,5 @@
 //
-//  LLBaseViewController.h
+//  LLToastUtils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseViewController : UIViewController
-/**
- * Simple alert.
- */
-- (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
+@interface LLToastUtils : NSObject
 
-/**
- * Left navigation item action.
- */
-- (void)leftItemClick;
++ (instancetype)shared;
 
-/**
- Whether hit test at point with event.
+- (void)toastMessage:(NSString *)message;
 
- @param point Point
- @param event Event
- @return Result.
- */
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;
+- (void)loadingMessage:(NSString *)message;
+
+- (void)hide;
+
 @end
 
 NS_ASSUME_NONNULL_END

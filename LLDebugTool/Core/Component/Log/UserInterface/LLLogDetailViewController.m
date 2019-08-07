@@ -23,6 +23,7 @@
 
 #import "LLLogDetailViewController.h"
 #import "LLSubTitleTableViewCell.h"
+#import "LLToastUtils.h"
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
@@ -63,7 +64,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
     if ([self.canCopyArray containsObject:title]) {
         NSString *content = self.contentArray[indexPath.row];
         [UIPasteboard generalPasteboard].string = content;
-        [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
 }
 

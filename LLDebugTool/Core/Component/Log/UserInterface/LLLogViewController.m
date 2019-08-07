@@ -31,7 +31,7 @@
 #import "LLImageNameConfig.h"
 #import "LLSearchBar.h"
 #import "NSObject+LL_Utils.h"
-#import "LLTool.h"
+#import "LLToastUtils.h"
 
 static NSString *const kLogCellID = @"LLLogCell";
 
@@ -89,9 +89,9 @@ static NSString *const kLogCellID = @"LLLogCell";
         [models addObject:self.datas[indexPath.row]];
     }
     __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Deleting"];
+    [[LLToastUtils shared] loadingMessage:@"Deleting"];
     [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
-        [LLTool hideLoadingMessage];
+        [[LLToastUtils shared] hide];
         if (result) {
             [weakSelf.dataArray removeObjectsInArray:models];
             [weakSelf.searchDataArray removeObjectsInArray:models];
@@ -179,9 +179,9 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)loadData {
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
-        [LLTool hideLoadingMessage];
+        [[LLToastUtils shared] hide];
         [weakSelf.dataArray removeAllObjects];
         [weakSelf.dataArray addObjectsFromArray:result];
         [weakSelf.searchDataArray removeAllObjects];

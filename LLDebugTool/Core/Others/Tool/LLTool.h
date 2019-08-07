@@ -47,17 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
 
 /**
- Show toast.
- */
-+ (void)toastMessage:(NSString *_Nullable)message;
-
-/**
- Show or hide loading message.
- */
-+ (void)loadingMessage:(NSString *_Nullable)message;
-+ (void)hideLoadingMessage;
-
-/**
  Frame fromat.
  */
 + (NSString *)stringFromFrame:(CGRect)frame;
@@ -66,6 +55,20 @@ NS_ASSUME_NONNULL_BEGIN
  Supported interface orientations in info.plist.
  */
 + (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
+
+/**
+ Top level window.
+
+ @return Top level window.
+ */
++ (UIWindow *)topWindow;
+
+/**
+ Key window.
+
+ @return Key window.
+ */
++ (UIWindow *)keyWindow;
 
 @end
 

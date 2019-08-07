@@ -29,7 +29,7 @@
 #import "LLStorageManager.h"
 #import "LLCrashDetailViewController.h"
 #import "LLImageNameConfig.h"
-#import "LLTool.h"
+#import "LLToastUtils.h"
 
 static NSString *const kCrashCellID = @"CrashCellID";
 
@@ -67,9 +67,9 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
-        [LLTool hideLoadingMessage];
+        [[LLToastUtils shared] hide];
         [weakSelf.dataArray removeAllObjects];
         [weakSelf.dataArray addObjectsFromArray:result];
         [weakSelf.tableView reloadData];
@@ -85,9 +85,9 @@ static NSString *const kCrashCellID = @"CrashCellID";
     }
     
     __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Deleting"];
+    [[LLToastUtils shared] loadingMessage:@"Deleting"];
     [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
-        [LLTool hideLoadingMessage];
+        [[LLToastUtils shared] hide];
         if (result) {
             [weakSelf.dataArray removeObjectsInArray:models];
             [weakSelf.searchDataArray removeObjectsInArray:models];

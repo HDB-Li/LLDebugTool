@@ -25,8 +25,8 @@
 #import "LLSubTitleTableViewCell.h"
 #import "LLNetworkImageCell.h"
 #import "LLConfig.h"
-#import "LLTool.h"
 #import "UIImage+LL_Utils.h"
+#import "LLToastUtils.h"
 
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
@@ -90,14 +90,14 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             }
             if ([image isKindOfClass:[UIImage class]]) {
                 [[UIPasteboard generalPasteboard] setImage:image];
-                [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+                [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
             }
         } else if ([obj isKindOfClass:[NSData class]] || [obj isKindOfClass:[NSString class]]) {
             if ([obj isKindOfClass:[NSData class]]) {
                 obj = [self convertDataToHexStr:obj];
             }
             [[UIPasteboard generalPasteboard] setString:obj];
-            [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+            [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
         }
     }
 }

@@ -32,8 +32,8 @@
 #import "LLSearchBar.h"
 #import "LLNetworkFilterView.h"
 #import "LLMacros.h"
-#import "LLTool.h"
 #import "NSObject+LL_Utils.h"
+#import "LLToastUtils.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
@@ -88,9 +88,9 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     }
     
     __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Deleting"];
+    [[LLToastUtils shared] loadingMessage:@"Deleting"];
     [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
-        [LLTool hideLoadingMessage];
+        [[LLToastUtils shared] hide];
         if (result) {
             [weakSelf.dataArray removeObjectsInArray:models];
             [weakSelf.searchDataArray removeObjectsInArray:models];
@@ -173,9 +173,9 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)loadData {
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;
-    [LLTool loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
-        [LLTool hideLoadingMessage];
+        [[LLToastUtils shared] hide];
         [weakSelf.dataArray removeAllObjects];
         [weakSelf.dataArray addObjectsFromArray:result];
         [weakSelf.searchDataArray removeAllObjects];

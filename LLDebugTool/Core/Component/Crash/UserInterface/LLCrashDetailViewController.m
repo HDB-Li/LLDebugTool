@@ -26,9 +26,9 @@
 #import "LLMacros.h"
 #import "LLStorageManager.h"
 #import "LLConfig.h"
-#import "LLTool.h"
 #import "LLCrashSignalDetailViewController.h"
 #import "LLRoute.h"
+#import "LLToastUtils.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -95,7 +95,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
-        [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
 }
 
@@ -120,12 +120,12 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     Class networkModelClass = NSClassFromString(kLLNetworkModelName);
     if (logModelClass != nil && networkModelClass != nil) {
         __weak typeof(self) weakSelf = self;
-        [LLTool loadingMessage:@"Loading"];
+        [[LLToastUtils shared] loadingMessage:@"Loading"];
         [[LLStorageManager sharedManager] getModels:logModelClass launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
             // Get log models.
             __block NSArray *logs = result;
             [[LLStorageManager sharedManager] getModels:networkModelClass launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-                [LLTool hideLoadingMessage];
+                [[LLToastUtils shared] hide];
                 // Get nework requests.
                 NSArray *networkRequests = result;
                 [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
@@ -133,18 +133,18 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         }];
     } else if (logModelClass != nil) {
         __weak typeof(self) weakSelf = self;
-        [LLTool loadingMessage:@"Loading"];
+        [[LLToastUtils shared] loadingMessage:@"Loading"];
         [[LLStorageManager sharedManager] getModels:logModelClass launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-            [LLTool hideLoadingMessage];
+            [[LLToastUtils shared] hide];
             // Get log models.
             __block NSArray *logs = result;
             [weakSelf updateDataWithLogs:logs networkRequests:nil];
         }];
     } else if (networkModelClass != nil) {
         __weak typeof(self) weakSelf = self;
-        [LLTool loadingMessage:@"Loading"];
+        [[LLToastUtils shared] loadingMessage:@"Loading"];
         [[LLStorageManager sharedManager] getModels:networkModelClass launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-            [LLTool hideLoadingMessage];
+            [[LLToastUtils shared] hide];
             // Get nework requests.
             NSArray *networkRequests = result;
             [weakSelf updateDataWithLogs:nil networkRequests:networkRequests];

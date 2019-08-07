@@ -28,7 +28,6 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLHierarchyDetailCell.h"
-#import "LLTool.h"
 #import "UIColor+LL_Utils.h"
 #import "UILabel+LL_Utils.h"
 #import "UIControl+LL_Utils.h"

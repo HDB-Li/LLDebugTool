@@ -23,7 +23,6 @@
 
 #import "LLBaseViewController.h"
 #import "LLImageNameConfig.h"
-#import "LLTool.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
@@ -40,10 +39,6 @@
 }
 
 #pragma mark - Public
-- (void)toastMessage:(NSString *)message {
-    [LLTool toastMessage:message];
-}
-
 - (void)showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Note" message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {

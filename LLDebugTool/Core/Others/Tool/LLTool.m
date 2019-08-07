@@ -200,4 +200,18 @@ static unsigned long long _absolutelyIdentity = 0;
     return supportedOrientationsMask;
 }
 
++ (UIWindow *)topWindow {
+    UIWindow *topWindow = [UIApplication sharedApplication].delegate.window;
+    for (UIWindow *win in [UIApplication sharedApplication].windows) {
+        if (!win.isHidden && win.windowLevel > topWindow.windowLevel) {
+            topWindow = win;
+        }
+    }
+    return topWindow;
+}
+
++ (UIWindow *)keyWindow {
+    return [UIApplication sharedApplication].delegate.window;
+}
+
 @end

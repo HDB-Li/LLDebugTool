@@ -24,7 +24,7 @@
 #import "LLCrashSignalDetailViewController.h"
 #import "LLSubTitleTableViewCell.h"
 #import "LLConfig.h"
-#import "LLTool.h"
+#import "LLToastUtils.h"
 
 static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
@@ -63,7 +63,7 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
     NSString *title = self.titleArray[indexPath.row];
     if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
-        [self toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
     }
 }
 

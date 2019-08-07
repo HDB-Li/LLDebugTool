@@ -28,6 +28,7 @@
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
+#import "LLToastUtils.h"
 
 static NSString *const kSandboxCellID = @"LLSandboxCell";
 
@@ -71,7 +72,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     vc.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
         [weakSelf rightItemClick:weakSelf.navigationItem.rightBarButtonItem.customView];
         if (activityError) {
-            [weakSelf toastMessage:activityError.debugDescription];
+            [[LLToastUtils shared] toastMessage:activityError.debugDescription];
         }
     };
     [self presentViewController:vc animated:YES completion:nil];
@@ -149,7 +150,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 vc.sandboxModel = model;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                [self toastMessage:@"Empty folder"];
+                [[LLToastUtils shared] toastMessage:@"Empty folder"];
             }
         } else {
             if (model.canPreview) {
@@ -207,7 +208,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LLSandboxModel *model = self.datas[indexPath.row];
     [UIPasteboard generalPasteboard].string = model.filePath;
-    [self toastMessage:[NSString stringWithFormat:@"Copy File Path Success\n%@",model.filePath]];
+    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy File Path Success\n%@",model.filePath]];
 }
 
 @end

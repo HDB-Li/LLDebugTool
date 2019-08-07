@@ -28,7 +28,6 @@
 #import <mach/mach.h>
 #import "UIDevice+LL_Utils.h"
 #import "LLMacros.h"
-#import "LLTool.h"
 #import "NSObject+LL_Utils.h"
 
 static LLAppInfoHelper *_instance = nil;
