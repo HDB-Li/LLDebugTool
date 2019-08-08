@@ -53,6 +53,10 @@ static LLThemeManager *_instance = nil;
 }
 
 - (void)addPrimaryColorObject:(id)object {
+    if ([object isKindOfClass:[CALayer class]]) {
+        CALayer *layer = (CALayer *)object;
+        layer.borderColor = self.primaryColor.CGColor;
+    }
     @synchronized (self) {
         [self.primaryColorItems addObject:object];
     }

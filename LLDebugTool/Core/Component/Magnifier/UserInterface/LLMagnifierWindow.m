@@ -29,10 +29,14 @@
 #import "UIImage+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
 #import "LLWindowManager.h"
+#import "LLThemeManager.h"
+#import "LLFactory.h"
 
 @interface LLMagnifierWindow ()
 
 @property (nonatomic, strong, nullable) UIImage *screenshot;
+
+@property (nonatomic, strong) UIView *rectView;
 
 @end
 
@@ -107,10 +111,23 @@
     self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     self.layer.borderWidth = 2;
     
-    UIImage *image = [self maskImage];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
-    [self addSubview:imgView];
-    imgView.frame = self.bounds;
+    NSInteger zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
+    
+    NSInteger centerX = self.LL_width / 2.0;
+    NSInteger centerY = self.LL_height / 2.0;
+    
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = self.bounds;
+    layer.path = [UIBezierPath bezierPathWithRect:CGRectMake(centerX - zoomLevel / 2.0, centerY - zoomLevel / 2.0, zoomLevel, zoomLevel)].CGPath;
+    layer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    layer.fillColor = nil;
+    layer.lineWidth = 2;
+    [self.layer addSublayer:layer];
+//    
+//    
+//    self.rectView = [LLFactory getView:self frame:CGRectMake(centerX - zoomLevel / 2.0, centerY - zoomLevel / 2.0, zoomLevel, zoomLevel) backgroundColor:[UIColor clearColor]];
+//    self.rectView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+//    self.rectView.layer.borderWidth = 2;
     
     self.targetPoint = CGPointZero;
     
@@ -157,24 +174,6 @@
 
 - (void)updateScreenshot {
     self.screenshot = [[LLScreenshotHelper sharedHelper] imageFromScreen:1];
-}
-
-- (UIImage *)maskImage {
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    NSInteger zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
-    
-    NSInteger centerX = self.LL_width / 2.0;
-    NSInteger centerY = self.LL_height / 2.0;
-    
-    CGContextSetStrokeColorWithColor(context, LLCONFIG_TEXT_COLOR.CGColor);
-    CGContextStrokeRectWithWidth(context, CGRectMake(centerX - zoomLevel / 2.0, centerY - zoomLevel / 2.0, zoomLevel, zoomLevel), 2);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 @end

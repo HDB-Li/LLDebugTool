@@ -45,7 +45,7 @@
         LLBaseViewController *viewController = (LLBaseViewController *)vc;
         return [viewController pointInside:point withEvent:event];
     }
-    return YES;
+    return [super pointInside:point withEvent:event];
 }
 
 - (void)dealloc {
