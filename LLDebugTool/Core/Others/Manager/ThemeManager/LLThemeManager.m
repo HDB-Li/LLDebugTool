@@ -58,15 +58,4 @@ static LLThemeManager *_instance = nil;
     }
 }
 
-- (UIColor *)calculateContainerColor:(UIColor *)color1 color2:(UIColor *)color2 {
-    NSArray *colors1 = [color1 LL_RGBA];
-    NSArray *colors2 = [color2 LL_RGBA];
-    
-    CGFloat r = ([colors1[0] doubleValue] - [colors2[0] doubleValue]) * 0.1 + [colors2[0] doubleValue];
-    CGFloat g = ([colors1[1] doubleValue] - [colors2[1] doubleValue]) * 0.1 + [colors2[1] doubleValue];
-    CGFloat b = ([colors1[2] doubleValue] - [colors2[2] doubleValue]) * 0.1 + [colors2[2] doubleValue];
-    
-    return [UIColor colorWithRed:r green:g blue:b alpha:1];
-}
-
 @end

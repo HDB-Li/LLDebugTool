@@ -136,9 +136,9 @@
     NSArray *colors1 = [self LL_RGBA];
     NSArray *colors2 = [color LL_RGBA];
     
-    CGFloat r = [colors2[0] doubleValue] * radio + [colors1[0] doubleValue];
-    CGFloat g = [colors2[1] doubleValue] * radio + [colors1[1] doubleValue];
-    CGFloat b = [colors2[2] doubleValue] * radio + [colors1[2] doubleValue];
+    CGFloat r = [colors2[0] doubleValue] * radio + [colors1[0] doubleValue] * (1 - radio);
+    CGFloat g = [colors2[1] doubleValue] * radio + [colors1[1] doubleValue] * (1 - radio) ;
+    CGFloat b = [colors2[2] doubleValue] * radio + [colors1[2] doubleValue] * (1 - radio);
     
     return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
