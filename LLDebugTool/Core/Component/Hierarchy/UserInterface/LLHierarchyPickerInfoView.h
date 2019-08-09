@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentInfoView.h"
+#import "LLBaseInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyPickerInfoView : LLBaseComponentInfoView
+@interface LLHierarchyPickerInfoView : LLBaseInfoView
 
 - (void)updateView:(UIView *)view;
 

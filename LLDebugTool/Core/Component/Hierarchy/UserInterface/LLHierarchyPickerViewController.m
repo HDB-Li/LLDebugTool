@@ -29,8 +29,9 @@
 #import "UIView+LL_Utils.h"
 #import "LLConst.h"
 #import "LLMacros.h"
+#import "LLWindowManager.h"
 
-@interface LLHierarchyPickerViewController ()<LLHierarchyPickerViewDelegate>
+@interface LLHierarchyPickerViewController ()<LLHierarchyPickerViewDelegate, LLBaseInfoViewDelegate>
 
 @property (nonatomic, strong) UIView *borderView;
 
@@ -53,6 +54,7 @@
     
     CGFloat height = 100;
     self.infoView = [[LLHierarchyPickerInfoView alloc] initWithFrame:CGRectMake(kGeneralMargin, LL_SCREEN_HEIGHT - kGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kGeneralMargin * 2, height)];
+    self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     
     self.borderView = [LLFactory getView:self.view frame:CGRectZero backgroundColor:[UIColor clearColor]];
@@ -73,6 +75,11 @@
     self.borderView.frame = rect;
     
     [self.infoView updateView:selectedView];
+}
+
+#pragma mark - LLBaseInfoViewDelegate
+- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+    [self componentDidLoad:nil];
 }
 
 @end

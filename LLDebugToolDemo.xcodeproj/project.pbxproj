@@ -25,7 +25,7 @@
 		36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC422FD063A00BBB6FA /* LLBaseView.m */; };
 		36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC722FD065D00BBB6FA /* LLBaseMoveView.m */; };
 		36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCA22FD07B500BBB6FA /* LLMagnifierView.m */; };
-		36596BCE22FD172D00BBB6FA /* LLBaseComponentInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCD22FD172D00BBB6FA /* LLBaseComponentInfoView.m */; };
+		36596BCE22FD172D00BBB6FA /* LLBaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */; };
 		36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
@@ -231,8 +231,8 @@
 		36596BC722FD065D00BBB6FA /* LLBaseMoveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseMoveView.m; sourceTree = "<group>"; };
 		36596BC922FD07B500BBB6FA /* LLMagnifierView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierView.h; sourceTree = "<group>"; };
 		36596BCA22FD07B500BBB6FA /* LLMagnifierView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierView.m; sourceTree = "<group>"; };
-		36596BCC22FD172D00BBB6FA /* LLBaseComponentInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentInfoView.h; sourceTree = "<group>"; };
-		36596BCD22FD172D00BBB6FA /* LLBaseComponentInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentInfoView.m; sourceTree = "<group>"; };
+		36596BCC22FD172D00BBB6FA /* LLBaseInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseInfoView.h; sourceTree = "<group>"; };
+		36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseInfoView.m; sourceTree = "<group>"; };
 		36596BCF22FD1DF300BBB6FA /* LLMagnifierInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierInfoView.h; sourceTree = "<group>"; };
 		36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoView.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -1484,8 +1484,8 @@
 				C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */,
 				C4B4E41922F9C90900F70277 /* LLBaseTableViewController.h */,
 				C4B4E42422F9C90900F70277 /* LLBaseTableViewController.m */,
-				36596BCC22FD172D00BBB6FA /* LLBaseComponentInfoView.h */,
-				36596BCD22FD172D00BBB6FA /* LLBaseComponentInfoView.m */,
+				36596BCC22FD172D00BBB6FA /* LLBaseInfoView.h */,
+				36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */,
 				C4B4E41A22F9C90900F70277 /* LLBaseComponentViewController.h */,
 				C4B4E42322F9C90900F70277 /* LLBaseComponentViewController.m */,
 			);
@@ -1831,7 +1831,7 @@
 				C498568322ED8D4800E9FBE2 /* LLScreenshotSelectorView.m in Sources */,
 				C49856EC22EDAEFE00E9FBE2 /* LLAppInfoWindow.m in Sources */,
 				C4B4E43B22F9C90900F70277 /* UIImage+LL_Utils.m in Sources */,
-				36596BCE22FD172D00BBB6FA /* LLBaseComponentInfoView.m in Sources */,
+				36596BCE22FD172D00BBB6FA /* LLBaseInfoView.m in Sources */,
 				C4B4E47722F9C90900F70277 /* LLBaseModel.m in Sources */,
 				36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,

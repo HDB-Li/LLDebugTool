@@ -23,6 +23,7 @@
 
 #import "LLMagnifierWindow.h"
 #import "LLMagnifierViewController.h"
+#import "LLWindowManager.h"
 
 @implementation LLMagnifierWindow
 
@@ -31,6 +32,12 @@
         [self initial];
     }
     return self;
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] hideWindow:self animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] reloadMagnifierWindow];
 }
 
 #pragma mark - Primary

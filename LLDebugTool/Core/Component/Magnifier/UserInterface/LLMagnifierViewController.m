@@ -28,7 +28,7 @@
 #import "LLMacros.h"
 #import "LLConst.h"
 
-@interface LLMagnifierViewController ()<LLMagnifierViewDelegate>
+@interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLBaseInfoViewDelegate>
 
 @property (nonatomic, strong) LLMagnifierView *magnifierView;
 
@@ -49,6 +49,7 @@
     
     CGFloat height = 60;
     self.infoView = [[LLMagnifierInfoView alloc] initWithFrame:CGRectMake(kGeneralMargin, LL_SCREEN_HEIGHT - kGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kGeneralMargin * 2, height)];
+    self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     
     NSInteger width = [LLConfig sharedConfig].magnifierZoomLevel * [LLConfig sharedConfig].magnifierSize;
@@ -60,6 +61,11 @@
 #pragma mark - LLMagnifierViewDelegate
 - (void)LLMagnifierView:(LLMagnifierView *)view update:(NSString *)hexColor at:(CGPoint)point {
     [self.infoView update:hexColor point:point];
+}
+
+#pragma mark - LLBaseInfoViewDelegate
+- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+    [self componentDidLoad:nil];
 }
 
 @end

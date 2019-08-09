@@ -1,5 +1,5 @@
 //
-//  LLBaseComponentInfoView.m
+//  LLBaseInfoView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,20 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentInfoView.h"
+#import "LLBaseInfoView.h"
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
 
-@interface LLBaseComponentInfoView ()
+@interface LLBaseInfoView ()
 
 @property (nonatomic, strong) UIButton *closeButton;
 
 @end
 
-@implementation LLBaseComponentInfoView
+@implementation LLBaseInfoView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -49,10 +49,6 @@
     return self;
 }
 
-- (void)componentDidFinish {
-    
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGRect closeRect = CGRectMake(self.LL_width - 10 - 30, 10, 30, 30);
@@ -63,7 +59,7 @@
 
 #pragma mark - Primary
 - (void)closeButtonClicked:(UIButton *)sender {
-//    [self componentDidFinish];
+    [self.delegate LLBaseInfoViewDidSelectCloseButton:self];
 }
 
 @end

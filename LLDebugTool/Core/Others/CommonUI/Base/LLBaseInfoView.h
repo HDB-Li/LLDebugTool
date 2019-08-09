@@ -1,5 +1,5 @@
 //
-//  LLBaseComponentInfoView.h
+//  LLBaseInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,7 +25,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseComponentInfoView : LLBaseMoveView
+@class LLBaseInfoView;
+
+@protocol LLBaseInfoViewDelegate <NSObject>
+
+- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view;
+
+@end
+
+@interface LLBaseInfoView : LLBaseMoveView
+
+@property (nonatomic, weak, nullable) id<LLBaseInfoViewDelegate> delegate;
 
 @property (nonatomic, strong, readonly) UIButton *closeButton;
 

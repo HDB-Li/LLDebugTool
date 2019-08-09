@@ -23,6 +23,7 @@
 
 #import "LLHierarchyPickerWindow.h"
 #import "LLHierarchyPickerViewController.h"
+#import "LLWindowManager.h"
 
 @interface LLHierarchyPickerWindow ()
 
@@ -35,6 +36,12 @@
         [self initial];
     }
     return self;
+}
+
+- (void)componentDidFinish {
+    [[LLWindowManager shared] hideWindow:self animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] reloadHierarchyPickerWindow];
 }
 
 #pragma mark - Primary
