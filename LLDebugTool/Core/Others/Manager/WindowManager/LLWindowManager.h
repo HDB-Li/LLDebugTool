@@ -32,9 +32,7 @@
 #import "LLSandboxWindow.h"
 #import "LLCrashWindow.h"
 #import "LLHierarchyWindow.h"
-#import "LLMagnifierInfoWindow.h"
 #import "LLHierarchyPickerWindow.h"
-#import "LLHierarchyInfoWindow.h"
 #import "LLHierarchyDetailWindow.h"
 #import "LLScreenshotWindow.h"
 
@@ -58,8 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) LLMagnifierWindow *magnifierWindow;
 
-@property (nonatomic, strong, readonly) LLMagnifierInfoWindow *magnifierColorWindow;
-
 @property (nonatomic, strong, readonly) LLNetworkWindow *networkWindow;
 
 @property (nonatomic, strong, readonly) LLLogWindow *logWindow;
@@ -73,8 +69,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LLHierarchyWindow *hierarchyWindow;
 
 @property (nonatomic, strong, readonly) LLHierarchyPickerWindow *hierarchyPickerWindow;
-
-@property (nonatomic, strong, readonly) LLHierarchyInfoWindow *hierarchyInfoWindow;
 
 @property (nonatomic, strong, readonly) LLHierarchyDetailWindow *hierarchyDetailWindow;
 
@@ -223,19 +217,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reloadHierarchyWindow;
 
 /**
- Reload magnifier color window.
- */
-- (void)reloadMagnifierColorWindow;
-
-/**
  Reload hierarchy picker window.
  */
 - (void)reloadHierarchyPickerWindow;
-
-/**
- Reload hierarchy info window.
- */
-- (void)reloadHierarchyInfoWindow;
 
 /**
  Reload hierarchy detail window.

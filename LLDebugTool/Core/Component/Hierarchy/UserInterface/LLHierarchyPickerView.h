@@ -1,5 +1,5 @@
 //
-//  LLMagnifierWindow.m
+//  LLHierarchyPickerView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMagnifierWindow.h"
-#import "LLMagnifierViewController.h"
+#import "LLBaseMoveView.h"
 
-@implementation LLMagnifierWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@class LLHierarchyPickerView;
 
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLMagnifierViewController alloc] init];
-    }
-}
+@protocol LLHierarchyPickerViewDelegate <NSObject>
+
+- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(UIView *)selectedView;
 
 @end
+
+@interface LLHierarchyPickerView : LLBaseMoveView
+
+@property (nonatomic, weak, nullable) id<LLHierarchyPickerViewDelegate> delegate;
+
+@end
+
+NS_ASSUME_NONNULL_END

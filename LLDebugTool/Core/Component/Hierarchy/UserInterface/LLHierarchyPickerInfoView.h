@@ -1,5 +1,5 @@
 //
-//  LLBaseComponentInfoWindow.h
+//  LLHierarchyPickerInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveableWindow.h"
+#import "LLBaseComponentInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseComponentInfoWindow : LLBaseMoveableWindow
+@interface LLHierarchyPickerInfoView : LLBaseComponentInfoView
 
-@property (nonatomic, strong, readonly) UIButton *closeButton;
+- (void)updateView:(UIView *)view;
 
 @end
 

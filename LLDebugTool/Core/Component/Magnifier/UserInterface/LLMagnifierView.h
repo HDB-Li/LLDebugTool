@@ -1,5 +1,5 @@
 //
-//  LLMagnifierInfoWindow.h
+//  LLMagnifierView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,19 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentInfoWindow.h"
+#import "LLBaseMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLMagnifierInfoWindow : LLBaseComponentInfoWindow
+@class LLMagnifierView;
 
-/**
- Update color and point.
+@protocol LLMagnifierViewDelegate <NSObject>
 
- @param hexColor Hex color
- @param point Point.
- */
-- (void)updateColor:(NSString *)hexColor point:(CGPoint)point;
+- (void)LLMagnifierView:(LLMagnifierView *)view update:(NSString *)hexColor at:(CGPoint)point;
+
+@end
+
+@interface LLMagnifierView : LLBaseMoveView
+
+@property (nonatomic, weak, nullable) id<LLMagnifierViewDelegate> delegate;
 
 @end
 

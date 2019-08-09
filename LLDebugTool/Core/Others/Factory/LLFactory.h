@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "LLBaseMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

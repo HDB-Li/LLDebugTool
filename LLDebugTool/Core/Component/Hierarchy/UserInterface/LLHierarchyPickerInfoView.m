@@ -1,5 +1,5 @@
 //
-//  LLHierarchyInfoWindow.m
+//  LLHierarchyPickerInfoView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,16 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyInfoWindow.h"
-#import "LLWindowManager.h"
-#import "LLFactory.h"
-#import "UIView+LL_Utils.h"
-#import "LLConfig.h"
+#import "LLHierarchyPickerInfoView.h"
 #import "LLTool.h"
-#import "LLMacros.h"
 #import "UIColor+LL_Utils.h"
+#import "UIView+LL_Utils.h"
+#import "LLMacros.h"
+#import "LLFactory.h"
+#import "LLConfig.h"
 
-@interface LLHierarchyInfoWindow ()
+@interface LLHierarchyPickerInfoView ()
 
 @property (nonatomic, weak) UIView *selectedView;
 
@@ -40,7 +39,7 @@
 
 @end
 
-@implementation LLHierarchyInfoWindow
+@implementation LLHierarchyPickerInfoView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -56,7 +55,7 @@
     }
     
     self.selectedView = view;
-
+    
     NSDictionary *boldAttri = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]};
     NSDictionary *attri = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     
@@ -93,7 +92,7 @@
     }
     
     self.contentLabel.attributedText = attribute;
-
+    
     [self.contentLabel sizeToFit];
     
     CGFloat height = self.contentLabel.LL_height + 10 * 3 + 35;
@@ -122,14 +121,6 @@
     }
 }
 
-- (void)componentDidFinish {
-    [[LLWindowManager shared] hideWindow:self animated:YES];
-    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].hierarchyPickerWindow animated:YES];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
-    [[LLWindowManager shared] reloadHierarchyPickerWindow];
-    [[LLWindowManager shared] reloadHierarchyInfoWindow];
-}
-
 #pragma mark - Primary
 - (void)initial {
     self.contentLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLConfig sharedConfig].textColor];
@@ -151,9 +142,9 @@
     if (!self.selectedView) {
         return;
     }
-    LLHierarchyDetailWindow *window = [LLWindowManager shared].hierarchyDetailWindow;
-    window.selectView = self.selectedView;
-    [[LLWindowManager shared] presentWindow:window animated:YES];
+//    LLHierarchyDetailWindow *window = [LLWindowManager shared].hierarchyDetailWindow;
+//    window.selectView = self.selectedView;
+//    [[LLWindowManager shared] presentWindow:window animated:YES];
 }
 
 @end

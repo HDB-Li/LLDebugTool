@@ -1,5 +1,5 @@
 //
-//  LLBaseMoveableWindow.m
+//  LLBaseMoveView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveableWindow.h"
+#import "LLBaseMoveView.h"
 #import "LLMacros.h"
 #import "UIView+LL_Utils.h"
 
-@interface LLBaseMoveableWindow ()
+@interface LLBaseMoveView ()
 
 @property (nonatomic, assign) BOOL moved;
 
 @end
 
-@implementation LLBaseMoveableWindow
+@implementation LLBaseMoveView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -39,21 +39,26 @@
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
         
         [self addGestureRecognizer:pan];
+
     }
     return self;
 }
 
-#pragma mark - Primary
 - (void)panGR:(UIPanGestureRecognizer *)sender {
+    
     if (!self.isMoved) {
         self.moved = YES;
     }
+    
     CGPoint offsetPoint = [sender translationInView:sender.view];
+    
+    [self viewWillUpdateOffset:sender offset:offsetPoint];
     
     [sender setTranslation:CGPointZero inView:sender.view];
     
     [self changeFrameWithPoint:offsetPoint];
     
+    [self viewDidUpdateOffset:sender offset:offsetPoint];
 }
 
 - (void)changeFrameWithPoint:(CGPoint)point {
@@ -62,20 +67,36 @@
     center.x += point.x;
     center.y += point.y;
     
-    center.x = MIN(center.x, LL_SCREEN_WIDTH);
-    center.x = MAX(center.x, 0);
-    
-    center.y = MIN(center.y, LL_SCREEN_HEIGHT);
-    center.y = MAX(center.y, 0);
-    
+    if (self.isOverflow) {
+        center.x = MIN(center.x, self.superview.LL_width);
+        center.x = MAX(center.x, 0);
+        
+        center.y = MIN(center.y, self.superview.LL_height);
+        center.y = MAX(center.y, 0);
+    } else {
+        
+        if (center.x < self.LL_width / 2.0) {
+            center.x = self.LL_width / 2.0;
+        } else if (center.x > self.superview.LL_width - self.LL_width / 2.0) {
+            center.x = self.superview.LL_width - self.LL_width / 2.0;
+        }
+        
+        if (center.y < self.LL_height / 2.0) {
+            center.y = self.LL_height / 2.0;
+        } else if (center.y > self.superview.LL_height - self.LL_height / 2.0) {
+            center.y = self.superview.LL_height - self.LL_height / 2.0;
+        }
+    }
+
     self.center = center;
+}
+
+- (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
     
-    if (self.LL_left < 0) {
-        self.LL_left = 0;
-    }
-    if (self.LL_right > LL_SCREEN_WIDTH) {
-        self.LL_right = LL_SCREEN_WIDTH;
-    }
+}
+
+- (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
+    
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLMagnifierWindow.m
+//  LLBaseView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMagnifierWindow.h"
-#import "LLMagnifierViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation LLMagnifierWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLMagnifierViewController alloc] init];
-    }
-}
+@interface LLBaseView : UIView
 
 @end
+
+NS_ASSUME_NONNULL_END

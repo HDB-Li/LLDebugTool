@@ -31,7 +31,6 @@
     [[LLWindowManager shared] reloadFunctionWindow];
     [[LLWindowManager shared] hideWindow:[LLWindowManager shared].suspensionWindow animated:YES];
     [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:YES];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierColorWindow animated:YES];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLHierarchyInfoWindow.h
+//  LLMagnifierViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentInfoWindow.h"
+#import "LLBaseComponentViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyInfoWindow : LLBaseComponentInfoWindow
-
-/**
- Update view info.
-
- @param view Selected view.
- */
-- (void)updateView:(UIView *)view;
+@interface LLMagnifierViewController : LLBaseComponentViewController
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  LLBaseMoveableWindow.h
+//  LLMagnifierInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLBaseComponentInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseMoveableWindow : LLBaseComponentWindow
+@interface LLMagnifierInfoView : LLBaseComponentInfoView
 
-@property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
+- (void)update:(NSString *)hexColor point:(CGPoint)point;
 
 @end
 

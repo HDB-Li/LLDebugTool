@@ -1,5 +1,5 @@
 //
-//  LLMagnifierInfoWindow.m
+//  LLMagnifierInfoView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMagnifierInfoWindow.h"
+#import "LLMagnifierInfoView.h"
 #import "LLMacros.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
@@ -30,7 +30,7 @@
 #import "UIColor+LL_Utils.h"
 #import "LLWindowManager.h"
 
-@interface LLMagnifierInfoWindow ()
+@interface LLMagnifierInfoView ()
 
 @property (nonatomic, strong) UIView *colorView;
 
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation LLMagnifierInfoWindow
+@implementation LLMagnifierInfoView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -47,7 +47,7 @@
     return self;
 }
 
-- (void)updateColor:(NSString *)hexColor point:(CGPoint)point {
+- (void)update:(NSString *)hexColor point:(CGPoint)point {
     self.colorView.backgroundColor = [UIColor LL_colorWithHex:hexColor];
     self.colorLabel.text = [NSString stringWithFormat:@"%@\nX: %0.1f, Y: %0.1f", hexColor, point.x, point.y];
 }
@@ -66,21 +66,8 @@
     }
 }
 
-- (void)componentDidFinish {
-    [[LLWindowManager shared] hideWindow:self animated:YES];
-    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].magnifierWindow animated:YES];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:YES];
-    [[LLWindowManager shared] reloadMagnifierColorWindow];
-    [[LLWindowManager shared] reloadMagnifierWindow];
-}
-
 #pragma mark - Primary
 - (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[UIViewController alloc] init];
-        self.rootViewController.view.userInteractionEnabled = NO;
-    }
-    
     self.colorView = [LLFactory getView:self frame:CGRectZero];
     self.colorView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
     self.colorView.layer.borderWidth = 0.5;

@@ -1,5 +1,5 @@
 //
-//  LLMagnifierWindow.m
+//  LLBaseMoveView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMagnifierWindow.h"
-#import "LLMagnifierViewController.h"
+#import "LLBaseView.h"
 
-@implementation LLMagnifierWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@interface LLBaseMoveView : LLBaseView
 
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLMagnifierViewController alloc] init];
-    }
-}
+@property (nonatomic, assign, getter=isOverflow) BOOL overflow;
+
+@property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
+
+- (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
+
+- (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
 
 @end
+
+NS_ASSUME_NONNULL_END

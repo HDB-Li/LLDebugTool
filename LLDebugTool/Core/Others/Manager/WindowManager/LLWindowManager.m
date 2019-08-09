@@ -37,8 +37,6 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
 
-@property (nonatomic, strong) LLMagnifierInfoWindow *magnifierColorWindow;
-
 @property (nonatomic, strong) LLNetworkWindow *networkWindow;
 
 @property (nonatomic, strong) LLLogWindow *logWindow;
@@ -52,8 +50,6 @@ static LLWindowManager *_instance = nil;
 @property (nonatomic, strong) LLHierarchyWindow *hierarchyWindow;
 
 @property (nonatomic, strong) LLHierarchyPickerWindow *hierarchyPickerWindow;
-
-@property (nonatomic, strong) LLHierarchyInfoWindow *hierarchyInfoWindow;
 
 @property (nonatomic, strong) LLHierarchyDetailWindow *hierarchyDetailWindow;
 
@@ -268,16 +264,8 @@ static LLWindowManager *_instance = nil;
     _hierarchyWindow = nil;
 }
 
-- (void)reloadMagnifierColorWindow {
-    _magnifierColorWindow = nil;
-}
-
 - (void)reloadHierarchyPickerWindow {
     _hierarchyPickerWindow = nil;
-}
-
-- (void)reloadHierarchyInfoWindow {
-    _hierarchyInfoWindow = nil;
 }
 
 - (void)reloadHierarchyDetailWindow {
@@ -306,19 +294,9 @@ static LLWindowManager *_instance = nil;
 
 - (LLMagnifierWindow *)magnifierWindow {
     if (!_magnifierWindow) {
-        NSInteger width = [LLConfig sharedConfig].magnifierZoomLevel * [LLConfig sharedConfig].magnifierSize;
-        _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
+        _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _magnifierWindow;
-}
-
-- (LLMagnifierInfoWindow *)magnifierColorWindow {
-    if (!_magnifierColorWindow) {
-        CGFloat gap = 10;
-        CGFloat height = 60;
-        _magnifierColorWindow = [[LLMagnifierInfoWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
-    }
-    return _magnifierColorWindow;
 }
 
 - (LLNetworkWindow *)networkWindow {
@@ -369,15 +347,6 @@ static LLWindowManager *_instance = nil;
         _hierarchyPickerWindow = [[LLHierarchyPickerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _hierarchyPickerWindow;
-}
-
-- (LLHierarchyInfoWindow *)hierarchyInfoWindow {
-    if (!_hierarchyInfoWindow) {
-        CGFloat gap = 10;
-        CGFloat height = 100;
-        _hierarchyInfoWindow = [[LLHierarchyInfoWindow alloc] initWithFrame:CGRectMake(gap, LL_SCREEN_HEIGHT - gap * 2 - height, LL_SCREEN_WIDTH - gap * 2, height)];
-    }
-    return _hierarchyInfoWindow;
 }
 
 - (LLHierarchyDetailWindow *)hierarchyDetailWindow {
