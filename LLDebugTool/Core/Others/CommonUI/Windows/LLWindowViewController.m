@@ -843,9 +843,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 // Fix the bug of missing status bars under ios9.
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return [LLConfig sharedConfig].statusBarStyle;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle {
+//    return [LLConfig sharedConfig].statusBarStyle;
+//}
 
 // TODO: Know why does this method affect the statusBar for keywindow.
 - (BOOL)prefersStatusBarHidden {
@@ -873,7 +873,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     
     self.previousStatusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:[LLConfig sharedConfig].statusBarStyle];
+//    [[UIApplication sharedApplication] setStatusBarStyle:[LLConfig sharedConfig].statusBarStyle];
     
     [self setNeedsStatusBarAppearanceUpdate];
     

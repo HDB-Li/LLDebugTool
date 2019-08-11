@@ -22,7 +22,6 @@
 //  SOFTWARE.
 
 #import "LLNavigationController.h"
-#import "LLConfig.h"
 #import "LLThemeManager.h"
 
 @interface LLNavigationController ()
@@ -45,7 +44,7 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return [LLConfig sharedConfig].statusBarStyle;
+    return [LLThemeManager shared].statusBarStyle;
 }
 
 - (BOOL)prefersStatusBarHidden {

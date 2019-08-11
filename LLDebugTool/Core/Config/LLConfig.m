@@ -106,10 +106,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     }
 }
 
-- (UIStatusBarStyle)statusBarStyle {
-    return [LLThemeManager shared].statusBarStyle;
-}
-
 #pragma mark - Primary
 /**
  Initialize something.

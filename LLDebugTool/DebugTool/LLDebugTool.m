@@ -92,6 +92,13 @@ static LLDebugTool *_instance = nil;
     }
 }
 
+- (void)startWorkingWithConfig:(void (^)(LLConfig *config))configBlock {
+    if (configBlock) {
+        configBlock([LLConfig sharedConfig]);
+    }
+    [self startWorking];
+}
+
 - (void)stopWorking {
     if (_isWorking) {
         _isWorking = NO;

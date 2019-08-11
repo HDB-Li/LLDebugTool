@@ -132,12 +132,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Theme Color.
 /**
- Window's statusBarStyle when show.
- */
-@property (nonatomic, assign, readonly) UIStatusBarStyle statusBarStyle;
-
-#pragma mark - Color
-/**
  Use preset the color configuration. For details, please see LLConfigColorStyle.
  */
 @property (nonatomic, assign) LLConfigColorStyle colorStyle;

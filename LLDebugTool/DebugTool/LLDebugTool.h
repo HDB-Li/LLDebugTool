@@ -60,6 +60,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)startWorking;
 
 /**
+ Start working with config block.
+
+ @param configBlock Config block.
+ */
+- (void)startWorkingWithConfig:(void (^)(LLConfig *config))configBlock;
+
+/**
  Stop working.
  */
 - (void)stopWorking;
