@@ -29,6 +29,7 @@
 #import "LLConfig.h"
 #import "UIColor+LL_Utils.h"
 #import "LLWindowManager.h"
+#import "LLThemeManager.h"
 
 @interface LLMagnifierInfoView ()
 
@@ -69,10 +70,10 @@
 #pragma mark - Primary
 - (void)initial {
     self.colorView = [LLFactory getView:self frame:CGRectZero];
-    self.colorView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.colorView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.colorView.layer.borderWidth = 0.5;
     
-    self.colorLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:LLCONFIG_TEXT_COLOR];
+    self.colorLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
     self.colorLabel.numberOfLines = 0;
 }
 

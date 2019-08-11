@@ -28,6 +28,7 @@
 #import "LLMacros.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
+#import "LLThemeManager.h"
 
 @interface LLHierarchyPickerInfoView ()
 
@@ -123,16 +124,16 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.contentLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLConfig sharedConfig].textColor];
+    self.contentLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
     
     self.moreButton = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(moreButtonClicked:)];
     [self.moreButton setTitle:@"More Info" forState:UIControlStateNormal];
-    [self.moreButton setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
+    [self.moreButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
     self.moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    self.moreButton.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    self.moreButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.moreButton.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.moreButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.moreButton.layer.borderWidth = 1;
     self.moreButton.layer.cornerRadius = 5;
     self.moreButton.layer.masksToBounds = YES;

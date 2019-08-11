@@ -50,6 +50,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)shared;
 
+/**
+ Set primary color.
+
+ @param primaryColor Primary color.
+ */
+- (void)setPrimaryColor:(UIColor * _Nonnull)primaryColor;
+
+/**
+ Set background color.
+
+ @param backgroundColor BackgroundColor.
+ */
+- (void)setBackgroundColor:(UIColor * _Nonnull)backgroundColor;
+
+/**
+ Add primary color object.
+
+ @param object Object.
+ */
 - (void)addPrimaryColorObject:(id)object;
 
 @end

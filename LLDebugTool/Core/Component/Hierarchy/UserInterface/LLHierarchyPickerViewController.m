@@ -30,6 +30,7 @@
 #import "LLConst.h"
 #import "LLMacros.h"
 #import "LLWindowManager.h"
+#import "LLThemeManager.h"
 
 @interface LLHierarchyPickerViewController ()<LLHierarchyPickerViewDelegate, LLBaseInfoViewDelegate>
 
@@ -59,7 +60,7 @@
     
     self.borderView = [LLFactory getView:self.view frame:CGRectZero backgroundColor:[UIColor clearColor]];
     self.borderView.layer.borderWidth = 2;
-    self.borderView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.borderView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     
     self.pickerView = [[LLHierarchyPickerView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
     self.pickerView.delegate = self;

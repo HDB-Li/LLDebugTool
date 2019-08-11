@@ -23,6 +23,7 @@
 
 #import "LLFilterLabelCell.h"
 #import "LLConfig.h"
+#import "LLThemeManager.h"
 
 @interface LLFilterLabelCell ()
 
@@ -45,11 +46,11 @@
     _model = model;
     _label.text = model.message;
     if (_model.isSelected) {
-        _label.textColor = LLCONFIG_BACKGROUND_COLOR;
-        _bgView.backgroundColor = LLCONFIG_TEXT_COLOR;
+        _label.textColor = [LLThemeManager shared].backgroundColor;
+        _bgView.backgroundColor = [LLThemeManager shared].primaryColor;
     } else {
-        _label.textColor = LLCONFIG_TEXT_COLOR;
-        _bgView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+        _label.textColor = [LLThemeManager shared].primaryColor;
+        _bgView.backgroundColor = [LLThemeManager shared].backgroundColor;
     }
 }
 
@@ -60,7 +61,7 @@
     
     _bgView.layer.cornerRadius = 5;
     _bgView.layer.borderWidth = 0.5;
-    _bgView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    _bgView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     _bgView.layer.masksToBounds = YES;
 }
 

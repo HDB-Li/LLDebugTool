@@ -24,6 +24,7 @@
 #import "LLFactory.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
+#import "LLThemeManager.h"
 
 @implementation LLFactory
 
@@ -73,7 +74,7 @@
                              frame:(CGRect)frame alpha:(CGFloat)alpha {
     return [self getView:toView
                    frame:frame
-         backgroundColor:[LLCONFIG_TEXT_COLOR colorWithAlphaComponent:alpha]];
+         backgroundColor:[[LLThemeManager shared].primaryColor colorWithAlphaComponent:alpha]];
 }
 
 + (UIView *)getBackgroundView {
@@ -97,7 +98,7 @@
                                 alpha:(CGFloat)alpha {
     return [self getView:toView
                    frame:frame
-         backgroundColor:[LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:alpha]];
+         backgroundColor:[[LLThemeManager shared].backgroundColor colorWithAlphaComponent:alpha]];
 }
 
 + (UIView *)lineView:(CGRect)frame

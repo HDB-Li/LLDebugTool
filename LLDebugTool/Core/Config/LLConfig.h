@@ -24,13 +24,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifndef LLCONFIG_CUSTOM_COLOR
-#define LLCONFIG_CUSTOM_COLOR (YES)
-#endif
-
-#define LLCONFIG_TEXT_COLOR [LLConfig sharedConfig].textColor
-#define LLCONFIG_BACKGROUND_COLOR [LLConfig sharedConfig].backgroundColor
-
 /**
  Color style enum
  
@@ -122,7 +115,6 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
     LLConfigAvailableNoneHierarchy  = 0xFF - (1 << 6),
 };
 
-FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateColorStyleNotificationName;
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -151,16 +143,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) LLConfigColorStyle colorStyle;
 
 /**
- UIControl's background color. Default is [UIColor blackColor]..
- */
-@property (nonatomic, strong, readonly) UIColor *backgroundColor;
-
-/**
- UIControl's text color. Default is [UIColor greenColor].
- */
-@property (nonatomic, strong, readonly) UIColor *textColor;
-
-/**
  System tint color.
  */
 @property (nonatomic, strong, readonly) UIColor *systemTintColor;
@@ -168,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
  */
-- (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
+- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
 #pragma mark - Date Formatter
 /**

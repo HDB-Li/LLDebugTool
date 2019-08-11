@@ -33,6 +33,7 @@
 #import "UIControl+LL_Utils.h"
 #import "UIButton+LL_Utils.h"
 #import "LLFormatterTool.h"
+#import "LLThemeManager.h"
 
 @interface LLHierarchyDetailViewController ()
 
@@ -58,7 +59,7 @@
     self.sizeDatas = [[NSMutableArray alloc] init];
     
     self.segmentedControl = [LLFactory getSegmentedControl:self.view frame:CGRectMake(kGeneralMargin, LL_NAVIGATION_HEIGHT + kGeneralMargin, self.view.LL_width - kGeneralMargin * 2, 30) items:@[@"Object", @"Size"]];
-    self.segmentedControl.tintColor = LLCONFIG_TEXT_COLOR;
+    self.segmentedControl.tintColor = [LLThemeManager shared].primaryColor;
     self.segmentedControl.selectedSegmentIndex = 0;
     
     self.tableView.frame = CGRectMake(0, self.segmentedControl.LL_bottom + kGeneralMargin, self.view.LL_width, self.view.LL_height - self.segmentedControl.LL_bottom - kGeneralMargin);

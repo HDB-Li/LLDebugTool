@@ -27,6 +27,7 @@
 #import "LLRoute.h"
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
@@ -85,7 +86,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [btn setImage:[[UIImage LL_imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
     btn.showsTouchWhenHighlighted = NO;
-    btn.tintColor = LLCONFIG_TEXT_COLOR;
+    btn.tintColor = [LLThemeManager shared].primaryColor;
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
 }
@@ -121,8 +122,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 - (void)initTableView {
     _tableView = [LLFactory getTableView:self.view frame:self.view.bounds delegate:self style:_style];
 //    self.tableView.bounces = NO;
-    self.tableView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    [self.tableView setSeparatorColor:LLCONFIG_TEXT_COLOR];
+    self.tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self.tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
@@ -130,8 +131,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)initSearchEnableFunction {
     _searchBar = [[UISearchBar alloc] init];
-    self.searchBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
-    self.searchBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.searchBar.barTintColor = [LLThemeManager shared].backgroundColor;
+    self.searchBar.tintColor = [LLThemeManager shared].primaryColor;
     self.searchBar.delegate = self;
     self.searchBar.enablesReturnKeyAutomatically = NO;
     [self.searchBar sizeToFit];
@@ -149,7 +150,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
     btn.showsTouchWhenHighlighted = NO;
-    btn.tintColor = LLCONFIG_TEXT_COLOR;
+    btn.tintColor = [LLThemeManager shared].primaryColor;
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
     self.navigationItem.rightBarButtonItem = item;
     
@@ -157,16 +158,16 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     
     // ToolBar
     _selectAllItem = [[UIBarButtonItem alloc] initWithTitle:self.selectAllString style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
-    self.selectAllItem.tintColor = LLCONFIG_TEXT_COLOR;
+    self.selectAllItem.tintColor = [LLThemeManager shared].primaryColor;
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     _shareItem = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
-    self.shareItem.tintColor = LLCONFIG_TEXT_COLOR;
+    self.shareItem.tintColor = [LLThemeManager shared].primaryColor;
     self.shareItem.enabled = NO;
     
     _deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
-    self.deleteItem.tintColor = LLCONFIG_TEXT_COLOR;
+    self.deleteItem.tintColor = [LLThemeManager shared].primaryColor;
     self.deleteItem.enabled = NO;
     NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:self.selectAllItem, spaceItem, nil];
     if (self.isShareEnable) {
@@ -177,7 +178,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
     [self setToolbarItems:items];
     
-    self.navigationController.toolbar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    self.navigationController.toolbar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
 - (void)leftItemClick {

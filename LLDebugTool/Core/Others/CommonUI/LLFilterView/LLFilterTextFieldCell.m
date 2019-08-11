@@ -28,6 +28,7 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @interface LLFilterTextFieldCell ()
 
@@ -109,7 +110,7 @@
 #pragma mark - Primary
 - (void)initial {
     _textField.placeholder = @"Please Select";
-    _titleLabel.textColor = LLCONFIG_TEXT_COLOR;
+    _titleLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 
 #pragma mark - Lazy load

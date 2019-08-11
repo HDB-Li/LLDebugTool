@@ -24,6 +24,7 @@
 #import "LLBaseTableViewCell.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @implementation LLBaseTableViewCell
 
@@ -41,17 +42,17 @@
 
 #pragma mark - Primary
 - (void)baseInitial {
-    self.tintColor = LLCONFIG_TEXT_COLOR;
-    self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.tintColor = [LLThemeManager shared].primaryColor;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
-    self.textLabel.textColor = LLCONFIG_TEXT_COLOR;
-    self.detailTextLabel.textColor = LLCONFIG_TEXT_COLOR;
+    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
     [self configSubviews:self];
 }
 
 - (void)configSubviews:(UIView *)view {
     if ([view isKindOfClass:[UILabel class]]) {
-        ((UILabel *)view).textColor = LLCONFIG_TEXT_COLOR;
+        ((UILabel *)view).textColor = [LLThemeManager shared].primaryColor;
     }
     if (view.subviews) {
         for (UIView *subView in view.subviews) {

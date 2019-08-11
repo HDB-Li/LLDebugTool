@@ -26,6 +26,7 @@
 #import "LLConfig.h"
 #import "LLHierarchyHelper.h"
 #import "LLMacros.h"
+#import "LLThemeManager.h"
 
 static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
@@ -306,7 +307,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 - (UISegmentedControl *)filterView {
     if (!_filterView) {
         _filterView = [[UISegmentedControl alloc] initWithItems:@[@"In application",@"At tap"]];
-        _filterView.tintColor = LLCONFIG_TEXT_COLOR;
+        _filterView.tintColor = [LLThemeManager shared].primaryColor;
         _filterView.selectedSegmentIndex = 0;
         [_filterView addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     }

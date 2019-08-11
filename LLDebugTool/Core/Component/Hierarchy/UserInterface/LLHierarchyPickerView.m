@@ -26,6 +26,7 @@
 #import "UIView+LL_Utils.h"
 #import "LLHierarchyHelper.h"
 #import "LLBaseWindow.h"
+#import "LLThemeManager.h"
 
 @implementation LLHierarchyPickerView
 
@@ -42,14 +43,14 @@
     self.backgroundColor = [UIColor clearColor];
     self.layer.cornerRadius = self.LL_width / 2.0;
     self.layer.borderWidth = 2;
-    self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     
     CGFloat width = 16;
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.frame = self.bounds;
     layer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((self.LL_width - width) / 2.0, (self.LL_height - width) / 2.0, width, width)].CGPath;
-    layer.fillColor = LLCONFIG_TEXT_COLOR.CGColor;
-    layer.strokeColor = LLCONFIG_BACKGROUND_COLOR.CGColor;
+    layer.fillColor = [LLThemeManager shared].primaryColor.CGColor;
+    layer.strokeColor = [LLThemeManager shared].backgroundColor.CGColor;
     layer.lineWidth = 0.5;
     [self.layer addSublayer:layer];
 }

@@ -25,6 +25,7 @@
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "NSObject+LL_Utils.h"
+#import "LLThemeManager.h"
 
 @interface LLHierarchyCell ()
 
@@ -135,24 +136,24 @@
 - (void)initial {
     self.clipsToBounds = YES;
     
-    self.lineView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.lineView.backgroundColor = [LLThemeManager shared].backgroundColor;
     
     self.contentLabel.adjustsFontSizeToFitWidth = YES;
     self.contentLabel.minimumScaleFactor = 0.5;
     
-    self.circleView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    self.circleView.backgroundColor = [LLThemeManager shared].primaryColor;
     self.circleView.layer.cornerRadius = 12 / 2.0;
     self.circleView.layer.masksToBounds = YES;
     
     self.lineLayer = [CAShapeLayer layer];
     self.lineLayer.lineWidth = 2;
-    self.lineLayer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.lineLayer.strokeColor = [LLThemeManager shared].primaryColor.CGColor;
     self.lineLayer.fillColor = nil;
     [self.lineView.layer insertSublayer:self.lineLayer atIndex:0];
     
     self.dashLineLayer = [CAShapeLayer layer];
     self.dashLineLayer.lineWidth = 2;
-    self.dashLineLayer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.dashLineLayer.strokeColor = [LLThemeManager shared].primaryColor.CGColor;
     self.dashLineLayer.fillColor = nil;
 //    self.dashLineLayer.lineDashPattern = @[@(self.frame.size.height / 10),@(self.frame.size.height / 10)];
     [self.lineView.layer insertSublayer:self.dashLineLayer atIndex:0];

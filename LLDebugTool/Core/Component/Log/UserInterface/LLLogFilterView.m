@@ -31,6 +31,7 @@
 #import "LLConfig.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
+#import "LLThemeManager.h"
 
 @interface LLLogFilterView()
 
@@ -213,14 +214,14 @@
     CGFloat itemWidth = (self.frame.size.width - gap * (count + 1)) / count;
     for (int i = 0; i < self.titles.count; i++) {
         UIButton *btn = [LLFactory getButton:self.btnsBgView frame:CGRectMake(i * (itemWidth + gap) + gap, (self.frame.size.height - itemHeight) / 2.0, itemWidth, itemHeight) target:self action:@selector(filterButtonClick:)];
-        [btn setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
-        [btn setTitleColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateSelected];
-        [btn LL_setBackgroundColor:LLCONFIG_BACKGROUND_COLOR forState:UIControlStateNormal];
-        [btn LL_setBackgroundColor:LLCONFIG_TEXT_COLOR forState:UIControlStateSelected];
+        [btn setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+        [btn setTitleColor:[LLThemeManager shared].backgroundColor forState:UIControlStateSelected];
+        [btn LL_setBackgroundColor:[LLThemeManager shared].backgroundColor forState:UIControlStateNormal];
+        [btn LL_setBackgroundColor:[LLThemeManager shared].primaryColor forState:UIControlStateSelected];
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         btn.tag = i;
         [btn LL_setCornerRadius:5];
-        btn.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+        btn.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
         btn.layer.borderWidth = 0.5;
         [self.filterBtns addObject:btn];
     }

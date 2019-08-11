@@ -29,6 +29,7 @@
 #import "LLFactory.h"
 #import "LLConfig.h"
 #import "LLFormatterTool.h"
+#import "LLThemeManager.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
@@ -213,11 +214,11 @@ static NSString *const kLabelCellID = @"LabelCellID";
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         static NSInteger labelTag = 1000;
         UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:kHeaderID forIndexPath:indexPath];
-        view.backgroundColor = [LLCONFIG_TEXT_COLOR colorWithAlphaComponent:0.2];
+        view.backgroundColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.2];
         if (![view viewWithTag:labelTag]) {
-            UILabel *label = [LLFactory getLabel:view frame:CGRectMake(12, 0, view.frame.size.width - 12, view.frame.size.height) text:nil font:13 textColor:LLCONFIG_TEXT_COLOR];
+            UILabel *label = [LLFactory getLabel:view frame:CGRectMake(12, 0, view.frame.size.width - 12, view.frame.size.height) text:nil font:13 textColor:[LLThemeManager shared].primaryColor];
             label.font = [UIFont boldSystemFontOfSize:13];
-            label.textColor = LLCONFIG_TEXT_COLOR;
+            label.textColor = [LLThemeManager shared].primaryColor;
             label.tag = labelTag;
             [view addSubview:label];
         }
@@ -269,7 +270,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
     self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
+    self.collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];

@@ -25,6 +25,7 @@
 #import "LLFormatterTool.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
+#import "LLThemeManager.h"
 
 @interface LLSandboxCell ()
 
@@ -71,7 +72,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
-    self.icon.tintColor = LLCONFIG_TEXT_COLOR;
+    self.icon.tintColor = [LLThemeManager shared].primaryColor;
     
     UILongPressGestureRecognizer *longPG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureAction:)];
     [self.contentView addGestureRecognizer:longPG];

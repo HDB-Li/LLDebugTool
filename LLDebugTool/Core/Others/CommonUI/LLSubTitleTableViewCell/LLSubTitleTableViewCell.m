@@ -24,6 +24,7 @@
 #import "LLSubTitleTableViewCell.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
+#import "LLThemeManager.h"
 
 @interface LLSubTitleTableViewCell ()
 
@@ -65,7 +66,7 @@
     self.contentTextView.selectable = YES;
     self.contentTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.contentTextView.backgroundColor = nil;
-    self.contentTextView.textColor = LLCONFIG_TEXT_COLOR;
+    self.contentTextView.textColor = [LLThemeManager shared].primaryColor;
     self.contentTextView.selectable = NO;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentLabelTapAction:)];

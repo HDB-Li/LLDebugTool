@@ -26,6 +26,7 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @interface LLBaseViewController ()
 
@@ -67,7 +68,7 @@
 #pragma mark - Primary
 - (void)baseInitial {
     [self resetDefaultSettings];
-    self.view.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self initNavigationItems];
 }
 
@@ -82,9 +83,9 @@
     }
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : LLCONFIG_TEXT_COLOR}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
     self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
+    self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
 }
 
 - (void)resetDefaultSettings {

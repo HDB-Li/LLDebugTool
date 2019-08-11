@@ -23,6 +23,7 @@
 
 #import "LLNavigationController.h"
 #import "LLConfig.h"
+#import "LLThemeManager.h"
 
 @interface LLNavigationController ()
 
@@ -32,8 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationBar.tintColor = LLCONFIG_TEXT_COLOR;
-    self.navigationBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
+    self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

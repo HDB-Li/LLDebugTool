@@ -25,10 +25,10 @@
 #import "LLRoute.h"
 #import "LLFactory.h"
 #import "LLConst.h"
+#import "LLThemeManager.h"
 
 static LLConfig *_instance = nil;
 
-NSNotificationName const LLConfigDidUpdateColorStyleNotificationName = @"LLConfigDidUpdateColorStyleNotificationName";
 NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConfigDidUpdateWindowStyleNotificationName";
 
 @implementation LLConfig
@@ -46,7 +46,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     if (colorStyle != LLConfigColorStyleCustom) {
         _colorStyle = colorStyle;
         [self updateColor];
-        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
     }
 }
 
@@ -82,12 +81,11 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     }
 }
 
-- (void)configBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
+- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
     _colorStyle = LLConfigColorStyleCustom;
-    _backgroundColor = backgroundColor;
-    _textColor = textColor;
+    [[LLThemeManager shared] setPrimaryColor:primaryColor];
+    [[LLThemeManager shared] setBackgroundColor:backgroundColor];
     _statusBarStyle = statusBarStyle;
-    [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateColorStyleNotificationName object:nil userInfo:nil];
 }
 
 - (CGFloat)suspensionBallWidth {
@@ -173,14 +171,14 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 - (void)updateColor {
     switch (self.colorStyle) {
         case LLConfigColorStyleSimple:{
-            _backgroundColor = [UIColor whiteColor];
-            _textColor = [UIColor darkTextColor];
+            [[LLThemeManager shared] setPrimaryColor:[UIColor darkTextColor]];
+            [[LLThemeManager shared] setBackgroundColor:[UIColor whiteColor]];
             _statusBarStyle = UIStatusBarStyleDefault;
         }
             break;
         case LLConfigColorStyleSystem: {
-            _backgroundColor = [UIColor whiteColor];
-            _textColor = self.systemTintColor;
+            [[LLThemeManager shared] setPrimaryColor:self.systemTintColor];
+            [[LLThemeManager shared] setBackgroundColor:[UIColor whiteColor]];
             _statusBarStyle = UIStatusBarStyleDefault;
         }
             break;
@@ -190,8 +188,8 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             break;
         case LLConfigColorStyleHack:
         default:{
-            _backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
-            _textColor = [UIColor greenColor];
+            [[LLThemeManager shared] setPrimaryColor:[UIColor greenColor]];
+            [[LLThemeManager shared] setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1]];
             _statusBarStyle = UIStatusBarStyleLightContent;
         }
             break;

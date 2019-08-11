@@ -35,6 +35,7 @@
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 #import "NSObject+LL_Utils.h"
+#import "LLThemeManager.h"
 
 typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     LLWindowViewControllerModeDefault,
@@ -235,11 +236,11 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 #pragma mark - LLConfigDidUpdateColorStyleNotification
 - (void)didReceiveLLConfigDidUpdateColorStyleNotification {
-    _contentView.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    _contentView.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    _memoryLabel.textColor = LLCONFIG_TEXT_COLOR;
-    _CPULabel.textColor = LLCONFIG_TEXT_COLOR;
-    _lineView.backgroundColor = LLCONFIG_TEXT_COLOR;
+    _contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    _contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    _memoryLabel.textColor = [LLThemeManager shared].primaryColor;
+    _CPULabel.textColor = [LLThemeManager shared].primaryColor;
+    _lineView.backgroundColor = [LLThemeManager shared].primaryColor;
 }
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName
@@ -449,7 +450,6 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 }
 
 - (void)registerNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateColorStyleNotification) name:LLConfigDidUpdateColorStyleNotificationName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotification) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
@@ -997,7 +997,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 - (UIView *)contentView {
     if (!_contentView) {
         _contentView = [LLFactory getBackgroundView:nil frame:CGRectZero];
-        [_contentView LL_setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:0];
+        [_contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:0];
         _contentView.layer.masksToBounds = YES;
         _contentView.alpha = [LLConfig sharedConfig].normalAlpha;
     }
@@ -1006,7 +1006,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (UILabel *)memoryLabel {
     if (!_memoryLabel) {
-        _memoryLabel = [LLFactory getLabel:nil frame:CGRectZero text:@"loading" font:12 textColor:LLCONFIG_TEXT_COLOR];
+        _memoryLabel = [LLFactory getLabel:nil frame:CGRectZero text:@"loading" font:12 textColor:[LLThemeManager shared].primaryColor];
         _memoryLabel.textAlignment = NSTextAlignmentCenter;
         _memoryLabel.adjustsFontSizeToFitWidth = YES;
     }
@@ -1015,7 +1015,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 - (UILabel *)CPULabel {
     if (!_CPULabel) {
-        _CPULabel = [LLFactory getLabel:nil frame:CGRectZero text:@"loading" font:10 textColor:LLCONFIG_TEXT_COLOR];
+        _CPULabel = [LLFactory getLabel:nil frame:CGRectZero text:@"loading" font:10 textColor:[LLThemeManager shared].primaryColor];
         _CPULabel.textAlignment = NSTextAlignmentCenter;
         _CPULabel.adjustsFontSizeToFitWidth = YES;
     }

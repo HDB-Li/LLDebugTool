@@ -30,6 +30,7 @@
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLConst.h"
+#import "LLThemeManager.h"
 
 @interface LLSuspensionWindow ()
 
@@ -60,11 +61,11 @@
     if (!self.rootViewController) {
         self.rootViewController = [[UIViewController alloc] init];
     }
-    self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    [self LL_setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:2];
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self LL_setCornerRadius:self.LL_width / 2];
     
-    self.logoImageView = [LLFactory getImageView:self frame:CGRectZero image:[UIImage LL_imageNamed:kLogoImageName color:LLCONFIG_TEXT_COLOR]];
+    self.logoImageView = [LLFactory getImageView:self frame:CGRectZero image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
     
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];

@@ -26,6 +26,7 @@
 #import "LLConfig.h"
 #import "UIImage+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "LLThemeManager.h"
 
 @interface LLFunctionItemView ()
 
@@ -63,12 +64,12 @@
 #pragma mark - Primary
 - (void)initial {
     self.imageView = [LLFactory getImageView:self];
-    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:LLCONFIG_TEXT_COLOR];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)updateUI:(LLFunctionItemModel *)model {
-    self.imageView.image = [UIImage LL_imageNamed:model.imageName color:LLCONFIG_TEXT_COLOR];
+    self.imageView.image = [UIImage LL_imageNamed:model.imageName color:[LLThemeManager shared].primaryColor];
     self.titleLabel.text = model.title;
 }
 

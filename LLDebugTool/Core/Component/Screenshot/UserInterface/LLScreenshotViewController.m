@@ -29,6 +29,7 @@
 #import "LLMacros.h"
 #import "LLScreenshotPreviewViewController.h"
 #import "LLScreenshotHelper.h"
+#import "LLThemeManager.h"
 
 @interface LLScreenshotViewController ()
 
@@ -59,8 +60,8 @@
     self.captureButton.layer.cornerRadius = width / 2.0;
     self.captureButton.layer.masksToBounds = YES;
     self.captureButton.layer.borderWidth = 1;
-    self.captureButton.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
-    self.captureButton.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.captureButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    self.captureButton.backgroundColor = [LLThemeManager shared].backgroundColor;
     
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];

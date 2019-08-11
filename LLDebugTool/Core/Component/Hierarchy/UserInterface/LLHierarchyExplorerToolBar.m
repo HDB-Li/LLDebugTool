@@ -30,6 +30,7 @@
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 #import "NSObject+LL_Utils.h"
+#import "LLThemeManager.h"
 
 @interface LLHierarchyExplorerToolBar () <UITabBarDelegate>
 
@@ -74,8 +75,8 @@
 - (void)initial {
     
     self.tabBar = [[UITabBar alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 49)];
-    self.tabBar.tintColor = LLCONFIG_TEXT_COLOR;
-    self.tabBar.barTintColor = LLCONFIG_BACKGROUND_COLOR;
+    self.tabBar.tintColor = [LLThemeManager shared].primaryColor;
+    self.tabBar.barTintColor = [LLThemeManager shared].backgroundColor;
     self.tabBar.delegate = self;
     NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:[self itemWithTitle:@"Views" imageName:kPickImageName]];
@@ -96,7 +97,7 @@
     [self.descriptionTintView LL_setCornerRadius:tintWidth / 2.0];
     
     CGFloat labelLeftMargin = tintViewFrame.origin.x + tintViewFrame.size.width + itemsMargin;
-    self.descriptionLabel = [LLFactory getLabel:self.descriptionBackgroundView frame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height) text:nil font:2 textColor:LLCONFIG_TEXT_COLOR];
+    self.descriptionLabel = [LLFactory getLabel:self.descriptionBackgroundView frame:CGRectMake(labelLeftMargin, 0, LL_SCREEN_WIDTH - labelLeftMargin - itemsMargin, self.descriptionBackgroundView.frame.size.height) text:nil font:2 textColor:[LLThemeManager shared].primaryColor];
     self.descriptionLabel.numberOfLines = 2;
     self.descriptionLabel.lineBreakMode = NSLineBreakByCharWrapping;
     

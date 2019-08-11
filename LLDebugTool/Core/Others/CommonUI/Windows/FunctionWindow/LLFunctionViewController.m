@@ -36,6 +36,7 @@
 #import "LLFunctionItemContainerView.h"
 #import "UIView+LL_Utils.h"
 #import "LLWindowManager.h"
+#import "LLThemeManager.h"
 
 @interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
 
@@ -94,8 +95,8 @@
     self.settingButton = [LLFactory getButton:self.view frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
     [self.settingButton LL_setCornerRadius:5];
     [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
-    [self.settingButton setTitleColor:LLCONFIG_TEXT_COLOR forState:UIControlStateNormal];
-    [self.settingButton LL_setBorderColor:LLCONFIG_TEXT_COLOR borderWidth:1];
+    [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+    [self.settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     
     [self loadData];
 }

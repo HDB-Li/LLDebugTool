@@ -26,6 +26,7 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 static NSString *const kEventCellID = @"EventCellID";
 
@@ -139,7 +140,7 @@ static NSString *const kEventCellID = @"EventCellID";
     layout.estimatedItemSize = CGSizeMake(50, 30);
     _collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
 //    _collectionView.bounces = YES;
-    _collectionView.backgroundColor = [LLCONFIG_BACKGROUND_COLOR colorWithAlphaComponent:0.75];
+    _collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
     [_collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kEventCellID];
     self.averageCount = 3;
     self.lineView = [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];

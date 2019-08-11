@@ -27,6 +27,7 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 static NSString *const kAppInfoCellID = @"AppInfoCellID";
 static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
@@ -131,8 +132,8 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    if (![header.textLabel.textColor isEqual:LLCONFIG_TEXT_COLOR]) {
-        header.textLabel.textColor = LLCONFIG_TEXT_COLOR;
+    if (![header.textLabel.textColor isEqual:[LLThemeManager shared].primaryColor]) {
+        header.textLabel.textColor = [LLThemeManager shared].primaryColor;
     }
 }
 

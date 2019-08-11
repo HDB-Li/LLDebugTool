@@ -27,6 +27,7 @@
 #import "UIView+LL_Utils.h"
 #import "LLImageNameConfig.h"
 #import "LLConfig.h"
+#import "LLThemeManager.h"
 
 @interface LLContentWindow ()
 
@@ -58,15 +59,15 @@
     if (!self.rootViewController) {
         self.rootViewController = [[UIViewController alloc] init];
     }
-    self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.layer.borderWidth = 2;
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
     [self.layer insertSublayer:self.shadowLayer below:self.layer];
-    self.backgroundColor = LLCONFIG_BACKGROUND_COLOR;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
     
     self.closeButton = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(closeButtonClicked:)];
-    [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:LLCONFIG_TEXT_COLOR] forState:UIControlStateNormal];
+    [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
     
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];

@@ -27,6 +27,7 @@
 #import "LLScreenshotHelper.h"
 #import "UIImage+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
+#import "LLThemeManager.h"
 
 @interface LLMagnifierView ()
 
@@ -93,7 +94,7 @@
 - (void)initial {
     self.overflow = YES;
     self.layer.cornerRadius = self.LL_width / 2.0;
-    self.layer.borderColor = LLCONFIG_TEXT_COLOR.CGColor;
+    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.layer.borderWidth = 2;
     self.layer.masksToBounds = YES;
     
@@ -105,7 +106,7 @@
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.frame = self.bounds;
     layer.path = [UIBezierPath bezierPathWithRect:CGRectMake(centerX - zoomLevel / 2.0, centerY - zoomLevel / 2.0, zoomLevel, zoomLevel)].CGPath;
-    layer.strokeColor = LLCONFIG_TEXT_COLOR.CGColor;
+    layer.strokeColor = [LLThemeManager shared].primaryColor.CGColor;
     layer.fillColor = nil;
     layer.lineWidth = 2;
     [self.layer addSublayer:layer];

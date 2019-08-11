@@ -23,7 +23,6 @@
 
 #import "LLThemeManager.h"
 #import "UIColor+LL_Utils.h"
-#import "LLConfig.h"
 
 static LLThemeManager *_instance = nil;
 
@@ -44,12 +43,34 @@ static LLThemeManager *_instance = nil;
     return _instance;
 }
 
+- (void)setPrimaryColor:(UIColor * _Nonnull)primaryColor {
+    if (_primaryColor != primaryColor) {
+        _primaryColor = primaryColor;
+        [self calculateColorIfNeeded];
+    }
+}
+
+- (void)setBackgroundColor:(UIColor * _Nonnull)backgroundColor {
+    if (_backgroundColor != backgroundColor) {
+        _backgroundColor = backgroundColor;
+        [self calculateColorIfNeeded];
+    }
+}
+
 #pragma mark - Primary
 - (void)initial {
-    _primaryColor = LLCONFIG_TEXT_COLOR;
-    _backgroundColor = LLCONFIG_BACKGROUND_COLOR;
-    _containerColor = [LLCONFIG_BACKGROUND_COLOR LL_mixtureWithColor:LLCONFIG_TEXT_COLOR radio:0.1];
+    _primaryColor = [UIColor blackColor];
+    _backgroundColor = [UIColor whiteColor];
+    [self calculateColorIfNeeded];
     _primaryColorItems = [NSHashTable weakObjectsHashTable];
+}
+
+- (void)calculateColorIfNeeded {
+    if (_primaryColor == nil || _backgroundColor == nil) {
+        return;
+    }
+    
+    _containerColor = [_backgroundColor LL_mixtureWithColor:_primaryColor radio:0.1];
 }
 
 - (void)addPrimaryColorObject:(id)object {
