@@ -23,10 +23,13 @@
 
 #import "LLThemeManager.h"
 #import "UIColor+LL_Utils.h"
+#import "LLFactory.h"
 
 static LLThemeManager *_instance = nil;
 
 @interface LLThemeManager ()
+
+@property (nonatomic, strong) UIColor *systemTintColor;
 
 @property (nonatomic, strong) NSHashTable *primaryColorItems;
 
@@ -59,6 +62,14 @@ static LLThemeManager *_instance = nil;
 
 #pragma mark - Primary
 - (void)initial {
+    // Get system tint color.
+    if ([[NSThread currentThread] isMainThread]) {
+        _systemTintColor = [LLFactory getView].tintColor;
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.systemTintColor = [LLFactory getView].tintColor;
+        });
+    }
     _primaryColor = [UIColor blackColor];
     _backgroundColor = [UIColor whiteColor];
     [self calculateColorIfNeeded];

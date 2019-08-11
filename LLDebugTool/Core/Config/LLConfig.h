@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)sharedConfig;
 
-#pragma mark - StautsBarSytle
+#pragma mark - Theme Color.
 /**
  Window's statusBarStyle when show.
  */
@@ -143,14 +143,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) LLConfigColorStyle colorStyle;
 
 /**
- System tint color.
- */
-@property (nonatomic, strong, readonly) UIColor *systemTintColor;
-
-/**
  Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
  */
 - (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
+
+/**
+ Window's statusBarStyle when show.
+ */
+- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
 #pragma mark - Date Formatter
 /**

@@ -85,7 +85,11 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _colorStyle = LLConfigColorStyleCustom;
     [[LLThemeManager shared] setPrimaryColor:primaryColor];
     [[LLThemeManager shared] setBackgroundColor:backgroundColor];
-    _statusBarStyle = statusBarStyle;
+    [[LLThemeManager shared] setStatusBarStyle:statusBarStyle];
+}
+
+- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
+    [LLThemeManager shared].statusBarStyle = statusBarStyle;
 }
 
 - (CGFloat)suspensionBallWidth {
@@ -100,6 +104,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             _magnifierSize = magnifierSize;
         }
     }
+}
+
+- (UIStatusBarStyle)statusBarStyle {
+    return [LLThemeManager shared].statusBarStyle;
 }
 
 #pragma mark - Primary
@@ -125,15 +133,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     
     // Set date formatter string.
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
-    
-    // Get system tint color.
-    if ([[NSThread currentThread] isMainThread]) {
-        _systemTintColor = [LLFactory getView].tintColor;
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self->_systemTintColor = [LLFactory getView].tintColor;
-        });
-    }
     
     // Set default color style.
     _colorStyle = LLConfigColorStyleHack;
@@ -173,13 +172,13 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
         case LLConfigColorStyleSimple:{
             [[LLThemeManager shared] setPrimaryColor:[UIColor darkTextColor]];
             [[LLThemeManager shared] setBackgroundColor:[UIColor whiteColor]];
-            _statusBarStyle = UIStatusBarStyleDefault;
+            [[LLThemeManager shared] setStatusBarStyle:UIStatusBarStyleDefault];
         }
             break;
         case LLConfigColorStyleSystem: {
-            [[LLThemeManager shared] setPrimaryColor:self.systemTintColor];
+            [[LLThemeManager shared] setPrimaryColor:[LLThemeManager shared].systemTintColor];
             [[LLThemeManager shared] setBackgroundColor:[UIColor whiteColor]];
-            _statusBarStyle = UIStatusBarStyleDefault;
+            [[LLThemeManager shared] setStatusBarStyle:UIStatusBarStyleDefault];
         }
             break;
         case LLConfigColorStyleCustom:{
@@ -190,7 +189,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
         default:{
             [[LLThemeManager shared] setPrimaryColor:[UIColor greenColor]];
             [[LLThemeManager shared] setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1]];
-            _statusBarStyle = UIStatusBarStyleLightContent;
+            [[LLThemeManager shared] setStatusBarStyle:UIStatusBarStyleLightContent];
         }
             break;
     }

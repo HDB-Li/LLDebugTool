@@ -31,12 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Primary color, use on text and border.
  */
-@property (nonatomic, copy, readonly) UIColor *primaryColor;
+@property (nonatomic, copy) UIColor *primaryColor;
 
 /**
  Background color, use on background.
  */
-@property (nonatomic, copy, readonly) UIColor *backgroundColor;
+@property (nonatomic, copy) UIColor *backgroundColor;
 
 /**
  Container color, use on containerView, should different with backgroundColor.
@@ -44,25 +44,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) UIColor *containerColor;
 
 /**
+ Window's statusBarStyle when show.
+ */
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
+
+/**
+ System tint color.
+ */
+@property (nonatomic, strong, readonly) UIColor *systemTintColor;
+
+/**
  Singleton
 
  @return singleton.
  */
 + (instancetype)shared;
-
-/**
- Set primary color.
-
- @param primaryColor Primary color.
- */
-- (void)setPrimaryColor:(UIColor * _Nonnull)primaryColor;
-
-/**
- Set background color.
-
- @param backgroundColor BackgroundColor.
- */
-- (void)setBackgroundColor:(UIColor * _Nonnull)backgroundColor;
 
 /**
  Add primary color object.
