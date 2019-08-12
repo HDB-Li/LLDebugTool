@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LLHierarchyPickerViewDelegate <NSObject>
 
-- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(UIView *)selectedView;
+- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(NSArray <UIView *>*)selectedViews;
 
 @end
 
