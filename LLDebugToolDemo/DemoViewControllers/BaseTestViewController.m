@@ -33,6 +33,10 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
+- (void)dealloc {
+    
+}
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
