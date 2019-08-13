@@ -21,6 +21,7 @@
 		3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38E2136830A00226C79 /* TestNetworkViewController.m */; };
 		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
 		362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */; };
+		362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F833B2302BE8F007C9168 /* LLEntryBallView.m */; };
 		36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */; };
 		36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC422FD063A00BBB6FA /* LLBaseView.m */; };
 		36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC722FD065D00BBB6FA /* LLBaseMoveView.m */; };
@@ -221,6 +222,8 @@
 		3629E3912136830A00226C79 /* TestLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogViewController.h; sourceTree = "<group>"; };
 		362F3CE422F01AF70087B0E4 /* LLHierarchyPickerWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerWindow.h; sourceTree = "<group>"; };
 		362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerWindow.m; sourceTree = "<group>"; };
+		362F833A2302BE8F007C9168 /* LLEntryBallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBallView.h; sourceTree = "<group>"; };
+		362F833B2302BE8F007C9168 /* LLEntryBallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBallView.m; sourceTree = "<group>"; };
 		36596BC022FD055C00BBB6FA /* LLMagnifierViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierViewController.h; sourceTree = "<group>"; };
 		36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierViewController.m; sourceTree = "<group>"; };
 		36596BC322FD063A00BBB6FA /* LLBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseView.h; sourceTree = "<group>"; };
@@ -1431,6 +1434,8 @@
 				C4B4E41622F9C90900F70277 /* LLEntryWindow.m */,
 				36F30D982301699E00976937 /* LLEntryViewController.h */,
 				36F30D992301699E00976937 /* LLEntryViewController.m */,
+				362F833A2302BE8F007C9168 /* LLEntryBallView.h */,
+				362F833B2302BE8F007C9168 /* LLEntryBallView.m */,
 			);
 			path = EntryWindow;
 			sourceTree = "<group>";
@@ -1771,6 +1776,7 @@
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
 				C4B4E46B22F9C90900F70277 /* LLWindowViewController.m in Sources */,
+				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
 				C4B4E47322F9C90900F70277 /* LLBaseTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,

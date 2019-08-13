@@ -1,5 +1,5 @@
 //
-//  LLEntryViewController.m
+//  LLEntryBallView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,57 +21,42 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLEntryViewController.h"
 #import "LLEntryBallView.h"
-#import "LLConfig.h"
+#import "LLThemeManager.h"
+#import "LLFactory.h"
 #import "UIView+LL_Utils.h"
+#import "LLImageNameConfig.h"
+#import "LLConfig.h"
 
-@interface LLEntryViewController ()
+@interface LLEntryBallView ()
 
-@property (nonatomic, strong) LLEntryBallView *ballView;
-
-@property (nonatomic, assign) LLConfigWindowStyle style;
+@property (nonatomic, strong) UIImageView *logoImageView;
 
 @end
 
-@implementation LLEntryViewController
+@implementation LLEntryBallView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self initial];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect logoImageViewRect = self.bounds;
+    if (!CGRectEqualToRect(self.logoImageView.frame, logoImageViewRect)) {
+        self.logoImageView.frame = logoImageViewRect;
+    }
 }
 
 #pragma mark - Primary
 - (void)initial {
-    
-}
-
-- (void)updateStyle:(LLConfigWindowStyle)style {
-    switch (style) {
-        case LLConfigWindowSuspensionBall: {
-            [self.view addSubview:self.ballView];
-        }
-            break;
-        case LLConfigWindowNetBar: {
-            [_ballView removeFromSuperview];
-        }
-            break;
-        case LLConfigWindowPowerBar: {
-            [_ballView removeFromSuperview];
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma mark - Lazy
-- (LLEntryBallView *)ballView {
-    if (!_ballView) {
-        CGFloat logoImageViewWidth = [LLConfig sharedConfig].suspensionBallWidth / 2;
-        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake((self.view.LL_width - logoImageViewWidth) / 2, (self.view.LL_height - logoImageViewWidth) / 2, logoImageViewWidth, logoImageViewWidth)];
-    }
-    return _ballView;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
+    [self LL_setCornerRadius:self.LL_width / 2];
+    self.logoImageView = [LLFactory getImageView:self frame:CGRectZero image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
 }
 
 @end
