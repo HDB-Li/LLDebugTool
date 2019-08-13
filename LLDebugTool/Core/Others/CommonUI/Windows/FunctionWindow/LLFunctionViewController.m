@@ -75,7 +75,7 @@
 
 - (void)leftItemClick {
     [[LLWindowManager shared] dismissWindow:self.view.window animated:YES completion:^{
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:NO];
         [[LLWindowManager shared] reloadFunctionWindow];
     }];
 }

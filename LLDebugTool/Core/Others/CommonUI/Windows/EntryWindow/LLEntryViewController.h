@@ -1,5 +1,5 @@
 //
-//  LLSuspensionViewController.h
+//  LLEntryViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSuspensionViewController : LLBaseViewController
+@interface LLEntryViewController : LLBaseViewController
 
 @end
 

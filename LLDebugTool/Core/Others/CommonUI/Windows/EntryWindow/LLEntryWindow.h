@@ -1,5 +1,5 @@
 //
-//  LLSuspensionViewController.m
+//  LLEntryWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,27 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSuspensionViewController.h"
+#import "LLBaseWindow.h"
 
-@interface LLSuspensionViewController ()
+NS_ASSUME_NONNULL_BEGIN
+
+@class LLEntryWindow;
+@protocol LLEntryWindowDelegate <NSObject>
+
+- (void)LLEntryWindow:(LLEntryWindow *)window didTapAt:(NSInteger)numberOfTap;
+
+@end
+
+@interface LLEntryWindow : LLBaseWindow
+
+@property (nonatomic, weak, nullable) id<LLEntryWindowDelegate> delegate;
 
 @end
 
-@implementation LLSuspensionViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-@end
+NS_ASSUME_NONNULL_END

@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "LLSuspensionWindow.h"
+#import "LLEntryWindow.h"
 #import "LLFunctionWindow.h"
 #import "LLMagnifierWindow.h"
 #import "LLNetworkWindow.h"
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)shared;
 
-@property (nonatomic, strong, readonly) LLSuspensionWindow *suspensionWindow;
+@property (nonatomic, strong, readonly) LLEntryWindow *entryWindow;
 
 @property (nonatomic, strong, readonly) LLFunctionWindow *functionWindow;
 

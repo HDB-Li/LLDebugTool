@@ -29,9 +29,9 @@
 
 static LLWindowManager *_instance = nil;
 
-@interface LLWindowManager () <LLSuspensionWindowDelegate>
+@interface LLWindowManager () <LLEntryWindowDelegate>
 
-@property (nonatomic, strong) LLSuspensionWindow *suspensionWindow;
+@property (nonatomic, strong) LLEntryWindow *entryWindow;
 
 @property (nonatomic, strong) LLFunctionWindow *functionWindow;
 
@@ -277,12 +277,12 @@ static LLWindowManager *_instance = nil;
 }
 
 #pragma mark - Lazy
-- (LLSuspensionWindow *)suspensionWindow {
-    if (!_suspensionWindow) {
-        _suspensionWindow = [[LLSuspensionWindow alloc] initWithFrame:CGRectMake(-[LLConfig sharedConfig].suspensionWindowHideWidth, [LLConfig sharedConfig].suspensionWindowTop, [LLConfig sharedConfig].suspensionBallWidth, [LLConfig sharedConfig].suspensionBallWidth)];
-        _suspensionWindow.delegate = self;
+- (LLEntryWindow *)entryWindow {
+    if (!_entryWindow) {
+        _entryWindow = [[LLEntryWindow alloc] initWithFrame:CGRectMake(-[LLConfig sharedConfig].suspensionWindowHideWidth, [LLConfig sharedConfig].suspensionWindowTop, [LLConfig sharedConfig].suspensionBallWidth, [LLConfig sharedConfig].suspensionBallWidth)];
+        _entryWindow.delegate = self;
     }
-    return _suspensionWindow;
+    return _entryWindow;
 }
 
 - (LLFunctionWindow *)functionWindow {
@@ -384,12 +384,12 @@ static LLWindowManager *_instance = nil;
     return _normalWindowLevel;
 }
 
-#pragma mark - LLSuspensionWindowDelegate
-- (void)llSuspensionWindow:(LLSuspensionWindow *)window didTapAt:(NSInteger)numberOfTap {
+#pragma mark - LLEntryWindowDelegate
+- (void)LLEntryWindow:(LLEntryWindow *)window didTapAt:(NSInteger)numberOfTap {
     switch (numberOfTap) {
         case 1:
             [[LLWindowManager shared] presentWindow:[LLWindowManager shared].functionWindow animated:YES completion:^{
-                [[LLWindowManager shared] hideWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+                [[LLWindowManager shared] hideWindow:[LLWindowManager shared].entryWindow animated:NO];
             }];
             break;
         case 2:

@@ -29,7 +29,7 @@
 - (void)componentDidLoad:(NSDictionary *)data {
     [[LLWindowManager shared] dismissWindow:[LLWindowManager shared].functionWindow animated:YES];
     [[LLWindowManager shared] reloadFunctionWindow];
-    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].suspensionWindow animated:YES];
+    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].entryWindow animated:YES];
     [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:YES];
 }
 

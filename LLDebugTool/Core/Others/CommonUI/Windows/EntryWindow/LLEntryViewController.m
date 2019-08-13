@@ -1,5 +1,5 @@
 //
-//  LLSuspensionWindow.h
+//  LLEntryViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,21 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseWindow.h"
+#import "LLEntryViewController.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class LLSuspensionWindow;
-@protocol LLSuspensionWindowDelegate <NSObject>
-
-- (void)llSuspensionWindow:(LLSuspensionWindow *)window didTapAt:(NSInteger)numberOfTap;
+@interface LLEntryViewController ()
 
 @end
 
-@interface LLSuspensionWindow : LLBaseWindow
+@implementation LLEntryViewController
 
-@property (nonatomic, weak, nullable) id<LLSuspensionWindowDelegate> delegate;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self initial];
+}
+
+- (void)initial {
+    
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

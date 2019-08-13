@@ -38,7 +38,7 @@
 - (void)componentDidFinish {
     [[LLWindowManager shared] dismissWindow:self animated:YES completion:^() {
         [[LLWindowManager shared] reloadNetworkWindow];
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].suspensionWindow animated:NO];
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:NO];
     }];
 }
 

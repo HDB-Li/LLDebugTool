@@ -33,7 +33,7 @@
 		36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DC10FC22FA60B90078B7BC /* LLToastUtils.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
-		36F30D9A2301699E00976937 /* LLSuspensionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F30D992301699E00976937 /* LLSuspensionViewController.m */; };
+		36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F30D992301699E00976937 /* LLEntryViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -160,7 +160,7 @@
 		C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */; };
 		C4B4E46722F9C90900F70277 /* LLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40922F9C90900F70277 /* LLWindow.m */; };
 		C4B4E46B22F9C90900F70277 /* LLWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41322F9C90900F70277 /* LLWindowViewController.m */; };
-		C4B4E46C22F9C90900F70277 /* LLSuspensionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41622F9C90900F70277 /* LLSuspensionWindow.m */; };
+		C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41622F9C90900F70277 /* LLEntryWindow.m */; };
 		C4B4E46D22F9C90900F70277 /* LLBaseComponentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */; };
 		C4B4E46E22F9C90900F70277 /* LLBaseWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41B22F9C90900F70277 /* LLBaseWindow.m */; };
 		C4B4E46F22F9C90900F70277 /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41C22F9C90900F70277 /* LLNavigationController.m */; };
@@ -249,8 +249,8 @@
 		36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoUITests.m; sourceTree = "<group>"; };
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36F30D982301699E00976937 /* LLSuspensionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSuspensionViewController.h; sourceTree = "<group>"; };
-		36F30D992301699E00976937 /* LLSuspensionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSuspensionViewController.m; sourceTree = "<group>"; };
+		36F30D982301699E00976937 /* LLEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryViewController.h; sourceTree = "<group>"; };
+		36F30D992301699E00976937 /* LLEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryViewController.m; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -502,8 +502,8 @@
 		C4B4E40922F9C90900F70277 /* LLWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindow.m; sourceTree = "<group>"; };
 		C4B4E41222F9C90900F70277 /* LLWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindow.h; sourceTree = "<group>"; };
 		C4B4E41322F9C90900F70277 /* LLWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindowViewController.m; sourceTree = "<group>"; };
-		C4B4E41522F9C90900F70277 /* LLSuspensionWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSuspensionWindow.h; sourceTree = "<group>"; };
-		C4B4E41622F9C90900F70277 /* LLSuspensionWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSuspensionWindow.m; sourceTree = "<group>"; };
+		C4B4E41522F9C90900F70277 /* LLEntryWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLEntryWindow.h; sourceTree = "<group>"; };
+		C4B4E41622F9C90900F70277 /* LLEntryWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLEntryWindow.m; sourceTree = "<group>"; };
 		C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentWindow.m; sourceTree = "<group>"; };
 		C4B4E41922F9C90900F70277 /* LLBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewController.h; sourceTree = "<group>"; };
 		C4B4E41A22F9C90900F70277 /* LLBaseComponentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentViewController.h; sourceTree = "<group>"; };
@@ -1398,7 +1398,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B4E3FD22F9C90900F70277 /* FunctionWindow */,
-				C4B4E41422F9C90900F70277 /* SuspensionWindow */,
+				C4B4E41422F9C90900F70277 /* EntryWindow */,
 				C4B4E41222F9C90900F70277 /* LLWindow.h */,
 				C4B4E40922F9C90900F70277 /* LLWindow.m */,
 				C4B4E40822F9C90900F70277 /* LLWindowViewController.h */,
@@ -1424,15 +1424,15 @@
 			path = FunctionWindow;
 			sourceTree = "<group>";
 		};
-		C4B4E41422F9C90900F70277 /* SuspensionWindow */ = {
+		C4B4E41422F9C90900F70277 /* EntryWindow */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E41522F9C90900F70277 /* LLSuspensionWindow.h */,
-				C4B4E41622F9C90900F70277 /* LLSuspensionWindow.m */,
-				36F30D982301699E00976937 /* LLSuspensionViewController.h */,
-				36F30D992301699E00976937 /* LLSuspensionViewController.m */,
+				C4B4E41522F9C90900F70277 /* LLEntryWindow.h */,
+				C4B4E41622F9C90900F70277 /* LLEntryWindow.m */,
+				36F30D982301699E00976937 /* LLEntryViewController.h */,
+				36F30D992301699E00976937 /* LLEntryViewController.m */,
 			);
-			path = SuspensionWindow;
+			path = EntryWindow;
 			sourceTree = "<group>";
 		};
 		C4B4E41722F9C90900F70277 /* Base */ = {
@@ -1812,7 +1812,7 @@
 				C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */,
 				C49856EF22EDB07300E9FBE2 /* LLLogComponent.m in Sources */,
 				C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */,
-				36F30D9A2301699E00976937 /* LLSuspensionViewController.m in Sources */,
+				36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */,
 				C4B4E43C22F9C90900F70277 /* NSDictionary+LL_Utils.m in Sources */,
 				C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */,
 				C49856FB22EDB2BC00E9FBE2 /* LLCrashComponent.m in Sources */,
@@ -1874,7 +1874,7 @@
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
 				C4B4E44F22F9C90900F70277 /* LLStorageModel.m in Sources */,
 				C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */,
-				C4B4E46C22F9C90900F70277 /* LLSuspensionWindow.m in Sources */,
+				C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */,
 				C49856E222ED90F300E9FBE2 /* LLSandboxModel.m in Sources */,
 				C4B4E47022F9C90900F70277 /* LLBaseViewController.m in Sources */,
 				C49856CA22ED90B400E9FBE2 /* LLHierarchyModel.m in Sources */,

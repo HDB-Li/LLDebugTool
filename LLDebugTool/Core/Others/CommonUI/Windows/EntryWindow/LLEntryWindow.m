@@ -1,5 +1,5 @@
 //
-//  LLSuspensionWindow.m
+//  LLEntryWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSuspensionWindow.h"
+#import "LLEntryWindow.h"
 #import "UIView+LL_Utils.h"
 #import "LLConfig.h"
 #import "LLDebugTool.h"
@@ -32,13 +32,13 @@
 #import "LLConst.h"
 #import "LLThemeManager.h"
 
-@interface LLSuspensionWindow ()
+@interface LLEntryWindow ()
 
 @property (nonatomic, strong) UIImageView *logoImageView;
 
 @end
 
-@implementation LLSuspensionWindow
+@implementation LLEntryWindow
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -102,11 +102,11 @@
 }
 
 - (void)tapGR:(UITapGestureRecognizer *)sender {
-    [_delegate llSuspensionWindow:self didTapAt:1];
+    [_delegate LLEntryWindow:self didTapAt:1];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)sender {
-    [_delegate llSuspensionWindow:self didTapAt:2];
+    [_delegate LLEntryWindow:self didTapAt:2];
 }
 
 - (void)becomeActive {
