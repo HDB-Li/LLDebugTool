@@ -28,6 +28,7 @@
 		36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCA22FD07B500BBB6FA /* LLMagnifierView.m */; };
 		36596BCE22FD172D00BBB6FA /* LLBaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */; };
 		36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */; };
+		3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3668D0C92303BB1F00D58C0B /* LLSettingManager.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
@@ -236,6 +237,8 @@
 		36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseInfoView.m; sourceTree = "<group>"; };
 		36596BCF22FD1DF300BBB6FA /* LLMagnifierInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierInfoView.h; sourceTree = "<group>"; };
 		36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoView.m; sourceTree = "<group>"; };
+		3668D0C82303BB1F00D58C0B /* LLSettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingManager.h; sourceTree = "<group>"; };
+		3668D0C92303BB1F00D58C0B /* LLSettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingManager.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -583,6 +586,15 @@
 				36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */,
 			);
 			path = DemoViewControllers;
+			sourceTree = "<group>";
+		};
+		3668D0C72303BAF400D58C0B /* SettingManager */ = {
+			isa = PBXGroup;
+			children = (
+				3668D0C82303BB1F00D58C0B /* LLSettingManager.h */,
+				3668D0C92303BB1F00D58C0B /* LLSettingManager.m */,
+			);
+			path = SettingManager;
 			sourceTree = "<group>";
 		};
 		36DC10FA22FA60AA0078B7BC /* ToastUtils */ = {
@@ -1274,6 +1286,7 @@
 		C4B4E3CA22F9C90900F70277 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				3668D0C72303BAF400D58C0B /* SettingManager */,
 				C4B4E3CB22F9C90900F70277 /* StorageManager */,
 				C4B4E3D022F9C90900F70277 /* WindowManager */,
 				C4B4E3D322F9C90900F70277 /* ThemeManager */,
@@ -1774,6 +1787,7 @@
 				362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */,
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
+				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
 				C4B4E46B22F9C90900F70277 /* LLWindowViewController.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,

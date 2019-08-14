@@ -25,6 +25,7 @@
 #import "LLEntryBallView.h"
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
+#import "LLMacros.h"
 
 @interface LLEntryViewController ()
 
@@ -43,7 +44,19 @@
 
 #pragma mark - Primary
 - (void)initial {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.style = [LLConfig sharedConfig].windowStyle;
+
+    // Double tap, to screenshot.
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
+    doubleTap.numberOfTapsRequired = 2;
     
+    // Tap, to show tool view.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
+    [tap requireGestureRecognizerToFail:doubleTap];
+    
+    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:doubleTap];
 }
 
 - (void)updateStyle:(LLConfigWindowStyle)style {
@@ -65,11 +78,44 @@
     }
 }
 
+- (void)tapGR:(UITapGestureRecognizer *)sender {
+//    [_delegate LLEntryWindow:self didTapAt:1];
+}
+
+- (void)doubleTapGR:(UITapGestureRecognizer *)sender {
+//    [_delegate LLEntryWindow:self didTapAt:2];
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *activeView = [self activeEntryView];
+    CGPoint activePoint = [self.view convertPoint:point toView:activeView];
+    if ([activeView pointInside:activePoint withEvent:event]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (UIView *)activeEntryView {
+    switch (self.style) {
+        case LLConfigWindowSuspensionBall:
+            return self.ballView;
+        case LLConfigWindowNetBar:
+            return nil;
+        case LLConfigWindowPowerBar:
+            return nil;
+    }
+}
+
 #pragma mark - Lazy
+- (void)setStyle:(LLConfigWindowStyle)style {
+    _style = style;
+    [self updateStyle:style];
+}
+
 - (LLEntryBallView *)ballView {
     if (!_ballView) {
-        CGFloat logoImageViewWidth = [LLConfig sharedConfig].suspensionBallWidth / 2;
-        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake((self.view.LL_width - logoImageViewWidth) / 2, (self.view.LL_height - logoImageViewWidth) / 2, logoImageViewWidth, logoImageViewWidth)];
+        CGFloat width = [LLConfig sharedConfig].suspensionBallWidth;
+        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(-[LLConfig sharedConfig].suspensionWindowHideWidth, [LLConfig sharedConfig].suspensionWindowTop, width, width)];
     }
     return _ballView;
 }

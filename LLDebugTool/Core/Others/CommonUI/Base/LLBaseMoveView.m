@@ -29,17 +29,19 @@
 
 @property (nonatomic, assign) BOOL moved;
 
+@property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
+
 @end
 
 @implementation LLBaseMoveView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        _moveable = YES;
         // Pan, to moveable.
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
         
-        [self addGestureRecognizer:pan];
-
+        [self addGestureRecognizer:self.panGestureRecognizer];
     }
     return self;
 }
@@ -97,6 +99,14 @@
 
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
     
+}
+
+#pragma mark - Primary
+- (void)setMoveable:(BOOL)moveable {
+    if (_moveable != moveable) {
+        _moveable = moveable;
+        self.panGestureRecognizer.enabled = moveable;
+    }
 }
 
 @end

@@ -279,7 +279,7 @@ static LLWindowManager *_instance = nil;
 #pragma mark - Lazy
 - (LLEntryWindow *)entryWindow {
     if (!_entryWindow) {
-        _entryWindow = [[LLEntryWindow alloc] initWithFrame:CGRectMake(-[LLConfig sharedConfig].suspensionWindowHideWidth, [LLConfig sharedConfig].suspensionWindowTop, [LLConfig sharedConfig].suspensionBallWidth, [LLConfig sharedConfig].suspensionBallWidth)];
+        _entryWindow = [[LLEntryWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _entryWindow.delegate = self;
     }
     return _entryWindow;
