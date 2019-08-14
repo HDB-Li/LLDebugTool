@@ -32,6 +32,7 @@
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLLogFilterView()
 
@@ -148,7 +149,7 @@
     } else if (lineNo < 1) {
         lineNo = 1;
     }
-    CGFloat eventHeight = lineNo * 40 + 10;
+    CGFloat eventHeight = lineNo * 40 + kLLGeneralMargin;
     self.eventView.frame = CGRectMake(self.eventView.frame.origin.x, self.eventView.frame.origin.y, self.eventView.frame.size.width, eventHeight);
     [self.eventView updateDataArray:eventArray];
     

@@ -33,6 +33,6 @@ CGFloat const kLLSuspensionWindowTop = 200;
 NSInteger const kLLMagnifierWindowZoomLevel = 10;
 NSInteger const kLLMagnifierWindowSize = 15;
 
-CGFloat const kGeneralMargin = 10;
+CGFloat const kLLGeneralMargin = 10;
 
 NSString * const kLLEntryViewDoubleClickComponent = @"LLScreenshotComponent";

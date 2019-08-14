@@ -25,6 +25,7 @@
 #import "LLScreenshotSelectorModel.h"
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
+#import "LLConst.h"
 
 @interface LLScreenshotSelectorView ()
 
@@ -79,7 +80,7 @@
     self.model = [[LLScreenshotSelectorModel alloc] init];
     
     NSInteger count = 9;
-    CGFloat gap = 10;
+    CGFloat gap = kLLGeneralMargin;
     CGFloat itemWidth = 19;
     CGFloat itemHeight = 19;
     CGFloat itemGap = (self.frame.size.width - gap * 2 - itemWidth * count) / (count - 1);

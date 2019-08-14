@@ -24,6 +24,7 @@
 #import "LLScreenshotImageView.h"
 #import "LLScreenshotBaseOperation.h"
 #import "LLFactory.h"
+#import "LLConst.h"
 
 @interface LLScreenshotImageView ()
 
@@ -129,7 +130,7 @@
             self.currentOperation = operation;
             [self.operations addObject:operation];
             [self addSubview:operation.textView];
-            operation.textView.frame = CGRectMake(point.x, point.y, self.frame.size.width - point.x - 10, 30);
+            operation.textView.frame = CGRectMake(point.x, point.y, self.frame.size.width - point.x - kLLGeneralMargin, 30);
             [operation.textView becomeFirstResponder];
         }
             break;

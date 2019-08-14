@@ -42,7 +42,7 @@ UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;
 
 // General margin.
-UIKIT_EXTERN CGFloat const kGeneralMargin;
+UIKIT_EXTERN CGFloat const kLLGeneralMargin;
 
 // Default EntryView double click component.
 FOUNDATION_EXTERN NSString * const kLLEntryViewDoubleClickComponent;

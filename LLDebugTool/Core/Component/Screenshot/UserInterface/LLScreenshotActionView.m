@@ -25,6 +25,7 @@
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
+#import "LLConst.h"
 
 @interface LLScreenshotActionView ()
 
@@ -73,7 +74,7 @@
     [self LL_setCornerRadius:5];
     
     int count = 8;
-    CGFloat gap = 10;
+    CGFloat gap = kLLGeneralMargin;
     CGFloat itemWidth = (self.frame.size.width - gap * 2) / count;
     CGFloat itemHeight = self.frame.size.height;
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;

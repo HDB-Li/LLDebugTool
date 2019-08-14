@@ -58,11 +58,11 @@
     self.objectDatas = [[NSMutableArray alloc] init];
     self.sizeDatas = [[NSMutableArray alloc] init];
     
-    self.segmentedControl = [LLFactory getSegmentedControl:self.view frame:CGRectMake(kGeneralMargin, LL_NAVIGATION_HEIGHT + kGeneralMargin, self.view.LL_width - kGeneralMargin * 2, 30) items:@[@"Object", @"Size"]];
+    self.segmentedControl = [LLFactory getSegmentedControl:self.view frame:CGRectMake(kLLGeneralMargin, LL_NAVIGATION_HEIGHT + kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, 30) items:@[@"Object", @"Size"]];
     self.segmentedControl.tintColor = [LLThemeManager shared].primaryColor;
     self.segmentedControl.selectedSegmentIndex = 0;
     
-    self.tableView.frame = CGRectMake(0, self.segmentedControl.LL_bottom + kGeneralMargin, self.view.LL_width, self.view.LL_height - self.segmentedControl.LL_bottom - kGeneralMargin);
+    self.tableView.frame = CGRectMake(0, self.segmentedControl.LL_bottom + kLLGeneralMargin, self.view.LL_width, self.view.LL_height - self.segmentedControl.LL_bottom - kLLGeneralMargin);
 }
 
 - (void)loadData {

@@ -36,6 +36,7 @@
 #import "LLFunctionItemContainerView.h"
 #import "UIView+LL_Utils.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
 
@@ -56,12 +57,12 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGRect toolContainerRect = CGRectMake(10, LL_NAVIGATION_HEIGHT + 10, self.view.LL_width - 10 * 2, self.toolContainerView.LL_height);
+    CGRect toolContainerRect = CGRectMake(kLLGeneralMargin, LL_NAVIGATION_HEIGHT + kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, self.toolContainerView.LL_height);
     if (!CGRectEqualToRect(self.toolContainerView.frame, toolContainerRect)) {
         self.toolContainerView.frame = toolContainerRect;
     }
     
-    CGRect shortCutContainerRect = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + 10, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
+    CGRect shortCutContainerRect = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + kLLGeneralMargin, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
     if (!CGRectEqualToRect(self.shortCutContainerView.frame, shortCutContainerRect)) {
         self.shortCutContainerView.frame = shortCutContainerRect;
     }

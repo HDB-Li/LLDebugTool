@@ -27,6 +27,7 @@
 #import "UIImage+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLFunctionItemView ()
 
@@ -56,9 +57,9 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(0, 10, 40, 40);
+    self.imageView.frame = CGRectMake(0, kLLGeneralMargin, 40, 40);
     self.imageView.LL_centerX = self.LL_width / 2.0;
-    self.titleLabel.frame = CGRectMake(0, self.imageView.LL_bottom + 10, self.LL_width, 20);
+    self.titleLabel.frame = CGRectMake(0, self.imageView.LL_bottom + kLLGeneralMargin, self.LL_width, 20);
 }
 
 #pragma mark - Primary

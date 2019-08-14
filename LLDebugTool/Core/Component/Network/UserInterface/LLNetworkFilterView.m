@@ -32,6 +32,7 @@
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLNetworkFilterView ()
 
@@ -127,7 +128,7 @@
     } else if (lineNo < 1) {
         lineNo = 1;
     }
-    CGFloat eventHeight = lineNo * 40 + 10;
+    CGFloat eventHeight = lineNo * 40 + kLLGeneralMargin;
     self.hostView.frame = CGRectMake(self.hostView.frame.origin.x, self.hostView.frame.origin.y, self.hostView.frame.size.width, eventHeight);
     [self.hostView updateDataArray:hostArray];
     

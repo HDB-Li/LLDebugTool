@@ -29,6 +29,7 @@
 #import "LLFactory.h"
 #import "LLConfig.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLHierarchyPickerInfoView ()
 
@@ -37,6 +38,8 @@
 @property (nonatomic, strong) UILabel *contentLabel;
 
 @property (nonatomic, strong) UIButton *moreButton;
+
+@property (nonatomic, assign) CGFloat moreButtonHeight;
 
 @end
 
@@ -96,12 +99,12 @@
     
     [self.contentLabel sizeToFit];
     
-    CGFloat height = self.contentLabel.LL_height + 10 * 3 + 35;
+    CGFloat height = self.contentLabel.LL_height + kLLGeneralMargin * 3 + self.moreButtonHeight;
     if (height != self.LL_height) {
         self.LL_height = height;
         if (!self.isMoved) {
-            if (self.LL_bottom != LL_SCREEN_HEIGHT - 10 * 2) {
-                self.LL_bottom = LL_SCREEN_HEIGHT - 10 * 2;
+            if (self.LL_bottom != LL_SCREEN_HEIGHT - kLLGeneralMargin * 2) {
+                self.LL_bottom = LL_SCREEN_HEIGHT - kLLGeneralMargin * 2;
             }
         }
     }
@@ -109,14 +112,12 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGFloat gap = 10;
-    CGFloat moreHeight = 35;
-    CGRect moreRect = CGRectMake(gap, self.LL_height - moreHeight - gap, self.LL_width - gap - gap, moreHeight);
+    CGRect moreRect = CGRectMake(kLLGeneralMargin, self.LL_height - self.moreButtonHeight - kLLGeneralMargin, self.LL_width - kLLGeneralMargin - kLLGeneralMargin, self.moreButtonHeight);
     if (!CGRectEqualToRect(self.moreButton.frame, moreRect)) {
         self.moreButton.frame = moreRect;
     }
     
-    CGRect contentRect = CGRectMake(gap, gap, self.closeButton.LL_x - gap - gap, self.moreButton.LL_y - gap - gap);
+    CGRect contentRect = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.moreButton.LL_y - kLLGeneralMargin - kLLGeneralMargin);
     if (!CGRectEqualToRect(self.contentLabel.frame, contentRect)) {
         self.contentLabel.frame = contentRect;
     }
@@ -137,6 +138,7 @@
     self.moreButton.layer.borderWidth = 1;
     self.moreButton.layer.cornerRadius = 5;
     self.moreButton.layer.masksToBounds = YES;
+    self.moreButtonHeight = 35;
 }
 
 - (void)moreButtonClicked:(UIButton *)sender {

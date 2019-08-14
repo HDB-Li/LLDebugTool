@@ -26,6 +26,7 @@
 #import "LLScreenshotActionView.h"
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
+#import "LLConst.h"
 
 @interface LLScreenshotToolbar () <LLScreenshotActionViewDelegate>
 
@@ -57,8 +58,7 @@
     self.clipsToBounds = YES;
     self.selectorViews = [[NSMutableArray alloc] init];
     
-    CGFloat gap = 10;
-    CGFloat itemHeight = (self.frame.size.height - gap) /2.0;
+    CGFloat itemHeight = (self.frame.size.height - kLLGeneralMargin) /2.0;
     self.actionView = [[LLScreenshotActionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, itemHeight)];
     self.actionView.delegate = self;
     [self addSubview:self.actionView];

@@ -30,6 +30,7 @@
 #import "LLConfig.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
@@ -101,7 +102,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
     
     
     CGFloat headerHeight = 30;
-    CGFloat gap = 10;
+    CGFloat gap = kLLGeneralMargin;
     CGFloat itemHeight = 25;
     NSInteger idCount = ceilf(self.userIdDataArray.count / 3.0);
     CGFloat height = headerHeight + gap + itemHeight + gap + itemHeight + gap + headerHeight + gap + itemHeight + gap + itemHeight + gap + headerHeight + gap + idCount * (itemHeight + gap);

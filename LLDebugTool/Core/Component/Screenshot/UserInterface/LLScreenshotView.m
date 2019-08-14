@@ -31,6 +31,7 @@
 #import "LLRoute.h"
 #import "LLFormatterTool.h"
 #import "LLToastUtils.h"
+#import "LLConst.h"
 
 @interface LLScreenshotView () <LLScreenshotToolbarDelegate>
 
@@ -163,7 +164,7 @@
     [self addSubview:self.imageView];
     
     // Init Controls
-    self.toolBar = [[LLScreenshotToolbar alloc] initWithFrame:CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y + self.imageView.frame.size.height + 10, self.imageView.frame.size.width, toolBarHeight)];
+    self.toolBar = [[LLScreenshotToolbar alloc] initWithFrame:CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y + self.imageView.frame.size.height + kLLGeneralMargin, self.imageView.frame.size.width, toolBarHeight)];
     self.toolBar.delegate = self;
     [self addSubview:self.toolBar];
 }

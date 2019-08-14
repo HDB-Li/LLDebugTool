@@ -48,7 +48,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     
     CGFloat height = 60;
-    self.infoView = [[LLMagnifierInfoView alloc] initWithFrame:CGRectMake(kGeneralMargin, LL_SCREEN_HEIGHT - kGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kGeneralMargin * 2, height)];
+    self.infoView = [[LLMagnifierInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     

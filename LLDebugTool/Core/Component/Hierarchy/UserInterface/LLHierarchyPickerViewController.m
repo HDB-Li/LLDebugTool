@@ -68,7 +68,7 @@
     self.borderViews = [[NSMutableDictionary alloc] init];
     
     CGFloat height = 100;
-    self.infoView = [[LLHierarchyPickerInfoView alloc] initWithFrame:CGRectMake(kGeneralMargin, LL_SCREEN_HEIGHT - kGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kGeneralMargin * 2, height)];
+    self.infoView = [[LLHierarchyPickerInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     

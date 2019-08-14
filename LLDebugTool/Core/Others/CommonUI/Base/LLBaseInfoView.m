@@ -28,6 +28,7 @@
 #import "LLConfig.h"
 #import "LLMacros.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLBaseInfoView ()
 
@@ -44,7 +45,7 @@
         self.layer.cornerRadius = 5;
         self.backgroundColor = [LLThemeManager shared].backgroundColor;
         
-        self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - 10 - 30, 10, 30, 30) target:self action:@selector(closeButtonClicked:)];
+        self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30) target:self action:@selector(closeButtonClicked:)];
         [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
     }
     return self;
@@ -52,7 +53,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGRect closeRect = CGRectMake(self.LL_width - 10 - 30, 10, 30, 30);
+    CGRect closeRect = CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30);
     if (!CGRectEqualToRect(self.closeButton.frame, closeRect)) {
         self.closeButton.frame = closeRect;
     }
