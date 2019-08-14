@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLFunctionComponent.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLFunctionComponent.h"
+#import "LLWindowManager.h"
 
-CGFloat const kLLSuspensionWindowWidth = 50;
-CGFloat const kLLSuspensionWindowMinWidth = 30;
-CGFloat const kLLSuspensionWindowHideWidth = 10;
-CGFloat const kLLSuspensionWindowNormalAlpha = 0.75;
-CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
-CGFloat const kLLSuspensionWindowTop = 200;
+@implementation LLFunctionComponent
 
-NSInteger const kLLMagnifierWindowZoomLevel = 10;
-NSInteger const kLLMagnifierWindowSize = 15;
+- (void)componentDidLoad:(NSDictionary *)data {
+    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].entryWindow animated:YES];
+    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].functionWindow animated:YES];
+}
 
-CGFloat const kGeneralMargin = 10;
-
-NSString * const kLLEntryViewDoubleClickComponent = @"LLScreenshotComponent";
+@end

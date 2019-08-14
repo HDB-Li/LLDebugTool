@@ -35,6 +35,7 @@
 		36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DC10FC22FA60B90078B7BC /* LLToastUtils.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
+		36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E493832303E7D700B89F41 /* LLFunctionComponent.m */; };
 		36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F30D992301699E00976937 /* LLEntryViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
@@ -255,6 +256,8 @@
 		36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoUITests.m; sourceTree = "<group>"; };
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36E493822303E7D700B89F41 /* LLFunctionComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionComponent.h; sourceTree = "<group>"; };
+		36E493832303E7D700B89F41 /* LLFunctionComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionComponent.m; sourceTree = "<group>"; };
 		36F30D982301699E00976937 /* LLEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryViewController.h; sourceTree = "<group>"; };
 		36F30D992301699E00976937 /* LLEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryViewController.m; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
@@ -624,6 +627,23 @@
 			path = LLDebugToolDemoUITests;
 			sourceTree = "<group>";
 		};
+		36E493812303E7B700B89F41 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4E3FE22F9C90900F70277 /* LLFunctionWindow.h */,
+				C4B4E40322F9C90900F70277 /* LLFunctionWindow.m */,
+				C4B4E40522F9C90900F70277 /* LLFunctionViewController.h */,
+				C4B4E40022F9C90900F70277 /* LLFunctionViewController.m */,
+				C4B4E40222F9C90900F70277 /* LLFunctionItemView.h */,
+				C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */,
+				C4B4E40122F9C90900F70277 /* LLFunctionItemModel.h */,
+				C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */,
+				C4B4E3FF22F9C90900F70277 /* LLFunctionItemContainerView.h */,
+				C4B4E40422F9C90900F70277 /* LLFunctionItemContainerView.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +731,7 @@
 		C498561222ED8D4700E9FBE2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				C4B4E3FD22F9C90900F70277 /* Function */,
 				C498571122EDE31200E9FBE2 /* Magnifier */,
 				C498561322ED8D4700E9FBE2 /* Screenshot */,
 				C498562622ED8D4700E9FBE2 /* Hierarchy */,
@@ -1413,7 +1434,6 @@
 		C4B4E3FC22F9C90900F70277 /* Windows */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3FD22F9C90900F70277 /* FunctionWindow */,
 				C4B4E41422F9C90900F70277 /* EntryWindow */,
 				C4B4E41222F9C90900F70277 /* LLWindow.h */,
 				C4B4E40922F9C90900F70277 /* LLWindow.m */,
@@ -1423,21 +1443,14 @@
 			path = Windows;
 			sourceTree = "<group>";
 		};
-		C4B4E3FD22F9C90900F70277 /* FunctionWindow */ = {
+		C4B4E3FD22F9C90900F70277 /* Function */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3FE22F9C90900F70277 /* LLFunctionWindow.h */,
-				C4B4E40322F9C90900F70277 /* LLFunctionWindow.m */,
-				C4B4E40522F9C90900F70277 /* LLFunctionViewController.h */,
-				C4B4E40022F9C90900F70277 /* LLFunctionViewController.m */,
-				C4B4E40222F9C90900F70277 /* LLFunctionItemView.h */,
-				C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */,
-				C4B4E40122F9C90900F70277 /* LLFunctionItemModel.h */,
-				C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */,
-				C4B4E3FF22F9C90900F70277 /* LLFunctionItemContainerView.h */,
-				C4B4E40422F9C90900F70277 /* LLFunctionItemContainerView.m */,
+				36E493812303E7B700B89F41 /* UserInterface */,
+				36E493822303E7D700B89F41 /* LLFunctionComponent.h */,
+				36E493832303E7D700B89F41 /* LLFunctionComponent.m */,
 			);
-			path = FunctionWindow;
+			path = Function;
 			sourceTree = "<group>";
 		};
 		C4B4E41422F9C90900F70277 /* EntryWindow */ = {
@@ -1820,6 +1833,7 @@
 				C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
 				C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */,
 				C498569A22ED8D4800E9FBE2 /* LLCrashViewController.m in Sources */,
+				36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */,
 				C498568022ED8D4800E9FBE2 /* LLScreenshotBaseOperation.m in Sources */,
 				C498568322ED8D4800E9FBE2 /* LLScreenshotSelectorView.m in Sources */,
 				C49856EC22EDAEFE00E9FBE2 /* LLAppInfoWindow.m in Sources */,

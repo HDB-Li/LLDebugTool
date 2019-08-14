@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 // Default suspension window width.
 UIKIT_EXTERN CGFloat const kLLSuspensionWindowWidth;
@@ -42,3 +43,6 @@ UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;
 
 // General margin.
 UIKIT_EXTERN CGFloat const kGeneralMargin;
+
+// Default EntryView double click component.
+FOUNDATION_EXTERN NSString * const kLLEntryViewDoubleClickComponent;

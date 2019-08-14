@@ -22,7 +22,69 @@
 //  SOFTWARE.
 
 #import "LLSettingManager.h"
+#import "LLFunctionComponent.h"
+#import "LLConst.h"
+
+static LLSettingManager *_instance = nil;
+
+@interface LLSettingManager ()
+
+@property (nonatomic, copy) NSString *entryViewDoubleClickComponentKey;
+
+@end
 
 @implementation LLSettingManager
+
+@synthesize entryViewClickComponent = _entryViewClickComponent;
+@synthesize entryViewDoubleClickComponent = _entryViewDoubleClickComponent;
+
++ (instancetype)shared {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [[LLSettingManager alloc] init];
+        [_instance initial];
+    });
+    return _instance;
+}
+
+#pragma mark - Primary
+- (void)initial {
+    _entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
+}
+
+- (LLComponent *)entryViewClickComponent {
+    if (!_entryViewClickComponent) {
+        _entryViewClickComponent = [[LLFunctionComponent alloc] init];
+    }
+    return _entryViewClickComponent;
+}
+
+- (LLComponent *)entryViewDoubleClickComponent {
+    if (!_entryViewDoubleClickComponent) {
+        NSString *componentName = [self stringForKey:_entryViewDoubleClickComponentKey];
+        Class cls = NSClassFromString(componentName);
+        if (cls == nil || ![cls isKindOfClass:[LLComponent class]]) {
+            cls = NSClassFromString(kLLEntryViewDoubleClickComponent);
+        }
+        _entryViewDoubleClickComponent = [[cls alloc] init];
+    }
+    return _entryViewDoubleClickComponent;
+}
+
+- (void)setEntryViewDoubleClickComponent:(LLComponent *)entryViewDoubleClickComponent {
+    if (_entryViewDoubleClickComponent != entryViewDoubleClickComponent) {
+        _entryViewDoubleClickComponent = entryViewDoubleClickComponent;
+        [self synchronizeSetString:NSStringFromClass(entryViewDoubleClickComponent.class) forKey:_entryViewDoubleClickComponentKey];
+    }
+}
+
+- (NSString *_Nullable)stringForKey:(NSString *)aKey {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"LLDebugTool-%@",aKey]];
+}
+
+- (void)synchronizeSetString:(NSString *)string forKey:(NSString *)aKey {
+    [[NSUserDefaults standardUserDefaults] setObject:string forKey:[NSString stringWithFormat:@"LLDebugTool-%@",aKey]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 @end

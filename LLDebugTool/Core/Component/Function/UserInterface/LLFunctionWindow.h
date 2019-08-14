@@ -1,5 +1,5 @@
 //
-//  LLFunctionViewController.h
+//  LLFunctionWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -20,25 +20,11 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-
-#import "LLBaseViewController.h"
+#import "LLBaseComponentWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLFunctionViewController, LLHierarchyModel;
-
-@protocol LLFunctionViewControllerDelegate <NSObject>
-
-- (void)LLFunctionViewController:(LLFunctionViewController *)viewController didSelectedHierarchyModel:(LLHierarchyModel *)model;
-
-@end
-
-/**
- Function list display viewController.
- */
-@interface LLFunctionViewController : LLBaseViewController
-
-@property (nonatomic, weak, nullable) id<LLFunctionViewControllerDelegate> delegate;
+@interface LLFunctionWindow : LLBaseComponentWindow
 
 @end
 

@@ -26,6 +26,7 @@
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
+#import "LLSettingManager.h"
 
 @interface LLEntryViewController ()
 
@@ -79,11 +80,11 @@
 }
 
 - (void)tapGR:(UITapGestureRecognizer *)sender {
-//    [_delegate LLEntryWindow:self didTapAt:1];
+    [[LLSettingManager shared].entryViewClickComponent componentDidLoad:nil];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)sender {
-//    [_delegate LLEntryWindow:self didTapAt:2];
+    [[LLSettingManager shared].entryViewDoubleClickComponent componentDidLoad:nil];
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {

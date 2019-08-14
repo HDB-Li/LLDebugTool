@@ -35,7 +35,6 @@
 #import "LLHierarchyViewController.h"
 #import "LLFunctionItemContainerView.h"
 #import "UIView+LL_Utils.h"
-#import "LLWindowManager.h"
 #import "LLThemeManager.h"
 
 @interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
@@ -71,13 +70,6 @@
     if (!CGRectEqualToRect(self.settingButton.frame, settingButtonRect)) {
         self.settingButton.frame = settingButtonRect;
     }
-}
-
-- (void)leftItemClick {
-    [[LLWindowManager shared] dismissWindow:self.view.window animated:YES completion:^{
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
 }
 
 #pragma mark - Primary

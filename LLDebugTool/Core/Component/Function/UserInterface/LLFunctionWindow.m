@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLFunctionWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLFunctionWindow.h"
+#import "LLFunctionViewController.h"
+#import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
-CGFloat const kLLSuspensionWindowWidth = 50;
-CGFloat const kLLSuspensionWindowMinWidth = 30;
-CGFloat const kLLSuspensionWindowHideWidth = 10;
-CGFloat const kLLSuspensionWindowNormalAlpha = 0.75;
-CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
-CGFloat const kLLSuspensionWindowTop = 200;
+@implementation LLFunctionWindow
 
-NSInteger const kLLMagnifierWindowZoomLevel = 10;
-NSInteger const kLLMagnifierWindowSize = 15;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
+}
 
-CGFloat const kGeneralMargin = 10;
+- (void)componentDidFinish {
+    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^{
+        [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:NO];
+        [[LLWindowManager shared] reloadFunctionWindow];
+    }];
+}
 
-NSString * const kLLEntryViewDoubleClickComponent = @"LLScreenshotComponent";
+#pragma mark - Primary
+- (void)initial {
+    if (!self.rootViewController) {
+        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLFunctionViewController alloc] init]];
+    }
+}
+@end

@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.h
+//  LLFunctionComponent.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -20,11 +20,12 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-#import "LLBaseWindow.h"
+
+#import "LLComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFunctionWindow : LLBaseWindow
+@interface LLFunctionComponent : LLComponent
 
 @end
 

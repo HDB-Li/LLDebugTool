@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.m
+//  LLFunctionViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFunctionWindow.h"
-#import "LLFunctionViewController.h"
-#import "LLNavigationController.h"
+#import "LLBaseComponentViewController.h"
 
-@implementation LLFunctionWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
+@class LLFunctionViewController, LLHierarchyModel;
 
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLFunctionViewController alloc] init]];
-    }
-}
+@protocol LLFunctionViewControllerDelegate <NSObject>
+
+- (void)LLFunctionViewController:(LLFunctionViewController *)viewController didSelectedHierarchyModel:(LLHierarchyModel *)model;
+
 @end
+
+/**
+ Function list display viewController.
+ */
+@interface LLFunctionViewController : LLBaseComponentViewController
+
+@property (nonatomic, weak, nullable) id<LLFunctionViewControllerDelegate> delegate;
+
+@end
+
+NS_ASSUME_NONNULL_END
