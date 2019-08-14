@@ -207,15 +207,15 @@ static NSString *const kCellID = @"cellID";
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             switch ([LLConfig sharedConfig].entryWindowStyle) {
-                case LLConfigWindowSuspensionBall:{
+                case LLConfigEntryWindowStyleSuspensionBall:{
                     cell.detailTextLabel.text = @"LLConfigWindowSuspensionBall";
                 }
                     break;
-                case LLConfigWindowPowerBar:{
+                case LLConfigEntryWindowStylePowerBar:{
                     cell.detailTextLabel.text = @"LLConfigWindowPowerBar";
                 }
                     break;
-                case LLConfigWindowNetBar:{
+                case LLConfigEntryWindowStyleNetBar:{
                     cell.detailTextLabel.text = @"LLConfigWindowNetBar";
                 }
                     break;
