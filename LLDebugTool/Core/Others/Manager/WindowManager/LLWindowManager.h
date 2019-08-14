@@ -44,35 +44,103 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLWindowManager : NSObject
 
 /**
+ Entry window.
+ */
+@property (nonatomic, strong, readonly) LLEntryWindow *entryWindow;
+
+/**
  Singleton
 
  @return LLWindowManager.
  */
 + (instancetype)shared;
 
-@property (nonatomic, strong, readonly) LLEntryWindow *entryWindow;
+/**
+ Function window.
+ 
+ @return LLFunctionWindow.
+ */
++ (LLFunctionWindow *)functionWindow;
 
-@property (nonatomic, strong, readonly) LLFunctionWindow *functionWindow;
+/**
+ Magnifier window
+ 
+ @return LLMagnifierWindow.
+ */
++ (LLMagnifierWindow *)magnifierWindow;
 
-@property (nonatomic, strong, readonly) LLMagnifierWindow *magnifierWindow;
+/**
+ Network window
+ 
+ @return LLNetworkWindow.
+ */
++ (LLNetworkWindow *)networkWindow;
 
-@property (nonatomic, strong, readonly) LLNetworkWindow *networkWindow;
+/**
+ Log window
+ 
+ @return LLLogWindow.
+ */
++ (LLLogWindow *)logWindow;
 
-@property (nonatomic, strong, readonly) LLLogWindow *logWindow;
+/**
+ Crash window
+ 
+ @return LLCrashWindow.
+ */
++ (LLCrashWindow *)crashWindow;
 
-@property (nonatomic, strong, readonly) LLCrashWindow *crashWindow;
+/**
+ AppInfo window
+ 
+ @return LLAppInfoWindow.
+ */
++ (LLAppInfoWindow *)appInfoWindow;
 
-@property (nonatomic, strong, readonly) LLAppInfoWindow *appInfoWindow;
+/**
+ Sandbox window
+ 
+ @return LLSandboxWindow.
+ */
++ (LLSandboxWindow *)sandboxWindow;
 
-@property (nonatomic, strong, readonly) LLSandboxWindow *sandboxWindow;
+/**
+ Hierarchy window
+ 
+ @return LLHierarchyWindow.
+ */
++ (LLHierarchyWindow *)hierarchyWindow;
 
-@property (nonatomic, strong, readonly) LLHierarchyWindow *hierarchyWindow;
+/**
+ Hierarchy picker window
+ 
+ @return LLHierarchyPickerWindow.
+ */
++ (LLHierarchyPickerWindow *)hierarchyPickerWindow;
 
-@property (nonatomic, strong, readonly) LLHierarchyPickerWindow *hierarchyPickerWindow;
+/**
+ Hierarchy detail window
+ 
+ @return LLHierarchyDetailWindow.
+ */
++ (LLHierarchyDetailWindow *)hierarchyDetailWindow;
 
-@property (nonatomic, strong, readonly) LLHierarchyDetailWindow *hierarchyDetailWindow;
+/**
+ Screenshot window
+ 
+ @return LLScreenshotWindow.
+ */
++ (LLScreenshotWindow *)screenshotWindow;
 
-@property (nonatomic, strong, readonly) LLScreenshotWindow *screenshotWindow;
+/**
+ Show entry window.
+ */
+- (void)showEntryWindow;
+
+/**
+ Hide entry window.
+ */
+- (void)hideEntryWindow;
 
 /**
  Show window with alpha animate if needed.
@@ -175,61 +243,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param completion Completion block.
  */
 - (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
-
-/**
- Reload function window.
- */
-- (void)reloadFunctionWindow;
-
-/**
- Reload magnifier window.
- */
-- (void)reloadMagnifierWindow;
-
-/**
- Reload network window.
- */
-- (void)reloadNetworkWindow;
-
-/**
- Reload log window.
- */
-- (void)reloadLogWindow;
-
-/**
- Reload crash window.
- */
-- (void)reloadCrashWindow;
-
-/**
- Reload appInfo window.
- */
-- (void)reloadAppInfoWindow;
-
-/**
- Reload sandbox window.
- */
-- (void)reloadSandboxWindow;
-
-/**
- Reload hierarchy window.
- */
-- (void)reloadHierarchyWindow;
-
-/**
- Reload hierarchy picker window.
- */
-- (void)reloadHierarchyPickerWindow;
-
-/**
- Reload hierarchy detail window.
- */
-- (void)reloadHierarchyDetailWindow;
-
-/**
- Reload screenshot window.
- */
-- (void)reloadScreenshotWindow;
 
 @end
 

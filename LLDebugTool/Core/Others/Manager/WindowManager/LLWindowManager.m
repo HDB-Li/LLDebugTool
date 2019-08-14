@@ -29,37 +29,17 @@
 
 static LLWindowManager *_instance = nil;
 
-@interface LLWindowManager () <LLEntryWindowDelegate>
+@interface LLWindowManager ()
 
 @property (nonatomic, strong) LLEntryWindow *entryWindow;
-
-@property (nonatomic, strong) LLFunctionWindow *functionWindow;
-
-@property (nonatomic, strong) LLMagnifierWindow *magnifierWindow;
-
-@property (nonatomic, strong) LLNetworkWindow *networkWindow;
-
-@property (nonatomic, strong) LLLogWindow *logWindow;
-
-@property (nonatomic, strong) LLCrashWindow *crashWindow;
-
-@property (nonatomic, strong) LLAppInfoWindow *appInfoWindow;
-
-@property (nonatomic, strong) LLSandboxWindow *sandboxWindow;
-
-@property (nonatomic, strong) LLHierarchyWindow *hierarchyWindow;
-
-@property (nonatomic, strong) LLHierarchyPickerWindow *hierarchyPickerWindow;
-
-@property (nonatomic, strong) LLHierarchyDetailWindow *hierarchyDetailWindow;
-
-@property (nonatomic, strong) LLScreenshotWindow *screenshotWindow;
 
 @property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel normalWindowLevel;
+
+@property (nonatomic, strong) NSMutableArray *visibleWindows;
 
 @end
 
@@ -73,11 +53,66 @@ static LLWindowManager *_instance = nil;
     return _instance;
 }
 
++ (LLFunctionWindow *)functionWindow {
+    return [[LLFunctionWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLMagnifierWindow *)magnifierWindow {
+    return [[LLMagnifierWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLNetworkWindow *)networkWindow {
+    return [[LLNetworkWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLLogWindow *)logWindow {
+    return [[LLLogWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLCrashWindow *)crashWindow {
+    return [[LLCrashWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLAppInfoWindow *)appInfoWindow {
+    return [[LLAppInfoWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLSandboxWindow *)sandboxWindow {
+    return [[LLSandboxWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLHierarchyWindow *)hierarchyWindow {
+    return [[LLHierarchyWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLHierarchyPickerWindow *)hierarchyPickerWindow {
+    return [[LLHierarchyPickerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLHierarchyDetailWindow *)hierarchyDetailWindow {
+    return [[LLHierarchyDetailWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
++ (LLScreenshotWindow *)screenshotWindow {
+    return [[LLScreenshotWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+}
+
+- (void)showEntryWindow {
+    [self showWindow:self.entryWindow animated:YES];
+}
+
+- (void)hideEntryWindow {
+    [self hideWindow:self.entryWindow animated:YES];
+}
+
 - (void)showWindow:(UIWindow *)window animated:(BOOL)animated {
     [self showWindow:window animated:animated completion:nil];
 }
 
 - (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
     if (animated) {
         CGFloat alpha = window.alpha;
         window.alpha = 0;
@@ -90,6 +125,7 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
+            [self.visibleWindows addObject:window];
         }];
     } else {
         window.hidden = NO;
@@ -97,6 +133,7 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
+        [self.visibleWindows addObject:window];
     }
 }
 
@@ -105,6 +142,9 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
     if (animated) {
         CGFloat alpha = window.alpha;
         [UIView animateWithDuration:0.25 animations:^{
@@ -116,6 +156,7 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
+            [self.visibleWindows removeObject:window];
         }];
     } else {
         window.hidden = YES;
@@ -123,6 +164,7 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
+        [self.visibleWindows removeObject:window];
     }
 }
 
@@ -131,6 +173,9 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)presentWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
     if (animated) {
         CGFloat y = window.LL_y;
         window.LL_y = LL_SCREEN_HEIGHT;
@@ -143,6 +188,7 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
+            [self.visibleWindows addObject:window];
         }];
     } else {
         window.hidden = NO;
@@ -150,6 +196,7 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
+        [self.visibleWindows addObject:window];
     }
 }
 
@@ -158,6 +205,9 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
     if (animated) {
         CGFloat y = window.LL_y;
         [UIView animateWithDuration:0.25 animations:^{
@@ -169,6 +219,7 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
+            [self.visibleWindows removeObject:window];
         }];
     } else {
         window.hidden = YES;
@@ -176,6 +227,7 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
+        [self.visibleWindows removeObject:window];
     }
 }
 
@@ -184,6 +236,9 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)pushWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
     if (animated) {
         CGFloat x = window.LL_x;
         window.LL_x = LL_SCREEN_WIDTH;
@@ -196,6 +251,7 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
+            [self.visibleWindows addObject:window];
         }];
     } else {
         window.hidden = NO;
@@ -203,6 +259,7 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
+        [self.visibleWindows addObject:window];
     }
 }
 
@@ -211,6 +268,9 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
     if (animated) {
         CGFloat x = window.LL_x;
         [UIView animateWithDuration:0.25 animations:^{
@@ -222,6 +282,7 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
+            [self.visibleWindows removeObject:window];
         }];
     } else {
         window.hidden = YES;
@@ -229,138 +290,47 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
+        [self.visibleWindows removeObject:window];
     }
 }
 
-- (void)reloadFunctionWindow {
-    _functionWindow = nil;
+- (void)removeVisibleWindow:(UIWindow *)window {
+    [self.visibleWindows removeObject:window];
 }
 
-- (void)reloadMagnifierWindow {
-    _magnifierWindow = nil;
+- (void)removeAllVisibleWindows {
+    for (LLBaseWindow *window in self.visibleWindows) {
+        [self removeWindow:window animated:YES animateStyle:window.animateStyle];
+    }
+    [self.visibleWindows removeAllObjects];
 }
 
-- (void)reloadNetworkWindow {
-    _networkWindow = nil;
-}
-
-- (void)reloadLogWindow {
-    _logWindow = nil;
-}
-
-- (void)reloadCrashWindow {
-    _crashWindow = nil;
-}
-
-- (void)reloadAppInfoWindow {
-    _appInfoWindow = nil;
-}
-
-- (void)reloadSandboxWindow {
-    _sandboxWindow = nil;
-}
-
-- (void)reloadHierarchyWindow {
-    _hierarchyWindow = nil;
-}
-
-- (void)reloadHierarchyPickerWindow {
-    _hierarchyPickerWindow = nil;
-}
-
-- (void)reloadHierarchyDetailWindow {
-    _hierarchyDetailWindow = nil;
-}
-
-- (void)reloadScreenshotWindow {
-    _screenshotWindow = nil;
+- (void)removeWindow:(UIWindow *)window animated:(BOOL)animated animateStyle:(LLBaseWindowAnimateStyle)animateStyle {
+    switch (animateStyle) {
+        case LLBaseWindowAnimateStyleFadeInFadeOut:{
+            [self hideWindow:window animated:animated];
+        }
+            break;
+        case LLBaseWindowAnimateStylePushInPopOut: {
+            [self popWindow:window animated:animated];
+        }
+            break;
+        case LLBaseWindowAnimateStylePresentInDismissOut:{
+            [self dismissWindow:window animated:animated];
+        }
+        default:{
+            NSAssert(NO, @"Must code animate style to remove window");
+        }
+            break;
+    }
 }
 
 #pragma mark - Lazy
 - (LLEntryWindow *)entryWindow {
     if (!_entryWindow) {
         _entryWindow = [[LLEntryWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _entryWindow.delegate = self;
     }
     return _entryWindow;
-}
-
-- (LLFunctionWindow *)functionWindow {
-    if (!_functionWindow) {
-        _functionWindow = [[LLFunctionWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _functionWindow;
-}
-
-- (LLMagnifierWindow *)magnifierWindow {
-    if (!_magnifierWindow) {
-        _magnifierWindow = [[LLMagnifierWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _magnifierWindow;
-}
-
-- (LLNetworkWindow *)networkWindow {
-    if (!_networkWindow) {
-        _networkWindow = [[LLNetworkWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _networkWindow;
-}
-
-- (LLLogWindow *)logWindow {
-    if (!_logWindow) {
-        _logWindow = [[LLLogWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _logWindow;
-}
-
-- (LLCrashWindow *)crashWindow {
-    if (!_crashWindow) {
-        _crashWindow = [[LLCrashWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _crashWindow;
-}
-
-- (LLAppInfoWindow *)appInfoWindow {
-    if (!_appInfoWindow) {
-        _appInfoWindow = [[LLAppInfoWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _appInfoWindow;
-}
-
-- (LLSandboxWindow *)sandboxWindow {
-    if (!_sandboxWindow) {
-        _sandboxWindow = [[LLSandboxWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        
-    }
-    return _sandboxWindow;
-}
-
-- (LLHierarchyWindow *)hierarchyWindow {
-    if (!_hierarchyWindow) {
-        _hierarchyWindow = [[LLHierarchyWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _hierarchyWindow;
-}
-
-- (LLHierarchyPickerWindow *)hierarchyPickerWindow {
-    if (!_hierarchyPickerWindow) {
-        _hierarchyPickerWindow = [[LLHierarchyPickerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _hierarchyPickerWindow;
-}
-
-- (LLHierarchyDetailWindow *)hierarchyDetailWindow {
-    if (!_hierarchyDetailWindow) {
-        _hierarchyDetailWindow = [[LLHierarchyDetailWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _hierarchyDetailWindow;
-}
-
-- (LLScreenshotWindow *)screenshotWindow {
-    if (!_screenshotWindow) {
-        _screenshotWindow = [[LLScreenshotWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
-    return _screenshotWindow;
 }
 
 - (UIWindowLevel)presentingWindowLevel {
@@ -384,20 +354,11 @@ static LLWindowManager *_instance = nil;
     return _normalWindowLevel;
 }
 
-#pragma mark - LLEntryWindowDelegate
-- (void)LLEntryWindow:(LLEntryWindow *)window didTapAt:(NSInteger)numberOfTap {
-    switch (numberOfTap) {
-        case 1:
-            [[LLWindowManager shared] presentWindow:[LLWindowManager shared].functionWindow animated:YES completion:^{
-                [[LLWindowManager shared] hideWindow:[LLWindowManager shared].entryWindow animated:NO];
-            }];
-            break;
-        case 2:
-            [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:NO];
-            break;
-        default:
-            break;
+- (NSMutableArray *)visibleWindows {
+    if (!_visibleWindows) {
+        _visibleWindows = [[NSMutableArray alloc] init];
     }
+    return _visibleWindows;
 }
 
 @end

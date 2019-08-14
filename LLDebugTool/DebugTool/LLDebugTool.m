@@ -119,7 +119,7 @@ static LLDebugTool *_instance = nil;
 
 - (void)showWindow
 {
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:NO];
+    [[LLWindowManager shared] showEntryWindow];
 }
 
 - (void)hideWindow

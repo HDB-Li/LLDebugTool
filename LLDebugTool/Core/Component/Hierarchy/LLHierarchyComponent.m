@@ -27,10 +27,7 @@
 @implementation LLHierarchyComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:YES completion:^{
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].hierarchyPickerWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyPickerWindow] animated:YES];
 }
 
 @end

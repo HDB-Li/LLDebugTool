@@ -27,9 +27,7 @@
 @implementation LLScreenshotComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] dismissWindow:[LLWindowManager shared].functionWindow animated:YES];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].screenshotWindow animated:YES];
-    [[LLWindowManager shared] reloadFunctionWindow];
+    [[LLWindowManager shared] showWindow:[LLWindowManager screenshotWindow] animated:YES];
 }
 
 @end

@@ -27,10 +27,7 @@
 @implementation LLSandboxComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].sandboxWindow animated:YES completion:^() {
-        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
+    [[LLWindowManager shared] presentWindow:[LLWindowManager sandboxWindow] animated:YES];
 }
 
 @end

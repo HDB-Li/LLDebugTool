@@ -39,9 +39,7 @@
 }
 
 - (void)componentDidFinish {
-    [[LLWindowManager shared] hideWindow:self animated:YES];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:YES];
-    [[LLWindowManager shared] reloadScreenshotWindow];
+    [[LLWindowManager shared] showEntryWindow];
 }
 
 #pragma mark - Primary

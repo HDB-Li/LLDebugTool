@@ -27,10 +27,7 @@
 @implementation LLMagnifierComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] dismissWindow:[LLWindowManager shared].functionWindow animated:YES];
-    [[LLWindowManager shared] reloadFunctionWindow];
-    [[LLWindowManager shared] hideWindow:[LLWindowManager shared].entryWindow animated:YES];
-    [[LLWindowManager shared] showWindow:[LLWindowManager shared].magnifierWindow animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager magnifierWindow] animated:YES];
 }
 
 @end

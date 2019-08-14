@@ -27,10 +27,7 @@
 @implementation LLCrashComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].crashWindow animated:YES completion:^() {
-        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
+    [[LLWindowManager shared] presentWindow:[LLWindowManager crashWindow] animated:YES];
 }
 
 @end

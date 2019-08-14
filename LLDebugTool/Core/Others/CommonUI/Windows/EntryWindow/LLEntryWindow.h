@@ -25,16 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLEntryWindow;
-@protocol LLEntryWindowDelegate <NSObject>
-
-- (void)LLEntryWindow:(LLEntryWindow *)window didTapAt:(NSInteger)numberOfTap;
-
-@end
-
 @interface LLEntryWindow : LLBaseWindow
-
-@property (nonatomic, weak, nullable) id<LLEntryWindowDelegate> delegate;
 
 @end
 

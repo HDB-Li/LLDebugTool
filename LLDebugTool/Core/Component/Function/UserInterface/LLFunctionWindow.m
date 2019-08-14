@@ -36,10 +36,7 @@
 }
 
 - (void)componentDidFinish {
-    [[LLWindowManager shared] dismissWindow:self animated:YES completion:^{
-        [[LLWindowManager shared] showWindow:[LLWindowManager shared].entryWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
+    [[LLWindowManager shared] showEntryWindow];
 }
 
 #pragma mark - Primary

@@ -27,10 +27,7 @@
 @implementation LLLogComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager shared].logWindow animated:YES completion:^() {
-        [[LLWindowManager shared] hideWindow:[LLWindowManager shared].functionWindow animated:NO];
-        [[LLWindowManager shared] reloadFunctionWindow];
-    }];
+    [[LLWindowManager shared] presentWindow:[LLWindowManager logWindow] animated:YES];
 }
 
 @end

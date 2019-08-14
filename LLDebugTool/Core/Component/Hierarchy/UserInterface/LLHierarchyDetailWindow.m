@@ -37,7 +37,6 @@
 
 - (void)componentDidFinish {
     [[LLWindowManager shared] dismissWindow:self animated:YES];
-    [[LLWindowManager shared] reloadHierarchyDetailWindow];
 }
 
 - (void)setSelectView:(UIView *)selectView {
