@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 @property (nonatomic, strong) LLFunctionViewController *functionViewController;
 
-@property (nonatomic, assign) LLConfigWindowStyle windowStyle;
+@property (nonatomic, assign) LLConfigEntryWindowStyle windowStyle;
 
 @property (nonatomic, assign) CGFloat sBallWidth;
 
@@ -245,7 +245,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName
 - (void)didReceiveLLConfigDidUpdateWindowStyleNotification {
-    self.windowStyle = [LLConfig sharedConfig].windowStyle;
+    self.windowStyle = [LLConfig sharedConfig].entryWindowStyle;
     [self updateSettings];
     [self updateSubViews];
     [self updateGestureRecognizers];
@@ -321,7 +321,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
  * initial method
  */
 - (void)initial {
-    self.windowStyle = [LLConfig sharedConfig].windowStyle;
+    self.windowStyle = [LLConfig sharedConfig].entryWindowStyle;
 //    self.mode = LLWindowViewControllerModeSelect;
     [self updateSettings];
     [self updateSubViews];
@@ -338,23 +338,23 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     }
     self.sBallHideWidth = 10;
     switch (self.windowStyle) {
-        case LLConfigWindowPowerBar:{
+        case LLConfigEntryWindowStylePowerBar:{
             CGFloat width = 90;
             CGRect rect = [UIApplication sharedApplication].statusBarFrame;
             CGFloat gap = 0.5;
             self.contentView.frame = CGRectMake(LL_SCREEN_WIDTH - width - 2, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
         }
             break;
-        case LLConfigWindowNetBar:{
+        case LLConfigEntryWindowStyleNetBar:{
             CGFloat width = 90;
             CGRect rect = [UIApplication sharedApplication].statusBarFrame;
             CGFloat gap = 0.5;
             self.contentView.frame = CGRectMake(gap, rect.origin.y + gap, width, rect.size.height - gap * 2 < 20 - gap * 2 ? 20 - gap * 2 : rect.size.height - gap * 2);
         }
             break;
-        case LLConfigWindowSuspensionBall:
+        case LLConfigEntryWindowStyleSuspensionBall:
         default:{
-            self.windowStyle = LLConfigWindowSuspensionBall;
+            self.windowStyle = LLConfigEntryWindowStyleSuspensionBall;
             self.contentView.frame = CGRectMake(-self.sBallHideWidth, LL_SCREEN_HEIGHT / 3.0, _sBallWidth, _sBallWidth);
         }
             break;
@@ -372,9 +372,9 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     // Create contentView
     [self.view addSubview:self.contentView];
     
-    // Set up views by windowStyle.
+    // Set up views by entryWindowStyle.
     switch (self.windowStyle) {
-        case LLConfigWindowSuspensionBall:{
+        case LLConfigEntryWindowStyleSuspensionBall:{
             // Set ContentView
             self.contentView.layer.cornerRadius = _sBallWidth / 2.0;
             self.contentView.layer.borderWidth = 2;
@@ -392,8 +392,8 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
             [self.contentView addSubview:self.lineView];
         }
             break;
-        case LLConfigWindowPowerBar:
-        case LLConfigWindowNetBar:{
+        case LLConfigEntryWindowStylePowerBar:
+        case LLConfigEntryWindowStyleNetBar:{
             // Set ContentView
             CGFloat gap = self.contentView.frame.size.height / 2.0;
             self.contentView.layer.cornerRadius = gap;
@@ -440,7 +440,7 @@ typedef NS_ENUM(NSUInteger, LLWindowViewControllerMode) {
     [self.contentView addGestureRecognizer:doubleTap];
     
     switch (self.windowStyle) {
-        case LLConfigWindowSuspensionBall:{
+        case LLConfigEntryWindowStyleSuspensionBall:{
             [self.contentView addGestureRecognizer:pan];
         }
             break;

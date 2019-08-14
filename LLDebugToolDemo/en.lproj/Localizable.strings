@@ -41,7 +41,7 @@
 "test.log" = "Show log function";
 "test.crash" = "Show crash catch function";
 "test.color.style" = "Show colorStyle configuration";
-"test.window.style" = "Show windowStyle configuration";
+"test.window.style" = "Show entryWindowStyle configuration";
 "test.hierarchy" = "Show view hierarchy function";
 
 "new.version" = "A new version demo is available";

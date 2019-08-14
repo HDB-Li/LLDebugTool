@@ -30,7 +30,7 @@
     
     //####################### Window Style #######################//
     // Uncomment one of the following lines to change the window style.
-    // [LLConfig sharedConfig].windowStyle = LLConfigWindowNetBar;
+    // [LLConfig sharedConfig].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
 
     //####################### Features #######################//
     // Uncomment this line to change the available features.

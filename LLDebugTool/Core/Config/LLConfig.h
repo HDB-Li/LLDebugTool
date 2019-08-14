@@ -57,14 +57,14 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 /**
  Window style. Decide how the Window displays.
  
- - LLConfigWindowSuspensionBall: Show as a suspension ball. Moveable and clickable.
- - LLConfigWindowPowerBar: Show at power bar. Unmoveable but clickable.
- - LLConfigWindowNetBar: Show at network bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStyleSuspensionBall: Show as a suspension ball. Moveable and clickable.
+ - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
  */
-typedef NS_ENUM(NSUInteger, LLConfigWindowStyle) {
-    LLConfigWindowSuspensionBall,
-    LLConfigWindowPowerBar,
-    LLConfigWindowNetBar,
+typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
+    LLConfigEntryWindowStyleSuspensionBall,
+    LLConfigEntryWindowStylePowerBar,
+    LLConfigEntryWindowStyleNetBar,
 };
 
 /**
@@ -229,9 +229,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) LLConfigLogStyle logStyle;
 
 /**
- Window style. Decide how the Window displays. Default is LLConfigWindowSuspensionBall.
+ Entry window style. Decide how the Window displays. Default is LLConfigEntryWindowStyleSuspensionBall.
  */
-@property (nonatomic, assign) LLConfigWindowStyle windowStyle;
+@property (nonatomic, assign) LLConfigEntryWindowStyle entryWindowStyle;
 
 /**
  Available features. Default is LLConfigAvailableAll.

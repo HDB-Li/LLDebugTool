@@ -31,7 +31,7 @@
 
 @property (nonatomic, strong) LLEntryBallView *ballView;
 
-@property (nonatomic, assign) LLConfigWindowStyle style;
+@property (nonatomic, assign) LLConfigEntryWindowStyle style;
 
 @end
 
@@ -45,7 +45,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
-    self.style = [LLConfig sharedConfig].windowStyle;
+    self.style = [LLConfig sharedConfig].entryWindowStyle;
 
     // Double tap, to screenshot.
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
@@ -59,17 +59,17 @@
     [self.view addGestureRecognizer:doubleTap];
 }
 
-- (void)updateStyle:(LLConfigWindowStyle)style {
+- (void)updateStyle:(LLConfigEntryWindowStyle)style {
     switch (style) {
-        case LLConfigWindowSuspensionBall: {
+        case LLConfigEntryWindowStyleSuspensionBall: {
             [self.view addSubview:self.ballView];
         }
             break;
-        case LLConfigWindowNetBar: {
+        case LLConfigEntryWindowStyleNetBar: {
             [_ballView removeFromSuperview];
         }
             break;
-        case LLConfigWindowPowerBar: {
+        case LLConfigEntryWindowStylePowerBar: {
             [_ballView removeFromSuperview];
         }
             break;
@@ -97,17 +97,17 @@
 
 - (UIView *)activeEntryView {
     switch (self.style) {
-        case LLConfigWindowSuspensionBall:
+        case LLConfigEntryWindowStyleSuspensionBall:
             return self.ballView;
-        case LLConfigWindowNetBar:
+        case LLConfigEntryWindowStyleNetBar:
             return nil;
-        case LLConfigWindowPowerBar:
+        case LLConfigEntryWindowStylePowerBar:
             return nil;
     }
 }
 
 #pragma mark - Lazy
-- (void)setStyle:(LLConfigWindowStyle)style {
+- (void)setStyle:(LLConfigEntryWindowStyle)style {
     _style = style;
     [self updateStyle:style];
 }

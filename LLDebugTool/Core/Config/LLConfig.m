@@ -49,9 +49,9 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     }
 }
 
-- (void)setWindowStyle:(LLConfigWindowStyle)windowStyle {
-    if (_windowStyle != windowStyle) {
-        _windowStyle = windowStyle;
+- (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
+    if (_entryWindowStyle != entryStyle) {
+        _entryWindowStyle = entryStyle;
         [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];
     }
 }
@@ -154,7 +154,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _logStyle = LLConfigLogDetail;
     
     // Set default window's style.
-    _windowStyle = LLConfigWindowSuspensionBall;
+    _entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
     
     // Set default availables.
     _availables = LLConfigAvailableAll;

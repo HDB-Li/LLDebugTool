@@ -206,7 +206,7 @@ static NSString *const kCellID = @"cellID";
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            switch ([LLConfig sharedConfig].windowStyle) {
+            switch ([LLConfig sharedConfig].entryWindowStyle) {
                 case LLConfigWindowSuspensionBall:{
                     cell.detailTextLabel.text = @"LLConfigWindowSuspensionBall";
                 }
