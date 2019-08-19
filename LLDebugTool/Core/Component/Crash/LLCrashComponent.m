@@ -27,7 +27,7 @@
 @implementation LLCrashComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager crashWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager crashWindow] animated:YES];
 }
 
 @end

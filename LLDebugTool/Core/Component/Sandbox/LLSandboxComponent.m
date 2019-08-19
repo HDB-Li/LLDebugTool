@@ -27,7 +27,7 @@
 @implementation LLSandboxComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager sandboxWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager sandboxWindow] animated:YES];
 }
 
 @end

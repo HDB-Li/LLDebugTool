@@ -98,21 +98,132 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)showEntryWindow {
-    [self showWindow:self.entryWindow animated:YES];
+    [self addWindow:self.entryWindow animated:YES completion:nil];
 }
 
 - (void)hideEntryWindow {
-    [self hideWindow:self.entryWindow animated:YES];
+    [self removeWindow:self.entryWindow animated:YES automaticallyShowEntry:NO completion:nil];
 }
 
-- (void)showWindow:(UIWindow *)window animated:(BOOL)animated {
+- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated {
     [self showWindow:window animated:animated completion:nil];
 }
 
-- (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
+    [self addWindow:window animated:animated completion:completion];
+}
+
+- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated {
+    [self hideWindow:window animated:animated completion:nil];
+}
+
+- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
+    [self removeWindow:window animated:animated automaticallyShowEntry:YES completion:nil];
+}
+
+#pragma mark - Primary
+- (void)addWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (!window) {
         return;
     }
+    [self removeAllVisibleWindows];
+    
+    [self.visibleWindows addObject:window];
+    if (animated) {
+        __block CGFloat alpha = window.alpha;
+        __block CGFloat x = window.LL_x;
+        __block CGFloat y = window.LL_y;
+        switch (window.showAnimateStyle) {
+            case LLBaseWindowShowAnimateStyleFade:{
+                alpha = 0;
+            }
+                break;
+            case LLBaseWindowShowAnimateStylePresent:{
+                y = LL_SCREEN_HEIGHT;
+            }
+                break;
+            case LLBaseWindowShowAnimateStylePush:{
+                x = LL_SCREEN_WIDTH;
+            }
+                break;
+        }
+        window.hidden = NO;
+        window.windowLevel = self.presentingWindowLevel;
+        [UIView animateWithDuration:0.25 animations:^{
+            window.alpha = alpha;
+            window.LL_x = x;
+            window.LL_y = y;
+        } completion:^(BOOL finished) {
+            window.windowLevel = self.presentWindowLevel;
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        window.hidden = NO;
+        window.windowLevel = self.presentWindowLevel;
+        if (completion) {
+            completion();
+        }
+    }
+}
+
+- (void)removeWindow:(LLBaseWindow *)window animated:(BOOL)animated automaticallyShowEntry:(BOOL)automaticallyShowEntry completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
+    
+    [self removeVisibleWindow:window automaticallyShowEntry:automaticallyShowEntry];
+    
+    if (animated) {
+        __block CGFloat alpha = window.alpha;
+        __block CGFloat x = window.LL_x;
+        __block CGFloat y = window.LL_y;
+        __block CGFloat oriAlpha = window.alpha;
+        __block CGFloat oriX = window.LL_x;
+        __block CGFloat oriY = window.LL_y;
+        switch (window.hideAnimateStyle) {
+            case LLBaseWindowHideAnimateStyleFade: {
+                alpha = 0;
+            }
+                break;
+            case LLBaseWindowHideAnimateStyleDismiss:{
+                y = LL_SCREEN_HEIGHT;
+            }
+            case LLBaseWindowHideAnimateStylePop: {
+                x = LL_SCREEN_WIDTH;
+            }
+            default:
+                break;
+        }
+        [UIView animateWithDuration:0.25 animations:^{
+            window.alpha = alpha;
+            window.LL_x = x;
+            window.LL_y = y;
+        } completion:^(BOOL finished) {
+            window.hidden = YES;
+            window.alpha = oriAlpha;
+            window.LL_x = oriX;
+            window.LL_y = oriY;
+            window.windowLevel = self.normalWindowLevel;
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        window.hidden = YES;
+        window.windowLevel = self.normalWindowLevel;
+        if (completion) {
+            completion();
+        }
+    }
+}
+
+- (void)fadeIn:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    if (!window) {
+        return;
+    }
+    [self.visibleWindows addObject:window];
     if (animated) {
         CGFloat alpha = window.alpha;
         window.alpha = 0;
@@ -125,7 +236,6 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
-            [self.visibleWindows addObject:window];
         }];
     } else {
         window.hidden = NO;
@@ -133,18 +243,14 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
-        [self.visibleWindows addObject:window];
     }
 }
 
-- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated {
-    [self hideWindow:window animated:animated completion:nil];
-}
-
-- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)fadeOut:(LLBaseWindow *)window animated:(BOOL)animated automaticallyShowEntry:(BOOL)automaticallyShowEntry completion:(void (^)(void))completion {
     if (!window) {
         return;
     }
+    [self removeVisibleWindow:window automaticallyShowEntry:automaticallyShowEntry];
     if (animated) {
         CGFloat alpha = window.alpha;
         [UIView animateWithDuration:0.25 animations:^{
@@ -156,7 +262,6 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
-            [self.visibleWindows removeObject:window];
         }];
     } else {
         window.hidden = YES;
@@ -164,18 +269,14 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
-        [self.visibleWindows removeObject:window];
     }
 }
 
-- (void)presentWindow:(UIWindow *)window animated:(BOOL)animated {
-    [self presentWindow:window animated:animated completion:nil];
-}
-
-- (void)presentWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)presentWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (!window) {
         return;
     }
+    [self.visibleWindows addObject:window];
     if (animated) {
         CGFloat y = window.LL_y;
         window.LL_y = LL_SCREEN_HEIGHT;
@@ -188,7 +289,6 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
-            [self.visibleWindows addObject:window];
         }];
     } else {
         window.hidden = NO;
@@ -196,18 +296,14 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
-        [self.visibleWindows addObject:window];
     }
 }
 
-- (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated {
-    [self dismissWindow:window animated:animated completion:nil];
-}
-
-- (void)dismissWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)dismissWindow:(LLBaseWindow *)window animated:(BOOL)animated automaticallyShowEntry:(BOOL)automaticallyShowEntry completion:(void (^)(void))completion {
     if (!window) {
         return;
     }
+    [self removeVisibleWindow:window automaticallyShowEntry:automaticallyShowEntry];
     if (animated) {
         CGFloat y = window.LL_y;
         [UIView animateWithDuration:0.25 animations:^{
@@ -219,7 +315,6 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
-            [self.visibleWindows removeObject:window];
         }];
     } else {
         window.hidden = YES;
@@ -227,18 +322,14 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
-        [self.visibleWindows removeObject:window];
     }
 }
 
-- (void)pushWindow:(UIWindow *)window animated:(BOOL)animated {
-    [self pushWindow:window animated:animated completion:nil];
-}
-
-- (void)pushWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)pushWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (!window) {
         return;
     }
+    [self.visibleWindows addObject:window];
     if (animated) {
         CGFloat x = window.LL_x;
         window.LL_x = LL_SCREEN_WIDTH;
@@ -251,7 +342,6 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
-            [self.visibleWindows addObject:window];
         }];
     } else {
         window.hidden = NO;
@@ -259,18 +349,14 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
-        [self.visibleWindows addObject:window];
     }
 }
 
-- (void)popWindow:(UIWindow *)window animated:(BOOL)animated {
-    [self popWindow:window animated:animated completion:nil];
-}
-
-- (void)popWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)popWindow:(LLBaseWindow *)window animated:(BOOL)animated automaticallyShowEntry:(BOOL)automaticallyShowEntry completion:(void (^)(void))completion {
     if (!window) {
         return;
     }
+    [self removeVisibleWindow:window automaticallyShowEntry:automaticallyShowEntry];
     if (animated) {
         CGFloat x = window.LL_x;
         [UIView animateWithDuration:0.25 animations:^{
@@ -282,7 +368,6 @@ static LLWindowManager *_instance = nil;
             if (completion) {
                 completion();
             }
-            [self.visibleWindows removeObject:window];
         }];
     } else {
         window.hidden = YES;
@@ -290,38 +375,22 @@ static LLWindowManager *_instance = nil;
         if (completion) {
             completion();
         }
-        [self.visibleWindows removeObject:window];
     }
-}
-
-- (void)removeVisibleWindow:(UIWindow *)window {
-    [self.visibleWindows removeObject:window];
 }
 
 - (void)removeAllVisibleWindows {
     for (LLBaseWindow *window in self.visibleWindows) {
-        [self removeWindow:window animated:YES animateStyle:window.animateStyle];
+        [self removeWindow:window animated:YES automaticallyShowEntry:NO completion:nil];
     }
     [self.visibleWindows removeAllObjects];
 }
 
-- (void)removeWindow:(UIWindow *)window animated:(BOOL)animated animateStyle:(LLBaseWindowAnimateStyle)animateStyle {
-    switch (animateStyle) {
-        case LLBaseWindowAnimateStyleFadeInFadeOut:{
-            [self hideWindow:window animated:animated];
+- (void)removeVisibleWindow:(LLBaseWindow *)window automaticallyShowEntry:(BOOL)automaticallyShowEntry {
+    [self.visibleWindows removeObject:window];
+    if (automaticallyShowEntry) {
+        if (self.visibleWindows.count == 0) {
+            [self showEntryWindow];
         }
-            break;
-        case LLBaseWindowAnimateStylePushInPopOut: {
-            [self popWindow:window animated:animated];
-        }
-            break;
-        case LLBaseWindowAnimateStylePresentInDismissOut:{
-            [self dismissWindow:window animated:animated];
-        }
-        default:{
-            NSAssert(NO, @"Must code animate style to remove window");
-        }
-            break;
     }
 }
 

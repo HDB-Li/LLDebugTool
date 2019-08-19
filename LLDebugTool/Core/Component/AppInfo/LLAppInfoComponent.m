@@ -27,7 +27,7 @@
 @implementation LLAppInfoComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager appInfoWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager appInfoWindow] animated:YES];
 }
 
 @end

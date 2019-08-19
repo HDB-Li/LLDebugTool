@@ -36,7 +36,7 @@
 }
 
 - (void)componentDidFinish {
-    [[LLWindowManager shared] dismissWindow:self animated:YES];
+    [[LLWindowManager shared] hideWindow:self animated:YES];
 }
 
 - (void)setSelectView:(UIView *)selectView {

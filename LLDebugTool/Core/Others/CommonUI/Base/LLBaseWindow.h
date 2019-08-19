@@ -31,9 +31,25 @@ typedef NS_ENUM(NSUInteger, LLBaseWindowAnimateStyle) {
     LLBaseWindowAnimateStylePushInPopOut,
 };
 
+typedef NS_ENUM(NSUInteger, LLBaseWindowShowAnimateStyle) {
+    LLBaseWindowShowAnimateStyleFade,
+    LLBaseWindowShowAnimateStylePresent,
+    LLBaseWindowShowAnimateStylePush,
+};
+
+typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
+    LLBaseWindowHideAnimateStyleFade,
+    LLBaseWindowHideAnimateStyleDismiss,
+    LLBaseWindowHideAnimateStylePop,
+};
+
 @interface LLBaseWindow : LLWindow
 
 @property (nonatomic, assign) LLBaseWindowAnimateStyle animateStyle;
+
+@property (nonatomic, assign) LLBaseWindowShowAnimateStyle showAnimateStyle;
+
+@property (nonatomic, assign) LLBaseWindowHideAnimateStyle hideAnimateStyle;
 
 @end
 

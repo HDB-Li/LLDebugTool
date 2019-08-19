@@ -27,7 +27,7 @@
 @implementation LLFunctionComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager functionWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager functionWindow] animated:YES];
 }
 
 @end

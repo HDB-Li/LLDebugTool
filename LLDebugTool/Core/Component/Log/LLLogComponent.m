@@ -27,7 +27,7 @@
 @implementation LLLogComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager logWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager logWindow] animated:YES];
 }
 
 @end

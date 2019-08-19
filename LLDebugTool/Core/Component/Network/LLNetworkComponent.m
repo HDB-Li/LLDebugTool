@@ -27,7 +27,7 @@
 @implementation LLNetworkComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] presentWindow:[LLWindowManager networkWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager networkWindow] animated:YES];
 }
 
 @end
