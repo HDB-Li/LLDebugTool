@@ -41,6 +41,8 @@
 
 #pragma mark - Primary
 - (void)initial {
+    self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+    self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
     if (!self.rootViewController) {
         self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLSandboxViewController alloc] init]];
     }
