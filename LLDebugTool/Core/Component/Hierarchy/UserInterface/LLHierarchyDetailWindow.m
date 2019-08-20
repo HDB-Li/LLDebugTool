@@ -35,10 +35,6 @@
     return self;
 }
 
-- (void)componentDidFinish {
-    [[LLWindowManager shared] hideWindow:self animated:YES];
-}
-
 - (void)setSelectView:(UIView *)selectView {
     LLNavigationController *nav = (LLNavigationController *)self.rootViewController;
     LLHierarchyDetailViewController *vc = (LLHierarchyDetailViewController *)[nav.viewControllers firstObject];
