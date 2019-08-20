@@ -32,7 +32,11 @@
     NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
     SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
     
+    NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
+    SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
+    
     [self LL_swizzleInstanceMethodWithOriginSel:canAffectSelector swizzledSel:@selector(LL_canAffectStatusBarAppearance)];
+    [self LL_swizzleInstanceMethodWithOriginSel:canBecomeKeySelector swizzledSel:@selector(LL_canBecomeKeyWindow)];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -47,9 +51,13 @@
     return YES;
 }
 
-- (void)becomeKeyWindow {
-    [self resignKeyWindow];
+- (BOOL)LL_canBecomeKeyWindow {
+    return YES;
 }
+
+//- (void)becomeKeyWindow {
+//    [self resignKeyWindow];
+//}
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     UIViewController *vc = [self LL_currentShowingViewController];

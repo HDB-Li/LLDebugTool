@@ -156,6 +156,7 @@ static LLWindowManager *_instance = nil;
             window.LL_y = y;
         } completion:^(BOOL finished) {
             window.windowLevel = self.presentWindowLevel;
+            [window makeKeyWindow];
             if (completion) {
                 completion();
             }
@@ -163,6 +164,7 @@ static LLWindowManager *_instance = nil;
     } else {
         window.hidden = NO;
         window.windowLevel = self.presentWindowLevel;
+        [window makeKeyWindow];
         if (completion) {
             completion();
         }

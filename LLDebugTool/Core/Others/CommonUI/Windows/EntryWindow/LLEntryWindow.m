@@ -37,6 +37,10 @@
     return self;
 }
 
+- (void)becomeKeyWindow {
+    [self resignKeyWindow];
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.backgroundColor = [UIColor clearColor];
