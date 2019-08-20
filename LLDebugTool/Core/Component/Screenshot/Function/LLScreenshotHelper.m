@@ -26,6 +26,8 @@
 #import "LLRoute.h"
 #import "LLTool.h"
 #import "LLFormatterTool.h"
+#import "LLScreenshotComponent.h"
+#import "LLScreenshotPreviewViewController.h"
 
 static LLScreenshotHelper *_instance = nil;
 
@@ -61,8 +63,8 @@ static LLScreenshotHelper *_instance = nil;
     if (self.enable) {
         UIImage *image = [self imageFromScreen];
         if (image) {
-            LLScreenshotView *screenshot = [[LLScreenshotView alloc] initWithImage:image];
-            [screenshot show];
+            NSDictionary *data = @{kLLComponentWindowRootViewControllerKey : NSStringFromClass(LLScreenshotPreviewViewController.class),kLLComponentWindowRootViewControllerPropertiesKey : @{@"image" : image}};
+            [[[LLScreenshotComponent alloc] init] componentDidLoad:data];
         }
     }    
 }

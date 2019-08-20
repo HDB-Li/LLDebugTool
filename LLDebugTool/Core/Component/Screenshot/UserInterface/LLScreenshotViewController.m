@@ -64,7 +64,7 @@
     self.captureButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.captureButton.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.captureButton setImage:[UIImage LL_imageNamed:kCaptureImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
-    
+        
     // Pan, to moveable.
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
     

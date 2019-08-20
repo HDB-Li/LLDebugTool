@@ -25,9 +25,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerKey;
+
+FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerPropertiesKey;
+
 @protocol LLComponentDelegate <NSObject>
 
-- (void)componentDidLoad:(NSDictionary *_Nullable)data;
+- (void)componentDidLoad:(NSDictionary <NSString *, id>*_Nullable)data;
 
 @end
 
