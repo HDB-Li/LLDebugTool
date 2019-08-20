@@ -84,17 +84,6 @@ static LLToastUtils *_instance = nil;
 }
 
 #pragma mark - Primary
-- (void)initial {
-    _toastTime = 2;
-    self.toastLabel = [LLFactory getLabel:nil frame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100) text:nil font:17 textColor:[UIColor whiteColor]];
-    self.toastLabel.textAlignment = NSTextAlignmentCenter;
-    self.toastLabel.numberOfLines = 0;
-    self.toastLabel.LL_horizontalPadding = 10;
-    self.toastLabel.LL_verticalPadding = 5;
-    self.toastLabel.backgroundColor = [UIColor blackColor];
-    [self.toastLabel LL_setCornerRadius:5];
-}
-
 - (void)showToastLabel:(NSString *)message completion:(void (^ __nullable)(void))completion {
     if (self.toastLabel.superview) {
         [self.toastLabel removeFromSuperview];
@@ -139,6 +128,19 @@ static LLToastUtils *_instance = nil;
     } else {
         [self removeLoadingMessageTimer];
     }
+}
+
+- (UILabel *)toastLabel {
+    if (!_toastLabel) {
+        _toastLabel = [LLFactory getLabel:nil frame:CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100) text:nil font:17 textColor:[UIColor whiteColor]];
+        _toastLabel.textAlignment = NSTextAlignmentCenter;
+        _toastLabel.numberOfLines = 0;
+        _toastLabel.LL_horizontalPadding = 10;
+        _toastLabel.LL_verticalPadding = 5;
+        _toastLabel.backgroundColor = [UIColor blackColor];
+        [_toastLabel LL_setCornerRadius:5];
+    }
+    return _toastLabel;
 }
 
 @end
