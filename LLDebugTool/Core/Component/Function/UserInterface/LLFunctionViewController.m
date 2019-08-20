@@ -107,9 +107,9 @@
     
     [items removeAllObjects];
     
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:@"" title:@"Screenshot" action:LLFunctionActionScreenshot]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:@"" title:@"Hierarchy" action:LLFunctionActionHierarchy]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:@"" title:@"Magnifier" action:LLFunctionActionMagnifier]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kScreenshotImageName title:@"Screenshot" action:LLFunctionActionScreenshot]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kHierarchyImageName title:@"Hierarchy" action:LLFunctionActionHierarchy]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kMagnifierImageName title:@"Magnifier" action:LLFunctionActionMagnifier]];
     
     self.shortCutContainerView.dataArray = [items copy];
 }

@@ -17,6 +17,9 @@ static NSString *const kNetworkImageName = @"LL-network";
 static NSString *const kLogImageName = @"LL-log";
 static NSString *const kAppImageName = @"LL-app";
 static NSString *const kSandboxImageName = @"LL-sandbox";
+static NSString *const kScreenshotImageName = @"LL-screenshot";
+static NSString *const kHierarchyImageName = @"LL-hierarchy";
+static NSString *const kMagnifierImageName = @"LL-magnifier";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";
@@ -91,5 +94,8 @@ static NSString *const kLogoImageName = @"LL-logo";
 static NSString *const kFoldArrowImageName = @"LL-foldArrow";
 static NSString *const kPickImageName = @"LL-pick";
 static NSString *const kInfoImageName = @"LL-info";
+
+// Screenshot
+static NSString *const kCaptureImageName = @"LL-capture";
 
 #endif /* LLImageNameConfig_h */
