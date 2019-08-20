@@ -49,7 +49,6 @@
 		C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */; };
 		C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
-		C498567D22ED8D4800E9FBE2 /* LLScreenshotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561922ED8D4700E9FBE2 /* LLScreenshotView.m */; };
 		C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561A22ED8D4700E9FBE2 /* LLScreenshotToolbar.m */; };
 		C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */; };
 		C498568022ED8D4800E9FBE2 /* LLScreenshotBaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C498562022ED8D4700E9FBE2 /* LLScreenshotBaseOperation.m */; };
@@ -292,13 +291,11 @@
 		C498561622ED8D4700E9FBE2 /* LLScreenshotDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotDefine.h; sourceTree = "<group>"; };
 		C498561722ED8D4700E9FBE2 /* LLScreenshotSelectorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotSelectorModel.h; sourceTree = "<group>"; };
 		C498561822ED8D4700E9FBE2 /* LLScreenshotBaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotBaseOperation.h; sourceTree = "<group>"; };
-		C498561922ED8D4700E9FBE2 /* LLScreenshotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotView.m; sourceTree = "<group>"; };
 		C498561A22ED8D4700E9FBE2 /* LLScreenshotToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotToolbar.m; sourceTree = "<group>"; };
 		C498561B22ED8D4700E9FBE2 /* LLScreenshotSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotSelectorView.h; sourceTree = "<group>"; };
 		C498561C22ED8D4700E9FBE2 /* LLScreenshotActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotActionView.h; sourceTree = "<group>"; };
 		C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotImageView.m; sourceTree = "<group>"; };
 		C498561E22ED8D4700E9FBE2 /* LLScreenshotToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotToolbar.h; sourceTree = "<group>"; };
-		C498561F22ED8D4700E9FBE2 /* LLScreenshotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotView.h; sourceTree = "<group>"; };
 		C498562022ED8D4700E9FBE2 /* LLScreenshotBaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotBaseOperation.m; sourceTree = "<group>"; };
 		C498562122ED8D4700E9FBE2 /* LLScreenshotSelectorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotSelectorModel.m; sourceTree = "<group>"; };
 		C498562222ED8D4700E9FBE2 /* LLScreenshotImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotImageView.h; sourceTree = "<group>"; };
@@ -761,8 +758,6 @@
 			isa = PBXGroup;
 			children = (
 				C498561622ED8D4700E9FBE2 /* LLScreenshotDefine.h */,
-				C498561F22ED8D4700E9FBE2 /* LLScreenshotView.h */,
-				C498561922ED8D4700E9FBE2 /* LLScreenshotView.m */,
 				C498561722ED8D4700E9FBE2 /* LLScreenshotSelectorModel.h */,
 				C498562122ED8D4700E9FBE2 /* LLScreenshotSelectorModel.m */,
 				C498561822ED8D4700E9FBE2 /* LLScreenshotBaseOperation.h */,
@@ -1877,7 +1872,6 @@
 				C4B4E47822F9C90900F70277 /* LLFormatterTool.m in Sources */,
 				C4B4E46E22F9C90900F70277 /* LLBaseWindow.m in Sources */,
 				C498568A22ED8D4800E9FBE2 /* LLHierarchyExplorerToolBar.m in Sources */,
-				C498567D22ED8D4800E9FBE2 /* LLScreenshotView.m in Sources */,
 				C498568922ED8D4800E9FBE2 /* LLHierarchyViewController.m in Sources */,
 				C4B4E46F22F9C90900F70277 /* LLNavigationController.m in Sources */,
 				C498568E22ED8D4800E9FBE2 /* LLNetworkImageCell.m in Sources */,
