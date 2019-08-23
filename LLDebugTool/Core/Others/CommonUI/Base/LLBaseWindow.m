@@ -55,10 +55,6 @@
     return YES;
 }
 
-//- (void)becomeKeyWindow {
-//    [self resignKeyWindow];
-//}
-
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     UIViewController *vc = [self LL_currentShowingViewController];
     if ([vc isKindOfClass:[LLBaseViewController class]]) {

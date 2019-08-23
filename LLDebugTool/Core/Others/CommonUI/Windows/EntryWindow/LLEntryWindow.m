@@ -37,6 +37,10 @@
     return self;
 }
 
+- (BOOL)LL_canBecomeKeyWindow {
+    return NO;
+}
+
 - (void)becomeKeyWindow {
     [self resignKeyWindow];
 }

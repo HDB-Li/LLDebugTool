@@ -132,6 +132,7 @@ static LLWindowManager *_instance = nil;
     
     if (window == self.entryWindow) {
         [self.keyWindow makeKeyWindow];
+        self.keyWindow = nil;
     } else {
         if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
             self.keyWindow = [UIApplication sharedApplication].keyWindow;
