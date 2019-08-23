@@ -61,7 +61,6 @@ static NSString *const kSelectorGreenImageName = @"LL-selector-green";
 static NSString *const kSelectorYellowImageName = @"LL-selector-yellow";
 static NSString *const kSelectorGrayImageName = @"LL-selector-gray";
 static NSString *const kSelectorWhiteImageName = @"LL-selector-white";
-static NSString *const kSelectorArrowImageName = @"LL-selector-arrow";
 
 // Sandbox File Type Icon
 static NSString *const kSandboxFileUnknownImageName = @"LL-unknown";
