@@ -30,6 +30,7 @@
 #import "LLConfig.h"
 #import "LLThemeManager.h"
 #import "LLConst.h"
+#import "LLToastUtils.h"
 
 @interface LLHierarchyPickerInfoView ()
 
@@ -145,6 +146,7 @@
     if (!self.selectedView) {
         return;
     }
+    [[LLToastUtils shared] toastMessage:@"Coming soon"];
 //    LLHierarchyDetailWindow *window = [LLWindowManager shared].hierarchyDetailWindow;
 //    window.selectView = self.selectedView;
 //    [[LLWindowManager shared] presentWindow:window animated:YES];
