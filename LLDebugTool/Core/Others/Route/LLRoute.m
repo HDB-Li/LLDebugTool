@@ -39,7 +39,6 @@
 #import "LLCrashHelper.h"
 #import "LLAppInfoHelper.h"
 #import "LLScreenshotHelper.h"
-#import "LLWindow.h"
 #import "LLDebugToolMacros.h"
 #elif __has_include("<LLDebugTool.h>")
 #import "<LLDebugTool.h>"
@@ -48,7 +47,6 @@
 #import "<LLCrashHelper.h>"
 #import "<LLAppInfoHelper.h>"
 #import "<LLScreenshotHelper.h>"
-#import "<LLWindow.h>"
 #import "<LLDebugToolMacros.h"
 #endif
 

@@ -28,8 +28,6 @@
 #import "LLCrashHelper.h"
 #import "LLLogHelper.h"
 #import "LLAppInfoHelper.h"
-#import "LLWindow.h"
-#import "LLWindowViewController.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogHelperEventDefine.h"
 #import "LLConfig.h"
@@ -38,11 +36,7 @@
 
 static LLDebugTool *_instance = nil;
 
-@interface LLDebugTool ()// <LLWindowDelegate>
-
-//@property (nonatomic, strong) LLWindow *window;
-//
-//@property (nonatomic, strong) LLWindowViewController *windowViewController;
+@interface LLDebugTool ()
 
 @property (nonatomic, copy) NSString *versionNumber;
 
@@ -124,16 +118,15 @@ static LLDebugTool *_instance = nil;
 
 - (void)hideWindow
 {
-    self.window.hidden = YES;
-    [self.windowViewController hideExplorerView];
+    [[LLWindowManager shared] hideEntryWindow];
 }
 
 - (void)showExplorerView {
-    [self.windowViewController showExplorerView];
+//    [self.windowViewController showExplorerView];
 }
 
 - (void)hideExplorerView {
-    [self.windowViewController hideExplorerView];
+//    [self.windowViewController hideExplorerView];
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
@@ -141,7 +134,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params {
-    [self.windowViewController presentTabbarWithIndex:index params:params];
+//    [self.windowViewController presentTabbarWithIndex:index params:params];
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
@@ -152,15 +145,6 @@ static LLDebugTool *_instance = nil;
         }
     }
     [[LLLogHelper sharedHelper] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
-}
-
-#pragma mark - LLWindowDelegate
-- (BOOL)shouldHandleTouchAtPoint:(CGPoint)pointInWindow {
-    return [self.windowViewController shouldReceiveTouchAtWindowPoint:pointInWindow];
-}
-
-- (BOOL)canBecomeKeyWindow {
-    return [self.windowViewController wantsWindowToBecomeKey];
 }
 
 #pragma mark - Primary
@@ -250,22 +234,5 @@ static LLDebugTool *_instance = nil;
         }
     }
 }
-
-#pragma mark - Lazy
-//- (LLWindow *)window {
-//    if (!_window) {
-//        _window = [[LLWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//        _window.rootViewController = self.windowViewController;
-//        _window.delegate = self;
-//    }
-//    return _window;
-//}
-//
-//- (LLWindowViewController *)windowViewController {
-//    if (!_windowViewController) {
-//        _windowViewController = [[LLWindowViewController alloc] init];
-//    }
-//    return _windowViewController;
-//}
 
 @end

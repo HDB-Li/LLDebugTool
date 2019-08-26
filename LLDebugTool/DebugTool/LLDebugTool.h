@@ -30,22 +30,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLWindow, LLWindowViewController;
-
 /**
  Control whether DebugTool is started.
  */
 @interface LLDebugTool : NSObject
-
-/**
- Explorer window.
- */
-@property (nonatomic, strong, readonly) LLWindow *window;
-
-/**
- Explorer window view controller.
- */
-@property (nonatomic, strong, readonly) LLWindowViewController *windowViewController;
 
 /**
  Singleton to control debugTool.

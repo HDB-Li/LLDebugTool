@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLWindow.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
     LLBaseWindowHideAnimateStylePop,
 };
 
-@interface LLBaseWindow : LLWindow
+@interface LLBaseWindow : UIWindow
 
 @property (nonatomic, assign) LLBaseWindowAnimateStyle animateStyle;
 

@@ -160,8 +160,6 @@
 		C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40422F9C90900F70277 /* LLFunctionItemContainerView.m */; };
 		C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */; };
 		C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */; };
-		C4B4E46722F9C90900F70277 /* LLWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40922F9C90900F70277 /* LLWindow.m */; };
-		C4B4E46B22F9C90900F70277 /* LLWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41322F9C90900F70277 /* LLWindowViewController.m */; };
 		C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41622F9C90900F70277 /* LLEntryWindow.m */; };
 		C4B4E46D22F9C90900F70277 /* LLBaseComponentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */; };
 		C4B4E46E22F9C90900F70277 /* LLBaseWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41B22F9C90900F70277 /* LLBaseWindow.m */; };
@@ -504,10 +502,6 @@
 		C4B4E40522F9C90900F70277 /* LLFunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFunctionViewController.h; sourceTree = "<group>"; };
 		C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItemView.m; sourceTree = "<group>"; };
 		C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItemModel.m; sourceTree = "<group>"; };
-		C4B4E40822F9C90900F70277 /* LLWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindowViewController.h; sourceTree = "<group>"; };
-		C4B4E40922F9C90900F70277 /* LLWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindow.m; sourceTree = "<group>"; };
-		C4B4E41222F9C90900F70277 /* LLWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindow.h; sourceTree = "<group>"; };
-		C4B4E41322F9C90900F70277 /* LLWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLWindowViewController.m; sourceTree = "<group>"; };
 		C4B4E41522F9C90900F70277 /* LLEntryWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLEntryWindow.h; sourceTree = "<group>"; };
 		C4B4E41622F9C90900F70277 /* LLEntryWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLEntryWindow.m; sourceTree = "<group>"; };
 		C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentWindow.m; sourceTree = "<group>"; };
@@ -1430,10 +1424,6 @@
 			isa = PBXGroup;
 			children = (
 				C4B4E41422F9C90900F70277 /* EntryWindow */,
-				C4B4E41222F9C90900F70277 /* LLWindow.h */,
-				C4B4E40922F9C90900F70277 /* LLWindow.m */,
-				C4B4E40822F9C90900F70277 /* LLWindowViewController.h */,
-				C4B4E41322F9C90900F70277 /* LLWindowViewController.m */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -1797,14 +1787,12 @@
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
 				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
-				C4B4E46B22F9C90900F70277 /* LLWindowViewController.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
 				C4B4E47322F9C90900F70277 /* LLBaseTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
 				C49856DB22ED90DD00E9FBE2 /* LLNetworkHelper.m in Sources */,
 				C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */,
-				C4B4E46722F9C90900F70277 /* LLWindow.m in Sources */,
 				C4B4E45822F9C90900F70277 /* LLFilterFilePickerView.m in Sources */,
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
