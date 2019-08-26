@@ -26,7 +26,9 @@
 #import "NSObject+LL_Utils.h"
 #import "LLTool.h"
 #import "LLConfig.h"
-#import "LLRoute.h"
+#import "LLCrashModel.h"
+#import "LLNetworkModel.h"
+#import "LLLogModel.h"
 
 static LLStorageManager *_instance = nil;
 
@@ -47,12 +49,6 @@ static NSString *const kDatabaseVersion = @"1";
 @property (strong, nonatomic) NSMutableArray <Class>*registerClass;
 
 @property (copy, nonatomic) NSString *folderPath;
-
-@property (assign, nonatomic) BOOL includeCrash;
-
-@property (assign, nonatomic) BOOL includeNetwork;
-
-@property (assign, nonatomic) BOOL includeLog;
 
 @end
 
@@ -75,7 +71,7 @@ static NSString *const kDatabaseVersion = @"1";
             NSError *error;
             ret = [db executeUpdate:[self createTableSQLFromClass:cls] values:nil error:&error];
             if (!ret) {
-                [self log:[NSString stringWithFormat:@"Create %@ table failed. error = %@",NSStringFromClass(cls),error.description]];
+                [LLTool log:[NSString stringWithFormat:@"Create %@ table failed. error = %@",NSStringFromClass(cls),error.description]];
             }
         }];
         if (ret) {
@@ -130,7 +126,7 @@ static NSString *const kDatabaseVersion = @"1";
     
     // Check datas.
     if (![self isRegisteredClass:cls]) {
-        [self log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performArrayComplete:complete param:@[] synchronous:synchronous];
         return;
     }
@@ -186,7 +182,7 @@ static NSString *const kDatabaseVersion = @"1";
     // Check datas.
     __block Class cls = [models.firstObject class];
     if (![self isRegisteredClass:cls]) {
-        [self log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -194,7 +190,7 @@ static NSString *const kDatabaseVersion = @"1";
     __block NSMutableSet *identities = [NSMutableSet set];
     for (LLStorageModel *model in models) {
         if (![model.class isEqual:cls]) {
-            [self log:[NSString stringWithFormat:@"Remove %@ failed, because models in array isn't some class.",NSStringFromClass(cls)]];
+            [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because models in array isn't some class.",NSStringFromClass(cls)]];
             [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
             return;
         }
@@ -210,7 +206,7 @@ static NSString *const kDatabaseVersion = @"1";
         NSString *identitiesString = [self convertArrayToSQL:identities.allObjects];
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ IN %@;",tableName,kIdentityColumn,identitiesString] values:nil error:&error];
         if (!ret) {
-            [self log:[NSString stringWithFormat:@"Remove %@ failed, error = %@",NSStringFromClass(cls),error]];
+            [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, error = %@",NSStringFromClass(cls),error]];
         }
     }];
     
@@ -233,7 +229,7 @@ static NSString *const kDatabaseVersion = @"1";
     
     // Check datas.
     if (![self isRegisteredClass:cls]) {
-        [self log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -246,7 +242,7 @@ static NSString *const kDatabaseVersion = @"1";
         NSString *tableName = [self tableNameFromClass:cls];
         ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@;",tableName] values:nil error:&error];
         if (!ret) {
-            [self log:[NSString stringWithFormat:@"Clear %@ failed, error = %@",NSStringFromClass(cls),error]];
+            [LLTool log:[NSString stringWithFormat:@"Clear %@ failed, error = %@",NSStringFromClass(cls),error]];
         }
     }];
     
@@ -332,7 +328,7 @@ static NSString *const kDatabaseVersion = @"1";
 - (void)initial {
     BOOL result = [self initDatabase];
     if (!result) {
-        [self log:@"Init Database fail"];
+        [LLTool log:@"Init Database fail"];
     }
     [self reloadLogModelTable];
 }
@@ -347,28 +343,13 @@ static NSString *const kDatabaseVersion = @"1";
     self.folderPath = [LLConfig sharedConfig].folderPath;
     [LLTool createDirectoryAtPath:self.folderPath];
     
-    self.includeCrash = [self crashModelClass] ? YES : NO;
-    self.includeNetwork = [self networkModelClass] ? YES : NO;
-    self.includeLog = [self logModelClass] ? YES : NO;
-    
     NSString *filePath = [self.folderPath stringByAppendingPathComponent:@"LLDebugTool.db"];
     
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:filePath];
     
-    BOOL ret1 = YES;
-    BOOL ret2 = YES;
-    BOOL ret3 = YES;
-    
-    if (self.includeCrash) {
-        ret1 = [self registerClass:[self crashModelClass]];
-    }
-    
-    if (self.includeNetwork) {
-        ret2 = [self registerClass:[self networkModelClass]];
-    }
-    if (self.includeLog) {
-        ret3 = [self registerClass:[self logModelClass]];
-    }
+    BOOL ret1 = [self registerClass:[LLCrashModel class]];;
+    BOOL ret2 = [self registerClass:[LLNetworkModel class]];;
+    BOOL ret3 = [self registerClass:[LLLogModel class]];;
 
     return ret1 && ret2 && ret3;
 }
@@ -387,45 +368,44 @@ static NSString *const kDatabaseVersion = @"1";
     
 
     __block NSArray *crashModels = @[];
-    if (self.includeCrash) {
-        [self getModels:[self crashModelClass] launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
-            crashModels = result;
-        } synchronous:YES];
-        
-        NSMutableArray *launchDates = [[NSMutableArray alloc] initWithObjects:[NSObject LL_launchDate], nil];
-        for (LLStorageModel *model in crashModels) {
-            NSString *launchDate = [model valueForKey:@"launchDate"];
-            if ([launchDate length]) {
-                [launchDates addObject:launchDate];
-            }
+ 
+    [self getModels:[LLCrashModel class] launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
+        crashModels = result;
+    } synchronous:YES];
+    
+    NSMutableArray *launchDates = [[NSMutableArray alloc] initWithObjects:[NSObject LL_launchDate], nil];
+    for (LLStorageModel *model in crashModels) {
+        NSString *launchDate = [model valueForKey:@"launchDate"];
+        if ([launchDate length]) {
+            [launchDates addObject:launchDate];
         }
-        [self removeLogModelAndNetworkModelNotIn:launchDates];
     }
+    [self removeLogModelAndNetworkModelNotIn:launchDates];
+    
 }
 
 - (BOOL)removeLogModelAndNetworkModelNotIn:(NSArray *)launchDates {
     __block BOOL ret = YES;
     __block BOOL ret2 = YES;
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        if (self.includeLog) {
-            NSError *error1;
-            NSString *logTableName = [self tableNameFromClass:[self logModelClass]];
-            NSString *launchDateString = [self convertArrayToSQL:launchDates];
-            ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString] values:nil error:&error1];
-            if (!ret) {
-                [self log:[NSString stringWithFormat:@"Remove launch log fail, error = %@",error1]];
-            }
+        
+        NSError *error1;
+        NSString *logTableName = [self tableNameFromClass:[LLLogModel class]];
+        NSString *launchDateString = [self convertArrayToSQL:launchDates];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString] values:nil error:&error1];
+        if (!ret) {
+            [LLTool log:[NSString stringWithFormat:@"Remove launch log fail, error = %@",error1]];
         }
-
-        if (self.includeNetwork) {
-            NSError *error2;
-            NSString *networkTableName = [self tableNameFromClass:[self networkModelClass]];
-            NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];
-            ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString] values:nil error:&error2];
-            if (!ret2) {
-                [self log:[NSString stringWithFormat:@"Remove launch network fail, error = %@",error2]];
-            }
+        
+        
+        NSError *error2;
+        NSString *networkTableName = [self tableNameFromClass:[LLNetworkModel class]];
+        NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];
+        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString] values:nil error:&error2];
+        if (!ret2) {
+            [LLTool log:[NSString stringWithFormat:@"Remove launch network fail, error = %@",error2]];
         }
+        
     }];
 
     return ret && ret2;
@@ -478,10 +458,6 @@ static NSString *const kDatabaseVersion = @"1";
     }
 }
 
-- (void)log:(NSString *)message {
-    [LLRoute logWithMessage:message event:kLLDebugToolEvent];
-}
-
 - (void)saveOrUpdateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous isSave:(BOOL)isSave {
     __block Class cls = model.class;
     
@@ -495,28 +471,28 @@ static NSString *const kDatabaseVersion = @"1";
     
     // Check datas.
     if (![self isRegisteredClass:cls]) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSString *launchDate = [NSObject LL_launchDate];
     if (launchDate.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
     if (data.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSString *identity = model.storageIdentity;
     if (identity.length == 0) {
-        [self log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -531,22 +507,10 @@ static NSString *const kDatabaseVersion = @"1";
             ret = [db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET %@ = ? ,%@ = ?,%@ = ?,%@ = ? WHERE %@ = \"%@\";",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn,kIdentityColumn,model.storageIdentity] values:arguments error:&error];
         }
         if (!ret) {
-            [self log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];
+            [LLTool log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];
         }
     }];
     [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
-}
-
-- (Class _Nullable)crashModelClass {
-    return NSClassFromString(kLLCrashModelName);
-}
-
-- (Class _Nullable)networkModelClass {
-    return NSClassFromString(kLLNetworkModelName);
-}
-
-- (Class _Nullable)logModelClass {
-    return NSClassFromString(kLLLogModelName);
 }
 
 @end

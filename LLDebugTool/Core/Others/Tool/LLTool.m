@@ -24,10 +24,10 @@
 #import "LLTool.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
-#import "LLRoute.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 #import "LLFormatterTool.h"
+#import "LLDebugTool.h"
 
 static CGFloat _toastTime = 2.0;
 
@@ -52,7 +52,7 @@ static unsigned long long _absolutelyIdentity = 0;
         NSError *error;
         [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) {
-            [LLRoute logWithMessage:[NSString stringWithFormat:@"Create folder fail, path = %@, error = %@",path,error.description] event:kLLDebugToolEvent];
+            [self log:[NSString stringWithFormat:@"Create folder fail, path = %@, error = %@",path,error.description]];
             NSAssert(!error, error.description);
             return NO;
         }
@@ -212,6 +212,12 @@ static unsigned long long _absolutelyIdentity = 0;
 
 + (UIWindow *)keyWindow {
     return [UIApplication sharedApplication].delegate.window;
+}
+
++ (void)log:(NSString *)string {
+    if ([LLConfig sharedConfig].isShowDebugToolLog) {
+        NSLog(@"%@ %@",string,@"Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.");
+    }
 }
 
 @end

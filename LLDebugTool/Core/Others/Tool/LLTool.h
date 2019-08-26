@@ -70,6 +70,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIWindow *)keyWindow;
 
+/**
+ Internal log.
+
+ @param string log string.
+ */
++ (void)log:(NSString *)string;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -22,10 +22,16 @@
 //  SOFTWARE.
 
 #import "LLConfig.h"
-#import "LLRoute.h"
 #import "LLFactory.h"
 #import "LLConst.h"
 #import "LLThemeManager.h"
+#import "LLTool.h"
+#import "LLDebugTool.h"
+#import "LLNetworkHelper.h"
+#import "LLLogHelper.h"
+#import "LLCrashHelper.h"
+#import "LLAppInfoHelper.h"
+#import "LLScreenshotHelper.h"
 
 static LLConfig *_instance = nil;
 
@@ -77,7 +83,18 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             _availables = availables;
         }
         // Start or close features.
-        [LLRoute setNewAvailables:availables];
+        if ([LLDebugTool sharedTool].isWorking) {
+            BOOL networkEnable = availables & LLConfigAvailableNetwork;
+            BOOL logEnable = availables & LLConfigAvailableLog;
+            BOOL crashEnable = availables & LLConfigAvailableCrash;
+            BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
+            BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
+            [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
+            [[LLLogHelper sharedHelper] setEnable:logEnable];
+            [[LLCrashHelper sharedHelper] setEnable:crashEnable];
+            [[LLAppInfoHelper sharedHelper] setEnable:appInfoEnable];
+            [[LLScreenshotHelper sharedHelper] setEnable:screenshotEnable];
+        }
     }
 }
 
@@ -111,6 +128,9 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
  Initialize something.
  */
 - (void)initial {
+    // Set internal
+    _showDebugToolLog = YES;
+    
     // Set default values
     // Set folder Path
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -121,10 +141,14 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
     if (!_XIBBundle) {
-        NSLog(@"Failed to load the XIB bundle,%@",kLLOpenIssueInGithubPrompt);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [LLTool log:@"Failed to load the XIB bundle"];
+        });
     }
     if (!_imageBundle) {
-        NSLog(@"Failed to load the XIB bundle,%@",kLLOpenIssueInGithubPrompt);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [LLTool log:@"Failed to load the image bundle"];
+        });
     }
     
     // Set date formatter string.

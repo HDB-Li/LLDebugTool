@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLScreenshotHelper.h"
-#import "LLRoute.h"
+#import "LLConfig.h"
 #import "LLTool.h"
 #import "LLFormatterTool.h"
 #import "LLScreenshotComponent.h"

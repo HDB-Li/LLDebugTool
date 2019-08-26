@@ -25,7 +25,6 @@
 #import "LLImageNameConfig.h"
 #import "LLMacros.h"
 #import "LLTool.h"
-#import "LLRoute.h"
 #import "LLFactory.h"
 
 @interface LLScreenshotBaseOperation ()
@@ -79,7 +78,7 @@
 }
 
 - (void)drawImageView:(CGRect)rect {
-    [LLRoute logWithMessage:[NSString stringWithFormat:@"%@ : Subclasses need to be rewritten.", NSStringFromClass(self.class)] event:kLLDebugToolEvent];
+    [LLTool log:[NSString stringWithFormat:@"%@ : Subclasses need to be rewritten.", NSStringFromClass(self.class)]];
 }
 
 - (LLScreenshotSelectorAction)size {

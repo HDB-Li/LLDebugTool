@@ -121,7 +121,6 @@
 		C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570F22EDB4B600E9FBE2 /* LLScreenshotWindow.m */; };
 		C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */; };
 		C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */; };
-		C4B4E43A22F9C90900F70277 /* LLRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E38E22F9C90900F70277 /* LLRoute.m */; };
 		C4B4E43B22F9C90900F70277 /* UIImage+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E39422F9C90900F70277 /* UIImage+LL_Utils.m */; };
 		C4B4E43C22F9C90900F70277 /* NSDictionary+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E39622F9C90900F70277 /* NSDictionary+LL_Utils.m */; };
 		C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E39922F9C90900F70277 /* UIWindow+LL_Utils.m */; };
@@ -425,8 +424,6 @@
 		C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierComponent.m; sourceTree = "<group>"; };
 		C498571622EDE3F800E9FBE2 /* LLMagnifierWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMagnifierWindow.h; sourceTree = "<group>"; };
 		C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierWindow.m; sourceTree = "<group>"; };
-		C4B4E38D22F9C90900F70277 /* LLRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLRoute.h; sourceTree = "<group>"; };
-		C4B4E38E22F9C90900F70277 /* LLRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLRoute.m; sourceTree = "<group>"; };
 		C4B4E39022F9C90900F70277 /* LLLogHelperEventDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogHelperEventDefine.h; sourceTree = "<group>"; };
 		C4B4E39322F9C90900F70277 /* UIImage+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E39422F9C90900F70277 /* UIImage+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LL_Utils.m"; sourceTree = "<group>"; };
@@ -1093,7 +1090,6 @@
 			isa = PBXGroup;
 			children = (
 				36DC10FA22FA60AA0078B7BC /* ToastUtils */,
-				C4B4E38C22F9C90900F70277 /* Route */,
 				C4B4E38F22F9C90900F70277 /* Define */,
 				C4B4E39122F9C90900F70277 /* Category */,
 				C4B4E3C722F9C90900F70277 /* Const */,
@@ -1106,15 +1102,6 @@
 				C4B4E43722F9C90900F70277 /* Tool */,
 			);
 			path = Others;
-			sourceTree = "<group>";
-		};
-		C4B4E38C22F9C90900F70277 /* Route */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4E38D22F9C90900F70277 /* LLRoute.h */,
-				C4B4E38E22F9C90900F70277 /* LLRoute.m */,
-			);
-			path = Route;
 			sourceTree = "<group>";
 		};
 		C4B4E38F22F9C90900F70277 /* Define */ = {
@@ -1829,7 +1816,6 @@
 				C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */,
 				36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */,
 				C4B4E47622F9C90900F70277 /* LLBaseTableViewCell.m in Sources */,
-				C4B4E43A22F9C90900F70277 /* LLRoute.m in Sources */,
 				36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */,
 				36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */,
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,

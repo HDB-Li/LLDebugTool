@@ -23,8 +23,8 @@
 
 #import "LLNetworkHelper.h"
 #import "LLURLProtocol.h"
-#import "LLRoute.h"
 #import "LLReachability.h"
+#import "LLTool.h"
 
 static LLNetworkHelper *_instance = nil;
 
@@ -74,7 +74,7 @@ static LLNetworkHelper *_instance = nil;
 
 - (void)registerLLURLProtocol {
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
-        [LLRoute logWithMessage:@"LLNetworkHelper reigsiter URLProtocol fail." event:kLLDebugToolEvent];
+        [LLTool log:@"LLNetworkHelper reigsiter URLProtocol fail."];
     }
 }
 

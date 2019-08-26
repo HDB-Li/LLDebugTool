@@ -216,7 +216,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Whether to print LLDebugTool's log event. Default is YES.
  */
-@property (nonatomic, assign) BOOL showDebugToolLog;
+@property (nonatomic, assign, getter=isShowDebugToolLog) BOOL showDebugToolLog;
 
 /**
  Whether check LLDebugTool has new version.

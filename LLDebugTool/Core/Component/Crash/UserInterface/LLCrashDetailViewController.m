@@ -27,8 +27,11 @@
 #import "LLStorageManager.h"
 #import "LLConfig.h"
 #import "LLCrashSignalDetailViewController.h"
-#import "LLRoute.h"
 #import "LLToastUtils.h"
+#import "LLNetworkViewController.h"
+#import "LLLogViewController.h"
+#import "LLLogModel.h"
+#import "LLNetworkModel.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -72,15 +75,13 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *title = self.titleArray[indexPath.row];
     if ([title isEqualToString:@"Logs"]) {
-        UIViewController *vc = [LLRoute viewControllerWithName:kLLLogViewControllerName params:@{@"launchDate" : self.model.launchDate}];
-        if (vc) {
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        LLLogViewController *vc = [[LLLogViewController alloc] init];
+        vc.launchDate = self.model.launchDate;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if ([title isEqualToString:@"Network Requests"]) {
-        UIViewController *vc = [LLRoute viewControllerWithName:kLLNetworkViewControllerName params:@{@"launchDate" : self.model.launchDate}];
-        if (vc) {
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        LLNetworkViewController *vc = [[LLNetworkViewController alloc] init];
+        vc.launchDate = self.model.launchDate;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if ([title hasPrefix:@"Signal"]) {
         NSInteger index = 0;
         for (NSString *str in self.titleArray) {
@@ -116,42 +117,18 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 }
 
 - (void)loadData {
-    Class logModelClass = NSClassFromString(kLLLogModelName);
-    Class networkModelClass = NSClassFromString(kLLNetworkModelName);
-    if (logModelClass != nil && networkModelClass != nil) {
-        __weak typeof(self) weakSelf = self;
-        [[LLToastUtils shared] loadingMessage:@"Loading"];
-        [[LLStorageManager sharedManager] getModels:logModelClass launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-            // Get log models.
-            __block NSArray *logs = result;
-            [[LLStorageManager sharedManager] getModels:networkModelClass launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-                [[LLToastUtils shared] hide];
-                // Get nework requests.
-                NSArray *networkRequests = result;
-                [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
-            }];
-        }];
-    } else if (logModelClass != nil) {
-        __weak typeof(self) weakSelf = self;
-        [[LLToastUtils shared] loadingMessage:@"Loading"];
-        [[LLStorageManager sharedManager] getModels:logModelClass launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-            [[LLToastUtils shared] hide];
-            // Get log models.
-            __block NSArray *logs = result;
-            [weakSelf updateDataWithLogs:logs networkRequests:nil];
-        }];
-    } else if (networkModelClass != nil) {
-        __weak typeof(self) weakSelf = self;
-        [[LLToastUtils shared] loadingMessage:@"Loading"];
-        [[LLStorageManager sharedManager] getModels:networkModelClass launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+    __weak typeof(self) weakSelf = self;
+    [[LLToastUtils shared] loadingMessage:@"Loading"];
+    [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        // Get log models.
+        __block NSArray *logs = result;
+        [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
             [[LLToastUtils shared] hide];
             // Get nework requests.
             NSArray *networkRequests = result;
-            [weakSelf updateDataWithLogs:nil networkRequests:networkRequests];
+            [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
         }];
-    } else {
-        [self updateDataWithLogs:nil networkRequests:nil];
-    }
+    }];
 }
 
 - (void)updateDataWithLogs:(NSArray *)logs networkRequests:(NSArray *)networkRequests {
