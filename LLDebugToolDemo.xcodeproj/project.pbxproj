@@ -27,6 +27,7 @@
 		364570F92313B80800C29200 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F52313B80800C29200 /* CHANGELOG.md */; };
 		364570FA2313B80800C29200 /* README-cn.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F62313B80800C29200 /* README-cn.md */; };
 		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
+		364570FF2313D07D00C29200 /* LLEntryRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364570FE2313D07D00C29200 /* LLEntryRectView.m */; };
 		36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */; };
 		36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC422FD063A00BBB6FA /* LLBaseView.m */; };
 		36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC722FD065D00BBB6FA /* LLBaseMoveView.m */; };
@@ -233,6 +234,8 @@
 		364570F52313B80800C29200 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		364570F62313B80800C29200 /* README-cn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-cn.md"; sourceTree = "<group>"; };
 		364570FB2313B82200C29200 /* LLDebugTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.podspec; sourceTree = "<group>"; };
+		364570FD2313D07D00C29200 /* LLEntryRectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryRectView.h; sourceTree = "<group>"; };
+		364570FE2313D07D00C29200 /* LLEntryRectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryRectView.m; sourceTree = "<group>"; };
 		36596BC022FD055C00BBB6FA /* LLMagnifierViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierViewController.h; sourceTree = "<group>"; };
 		36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierViewController.m; sourceTree = "<group>"; };
 		36596BC322FD063A00BBB6FA /* LLBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseView.h; sourceTree = "<group>"; };
@@ -1446,6 +1449,8 @@
 				36F30D992301699E00976937 /* LLEntryViewController.m */,
 				362F833A2302BE8F007C9168 /* LLEntryBallView.h */,
 				362F833B2302BE8F007C9168 /* LLEntryBallView.m */,
+				364570FD2313D07D00C29200 /* LLEntryRectView.h */,
+				364570FE2313D07D00C29200 /* LLEntryRectView.m */,
 			);
 			path = EntryWindow;
 			sourceTree = "<group>";
@@ -1773,6 +1778,7 @@
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
 				C4B4E44422F9C90900F70277 /* UIDevice+LL_Utils.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
+				364570FF2313D07D00C29200 /* LLEntryRectView.m in Sources */,
 				C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */,
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
 				C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */,

@@ -39,6 +39,8 @@ static LLWindowManager *_instance = nil;
 
 @property (nonatomic, assign) UIWindowLevel normalWindowLevel;
 
+@property (nonatomic, assign) UIWindowLevel entryWindowLevel;
+
 @property (nonatomic, strong) NSMutableArray *visibleWindows;
 
 @property (nonatomic, strong) UIWindow *keyWindow;
@@ -124,6 +126,17 @@ static LLWindowManager *_instance = nil;
 }
 
 #pragma mark - Primary
+- (instancetype)init {
+    if (self = [super init]) {
+        self.visibleWindows = [[NSMutableArray alloc] init];
+        _presentingWindowLevel = UIWindowLevelStatusBar - 100;
+        _presentWindowLevel = UIWindowLevelStatusBar - 200;
+        _normalWindowLevel = UIWindowLevelStatusBar - 300;
+        _entryWindowLevel = UIWindowLevelStatusBar + 1;
+    }
+    return self;
+}
+
 - (void)addWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (!window) {
         return;
@@ -166,7 +179,7 @@ static LLWindowManager *_instance = nil;
             window.LL_x = x;
             window.LL_y = y;
         } completion:^(BOOL finished) {
-            window.windowLevel = self.presentWindowLevel;
+            window.windowLevel = (window == self.entryWindow) ? self.entryWindowLevel : self.presentWindowLevel;
             if (window != self.entryWindow) {
                 [window makeKeyWindow];
             }
@@ -176,7 +189,7 @@ static LLWindowManager *_instance = nil;
         }];
     } else {
         window.hidden = NO;
-        window.windowLevel = self.presentWindowLevel;
+        window.windowLevel = (window == self.entryWindow) ? self.entryWindowLevel : self.presentWindowLevel;
         if (window != self.entryWindow) {
             [window makeKeyWindow];
         }
@@ -255,34 +268,6 @@ static LLWindowManager *_instance = nil;
         _entryWindow = [[LLEntryWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
     return _entryWindow;
-}
-
-- (UIWindowLevel)presentingWindowLevel {
-    if (!_presentingWindowLevel) {
-        _presentingWindowLevel = UIWindowLevelStatusBar - 100;
-    }
-    return _presentingWindowLevel;
-}
-
-- (UIWindowLevel)presentWindowLevel {
-    if (!_presentWindowLevel) {
-        _presentWindowLevel = UIWindowLevelStatusBar - 200;
-    }
-    return _presentWindowLevel;
-}
-
-- (UIWindowLevel)normalWindowLevel {
-    if (!_normalWindowLevel) {
-        _normalWindowLevel = UIWindowLevelStatusBar - 300;
-    }
-    return _normalWindowLevel;
-}
-
-- (NSMutableArray *)visibleWindows {
-    if (!_visibleWindows) {
-        _visibleWindows = [[NSMutableArray alloc] init];
-    }
-    return _visibleWindows;
 }
 
 @end

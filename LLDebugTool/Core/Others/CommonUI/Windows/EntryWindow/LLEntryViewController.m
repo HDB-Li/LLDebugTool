@@ -27,10 +27,13 @@
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
 #import "LLSettingManager.h"
+#import "LLEntryRectView.h"
 
 @interface LLEntryViewController ()
 
 @property (nonatomic, strong) LLEntryBallView *ballView;
+
+@property (nonatomic, strong) LLEntryRectView *rectView;
 
 @property (nonatomic, assign) LLConfigEntryWindowStyle style;
 
@@ -63,15 +66,20 @@
 - (void)updateStyle:(LLConfigEntryWindowStyle)style {
     switch (style) {
         case LLConfigEntryWindowStyleSuspensionBall: {
+            [_rectView removeFromSuperview];
             [self.view addSubview:self.ballView];
         }
             break;
         case LLConfigEntryWindowStyleNetBar: {
             [_ballView removeFromSuperview];
+            [self.view addSubview:self.rectView];
+            self.rectView.LL_left = 0;
         }
             break;
         case LLConfigEntryWindowStylePowerBar: {
             [_ballView removeFromSuperview];
+            [self.view addSubview:self.rectView];
+            self.rectView.LL_right = LL_SCREEN_WIDTH;
         }
             break;
         default:
@@ -101,9 +109,9 @@
         case LLConfigEntryWindowStyleSuspensionBall:
             return self.ballView;
         case LLConfigEntryWindowStyleNetBar:
-            return nil;
+            return self.rectView;
         case LLConfigEntryWindowStylePowerBar:
-            return nil;
+            return self.rectView;
     }
 }
 
@@ -119,6 +127,13 @@
         _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(-[LLConfig sharedConfig].suspensionWindowHideWidth, [LLConfig sharedConfig].suspensionWindowTop, width, width)];
     }
     return _ballView;
+}
+
+- (LLEntryRectView *)rectView {
+    if (!_rectView) {
+        _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+    }
+    return _rectView;
 }
 
 @end
