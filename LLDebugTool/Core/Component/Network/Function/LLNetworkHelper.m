@@ -24,8 +24,15 @@
 #import "LLNetworkHelper.h"
 #import "LLURLProtocol.h"
 #import "LLRoute.h"
+#import "LLReachability.h"
 
 static LLNetworkHelper *_instance = nil;
+
+@interface LLNetworkHelper ()
+
+@property (nonatomic, strong) LLReachability *reachability;
+
+@end
 
 @implementation LLNetworkHelper
 
@@ -48,7 +55,23 @@ static LLNetworkHelper *_instance = nil;
     }
 }
 
+- (LLNetworkStatus)currentNetworkStatus {
+    if (@available(iOS 13.0, *)) {
+        return [self.reachability currentReachabilityStatus];
+    } else {
+        return [self networkStateFromStatebar];
+    }
+}
+
 #pragma mark - Primary
+- (instancetype)init {
+    if (self = [super init]) {
+        self.reachability = [LLReachability reachabilityWithHostName:@"www.apple.com"];
+        [self.reachability startNotifier];
+    }
+    return self;
+}
+
 - (void)registerLLURLProtocol {
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
         [LLRoute logWithMessage:@"LLNetworkHelper reigsiter URLProtocol fail." event:kLLDebugToolEvent];
@@ -57,6 +80,81 @@ static LLNetworkHelper *_instance = nil;
 
 - (void)unregisterLLURLProtocol {
     [NSURLProtocol unregisterClass:[LLURLProtocol class]];
+}
+
+- (LLNetworkStatus)networkStateFromStatebar {
+    __block LLNetworkStatus returnValue = LLNetworkStatusNotReachable;
+    if (![[NSThread currentThread] isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            returnValue = [self networkStateFromStatebar];
+        });
+        return returnValue;
+    }
+    if (@available(iOS 13.0, *)) {
+        
+    } else {
+        UIApplication *app = [UIApplication sharedApplication];
+        if ([[app valueForKeyPath:@"_statusBar"] isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
+            // For iPhoneX
+            NSArray *children = [[[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+            for (UIView *view in children) {
+                for (id child in view.subviews) {
+                    if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarWifiSignalView")]) {
+                        returnValue = LLNetworkStatusReachableViaWiFi;
+                        break;
+                    }
+                    if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarStringView")]) {
+                        NSString *originalText = [child valueForKey:@"_originalText"];
+                        if ([originalText containsString:@"G"]) {
+                            if ([originalText isEqualToString:@"2G"]) {
+                                returnValue = LLNetworkStatusReachableViaWWAN2G;
+                            } else if ([originalText isEqualToString:@"3G"]) {
+                                returnValue = LLNetworkStatusReachableViaWWAN3G;
+                            } else if ([originalText isEqualToString:@"4G"]) {
+                                returnValue = LLNetworkStatusReachableViaWWAN4G;
+                            } else {
+                                returnValue = LLNetworkStatusReachableViaWWAN;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        } else {
+            // For others iPhone
+            NSArray *children = [[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+            int type = -1;
+            for (id child in children) {
+                if ([child isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
+                    type = [[child valueForKeyPath:@"dataNetworkType"] intValue];
+                }
+            }
+            switch (type) {
+                case 0:
+                    returnValue = LLNetworkStatusNotReachable;
+                    break;
+                case 1:
+                    returnValue = LLNetworkStatusReachableViaWWAN2G;
+                    break;
+                case 2:
+                    returnValue = LLNetworkStatusReachableViaWWAN3G;
+                    break;
+                case 3:
+                    returnValue = LLNetworkStatusReachableViaWWAN4G;
+                    break;
+                case 4:
+                    returnValue = LLNetworkStatusReachableViaWWAN;
+                    break;
+                case 5:
+                    returnValue = LLNetworkStatusReachableViaWiFi;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    return returnValue;
 }
 
 @end

@@ -29,6 +29,7 @@
 #import "UIDevice+LL_Utils.h"
 #import "LLMacros.h"
 #import "NSObject+LL_Utils.h"
+#import "LLNetworkHelper.h"
 
 static LLAppInfoHelper *_instance = nil;
 
@@ -73,8 +74,6 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 @property (nonatomic, copy) NSString *cpuTypeString;
 
 @property (nonatomic, copy) NSString *cpuSubtypeString;
-
-@property (nonatomic, copy) NSString *networkState;
 
 @end
 
@@ -237,7 +236,7 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 }
 
 - (NSString *)networkState {
-    return [self networkStateFromStatebar];
+    return [self currentNetworkStatusDescription];
 }
 
 - (NSString *)ssid {
@@ -457,64 +456,34 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
     return ssid;
 }
 
-- (NSString *)networkStateFromStatebar {
-    if (![[NSThread currentThread] isMainThread]) {
-        [self performSelectorOnMainThread:@selector(networkStateFromStatebar) withObject:nil waitUntilDone:YES];
-        return _networkState;
-    }
-    _networkState = @"Unknown";
-    UIApplication *app = [UIApplication sharedApplication];
-    if ([[app valueForKeyPath:@"_statusBar"] isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
-        // For iPhoneX
-        NSArray *children = [[[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
-        for (UIView *view in children) {
-            for (id child in view.subviews) {
-                if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarWifiSignalView")]) {
-                    _networkState = @"WIFI";
-                    break;
-                }
-                if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarStringView")]) {
-                    if ([[child valueForKey:@"_originalText"] containsString:@"G"]) {
-                        _networkState = [child valueForKey:@"_originalText"] ?: @"Unknown";
-                        break;
-                    }
-                }
-            }
+- (NSString *)currentNetworkStatusDescription {
+    NSString *returnValue = @"Unknown";
+    switch ([[LLNetworkHelper sharedHelper] currentNetworkStatus]) {
+        case LLNetworkStatusNotReachable:{
+            returnValue = @"Unknown";
         }
-    } else {
-        // For others iPhone
-        NSArray *children = [[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
-        int type = -1;
-        for (id child in children) {
-            if ([child isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
-                type = [[child valueForKeyPath:@"dataNetworkType"] intValue];
-            }
+            break;
+        case LLNetworkStatusReachableViaWWAN: {
+            returnValue = @"WWAN";
         }
-        switch (type) {
-            case 0:
-                _networkState = @"Not Reachable";
-                break;
-            case 1:
-                _networkState = @"2G";
-                break;
-            case 2:
-                _networkState = @"3G";
-                break;
-            case 3:
-                _networkState = @"4G";
-                break;
-            case 4:
-                _networkState = @"LTE";
-                break;
-            case 5:
-                _networkState = @"WIFI";
-                break;
-            default:
-                _networkState = @"Unknown";
-                break;
+            break;
+        case LLNetworkStatusReachableViaWWAN2G:{
+            returnValue = @"WWAN 2G";
+        }
+            break;
+        case LLNetworkStatusReachableViaWWAN3G:{
+            returnValue = @"WWAN 3G";
+        }
+            break;
+        case LLNetworkStatusReachableViaWWAN4G:{
+            returnValue = @"WWAN 4G";
+        }
+            break;
+        case LLNetworkStatusReachableViaWiFi: {
+            returnValue = @"WiFi";
         }
     }
-    return _networkState;
+    return returnValue;
 }
 
 @end

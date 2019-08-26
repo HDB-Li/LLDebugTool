@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "LLReachability.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +42,13 @@ NS_ASSUME_NONNULL_BEGIN
  Set enable to monitoring network request.
  */
 @property (nonatomic, assign, getter=isEnabled) BOOL enable;
+
+/**
+ Current network status, use reachability on iOS 13 and later, use statusBar icon before iOS 13.
+
+ @return NetworkStatus enum.
+ */
+- (LLNetworkStatus)currentNetworkStatus;
 
 @end
 
