@@ -719,6 +719,8 @@
 			children = (
 				C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */,
 				C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */,
+				C49856B022ED8DEC00E9FBE2 /* LLConfig.h */,
+				C49856AF22ED8DEC00E9FBE2 /* LLConfig.m */,
 				C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */,
 			);
 			path = DebugTool;
@@ -728,7 +730,6 @@
 			isa = PBXGroup;
 			children = (
 				C498561222ED8D4700E9FBE2 /* Component */,
-				C49856AE22ED8DEC00E9FBE2 /* Config */,
 				C4B4E38B22F9C90900F70277 /* Others */,
 			);
 			path = Core;
@@ -971,15 +972,6 @@
 				C49856EB22EDAEFE00E9FBE2 /* LLAppInfoWindow.m */,
 			);
 			path = UserInterface;
-			sourceTree = "<group>";
-		};
-		C49856AE22ED8DEC00E9FBE2 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				C49856B022ED8DEC00E9FBE2 /* LLConfig.h */,
-				C49856AF22ED8DEC00E9FBE2 /* LLConfig.m */,
-			);
-			path = Config;
 			sourceTree = "<group>";
 		};
 		C49856B222ED905F00E9FBE2 /* Function */ = {
