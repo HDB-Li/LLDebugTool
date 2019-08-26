@@ -22,6 +22,11 @@
 		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
 		362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */; };
 		362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F833B2302BE8F007C9168 /* LLEntryBallView.m */; };
+		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
+		364570F82313B80800C29200 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F42313B80800C29200 /* README.md */; };
+		364570F92313B80800C29200 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F52313B80800C29200 /* CHANGELOG.md */; };
+		364570FA2313B80800C29200 /* README-cn.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F62313B80800C29200 /* README-cn.md */; };
+		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
 		36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */; };
 		36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC422FD063A00BBB6FA /* LLBaseView.m */; };
 		36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC722FD065D00BBB6FA /* LLBaseMoveView.m */; };
@@ -224,6 +229,11 @@
 		362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerWindow.m; sourceTree = "<group>"; };
 		362F833A2302BE8F007C9168 /* LLEntryBallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBallView.h; sourceTree = "<group>"; };
 		362F833B2302BE8F007C9168 /* LLEntryBallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBallView.m; sourceTree = "<group>"; };
+		364570F32313B80800C29200 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		364570F42313B80800C29200 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		364570F52313B80800C29200 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		364570F62313B80800C29200 /* README-cn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-cn.md"; sourceTree = "<group>"; };
+		364570FB2313B82200C29200 /* LLDebugTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.podspec; sourceTree = "<group>"; };
 		36596BC022FD055C00BBB6FA /* LLMagnifierViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierViewController.h; sourceTree = "<group>"; };
 		36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierViewController.m; sourceTree = "<group>"; };
 		36596BC322FD063A00BBB6FA /* LLBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseView.h; sourceTree = "<group>"; };
@@ -651,6 +661,11 @@
 		C43BA7FE205AB095006307BE = {
 			isa = PBXGroup;
 			children = (
+				364570FB2313B82200C29200 /* LLDebugTool.podspec */,
+				364570F52313B80800C29200 /* CHANGELOG.md */,
+				364570F32313B80800C29200 /* LICENSE */,
+				364570F62313B80800C29200 /* README-cn.md */,
+				364570F42313B80800C29200 /* README.md */,
 				C44F40542152AA7000153F46 /* LLDebugTool */,
 				C43BA809205AB095006307BE /* LLDebugToolDemo */,
 				36E248862123BAE300D03F44 /* LLDebugToolDemoTests */,
@@ -1666,15 +1681,20 @@
 				C4B4E45322F9C90900F70277 /* LLSubTitleTableViewCell.xib in Resources */,
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
+				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,
+				364570F72313B80800C29200 /* LICENSE in Resources */,
 				C4B4E45B22F9C90900F70277 /* LLFilterLabelCell.xib in Resources */,
 				C498569222ED8D4800E9FBE2 /* LLNetworkCell.xib in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				C49856AB22ED8D4800E9FBE2 /* LLLogCell.xib in Resources */,
+				364570F92313B80800C29200 /* CHANGELOG.md in Resources */,
 				367E27A120A1A8480032EF0D /* Localizable.strings in Resources */,
 				C498569122ED8D4800E9FBE2 /* LLNetworkImageCell.xib in Resources */,
+				364570F82313B80800C29200 /* README.md in Resources */,
 				C498568722ED8D4800E9FBE2 /* LLHierarchyCell.xib in Resources */,
 				C498569922ED8D4800E9FBE2 /* LLCrashCell.xib in Resources */,
 				3608D6AC22F2833D00070D76 /* LLHierarchyDetailCell.xib in Resources */,
+				364570FA2313B80800C29200 /* README-cn.md in Resources */,
 				C43BA812205AB095006307BE /* Main.storyboard in Resources */,
 				C498569722ED8D4800E9FBE2 /* LLCrashContentCell.xib in Resources */,
 			);
