@@ -24,10 +24,6 @@
 #import <Foundation/Foundation.h>
 #import "LLConfig.h"
 
-#ifndef LLSharedDebugTool
-#define LLSharedDebugTool [LLDebugTool sharedTool]
-#endif
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**
