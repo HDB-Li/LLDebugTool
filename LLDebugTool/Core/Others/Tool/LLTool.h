@@ -64,13 +64,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIWindow *)topWindow;
 
 /**
- Key window.
-
- @return Key window.
- */
-+ (UIWindow *)keyWindow;
-
-/**
  Internal log.
 
  @param string log string.

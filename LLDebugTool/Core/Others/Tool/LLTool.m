@@ -105,10 +105,6 @@ static unsigned long long _absolutelyIdentity = 0;
     return topWindow;
 }
 
-+ (UIWindow *)keyWindow {
-    return [UIApplication sharedApplication].delegate.window;
-}
-
 + (void)log:(NSString *)string {
     if ([LLConfig sharedConfig].isShowDebugToolLog) {
         NSLog(@"%@ %@",string,@"Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.");
