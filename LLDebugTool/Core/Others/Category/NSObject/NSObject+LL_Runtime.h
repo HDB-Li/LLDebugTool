@@ -47,20 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)LL_swizzleInstanceMethodWithOriginSel:(SEL)oriSel
                                   swizzledSel:(SEL)swiSel;
 
-/**
- Swizzle method.
-
- @param oriSel Original selector.
- @param oriMethod Orginal method.
- @param swizzledSel Swizzeld selector.
- @param swizzledMethod Swizzeld method.
- @param cls Swizzled class.
- */
-+ (void)LL_swizzleMethodWithOriginSel:(SEL)oriSel
-                            oriMethod:(Method)oriMethod
-                          swizzledSel:(SEL)swizzledSel
-                       swizzledMethod:(Method)swizzledMethod
-                                class:(Class)cls;
+/// Swizzle method.
+/// @param method1 Method1
+/// @param method2 Method2
++ (void)LL_swizzleMethod:(Method)method1 anotherMethod:(Method)method2;
 
 /**
  Get all property names.

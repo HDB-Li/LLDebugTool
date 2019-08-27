@@ -38,7 +38,7 @@
     Method method1 = class_getInstanceMethod(cls, @selector(protocolClasses));
     Method method2 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
     
-    [self LL_swizzleMethodWithOriginSel:@selector(protocolClasses) oriMethod:method1 swizzledSel:@selector(LL_protocolClasses) swizzledMethod:method2 class:self.class];
+    [self LL_swizzleMethod:method1 anotherMethod:method2];
 }
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {

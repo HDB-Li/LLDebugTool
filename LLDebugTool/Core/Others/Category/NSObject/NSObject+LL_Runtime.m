@@ -31,28 +31,18 @@
     Method originAddObserverMethod = class_getClassMethod(cls, oriSel);
     Method swizzledAddObserverMethod = class_getClassMethod(cls, swiSel);
     
-    [self LL_swizzleMethodWithOriginSel:oriSel oriMethod:originAddObserverMethod swizzledSel:swiSel swizzledMethod:swizzledAddObserverMethod class:cls];
+    [self LL_swizzleMethod:originAddObserverMethod anotherMethod:swizzledAddObserverMethod];
 }
 
 + (void)LL_swizzleInstanceMethodWithOriginSel:(SEL)oriSel swizzledSel:(SEL)swiSel {
     Method originAddObserverMethod = class_getInstanceMethod(self, oriSel);
     Method swizzledAddObserverMethod = class_getInstanceMethod(self, swiSel);
     
-    [self LL_swizzleMethodWithOriginSel:oriSel oriMethod:originAddObserverMethod swizzledSel:swiSel swizzledMethod:swizzledAddObserverMethod class:self];
+    [self LL_swizzleMethod:originAddObserverMethod anotherMethod:swizzledAddObserverMethod];
 }
 
-+ (void)LL_swizzleMethodWithOriginSel:(SEL)oriSel
-                         oriMethod:(Method)oriMethod
-                       swizzledSel:(SEL)swizzledSel
-                    swizzledMethod:(Method)swizzledMethod
-                             class:(Class)cls {
-    BOOL didAddMethod = class_addMethod(cls, oriSel, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-    
-    if (didAddMethod) {
-        class_replaceMethod(cls, swizzledSel, method_getImplementation(oriMethod), method_getTypeEncoding(oriMethod));
-    } else {
-        method_exchangeImplementations(oriMethod, swizzledMethod);
-    }
++ (void)LL_swizzleMethod:(Method)method1 anotherMethod:(Method)method2 {
+    method_exchangeImplementations(method1, method2);
 }
 
 + (NSArray *)LL_getPropertyNames {
