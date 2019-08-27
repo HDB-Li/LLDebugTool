@@ -74,6 +74,7 @@ static LLThemeManager *_instance = nil;
     _backgroundColor = [UIColor whiteColor];
     [self calculateColorIfNeeded];
     _primaryColorItems = [NSHashTable weakObjectsHashTable];
+    _statusBarStyle = UIStatusBarStyleDefault;
 }
 
 - (void)calculateColorIfNeeded {
