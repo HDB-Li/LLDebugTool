@@ -25,6 +25,7 @@
 #import "LLURLProtocol.h"
 #import "LLReachability.h"
 #import "LLTool.h"
+#import "NSObject+LL_Runtime.h"
 
 static LLNetworkHelper *_instance = nil;
 
@@ -57,6 +58,7 @@ static LLNetworkHelper *_instance = nil;
 
 - (LLNetworkStatus)currentNetworkStatus {
     if (@available(iOS 13.0, *)) {
+        return [self networkStateFromStatebar];
         return [self.reachability currentReachabilityStatus];
     } else {
         return [self networkStateFromStatebar];
@@ -90,13 +92,58 @@ static LLNetworkHelper *_instance = nil;
         });
         return returnValue;
     }
+    id _statusBar = nil;
     if (@available(iOS 13.0, *)) {
-        
+        /*
+         We can still get statusBar using the following code, but this is not recommended.
+         */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].keyWindow.windowScene.statusBarManager;
+        if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
+            UIView *_localStatusBar = [statusBarManager performSelector:@selector(createLocalStatusBar)];
+            if ([_localStatusBar respondsToSelector:@selector(statusBar)]) {
+                _statusBar = [_localStatusBar performSelector:@selector(statusBar)];
+            }
+        }
+#pragma clang diagnostic pop
+        if (_statusBar) {
+            // _UIStatusBarDataCellularEntry
+            id currentData = [[_statusBar valueForKeyPath:@"_statusBar"] valueForKeyPath:@"currentData"];
+            id _wifiEntry = [currentData valueForKeyPath:@"wifiEntry"];
+            id _cellularEntry = [currentData valueForKeyPath:@"cellularEntry"];
+            if (_wifiEntry && [[_wifiEntry valueForKeyPath:@"isEnabled"] boolValue]) {
+                // If wifiEntry is enabled, is WiFi.
+                returnValue = LLNetworkStatusReachableViaWiFi;
+            } else if (_cellularEntry && [[_cellularEntry valueForKeyPath:@"isEnabled"] boolValue]) {
+                NSNumber *type = [_cellularEntry valueForKeyPath:@"type"];
+                if (type) {
+                    switch (type.integerValue) {
+                        case 5:
+                            returnValue = LLNetworkStatusReachableViaWWAN4G;
+                            break;
+                        case 4:
+                            returnValue = LLNetworkStatusReachableViaWWAN3G;
+                            break;
+                            //                        case 1: // Return 1 when 1G.
+                            //                            break;
+                        case 0:
+                            // Return 0 when no sim card.
+                            returnValue = LLNetworkStatusNotReachable;
+                        default:
+                            returnValue = LLNetworkStatusReachableViaWWAN;
+                            break;
+                    }
+                }
+            }
+        }
     } else {
         UIApplication *app = [UIApplication sharedApplication];
-        if ([[app valueForKeyPath:@"_statusBar"] isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
+        _statusBar = [app valueForKeyPath:@"_statusBar"];
+        
+        if ([_statusBar isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
             // For iPhoneX
-            NSArray *children = [[[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+            NSArray *children = [[[_statusBar valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
             for (UIView *view in children) {
                 for (id child in view.subviews) {
                     if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarWifiSignalView")]) {
@@ -122,7 +169,7 @@ static LLNetworkHelper *_instance = nil;
             }
         } else {
             // For others iPhone
-            NSArray *children = [[[app valueForKeyPath:@"_statusBar"] valueForKeyPath:@"foregroundView"] subviews];
+            NSArray *children = [[_statusBar valueForKeyPath:@"foregroundView"] subviews];
             int type = -1;
             for (id child in children) {
                 if ([child isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]]) {
