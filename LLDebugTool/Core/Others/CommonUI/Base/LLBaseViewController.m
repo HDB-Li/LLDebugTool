@@ -57,12 +57,30 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)leftItemClick {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)leftItemClick:(UIButton *)sender {
+    
+}
+
+- (void)rightItemClick:(UIButton *)sender {
+    
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     return YES;
+}
+
+- (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag {
+    if (flag) {
+        UIButton *btn = [self navigationButtonWithTitle:title imageName:imageName target:self action:@selector(leftItemClick:)];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        self.leftNavigationButton = btn;
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    } else {
+        UIButton *btn = [self navigationButtonWithTitle:title imageName:imageName target:self action:@selector(rightItemClick:)];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        self.rightNavigationButton = btn;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
 }
 
 #pragma mark - Primary
@@ -73,19 +91,19 @@
 }
 
 - (void)initNavigationItems {
-    if (self.navigationController.viewControllers.count <= 1) {
-        UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:self action:@selector(leftItemClick)];
-        btn.showsTouchWhenHighlighted = NO;
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        self.navigationItem.leftBarButtonItem = item;
-        UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-        [btn setImage:[[UIImage LL_imageNamed:kCloseImageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+    if (self.navigationController) {
+        self.navigationItem.hidesBackButton = YES;
+        if (self.navigationController.viewControllers.count <= 1) {
+            [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
+        } else {
+            UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
+            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        }
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
+        self.navigationController.navigationBar.translucent = YES;
+        self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
     }
-    self.navigationItem.hidesBackButton = NO;
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
 }
 
 - (void)resetDefaultSettings {
@@ -98,7 +116,21 @@
     self.navigationController.navigationBar.translucent = YES;
 }
 
-- (void)backAction {
+- (UIButton *)navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
+    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:target action:action];
+    btn.showsTouchWhenHighlighted = NO;
+    btn.tintColor = [LLThemeManager shared].primaryColor;
+    if ([title length]) {
+        [btn setTitle:title forState:UIControlStateNormal];
+    }
+    if (imageName) {
+        UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
+        [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+    }
+    return btn;
+}
+
+- (void)backAction:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

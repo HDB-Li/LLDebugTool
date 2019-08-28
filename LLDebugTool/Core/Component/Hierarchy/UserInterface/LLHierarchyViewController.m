@@ -273,7 +273,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    [self leftItemClick];
+    [self leftItemClick:self.leftNavigationButton];
     [self.delegate LLHierarchyViewController:self didFinishWithSelectedModel:self.datas[indexPath.row]];
 }
 

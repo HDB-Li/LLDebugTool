@@ -40,12 +40,12 @@
     }
 }
 
-- (void)leftItemClick {
+- (void)leftItemClick:(UIButton *)sender {
     if ([self.view.window isKindOfClass:[LLBaseComponentWindow class]]) {
         LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;
         [window componentDidFinish];
     } else {
-        [super leftItemClick];
+        [super leftItemClick:sender];
     }
 }
 

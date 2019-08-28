@@ -26,6 +26,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLBaseViewController : UIViewController
+
+/// Left navigation item's custom view.
+@property (nonatomic, strong, nullable) UIButton *leftNavigationButton;
+
+/// Right navigation item's custom view.
+@property (nonatomic, strong, nullable) UIButton *rightNavigationButton;
+
 /**
  * Simple alert.
  */
@@ -34,7 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Left navigation item action.
  */
-- (void)leftItemClick;
+- (void)leftItemClick:(UIButton *)sender;
+
+/**
+ Right navigation item action.
+
+ @param sender UIButton.
+ */
+- (void)rightItemClick:(UIButton *)sender;
 
 /**
  Whether hit test at point with event.
@@ -44,6 +58,16 @@ NS_ASSUME_NONNULL_BEGIN
  @return Result.
  */
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;
+
+/**
+ Init navigation item.
+ 
+ @param title Title if needed.
+ @param imageName Image if needed.
+ @param flag is left navigation item or right navigation item.
+ */
+- (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag;
+
 @end
 
 NS_ASSUME_NONNULL_END

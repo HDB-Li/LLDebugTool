@@ -99,13 +99,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
 - (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
 
-/**
- * Init a navigation item.
- */
-- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName;
-
 #pragma mark - Rewrite
-- (void)leftItemClick;
+/**
+* Left item action.
+*/
+- (void)leftItemClick:(UIButton *)sender;
+
 /**
  * Right item action. Must call super method.
  */

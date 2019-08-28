@@ -79,17 +79,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     }
 }
 
-#pragma mark - Public
-- (void)initRightNavigationItemWithImageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName {
-    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:self action:@selector(rightItemClick:)];
-    [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [btn setImage:[[UIImage LL_imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.tintColor = [LLThemeManager shared].primaryColor;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
 #pragma mark - Override
 - (void)rightItemClick:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -145,13 +134,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.cancelAllString = @"Cancel All";
     
     // Navigation bar item
-    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:self action:@selector(rightItemClick:)];
-    [btn setImage:[[UIImage LL_imageNamed:kEditImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [btn setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.tintColor = [LLThemeManager shared].primaryColor;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationItem.rightBarButtonItem = item;
+    [self initNavigationItemWithTitle:nil imageName:kEditImageName isLeft:NO];
+    [self.rightNavigationButton setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
     
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
     
@@ -180,13 +164,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     self.navigationController.toolbar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
-- (void)leftItemClick {
+- (void)leftItemClick:(UIButton *)sender {
     if (self.isSearchEnable) {
         if (self.searchBar.isFirstResponder) {
             [self.searchBar resignFirstResponder];
         }
     }
-    [super leftItemClick];
+    [super leftItemClick:sender];
 }
 
 - (void)selectAllItemClick:(UIBarButtonItem *)sender {
