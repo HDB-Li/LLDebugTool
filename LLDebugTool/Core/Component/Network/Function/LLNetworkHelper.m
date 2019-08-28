@@ -94,6 +94,7 @@ static LLNetworkHelper *_instance = nil;
     }
     id _statusBar = nil;
     if (@available(iOS 13.0, *)) {
+#ifdef __IPHONE_13_0
         /*
          We can still get statusBar using the following code, but this is not recommended.
          */
@@ -137,6 +138,7 @@ static LLNetworkHelper *_instance = nil;
                 }
             }
         }
+#endif
     } else {
         UIApplication *app = [UIApplication sharedApplication];
         _statusBar = [app valueForKeyPath:@"_statusBar"];
