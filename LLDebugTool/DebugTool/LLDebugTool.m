@@ -138,12 +138,6 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    if (![LLConfig sharedConfig].showDebugToolLog) {
-        NSArray *toolEvent = @[kLLLogHelperDebugToolEvent,kLLLogHelperFailedLoadingResourceEvent];
-        if ([toolEvent containsObject:onEvent]) {
-            return;
-        }
-    }
     [[LLLogHelper sharedHelper] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
@@ -189,7 +183,7 @@ static LLDebugTool *_instance = nil;
     
     if (self.isBetaVersion) {
         // This method called in instancetype, can't use macros to log.
-        [self logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:kLLLogHelperDebugToolEvent message:kLLLogHelperUseBetaAlert];
+        [LLTool log:kLLLogHelperUseBetaAlert];
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -208,7 +202,7 @@ static LLDebugTool *_instance = nil;
                             if ([newVersion componentsSeparatedByString:@"."].count == 3) {
                                 if ([self.version compare:newVersion] == NSOrderedAscending) {
                                     NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,self.version];
-                                    [self logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ level:LLConfigLogLevelAlert onEvent:kLLLogHelperDebugToolEvent message:message];
+                                    [LLTool log:message];
                                 }
                             }
                         }

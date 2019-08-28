@@ -26,6 +26,7 @@
 #import "LLMacros.h"
 #import "LLFormatterTool.h"
 #import "LLDebugTool.h"
+#import "LLLogHelperEventDefine.h"
 
 static unsigned long long _absolutelyIdentity = 0;
 
@@ -106,9 +107,11 @@ static unsigned long long _absolutelyIdentity = 0;
 }
 
 + (void)log:(NSString *)string {
-    if ([LLConfig sharedConfig].isShowDebugToolLog) {
-        NSLog(@"%@ %@",string,@"Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.");
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([LLConfig sharedConfig].isShowDebugToolLog) {
+            NSLog(@"%@ %@",string,kLLLogHelperOpenIssueInGithub);
+        }
+    });
 }
 
 @end

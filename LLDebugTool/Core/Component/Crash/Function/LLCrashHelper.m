@@ -30,6 +30,7 @@
 #import "LLFormatterTool.h"
 #import "NSObject+LL_Utils.h"
 #import "LLAppInfoHelper.h"
+#import "LLTool.h"
 
 static LLCrashHelper *_instance = nil;
 
@@ -162,13 +163,13 @@ static LLCrashHelper *_instance = nil;
         }
         self.crashModel = model;
         [[LLStorageManager sharedManager] updateModel:model complete:^(BOOL result) {
-            NSLog(@"Save crash model success");
+            [LLTool log:@"Save crash model success"];
         } synchronous:YES];
     } else {
         LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
         self.crashModel = model;
         [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
-            NSLog(@"Save crash model success");
+            [LLTool log:@"Save crash model success"];
         } synchronous:YES];
     }
 }
@@ -332,14 +333,14 @@ void SignalHandler(int sig)
         [[LLCrashHelper sharedHelper].crashModel updateAppInfos:[[LLAppInfoHelper sharedHelper] appInfos]];
         [[LLCrashHelper sharedHelper].crashModel appendSignalModel:signalModel];
         [[LLStorageManager sharedManager] updateModel:[LLCrashHelper sharedHelper].crashModel complete:^(BOOL result) {
-            NSLog(@"Save signal model success");
+            [LLTool log:@"Save signal model success"];
         } synchronous:YES];
     } else {
         LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Catch Signal" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:[[LLAppInfoHelper sharedHelper] appInfos] launchDate:[NSObject LL_launchDate]];
         [model appendSignalModel:signalModel];
         [LLCrashHelper sharedHelper].crashModel = model;
         [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
-            NSLog(@"Save signal model success");
+            [LLTool log:@"Save signal model success"];
         } synchronous:YES];
     }
 }

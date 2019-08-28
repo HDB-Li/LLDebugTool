@@ -141,14 +141,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
     if (!_XIBBundle) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [LLTool log:@"Failed to load the XIB bundle"];
-        });
+        [LLTool log:@"Failed to load the XIB bundle"];
     }
     if (!_imageBundle) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [LLTool log:@"Failed to load the image bundle"];
-        });
+        [LLTool log:@"Failed to load the image bundle"];
     }
     
     // Set date formatter string.
@@ -171,7 +167,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _magnifierSize = kLLMagnifierWindowSize;
     
     // Show LLDebugTool's log.
-    _showDebugToolLog = YES;
     _autoCheckDebugToolVersion = YES;
     
     // Set log style.
