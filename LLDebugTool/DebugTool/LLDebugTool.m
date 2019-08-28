@@ -33,6 +33,7 @@
 #import "LLConfig.h"
 #import "LLTool.h"
 #import "LLWindowManager.h"
+#import "LLFunctionItemModel.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -121,12 +122,13 @@ static LLDebugTool *_instance = nil;
     [[LLWindowManager shared] hideEntryWindow];
 }
 
-- (void)showExplorerView {
-//    [self.windowViewController showExplorerView];
+- (void)executeAction:(LLDebugToolAction)action {
+    [self executeAction:action data:nil];
 }
 
-- (void)hideExplorerView {
-//    [self.windowViewController hideExplorerView];
+- (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data {
+    LLFunctionItemModel *model = [[LLFunctionItemModel alloc] initWithAction:action];
+    [model.component componentDidLoad:data];
 }
 
 - (void)showDebugViewControllerWithIndex:(NSInteger)index {
@@ -147,7 +149,7 @@ static LLDebugTool *_instance = nil;
  */
 - (void)initial {
     // Set Default
-    _isBetaVersion = YES;
+    _isBetaVersion = NO;
 
     _versionNumber = @"1.3.0";
 

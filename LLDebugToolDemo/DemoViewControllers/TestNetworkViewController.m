@@ -61,9 +61,9 @@ static NSString *const kCellID = @"cellID";
     
     // Use AFHttpSessionManager
     [[NetTool sharedTool].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
 }
 
@@ -73,7 +73,7 @@ static NSString *const kCellID = @"cellID";
     // Use AFURLSessionManager
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     NSURLSessionDataTask *task = [[NetTool sharedTool].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
     [task resume];
 }
@@ -83,7 +83,7 @@ static NSString *const kCellID = @"cellID";
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525346881086&di=b234c66c82427034962131d20e9f6b56&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F011cf15548caf50000019ae9c5c728.jpg%402o.jpg"]];
     [urlRequest setHTTPMethod:@"GET"];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
 }
 
@@ -92,7 +92,7 @@ static NSString *const kCellID = @"cellID";
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     [urlRequest setHTTPMethod:@"GET"];
     NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
     [dataTask resume];
 }

@@ -43,7 +43,7 @@
 
 #pragma mark - Actions
 - (void)testAllWindowHierarchy {
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:5];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionHierarchy];
 }
 
 @end

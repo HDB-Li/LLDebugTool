@@ -27,6 +27,29 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ Action enums.
+ 
+ - LLDebugToolActionNetwork: Network function.
+ - LLDebugToolActionLog: Log function.
+ - LLDebugToolActionCrash: Crash function.
+ - LLDebugToolActionAppInfo: App info function.
+ - LLDebugToolActionSandbox: Sandbox function.
+ - LLDebugToolActionScreenshot: Screenshot function.
+ - LLDebugToolActionHierarchy: Hierarchy function.
+ - LLDebugToolActionMagnifier: Magnifier function.
+ */
+typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
+    LLDebugToolActionNetwork,
+    LLDebugToolActionLog,
+    LLDebugToolActionCrash,
+    LLDebugToolActionAppInfo,
+    LLDebugToolActionSandbox,
+    LLDebugToolActionScreenshot,
+    LLDebugToolActionHierarchy,
+    LLDebugToolActionMagnifier
+};
+
+/**
  Control whether DebugTool is started.
  */
 @interface LLDebugTool : NSObject
@@ -56,16 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)stopWorking;
 
 /**
- Show explorer view.
- */
-- (void)showExplorerView;
-
-/**
- Hide explorer view.
- */
-- (void)hideExplorerView;
-
-/**
  Whether working or not.
  */
 @property (nonatomic, assign, readonly) BOOL isWorking;
@@ -81,14 +94,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isBetaVersion;
 
 /**
- Automatic open debug view controller with index.
+ Execute action.
+ 
+ @param action Action.
  */
-- (void)showDebugViewControllerWithIndex:(NSInteger)index;
+- (void)executeAction:(LLDebugToolAction)action;
 
 /**
- Automatic open debug view controller with index and params.
+ Execute action.
+
+ @param action Action.
+ @param data Data.
  */
-- (void)showDebugViewControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*_Nullable)params;
+- (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data;
 
 /**
  Print and save a log model with infos.

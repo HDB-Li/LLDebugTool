@@ -120,7 +120,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     kill(0, SIGTRAP);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:2];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionCrash];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openCrash"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     });

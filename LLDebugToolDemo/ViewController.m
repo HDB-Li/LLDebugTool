@@ -51,7 +51,7 @@ static NSString *const kCellID = @"cellID";
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openCrash"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:2];
+            [[LLDebugTool sharedTool] executeAction:LLDebugToolActionCrash];
         });
 
     }
@@ -115,11 +115,11 @@ static NSString *const kCellID = @"cellID";
 
 #pragma mark - Actions
 - (void)testAppInfo {
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:3];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionAppInfo];
 }
 
 - (void)testSandbox {
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:4];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSandbox];
 }
 
 #pragma mark - UITableView

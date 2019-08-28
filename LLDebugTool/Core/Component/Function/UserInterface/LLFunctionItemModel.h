@@ -23,28 +23,7 @@
 
 #import "LLBaseModel.h"
 #import "LLComponent.h"
-
-/**
- Function action enums.
-
- - LLFunctionActionNetwork: Network function.
- - LLFunctionActionLog: Log function.
- - LLFunctionActionCrash: Crash function.
- - LLFunctionActionAppInfo: App info function.
- - LLFunctionActionSandbox: Sandbox function.
- - LLFunctionActionScreenshot: Screenshot function.
- - LLFunctionActionHierarchy: Hierarchy function.
- */
-typedef NS_ENUM(NSUInteger, LLFunctionAction) {
-    LLFunctionActionNetwork,
-    LLFunctionActionLog,
-    LLFunctionActionCrash,
-    LLFunctionActionAppInfo,
-    LLFunctionActionSandbox,
-    LLFunctionActionScreenshot,
-    LLFunctionActionHierarchy,
-    LLFunctionActionMagnifier
-};
+#import "LLDebugTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -56,17 +35,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The name of the display image.
  */
-@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, copy, readonly) NSString *imageName;
 
 /**
  The title to display.
  */
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy, readonly) NSString *title;
 
 /**
  Specified action.
  */
-@property (nonatomic, assign) LLFunctionAction action;
+@property (nonatomic, assign, readonly) LLDebugToolAction action;
 
 /**
  Action component.
@@ -76,12 +55,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Specifies the initialization method.
 
- @param imageName The name of the display image.
- @param title The title to display.
  @param action Specified action.
  @return Instance object.
  */
-- (instancetype _Nonnull )initWithImageName:(NSString *)imageName title:(NSString *)title action:(LLFunctionAction)action;
+- (instancetype _Nonnull )initWithAction:(LLDebugToolAction)action;
 
 @end
 

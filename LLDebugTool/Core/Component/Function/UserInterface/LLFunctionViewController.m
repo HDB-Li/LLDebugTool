@@ -24,7 +24,6 @@
 #import "LLFunctionViewController.h"
 #import "LLFunctionItemModel.h"
 #import "LLConfig.h"
-#import "LLImageNameConfig.h"
 #import "LLMacros.h"
 #import "LLFactory.h"
 #import "LLNetworkViewController.h"
@@ -98,19 +97,19 @@
 
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kNetworkImageName title:@"Net" action:LLFunctionActionNetwork]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kLogImageName title:@"Log" action:LLFunctionActionLog]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kCrashImageName title:@"Crash" action:LLFunctionActionCrash]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kAppImageName title:@"App Info" action:LLFunctionActionAppInfo]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kSandboxImageName title:@"Sandbox" action:LLFunctionActionSandbox]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLog]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox]];
     
     self.toolContainerView.dataArray = [items copy];
     
     [items removeAllObjects];
     
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kScreenshotImageName title:@"Screenshot" action:LLFunctionActionScreenshot]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kHierarchyImageName title:@"Hierarchy" action:LLFunctionActionHierarchy]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithImageName:kMagnifierImageName title:@"Magnifier" action:LLFunctionActionMagnifier]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier]];
     
     self.shortCutContainerView.dataArray = [items copy];
 }

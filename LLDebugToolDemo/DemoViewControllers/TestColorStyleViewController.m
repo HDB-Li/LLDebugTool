@@ -60,22 +60,22 @@
 #pragma mark - Actions
 - (void)testHackColorStyle {
     [LLConfig sharedConfig].colorStyle = LLConfigColorStyleHack;
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 - (void)testSimpleColorSytle {
     [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSimple;
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 - (void)testSystemColorStyle {
     [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 - (void)testCustomColorConfig {
     [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 @end

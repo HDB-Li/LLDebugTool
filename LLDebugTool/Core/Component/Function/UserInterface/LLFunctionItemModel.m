@@ -31,39 +31,80 @@
 #import "LLScreenshotComponent.h"
 #import "LLHierarchyComponent.h"
 #import "LLMagnifierComponent.h"
+#import "LLImageNameConfig.h"
 
 @implementation LLFunctionItemModel
 
-- (instancetype _Nonnull )initWithImageName:(NSString *)imageName title:(NSString *)title action:(LLFunctionAction)action {
+- (instancetype _Nonnull )initWithAction:(LLDebugToolAction)action {
     if (self = [super init]) {
-        self.imageName = imageName;
-        self.title = title;
-        self.action = action;
+        _action = action;
+        _imageName = [self imageNameFromAction:action];
+        _title = [self titleFromAction:action];
         _component = [self componentFromAction:action];
     }
     return self;
 }
 
-- (LLComponent *)componentFromAction:(LLFunctionAction)action {
+- (LLComponent *)componentFromAction:(LLDebugToolAction)action {
     switch (action) {
-        case LLFunctionActionNetwork:
+        case LLDebugToolActionNetwork:
             return [[LLNetworkComponent alloc] init];
-        case LLFunctionActionLog:
+        case LLDebugToolActionLog:
             return [[LLLogComponent alloc] init];
-        case LLFunctionActionCrash:
+        case LLDebugToolActionCrash:
             return [[LLCrashComponent alloc] init];
-        case LLFunctionActionAppInfo:
+        case LLDebugToolActionAppInfo:
             return [[LLAppInfoComponent alloc] init];
-        case LLFunctionActionSandbox:
+        case LLDebugToolActionSandbox:
             return [[LLSandboxComponent alloc] init];
-        case LLFunctionActionScreenshot:
+        case LLDebugToolActionScreenshot:
             return [[LLScreenshotComponent alloc] init];
-        case LLFunctionActionHierarchy:
+        case LLDebugToolActionHierarchy:
             return [[LLHierarchyComponent alloc] init];
-        case LLFunctionActionMagnifier:
+        case LLDebugToolActionMagnifier:
             return [[LLMagnifierComponent alloc] init];
-        default:
-            break;
+    }
+}
+
+- (NSString *)titleFromAction:(LLDebugToolAction)action {
+    switch (action) {
+        case LLDebugToolActionNetwork:
+            return @"Net";
+        case LLDebugToolActionLog:
+            return @"Log";
+        case LLDebugToolActionCrash:
+            return @"Crash";
+        case LLDebugToolActionAppInfo:
+            return @"App Info";
+        case LLDebugToolActionSandbox:
+            return @"Sandbox";
+        case LLDebugToolActionScreenshot:
+            return @"Screenshot";
+        case LLDebugToolActionHierarchy:
+            return @"Hierarchy";
+        case LLDebugToolActionMagnifier:
+            return @"Magnifier";
+    }
+}
+
+- (NSString *)imageNameFromAction:(LLDebugToolAction)action {
+    switch (action) {
+        case LLDebugToolActionNetwork:
+            return kNetworkImageName;
+        case LLDebugToolActionLog:
+            return kLogImageName;
+        case LLDebugToolActionCrash:
+            return kCrashImageName;
+        case LLDebugToolActionAppInfo:
+            return kAppImageName;
+        case LLDebugToolActionSandbox:
+            return kSandboxImageName;
+        case LLDebugToolActionScreenshot:
+            return kScreenshotImageName;
+        case LLDebugToolActionHierarchy:
+            return kHierarchyImageName;
+        case LLDebugToolActionMagnifier:
+            return kMagnifierImageName;
     }
 }
 
