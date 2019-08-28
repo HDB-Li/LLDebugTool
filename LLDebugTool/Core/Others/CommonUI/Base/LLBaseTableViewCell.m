@@ -25,6 +25,7 @@
 #import "LLConfig.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
+#import "LLImageNameConfig.h"
 
 @implementation LLBaseTableViewCell
 
@@ -38,6 +39,26 @@
         [self baseInitial];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:NSClassFromString(@"UITableViewCellEditControl")]) {
+            for (UIView *view in subview.subviews) {
+                if ([view isKindOfClass:[UIImageView class]]) {
+                    UIImageView *imageView = (UIImageView *)view;
+                    UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
+                    if (self.isSelected) {
+                        imageView.image = [[UIImage LL_imageNamed:kCellSelectImageName] imageWithRenderingMode:mode];
+                    } else {
+                        imageView.image = [[UIImage LL_imageNamed:kCellUnselectImageName] imageWithRenderingMode:mode];
+                    }
+                    break;
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - Primary

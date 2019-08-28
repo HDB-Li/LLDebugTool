@@ -60,6 +60,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)LL_getPropertyNames;
 
 /**
+Get all property names.
+
+@return Property name array.
+*/
+- (NSArray *)LL_getPropertyNames;
+
+/**
  Add string property.
 
  @param string String value.

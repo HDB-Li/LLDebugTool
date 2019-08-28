@@ -98,4 +98,8 @@ static NSString *const kInfoImageName = @"LL-info";
 // Screenshot
 static NSString *const kCaptureImageName = @"LL-capture";
 
+// Cell
+static NSString *const kCellSelectImageName = @"LL-cell-select";
+static NSString *const kCellUnselectImageName = @"LL-cell-unselect";
+
 #endif /* LLImageNameConfig_h */

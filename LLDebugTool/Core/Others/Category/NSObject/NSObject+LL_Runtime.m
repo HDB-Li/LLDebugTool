@@ -65,6 +65,10 @@
     return array;
 }
 
+- (NSArray *)LL_getPropertyNames {
+    return [[self class] LL_getPropertyNames];
+}
+
 - (void)LL_setStringProperty:(NSString *)string key:(const char *)key {
     objc_setAssociatedObject(self, key, string, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
