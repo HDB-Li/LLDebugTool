@@ -26,8 +26,13 @@
 #import "LLFunctionItemView.h"
 #import "LLMacros.h"
 #import "LLThemeManager.h"
+#import "LLFactory.h"
 
 @interface LLFunctionItemContainerView ()
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) UIView *lineView;
 
 @property (nonatomic, strong) NSMutableArray *itemViews;
 
@@ -51,8 +56,18 @@
     }
 }
 
+- (void)setTitle:(NSString *)title {
+    if (![_title isEqualToString:title]) {
+        _title = [title copy];
+        self.titleLabel.text = title;
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self.titleLabel sizeToFit];
+    self.titleLabel.frame = CGRectMake(20, 0, self.titleLabel.LL_width + 20, self.titleLabel.LL_height + 20);
+    self.lineView.frame = CGRectMake(self.titleLabel.LL_x, self.titleLabel.LL_bottom - 1, self.titleLabel.LL_width, 1);
     NSInteger count = 3;
     CGFloat itemWidth = self.LL_width / count;
     CGFloat itemHeight = 90;
@@ -60,7 +75,7 @@
         NSInteger section = i / count;
         NSInteger row = i % count;
         LLFunctionItemView *view = self.itemViews[i];
-        view.frame = CGRectMake(row * itemWidth, section * itemHeight, itemWidth, itemHeight);
+        view.frame = CGRectMake(row * itemWidth, section * itemHeight + self.titleLabel.LL_bottom, itemWidth, itemHeight);
     }
     self.LL_size = CGSizeMake(self.LL_width, [self LL_bottomView].LL_bottom);
 }
@@ -70,10 +85,16 @@
     self.backgroundColor = [LLThemeManager shared].containerColor;
     self.itemViews = [[NSMutableArray alloc] init];
     [self LL_setCornerRadius:5];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectMake(20, 0, self.LL_width - 20, 40) text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    self.lineView = [LLFactory getView:self frame:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) backgroundColor:[LLThemeManager shared].primaryColor];
 }
 
 - (void)updateUI:(NSArray<LLFunctionItemModel *> *)dataArray {
-    [self LL_removeAllSubviews];
+    for (UIView *view in self.itemViews) {
+        [view removeFromSuperview];
+    }
     [self.itemViews removeAllObjects];
     for (int i = 0; i < dataArray.count; i++) {
         LLFunctionItemModel *model = dataArray[i];

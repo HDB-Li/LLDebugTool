@@ -210,8 +210,14 @@ static const char kLLVerticalPaddingKey;
 }
 
 - (void)LL_removeAllSubviews {
+    [self LL_removeAllSubviewsIgnoreIn:nil];
+}
+
+- (void)LL_removeAllSubviewsIgnoreIn:(NSArray <UIView *>*_Nullable)views {
     for (UIView *subview in self.subviews) {
-        [subview removeFromSuperview];
+        if (![views containsObject:subview]) {
+            [subview removeFromSuperview];
+        }
     }
 }
 

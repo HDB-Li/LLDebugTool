@@ -104,6 +104,7 @@
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox]];
     
     self.toolContainerView.dataArray = [items copy];
+    self.toolContainerView.title = @"Function";
     
     [items removeAllObjects];
     
@@ -112,6 +113,7 @@
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier]];
     
     self.shortCutContainerView.dataArray = [items copy];
+    self.shortCutContainerView.title = @"Short Cut";
 }
 
 - (void)settingButtonClicked:(UIButton *)sender {

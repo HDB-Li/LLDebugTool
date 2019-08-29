@@ -46,6 +46,10 @@
     [self initial];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
@@ -61,6 +65,8 @@
     
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:doubleTap];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
 - (void)updateStyle:(LLConfigEntryWindowStyle)style {
@@ -113,6 +119,11 @@
         case LLConfigEntryWindowStylePowerBar:
             return self.rectView;
     }
+}
+
+#pragma mark - LLConfigDidUpdateWindowStyleNotificationName
+- (void)didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:(NSNotification *)notifi {
+    self.style = [LLConfig sharedConfig].entryWindowStyle;
 }
 
 #pragma mark - Lazy

@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)LL_removeAllSubviews;
 
+- (void)LL_removeAllSubviewsIgnoreIn:(NSArray <UIView *>*_Nullable)views;
+
 - (UIView *_Nullable)LL_bottomView;
 
 - (void)LL_AddClickListener:(id)target action:(SEL)action;
