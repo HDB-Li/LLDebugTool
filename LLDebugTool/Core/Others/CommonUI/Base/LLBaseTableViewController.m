@@ -213,7 +213,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
-        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", indexPaths.count] handler:^(NSInteger action) {
+        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", (long)indexPaths.count] handler:^(NSInteger action) {
             if (action == 1) {
                 [self deleteFilesWithIndexPaths:indexPaths];
             }

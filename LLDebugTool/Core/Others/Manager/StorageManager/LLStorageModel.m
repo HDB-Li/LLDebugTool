@@ -26,8 +26,7 @@
 @implementation LLStorageModel
 
 - (NSString *)storageIdentity {
-    NSString *message = [NSString stringWithFormat:@"%@ must recode storageIdentity",NSStringFromClass(self.class)];
-    NSAssert(NO, message);
+    NSAssert(NO, ([NSString stringWithFormat:@"%@ must recode storageIdentity",NSStringFromClass(self.class)]));
     return @"";
 }
 

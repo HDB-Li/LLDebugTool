@@ -22,7 +22,13 @@
 //  SOFTWARE.
 
 #import "LLStorageManager.h"
-#import <FMDB/FMDB.h>
+
+#if __has_include("FMDB.h")
+#import "FMDB.h"
+#else
+#import "<FMDB.h>"
+#endif
+
 #import "NSObject+LL_Utils.h"
 #import "LLTool.h"
 #import "LLConfig.h"

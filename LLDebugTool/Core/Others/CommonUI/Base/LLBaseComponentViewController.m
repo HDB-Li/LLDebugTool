@@ -35,8 +35,7 @@
         LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;
         [window componentDidFinish];
     } else {
-        NSString *message = [NSString stringWithFormat:@"%@'s window must be LLBaseComponentWindow", NSStringFromClass(self.class)];
-        NSAssert(NO, message);
+        NSAssert(NO, ([NSString stringWithFormat:@"%@'s window must be LLBaseComponentWindow", NSStringFromClass(self.class)]));
     }
 }
 

@@ -103,7 +103,7 @@
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Layer" content:view.layer.description]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Layer Class" content:NSStringFromClass(view.layer.class)]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Content Model" content:view.LL_contentModeDescription]];
-    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Tag" content:[NSString stringWithFormat:@"%ld",view.tag]]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Tag" content:[NSString stringWithFormat:@"%ld",(long)view.tag]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Interaction" content:[NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:nil content:[NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Alpha" content:[[LLFormatterTool shared] formatNumber:@(view.alpha)]]];
@@ -124,7 +124,7 @@
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Text" content:[self colorDescription:label.textColor]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:nil content:label.font.description]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:nil content:[NSString stringWithFormat:@"Aligned %@", label.LL_textAlignmentDescription]]];
-    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Lines" content:[NSString stringWithFormat:@"%ld",label.numberOfLines]]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Lines" content:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Behavior" content:[NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:nil content:[NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"]]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Baseline" content:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]]];
