@@ -61,6 +61,24 @@
     }
 }
 
+- (void)setAccessoryType:(UITableViewCellAccessoryType)accessoryType {
+    [super setAccessoryType:accessoryType];
+    switch (accessoryType) {
+        case UITableViewCellAccessoryDisclosureIndicator:{
+            self.accessoryView = [LLFactory getImageView:nil frame:CGRectMake(0, 0, 12, 12) image:[[UIImage LL_imageNamed:kRightImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        }
+            break;
+        case UITableViewCellAccessoryNone: {
+            self.accessoryView = nil;
+        }
+            break;
+        default: {
+            NSAssert(NO, @"Must code accessory type");
+        }
+            break;
+    }
+}
+
 #pragma mark - Primary
 - (void)baseInitial {
     self.tintColor = [LLThemeManager shared].primaryColor;
