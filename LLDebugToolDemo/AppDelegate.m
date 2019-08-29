@@ -19,26 +19,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    //####################### Color Style #######################//
-    // Uncomment one of the following lines to change the color configuration.
-//     [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
-    // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-    
-    //####################### User Identity #######################//
-    // Use this line to tag user. More config please see "LLConfig.h".
-    [LLConfig sharedConfig].userIdentity = @"Miss L";
-    
-    //####################### Window Style #######################//
-    // Uncomment one of the following lines to change the window style.
-    // [LLConfig sharedConfig].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
-
-    //####################### Features #######################//
-    // Uncomment this line to change the available features.
-     [LLConfig sharedConfig].availables = LLConfigAvailableCrash & LLConfigAvailableAppInfo;
-    
-    // ####################### Start LLDebugTool #######################//
-    // Use this line to start working.
-    [[LLDebugTool sharedTool] startWorking];
+    // Start working with config.
+    [[LLDebugTool sharedTool] startWorkingWithConfig:^(LLConfig * _Nonnull config) {
+        
+        //####################### Color Style #######################//
+        // Uncomment one of the following lines to change the color configuration.
+        // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
+        // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+        
+        //####################### User Identity #######################//
+        // Use this line to tag user. More config please see "LLConfig.h".
+        config.userIdentity = @"Miss L";
+        
+        //####################### Window Style #######################//
+        // Uncomment one of the following lines to change the window style.
+        // config.entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+        
+    }];
     
     return YES;
 }
