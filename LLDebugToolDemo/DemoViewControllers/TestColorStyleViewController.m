@@ -29,16 +29,16 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Use \"LLConfigColorStyleHack\"";
-        cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleHack ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleHack ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Use \"LLConfigColorStyleSimple\"";
-        cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleSimple ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleSimple ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Use \"LLConfigColorStyleSystem\"";
-        cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleSystem ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleSystem ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Use \"[[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault]\"";
-        cell.accessoryType = [LLConfig sharedConfig].colorStyle == LLConfigColorStyleCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
     return cell;
@@ -59,22 +59,22 @@
 
 #pragma mark - Actions
 - (void)testHackColorStyle {
-    [LLConfig sharedConfig].colorStyle = LLConfigColorStyleHack;
+    [LLConfig shared].colorStyle = LLConfigColorStyleHack;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 - (void)testSimpleColorSytle {
-    [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSimple;
+    [LLConfig shared].colorStyle = LLConfigColorStyleSimple;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 - (void)testSystemColorStyle {
-    [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
+    [LLConfig shared].colorStyle = LLConfigColorStyleSystem;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 
 - (void)testCustomColorConfig {
-    [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+    [[LLConfig shared] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 

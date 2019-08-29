@@ -60,7 +60,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     self.navigationItem.title = @"Crash Report";
 
     // TableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kCrashCellID];
     
     [self loadData];
 }
@@ -68,7 +68,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
-    [[LLStorageManager sharedManager] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
+    [[LLStorageManager shared] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
         [weakSelf.dataArray removeAllObjects];
         [weakSelf.dataArray addObjectsFromArray:result];
@@ -86,7 +86,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Deleting"];
-    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+    [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
             [weakSelf.dataArray removeObjectsInArray:models];

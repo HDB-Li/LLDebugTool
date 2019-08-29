@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype)shared;
 
 /**
  Set enable to save log model.

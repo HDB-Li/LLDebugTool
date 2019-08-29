@@ -55,7 +55,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    self.name = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
+    self.name = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;
@@ -105,7 +105,7 @@
     self.toolBar.hidden = YES;
     UIImage *image = [self.imageView LL_convertViewToImage];
     if (image) {
-        [[LLScreenshotHelper sharedHelper] saveScreenshot:image name:name complete:nil];
+        [[LLScreenshotHelper shared] saveScreenshot:image name:name complete:nil];
         if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
             [[LLToastUtils shared] toastMessage:@"Save image in sandbox and album."];

@@ -52,10 +52,10 @@
     
     CGContextClearRect(context, self.frame);
     
-    NSInteger zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
+    NSInteger zoomLevel = [LLConfig shared].magnifierZoomLevel;
     // Image's scale, default screenshot's scale is [UIScreen mainScreen].scale, but we only use 1.0 is ok.
     CGFloat scale = 1.0;
-    NSInteger size = [LLConfig sharedConfig].magnifierSize;
+    NSInteger size = [LLConfig shared].magnifierSize;
     NSInteger skip = 1;
     
     CGPoint currentPoint = CGPointMake(self.targetPoint.x * scale, self.targetPoint.y * scale);
@@ -98,7 +98,7 @@
     self.layer.borderWidth = 2;
     self.layer.masksToBounds = YES;
     
-    NSInteger zoomLevel = [LLConfig sharedConfig].magnifierZoomLevel;
+    NSInteger zoomLevel = [LLConfig shared].magnifierZoomLevel;
     
     NSInteger centerX = self.LL_width / 2.0;
     NSInteger centerY = self.LL_height / 2.0;
@@ -117,7 +117,7 @@
 }
 
 - (void)updateScreenshot {
-    self.screenshot = [[LLScreenshotHelper sharedHelper] imageFromScreen:1];
+    self.screenshot = [[LLScreenshotHelper shared] imageFromScreen:1];
 }
 
 - (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {

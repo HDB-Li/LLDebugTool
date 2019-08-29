@@ -73,7 +73,7 @@
 
 - (void)captureButtonClicked:(UIButton *)sender {
     LLScreenshotPreviewViewController *vc = [[LLScreenshotPreviewViewController alloc] init];
-    vc.image = [[LLScreenshotHelper sharedHelper] imageFromScreen];
+    vc.image = [[LLScreenshotHelper shared] imageFromScreen];
     [self presentViewController:vc animated:YES completion:nil];
 }
 

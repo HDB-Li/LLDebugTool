@@ -108,7 +108,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 #pragma mark - Primary
 - (void)initial {
     self.navigationItem.title = self.model.name;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashContentCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kCrashContentCellID];
     
     self.titleArray = [[NSMutableArray alloc] init];
     self.contentArray = [[NSMutableArray alloc] init];
@@ -119,10 +119,10 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
-    [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+    [[LLStorageManager shared] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
         // Get log models.
         __block NSArray *logs = result;
-        [[LLStorageManager sharedManager] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [[LLStorageManager shared] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
             [[LLToastUtils shared] hide];
             // Get nework requests.
             NSArray *networkRequests = result;

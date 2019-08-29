@@ -69,7 +69,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
     self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 0);
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];    
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];    
 }
 
 - (void)loadData {
@@ -79,7 +79,7 @@ static NSString *const kHierarchyCellID = @"HierarchyCellID";
 }
 
 - (void)updateModel {
-    self.model = [LLHierarchyHelper sharedHelper].hierarchyInApplication;
+    self.model = [LLHierarchyHelper shared].hierarchyInApplication;
     self.navigationItem.title = @"View Hierarchy";
     if (self.selectView) {
         self.filterView.selectedSegmentIndex = 1;

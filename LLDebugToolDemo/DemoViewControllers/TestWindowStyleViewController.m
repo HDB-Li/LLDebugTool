@@ -29,13 +29,13 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Use \"LLConfigWindowSuspensionBall\"";
-        cell.accessoryType = [LLConfig sharedConfig].entryWindowStyle == LLConfigEntryWindowStyleSuspensionBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleSuspensionBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Use \"LLConfigWindowPowerBar\"";
-        cell.accessoryType = [LLConfig sharedConfig].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Use \"LLConfigWindowNetBar\"";
-        cell.accessoryType = [LLConfig sharedConfig].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
     return cell;
@@ -54,15 +54,15 @@
 
 #pragma mark - Actions
 - (void)testSuspensionBallWindowStyle {
-    [LLConfig sharedConfig].entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
 }
 
 - (void)testPowerBarWindowStyle {
-    [LLConfig sharedConfig].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
 }
 
 - (void)testNetBarWindowStyle {
-    [LLConfig sharedConfig].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
 }
 
 @end

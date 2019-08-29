@@ -55,8 +55,8 @@
 #pragma mark - Primary
 - (void)initial {
     self.overflow = YES;
-    self.moveable = [LLConfig sharedConfig].suspensionBallMoveable;
-    self.alpha = [LLConfig sharedConfig].normalAlpha;
+    self.moveable = [LLConfig shared].suspensionBallMoveable;
+    self.alpha = [LLConfig shared].normalAlpha;
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self LL_setCornerRadius:self.LL_width / 2];
@@ -64,16 +64,16 @@
 }
 
 - (void)becomeActive {
-    self.alpha = [LLConfig sharedConfig].activeAlpha;
+    self.alpha = [LLConfig shared].activeAlpha;
 }
 
 - (void)resignActive {
-    if (![LLConfig sharedConfig].isAutoAdjustSuspensionWindow) {
-        self.alpha = [LLConfig sharedConfig].normalAlpha;
+    if (![LLConfig shared].isAutoAdjustSuspensionWindow) {
+        self.alpha = [LLConfig shared].normalAlpha;
         return;
     }
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.alpha = [LLConfig sharedConfig].normalAlpha;
+        self.alpha = [LLConfig shared].normalAlpha;
         // Calculate End Point
         CGFloat x = self.LL_centerX;
         CGFloat y = self.LL_centerY;
@@ -89,20 +89,20 @@
             endPoint.y = y;
             if (x1 < x) {
                 // to right
-                endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig sharedConfig].suspensionWindowHideWidth;
+                endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
             } else {
                 // to left
-                endPoint.x = self.LL_width / 2.0 - [LLConfig sharedConfig].suspensionWindowHideWidth;
+                endPoint.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
             }
         } else {
             // animation to top or bottom
             endPoint.x = x;
             if (y1 < y) {
                 // to bottom
-                endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig sharedConfig].suspensionWindowHideWidth;
+                endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
             } else {
                 // to top
-                endPoint.y = self.LL_height / 2.0 - [LLConfig sharedConfig].suspensionWindowHideWidth;
+                endPoint.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
             }
         }
         self.center = endPoint;

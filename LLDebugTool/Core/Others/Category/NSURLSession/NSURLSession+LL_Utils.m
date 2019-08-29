@@ -33,7 +33,7 @@
 }
 
 + (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue {
-    if ([LLNetworkHelper sharedHelper].isEnabled) {
+    if ([LLNetworkHelper shared].isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:configuration.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {
             [protocols insertObject:[LLURLProtocol class] atIndex:0];

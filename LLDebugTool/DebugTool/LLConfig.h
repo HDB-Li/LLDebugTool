@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Singleton
  */
-+ (instancetype)sharedConfig;
++ (instancetype)shared;
 
 #pragma mark - Theme Color.
 /**

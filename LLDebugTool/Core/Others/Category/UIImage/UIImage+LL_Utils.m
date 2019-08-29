@@ -27,7 +27,7 @@
 @implementation UIImage (LL_Utils)
 
 + (UIImage *)LL_imageNamed:(NSString *)name {
-    return [UIImage imageNamed:name inBundle:[LLConfig sharedConfig].imageBundle compatibleWithTraitCollection:nil];
+    return [UIImage imageNamed:name inBundle:[LLConfig shared].imageBundle compatibleWithTraitCollection:nil];
 }
 
 + (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size {

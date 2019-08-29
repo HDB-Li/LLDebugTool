@@ -56,9 +56,9 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
         return NO;
     }
     
-    if ([LLConfig sharedConfig].hosts.count > 0) {
+    if ([LLConfig shared].hosts.count > 0) {
         NSString* url = [request.URL.absoluteString lowercaseString];
-        for (NSString* _url in [LLConfig sharedConfig].hosts) {
+        for (NSString* _url in [LLConfig shared].hosts) {
             if ([url rangeOfString:[_url lowercaseString]].location != NSNotFound)
                 return YES;
         }
@@ -91,7 +91,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     [self.dataTask cancel];
     self.dataTask           = nil;
     LLNetworkModel *model = [[LLNetworkModel alloc] init];
-    model.startDate = [[LLFormatterTool sharedTool] stringFromDate:self.startDate style:FormatterToolDateStyle1];
+    model.startDate = [[LLFormatterTool shared] stringFromDate:self.startDate style:FormatterToolDateStyle1];
     // Request
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
@@ -122,8 +122,8 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.responseHeaderFields = [httpResponse.allHeaderFields mutableCopy];
     model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;
-    [[LLStorageManager sharedManager] saveModel:model complete:nil];
-    [[LLAppInfoHelper sharedHelper] updateRequestDataTraffic:model.requestDataTrafficValue responseDataTraffic:model.responseDataTrafficValue];
+    [[LLStorageManager shared] saveModel:model complete:nil];
+    [[LLAppInfoHelper shared] updateRequestDataTraffic:model.requestDataTrafficValue responseDataTraffic:model.responseDataTrafficValue];
 }
 
 #pragma mark - NSURLSessionDelegate

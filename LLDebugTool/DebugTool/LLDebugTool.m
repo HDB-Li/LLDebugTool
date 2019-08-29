@@ -61,26 +61,26 @@ static LLDebugTool *_instance = nil;
 - (void)startWorking{
     if (!_isWorking) {
         _isWorking = YES;
-        LLConfigAvailableFeature available = [LLConfig sharedConfig].availables;
+        LLConfigAvailableFeature available = [LLConfig shared].availables;
         if (available & LLConfigAvailableCrash) {
             // Open crash helper
-            [[LLCrashHelper sharedHelper] setEnable:YES];
+            [[LLCrashHelper shared] setEnable:YES];
         }
         if (available & LLConfigAvailableLog) {
             // Open log helper
-            [[LLLogHelper sharedHelper] setEnable:YES];
+            [[LLLogHelper shared] setEnable:YES];
         }
         if (available & LLConfigAvailableNetwork) {
             // Open network monitoring
-            [[LLNetworkHelper sharedHelper] setEnable:YES];
+            [[LLNetworkHelper shared] setEnable:YES];
         }
         if (available & LLConfigAvailableAppInfo) {
             // Open app monitoring
-            [[LLAppInfoHelper sharedHelper] setEnable:YES];
+            [[LLAppInfoHelper shared] setEnable:YES];
         }
         if (available & LLConfigAvailableScreenshot) {
             // Open screenshot
-            [[LLScreenshotHelper sharedHelper] setEnable:YES];
+            [[LLScreenshotHelper shared] setEnable:YES];
         }
         // show window
         [self showWindow];
@@ -89,7 +89,7 @@ static LLDebugTool *_instance = nil;
 
 - (void)startWorkingWithConfigBlock:(void (^)(LLConfig *config))configBlock {
     if (configBlock) {
-        configBlock([LLConfig sharedConfig]);
+        configBlock([LLConfig shared]);
     }
     [self startWorking];
 }
@@ -98,15 +98,15 @@ static LLDebugTool *_instance = nil;
     if (_isWorking) {
         _isWorking = NO;
         // Close screenshot
-        [[LLScreenshotHelper sharedHelper] setEnable:NO];
+        [[LLScreenshotHelper shared] setEnable:NO];
         // Close app monitoring
-        [[LLAppInfoHelper sharedHelper] setEnable:NO];
+        [[LLAppInfoHelper shared] setEnable:NO];
         // Close network monitoring
-        [[LLNetworkHelper sharedHelper] setEnable:NO];
+        [[LLNetworkHelper shared] setEnable:NO];
         // Close log helper
-        [[LLLogHelper sharedHelper] setEnable:NO];
+        [[LLLogHelper shared] setEnable:NO];
         // Close crash helper
-        [[LLCrashHelper sharedHelper] setEnable:NO];
+        [[LLCrashHelper shared] setEnable:NO];
         // hide window
         [self hideWindow];
     }
@@ -140,7 +140,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    [[LLLogHelper sharedHelper] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
+    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
 #pragma mark - Primary
@@ -160,8 +160,8 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)checkVersion {
-    [LLTool createDirectoryAtPath:[LLConfig sharedConfig].folderPath];
-    __block NSString *filePath = [[LLConfig sharedConfig].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
+    [LLTool createDirectoryAtPath:[LLConfig shared].folderPath];
+    __block NSString *filePath = [[LLConfig shared].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
     NSMutableDictionary *localInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
     if (!localInfo) {
         localInfo = [[NSMutableDictionary alloc] init];
@@ -190,7 +190,7 @@ static LLDebugTool *_instance = nil;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // Check whether has a new LLDebugTool version.
-        if ([LLConfig sharedConfig].autoCheckDebugToolVersion) {
+        if ([LLConfig shared].autoCheckDebugToolVersion) {
             NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
             NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 if (error == nil && data != nil) {
@@ -219,7 +219,7 @@ static LLDebugTool *_instance = nil;
 - (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {
     // Refactory database. Need rename tableName and table structure.
     if ([version compare:@"1.1.3"] == NSOrderedAscending) {
-        [[LLStorageManager sharedManager] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
+        [[LLStorageManager shared] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
             if (completion) {
                 completion(result);
             }

@@ -33,7 +33,7 @@ static LLLogHelper *_instance = nil;
 
 @implementation LLLogHelper
 
-+ (instancetype)sharedHelper {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLLogHelper alloc] init];
@@ -46,8 +46,8 @@ static LLLogHelper *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    NSString *date = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    LLConfigLogStyle logStyle = [LLConfig sharedConfig].logStyle;
+    NSString *date = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    LLConfigLogStyle logStyle = [LLConfig shared].logStyle;
     switch (logStyle) {
         case LLConfigLogDetail:
         case LLConfigLogFileFuncDesc:
@@ -92,8 +92,8 @@ static LLLogHelper *_instance = nil;
     }
 
     if (_enable) {
-        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject LL_launchDate] userIdentity:[LLConfig sharedConfig].userIdentity];
-        [[LLStorageManager sharedManager] saveModel:model complete:nil];
+        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject LL_launchDate] userIdentity:[LLConfig shared].userIdentity];
+        [[LLStorageManager shared] saveModel:model complete:nil];
     }
 }
 

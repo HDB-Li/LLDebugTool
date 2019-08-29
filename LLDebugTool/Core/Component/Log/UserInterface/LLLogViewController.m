@@ -90,7 +90,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     }
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Deleting"];
-    [[LLStorageManager sharedManager] removeModels:models complete:^(BOOL result) {
+    [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
             [weakSelf.dataArray removeObjectsInArray:models];
@@ -154,7 +154,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     }
         
     // TableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kLogCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLLogCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kLogCellID];
     
     self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
     __weak typeof(self) weakSelf = self;
@@ -180,7 +180,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
-    [[LLStorageManager sharedManager] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
+    [[LLStorageManager shared] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
         [weakSelf.dataArray removeAllObjects];
         [weakSelf.dataArray addObjectsFromArray:result];

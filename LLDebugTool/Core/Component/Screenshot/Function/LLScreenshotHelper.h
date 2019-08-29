@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Singleton
  */
-+ (instancetype _Nonnull)sharedHelper;
++ (instancetype _Nonnull)shared;
 
 /**
  Set enable to screenshot.

@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
 
  @return Singleton.
  */
-+ (instancetype)sharedTool;
++ (instancetype)shared;
 
 /**
  Format date use style.

@@ -46,7 +46,7 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[LLAppInfoHelper sharedHelper] appInfos]];
+    [self.dataArray addObjectsFromArray:[[LLAppInfoHelper shared] appInfos]];
     self.navigationItem.title = [UIDevice currentDevice].name ? : @"App Infos";
     [self registerLLAppInfoHelperNotification];
 }

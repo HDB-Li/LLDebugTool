@@ -40,7 +40,7 @@ static LLCrashHelper *_instance = nil;
 
 @implementation LLCrashHelper
 
-+ (instancetype)sharedHelper {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLCrashHelper alloc] init];
@@ -153,22 +153,22 @@ static LLCrashHelper *_instance = nil;
 }
 
 - (void)saveException:(NSException *)exception {
-    NSString *date = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    NSArray *appInfos = [[LLAppInfoHelper sharedHelper] appInfos];
+    NSString *date = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    NSArray *appInfos = [[LLAppInfoHelper shared] appInfos];
 
     if (self.crashModel) {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig shared].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
         for (LLCrashSignalModel *signal in self.crashModel.signals) {
             [model appendSignalModel:signal];
         }
         self.crashModel = model;
-        [[LLStorageManager sharedManager] updateModel:model complete:^(BOOL result) {
+        [[LLStorageManager shared] updateModel:model complete:^(BOOL result) {
             [LLTool log:@"Save crash model success"];
         } synchronous:YES];
     } else {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date userIdentity:[LLConfig shared].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
         self.crashModel = model;
-        [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
+        [[LLStorageManager shared] saveModel:model complete:^(BOOL result) {
             [LLTool log:@"Save crash model success"];
         } synchronous:YES];
     }
@@ -176,7 +176,7 @@ static LLCrashHelper *_instance = nil;
 
 void HandleException(NSException *exception)
 {
-    [[LLCrashHelper sharedHelper] saveException:exception];
+    [[LLCrashHelper shared] saveException:exception];
     [exception raise];
 }
 
@@ -326,20 +326,20 @@ void SignalHandler(int sig)
     }
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
-    NSString *date = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    NSDictionary *appInfos = [[LLAppInfoHelper sharedHelper] dynamicAppInfos];
-    LLCrashSignalModel *signalModel = [[LLCrashSignalModel alloc] initWithName:name stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:appInfos];
-    if ([LLCrashHelper sharedHelper].crashModel) {
-        [[LLCrashHelper sharedHelper].crashModel updateAppInfos:[[LLAppInfoHelper sharedHelper] appInfos]];
-        [[LLCrashHelper sharedHelper].crashModel appendSignalModel:signalModel];
-        [[LLStorageManager sharedManager] updateModel:[LLCrashHelper sharedHelper].crashModel complete:^(BOOL result) {
+    NSString *date = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    NSDictionary *appInfos = [[LLAppInfoHelper shared] dynamicAppInfos];
+    LLCrashSignalModel *signalModel = [[LLCrashSignalModel alloc] initWithName:name stackSymbols:callStackSymbols date:date userIdentity:[LLConfig shared].userIdentity appInfos:appInfos];
+    if ([LLCrashHelper shared].crashModel) {
+        [[LLCrashHelper shared].crashModel updateAppInfos:[[LLAppInfoHelper shared] appInfos]];
+        [[LLCrashHelper shared].crashModel appendSignalModel:signalModel];
+        [[LLStorageManager shared] updateModel:[LLCrashHelper shared].crashModel complete:^(BOOL result) {
             [LLTool log:@"Save signal model success"];
         } synchronous:YES];
     } else {
-        LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Catch Signal" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig sharedConfig].userIdentity appInfos:[[LLAppInfoHelper sharedHelper] appInfos] launchDate:[NSObject LL_launchDate]];
+        LLCrashModel *model = [[LLCrashModel alloc] initWithName:signalModel.name reason:@"Catch Signal" userInfo:nil stackSymbols:callStackSymbols date:date userIdentity:[LLConfig shared].userIdentity appInfos:[[LLAppInfoHelper shared] appInfos] launchDate:[NSObject LL_launchDate]];
         [model appendSignalModel:signalModel];
-        [LLCrashHelper sharedHelper].crashModel = model;
-        [[LLStorageManager sharedManager] saveModel:model complete:^(BOOL result) {
+        [LLCrashHelper shared].crashModel = model;
+        [[LLStorageManager shared] saveModel:model complete:^(BOOL result) {
             [LLTool log:@"Save signal model success"];
         } synchronous:YES];
     }

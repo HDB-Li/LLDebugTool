@@ -38,7 +38,7 @@ static LLScreenshotHelper *_instance = nil;
 
 @implementation LLScreenshotHelper
 
-+ (instancetype)sharedHelper {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLScreenshotHelper alloc] init];
@@ -85,7 +85,7 @@ static LLScreenshotHelper *_instance = nil;
         return;
     }
     if (name.length == 0) {
-        name = [[LLFormatterTool sharedTool] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
+        name = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     }
     name = [name stringByAppendingPathExtension:@"png"];
     NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];
@@ -105,7 +105,7 @@ static LLScreenshotHelper *_instance = nil;
 
 #pragma mark - Primary
 - (void)initial {
-    self.screenshotFolderPath = [[LLConfig sharedConfig].folderPath stringByAppendingPathComponent:@"Screenshot"];
+    self.screenshotFolderPath = [[LLConfig shared].folderPath stringByAppendingPathComponent:@"Screenshot"];
     [LLTool createDirectoryAtPath:self.screenshotFolderPath];
 }
 

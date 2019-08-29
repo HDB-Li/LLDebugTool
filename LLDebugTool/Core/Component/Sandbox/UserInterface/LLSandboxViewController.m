@@ -85,7 +85,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 - (void)initial {
     // Data source
     if (_sandboxModel == nil) {
-        _sandboxModel = [[LLSandboxHelper sharedHelper] getCurrentSandboxStructure];
+        _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
     }
     if (self.sandboxModel.isHomeDirectory) {
         self.navigationItem.title = @"Sandbox";
@@ -93,7 +93,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         self.navigationItem.title = self.sandboxModel.name;
     }
     // TableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {

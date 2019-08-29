@@ -72,7 +72,7 @@
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.date.length) {
-        _dateDescription = [[LLFormatterTool sharedTool] dateFromString:self.date style:FormatterToolDateStyle1];
+        _dateDescription = [[LLFormatterTool shared] dateFromString:self.date style:FormatterToolDateStyle1];
     }
     return _dateDescription;
 }

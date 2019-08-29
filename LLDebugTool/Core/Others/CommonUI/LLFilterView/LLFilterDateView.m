@@ -74,8 +74,8 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
-        NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *fromDate = [[LLFormatterTool shared] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *endDate = [[LLFormatterTool shared] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         _changeBlock(fromDate,endDate);
     }
 }
@@ -151,7 +151,7 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig shared].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
     [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }

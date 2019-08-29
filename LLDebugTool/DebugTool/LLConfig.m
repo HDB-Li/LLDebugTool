@@ -39,7 +39,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 
 @implementation LLConfig
 
-+ (instancetype)sharedConfig {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLConfig alloc] init];
@@ -89,11 +89,11 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             BOOL crashEnable = availables & LLConfigAvailableCrash;
             BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
             BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
-            [[LLNetworkHelper sharedHelper] setEnable:networkEnable];
-            [[LLLogHelper sharedHelper] setEnable:logEnable];
-            [[LLCrashHelper sharedHelper] setEnable:crashEnable];
-            [[LLAppInfoHelper sharedHelper] setEnable:appInfoEnable];
-            [[LLScreenshotHelper sharedHelper] setEnable:screenshotEnable];
+            [[LLNetworkHelper shared] setEnable:networkEnable];
+            [[LLLogHelper shared] setEnable:logEnable];
+            [[LLCrashHelper shared] setEnable:crashEnable];
+            [[LLAppInfoHelper shared] setEnable:appInfoEnable];
+            [[LLScreenshotHelper shared] setEnable:screenshotEnable];
         }
     }
 }

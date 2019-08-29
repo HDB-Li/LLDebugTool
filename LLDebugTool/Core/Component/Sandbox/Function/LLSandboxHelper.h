@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Singleton
  */
-+ (instancetype _Nonnull)sharedHelper;
++ (instancetype _Nonnull)shared;
 
 /**
  Get the sandbox data at this point.

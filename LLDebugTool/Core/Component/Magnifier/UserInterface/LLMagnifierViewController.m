@@ -52,7 +52,7 @@
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     
-    NSInteger width = [LLConfig sharedConfig].magnifierZoomLevel * [LLConfig sharedConfig].magnifierSize;
+    NSInteger width = [LLConfig shared].magnifierZoomLevel * [LLConfig shared].magnifierSize;
     self.magnifierView = [[LLMagnifierView alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     self.magnifierView.delegate = self;
     [self.view addSubview:self.magnifierView];

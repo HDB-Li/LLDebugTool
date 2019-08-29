@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Singleton
  */
-+ (instancetype)sharedHelper;
++ (instancetype)shared;
 
 /**
  Set enable to monitoring network request.

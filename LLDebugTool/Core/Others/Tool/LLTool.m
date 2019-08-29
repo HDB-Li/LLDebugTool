@@ -74,7 +74,7 @@ static unsigned long long _absolutelyIdentity = 0;
 }
 
 + (NSString *)stringFromFrame:(CGRect)frame {
-    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[[LLFormatterTool sharedTool] formatNumber:@(frame.origin.x)],[[LLFormatterTool sharedTool] formatNumber:@(frame.origin.y)],[[LLFormatterTool sharedTool] formatNumber:@(frame.size.width)],[[LLFormatterTool sharedTool] formatNumber:@(frame.size.height)]];
+    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[[LLFormatterTool shared] formatNumber:@(frame.origin.x)],[[LLFormatterTool shared] formatNumber:@(frame.origin.y)],[[LLFormatterTool shared] formatNumber:@(frame.size.width)],[[LLFormatterTool shared] formatNumber:@(frame.size.height)]];
 }
 
 + (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask
@@ -108,7 +108,7 @@ static unsigned long long _absolutelyIdentity = 0;
 
 + (void)log:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([LLConfig sharedConfig].isShowDebugToolLog) {
+        if ([LLConfig shared].isShowDebugToolLog) {
             NSLog(@"%@ %@",string,kLLLogHelperOpenIssueInGithub);
         }
     });

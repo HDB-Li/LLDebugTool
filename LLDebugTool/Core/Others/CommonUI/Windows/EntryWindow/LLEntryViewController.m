@@ -53,7 +53,7 @@
 #pragma mark - Primary
 - (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
-    self.style = [LLConfig sharedConfig].entryWindowStyle;
+    self.style = [LLConfig shared].entryWindowStyle;
 
     // Double tap, to screenshot.
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
@@ -123,7 +123,7 @@
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName
 - (void)didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:(NSNotification *)notifi {
-    self.style = [LLConfig sharedConfig].entryWindowStyle;
+    self.style = [LLConfig shared].entryWindowStyle;
 }
 
 #pragma mark - Lazy
@@ -134,8 +134,8 @@
 
 - (LLEntryBallView *)ballView {
     if (!_ballView) {
-        CGFloat width = [LLConfig sharedConfig].suspensionBallWidth;
-        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(-[LLConfig sharedConfig].suspensionWindowHideWidth, [LLConfig sharedConfig].suspensionWindowTop, width, width)];
+        CGFloat width = [LLConfig shared].suspensionBallWidth;
+        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(-[LLConfig shared].suspensionWindowHideWidth, [LLConfig shared].suspensionWindowTop, width, width)];
     }
     return _ballView;
 }

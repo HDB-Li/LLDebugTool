@@ -75,7 +75,7 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 #pragma mark - Primary
 - (void)initial {
     self.navigationItem.title = self.model.name;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellReuseIdentifier:kCrashSignalContentCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kCrashSignalContentCellID];
     
     self.titleArray = [[NSMutableArray alloc] init];
     self.contentArray = [[NSMutableArray alloc] init];

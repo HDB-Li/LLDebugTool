@@ -54,7 +54,7 @@ static NSString *const kDatabaseVersion = @"1";
 
 @implementation LLStorageManager
 
-+ (instancetype)sharedManager {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLStorageManager alloc] init];
@@ -340,7 +340,7 @@ static NSString *const kDatabaseVersion = @"1";
     self.queue = dispatch_queue_create("LLDebugTool.LLStorageManager", DISPATCH_QUEUE_CONCURRENT);
     self.registerClass = [[NSMutableArray alloc] init];
     
-    self.folderPath = [LLConfig sharedConfig].folderPath;
+    self.folderPath = [LLConfig shared].folderPath;
     [LLTool createDirectoryAtPath:self.folderPath];
     
     NSString *filePath = [self.folderPath stringByAppendingPathComponent:@"LLDebugTool.db"];

@@ -79,7 +79,7 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 
 @implementation LLAppInfoHelper
 
-+ (instancetype)sharedHelper {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLAppInfoHelper alloc] init];
@@ -458,7 +458,7 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 
 - (NSString *)currentNetworkStatusDescription {
     NSString *returnValue = @"Unknown";
-    switch ([[LLNetworkHelper sharedHelper] currentNetworkStatus]) {
+    switch ([[LLNetworkHelper shared] currentNetworkStatus]) {
         case LLNetworkStatusNotReachable:{
             returnValue = @"Unknown";
         }

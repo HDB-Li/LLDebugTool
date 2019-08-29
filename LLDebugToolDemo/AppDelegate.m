@@ -24,8 +24,8 @@
         
         //####################### Color Style #######################//
         // Uncomment one of the following lines to change the color configuration.
-        // [LLConfig sharedConfig].colorStyle = LLConfigColorStyleSystem;
-        // [[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+        // config.colorStyle = LLConfigColorStyleSystem;
+        // [config configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
         
         //####################### User Identity #######################//
         // Use this line to tag user. More config please see "LLConfig.h".

@@ -11,7 +11,7 @@
 
 @interface NetTool : NSObject
 
-+ (instancetype)sharedTool;
++ (instancetype)shared;
 
 @property (nonatomic, strong) NSURLSession *session;
 

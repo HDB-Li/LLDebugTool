@@ -36,7 +36,7 @@ static LLFormatterTool *_instance = nil;
 
 @implementation LLFormatterTool
 
-+ (instancetype)sharedTool {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLFormatterTool alloc] init];
@@ -49,7 +49,7 @@ static LLFormatterTool *_instance = nil;
 - (void)initial {
     
     NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-    dateFormatter1.dateFormat = [LLConfig sharedConfig].dateFormatter;
+    dateFormatter1.dateFormat = [LLConfig shared].dateFormatter;
 
     NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
     dateFormatter2.dateFormat = @"yyyy-MM-dd";

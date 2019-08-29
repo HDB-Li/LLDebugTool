@@ -102,8 +102,8 @@
     NSString *fromDateString = data.lastObject.date;
     NSString *endDateString = data.firstObject.date;
 
-    NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:fromDateString style:FormatterToolDateStyle1];
-    NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:endDateString style:FormatterToolDateStyle1];
+    NSDate *fromDate = [[LLFormatterTool shared] dateFromString:fromDateString style:FormatterToolDateStyle1];
+    NSDate *endDate = [[LLFormatterTool shared] dateFromString:endDateString style:FormatterToolDateStyle1];
     if (!fromDate) {
         fromDate = [NSDate date];
     }

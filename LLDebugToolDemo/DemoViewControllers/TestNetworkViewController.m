@@ -60,7 +60,7 @@ static NSString *const kCellID = @"cellID";
     NSString *url = @"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600";
     
     // Use AFHttpSessionManager
-    [[NetTool sharedTool].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetTool shared].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
@@ -72,7 +72,7 @@ static NSString *const kCellID = @"cellID";
     
     // Use AFURLSessionManager
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    NSURLSessionDataTask *task = [[NetTool sharedTool].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [[NetTool shared].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
     [task resume];
@@ -91,7 +91,7 @@ static NSString *const kCellID = @"cellID";
     //NSURLSession
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     [urlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
     [dataTask resume];

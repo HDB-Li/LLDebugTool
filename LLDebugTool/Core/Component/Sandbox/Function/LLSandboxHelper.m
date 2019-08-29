@@ -27,7 +27,7 @@ static LLSandboxHelper *_instance = nil;
 
 @implementation LLSandboxHelper
 
-+ (instancetype)sharedHelper {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLSandboxHelper alloc] init];

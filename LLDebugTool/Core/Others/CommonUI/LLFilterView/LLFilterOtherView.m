@@ -115,8 +115,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [[LLFormatterTool sharedTool] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
-        NSDate *endDate = [[LLFormatterTool sharedTool] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *fromDate = [[LLFormatterTool shared] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *endDate = [[LLFormatterTool shared] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         NSMutableArray *userIds = [[NSMutableArray alloc] init];
         
         for (LLFilterLabelModel *model in self.userIdDataArray) {
@@ -272,8 +272,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
     self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig sharedConfig].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig shared].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig shared].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
     [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
