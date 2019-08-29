@@ -24,20 +24,8 @@
 #import "LLBaseWindow.h"
 #import "UIWindow+LL_Utils.h"
 #import "LLBaseViewController.h"
-#import "NSObject+LL_Runtime.h"
 
 @implementation LLBaseWindow
-
-+ (void)load {
-    NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
-    SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
-    
-    NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
-    SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
-    
-    [self LL_swizzleInstanceMethodWithOriginSel:canAffectSelector swizzledSel:@selector(LL_canAffectStatusBarAppearance)];
-    [self LL_swizzleInstanceMethodWithOriginSel:canBecomeKeySelector swizzledSel:@selector(LL_canBecomeKeyWindow)];
-}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -45,14 +33,6 @@
         self.layer.masksToBounds = YES;
     }
     return self;
-}
-
-- (BOOL)LL_canAffectStatusBarAppearance {
-    return YES;
-}
-
-- (BOOL)LL_canBecomeKeyWindow {
-    return YES;
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {

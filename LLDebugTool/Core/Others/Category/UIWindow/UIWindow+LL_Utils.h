@@ -27,7 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIWindow (LL_Utils)
 
+/**
+ Current visiable viewController.
+
+ @return UIViewController.
+ */
 - (UIViewController *)LL_currentShowingViewController;
+
+/**
+ Whether can become key window.
+
+ @return Result.
+ */
+- (BOOL)LL_canBecomeKeyWindow;
 
 @end
 

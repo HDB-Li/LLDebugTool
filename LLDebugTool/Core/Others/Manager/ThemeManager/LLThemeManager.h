@@ -26,6 +26,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXTERN NSString *const kThemeManagerUpdatePrimaryColorNotificaionName;
+FOUNDATION_EXTERN NSString *const kThemeManagerUpdateBackgroundColorNotificaionName;
+
 @interface LLThemeManager : NSObject
 
 /**
@@ -59,13 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return singleton.
  */
 + (instancetype)shared;
-
-/**
- Add primary color object.
-
- @param object Object.
- */
-- (void)addPrimaryColorObject:(id)object;
 
 @end
 

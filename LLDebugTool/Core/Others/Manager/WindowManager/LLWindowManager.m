@@ -26,14 +26,13 @@
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
 #import "LLConst.h"
+#import "LLThemeManager.h"
 
 static LLWindowManager *_instance = nil;
 
 @interface LLWindowManager ()
 
 @property (nonatomic, strong) LLEntryWindow *entryWindow;
-
-@property (nonatomic, assign) UIWindowLevel presentingWindowLevel;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
 
@@ -44,6 +43,8 @@ static LLWindowManager *_instance = nil;
 @property (nonatomic, strong) NSMutableArray *visibleWindows;
 
 @property (nonatomic, strong) UIWindow *keyWindow;
+
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 
 @end
 
@@ -129,7 +130,6 @@ static LLWindowManager *_instance = nil;
 - (instancetype)init {
     if (self = [super init]) {
         self.visibleWindows = [[NSMutableArray alloc] init];
-        _presentingWindowLevel = UIWindowLevelStatusBar - 100;
         _presentWindowLevel = UIWindowLevelStatusBar - 200;
         _normalWindowLevel = UIWindowLevelStatusBar - 300;
         _entryWindowLevel = UIWindowLevelStatusBar + 1;
@@ -156,13 +156,21 @@ static LLWindowManager *_instance = nil;
     if (window == self.entryWindow) {
         [self.keyWindow makeKeyWindow];
         self.keyWindow = nil;
+        window.hidden = NO;
+        window.windowLevel = self.entryWindowLevel;
+        [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle];
     } else {
         if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
             self.keyWindow = [UIApplication sharedApplication].keyWindow;
+            self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
         }
+        [window makeKeyAndVisible];
+        window.windowLevel = self.presentWindowLevel;
+        [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
     }
     
     [self.visibleWindows addObject:window];
+    
     if (animated) {
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
@@ -182,27 +190,17 @@ static LLWindowManager *_instance = nil;
             }
                 break;
         }
-        window.hidden = NO;
-        window.windowLevel = self.presentingWindowLevel;
+        
         [UIView animateWithDuration:0.25 animations:^{
             window.alpha = alpha;
             window.LL_x = x;
             window.LL_y = y;
         } completion:^(BOOL finished) {
-            window.windowLevel = (window == self.entryWindow) ? self.entryWindowLevel : self.presentWindowLevel;
-            if (window != self.entryWindow) {
-                [window makeKeyWindow];
-            }
             if (completion) {
                 completion();
             }
         }];
     } else {
-        window.hidden = NO;
-        window.windowLevel = (window == self.entryWindow) ? self.entryWindowLevel : self.presentWindowLevel;
-        if (window != self.entryWindow) {
-            [window makeKeyWindow];
-        }
         if (completion) {
             completion();
         }

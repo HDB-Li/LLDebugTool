@@ -52,6 +52,10 @@
     }
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.overflow = YES;
@@ -61,6 +65,8 @@
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self LL_setCornerRadius:self.LL_width / 2];
     self.logoImageView = [LLFactory getImageView:self frame:CGRectMake(self.LL_width / 4.0, self.LL_height / 4.0, self.LL_width / 2.0, self.LL_height / 2.0) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
 
 - (void)becomeActive {
@@ -110,6 +116,16 @@
     } completion:^(BOOL finished) {
 
     }];
+}
+
+#pragma mark - NSNotification
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    self.logoImageView.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
+}
+
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
 
 @end

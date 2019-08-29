@@ -27,5 +27,12 @@
 #define LL_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define LL_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 #define LL_NAVIGATION_HEIGHT (self.navigationController.navigationBar.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height)
+#define LL_IS_SPECIAL_SCREEN \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+#define LL_LAYOUT_HORIZONTAL(length) (length * LL_SCREEN_WIDTH / 414.0)
 
 #endif /* LLMacros_h */

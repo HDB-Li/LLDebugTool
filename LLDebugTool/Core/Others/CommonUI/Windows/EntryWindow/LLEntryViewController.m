@@ -79,13 +79,13 @@
         case LLConfigEntryWindowStyleNetBar: {
             [_ballView removeFromSuperview];
             [self.view addSubview:self.rectView];
-            self.rectView.LL_left = 0;
+            self.rectView.LL_left = LL_IS_SPECIAL_SCREEN ? LL_LAYOUT_HORIZONTAL(25) : 0;
         }
             break;
         case LLConfigEntryWindowStylePowerBar: {
             [_ballView removeFromSuperview];
             [self.view addSubview:self.rectView];
-            self.rectView.LL_right = LL_SCREEN_WIDTH;
+            self.rectView.LL_right = LL_IS_SPECIAL_SCREEN ? LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) :  LL_SCREEN_WIDTH;
         }
             break;
         default:
@@ -142,7 +142,8 @@
 
 - (LLEntryRectView *)rectView {
     if (!_rectView) {
-        _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+        CGFloat height = LL_IS_SPECIAL_SCREEN ? 25 : 20;
+        _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, ([UIApplication sharedApplication].statusBarFrame.size.height - height) / 2.0, 100, height)];
     }
     return _rectView;
 }

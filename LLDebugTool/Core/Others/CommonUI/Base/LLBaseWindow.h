@@ -51,13 +51,6 @@ typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
 
 @property (nonatomic, assign) LLBaseWindowHideAnimateStyle hideAnimateStyle;
 
-/**
- Whether can become key window.
-
- @return BOOL.
- */
-- (BOOL)LL_canBecomeKeyWindow;
-
 @end
 
 NS_ASSUME_NONNULL_END

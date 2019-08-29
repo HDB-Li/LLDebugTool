@@ -27,11 +27,12 @@
 
 static LLThemeManager *_instance = nil;
 
+NSString *const kThemeManagerUpdatePrimaryColorNotificaionName = @"kThemeManagerUpdatePrimaryColorNotificaionName";
+NSString *const kThemeManagerUpdateBackgroundColorNotificaionName = @"kThemeManagerUpdateBackgroundColorNotificaionName";
+
 @interface LLThemeManager ()
 
 @property (nonatomic, strong) UIColor *systemTintColor;
-
-@property (nonatomic, strong) NSHashTable *primaryColorItems;
 
 @end
 
@@ -49,6 +50,7 @@ static LLThemeManager *_instance = nil;
 - (void)setPrimaryColor:(UIColor * _Nonnull)primaryColor {
     if (_primaryColor != primaryColor) {
         _primaryColor = primaryColor;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdatePrimaryColorNotificaionName object:primaryColor];
         [self calculateColorIfNeeded];
     }
 }
@@ -56,6 +58,7 @@ static LLThemeManager *_instance = nil;
 - (void)setBackgroundColor:(UIColor * _Nonnull)backgroundColor {
     if (_backgroundColor != backgroundColor) {
         _backgroundColor = backgroundColor;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdateBackgroundColorNotificaionName object:backgroundColor];
         [self calculateColorIfNeeded];
     }
 }
@@ -73,7 +76,6 @@ static LLThemeManager *_instance = nil;
     _primaryColor = [UIColor blackColor];
     _backgroundColor = [UIColor whiteColor];
     [self calculateColorIfNeeded];
-    _primaryColorItems = [NSHashTable weakObjectsHashTable];
     _statusBarStyle = UIStatusBarStyleDefault;
 }
 
@@ -83,16 +85,6 @@ static LLThemeManager *_instance = nil;
     }
     
     _containerColor = [_backgroundColor LL_mixtureWithColor:_primaryColor radio:0.1];
-}
-
-- (void)addPrimaryColorObject:(id)object {
-    if ([object isKindOfClass:[CALayer class]]) {
-        CALayer *layer = (CALayer *)object;
-        layer.borderColor = self.primaryColor.CGColor;
-    }
-    @synchronized (self) {
-        [self.primaryColorItems addObject:object];
-    }
 }
 
 @end
