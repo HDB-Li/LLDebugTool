@@ -58,47 +58,47 @@ static LLWindowManager *_instance = nil;
 }
 
 + (LLFunctionWindow *)functionWindow {
-    return [[LLFunctionWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLFunctionWindow *)[self createWindowWithClassName:NSStringFromClass([LLFunctionWindow class])];
 }
 
 + (LLMagnifierWindow *)magnifierWindow {
-    return [[LLMagnifierWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLMagnifierWindow *)[self createWindowWithClassName:NSStringFromClass([LLMagnifierWindow class])];
 }
 
 + (LLNetworkWindow *)networkWindow {
-    return [[LLNetworkWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLNetworkWindow *)[self createWindowWithClassName:NSStringFromClass([LLNetworkWindow class])];
 }
 
 + (LLLogWindow *)logWindow {
-    return [[LLLogWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLLogWindow *)[self createWindowWithClassName:NSStringFromClass([LLLogWindow class])];
 }
 
 + (LLCrashWindow *)crashWindow {
-    return [[LLCrashWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLCrashWindow *)[self createWindowWithClassName:NSStringFromClass([LLCrashWindow class])];
 }
 
 + (LLAppInfoWindow *)appInfoWindow {
-    return [[LLAppInfoWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLAppInfoWindow *)[self createWindowWithClassName:NSStringFromClass([LLAppInfoWindow class])];
 }
 
 + (LLSandboxWindow *)sandboxWindow {
-    return [[LLSandboxWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLSandboxWindow *)[self createWindowWithClassName:NSStringFromClass([LLSandboxWindow class])];
 }
 
 + (LLHierarchyWindow *)hierarchyWindow {
-    return [[LLHierarchyWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
 }
 
 + (LLHierarchyPickerWindow *)hierarchyPickerWindow {
-    return [[LLHierarchyPickerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLHierarchyPickerWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyPickerWindow class])];
 }
 
 + (LLHierarchyDetailWindow *)hierarchyDetailWindow {
-    return [[LLHierarchyDetailWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLHierarchyDetailWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyDetailWindow class])];
 }
 
 + (LLScreenshotWindow *)screenshotWindow {
-    return [[LLScreenshotWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class])];
 }
 
 - (void)showEntryWindow {
@@ -138,6 +138,16 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)addWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    // Avoid call on child thread.
+    if (![[NSThread currentThread] isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self addWindow:window animated:animated completion:completion];
+        });
+        return;
+    }
+    
+    
     if (!window) {
         return;
     }
@@ -200,6 +210,15 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)removeWindow:(LLBaseWindow *)window animated:(BOOL)animated automaticallyShowEntry:(BOOL)automaticallyShowEntry completion:(void (^)(void))completion {
+    
+    // Avoid call on child thread.
+    if (![[NSThread currentThread] isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self removeWindow:window animated:animated automaticallyShowEntry:automaticallyShowEntry completion:completion];
+        });
+        return;
+    }
+    
     if (!window) {
         return;
     }
@@ -262,10 +281,25 @@ static LLWindowManager *_instance = nil;
     }
 }
 
++ (LLBaseWindow *)createWindowWithClassName:(NSString *)className {
+    Class cls = NSClassFromString(className);
+    NSAssert(cls, ([NSString stringWithFormat:@"%@ can't register a class.",className]));
+    __block LLBaseWindow *window = nil;
+    if (![[NSThread currentThread] isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+           window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        });
+    } else {
+        window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    NSAssert([window isKindOfClass:[LLBaseWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLBaseWindow class",className]));
+    return window;
+}
+
 #pragma mark - Lazy
 - (LLEntryWindow *)entryWindow {
     if (!_entryWindow) {
-        _entryWindow = [[LLEntryWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _entryWindow = (LLEntryWindow *)[[self class] createWindowWithClassName:NSStringFromClass([LLEntryWindow class])];
     }
     return _entryWindow;
 }
