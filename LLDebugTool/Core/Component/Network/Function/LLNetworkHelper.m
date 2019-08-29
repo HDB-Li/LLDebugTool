@@ -58,7 +58,6 @@ static LLNetworkHelper *_instance = nil;
 
 - (LLNetworkStatus)currentNetworkStatus {
     if (@available(iOS 13.0, *)) {
-        return [self networkStateFromStatebar];
         return [self.reachability currentReachabilityStatus];
     } else {
         return [self networkStateFromStatebar];
