@@ -71,7 +71,7 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
 
  @param configBlock Config block.
  */
-- (void)startWorkingWithConfig:(void (^)(LLConfig *config))configBlock;
+- (void)startWorkingWithConfigBlock:(void (^)(LLConfig *config))configBlock;
 
 /**
  Stop working.

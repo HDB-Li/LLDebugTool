@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     // Start working with config.
-    [[LLDebugTool sharedTool] startWorkingWithConfig:^(LLConfig * _Nonnull config) {
+    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLConfig * _Nonnull config) {
         
         //####################### Color Style #######################//
         // Uncomment one of the following lines to change the color configuration.
