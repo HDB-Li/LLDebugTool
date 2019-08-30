@@ -27,7 +27,6 @@
 #import <sys/socket.h>
 #import <netinet/in.h>
 
-#import <CoreFoundation/CoreFoundation.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 #import "LLReachability.h"

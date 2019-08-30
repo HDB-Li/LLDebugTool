@@ -99,7 +99,7 @@ static LLNetworkHelper *_instance = nil;
          */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].keyWindow.windowScene.statusBarManager;
+        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].delegate.window.windowScene.statusBarManager;
         if ([statusBarManager respondsToSelector:@selector(createLocalStatusBar)]) {
             UIView *_localStatusBar = [statusBarManager performSelector:@selector(createLocalStatusBar)];
             if ([_localStatusBar respondsToSelector:@selector(statusBar)]) {
@@ -117,7 +117,7 @@ static LLNetworkHelper *_instance = nil;
                 returnValue = LLNetworkStatusReachableViaWiFi;
             } else if (_cellularEntry && [[_cellularEntry valueForKeyPath:@"isEnabled"] boolValue]) {
                 NSNumber *type = [_cellularEntry valueForKeyPath:@"type"];
-                if (type) {
+                if (type != nil) {
                     switch (type.integerValue) {
                         case 5:
                             returnValue = LLNetworkStatusReachableViaWWAN4G;

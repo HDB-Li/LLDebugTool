@@ -152,7 +152,8 @@ static LLWindowManager *_instance = nil;
         return;
     }
     [self removeAllVisibleWindows];
-    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     if (window == self.entryWindow) {
         [self.keyWindow makeKeyWindow];
         self.keyWindow = nil;
@@ -168,6 +169,7 @@ static LLWindowManager *_instance = nil;
         window.windowLevel = self.presentWindowLevel;
         [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
     }
+#pragma clang diagnostic pop
     
     [self.visibleWindows addObject:window];
     

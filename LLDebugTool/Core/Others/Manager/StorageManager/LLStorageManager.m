@@ -155,7 +155,10 @@ static NSString *const kDatabaseVersion = @"1";
         FMResultSet *set = [db executeQuery:SQL values:values error:&error];
         while ([set next]) {
             NSData *data = [set objectForColumn:kObjectDataColumn];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
             id model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+#pragma clang diagnostic pop
             if (model) {
                 [modelArray insertObject:model atIndex:0];
             }
@@ -488,8 +491,10 @@ static NSString *const kDatabaseVersion = @"1";
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
-    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
+#pragma clang diagnostic pop
     if (data.length == 0) {
         [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
