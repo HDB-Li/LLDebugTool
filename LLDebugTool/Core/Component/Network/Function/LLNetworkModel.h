@@ -163,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  String converted from responseData.
  */
-@property (nonatomic, copy, readonly) NSString *responseString;
+@property (nonatomic, copy, nullable, readonly) NSString *responseString;
 
 /**
  Convent [date] to NSDate.
