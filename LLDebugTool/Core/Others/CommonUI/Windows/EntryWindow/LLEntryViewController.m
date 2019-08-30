@@ -143,7 +143,10 @@
 - (LLEntryRectView *)rectView {
     if (!_rectView) {
         CGFloat height = LL_IS_SPECIAL_SCREEN ? 25 : 20;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, ([UIApplication sharedApplication].statusBarFrame.size.height - height) / 2.0, 100, height)];
+#pragma clang diagnostic pop
     }
     return _rectView;
 }

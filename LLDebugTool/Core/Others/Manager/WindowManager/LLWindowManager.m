@@ -153,7 +153,7 @@ static LLWindowManager *_instance = nil;
     }
     [self removeAllVisibleWindows];
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (window == self.entryWindow) {
         [self.keyWindow makeKeyWindow];
         self.keyWindow = nil;

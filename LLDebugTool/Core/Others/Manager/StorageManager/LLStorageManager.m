@@ -156,7 +156,7 @@ static NSString *const kDatabaseVersion = @"1";
         while ([set next]) {
             NSData *data = [set objectForColumn:kObjectDataColumn];
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             id model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 #pragma clang diagnostic pop
             if (model) {
@@ -492,7 +492,7 @@ static NSString *const kDatabaseVersion = @"1";
         return;
     }
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
 #pragma clang diagnostic pop
     if (data.length == 0) {

@@ -120,7 +120,10 @@ static LLScreenshotHelper *_instance = nil;
 - (nullable UIImage *)screenshotWithScale:(CGFloat)scale
 {
     CGSize imageSize = CGSizeZero;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+#pragma clang diagnostic pop
     if (UIInterfaceOrientationIsPortrait(orientation))
         imageSize = [UIScreen mainScreen].bounds.size;
     else

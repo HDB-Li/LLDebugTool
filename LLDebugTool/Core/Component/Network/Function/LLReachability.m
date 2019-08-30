@@ -228,7 +228,10 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
         NSArray *typeStrings4G = @[CTRadioAccessTechnologyLTE];
         
         CTTelephonyNetworkInfo *info = [[CTTelephonyNetworkInfo alloc] init];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         NSString *currentRadioAccessTechnology = info.currentRadioAccessTechnology;
+#pragma clang diagnostic pop
         if ([typeStrings4G containsObject:currentRadioAccessTechnology]) {
             returnValue = LLNetworkStatusReachableViaWWAN4G;
         } else if ([typeStrings3G containsObject:currentRadioAccessTechnology]) {

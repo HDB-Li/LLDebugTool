@@ -82,9 +82,12 @@ static NSString *const kCellID = @"cellID";
     //NSURLConnection
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525346881086&di=b234c66c82427034962131d20e9f6b56&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F011cf15548caf50000019ae9c5c728.jpg%402o.jpg"]];
     [urlRequest setHTTPMethod:@"GET"];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
+#pragma clang diagnostic pop
 }
 
 - (void)testHTMLNetworkRequest {
