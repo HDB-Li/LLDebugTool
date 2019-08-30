@@ -427,7 +427,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param frame frame size.
  @return UISegmentedControl.
  */
-+ (UISegmentedControl *)getSegmentedControl:(UIView *)toView
++ (UISegmentedControl *)getSegmentedControl:(UIView *_Nullable)toView
                                       frame:(CGRect)frame;
 
 /**
@@ -438,7 +438,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param items items.
  @return UISegmentedControl.
  */
-+ (UISegmentedControl *)getSegmentedControl:(UIView *)toView
++ (UISegmentedControl *)getSegmentedControl:(UIView *_Nullable)toView
                                       frame:(CGRect)frame
                                       items:(nullable NSArray *)items;
 
