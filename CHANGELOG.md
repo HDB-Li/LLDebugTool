@@ -1,3 +1,28 @@
+## [1.3.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.0) (08/30/2019)
+
+###  Hierarchy and magnifying is coming.
+
+Hierarchy function : Now you can use `Hierarchy` function to see every element on screen, and you can visually see their frame and properties, `Hierarchy info` will come soon.
+
+Magnifying function : Now you can use `Magnifying` function to see the contents or color of each pixel, this makes it easier for you to communicate with the UI designer.
+
+More changes can be viewed in [Version 1.3.0 Project](https://github.com/HDB-Li/LLDebugTool/projects/8).
+
+#### Add
+
+* Refactory UI hierarchy, now use many windows to display functions, each function use one window, more information you can see `LLWindowManager.m`.
+
+#### Update
+
+* Changed folder path.
+* Update a new user interface.
+* Fix in iOS 13.
+
+#### Remove
+
+* `LLDebugTool` didn't supports component-based now. This is a useless feature and adds to the difficulty of calling between modules. `LLDebugTool` is later maintained as a single app rather than as multiple functional modules.
+* Remove some unused files, methods and macros.
+
 ## [1.2.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.2.2) (10/23/2018)
 
 ###  Fix LLWindow become keywindow's bug.
