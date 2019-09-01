@@ -71,7 +71,7 @@ More changes can be viewed in [Version 1.3.0 Project](https://github.com/HDB-Li/
         
 ## What can you do with LLDebugTool?
 
-- Always check the network request or view log information for certain events without having to run under XCode. This is useful in solving the testers' problems..
+- Always check the network request or view log information for certain events without having to run under XCode. This is useful in solving the testers' problems.
 
 - Easier filtering and filtering of useful information.
 
@@ -361,11 +361,11 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 
 ## Architecture
 
-* `LLDebug.h` Public header file.
+* `LLDebug.h` 
 
-    >You can refer it to the pch file.
+    > Public header file. You can refer it to the pch file.
 
-* `DebugTool` Public Header files.
+* `DebugTool`
 
     > `LLDebugTool` Used to start and stop LLDebugTool, you need to look at it.
     
@@ -373,7 +373,7 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
     
     > `LLDebugToolMacros.h` Quick macro definition file.
 
-* `Components`  Components files.
+* `Components`
   
   - `Network` Use to monitoring network request.
   - `Log` Used to quick print and save log.
