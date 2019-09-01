@@ -1,4 +1,4 @@
-## [1.3.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.0) (08/30/2019)
+## [1.3.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.0) (09/01/2019)
 
 ###  Hierarchy and magnifying is coming.
 
