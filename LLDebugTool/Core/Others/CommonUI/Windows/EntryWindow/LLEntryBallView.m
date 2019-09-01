@@ -29,9 +29,20 @@
 #import "LLConfig.h"
 #import "LLMacros.h"
 
+typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
+    LLEntryBallViewDirectionTop,
+    LLEntryBallViewDirectionLeft,
+    LLEntryBallViewDirectionRight,
+    LLEntryBallViewDirectionBottom
+};
+
 @interface LLEntryBallView ()
 
 @property (nonatomic, strong) UIImageView *logoImageView;
+
+@property (nonatomic, assign) LLEntryBallViewDirection direction;
+
+@property (nonatomic, assign) CGFloat percentage;
 
 @end
 
@@ -44,11 +55,38 @@
     return self;
 }
 
+- (void)recalculateViewFrame {
+    CGPoint point = CGPointZero;
+    switch (self.direction) {
+        case LLEntryBallViewDirectionTop:{
+            point.x = LL_SCREEN_WIDTH * self.percentage;
+            point.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+        }
+            break;
+        case LLEntryBallViewDirectionBottom:{
+            point.x = LL_SCREEN_WIDTH * self.percentage;
+            point.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+        }
+            break;
+        case LLEntryBallViewDirectionLeft:{
+            point.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+            point.y = LL_SCREEN_HEIGHT * self.percentage;
+        }
+            break;
+        case LLEntryBallViewDirectionRight: {
+            point.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+            point.y = LL_SCREEN_HEIGHT * self.percentage;
+        }
+            break;
+    }
+    self.center = point;
+}
+
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
     if (sender.state == UIGestureRecognizerStateBegan) {
         [self becomeActive];
     } else if (sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled || sender.state == UIGestureRecognizerStateFailed) {
-        [self resignActive];
+        [self resignActive:YES];
     }
 }
 
@@ -60,11 +98,11 @@
 - (void)initial {
     self.overflow = YES;
     self.moveable = [LLConfig shared].suspensionBallMoveable;
-    self.alpha = [LLConfig shared].normalAlpha;
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self LL_setCornerRadius:self.LL_width / 2];
     self.logoImageView = [LLFactory getImageView:self frame:CGRectMake(self.LL_width / 4.0, self.LL_height / 4.0, self.LL_width / 2.0, self.LL_height / 2.0) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
+    [self resignActive:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
@@ -73,49 +111,62 @@
     self.alpha = [LLConfig shared].activeAlpha;
 }
 
-- (void)resignActive {
+- (void)resignActive:(BOOL)animated {
     if (![LLConfig shared].isAutoAdjustSuspensionWindow) {
         self.alpha = [LLConfig shared].normalAlpha;
         return;
     }
-    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.alpha = [LLConfig shared].normalAlpha;
-        // Calculate End Point
-        CGFloat x = self.LL_centerX;
-        CGFloat y = self.LL_centerY;
-        CGFloat x1 = LL_SCREEN_WIDTH / 2.0;
-        CGFloat y1 = LL_SCREEN_HEIGHT / 2.0;
+    if (animated) {
+        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self resetFrame];
+        } completion:^(BOOL finished) {
+            
+        }];
+    } else {
+        [self resetFrame];
+    }
+}
 
-        CGFloat distanceX = x1 > x ? x : LL_SCREEN_WIDTH - x;
-        CGFloat distanceY = y1 > y ? y : LL_SCREEN_HEIGHT - y;
-        CGPoint endPoint = CGPointZero;
-
-        if (distanceX <= distanceY) {
-            // animation to left or right
-            endPoint.y = y;
-            if (x1 < x) {
-                // to right
-                endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
-            } else {
-                // to left
-                endPoint.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
-            }
+- (void)resetFrame {
+    self.alpha = [LLConfig shared].normalAlpha;
+    // Calculate End Point
+    CGFloat x = self.LL_centerX;
+    CGFloat y = self.LL_centerY;
+    CGFloat x1 = LL_SCREEN_WIDTH / 2.0;
+    CGFloat y1 = LL_SCREEN_HEIGHT / 2.0;
+    
+    CGFloat distanceX = x1 > x ? x : LL_SCREEN_WIDTH - x;
+    CGFloat distanceY = y1 > y ? y : LL_SCREEN_HEIGHT - y;
+    CGPoint endPoint = CGPointZero;
+    
+    if (distanceX <= distanceY) {
+        // animation to left or right
+        endPoint.y = y;
+        if (x1 < x) {
+            // to right
+            endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+            self.direction = LLEntryBallViewDirectionRight;
         } else {
-            // animation to top or bottom
-            endPoint.x = x;
-            if (y1 < y) {
-                // to bottom
-                endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
-            } else {
-                // to top
-                endPoint.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
-            }
+            // to left
+            endPoint.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+            self.direction = LLEntryBallViewDirectionLeft;
         }
-        self.center = endPoint;
-
-    } completion:^(BOOL finished) {
-
-    }];
+        self.percentage = y / LL_SCREEN_HEIGHT;
+    } else {
+        // animation to top or bottom
+        endPoint.x = x;
+        if (y1 < y) {
+            // to bottom
+            endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+            self.direction = LLEntryBallViewDirectionBottom;
+        } else {
+            // to top
+            endPoint.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+            self.direction = LLEntryBallViewDirectionTop;
+        }
+        self.percentage = x / LL_SCREEN_WIDTH;
+    }
+    self.center = endPoint;
 }
 
 #pragma mark - NSNotification

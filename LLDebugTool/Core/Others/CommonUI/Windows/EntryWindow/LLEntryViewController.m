@@ -66,6 +66,7 @@
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:doubleTap];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUIApplicationDidChangeStatusBarFrameNotification:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
@@ -119,6 +120,11 @@
         case LLConfigEntryWindowStylePowerBar:
             return self.rectView;
     }
+}
+
+#pragma mark - UIApplicationDidChangeStatusBarFrameNotification
+- (void)didReceiveUIApplicationDidChangeStatusBarFrameNotification:(NSNotification *)notification {
+    [_ballView recalculateViewFrame];
 }
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName

@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryBallView : LLBaseMoveView
 
+- (void)recalculateViewFrame;
+
 @end
 
 NS_ASSUME_NONNULL_END
