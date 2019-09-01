@@ -31,6 +31,8 @@
 
 "sandbox.info" = "Show sandbox info";
 
+"hierarchy.info" = "Hierarchy info";
+
 "color.style" = "Use \"colorStyle\" to config color";
 "color.custom" = "Use custom color config";
 "color.none" = "Don't use color config";
@@ -39,7 +41,8 @@
 "test.log" = "Show log function";
 "test.crash" = "Show crash catch function";
 "test.color.style" = "Show colorStyle configuration";
-"test.window.style" = "Show windowStyle configuration";
+"test.window.style" = "Show entryWindowStyle configuration";
+"test.hierarchy" = "Show view hierarchy function";
 
 "new.version" = "A new version demo is available";
 "crash.tip" = "If your project/Demo under run XCode contains Exception Breakpoint, you need to after the program crashes, Continue to click on the XCode ` Continue program execution `(Tip 1), until the end of the program completely(Tip 2). This function can be used normally when non-xcode runs, and when run under XCode, Exception Breakpoint takes precedence over LLDebugTool intercept crash.";

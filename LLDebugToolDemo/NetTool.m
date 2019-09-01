@@ -12,7 +12,7 @@ static NetTool *_instance = nil;
 
 @implementation NetTool
 
-+ (instancetype)sharedTool {
++ (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[NetTool alloc] init];

@@ -29,13 +29,13 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Use \"LLConfigWindowSuspensionBall\"";
-        cell.accessoryType = [LLConfig sharedConfig].windowStyle == LLConfigWindowSuspensionBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleSuspensionBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Use \"LLConfigWindowPowerBar\"";
-        cell.accessoryType = [LLConfig sharedConfig].windowStyle == LLConfigWindowPowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Use \"LLConfigWindowNetBar\"";
-        cell.accessoryType = [LLConfig sharedConfig].windowStyle == LLConfigWindowNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
     return cell;
@@ -54,15 +54,15 @@
 
 #pragma mark - Actions
 - (void)testSuspensionBallWindowStyle {
-    [LLConfig sharedConfig].windowStyle = LLConfigWindowSuspensionBall;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
 }
 
 - (void)testPowerBarWindowStyle {
-    [LLConfig sharedConfig].windowStyle = LLConfigWindowPowerBar;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
 }
 
 - (void)testNetBarWindowStyle {
-    [LLConfig sharedConfig].windowStyle = LLConfigWindowNetBar;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
 }
 
 @end

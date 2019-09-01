@@ -50,17 +50,17 @@
 #pragma mark - Actions
 - (void)testNormalLog {
     LLog(NSLocalizedString(@"normal.log.info", nil));
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:1];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
 }
 
 - (void)testErrorLog {
     LLog_Error(NSLocalizedString(@"error.log.info", nil));
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:1];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
 }
 
 - (void)testEventLog {
     LLog_Error_Event(NSLocalizedString(@"call", nil),NSLocalizedString(@"call.log.info", nil));
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:1];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
 }
 
 @end

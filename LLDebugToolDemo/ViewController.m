@@ -20,12 +20,13 @@
 #import "TestCrashViewController.h"
 #import "TestColorStyleViewController.h"
 #import "TestWindowStyleViewController.h"
+#import "TestHierarchyViewController.h"
 
 #import "LLStorageManager.h"
 
 static NSString *const kCellID = @"cellID";
 
-@interface ViewController () <UITableViewDelegate , UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -50,7 +51,7 @@ static NSString *const kCellID = @"cellID";
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openCrash"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:2];
+            [[LLDebugTool sharedTool] executeAction:LLDebugToolActionCrash];
         });
 
     }
@@ -58,6 +59,8 @@ static NSString *const kCellID = @"cellID";
     //Network Request
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525346881086&di=b234c66c82427034962131d20e9f6b56&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F011cf15548caf50000019ae9c5c728.jpg%402o.jpg"]];
     [urlRequest setHTTPMethod:@"GET"];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!connectionError) {
@@ -66,10 +69,10 @@ static NSString *const kCellID = @"cellID";
             }
         });
     }];
-    
+#pragma clang diagnostic pop
     
     // Json Response
-    [[NetTool sharedTool].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[NetTool shared].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -78,7 +81,7 @@ static NSString *const kCellID = @"cellID";
     //NSURLSession
     NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
     [htmlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         // Not important. Just check to see if the current Demo version is consistent with the latest version.
         // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
         NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -114,16 +117,16 @@ static NSString *const kCellID = @"cellID";
 
 #pragma mark - Actions
 - (void)testAppInfo {
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:3];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionAppInfo];
 }
 
 - (void)testSandbox {
-    [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:4];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSandbox];
 }
 
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -143,6 +146,9 @@ static NSString *const kCellID = @"cellID";
         return 1;
     }
     if (section == 5) {
+        return 1;
+    }
+    if (section == 6) {
         return 2;
     }
     return 0;
@@ -173,10 +179,13 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 4) {
         cell.textLabel.text = NSLocalizedString(@"sandbox.info", nil);
     } else if (indexPath.section == 5) {
+        cell.textLabel.text = NSLocalizedString(@"test.hierarchy", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            switch ([LLConfig sharedConfig].colorStyle) {
+            switch ([LLConfig shared].colorStyle) {
                 case LLConfigColorStyleHack:{
                     cell.detailTextLabel.text = @"LLConfigColorStyleHack";
                 }
@@ -199,16 +208,16 @@ static NSString *const kCellID = @"cellID";
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            switch ([LLConfig sharedConfig].windowStyle) {
-                case LLConfigWindowSuspensionBall:{
+            switch ([LLConfig shared].entryWindowStyle) {
+                case LLConfigEntryWindowStyleSuspensionBall:{
                     cell.detailTextLabel.text = @"LLConfigWindowSuspensionBall";
                 }
                     break;
-                case LLConfigWindowPowerBar:{
+                case LLConfigEntryWindowStylePowerBar:{
                     cell.detailTextLabel.text = @"LLConfigWindowPowerBar";
                 }
                     break;
-                case LLConfigWindowNetBar:{
+                case LLConfigEntryWindowStyleNetBar:{
                     cell.detailTextLabel.text = @"LLConfigWindowNetBar";
                 }
                     break;
@@ -222,24 +231,27 @@ static NSString *const kCellID = @"cellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        TestNetworkViewController *vc = [[TestNetworkViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestNetworkViewController *vc = [[TestNetworkViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 1) {
-        TestLogViewController *vc = [[TestLogViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestLogViewController *vc = [[TestLogViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 2) {
-        TestCrashViewController *vc = [[TestCrashViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        TestCrashViewController *vc = [[TestCrashViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 3) {
         [self testAppInfo];
     } else if (indexPath.section == 4) {
         [self testSandbox];
     } else if (indexPath.section == 5) {
+        TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
-            TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 1) {
-            TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
@@ -258,6 +270,8 @@ static NSString *const kCellID = @"cellID";
     } else if (section == 4) {
         return @"Sandbox Info";
     } else if (section == 5) {
+        return @"Hierarchy";
+    } else if (section == 6) {
         return @"LLConfig";
     }
     return nil;

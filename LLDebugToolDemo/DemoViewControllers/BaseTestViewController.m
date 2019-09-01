@@ -14,6 +14,13 @@
 
 @implementation BaseTestViewController
 
+- (instancetype)init {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cellID = NSStringFromClass(self.class);
@@ -24,6 +31,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)dealloc {
+    
 }
 
 #pragma mark - Table view data source

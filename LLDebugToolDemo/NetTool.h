@@ -11,12 +11,12 @@
 
 @interface NetTool : NSObject
 
-+ (instancetype)sharedTool;
++ (instancetype)shared;
 
-@property (nonatomic , strong) NSURLSession *session;
+@property (nonatomic, strong) NSURLSession *session;
 
-@property (nonatomic , strong) AFURLSessionManager *afURLSessionManager;
+@property (nonatomic, strong) AFURLSessionManager *afURLSessionManager;
 
-@property (nonatomic , strong) AFHTTPSessionManager *afHTTPSessionManager;
+@property (nonatomic, strong) AFHTTPSessionManager *afHTTPSessionManager;
 
 @end

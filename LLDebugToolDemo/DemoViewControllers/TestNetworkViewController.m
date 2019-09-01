@@ -60,10 +60,10 @@ static NSString *const kCellID = @"cellID";
     NSString *url = @"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600";
     
     // Use AFHttpSessionManager
-    [[NetTool sharedTool].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    [[NetTool shared].afHTTPSessionManager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
 }
 
@@ -72,8 +72,8 @@ static NSString *const kCellID = @"cellID";
     
     // Use AFURLSessionManager
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    NSURLSessionDataTask *task = [[NetTool sharedTool].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    NSURLSessionDataTask *task = [[NetTool shared].afURLSessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
     [task resume];
 }
@@ -82,17 +82,20 @@ static NSString *const kCellID = @"cellID";
     //NSURLConnection
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525346881086&di=b234c66c82427034962131d20e9f6b56&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F011cf15548caf50000019ae9c5c728.jpg%402o.jpg"]];
     [urlRequest setHTTPMethod:@"GET"];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
+#pragma clang diagnostic pop
 }
 
 - (void)testHTMLNetworkRequest {
     //NSURLSession
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     [urlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool sharedTool].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [[LLDebugTool sharedTool] showDebugViewControllerWithIndex:0];
+    NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
     }];
     [dataTask resume];
 }
