@@ -52,7 +52,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 放大镜功能：现在你可以使用`Magnifying`功能来查看每个像素的内容或颜色，这让你和UI设计师的沟通更方便。
 
-更多的修改内容可以查看 [Version 1.3.0 Project](https://github.com/HDB-Li/LLDebugTool/projects/8).
+更多的修改内容可以查看 [Version 1.3.0 Project](https://github.com/HDB-Li/LLDebugTool/projects/8)。
 
 #### 新增
 
@@ -361,11 +361,11 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 
 ## 结构
 
-* `LLDebug.h` 公用头文件。
+* `LLDebug.h` 
 
-    >全局引用此文件即可。
+    > 公用头文件。全局引用此文件即可。
 
-* `DebugTool` Public Header文件。
+* `DebugTool`
 
     > `LLDebugTool.h` 用于启动和停止LLDebugTool，你需要看一下这个文件。
 
@@ -373,7 +373,7 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
     
     > `LLDebugToolMacros.h` 快捷的宏定义文件。
 
-* `Component` 组件文件。
+* `Component`
 
   - `Network` 用于监视网络请求。
   - `Log` 快速打印和保存日志。
