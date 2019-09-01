@@ -51,4 +51,16 @@
     return NO;
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return [self.visibleViewController supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [self.visibleViewController preferredInterfaceOrientationForPresentation];
+}
+
 @end
