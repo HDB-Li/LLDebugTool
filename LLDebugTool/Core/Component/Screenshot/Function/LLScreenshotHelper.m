@@ -27,6 +27,7 @@
 #import "LLFormatterTool.h"
 #import "LLScreenshotComponent.h"
 #import "LLScreenshotPreviewViewController.h"
+#import "LLMacros.h"
 
 static LLScreenshotHelper *_instance = nil;
 
@@ -124,11 +125,6 @@ static LLScreenshotHelper *_instance = nil;
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 #pragma clang diagnostic pop
-    if (UIInterfaceOrientationIsPortrait(orientation))
-        imageSize = [UIScreen mainScreen].bounds.size;
-    else
-        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-    
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     

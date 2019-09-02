@@ -24,8 +24,8 @@
 #ifndef LLMacros_h
 #define LLMacros_h
 
-#define LL_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
-#define LL_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define LL_SCREEN_WIDTH (MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height))
+#define LL_SCREEN_HEIGHT (MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height))
 #define LL_NAVIGATION_HEIGHT (LL_IS_SPECIAL_SCREEN ? 64 : 88)
 
 #define LL_IS_SPECIAL_SCREEN \

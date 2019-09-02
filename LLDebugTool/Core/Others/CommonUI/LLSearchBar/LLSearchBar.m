@@ -22,11 +22,12 @@
 //  SOFTWARE.
 
 #import "LLSearchBar.h"
+#import "LLMacros.h"
 
 @implementation LLSearchBarBackView
 
 - (CGSize)intrinsicContentSize {
-    return CGSizeMake([UIScreen mainScreen].bounds.size.width - 12 * 2, 44);
+    return CGSizeMake(LL_SCREEN_WIDTH - 12 * 2, 44);
 }
 
 @end
