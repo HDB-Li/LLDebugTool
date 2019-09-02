@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLEntryRectView : UIView
+@interface LLEntryRectView : LLBaseMoveView
 
 @end
 

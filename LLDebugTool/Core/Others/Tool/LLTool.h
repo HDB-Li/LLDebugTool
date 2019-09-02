@@ -65,6 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)log:(NSString *)string;
 
+/// Whether the status bar can be clicked.
++ (BOOL)statusBarClickable;
+
 @end
 
 NS_ASSUME_NONNULL_END

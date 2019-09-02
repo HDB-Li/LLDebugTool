@@ -28,6 +28,7 @@
 #import "LLImageNameConfig.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
+#import "LLTool.h"
 
 @interface LLEntryRectView ()
 
@@ -57,7 +58,8 @@
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.layer.borderWidth = 1;
     self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-
+    self.moveable = ![LLTool statusBarClickable];
+    
     if (LL_IS_SPECIAL_SCREEN) {
         self.specialScreenLabel = [LLFactory getLabel:self frame:CGRectMake(5, 0, 100, self.LL_height) text:@"Debug" font:16 textColor:[LLThemeManager shared].primaryColor];
         [self.specialScreenLabel sizeToFit];

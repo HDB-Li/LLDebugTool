@@ -95,4 +95,15 @@ static unsigned long long _absolutelyIdentity = 0;
     });
 }
 
+static bool _statusBarClickable = YES;
++ (BOOL)statusBarClickable {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (@available(iOS 13.0, *)) {
+            _statusBarClickable = !LL_IS_SPECIAL_SCREEN;
+        }
+    });
+    return _statusBarClickable;
+}
+
 @end

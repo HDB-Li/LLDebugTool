@@ -28,6 +28,7 @@
 #define LL_SCREEN_HEIGHT (MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height))
 #define LL_STATUS_BAR_HEIGHT (LL_IS_SPECIAL_SCREEN ? 44 : 20)
 #define LL_NAVIGATION_HEIGHT (LL_STATUS_BAR_HEIGHT + 44)
+#define LL_BOTTOM_DANGER_HEIGHT (LL_IS_SPECIAL_SCREEN ? 34 : 0)
 
 #define LL_IS_SPECIAL_SCREEN \
 ({BOOL isPhoneX = NO;\

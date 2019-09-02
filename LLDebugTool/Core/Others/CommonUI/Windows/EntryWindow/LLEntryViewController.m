@@ -28,6 +28,7 @@
 #import "LLMacros.h"
 #import "LLSettingManager.h"
 #import "LLEntryRectView.h"
+#import "LLTool.h"
 
 @interface LLEntryViewController ()
 
@@ -36,6 +37,8 @@
 @property (nonatomic, strong) LLEntryRectView *rectView;
 
 @property (nonatomic, assign) LLConfigEntryWindowStyle style;
+
+@property (nonatomic, assign) BOOL statusBarClickable;
 
 @end
 
@@ -54,7 +57,8 @@
 - (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
     self.style = [LLConfig shared].entryWindowStyle;
-
+    self.statusBarClickable = [LLTool statusBarClickable];
+    
     // Double tap, to screenshot.
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
     doubleTap.numberOfTapsRequired = 2;
@@ -80,13 +84,27 @@
         case LLConfigEntryWindowStyleNetBar: {
             [_ballView removeFromSuperview];
             [self.view addSubview:self.rectView];
-            self.rectView.LL_left = LL_IS_SPECIAL_SCREEN ? LL_LAYOUT_HORIZONTAL(25) : 0;
+            if (self.statusBarClickable) {
+                self.rectView.LL_left = LL_IS_SPECIAL_SCREEN ? LL_LAYOUT_HORIZONTAL(25) : 0;
+                self.rectView.moveableRect = CGRectNull;
+            } else {
+                self.rectView.LL_left = 0;
+                self.rectView.moveableRect = CGRectMake(self.rectView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + self.rectView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - self.rectView.LL_height / 2.0);
+            }
+            
         }
             break;
         case LLConfigEntryWindowStylePowerBar: {
             [_ballView removeFromSuperview];
             [self.view addSubview:self.rectView];
-            self.rectView.LL_right = LL_IS_SPECIAL_SCREEN ? LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) :  LL_SCREEN_WIDTH;
+            if (self.statusBarClickable) {
+                self.rectView.LL_right = LL_IS_SPECIAL_SCREEN ? LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) :  LL_SCREEN_WIDTH;
+                self.rectView.moveableRect = CGRectNull;
+            } else {
+                self.rectView.LL_right = LL_SCREEN_WIDTH;
+                self.rectView.moveableRect = CGRectMake(LL_SCREEN_WIDTH - self.rectView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + self.rectView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - self.rectView.LL_height / 2.0);
+            }
+            
         }
             break;
         default:
@@ -150,10 +168,16 @@
 - (LLEntryRectView *)rectView {
     if (!_rectView) {
         CGFloat height = LL_IS_SPECIAL_SCREEN ? 25 : 20;
+        CGFloat y = 0;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, ([UIApplication sharedApplication].statusBarFrame.size.height - height) / 2.0, 100, height)];
+        if (self.statusBarClickable) {
+            y = ([UIApplication sharedApplication].statusBarFrame.size.height - height) / 2.0;
+        } else {
+            y = [UIApplication sharedApplication].statusBarFrame.size.height;
+        }
 #pragma clang diagnostic pop
+        _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, y, 100, height)];
     }
     return _rectView;
 }

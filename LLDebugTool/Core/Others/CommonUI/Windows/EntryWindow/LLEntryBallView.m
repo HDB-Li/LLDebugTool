@@ -28,6 +28,7 @@
 #import "LLImageNameConfig.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
+#import "LLTool.h"
 
 typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     LLEntryBallViewDirectionLeft,
@@ -40,7 +41,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 @property (nonatomic, strong) UIImageView *logoImageView;
 
-@property (nonatomic, assign) BOOL supportTopDirection;
+@property (nonatomic, assign) BOOL statusBarClickable;
 
 @end
 
@@ -92,11 +93,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 - (void)initial {
     self.overflow = YES;
     self.moveable = [LLConfig shared].suspensionBallMoveable;
-    if (@available(iOS 13.0, *)) {
-        self.supportTopDirection = !LL_IS_SPECIAL_SCREEN;
-    } else {
-        self.supportTopDirection = YES;
-    }
+    self.statusBarClickable = [LLTool statusBarClickable];
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self LL_setCornerRadius:self.LL_width / 2];
@@ -140,7 +137,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     } else if (min == bottom) {
         direction = LLEntryBallViewDirectionBottom;
     } else if (min == top) {
-        if (self.supportTopDirection) {
+        if (self.statusBarClickable) {
             direction = LLEntryBallViewDirectionTop;
         } else {
             min = MIN(MIN(left, right), bottom);
@@ -156,7 +153,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     switch (direction) {
         case LLEntryBallViewDirectionLeft: {
             endPoint.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
-            if (!self.supportTopDirection) {
+            if (!self.statusBarClickable) {
                 endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
         }
@@ -167,7 +164,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
             break;
         case LLEntryBallViewDirectionRight: {
             endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
-            if (!self.supportTopDirection) {
+            if (!self.statusBarClickable) {
                 endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
         }
