@@ -27,7 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryBallView : LLBaseMoveView
 
-- (void)recalculateViewFrame;
+/// Update subviews when window changed orientation.
+/// @param orientation New orientation.
+- (void)updateOrientation:(UIInterfaceOrientation)orientation;
 
 @end
 

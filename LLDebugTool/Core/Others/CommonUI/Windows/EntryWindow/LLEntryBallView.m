@@ -30,8 +30,8 @@
 #import "LLMacros.h"
 
 typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
-    LLEntryBallViewDirectionTop,
     LLEntryBallViewDirectionLeft,
+    LLEntryBallViewDirectionTop,
     LLEntryBallViewDirectionRight,
     LLEntryBallViewDirectionBottom
 };
@@ -40,9 +40,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 @property (nonatomic, strong) UIImageView *logoImageView;
 
-@property (nonatomic, assign) LLEntryBallViewDirection direction;
-
-@property (nonatomic, assign) CGFloat percentage;
+@property (nonatomic, assign) BOOL supportTopDirection;
 
 @end
 
@@ -55,31 +53,27 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     return self;
 }
 
-- (void)recalculateViewFrame {
-    CGPoint point = CGPointZero;
-    switch (self.direction) {
-        case LLEntryBallViewDirectionTop:{
-            point.x = LL_SCREEN_WIDTH * self.percentage;
-            point.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+- (void)updateOrientation:(UIInterfaceOrientation)orientation {
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:{
+            self.logoImageView.transform = CGAffineTransformIdentity;
         }
             break;
-        case LLEntryBallViewDirectionBottom:{
-            point.x = LL_SCREEN_WIDTH * self.percentage;
-            point.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+        case UIInterfaceOrientationPortraitUpsideDown: {
+            self.logoImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
         }
             break;
-        case LLEntryBallViewDirectionLeft:{
-            point.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
-            point.y = LL_SCREEN_HEIGHT * self.percentage;
+        case UIInterfaceOrientationLandscapeLeft: {
+            self.logoImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_2);
         }
             break;
-        case LLEntryBallViewDirectionRight: {
-            point.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
-            point.y = LL_SCREEN_HEIGHT * self.percentage;
+        case UIInterfaceOrientationLandscapeRight: {
+            self.logoImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI_2);
         }
+            break;
+        default:
             break;
     }
-    self.center = point;
 }
 
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
@@ -98,6 +92,11 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 - (void)initial {
     self.overflow = YES;
     self.moveable = [LLConfig shared].suspensionBallMoveable;
+    if (@available(iOS 13.0, *)) {
+        self.supportTopDirection = !LL_IS_SPECIAL_SCREEN;
+    } else {
+        self.supportTopDirection = YES;
+    }
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self LL_setCornerRadius:self.LL_width / 2];
@@ -129,43 +128,58 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 - (void)resetFrame {
     self.alpha = [LLConfig shared].normalAlpha;
-    // Calculate End Point
-    CGFloat x = self.LL_centerX;
-    CGFloat y = self.LL_centerY;
-    CGFloat x1 = LL_SCREEN_WIDTH / 2.0;
-    CGFloat y1 = LL_SCREEN_HEIGHT / 2.0;
     
-    CGFloat distanceX = x1 > x ? x : LL_SCREEN_WIDTH - x;
-    CGFloat distanceY = y1 > y ? y : LL_SCREEN_HEIGHT - y;
-    CGPoint endPoint = CGPointZero;
-    
-    if (distanceX <= distanceY) {
-        // animation to left or right
-        endPoint.y = y;
-        if (x1 < x) {
-            // to right
-            endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
-            self.direction = LLEntryBallViewDirectionRight;
+    CGFloat top = self.LL_centerY;
+    CGFloat left = self.LL_centerX;
+    CGFloat right = LL_SCREEN_WIDTH - self.LL_centerX;
+    CGFloat bottom = LL_SCREEN_HEIGHT - self.LL_centerY;
+    CGFloat min = MIN(MIN(MIN(left, right), bottom), top);
+    LLEntryBallViewDirection direction = LLEntryBallViewDirectionLeft;
+    if (min == right) {
+        direction = LLEntryBallViewDirectionRight;
+    } else if (min == bottom) {
+        direction = LLEntryBallViewDirectionBottom;
+    } else if (min == top) {
+        if (self.supportTopDirection) {
+            direction = LLEntryBallViewDirectionTop;
         } else {
-            // to left
-            endPoint.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
-            self.direction = LLEntryBallViewDirectionLeft;
+            min = MIN(MIN(left, right), bottom);
+            if (min == right) {
+                direction = LLEntryBallViewDirectionRight;
+            } else if (min == bottom) {
+                direction = LLEntryBallViewDirectionBottom;
+            }
         }
-        self.percentage = y / LL_SCREEN_HEIGHT;
-    } else {
-        // animation to top or bottom
-        endPoint.x = x;
-        if (y1 < y) {
-            // to bottom
-            endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
-            self.direction = LLEntryBallViewDirectionBottom;
-        } else {
-            // to top
-            endPoint.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
-            self.direction = LLEntryBallViewDirectionTop;
-        }
-        self.percentage = x / LL_SCREEN_WIDTH;
     }
+    
+    CGPoint endPoint = self.center;
+    switch (direction) {
+        case LLEntryBallViewDirectionLeft: {
+            endPoint.x = self.LL_width / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+            if (!self.supportTopDirection) {
+                endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
+            }
+        }
+            break;
+        case LLEntryBallViewDirectionTop: {
+            endPoint.y = self.LL_height / 2.0 - [LLConfig shared].suspensionWindowHideWidth;
+        }
+            break;
+        case LLEntryBallViewDirectionRight: {
+            endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+            if (!self.supportTopDirection) {
+                endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
+            }
+        }
+            break;
+        case LLEntryBallViewDirectionBottom: {
+            endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + [LLConfig shared].suspensionWindowHideWidth;
+        }
+            break;
+        default:
+            break;
+    }
+    
     self.center = endPoint;
 }
 

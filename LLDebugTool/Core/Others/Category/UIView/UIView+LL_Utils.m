@@ -33,13 +33,6 @@ static const char kLLVerticalPaddingKey;
     [self LL_swizzleInstanceMethodWithOriginSel:@selector(sizeToFit) swizzledSel:@selector(LL_sizeToFit)];
 }
 
-- (void)LL_sizeToFit {
-    [self LL_sizeToFit];
-    CGRect frame = self.frame;
-    frame.size = CGSizeMake(frame.size.width + 2 * self.LL_horizontalPadding, frame.size.height + 2 * self.LL_verticalPadding);
-    self.frame = frame;
-}
-
 - (void)setLL_horizontalPadding:(CGFloat)LL_horizontalPadding {
     [self LL_setCGFloatProperty:LL_horizontalPadding key:&kLLHorizontalPaddingKey];
 }
@@ -244,6 +237,14 @@ static const char kLLVerticalPaddingKey;
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+#pragma mark - Primary
+- (void)LL_sizeToFit {
+    [self LL_sizeToFit];
+    CGRect frame = self.frame;
+    frame.size = CGSizeMake(frame.size.width + 2 * self.LL_horizontalPadding, frame.size.height + 2 * self.LL_verticalPadding);
+    self.frame = frame;
 }
 
 @end

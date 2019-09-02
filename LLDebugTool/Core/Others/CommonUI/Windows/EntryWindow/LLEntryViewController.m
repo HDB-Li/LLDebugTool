@@ -66,7 +66,7 @@
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:doubleTap];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUIApplicationDidChangeStatusBarFrameNotification:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUIApplicationDidChangeStatusBarOrientationNotification:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
@@ -122,9 +122,10 @@
     }
 }
 
-#pragma mark - UIApplicationDidChangeStatusBarFrameNotification
-- (void)didReceiveUIApplicationDidChangeStatusBarFrameNotification:(NSNotification *)notification {
-    [_ballView recalculateViewFrame];
+#pragma mark - UIApplicationDidChangeStatusBarOrientationNotification
+- (void)didReceiveUIApplicationDidChangeStatusBarOrientationNotification:(NSNotification *)notification {
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    [_ballView updateOrientation:orientation];
 }
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName
