@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, getter=isMoveable) BOOL moveable;
 
+/// Moveable range.
+@property (nonatomic, assign) CGRect moveableRect;
+
 - (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
 
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;

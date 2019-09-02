@@ -38,6 +38,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         _moveable = YES;
+        _moveableRect = CGRectNull;
         // Pan, to moveable.
         self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
         
@@ -87,6 +88,21 @@
             center.y = self.LL_height / 2.0;
         } else if (center.y > self.superview.LL_height - self.LL_height / 2.0) {
             center.y = self.superview.LL_height - self.LL_height / 2.0;
+        }
+    }
+    
+    if (!CGRectIsNull(_moveableRect)) {
+        if (!CGRectContainsPoint(_moveableRect, center)) {
+            if (center.x < _moveableRect.origin.x) {
+                center.x = _moveableRect.origin.x;
+            } else if (center.x > _moveableRect.origin.x + _moveableRect.size.width) {
+                center.x = _moveableRect.origin.x + _moveableRect.size.width;
+            }
+            if (center.y < _moveableRect.origin.y) {
+                center.y = _moveableRect.origin.y;
+            } else if (center.y > _moveableRect.origin.y + _moveableRect.size.height) {
+                center.y = _moveableRect.origin.y + _moveableRect.size.height;
+            }
         }
     }
 
