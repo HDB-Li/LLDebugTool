@@ -52,11 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)stringFromFrame:(CGRect)frame;
 
 /**
- Supported interface orientations in info.plist.
- */
-+ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
-
-/**
  Top level window.
 
  @return Top level window.

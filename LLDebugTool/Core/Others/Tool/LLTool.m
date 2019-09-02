@@ -77,25 +77,6 @@ static unsigned long long _absolutelyIdentity = 0;
     return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[[LLFormatterTool shared] formatNumber:@(frame.origin.x)],[[LLFormatterTool shared] formatNumber:@(frame.origin.y)],[[LLFormatterTool shared] formatNumber:@(frame.size.width)],[[LLFormatterTool shared] formatNumber:@(frame.size.height)]];
 }
 
-+ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask
-{
-    NSArray<NSString *> *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
-    UIInterfaceOrientationMask supportedOrientationsMask = 0;
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortrait"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskPortrait;
-    }
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationMaskLandscapeRight"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeRight;
-    }
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationMaskPortraitUpsideDown"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskPortraitUpsideDown;
-    }
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeLeft"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeLeft;
-    }
-    return supportedOrientationsMask;
-}
-
 + (UIWindow *)topWindow {
     UIWindow *topWindow = [UIApplication sharedApplication].delegate.window;
     for (UIWindow *win in [UIApplication sharedApplication].windows) {
