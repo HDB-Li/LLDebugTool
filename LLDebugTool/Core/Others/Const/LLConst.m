@@ -29,6 +29,7 @@ CGFloat const kLLSuspensionWindowHideWidth = 10;
 CGFloat const kLLSuspensionWindowNormalAlpha = 0.75;
 CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
 CGFloat const kLLSuspensionWindowTop = 200;
+CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
 
 NSInteger const kLLMagnifierWindowZoomLevel = 10;
 NSInteger const kLLMagnifierWindowSize = 15;

@@ -27,7 +27,6 @@
 		364570F92313B80800C29200 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F52313B80800C29200 /* CHANGELOG.md */; };
 		364570FA2313B80800C29200 /* README-cn.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F62313B80800C29200 /* README-cn.md */; };
 		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
-		364570FF2313D07D00C29200 /* LLEntryRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364570FE2313D07D00C29200 /* LLEntryRectView.m */; };
 		36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */; };
 		36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC422FD063A00BBB6FA /* LLBaseView.m */; };
 		36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC722FD065D00BBB6FA /* LLBaseMoveView.m */; };
@@ -39,6 +38,9 @@
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
+		36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E24231D052300E4D29B /* LLEntryView.m */; };
+		36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E27231D1BDB00E4D29B /* LLEntryTitleView.m */; };
+		36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */; };
 		36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DC10FC22FA60B90078B7BC /* LLToastUtils.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
@@ -234,8 +236,6 @@
 		364570F52313B80800C29200 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		364570F62313B80800C29200 /* README-cn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-cn.md"; sourceTree = "<group>"; };
 		364570FB2313B82200C29200 /* LLDebugTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.podspec; sourceTree = "<group>"; };
-		364570FD2313D07D00C29200 /* LLEntryRectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryRectView.h; sourceTree = "<group>"; };
-		364570FE2313D07D00C29200 /* LLEntryRectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryRectView.m; sourceTree = "<group>"; };
 		36596BC022FD055C00BBB6FA /* LLMagnifierViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierViewController.h; sourceTree = "<group>"; };
 		36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierViewController.m; sourceTree = "<group>"; };
 		36596BC322FD063A00BBB6FA /* LLBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseView.h; sourceTree = "<group>"; };
@@ -260,6 +260,12 @@
 		3691A61E20C7E63D00E22192 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
+		36BC8E23231D052300E4D29B /* LLEntryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryView.h; sourceTree = "<group>"; };
+		36BC8E24231D052300E4D29B /* LLEntryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryView.m; sourceTree = "<group>"; };
+		36BC8E26231D1BDB00E4D29B /* LLEntryTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryTitleView.h; sourceTree = "<group>"; };
+		36BC8E27231D1BDB00E4D29B /* LLEntryTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryTitleView.m; sourceTree = "<group>"; };
+		36BC8E29231D1C3B00E4D29B /* LLEntryBigTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBigTitleView.h; sourceTree = "<group>"; };
+		36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBigTitleView.m; sourceTree = "<group>"; };
 		36DC10FB22FA60B90078B7BC /* LLToastUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLToastUtils.h; sourceTree = "<group>"; };
 		36DC10FC22FA60B90078B7BC /* LLToastUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLToastUtils.m; sourceTree = "<group>"; };
 		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1447,10 +1453,14 @@
 				C4B4E41622F9C90900F70277 /* LLEntryWindow.m */,
 				36F30D982301699E00976937 /* LLEntryViewController.h */,
 				36F30D992301699E00976937 /* LLEntryViewController.m */,
+				36BC8E23231D052300E4D29B /* LLEntryView.h */,
+				36BC8E24231D052300E4D29B /* LLEntryView.m */,
 				362F833A2302BE8F007C9168 /* LLEntryBallView.h */,
 				362F833B2302BE8F007C9168 /* LLEntryBallView.m */,
-				364570FD2313D07D00C29200 /* LLEntryRectView.h */,
-				364570FE2313D07D00C29200 /* LLEntryRectView.m */,
+				36BC8E26231D1BDB00E4D29B /* LLEntryTitleView.h */,
+				36BC8E27231D1BDB00E4D29B /* LLEntryTitleView.m */,
+				36BC8E29231D1C3B00E4D29B /* LLEntryBigTitleView.h */,
+				36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */,
 			);
 			path = EntryWindow;
 			sourceTree = "<group>";
@@ -1778,7 +1788,6 @@
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
 				C4B4E44422F9C90900F70277 /* UIDevice+LL_Utils.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
-				364570FF2313D07D00C29200 /* LLEntryRectView.m in Sources */,
 				C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */,
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
 				C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */,
@@ -1797,6 +1806,7 @@
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
 				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
+				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
 				36743D412313879700002A92 /* LLReachability.m in Sources */,
@@ -1836,6 +1846,7 @@
 				36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,
+				36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */,
 				C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */,
 				C49856EF22EDB07300E9FBE2 /* LLLogComponent.m in Sources */,
 				C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */,
@@ -1894,6 +1905,7 @@
 				C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */,
 				C498568822ED8D4800E9FBE2 /* LLHierarchyCell.m in Sources */,
 				C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */,
+				36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */,
 				C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */,
 				C498570122EDB35000E9FBE2 /* LLNetworkComponent.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
@@ -2156,7 +2168,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2176,7 +2188,7 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -1,5 +1,5 @@
 //
-//  LLEntryRectView.m
+//  LLEntryTitleView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,26 +21,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLEntryRectView.h"
+#import "LLEntryTitleView.h"
 #import "LLThemeManager.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "UIView+LL_Utils.h"
-#import "LLMacros.h"
-#import "LLTool.h"
 
-@interface LLEntryRectView ()
+@interface LLEntryTitleView ()
 
 @property (nonatomic, strong) UIImageView *icon;
 
 @property (nonatomic, strong) UILabel *label;
 
-@property (nonatomic, strong) UILabel *specialScreenLabel;
-
 @end
 
-@implementation LLEntryRectView
+@implementation LLEntryTitleView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -55,38 +51,32 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    self.moveable = ![LLTool statusBarClickable];
+    self.normalAlpha = 1;
     
-    if (LL_IS_SPECIAL_SCREEN) {
-        self.specialScreenLabel = [LLFactory getLabel:self frame:CGRectMake(5, 0, 100, self.LL_height) text:@"Debug" font:16 textColor:[LLThemeManager shared].primaryColor];
-        [self.specialScreenLabel sizeToFit];
-        self.specialScreenLabel.LL_height = self.LL_height;
-        self.LL_width = self.specialScreenLabel.LL_right + 5;
-    } else {
-        self.icon = [LLFactory getImageView:self frame:CGRectMake(5, (self.LL_height - 14) / 2.0, 14, 14) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
-        self.label = [LLFactory getLabel:self frame:CGRectMake(self.icon.LL_right + 5, 0, 100, self.LL_height) text:@"LLDebugTool" font:12 textColor:[LLThemeManager shared].primaryColor];
-        [self.label sizeToFit];
-        self.label.LL_height = self.LL_height;
-        self.LL_width = self.label.LL_right + 5;
-    }
+    self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.contentView.layer.borderWidth = 1;
+    self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    
+    self.icon = [LLFactory getImageView:self.contentView frame:CGRectMake(5, (self.LL_height - 14) / 2.0, 14, 14) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
+    self.label = [LLFactory getLabel:self.contentView frame:CGRectMake(self.icon.LL_right + 5, 0, 100, self.LL_height) text:@"LLDebugTool" font:12 textColor:[LLThemeManager shared].primaryColor];
+    [self.label sizeToFit];
+    self.label.LL_height = self.LL_height;
+    self.LL_width = self.label.LL_right + 5;
+
+    [self resignActive:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
 
 #pragma mark - NSNotification
 - (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
-    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.icon.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
     self.label.textColor = [LLThemeManager shared].primaryColor;
-    self.specialScreenLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 
 - (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
-    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
-
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLEntryRectView.h
+//  LLEntryBigTitleView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveView.h"
+#import "LLEntryView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLEntryRectView : LLBaseMoveView
+@interface LLEntryBigTitleView : LLEntryView
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  LLConst.h
+//  LLEntryView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -20,31 +20,21 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 
-// Default suspension window width.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowWidth;
-// Min width of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowMinWidth;
-// The distance between Suspension window and UIScreen.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowHideWidth;
-// Normal status alpha of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowNormalAlpha;
-// Active status alpha of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowActiveAlpha;
-// Default top of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowTop;
-// Default big title view height.
-UIKIT_EXTERN CGFloat const kLLEntryWindowBigTitleViewHeight;
+#import "LLBaseMoveView.h"
 
-// Default magnifier window zoom level.
-UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;
-// Number of rows per magnifier window.
-UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;
+NS_ASSUME_NONNULL_BEGIN
 
-// General margin.
-UIKIT_EXTERN CGFloat const kLLGeneralMargin;
+@interface LLEntryView : LLBaseMoveView
 
-// Default EntryView double click component.
-FOUNDATION_EXTERN NSString * const kLLEntryViewDoubleClickComponent;
+@property (nonatomic, strong, readonly) UIView *contentView;
+
+@property (nonatomic, assign) CGFloat maskWidth;
+
+@property (nonatomic, assign) CGFloat normalAlpha;
+
+- (void)resignActive:(BOOL)animated;
+
+@end
+
+NS_ASSUME_NONNULL_END

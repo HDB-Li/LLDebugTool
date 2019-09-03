@@ -100,7 +100,7 @@ static bool _statusBarClickable = YES;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (@available(iOS 13.0, *)) {
-            _statusBarClickable = !LL_IS_SPECIAL_SCREEN;
+            _statusBarClickable = NO;
         }
     });
     return _statusBarClickable;

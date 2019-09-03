@@ -1,5 +1,5 @@
 //
-//  LLEntryBallView.m
+//  LLEntryBigTitleView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,20 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLEntryBallView.h"
+#import "LLEntryBigTitleView.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "UIView+LL_Utils.h"
-#import "LLImageNameConfig.h"
 #import "LLConfig.h"
+#import "LLFactory.h"
+#import "LLImageNameConfig.h"
+#import "UIView+LL_Utils.h"
 
-@interface LLEntryBallView ()
+@interface LLEntryBigTitleView ()
 
-@property (nonatomic, strong) UIImageView *logoImageView;
+@property (nonatomic, strong) UILabel *label;
 
 @end
 
-@implementation LLEntryBallView
+@implementation LLEntryBigTitleView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -43,45 +43,23 @@
     return self;
 }
 
-- (void)updateOrientation:(UIInterfaceOrientation)orientation {
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait:{
-            self.contentView.transform = CGAffineTransformIdentity;
-        }
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown: {
-            self.contentView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft: {
-            self.contentView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_2);
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight: {
-            self.contentView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI_2);
-        }
-            break;
-        default:
-            break;
-    }
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Primary
 - (void)initial {
-    self.overflow = YES;
-    self.moveable = [LLConfig shared].suspensionBallMoveable;
-    self.maskWidth = [LLConfig shared].suspensionWindowHideWidth;
+    self.normalAlpha = 1;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
-    [self.contentView LL_setCornerRadius:self.contentView.LL_width / 2];
+    self.contentView.layer.borderWidth = 1;
+    self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     
-    self.logoImageView = [LLFactory getImageView:self.contentView frame:CGRectMake(self.LL_width / 4.0, self.LL_height / 4.0, self.LL_width / 2.0, self.LL_height / 2.0) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
-
+    self.label = [LLFactory getLabel:self.contentView frame:CGRectMake(5, 0, 100, self.LL_height) text:@"Debug" font:16 textColor:[LLThemeManager shared].primaryColor];
+    [self.label sizeToFit];
+    self.label.LL_height = self.LL_height;
+    self.LL_width = self.label.LL_right + 5;
+    
     [self resignActive:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
@@ -90,11 +68,11 @@
 #pragma mark - NSNotification
 - (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
     self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    self.logoImageView.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
+    self.label.textColor = [LLThemeManager shared].primaryColor;
 }
 
 - (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
-    self.logoImageView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
 
 @end

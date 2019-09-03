@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveView.h"
+#import "LLEntryView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLEntryBallView : LLBaseMoveView
+@interface LLEntryBallView : LLEntryView
 
 /// Update subviews when window changed orientation.
 /// @param orientation New orientation.

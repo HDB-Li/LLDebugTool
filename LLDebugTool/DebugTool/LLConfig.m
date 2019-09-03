@@ -173,7 +173,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _logStyle = LLConfigLogDetail;
     
     // Set default window's style.
-    _entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
+    _entryWindowStyle = LLConfigEntryWindowStyleBall;
     
     // Set default availables.
     _availables = LLConfigAvailableAll;

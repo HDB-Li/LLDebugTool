@@ -27,14 +27,26 @@
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
 #import "LLSettingManager.h"
-#import "LLEntryRectView.h"
+#import "LLEntryTitleView.h"
+#import "LLEntryBigTitleView.h"
 #import "LLTool.h"
+#import "LLConst.h"
 
 @interface LLEntryViewController ()
 
+@property (nonatomic, strong) LLEntryView *activeView;
+
 @property (nonatomic, strong) LLEntryBallView *ballView;
 
-@property (nonatomic, strong) LLEntryRectView *rectView;
+@property (nonatomic, strong) LLEntryBigTitleView *bigTitleView;
+
+@property (nonatomic, strong) LLEntryView *leadingView;
+
+@property (nonatomic, strong) LLEntryView *trailingView;
+
+@property (nonatomic, strong) LLEntryView *netView;
+
+@property (nonatomic, strong) LLEntryView *powerView;
 
 @property (nonatomic, assign) LLConfigEntryWindowStyle style;
 
@@ -55,9 +67,10 @@
 
 #pragma mark - Primary
 - (void)initial {
+    self.statusBarClickable = [LLTool statusBarClickable];
+    
     self.view.backgroundColor = [UIColor clearColor];
     self.style = [LLConfig shared].entryWindowStyle;
-    self.statusBarClickable = [LLTool statusBarClickable];
     
     // Double tap, to screenshot.
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
@@ -69,46 +82,53 @@
     
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:doubleTap];
-    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUIApplicationDidChangeStatusBarOrientationNotification:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+#pragma clang diagnostic pop
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
 - (void)updateStyle:(LLConfigEntryWindowStyle)style {
     switch (style) {
-        case LLConfigEntryWindowStyleSuspensionBall: {
-            [_rectView removeFromSuperview];
+        case LLConfigEntryWindowStyleBall: {
+            [self.activeView removeFromSuperview];
+            self.activeView = self.ballView;
             [self.view addSubview:self.ballView];
         }
             break;
+        case LLConfigEntryWindowStyleTitle: {
+            [self.activeView removeFromSuperview];
+            self.activeView = self.bigTitleView;
+            [self.view addSubview:self.bigTitleView];
+        }
+            break;
+        case LLConfigEntryWindowStyleSuspensionLeading: {
+            [self.activeView removeFromSuperview];
+            self.activeView = self.leadingView;
+            [self.view addSubview:self.leadingView];
+        }
+            break;
+        case LLConfigEntryWindowStyleSuspensionTrailing: {
+            [self.activeView removeFromSuperview];
+            self.activeView = self.trailingView;
+            [self.view addSubview:self.trailingView];
+        }
+            break;
+#ifndef __IPHONE_13_0
         case LLConfigEntryWindowStyleNetBar: {
-            [_ballView removeFromSuperview];
-            [self.view addSubview:self.rectView];
-            if (self.statusBarClickable) {
-                self.rectView.LL_left = LL_IS_SPECIAL_SCREEN ? LL_LAYOUT_HORIZONTAL(25) : 0;
-                self.rectView.moveableRect = CGRectNull;
-            } else {
-                self.rectView.LL_left = 0;
-                self.rectView.moveableRect = CGRectMake(self.rectView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + self.rectView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - self.rectView.LL_height / 2.0);
-            }
-            
+            [self.activeView removeFromSuperview];
+            self.activeView = self.netView;
+            [self.view addSubview:self.netView];
         }
             break;
         case LLConfigEntryWindowStylePowerBar: {
-            [_ballView removeFromSuperview];
-            [self.view addSubview:self.rectView];
-            if (self.statusBarClickable) {
-                self.rectView.LL_right = LL_IS_SPECIAL_SCREEN ? LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) :  LL_SCREEN_WIDTH;
-                self.rectView.moveableRect = CGRectNull;
-            } else {
-                self.rectView.LL_right = LL_SCREEN_WIDTH;
-                self.rectView.moveableRect = CGRectMake(LL_SCREEN_WIDTH - self.rectView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + self.rectView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - self.rectView.LL_height / 2.0);
-            }
-            
+            [self.activeView removeFromSuperview];
+            self.activeView = self.powerView;
+            [self.view addSubview:self.powerView];
         }
             break;
-        default:
-            break;
+#endif
     }
 }
 
@@ -131,18 +151,29 @@
 
 - (UIView *)activeEntryView {
     switch (self.style) {
-        case LLConfigEntryWindowStyleSuspensionBall:
+        case LLConfigEntryWindowStyleBall:
             return self.ballView;
+        case LLConfigEntryWindowStyleTitle:
+            return self.bigTitleView;
+        case LLConfigEntryWindowStyleSuspensionLeading:
+            return self.leadingView;
+        case LLConfigEntryWindowStyleSuspensionTrailing:
+            return self.trailingView;
+#ifndef __IPHONE_13_0
         case LLConfigEntryWindowStyleNetBar:
-            return self.rectView;
+            return self.netView;
         case LLConfigEntryWindowStylePowerBar:
-            return self.rectView;
+            return self.powerView;
+#endif
     }
 }
 
 #pragma mark - UIApplicationDidChangeStatusBarOrientationNotification
 - (void)didReceiveUIApplicationDidChangeStatusBarOrientationNotification:(NSNotification *)notification {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+#pragma clang diagnostic pop
     [_ballView updateOrientation:orientation];
 }
 
@@ -165,21 +196,57 @@
     return _ballView;
 }
 
-- (LLEntryRectView *)rectView {
-    if (!_rectView) {
-        CGFloat height = LL_IS_SPECIAL_SCREEN ? 25 : 20;
-        CGFloat y = 0;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        if (self.statusBarClickable) {
-            y = ([UIApplication sharedApplication].statusBarFrame.size.height - height) / 2.0;
-        } else {
-            y = [UIApplication sharedApplication].statusBarFrame.size.height;
-        }
-#pragma clang diagnostic pop
-        _rectView = [[LLEntryRectView alloc] initWithFrame:CGRectMake(0, y, 100, height)];
+- (LLEntryBigTitleView *)bigTitleView {
+    if (!_bigTitleView) {
+        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, [LLConfig shared].suspensionWindowTop, 100, kLLEntryWindowBigTitleViewHeight)];
     }
-    return _rectView;
+    return _bigTitleView;
+}
+
+- (LLEntryView *)leadingView {
+    if (!_leadingView) {
+        _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, [LLConfig shared].suspensionWindowTop, 100, kLLEntryWindowBigTitleViewHeight)];
+        _leadingView.moveableRect = CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0);
+    }
+    return _leadingView;
+}
+
+- (LLEntryView *)trailingView {
+    if (!_trailingView) {
+        _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, [LLConfig shared].suspensionWindowTop, 100, kLLEntryWindowBigTitleViewHeight)];
+        _trailingView.LL_right = LL_SCREEN_WIDTH;
+        _trailingView.moveableRect = CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0);
+    }
+    return _trailingView;
+}
+
+- (LLEntryView *)netView {
+    if (!_netView) {
+        if (LL_IS_SPECIAL_SCREEN) {
+            _netView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
+            _netView.LL_y = (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0;
+            _netView.LL_left = LL_LAYOUT_HORIZONTAL(25);
+        } else {
+            _netView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+        }
+        _netView.moveable = NO;
+    }
+    return _netView;
+}
+
+- (LLEntryView *)powerView {
+    if (!_powerView) {
+        if (LL_IS_SPECIAL_SCREEN) {
+            _powerView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
+            _powerView.LL_y = (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0;
+            _powerView.LL_right = LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25);
+        } else {
+            _powerView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+            _powerView.LL_right = LL_SCREEN_WIDTH;
+        }
+        _powerView.moveable = NO;
+    }
+    return _powerView;
 }
 
 @end

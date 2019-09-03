@@ -209,10 +209,22 @@ static NSString *const kCellID = @"cellID";
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             switch ([LLConfig shared].entryWindowStyle) {
-                case LLConfigEntryWindowStyleSuspensionBall:{
-                    cell.detailTextLabel.text = @"LLConfigWindowSuspensionBall";
+                case LLConfigEntryWindowStyleBall:{
+                    cell.detailTextLabel.text = @"Ball";
                 }
                     break;
+                case LLConfigEntryWindowStyleTitle:{
+                    cell.detailTextLabel.text = @"Title";
+                }
+                case LLConfigEntryWindowStyleSuspensionLeading: {
+                    cell.detailTextLabel.text = @"Leading";
+                }
+                    break;
+                case LLConfigEntryWindowStyleSuspensionTrailing: {
+                    cell.detailTextLabel.text = @"Trailing";
+                }
+                    break;
+#ifndef __IPHONE_13_0
                 case LLConfigEntryWindowStylePowerBar:{
                     cell.detailTextLabel.text = @"LLConfigWindowPowerBar";
                 }
@@ -221,8 +233,7 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigWindowNetBar";
                 }
                     break;
-                default:
-                    break;
+#endif
             }
         }
     }

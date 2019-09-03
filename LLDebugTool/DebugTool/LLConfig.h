@@ -57,14 +57,26 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 /**
  Window style. Decide how the Window displays.
  
- - LLConfigEntryWindowStyleSuspensionBall: Show as a suspension ball. Moveable and clickable.
- - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStyleBall: Show as a suspension ball. Moveable and clickable.
+ - LLConfigEntryWindowStyleTitle: Show as a big title. Moveable and clickable.
+ - LLConfigEntryWindowStyleSuspensionLeading: Show as a big title on left. Part moveable and clickable.
+ - LLConfigEntryWindowStyleSuspensionTrailing: Show as a big title on right. Moveable and clickable.
  - LLConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
  */
 typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
-    LLConfigEntryWindowStyleSuspensionBall,
-    LLConfigEntryWindowStylePowerBar,
-    LLConfigEntryWindowStyleNetBar,
+    LLConfigEntryWindowStyleBall = 0,
+    LLConfigEntryWindowStyleTitle = 1,
+    LLConfigEntryWindowStyleSuspensionLeading = 2,
+    LLConfigEntryWindowStyleSuspensionTrailing = 3,
+#ifdef __IPHONE_13_0
+    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleSuspensionLeading") = 2,
+    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleSuspensionTrailing") = 3,
+#else
+    LLConfigEntryWindowStyleNetBar = 4,
+    LLConfigEntryWindowStylePowerBar = 5,
+#endif
+    LLConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLConfigEntryWindowStyleBall") = 0,
 };
 
 /**
