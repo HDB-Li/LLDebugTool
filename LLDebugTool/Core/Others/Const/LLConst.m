@@ -23,12 +23,13 @@
 
 #import "LLConst.h"
 
-CGFloat const kLLSuspensionWindowWidth = 50;
-CGFloat const kLLSuspensionWindowMinWidth = 30;
-CGFloat const kLLSuspensionWindowHideWidth = 10;
-CGFloat const kLLSuspensionWindowNormalAlpha = 0.75;
-CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
-CGFloat const kLLSuspensionWindowTop = 200;
+CGFloat const kLLEntryWindowBallWidth = 50;
+CGFloat const kLLEntryWindowMinBallWidth = 30;
+CGFloat const kLLEntryWindowDisplayPercent = 0.3;
+CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
+CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
+CGFloat const kLLEntryWindowInactiveAlpha = 0.75;
+CGFloat const kLLEntryWindowActiveAlpha = 1.0;
 CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
 
 NSInteger const kLLMagnifierWindowZoomLevel = 10;

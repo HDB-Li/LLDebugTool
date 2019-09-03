@@ -39,10 +39,10 @@
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTitle ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Use \"Leading\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleSuspensionLeading ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleLeading ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Use \"Trailing\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleSuspensionTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 #ifndef __IPHONE_13_0
     } else if (indexPath.row == 4) {
         cell.textLabel.text = @"Use \"NetBar\"";
@@ -82,18 +82,18 @@
 }
 
 - (void)testSuspensionLeadingWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionLeading;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
 }
 
 - (void)testSuspensionTrailingWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionTrailing;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
 }
 
 - (void)testNetBarWindowStyle {
 #ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
 #else
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionLeading;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
 #endif
 }
 
@@ -101,7 +101,7 @@
 #ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
 #else
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionTrailing;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
 #endif
 }
 

@@ -109,8 +109,8 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     [LLThemeManager shared].statusBarStyle = statusBarStyle;
 }
 
-- (CGFloat)suspensionBallWidth {
-    return MAX(_suspensionBallWidth, kLLSuspensionWindowMinWidth);
+- (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
+    _entryWindowBallWidth = MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth);
 }
 
 - (void)setMagnifierSize:(NSInteger)magnifierSize {
@@ -154,13 +154,12 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _colorStyle = LLConfigColorStyleHack;
     
     // Set default suspension ball attributes.
-    _suspensionBallWidth = kLLSuspensionWindowWidth;
-    _suspensionWindowHideWidth = kLLSuspensionWindowHideWidth;
-    _suspensionWindowTop = kLLSuspensionWindowTop;
-    _normalAlpha = kLLSuspensionWindowNormalAlpha;
-    _activeAlpha = kLLSuspensionWindowActiveAlpha;
-    _suspensionBallMoveable = YES;
-    _autoAdjustSuspensionWindow = YES;
+    _entryWindowBallWidth = kLLEntryWindowBallWidth;
+    _entryWindowDisplayPercent = kLLEntryWindowDisplayPercent;
+    _entryWindowFirstDisplayPosition = CGPointMake(kLLEntryWindowFirstDisplayPositionX, kLLEntryWindowFirstDisplayPositionY);
+    _entryWindowInactiveAlpha = kLLEntryWindowInactiveAlpha;
+    _entryWindowActiveAlpha = kLLEntryWindowActiveAlpha;
+    _autoHideEntryWindowToSideWhenInactive = YES;
     
     // Set default magnifier properties.
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;

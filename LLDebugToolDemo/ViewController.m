@@ -216,11 +216,11 @@ static NSString *const kCellID = @"cellID";
                 case LLConfigEntryWindowStyleTitle:{
                     cell.detailTextLabel.text = @"Title";
                 }
-                case LLConfigEntryWindowStyleSuspensionLeading: {
+                case LLConfigEntryWindowStyleLeading: {
                     cell.detailTextLabel.text = @"Leading";
                 }
                     break;
-                case LLConfigEntryWindowStyleSuspensionTrailing: {
+                case LLConfigEntryWindowStyleTrailing: {
                     cell.detailTextLabel.text = @"Trailing";
                 }
                     break;

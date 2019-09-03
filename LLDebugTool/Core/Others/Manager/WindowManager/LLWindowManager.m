@@ -160,6 +160,7 @@ static LLWindowManager *_instance = nil;
         window.hidden = NO;
         window.windowLevel = self.entryWindowLevel;
         [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle];
+        [self.entryWindow becomeVisiable];
     } else {
         if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
             self.keyWindow = [UIApplication sharedApplication].keyWindow;

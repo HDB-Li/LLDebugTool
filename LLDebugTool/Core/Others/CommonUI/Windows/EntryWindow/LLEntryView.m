@@ -30,16 +30,20 @@
 
 typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     LLEntryBallViewDirectionLeft,
-    LLEntryBallViewDirectionTop,
     LLEntryBallViewDirectionRight,
+    LLEntryBallViewDirectionTop,
     LLEntryBallViewDirectionBottom
 };
 
 @interface LLEntryView ()
 
+@property (nonatomic, assign, getter=isActive) BOOL active;
+
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, assign) BOOL statusBarClickable;
+
+@property (nonatomic, assign) LLEntryBallViewDirection direction;
 
 @end
 
@@ -49,17 +53,44 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     if (self = [super initWithFrame:frame]) {
         self.contentView = [LLFactory getView:self frame:self.bounds];
         self.statusBarClickable = [LLTool statusBarClickable];
-        self.normalAlpha = [LLConfig shared].normalAlpha;
+        self.inactiveAlpha = [LLConfig shared].entryWindowInactiveAlpha;
         [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
-- (void)resignActive:(BOOL)animated {
-    if (![LLConfig shared].isAutoAdjustSuspensionWindow) {
-        self.alpha = self.normalAlpha;
+- (void)animatedBecomeActive {
+    self.active = YES;
+    self.alpha = [LLConfig shared].entryWindowActiveAlpha;
+    if (![LLConfig shared].isAutoHideEntryWindowToSideWhenInactive) {
         return;
     }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        switch (self.direction) {
+            case LLEntryBallViewDirectionLeft:{
+                self.LL_left = 0;
+            }
+                break;
+            case LLEntryBallViewDirectionRight: {
+                self.LL_right = LL_SCREEN_WIDTH;
+            }
+                break;
+            case LLEntryBallViewDirectionTop: {
+                self.LL_top = 0;
+            }
+                break;
+            case LLEntryBallViewDirectionBottom: {
+                self.LL_bottom = LL_SCREEN_HEIGHT;
+            }
+                break;
+        }
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)resignActive:(BOOL)animated {
     if (animated) {
         [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self resetFrame];
@@ -87,12 +118,12 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 }
 
 - (void)becomeActive {
-    self.alpha = [LLConfig shared].activeAlpha;
+    self.active = YES;
+    self.alpha = [LLConfig shared].entryWindowActiveAlpha;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)resetFrame {
-    self.alpha = self.normalAlpha;
-    
     CGFloat top = self.LL_centerY;
     CGFloat left = self.LL_centerX;
     CGFloat right = LL_SCREEN_WIDTH - self.LL_centerX;
@@ -119,32 +150,64 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     CGPoint endPoint = self.center;
     switch (direction) {
         case LLEntryBallViewDirectionLeft: {
-            endPoint.x = self.LL_width / 2.0 - self.maskWidth;
+            endPoint.x = self.LL_width / 2.0;
             if (!self.statusBarClickable) {
                 endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
         }
             break;
         case LLEntryBallViewDirectionTop: {
-            endPoint.y = self.LL_height / 2.0 - self.maskWidth;
+            endPoint.y = self.LL_height / 2.0;
         }
             break;
         case LLEntryBallViewDirectionRight: {
-            endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0 + self.maskWidth;
+            endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0;
             if (!self.statusBarClickable) {
                 endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
         }
             break;
         case LLEntryBallViewDirectionBottom: {
-            endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0 + self.maskWidth;
+            endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0;
         }
             break;
         default:
             break;
     }
-    
+    self.direction = direction;
     self.center = endPoint;
+    [self performSelector:@selector(autoHideToSideIfNeeded) withObject:nil afterDelay:2];
+}
+
+- (void)autoHideToSideIfNeeded {
+    self.alpha = self.inactiveAlpha;
+    self.active = NO;
+    if (![LLConfig shared].isAutoHideEntryWindowToSideWhenInactive) {
+        return;
+    }
+    self.userInteractionEnabled = NO;
+    [UIView animateWithDuration:0.25 animations:^{
+        switch (self.direction) {
+            case LLEntryBallViewDirectionLeft: {
+                self.LL_right = [LLConfig shared].entryWindowDisplayPercent * self.LL_width;
+            }
+                break;
+            case LLEntryBallViewDirectionTop: {
+                self.LL_bottom = [LLConfig shared].entryWindowDisplayPercent * self.LL_height;
+            }
+                break;
+            case LLEntryBallViewDirectionRight: {
+                self.LL_left = LL_SCREEN_WIDTH - [LLConfig shared].entryWindowDisplayPercent * self.LL_width;
+            }
+                break;
+            case LLEntryBallViewDirectionBottom: {
+                self.LL_top = LL_SCREEN_HEIGHT - [LLConfig shared].entryWindowDisplayPercent * self.LL_height;
+            }
+                break;
+        }
+    } completion:^(BOOL finished) {
+        self.userInteractionEnabled = YES;
+    }];
 }
 
 @end

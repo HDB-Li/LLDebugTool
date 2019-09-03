@@ -24,6 +24,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Deprecated macro.
+#define LLDebugToolDeprecated(instead) NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
+
 /**
  Color style enum
  
@@ -57,21 +60,22 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 /**
  Window style. Decide how the Window displays.
  
- - LLConfigEntryWindowStyleBall: Show as a suspension ball. Moveable and clickable.
+ - LLConfigEntryWindowStyleBall: Show as a ball. Moveable and clickable.
  - LLConfigEntryWindowStyleTitle: Show as a big title. Moveable and clickable.
- - LLConfigEntryWindowStyleSuspensionLeading: Show as a big title on left. Part moveable and clickable.
- - LLConfigEntryWindowStyleSuspensionTrailing: Show as a big title on right. Moveable and clickable.
+ - LLConfigEntryWindowStyleLeading: Show as a big title on left. Part moveable and clickable.
+ - LLConfigEntryWindowStyleTrailing: Show as a big title on right. Moveable and clickable.
  - LLConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
  - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStyleSuspensionBall: Same to LLConfigEntryWindowStyleBall.
  */
 typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
     LLConfigEntryWindowStyleBall = 0,
     LLConfigEntryWindowStyleTitle = 1,
-    LLConfigEntryWindowStyleSuspensionLeading = 2,
-    LLConfigEntryWindowStyleSuspensionTrailing = 3,
+    LLConfigEntryWindowStyleLeading = 2,
+    LLConfigEntryWindowStyleTrailing = 3,
 #ifdef __IPHONE_13_0
-    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleSuspensionLeading") = 2,
-    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleSuspensionTrailing") = 3,
+    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 2,
+    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 3,
 #else
     LLConfigEntryWindowStyleNetBar = 4,
     LLConfigEntryWindowStylePowerBar = 5,
@@ -165,41 +169,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *dateFormatter;
 
-#pragma mark - Suspension Window
+#pragma mark - Entry Window Config
 /**
- Suspension ball width, default is kLLSuspensionWindowWidth, must greater than kLLSuspensionWindowMinWidth.
+ Entry window ball width, default is kLLEntryWindowBallWidth, must greater than kLLEntryWindowMinBallWidth.
  */
-@property (nonatomic, assign) CGFloat suspensionBallWidth;
+@property (nonatomic, assign) CGFloat entryWindowBallWidth;
 
 /**
- Suspension window hide width, default is kLLSuspensionWindowHideWidth.
+ Entry window display percent, 0 .. 1.0, default is kLLEntryWindowDisplayPercent.
  */
-@property (nonatomic, assign) CGFloat suspensionWindowHideWidth;
+@property (nonatomic, assign) CGFloat entryWindowDisplayPercent;
 
 /**
- Suspension default top, default is kLLSuspensionWindowTop.
+ Entry window first display position, default is {kLLEntryWindowFirstDisplayPositionX, kLLEntryWindowFirstDisplayPositionY}.
  */
-@property (nonatomic, assign) CGFloat suspensionWindowTop;
+@property (nonatomic, assign) CGPoint entryWindowFirstDisplayPosition;
 
 /**
- Suspension Ball alpha(not active), default is kLLSuspensionWindowNormalAlpha.
+ Entry window alpha(not active), default is kLLEntryWindowInactiveAlpha.
  */
-@property (nonatomic, assign) CGFloat normalAlpha;
+@property (nonatomic, assign) CGFloat entryWindowInactiveAlpha;
 
 /**
- Suspension Ball alpha(active), default is kLLSuspensionWindowActiveAlpha.
+ Entry window alpha(active), default is kLLEntryWindowActiveAlpha.
  */
-@property (nonatomic, assign) CGFloat activeAlpha;
+@property (nonatomic, assign) CGFloat entryWindowActiveAlpha;
 
 /**
- Whether the suspension ball can be moved, default is YES.
+ Automatic adjust entry window's frame to side, default is YES.
  */
-@property (nonatomic, assign) BOOL suspensionBallMoveable;
-
-/**
- Automatic adjust suspension window's frame, default is YES.
- */
-@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow;
+@property (nonatomic, assign, getter=isAutoHideEntryWindowToSideWhenInactive) BOOL autoHideEntryWindowToSideWhenInactive;
 
 #pragma mark - Magnifier Window
 /**
@@ -269,6 +268,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle;
 
+#pragma mark - DEPRECATED
+
+@property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
+@property (nonatomic, assign) CGFloat suspensionWindowHideWidth LLDebugToolDeprecated("Use `entryWindowDisplayPercent` to set display percent.");
+@property (nonatomic, assign) CGFloat suspensionWindowTop LLDebugToolDeprecated("Use `entryWindowFirstDisplayPosition` to set first display position.");
+@property (nonatomic, assign) CGFloat normalAlpha LLDebugToolDeprecated("Use `entryWindowInactiveAlpha`.");
+@property (nonatomic, assign) CGFloat activeAlpha LLDebugToolDeprecated("Use `entryWindowActiveAlpha`.");
+@property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
+@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `autoHideEntryWindowToSideWhenInactive`.");
+
 @end
 
 NS_ASSUME_NONNULL_END
+

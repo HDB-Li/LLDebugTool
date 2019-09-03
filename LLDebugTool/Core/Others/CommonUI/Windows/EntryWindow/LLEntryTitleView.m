@@ -51,7 +51,7 @@
 
 #pragma mark - Primary
 - (void)initial {
-    self.normalAlpha = 1;
+    self.inactiveAlpha = 1;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.contentView.layer.borderWidth = 1;
@@ -63,7 +63,6 @@
     self.label.LL_height = self.LL_height;
     self.LL_width = self.label.LL_right + 5;
 
-    [self resignActive:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }

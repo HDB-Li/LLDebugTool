@@ -27,11 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryView : LLBaseMoveView
 
+@property (nonatomic, assign, readonly, getter=isActive) BOOL active;
+
 @property (nonatomic, strong, readonly) UIView *contentView;
 
-@property (nonatomic, assign) CGFloat maskWidth;
+@property (nonatomic, assign) CGFloat inactiveAlpha;
 
-@property (nonatomic, assign) CGFloat normalAlpha;
+- (void)animatedBecomeActive;
 
 - (void)resignActive:(BOOL)animated;
 

@@ -65,6 +65,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)becomeVisable {
+    [self.activeView resignActive:NO];
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.statusBarClickable = [LLTool statusBarClickable];
@@ -103,13 +107,13 @@
             [self.view addSubview:self.bigTitleView];
         }
             break;
-        case LLConfigEntryWindowStyleSuspensionLeading: {
+        case LLConfigEntryWindowStyleLeading: {
             [self.activeView removeFromSuperview];
             self.activeView = self.leadingView;
             [self.view addSubview:self.leadingView];
         }
             break;
-        case LLConfigEntryWindowStyleSuspensionTrailing: {
+        case LLConfigEntryWindowStyleTrailing: {
             [self.activeView removeFromSuperview];
             self.activeView = self.trailingView;
             [self.view addSubview:self.trailingView];
@@ -133,10 +137,12 @@
 }
 
 - (void)tapGR:(UITapGestureRecognizer *)sender {
+    [self.activeView animatedBecomeActive];
     [[LLSettingManager shared].entryViewClickComponent componentDidLoad:nil];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)sender {
+    [self.activeView animatedBecomeActive];
     [[LLSettingManager shared].entryViewDoubleClickComponent componentDidLoad:nil];
 }
 
@@ -155,9 +161,9 @@
             return self.ballView;
         case LLConfigEntryWindowStyleTitle:
             return self.bigTitleView;
-        case LLConfigEntryWindowStyleSuspensionLeading:
+        case LLConfigEntryWindowStyleLeading:
             return self.leadingView;
-        case LLConfigEntryWindowStyleSuspensionTrailing:
+        case LLConfigEntryWindowStyleTrailing:
             return self.trailingView;
 #ifndef __IPHONE_13_0
         case LLConfigEntryWindowStyleNetBar:
@@ -190,22 +196,31 @@
 
 - (LLEntryBallView *)ballView {
     if (!_ballView) {
-        CGFloat width = [LLConfig shared].suspensionBallWidth;
-        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(-[LLConfig shared].suspensionWindowHideWidth, [LLConfig shared].suspensionWindowTop, width, width)];
+        CGFloat width = [LLConfig shared].entryWindowBallWidth;
+        CGRect frame = CGRectZero;
+        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.size = CGSizeMake(width, width);
+        _ballView = [[LLEntryBallView alloc] initWithFrame:frame];
     }
     return _ballView;
 }
 
 - (LLEntryBigTitleView *)bigTitleView {
     if (!_bigTitleView) {
-        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, [LLConfig shared].suspensionWindowTop, 100, kLLEntryWindowBigTitleViewHeight)];
+        CGRect frame = CGRectZero;
+        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.size = CGSizeMake(100, kLLEntryWindowBigTitleViewHeight);
+        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:frame];
     }
     return _bigTitleView;
 }
 
 - (LLEntryView *)leadingView {
     if (!_leadingView) {
-        _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, [LLConfig shared].suspensionWindowTop, 100, kLLEntryWindowBigTitleViewHeight)];
+        CGRect frame = CGRectZero;
+        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.size = CGSizeMake(100, kLLEntryWindowBigTitleViewHeight);
+        _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:frame];
         _leadingView.moveableRect = CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0);
     }
     return _leadingView;
@@ -213,7 +228,10 @@
 
 - (LLEntryView *)trailingView {
     if (!_trailingView) {
-        _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, [LLConfig shared].suspensionWindowTop, 100, kLLEntryWindowBigTitleViewHeight)];
+        CGRect frame = CGRectZero;
+        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.size = CGSizeMake(100, kLLEntryWindowBigTitleViewHeight);
+        _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:frame];
         _trailingView.LL_right = LL_SCREEN_WIDTH;
         _trailingView.moveableRect = CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0);
     }
