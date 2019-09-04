@@ -43,29 +43,6 @@
     return self;
 }
 
-- (void)updateOrientation:(UIInterfaceOrientation)orientation {
-    switch (orientation) {
-        case UIInterfaceOrientationPortrait:{
-            self.contentView.transform = CGAffineTransformIdentity;
-        }
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown: {
-            self.contentView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft: {
-            self.contentView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, -M_PI_2);
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight: {
-            self.contentView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI_2);
-        }
-            break;
-        default:
-            break;
-    }
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

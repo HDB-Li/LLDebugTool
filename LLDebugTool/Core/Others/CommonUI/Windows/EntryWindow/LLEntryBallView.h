@@ -27,10 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryBallView : LLEntryView
 
-/// Update subviews when window changed orientation.
-/// @param orientation New orientation.
-- (void)updateOrientation:(UIInterfaceOrientation)orientation;
-
 @end
 
 NS_ASSUME_NONNULL_END

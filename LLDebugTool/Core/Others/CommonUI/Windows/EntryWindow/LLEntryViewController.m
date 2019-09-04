@@ -86,10 +86,6 @@
     
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:doubleTap];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUIApplicationDidChangeStatusBarOrientationNotification:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-#pragma clang diagnostic pop
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
@@ -172,15 +168,6 @@
             return self.powerView;
 #endif
     }
-}
-
-#pragma mark - UIApplicationDidChangeStatusBarOrientationNotification
-- (void)didReceiveUIApplicationDidChangeStatusBarOrientationNotification:(NSNotification *)notification {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-#pragma clang diagnostic pop
-    [_ballView updateOrientation:orientation];
 }
 
 #pragma mark - LLConfigDidUpdateWindowStyleNotificationName

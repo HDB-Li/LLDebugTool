@@ -210,27 +210,28 @@ static NSString *const kCellID = @"cellID";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             switch ([LLConfig shared].entryWindowStyle) {
                 case LLConfigEntryWindowStyleBall:{
-                    cell.detailTextLabel.text = @"Ball";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleBall";
                 }
                     break;
                 case LLConfigEntryWindowStyleTitle:{
-                    cell.detailTextLabel.text = @"Title";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTitle";
                 }
+                    break;
                 case LLConfigEntryWindowStyleLeading: {
-                    cell.detailTextLabel.text = @"Leading";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
                 }
                     break;
                 case LLConfigEntryWindowStyleTrailing: {
-                    cell.detailTextLabel.text = @"Trailing";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
                 }
                     break;
 #ifndef __IPHONE_13_0
                 case LLConfigEntryWindowStylePowerBar:{
-                    cell.detailTextLabel.text = @"LLConfigWindowPowerBar";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
                 }
                     break;
                 case LLConfigEntryWindowStyleNetBar:{
-                    cell.detailTextLabel.text = @"LLConfigWindowNetBar";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
                 }
                     break;
 #endif
