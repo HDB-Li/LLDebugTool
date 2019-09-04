@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.h
+//  LLSettingSingleModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLSettingSingleModel.h"
+#import "LLSettingSwitchCell.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface LLSettingSingleModel ()
 
-@interface LLFunctionWindow : LLBaseComponentWindow
+@property (nonatomic, assign) BOOL flag;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLSettingSingleModel
+
+- (instancetype)initWithTitle:(NSString *)title single:(BOOL)flag {
+    if (self = [super initWithTitle:title cellClass:NSStringFromClass([LLSettingSwitchCell class])]) {
+        _flag = flag;
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title cellClass:(NSString *)cellClass {
+    NSAssert(NO, @"Must call initWithTitle:single:");
+    return [self initWithTitle:title single:NO];
+}
+
+@end

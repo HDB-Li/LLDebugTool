@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.h
+//  LLSettingSwitchCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLBaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFunctionWindow : LLBaseComponentWindow
+@interface LLSettingSwitchCell : LLBaseTableViewCell
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.h
+//  LLSettingModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFunctionWindow : LLBaseComponentWindow
+@interface LLSettingModel : NSObject
+
+@property (nonatomic, copy) NSString *title;
+
+@property (nonatomic, copy) NSString *cellClass;
+
+- (instancetype)initWithTitle:(NSString *)title cellClass:(NSString *)cellClass;
 
 @end
 

@@ -90,7 +90,6 @@
     [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
     [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
     [self.settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-    self.settingButton.hidden = YES;
     
     [self loadData];
 }

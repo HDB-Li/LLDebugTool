@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.h
+//  LLSettingSwitchCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLSettingSwitchCell.h"
+#import "LLThemeManager.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface LLSettingSwitchCell ()
 
-@interface LLFunctionWindow : LLBaseComponentWindow
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UISwitch *swit;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLSettingSwitchCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initial];
+}
+
+#pragma mark - Primary
+- (void)initial {
+    self.swit.tintColor = [LLThemeManager shared].primaryColor;
+}
+
+@end

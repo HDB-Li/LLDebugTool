@@ -1,5 +1,5 @@
 //
-//  LLFunctionWindow.h
+//  LLSettingSingleModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLSettingModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFunctionWindow : LLBaseComponentWindow
+@interface LLSettingSingleModel : LLSettingModel
+
+- (instancetype)initWithTitle:(NSString *)title single:(BOOL)flag;
 
 @end
 
