@@ -35,6 +35,15 @@
     return self;
 }
 
+
+- (void)becomeVisiable {
+    UIViewController *vc = self.rootViewController;
+    if ([vc isKindOfClass:[LLBaseViewController class]]) {
+        LLBaseViewController *viewController = (LLBaseViewController *)vc;
+        [viewController becomeVisable];
+    }
+}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     UIViewController *vc = [self LL_currentShowingViewController];
     if ([vc isKindOfClass:[LLBaseViewController class]]) {

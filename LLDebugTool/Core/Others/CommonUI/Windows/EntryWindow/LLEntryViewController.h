@@ -27,8 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryViewController : LLBaseViewController
 
-- (void)becomeVisable;
-
 @end
 
 NS_ASSUME_NONNULL_END

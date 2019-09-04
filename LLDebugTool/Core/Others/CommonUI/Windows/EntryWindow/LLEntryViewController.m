@@ -66,6 +66,7 @@
 }
 
 - (void)becomeVisable {
+    [super becomeVisable];
     [self.activeView resignActive:NO];
 }
 

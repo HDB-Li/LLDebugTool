@@ -51,6 +51,8 @@ typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
 
 @property (nonatomic, assign) LLBaseWindowHideAnimateStyle hideAnimateStyle;
 
+- (void)becomeVisiable;
+
 @end
 
 NS_ASSUME_NONNULL_END

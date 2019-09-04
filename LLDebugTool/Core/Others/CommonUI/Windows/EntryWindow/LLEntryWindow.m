@@ -46,11 +46,6 @@
     [self resignKeyWindow];
 }
 
-- (void)becomeVisiable {
-    LLEntryViewController *vc = self.rootViewController;
-    [vc becomeVisable];
-}
-
 #pragma mark - Primary
 - (void)initial {
     self.backgroundColor = [UIColor clearColor];

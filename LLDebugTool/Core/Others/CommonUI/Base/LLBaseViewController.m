@@ -83,6 +83,10 @@
     }
 }
 
+- (void)becomeVisable {
+    
+}
+
 #pragma mark - Primary
 - (void)baseInitial {
     [self resetDefaultSettings];

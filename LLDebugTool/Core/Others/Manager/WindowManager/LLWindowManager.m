@@ -160,7 +160,6 @@ static LLWindowManager *_instance = nil;
         window.hidden = NO;
         window.windowLevel = self.entryWindowLevel;
         [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle];
-        [self.entryWindow becomeVisiable];
     } else {
         if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
             self.keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -199,11 +198,13 @@ static LLWindowManager *_instance = nil;
             window.LL_x = x;
             window.LL_y = y;
         } completion:^(BOOL finished) {
+            [window becomeVisiable];
             if (completion) {
                 completion();
             }
         }];
     } else {
+        [window becomeVisiable];
         if (completion) {
             completion();
         }

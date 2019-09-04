@@ -27,8 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryWindow : LLBaseWindow
 
-- (void)becomeVisiable;
-
 @end
 
 NS_ASSUME_NONNULL_END

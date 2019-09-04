@@ -68,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag;
 
+/// Called when window is show.
+- (void)becomeVisable;
+
 @end
 
 NS_ASSUME_NONNULL_END
