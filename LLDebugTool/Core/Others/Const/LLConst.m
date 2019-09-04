@@ -25,7 +25,7 @@
 
 CGFloat const kLLEntryWindowBallWidth = 50;
 CGFloat const kLLEntryWindowMinBallWidth = 30;
-CGFloat const kLLEntryWindowDisplayPercent = 0.3;
+CGFloat const kLLEntryWindowDisplayPercent = 0.5;
 CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
 CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
 CGFloat const kLLEntryWindowInactiveAlpha = 0.75;
