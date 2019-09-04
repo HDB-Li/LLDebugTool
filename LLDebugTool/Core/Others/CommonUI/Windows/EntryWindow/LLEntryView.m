@@ -171,8 +171,6 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
             endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0;
         }
             break;
-        default:
-            break;
     }
     self.direction = direction;
     self.center = endPoint;

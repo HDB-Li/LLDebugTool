@@ -63,7 +63,10 @@
             [self.operations removeObject:oper];
         }
             break;
-        default:
+        case LLScreenshotActionBack:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionNone:
             break;
     }
 }
@@ -134,7 +137,10 @@
             [operation.textView becomeFirstResponder];
         }
             break;
-        default:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionBack:
+        case LLScreenshotActionNone:
             break;
     }
 }
@@ -171,7 +177,11 @@
             [self setNeedsDisplay];
         }
             break;
-        default:
+        case LLScreenshotActionText:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionNone:
+        case LLScreenshotActionBack:
             break;
     }
 }
@@ -213,7 +223,11 @@
             [self setNeedsDisplay];
         }
             break;
-        default:
+        case LLScreenshotActionText:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionNone:
+        case LLScreenshotActionBack:
             break;
     }
 }

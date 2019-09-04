@@ -59,8 +59,6 @@
             }
         }
             break;
-        default:
-            break;
     }
     if ([_delegate respondsToSelector:@selector(LLScreenshotActionView:didSelectedAction:isSelected:position:)]) {
         CGFloat position = sender.frame.origin.x + sender.frame.size.width / 2.0;
@@ -124,8 +122,6 @@
                 selectImageName = kSureImageName;
                 break;
             }
-            default:
-                break;
         }
         [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
         [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];

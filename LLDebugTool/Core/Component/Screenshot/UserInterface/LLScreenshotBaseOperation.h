@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, readonly) LLScreenshotAction action;
 
-@property (nonatomic, assign, readonly) LLScreenshotSelectorAction size;
+@property (nonatomic, assign, readonly) LLScreenshotSelectorSizeAction size;
 
-@property (nonatomic, assign, readonly) LLScreenshotSelectorAction color;
+@property (nonatomic, assign, readonly) LLScreenshotSelectorColorAction color;
 
 @property (nonatomic, strong, readonly) CAShapeLayer *layer;
 

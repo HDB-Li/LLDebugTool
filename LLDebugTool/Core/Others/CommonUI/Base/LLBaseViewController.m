@@ -120,6 +120,13 @@
     self.navigationController.navigationBar.translucent = YES;
 }
 
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (![viewControllerToPresent isKindOfClass:[UIAlertController class]]) {
+        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
 - (UIButton *)navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
     UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:target action:action];
     btn.showsTouchWhenHighlighted = NO;

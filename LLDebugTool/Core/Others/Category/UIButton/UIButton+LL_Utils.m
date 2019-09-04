@@ -44,9 +44,12 @@
             return @"Info Dark";
         case UIButtonTypeContactAdd:
             return @"Contact Add";
-        default:
-            return nil;
+#ifdef __IPHONE_13_0
+        case UIButtonTypeClose:
+            return @"Close";
+#endif
     }
+    return nil;
 }
 
 - (NSString *)LL_stateDescription {
@@ -65,9 +68,8 @@
             return @"Application";
         case UIControlStateHighlighted:
             return @"Highlighted";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 // 设置颜色

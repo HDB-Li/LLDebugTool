@@ -127,19 +127,12 @@
             }
         }
             break;
-        case LLScreenshotActionBack:{
-            
-        }
+        case LLScreenshotActionBack:
             break;
-        case LLScreenshotActionCancel:{
-            
-        }
+        case LLScreenshotActionCancel:
             break;
-        case LLScreenshotActionConfirm:{
-            
-        }
-            break;
-        default:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionNone:
             break;
     }
     

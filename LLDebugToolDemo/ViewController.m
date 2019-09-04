@@ -202,8 +202,6 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
                 }
                     break;
-                default:
-                    break;
             }
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);

@@ -51,7 +51,7 @@
 }
 
 - (void)actionButtonClicked:(UIButton *)sender {
-    if (sender.tag <= LLScreenshotSelectorActionBig) {
+    if (sender.tag <= LLScreenshotSelectorSizeActionBig) {
         // Size button
         if (self.lastSizeButton != sender) {
             self.lastSizeButton.selected = NO;
@@ -91,24 +91,24 @@
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
-            case LLScreenshotSelectorActionSmall:{
+            case LLScreenshotSelectorSizeActionSmall:{
                 imageName = kSelectorSmallImageName;
                 selectImageName = kSelectorSmallSelectImageName;
                 button.selected = YES;
                 self.lastSizeButton = button;
             }
                 break;
-            case LLScreenshotSelectorActionMedium:{
+            case LLScreenshotSelectorSizeActionMedium:{
                 imageName = kSelectorMediumImageName;
                 selectImageName = kSelectorMediumSelectImageName;
             }
                 break;
-            case LLScreenshotSelectorActionBig:{
+            case LLScreenshotSelectorSizeActionBig:{
                 imageName = kSelectorBigImageName;
                 selectImageName = kSelectorBigSelectImageName;
             }
                 break;
-            case LLScreenshotSelectorActionRed:{
+            case LLScreenshotSelectorColorActionRed:{
                 imageName = kSelectorRedImageName;
                 selectImageName = kSelectorRedImageName;
                 button.selected = YES;
@@ -116,32 +116,30 @@
                 self.lastColorButton = button;
             }
                 break;
-            case LLScreenshotSelectorActionBlue:{
+            case LLScreenshotSelectorColorActionBlue:{
                 imageName = kSelectorBlueImageName;
                 selectImageName = kSelectorBlueImageName;
             }
                 break;
-            case LLScreenshotSelectorActionGreen:{
+            case LLScreenshotSelectorColorActionGreen:{
                 imageName = kSelectorGreenImageName;
                 selectImageName = kSelectorGreenImageName;
             }
                 break;
-            case LLScreenshotSelectorActionYellow:{
+            case LLScreenshotSelectorColorActionYellow:{
                 imageName = kSelectorYellowImageName;
                 selectImageName = kSelectorYellowImageName;
             }
                 break;
-            case LLScreenshotSelectorActionGray:{
+            case LLScreenshotSelectorColorActionGray:{
                 imageName = kSelectorGrayImageName;
                 selectImageName = kSelectorGrayImageName;
             }
                 break;
-            case LLScreenshotSelectorActionWhite:{
+            case LLScreenshotSelectorColorActionWhite:{
                 imageName = kSelectorWhiteImageName;
                 selectImageName = kSelectorWhiteImageName;
             }
-                break;
-            default:
                 break;
         }
         [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];

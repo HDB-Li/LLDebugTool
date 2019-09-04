@@ -27,18 +27,18 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _size = LLScreenshotSelectorActionSmall;
-        _color = LLScreenshotSelectorActionRed;
+        _size = LLScreenshotSelectorSizeActionSmall;
+        _color = LLScreenshotSelectorColorActionRed;
     }
     return self;
 }
 
-- (instancetype)initWithSize:(LLScreenshotSelectorAction)size color:(LLScreenshotSelectorAction)color {
+- (instancetype)initWithSize:(LLScreenshotSelectorSizeAction)size color:(LLScreenshotSelectorColorAction)color {
     if (self = [super init]) {
-        if (size >= LLScreenshotSelectorActionSmall && size <= LLScreenshotSelectorActionBig) {
+        if (size >= LLScreenshotSelectorSizeActionSmall && size <= LLScreenshotSelectorSizeActionBig) {
             _size = size;
         }
-        if (color >= LLScreenshotSelectorActionRed && color <= LLScreenshotSelectorActionWhite) {
+        if (color >= LLScreenshotSelectorColorActionRed && color <= LLScreenshotSelectorColorActionWhite) {
             _color = color;
         }
     }

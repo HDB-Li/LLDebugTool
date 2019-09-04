@@ -35,9 +35,8 @@
             return @"Bottom";
         case UIControlContentVerticalAlignmentFill:
             return @"Fill";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 - (NSString *_Nullable)LL_contentHorizontalAlignmentDescription {
@@ -54,9 +53,8 @@
             return @"Leading";
         case UIControlContentHorizontalAlignmentTrailing:
             return @"Trailing";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 @end

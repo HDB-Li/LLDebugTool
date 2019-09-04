@@ -68,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Whether the status bar can be clicked.
 + (BOOL)statusBarClickable;
 
+/// Get UIStatusBar_Modern.
++ (UIView *_Nullable)getUIStatusBarModern;
+
 @end
 
 NS_ASSUME_NONNULL_END

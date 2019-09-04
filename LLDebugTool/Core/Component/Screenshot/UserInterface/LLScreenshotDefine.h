@@ -36,16 +36,19 @@ typedef NS_ENUM(NSUInteger, LLScreenshotAction) {
     LLScreenshotActionConfirm   = 8
 };
 
-typedef NS_ENUM(NSUInteger, LLScreenshotSelectorAction) {
-    LLScreenshotSelectorActionSmall     = 0,
-    LLScreenshotSelectorActionMedium    = 1,
-    LLScreenshotSelectorActionBig       = 2,
-    LLScreenshotSelectorActionRed       = 3,    // d81e06
-    LLScreenshotSelectorActionBlue      = 4,    // 1296db
-    LLScreenshotSelectorActionGreen     = 5,    // 1afa29
-    LLScreenshotSelectorActionYellow    = 6,    // f4ea2a
-    LLScreenshotSelectorActionGray      = 7,    // 2c2c2c
-    LLScreenshotSelectorActionWhite     = 8,    // ffffff
+typedef NS_ENUM(NSUInteger, LLScreenshotSelectorSizeAction) {
+    LLScreenshotSelectorSizeActionSmall     = 0,
+    LLScreenshotSelectorSizeActionMedium    = 1,
+    LLScreenshotSelectorSizeActionBig       = 2,
+};
+
+typedef NS_ENUM(NSUInteger, LLScreenshotSelectorColorAction) {
+    LLScreenshotSelectorColorActionRed       = 3,    // #d81e06
+    LLScreenshotSelectorColorActionBlue      = 4,    // #1296db
+    LLScreenshotSelectorColorActionGreen     = 5,    // #1afa29
+    LLScreenshotSelectorColorActionYellow    = 6,    // #f4ea2a
+    LLScreenshotSelectorColorActionGray      = 7,    // #2c2c2c
+    LLScreenshotSelectorColorActionWhite     = 8,    // #ffffff
 };
 
 #endif /* LLScreenshotDefine_h */

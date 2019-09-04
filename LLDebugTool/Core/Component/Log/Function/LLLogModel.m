@@ -54,18 +54,12 @@
     switch (self.level) {
         case LLConfigLogLevelDefault:
             return @"Default";
-            break;
         case LLConfigLogLevelAlert:
             return @"Alert";
-            break;
         case LLConfigLogLevelWarning:
             return @"Warning";
-            break;
         case LLConfigLogLevelError:
             return @"Error";
-            break;
-        default:
-            break;
     }
     return @"Unknown";
 }

@@ -37,9 +37,8 @@
             return @"Justified";
         case NSTextAlignmentNatural:
             return @"Natural";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 - (NSString *)LL_baselineAdjustmentDescription {
@@ -50,9 +49,8 @@
             return @"Centers";
         case UIBaselineAdjustmentNone:
             return @"None";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 - (NSString *_Nullable)LL_lineBreakModeDescription {
@@ -69,9 +67,8 @@
             return @"Truncate Tail";
         case NSLineBreakByTruncatingMiddle:
             return @"Truncate Middle";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 @end

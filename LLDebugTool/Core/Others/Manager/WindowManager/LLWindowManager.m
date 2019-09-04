@@ -245,8 +245,6 @@ static LLWindowManager *_instance = nil;
                     window.LL_x = LL_SCREEN_WIDTH;
                 }
                     break;
-                default:
-                    break;
             }
         } completion:^(BOOL finished) {
             window.hidden = YES;

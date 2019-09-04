@@ -187,9 +187,8 @@ static const char kLLVerticalPaddingKey;
             return @"BottomLeft";
         case UIViewContentModeBottomRight:
             return @"BottomRight";
-        default:
-            return nil;
     }
+    return nil;
 }
 
 - (void)LL_setCornerRadius:(CGFloat)cornerRadius {

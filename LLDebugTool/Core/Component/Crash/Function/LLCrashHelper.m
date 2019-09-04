@@ -321,8 +321,6 @@ void SignalHandler(int sig)
             name = @"SIGUSR2";
         }
             break;
-        default:{}
-            break;
     }
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
