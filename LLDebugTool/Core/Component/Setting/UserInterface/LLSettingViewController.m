@@ -95,6 +95,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [settings removeAllObjects];
     
     self.dataArray = @[category1];
+    [self.tableView reloadData];
 }
 
 - (void)setUpUI {
@@ -124,6 +125,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     } else {
         [LLConfig shared].colorStyle = colorStyle;
         [LLSettingManager shared].configColorStyleEnum = @(colorStyle);
+        [self initData];
     }
 }
 
