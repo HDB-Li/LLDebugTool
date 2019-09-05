@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLNavigationController.h"
+#import "LLBaseViewController.h"
 #import "LLThemeManager.h"
 
 @interface LLNavigationController ()
@@ -36,6 +37,7 @@
     self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
+#pragma mark - Over write
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
@@ -56,11 +58,17 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return [self.visibleViewController supportedInterfaceOrientations];
+    if ([self.visibleViewController isKindOfClass:[LLBaseViewController class]]) {
+        return [self.visibleViewController supportedInterfaceOrientations];
+    }
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return [self.visibleViewController preferredInterfaceOrientationForPresentation];
+    if ([self.visibleViewController isKindOfClass:[LLBaseViewController class]]) {
+        return [self.visibleViewController preferredInterfaceOrientationForPresentation];
+    }
+    return UIInterfaceOrientationPortrait;
 }
 
 @end
