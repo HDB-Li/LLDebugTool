@@ -50,16 +50,16 @@ NSString *const kThemeManagerUpdateBackgroundColorNotificaionName = @"kThemeMana
 - (void)setPrimaryColor:(UIColor * _Nonnull)primaryColor {
     if (_primaryColor != primaryColor) {
         _primaryColor = primaryColor;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdatePrimaryColorNotificaionName object:primaryColor];
         [self calculateColorIfNeeded];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdatePrimaryColorNotificaionName object:primaryColor];
     }
 }
 
 - (void)setBackgroundColor:(UIColor * _Nonnull)backgroundColor {
     if (_backgroundColor != backgroundColor) {
         _backgroundColor = backgroundColor;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdateBackgroundColorNotificaionName object:backgroundColor];
         [self calculateColorIfNeeded];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdateBackgroundColorNotificaionName object:backgroundColor];
     }
 }
 
