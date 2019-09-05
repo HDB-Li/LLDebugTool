@@ -1,5 +1,5 @@
 //
-//  LLSettingSingleModel.m
+//  LLSettingSelectorCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,27 +21,50 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingSingleModel.h"
-#import "LLSettingSwitchCell.h"
+#import "LLSettingSelectorCell.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
+#import "Masonry.h"
 
-@interface LLSettingSingleModel ()
+@interface LLSettingSelectorCell ()
 
-@property (nonatomic, assign) BOOL flag;
+@property (nonatomic, strong) UILabel *detailLabel;
 
 @end
 
-@implementation LLSettingSingleModel
+@implementation LLSettingSelectorCell
 
-- (instancetype)initWithTitle:(NSString *)title single:(BOOL)flag {
-    if (self = [super initWithTitle:title cellClass:NSStringFromClass([LLSettingSwitchCell class])]) {
-        _flag = flag;
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [self.contentView addSubview:self.detailLabel];
+    
+    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.top.bottom.mas_equalTo(0);
+    }];
 }
 
-- (instancetype)initWithTitle:(NSString *)title cellClass:(NSString *)cellClass {
-    NSAssert(NO, @"Must call initWithTitle:single:");
-    return [self initWithTitle:title single:NO];
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    _detailLabel.textColor = [LLThemeManager shared].primaryColor;
+}
+
+#pragma mark - Getters and setters
+- (void)setModel:(LLSettingModel *)model {
+    [super setModel:model];
+    self.detailLabel.text = model.detailTitle;
+}
+
+- (UILabel *)detailLabel {
+    if (!_detailLabel) {
+        _detailLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _detailLabel.textAlignment = NSTextAlignmentRight;
+        _detailLabel.numberOfLines = 0;
+    }
+    return _detailLabel;
 }
 
 @end

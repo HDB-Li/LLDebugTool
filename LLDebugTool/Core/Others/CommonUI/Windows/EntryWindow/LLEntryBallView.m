@@ -68,6 +68,7 @@
 }
 
 - (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.logoImageView.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
 

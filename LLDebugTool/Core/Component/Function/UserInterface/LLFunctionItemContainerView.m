@@ -112,7 +112,7 @@
     UIView *view = tap.view;
     if ([view isKindOfClass:[LLFunctionItemView class]]) {
         LLFunctionItemView *itemView = (LLFunctionItemView *)view;
-        [self.delegate llFunctionContainerView:self didSelectAt:itemView.model];
+        [self.delegate LLFunctionContainerView:self didSelectAt:itemView.model];
     }
 }
 

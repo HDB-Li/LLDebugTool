@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LLComponent.h"
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LLComponent *entryViewClickComponent;
 
 @property (nonatomic, strong) LLComponent *entryViewDoubleClickComponent;
+
+@property (nonatomic, strong) NSNumber *configColorStyleEnum;
 
 + (instancetype)shared;
 

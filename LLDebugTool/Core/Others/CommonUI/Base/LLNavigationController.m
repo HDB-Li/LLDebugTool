@@ -31,12 +31,6 @@
 
 @implementation LLNavigationController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
-    self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
-}
-
 #pragma mark - Over write
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {

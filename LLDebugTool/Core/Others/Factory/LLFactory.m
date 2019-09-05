@@ -293,4 +293,10 @@
     return control;
 }
 
+#pragma mark - UISwitch
++ (UISwitch *)getSwitch {
+    UISwitch *swit = [[UISwitch alloc] initWithFrame:CGRectZero];
+    return swit;
+}
+
 @end

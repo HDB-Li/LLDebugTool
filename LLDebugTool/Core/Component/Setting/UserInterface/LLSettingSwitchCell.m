@@ -23,25 +23,45 @@
 
 #import "LLSettingSwitchCell.h"
 #import "LLThemeManager.h"
+#import "LLFactory.h"
+#import "Masonry.h"
 
 @interface LLSettingSwitchCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
-@property (weak, nonatomic) IBOutlet UISwitch *swit;
+@property (nonatomic, strong) UISwitch *swit;
 
 @end
 
 @implementation LLSettingSwitchCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    [self.contentView addSubview:self.swit];
+    
+    [self.swit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+    }];
 }
 
-#pragma mark - Primary
-- (void)initial {
-    self.swit.tintColor = [LLThemeManager shared].primaryColor;
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    _swit.tintColor = [LLThemeManager shared].primaryColor;
+}
+
+#pragma mark - Getters and settings
+- (void)setModel:(LLSettingModel *)model {
+    [super setModel:model];
+    _swit.on = model.flag;
+}
+
+- (UISwitch *)swit {
+    if (!_swit) {
+        _swit = [LLFactory getSwitch];
+        _swit.tintColor = [LLThemeManager shared].primaryColor;
+    }
+    return _swit;
 }
 
 @end

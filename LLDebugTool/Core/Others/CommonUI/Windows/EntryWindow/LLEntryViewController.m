@@ -65,6 +65,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - Over write
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
+    self.view.backgroundColor = [UIColor clearColor];
+}
+
 - (void)becomeVisable {
     [super becomeVisable];
     [self.activeView resignActive:NO];

@@ -1,5 +1,5 @@
 //
-//  LLSettingSingleModel.h
+//  NSUserDefaults+LL_Utils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingModel.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSettingSingleModel : LLSettingModel
+@interface NSUserDefaults (LL_Utils)
 
-- (instancetype)initWithTitle:(NSString *)title single:(BOOL)flag;
++ (NSString *_Nullable)LL_stringForKey:(NSString *)aKey;
++ (void)LL_setString:(NSString *)string forKey:(NSString *)aKey;
+
++ (NSInteger)LL_integerForKey:(NSString *)aKey;
++ (void)LL_setInteger:(NSInteger)value forKey:(NSString *)aKey;
+
++ (NSNumber *)LL_numberForKey:(NSString *)aKey;
++ (void)LL_setNumber:(NSNumber *)num forKey:(NSString *)aKey;
 
 @end
 

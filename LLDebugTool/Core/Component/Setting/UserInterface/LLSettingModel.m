@@ -22,13 +22,25 @@
 //  SOFTWARE.
 
 #import "LLSettingModel.h"
+#import "LLSettingSwitchCell.h"
+#import "LLSettingSelectorCell.h"
 
 @implementation LLSettingModel
 
-- (instancetype)initWithTitle:(NSString *)title cellClass:(NSString *)cellClass {
+- (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
     if (self = [super init]) {
-        _title = [title copy];
-        _cellClass = [cellClass copy];
+        _title = title;
+        _flag = flag;
+        _cellClass = NSStringFromClass(LLSettingSwitchCell.class);
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
+    if (self = [super init]) {
+        _title = title;
+        _detailTitle = detailTitle;
+        _cellClass = NSStringFromClass(LLSettingSelectorCell.class);
     }
     return self;
 }

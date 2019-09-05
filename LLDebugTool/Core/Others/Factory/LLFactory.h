@@ -442,6 +442,15 @@ NS_ASSUME_NONNULL_BEGIN
                                       frame:(CGRect)frame
                                       items:(nullable NSArray *)items;
 
+#pragma mark - UISwitch
+
+/**
+Get Switch.
+
+@return UISwitch.
+*/
++ (UISwitch *)getSwitch;
+
 @end
 
 NS_ASSUME_NONNULL_END

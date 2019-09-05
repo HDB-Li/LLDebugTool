@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LLFunctionContainerViewControllerDelegate <NSObject>
 
-- (void)llFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model;
+- (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model;
 
 @end
 

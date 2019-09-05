@@ -38,6 +38,7 @@
 
 @implementation LLMagnifierViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];

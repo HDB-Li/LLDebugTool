@@ -17,20 +17,24 @@ PODS:
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
+  - Masonry (1.1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - FMDB
+  - Masonry (= 1.1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
     - FMDB
+    - Masonry
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 67156b5bff7afc8bb2d376b6bb182ac0ee9bc442
+PODFILE CHECKSUM: 74fcb8e68922b16ad247adcd56321b7fa07352fc
 
-COCOAPODS: 1.7.0.beta.2
+COCOAPODS: 1.7.5

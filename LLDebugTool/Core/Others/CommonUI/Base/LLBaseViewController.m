@@ -34,9 +34,14 @@
 
 @implementation LLBaseViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self baseInitial];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Public
@@ -87,27 +92,25 @@
     
 }
 
+- (void)initCloseLeftNavigationItem {
+    [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
+}
+
+- (void)primaryColorChanged {
+    [self setNavigationSettings];
+}
+
+- (void)backgroundColorChanged {
+    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
+}
+
 #pragma mark - Primary
 - (void)baseInitial {
     [self resetDefaultSettings];
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self initNavigationItems];
-}
-
-- (void)initNavigationItems {
-    if (self.navigationController) {
-        self.navigationItem.hidesBackButton = YES;
-        if (self.navigationController.viewControllers.count <= 1) {
-            [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
-        } else {
-            UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
-            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        }
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
-        self.navigationController.navigationBar.translucent = YES;
-        self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
-    }
+    [self setNavigationSettings];
+    [self addObservers];
 }
 
 - (void)resetDefaultSettings {
@@ -120,11 +123,26 @@
     self.navigationController.navigationBar.translucent = YES;
 }
 
-- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
-    if (![viewControllerToPresent isKindOfClass:[UIAlertController class]]) {
-        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+- (void)setNavigationSettings {
+    if (self.navigationController) {
+        self.navigationItem.hidesBackButton = YES;
+        if (self.navigationController.viewControllers.count <= 1) {
+            [self initCloseLeftNavigationItem];
+        } else {
+            UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
+            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+        }
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
+        self.navigationController.navigationBar.translucent = YES;
+        self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
+        self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
     }
-    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
 
 - (UIButton *)navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
@@ -141,8 +159,28 @@
     return btn;
 }
 
+#pragma mark - Event response
 - (void)backAction:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    [self primaryColorChanged];
+}
+
+#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    [self backgroundColorChanged];
+}
+
+#pragma mark - Over write
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (![viewControllerToPresent isKindOfClass:[UIAlertController class]]) {
+        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
 - (BOOL)shouldAutorotate {

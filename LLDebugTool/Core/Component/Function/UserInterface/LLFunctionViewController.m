@@ -37,6 +37,7 @@
 #import "LLThemeManager.h"
 #import "LLConst.h"
 #import "LLWindowManager.h"
+#import "LLSettingViewController.h"
 
 @interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
 
@@ -50,6 +51,7 @@
 
 @implementation LLFunctionViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
@@ -115,12 +117,8 @@
     self.shortCutContainerView.title = @"Short Cut";
 }
 
-- (void)settingButtonClicked:(UIButton *)sender {
-    
-}
-
 #pragma mark - LLFunctionContainerViewDelegate
-- (void)llFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
+- (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
     LLComponent *component = model.component;
     [component componentDidLoad:nil];
 }
@@ -128,6 +126,12 @@
 #pragma mark - LLHierarchyViewControllerDelegate
 - (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel {
     [self.delegate LLFunctionViewController:self didSelectedHierarchyModel:selectedModel];
+}
+
+#pragma mark - Event response
+- (void)settingButtonClicked:(UIButton *)sender {
+    LLSettingViewController *vc = [[LLSettingViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

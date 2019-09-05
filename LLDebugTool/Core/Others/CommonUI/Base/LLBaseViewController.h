@@ -71,6 +71,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// Called when window is show.
 - (void)becomeVisable;
 
+/// Init close navigation item if needed.
+- (void)initCloseLeftNavigationItem;
+
+/// Called when [LLThemeManager primaryColor] changed.
+- (void)primaryColorChanged;
+
+/// Called when [LLThemeManager backgroundColor] changed.
+- (void)backgroundColorChanged;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -28,7 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLSettingCategoryModel : NSObject
 
-@property (nonatomic, strong) NSArray <LLSettingModel *>*settings;
+@property (nonatomic, strong, readonly) NSString *title;
+
+@property (nonatomic, strong, readonly) NSArray <LLSettingModel *>*settings;
+
+- (instancetype)initWithTitle:(NSString *)title settings:(NSArray <LLSettingModel *>*)settings;
 
 @end
 

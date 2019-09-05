@@ -40,11 +40,13 @@
 
 @implementation LLScreenshotViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initial];
 }
 
+#pragma mark - Over write
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     CGPoint capturePoint = [self.view convertPoint:point toView:self.captureButton];
     if ([self.captureButton pointInside:capturePoint withEvent:event]) {

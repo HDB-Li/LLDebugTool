@@ -25,13 +25,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LLSettingModelBlock)(void);
+
 @interface LLSettingModel : NSObject
 
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy, readonly) NSString *title;
 
-@property (nonatomic, copy) NSString *cellClass;
+@property (nonatomic, copy, readonly) NSString *cellClass;
 
-- (instancetype)initWithTitle:(NSString *)title cellClass:(NSString *)cellClass;
+@property (nonatomic, assign, readonly) BOOL flag;
+
+@property (nonatomic, assign, nullable) NSString *detailTitle;
+
+@property (nonatomic, copy, nullable) LLSettingModelBlock block;
+
+- (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag;
+
+- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle;
 
 @end
 

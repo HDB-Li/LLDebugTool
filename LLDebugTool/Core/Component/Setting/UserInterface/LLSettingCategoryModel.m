@@ -25,4 +25,12 @@
 
 @implementation LLSettingCategoryModel
 
+- (instancetype)initWithTitle:(NSString *)title settings:(NSArray <LLSettingModel *>*)settings {
+    if (self = [super init]) {
+        _title = title;
+        _settings = [settings copy];
+    }
+    return self;
+}
+
 @end

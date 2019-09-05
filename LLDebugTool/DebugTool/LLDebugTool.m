@@ -34,6 +34,7 @@
 #import "LLTool.h"
 #import "LLWindowManager.h"
 #import "LLFunctionItemModel.h"
+#import "LLSettingManager.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -82,6 +83,7 @@ static LLDebugTool *_instance = nil;
             // Open screenshot
             [[LLScreenshotHelper shared] setEnable:YES];
         }
+        [self prepareToStart];
         // show window
         [self showWindow];
     }
@@ -228,6 +230,13 @@ static LLDebugTool *_instance = nil;
         if (completion) {
             completion(YES);
         }
+    }
+}
+
+- (void)prepareToStart {
+    NSNumber *colorStyle = [LLSettingManager shared].configColorStyleEnum;
+    if (colorStyle) {
+        [LLConfig shared].colorStyle = colorStyle.integerValue;
     }
 }
 

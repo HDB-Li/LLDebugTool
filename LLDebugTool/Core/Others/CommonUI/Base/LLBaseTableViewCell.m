@@ -29,6 +29,7 @@
 
 @implementation LLBaseTableViewCell
 
+#pragma mark - Life cycle
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self baseInitial];
@@ -41,6 +42,22 @@
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Public
+- (void)primaryColorChanged {
+    self.tintColor = [LLThemeManager shared].primaryColor;
+    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+}
+
+- (void)backgroundColorChanged {
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+}
+
+#pragma mark - Over write
 - (void)layoutSubviews {
     [super layoutSubviews];
     for (UIView *subview in self.subviews) {
@@ -61,6 +78,45 @@
     }
 }
 
+#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    [self primaryColorChanged];
+}
+
+#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    [self backgroundColorChanged];
+}
+
+#pragma mark - Primary
+- (void)baseInitial {
+    self.tintColor = [LLThemeManager shared].primaryColor;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
+    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+    [self configSubviews:self];
+    [self addObservers];
+}
+
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+}
+
+
+- (void)configSubviews:(UIView *)view {
+    if ([view isKindOfClass:[UILabel class]]) {
+        ((UILabel *)view).textColor = [LLThemeManager shared].primaryColor;
+    }
+    if (view.subviews) {
+        for (UIView *subView in view.subviews) {
+            [self configSubviews:subView];
+        }
+    }
+}
+
+#pragma mark - Getters and setters
 - (void)setAccessoryType:(UITableViewCellAccessoryType)accessoryType {
     [super setAccessoryType:accessoryType];
     switch (accessoryType) {
@@ -76,27 +132,6 @@
             NSAssert(NO, @"Must code accessory type");
         }
             break;
-    }
-}
-
-#pragma mark - Primary
-- (void)baseInitial {
-    self.tintColor = [LLThemeManager shared].primaryColor;
-    self.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
-    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
-    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
-    [self configSubviews:self];
-}
-
-- (void)configSubviews:(UIView *)view {
-    if ([view isKindOfClass:[UILabel class]]) {
-        ((UILabel *)view).textColor = [LLThemeManager shared].primaryColor;
-    }
-    if (view.subviews) {
-        for (UIView *subView in view.subviews) {
-            [self configSubviews:subView];
-        }
     }
 }
 

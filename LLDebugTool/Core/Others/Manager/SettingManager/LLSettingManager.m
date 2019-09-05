@@ -24,12 +24,14 @@
 #import "LLSettingManager.h"
 #import "LLFunctionComponent.h"
 #import "LLConst.h"
+#import "NSUserDefaults+LL_Utils.h"
 
 static LLSettingManager *_instance = nil;
 
-@interface LLSettingManager ()
+static NSString *entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
+static NSString *configColorStyleKey = @"configColorStyleKey";
 
-@property (nonatomic, copy) NSString *entryViewDoubleClickComponentKey;
+@interface LLSettingManager ()
 
 @end
 
@@ -42,16 +44,19 @@ static LLSettingManager *_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLSettingManager alloc] init];
-        [_instance initial];
     });
     return _instance;
 }
 
 #pragma mark - Primary
-- (void)initial {
-    _entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
+- (instancetype)init {
+    if (self = [super init]) {
+//        _colorStyle = -1;
+    }
+    return self;
 }
 
+#pragma mark - Getters and Setters
 - (LLComponent *)entryViewClickComponent {
     if (!_entryViewClickComponent) {
         _entryViewClickComponent = [[LLFunctionComponent alloc] init];
@@ -59,9 +64,14 @@ static LLSettingManager *_instance = nil;
     return _entryViewClickComponent;
 }
 
+- (void)setEntryViewDoubleClickComponent:(LLComponent *)entryViewDoubleClickComponent {
+    _entryViewDoubleClickComponent = entryViewDoubleClickComponent;
+    [NSUserDefaults LL_setString:NSStringFromClass(entryViewDoubleClickComponent.class) forKey:entryViewDoubleClickComponentKey];
+}
+
 - (LLComponent *)entryViewDoubleClickComponent {
     if (!_entryViewDoubleClickComponent) {
-        NSString *componentName = [self stringForKey:_entryViewDoubleClickComponentKey];
+        NSString *componentName = [NSUserDefaults LL_stringForKey:entryViewDoubleClickComponentKey];
         Class cls = NSClassFromString(componentName);
         if (cls == nil || ![cls isKindOfClass:[LLComponent class]]) {
             cls = NSClassFromString(kLLEntryViewDoubleClickComponent);
@@ -71,20 +81,13 @@ static LLSettingManager *_instance = nil;
     return _entryViewDoubleClickComponent;
 }
 
-- (void)setEntryViewDoubleClickComponent:(LLComponent *)entryViewDoubleClickComponent {
-    if (_entryViewDoubleClickComponent != entryViewDoubleClickComponent) {
-        _entryViewDoubleClickComponent = entryViewDoubleClickComponent;
-        [self synchronizeSetString:NSStringFromClass(entryViewDoubleClickComponent.class) forKey:_entryViewDoubleClickComponentKey];
-    }
+- (void)setConfigColorStyleEnum:(NSNumber *)configColorStyleEnum {
+    [NSUserDefaults LL_setNumber:configColorStyleEnum forKey:configColorStyleKey];
 }
 
-- (NSString *_Nullable)stringForKey:(NSString *)aKey {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"LLDebugTool-%@",aKey]];
+- (NSNumber *)configColorStyleEnum {
+    return [NSUserDefaults LL_numberForKey:configColorStyleKey];
 }
 
-- (void)synchronizeSetString:(NSString *)string forKey:(NSString *)aKey {
-    [[NSUserDefaults standardUserDefaults] setObject:string forKey:[NSString stringWithFormat:@"LLDebugTool-%@",aKey]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 @end
