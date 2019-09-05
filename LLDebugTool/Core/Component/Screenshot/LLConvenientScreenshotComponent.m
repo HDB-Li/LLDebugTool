@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLConvenientScreenshotComponent.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,20 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLConvenientScreenshotComponent.h"
+#import "LLScreenshotHelper.h"
 
-CGFloat const kLLEntryWindowBallWidth = 50;
-CGFloat const kLLEntryWindowMinBallWidth = 30;
-CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;// Golden section search.
-CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
-CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
-CGFloat const kLLEntryWindowInactiveAlpha = 0.75;
-CGFloat const kLLEntryWindowActiveAlpha = 1.0;
-CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
+@implementation LLConvenientScreenshotComponent
 
-NSInteger const kLLMagnifierWindowZoomLevel = 10;
-NSInteger const kLLMagnifierWindowSize = 15;
+- (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
+    [[LLScreenshotHelper shared] simulateTakeScreenshot];
+}
 
-CGFloat const kLLGeneralMargin = 10;
-
-NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";
+@end
