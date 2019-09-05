@@ -75,6 +75,13 @@
     }
 }
 
+#pragma mark - Over write
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+    self.settingButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+}
+
 #pragma mark - Primary
 - (void)initial {
     self.title = @"LLDebugTool";

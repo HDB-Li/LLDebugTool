@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLBaseView : UIView
 
+- (void)primaryColorChanged;
+
+- (void)backgroundColorChanged;
+
 @end
 
 NS_ASSUME_NONNULL_END

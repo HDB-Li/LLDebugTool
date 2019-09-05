@@ -39,6 +39,7 @@
 
 @implementation LLFunctionItemView
 
+#pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -48,11 +49,11 @@
     return self;
 }
 
-- (void)setModel:(LLFunctionItemModel *)model {
-    if (_model != model) {
-        _model = model;
-        [self updateUI:model];
-    }
+#pragma mark - Over write
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.imageView.tintColor = [LLThemeManager shared].primaryColor;
 }
 
 - (void)layoutSubviews {
@@ -70,8 +71,17 @@
 }
 
 - (void)updateUI:(LLFunctionItemModel *)model {
-    self.imageView.image = [UIImage LL_imageNamed:model.imageName color:[LLThemeManager shared].primaryColor];
+    self.imageView.tintColor = [LLThemeManager shared].primaryColor;
+    self.imageView.image = [[UIImage LL_imageNamed:model.imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.titleLabel.text = model.title;
+}
+
+#pragma mark - Getters and setters
+- (void)setModel:(LLFunctionItemModel *)model {
+    if (_model != model) {
+        _model = model;
+        [self updateUI:model];
+    }
 }
 
 @end

@@ -59,12 +59,13 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 
 #pragma mark - Over write
 - (void)primaryColorChanged {
-    [self initCloseLeftNavigationItem];
+    [super primaryColorChanged];
     [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
     [_tableView reloadData];
 }
 
 - (void)backgroundColorChanged {
+    [super backgroundColorChanged];
     _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [_tableView reloadData];
 }
@@ -77,7 +78,6 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 
 - (void)initUI {
     self.title = @"Setting";
-    [self initCloseLeftNavigationItem];
     [self.view addSubview:self.tableView];
 }
 

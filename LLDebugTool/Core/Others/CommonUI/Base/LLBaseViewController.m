@@ -92,10 +92,6 @@
     
 }
 
-- (void)initCloseLeftNavigationItem {
-    [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
-}
-
 - (void)primaryColorChanged {
     [self setNavigationSettings];
 }
@@ -126,12 +122,14 @@
 - (void)setNavigationSettings {
     if (self.navigationController) {
         self.navigationItem.hidesBackButton = YES;
-        if (self.navigationController.viewControllers.count <= 1) {
-            [self initCloseLeftNavigationItem];
-        } else {
+        
+        [self initCloseLeftNavigationItem];
+        NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+        if (index > 0) {
             UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
             btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+            UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+            self.navigationItem.leftBarButtonItems = @[backButtonItem, self.navigationItem.leftBarButtonItem];
         }
         [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
         self.navigationController.navigationBar.translucent = YES;
@@ -145,8 +143,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
 
+- (void)initCloseLeftNavigationItem {
+    [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
+}
+
 - (UIButton *)navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
-    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:target action:action];
+    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 30, 40) target:target action:action];
     btn.showsTouchWhenHighlighted = NO;
     btn.tintColor = [LLThemeManager shared].primaryColor;
     if ([title length]) {

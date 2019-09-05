@@ -40,6 +40,7 @@
 
 @implementation LLFunctionItemContainerView
 
+#pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -49,18 +50,17 @@
     return self;
 }
 
-- (void)setDataArray:(NSArray<LLFunctionItemModel *> *)dataArray {
-    if (_dataArray != dataArray) {
-        _dataArray = dataArray;
-        [self updateUI:dataArray];
-    }
+#pragma mark - Over write
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.lineView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.backgroundColor = [LLThemeManager shared].containerColor;
 }
 
-- (void)setTitle:(NSString *)title {
-    if (![_title isEqualToString:title]) {
-        _title = [title copy];
-        self.titleLabel.text = title;
-    }
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
+    self.backgroundColor = [LLThemeManager shared].containerColor;
 }
 
 - (void)layoutSubviews {
@@ -108,11 +108,27 @@
     [self layoutIfNeeded];
 }
 
+#pragma mark - Event responses
 - (void)itemViewClicked:(UITapGestureRecognizer *)tap {
     UIView *view = tap.view;
     if ([view isKindOfClass:[LLFunctionItemView class]]) {
         LLFunctionItemView *itemView = (LLFunctionItemView *)view;
         [self.delegate LLFunctionContainerView:self didSelectAt:itemView.model];
+    }
+}
+
+#pragma mark - Getters and setters
+- (void)setDataArray:(NSArray<LLFunctionItemModel *> *)dataArray {
+    if (_dataArray != dataArray) {
+        _dataArray = dataArray;
+        [self updateUI:dataArray];
+    }
+}
+
+- (void)setTitle:(NSString *)title {
+    if (![_title isEqualToString:title]) {
+        _title = [title copy];
+        self.titleLabel.text = title;
     }
 }
 
