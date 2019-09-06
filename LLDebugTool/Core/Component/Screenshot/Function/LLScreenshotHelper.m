@@ -133,7 +133,7 @@ static LLScreenshotHelper *_instance = nil;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
-    UIView *statusBar = [[UIApplication sharedApplication] valueForKey:@"_statusBar"];
+    UIView *statusBar = [LLTool getUIStatusBarModern];
     if ([statusBar isKindOfClass:[UIView class]]) {
         [windows addObject:statusBar];
     }

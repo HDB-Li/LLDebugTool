@@ -70,6 +70,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)log:(NSString *)string;
 
+/// Get UIStatusBar_Modern.
++ (UIView *_Nullable)getUIStatusBarModern;
+
 @end
 
 NS_ASSUME_NONNULL_END
