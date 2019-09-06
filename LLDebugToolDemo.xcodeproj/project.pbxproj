@@ -135,7 +135,6 @@
 		C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570322EDB37200E9FBE2 /* LLNetworkWindow.m */; };
 		C498570722EDB3EF00E9FBE2 /* LLHierarchyComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570622EDB3EF00E9FBE2 /* LLHierarchyComponent.m */; };
 		C498570A22EDB41500E9FBE2 /* LLHierarchyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570922EDB41500E9FBE2 /* LLHierarchyWindow.m */; };
-		C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570C22EDB49700E9FBE2 /* LLScreenshotComponent.m */; };
 		C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570F22EDB4B600E9FBE2 /* LLScreenshotWindow.m */; };
 		C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */; };
 		C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */; };
@@ -470,8 +469,6 @@
 		C498570622EDB3EF00E9FBE2 /* LLHierarchyComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyComponent.m; sourceTree = "<group>"; };
 		C498570822EDB41500E9FBE2 /* LLHierarchyWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyWindow.h; sourceTree = "<group>"; };
 		C498570922EDB41500E9FBE2 /* LLHierarchyWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyWindow.m; sourceTree = "<group>"; };
-		C498570B22EDB49700E9FBE2 /* LLScreenshotComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotComponent.h; sourceTree = "<group>"; };
-		C498570C22EDB49700E9FBE2 /* LLScreenshotComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotComponent.m; sourceTree = "<group>"; };
 		C498570E22EDB4B600E9FBE2 /* LLScreenshotWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotWindow.h; sourceTree = "<group>"; };
 		C498570F22EDB4B600E9FBE2 /* LLScreenshotWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotWindow.m; sourceTree = "<group>"; };
 		C498571222EDE35D00E9FBE2 /* LLMagnifierComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierComponent.h; sourceTree = "<group>"; };
@@ -882,8 +879,6 @@
 			children = (
 				C49856B222ED905F00E9FBE2 /* Function */,
 				C498561522ED8D4700E9FBE2 /* UserInterface */,
-				C498570B22EDB49700E9FBE2 /* LLScreenshotComponent.h */,
-				C498570C22EDB49700E9FBE2 /* LLScreenshotComponent.m */,
 				36BB1E3523211AF9000D8F29 /* LLConvenientScreenshotComponent.h */,
 				36BB1E3623211AF9000D8F29 /* LLConvenientScreenshotComponent.m */,
 			);
@@ -1926,7 +1921,6 @@
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
 				C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */,
-				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,
 				362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */,
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
