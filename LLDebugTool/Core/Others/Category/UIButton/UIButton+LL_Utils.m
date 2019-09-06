@@ -48,6 +48,8 @@
         case UIButtonTypeClose:
             return @"Close";
 #endif
+        default:
+            break;
     }
     return nil;
 }
