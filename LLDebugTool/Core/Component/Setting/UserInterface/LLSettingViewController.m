@@ -32,6 +32,7 @@
 #import "LLMacros.h"
 #import "LLConfigHelper.h"
 #import "LLSettingManager.h"
+//#import "LLColorPickerView.h"
 
 static NSString *const kSwitchCellID = @"SwitchCellID";
 static NSString *const kMultipleCellID = @"MultipleCellID";
@@ -103,8 +104,8 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (void)showColorStyleAlert {
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Color Style" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    for (NSInteger i = 0; i < 4; i++) {
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"Color Style" preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSInteger i = 0; i < 3; i++) {
         __weak typeof(self) weakSelf = self;
         UIAlertAction *action = [UIAlertAction actionWithTitle:[LLConfigHelper colorStyleDescription:i] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf setNewColorStyle:i];

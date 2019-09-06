@@ -69,10 +69,13 @@
 }
 
 - (void)initUI {
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
+    
     [self addSubview:self.contentView];
     
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(-LL_BOTTOM_DANGER_HEIGHT);
     }];
 }
 

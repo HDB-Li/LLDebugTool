@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLHSBPreviewView.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLHSBPreviewView ()
 
@@ -34,6 +35,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         _brightness = 1.0;
+        [self initUI];
     }
     return self;
 }

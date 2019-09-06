@@ -23,6 +23,7 @@
 
 #import "LLColorPickerView.h"
 #import "LLHSBPreviewView.h"
+#import "Masonry.h"
 
 @interface LLColorPickerView ()
 
@@ -34,7 +35,18 @@
 
 #pragma mark - Over write
 - (void)initUI {
-//    self
+    [super initUI];
+    [self.contentView addSubview:self.preview];
+    
+    [self.preview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(300, 200));
+        make.centerX.mas_equalTo(self.contentView.mas_centerX);
+        make.bottom.mas_equalTo(-10);
+        make.top.mas_equalTo(10).priorityHigh();
+    }];
+    
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 
 #pragma mark - Getters and setters

@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLBaseAnimateView : LLBaseView
 
+@property (nonatomic, strong, readonly) UIView *contentView;
+
 - (void)show;
 
 - (void)hide;
