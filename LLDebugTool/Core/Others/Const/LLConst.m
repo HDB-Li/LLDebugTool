@@ -35,4 +35,4 @@ NSInteger const kLLMagnifierWindowSize = 15;
 
 CGFloat const kLLGeneralMargin = 10;
 
-NSString * const kLLEntryViewDoubleClickComponent = @"LLScreenshotComponent";
+NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";

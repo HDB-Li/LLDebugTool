@@ -1,3 +1,15 @@
+## [1.3.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.1) (09/06/2019)
+
+###  Fix some bugs.
+
+Fixed bugs in the UI.
+
+Compatible with version 2.0 or above of `FMDB`.
+
+#### Update
+
+* Update `LLStorageManager` to fix low version `FMDB`.
+
 ## [1.3.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.0) (09/01/2019)
 
 ###  Hierarchy and magnifying is coming.

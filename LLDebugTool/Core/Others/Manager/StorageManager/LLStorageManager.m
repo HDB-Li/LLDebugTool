@@ -25,8 +25,11 @@
 
 #if __has_include("FMDB.h")
 #import "FMDB.h"
-#else
+#elif __has_include("<FMDB.h>")
 #import "<FMDB.h>"
+#else
+#import "FMDatabaseQueue.h"
+#import "FMDatabase.h"
 #endif
 
 #import "NSObject+LL_Utils.h"
@@ -74,10 +77,9 @@ static NSString *const kDatabaseVersion = @"1";
     if (![self isRegisteredClass:cls]) {
         __block BOOL ret = NO;
         [_dbQueue inDatabase:^(FMDatabase * db) {
-            NSError *error;
-            ret = [db executeUpdate:[self createTableSQLFromClass:cls] values:nil error:&error];
+            ret = [db executeUpdate:[self createTableSQLFromClass:cls]];
             if (!ret) {
-                [LLTool log:[NSString stringWithFormat:@"Create %@ table failed. error = %@",NSStringFromClass(cls),error.description]];
+                [LLTool log:[NSString stringWithFormat:@"Create %@ table failed.",NSStringFromClass(cls)]];
             }
         }];
         if (ret) {
@@ -139,7 +141,6 @@ static NSString *const kDatabaseVersion = @"1";
     
     __block NSMutableArray *modelArray = [[NSMutableArray alloc] init];
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        NSError *error;
         NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM %@",[self tableNameFromClass:cls]];
         NSArray *values = @[];
         if (launchDate.length && storageIdentity.length) {
@@ -152,15 +153,25 @@ static NSString *const kDatabaseVersion = @"1";
             SQL = [SQL stringByAppendingFormat:@" WHERE %@ = ?",kIdentityColumn];
             values = @[storageIdentity];
         }
-        FMResultSet *set = [db executeQuery:SQL values:values error:&error];
+        FMResultSet *set = [db executeQuery:SQL withArgumentsInArray:values];
         while ([set next]) {
-            NSData *data = [set objectForColumn:kObjectDataColumn];
+            NSData *data = nil;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+            if ([set respondsToSelector:@selector(objectForColumn:)]) {
+                data = [set performSelector:@selector(objectForColumn:) withObject:kObjectDataColumn];
+            } else if ([set respondsToSelector:@selector(objectForColumnName:)]) {
+                data = [set performSelector:@selector(objectForColumnName:) withObject:kObjectDataColumn];
+            }
+#pragma clang diagnostic pop
+            if (data) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            id model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                id model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 #pragma clang diagnostic pop
-            if (model) {
-                [modelArray insertObject:model atIndex:0];
+                if (model) {
+                    [modelArray insertObject:model atIndex:0];
+                }
             }
         }
     }];
@@ -210,12 +221,11 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret = NO;
 
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        NSError *error;
         NSString *tableName = [self tableNameFromClass:cls];
         NSString *identitiesString = [self convertArrayToSQL:identities.allObjects];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ IN %@;",tableName,kIdentityColumn,identitiesString] values:nil error:&error];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ IN %@;",tableName,kIdentityColumn,identitiesString]];
         if (!ret) {
-            [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, error = %@",NSStringFromClass(cls),error]];
+            [LLTool log:[NSString stringWithFormat:@"Remove %@ failed",NSStringFromClass(cls)]];
         }
     }];
     
@@ -247,11 +257,10 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret = NO;
     
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        NSError *error;
         NSString *tableName = [self tableNameFromClass:cls];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@;",tableName] values:nil error:&error];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@;",tableName]];
         if (!ret) {
-            [LLTool log:[NSString stringWithFormat:@"Clear %@ failed, error = %@",NSStringFromClass(cls),error]];
+            [LLTool log:[NSString stringWithFormat:@"Clear %@ failed",NSStringFromClass(cls)]];
         }
     }];
     
@@ -397,22 +406,18 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret = YES;
     __block BOOL ret2 = YES;
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        
-        NSError *error1;
         NSString *logTableName = [self tableNameFromClass:[LLLogModel class]];
         NSString *launchDateString = [self convertArrayToSQL:launchDates];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString] values:nil error:&error1];
+        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString]];
         if (!ret) {
-            [LLTool log:[NSString stringWithFormat:@"Remove launch log fail, error = %@",error1]];
+            [LLTool log:@"Remove launch log fail"];
         }
         
-        
-        NSError *error2;
         NSString *networkTableName = [self tableNameFromClass:[LLNetworkModel class]];
         NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];
-        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString] values:nil error:&error2];
+        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString]];
         if (!ret2) {
-            [LLTool log:[NSString stringWithFormat:@"Remove launch network fail, error = %@",error2]];
+            [LLTool log:@"Remove launch network fail"];
         }
         
     }];
@@ -511,14 +516,13 @@ static NSString *const kDatabaseVersion = @"1";
     __block NSArray *arguments = @[data,launchDate,identity,model.description?:@"None description"];
     __block BOOL ret = NO;
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        NSError *error;
         if (isSave) {
-            ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] values:arguments error:&error];
+            ret = [db executeUpdate:[NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES (?,?,?,?);",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn] withArgumentsInArray:arguments];
         } else {
-            ret = [db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET %@ = ? ,%@ = ?,%@ = ?,%@ = ? WHERE %@ = \"%@\";",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn,kIdentityColumn,model.storageIdentity] values:arguments error:&error];
+            ret = [db executeUpdate:[NSString stringWithFormat:@"UPDATE %@ SET %@ = ? ,%@ = ?,%@ = ?,%@ = ? WHERE %@ = \"%@\";",[self tableNameFromClass:cls],kObjectDataColumn,kLaunchDateColumn,kIdentityColumn,kDescriptionColumn,kIdentityColumn,model.storageIdentity] withArgumentsInArray:arguments];
         }
         if (!ret) {
-            [LLTool log:[NSString stringWithFormat:@"Save %@ failed, error = %@",NSStringFromClass(cls),error.localizedDescription]];
+            [LLTool log:[NSString stringWithFormat:@"Save %@ failed",NSStringFromClass(cls)]];
         }
     }];
     [self performBoolComplete:complete param:@(ret) synchronous:synchronous];

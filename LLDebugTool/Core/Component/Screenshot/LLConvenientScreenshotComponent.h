@@ -1,5 +1,5 @@
 //
-//  LLMacros.h
+//  LLConvenientScreenshotComponent.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,19 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLMacros_h
-#define LLMacros_h
+#import "LLComponent.h"
 
-#define LL_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
-#define LL_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
-#define LL_NAVIGATION_HEIGHT (LL_IS_SPECIAL_SCREEN ? 88 : 64)
+NS_ASSUME_NONNULL_BEGIN
 
-#define LL_IS_SPECIAL_SCREEN \
-({BOOL isPhoneX = NO;\
-if (@available(iOS 11.0, *)) {\
-isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
-}\
-(isPhoneX);})
-#define LL_LAYOUT_HORIZONTAL(length) (length * LL_SCREEN_WIDTH / 414.0)
+@interface LLConvenientScreenshotComponent : LLComponent
 
-#endif /* LLMacros_h */
+@end
+
+NS_ASSUME_NONNULL_END
