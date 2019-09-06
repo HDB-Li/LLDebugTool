@@ -32,7 +32,8 @@
 #import "LLMacros.h"
 #import "LLConfigHelper.h"
 #import "LLSettingManager.h"
-//#import "LLColorPickerView.h"
+#import "NSObject+LL_Runtime.h"
+#import "LLImageNameConfig.h"
 
 static NSString *const kSwitchCellID = @"SwitchCellID";
 static NSString *const kMultipleCellID = @"MultipleCellID";
@@ -85,12 +86,11 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 - (void)initData {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    __weak typeof(self) weakSelf = self;
-    LLSettingModel *colorStyleModel = [[LLSettingModel alloc] initWithTitle:@"Color Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
-    colorStyleModel.block = ^{
-        [weakSelf showColorStyleAlert];
-    };
-    [settings addObject:colorStyleModel];
+    // ColorStyle
+    [settings addObject:[self getColorStyleModel]];
+    
+    // EntryWindowStyle
+    [settings addObject:[self getEntryWindowStyleModel]];
     
     LLSettingCategoryModel *category1 = [[LLSettingCategoryModel alloc] initWithTitle:@"Color" settings:settings];
     [settings removeAllObjects];
@@ -103,6 +103,15 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     self.tableView.frame = self.view.bounds;
 }
 
+- (LLSettingModel *)getColorStyleModel {
+    __weak typeof(self) weakSelf = self;
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Color Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
+    model.block = ^{
+        [weakSelf showColorStyleAlert];
+    };
+    return model;
+}
+
 - (void)showColorStyleAlert {
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"Color Style" preferredStyle:UIAlertControllerStyleActionSheet];
     for (NSInteger i = 0; i < 3; i++) {
@@ -110,6 +119,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         UIAlertAction *action = [UIAlertAction actionWithTitle:[LLConfigHelper colorStyleDescription:i] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf setNewColorStyle:i];
         }];
+        [action setValue:[UIImage LL_imageNamed:kCellSelectImageName] forKey:@"image"];
         [vc addAction:action];
     }
     [vc addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
@@ -117,17 +127,55 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)setNewColorStyle:(LLConfigColorStyle)colorStyle {
-    if (colorStyle == [LLConfig shared].colorStyle) {
+- (void)setNewColorStyle:(LLConfigColorStyle)style {
+    if (style == [LLConfig shared].colorStyle) {
         return;
     }
-    if (colorStyle == LLConfigColorStyleCustom) {
+    if (style == LLConfigColorStyleCustom) {
         
     } else {
-        [LLConfig shared].colorStyle = colorStyle;
-        [LLSettingManager shared].configColorStyleEnum = @(colorStyle);
+        [LLConfig shared].colorStyle = style;
+        [LLSettingManager shared].configColorStyleEnum = @(style);
         [self initData];
     }
+}
+
+- (LLSettingModel *)getEntryWindowStyleModel {
+    __weak typeof(self) weakSelf = self;
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Entry Window" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
+    model.block = ^{
+        [weakSelf showEntryWindowStyleAlert];
+    };
+    return model;
+}
+
+- (void)showEntryWindowStyleAlert {
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"Entry Window Style" preferredStyle:UIAlertControllerStyleActionSheet];
+#ifdef __IPHONE_13_0
+    NSInteger count = 4;
+#else
+    NSInteger count = 6;
+#endif
+    for (NSInteger i = 0; i < count; i++) {
+        __weak typeof(self) weakSelf = self;
+        UIAlertAction *action = [UIAlertAction actionWithTitle:[LLConfigHelper entryWindowStyleDescription:i] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf setNewEntryWindowStyle:i];
+        }];
+        [vc addAction:action];
+    }
+    [vc addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)setNewEntryWindowStyle:(LLConfigEntryWindowStyle)style {
+    if (style == [LLConfig shared].entryWindowStyle) {
+        return;
+    }
+    
+    [LLConfig shared].entryWindowStyle = style;
+    [LLSettingManager shared].configEntryWindowStyleEnum = @(style);
+    [self initData];
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource

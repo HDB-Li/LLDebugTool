@@ -37,6 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)colorStyleDescription:(LLConfigColorStyle)colorStyle;
 
++ (NSString *)entryWindowStyleDescription;
+
++ (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle;
+
 @end
 
 NS_ASSUME_NONNULL_END

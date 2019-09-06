@@ -238,6 +238,10 @@ static LLDebugTool *_instance = nil;
     if (colorStyle) {
         [LLConfig shared].colorStyle = colorStyle.integerValue;
     }
+    NSNumber *entryWindowStyle = [LLSettingManager shared].configEntryWindowStyleEnum;
+    if (entryWindowStyle) {
+        [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
+    }
 }
 
 @end

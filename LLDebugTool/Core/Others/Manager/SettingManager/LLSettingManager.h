@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSNumber *configColorStyleEnum;
 
+@property (nonatomic, strong) NSNumber *configEntryWindowStyleEnum;
+
 + (instancetype)shared;
 
 @end

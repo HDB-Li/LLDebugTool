@@ -63,4 +63,27 @@
     }
 }
 
++ (NSString *)entryWindowStyleDescription {
+    return [self entryWindowStyleDescription:[LLConfig shared].entryWindowStyle];
+}
+
++ (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle {
+    switch (windowStyle) {
+        case LLConfigEntryWindowStyleBall:
+            return @"Ball";
+        case LLConfigEntryWindowStyleTitle:
+            return @"Title";
+        case LLConfigEntryWindowStyleLeading:
+            return @"Leading";
+        case LLConfigEntryWindowStyleTrailing:
+            return @"Trailing";
+#ifndef __IPHONE_13_0
+        case LLConfigEntryWindowStyleNetBar:
+            return @"Net Bar";
+        case LLConfigEntryWindowStylePowerBar:
+            return @"Power Bar";
+#endif
+    }
+}
+
 @end
