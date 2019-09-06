@@ -159,7 +159,7 @@ static NSString *const kDatabaseVersion = @"1";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
             if ([set respondsToSelector:@selector(objectForColumn:)]) {
-                data = [set performSelector:@selector(objectForColumn) withObject:kObjectDataColumn];
+                data = [set performSelector:@selector(objectForColumn:) withObject:kObjectDataColumn];
             } else if ([set respondsToSelector:@selector(objectForColumnName:)]) {
                 data = [set performSelector:@selector(objectForColumnName:) withObject:kObjectDataColumn];
             }
