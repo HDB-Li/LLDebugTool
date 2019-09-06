@@ -151,6 +151,9 @@ static LLNetworkHelper *_instance = nil;
                         }
                     }
                 }
+                if (returnValue != LLNetworkStatusNotReachable) {
+                    break;
+                }
             }
         } else {
             // For others iPhone
