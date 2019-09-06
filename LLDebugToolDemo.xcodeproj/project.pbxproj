@@ -1968,7 +1968,6 @@
 				C498568022ED8D4800E9FBE2 /* LLScreenshotBaseOperation.m in Sources */,
 				C498568322ED8D4800E9FBE2 /* LLScreenshotSelectorView.m in Sources */,
 				C49856EC22EDAEFE00E9FBE2 /* LLAppInfoWindow.m in Sources */,
-				36B79FE02322345700AA79F8 /* LLConvenientScreenshotComponent.m in Sources */,
 				C4B4E43B22F9C90900F70277 /* UIImage+LL_Utils.m in Sources */,
 				36596BCE22FD172D00BBB6FA /* LLBaseInfoView.m in Sources */,
 				C4B4E47722F9C90900F70277 /* LLBaseModel.m in Sources */,
