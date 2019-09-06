@@ -88,14 +88,22 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
-    
-    // EntryWindowStyle
-    [settings addObject:[self getEntryWindowStyleModel]];
+    [settings addObject:[self getStatusBarStyleModel]];
     
     LLSettingCategoryModel *category1 = [[LLSettingCategoryModel alloc] initWithTitle:@"Color" settings:settings];
     [settings removeAllObjects];
     
-    self.dataArray = @[category1];
+    // EntryWindowStyle
+    [settings addObject:[self getEntryWindowStyleModel]];
+    LLSettingCategoryModel *category2 = [[LLSettingCategoryModel alloc] initWithTitle:@"Entry Window" settings:settings];
+    [settings removeAllObjects];
+    
+    // Log
+    [settings addObject:[self getLogLevelModel]];
+    LLSettingCategoryModel *category3 = [[LLSettingCategoryModel alloc] initWithTitle:@"Log" settings:settings];
+    [settings removeAllObjects];
+    
+    self.dataArray = @[category1, category2, category3];
     [self.tableView reloadData];
 }
 
@@ -113,18 +121,15 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (void)showColorStyleAlert {
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"Color Style" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < 3; i++) {
-        __weak typeof(self) weakSelf = self;
-        UIAlertAction *action = [UIAlertAction actionWithTitle:[LLConfigHelper colorStyleDescription:i] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf setNewColorStyle:i];
-        }];
-        [action setValue:[UIImage LL_imageNamed:kCellSelectImageName] forKey:@"image"];
-        [vc addAction:action];
+        [actions addObject:[LLConfigHelper colorStyleDescription:i]];
     }
-    [vc addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-
-    [self presentViewController:vc animated:YES completion:nil];
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
+        [weakSelf setNewColorStyle:index];
+    }];
 }
 
 - (void)setNewColorStyle:(LLConfigColorStyle)style {
@@ -150,22 +155,19 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (void)showEntryWindowStyleAlert {
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"Entry Window Style" preferredStyle:UIAlertControllerStyleActionSheet];
 #ifdef __IPHONE_13_0
     NSInteger count = 4;
 #else
     NSInteger count = 6;
 #endif
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < count; i++) {
-        __weak typeof(self) weakSelf = self;
-        UIAlertAction *action = [UIAlertAction actionWithTitle:[LLConfigHelper entryWindowStyleDescription:i] style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf setNewEntryWindowStyle:i];
-        }];
-        [vc addAction:action];
+        [actions addObject:[LLConfigHelper entryWindowStyleDescription:i]];
     }
-    [vc addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-    
-    [self presentViewController:vc animated:YES completion:nil];
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
+        [weakSelf setNewEntryWindowStyle:index];
+    }];
 }
 
 - (void)setNewEntryWindowStyle:(LLConfigEntryWindowStyle)style {
@@ -176,6 +178,86 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [LLConfig shared].entryWindowStyle = style;
     [LLSettingManager shared].configEntryWindowStyleEnum = @(style);
     [self initData];
+}
+
+- (LLSettingModel *)getStatusBarStyleModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Status Bar Style" detailTitle:[LLConfigHelper statusBarStyleDescription]];
+    __weak typeof(self) weakSelf = self;
+    model.block = ^{
+        [weakSelf showStatusBarStyleAlert];
+    };
+    return model;
+}
+
+- (void)showStatusBarStyleAlert {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < 2; i++) {
+        [actions addObject:[LLConfigHelper statusBarStyleDescription:i]];
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
+        [weakSelf setNewStatusBarStyle:index];
+    }];
+}
+
+- (void)setNewStatusBarStyle:(UIStatusBarStyle)style {
+    if (style == [LLThemeManager shared].statusBarStyle) {
+        return;
+    }
+    
+    [[LLConfig shared] configStatusBarStyle:style];
+    [LLSettingManager shared].configStatusBarStyleEnum = @(style);
+    [self initData];
+}
+
+- (LLSettingModel *)getLogLevelModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Log Level" detailTitle:[LLConfigHelper logStyleDescription]];
+    __weak typeof(self) weakSelf = self;
+    model.block = ^{
+        [weakSelf showLogStyleAlert];
+    };
+    return model;
+}
+
+- (void)showLogStyleAlert {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < 5; i++) {
+        [actions addObject:[LLConfigHelper logStyleDescription:i]];
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
+        [weakSelf setNewLogStyle:index];
+    }];
+}
+
+- (void)setNewLogStyle:(LLConfigLogStyle)style {
+    if (style == [LLConfig shared].logStyle) {
+        return;
+    }
+    
+    [LLConfig shared].logStyle = style;
+    [LLSettingManager shared].configLogStyleEnum = @(style);
+    [self initData];
+}
+
+- (void)showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^ __nullable)(NSInteger index))completion {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:title preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSInteger i = 0; i < actions.count; i++) {
+        NSString *actionTitle = actions[i];
+        __block NSInteger index = i;
+        UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (completion) {
+                completion(index);
+            }
+        }];
+        if ([actionTitle isEqualToString:currentAction]) {
+            action.enabled = NO;
+            [action setValue:[UIImage LL_imageNamed:kCellSelectImageName] forKey:@"image"];
+        }
+        [alert addAction:action];
+    }
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource

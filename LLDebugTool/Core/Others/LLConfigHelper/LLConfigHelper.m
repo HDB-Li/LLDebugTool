@@ -86,4 +86,42 @@
     }
 }
 
++ (NSString *)statusBarStyleDescription {
+    return [self statusBarStyleDescription:[LLThemeManager shared].statusBarStyle];
+}
+
++ (NSString *)statusBarStyleDescription:(UIStatusBarStyle)statusBarStyle {
+    switch (statusBarStyle) {
+        case UIStatusBarStyleDefault:
+            return @"Default";
+        case UIStatusBarStyleLightContent:
+            return @"Light Content";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        case UIStatusBarStyleBlackOpaque:
+            return @"Black Opaque";
+#pragma pop
+    }
+    return nil;
+}
+
++ (NSString *)logStyleDescription {
+    return [self logStyleDescription:[LLConfig shared].logStyle];
+}
+
++ (NSString *)logStyleDescription:(LLConfigLogStyle)style {
+    switch (style) {
+        case LLConfigLogDetail:
+            return @"Detail";
+        case LLConfigLogFileFuncDesc:
+            return @"File Func Desc";
+        case LLConfigLogFileDesc:
+            return @"File Desc";
+        case LLConfigLogNormal:
+            return @"Normal";
+        case LLConfigLogNone:
+            return @"None";
+    }
+}
+
 @end

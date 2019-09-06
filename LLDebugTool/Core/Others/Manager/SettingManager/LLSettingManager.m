@@ -31,6 +31,8 @@ static LLSettingManager *_instance = nil;
 static NSString *entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
 static NSString *configColorStyleKey = @"configColorStyleKey";
 static NSString *configEntryWindowStyleKey = @"configEntryWindowStyleKey";
+static NSString *configStatusBarStyleKey = @"configStatusBarStyleKey";
+static NSString *configLogStyleKey = @"configLogStyleKey";
 
 @interface LLSettingManager ()
 
@@ -98,6 +100,20 @@ static NSString *configEntryWindowStyleKey = @"configEntryWindowStyleKey";
     return [NSUserDefaults LL_numberForKey:configEntryWindowStyleKey];
 }
 
+- (void)setConfigStatusBarStyleEnum:(NSNumber *)configStatusBarStyleEnum {
+    [NSUserDefaults LL_setNumber:configStatusBarStyleEnum forKey:configStatusBarStyleKey];
+}
 
+- (NSNumber *)configStatusBarStyleEnum {
+    return [NSUserDefaults LL_numberForKey:configStatusBarStyleKey];
+}
+
+- (void)setConfigLogStyleEnum:(NSNumber *)configLogStyleEnum {
+    [NSUserDefaults LL_setNumber:configLogStyleEnum forKey:configLogStyleKey];
+}
+
+- (NSNumber *)configLogStyleEnum {
+    return [NSUserDefaults LL_numberForKey:configLogStyleKey];
+}
 
 @end

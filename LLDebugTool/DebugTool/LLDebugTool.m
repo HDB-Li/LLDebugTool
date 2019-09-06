@@ -242,6 +242,10 @@ static LLDebugTool *_instance = nil;
     if (entryWindowStyle) {
         [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
     }
+    NSNumber *statusBarStyle = [LLSettingManager shared].configStatusBarStyleEnum;
+    if (statusBarStyle) {
+        [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
+    }
 }
 
 @end

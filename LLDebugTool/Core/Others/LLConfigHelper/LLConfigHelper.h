@@ -41,6 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle;
 
++ (NSString *)statusBarStyleDescription;
+
++ (NSString *)statusBarStyleDescription:(UIStatusBarStyle)statusBarStyle;
+
++ (NSString *)logStyleDescription;
+
++ (NSString *)logStyleDescription:(LLConfigLogStyle)style;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -37,6 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSNumber *configEntryWindowStyleEnum;
 
+@property (nonatomic, strong) NSNumber *configStatusBarStyleEnum;
+
+@property (nonatomic, strong) NSNumber *configLogStyleEnum;
+
 + (instancetype)shared;
 
 @end
