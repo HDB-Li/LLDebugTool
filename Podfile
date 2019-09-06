@@ -8,7 +8,7 @@ target 'LLDebugToolDemo' do
   # Pods for LLDebugToolDemo
 
   # Request
-  pod 'FMDB',:inhibit_warnings => true
+  pod 'FMDB','~> 2.0',:inhibit_warnings => true
   pod 'Masonry', '1.1.0',:inhibit_warnings => true
 
   # Only for demo
