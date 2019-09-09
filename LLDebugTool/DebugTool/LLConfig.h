@@ -285,6 +285,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
 @property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `autoHideEntryWindowToSideWhenInactive`.");
 @property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
+
 @end
 
 NS_ASSUME_NONNULL_END
