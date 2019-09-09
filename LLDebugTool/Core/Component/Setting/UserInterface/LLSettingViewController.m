@@ -124,7 +124,10 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < 3; i++) {
-        [actions addObject:[LLConfigHelper colorStyleDescription:i]];
+        NSString *action = [LLConfigHelper colorStyleDescription:i];
+        if (action) {
+            [actions addObject:action];
+        }
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
@@ -162,7 +165,10 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 #endif
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < count; i++) {
-        [actions addObject:[LLConfigHelper entryWindowStyleDescription:i]];
+        NSString *action = [LLConfigHelper entryWindowStyleDescription:i];
+        if (action) {
+            [actions addObject:action];
+        }
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
@@ -191,8 +197,16 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 
 - (void)showStatusBarStyleAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 2; i++) {
-        [actions addObject:[LLConfigHelper statusBarStyleDescription:i]];
+#ifdef __IPHONE_13_0
+    NSInteger count = 4;
+#else
+    NSInteger count = 3;
+#endif
+    for (NSInteger i = 0; i < count; i++) {
+        NSString *action = [LLConfigHelper statusBarStyleDescription:i];
+        if (action) {
+            [actions addObject:action];
+        }
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
@@ -208,6 +222,10 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [[LLConfig shared] configStatusBarStyle:style];
     [LLSettingManager shared].configStatusBarStyleEnum = @(style);
     [self initData];
+    [UIView animateWithDuration:0.25 animations:^{
+        [self setNeedsStatusBarAppearanceUpdate];
+    }];
+    [[UIApplication sharedApplication] setStatusBarStyle:style animated:YES];
 }
 
 - (LLSettingModel *)getLogLevelModel {
@@ -222,7 +240,10 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 - (void)showLogStyleAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < 5; i++) {
-        [actions addObject:[LLConfigHelper logStyleDescription:i]];
+        NSString *action = [LLConfigHelper logStyleDescription:i];
+        if (action) {
+            [actions addObject:action];
+        }
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {

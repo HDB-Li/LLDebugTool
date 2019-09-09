@@ -101,6 +101,10 @@
         case UIStatusBarStyleBlackOpaque:
             return @"Black Opaque";
 #pragma pop
+#ifdef __IPHONE_13_0
+        case UIStatusBarStyleDarkContent:
+            return @"Dark Content";
+#endif
     }
     return nil;
 }
