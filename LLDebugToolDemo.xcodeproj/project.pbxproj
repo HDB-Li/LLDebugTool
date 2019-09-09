@@ -649,6 +649,20 @@
 			path = DemoViewControllers;
 			sourceTree = "<group>";
 		};
+		364CF3D6232656FC000B513F /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				364EF63C2321F4C00067C7D7 /* LLColorPicker */,
+				365912512320BCF500FDA6A0 /* LLTitleView */,
+				C4B4E3D922F9C90900F70277 /* LLSubTitleTableViewCell */,
+				C4B4E3DE22F9C90900F70277 /* LLSearchBar */,
+				C4B4E3E122F9C90900F70277 /* LLNoneCopyTextField */,
+				C4B4E3E422F9C90900F70277 /* LLTabBarButton */,
+				C4B4E3E722F9C90900F70277 /* LLFilterView */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		364EF63C2321F4C00067C7D7 /* LLColorPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,14 +699,6 @@
 		36AB4494231F9CD600AC772B /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				36AB4495231F9CEC00AC772B /* UserInterface */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
-		36AB4495231F9CEC00AC772B /* UserInterface */ = {
-			isa = PBXGroup;
-			children = (
 				36AB4496231F9D0700AC772B /* LLSettingViewController.h */,
 				36AB4497231F9D0700AC772B /* LLSettingViewController.m */,
 				36AB4499231FC57D00AC772B /* LLSettingModel.h */,
@@ -708,7 +714,7 @@
 				363DEC512325DFE90090E78C /* LLSettingSliderCell.h */,
 				363DEC522325DFE90090E78C /* LLSettingSliderCell.m */,
 			);
-			path = UserInterface;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		36BB1E1C2320E88A000D8F29 /* LLConfigHelper */ = {
@@ -866,7 +872,6 @@
 		C498561222ED8D4700E9FBE2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				36AB4494231F9CD600AC772B /* Setting */,
 				C4B4E3FD22F9C90900F70277 /* Function */,
 				C498571122EDE31200E9FBE2 /* Magnifier */,
 				C498561322ED8D4700E9FBE2 /* Screenshot */,
@@ -1476,14 +1481,8 @@
 		C4B4E3D822F9C90900F70277 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				364EF63C2321F4C00067C7D7 /* LLColorPicker */,
-				365912512320BCF500FDA6A0 /* LLTitleView */,
-				C4B4E3D922F9C90900F70277 /* LLSubTitleTableViewCell */,
-				C4B4E3DE22F9C90900F70277 /* LLSearchBar */,
-				C4B4E3E122F9C90900F70277 /* LLNoneCopyTextField */,
-				C4B4E3E422F9C90900F70277 /* LLTabBarButton */,
-				C4B4E3E722F9C90900F70277 /* LLFilterView */,
-				C4B4E3FC22F9C90900F70277 /* Windows */,
+				364CF3D6232656FC000B513F /* Component */,
+				C4B4E3FC22F9C90900F70277 /* View */,
 				C4B4E41722F9C90900F70277 /* Base */,
 			);
 			path = CommonUI;
@@ -1554,12 +1553,13 @@
 			path = LLFilterView;
 			sourceTree = "<group>";
 		};
-		C4B4E3FC22F9C90900F70277 /* Windows */ = {
+		C4B4E3FC22F9C90900F70277 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E41422F9C90900F70277 /* EntryWindow */,
+				36AB4494231F9CD600AC772B /* Setting */,
 			);
-			path = Windows;
+			path = View;
 			sourceTree = "<group>";
 		};
 		C4B4E3FD22F9C90900F70277 /* Function */ = {
