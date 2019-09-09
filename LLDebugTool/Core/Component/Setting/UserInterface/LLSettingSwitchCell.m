@@ -47,7 +47,15 @@
 
 - (void)primaryColorChanged {
     [super primaryColorChanged];
-    _swit.tintColor = [LLThemeManager shared].primaryColor;
+    _swit.onTintColor = [LLThemeManager shared].primaryColor;
+}
+
+#pragma mark - Event responses
+- (void)switchValueChanged:(UISwitch *)sender {
+    self.model.flag = sender.isOn;
+    if (self.model.changePropertyBlock) {
+        self.model.changePropertyBlock(@(sender.isOn));
+    }
 }
 
 #pragma mark - Getters and settings
@@ -59,7 +67,8 @@
 - (UISwitch *)swit {
     if (!_swit) {
         _swit = [LLFactory getSwitch];
-        _swit.tintColor = [LLThemeManager shared].primaryColor;
+        _swit.onTintColor = [LLThemeManager shared].primaryColor;
+        [_swit addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _swit;
 }

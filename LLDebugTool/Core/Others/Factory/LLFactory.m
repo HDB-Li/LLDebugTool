@@ -299,4 +299,10 @@
     return swit;
 }
 
+#pragma mark - UISlider
++ (UISlider *)getSlider {
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectZero];
+    return slider;
+}
+
 @end

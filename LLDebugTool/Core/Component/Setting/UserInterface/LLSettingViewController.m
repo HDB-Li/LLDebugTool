@@ -34,6 +34,8 @@
 #import "LLSettingManager.h"
 #import "NSObject+LL_Runtime.h"
 #import "LLImageNameConfig.h"
+#import "LLConst.h"
+#import "LLSettingSliderCell.h"
 
 static NSString *const kSwitchCellID = @"SwitchCellID";
 static NSString *const kMultipleCellID = @"MultipleCellID";
@@ -95,6 +97,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     
     // EntryWindowStyle
     [settings addObject:[self getEntryWindowStyleModel]];
+    [settings addObject:[self getEntryWindowAutoHideToSideModel]];
     LLSettingCategoryModel *category2 = [[LLSettingCategoryModel alloc] initWithTitle:@"Entry Window" settings:settings];
     [settings removeAllObjects];
     
@@ -103,7 +106,13 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     LLSettingCategoryModel *category3 = [[LLSettingCategoryModel alloc] initWithTitle:@"Log" settings:settings];
     [settings removeAllObjects];
     
-    self.dataArray = @[category1, category2, category3];
+    // Magnifier
+    [settings addObject:[self getMagnifierZoomLevelModel]];
+    [settings addObject:[self getMagnifierSizeModel]];
+    LLSettingCategoryModel *category4 = [[LLSettingCategoryModel alloc] initWithTitle:@"Magnifier" settings:settings];
+    [settings removeAllObjects];
+    
+    self.dataArray = @[category1, category2, category3, category4];
     [self.tableView reloadData];
 }
 
@@ -143,47 +152,9 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         
     } else {
         [LLConfig shared].colorStyle = style;
-        [LLSettingManager shared].configColorStyleEnum = @(style);
+        [LLSettingManager shared].colorStyle = @(style);
         [self initData];
     }
-}
-
-- (LLSettingModel *)getEntryWindowStyleModel {
-    __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Entry Window" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
-    model.block = ^{
-        [weakSelf showEntryWindowStyleAlert];
-    };
-    return model;
-}
-
-- (void)showEntryWindowStyleAlert {
-#ifdef __IPHONE_13_0
-    NSInteger count = 4;
-#else
-    NSInteger count = 6;
-#endif
-    NSMutableArray *actions = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < count; i++) {
-        NSString *action = [LLConfigHelper entryWindowStyleDescription:i];
-        if (action) {
-            [actions addObject:action];
-        }
-    }
-    __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
-        [weakSelf setNewEntryWindowStyle:index];
-    }];
-}
-
-- (void)setNewEntryWindowStyle:(LLConfigEntryWindowStyle)style {
-    if (style == [LLConfig shared].entryWindowStyle) {
-        return;
-    }
-    
-    [LLConfig shared].entryWindowStyle = style;
-    [LLSettingManager shared].configEntryWindowStyleEnum = @(style);
-    [self initData];
 }
 
 - (LLSettingModel *)getStatusBarStyleModel {
@@ -220,12 +191,64 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     }
     
     [[LLConfig shared] configStatusBarStyle:style];
-    [LLSettingManager shared].configStatusBarStyleEnum = @(style);
+    [LLSettingManager shared].statusBarStyle = @(style);
     [self initData];
     [UIView animateWithDuration:0.25 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
     }];
     [[UIApplication sharedApplication] setStatusBarStyle:style animated:YES];
+}
+
+- (LLSettingModel *)getEntryWindowStyleModel {
+    __weak typeof(self) weakSelf = self;
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Entry Window" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
+    model.block = ^{
+        [weakSelf showEntryWindowStyleAlert];
+    };
+    return model;
+}
+
+- (void)showEntryWindowStyleAlert {
+#ifdef __IPHONE_13_0
+    NSInteger count = 4;
+#else
+    NSInteger count = 6;
+#endif
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < count; i++) {
+        NSString *action = [LLConfigHelper entryWindowStyleDescription:i];
+        if (action) {
+            [actions addObject:action];
+        }
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
+        [weakSelf setNewEntryWindowStyle:index];
+    }];
+}
+
+- (void)setNewEntryWindowStyle:(LLConfigEntryWindowStyle)style {
+    if (style == [LLConfig shared].entryWindowStyle) {
+        return;
+    }
+    
+    [LLConfig shared].entryWindowStyle = style;
+    [LLSettingManager shared].entryWindowStyle = @(style);
+    [self initData];
+}
+
+- (LLSettingModel *)getEntryWindowAutoHideToSideModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Auto Hide" flag:[LLConfig shared].isAutoHideEntryWindowToSideWhenInactive];
+    __weak typeof(self) weakSelf = self;
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewEntryWindowAutoHideToSideModel:[obj boolValue]];
+    };
+    return model;
+}
+
+- (void)setNewEntryWindowAutoHideToSideModel:(BOOL)isAutoHide {
+    [LLConfig shared].autoHideEntryWindowToSideWhenInactive = isAutoHide;
+    [LLSettingManager shared].entryWindowAutoHide = @(isAutoHide);
 }
 
 - (LLSettingModel *)getLogLevelModel {
@@ -257,7 +280,37 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     }
     
     [LLConfig shared].logStyle = style;
-    [LLSettingManager shared].configLogStyleEnum = @(style);
+    [LLSettingManager shared].logStyle = @(style);
+    [self initData];
+}
+
+- (LLSettingModel *)getMagnifierZoomLevelModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Zoom Level" value:[LLConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
+    __weak typeof(self) weakSelf = self;
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewMagnifierZoomLevel:[obj integerValue]];
+    };
+    return model;
+}
+
+- (void)setNewMagnifierZoomLevel:(NSInteger)zoomLevel {
+    [LLConfig shared].magnifierZoomLevel = zoomLevel;
+    [LLSettingManager shared].magnifierZoomLevel = @(zoomLevel);
+    [self initData];
+}
+
+- (LLSettingModel *)getMagnifierSizeModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Zoom Size" value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
+    __weak typeof(self) weakSelf = self;
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewMagnifierSize:[obj integerValue]];
+    };
+    return model;
+}
+
+- (void)setNewMagnifierSize:(NSInteger)size {
+    [LLConfig shared].magnifierSize = size;
+    [LLSettingManager shared].magnifierSize = @(size);
     [self initData];
 }
 
@@ -324,6 +377,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
         [_tableView registerClass:[LLSettingSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSwitchCell class])];
         [_tableView registerClass:[LLSettingSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSelectorCell class])];
+        [_tableView registerClass:[LLSettingSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSliderCell class])];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
         }

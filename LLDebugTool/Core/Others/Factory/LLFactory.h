@@ -451,6 +451,15 @@ Get Switch.
 */
 + (UISwitch *)getSwitch;
 
+#pragma mark - UISlider
+
+/**
+Get Slider.
+
+@return Slider.
+*/
++ (UISlider *)getSlider;
+
 @end
 
 NS_ASSUME_NONNULL_END

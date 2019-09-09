@@ -22,6 +22,7 @@
 		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
 		362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */; };
 		362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F833B2302BE8F007C9168 /* LLEntryBallView.m */; };
+		363DEC532325DFE90090E78C /* LLSettingSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLSettingSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
 		364570F82313B80800C29200 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F42313B80800C29200 /* README.md */; };
 		364570F92313B80800C29200 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F52313B80800C29200 /* CHANGELOG.md */; };
@@ -44,11 +45,11 @@
 		36743D412313879700002A92 /* LLReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 36743D3F2313879700002A92 /* LLReachability.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
+		36940514232636AC00C4B146 /* LLSettingSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB44AA231FC7A700AC772B /* LLSettingSwitchCell.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4497231F9D0700AC772B /* LLSettingViewController.m */; };
 		36AB449B231FC57D00AC772B /* LLSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449A231FC57D00AC772B /* LLSettingModel.m */; };
 		36AB449E231FC5D800AC772B /* LLSettingCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449D231FC5D800AC772B /* LLSettingCategoryModel.m */; };
-		36AB44AC231FC7A700AC772B /* LLSettingSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB44AA231FC7A700AC772B /* LLSettingSwitchCell.m */; };
 		36BB1E1B2320E679000D8F29 /* LLSettingSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1A2320E679000D8F29 /* LLSettingSelectorCell.m */; };
 		36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */; };
 		36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */; };
@@ -246,6 +247,8 @@
 		362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerWindow.m; sourceTree = "<group>"; };
 		362F833A2302BE8F007C9168 /* LLEntryBallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBallView.h; sourceTree = "<group>"; };
 		362F833B2302BE8F007C9168 /* LLEntryBallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBallView.m; sourceTree = "<group>"; };
+		363DEC512325DFE90090E78C /* LLSettingSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingSliderCell.h; sourceTree = "<group>"; };
+		363DEC522325DFE90090E78C /* LLSettingSliderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingSliderCell.m; sourceTree = "<group>"; };
 		364570F32313B80800C29200 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		364570F42313B80800C29200 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		364570F52313B80800C29200 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -702,6 +705,8 @@
 				36AB44AA231FC7A700AC772B /* LLSettingSwitchCell.m */,
 				36BB1E192320E679000D8F29 /* LLSettingSelectorCell.h */,
 				36BB1E1A2320E679000D8F29 /* LLSettingSelectorCell.m */,
+				363DEC512325DFE90090E78C /* LLSettingSliderCell.h */,
+				363DEC522325DFE90090E78C /* LLSettingSliderCell.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1939,6 +1944,7 @@
 				C4B4E47322F9C90900F70277 /* LLBaseTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
 				C49856DB22ED90DD00E9FBE2 /* LLNetworkHelper.m in Sources */,
+				36940514232636AC00C4B146 /* LLSettingSwitchCell.m in Sources */,
 				C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */,
 				C4B4E45822F9C90900F70277 /* LLFilterFilePickerView.m in Sources */,
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
@@ -1988,7 +1994,6 @@
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
 				36AB449B231FC57D00AC772B /* LLSettingModel.m in Sources */,
-				36AB44AC231FC7A700AC772B /* LLSettingSwitchCell.m in Sources */,
 				C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */,
 				C498569822ED8D4800E9FBE2 /* LLCrashContentCell.m in Sources */,
 				C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */,
@@ -2053,6 +2058,7 @@
 				C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */,
 				C49856E222ED90F300E9FBE2 /* LLSandboxModel.m in Sources */,
 				C4B4E47022F9C90900F70277 /* LLBaseViewController.m in Sources */,
+				363DEC532325DFE90090E78C /* LLSettingSliderCell.m in Sources */,
 				C49856CA22ED90B400E9FBE2 /* LLHierarchyModel.m in Sources */,
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
 				C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */,

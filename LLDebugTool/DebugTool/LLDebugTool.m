@@ -234,17 +234,33 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)prepareToStart {
-    NSNumber *colorStyle = [LLSettingManager shared].configColorStyleEnum;
+    NSNumber *colorStyle = [LLSettingManager shared].colorStyle;
     if (colorStyle) {
         [LLConfig shared].colorStyle = colorStyle.integerValue;
     }
-    NSNumber *entryWindowStyle = [LLSettingManager shared].configEntryWindowStyleEnum;
+    NSNumber *entryWindowStyle = [LLSettingManager shared].entryWindowStyle;
     if (entryWindowStyle) {
         [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
     }
-    NSNumber *statusBarStyle = [LLSettingManager shared].configStatusBarStyleEnum;
+    NSNumber *statusBarStyle = [LLSettingManager shared].statusBarStyle;
     if (statusBarStyle) {
         [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
+    }
+    NSNumber *logStyle = [LLSettingManager shared].logStyle;
+    if (logStyle) {
+        [LLConfig shared].logStyle = logStyle.integerValue;
+    }
+    NSNumber *entryWindowAutoHide = [LLSettingManager shared].entryWindowAutoHide;
+    if (entryWindowAutoHide) {
+        [LLConfig shared].autoHideEntryWindowToSideWhenInactive = [entryWindowAutoHide boolValue];
+    }
+    NSNumber *zoomLevel = [LLSettingManager shared].magnifierZoomLevel;
+    if (zoomLevel) {
+        [LLConfig shared].magnifierZoomLevel = [zoomLevel integerValue];
+    }
+    NSNumber *magnifierSize = [LLSettingManager shared].magnifierSize;
+    if (magnifierSize) {
+        [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
 }
 

@@ -33,13 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) LLComponent *entryViewDoubleClickComponent;
 
-@property (nonatomic, strong) NSNumber *configColorStyleEnum;
+@property (nonatomic, strong) NSNumber *colorStyle;
 
-@property (nonatomic, strong) NSNumber *configEntryWindowStyleEnum;
+@property (nonatomic, strong) NSNumber *entryWindowStyle;
 
-@property (nonatomic, strong) NSNumber *configStatusBarStyleEnum;
+@property (nonatomic, strong) NSNumber *statusBarStyle;
 
-@property (nonatomic, strong) NSNumber *configLogStyleEnum;
+@property (nonatomic, strong) NSNumber *logStyle;
+
+@property (nonatomic, strong) NSNumber *entryWindowAutoHide;
+
+@property (nonatomic, strong) NSNumber *magnifierZoomLevel;
+
+@property (nonatomic, strong) NSNumber *magnifierSize;
 
 + (instancetype)shared;
 

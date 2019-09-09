@@ -56,13 +56,21 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
         return NO;
     }
     
-    if ([LLConfig shared].hosts.count > 0) {
-        NSString* url = [request.URL.absoluteString lowercaseString];
-        for (NSString* _url in [LLConfig shared].hosts) {
+    if ([LLConfig shared].observerdHosts.count > 0) {
+        NSString *url = [request.URL.absoluteString lowercaseString];
+        for (NSString *_url in [LLConfig shared].observerdHosts) {
             if ([url rangeOfString:[_url lowercaseString]].location != NSNotFound)
                 return YES;
         }
         return NO;
+    }
+    
+    if ([LLConfig shared].ignoredHosts.count > 0) {
+        NSString *url = [request.URL.absoluteString lowercaseString];
+        for (NSString *_url in [LLConfig shared].ignoredHosts) {
+            if ([url rangeOfString:[_url lowercaseString]].location != NSNotFound)
+                return NO;
+        }
     }
     
     return YES;

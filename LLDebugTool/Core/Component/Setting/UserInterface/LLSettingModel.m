@@ -24,6 +24,7 @@
 #import "LLSettingModel.h"
 #import "LLSettingSwitchCell.h"
 #import "LLSettingSelectorCell.h"
+#import "LLSettingSliderCell.h"
 
 @implementation LLSettingModel
 
@@ -41,6 +42,17 @@
         _title = title;
         _detailTitle = detailTitle;
         _cellClass = NSStringFromClass(LLSettingSelectorCell.class);
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
+    if (self = [super init]) {
+        _title = title;
+        _value = value;
+        _minValue = minValue;
+        _maxValue = maxValue;
+        _cellClass = NSStringFromClass(LLSettingSliderCell.class);
     }
     return self;
 }

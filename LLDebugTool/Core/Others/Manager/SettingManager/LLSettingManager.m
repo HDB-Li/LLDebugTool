@@ -29,10 +29,13 @@
 static LLSettingManager *_instance = nil;
 
 static NSString *entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
-static NSString *configColorStyleKey = @"configColorStyleKey";
-static NSString *configEntryWindowStyleKey = @"configEntryWindowStyleKey";
-static NSString *configStatusBarStyleKey = @"configStatusBarStyleKey";
-static NSString *configLogStyleKey = @"configLogStyleKey";
+static NSString *colorStyleKey = @"colorStyleKey";
+static NSString *entryWindowStyleKey = @"entryWindowStyleKey";
+static NSString *statusBarStyleKey = @"statusBarStyleKey";
+static NSString *logStyleKey = @"logStyleKey";
+static NSString *entryWindowAutoHideKey = @"entryWindowAutoHideKey";
+static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
+static NSString *magnifierSizeKey = @"magnifierSizeKey";
 
 @interface LLSettingManager ()
 
@@ -49,14 +52,6 @@ static NSString *configLogStyleKey = @"configLogStyleKey";
         _instance = [[LLSettingManager alloc] init];
     });
     return _instance;
-}
-
-#pragma mark - Primary
-- (instancetype)init {
-    if (self = [super init]) {
-//        _colorStyle = -1;
-    }
-    return self;
 }
 
 #pragma mark - Getters and Setters
@@ -84,36 +79,60 @@ static NSString *configLogStyleKey = @"configLogStyleKey";
     return _entryViewDoubleClickComponent;
 }
 
-- (void)setConfigColorStyleEnum:(NSNumber *)configColorStyleEnum {
-    [NSUserDefaults LL_setNumber:configColorStyleEnum forKey:configColorStyleKey];
+- (void)setColorStyle:(NSNumber *)colorStyle {
+    [NSUserDefaults LL_setNumber:colorStyle forKey:colorStyleKey];
 }
 
-- (NSNumber *)configColorStyleEnum {
-    return [NSUserDefaults LL_numberForKey:configColorStyleKey];
+- (NSNumber *)colorStyle {
+    return [NSUserDefaults LL_numberForKey:colorStyleKey];
 }
 
-- (void)setConfigEntryWindowStyleEnum:(NSNumber *)configEntryWindowStyleEnum {
-    [NSUserDefaults LL_setNumber:configEntryWindowStyleEnum forKey:configEntryWindowStyleKey];
+- (void)setEntryWindowStyle:(NSNumber *)entryWindowStyle {
+    [NSUserDefaults LL_setNumber:entryWindowStyle forKey:entryWindowStyleKey];
 }
 
-- (NSNumber *)configEntryWindowStyleEnum {
-    return [NSUserDefaults LL_numberForKey:configEntryWindowStyleKey];
+- (NSNumber *)entryWindowStyle {
+    return [NSUserDefaults LL_numberForKey:entryWindowStyleKey];
 }
 
-- (void)setConfigStatusBarStyleEnum:(NSNumber *)configStatusBarStyleEnum {
-    [NSUserDefaults LL_setNumber:configStatusBarStyleEnum forKey:configStatusBarStyleKey];
+- (void)setStatusBarStyle:(NSNumber *)statusBarStyle {
+    [NSUserDefaults LL_setNumber:statusBarStyle forKey:statusBarStyleKey];
 }
 
-- (NSNumber *)configStatusBarStyleEnum {
-    return [NSUserDefaults LL_numberForKey:configStatusBarStyleKey];
+- (NSNumber *)statusBarStyle {
+    return [NSUserDefaults LL_numberForKey:statusBarStyleKey];
 }
 
-- (void)setConfigLogStyleEnum:(NSNumber *)configLogStyleEnum {
-    [NSUserDefaults LL_setNumber:configLogStyleEnum forKey:configLogStyleKey];
+- (void)setLogStyle:(NSNumber *)logStyle {
+    [NSUserDefaults LL_setNumber:logStyle forKey:logStyleKey];
 }
 
-- (NSNumber *)configLogStyleEnum {
-    return [NSUserDefaults LL_numberForKey:configLogStyleKey];
+- (NSNumber *)logStyle {
+    return [NSUserDefaults LL_numberForKey:logStyleKey];
+}
+
+- (void)setEntryWindowAutoHide:(NSNumber *)entryWindowAutoHide {
+    [NSUserDefaults LL_setNumber:entryWindowAutoHide forKey:entryWindowAutoHideKey];
+}
+
+- (NSNumber *)entryWindowAutoHide {
+    return [NSUserDefaults LL_numberForKey:entryWindowAutoHideKey];
+}
+
+- (void)setMagnifierZoomLevel:(NSNumber *)magnifierZoomLevel {
+    [NSUserDefaults LL_setNumber:magnifierZoomLevel forKey:magnifierZoomLevelKey];
+}
+
+- (NSNumber *)magnifierZoomLevel {
+    return [NSUserDefaults LL_numberForKey:magnifierZoomLevelKey];
+}
+
+- (void)setMagnifierSize:(NSNumber *)magnifierSize {
+    [NSUserDefaults LL_setNumber:magnifierSize forKey:magnifierSizeKey];
+}
+
+- (NSNumber *)magnifierSize {
+    return [NSUserDefaults LL_numberForKey:magnifierSizeKey];
 }
 
 @end

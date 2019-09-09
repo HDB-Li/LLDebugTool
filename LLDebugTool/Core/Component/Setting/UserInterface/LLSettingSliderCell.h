@@ -1,5 +1,5 @@
 //
-//  LLSettingModel.h
+//  LLSettingSliderCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,44 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "LLSettingTitleCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLSettingModelBlock)(void);
-
-typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
-
-@interface LLSettingModel : NSObject
-
-@property (nonatomic, copy, readonly) NSString *title;
-
-@property (nonatomic, copy, readonly) NSString *cellClass;
-
-// Style1
-@property (nonatomic, assign) BOOL flag;
-
-// Style2
-@property (nonatomic, assign, nullable, readonly) NSString *detailTitle;
-
-// Style3
-@property (nonatomic, assign) CGFloat value;
-
-@property (nonatomic, assign, readonly) CGFloat minValue;
-
-@property (nonatomic, assign, readonly) CGFloat maxValue;
-
-// Block
-@property (nonatomic, copy, nullable) LLSettingModelBlock block;
-
-@property (nonatomic, copy, nullable) LLSettingModelChangePropertyBlock changePropertyBlock;
-
-- (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag;
-
-- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle;
-
-- (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
+@interface LLSettingSliderCell : LLSettingTitleCell
 
 @end
 

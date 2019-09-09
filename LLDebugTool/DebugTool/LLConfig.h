@@ -146,37 +146,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)shared;
 
-#pragma mark - Theme Color.
-/**
- Use preset the color configuration. For details, please see LLConfigColorStyle.
- */
-@property (nonatomic, assign) LLConfigColorStyle colorStyle;
-
-/**
- Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
- */
-- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
-
-/**
- Window's statusBarStyle when show.
- */
-- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
-
-#pragma mark - Date Formatter
-/**
- Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".
- If this value is modified, the old data is not compatible.
- */
-@property (nonatomic, copy) NSString *dateFormatter;
-
 #pragma mark - Entry Window Config
+/**
+ Entry window style. Decide how the Window displays. Default is LLConfigEntryWindowStyleSuspensionBall.
+ */
+@property (nonatomic, assign) LLConfigEntryWindowStyle entryWindowStyle;
+
 /**
  Entry window ball width, default is kLLEntryWindowBallWidth, must greater than kLLEntryWindowMinBallWidth.
  */
 @property (nonatomic, assign) CGFloat entryWindowBallWidth;
 
 /**
- Entry window display percent, 0 .. 1.0, default is kLLEntryWindowDisplayPercent.
+ Entry window display percent, 0.1 .. 1.0, default is kLLEntryWindowDisplayPercent.
  */
 @property (nonatomic, assign) CGFloat entryWindowDisplayPercent;
 
@@ -200,6 +182,35 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, getter=isAutoHideEntryWindowToSideWhenInactive) BOOL autoHideEntryWindowToSideWhenInactive;
 
+#pragma mark - Theme Color.
+/**
+ Use preset the color configuration. For details, please see LLConfigColorStyle.
+ */
+@property (nonatomic, assign) LLConfigColorStyle colorStyle;
+
+/**
+ Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
+ */
+- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
+
+/**
+ Window's statusBarStyle when show.
+ */
+- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
+
+#pragma mark - Log
+/**
+ Customize the log style. Default is LLConfigLogDetail.
+ */
+@property (nonatomic, assign) LLConfigLogStyle logStyle;
+
+#pragma mark - Date Formatter
+/**
+ Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".
+ If this value is modified, the old data is not compatible.
+ */
+@property (nonatomic, copy) NSString *dateFormatter;
+
 #pragma mark - Magnifier Window
 /**
  Magnifier window zoom level, number of pixels per color, default is kLLMagnifierWindowZoomLevel.
@@ -221,9 +232,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Observer network in hosts, ignore others.
  */
-@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts;
+@property (nonatomic, strong, nullable) NSArray <NSString *>*observerdHosts;
 
-#pragma mark - Settings
+/**
+ Ignored hosts, low level than observerdHosts.
+ */
+@property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
+
+#pragma mark - LLDebugTool
 /**
  Whether to print LLDebugTool's log event. Default is YES.
  */
@@ -234,16 +250,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL autoCheckDebugToolVersion;
 
-/**
- Customize the log style. Default is LLConfigLogDetail.
- */
-@property (nonatomic, assign) LLConfigLogStyle logStyle;
-
-/**
- Entry window style. Decide how the Window displays. Default is LLConfigEntryWindowStyleSuspensionBall.
- */
-@property (nonatomic, assign) LLConfigEntryWindowStyle entryWindowStyle;
-
+#pragma mark - Function
 /**
  Available features. Default is LLConfigAvailableAll.
  It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
@@ -277,7 +284,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat activeAlpha LLDebugToolDeprecated("Use `entryWindowActiveAlpha`.");
 @property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
 @property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `autoHideEntryWindowToSideWhenInactive`.");
-
+@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
 @end
 
 NS_ASSUME_NONNULL_END

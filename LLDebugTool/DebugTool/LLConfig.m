@@ -110,7 +110,11 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 }
 
 - (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
-    _entryWindowBallWidth = MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth);
+    _entryWindowBallWidth = MIN(MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth), kLLEntryWindowMaxBallWidth);
+}
+
+- (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
+    _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
 }
 
 - (void)setMagnifierSize:(NSInteger)magnifierSize {
