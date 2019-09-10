@@ -1,5 +1,5 @@
 //
-//  LLRulerInfoView.h
+//  LLRulerPickerView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseInfoView.h"
+#import "LLPickerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLRulerInfoView : LLBaseInfoView
+@class LLRulerPickerView;
+
+@protocol LLRulerPickerViewDelegate <NSObject>
+
+- (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow;
+
+@end
+
+@interface LLRulerPickerView : LLPickerView
+
+@property (nonatomic, weak) id<LLRulerPickerViewDelegate> delegate;
 
 @end
 

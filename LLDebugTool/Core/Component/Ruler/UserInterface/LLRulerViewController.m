@@ -22,8 +22,31 @@
 //  SOFTWARE.
 
 #import "LLRulerViewController.h"
+#import "LLRulerPickerView.h"
+#import "LLRulerPickerInfoView.h"
+#import "LLFactory.h"
+#import "LLConst.h"
+#import "LLMacros.h"
+#import "LLThemeManager.h"
+#import "UIView+LL_Utils.h"
 
-@interface LLRulerViewController ()
+@interface LLRulerViewController ()<LLRulerPickerViewDelegate, LLBaseInfoViewDelegate>
+
+@property (nonatomic, strong) LLRulerPickerView *pickerView;
+
+@property (nonatomic, strong) LLRulerPickerInfoView *infoView;
+
+@property (nonatomic, strong) UIView *verticalLine;
+
+@property (nonatomic, strong) UIView *horizontalLine;
+
+@property (nonatomic, strong) UILabel *topLabel;
+
+@property (nonatomic, strong) UILabel *leftLabel;
+
+@property (nonatomic, strong) UILabel *rightLabel;
+
+@property (nonatomic, strong) UILabel *bottomLabel;
 
 @end
 
@@ -35,9 +58,147 @@
     [self initial];
 }
 
+#pragma mark - LLRulerPickerViewDelegate
+- (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow {
+    
+    CGFloat x = pointInWindow.x;
+    CGFloat y = pointInWindow.y;
+    
+    self.topLabel.text = [NSString stringWithFormat:@"%0.2f",y];
+    [self.topLabel sizeToFit];
+    self.topLabel.LL_centerY = y / 2.0;
+    
+    self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_HEIGHT - y];
+    [self.bottomLabel sizeToFit];
+    self.bottomLabel.LL_centerY = y + (LL_SCREEN_HEIGHT - y) / 2.0;
+    
+    self.leftLabel.text = [NSString stringWithFormat:@"%0.2f",x];
+    [self.leftLabel sizeToFit];
+    self.leftLabel.LL_centerX = x / 2.0;
+    
+    self.rightLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_WIDTH - x];
+    [self.rightLabel sizeToFit];
+    self.rightLabel.LL_centerX = x + (LL_SCREEN_WIDTH - x) / 2.0;
+    
+    self.horizontalLine.LL_centerY = y;
+    if (y < LL_SCREEN_HEIGHT / 2.0) {
+        self.leftLabel.LL_y = y;
+        self.rightLabel.LL_y = y;
+    } else {
+        self.leftLabel.LL_bottom = y;
+        self.rightLabel.LL_bottom = y;
+    }
+    
+    self.verticalLine.LL_centerX = x;
+    if (x < LL_SCREEN_WIDTH / 2.0) {
+        self.topLabel.LL_x = x;
+        self.bottomLabel.LL_x = x;
+    } else {
+        self.topLabel.LL_right = x;
+        self.bottomLabel.LL_right = x;
+    }
+    
+    [self.infoView updateTop:y left:x right:LL_SCREEN_WIDTH - x bottom:LL_SCREEN_HEIGHT - y];
+}
+
+#pragma mark - LLBaseInfoViewDelegate
+- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+    [self componentDidLoad:nil];
+}
+
 #pragma mark - Primary
 - (void)initial {
+    self.view.backgroundColor = [UIColor clearColor];
     
+    [self.view addSubview:self.infoView];
+    [self.view addSubview:self.horizontalLine];
+    [self.view addSubview:self.verticalLine];
+    [self.view addSubview:self.topLabel];
+    [self.view addSubview:self.leftLabel];
+    [self.view addSubview:self.rightLabel];
+    [self.view addSubview:self.bottomLabel];
+    [self.view addSubview:self.pickerView];
+    
+}
+
+- (UIView *)getPickerLine {
+    return [LLFactory getView:nil frame:CGRectZero backgroundColor:[LLThemeManager shared].primaryColor];
+}
+
+- (UILabel *)getPickerLabel {
+    UILabel *label = [LLFactory getLabel:nil frame:CGRectZero text:nil font:16 textColor:[LLThemeManager shared].primaryColor];
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.backgroundColor = [LLThemeManager shared].backgroundColor;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.LL_horizontalPadding = 5;
+    label.LL_verticalPadding = 5;
+    [label LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+    return label;
+}
+
+#pragma mark - Getters and setters
+- (LLRulerPickerView *)pickerView {
+    if (!_pickerView) {
+        CGFloat width = 70;
+        _pickerView = [[LLRulerPickerView alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2.0, (LL_SCREEN_HEIGHT - width) / 2.0, width, width)];
+        _pickerView.delegate = self;
+    }
+    return _pickerView;
+}
+
+- (LLRulerPickerInfoView *)infoView {
+    if (!_infoView) {
+        CGFloat height = 60;
+        _infoView = [[LLRulerPickerInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
+        _infoView.delegate = self;
+    }
+    return _infoView;
+}
+
+- (UIView *)verticalLine {
+    if (!_verticalLine) {
+        _verticalLine = [self getPickerLine];
+        _verticalLine.LL_height = LL_SCREEN_HEIGHT;
+        _verticalLine.LL_width = kLLRulerLineWidth;
+    }
+    return _verticalLine;
+}
+
+- (UIView *)horizontalLine {
+    if (!_horizontalLine) {
+        _horizontalLine = [self getPickerLine];
+        _horizontalLine.LL_width = LL_SCREEN_WIDTH;
+        _horizontalLine.LL_height = kLLRulerLineWidth;
+    }
+    return _horizontalLine;
+}
+
+- (UILabel *)topLabel {
+    if (!_topLabel) {
+        _topLabel = [self getPickerLabel];
+    }
+    return _topLabel;
+}
+
+- (UILabel *)leftLabel {
+    if (!_leftLabel) {
+        _leftLabel = [self getPickerLabel];
+    }
+    return _leftLabel;
+}
+
+- (UILabel *)rightLabel {
+    if (!_rightLabel) {
+        _rightLabel = [self getPickerLabel];
+    }
+    return _rightLabel;
+}
+
+- (UILabel *)bottomLabel {
+    if (!_bottomLabel) {
+        _bottomLabel = [self getPickerLabel];
+    }
+    return _bottomLabel;
 }
 
 @end

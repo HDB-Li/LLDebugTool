@@ -31,6 +31,7 @@
 #import "LLScreenshotComponent.h"
 #import "LLHierarchyComponent.h"
 #import "LLMagnifierComponent.h"
+#import "LLRulerComponent.h"
 #import "LLImageNameConfig.h"
 
 @implementation LLFunctionItemModel
@@ -63,6 +64,8 @@
             return [[LLHierarchyComponent alloc] init];
         case LLDebugToolActionMagnifier:
             return [[LLMagnifierComponent alloc] init];
+        case LLDebugToolActionRuler:
+            return [[LLRulerComponent alloc] init];
     }
 }
 
@@ -84,6 +87,8 @@
             return @"Hierarchy";
         case LLDebugToolActionMagnifier:
             return @"Magnifier";
+        case LLDebugToolActionRuler:
+            return @"Ruler";
     }
 }
 
@@ -105,6 +110,8 @@
             return kHierarchyImageName;
         case LLDebugToolActionMagnifier:
             return kMagnifierImageName;
+        case LLDebugToolActionRuler:
+            return kRulerImageName;
     }
 }
 

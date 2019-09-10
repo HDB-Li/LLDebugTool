@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLPickerView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLBaseMoveView.h"
 
-CGFloat const kLLEntryWindowBallWidth = 50;
-CGFloat const kLLEntryWindowMinBallWidth = 30;
-CGFloat const kLLEntryWindowMaxBallWidth = 70;
-CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;// Golden section search.
-CGFloat const kLLEntryWindowMinDisplayPercent = 0.1;
-CGFloat const kLLEntryWindowMaxDisplayPercent = 1;
-CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
-CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
-CGFloat const kLLEntryWindowInactiveAlpha = 0.75;
-CGFloat const kLLEntryWindowActiveAlpha = 1.0;
-CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
+NS_ASSUME_NONNULL_BEGIN
 
-NSInteger const kLLMagnifierWindowZoomLevel = 10;
-NSInteger const kLLMagnifierWindowMinZoomLevel = 6;
-NSInteger const kLLMagnifierWindowMaxZoomLevel = 14;
-NSInteger const kLLMagnifierWindowSize = 15;
-NSInteger const kLLMagnifierWindowMinSize = 9;
-NSInteger const kLLMagnifierWindowMaxSize = 21;
+@interface LLPickerView : LLBaseMoveView
 
-CGFloat const kLLRulerLineWidth = 1;
+@end
 
-CGFloat const kLLGeneralMargin = 10;
-
-NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";
+NS_ASSUME_NONNULL_END

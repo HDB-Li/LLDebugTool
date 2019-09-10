@@ -35,6 +35,7 @@
 #import "LLHierarchyPickerWindow.h"
 #import "LLHierarchyDetailWindow.h"
 #import "LLScreenshotWindow.h"
+#import "LLRulerWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -131,6 +132,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return LLScreenshotWindow.
  */
 + (LLScreenshotWindow *)screenshotWindow;
+
+/**
+Ruler window
+
+@return LLRulerWindow.
+*/
++ (LLRulerWindow *)rulerWindow;
 
 /**
  Show entry window.

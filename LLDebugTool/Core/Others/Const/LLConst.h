@@ -43,6 +43,8 @@ UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowMinSize;
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowMaxSize;
 
+UIKIT_EXTERN CGFloat const kLLRulerLineWidth;
+
 UIKIT_EXTERN CGFloat const kLLGeneralMargin;
 
 FOUNDATION_EXTERN NSString * const kLLEntryViewDoubleClickComponent;

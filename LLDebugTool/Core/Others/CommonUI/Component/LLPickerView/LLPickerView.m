@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  LLPickerView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "LLPickerView.h"
+#import "LLThemeManager.h"
+#import "UIView+LL_Utils.h"
 
-CGFloat const kLLEntryWindowBallWidth = 50;
-CGFloat const kLLEntryWindowMinBallWidth = 30;
-CGFloat const kLLEntryWindowMaxBallWidth = 70;
-CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;// Golden section search.
-CGFloat const kLLEntryWindowMinDisplayPercent = 0.1;
-CGFloat const kLLEntryWindowMaxDisplayPercent = 1;
-CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
-CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
-CGFloat const kLLEntryWindowInactiveAlpha = 0.75;
-CGFloat const kLLEntryWindowActiveAlpha = 1.0;
-CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
+@implementation LLPickerView
 
-NSInteger const kLLMagnifierWindowZoomLevel = 10;
-NSInteger const kLLMagnifierWindowMinZoomLevel = 6;
-NSInteger const kLLMagnifierWindowMaxZoomLevel = 14;
-NSInteger const kLLMagnifierWindowSize = 15;
-NSInteger const kLLMagnifierWindowMinSize = 9;
-NSInteger const kLLMagnifierWindowMaxSize = 21;
+#pragma mark - Life cycle
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.overflow = YES;
+        self.backgroundColor = [UIColor clearColor];
+        self.layer.cornerRadius = self.LL_width / 2.0;
+        self.layer.borderWidth = 2;
+        self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+        
+        CGFloat width = 20;
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = self.bounds;
+        layer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((self.LL_width - width) / 2.0, (self.LL_height - width) / 2.0, width, width)].CGPath;
+        layer.fillColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.5].CGColor;
+        layer.strokeColor = [LLThemeManager shared].backgroundColor.CGColor;
+        layer.lineWidth = 0.5;
+        [self.layer addSublayer:layer];
+    }
+    return self;
+}
 
-CGFloat const kLLRulerLineWidth = 1;
-
-CGFloat const kLLGeneralMargin = 10;
-
-NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";
+@end

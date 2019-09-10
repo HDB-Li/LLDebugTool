@@ -102,6 +102,10 @@ static LLWindowManager *_instance = nil;
     return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class])];
 }
 
++ (LLRulerWindow *)rulerWindow {
+    return (LLRulerWindow *)[self createWindowWithClassName:NSStringFromClass([LLRulerWindow class])];
+}
+
 - (void)showEntryWindow {
     [self addWindow:self.entryWindow animated:YES completion:nil];
 }

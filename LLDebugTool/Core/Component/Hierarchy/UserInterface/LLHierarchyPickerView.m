@@ -30,36 +30,13 @@
 
 @implementation LLHierarchyPickerView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-#pragma mark - Primary
-- (void)initial {
-    self.overflow = YES;
-    self.backgroundColor = [UIColor clearColor];
-    self.layer.cornerRadius = self.LL_width / 2.0;
-    self.layer.borderWidth = 2;
-    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    
-    CGFloat width = 16;
-    CAShapeLayer *layer = [CAShapeLayer layer];
-    layer.frame = self.bounds;
-    layer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((self.LL_width - width) / 2.0, (self.LL_height - width) / 2.0, width, width)].CGPath;
-    layer.fillColor = [LLThemeManager shared].primaryColor.CGColor;
-    layer.strokeColor = [LLThemeManager shared].backgroundColor.CGColor;
-    layer.lineWidth = 0.5;
-    [self.layer addSublayer:layer];
-}
-
+#pragma mark - Over write
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
     NSArray <UIView *>*views = [self viewForSelectionAtPoint:self.center];
     [self.delegate LLHierarchyPickerView:self didMoveTo:views];
 }
 
+#pragma mark - Primary
 - (NSArray<UIView *> *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow
 {
     // Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.

@@ -20,11 +20,13 @@
 		3629E3952136830A00226C79 /* TestLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38B2136830A00226C79 /* TestLogViewController.m */; };
 		3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38E2136830A00226C79 /* TestNetworkViewController.m */; };
 		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
+		362AA6AD23272E2200F33EC4 /* LLRulerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362AA6AC23272E2200F33EC4 /* LLRulerPickerView.m */; };
+		362AA6B123274FCF00F33EC4 /* LLPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362AA6B023274FCF00F33EC4 /* LLPickerView.m */; };
 		362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */; };
 		362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F833B2302BE8F007C9168 /* LLEntryBallView.m */; };
 		362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AA2326607A00A27F05 /* LLRulerWindow.m */; };
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
-		362F87B12326614000A27F05 /* LLRulerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerInfoView.m */; };
+		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
 		363DEC532325DFE90090E78C /* LLSettingSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLSettingSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
 		364570F82313B80800C29200 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F42313B80800C29200 /* README.md */; };
@@ -247,6 +249,10 @@
 		3629E38F2136830A00226C79 /* TestCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCrashViewController.h; sourceTree = "<group>"; };
 		3629E3902136830A00226C79 /* TestColorStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestColorStyleViewController.m; sourceTree = "<group>"; };
 		3629E3912136830A00226C79 /* TestLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogViewController.h; sourceTree = "<group>"; };
+		362AA6AB23272E2200F33EC4 /* LLRulerPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerPickerView.h; sourceTree = "<group>"; };
+		362AA6AC23272E2200F33EC4 /* LLRulerPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerView.m; sourceTree = "<group>"; };
+		362AA6AF23274FCF00F33EC4 /* LLPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPickerView.h; sourceTree = "<group>"; };
+		362AA6B023274FCF00F33EC4 /* LLPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPickerView.m; sourceTree = "<group>"; };
 		362F3CE422F01AF70087B0E4 /* LLHierarchyPickerWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerWindow.h; sourceTree = "<group>"; };
 		362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerWindow.m; sourceTree = "<group>"; };
 		362F833A2302BE8F007C9168 /* LLEntryBallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBallView.h; sourceTree = "<group>"; };
@@ -255,8 +261,8 @@
 		362F87AA2326607A00A27F05 /* LLRulerWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerWindow.m; sourceTree = "<group>"; };
 		362F87AC232660A000A27F05 /* LLRulerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerViewController.h; sourceTree = "<group>"; };
 		362F87AD232660A000A27F05 /* LLRulerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerViewController.m; sourceTree = "<group>"; };
-		362F87AF2326614000A27F05 /* LLRulerInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerInfoView.h; sourceTree = "<group>"; };
-		362F87B02326614000A27F05 /* LLRulerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerInfoView.m; sourceTree = "<group>"; };
+		362F87AF2326614000A27F05 /* LLRulerPickerInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerPickerInfoView.h; sourceTree = "<group>"; };
+		362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoView.m; sourceTree = "<group>"; };
 		363DEC512325DFE90090E78C /* LLSettingSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingSliderCell.h; sourceTree = "<group>"; };
 		363DEC522325DFE90090E78C /* LLSettingSliderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingSliderCell.m; sourceTree = "<group>"; };
 		364570F32313B80800C29200 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -661,9 +667,19 @@
 			path = DemoViewControllers;
 			sourceTree = "<group>";
 		};
+		362AA6AE23274FBB00F33EC4 /* LLPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				362AA6AF23274FCF00F33EC4 /* LLPickerView.h */,
+				362AA6B023274FCF00F33EC4 /* LLPickerView.m */,
+			);
+			path = LLPickerView;
+			sourceTree = "<group>";
+		};
 		364CF3D6232656FC000B513F /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				362AA6AE23274FBB00F33EC4 /* LLPickerView */,
 				364EF63C2321F4C00067C7D7 /* LLColorPicker */,
 				365912512320BCF500FDA6A0 /* LLTitleView */,
 				C4B4E3D922F9C90900F70277 /* LLSubTitleTableViewCell */,
@@ -692,8 +708,10 @@
 				362F87AA2326607A00A27F05 /* LLRulerWindow.m */,
 				362F87AC232660A000A27F05 /* LLRulerViewController.h */,
 				362F87AD232660A000A27F05 /* LLRulerViewController.m */,
-				362F87AF2326614000A27F05 /* LLRulerInfoView.h */,
-				362F87B02326614000A27F05 /* LLRulerInfoView.m */,
+				362AA6AB23272E2200F33EC4 /* LLRulerPickerView.h */,
+				362AA6AC23272E2200F33EC4 /* LLRulerPickerView.m */,
+				362F87AF2326614000A27F05 /* LLRulerPickerInfoView.h */,
+				362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -2020,8 +2038,9 @@
 				364EF6452321FA740067C7D7 /* LLHSB.m in Sources */,
 				36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */,
 				36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */,
+				362AA6B123274FCF00F33EC4 /* LLPickerView.m in Sources */,
 				C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */,
-				362F87B12326614000A27F05 /* LLRulerInfoView.m in Sources */,
+				362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */,
 				C49856EF22EDB07300E9FBE2 /* LLLogComponent.m in Sources */,
 				C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */,
 				36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */,
@@ -2039,6 +2058,7 @@
 				C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */,
 				C4B4E46022F9C90900F70277 /* LLFilterEventView.m in Sources */,
 				C49856A722ED8D4800E9FBE2 /* LLLogDetailViewController.m in Sources */,
+				362AA6AD23272E2200F33EC4 /* LLRulerPickerView.m in Sources */,
 				C4B4E44322F9C90900F70277 /* NSData+LL_Utils.m in Sources */,
 				C4B4E45122F9C90900F70277 /* LLThemeManager.m in Sources */,
 				C49856E622EDAC9400E9FBE2 /* LLAppInfoComponent.m in Sources */,

@@ -119,6 +119,7 @@
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot]];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy]];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler]];
     
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = @"Short Cut";

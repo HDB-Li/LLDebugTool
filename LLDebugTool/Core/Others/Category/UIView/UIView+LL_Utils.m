@@ -241,9 +241,11 @@ static const char kLLVerticalPaddingKey;
 #pragma mark - Primary
 - (void)LL_sizeToFit {
     [self LL_sizeToFit];
-    CGRect frame = self.frame;
-    frame.size = CGSizeMake(frame.size.width + 2 * self.LL_horizontalPadding, frame.size.height + 2 * self.LL_verticalPadding);
-    self.frame = frame;
+    if (self.LL_horizontalPadding > 0 || self.LL_verticalPadding > 0) {
+        CGRect frame = self.frame;
+        frame.size = CGSizeMake(frame.size.width + 2 * self.LL_horizontalPadding, frame.size.height + 2 * self.LL_verticalPadding);
+        self.frame = frame;
+    }
 }
 
 @end

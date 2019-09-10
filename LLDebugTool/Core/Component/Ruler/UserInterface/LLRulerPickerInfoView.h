@@ -1,5 +1,5 @@
 //
-//  LLRulerInfoView.m
+//  LLRulerPickerInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,16 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLRulerInfoView.h"
+#import "LLBaseInfoView.h"
 
-@implementation LLRulerInfoView
+NS_ASSUME_NONNULL_BEGIN
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+@interface LLRulerPickerInfoView : LLBaseInfoView
+
+- (void)updateTop:(CGFloat)top left:(CGFloat)left right:(CGFloat)right bottom:(CGFloat)bottom;
 
 @end
+
+NS_ASSUME_NONNULL_END

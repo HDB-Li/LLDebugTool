@@ -46,7 +46,8 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionSandbox,
     LLDebugToolActionScreenshot,
     LLDebugToolActionHierarchy,
-    LLDebugToolActionMagnifier
+    LLDebugToolActionMagnifier,
+    LLDebugToolActionRuler
 };
 
 /**

@@ -52,7 +52,7 @@
     if (!self.isMoved) {
         self.moved = YES;
     }
-    
+
     CGPoint offsetPoint = [sender translationInView:sender.view];
     
     [self viewWillUpdateOffset:sender offset:offsetPoint];

@@ -20,6 +20,7 @@ static NSString *const kSandboxImageName = @"LL-sandbox";
 static NSString *const kScreenshotImageName = @"LL-screenshot";
 static NSString *const kHierarchyImageName = @"LL-hierarchy";
 static NSString *const kMagnifierImageName = @"LL-magnifier";
+static NSString *const kRulerImageName = @"LL-ruler";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";
