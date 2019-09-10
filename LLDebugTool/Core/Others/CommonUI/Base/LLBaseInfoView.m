@@ -51,14 +51,6 @@
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGRect closeRect = CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30);
-    if (!CGRectEqualToRect(self.closeButton.frame, closeRect)) {
-        self.closeButton.frame = closeRect;
-    }
-}
-
 #pragma mark - Primary
 - (void)closeButtonClicked:(UIButton *)sender {
     [self.delegate LLBaseInfoViewDidSelectCloseButton:self];

@@ -31,7 +31,7 @@
 
 #pragma mark - Over write
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
-    [_delegate LLRulerPickerView:self didUpdatePoint:self.center];
+    [_delegate LLRulerPickerView:self didUpdatePoint:self.center state:sender.state];
 }
 
 @end

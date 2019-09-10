@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LLRulerPickerViewDelegate <NSObject>
 
-- (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow;
+- (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow state:(UIGestureRecognizerState)state;
 
 @end
 

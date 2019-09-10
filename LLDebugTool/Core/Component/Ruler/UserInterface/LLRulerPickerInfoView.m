@@ -26,12 +26,15 @@
 #import "LLThemeManager.h"
 #import "UIView+LL_Utils.h"
 #import "LLConst.h"
+#import "LLMacros.h"
 
 @interface LLRulerPickerInfoView ()
 
-@property (nonatomic, strong) UILabel *leftContentLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
 
-@property (nonatomic, strong) UILabel *rightContentLabel;
+@property (nonatomic, strong) UILabel *subContentLabel;
+
+@property (nonatomic, assign) CGPoint startPoint;
 
 @end
 
@@ -47,40 +50,62 @@
 
 #pragma mark - Public
 - (void)updateTop:(CGFloat)top left:(CGFloat)left right:(CGFloat)right bottom:(CGFloat)bottom {
-    self.leftContentLabel.text = [NSString stringWithFormat:@"Top: %0.2f\nBottom: %0.2f",top,bottom];
-    self.rightContentLabel.text = [NSString stringWithFormat:@"Left: %0.2f\nRight: %0.2f",left,right];
+    self.contentLabel.text = [NSString stringWithFormat:@"Top: %0.2f, Left: %0.2f\nRight: %0.2f, Bottom: %0.2f",top,left,right,bottom];
+    self.subContentLabel.text = [NSString stringWithFormat:@"Start: {%0.2f, %0.2f}\nCurrent: {%0.2f, %0.2f}",self.startPoint.x,self.startPoint.y,left,top];
+    [self updateHeightIfNeeded];
 }
 
-#pragma mark - Over write
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.leftContentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, (self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin) / 2.0, self.LL_height - kLLGeneralMargin - kLLGeneralMargin);
-    self.rightContentLabel.frame = CGRectMake(self.closeButton.LL_x / 2.0, kLLGeneralMargin, (self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin) / 2.0, self.LL_height - kLLGeneralMargin - kLLGeneralMargin);
+- (void)updateStartPoint:(CGPoint)point {
+    self.startPoint = point;
+    self.subContentLabel.text = [NSString stringWithFormat:@"Start: {%0.2f, %0.2f}",point.x,point.y];
+    [self updateHeightIfNeeded];
+}
+
+- (void)updateStopPoint:(CGPoint)point {
+    self.subContentLabel.text = [NSString stringWithFormat:@"Start: {%0.2f, %0.2f}\nEnd: {%0.2f, %0.2f}",self.startPoint.x,self.startPoint.y,point.x,point.y];
+    [self updateHeightIfNeeded];
 }
 
 #pragma mark - Primary
 - (void)initial {
-    [self addSubview:self.leftContentLabel];
-    [self addSubview:self.rightContentLabel];
+    [self addSubview:self.contentLabel];
+    [self addSubview:self.subContentLabel];
+    
+    self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.LL_height - kLLGeneralMargin - kLLGeneralMargin);
+    self.subContentLabel.frame = CGRectMake(kLLGeneralMargin, self.contentLabel.LL_bottom, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, 0);
+}
+
+- (void)updateHeightIfNeeded {
+    self.subContentLabel.LL_width = self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin;
+    [self.subContentLabel sizeToFit];
+    CGFloat height = self.subContentLabel.LL_bottom + kLLGeneralMargin;
+    if (height != self.LL_height) {
+        self.LL_height = height;
+        if (!self.isMoved) {
+            if (self.LL_bottom != LL_SCREEN_HEIGHT - kLLGeneralMargin * 2) {
+                self.LL_bottom = LL_SCREEN_HEIGHT - kLLGeneralMargin * 2;
+            }
+        }
+    }
 }
 
 #pragma mark - Getters and setters
-- (UILabel *)leftContentLabel {
-    if (!_leftContentLabel) {
-        _leftContentLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
-        _leftContentLabel.numberOfLines = 0;
-        _leftContentLabel.lineBreakMode = NSLineBreakByCharWrapping;
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _contentLabel.numberOfLines = 0;
+        _contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
     }
-    return _leftContentLabel;
+    return _contentLabel;
 }
 
-- (UILabel *)rightContentLabel {
-    if (!_rightContentLabel) {
-        _rightContentLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
-        _rightContentLabel.numberOfLines = 0;
-        _rightContentLabel.lineBreakMode = NSLineBreakByCharWrapping;
+- (UILabel *)subContentLabel {
+    if (!_subContentLabel) {
+        _subContentLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _subContentLabel.numberOfLines = 0;
+        _subContentLabel.lineBreakMode = NSLineBreakByCharWrapping;
     }
-    return _rightContentLabel;
+    return _subContentLabel;
 }
 
 @end

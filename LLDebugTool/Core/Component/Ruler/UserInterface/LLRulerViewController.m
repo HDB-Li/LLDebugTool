@@ -59,46 +59,68 @@
 }
 
 #pragma mark - LLRulerPickerViewDelegate
-- (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow {
+- (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow state:(UIGestureRecognizerState)state {
     
-    CGFloat x = pointInWindow.x;
-    CGFloat y = pointInWindow.y;
-    
-    self.topLabel.text = [NSString stringWithFormat:@"%0.2f",y];
-    [self.topLabel sizeToFit];
-    self.topLabel.LL_centerY = y / 2.0;
-    
-    self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_HEIGHT - y];
-    [self.bottomLabel sizeToFit];
-    self.bottomLabel.LL_centerY = y + (LL_SCREEN_HEIGHT - y) / 2.0;
-    
-    self.leftLabel.text = [NSString stringWithFormat:@"%0.2f",x];
-    [self.leftLabel sizeToFit];
-    self.leftLabel.LL_centerX = x / 2.0;
-    
-    self.rightLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_WIDTH - x];
-    [self.rightLabel sizeToFit];
-    self.rightLabel.LL_centerX = x + (LL_SCREEN_WIDTH - x) / 2.0;
-    
-    self.horizontalLine.LL_centerY = y;
-    if (y < LL_SCREEN_HEIGHT / 2.0) {
-        self.leftLabel.LL_y = y;
-        self.rightLabel.LL_y = y;
-    } else {
-        self.leftLabel.LL_bottom = y;
-        self.rightLabel.LL_bottom = y;
+    switch (state) {
+        case UIGestureRecognizerStateBegan:{
+            self.topLabel.hidden = NO;
+            self.leftLabel.hidden = NO;
+            self.rightLabel.hidden = NO;
+            self.bottomLabel.hidden = NO;
+            [self.infoView updateStartPoint:pointInWindow];
+        }
+            break;
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded: {
+            self.topLabel.hidden = YES;
+            self.leftLabel.hidden = YES;
+            self.rightLabel.hidden = YES;
+            self.bottomLabel.hidden = YES;
+            [self.infoView updateStopPoint:pointInWindow];
+        }
+            break;
+        default: {
+            CGFloat x = pointInWindow.x;
+            CGFloat y = pointInWindow.y;
+            
+            self.topLabel.text = [NSString stringWithFormat:@"%0.2f",y];
+            [self.topLabel sizeToFit];
+            self.topLabel.LL_centerY = y / 2.0;
+            
+            self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_HEIGHT - y];
+            [self.bottomLabel sizeToFit];
+            self.bottomLabel.LL_centerY = y + (LL_SCREEN_HEIGHT - y) / 2.0;
+            
+            self.leftLabel.text = [NSString stringWithFormat:@"%0.2f",x];
+            [self.leftLabel sizeToFit];
+            self.leftLabel.LL_centerX = x / 2.0;
+            
+            self.rightLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_WIDTH - x];
+            [self.rightLabel sizeToFit];
+            self.rightLabel.LL_centerX = x + (LL_SCREEN_WIDTH - x) / 2.0;
+            
+            self.horizontalLine.LL_centerY = y;
+            if (y < LL_SCREEN_HEIGHT / 2.0) {
+                self.leftLabel.LL_y = y;
+                self.rightLabel.LL_y = y;
+            } else {
+                self.leftLabel.LL_bottom = y;
+                self.rightLabel.LL_bottom = y;
+            }
+            
+            self.verticalLine.LL_centerX = x;
+            if (x < LL_SCREEN_WIDTH / 2.0) {
+                self.topLabel.LL_x = x;
+                self.bottomLabel.LL_x = x;
+            } else {
+                self.topLabel.LL_right = x;
+                self.bottomLabel.LL_right = x;
+            }
+            
+            [self.infoView updateTop:y left:x right:LL_SCREEN_WIDTH - x bottom:LL_SCREEN_HEIGHT - y];
+        }
+            break;
     }
-    
-    self.verticalLine.LL_centerX = x;
-    if (x < LL_SCREEN_WIDTH / 2.0) {
-        self.topLabel.LL_x = x;
-        self.bottomLabel.LL_x = x;
-    } else {
-        self.topLabel.LL_right = x;
-        self.bottomLabel.LL_right = x;
-    }
-    
-    [self.infoView updateTop:y left:x right:LL_SCREEN_WIDTH - x bottom:LL_SCREEN_HEIGHT - y];
 }
 
 #pragma mark - LLBaseInfoViewDelegate
@@ -110,13 +132,13 @@
 - (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
     
-    [self.view addSubview:self.infoView];
     [self.view addSubview:self.horizontalLine];
     [self.view addSubview:self.verticalLine];
     [self.view addSubview:self.topLabel];
     [self.view addSubview:self.leftLabel];
     [self.view addSubview:self.rightLabel];
     [self.view addSubview:self.bottomLabel];
+    [self.view addSubview:self.infoView];
     [self.view addSubview:self.pickerView];
     
 }

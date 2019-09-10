@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateTop:(CGFloat)top left:(CGFloat)left right:(CGFloat)right bottom:(CGFloat)bottom;
 
+- (void)updateStartPoint:(CGPoint)point;
+
+- (void)updateStopPoint:(CGPoint)point;
+
 @end
 
 NS_ASSUME_NONNULL_END
