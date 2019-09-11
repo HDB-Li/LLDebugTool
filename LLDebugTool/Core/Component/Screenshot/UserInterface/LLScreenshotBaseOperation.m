@@ -258,6 +258,7 @@
         self.layer.strokeColor = [self colorBySelector].CGColor;
         self.layer.fillColor = nil;
         self.layer.path = self.path.CGPath;
+        self.layer.lineCap = kCALineCapRound;
     }
 }
 
