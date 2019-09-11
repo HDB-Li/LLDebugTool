@@ -48,6 +48,10 @@
 
 @property (nonatomic, strong) UILabel *bottomLabel;
 
+@property (nonatomic, strong) CAShapeLayer *lineLayer;
+
+@property (nonatomic, assign) CGPoint startPoint;
+
 @end
 
 @implementation LLRulerViewController
@@ -67,6 +71,8 @@
             self.leftLabel.hidden = NO;
             self.rightLabel.hidden = NO;
             self.bottomLabel.hidden = NO;
+            self.lineLayer.path = nil;
+            self.startPoint = pointInWindow;
             [self.infoView updateStartPoint:pointInWindow];
         }
             break;
@@ -76,9 +82,7 @@
             self.leftLabel.hidden = YES;
             self.rightLabel.hidden = YES;
             self.bottomLabel.hidden = YES;
-            [self.infoView updateStopPoint:pointInWindow];
         }
-            break;
         default: {
             CGFloat x = pointInWindow.x;
             CGFloat y = pointInWindow.y;
@@ -117,7 +121,8 @@
                 self.bottomLabel.LL_right = x;
             }
             
-            [self.infoView updateTop:y left:x right:LL_SCREEN_WIDTH - x bottom:LL_SCREEN_HEIGHT - y];
+            self.lineLayer.path = [self pathWithPoint:self.startPoint anotherPoint:pointInWindow].CGPath;
+            [self.infoView updatePoint:pointInWindow];
         }
             break;
     }
@@ -130,6 +135,8 @@
 
 #pragma mark - Primary
 - (void)initial {
+    self.startPoint = CGPointZero;
+    [self.view.layer addSublayer:self.lineLayer];
     self.view.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.horizontalLine];
@@ -137,9 +144,9 @@
     [self.view addSubview:self.topLabel];
     [self.view addSubview:self.leftLabel];
     [self.view addSubview:self.rightLabel];
-    [self.view addSubview:self.bottomLabel];
-    [self.view addSubview:self.infoView];
+    [self.view addSubview:self.bottomLabel];    
     [self.view addSubview:self.pickerView];
+    [self.view addSubview:self.infoView];
     
 }
 
@@ -156,6 +163,13 @@
     label.LL_verticalPadding = 5;
     [label LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     return label;
+}
+
+- (UIBezierPath *)pathWithPoint:(CGPoint)point anotherPoint:(CGPoint)anotherPoint {
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:point];
+    [path addLineToPoint:anotherPoint];
+    return path;
 }
 
 #pragma mark - Getters and setters
@@ -221,6 +235,19 @@
         _bottomLabel = [self getPickerLabel];
     }
     return _bottomLabel;
+}
+
+- (CAShapeLayer *)lineLayer {
+    if (!_lineLayer) {
+        _lineLayer = [CAShapeLayer layer];
+        _lineLayer.fillColor = nil;
+        _lineLayer.strokeColor = [UIColor redColor].CGColor;
+        _lineLayer.lineWidth = 5;
+        _lineLayer.lineCap = kCALineCapRound;
+        _lineLayer.frame = self.view.bounds;
+        _lineLayer.lineDashPattern = @[@(5),@(10)];
+    }
+    return _lineLayer;
 }
 
 @end

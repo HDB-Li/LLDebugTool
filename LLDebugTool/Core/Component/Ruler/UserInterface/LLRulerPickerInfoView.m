@@ -32,8 +32,6 @@
 
 @property (nonatomic, strong) UILabel *contentLabel;
 
-@property (nonatomic, strong) UILabel *subContentLabel;
-
 @property (nonatomic, assign) CGPoint startPoint;
 
 @end
@@ -49,36 +47,32 @@
 }
 
 #pragma mark - Public
-- (void)updateTop:(CGFloat)top left:(CGFloat)left right:(CGFloat)right bottom:(CGFloat)bottom {
-    self.contentLabel.text = [NSString stringWithFormat:@"Top: %0.2f, Left: %0.2f\nRight: %0.2f, Bottom: %0.2f",top,left,right,bottom];
-    self.subContentLabel.text = [NSString stringWithFormat:@"Start: {%0.2f, %0.2f}\nCurrent: {%0.2f, %0.2f}",self.startPoint.x,self.startPoint.y,left,top];
-    [self updateHeightIfNeeded];
+- (void)updatePoint:(CGPoint)point {
+    [self updateContentText:point];
 }
 
 - (void)updateStartPoint:(CGPoint)point {
     self.startPoint = point;
-    self.subContentLabel.text = [NSString stringWithFormat:@"Start: {%0.2f, %0.2f}",point.x,point.y];
-    [self updateHeightIfNeeded];
-}
-
-- (void)updateStopPoint:(CGPoint)point {
-    self.subContentLabel.text = [NSString stringWithFormat:@"Start: {%0.2f, %0.2f}\nEnd: {%0.2f, %0.2f}",self.startPoint.x,self.startPoint.y,point.x,point.y];
-    [self updateHeightIfNeeded];
+    [self updateContentText:point];
 }
 
 #pragma mark - Primary
 - (void)initial {
+    self.startPoint = CGPointZero;
     [self addSubview:self.contentLabel];
-    [self addSubview:self.subContentLabel];
     
     self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.LL_height - kLLGeneralMargin - kLLGeneralMargin);
-    self.subContentLabel.frame = CGRectMake(kLLGeneralMargin, self.contentLabel.LL_bottom, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, 0);
+}
+
+- (void)updateContentText:(CGPoint)point {
+    self.contentLabel.text = [NSString stringWithFormat:@"Top : %0.2f    Bottom : %0.2f\nLeft : %0.2f    Right : %0.2f\n\nStart : {%0.2f , %0.2f}\nEnd : { %0.2f , %0.2f}\nChange : {%0.2f : %0.2f}",point.y,LL_SCREEN_HEIGHT - point.y,point.x,LL_SCREEN_WIDTH - point.x,self.startPoint.x,self.startPoint.y,point.x,point.y,point.x - self.startPoint.x, point.y - self.startPoint.y];
+    [self updateHeightIfNeeded];
 }
 
 - (void)updateHeightIfNeeded {
-    self.subContentLabel.LL_width = self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin;
-    [self.subContentLabel sizeToFit];
-    CGFloat height = self.subContentLabel.LL_bottom + kLLGeneralMargin;
+    self.contentLabel.LL_width = self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin;
+    [self.contentLabel sizeToFit];
+    CGFloat height = self.contentLabel.LL_bottom + kLLGeneralMargin;
     if (height != self.LL_height) {
         self.LL_height = height;
         if (!self.isMoved) {
@@ -97,15 +91,6 @@
         _contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
     }
     return _contentLabel;
-}
-
-- (UILabel *)subContentLabel {
-    if (!_subContentLabel) {
-        _subContentLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
-        _subContentLabel.numberOfLines = 0;
-        _subContentLabel.lineBreakMode = NSLineBreakByCharWrapping;
-    }
-    return _subContentLabel;
 }
 
 @end

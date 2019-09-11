@@ -27,11 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRulerPickerInfoView : LLBaseInfoView
 
-- (void)updateTop:(CGFloat)top left:(CGFloat)left right:(CGFloat)right bottom:(CGFloat)bottom;
+- (void)updatePoint:(CGPoint)point;
 
 - (void)updateStartPoint:(CGPoint)point;
-
-- (void)updateStopPoint:(CGPoint)point;
 
 @end
 
