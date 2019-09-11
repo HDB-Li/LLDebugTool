@@ -65,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)log:(NSString *)string;
 
++ (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt;
+
 /// Whether the status bar can be clicked.
 + (BOOL)statusBarClickable;
 

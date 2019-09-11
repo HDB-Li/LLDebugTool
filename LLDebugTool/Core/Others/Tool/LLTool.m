@@ -95,6 +95,20 @@ static unsigned long long _absolutelyIdentity = 0;
     });
 }
 
++ (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt {
+    if (synchronous) {
+        if ([LLConfig shared].isShowDebugToolLog) {
+            NSLog(@"%@ %@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+        }
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([LLConfig shared].isShowDebugToolLog) {
+                NSLog(@"%@ %@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+            }
+        });
+    }
+}
+
 static bool _statusBarClickable = YES;
 + (BOOL)statusBarClickable {
     static dispatch_once_t onceToken;

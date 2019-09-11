@@ -172,6 +172,7 @@ static LLCrashHelper *_instance = nil;
             [LLTool log:@"Save crash model success"];
         } synchronous:YES];
     }
+    [LLTool log:[NSString stringWithFormat:@"%@",exception] synchronous:YES withPrompt:NO];
 }
 
 void HandleException(NSException *exception)
