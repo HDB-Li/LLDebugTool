@@ -326,7 +326,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         }];
         if ([actionTitle isEqualToString:currentAction]) {
             action.enabled = NO;
-            [action setValue:[UIImage LL_imageNamed:kCellSelectImageName] forKey:@"image"];
+            [action setValue:[UIImage LL_imageNamed:kSelectImageName] forKey:@"image"];
         }
         [alert addAction:action];
     }

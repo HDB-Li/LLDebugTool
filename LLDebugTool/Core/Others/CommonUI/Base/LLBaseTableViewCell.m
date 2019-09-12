@@ -67,9 +67,9 @@
                     UIImageView *imageView = (UIImageView *)view;
                     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
                     if (self.isSelected) {
-                        imageView.image = [[UIImage LL_imageNamed:kCellSelectImageName] imageWithRenderingMode:mode];
+                        imageView.image = [[UIImage LL_imageNamed:kSelectImageName] imageWithRenderingMode:mode];
                     } else {
-                        imageView.image = [[UIImage LL_imageNamed:kCellUnselectImageName] imageWithRenderingMode:mode];
+                        imageView.image = [[UIImage LL_imageNamed:kUnselectImageName] imageWithRenderingMode:mode];
                     }
                     break;
                 }

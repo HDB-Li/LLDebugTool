@@ -90,6 +90,8 @@ static NSString *const kRightImageName = @"LL-right";
 static NSString *const kTopImageName = @"LL-top";
 static NSString *const kBottomImageName = @"LL-bottom";
 static NSString *const kLogoImageName = @"LL-logo";
+static NSString *const kSelectImageName = @"LL-select";
+static NSString *const kUnselectImageName = @"LL-unselect";
 
 // Hierarchy
 static NSString *const kFoldArrowImageName = @"LL-foldArrow";
@@ -98,9 +100,5 @@ static NSString *const kInfoImageName = @"LL-info";
 
 // Screenshot
 static NSString *const kCaptureImageName = @"LL-capture";
-
-// Cell
-static NSString *const kCellSelectImageName = @"LL-cell-select";
-static NSString *const kCellUnselectImageName = @"LL-cell-unselect";
 
 #endif /* LLImageNameConfig_h */
