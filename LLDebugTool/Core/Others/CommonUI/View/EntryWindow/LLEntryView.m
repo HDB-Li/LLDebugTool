@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     if (self = [super initWithFrame:frame]) {
         self.contentView = [LLFactory getView:self frame:self.bounds];
         self.statusBarClickable = [LLTool statusBarClickable];
-        self.inactiveAlpha = [LLConfig shared].entryWindowInactiveAlpha;
+        self.inactiveAlpha = [LLConfig shared].inactiveAlpha;
         [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
@@ -61,8 +61,8 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 - (void)animatedBecomeActive {
     self.active = YES;
-    self.alpha = [LLConfig shared].entryWindowActiveAlpha;
-    if (![LLConfig shared].isAutoHideEntryWindowToSideWhenInactive) {
+    self.alpha = [LLConfig shared].activeAlpha;
+    if (![LLConfig shared].isShrinkToEdgeWhenInactive) {
         return;
     }
     
@@ -119,7 +119,7 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 - (void)becomeActive {
     self.active = YES;
-    self.alpha = [LLConfig shared].entryWindowActiveAlpha;
+    self.alpha = [LLConfig shared].activeAlpha;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
@@ -174,13 +174,13 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     }
     self.direction = direction;
     self.center = endPoint;
-    [self performSelector:@selector(autoHideToSideIfNeeded) withObject:nil afterDelay:2];
+    [self performSelector:@selector(shrinkToEdgeWhenInactiveIfNeeded) withObject:nil afterDelay:2];
 }
 
-- (void)autoHideToSideIfNeeded {
+- (void)shrinkToEdgeWhenInactiveIfNeeded {
     self.alpha = self.inactiveAlpha;
     self.active = NO;
-    if (![LLConfig shared].isAutoHideEntryWindowToSideWhenInactive) {
+    if (![LLConfig shared].isShrinkToEdgeWhenInactive) {
         return;
     }
     self.userInteractionEnabled = NO;

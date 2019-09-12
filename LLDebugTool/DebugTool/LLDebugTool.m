@@ -35,6 +35,7 @@
 #import "LLWindowManager.h"
 #import "LLFunctionItemModel.h"
 #import "LLSettingManager.h"
+#import "UIResponder+LL_Utils.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -86,6 +87,8 @@ static LLDebugTool *_instance = nil;
         [self prepareToStart];
         // show window
         [self showWindow];
+        
+        [self registerNotifications];
     }
 }
 
@@ -111,6 +114,8 @@ static LLDebugTool *_instance = nil;
         [[LLCrashHelper shared] setEnable:NO];
         // hide window
         [self hideWindow];
+        
+        [self unregisterNotifications];
     }
 }
 
@@ -133,16 +138,19 @@ static LLDebugTool *_instance = nil;
     [model.component componentDidLoad:data];
 }
 
-- (void)showDebugViewControllerWithIndex:(NSInteger)index {
-    [self showDebugViewControllerWithIndex:index params:nil];
-}
-
-- (void)showDebugViewControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params {
-//    [self.windowViewController presentTabbarWithIndex:index params:params];
-}
-
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
+}
+
+#pragma mark - Notifications
+- (void)didReceiveDidShakeNotification:(NSNotification *)notification {
+    if ([LLConfig shared].isShakeToHide) {
+        if ([LLWindowManager shared].entryWindow.isHidden) {
+            [self showWindow];
+        } else {
+            [self hideWindow];
+        }
+    }
 }
 
 #pragma mark - Primary
@@ -250,18 +258,30 @@ static LLDebugTool *_instance = nil;
     if (logStyle) {
         [LLConfig shared].logStyle = logStyle.integerValue;
     }
-    NSNumber *entryWindowAutoHide = [LLSettingManager shared].entryWindowAutoHide;
-    if (entryWindowAutoHide) {
-        [LLConfig shared].autoHideEntryWindowToSideWhenInactive = [entryWindowAutoHide boolValue];
+    NSNumber *shrinkToEdgeWhenInactive = [LLSettingManager shared].shrinkToEdgeWhenInactive;
+    if (shrinkToEdgeWhenInactive) {
+        [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
     }
-    NSNumber *zoomLevel = [LLSettingManager shared].magnifierZoomLevel;
-    if (zoomLevel) {
-        [LLConfig shared].magnifierZoomLevel = [zoomLevel integerValue];
+    NSNumber *shakeToHide = [LLSettingManager shared].shakeToHide;
+    if (shakeToHide) {
+        [LLConfig shared].shakeToHide = [shakeToHide boolValue];
+    }
+    NSNumber *magnifierZoomLevel = [LLSettingManager shared].magnifierZoomLevel;
+    if (magnifierZoomLevel) {
+        [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
     }
     NSNumber *magnifierSize = [LLSettingManager shared].magnifierSize;
     if (magnifierSize) {
         [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
+}
+
+- (void)registerNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDidShakeNotification:) name:kLLDidShakeNotificationName object:nil];
+}
+
+- (void)unregisterNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

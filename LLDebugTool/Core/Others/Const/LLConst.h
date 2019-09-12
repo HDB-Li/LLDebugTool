@@ -32,8 +32,8 @@ UIKIT_EXTERN CGFloat const kLLEntryWindowMinDisplayPercent;
 UIKIT_EXTERN CGFloat const kLLEntryWindowMaxDisplayPercent;
 UIKIT_EXTERN CGFloat const kLLEntryWindowFirstDisplayPositionX;
 UIKIT_EXTERN CGFloat const kLLEntryWindowFirstDisplayPositionY;
-UIKIT_EXTERN CGFloat const kLLEntryWindowInactiveAlpha;
-UIKIT_EXTERN CGFloat const kLLEntryWindowActiveAlpha;
+UIKIT_EXTERN CGFloat const kLLInactiveAlpha;
+UIKIT_EXTERN CGFloat const kLLActiveAlpha;
 UIKIT_EXTERN CGFloat const kLLEntryWindowBigTitleViewHeight;
 
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;

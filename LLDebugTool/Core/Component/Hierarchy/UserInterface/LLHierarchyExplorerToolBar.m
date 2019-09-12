@@ -88,7 +88,7 @@
     [self.tabBar setItems:items];
     [self addSubview:self.tabBar];
     
-    self.descriptionBackgroundView = [LLFactory getBackgroundView:self frame:CGRectMake(0, 49, LL_SCREEN_WIDTH, 30) alpha:[LLConfig shared].entryWindowActiveAlpha];
+    self.descriptionBackgroundView = [LLFactory getBackgroundView:self frame:CGRectMake(0, 49, LL_SCREEN_WIDTH, 30) alpha:[LLConfig shared].activeAlpha];
     
     CGFloat itemsMargin = 15;
     CGFloat tintWidth = 15;

@@ -161,9 +161,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _entryWindowBallWidth = kLLEntryWindowBallWidth;
     _entryWindowDisplayPercent = kLLEntryWindowDisplayPercent;
     _entryWindowFirstDisplayPosition = CGPointMake(kLLEntryWindowFirstDisplayPositionX, kLLEntryWindowFirstDisplayPositionY);
-    _entryWindowInactiveAlpha = kLLEntryWindowInactiveAlpha;
-    _entryWindowActiveAlpha = kLLEntryWindowActiveAlpha;
-    _autoHideEntryWindowToSideWhenInactive = YES;
+    _inactiveAlpha = kLLInactiveAlpha;
+    _activeAlpha = kLLActiveAlpha;
+    _shrinkToEdgeWhenInactive = YES;
+    _shakeToHide = YES;
     
     // Set default magnifier properties.
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;

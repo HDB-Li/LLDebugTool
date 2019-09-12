@@ -97,12 +97,13 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     
     // EntryWindowStyle
     [settings addObject:[self getEntryWindowStyleModel]];
-    [settings addObject:[self getEntryWindowAutoHideToSideModel]];
+    [settings addObject:[self getShrinkToEdgeWhenInactiveModel]];
+    [settings addObject:[self getShakeToHideModel]];
     LLSettingCategoryModel *category2 = [[LLSettingCategoryModel alloc] initWithTitle:@"Entry Window" settings:settings];
     [settings removeAllObjects];
     
     // Log
-    [settings addObject:[self getLogLevelModel]];
+    [settings addObject:[self getLogStyleModel]];
     LLSettingCategoryModel *category3 = [[LLSettingCategoryModel alloc] initWithTitle:@"Log" settings:settings];
     [settings removeAllObjects];
     
@@ -120,9 +121,23 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     self.tableView.frame = self.view.bounds;
 }
 
+- (LLSettingModel *)getShakeToHideModel {
+    __weak typeof(self) weakSelf = self;
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Shake To Hide" flag:[LLConfig shared].isShakeToHide];
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewShakeToHide:[obj boolValue]];
+    };
+    return model;
+}
+
+- (void)setNewShakeToHide:(BOOL)isShakeToHide {
+    [LLConfig shared].shakeToHide = isShakeToHide;
+    [LLSettingManager shared].shakeToHide = @(isShakeToHide);
+}
+
 - (LLSettingModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Color Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -158,7 +173,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (LLSettingModel *)getStatusBarStyleModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Status Bar Style" detailTitle:[LLConfigHelper statusBarStyleDescription]];
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Status Bar" detailTitle:[LLConfigHelper statusBarStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showStatusBarStyleAlert];
@@ -201,7 +216,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 
 - (LLSettingModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Entry Window" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -237,22 +252,22 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self initData];
 }
 
-- (LLSettingModel *)getEntryWindowAutoHideToSideModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Auto Hide" flag:[LLConfig shared].isAutoHideEntryWindowToSideWhenInactive];
+- (LLSettingModel *)getShrinkToEdgeWhenInactiveModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Shrink To Edge" flag:[LLConfig shared].isShrinkToEdgeWhenInactive];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
-        [weakSelf setNewEntryWindowAutoHideToSideModel:[obj boolValue]];
+        [weakSelf setNewShrinkToEdgeWhenInactive:[obj boolValue]];
     };
     return model;
 }
 
-- (void)setNewEntryWindowAutoHideToSideModel:(BOOL)isAutoHide {
-    [LLConfig shared].autoHideEntryWindowToSideWhenInactive = isAutoHide;
-    [LLSettingManager shared].entryWindowAutoHide = @(isAutoHide);
+- (void)setNewShrinkToEdgeWhenInactive:(BOOL)isShrinkToEdgeWhenInactive {
+    [LLConfig shared].shrinkToEdgeWhenInactive = isShrinkToEdgeWhenInactive;
+    [LLSettingManager shared].shrinkToEdgeWhenInactive = @(isShrinkToEdgeWhenInactive);
 }
 
-- (LLSettingModel *)getLogLevelModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Log Level" detailTitle:[LLConfigHelper logStyleDescription]];
+- (LLSettingModel *)getLogStyleModel {
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
@@ -300,7 +315,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (LLSettingModel *)getMagnifierSizeModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Zoom Size" value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Size" value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierSize:[obj integerValue]];
@@ -374,6 +389,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         _tableView = [LLFactory getTableView:nil frame:self.view.bounds delegate:self style:UITableViewStylePlain];
         _tableView.bounces = NO;
         _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
+        _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
         [_tableView registerClass:[LLSettingSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSwitchCell class])];
         [_tableView registerClass:[LLSettingSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSelectorCell class])];

@@ -1,5 +1,5 @@
 //
-//  LLConst.m
+//  UIResponder+LL_Utils.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConst.h"
+#import "UIResponder+LL_Utils.h"
+#import "NSObject+LL_Runtime.h"
 
-CGFloat const kLLEntryWindowBallWidth = 50;
-CGFloat const kLLEntryWindowMinBallWidth = 30;
-CGFloat const kLLEntryWindowMaxBallWidth = 70;
-CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;// Golden section search.
-CGFloat const kLLEntryWindowMinDisplayPercent = 0.1;
-CGFloat const kLLEntryWindowMaxDisplayPercent = 1;
-CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
-CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
-CGFloat const kLLInactiveAlpha = 0.75;
-CGFloat const kLLActiveAlpha = 1.0;
-CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
+NSNotificationName const kLLDidShakeNotificationName = @"kLLDidShakeNotificationName";
 
-NSInteger const kLLMagnifierWindowZoomLevel = 10;
-NSInteger const kLLMagnifierWindowMinZoomLevel = 6;
-NSInteger const kLLMagnifierWindowMaxZoomLevel = 14;
-NSInteger const kLLMagnifierWindowSize = 15;
-NSInteger const kLLMagnifierWindowMinSize = 9;
-NSInteger const kLLMagnifierWindowMaxSize = 21;
+@implementation UIResponder (LL_Utils)
 
-CGFloat const kLLRulerLineWidth = 1;
++ (void)load {
+    [self LL_swizzleInstanceMethodWithOriginSel:@selector(motionBegan:withEvent:) swizzledSel:@selector(LL_motionBegan:withEvent:)];
+}
 
-CGFloat const kLLGeneralMargin = 10;
+- (void)LL_motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    [self LL_motionBegan:motion withEvent:event];
+    if (motion == UIEventSubtypeMotionShake) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLLDidShakeNotificationName object:self];
+    }
+}
 
-NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";
+@end

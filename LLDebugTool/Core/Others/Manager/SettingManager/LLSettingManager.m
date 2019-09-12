@@ -33,7 +33,8 @@ static NSString *colorStyleKey = @"colorStyleKey";
 static NSString *entryWindowStyleKey = @"entryWindowStyleKey";
 static NSString *statusBarStyleKey = @"statusBarStyleKey";
 static NSString *logStyleKey = @"logStyleKey";
-static NSString *entryWindowAutoHideKey = @"entryWindowAutoHideKey";
+static NSString *shrinkToEdgeWhenInactiveKey = @"shrinkToEdgeWhenInactiveKey";
+static NSString *shakeToHideKey = @"shakeToHideKey";
 static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
 static NSString *magnifierSizeKey = @"magnifierSizeKey";
 
@@ -111,12 +112,20 @@ static NSString *magnifierSizeKey = @"magnifierSizeKey";
     return [NSUserDefaults LL_numberForKey:logStyleKey];
 }
 
-- (void)setEntryWindowAutoHide:(NSNumber *)entryWindowAutoHide {
-    [NSUserDefaults LL_setNumber:entryWindowAutoHide forKey:entryWindowAutoHideKey];
+- (void)setShrinkToEdgeWhenInactive:(NSNumber *)shrinkToEdgeWhenInactive {
+    [NSUserDefaults LL_setNumber:shrinkToEdgeWhenInactive forKey:shrinkToEdgeWhenInactiveKey];
 }
 
-- (NSNumber *)entryWindowAutoHide {
-    return [NSUserDefaults LL_numberForKey:entryWindowAutoHideKey];
+- (NSNumber *)shrinkToEdgeWhenInactive {
+    return [NSUserDefaults LL_numberForKey:shrinkToEdgeWhenInactiveKey];
+}
+
+- (void)setShakeToHide:(NSNumber *)shakeToHide {
+    [NSUserDefaults LL_setNumber:shakeToHide forKey:shakeToHideKey];
+}
+
+- (NSNumber *)shakeToHide {
+    return [NSUserDefaults LL_numberForKey:shakeToHideKey];
 }
 
 - (void)setMagnifierZoomLevel:(NSNumber *)magnifierZoomLevel {

@@ -39,6 +39,7 @@
 		364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF647232204630067C7D7 /* LLHSBPreviewView.m */; };
 		364EF64B2322087C0067C7D7 /* LLBaseAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64A2322087C0067C7D7 /* LLBaseAnimateView.m */; };
 		364EF64E23220C8D0067C7D7 /* LLColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */; };
+		3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */; };
 		365912502320B3E300FDA6A0 /* LLSettingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3659124F2320B3E300FDA6A0 /* LLSettingTitleCell.m */; };
 		365912542320BD0C00FDA6A0 /* LLTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365912532320BD0C00FDA6A0 /* LLTitleView.m */; };
 		36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BC122FD055C00BBB6FA /* LLMagnifierViewController.m */; };
@@ -282,6 +283,8 @@
 		364EF64A2322087C0067C7D7 /* LLBaseAnimateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseAnimateView.m; sourceTree = "<group>"; };
 		364EF64C23220C8D0067C7D7 /* LLColorPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLColorPickerView.h; sourceTree = "<group>"; };
 		364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLColorPickerView.m; sourceTree = "<group>"; };
+		3655D50F2329E02600490B36 /* UIResponder+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+LL_Utils.h"; sourceTree = "<group>"; };
+		3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+LL_Utils.m"; sourceTree = "<group>"; };
 		3659124E2320B3E300FDA6A0 /* LLSettingTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingTitleCell.h; sourceTree = "<group>"; };
 		3659124F2320B3E300FDA6A0 /* LLSettingTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingTitleCell.m; sourceTree = "<group>"; };
 		365912522320BD0C00FDA6A0 /* LLTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleView.h; sourceTree = "<group>"; };
@@ -729,6 +732,15 @@
 				364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */,
 			);
 			path = LLColorPicker;
+			sourceTree = "<group>";
+		};
+		3655D50E2329E01300490B36 /* UIResponder */ = {
+			isa = PBXGroup;
+			children = (
+				3655D50F2329E02600490B36 /* UIResponder+LL_Utils.h */,
+				3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */,
+			);
+			path = UIResponder;
 			sourceTree = "<group>";
 		};
 		365912512320BCF500FDA6A0 /* LLTitleView */ = {
@@ -1298,6 +1310,7 @@
 		C4B4E39122F9C90900F70277 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3655D50E2329E01300490B36 /* UIResponder */,
 				36BB1E2B2320F941000D8F29 /* NSUserDefaults */,
 				C4B4E39222F9C90900F70277 /* UIImage */,
 				C4B4E39522F9C90900F70277 /* NSDictionary */,
@@ -1984,6 +1997,7 @@
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
+				3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */,
 				C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */,
 				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,
 				362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */,

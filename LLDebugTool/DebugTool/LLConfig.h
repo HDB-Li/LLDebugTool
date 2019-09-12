@@ -168,19 +168,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGPoint entryWindowFirstDisplayPosition;
 
 /**
- Entry window alpha(not active), default is kLLEntryWindowInactiveAlpha.
+ Entry window alpha(not active), default is kLLInactiveAlpha.
  */
-@property (nonatomic, assign) CGFloat entryWindowInactiveAlpha;
+@property (nonatomic, assign) CGFloat inactiveAlpha;
 
 /**
- Entry window alpha(active), default is kLLEntryWindowActiveAlpha.
+ Entry window alpha(active), default is kLLActiveAlpha.
  */
-@property (nonatomic, assign) CGFloat entryWindowActiveAlpha;
+@property (nonatomic, assign) CGFloat activeAlpha;
 
 /**
  Automatic adjust entry window's frame to side, default is YES.
  */
-@property (nonatomic, assign, getter=isAutoHideEntryWindowToSideWhenInactive) BOOL autoHideEntryWindowToSideWhenInactive;
+@property (nonatomic, assign, getter=isShrinkToEdgeWhenInactive) BOOL shrinkToEdgeWhenInactive;
+
+/**
+ Automatic hide when shake, default is YES.
+ */
+@property (nonatomic, assign, getter=isShakeToHide) BOOL shakeToHide;
 
 #pragma mark - Theme Color.
 /**
@@ -280,10 +285,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
 @property (nonatomic, assign) CGFloat suspensionWindowHideWidth LLDebugToolDeprecated("Use `entryWindowDisplayPercent` to set display percent.");
 @property (nonatomic, assign) CGFloat suspensionWindowTop LLDebugToolDeprecated("Use `entryWindowFirstDisplayPosition` to set first display position.");
-@property (nonatomic, assign) CGFloat normalAlpha LLDebugToolDeprecated("Use `entryWindowInactiveAlpha`.");
-@property (nonatomic, assign) CGFloat activeAlpha LLDebugToolDeprecated("Use `entryWindowActiveAlpha`.");
+@property (nonatomic, assign) CGFloat normalAlpha LLDebugToolDeprecated("Use `inactiveAlpha`.");
 @property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
-@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `autoHideEntryWindowToSideWhenInactive`.");
+@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `shrinkToEdgeWhenInactive`.");
 @property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
 
 @end

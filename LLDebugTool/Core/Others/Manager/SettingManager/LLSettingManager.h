@@ -41,7 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSNumber *logStyle;
 
-@property (nonatomic, strong) NSNumber *entryWindowAutoHide;
+@property (nonatomic, strong) NSNumber *shrinkToEdgeWhenInactive;
+
+@property (nonatomic, strong) NSNumber *shakeToHide;
 
 @property (nonatomic, strong) NSNumber *magnifierZoomLevel;
 
