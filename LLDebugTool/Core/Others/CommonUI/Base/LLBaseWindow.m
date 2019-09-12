@@ -31,6 +31,11 @@
     if (self = [super initWithFrame:frame]) {
         self.windowLevel = UIWindowLevelStatusBar - 200;
         self.layer.masksToBounds = YES;
+#ifdef __IPHONE_13_0
+        if (@available(iOS 13.0, *)) {
+            self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+        }
+#endif
     }
     return self;
 }
