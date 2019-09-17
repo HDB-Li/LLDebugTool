@@ -50,6 +50,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.top.bottom.mas_equalTo(0);
+        make.width.mas_equalTo(110);
         make.height.mas_equalTo(50).priorityHigh();
     }];
 }
