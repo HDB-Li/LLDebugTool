@@ -35,6 +35,11 @@
     return self;
 }
 
+#pragma mark - Over write
+- (void)componentDidFinish {
+    [[LLWindowManager shared] showEntryWindow];
+}
+
 #pragma mark - Primary
 - (void)initial {
     if (!self.rootViewController) {

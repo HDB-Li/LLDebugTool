@@ -37,7 +37,16 @@ static const char kLLBorderLayerKey;
 
 - (void)LL_layoutSubviews {
     [self LL_layoutSubviews];
-    if ([LLConfig shared].isShowWidgetBorder) {
+    [self LL_updateBorderLayer:[LLConfig shared].isShowWidgetBorder];
+}
+
+- (void)LL_updateBorderLayer:(BOOL)enable {
+    
+    for (UIView *subview in self.subviews) {
+        [subview LL_updateBorderLayer:enable];
+    }
+    
+    if (enable) {
         [self.layer addSublayer:self.LL_borderLayer];
         self.LL_borderLayer.frame = self.bounds;
         self.LL_borderLayer.borderColor = [LLThemeManager shared].primaryColor.CGColor;

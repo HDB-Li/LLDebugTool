@@ -27,7 +27,7 @@
 @implementation LLWidgetBorderComponent
 
 - (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
-    
+    [[LLWindowManager shared] showWindow:[LLWindowManager widgetBorderWindow] animated:YES];
 }
 
 @end

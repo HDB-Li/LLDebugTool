@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) CALayer *LL_borderLayer;
 
+- (void)LL_updateBorderLayer:(BOOL)enable;
+
 @end
 
 NS_ASSUME_NONNULL_END
