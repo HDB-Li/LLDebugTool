@@ -1,5 +1,5 @@
 //
-//  LLSettingSliderCell.m
+//  LLTitleSliderCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingSliderCell.h"
+#import "LLTitleSliderCell.h"
 #import "LLFactory.h"
 #import "Masonry.h"
 #import "LLThemeManager.h"
 
-@interface LLSettingSliderCell ()
+@interface LLTitleSliderCell ()
 
 @property (nonatomic, strong) UISlider *slider;
 
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation LLSettingSliderCell
+@implementation LLTitleSliderCell
 
 #pragma mark - Over write
 - (void)initUI {

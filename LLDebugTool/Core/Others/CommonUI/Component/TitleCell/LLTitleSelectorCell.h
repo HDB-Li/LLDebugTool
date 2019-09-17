@@ -1,5 +1,5 @@
 //
-//  LLSettingSliderCell.h
+//  LLTitleSelectorCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingTitleCell.h"
+#import "LLTitleCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSettingSliderCell : LLSettingTitleCell
+@interface LLTitleSelectorCell : LLTitleCell
 
 @end
 

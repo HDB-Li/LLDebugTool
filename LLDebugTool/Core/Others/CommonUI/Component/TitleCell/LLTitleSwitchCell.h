@@ -1,5 +1,5 @@
 //
-//  LLSettingTitleCell.h
+//  LLTitleSwitchCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewCell.h"
+#import "LLTitleCell.h"
 #import "LLSettingModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSettingTitleCell : LLBaseTableViewCell
-
-@property (nonatomic, strong, readonly) UILabel *titleLabel;
-
-@property (nonatomic, strong) LLSettingModel *model;
-
-- (void)initUI;
+@interface LLTitleSwitchCell : LLTitleCell
 
 @end
 

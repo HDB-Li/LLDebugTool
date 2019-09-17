@@ -1,5 +1,5 @@
 //
-//  LLSettingSelectorCell.m
+//  LLTitleSelectorCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingSelectorCell.h"
+#import "LLTitleSelectorCell.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 #import "Masonry.h"
 
-@interface LLSettingSelectorCell ()
+@interface LLTitleSelectorCell ()
 
 @property (nonatomic, strong) UILabel *detailLabel;
 
 @end
 
-@implementation LLSettingSelectorCell
+@implementation LLTitleSelectorCell
 
 #pragma mark - Over write
 - (void)initUI {

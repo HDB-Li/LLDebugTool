@@ -22,9 +22,9 @@
 //  SOFTWARE.
 
 #import "LLSettingModel.h"
-#import "LLSettingSwitchCell.h"
-#import "LLSettingSelectorCell.h"
-#import "LLSettingSliderCell.h"
+#import "LLTitleSwitchCell.h"
+#import "LLTitleSelectorCell.h"
+#import "LLTitleSliderCell.h"
 
 @implementation LLSettingModel
 
@@ -32,7 +32,7 @@
     if (self = [super init]) {
         _title = title;
         _flag = flag;
-        _cellClass = NSStringFromClass(LLSettingSwitchCell.class);
+        _cellClass = NSStringFromClass(LLTitleSwitchCell.class);
     }
     return self;
 }
@@ -41,7 +41,7 @@
     if (self = [super init]) {
         _title = title;
         _detailTitle = detailTitle;
-        _cellClass = NSStringFromClass(LLSettingSelectorCell.class);
+        _cellClass = NSStringFromClass(LLTitleSelectorCell.class);
     }
     return self;
 }
@@ -52,7 +52,7 @@
         _value = value;
         _minValue = minValue;
         _maxValue = maxValue;
-        _cellClass = NSStringFromClass(LLSettingSliderCell.class);
+        _cellClass = NSStringFromClass(LLTitleSliderCell.class);
     }
     return self;
 }

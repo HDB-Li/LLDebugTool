@@ -1,5 +1,5 @@
 //
-//  LLSettingSwitchCell.m
+//  LLTitleSwitchCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingSwitchCell.h"
+#import "LLTitleSwitchCell.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "Masonry.h"
 
-@interface LLSettingSwitchCell ()
+@interface LLTitleSwitchCell ()
 
 @property (nonatomic, strong) UISwitch *swit;
 
 @end
 
-@implementation LLSettingSwitchCell
+@implementation LLTitleSwitchCell
 
 #pragma mark - Over write
 - (void)initUI {

@@ -1,5 +1,5 @@
 //
-//  LLSettingTitleCell.m
+//  LLTitleCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingTitleCell.h"
+#import "LLTitleCell.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 #import "Masonry.h"
 
-@interface LLSettingTitleCell ()
+@interface LLTitleCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
-@implementation LLSettingTitleCell
+@implementation LLTitleCell
 
 #pragma mark - Life cycle
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

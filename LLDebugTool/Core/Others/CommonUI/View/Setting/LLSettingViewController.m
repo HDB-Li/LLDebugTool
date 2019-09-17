@@ -25,8 +25,8 @@
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 #import "LLSettingCategoryModel.h"
-#import "LLSettingSwitchCell.h"
-#import "LLSettingSelectorCell.h"
+#import "LLTitleSwitchCell.h"
+#import "LLTitleSelectorCell.h"
 #import "LLConfig.h"
 #import "LLTitleView.h"
 #import "LLMacros.h"
@@ -35,7 +35,7 @@
 #import "NSObject+LL_Runtime.h"
 #import "LLImageNameConfig.h"
 #import "LLConst.h"
-#import "LLSettingSliderCell.h"
+#import "LLTitleSliderCell.h"
 
 static NSString *const kSwitchCellID = @"SwitchCellID";
 static NSString *const kMultipleCellID = @"MultipleCellID";
@@ -424,9 +424,9 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
         _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
-        [_tableView registerClass:[LLSettingSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSwitchCell class])];
-        [_tableView registerClass:[LLSettingSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSelectorCell class])];
-        [_tableView registerClass:[LLSettingSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSliderCell class])];
+        [_tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
+        [_tableView registerClass:[LLTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSelectorCell class])];
+        [_tableView registerClass:[LLTitleSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSliderCell class])];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
         }

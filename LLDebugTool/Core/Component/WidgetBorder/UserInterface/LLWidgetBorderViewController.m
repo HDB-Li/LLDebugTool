@@ -24,7 +24,7 @@
 #import "LLWidgetBorderViewController.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLSettingSwitchCell.h"
+#import "LLTitleSwitchCell.h"
 #import "LLSettingModel.h"
 #import "LLConfig.h"
 #import "LLSettingManager.h"
@@ -84,7 +84,7 @@
         _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
         _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
-        [_tableView registerClass:[LLSettingSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLSettingSwitchCell class])];
+        [_tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
         }
