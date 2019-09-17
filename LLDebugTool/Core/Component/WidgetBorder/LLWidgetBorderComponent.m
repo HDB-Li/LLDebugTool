@@ -1,5 +1,5 @@
 //
-//  LLSettingManager.h
+//  LLWidgetBorderComponent.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,38 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "LLComponent.h"
-#import "LLConfig.h"
+#import "LLWidgetBorderComponent.h"
+#import "LLWindowManager.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLWidgetBorderComponent
 
-@interface LLSettingManager : NSObject
-
-@property (nonatomic, strong, readonly) LLComponent *entryViewClickComponent;
-
-@property (nonatomic, strong) LLComponent *entryViewDoubleClickComponent;
-
-@property (nonatomic, strong) NSNumber *colorStyle;
-
-@property (nonatomic, strong) NSNumber *entryWindowStyle;
-
-@property (nonatomic, strong) NSNumber *statusBarStyle;
-
-@property (nonatomic, strong) NSNumber *logStyle;
-
-@property (nonatomic, strong) NSNumber *shrinkToEdgeWhenInactive;
-
-@property (nonatomic, strong) NSNumber *shakeToHide;
-
-@property (nonatomic, strong) NSNumber *magnifierZoomLevel;
-
-@property (nonatomic, strong) NSNumber *magnifierSize;
-
-@property (nonatomic, strong) NSNumber *showWidgetBorder;
-
-+ (instancetype)shared;
+- (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
+    
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -21,6 +21,7 @@ static NSString *const kScreenshotImageName = @"LL-screenshot";
 static NSString *const kHierarchyImageName = @"LL-hierarchy";
 static NSString *const kMagnifierImageName = @"LL-magnifier";
 static NSString *const kRulerImageName = @"LL-ruler";
+static NSString *const kWidgetBorderImageName = @"LL-widget-border";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";

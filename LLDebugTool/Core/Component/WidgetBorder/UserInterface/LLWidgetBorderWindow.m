@@ -1,5 +1,5 @@
 //
-//  LLSettingManager.h
+//  LLWidgetBorderWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,38 +21,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "LLComponent.h"
-#import "LLConfig.h"
+#import "LLWidgetBorderWindow.h"
+#import "LLWindowManager.h"
+#import "LLWidgetBorderViewController.h"
+#import "LLNavigationController.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLWidgetBorderWindow
 
-@interface LLSettingManager : NSObject
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
+}
 
-@property (nonatomic, strong, readonly) LLComponent *entryViewClickComponent;
-
-@property (nonatomic, strong) LLComponent *entryViewDoubleClickComponent;
-
-@property (nonatomic, strong) NSNumber *colorStyle;
-
-@property (nonatomic, strong) NSNumber *entryWindowStyle;
-
-@property (nonatomic, strong) NSNumber *statusBarStyle;
-
-@property (nonatomic, strong) NSNumber *logStyle;
-
-@property (nonatomic, strong) NSNumber *shrinkToEdgeWhenInactive;
-
-@property (nonatomic, strong) NSNumber *shakeToHide;
-
-@property (nonatomic, strong) NSNumber *magnifierZoomLevel;
-
-@property (nonatomic, strong) NSNumber *magnifierSize;
-
-@property (nonatomic, strong) NSNumber *showWidgetBorder;
-
-+ (instancetype)shared;
+#pragma mark - Primary
+- (void)initial {
+    if (!self.rootViewController) {
+        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLWidgetBorderViewController alloc] init]];
+    }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -244,6 +244,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
 
+#pragma mark - Widget Border
+
+/**
+Whether show widget border. Default is NO.
+*/
+@property (nonatomic, assign, getter=isShowWidgetBorder) BOOL showWidgetBorder;
+
 #pragma mark - LLDebugTool
 /**
  Whether to print LLDebugTool's log event. Default is YES.

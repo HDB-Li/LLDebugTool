@@ -32,6 +32,7 @@
 #import "LLHierarchyComponent.h"
 #import "LLMagnifierComponent.h"
 #import "LLRulerComponent.h"
+#import "LLWidgetBorderComponent.h"
 #import "LLImageNameConfig.h"
 
 @implementation LLFunctionItemModel
@@ -66,6 +67,8 @@
             return [[LLMagnifierComponent alloc] init];
         case LLDebugToolActionRuler:
             return [[LLRulerComponent alloc] init];
+        case LLDebugToolActionWidgetBorder:
+            return [[LLWidgetBorderComponent alloc] init];
     }
 }
 
@@ -89,6 +92,8 @@
             return @"Magnifier";
         case LLDebugToolActionRuler:
             return @"Ruler";
+        case LLDebugToolActionWidgetBorder:
+            return @"Widget Border";
     }
 }
 
@@ -112,6 +117,8 @@
             return kMagnifierImageName;
         case LLDebugToolActionRuler:
             return kRulerImageName;
+        case LLDebugToolActionWidgetBorder:
+            return kWidgetBorderImageName;
     }
 }
 

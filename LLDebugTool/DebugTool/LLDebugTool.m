@@ -274,6 +274,10 @@ static LLDebugTool *_instance = nil;
     if (magnifierSize) {
         [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
+    NSNumber *showWidgetBorder = [LLSettingManager shared].showWidgetBorder;
+    if (showWidgetBorder) {
+        [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
+    }
 }
 
 - (void)registerNotifications {

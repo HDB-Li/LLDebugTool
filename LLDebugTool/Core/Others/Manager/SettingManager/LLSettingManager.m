@@ -37,6 +37,7 @@ static NSString *shrinkToEdgeWhenInactiveKey = @"shrinkToEdgeWhenInactiveKey";
 static NSString *shakeToHideKey = @"shakeToHideKey";
 static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
 static NSString *magnifierSizeKey = @"magnifierSizeKey";
+static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 
 @interface LLSettingManager ()
 
@@ -142,6 +143,14 @@ static NSString *magnifierSizeKey = @"magnifierSizeKey";
 
 - (NSNumber *)magnifierSize {
     return [NSUserDefaults LL_numberForKey:magnifierSizeKey];
+}
+
+- (void)setShowWidgetBorder:(NSNumber *)showWidgetBorder {
+    [NSUserDefaults LL_setNumber:showWidgetBorder forKey:showWidgetBorderKey];
+}
+
+- (NSNumber *)showWidgetBorder {
+    return [NSUserDefaults LL_numberForKey:showWidgetBorderKey];
 }
 
 @end

@@ -27,6 +27,7 @@
 		362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AA2326607A00A27F05 /* LLRulerWindow.m */; };
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
 		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
+		3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3633F583232F395100C62185 /* LLWidgetBorderComponent.m */; };
 		363DEC532325DFE90090E78C /* LLSettingSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLSettingSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
 		364570F82313B80800C29200 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F42313B80800C29200 /* README.md */; };
@@ -64,6 +65,10 @@
 		36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E24231D052300E4D29B /* LLEntryView.m */; };
 		36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E27231D1BDB00E4D29B /* LLEntryTitleView.m */; };
 		36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */; };
+		36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */; };
+		36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7323306D6000C9C22C /* LLWidgetBorderViewController.m */; };
+		36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7723307BEA00C9C22C /* LLWidgetBorderHelper.m */; };
+		36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7A23307D2600C9C22C /* UIView+LLWidgetBorder.m */; };
 		36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DC10FC22FA60B90078B7BC /* LLToastUtils.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
@@ -264,6 +269,8 @@
 		362F87AD232660A000A27F05 /* LLRulerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerViewController.m; sourceTree = "<group>"; };
 		362F87AF2326614000A27F05 /* LLRulerPickerInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerPickerInfoView.h; sourceTree = "<group>"; };
 		362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoView.m; sourceTree = "<group>"; };
+		3633F582232F395100C62185 /* LLWidgetBorderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderComponent.h; sourceTree = "<group>"; };
+		3633F583232F395100C62185 /* LLWidgetBorderComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderComponent.m; sourceTree = "<group>"; };
 		363DEC512325DFE90090E78C /* LLSettingSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingSliderCell.h; sourceTree = "<group>"; };
 		363DEC522325DFE90090E78C /* LLSettingSliderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingSliderCell.m; sourceTree = "<group>"; };
 		364570F32313B80800C29200 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -335,6 +342,14 @@
 		36BC8E27231D1BDB00E4D29B /* LLEntryTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryTitleView.m; sourceTree = "<group>"; };
 		36BC8E29231D1C3B00E4D29B /* LLEntryBigTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBigTitleView.h; sourceTree = "<group>"; };
 		36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBigTitleView.m; sourceTree = "<group>"; };
+		36CD3A6F23306D4B00C9C22C /* LLWidgetBorderWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderWindow.h; sourceTree = "<group>"; };
+		36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderWindow.m; sourceTree = "<group>"; };
+		36CD3A7223306D6000C9C22C /* LLWidgetBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderViewController.h; sourceTree = "<group>"; };
+		36CD3A7323306D6000C9C22C /* LLWidgetBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderViewController.m; sourceTree = "<group>"; };
+		36CD3A7623307BEA00C9C22C /* LLWidgetBorderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderHelper.h; sourceTree = "<group>"; };
+		36CD3A7723307BEA00C9C22C /* LLWidgetBorderHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderHelper.m; sourceTree = "<group>"; };
+		36CD3A7923307D2600C9C22C /* UIView+LLWidgetBorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LLWidgetBorder.h"; sourceTree = "<group>"; };
+		36CD3A7A23307D2600C9C22C /* UIView+LLWidgetBorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLWidgetBorder.m"; sourceTree = "<group>"; };
 		36DC10FB22FA60B90078B7BC /* LLToastUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLToastUtils.h; sourceTree = "<group>"; };
 		36DC10FC22FA60B90078B7BC /* LLToastUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLToastUtils.m; sourceTree = "<group>"; };
 		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -679,6 +694,17 @@
 			path = LLPickerView;
 			sourceTree = "<group>";
 		};
+		3633F581232F390600C62185 /* WidgetBorder */ = {
+			isa = PBXGroup;
+			children = (
+				36CD3A7523307B1A00C9C22C /* Function */,
+				36CD3A6E23306D3A00C9C22C /* UserInterface */,
+				3633F582232F395100C62185 /* LLWidgetBorderComponent.h */,
+				3633F583232F395100C62185 /* LLWidgetBorderComponent.m */,
+			);
+			path = WidgetBorder;
+			sourceTree = "<group>";
+		};
 		364CF3D6232656FC000B513F /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,6 +824,28 @@
 				36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */,
 			);
 			path = NSUserDefaults;
+			sourceTree = "<group>";
+		};
+		36CD3A6E23306D3A00C9C22C /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				36CD3A6F23306D4B00C9C22C /* LLWidgetBorderWindow.h */,
+				36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */,
+				36CD3A7223306D6000C9C22C /* LLWidgetBorderViewController.h */,
+				36CD3A7323306D6000C9C22C /* LLWidgetBorderViewController.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		36CD3A7523307B1A00C9C22C /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				36CD3A7623307BEA00C9C22C /* LLWidgetBorderHelper.h */,
+				36CD3A7723307BEA00C9C22C /* LLWidgetBorderHelper.m */,
+				36CD3A7923307D2600C9C22C /* UIView+LLWidgetBorder.h */,
+				36CD3A7A23307D2600C9C22C /* UIView+LLWidgetBorder.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		36DC10FA22FA60AA0078B7BC /* ToastUtils */ = {
@@ -937,6 +985,7 @@
 		C498561222ED8D4700E9FBE2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				3633F581232F390600C62185 /* WidgetBorder */,
 				364CF3D7232659EB000B513F /* Ruler */,
 				C4B4E3FD22F9C90900F70277 /* Function */,
 				C498571122EDE31200E9FBE2 /* Magnifier */,
@@ -1985,6 +2034,7 @@
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
 				C4B4E44422F9C90900F70277 /* UIDevice+LL_Utils.m in Sources */,
 				364EF64B2322087C0067C7D7 /* LLBaseAnimateView.m in Sources */,
+				3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
 				C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */,
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
@@ -2000,6 +2050,7 @@
 				3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */,
 				C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */,
 				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,
+				36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */,
 				362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */,
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
@@ -2087,6 +2138,7 @@
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
 				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
+				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
 				C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */,
 				C498568122ED8D4800E9FBE2 /* LLScreenshotSelectorModel.m in Sources */,
 				C4B4E45F22F9C90900F70277 /* LLFilterLabelCell.m in Sources */,
@@ -2113,6 +2165,7 @@
 				C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */,
 				C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */,
 				C498570A22EDB41500E9FBE2 /* LLHierarchyWindow.m in Sources */,
+				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
 				C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */,
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,
 				C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */,
@@ -2127,6 +2180,7 @@
 				365912502320B3E300FDA6A0 /* LLSettingTitleCell.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
+				36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */,
 				C4B4E44F22F9C90900F70277 /* LLStorageModel.m in Sources */,
 				C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */,
 				C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */,

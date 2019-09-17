@@ -44,6 +44,8 @@ NSInteger const kLLMagnifierWindowMaxSize = 21;
 
 CGFloat const kLLRulerLineWidth = 1;
 
+CGFloat const kLLWidgetBorderWidth = 1;
+
 CGFloat const kLLGeneralMargin = 10;
 
 NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";
