@@ -135,6 +135,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
  Action enums.
  
  - LLDebugToolActionFunction: Show function window.
+ - LLDebugToolActionSetting: Show setting function.
  - LLDebugToolActionNetwork: Network function.
  - LLDebugToolActionLog: Log function.
  - LLDebugToolActionCrash: Crash function.
@@ -144,9 +145,12 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
  - LLDebugToolActionScreenshot: Screenshot function.
  - LLDebugToolActionHierarchy: Hierarchy function.
  - LLDebugToolActionMagnifier: Magnifier function.
+ - LLDebugToolActionRuler: Ruler function.
+ - LLDebugToolActionWidgetBorder: Widget border function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionFunction,
+    LLDebugToolActionSetting,
     LLDebugToolActionNetwork,
     LLDebugToolActionLog,
     LLDebugToolActionCrash,

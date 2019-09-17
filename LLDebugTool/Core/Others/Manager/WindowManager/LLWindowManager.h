@@ -37,6 +37,7 @@
 #import "LLScreenshotWindow.h"
 #import "LLRulerWindow.h"
 #import "LLWidgetBorderWindow.h"
+#import "LLSettingWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -142,11 +143,18 @@ Ruler window
 + (LLRulerWindow *)rulerWindow;
 
 /**
-Widget border window
+Widget border window.
 
 @return LLWidgetBorderWindow.
 */
 + (LLWidgetBorderWindow *)widgetBorderWindow;
+
+/**
+ Setting window.
+ 
+ @return LLSettingWindow.
+ */
++ (LLSettingWindow *)settingWindow;
 
 /**
  Show entry window.

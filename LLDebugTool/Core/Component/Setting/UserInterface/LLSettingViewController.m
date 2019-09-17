@@ -137,7 +137,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 
 - (void)showDoubleClickAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    for (NSInteger i = 1; i < 12; i++) {
+    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionWidgetBorder + 1; i++) {
         NSString *action = [LLConfigHelper componentDescription:i];
         if (action) {
             [actions addObject:action];
@@ -145,7 +145,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
-        [weakSelf setNewDoubleClick:index + 1];
+        [weakSelf setNewDoubleClick:index + LLDebugToolActionSetting];
     }];
 }
 

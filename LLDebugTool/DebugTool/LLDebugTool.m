@@ -240,43 +240,43 @@ static LLDebugTool *_instance = nil;
 
 - (void)prepareToStart {
     NSNumber *doubleClickAction = [LLSettingManager shared].doubleClickAction;
-    if (doubleClickAction) {
+    if (doubleClickAction != nil) {
         [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
     }
     NSNumber *colorStyle = [LLSettingManager shared].colorStyle;
-    if (colorStyle) {
+    if (colorStyle != nil) {
         [LLConfig shared].colorStyle = colorStyle.integerValue;
     }
     NSNumber *entryWindowStyle = [LLSettingManager shared].entryWindowStyle;
-    if (entryWindowStyle) {
+    if (entryWindowStyle != nil) {
         [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
     }
     NSNumber *statusBarStyle = [LLSettingManager shared].statusBarStyle;
-    if (statusBarStyle) {
+    if (statusBarStyle != nil) {
         [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
     }
     NSNumber *logStyle = [LLSettingManager shared].logStyle;
-    if (logStyle) {
+    if (logStyle != nil) {
         [LLConfig shared].logStyle = logStyle.integerValue;
     }
     NSNumber *shrinkToEdgeWhenInactive = [LLSettingManager shared].shrinkToEdgeWhenInactive;
-    if (shrinkToEdgeWhenInactive) {
+    if (shrinkToEdgeWhenInactive != nil) {
         [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
     }
     NSNumber *shakeToHide = [LLSettingManager shared].shakeToHide;
-    if (shakeToHide) {
+    if (shakeToHide != nil) {
         [LLConfig shared].shakeToHide = [shakeToHide boolValue];
     }
     NSNumber *magnifierZoomLevel = [LLSettingManager shared].magnifierZoomLevel;
-    if (magnifierZoomLevel) {
+    if (magnifierZoomLevel != nil) {
         [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
     }
     NSNumber *magnifierSize = [LLSettingManager shared].magnifierSize;
-    if (magnifierSize) {
+    if (magnifierSize != nil) {
         [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
     NSNumber *showWidgetBorder = [LLSettingManager shared].showWidgetBorder;
-    if (showWidgetBorder) {
+    if (showWidgetBorder != nil) {
         [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
     }
 }

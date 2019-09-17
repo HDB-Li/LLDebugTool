@@ -1,5 +1,5 @@
 //
-//  LLBaseWindow.h
+//  LLSettingWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,30 +21,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLSettingWindow.h"
+#import "LLSettingViewController.h"
+#import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLSettingWindow
 
-typedef NS_ENUM(NSUInteger, LLBaseWindowShowAnimateStyle) {
-    LLBaseWindowShowAnimateStyleFade,
-    LLBaseWindowShowAnimateStylePresent,
-    LLBaseWindowShowAnimateStylePush,
-};
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initial];
+    }
+    return self;
+}
 
-typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
-    LLBaseWindowHideAnimateStyleFade,
-    LLBaseWindowHideAnimateStyleDismiss,
-    LLBaseWindowHideAnimateStylePop,
-};
+#pragma mark - Over write
+- (void)componentDidFinish {
+    [[LLWindowManager shared] showEntryWindow];
+}
 
-@interface LLBaseWindow : UIWindow
-
-@property (nonatomic, assign) LLBaseWindowShowAnimateStyle showAnimateStyle;
-
-@property (nonatomic, assign) LLBaseWindowHideAnimateStyle hideAnimateStyle;
-
-- (void)becomeVisiable;
+#pragma mark - Primary
+- (void)initial {
+    self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+    self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
+    if (!self.rootViewController) {
+        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLSettingViewController alloc] init]];
+    }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

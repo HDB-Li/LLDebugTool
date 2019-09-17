@@ -1,5 +1,5 @@
 //
-//  LLBaseWindow.h
+//  LLSettingComponent.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, LLBaseWindowShowAnimateStyle) {
-    LLBaseWindowShowAnimateStyleFade,
-    LLBaseWindowShowAnimateStylePresent,
-    LLBaseWindowShowAnimateStylePush,
-};
-
-typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
-    LLBaseWindowHideAnimateStyleFade,
-    LLBaseWindowHideAnimateStyleDismiss,
-    LLBaseWindowHideAnimateStylePop,
-};
-
-@interface LLBaseWindow : UIWindow
-
-@property (nonatomic, assign) LLBaseWindowShowAnimateStyle showAnimateStyle;
-
-@property (nonatomic, assign) LLBaseWindowHideAnimateStyle hideAnimateStyle;
-
-- (void)becomeVisiable;
+@interface LLSettingComponent : LLComponent
 
 @end
 

@@ -140,8 +140,7 @@
 
 #pragma mark - Event response
 - (void)settingButtonClicked:(UIButton *)sender {
-    LLSettingViewController *vc = [[LLSettingViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSetting].component componentDidLoad:nil];
 }
 
 @end

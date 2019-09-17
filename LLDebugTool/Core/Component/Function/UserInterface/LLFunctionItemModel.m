@@ -35,6 +35,7 @@
 #import "LLMagnifierComponent.h"
 #import "LLRulerComponent.h"
 #import "LLWidgetBorderComponent.h"
+#import "LLSettingComponent.h"
 #import "LLImageNameConfig.h"
 
 @implementation LLFunctionItemModel
@@ -53,6 +54,8 @@
     switch (action) {
         case LLDebugToolActionFunction:
             return [[LLFunctionComponent alloc] init];
+        case LLDebugToolActionSetting:
+            return [[LLSettingComponent alloc] init];
         case LLDebugToolActionNetwork:
             return [[LLNetworkComponent alloc] init];
         case LLDebugToolActionLog:
@@ -82,6 +85,8 @@
     switch (action) {
         case LLDebugToolActionFunction:
             return @"Function";
+        case LLDebugToolActionSetting:
+            return @"Setting";
         case LLDebugToolActionNetwork:
             return @"Net";
         case LLDebugToolActionLog:
@@ -110,6 +115,7 @@
 - (NSString *)imageNameFromAction:(LLDebugToolAction)action {
     switch (action) {
         case LLDebugToolActionFunction:
+        case LLDebugToolActionSetting:
             return @"";
         case LLDebugToolActionNetwork:
             return kNetworkImageName;

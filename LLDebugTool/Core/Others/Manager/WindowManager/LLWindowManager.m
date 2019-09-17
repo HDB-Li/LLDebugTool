@@ -111,6 +111,10 @@ static LLWindowManager *_instance = nil;
     return (LLWidgetBorderWindow *)[self createWindowWithClassName:NSStringFromClass([LLWidgetBorderWindow class])];
 }
 
++ (LLSettingWindow *)settingWindow {
+    return (LLSettingWindow *)[self createWindowWithClassName:NSStringFromClass([LLSettingWindow class])];
+}
+
 - (void)showEntryWindow {
     [self addWindow:self.entryWindow animated:YES completion:nil];
 }

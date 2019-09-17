@@ -11,6 +11,8 @@
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
 		3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3608D6A922F2833D00070D76 /* LLHierarchyDetailCell.m */; };
 		3608D6AC22F2833D00070D76 /* LLHierarchyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3608D6AA22F2833D00070D76 /* LLHierarchyDetailCell.xib */; };
+		360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6362330DC160073FECD /* LLSettingComponent.m */; };
+		360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6392330DC620073FECD /* LLSettingWindow.m */; };
 		360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */; };
 		360D8A5222FD636D003693AE /* LLHierarchyPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5122FD636D003693AE /* LLHierarchyPickerViewController.m */; };
 		360D8A5522FD70D3003693AE /* LLHierarchyPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5422FD70D3003693AE /* LLHierarchyPickerInfoView.m */; };
@@ -237,6 +239,10 @@
 		3608D6A822F2833D00070D76 /* LLHierarchyDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailCell.h; sourceTree = "<group>"; };
 		3608D6A922F2833D00070D76 /* LLHierarchyDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailCell.m; sourceTree = "<group>"; };
 		3608D6AA22F2833D00070D76 /* LLHierarchyDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LLHierarchyDetailCell.xib; sourceTree = "<group>"; };
+		360AE6352330DC160073FECD /* LLSettingComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingComponent.h; sourceTree = "<group>"; };
+		360AE6362330DC160073FECD /* LLSettingComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingComponent.m; sourceTree = "<group>"; };
+		360AE6382330DC620073FECD /* LLSettingWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingWindow.h; sourceTree = "<group>"; };
+		360AE6392330DC620073FECD /* LLSettingWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingWindow.m; sourceTree = "<group>"; };
 		360D8A4D22FD52A9003693AE /* LLHierarchyPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerView.h; sourceTree = "<group>"; };
 		360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerView.m; sourceTree = "<group>"; };
 		360D8A5022FD636D003693AE /* LLHierarchyPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerViewController.h; sourceTree = "<group>"; };
@@ -679,6 +685,21 @@
 			path = TitleCell;
 			sourceTree = "<group>";
 		};
+		360AE6342330DBEE0073FECD /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				360AE6382330DC620073FECD /* LLSettingWindow.h */,
+				360AE6392330DC620073FECD /* LLSettingWindow.m */,
+				36AB4496231F9D0700AC772B /* LLSettingViewController.h */,
+				36AB4497231F9D0700AC772B /* LLSettingViewController.m */,
+				36AB4499231FC57D00AC772B /* LLSettingModel.h */,
+				36AB449A231FC57D00AC772B /* LLSettingModel.m */,
+				36AB449C231FC5D800AC772B /* LLSettingCategoryModel.h */,
+				36AB449D231FC5D800AC772B /* LLSettingCategoryModel.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
 		3629E3852136830A00226C79 /* DemoViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,12 +827,9 @@
 		36AB4494231F9CD600AC772B /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				36AB4496231F9D0700AC772B /* LLSettingViewController.h */,
-				36AB4497231F9D0700AC772B /* LLSettingViewController.m */,
-				36AB4499231FC57D00AC772B /* LLSettingModel.h */,
-				36AB449A231FC57D00AC772B /* LLSettingModel.m */,
-				36AB449C231FC5D800AC772B /* LLSettingCategoryModel.h */,
-				36AB449D231FC5D800AC772B /* LLSettingCategoryModel.m */,
+				360AE6342330DBEE0073FECD /* UserInterface */,
+				360AE6352330DC160073FECD /* LLSettingComponent.h */,
+				360AE6362330DC160073FECD /* LLSettingComponent.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1004,6 +1022,7 @@
 				364CF3D7232659EB000B513F /* Ruler */,
 				3633F581232F390600C62185 /* WidgetBorder */,
 				C4B4E3FD22F9C90900F70277 /* Function */,
+				36AB4494231F9CD600AC772B /* Setting */,
 				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
 				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
 			);
@@ -1681,7 +1700,6 @@
 			isa = PBXGroup;
 			children = (
 				C4B4E41422F9C90900F70277 /* EntryWindow */,
-				36AB4494231F9CD600AC772B /* Setting */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2092,6 +2110,7 @@
 				362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */,
 				C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */,
 				C4B4E47B22F9C90900F70277 /* LLTool.m in Sources */,
+				360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */,
 				C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
@@ -2145,6 +2164,7 @@
 				360D8A5522FD70D3003693AE /* LLHierarchyPickerInfoView.m in Sources */,
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
 				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,
+				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
 				C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */,
