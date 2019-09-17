@@ -23,8 +23,6 @@
 
 #import "LLRulerPickerView.h"
 #import "LLFactory.h"
-#import "LLThemeManager.h"
-#import "Masonry.h"
 #import "UIView+LL_Utils.h"
 
 @implementation LLRulerPickerView
