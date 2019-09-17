@@ -50,6 +50,7 @@ static LLWindowManager *_instance = nil;
 
 @implementation LLWindowManager
 
+#pragma mark - Public
 + (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -132,6 +133,10 @@ static LLWindowManager *_instance = nil;
 
 - (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
     [self removeWindow:window animated:animated automaticallyShowEntry:YES completion:nil];
+}
+
+- (LLBaseWindow *_Nullable)visiableWindow {
+    return [self.visibleWindows lastObject];
 }
 
 #pragma mark - Primary
@@ -230,6 +235,9 @@ static LLWindowManager *_instance = nil;
     }
     
     if (!window) {
+        if (completion) {
+            completion();
+        }
         return;
     }
     

@@ -192,6 +192,11 @@ Widget border window
  */
 - (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 
+/**
+ Current visiable window.
+ */
+- (LLBaseWindow *_Nullable)visiableWindow;
+
 @end
 
 NS_ASSUME_NONNULL_END

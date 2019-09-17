@@ -23,11 +23,19 @@
 
 #import "LLWidgetBorderComponent.h"
 #import "LLWindowManager.h"
+#import "LLNavigationController.h"
+#import "LLWidgetBorderViewController.h"
 
 @implementation LLWidgetBorderComponent
 
 - (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager widgetBorderWindow] animated:YES];
+    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    if ([window isKindOfClass:[LLFunctionWindow class]]) {
+        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
+        [nav pushViewController:[[LLWidgetBorderViewController alloc] init] animated:YES];
+    } else {
+        [[LLWindowManager shared] showWindow:[LLWindowManager widgetBorderWindow] animated:YES];
+    }
 }
 
 @end
