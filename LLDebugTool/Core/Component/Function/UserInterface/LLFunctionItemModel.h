@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param action Specified action.
  @return Instance object.
  */
-- (instancetype _Nonnull )initWithAction:(LLDebugToolAction)action;
+- (instancetype _Nonnull)initWithAction:(LLDebugToolAction)action;
 
 @end
 

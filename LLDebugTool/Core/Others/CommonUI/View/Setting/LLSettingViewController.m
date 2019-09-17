@@ -88,6 +88,11 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 - (void)initData {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
+    // Short Cut
+    [settings addObject:[self getDoubleClickComponentModel]];
+    LLSettingCategoryModel *category0 = [[LLSettingCategoryModel alloc] initWithTitle:@"Short Cut" settings:settings];
+    [settings removeAllObjects];
+    
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
     [settings addObject:[self getStatusBarStyleModel]];
@@ -113,12 +118,41 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     LLSettingCategoryModel *category4 = [[LLSettingCategoryModel alloc] initWithTitle:@"Magnifier" settings:settings];
     [settings removeAllObjects];
     
-    self.dataArray = @[category1, category2, category3, category4];
+    self.dataArray = @[category0, category1, category2, category3, category4];
     [self.tableView reloadData];
 }
 
 - (void)setUpUI {
     self.tableView.frame = self.view.bounds;
+}
+
+- (LLSettingModel *)getDoubleClickComponentModel {
+    __weak typeof(self) weakSelf = self;
+    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Double Click" detailTitle:[LLConfigHelper doubleClickComponentDescription]];
+    model.block = ^{
+        [weakSelf showDoubleClickAlert];
+    };
+    return model;
+}
+
+- (void)showDoubleClickAlert {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    for (NSInteger i = 1; i < 12; i++) {
+        NSString *action = [LLConfigHelper componentDescription:i];
+        if (action) {
+            [actions addObject:action];
+        }
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
+        [weakSelf setNewDoubleClick:index + 1];
+    }];
+}
+
+- (void)setNewDoubleClick:(LLDebugToolAction)action {
+    [LLConfig shared].doubleClickAction = action;
+    [LLSettingManager shared].doubleClickAction = @(action);
+    [self initData];
 }
 
 - (LLSettingModel *)getShakeToHideModel {
@@ -145,7 +179,6 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (void)showColorStyleAlert {
-    
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < 3; i++) {
         NSString *action = [LLConfigHelper colorStyleDescription:i];

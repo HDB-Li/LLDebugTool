@@ -48,5 +48,3 @@ UIKIT_EXTERN CGFloat const kLLRulerLineWidth;
 UIKIT_EXTERN CGFloat const kLLWidgetBorderWidth;
 
 UIKIT_EXTERN CGFloat const kLLGeneralMargin;
-
-FOUNDATION_EXTERN NSString * const kLLEntryViewDoubleClickComponent;

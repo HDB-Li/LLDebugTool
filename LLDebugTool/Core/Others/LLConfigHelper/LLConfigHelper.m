@@ -25,6 +25,7 @@
 #import "LLConfig.h"
 #import "LLThemeManager.h"
 #import "UIColor+LL_Utils.h"
+#import "LLFunctionItemModel.h"
 
 @implementation LLConfigHelper
 
@@ -126,6 +127,14 @@
         case LLConfigLogNone:
             return @"None";
     }
+}
+
++ (NSString *)doubleClickComponentDescription {
+    return [self componentDescription:[LLConfig shared].doubleClickAction];
+}
+
++ (NSString *)componentDescription:(LLDebugToolAction)action {
+    return [[LLFunctionItemModel alloc] initWithAction:action].title;
 }
 
 @end

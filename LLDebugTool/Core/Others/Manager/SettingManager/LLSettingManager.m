@@ -28,7 +28,7 @@
 
 static LLSettingManager *_instance = nil;
 
-static NSString *entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
+static NSString *doubleClickActionKey = @"doubleClickActionKey";
 static NSString *colorStyleKey = @"colorStyleKey";
 static NSString *entryWindowStyleKey = @"entryWindowStyleKey";
 static NSString *statusBarStyleKey = @"statusBarStyleKey";
@@ -39,14 +39,7 @@ static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
 static NSString *magnifierSizeKey = @"magnifierSizeKey";
 static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 
-@interface LLSettingManager ()
-
-@end
-
 @implementation LLSettingManager
-
-@synthesize entryViewClickComponent = _entryViewClickComponent;
-@synthesize entryViewDoubleClickComponent = _entryViewDoubleClickComponent;
 
 + (instancetype)shared {
     static dispatch_once_t onceToken;
@@ -57,28 +50,12 @@ static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 }
 
 #pragma mark - Getters and Setters
-- (LLComponent *)entryViewClickComponent {
-    if (!_entryViewClickComponent) {
-        _entryViewClickComponent = [[LLFunctionComponent alloc] init];
-    }
-    return _entryViewClickComponent;
+- (void)setDoubleClickAction:(NSNumber *)doubleClickAction {
+    [NSUserDefaults LL_setNumber:doubleClickAction forKey:doubleClickActionKey];
 }
 
-- (void)setEntryViewDoubleClickComponent:(LLComponent *)entryViewDoubleClickComponent {
-    _entryViewDoubleClickComponent = entryViewDoubleClickComponent;
-    [NSUserDefaults LL_setString:NSStringFromClass(entryViewDoubleClickComponent.class) forKey:entryViewDoubleClickComponentKey];
-}
-
-- (LLComponent *)entryViewDoubleClickComponent {
-    if (!_entryViewDoubleClickComponent) {
-        NSString *componentName = [NSUserDefaults LL_stringForKey:entryViewDoubleClickComponentKey];
-        Class cls = NSClassFromString(componentName);
-        if (cls == nil || ![cls isKindOfClass:[LLComponent class]]) {
-            cls = NSClassFromString(kLLEntryViewDoubleClickComponent);
-        }
-        _entryViewDoubleClickComponent = [[cls alloc] init];
-    }
-    return _entryViewDoubleClickComponent;
+- (NSNumber *)doubleClickAction {
+    return [NSUserDefaults LL_numberForKey:doubleClickActionKey];
 }
 
 - (void)setColorStyle:(NSNumber *)colorStyle {

@@ -31,6 +31,7 @@
 #import "LLEntryBigTitleView.h"
 #import "LLTool.h"
 #import "LLConst.h"
+#import "LLFunctionItemModel.h"
 
 @interface LLEntryViewController ()
 
@@ -141,12 +142,12 @@
 
 - (void)tapGR:(UITapGestureRecognizer *)sender {
     [self.activeView animatedBecomeActive];
-    [[LLSettingManager shared].entryViewClickComponent componentDidLoad:nil];
+    [[[LLFunctionItemModel alloc] initWithAction:[LLConfig shared].clickAction].component componentDidLoad:nil];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)sender {
     [self.activeView animatedBecomeActive];
-    [[LLSettingManager shared].entryViewDoubleClickComponent componentDidLoad:nil];
+    [[[LLFunctionItemModel alloc] initWithAction:[LLConfig shared].doubleClickAction].component componentDidLoad:nil];
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {

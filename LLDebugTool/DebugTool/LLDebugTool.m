@@ -154,9 +154,6 @@ static LLDebugTool *_instance = nil;
 }
 
 #pragma mark - Primary
-/**
- Initial something.
- */
 - (void)initial {
     // Set Default
     _isBetaVersion = YES;
@@ -242,6 +239,10 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)prepareToStart {
+    NSNumber *doubleClickAction = [LLSettingManager shared].doubleClickAction;
+    if (doubleClickAction) {
+        [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
+    }
     NSNumber *colorStyle = [LLSettingManager shared].colorStyle;
     if (colorStyle) {
         [LLConfig shared].colorStyle = colorStyle.integerValue;

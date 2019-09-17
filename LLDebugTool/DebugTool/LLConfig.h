@@ -131,6 +131,35 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
     LLConfigAvailableNoneHierarchy  = 0xFF - (1 << 6),
 };
 
+/**
+ Action enums.
+ 
+ - LLDebugToolActionFunction: Show function window.
+ - LLDebugToolActionNetwork: Network function.
+ - LLDebugToolActionLog: Log function.
+ - LLDebugToolActionCrash: Crash function.
+ - LLDebugToolActionAppInfo: App info function.
+ - LLDebugToolActionSandbox: Sandbox function.
+ - LLDebugToolActionConvenientScreenshot: Convenient screenshot function.
+ - LLDebugToolActionScreenshot: Screenshot function.
+ - LLDebugToolActionHierarchy: Hierarchy function.
+ - LLDebugToolActionMagnifier: Magnifier function.
+ */
+typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
+    LLDebugToolActionFunction,
+    LLDebugToolActionNetwork,
+    LLDebugToolActionLog,
+    LLDebugToolActionCrash,
+    LLDebugToolActionAppInfo,
+    LLDebugToolActionSandbox,
+    LLDebugToolActionScreenshot,
+    LLDebugToolActionConvenientScreenshot,
+    LLDebugToolActionHierarchy,
+    LLDebugToolActionMagnifier,
+    LLDebugToolActionRuler,
+    LLDebugToolActionWidgetBorder
+};
+
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -261,6 +290,19 @@ Whether show widget border. Default is NO.
  Whether check LLDebugTool has new version.
  */
 @property (nonatomic, assign) BOOL autoCheckDebugToolVersion;
+
+
+#pragma mark - Click Event
+
+/**
+ Click action. Default is LLDebugToolActionFunction.
+*/
+@property (nonatomic, assign, readonly) LLDebugToolAction clickAction;
+
+/**
+ Double click action. Default is LLDebugToolActionConvenientScreenshot.
+ */
+@property (nonatomic, assign) LLDebugToolAction doubleClickAction;
 
 #pragma mark - Function
 /**

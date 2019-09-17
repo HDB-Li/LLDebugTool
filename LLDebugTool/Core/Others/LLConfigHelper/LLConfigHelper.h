@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LLConfig.h"
+#import "LLDebugTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,6 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)logStyleDescription;
 
 + (NSString *)logStyleDescription:(LLConfigLogStyle)style;
+
++ (NSString *)doubleClickComponentDescription;
+
++ (NSString *)componentDescription:(LLDebugToolAction)action;
 
 @end
 
