@@ -48,6 +48,7 @@
 
 #pragma mark - Primary
 - (void)initial {
+    self.title = @"Widget Border";
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.view addSubview:self.tableView];
     self.tableView.frame = self.view.bounds;
