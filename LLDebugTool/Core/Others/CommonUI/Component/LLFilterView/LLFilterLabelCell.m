@@ -24,12 +24,15 @@
 #import "LLFilterLabelCell.h"
 #import "LLConfig.h"
 #import "LLThemeManager.h"
+#import "LLFactory.h"
+#import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLFilterLabelCell ()
 
-@property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (nonatomic, strong) UIView *bgView;
 
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic, strong) UILabel *label;
 
 @property (nonatomic, strong) LLFilterLabelModel *model;
 
@@ -37,11 +40,7 @@
 
 @implementation LLFilterLabelCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
-
+#pragma mark - Public
 - (void)confirmWithModel:(LLFilterLabelModel *)model {
     _model = model;
     _label.text = model.message;
@@ -54,15 +53,42 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
-    // Fix iPhone SE show incomplete problems.
-    _label.font = [UIFont systemFontOfSize:15];
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    [self.contentView addSubview:self.bgView];
+    [self.contentView addSubview:self.label];
     
-    _bgView.layer.cornerRadius = 5;
-    _bgView.layer.borderWidth = 0.5;
-    _bgView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    _bgView.layer.masksToBounds = YES;
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.mas_equalTo(0);
+    }];
+    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.mas_equalTo(kLLGeneralMargin / 2.0);
+        make.right.bottom.mas_equalTo(-kLLGeneralMargin / 2.0);
+    }];
+}
+
+#pragma mark - Getters and setters
+- (UIView *)bgView {
+    if (!_bgView) {
+        _bgView = [LLFactory getView];
+        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.layer.cornerRadius = 5;
+        _bgView.layer.borderWidth = 0.5;
+        _bgView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+        _bgView.layer.masksToBounds = YES;
+    }
+    return _bgView;
+}
+
+- (UILabel *)label {
+    if (!_label) {
+        _label = [LLFactory getLabel];
+        _label.font = [UIFont systemFontOfSize:15];
+        _label.textAlignment = NSTextAlignmentCenter;
+        _label.lineBreakMode = NSLineBreakByTruncatingTail;
+    }
+    return _label;
 }
 
 @end
