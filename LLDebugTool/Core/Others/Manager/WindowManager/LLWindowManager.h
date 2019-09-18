@@ -31,7 +31,6 @@
 #import "LLAppInfoWindow.h"
 #import "LLSandboxWindow.h"
 #import "LLCrashWindow.h"
-#import "LLHierarchyWindow.h"
 #import "LLHierarchyPickerWindow.h"
 #import "LLHierarchyDetailWindow.h"
 #import "LLScreenshotWindow.h"
@@ -106,13 +105,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return LLSandboxWindow.
  */
 + (LLSandboxWindow *)sandboxWindow;
-
-/**
- Hierarchy window
- 
- @return LLHierarchyWindow.
- */
-+ (LLHierarchyWindow *)hierarchyWindow;
 
 /**
  Hierarchy picker window

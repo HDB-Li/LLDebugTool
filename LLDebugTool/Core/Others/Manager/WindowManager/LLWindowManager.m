@@ -87,10 +87,6 @@ static LLWindowManager *_instance = nil;
     return (LLSandboxWindow *)[self createWindowWithClassName:NSStringFromClass([LLSandboxWindow class])];
 }
 
-+ (LLHierarchyWindow *)hierarchyWindow {
-    return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
-}
-
 + (LLHierarchyPickerWindow *)hierarchyPickerWindow {
     return (LLHierarchyPickerWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyPickerWindow class])];
 }

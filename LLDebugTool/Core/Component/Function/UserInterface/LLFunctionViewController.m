@@ -31,7 +31,6 @@
 #import "LLCrashViewController.h"
 #import "LLAppInfoViewController.h"
 #import "LLSandboxViewController.h"
-#import "LLHierarchyViewController.h"
 #import "LLFunctionItemContainerView.h"
 #import "UIView+LL_Utils.h"
 #import "LLThemeManager.h"
@@ -39,7 +38,7 @@
 #import "LLWindowManager.h"
 #import "LLSettingViewController.h"
 
-@interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
+@interface LLFunctionViewController ()<LLFunctionContainerViewControllerDelegate>
 
 @property (nonatomic, strong) LLFunctionItemContainerView *toolContainerView;
 
@@ -131,11 +130,6 @@
 - (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
     LLComponent *component = model.component;
     [component componentDidLoad:nil];
-}
-
-#pragma mark - LLHierarchyViewControllerDelegate
-- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel {
-    [self.delegate LLFunctionViewController:self didSelectedHierarchyModel:selectedModel];
 }
 
 #pragma mark - Event response
