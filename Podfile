@@ -9,7 +9,7 @@ target 'LLDebugToolDemo' do
 
   # Request
   pod 'FMDB','~> 2.0',:inhibit_warnings => true
-  pod 'Masonry', '1.1.0',:inhibit_warnings => true
+  pod 'Masonry',:inhibit_warnings => true
 
   # Only for demo
   pod 'AFNetworking'
