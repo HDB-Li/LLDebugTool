@@ -110,7 +110,6 @@
 		C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565F22ED8D4800E9FBE2 /* LLSandboxCell.m */; };
 		C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */; };
 		C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498566122ED8D4800E9FBE2 /* LLPreviewController.m */; };
-		C49856A222ED8D4800E9FBE2 /* LLSandboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C498566322ED8D4800E9FBE2 /* LLSandboxCell.xib */; };
 		C49856A722ED8D4800E9FBE2 /* LLLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498567022ED8D4800E9FBE2 /* LLLogDetailViewController.m */; };
 		C49856A822ED8D4800E9FBE2 /* LLLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498567122ED8D4800E9FBE2 /* LLLogViewController.m */; };
 		C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498567222ED8D4800E9FBE2 /* LLLogFilterView.m */; };
@@ -172,7 +171,6 @@
 		C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3D122F9C90900F70277 /* LLWindowManager.m */; };
 		C4B4E45122F9C90900F70277 /* LLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3D422F9C90900F70277 /* LLThemeManager.m */; };
 		C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */; };
-		C4B4E45322F9C90900F70277 /* LLSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4B4E3DD22F9C90900F70277 /* LLSubTitleTableViewCell.xib */; };
 		C4B4E45422F9C90900F70277 /* LLSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3E022F9C90900F70277 /* LLSearchBar.m */; };
 		C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3E322F9C90900F70277 /* LLNoneCopyTextField.m */; };
 		C4B4E45622F9C90900F70277 /* LLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3E622F9C90900F70277 /* LLButton.m */; };
@@ -433,7 +431,6 @@
 		C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxViewController.m; sourceTree = "<group>"; };
 		C498566122ED8D4800E9FBE2 /* LLPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPreviewController.m; sourceTree = "<group>"; };
 		C498566222ED8D4800E9FBE2 /* LLSandboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxCell.h; sourceTree = "<group>"; };
-		C498566322ED8D4800E9FBE2 /* LLSandboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLSandboxCell.xib; sourceTree = "<group>"; };
 		C498566422ED8D4800E9FBE2 /* LLSandboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSandboxViewController.h; sourceTree = "<group>"; };
 		C498566522ED8D4800E9FBE2 /* LLPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLPreviewController.h; sourceTree = "<group>"; };
 		C498566E22ED8D4800E9FBE2 /* LLLogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogCell.h; sourceTree = "<group>"; };
@@ -561,7 +558,6 @@
 		C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSubTitleTableViewCell.m; sourceTree = "<group>"; };
 		C4B4E3DB22F9C90900F70277 /* LLSubTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSubTitleTableViewCell.h; sourceTree = "<group>"; };
 		C4B4E3DC22F9C90900F70277 /* LLUITableViewLongPressGestureRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUITableViewLongPressGestureRecognizerDelegate.h; sourceTree = "<group>"; };
-		C4B4E3DD22F9C90900F70277 /* LLSubTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLSubTitleTableViewCell.xib; sourceTree = "<group>"; };
 		C4B4E3DF22F9C90900F70277 /* LLSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSearchBar.h; sourceTree = "<group>"; };
 		C4B4E3E022F9C90900F70277 /* LLSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSearchBar.m; sourceTree = "<group>"; };
 		C4B4E3E222F9C90900F70277 /* LLNoneCopyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNoneCopyTextField.h; sourceTree = "<group>"; };
@@ -1171,7 +1167,6 @@
 			children = (
 				C498566222ED8D4800E9FBE2 /* LLSandboxCell.h */,
 				C498565F22ED8D4800E9FBE2 /* LLSandboxCell.m */,
-				C498566322ED8D4800E9FBE2 /* LLSandboxCell.xib */,
 				C498566522ED8D4800E9FBE2 /* LLPreviewController.h */,
 				C498566122ED8D4800E9FBE2 /* LLPreviewController.m */,
 				C498566422ED8D4800E9FBE2 /* LLSandboxViewController.h */,
@@ -1616,7 +1611,6 @@
 			children = (
 				C4B4E3DB22F9C90900F70277 /* LLSubTitleTableViewCell.h */,
 				C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */,
-				C4B4E3DD22F9C90900F70277 /* LLSubTitleTableViewCell.xib */,
 				C4B4E3DC22F9C90900F70277 /* LLUITableViewLongPressGestureRecognizerDelegate.h */,
 			);
 			path = LLSubTitleTableViewCell;
@@ -1920,9 +1914,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B4E47922F9C90900F70277 /* LLDebugTool.bundle in Resources */,
-				C49856A222ED8D4800E9FBE2 /* LLSandboxCell.xib in Resources */,
 				C4B4E45E22F9C90900F70277 /* LLFilterTextFieldCell.xib in Resources */,
-				C4B4E45322F9C90900F70277 /* LLSubTitleTableViewCell.xib in Resources */,
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,

@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLSubTitleTableViewCell : LLBaseTableViewCell
 
-@property (weak, nonatomic, nullable) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong, readonly) UILabel *titleLabel;
 
 @property (copy, nonatomic, nullable) NSString *contentText;
 

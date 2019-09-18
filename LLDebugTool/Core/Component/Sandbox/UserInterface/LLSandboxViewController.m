@@ -93,7 +93,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         self.navigationItem.title = self.sandboxModel.name;
     }
     // TableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
+    [self.tableView registerClass:[LLSandboxCell class] forCellReuseIdentifier:kSandboxCellID];
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
