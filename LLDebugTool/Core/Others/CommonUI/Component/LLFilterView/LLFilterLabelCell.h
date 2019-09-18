@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseCollectionViewCell.h"
 #import "LLFilterLabelModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFilterLabelCell : UICollectionViewCell
+@interface LLFilterLabelCell : LLBaseCollectionViewCell
 
 - (void)confirmWithModel:(LLFilterLabelModel *)model;
 

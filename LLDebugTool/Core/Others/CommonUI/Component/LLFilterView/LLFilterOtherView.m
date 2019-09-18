@@ -103,9 +103,9 @@ static NSString *const kLabelCellID = @"LabelCellID";
     
     CGFloat headerHeight = 30;
     CGFloat gap = kLLGeneralMargin;
-    CGFloat itemHeight = 25;
+    CGFloat itemHeight = 30;
     NSInteger idCount = ceilf(self.userIdDataArray.count / 3.0);
-    CGFloat height = headerHeight + gap + itemHeight + gap + itemHeight + gap + headerHeight + gap + itemHeight + gap + itemHeight + gap + headerHeight + gap + idCount * (itemHeight + gap);
+    CGFloat height = (headerHeight + gap + itemHeight + gap + itemHeight + gap) * 2 + headerHeight + gap + idCount * (itemHeight + gap);
     if (height > LL_SCREEN_HEIGHT / 2.0) {
         height = LL_SCREEN_HEIGHT / 2.0;
     }
@@ -260,7 +260,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 || indexPath.section == 1) {
-        return CGSizeMake(LL_SCREEN_WIDTH, 25);
+        return CGSizeMake(LL_SCREEN_WIDTH, 30);
     }
     return CGSizeMake((LL_SCREEN_WIDTH - 5 * 10) / 3.0, 30);
 }
@@ -271,9 +271,10 @@ static NSString *const kLabelCellID = @"LabelCellID";
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
     self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.bounces = NO;
     self.collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterTextFieldCell" bundle:[LLConfig shared].XIBBundle] forCellWithReuseIdentifier:kTextFieldCellID];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"LLFilterLabelCell" bundle:[LLConfig shared].XIBBundle] forCellWithReuseIdentifier:kLabelCellID];
+    [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
+    [self.collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
     [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }

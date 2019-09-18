@@ -298,7 +298,7 @@
 
 - (LLFilterOtherView *)otherView {
     if (!_otherView) {
-        _otherView = [[LLFilterOtherView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 295)];
+        _otherView = [[LLFilterOtherView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 320)];
         _otherView.clipsToBounds = YES;
         __weak typeof(self) weakSelf = self;
         _otherView.changeBlock = ^(NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {

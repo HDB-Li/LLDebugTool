@@ -277,7 +277,7 @@
 
 - (LLFilterDateView *)dateView {
     if (!_dateView) {
-        _dateView = [[LLFilterDateView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 110)];
+        _dateView = [[LLFilterDateView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 120)];
         _dateView.clipsToBounds = YES;
         __weak typeof(self) weakSelf = self;
         _dateView.changeBlock = ^(NSDate *from, NSDate *end) {

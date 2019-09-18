@@ -25,8 +25,15 @@
 
 @implementation LLBaseCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initUI];
+    }
+    return self;
+}
+
+- (void)initUI {
+    
 }
 
 @end

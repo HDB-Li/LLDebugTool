@@ -119,7 +119,7 @@
 
 + (UILabel *)getLabel:(UIView *_Nullable)toView
                         frame:(CGRect)frame {
-    return [self getLabel:toView frame:CGRectZero text:nil font:17 textColor:nil];
+    return [self getLabel:toView frame:frame text:nil font:17 textColor:nil];
 }
 
 + (UILabel *)getLabel:(UIView *_Nullable)toView

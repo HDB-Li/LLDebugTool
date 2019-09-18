@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseCollectionViewCell.h"
 #import "LLFilterTextFieldModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^LLFilterOtherTextFieldCellBlock)(void);
 
-@interface LLFilterTextFieldCell : UICollectionViewCell
+@interface LLFilterTextFieldCell : LLBaseCollectionViewCell
 
 @property (copy, nonatomic, nullable) LLFilterOtherTextFieldCellBlock confirmBlock;
 

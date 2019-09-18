@@ -178,10 +178,8 @@
 		C4B4E45822F9C90900F70277 /* LLFilterFilePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3EB22F9C90900F70277 /* LLFilterFilePickerView.m */; };
 		C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3EE22F9C90900F70277 /* LLFilterTextFieldModel.m */; };
 		C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F022F9C90900F70277 /* LLFilterDateView.m */; };
-		C4B4E45B22F9C90900F70277 /* LLFilterLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4B4E3F122F9C90900F70277 /* LLFilterLabelCell.xib */; };
 		C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F222F9C90900F70277 /* LLFilterDatePickerView.m */; };
 		C4B4E45D22F9C90900F70277 /* LLFilterTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F322F9C90900F70277 /* LLFilterTextFieldCell.m */; };
-		C4B4E45E22F9C90900F70277 /* LLFilterTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4B4E3F422F9C90900F70277 /* LLFilterTextFieldCell.xib */; };
 		C4B4E45F22F9C90900F70277 /* LLFilterLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F622F9C90900F70277 /* LLFilterLabelCell.m */; };
 		C4B4E46022F9C90900F70277 /* LLFilterEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F722F9C90900F70277 /* LLFilterEventView.m */; };
 		C4B4E46122F9C90900F70277 /* LLFilterLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3FA22F9C90900F70277 /* LLFilterLabelModel.m */; };
@@ -573,10 +571,8 @@
 		C4B4E3EE22F9C90900F70277 /* LLFilterTextFieldModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterTextFieldModel.m; sourceTree = "<group>"; };
 		C4B4E3EF22F9C90900F70277 /* LLFilterLabelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterLabelModel.h; sourceTree = "<group>"; };
 		C4B4E3F022F9C90900F70277 /* LLFilterDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterDateView.m; sourceTree = "<group>"; };
-		C4B4E3F122F9C90900F70277 /* LLFilterLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLFilterLabelCell.xib; sourceTree = "<group>"; };
 		C4B4E3F222F9C90900F70277 /* LLFilterDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterDatePickerView.m; sourceTree = "<group>"; };
 		C4B4E3F322F9C90900F70277 /* LLFilterTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterTextFieldCell.m; sourceTree = "<group>"; };
-		C4B4E3F422F9C90900F70277 /* LLFilterTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLFilterTextFieldCell.xib; sourceTree = "<group>"; };
 		C4B4E3F522F9C90900F70277 /* LLFilterOtherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterOtherView.h; sourceTree = "<group>"; };
 		C4B4E3F622F9C90900F70277 /* LLFilterLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterLabelCell.m; sourceTree = "<group>"; };
 		C4B4E3F722F9C90900F70277 /* LLFilterEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterEventView.m; sourceTree = "<group>"; };
@@ -1650,7 +1646,6 @@
 				C4B4E3F022F9C90900F70277 /* LLFilterDateView.m */,
 				C4B4E3ED22F9C90900F70277 /* LLFilterLabelCell.h */,
 				C4B4E3F622F9C90900F70277 /* LLFilterLabelCell.m */,
-				C4B4E3F122F9C90900F70277 /* LLFilterLabelCell.xib */,
 				C4B4E3EC22F9C90900F70277 /* LLFilterEventView.h */,
 				C4B4E3F722F9C90900F70277 /* LLFilterEventView.m */,
 				C4B4E3F522F9C90900F70277 /* LLFilterOtherView.h */,
@@ -1659,7 +1654,6 @@
 				C4B4E3FA22F9C90900F70277 /* LLFilterLabelModel.m */,
 				C4B4E3E822F9C90900F70277 /* LLFilterTextFieldCell.h */,
 				C4B4E3F322F9C90900F70277 /* LLFilterTextFieldCell.m */,
-				C4B4E3F422F9C90900F70277 /* LLFilterTextFieldCell.xib */,
 				C4B4E3F822F9C90900F70277 /* LLFilterFilePickerView.h */,
 				C4B4E3EB22F9C90900F70277 /* LLFilterFilePickerView.m */,
 				C4B4E3FB22F9C90900F70277 /* LLFilterTextFieldModel.h */,
@@ -1914,12 +1908,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B4E47922F9C90900F70277 /* LLDebugTool.bundle in Resources */,
-				C4B4E45E22F9C90900F70277 /* LLFilterTextFieldCell.xib in Resources */,
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,
 				364570F72313B80800C29200 /* LICENSE in Resources */,
-				C4B4E45B22F9C90900F70277 /* LLFilterLabelCell.xib in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				364570F92313B80800C29200 /* CHANGELOG.md in Resources */,
 				367E27A120A1A8480032EF0D /* Localizable.strings in Resources */,

@@ -29,14 +29,16 @@
 #import "LLConfig.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
+#import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLFilterTextFieldCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelWidthConstraint;
 
-@property (weak, nonatomic) IBOutlet LLNoneCopyTextField *textField;
+@property (nonatomic, strong) LLNoneCopyTextField *textField;
 
 @property (strong, nonatomic) LLFilterTextFieldModel *model;
 
@@ -49,11 +51,6 @@
 @end
 
 @implementation LLFilterTextFieldCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
 
 - (void)confirmWithModel:(LLFilterTextFieldModel *)model {
     if (_model != model) {
@@ -83,6 +80,25 @@
     }
 }
 
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.textField];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.width.mas_equalTo(60);
+        make.top.bottom.mas_equalTo(0);
+    }];
+    [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin / 2.0);
+        make.top.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(-kLLGeneralMargin);
+    }];
+}
+
+#pragma mark - Event responses
 - (void)cancelButtonClick:(UIButton *)sender {
     [self.textField resignFirstResponder];
 }
@@ -107,13 +123,31 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
-    _textField.placeholder = @"Please Select";
-    _titleLabel.textColor = [LLThemeManager shared].primaryColor;
+#pragma mark - Getters and setters
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [LLFactory getLabel];
+        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.textColor = [LLThemeManager shared].primaryColor;
+    }
+    return _titleLabel;
 }
 
-#pragma mark - Lazy load
+- (LLNoneCopyTextField *)textField {
+    if (!_textField) {
+        _textField = [[LLNoneCopyTextField alloc] initWithFrame:CGRectZero];
+        _textField.font = [UIFont systemFontOfSize:14];
+        _textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _textField.tintColor = [LLThemeManager shared].primaryColor;
+        _textField.borderStyle = UITextBorderStyleRoundedRect;
+        _textField.textColor = [LLThemeManager shared].primaryColor;
+        _textField.backgroundColor = [LLThemeManager shared].containerColor;
+        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Please Select" attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
+        
+    }
+    return _textField;
+}
+
 - (LLFilterFilePickerView *)pickerView {
     if (!_pickerView) {
         _pickerView = [[LLFilterFilePickerView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 220) model:self.model];
