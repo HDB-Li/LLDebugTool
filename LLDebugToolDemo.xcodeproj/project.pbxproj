@@ -13,9 +13,9 @@
 		3608D6AC22F2833D00070D76 /* LLHierarchyDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3608D6AA22F2833D00070D76 /* LLHierarchyDetailCell.xib */; };
 		360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6362330DC160073FECD /* LLSettingComponent.m */; };
 		360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6392330DC620073FECD /* LLSettingWindow.m */; };
-		360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */; };
-		360D8A5222FD636D003693AE /* LLHierarchyPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5122FD636D003693AE /* LLHierarchyPickerViewController.m */; };
-		360D8A5522FD70D3003693AE /* LLHierarchyPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5422FD70D3003693AE /* LLHierarchyPickerInfoView.m */; };
+		360D8A4F22FD52A9003693AE /* LLHierarchyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyView.m */; };
+		360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5122FD636D003693AE /* LLHierarchyViewController.m */; };
+		360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
 		3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */; };
@@ -24,7 +24,7 @@
 		3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3902136830A00226C79 /* TestColorStyleViewController.m */; };
 		362AA6AD23272E2200F33EC4 /* LLRulerPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362AA6AC23272E2200F33EC4 /* LLRulerPickerView.m */; };
 		362AA6B123274FCF00F33EC4 /* LLPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362AA6B023274FCF00F33EC4 /* LLPickerView.m */; };
-		362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */; };
+		362F3CE622F01AF70087B0E4 /* LLHierarchyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F3CE522F01AF70087B0E4 /* LLHierarchyWindow.m */; };
 		362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F833B2302BE8F007C9168 /* LLEntryBallView.m */; };
 		362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AA2326607A00A27F05 /* LLRulerWindow.m */; };
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
@@ -228,12 +228,12 @@
 		360AE6362330DC160073FECD /* LLSettingComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingComponent.m; sourceTree = "<group>"; };
 		360AE6382330DC620073FECD /* LLSettingWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingWindow.h; sourceTree = "<group>"; };
 		360AE6392330DC620073FECD /* LLSettingWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingWindow.m; sourceTree = "<group>"; };
-		360D8A4D22FD52A9003693AE /* LLHierarchyPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerView.h; sourceTree = "<group>"; };
-		360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerView.m; sourceTree = "<group>"; };
-		360D8A5022FD636D003693AE /* LLHierarchyPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerViewController.h; sourceTree = "<group>"; };
-		360D8A5122FD636D003693AE /* LLHierarchyPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerViewController.m; sourceTree = "<group>"; };
-		360D8A5322FD70D3003693AE /* LLHierarchyPickerInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerInfoView.h; sourceTree = "<group>"; };
-		360D8A5422FD70D3003693AE /* LLHierarchyPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerInfoView.m; sourceTree = "<group>"; };
+		360D8A4D22FD52A9003693AE /* LLHierarchyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyView.h; sourceTree = "<group>"; };
+		360D8A4E22FD52A9003693AE /* LLHierarchyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyView.m; sourceTree = "<group>"; };
+		360D8A5022FD636D003693AE /* LLHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyViewController.h; sourceTree = "<group>"; };
+		360D8A5122FD636D003693AE /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
+		360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoView.h; sourceTree = "<group>"; };
+		360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoView.m; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
 		3629E3872136830A00226C79 /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
 		3629E3882136830A00226C79 /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
@@ -250,8 +250,8 @@
 		362AA6AC23272E2200F33EC4 /* LLRulerPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerView.m; sourceTree = "<group>"; };
 		362AA6AF23274FCF00F33EC4 /* LLPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPickerView.h; sourceTree = "<group>"; };
 		362AA6B023274FCF00F33EC4 /* LLPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPickerView.m; sourceTree = "<group>"; };
-		362F3CE422F01AF70087B0E4 /* LLHierarchyPickerWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerWindow.h; sourceTree = "<group>"; };
-		362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerWindow.m; sourceTree = "<group>"; };
+		362F3CE422F01AF70087B0E4 /* LLHierarchyWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyWindow.h; sourceTree = "<group>"; };
+		362F3CE522F01AF70087B0E4 /* LLHierarchyWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyWindow.m; sourceTree = "<group>"; };
 		362F833A2302BE8F007C9168 /* LLEntryBallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryBallView.h; sourceTree = "<group>"; };
 		362F833B2302BE8F007C9168 /* LLEntryBallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBallView.m; sourceTree = "<group>"; };
 		362F87A92326607A00A27F05 /* LLRulerWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerWindow.h; sourceTree = "<group>"; };
@@ -1047,14 +1047,14 @@
 		C498562B22ED8D4700E9FBE2 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				362F3CE422F01AF70087B0E4 /* LLHierarchyPickerWindow.h */,
-				362F3CE522F01AF70087B0E4 /* LLHierarchyPickerWindow.m */,
-				360D8A5022FD636D003693AE /* LLHierarchyPickerViewController.h */,
-				360D8A5122FD636D003693AE /* LLHierarchyPickerViewController.m */,
-				360D8A4D22FD52A9003693AE /* LLHierarchyPickerView.h */,
-				360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */,
-				360D8A5322FD70D3003693AE /* LLHierarchyPickerInfoView.h */,
-				360D8A5422FD70D3003693AE /* LLHierarchyPickerInfoView.m */,
+				362F3CE422F01AF70087B0E4 /* LLHierarchyWindow.h */,
+				362F3CE522F01AF70087B0E4 /* LLHierarchyWindow.m */,
+				360D8A5022FD636D003693AE /* LLHierarchyViewController.h */,
+				360D8A5122FD636D003693AE /* LLHierarchyViewController.m */,
+				360D8A4D22FD52A9003693AE /* LLHierarchyView.h */,
+				360D8A4E22FD52A9003693AE /* LLHierarchyView.m */,
+				360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */,
+				360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */,
 				C45537F122F1E39A001A9749 /* LLHierarchyDetailWindow.h */,
 				C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */,
 				C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */,
@@ -2000,7 +2000,7 @@
 				C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */,
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
 				C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */,
-				360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */,
+				360D8A4F22FD52A9003693AE /* LLHierarchyView.m in Sources */,
 				3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */,
 				C49856FE22EDB2DD00E9FBE2 /* LLCrashWindow.m in Sources */,
 				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
@@ -2012,7 +2012,7 @@
 				C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */,
 				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,
 				36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */,
-				362F3CE622F01AF70087B0E4 /* LLHierarchyPickerWindow.m in Sources */,
+				362F3CE622F01AF70087B0E4 /* LLHierarchyWindow.m in Sources */,
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
 				3608D6AB22F2833D00070D76 /* LLHierarchyDetailCell.m in Sources */,
 				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
@@ -2032,7 +2032,7 @@
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
 				364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */,
 				C4B4E43E22F9C90900F70277 /* UILabel+LL_Utils.m in Sources */,
-				360D8A5222FD636D003693AE /* LLHierarchyPickerViewController.m in Sources */,
+				360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */,
 				C4B4E43F22F9C90900F70277 /* UIButton+LL_Utils.m in Sources */,
 				C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */,
 				36596BC822FD065D00BBB6FA /* LLBaseMoveView.m in Sources */,
@@ -2095,7 +2095,7 @@
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
-				360D8A5522FD70D3003693AE /* LLHierarchyPickerInfoView.m in Sources */,
+				360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */,
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
 				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,
 				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,

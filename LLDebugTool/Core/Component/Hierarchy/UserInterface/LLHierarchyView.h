@@ -1,5 +1,5 @@
 //
-//  LLHierarchyPickerWindow.m
+//  LLHierarchyView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,32 +21,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyPickerWindow.h"
-#import "LLHierarchyPickerViewController.h"
-#import "LLWindowManager.h"
+#import "LLPickerView.h"
 
-@interface LLHierarchyPickerWindow ()
+NS_ASSUME_NONNULL_BEGIN
+
+@class LLHierarchyView;
+
+@protocol LLHierarchyViewDelegate <NSObject>
+
+- (void)LLHierarchyView:(LLHierarchyView *)view didMoveTo:(NSArray <UIView *>*)selectedViews;
+
+@end
+
+@interface LLHierarchyView : LLPickerView
+
+@property (nonatomic, weak, nullable) id<LLHierarchyViewDelegate> delegate;
 
 @end
 
-@implementation LLHierarchyPickerWindow
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-- (void)componentDidFinish {
-    [[LLWindowManager shared] showEntryWindow];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLHierarchyPickerViewController alloc] init];
-    }
-}
-
-@end
+NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  LLHierarchyPickerWindow.h
+//  LLHierarchyWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyPickerWindow : LLBaseComponentWindow
+@interface LLHierarchyWindow : LLBaseComponentWindow
 
 @end
 

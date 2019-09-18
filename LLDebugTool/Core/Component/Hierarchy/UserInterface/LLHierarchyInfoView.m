@@ -1,5 +1,5 @@
 //
-//  LLHierarchyPickerInfoView.m
+//  LLHierarchyInfoView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyPickerInfoView.h"
+#import "LLHierarchyInfoView.h"
 #import "LLTool.h"
 #import "UIColor+LL_Utils.h"
 #import "UIView+LL_Utils.h"
@@ -32,7 +32,7 @@
 #import "LLConst.h"
 #import "LLToastUtils.h"
 
-@interface LLHierarchyPickerInfoView ()
+@interface LLHierarchyInfoView ()
 
 @property (nonatomic, weak) UIView *selectedView;
 
@@ -44,7 +44,7 @@
 
 @end
 
-@implementation LLHierarchyPickerInfoView
+@implementation LLHierarchyInfoView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

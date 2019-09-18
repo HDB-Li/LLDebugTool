@@ -27,7 +27,7 @@
 @implementation LLHierarchyComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyPickerWindow] animated:YES];
+    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyWindow] animated:YES];
 }
 
 @end

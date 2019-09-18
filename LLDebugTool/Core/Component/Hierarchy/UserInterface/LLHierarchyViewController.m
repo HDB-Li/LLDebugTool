@@ -1,5 +1,5 @@
 //
-//  LLHierarchyPickerViewController.m
+//  LLHierarchyViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,9 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyPickerViewController.h"
-#import "LLHierarchyPickerView.h"
-#import "LLHierarchyPickerInfoView.h"
+#import "LLHierarchyViewController.h"
+#import "LLHierarchyView.h"
+#import "LLHierarchyInfoView.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
 #import "UIView+LL_Utils.h"
@@ -33,13 +33,13 @@
 #import "LLThemeManager.h"
 #import "NSObject+LL_Utils.h"
 
-@interface LLHierarchyPickerViewController ()<LLHierarchyPickerViewDelegate, LLBaseInfoViewDelegate>
+@interface LLHierarchyViewController ()<LLHierarchyViewDelegate, LLBaseInfoViewDelegate>
 
 @property (nonatomic, strong) UIView *borderView;
 
-@property (nonatomic, strong) LLHierarchyPickerView *pickerView;
+@property (nonatomic, strong) LLHierarchyView *pickerView;
 
-@property (nonatomic, strong) LLHierarchyPickerInfoView *infoView;
+@property (nonatomic, strong) LLHierarchyInfoView *infoView;
 
 @property (nonatomic, strong) NSMutableSet *observeViews;
 
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation LLHierarchyPickerViewController
+@implementation LLHierarchyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,14 +68,14 @@
     self.borderViews = [[NSMutableDictionary alloc] init];
     
     CGFloat height = 100;
-    self.infoView = [[LLHierarchyPickerInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
+    self.infoView = [[LLHierarchyInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     
     self.borderView = [LLFactory getView:self.view frame:CGRectZero backgroundColor:[UIColor clearColor]];
     self.borderView.layer.borderWidth = 2;
     
-    self.pickerView = [[LLHierarchyPickerView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
+    self.pickerView = [[LLHierarchyView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
     self.pickerView.delegate = self;
     [self.view addSubview:self.pickerView];
 }
@@ -127,7 +127,7 @@
 }
 
 #pragma mark - LLHierarchyPickerViewDelegate
-- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(NSArray <UIView *>*)selectedViews {
+- (void)LLHierarchyView:(LLHierarchyView *)view didMoveTo:(NSArray <UIView *>*)selectedViews {
     
     @synchronized (self) {
         for (UIView *view in self.observeViews) {

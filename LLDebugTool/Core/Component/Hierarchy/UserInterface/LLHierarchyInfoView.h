@@ -1,5 +1,5 @@
 //
-//  LLHierarchyPickerInfoView.h
+//  LLHierarchyInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyPickerInfoView : LLBaseInfoView
+@interface LLHierarchyInfoView : LLBaseInfoView
 
 - (void)updateView:(UIView *)view;
 
