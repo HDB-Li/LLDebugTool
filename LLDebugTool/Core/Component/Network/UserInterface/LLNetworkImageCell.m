@@ -23,40 +23,70 @@
 
 #import "LLNetworkImageCell.h"
 #import "LLMacros.h"
+#import "LLFactory.h"
+#import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLNetworkImageCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (nonatomic, strong) UIImageView *imgView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
 @implementation LLNetworkImageCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
 
 - (void)setUpImage:(UIImage *)image {
     self.imgView.image = image;
     if (image) {
         CGSize size = image.size;
         CGFloat height = LL_SCREEN_WIDTH * size.height / size.width;
-        if (height != self.imgViewHeightConstraint.constant) {
-            self.imgViewHeightConstraint.constant = height;
-            [self setNeedsLayout];
-            [self layoutIfNeeded];
-        }
+        [self.imgView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(height);
+        }];
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.imgView];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.height.mas_equalTo(25);
+    }];
+    
+    [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+        make.height.mas_equalTo(45);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(0).priorityHigh();
+    }];
+}
+
+#pragma mark - Getters and setters
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [LLFactory getLabel];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:19];
+        _titleLabel.text = @"Response Body";
+    }
+    return _titleLabel;
+}
+
+- (UIImageView *)imgView {
+    if (!_imgView) {
+        _imgView = [LLFactory getImageView];
+        _imgView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _imgView;
 }
 
 @end

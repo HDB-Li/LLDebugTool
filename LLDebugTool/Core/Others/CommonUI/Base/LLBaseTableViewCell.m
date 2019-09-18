@@ -47,10 +47,19 @@
 }
 
 #pragma mark - Public
+- (void)initUI {
+    self.tintColor = [LLThemeManager shared].primaryColor;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
+    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+}
+
 - (void)primaryColorChanged {
     self.tintColor = [LLThemeManager shared].primaryColor;
     self.textLabel.textColor = [LLThemeManager shared].primaryColor;
     self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+    [self configSubviews:self];
 }
 
 - (void)backgroundColorChanged {
@@ -66,13 +75,16 @@
                 if ([view isKindOfClass:[UIImageView class]]) {
                     UIImageView *imageView = (UIImageView *)view;
                     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-                    if (self.isSelected) {
-                        imageView.image = [[UIImage LL_imageNamed:kSelectImageName] imageWithRenderingMode:mode];
-                    } else {
-                        imageView.image = [[UIImage LL_imageNamed:kUnselectImageName] imageWithRenderingMode:mode];
+                    if (imageView.image != nil && imageView.image.renderingMode != mode) {
+                        imageView.image = [imageView.image imageWithRenderingMode:mode];
                     }
                     break;
                 }
+            }
+        } else if ([subview isKindOfClass: [UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            if (button.currentBackgroundImage != nil && button.currentBackgroundImage.renderingMode != UIImageRenderingModeAlwaysTemplate) {
+                [button setBackgroundImage:[button.currentBackgroundImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:button.state];
             }
         }
     }
@@ -90,11 +102,7 @@
 
 #pragma mark - Primary
 - (void)baseInitial {
-    self.tintColor = [LLThemeManager shared].primaryColor;
-    self.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
-    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
-    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+    [self initUI];
     [self configSubviews:self];
     [self addObservers];
 }
@@ -113,25 +121,6 @@
         for (UIView *subView in view.subviews) {
             [self configSubviews:subView];
         }
-    }
-}
-
-#pragma mark - Getters and setters
-- (void)setAccessoryType:(UITableViewCellAccessoryType)accessoryType {
-    [super setAccessoryType:accessoryType];
-    switch (accessoryType) {
-        case UITableViewCellAccessoryDisclosureIndicator:{
-            self.accessoryView = [LLFactory getImageView:nil frame:CGRectMake(0, 0, 12, 12) image:[[UIImage LL_imageNamed:kRightImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-        }
-            break;
-        case UITableViewCellAccessoryNone: {
-            self.accessoryView = nil;
-        }
-            break;
-        default: {
-            NSAssert(NO, @"Must code accessory type");
-        }
-            break;
     }
 }
 

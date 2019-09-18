@@ -29,7 +29,6 @@
 #import "LLToastUtils.h"
 
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
-static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 @interface LLNetworkDetailViewController () <LLSubTitleTableViewCellDelegate>
 
@@ -57,7 +56,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     id obj = self.contentArray[indexPath.row];
     // Config Image
     if ([obj isKindOfClass:[NSData class]] && self.model.isImage) {
-        LLNetworkImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkImageCellID forIndexPath:indexPath];
+        LLNetworkImageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LLNetworkImageCell class]) forIndexPath:indexPath];
         if (self.model.isGif) {
             [cell setUpImage:[UIImage LL_imageWithGIFData:obj]];
         } else {
@@ -114,7 +113,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
  */
 - (void)initial {
     self.navigationItem.title = @"Details";
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkImageCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kNetworkImageCellID];
+    [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:NSStringFromClass([LLNetworkImageCell class])];
     [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kNetworkContentCellID];
     [self loadData];
 }
