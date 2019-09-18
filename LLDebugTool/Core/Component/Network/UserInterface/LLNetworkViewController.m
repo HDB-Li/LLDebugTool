@@ -35,6 +35,8 @@
 #import "NSObject+LL_Utils.h"
 #import "LLToastUtils.h"
 
+static NSString *const kNetworkCellID = @"NetworkCellID";
+
 @interface LLNetworkViewController ()
 
 @property (nonatomic, strong) LLNetworkFilterView *filterView;
@@ -105,7 +107,7 @@
 
 #pragma mark - TableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLNetworkCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LLNetworkCell class]) forIndexPath:indexPath];
+    LLNetworkCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkCellID forIndexPath:indexPath];
     [cell confirmWithModel:self.datas[indexPath.row]];
     return cell;
 }
@@ -150,7 +152,7 @@
         _launchDate = [NSObject LL_launchDate];
     }
 
-    [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:NSStringFromClass([LLNetworkCell class])];
+    [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:kNetworkCellID];
     
     self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
     __weak typeof(self) weakSelf = self;

@@ -23,25 +23,23 @@
 
 #import "LLCrashCell.h"
 #import "LLConfig.h"
+#import "LLFactory.h"
+#import "LLConst.h"
+#import "Masonry.h"
 
 @interface LLCrashCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *reasonLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @property (nonatomic, strong) LLCrashModel *model;
 
 @end
 
 @implementation LLCrashCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
 
 - (void)confirmWithModel:(LLCrashModel *)model {
     _model = model;
@@ -50,8 +48,61 @@
     _dateLabel.text = [NSString stringWithFormat:@"[ %@ ]",model.date];
 }
 
-#pragma mark - Primary
-- (void)initial {
-    self.reasonLabel.font = [UIFont boldSystemFontOfSize:17];
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [self.contentView addSubview:self.reasonLabel];
+    [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.dateLabel];
+    
+    [self.reasonLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.right.mas_equalTo(-kLLGeneralMargin);
+    }];
+    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.reasonLabel);
+        make.top.equalTo(self.reasonLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+    }];
+    
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.reasonLabel);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
+    }];
 }
+
+#pragma mark - Getters and setters
+- (UILabel *)reasonLabel {
+    if (!_reasonLabel) {
+        _reasonLabel = [LLFactory getLabel];
+        _reasonLabel.font = [UIFont boldSystemFontOfSize:17];
+        _reasonLabel.numberOfLines = 0;
+        _reasonLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    }
+    return _reasonLabel;
+}
+
+- (UILabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [LLFactory getLabel];
+        _nameLabel.font = [UIFont systemFontOfSize:14];
+        _nameLabel.numberOfLines = 0;
+        _nameLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    }
+    return _nameLabel;
+}
+
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [LLFactory getLabel];
+        _dateLabel.font = [UIFont systemFontOfSize:12];
+    }
+    return _dateLabel;
+}
+
 @end

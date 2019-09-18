@@ -60,7 +60,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     self.navigationItem.title = @"Crash Report";
 
     // TableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLCrashCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kCrashCellID];
+    [self.tableView registerClass:[LLCrashCell class] forCellReuseIdentifier:kCrashCellID];
     
     [self loadData];
 }
