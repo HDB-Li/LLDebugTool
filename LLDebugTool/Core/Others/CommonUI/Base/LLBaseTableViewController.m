@@ -55,6 +55,12 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.view addSubview:self.tableView];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.tableView.frame = self.view.bounds;
+}
+
 #pragma mark - Over write
 - (void)primaryColorChanged {
     [super primaryColorChanged];
@@ -80,7 +86,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 #pragma mark - Getters and setters
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [LLFactory getTableView];
+        _tableView = [LLFactory getTableView:nil frame:CGRectZero delegate:nil style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.bounces = NO;
         _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
