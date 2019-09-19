@@ -56,10 +56,6 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
     [self unregisterLLAppInfoHelperNotification];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 #pragma mark - LLAppInfoHelperNotification
 - (void)registerLLAppInfoHelperNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:) name:LLAppInfoHelperDidUpdateAppInfosNotificationName object:nil];
