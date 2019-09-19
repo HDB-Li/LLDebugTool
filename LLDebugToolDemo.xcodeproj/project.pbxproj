@@ -83,7 +83,6 @@
 		C43BA814205AB095006307BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43BA813205AB095006307BE /* Assets.xcassets */; };
 		C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA815205AB095006307BE /* LaunchScreen.storyboard */; };
 		C43BA81A205AB095006307BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA819205AB095006307BE /* main.m */; };
-		C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */; };
 		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
 		C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */; };
 		C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */; };
@@ -370,8 +369,6 @@
 		C43BA816205AB095006307BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C43BA818205AB095006307BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43BA819205AB095006307BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C45537F122F1E39A001A9749 /* LLHierarchyDetailWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailWindow.h; sourceTree = "<group>"; };
-		C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailWindow.m; sourceTree = "<group>"; };
 		C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailViewController.h; sourceTree = "<group>"; };
 		C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailViewController.m; sourceTree = "<group>"; };
 		C45BA2CC22F47986006B833A /* LLScreenshotViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotViewController.h; sourceTree = "<group>"; };
@@ -1055,8 +1052,6 @@
 				360D8A4E22FD52A9003693AE /* LLHierarchyView.m */,
 				360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */,
 				360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */,
-				C45537F122F1E39A001A9749 /* LLHierarchyDetailWindow.h */,
-				C45537F222F1E39A001A9749 /* LLHierarchyDetailWindow.m */,
 				C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */,
 				C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */,
 				3608D6A822F2833D00070D76 /* LLHierarchyDetailCell.h */,
@@ -2066,7 +2061,6 @@
 				36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */,
 				36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */,
 				362AA6B123274FCF00F33EC4 /* LLPickerView.m in Sources */,
-				C45537F322F1E39A001A9749 /* LLHierarchyDetailWindow.m in Sources */,
 				362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */,
 				C49856EF22EDB07300E9FBE2 /* LLLogComponent.m in Sources */,
 				C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */,

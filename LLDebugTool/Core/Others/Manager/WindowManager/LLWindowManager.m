@@ -91,10 +91,6 @@ static LLWindowManager *_instance = nil;
     return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
 }
 
-+ (LLHierarchyDetailWindow *)hierarchyDetailWindow {
-    return (LLHierarchyDetailWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyDetailWindow class])];
-}
-
 + (LLScreenshotWindow *)screenshotWindow {
     return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class])];
 }
