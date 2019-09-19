@@ -47,7 +47,7 @@
     _fileLabel.text = model.file ?: @" ";
     _funcLabel.text = model.function ?: @" ";
     _dateLabel.text = model.date ?: @" ";
-    _messageLabel.text = model.message ? [model.message stringByAppendingString:@"sjdklsjsjdlksjklfjsdklfjsklfjslkfjsljflksjfklsjfklsjklfjsdklfsdfsfsdfdffdffs"]: @"None Message";
+    _messageLabel.text = model.message ? model.message : @"None Message";
 }
 
 #pragma mark - Over write
