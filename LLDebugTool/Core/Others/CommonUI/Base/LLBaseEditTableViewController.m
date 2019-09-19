@@ -27,12 +27,13 @@
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
-
-static NSString *const kEmptyCellID = @"emptyCellID";
+#import <objc/runtime.h>
 
 @interface LLBaseEditTableViewController ()
 
-@property (nonatomic, assign) UITableViewStyle style;
+@property (nonatomic, strong) NSMutableArray *oriDataArray;
+
+@property (nonatomic, strong) NSMutableArray *searchDataArray;
 
 @property (nonatomic, copy) NSString *selectAllString;
 
@@ -42,23 +43,8 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 @implementation LLBaseEditTableViewController
 
-- (instancetype)init
-{
-    return [self initWithStyle:UITableViewStyleGrouped];
-}
-
-- (instancetype)initWithStyle:(UITableViewStyle)style {
-    if (self = [super init]) {
-        _style = style;
-        _dataArray = [[NSMutableArray alloc] init];
-        _searchDataArray = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTableView];
     if (self.isSearchEnable) {
         [self initSearchEnableFunction];
     }
@@ -107,16 +93,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 #pragma mark - Primary
-- (void)initTableView {
-    _tableView = [LLFactory getTableView:self.view frame:self.view.bounds delegate:self style:_style];
-//    self.tableView.bounces = NO;
-    self.tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self.tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-    }
-}
-
 - (void)initSearchEnableFunction {
     _searchBar = [[UISearchBar alloc] init];
     self.searchBar.barTintColor = [LLThemeManager shared].backgroundColor;
@@ -231,40 +207,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     if (self.isSearchEnable && [self isSearching]) {
         return self.searchDataArray;
     }
-    return self.dataArray;
+    return self.oriDataArray;
 }
 
-#pragma mark - UITableView
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datas.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kEmptyCellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEmptyCellID];
-    }
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (self.isSearchEnable) {
-        return self.searchBar.frame.size.height;
-    }
-    return CGFLOAT_MIN;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
-}
-
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing) {
-        if (self.tableView.indexPathsForSelectedRows.count == self.dataArray.count) {
+        if (self.tableView.indexPathsForSelectedRows.count == self.datas.count) {
             if ([self.selectAllItem.title isEqualToString:self.selectAllString]) {
                 self.selectAllItem.title = self.cancelAllString;
             }
@@ -305,6 +254,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     return UITableViewCellEditingStyleNone;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.isSearchEnable) {
+        return self.searchBar.frame.size.height;
+    }
+    return [super tableView:tableView heightForHeaderInSection:section];
+}
+
 #pragma mark - UIScrollView
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (self.isSearchEnable && self.searchBar.isFirstResponder) {
@@ -330,6 +286,21 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     
+}
+
+#pragma mark - Getters and setters
+- (NSMutableArray *)oriDataArray {
+    if (!_oriDataArray) {
+        _oriDataArray = [[NSMutableArray alloc] init];
+    }
+    return _oriDataArray;
+}
+
+- (NSMutableArray *)searchDataArray {
+    if (!_searchDataArray) {
+        _searchDataArray = [[NSMutableArray alloc] init];
+    }
+    return _searchDataArray;
 }
 
 @end

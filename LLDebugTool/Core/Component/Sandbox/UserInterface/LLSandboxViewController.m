@@ -109,11 +109,11 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
             [finishedIndexPaths addObject:indexPath];
         }
     }
-    [self.dataArray removeObjectsInArray:finishedModels];
+    [self.oriDataArray removeObjectsInArray:finishedModels];
     [self searchBar:self.searchBar textDidChange:self.searchBar.text];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray *)oriDataArray {
     return self.sandboxModel.subModels;
 }
 
@@ -181,11 +181,11 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     [super searchBar:searchBar textDidChange:searchText];
     if (searchText.length == 0) {
         [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         [self.tableView reloadData];
     } else {
         [self.searchDataArray removeAllObjects];
-        for (LLSandboxModel *model in self.dataArray) {
+        for (LLSandboxModel *model in self.oriDataArray) {
             [self.searchDataArray addObjectsFromArray:[self modelsByFilter:searchText.lowercaseString model:model]];
         }
         [self.tableView reloadData];

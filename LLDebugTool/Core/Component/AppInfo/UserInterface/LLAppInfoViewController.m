@@ -45,8 +45,8 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:[[LLAppInfoHelper shared] appInfos]];
+    [self.oriDataArray removeAllObjects];
+    [self.oriDataArray addObjectsFromArray:[[LLAppInfoHelper shared] appInfos]];
     self.navigationItem.title = [UIDevice currentDevice].name ? : @"App Infos";
     [self registerLLAppInfoHelperNotification];
 }
@@ -76,17 +76,17 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 - (void)didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
     NSArray *dynamic = notifi.object;
-    [self.dataArray replaceObjectAtIndex:0 withObject:dynamic];
+    [self.oriDataArray replaceObjectAtIndex:0 withObject:dynamic];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataArray.count;
+    return self.oriDataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataArray[section] count];
+    return [self.oriDataArray[section] count];
 }
 
 
@@ -99,7 +99,7 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
         cell.detailTextLabel.minimumScaleFactor = 0.5;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    NSDictionary *dic = self.dataArray[indexPath.section][indexPath.row];
+    NSDictionary *dic = self.oriDataArray[indexPath.section][indexPath.row];
     cell.textLabel.text = dic.allKeys.firstObject;
     cell.detailTextLabel.text = dic.allValues.firstObject;
     return cell;

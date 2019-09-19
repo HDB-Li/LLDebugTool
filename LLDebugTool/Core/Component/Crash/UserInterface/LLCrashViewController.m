@@ -70,8 +70,8 @@ static NSString *const kCrashCellID = @"CrashCellID";
     [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager shared] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
-        [weakSelf.dataArray removeAllObjects];
-        [weakSelf.dataArray addObjectsFromArray:result];
+        [weakSelf.oriDataArray removeAllObjects];
+        [weakSelf.oriDataArray addObjectsFromArray:result];
         [weakSelf.tableView reloadData];
     }];
 }
@@ -89,7 +89,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
-            [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.oriDataArray removeObjectsInArray:models];
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
@@ -123,11 +123,11 @@ static NSString *const kCrashCellID = @"CrashCellID";
     [super searchBar:searchBar textDidChange:searchText];
     if (searchText.length == 0) {
         [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         [self.tableView reloadData];
     } else {
         [self.searchDataArray removeAllObjects];
-        for (LLCrashModel *model in self.dataArray) {
+        for (LLCrashModel *model in self.oriDataArray) {
             if ([model.name.lowercaseString containsString:searchText.lowercaseString] || [model.reason.lowercaseString containsString:searchText.lowercaseString]) {
                 [self.searchDataArray addObject:model];
             }

@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseEditTableViewController : LLBaseComponentViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface LLBaseEditTableViewController : LLBaseTableViewController <UISearchBarDelegate>
 
 /**
  * Whether use searchBar. Default is NO.
@@ -49,24 +49,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isDeleteEnable;
 
 /**
- * The default tableView in view controller.
- */
-@property (nonatomic, strong, readonly) UITableView *tableView;
-
-/**
  * Original data array.
  */
-@property (nonatomic, strong, readonly) NSMutableArray *dataArray;
+@property (nonatomic, strong, readonly) NSMutableArray *oriDataArray;
 
 /**
  * Filter data array.
  */
 @property (nonatomic, strong, readonly) NSMutableArray *searchDataArray;
-
-/**
- * Automatic data array dealed by search or filter.
- */
-@property (nonatomic, strong, readonly) NSMutableArray *datas;
 
 /**
  * Header view use to show searchBar and filter view.
@@ -92,12 +82,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Delete item in toolbar.
  */
 @property (nonatomic, strong, nullable, readonly) UIBarButtonItem *deleteItem;
-
-/**
- * Initial method.
- */
-- (instancetype _Nonnull)initWithStyle:(UITableViewStyle)style;
-- (instancetype _Nonnull)init;// Default is UITableViewStyleGrouped.
 
 #pragma mark - Rewrite
 /**

@@ -92,7 +92,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
-            [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.oriDataArray removeObjectsInArray:models];
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
@@ -163,7 +163,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         weakSelf.currentEndDate = end;
         [weakSelf filterData];
     };
-    [self.filterView configWithData:self.dataArray];
+    [self.filterView configWithData:self.oriDataArray];
     [self.headerView addSubview:self.filterView];
     self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
     
@@ -176,11 +176,11 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager shared] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
-        [weakSelf.dataArray removeAllObjects];
-        [weakSelf.dataArray addObjectsFromArray:result];
+        [weakSelf.oriDataArray removeAllObjects];
+        [weakSelf.oriDataArray addObjectsFromArray:result];
         [weakSelf.searchDataArray removeAllObjects];
-        [weakSelf.searchDataArray addObjectsFromArray:weakSelf.dataArray];
-        [weakSelf.filterView configWithData:weakSelf.dataArray];
+        [weakSelf.searchDataArray addObjectsFromArray:weakSelf.oriDataArray];
+        [weakSelf.filterView configWithData:weakSelf.oriDataArray];
         [weakSelf.tableView reloadData];
     }];
 }
@@ -188,10 +188,10 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)filterData {
     @synchronized (self) {
         [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        for (LLNetworkModel *model in self.dataArray) {
+        for (LLNetworkModel *model in self.oriDataArray) {
 
             // Filter Host
             if (self.currentHost.count) {
