@@ -35,9 +35,9 @@
 
 @property (nonatomic, strong) UIImageView *icon;
 
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
 
-@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @property (nonatomic, strong) UILabel *sizeLabel;
 
@@ -49,8 +49,8 @@
 
 - (void)confirmWithModel:(LLSandboxModel *)model {
     _model = model;
-    self.titleLabel.text = model.name;
-    self.contentLabel.text = [NSString stringWithFormat:@"%@", [[LLFormatterTool shared] stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
+    self.nameLabel.text = model.name;
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", [[LLFormatterTool shared] stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
     self.sizeLabel.text = [NSString stringWithFormat:@"%@",model.totalFileSizeString];
     if (model.isDirectory && model.subModels.count) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -78,8 +78,8 @@
     [self.contentView addGestureRecognizer:longPG];
     
     [self.contentView addSubview:self.icon];
-    [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.contentLabel];
+    [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.sizeLabel];
     
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,19 +88,19 @@
         make.centerY.equalTo(self.contentView);
     }];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.icon.mas_right).offset(kLLGeneralMargin);
         make.top.mas_equalTo(kLLGeneralMargin);
         make.right.mas_equalTo(-kLLGeneralMargin / 2.0);
     }];
     
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+        make.left.right.equalTo(self.nameLabel);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
     }];
     
-    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.titleLabel);
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.nameLabel);
         make.top.equalTo(self.sizeLabel.mas_bottom);
         make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
     }];
@@ -115,14 +115,14 @@
 }
 
 #pragma mark - Getters and setters
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [LLFactory getLabel];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:19];
-        _titleLabel.numberOfLines = 0;
-        _titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+- (UILabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [LLFactory getLabel];
+        _nameLabel.font = [UIFont boldSystemFontOfSize:19];
+        _nameLabel.numberOfLines = 0;
+        _nameLabel.lineBreakMode = NSLineBreakByCharWrapping;
     }
-    return _titleLabel;
+    return _nameLabel;
 }
 
 - (UIImageView *)icon {
@@ -141,12 +141,12 @@
     return _sizeLabel;
 }
 
-- (UILabel *)contentLabel {
-    if (!_contentLabel) {
-        _contentLabel = [LLFactory getLabel];
-        _contentLabel.font = [UIFont systemFontOfSize:14];
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [LLFactory getLabel];
+        _dateLabel.font = [UIFont systemFontOfSize:14];
     }
-    return _contentLabel;
+    return _dateLabel;
 }
 
 @end
