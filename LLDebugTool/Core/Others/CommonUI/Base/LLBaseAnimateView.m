@@ -23,7 +23,6 @@
 
 #import "LLBaseAnimateView.h"
 #import "LLFactory.h"
-#import "Masonry.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
 
@@ -68,16 +67,17 @@
     }];
 }
 
+#pragma mark - Over write
 - (void)initUI {
     [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
     
     [self addSubview:self.contentView];
-    
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(-LL_BOTTOM_DANGER_HEIGHT);
-    }];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.contentView.frame = CGRectMake(0, self.LL_height - self.contentView.LL_height - LL_BOTTOM_DANGER_HEIGHT, self.LL_width, self.contentView.LL_height);
 }
 
 #pragma mark - Getters and setters

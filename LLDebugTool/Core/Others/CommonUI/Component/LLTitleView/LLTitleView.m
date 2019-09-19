@@ -24,7 +24,8 @@
 #import "LLTitleView.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
-#import "Masonry.h"
+#import "UIView+LL_Utils.h"
+#import "LLConst.h"
 
 @interface LLTitleView ()
 
@@ -40,12 +41,12 @@
     self.backgroundColor = [LLThemeManager shared].containerColor;
     
     [self addSubview:self.titleLabel];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-        make.top.bottom.mas_equalTo(0);
-    }];
+    self.titleLabel.frame = CGRectMake(kLLGeneralMargin, 0, self.LL_width - kLLGeneralMargin * 2, self.LL_height);
 }
 
 #pragma mark - Getters and setters
