@@ -64,14 +64,6 @@
 
 @implementation LLNetworkFilterView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        _normalFrame = frame;
-        [self initial];
-    }
-    return self;
-}
-
 - (BOOL)isFiltering {
     BOOL ret = NO;
     for (UIButton *btn in self.filterBtns) {
@@ -165,26 +157,10 @@
     }
 }
 
-#pragma mark - Action
-- (void)filterButtonClick:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    if (sender.selected == NO) {
-        self.frame = self.normalFrame;
-        [self hideDetailView:sender.tag];
-    } else {
-        for (UIButton *btn in self.filterBtns) {
-            if (btn != sender && btn.selected) {
-                btn.selected = NO;
-                [self hideDetailView:btn.tag];
-            }
-        }
-        [self showDetailView:sender.tag];
-    }
-    [self endEditing:YES];
-}
-
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    _normalFrame = self.frame;
     self.filterViews = [[NSMutableArray alloc] init];
     self.filterBtns = [[NSMutableArray alloc] init];
     
@@ -210,6 +186,25 @@
     [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
 }
 
+#pragma mark - Action
+- (void)filterButtonClick:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected == NO) {
+        self.frame = self.normalFrame;
+        [self hideDetailView:sender.tag];
+    } else {
+        for (UIButton *btn in self.filterBtns) {
+            if (btn != sender && btn.selected) {
+                btn.selected = NO;
+                [self hideDetailView:btn.tag];
+            }
+        }
+        [self showDetailView:sender.tag];
+    }
+    [self endEditing:YES];
+}
+
+#pragma mark - Primary
 - (void)showDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
     view.hidden = NO;

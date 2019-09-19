@@ -51,21 +51,6 @@ static NSString *kDetailTitleCellID = @"detailTitleCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Over write
-- (NSMutableArray *)datas {
-    return self.objectDatas;
-}
-
-#pragma mark - Primary
-- (void)initial {
-    [self initUI];
-    [self loadData];
-}
-
-- (void)initUI {
     NSAssert(self.selectView, @"SelectView can't be nil");
     
     self.navigationItem.title = @"Hierarchy Detail";
@@ -78,8 +63,15 @@ static NSString *kDetailTitleCellID = @"detailTitleCellID";
     
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLDetailTitleCell class] forCellReuseIdentifier:kDetailTitleCellID];
+    [self loadData];
 }
 
+#pragma mark - Over write
+- (NSMutableArray *)datas {
+    return self.objectDatas;
+}
+
+#pragma mark - Primary
 - (void)loadData {
     [self.objectDatas removeAllObjects];
     

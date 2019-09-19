@@ -40,17 +40,18 @@
 
 @implementation LLFunctionItemContainerView
 
-#pragma mark - Life cycle
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initial];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.backgroundColor = [LLThemeManager shared].containerColor;
+    self.itemViews = [[NSMutableArray alloc] init];
+    [self LL_setCornerRadius:5];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectMake(20, 0, self.LL_width - 20, 40) text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    self.lineView = [LLFactory getView:self frame:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) backgroundColor:[LLThemeManager shared].primaryColor];
 }
 
-#pragma mark - Over write
 - (void)primaryColorChanged {
     [super primaryColorChanged];
     self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
@@ -81,16 +82,6 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.backgroundColor = [LLThemeManager shared].containerColor;
-    self.itemViews = [[NSMutableArray alloc] init];
-    [self LL_setCornerRadius:5];
-    self.titleLabel = [LLFactory getLabel:self frame:CGRectMake(20, 0, self.LL_width - 20, 40) text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    self.lineView = [LLFactory getView:self frame:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) backgroundColor:[LLThemeManager shared].primaryColor];
-}
-
 - (void)updateUI:(NSArray<LLFunctionItemModel *> *)dataArray {
     for (UIView *view in self.itemViews) {
         [view removeFromSuperview];

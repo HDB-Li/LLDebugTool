@@ -39,13 +39,6 @@
 
 @implementation LLScreenshotSelectorView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (LLScreenshotSelectorModel *)currentSelectorModel {
     return _model;
 }
@@ -72,8 +65,9 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;

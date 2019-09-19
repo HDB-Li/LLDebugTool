@@ -49,14 +49,12 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 @implementation LLEntryView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.contentView = [LLFactory getView:self frame:self.bounds];
-        self.statusBarClickable = [LLTool statusBarClickable];
-        self.inactiveAlpha = [LLConfig shared].inactiveAlpha;
-        [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-    }
-    return self;
+- (void)initUI {
+    [super initUI];
+    self.contentView = [LLFactory getView:self frame:self.bounds];
+    self.statusBarClickable = [LLTool statusBarClickable];
+    self.inactiveAlpha = [LLConfig shared].inactiveAlpha;
+    [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)animatedBecomeActive {

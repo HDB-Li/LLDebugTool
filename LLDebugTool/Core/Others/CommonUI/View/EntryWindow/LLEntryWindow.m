@@ -33,7 +33,10 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initial];
+        self.backgroundColor = [UIColor clearColor];
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLEntryViewController alloc] init];
+        }
     }
     return self;
 }
@@ -44,14 +47,6 @@
 
 - (void)becomeKeyWindow {
     [self resignKeyWindow];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    self.backgroundColor = [UIColor clearColor];
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLEntryViewController alloc] init];
-    }
 }
 
 @end

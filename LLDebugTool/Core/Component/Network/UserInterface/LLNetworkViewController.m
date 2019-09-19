@@ -64,7 +64,28 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = @"Network Monitoring";
+    
+    if (_launchDate == nil) {
+        _launchDate = [NSObject LL_launchDate];
+    }
+
+    [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:kNetworkCellID];
+    
+    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
+    __weak typeof(self) weakSelf = self;
+    self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
+        weakSelf.currentHost = hosts;
+        weakSelf.currentTypes = types;
+        weakSelf.currentFromDate = from;
+        weakSelf.currentEndDate = end;
+        [weakSelf filterData];
+    };
+    [self.filterView configWithData:self.oriDataArray];
+    [self.headerView addSubview:self.filterView];
+    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+    
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -145,31 +166,6 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.navigationItem.title = @"Network Monitoring";
-    
-    if (_launchDate == nil) {
-        _launchDate = [NSObject LL_launchDate];
-    }
-
-    [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:kNetworkCellID];
-    
-    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
-    __weak typeof(self) weakSelf = self;
-    self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
-        weakSelf.currentHost = hosts;
-        weakSelf.currentTypes = types;
-        weakSelf.currentFromDate = from;
-        weakSelf.currentEndDate = end;
-        [weakSelf filterData];
-    };
-    [self.filterView configWithData:self.oriDataArray];
-    [self.headerView addSubview:self.filterView];
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
-    
-    [self loadData];
-}
-
 - (void)loadData {
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;

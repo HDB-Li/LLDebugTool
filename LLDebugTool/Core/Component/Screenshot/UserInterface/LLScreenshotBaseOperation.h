@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) CAShapeLayer *layer;
 
 /**
- Specifies the initialization method.
+ Specifies the init method.
  */
 - (instancetype _Nonnull)initWithSelector:(LLScreenshotSelectorModel *)selector action:(LLScreenshotAction)action;
 

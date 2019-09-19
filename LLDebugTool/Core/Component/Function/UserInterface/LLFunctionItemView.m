@@ -39,17 +39,14 @@
 
 @implementation LLFunctionItemView
 
-#pragma mark - Life cycle
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initial];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.imageView = [LLFactory getImageView:self];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-#pragma mark - Over write
 - (void)primaryColorChanged {
     [super primaryColorChanged];
     self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
@@ -64,12 +61,6 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.imageView = [LLFactory getImageView:self];
-    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-}
-
 - (void)updateUI:(LLFunctionItemModel *)model {
     self.imageView.tintColor = [LLThemeManager shared].primaryColor;
     self.imageView.image = [[UIImage LL_imageNamed:model.imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

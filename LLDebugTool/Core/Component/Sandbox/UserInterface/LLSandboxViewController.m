@@ -52,7 +52,17 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    // Data source
+    if (_sandboxModel == nil) {
+        _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
+    }
+    if (self.sandboxModel.isHomeDirectory) {
+        self.navigationItem.title = @"Sandbox";
+    } else {
+        self.navigationItem.title = self.sandboxModel.name;
+    }
+    // TableView
+    [self.tableView registerClass:[LLSandboxCell class] forCellReuseIdentifier:kSandboxCellID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,23 +89,6 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 }
 
 #pragma mark - Primary
-/**
- * initial method
- */
-- (void)initial {
-    // Data source
-    if (_sandboxModel == nil) {
-        _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
-    }
-    if (self.sandboxModel.isHomeDirectory) {
-        self.navigationItem.title = @"Sandbox";
-    } else {
-        self.navigationItem.title = self.sandboxModel.name;
-    }
-    // TableView
-    [self.tableView registerClass:[LLSandboxCell class] forCellReuseIdentifier:kSandboxCellID];
-}
-
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
     [super deleteFilesWithIndexPaths:indexPaths];
     NSMutableArray *finishedModels = [[NSMutableArray alloc] init];

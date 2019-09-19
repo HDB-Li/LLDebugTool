@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLScreenshotDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,14 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface LLScreenshotToolbar : UIView
+@interface LLScreenshotToolbar : LLBaseView
 
 @property (nonatomic, weak, nullable) id <LLScreenshotToolbarDelegate> delegate;
-
-/**
- Specifies the initialization method.
- */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 @end
 

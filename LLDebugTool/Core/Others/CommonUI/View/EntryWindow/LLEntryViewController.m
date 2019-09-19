@@ -59,26 +59,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Over write
-- (void)backgroundColorChanged {
-    [super backgroundColorChanged];
-    self.view.backgroundColor = [UIColor clearColor];
-}
-
-- (void)becomeVisable {
-    [super becomeVisable];
-    [self.activeView resignActive:NO];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.statusBarClickable = [LLTool statusBarClickable];
     
     self.view.backgroundColor = [UIColor clearColor];
@@ -97,6 +77,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
 }
 
+#pragma mark - Over write
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
+    self.view.backgroundColor = [UIColor clearColor];
+}
+
+- (void)becomeVisable {
+    [super becomeVisable];
+    [self.activeView resignActive:NO];
+}
+
+#pragma mark - Primary
 - (void)updateStyle:(LLConfigEntryWindowStyle)style {
     switch (style) {
         case LLConfigEntryWindowStyleBall: {

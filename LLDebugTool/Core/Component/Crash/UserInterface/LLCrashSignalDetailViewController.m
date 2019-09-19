@@ -42,7 +42,13 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = self.model.name;
+    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashSignalContentCellID];
+    
+    self.titleArray = [[NSMutableArray alloc] init];
+    self.contentArray = [[NSMutableArray alloc] init];
+    
+    [self loadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -73,16 +79,6 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.navigationItem.title = self.model.name;
-    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashSignalContentCellID];
-    
-    self.titleArray = [[NSMutableArray alloc] init];
-    self.contentArray = [[NSMutableArray alloc] init];
-    
-    [self loadData];
-}
-
 - (void)loadData {
 
     [self.titleArray removeAllObjects];

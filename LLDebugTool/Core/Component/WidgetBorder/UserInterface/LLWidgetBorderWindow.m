@@ -30,7 +30,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initial];
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLWidgetBorderViewController alloc] init]];
+        }
     }
     return self;
 }
@@ -38,13 +40,6 @@
 #pragma mark - Over write
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLWidgetBorderViewController alloc] init]];
-    }
 }
 
 @end

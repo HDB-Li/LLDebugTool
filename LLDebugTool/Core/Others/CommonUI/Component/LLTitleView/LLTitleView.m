@@ -34,16 +34,9 @@
 
 @implementation LLTitleView
 
-#pragma mark - Life Cycle
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initUI];
-    }
-    return self;
-}
-
-#pragma mark - Primary
+#pragma mark - Over write
 - (void)initUI {
+    [super initUI];
     self.backgroundColor = [LLThemeManager shared].containerColor;
     
     [self addSubview:self.titleLabel];

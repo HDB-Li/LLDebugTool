@@ -53,7 +53,23 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.title = @"LLDebugTool";
+    
+    self.toolContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
+    self.toolContainerView.delegate = self;
+    [self.view addSubview:self.toolContainerView];
+    
+    self.shortCutContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
+    self.shortCutContainerView.delegate = self;
+    [self.view addSubview:self.shortCutContainerView];
+    
+    self.settingButton = [LLFactory getButton:self.view frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
+    [self.settingButton LL_setCornerRadius:5];
+    [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
+    [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+    [self.settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+    
+    [self loadData];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -82,26 +98,6 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.title = @"LLDebugTool";
- 
-    self.toolContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
-    self.toolContainerView.delegate = self;
-    [self.view addSubview:self.toolContainerView];
-    
-    self.shortCutContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
-    self.shortCutContainerView.delegate = self;
-    [self.view addSubview:self.shortCutContainerView];
-    
-    self.settingButton = [LLFactory getButton:self.view frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
-    [self.settingButton LL_setCornerRadius:5];
-    [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
-    [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
-    [self.settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-    
-    [self loadData];
-}
-
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork]];

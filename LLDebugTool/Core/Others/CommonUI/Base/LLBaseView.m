@@ -29,14 +29,14 @@
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self addObservers];
+        [self initUI];
     }
     return self;
 }
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self addObservers];
+        [self initUI];
     }
     return self;
 }
@@ -46,6 +46,10 @@
 }
 
 #pragma mark - Public
+- (void)initUI {
+    [self addObservers];
+}
+
 - (void)primaryColorChanged {
     
 }

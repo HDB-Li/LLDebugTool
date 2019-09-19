@@ -41,11 +41,6 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
     
     CGFloat height = 60;

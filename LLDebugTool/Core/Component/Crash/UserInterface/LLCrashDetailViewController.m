@@ -49,7 +49,13 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = self.model.name;
+    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashContentCellID];
+    
+    self.titleArray = [[NSMutableArray alloc] init];
+    self.contentArray = [[NSMutableArray alloc] init];
+    
+    [self loadData];
 }
 
 #pragma mark - Table view data source
@@ -106,16 +112,6 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.navigationItem.title = self.model.name;
-    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashContentCellID];
-    
-    self.titleArray = [[NSMutableArray alloc] init];
-    self.contentArray = [[NSMutableArray alloc] init];
-    
-    [self loadData];
-}
-
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];

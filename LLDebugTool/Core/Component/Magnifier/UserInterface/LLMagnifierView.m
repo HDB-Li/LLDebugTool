@@ -39,13 +39,6 @@
 
 @implementation LLMagnifierView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)drawRect:(CGRect)rect {
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -90,8 +83,9 @@
     UIGraphicsEndImageContext();
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.overflow = YES;
     self.layer.cornerRadius = self.LL_width / 2.0;
     self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
@@ -116,6 +110,7 @@
     [self setNeedsDisplay];
 }
 
+#pragma mark - Primary
 - (void)updateScreenshot {
     self.screenshot = [[LLScreenshotHelper shared] imageFromScreen:1];
 }

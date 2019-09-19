@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLFilterLabelModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^LLFilterEventViewChangeBlock)(NSArray *_Nullable events);
 
-@interface LLFilterEventView : UIView
+@interface LLFilterEventView : LLBaseView
 
 @property (assign, nonatomic) NSInteger averageCount;
 

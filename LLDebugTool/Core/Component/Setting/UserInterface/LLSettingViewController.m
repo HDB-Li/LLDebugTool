@@ -48,7 +48,8 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.title = @"Setting";
+    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,16 +58,7 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    [self initUI];
-    [self initData];
-}
-
-- (void)initUI {
-    self.title = @"Setting";
-}
-
-- (void)initData {
+- (void)loadData {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     // Short Cut
@@ -133,7 +125,7 @@
 - (void)setNewDoubleClick:(LLDebugToolAction)action {
     [LLConfig shared].doubleClickAction = action;
     [LLSettingManager shared].doubleClickAction = @(action);
-    [self initData];
+    [self loadData];
 }
 
 - (LLTitleCellModel *)getShakeToHideModel {
@@ -182,7 +174,7 @@
     } else {
         [LLConfig shared].colorStyle = style;
         [LLSettingManager shared].colorStyle = @(style);
-        [self initData];
+        [self loadData];
     }
 }
 
@@ -221,7 +213,7 @@
     
     [[LLConfig shared] configStatusBarStyle:style];
     [LLSettingManager shared].statusBarStyle = @(style);
-    [self initData];
+    [self loadData];
     [UIView animateWithDuration:0.25 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
     }];
@@ -263,7 +255,7 @@
     
     [LLConfig shared].entryWindowStyle = style;
     [LLSettingManager shared].entryWindowStyle = @(style);
-    [self initData];
+    [self loadData];
 }
 
 - (LLTitleCellModel *)getShrinkToEdgeWhenInactiveModel {
@@ -310,7 +302,7 @@
     
     [LLConfig shared].logStyle = style;
     [LLSettingManager shared].logStyle = @(style);
-    [self initData];
+    [self loadData];
 }
 
 - (LLTitleCellModel *)getMagnifierZoomLevelModel {
@@ -325,7 +317,7 @@
 - (void)setNewMagnifierZoomLevel:(NSInteger)zoomLevel {
     [LLConfig shared].magnifierZoomLevel = zoomLevel;
     [LLSettingManager shared].magnifierZoomLevel = @(zoomLevel);
-    [self initData];
+    [self loadData];
 }
 
 - (LLTitleCellModel *)getMagnifierSizeModel {
@@ -340,7 +332,7 @@
 - (void)setNewMagnifierSize:(NSInteger)size {
     [LLConfig shared].magnifierSize = size;
     [LLSettingManager shared].magnifierSize = @(size);
-    [self initData];
+    [self loadData];
 }
 
 - (void)showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^ __nullable)(NSInteger index))completion {

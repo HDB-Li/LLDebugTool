@@ -245,7 +245,7 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 
 #pragma mark - Primary
 /**
- Initialize something
+ Init something
  */
 - (void)initial {
     _fps = 60;

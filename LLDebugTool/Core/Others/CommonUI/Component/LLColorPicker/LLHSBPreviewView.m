@@ -32,12 +32,10 @@
 
 @implementation LLHSBPreviewView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        _brightness = 1.0;
-        [self initUI];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    _brightness = 1.0;
+    [super initUI];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -58,8 +56,6 @@
 }
 
 #pragma mark - Primary
-- (void)initUI {
-    
-}
+
 
 @end

@@ -45,7 +45,10 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = @"Details";
+    [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:kNetworkImageCellID];
+    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kNetworkContentCellID];
+    [self loadData];
 }
 
 #pragma mark - Table view data source
@@ -109,16 +112,6 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 }
 
 #pragma mark - Primary
-/**
- * initial method
- */
-- (void)initial {
-    self.navigationItem.title = @"Details";
-    [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:kNetworkImageCellID];
-    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kNetworkContentCellID];
-    [self loadData];
-}
-
 - (void)loadData {
     if (self.model) {
         self.titleArray = [[NSMutableArray alloc] init];

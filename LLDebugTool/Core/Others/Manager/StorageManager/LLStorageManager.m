@@ -341,7 +341,7 @@ static NSString *const kDatabaseVersion = @"1";
 
 #pragma mark - Primary
 /**
- Initialize something
+ Initsomething
  */
 - (void)initial {
     BOOL result = [self initDatabase];

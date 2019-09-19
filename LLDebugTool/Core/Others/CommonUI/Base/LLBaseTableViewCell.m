@@ -30,14 +30,11 @@
 @implementation LLBaseTableViewCell
 
 #pragma mark - Life cycle
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self baseInitial];
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self baseInitial];
+        [self initUI];
+        [self configSubviews:self];
+        [self addObservers];
     }
     return self;
 }
@@ -101,12 +98,6 @@
 }
 
 #pragma mark - Primary
-- (void)baseInitial {
-    [self initUI];
-    [self configSubviews:self];
-    [self addObservers];
-}
-
 - (void)addObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];

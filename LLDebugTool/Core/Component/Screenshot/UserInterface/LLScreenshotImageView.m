@@ -38,13 +38,6 @@
 
 @implementation LLScreenshotImageView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)removeLastOperation {
     LLScreenshotBaseOperation *operation = self.operations.lastObject;
     switch (operation.action) {
@@ -237,8 +230,9 @@
     [self.currentOperation drawImageView:rect];
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.backgroundColor = [UIColor whiteColor];
     self.layer.masksToBounds = YES;
     self.userInteractionEnabled = NO;

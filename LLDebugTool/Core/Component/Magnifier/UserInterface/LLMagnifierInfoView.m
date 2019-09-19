@@ -41,13 +41,6 @@
 
 @implementation LLMagnifierInfoView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)update:(NSString *)hexColor point:(CGPoint)point {
     self.colorView.backgroundColor = [UIColor LL_colorWithHex:hexColor];
     self.colorLabel.text = [NSString stringWithFormat:@"%@\nX: %0.1f, Y: %0.1f", hexColor, point.x, point.y];
@@ -67,8 +60,9 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.colorView = [LLFactory getView:self frame:CGRectZero];
     self.colorView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.colorView.layer.borderWidth = 0.5;

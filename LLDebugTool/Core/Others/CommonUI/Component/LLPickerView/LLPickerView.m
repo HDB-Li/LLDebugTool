@@ -27,25 +27,23 @@
 
 @implementation LLPickerView
 
-#pragma mark - Life cycle
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.overflow = YES;
-        self.backgroundColor = [UIColor clearColor];
-        self.layer.cornerRadius = self.LL_width / 2.0;
-        self.layer.borderWidth = 2;
-        self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        
-        CGFloat width = 20;
-        CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = self.bounds;
-        layer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((self.LL_width - width) / 2.0, (self.LL_height - width) / 2.0, width, width)].CGPath;
-        layer.fillColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.5].CGColor;
-        layer.strokeColor = [LLThemeManager shared].backgroundColor.CGColor;
-        layer.lineWidth = 0.5;
-        [self.layer addSublayer:layer];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.overflow = YES;
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.cornerRadius = self.LL_width / 2.0;
+    self.layer.borderWidth = 2;
+    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    
+    CGFloat width = 20;
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = self.bounds;
+    layer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake((self.LL_width - width) / 2.0, (self.LL_height - width) / 2.0, width, width)].CGPath;
+    layer.fillColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.5].CGColor;
+    layer.strokeColor = [LLThemeManager shared].backgroundColor.CGColor;
+    layer.lineWidth = 0.5;
+    [self.layer addSublayer:layer];
 }
 
 @end

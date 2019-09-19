@@ -30,7 +30,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initial];
+        self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+        self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLSettingViewController alloc] init]];
+        }
     }
     return self;
 }
@@ -38,15 +42,6 @@
 #pragma mark - Over write
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
-    self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLSettingViewController alloc] init]];
-    }
 }
 
 @end

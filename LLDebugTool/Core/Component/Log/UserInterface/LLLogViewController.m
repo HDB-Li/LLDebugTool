@@ -65,7 +65,33 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = @"Log Tracker";
+    
+    if (_launchDate == nil) {
+        _launchDate = [NSObject LL_launchDate];
+    }
+        
+    // TableView
+    [self.tableView registerClass:[LLLogCell class] forCellReuseIdentifier:kLogCellID];
+    
+    self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
+    __weak typeof(self) weakSelf = self;
+    self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
+        weakSelf.currentLevels = levels;
+        weakSelf.currentEvents = events;
+        weakSelf.currentFile = file;
+        weakSelf.currentFunc = func;
+        weakSelf.currentFromDate= from;
+        weakSelf.currentEndDate = end;
+        weakSelf.currentUserIdentities = userIdentities;
+        [weakSelf filterData];
+    };
+    [self.filterView configWithData:self.oriDataArray];
+    
+    [self.headerView addSubview:self.filterView];
+    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+    
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -146,36 +172,6 @@ static NSString *const kLogCellID = @"LLLogCell";
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.navigationItem.title = @"Log Tracker";
-    
-    if (_launchDate == nil) {
-        _launchDate = [NSObject LL_launchDate];
-    }
-        
-    // TableView
-    [self.tableView registerClass:[LLLogCell class] forCellReuseIdentifier:kLogCellID];
-    
-    self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
-    __weak typeof(self) weakSelf = self;
-    self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
-        weakSelf.currentLevels = levels;
-        weakSelf.currentEvents = events;
-        weakSelf.currentFile = file;
-        weakSelf.currentFunc = func;
-        weakSelf.currentFromDate= from;
-        weakSelf.currentEndDate = end;
-        weakSelf.currentUserIdentities = userIdentities;
-        [weakSelf filterData];
-    };
-    [self.filterView configWithData:self.oriDataArray];
-    
-    [self.headerView addSubview:self.filterView];
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
-    
-    [self loadData];
-}
-
 - (void)loadData {
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;

@@ -54,18 +54,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-- (void)dealloc {
-    for (UIView *view in self.observeViews) {
-        [self stopObserveView:view];
-    }
-    [self.observeViews removeAllObjects];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
     self.observeViews = [NSMutableSet set];
     self.borderViews = [[NSMutableDictionary alloc] init];
@@ -83,6 +71,14 @@
     [self.view addSubview:self.pickerView];
 }
 
+- (void)dealloc {
+    for (UIView *view in self.observeViews) {
+        [self stopObserveView:view];
+    }
+    [self.observeViews removeAllObjects];
+}
+
+#pragma mark - Primary
 - (void)beginObserveView:(UIView *)view borderWidth:(CGFloat)borderWidth {
     if ([self.observeViews containsObject:view]) {
         return;

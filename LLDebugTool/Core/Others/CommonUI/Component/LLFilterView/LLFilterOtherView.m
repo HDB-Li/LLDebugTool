@@ -58,13 +58,6 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 @implementation LLFilterOtherView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)updateFileDataDictionary:(NSDictionary <NSString *, NSArray *>*)dataDictionary fromDate:(NSDate *)fromDate endDate:(NSDate *)endDate userIdentities:(NSArray *)userIdentities {
     [self.userIdDataArray removeAllObjects];
     for (NSString *userId in userIdentities) {
@@ -146,6 +139,21 @@ static NSString *const kLabelCellID = @"LabelCellID";
         self.funcModel.currentFilter = nil;
     }
     [self.collectionView reloadData];
+}
+
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.userIdDataArray = [[NSMutableArray alloc] init];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.bounces = NO;
+    self.collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
+    [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
+    [self.collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kLabelCellID];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
+    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
@@ -263,20 +271,6 @@ static NSString *const kLabelCellID = @"LabelCellID";
         return CGSizeMake(LL_SCREEN_WIDTH, 30);
     }
     return CGSizeMake((LL_SCREEN_WIDTH - 5 * 10) / 3.0, 30);
-}
-
-#pragma mark - Primary
-- (void)initial {
-    self.userIdDataArray = [[NSMutableArray alloc] init];
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.bounces = NO;
-    self.collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
-    [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
-    [self.collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kLabelCellID];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
-    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 @end

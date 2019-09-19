@@ -38,17 +38,16 @@
 
 @implementation LLBaseInfoView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        self.layer.borderWidth = 2;
-        self.layer.cornerRadius = 5;
-        self.backgroundColor = [LLThemeManager shared].backgroundColor;
-        
-        self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30) target:self action:@selector(closeButtonClicked:)];
-        [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    self.layer.borderWidth = 2;
+    self.layer.cornerRadius = 5;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    
+    self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30) target:self action:@selector(closeButtonClicked:)];
+    [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
 }
 
 #pragma mark - Primary

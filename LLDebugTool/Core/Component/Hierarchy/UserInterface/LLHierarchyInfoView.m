@@ -48,13 +48,6 @@
 
 @dynamic delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)updateView:(UIView *)view {
     
     if (self.selectedView == view) {
@@ -126,8 +119,9 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.contentLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -144,6 +138,7 @@
     self.moreButtonHeight = 35;
 }
 
+#pragma mark - Event responses
 - (void)moreButtonClicked:(UIButton *)sender {
     if (!self.selectedView) {
         return;

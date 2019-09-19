@@ -35,16 +35,14 @@
 
 @implementation LLBaseMoveView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        _moveable = YES;
-        _moveableRect = CGRectNull;
-        // Pan, to moveable.
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
-        
-        [self addGestureRecognizer:self.panGestureRecognizer];
-    }
-    return self;
+- (void)initUI {
+    [super initUI];
+    _moveable = YES;
+    _moveableRect = CGRectNull;
+    // Pan, to moveable.
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
+    
+    [self addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {

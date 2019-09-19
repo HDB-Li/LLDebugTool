@@ -38,7 +38,7 @@
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
-        [self initUI];
+
     }
     return self;
 }
@@ -69,6 +69,7 @@
 }
 
 - (void)initUI {
+    [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
     
     [self addSubview:self.contentView];

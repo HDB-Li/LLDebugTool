@@ -46,15 +46,9 @@
 
 @implementation LLScreenshotToolbar
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.clipsToBounds = YES;
     self.selectorViews = [[NSMutableArray alloc] init];
     
@@ -78,6 +72,7 @@
     [self.selectorBackgroundView bringSubviewToFront:[self.selectorViews firstObject]];
 }
 
+#pragma mark - Primary
 - (void)showSelectorView:(NSInteger)index position:(CGFloat)position {
     LLScreenshotSelectorView *selectedView = self.selectorViews[index - 1];
     if (selectedView != self.lastSelectorView) {

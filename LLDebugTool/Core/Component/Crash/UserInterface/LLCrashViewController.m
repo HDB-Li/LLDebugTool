@@ -52,19 +52,13 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.navigationItem.title = @"Crash Report";
-
-    // TableView
     [self.tableView registerClass:[LLCrashCell class] forCellReuseIdentifier:kCrashCellID];
     
     [self loadData];
 }
 
+#pragma mark - Primary
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];

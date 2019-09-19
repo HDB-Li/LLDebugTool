@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray <LLSandboxModel *> *subModels;
 
 /**
- Initialization of the model.
+ Init of the model.
  */
 - (instancetype _Nonnull)initWithAttributes:(NSDictionary <NSString *,id>*)attributes filePath:(NSString *)filePath;
 

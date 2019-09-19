@@ -46,13 +46,6 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
 
 @implementation LLFilterDateView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)updateFromDate:(NSDate *)fromDate endDate:(NSDate *)endDate {
 
     self.fromDateModel = [[LLFilterTextFieldModel alloc] init];
@@ -78,6 +71,18 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
         NSDate *endDate = [[LLFormatterTool shared] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         _changeBlock(fromDate,endDate);
     }
+}
+
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
+    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
@@ -143,17 +148,6 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(LL_SCREEN_WIDTH, 30);
-}
-
-#pragma mark - Primary
-- (void)initial {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    self.collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
-    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 @end

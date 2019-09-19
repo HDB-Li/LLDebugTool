@@ -41,7 +41,9 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = @"Details";
+    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kLogContentCellID];
+    [self loadData];
 }
 
 #pragma mark - Table view data source
@@ -75,15 +77,6 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 }
 
 #pragma mark - Primary
-/**
- * initial method
- */
-- (void)initial {
-    self.navigationItem.title = @"Details";
-    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kLogContentCellID];
-    [self loadData];
-}
-
 - (void)loadData {
     if (self.model) {
         self.titleArray = [[NSMutableArray alloc] init];

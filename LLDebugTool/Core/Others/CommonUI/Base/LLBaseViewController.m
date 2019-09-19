@@ -37,7 +37,10 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self baseInitial];
+    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self resetDefaultSettings];
+    [self setNavigationSettings];
+    [self addObservers];
 }
 
 - (void)dealloc {
@@ -102,13 +105,6 @@
 }
 
 #pragma mark - Primary
-- (void)baseInitial {
-    [self resetDefaultSettings];
-    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self setNavigationSettings];
-    [self addObservers];
-}
-
 - (void)resetDefaultSettings {
     // Used to solve problems caused by modifying some systems default values with Runtime in the project.
     // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear

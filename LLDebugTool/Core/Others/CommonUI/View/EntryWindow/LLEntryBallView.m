@@ -36,19 +36,9 @@
 
 @implementation LLEntryBallView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.overflow = YES;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
@@ -56,18 +46,16 @@
     [self.contentView LL_setCornerRadius:self.contentView.LL_width / 2];
     
     self.logoImageView = [LLFactory getImageView:self.contentView frame:CGRectMake(self.LL_width / 4.0, self.LL_height / 4.0, self.LL_width / 2.0, self.LL_height / 2.0) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
 
-#pragma mark - NSNotification
-- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
     self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.logoImageView.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
 }
 
-- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.logoImageView.backgroundColor = [LLThemeManager shared].backgroundColor;
 }

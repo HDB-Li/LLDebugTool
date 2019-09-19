@@ -43,11 +43,6 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.title = @"Widget Border";
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.view addSubview:self.tableView];
@@ -55,6 +50,7 @@
     [self loadData];
 }
 
+#pragma mark - Primary
 - (void)loadData {
     LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Widget Border" flag:[LLConfig shared].isShowWidgetBorder];
     model1.changePropertyBlock = ^(id  _Nullable obj) {

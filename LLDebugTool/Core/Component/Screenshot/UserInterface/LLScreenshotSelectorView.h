@@ -21,17 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLScreenshotDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class LLScreenshotSelectorModel;
 
-@interface LLScreenshotSelectorView : UIView
+@interface LLScreenshotSelectorView : LLBaseView
 
 /**
- Specifies the initialization method.
+ Specifies the init method.
  */
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 

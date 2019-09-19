@@ -42,20 +42,6 @@ static NSString *const kEventCellID = @"EventCellID";
 
 @implementation LLFilterEventView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     self.collectionView.frame = self.bounds;
@@ -101,6 +87,20 @@ static NSString *const kEventCellID = @"EventCellID";
     }
 }
 
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.dataArray = [[NSMutableArray alloc] init];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.estimatedItemSize = CGSizeMake(50, 30);
+    _collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
+//    _collectionView.bounces = YES;
+    _collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
+    [_collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kEventCellID];
+    self.averageCount = 3;
+    self.lineView = [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
+}
+
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.dataArray.count;
@@ -131,19 +131,6 @@ static NSString *const kEventCellID = @"EventCellID";
     LLFilterLabelCell *cell = (LLFilterLabelCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell confirmWithModel:model];
     [self reCalculateFilters];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    self.dataArray = [[NSMutableArray alloc] init];
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.estimatedItemSize = CGSizeMake(50, 30);
-    _collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
-//    _collectionView.bounces = YES;
-    _collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
-    [_collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kEventCellID];
-    self.averageCount = 3;
-    self.lineView = [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 @end

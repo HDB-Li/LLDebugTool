@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) LLComponent *component;
 
 /**
- Specifies the initialization method.
+ Specifies the init method.
 
  @param action Specified action.
  @return Instance object.

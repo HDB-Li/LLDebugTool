@@ -33,20 +33,15 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initial];
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLScreenshotViewController alloc] init];
+        }
     }
     return self;
 }
 
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLScreenshotViewController alloc] init];
-    }
 }
 
 @end

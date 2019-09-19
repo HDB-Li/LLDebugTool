@@ -43,20 +43,6 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Over write
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    CGPoint capturePoint = [self.view convertPoint:point toView:self.captureButton];
-    if ([self.captureButton pointInside:capturePoint withEvent:event]) {
-        return YES;
-    }
-    return NO;
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
     CGFloat width = 60;
     self.captureButton = [LLFactory getButton:self.view frame:CGRectMake((self.view.LL_width - 60) / 2.0, self.view.LL_bottom - kLLGeneralMargin * 2 - width, width, width) target:self action:@selector(captureButtonClicked:)];
@@ -73,6 +59,16 @@
     [self.captureButton addGestureRecognizer:pan];
 }
 
+#pragma mark - Over write
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    CGPoint capturePoint = [self.view convertPoint:point toView:self.captureButton];
+    if ([self.captureButton pointInside:capturePoint withEvent:event]) {
+        return YES;
+    }
+    return NO;
+}
+
+#pragma mark - Event responses
 - (void)captureButtonClicked:(UIButton *)sender {
     LLScreenshotPreviewViewController *vc = [[LLScreenshotPreviewViewController alloc] init];
     vc.image = [[LLScreenshotHelper shared] imageFromScreen];
@@ -89,6 +85,7 @@
     
 }
 
+#pragma mark Primary
 - (void)changeFrameWithPoint:(CGPoint)point {
     
     CGPoint center = self.captureButton.center;

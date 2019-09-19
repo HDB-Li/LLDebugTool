@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLScreenshotDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface LLScreenshotActionView : UIView
+@interface LLScreenshotActionView : LLBaseView
 
 /**
  Delegate to accept click events.
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id <LLScreenshotActionViewDelegate> delegate;
 
 /**
- Specifies the initialization method.
+ Specifies the init method.
  */
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 

@@ -35,13 +35,6 @@
 
 @implementation LLScreenshotActionView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)buttonClicked:(UIButton *)sender {
     switch (sender.tag) {
         case LLScreenshotActionRect:
@@ -66,8 +59,9 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [self LL_setCornerRadius:5];
     

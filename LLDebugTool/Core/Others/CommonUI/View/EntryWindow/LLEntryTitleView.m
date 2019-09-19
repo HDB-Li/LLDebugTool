@@ -38,19 +38,9 @@
 
 @implementation LLEntryTitleView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.inactiveAlpha = 1;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
@@ -62,19 +52,17 @@
     [self.label sizeToFit];
     self.label.LL_height = self.LL_height;
     self.LL_width = self.label.LL_right + 5;
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
 
-#pragma mark - NSNotification
-- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
     self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.icon.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
     self.label.textColor = [LLThemeManager shared].primaryColor;
 }
 
-- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
 

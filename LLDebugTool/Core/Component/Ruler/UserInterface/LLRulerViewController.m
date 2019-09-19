@@ -59,7 +59,18 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.startPoint = CGPointZero;
+    [self.view.layer addSublayer:self.lineLayer];
+    self.view.backgroundColor = [UIColor clearColor];
+    
+    [self.view addSubview:self.horizontalLine];
+    [self.view addSubview:self.verticalLine];
+    [self.view addSubview:self.topLabel];
+    [self.view addSubview:self.leftLabel];
+    [self.view addSubview:self.rightLabel];
+    [self.view addSubview:self.bottomLabel];
+    [self.view addSubview:self.pickerView];
+    [self.view addSubview:self.infoView];
 }
 
 #pragma mark - LLRulerPickerViewDelegate
@@ -134,22 +145,6 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.startPoint = CGPointZero;
-    [self.view.layer addSublayer:self.lineLayer];
-    self.view.backgroundColor = [UIColor clearColor];
-    
-    [self.view addSubview:self.horizontalLine];
-    [self.view addSubview:self.verticalLine];
-    [self.view addSubview:self.topLabel];
-    [self.view addSubview:self.leftLabel];
-    [self.view addSubview:self.rightLabel];
-    [self.view addSubview:self.bottomLabel];    
-    [self.view addSubview:self.pickerView];
-    [self.view addSubview:self.infoView];
-    
-}
-
 - (UIView *)getPickerLine {
     return [LLFactory getView:nil frame:CGRectZero backgroundColor:[LLThemeManager shared].primaryColor];
 }

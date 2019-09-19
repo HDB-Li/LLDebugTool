@@ -40,7 +40,7 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kAppInfoHeaderID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,11 +58,6 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kAppInfoHeaderID];
 }
 
 #pragma mark - LLAppInfoHelperNotification

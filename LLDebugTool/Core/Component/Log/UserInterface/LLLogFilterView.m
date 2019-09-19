@@ -67,14 +67,6 @@
 
 @implementation LLLogFilterView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        _normalFrame = frame;
-        [self initial];
-    }
-    return self;
-}
-
 - (BOOL)isFiltering {
     BOOL ret = NO;
     for (UIButton *btn in self.filterBtns) {
@@ -202,8 +194,10 @@
     [self endEditing:YES];
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    _normalFrame = self.frame;
     self.filterViews = [[NSMutableArray alloc] init];
     self.filterBtns = [[NSMutableArray alloc] init];
     
@@ -228,7 +222,7 @@
     }
     [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
 }
-
+#pragma mark - Primary
 - (void)showDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
     view.hidden = NO;
