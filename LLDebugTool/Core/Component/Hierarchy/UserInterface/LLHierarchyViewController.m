@@ -165,7 +165,7 @@
         [LLTool log:@"Failed to show hierarchy detail viewController"];
         return;
     }
-    LLHierarchyDetailViewController *vc = [[LLHierarchyDetailViewController alloc] initWithStyle:UITableViewStylePlain];
+    LLHierarchyDetailViewController *vc = [[LLHierarchyDetailViewController alloc] init];
     vc.selectView = selectView;
     LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];

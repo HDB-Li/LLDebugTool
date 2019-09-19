@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
+#import "LLBaseEditTableViewController.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
@@ -30,7 +30,7 @@
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
-@interface LLBaseTableViewController ()
+@interface LLBaseEditTableViewController ()
 
 @property (nonatomic, assign) UITableViewStyle style;
 
@@ -40,7 +40,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 @end
 
-@implementation LLBaseTableViewController
+@implementation LLBaseEditTableViewController
 
 - (instancetype)init
 {

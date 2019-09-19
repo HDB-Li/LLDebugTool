@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
+#import "LLBaseEditTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLLogViewController : LLBaseTableViewController
+@interface LLLogViewController : LLBaseEditTableViewController
 
 @property (nonatomic, copy, nullable) NSString *launchDate;
 

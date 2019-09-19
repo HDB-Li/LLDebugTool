@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
+#import "LLBaseEditTableViewController.h"
 #import "LLLogModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLLogDetailViewController : LLBaseTableViewController
+@interface LLLogDetailViewController : LLBaseEditTableViewController
 
 @property (nonatomic, strong) LLLogModel *model;
 

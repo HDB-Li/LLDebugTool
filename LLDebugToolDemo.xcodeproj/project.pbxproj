@@ -189,7 +189,7 @@
 		C4B4E46F22F9C90900F70277 /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41C22F9C90900F70277 /* LLNavigationController.m */; };
 		C4B4E47022F9C90900F70277 /* LLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41D22F9C90900F70277 /* LLBaseViewController.m */; };
 		C4B4E47222F9C90900F70277 /* LLBaseComponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E42322F9C90900F70277 /* LLBaseComponentViewController.m */; };
-		C4B4E47322F9C90900F70277 /* LLBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E42422F9C90900F70277 /* LLBaseTableViewController.m */; };
+		C4B4E47322F9C90900F70277 /* LLBaseEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E42422F9C90900F70277 /* LLBaseEditTableViewController.m */; };
 		C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E42B22F9C90900F70277 /* LLBaseCollectionViewCell.m */; };
 		C4B4E47622F9C90900F70277 /* LLBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E42C22F9C90900F70277 /* LLBaseTableViewCell.m */; };
 		C4B4E47722F9C90900F70277 /* LLBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E42D22F9C90900F70277 /* LLBaseModel.m */; };
@@ -579,7 +579,7 @@
 		C4B4E41522F9C90900F70277 /* LLEntryWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLEntryWindow.h; sourceTree = "<group>"; };
 		C4B4E41622F9C90900F70277 /* LLEntryWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLEntryWindow.m; sourceTree = "<group>"; };
 		C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentWindow.m; sourceTree = "<group>"; };
-		C4B4E41922F9C90900F70277 /* LLBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewController.h; sourceTree = "<group>"; };
+		C4B4E41922F9C90900F70277 /* LLBaseEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseEditTableViewController.h; sourceTree = "<group>"; };
 		C4B4E41A22F9C90900F70277 /* LLBaseComponentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentViewController.h; sourceTree = "<group>"; };
 		C4B4E41B22F9C90900F70277 /* LLBaseWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseWindow.m; sourceTree = "<group>"; };
 		C4B4E41C22F9C90900F70277 /* LLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNavigationController.m; sourceTree = "<group>"; };
@@ -588,7 +588,7 @@
 		C4B4E42122F9C90900F70277 /* LLBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewCell.h; sourceTree = "<group>"; };
 		C4B4E42222F9C90900F70277 /* LLBaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseCollectionViewCell.h; sourceTree = "<group>"; };
 		C4B4E42322F9C90900F70277 /* LLBaseComponentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentViewController.m; sourceTree = "<group>"; };
-		C4B4E42422F9C90900F70277 /* LLBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewController.m; sourceTree = "<group>"; };
+		C4B4E42422F9C90900F70277 /* LLBaseEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBaseEditTableViewController.m; sourceTree = "<group>"; };
 		C4B4E42522F9C90900F70277 /* LLBaseComponentWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseComponentWindow.h; sourceTree = "<group>"; };
 		C4B4E42622F9C90900F70277 /* LLBaseWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseWindow.h; sourceTree = "<group>"; };
 		C4B4E42922F9C90900F70277 /* LLBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBaseViewController.h; sourceTree = "<group>"; };
@@ -1699,8 +1699,8 @@
 				C4B4E42B22F9C90900F70277 /* LLBaseCollectionViewCell.m */,
 				C4B4E42522F9C90900F70277 /* LLBaseComponentWindow.h */,
 				C4B4E41822F9C90900F70277 /* LLBaseComponentWindow.m */,
-				C4B4E41922F9C90900F70277 /* LLBaseTableViewController.h */,
-				C4B4E42422F9C90900F70277 /* LLBaseTableViewController.m */,
+				C4B4E41922F9C90900F70277 /* LLBaseEditTableViewController.h */,
+				C4B4E42422F9C90900F70277 /* LLBaseEditTableViewController.m */,
 				36596BCC22FD172D00BBB6FA /* LLBaseInfoView.h */,
 				36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */,
 				C4B4E41A22F9C90900F70277 /* LLBaseComponentViewController.h */,
@@ -2021,7 +2021,7 @@
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
 				36743D412313879700002A92 /* LLReachability.m in Sources */,
-				C4B4E47322F9C90900F70277 /* LLBaseTableViewController.m in Sources */,
+				C4B4E47322F9C90900F70277 /* LLBaseEditTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
 				C49856DB22ED90DD00E9FBE2 /* LLNetworkHelper.m in Sources */,
 				36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */,

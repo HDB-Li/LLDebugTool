@@ -37,6 +37,8 @@
 
 @interface LLHierarchyDetailViewController ()
 
+@property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @property (nonatomic, strong) NSMutableArray *objectDatas;
