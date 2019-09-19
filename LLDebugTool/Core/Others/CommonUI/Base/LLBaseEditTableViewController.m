@@ -45,6 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.dataSource = self;
     if (self.isSearchEnable) {
         [self initSearchEnableFunction];
     }
@@ -211,6 +212,15 @@
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self datas].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSAssert(NO, @"Sub class must over write tableView:cellForRowAtIndexPath:");
+    return [[UITableViewCell alloc] init];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing) {
         if (self.tableView.indexPathsForSelectedRows.count == self.datas.count) {

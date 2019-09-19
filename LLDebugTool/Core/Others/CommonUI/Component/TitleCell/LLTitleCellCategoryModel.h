@@ -1,5 +1,5 @@
 //
-//  LLSettingCategoryModel.h
+//  LLTitleCellCategoryModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -26,13 +26,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSettingCategoryModel : NSObject
+@interface LLTitleCellCategoryModel : NSObject
 
 @property (nonatomic, strong, readonly) NSString *title;
 
-@property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*settings;
+@property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*items;
 
-- (instancetype)initWithTitle:(NSString *)title settings:(NSArray <LLTitleCellModel *>*)settings;
+- (instancetype)initWithTitle:(NSString *)title items:(NSArray <LLTitleCellModel *>*)items;
 
 @end
 

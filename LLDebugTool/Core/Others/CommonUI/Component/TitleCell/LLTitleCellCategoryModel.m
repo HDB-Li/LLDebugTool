@@ -1,5 +1,5 @@
 //
-//  LLSettingCategoryModel.m
+//  LLTitleCellCategoryModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingCategoryModel.h"
+#import "LLTitleCellCategoryModel.h"
 
-@implementation LLSettingCategoryModel
+@implementation LLTitleCellCategoryModel
 
-- (instancetype)initWithTitle:(NSString *)title settings:(NSArray <LLTitleCellModel *>*)settings {
+- (instancetype)initWithTitle:(NSString *)title items:(NSArray <LLTitleCellModel *>*)items {
     if (self = [super init]) {
         _title = title;
-        _settings = [settings copy];
+        _items = [items copy];
     }
     return self;
 }

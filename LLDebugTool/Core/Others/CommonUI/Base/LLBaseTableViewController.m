@@ -31,8 +31,6 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableArray *datas;
-
 @property (nonatomic, assign) UITableViewStyle style;
 
 @end
@@ -57,19 +55,20 @@ static NSString *const kEmptyCellID = @"emptyCellID";
     [self.view addSubview:self.tableView];
 }
 
-#pragma mark - UITableViewDelegate, UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datas.count;
+#pragma mark - Over write
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
+    [_tableView reloadData];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kEmptyCellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kEmptyCellID];
-    }
-    return cell;
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
+    _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [_tableView reloadData];
 }
 
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
@@ -81,21 +80,17 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 #pragma mark - Getters and setters
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [LLFactory getTableView:nil frame:self.view.bounds delegate:self style:_style];
+        _tableView = [LLFactory getTableView];
+        _tableView.delegate = self;
+        _tableView.bounces = NO;
         _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
+        _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
         }
     }
     return _tableView;
-}
-
-- (NSMutableArray *)datas {
-    if (!_datas) {
-        _datas = [[NSMutableArray alloc] init];
-    }
-    return _datas;
 }
 
 @end

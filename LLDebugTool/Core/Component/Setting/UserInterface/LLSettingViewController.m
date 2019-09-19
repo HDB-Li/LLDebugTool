@@ -24,7 +24,7 @@
 #import "LLSettingViewController.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
-#import "LLSettingCategoryModel.h"
+#import "LLTitleCellCategoryModel.h"
 #import "LLTitleSwitchCell.h"
 #import "LLDetailTitleSelectorCell.h"
 #import "LLConfig.h"
@@ -37,14 +37,9 @@
 #import "LLConst.h"
 #import "LLTitleSliderCell.h"
 
-static NSString *const kSwitchCellID = @"SwitchCellID";
-static NSString *const kMultipleCellID = @"MultipleCellID";
+@interface LLSettingViewController () <UITableViewDataSource>
 
-@interface LLSettingViewController () <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) UITableView *tableView;
-
-@property (nonatomic, strong) NSArray <LLSettingCategoryModel *>*dataArray;
+@property (nonatomic, strong) NSArray <LLTitleCellCategoryModel *>*dataArray;
 
 @end
 
@@ -61,19 +56,6 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self setUpUI];
 }
 
-#pragma mark - Over write
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
-    [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
-    [_tableView reloadData];
-}
-
-- (void)backgroundColorChanged {
-    [super backgroundColorChanged];
-    _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [_tableView reloadData];
-}
-
 #pragma mark - Primary
 - (void)initial {
     [self initUI];
@@ -82,7 +64,6 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 
 - (void)initUI {
     self.title = @"Setting";
-    [self.view addSubview:self.tableView];
 }
 
 - (void)initData {
@@ -90,32 +71,32 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     
     // Short Cut
     [settings addObject:[self getDoubleClickComponentModel]];
-    LLSettingCategoryModel *category0 = [[LLSettingCategoryModel alloc] initWithTitle:@"Short Cut" settings:settings];
+    LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Short Cut" items:settings];
     [settings removeAllObjects];
     
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
     [settings addObject:[self getStatusBarStyleModel]];
     
-    LLSettingCategoryModel *category1 = [[LLSettingCategoryModel alloc] initWithTitle:@"Color" settings:settings];
+    LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Color" items:settings];
     [settings removeAllObjects];
     
     // EntryWindowStyle
     [settings addObject:[self getEntryWindowStyleModel]];
     [settings addObject:[self getShrinkToEdgeWhenInactiveModel]];
     [settings addObject:[self getShakeToHideModel]];
-    LLSettingCategoryModel *category2 = [[LLSettingCategoryModel alloc] initWithTitle:@"Entry Window" settings:settings];
+    LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Entry Window" items:settings];
     [settings removeAllObjects];
     
     // Log
     [settings addObject:[self getLogStyleModel]];
-    LLSettingCategoryModel *category3 = [[LLSettingCategoryModel alloc] initWithTitle:@"Log" settings:settings];
+    LLTitleCellCategoryModel *category3 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Log" items:settings];
     [settings removeAllObjects];
     
     // Magnifier
     [settings addObject:[self getMagnifierZoomLevelModel]];
     [settings addObject:[self getMagnifierSizeModel]];
-    LLSettingCategoryModel *category4 = [[LLSettingCategoryModel alloc] initWithTitle:@"Magnifier" settings:settings];
+    LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
     
     self.dataArray = @[category0, category1, category2, category3, category4];
@@ -380,58 +361,6 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     }
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-#pragma mark - UITableViewDelegate, UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataArray.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray[section].settings.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLTitleCellModel *model = self.dataArray[indexPath.section].settings[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellClass];
-    [cell setValue:model forKey:@"model"];
-    return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    LLTitleView *view = [[LLTitleView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40)];
-    LLSettingCategoryModel *model = self.dataArray[section];
-    view.titleLabel.text = model.title;
-    return view;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLTitleCellModel *model = self.dataArray[indexPath.section].settings[indexPath.row];
-    if (model.block) {
-        model.block();
-    }
-}
-
-#pragma mark - Getters and setters
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [LLFactory getTableView:nil frame:self.view.bounds delegate:self style:UITableViewStylePlain];
-        _tableView.bounces = NO;
-        _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
-        _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
-        [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
-        [_tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
-        [_tableView registerClass:[LLDetailTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleSelectorCell class])];
-        [_tableView registerClass:[LLTitleSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSliderCell class])];
-        if (@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-        }
-    }
-    return _tableView;
 }
 
 @end

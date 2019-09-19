@@ -26,7 +26,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseEditTableViewController : LLBaseTableViewController <UISearchBarDelegate>
+@interface LLBaseEditTableViewController : LLBaseTableViewController <UITableViewDataSource, UISearchBarDelegate>
 
 /**
  * Whether use searchBar. Default is NO.
@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
  * Filter data array.
  */
 @property (nonatomic, strong, readonly) NSMutableArray *searchDataArray;
+
+@property (nonatomic, strong, readonly) NSMutableArray *datas;
 
 /**
  * Header view use to show searchBar and filter view.

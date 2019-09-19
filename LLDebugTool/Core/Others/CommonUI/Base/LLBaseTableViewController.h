@@ -25,14 +25,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseTableViewController : LLBaseComponentViewController <UITableViewDelegate, UITableViewDataSource>
+@interface LLBaseTableViewController : LLBaseComponentViewController <UITableViewDelegate>
 
 /**
  * The default tableView in view controller.
  */
 @property (nonatomic, strong, readonly) UITableView *tableView;
-
-- (NSMutableArray *)datas;
 
 @end
 

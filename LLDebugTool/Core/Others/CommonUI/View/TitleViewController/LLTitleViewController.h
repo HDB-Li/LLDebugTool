@@ -1,5 +1,5 @@
 //
-//  LLHierarchyDetailCell.h
+//  LLTitleViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,33 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewCell.h"
+#import "LLBaseTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyDetailModel : NSObject
-
-@property (nonatomic, copy, nullable) NSString *title;
-
-@property (nonatomic, copy, nullable) NSString *content;
-
-- (instancetype)initWithTitle:(NSString *_Nullable)title content:(NSString *_Nullable)content;
-
-@end
-
-@interface LLHierarchyDetailSectionModel : NSObject
-
-@property (nonatomic, copy) NSString *title;
-
-@property (nonatomic, strong) NSArray <LLHierarchyDetailModel *>*models;
-
-- (instancetype)initWithTitle:(NSString *)title models:(NSArray <LLHierarchyDetailModel *>*)models;
-
-@end
-
-@interface LLHierarchyDetailCell : LLBaseTableViewCell
-
-@property (nonatomic, strong) LLHierarchyDetailModel *model;
+@interface LLTitleViewController : LLBaseTableViewController <UITableViewDataSource>
 
 @end
 
