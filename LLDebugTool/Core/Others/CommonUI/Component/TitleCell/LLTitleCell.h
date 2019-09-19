@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewCell.h"
-#import "LLSettingModel.h"
+#import "LLTitleCellModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,9 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
-@property (nonatomic, strong) LLSettingModel *model;
-
-- (void)initUI;
+@property (nonatomic, strong) LLTitleCellModel *model;
 
 @end
 

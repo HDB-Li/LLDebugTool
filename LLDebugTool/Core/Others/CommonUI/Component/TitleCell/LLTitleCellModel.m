@@ -1,5 +1,5 @@
 //
-//  LLSettingModel.m
+//  LLTitleCellModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingModel.h"
+#import "LLTitleCellModel.h"
 #import "LLTitleSwitchCell.h"
-#import "LLTitleSelectorCell.h"
+#import "LLDetailTitleSelectorCell.h"
 #import "LLTitleSliderCell.h"
+#import "LLDetailTitleCell.h"
 
-@implementation LLSettingModel
+@implementation LLTitleCellModel
 
 - (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
     if (self = [super init]) {
@@ -41,7 +42,16 @@
     if (self = [super init]) {
         _title = title;
         _detailTitle = detailTitle;
-        _cellClass = NSStringFromClass(LLTitleSelectorCell.class);
+        _cellClass = NSStringFromClass(LLDetailTitleCell.class);
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title detailTitleSelector:(NSString *)detailTitle {
+    if (self = [super init]) {
+        _title = title;
+        _detailTitle = detailTitle;
+        _cellClass = NSStringFromClass(LLDetailTitleSelectorCell.class);
     }
     return self;
 }

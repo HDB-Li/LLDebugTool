@@ -32,8 +32,11 @@
 #import "LLWindowManager.h"
 #import "LLThemeManager.h"
 #import "NSObject+LL_Utils.h"
+#import "LLHierarchyDetailViewController.h"
+#import "LLNavigationController.h"
+#import "LLTool.h"
 
-@interface LLHierarchyViewController ()<LLHierarchyViewDelegate, LLBaseInfoViewDelegate>
+@interface LLHierarchyViewController ()<LLHierarchyViewDelegate, LLHierarchyInfoViewDelegate>
 
 @property (nonatomic, strong) UIView *borderView;
 
@@ -153,6 +156,19 @@
 #pragma mark - LLBaseInfoViewDelegate
 - (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
     [self componentDidLoad:nil];
+}
+
+#pragma mark - LLHierarchyInfoViewDelegate
+- (void)LLHierarchyInfoViewDidSelectMoreInfoButton:(LLHierarchyInfoView *)view {
+    UIView *selectView = self.infoView.selectedView;
+    if (selectView == nil) {
+        [LLTool log:@"Failed to show hierarchy detail viewController"];
+        return;
+    }
+    LLHierarchyDetailViewController *vc = [[LLHierarchyDetailViewController alloc] initWithStyle:UITableViewStylePlain];
+    vc.selectView = selectView;
+    LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 @end

@@ -34,16 +34,9 @@
 
 @implementation LLTitleCell
 
-#pragma mark - Life cycle
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self initUI];
-    }
-    return self;
-}
-
 #pragma mark - Public
 - (void)initUI {
+    [super initUI];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.titleLabel];
     
@@ -62,7 +55,7 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLSettingModel *)model {
+- (void)setModel:(LLTitleCellModel *)model {
     _model = model;
     self.titleLabel.text = model.title;
 }

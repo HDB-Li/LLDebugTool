@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRulerPickerView : LLPickerView
 
-@property (nonatomic, weak) id<LLRulerPickerViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<LLRulerPickerViewDelegate> delegate;
 
 @end
 

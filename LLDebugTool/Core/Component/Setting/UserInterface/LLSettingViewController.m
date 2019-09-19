@@ -26,7 +26,7 @@
 #import "LLThemeManager.h"
 #import "LLSettingCategoryModel.h"
 #import "LLTitleSwitchCell.h"
-#import "LLTitleSelectorCell.h"
+#import "LLDetailTitleSelectorCell.h"
 #import "LLConfig.h"
 #import "LLTitleView.h"
 #import "LLMacros.h"
@@ -126,9 +126,9 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     self.tableView.frame = self.view.bounds;
 }
 
-- (LLSettingModel *)getDoubleClickComponentModel {
+- (LLTitleCellModel *)getDoubleClickComponentModel {
     __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Double Click" detailTitle:[LLConfigHelper doubleClickComponentDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitleSelector:[LLConfigHelper doubleClickComponentDescription]];
     model.block = ^{
         [weakSelf showDoubleClickAlert];
     };
@@ -155,9 +155,9 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self initData];
 }
 
-- (LLSettingModel *)getShakeToHideModel {
+- (LLTitleCellModel *)getShakeToHideModel {
     __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Shake To Hide" flag:[LLConfig shared].isShakeToHide];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Shake To Hide" flag:[LLConfig shared].isShakeToHide];
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewShakeToHide:[obj boolValue]];
     };
@@ -169,9 +169,9 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [LLSettingManager shared].shakeToHide = @(isShakeToHide);
 }
 
-- (LLSettingModel *)getColorStyleModel {
+- (LLTitleCellModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -205,8 +205,8 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     }
 }
 
-- (LLSettingModel *)getStatusBarStyleModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Status Bar" detailTitle:[LLConfigHelper statusBarStyleDescription]];
+- (LLTitleCellModel *)getStatusBarStyleModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitleSelector:[LLConfigHelper statusBarStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showStatusBarStyleAlert];
@@ -247,9 +247,9 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [[UIApplication sharedApplication] setStatusBarStyle:style animated:YES];
 }
 
-- (LLSettingModel *)getEntryWindowStyleModel {
+- (LLTitleCellModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -285,8 +285,8 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self initData];
 }
 
-- (LLSettingModel *)getShrinkToEdgeWhenInactiveModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Shrink To Edge" flag:[LLConfig shared].isShrinkToEdgeWhenInactive];
+- (LLTitleCellModel *)getShrinkToEdgeWhenInactiveModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Shrink To Edge" flag:[LLConfig shared].isShrinkToEdgeWhenInactive];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewShrinkToEdgeWhenInactive:[obj boolValue]];
@@ -299,8 +299,8 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [LLSettingManager shared].shrinkToEdgeWhenInactive = @(isShrinkToEdgeWhenInactive);
 }
 
-- (LLSettingModel *)getLogStyleModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper logStyleDescription]];
+- (LLTitleCellModel *)getLogStyleModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
@@ -332,8 +332,8 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self initData];
 }
 
-- (LLSettingModel *)getMagnifierZoomLevelModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Zoom Level" value:[LLConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
+- (LLTitleCellModel *)getMagnifierZoomLevelModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Zoom Level" value:[LLConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierZoomLevel:[obj integerValue]];
@@ -347,8 +347,8 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
     [self initData];
 }
 
-- (LLSettingModel *)getMagnifierSizeModel {
-    LLSettingModel *model = [[LLSettingModel alloc] initWithTitle:@"Size" value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
+- (LLTitleCellModel *)getMagnifierSizeModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Size" value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierSize:[obj integerValue]];
@@ -392,7 +392,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLSettingModel *model = self.dataArray[indexPath.section].settings[indexPath.row];
+    LLTitleCellModel *model = self.dataArray[indexPath.section].settings[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellClass];
     [cell setValue:model forKey:@"model"];
     return cell;
@@ -410,7 +410,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLSettingModel *model = self.dataArray[indexPath.section].settings[indexPath.row];
+    LLTitleCellModel *model = self.dataArray[indexPath.section].settings[indexPath.row];
     if (model.block) {
         model.block();
     }
@@ -425,7 +425,7 @@ static NSString *const kMultipleCellID = @"MultipleCellID";
         _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
         [_tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
-        [_tableView registerClass:[LLTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSelectorCell class])];
+        [_tableView registerClass:[LLDetailTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleSelectorCell class])];
         [_tableView registerClass:[LLTitleSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSliderCell class])];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;

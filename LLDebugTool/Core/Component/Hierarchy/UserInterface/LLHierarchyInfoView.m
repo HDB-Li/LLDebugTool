@@ -34,7 +34,7 @@
 
 @interface LLHierarchyInfoView ()
 
-@property (nonatomic, weak) UIView *selectedView;
+@property (nonatomic, strong, nullable) UIView *selectedView;
 
 @property (nonatomic, strong) UILabel *contentLabel;
 
@@ -45,6 +45,8 @@
 @end
 
 @implementation LLHierarchyInfoView
+
+@dynamic delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -146,10 +148,16 @@
     if (!self.selectedView) {
         return;
     }
-    [[LLToastUtils shared] toastMessage:@"Coming soon"];
-//    LLHierarchyDetailWindow *window = [LLWindowManager shared].hierarchyDetailWindow;
-//    window.selectView = self.selectedView;
-//    [[LLWindowManager shared] presentWindow:window animated:YES];
+    [self.delegate LLHierarchyInfoViewDidSelectMoreInfoButton:self];
+}
+
+#pragma mark - Getters and setters
+- (void)setDelegate:(id<LLHierarchyInfoViewDelegate>)delegate {
+    [super setDelegate:delegate];
+}
+
+- (id<LLHierarchyInfoViewDelegate>)delegate {
+    return (id<LLHierarchyInfoViewDelegate>)[super delegate];
 }
 
 @end

@@ -73,7 +73,7 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLSettingModel *)model {
+- (void)setModel:(LLTitleCellModel *)model {
     [super setModel:model];
     _slider.minimumValue = model.minValue;
     _slider.maximumValue = model.maxValue;

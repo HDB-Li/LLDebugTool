@@ -59,7 +59,7 @@
 }
 
 #pragma mark - Getters and settings
-- (void)setModel:(LLSettingModel *)model {
+- (void)setModel:(LLTitleCellModel *)model {
     [super setModel:model];
     _swit.on = model.flag;
 }

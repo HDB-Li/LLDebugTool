@@ -1,5 +1,5 @@
 //
-//  LLTitleSelectorCell.m
+//  LLDetailTitleCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,29 +21,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLTitleSelectorCell.h"
-#import "LLFactory.h"
+#import "LLDetailTitleCell.h"
 #import "LLThemeManager.h"
+#import "LLFactory.h"
 #import "Masonry.h"
+#import "LLConst.h"
 
-@interface LLTitleSelectorCell ()
+@interface LLDetailTitleCell ()
 
 @property (nonatomic, strong) UILabel *detailLabel;
 
 @end
 
-@implementation LLTitleSelectorCell
+@implementation LLDetailTitleCell
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     [self.contentView addSubview:self.detailLabel];
     
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10);
+        make.right.mas_equalTo(-kLLGeneralMargin);
         make.top.bottom.mas_equalTo(0);
+        make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin / 2.0);
     }];
 }
 
@@ -53,7 +54,7 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLSettingModel *)model {
+- (void)setModel:(LLTitleCellModel *)model {
     [super setModel:model];
     self.detailLabel.text = model.detailTitle;
 }

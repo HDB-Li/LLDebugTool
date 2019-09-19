@@ -22,7 +22,7 @@
 //  SOFTWARE.
 
 #import "LLTitleCell.h"
-#import "LLSettingModel.h"
+#import "LLTitleCellModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

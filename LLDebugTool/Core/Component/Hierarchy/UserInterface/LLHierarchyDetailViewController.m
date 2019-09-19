@@ -54,6 +54,13 @@
 
 #pragma mark - Primary
 - (void)initial {
+    [self initUI];
+    [self loadData];
+}
+
+- (void)initUI {
+    NSAssert(self.selectView, @"SelectView can't be nil");
+    
     self.navigationItem.title = @"Hierarchy Detail";
     self.objectDatas = [[NSMutableArray alloc] init];
     self.sizeDatas = [[NSMutableArray alloc] init];
@@ -74,13 +81,11 @@
     [self.objectDatas addObject:[[LLHierarchyDetailSectionModel alloc] initWithTitle:@"Object" models:section]];
     
     [section removeAllObjects];
-    
-    
 }
 
 - (LLHierarchyDetailSectionModel *)sectionModelWithClass:(Class)cls {
     if (cls == [NSObject class]) {
-        
+
     } else if (cls == [UIView class]) {
         return [self sectionModelWithView:self.selectView];
     } else if (cls == [UILabel class]) {
@@ -158,6 +163,17 @@
 //    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Action" content:button.allTargets.description]];
     [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Image" content:button.currentImage ? nil : @"No image"]];
     return [[LLHierarchyDetailSectionModel alloc] initWithTitle:@"Button" models:section];
+}
+
+- (LLHierarchyDetailSectionModel *)sectionModelWithImageView:(UIImageView *)imageView {
+    NSMutableArray *section = [[NSMutableArray alloc] init];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Image" content:imageView.image ? nil : @"No image"]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Highlighted" content:imageView.highlightedImage ? nil : @"No image"]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Image" content:imageView.animationImages ? nil : @"No image"]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Animation Image" content:imageView.animationImages ? imageView.animationImages.description : @"No image"]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"Animation Highlighted" content:imageView.highlightedAnimationImages ? imageView.highlightedAnimationImages.description : @"No image"]];
+    [section addObject:[[LLHierarchyDetailModel alloc] initWithTitle:@"State" content:imageView.isHighlighted ? @"Highlighted" : @"Not Highlighted"]];
+    return [[LLHierarchyDetailSectionModel alloc] initWithTitle:@"Image View" models:section];
 }
 
 

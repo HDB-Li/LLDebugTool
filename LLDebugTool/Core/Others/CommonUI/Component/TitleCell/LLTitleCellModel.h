@@ -1,5 +1,5 @@
 //
-//  LLSettingCategoryModel.h
+//  LLTitleCellModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,17 +22,49 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLTitleCellModel.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSettingCategoryModel : NSObject
+typedef void(^LLSettingModelBlock)(void);
 
-@property (nonatomic, strong, readonly) NSString *title;
+typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 
-@property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*settings;
+@interface LLTitleCellModel : NSObject
 
-- (instancetype)initWithTitle:(NSString *)title settings:(NSArray <LLTitleCellModel *>*)settings;
+@property (nonatomic, copy, readonly) NSString *title;
+
+@property (nonatomic, copy, readonly) NSString *cellClass;
+
+// Style1
+@property (nonatomic, assign) BOOL flag;
+
+// Style2 / Style3
+@property (nonatomic, assign, nullable, readonly) NSString *detailTitle;
+
+// Style4
+@property (nonatomic, assign) CGFloat value;
+
+@property (nonatomic, assign, readonly) CGFloat minValue;
+
+@property (nonatomic, assign, readonly) CGFloat maxValue;
+
+// Block
+@property (nonatomic, copy, nullable) LLSettingModelBlock block;
+
+@property (nonatomic, copy, nullable) LLSettingModelChangePropertyBlock changePropertyBlock;
+
+// LLTitleSwitchCell
+- (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag;
+
+// LLDetailTitleCell
+- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle;
+
+// LLDetailTitleSelectorCell
+- (instancetype)initWithTitle:(NSString *)title detailTitleSelector:(NSString *)detailTitle;
+
+// LLTitleSliderCell
+- (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
 
 @end
 

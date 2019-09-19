@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLHierarchyDetailViewController : LLBaseTableViewController
 
-@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong, nullable) UIView *selectView;
 
 @end
 

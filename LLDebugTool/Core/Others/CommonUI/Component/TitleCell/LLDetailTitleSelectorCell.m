@@ -1,5 +1,5 @@
 //
-//  LLTitleSelectorCell.h
+//  LLDetailTitleSelectorCell.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLTitleCell.h"
+#import "LLDetailTitleSelectorCell.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLDetailTitleSelectorCell
 
-@interface LLTitleSelectorCell : LLTitleCell
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

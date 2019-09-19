@@ -1,5 +1,5 @@
 //
-//  LLSettingCategoryModel.m
+//  LLDetailTitleSelectorCell.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,16 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingCategoryModel.h"
+#import "LLDetailTitleCell.h"
 
-@implementation LLSettingCategoryModel
+NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithTitle:(NSString *)title settings:(NSArray <LLTitleCellModel *>*)settings {
-    if (self = [super init]) {
-        _title = title;
-        _settings = [settings copy];
-    }
-    return self;
-}
+@interface LLDetailTitleSelectorCell : LLDetailTitleCell
 
 @end
+
+NS_ASSUME_NONNULL_END

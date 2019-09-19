@@ -25,7 +25,7 @@
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLTitleSwitchCell.h"
-#import "LLSettingModel.h"
+#import "LLTitleCellModel.h"
 #import "LLConfig.h"
 #import "LLSettingManager.h"
 #import "LLWidgetBorderHelper.h"
@@ -56,7 +56,7 @@
 }
 
 - (void)loadData {
-    LLSettingModel *model1 = [[LLSettingModel alloc] initWithTitle:@"Widget Border" flag:[LLConfig shared].isShowWidgetBorder];
+    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Widget Border" flag:[LLConfig shared].isShowWidgetBorder];
     model1.changePropertyBlock = ^(id  _Nullable obj) {
         [LLConfig shared].showWidgetBorder = [obj boolValue];
         [LLSettingManager shared].showWidgetBorder = @([obj boolValue]);
@@ -71,7 +71,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLSettingModel *model = self.dataArray[indexPath.row];
+    LLTitleCellModel *model = self.dataArray[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellClass];
     [cell setValue:model forKey:@"model"];
     return cell;

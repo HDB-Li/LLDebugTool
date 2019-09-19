@@ -58,9 +58,9 @@
 		36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
 		36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4497231F9D0700AC772B /* LLSettingViewController.m */; };
-		36AB449B231FC57D00AC772B /* LLSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449A231FC57D00AC772B /* LLSettingModel.m */; };
+		36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449A231FC57D00AC772B /* LLTitleCellModel.m */; };
 		36AB449E231FC5D800AC772B /* LLSettingCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449D231FC5D800AC772B /* LLSettingCategoryModel.m */; };
-		36BB1E1B2320E679000D8F29 /* LLTitleSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1A2320E679000D8F29 /* LLTitleSelectorCell.m */; };
+		36BB1E1B2320E679000D8F29 /* LLDetailTitleSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */; };
 		36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */; };
 		36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */; };
 		36BB1E3723211AF9000D8F29 /* LLConvenientScreenshotComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E3623211AF9000D8F29 /* LLConvenientScreenshotComponent.m */; };
@@ -72,6 +72,7 @@
 		36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7723307BEA00C9C22C /* LLWidgetBorderHelper.m */; };
 		36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7A23307D2600C9C22C /* UIView+LLWidgetBorder.m */; };
 		36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DC10FC22FA60B90078B7BC /* LLToastUtils.m */; };
+		36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
 		36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E493832303E7D700B89F41 /* LLFunctionComponent.m */; };
@@ -312,14 +313,14 @@
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
 		36AB4496231F9D0700AC772B /* LLSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingViewController.h; sourceTree = "<group>"; };
 		36AB4497231F9D0700AC772B /* LLSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingViewController.m; sourceTree = "<group>"; };
-		36AB4499231FC57D00AC772B /* LLSettingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingModel.h; sourceTree = "<group>"; };
-		36AB449A231FC57D00AC772B /* LLSettingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingModel.m; sourceTree = "<group>"; };
+		36AB4499231FC57D00AC772B /* LLTitleCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCellModel.h; sourceTree = "<group>"; };
+		36AB449A231FC57D00AC772B /* LLTitleCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellModel.m; sourceTree = "<group>"; };
 		36AB449C231FC5D800AC772B /* LLSettingCategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingCategoryModel.h; sourceTree = "<group>"; };
 		36AB449D231FC5D800AC772B /* LLSettingCategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingCategoryModel.m; sourceTree = "<group>"; };
 		36AB44A9231FC7A700AC772B /* LLTitleSwitchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSwitchCell.h; sourceTree = "<group>"; };
 		36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCell.m; sourceTree = "<group>"; };
-		36BB1E192320E679000D8F29 /* LLTitleSelectorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSelectorCell.h; sourceTree = "<group>"; };
-		36BB1E1A2320E679000D8F29 /* LLTitleSelectorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSelectorCell.m; sourceTree = "<group>"; };
+		36BB1E192320E679000D8F29 /* LLDetailTitleSelectorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCell.h; sourceTree = "<group>"; };
+		36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCell.m; sourceTree = "<group>"; };
 		36BB1E1D2320E89C000D8F29 /* LLConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLConfigHelper.h; sourceTree = "<group>"; };
 		36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLConfigHelper.m; sourceTree = "<group>"; };
 		36BB1E2C2320F954000D8F29 /* NSUserDefaults+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+LL_Utils.h"; sourceTree = "<group>"; };
@@ -342,6 +343,8 @@
 		36CD3A7A23307D2600C9C22C /* UIView+LLWidgetBorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLWidgetBorder.m"; sourceTree = "<group>"; };
 		36DC10FB22FA60B90078B7BC /* LLToastUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLToastUtils.h; sourceTree = "<group>"; };
 		36DC10FC22FA60B90078B7BC /* LLToastUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLToastUtils.m; sourceTree = "<group>"; };
+		36DDED7423331967008DD7F9 /* LLDetailTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleCell.h; sourceTree = "<group>"; };
+		36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCell.m; sourceTree = "<group>"; };
 		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoTests.m; sourceTree = "<group>"; };
 		36E248892123BAE300D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -635,12 +638,16 @@
 		360AE62F2330D9B90073FECD /* TitleCell */ = {
 			isa = PBXGroup;
 			children = (
+				36AB4499231FC57D00AC772B /* LLTitleCellModel.h */,
+				36AB449A231FC57D00AC772B /* LLTitleCellModel.m */,
 				3659124E2320B3E300FDA6A0 /* LLTitleCell.h */,
 				3659124F2320B3E300FDA6A0 /* LLTitleCell.m */,
+				36DDED7423331967008DD7F9 /* LLDetailTitleCell.h */,
+				36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */,
+				36BB1E192320E679000D8F29 /* LLDetailTitleSelectorCell.h */,
+				36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */,
 				36AB44A9231FC7A700AC772B /* LLTitleSwitchCell.h */,
 				36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */,
-				36BB1E192320E679000D8F29 /* LLTitleSelectorCell.h */,
-				36BB1E1A2320E679000D8F29 /* LLTitleSelectorCell.m */,
 				363DEC512325DFE90090E78C /* LLTitleSliderCell.h */,
 				363DEC522325DFE90090E78C /* LLTitleSliderCell.m */,
 			);
@@ -654,8 +661,6 @@
 				360AE6392330DC620073FECD /* LLSettingWindow.m */,
 				36AB4496231F9D0700AC772B /* LLSettingViewController.h */,
 				36AB4497231F9D0700AC772B /* LLSettingViewController.m */,
-				36AB4499231FC57D00AC772B /* LLSettingModel.h */,
-				36AB449A231FC57D00AC772B /* LLSettingModel.m */,
 				36AB449C231FC5D800AC772B /* LLSettingCategoryModel.h */,
 				36AB449D231FC5D800AC772B /* LLSettingCategoryModel.m */,
 			);
@@ -2072,7 +2077,7 @@
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
 				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
-				36AB449B231FC57D00AC772B /* LLSettingModel.m in Sources */,
+				36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */,
 				364CF3DB23265A1C000B513F /* LLRulerComponent.m in Sources */,
 				C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */,
 				C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */,
@@ -2094,6 +2099,7 @@
 				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,
 				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
+				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,
 				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
 				C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */,
 				C498568122ED8D4800E9FBE2 /* LLScreenshotSelectorModel.m in Sources */,
@@ -2124,7 +2130,7 @@
 				C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */,
 				C4B4E44722F9C90900F70277 /* UIControl+LL_Utils.m in Sources */,
 				C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */,
-				36BB1E1B2320E679000D8F29 /* LLTitleSelectorCell.m in Sources */,
+				36BB1E1B2320E679000D8F29 /* LLDetailTitleSelectorCell.m in Sources */,
 				C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */,
 				36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */,
 				C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */,

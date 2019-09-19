@@ -25,7 +25,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class LLHierarchyInfoView;
+
+@protocol LLHierarchyInfoViewDelegate <NSObject, LLBaseInfoViewDelegate>
+
+- (void)LLHierarchyInfoViewDidSelectMoreInfoButton:(LLHierarchyInfoView *)view;
+
+@end
+
 @interface LLHierarchyInfoView : LLBaseInfoView
+
+@property (nonatomic, weak, nullable) id<LLHierarchyInfoViewDelegate> delegate;
+
+@property (nonatomic, strong, nullable, readonly) UIView *selectedView;
 
 - (void)updateView:(UIView *)view;
 
