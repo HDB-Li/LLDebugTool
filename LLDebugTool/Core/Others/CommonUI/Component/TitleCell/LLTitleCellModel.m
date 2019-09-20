@@ -26,6 +26,7 @@
 #import "LLDetailTitleSelectorCell.h"
 #import "LLTitleSliderCell.h"
 #import "LLDetailTitleCell.h"
+#import "LLConst.h"
 
 @implementation LLTitleCellModel
 
@@ -34,6 +35,7 @@
         _title = [title copy];
         _flag = flag;
         _cellClass = NSStringFromClass(LLTitleSwitchCell.class);
+        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     }
     return self;
 }
@@ -43,6 +45,7 @@
         _title = [title copy];
         _detailTitle = [detailTitle copy];
         _cellClass = NSStringFromClass(LLDetailTitleCell.class);
+        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     }
     return self;
 }
@@ -52,6 +55,7 @@
         _title = [title copy];
         _detailTitle = [detailTitle copy];
         _cellClass = NSStringFromClass(LLDetailTitleSelectorCell.class);
+        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     }
     return self;
 }
@@ -63,6 +67,7 @@
         _minValue = minValue;
         _maxValue = maxValue;
         _cellClass = NSStringFromClass(LLTitleSliderCell.class);
+        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     }
     return self;
 }

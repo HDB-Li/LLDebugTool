@@ -54,6 +54,9 @@ typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 
 @property (nonatomic, copy, nullable) LLSettingModelChangePropertyBlock changePropertyBlock;
 
+// Separator
+@property (nonatomic, assign) UIEdgeInsets separatorInsets;
+
 // LLTitleSwitchCell
 - (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag;
 

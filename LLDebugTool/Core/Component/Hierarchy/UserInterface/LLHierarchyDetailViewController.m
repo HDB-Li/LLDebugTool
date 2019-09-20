@@ -76,6 +76,8 @@
         LLDetailTitleCell *detailCell = (LLDetailTitleCell *)cell;
         detailCell.detailLabel.textAlignment = NSTextAlignmentLeft;
     }
+    LLTitleCellModel *model = self.dataArray[indexPath.section].items[indexPath.row];
+    cell.separatorInset = model.separatorInsets;
     return cell;
 }
 
@@ -124,34 +126,61 @@
 
 - (LLTitleCellCategoryModel *)sectionModelWithObject:(NSObject *)object {
     NSMutableArray *section = [[NSMutableArray alloc] init];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Class Name" detailTitle:NSStringFromClass(object.class)]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p",object]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Description" detailTitle:object.description]];
+    
+    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Class Name" detailTitle:NSStringFromClass(object.class)];
+    model1.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model1];
+    
+    LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p",object]];
+    model2.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model2];
+    
+    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Description" detailTitle:object.description];
+    model3.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model3];
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Object" items:section];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithView:(UIView *)view {
     NSMutableArray *section = [[NSMutableArray alloc] init];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Layer" detailTitle:view.layer.description]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]]];
+    
+    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Layer" detailTitle:view.layer.description];
+    model1.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model1];
+    
+    LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)];
+    [section addObject:model2];
+    
+    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription];
+    model3.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model3];
+    
+    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]];
+    [section addObject:model4];
     
     NSString *userInterface = [NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"];
     NSString *multipleTouch = [NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]]];
+    LLTitleCellModel *model5 = [[LLTitleCellModel alloc] initWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]];
+    [section addObject:model5];
     
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Tint" detailTitle:[self colorDescription:view.tintColor]]];
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
+    model6.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model6];
+    
+    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
+    model7.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model7];
+    
+    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:@"Tint" detailTitle:[self colorDescription:view.tintColor]];
+    [section addObject:model8];
     
     NSString *opaque = [NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"];
     NSString *hidden = [NSString stringWithFormat:@"Hidden %@", view.isHidden ? @"On" : @"Off"];
     NSString *context = [NSString stringWithFormat:@"Clears Graphics Context %@", view.clearsContextBeforeDrawing ? @"On" : @"Off"];
     NSString *clipToBounds = [NSString stringWithFormat:@"Clip To Bounds %@", view.clipsToBounds ? @"On" : @"Off"];
     NSString *autoresizes = [NSString stringWithFormat:@"Autoresizes Subviews %@", view.autoresizesSubviews ? @"On" : @"Off"];
-    
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:[@[opaque, hidden, context, clipToBounds, autoresizes] componentsJoinedByString:@"\n\n"]]];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:[@[opaque, hidden, context, clipToBounds, autoresizes] componentsJoinedByString:@"\n\n"]];
+    [section addObject:model9];
 
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:section];
 }
@@ -161,25 +190,47 @@
     
     NSString *text = label.text ?: @"<nil>";
     NSString *attributedText = label.attributedText == nil ? @"Attributed Text" : @"Plain Text";
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[@[text, attributedText] componentsJoinedByString:@"\n\n"]]];
+    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[@[text, attributedText] componentsJoinedByString:@"\n\n"]];
+    model1.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model1];
 
     NSString *textColor = [self colorDescription:label.textColor];
     NSString *font = label.font.description ?: @"<nil>";
     NSString *aligned = [NSString stringWithFormat:@"Aligned %@", label.LL_textAlignmentDescription];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[@[textColor, font, aligned] componentsJoinedByString:@"\n\n"]]];
+    LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[@[textColor, font, aligned] componentsJoinedByString:@"\n\n"]];
+    model2.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model2];
 
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]]];
+    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]];
+    model3.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model3];
     
     NSString *behavior = [NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"];
     NSString *highlighted = [NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[@[behavior, highlighted] componentsJoinedByString:@"\n\n"]]];
+    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[@[behavior, highlighted] componentsJoinedByString:@"\n\n"]];
+    [section addObject:model4];
 
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Line Break" detailTitle:label.LL_lineBreakModeDescription]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]]];
+    LLTitleCellModel *model5 = [[LLTitleCellModel alloc] initWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]];
+    model5.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model5];
+    
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Line Break" detailTitle:label.LL_lineBreakModeDescription];
+    model6.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model6];
+    
+    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]];
+    [section addObject:model7];
+    
+    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]];
+    model8.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model8];
+    
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]];
+    model9.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    [section addObject:model9];
+    
+    LLTitleCellModel *model10 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]];
+    [section addObject:model10];
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:section];
 }
 
