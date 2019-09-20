@@ -24,6 +24,7 @@
 #import "LLBaseTableViewController.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
@@ -90,7 +91,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
         _tableView.delegate = self;
         _tableView.bounces = NO;
         _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
-        _tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+        _tableView.separatorInset = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
         [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;

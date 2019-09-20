@@ -25,6 +25,7 @@
 #import "LLFactory.h"
 #import "Masonry.h"
 #import "LLThemeManager.h"
+#import "LLConst.h"
 
 @interface LLTitleSliderCell ()
 
@@ -43,14 +44,15 @@
     [self.contentView addSubview:self.valueLabel];
     
     [self.valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10);
+        make.right.mas_equalTo(-kLLGeneralMargin);
         make.centerY.mas_equalTo(self.contentView);
     }];
     
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.valueLabel.mas_left).offset(-10);
-        make.left.equalTo(self.titleLabel.mas_right).offset(10);
-        make.centerY.mas_equalTo(self.contentView);
+        make.right.equalTo(self.valueLabel.mas_left).offset(-kLLGeneralMargin);
+        make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin);
+        make.top.mas_equalTo(kLLGeneralMargin / 2.0);
+        make.bottom.mas_equalTo(-kLLGeneralMargin / 2.0);
     }];
 }
 

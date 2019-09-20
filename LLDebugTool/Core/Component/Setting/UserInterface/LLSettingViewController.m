@@ -38,8 +38,6 @@
 
 @interface LLSettingViewController () <UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray <LLTitleCellCategoryModel *>*dataArray;
-
 @end
 
 @implementation LLSettingViewController
@@ -90,7 +88,8 @@
     LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
     
-    self.dataArray = @[category0, category1, category2, category3, category4];
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:@[category0, category1, category2, category3, category4]];
     [self.tableView reloadData];
 }
 

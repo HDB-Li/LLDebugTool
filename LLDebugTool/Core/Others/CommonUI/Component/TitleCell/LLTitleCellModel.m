@@ -31,7 +31,7 @@
 
 - (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
     if (self = [super init]) {
-        _title = title;
+        _title = [title copy];
         _flag = flag;
         _cellClass = NSStringFromClass(LLTitleSwitchCell.class);
     }
@@ -40,8 +40,8 @@
 
 - (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
     if (self = [super init]) {
-        _title = title;
-        _detailTitle = detailTitle;
+        _title = [title copy];
+        _detailTitle = [detailTitle copy];
         _cellClass = NSStringFromClass(LLDetailTitleCell.class);
     }
     return self;
@@ -49,8 +49,8 @@
 
 - (instancetype)initWithTitle:(NSString *)title detailTitleSelector:(NSString *)detailTitle {
     if (self = [super init]) {
-        _title = title;
-        _detailTitle = detailTitle;
+        _title = [title copy];
+        _detailTitle = [detailTitle copy];
         _cellClass = NSStringFromClass(LLDetailTitleSelectorCell.class);
     }
     return self;
@@ -58,7 +58,7 @@
 
 - (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
     if (self = [super init]) {
-        _title = title;
+        _title = [title copy];
         _value = value;
         _minValue = minValue;
         _maxValue = maxValue;

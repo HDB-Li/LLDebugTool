@@ -25,6 +25,7 @@
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 #import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLTitleCell ()
 
@@ -41,10 +42,10 @@
     [self.contentView addSubview:self.titleLabel];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.top.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.bottom.mas_equalTo(-kLLGeneralMargin);
         make.width.mas_equalTo(110);
-        make.height.mas_equalTo(50).priorityHigh();
     }];
 }
 

@@ -31,11 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLScreenshotSelectorView : LLBaseView
 
 /**
- Specifies the init method.
- */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-
-/**
  Return current selector model.
  */
 - (LLScreenshotSelectorModel *)currentSelectorModel;

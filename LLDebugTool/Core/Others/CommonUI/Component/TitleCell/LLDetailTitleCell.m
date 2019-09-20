@@ -43,7 +43,8 @@
     
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kLLGeneralMargin);
-        make.top.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.bottom.mas_equalTo(-kLLGeneralMargin);
         make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin / 2.0);
     }];
 }

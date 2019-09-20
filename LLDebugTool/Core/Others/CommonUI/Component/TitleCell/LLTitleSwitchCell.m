@@ -25,6 +25,7 @@
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLTitleSwitchCell ()
 
@@ -40,8 +41,9 @@
     [self.contentView addSubview:self.swit];
     
     [self.swit mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.right.mas_equalTo(-kLLGeneralMargin);
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.bottom.mas_equalTo(-kLLGeneralMargin);
     }];
 }
 

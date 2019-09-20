@@ -22,10 +22,13 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
+#import "LLTitleCellCategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLTitleViewController : LLBaseTableViewController <UITableViewDataSource>
+
+@property (nonatomic, strong, readonly) NSMutableArray <LLTitleCellCategoryModel *>*dataArray;
 
 @end
 

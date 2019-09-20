@@ -28,10 +28,11 @@
 #import "LLTitleSliderCell.h"
 #import "LLTitleView.h"
 #import "LLMacros.h"
+#import "LLConst.h"
 
 @interface LLTitleViewController ()
 
-@property (nonatomic, strong) NSArray <LLTitleCellCategoryModel *>*dataArray;
+@property (nonatomic, strong) NSMutableArray <LLTitleCellCategoryModel *>*dataArray;
 
 @end
 
@@ -41,6 +42,7 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
+    [self.tableView registerClass:[LLDetailTitleCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleCell class])];
     [self.tableView registerClass:[LLDetailTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleSelectorCell class])];
     [self.tableView registerClass:[LLTitleSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSliderCell class])];
 }
@@ -77,6 +79,14 @@
     if (model.block) {
         model.block();
     }
+}
+
+#pragma mark - Getters and setters
+- (NSMutableArray<LLTitleCellCategoryModel *> *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
 }
 
 @end
