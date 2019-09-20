@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Create lines of unity.
  */
-+ (UIView *)lineView:(CGRect)frame
++ (UIView *)getLineView:(CGRect)frame
                    superView:(UIView *_Nullable)superView;
 
 #pragma mark - UILabel

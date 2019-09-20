@@ -33,7 +33,7 @@
     return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-+ (UIView *)lineView:(CGRect)frame
++ (UIView *)getLineView:(CGRect)frame
                    superView:(UIView *_Nullable)superView {
     UIView *view = [self getView];
     view.backgroundColor = [LLThemeManager shared].primaryColor;

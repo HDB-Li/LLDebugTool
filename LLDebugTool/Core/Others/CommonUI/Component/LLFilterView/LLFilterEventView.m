@@ -98,7 +98,7 @@ static NSString *const kEventCellID = @"EventCellID";
     _collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
     [_collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kEventCellID];
     self.averageCount = 3;
-    self.lineView = [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
+    self.lineView = [LLFactory getLineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource

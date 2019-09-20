@@ -49,7 +49,7 @@
     self.titleLabel = [LLFactory getLabel:self frame:CGRectMake(20, 0, self.LL_width - 20, 40) text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    self.lineView = [LLFactory lineView:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) superView:self];
+    self.lineView = [LLFactory getLineView:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) superView:self];
 }
 
 - (void)primaryColorChanged {

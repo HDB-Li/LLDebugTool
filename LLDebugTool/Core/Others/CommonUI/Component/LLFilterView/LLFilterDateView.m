@@ -82,7 +82,7 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     self.collectionView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
-    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
+    [LLFactory getLineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource

@@ -177,7 +177,7 @@
         [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         confirm.titleLabel.font = [UIFont systemFontOfSize:15];
         
-        [LLFactory lineView:CGRectMake(0, 0, _accessoryView.frame.size.width, 1) superView:_accessoryView];
+        [LLFactory getLineView:CGRectMake(0, 0, _accessoryView.frame.size.width, 1) superView:_accessoryView];
     }
     return _accessoryView;
 }

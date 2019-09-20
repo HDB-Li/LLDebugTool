@@ -184,7 +184,7 @@
         btn.layer.borderWidth = 0.5;
         [self.filterBtns addObject:btn];
     }
-    [LLFactory lineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
+    [LLFactory getLineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self.btnsBgView];
 }
 
 #pragma mark - Action
