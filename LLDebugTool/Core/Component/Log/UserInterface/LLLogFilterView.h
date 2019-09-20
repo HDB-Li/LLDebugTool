@@ -32,8 +32,6 @@ typedef void(^LLLogFilterChangeBlock)(NSArray *_Nullable levels, NSArray *_Nulla
 
 @property (copy, nonatomic, nullable) LLLogFilterChangeBlock changeBlock;
 
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-
 - (void)configWithData:(NSArray <LLLogModel *>*)data;
 
 - (BOOL)isFiltering;

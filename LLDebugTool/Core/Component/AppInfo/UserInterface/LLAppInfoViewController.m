@@ -108,7 +108,12 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
     UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kAppInfoHeaderID];
     view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30);
     if (view.backgroundView == nil) {
-        view.backgroundView = [LLFactory getPrimaryView:nil frame:view.bounds alpha:0.2];
+        view.backgroundView = ({
+            UIView *backgroundView = [LLFactory getView];
+            backgroundView.backgroundColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.2];
+            backgroundView.frame = view.bounds;
+            backgroundView;
+        });
     }
 
     if (section == 0) {

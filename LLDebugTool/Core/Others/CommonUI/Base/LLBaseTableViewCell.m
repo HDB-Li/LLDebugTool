@@ -47,7 +47,9 @@
 - (void)initUI {
     self.tintColor = [LLThemeManager shared].primaryColor;
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
+    self.selectedBackgroundView = [LLFactory getView];
+    self.selectedBackgroundView.backgroundColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.2];
+    
     self.textLabel.textColor = [LLThemeManager shared].primaryColor;
     self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
 }

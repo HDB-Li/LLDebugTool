@@ -146,7 +146,9 @@
 
 #pragma mark - Primary
 - (UIView *)getPickerLine {
-    return [LLFactory getView:nil frame:CGRectZero backgroundColor:[LLThemeManager shared].primaryColor];
+    UIView *view = [LLFactory getView];
+    view.backgroundColor = [LLThemeManager shared].primaryColor;
+    return view;
 }
 
 - (UILabel *)getPickerLabel {

@@ -83,7 +83,8 @@
 #pragma mark - Getters and setters
 - (UIView *)contentView {
     if (!_contentView) {
-        _contentView = [LLFactory getView:nil frame:CGRectZero backgroundColor:[UIColor whiteColor]];
+        _contentView = [LLFactory getView];
+        _contentView.backgroundColor = [UIColor whiteColor];
     }
     return _contentView;
 }

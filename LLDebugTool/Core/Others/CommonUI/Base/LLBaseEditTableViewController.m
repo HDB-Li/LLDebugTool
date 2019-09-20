@@ -102,7 +102,10 @@
     self.searchBar.enablesReturnKeyAutomatically = NO;
     [self.searchBar sizeToFit];
 
-    _headerView = [LLFactory getBackgroundView:self.view frame:CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height)];
+    _headerView = [LLFactory getView];
+    _headerView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    _headerView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height);
+    [self.view addSubview:_headerView];
     [self.headerView addSubview:self.searchBar];
 }
 

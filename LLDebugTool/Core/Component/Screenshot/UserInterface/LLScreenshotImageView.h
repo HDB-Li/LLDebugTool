@@ -49,11 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) LLScreenshotSelectorModel *currentSelectorModel;
 
 /**
- Specifies the init method.
- */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-
-/**
  Remove last operation in operations.
  */
 - (void)removeLastOperation;

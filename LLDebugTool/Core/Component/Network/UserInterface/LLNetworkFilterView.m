@@ -164,7 +164,8 @@
     self.filterViews = [[NSMutableArray alloc] init];
     self.filterBtns = [[NSMutableArray alloc] init];
     
-    self.btnsBgView = [LLFactory getBackgroundView:self frame:self.bounds];
+    [self addSubview:self.btnsBgView];
+    self.btnsBgView.frame = self.bounds;
     
     CGFloat gap = 20;
     CGFloat itemHeight = 25;
@@ -232,6 +233,15 @@
         view.frame = CGRectMake(0, self.normalFrame.size.height, rect.size.width, rect.size.height);
         view.hidden = YES;
     }];
+}
+
+#pragma mark - Getters and setters
+- (UIView *)btnsBgView {
+    if (!_btnsBgView) {
+        _btnsBgView = [LLFactory getView];
+        _btnsBgView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    }
+    return _btnsBgView;
 }
 
 - (LLFilterEventView *)hostView {

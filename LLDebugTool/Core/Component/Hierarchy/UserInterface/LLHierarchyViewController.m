@@ -63,8 +63,7 @@
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     
-    self.borderView = [LLFactory getView:self.view frame:CGRectZero backgroundColor:[UIColor clearColor]];
-    self.borderView.layer.borderWidth = 2;
+    [self.view addSubview:self.borderView];
     
     self.pickerView = [[LLHierarchyView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
     self.pickerView.delegate = self;
@@ -84,7 +83,9 @@
         return;
     }
     
-    UIView *borderView = [LLFactory getView:self.view frame:CGRectZero backgroundColor:[UIColor clearColor]];
+    UIView *borderView = [LLFactory getView];
+    borderView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:borderView];
     [self.view sendSubviewToBack:borderView];
     borderView.layer.borderWidth = borderWidth;
     borderView.layer.borderColor = view.LL_hashColor.CGColor;
@@ -165,6 +166,16 @@
     vc.selectView = selectView;
     LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark - Getters and setters
+- (UIView *)borderView {
+    if (!_borderView) {
+        _borderView = [LLFactory getView];
+        _borderView.backgroundColor = [UIColor clearColor];
+        _borderView.layer.borderWidth = 2;
+    }
+    return _borderView;
 }
 
 @end

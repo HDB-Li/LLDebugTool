@@ -45,11 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, weak, nullable) id <LLScreenshotActionViewDelegate> delegate;
 
-/**
- Specifies the init method.
- */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
-
 @end
 
 NS_ASSUME_NONNULL_END

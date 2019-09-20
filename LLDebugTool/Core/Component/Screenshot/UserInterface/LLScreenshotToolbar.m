@@ -57,7 +57,8 @@
     self.actionView.delegate = self;
     [self addSubview:self.actionView];
     
-    self.selectorBackgroundView = [LLFactory getView:self frame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight)];
+    [self addSubview:self.selectorBackgroundView];
+    self.selectorBackgroundView.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight);
     
     CGFloat triangleHeight = 10;
     self.triangleView = [LLFactory getImageView:self.selectorBackgroundView frame:CGRectMake(0, 0, triangleHeight * 2, triangleHeight) image:[UIImage LL_imageNamed:kSelectorTriangleImageName]];
@@ -142,6 +143,14 @@
         }
         [_delegate LLScreenshotToolbar:self didSelectedAction:action selectorModel:model];
     }
+}
+
+#pragma mark - Getters and setters
+- (UIView *)selectorBackgroundView {
+    if (!_selectorBackgroundView) {
+        _selectorBackgroundView = [LLFactory getView];
+    }
+    return _selectorBackgroundView;
 }
 
 @end

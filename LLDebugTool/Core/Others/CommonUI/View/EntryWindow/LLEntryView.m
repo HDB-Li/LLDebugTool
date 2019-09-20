@@ -49,14 +49,6 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
 
 @implementation LLEntryView
 
-- (void)initUI {
-    [super initUI];
-    self.contentView = [LLFactory getView:self frame:self.bounds];
-    self.statusBarClickable = [LLTool statusBarClickable];
-    self.inactiveAlpha = [LLConfig shared].inactiveAlpha;
-    [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-}
-
 - (void)animatedBecomeActive {
     self.active = YES;
     self.alpha = [LLConfig shared].activeAlpha;
@@ -108,13 +100,18 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     }
 }
 
-#pragma mark - Primary
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"frame"]) {
-        self.contentView.frame = self.bounds;
-    }
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    
+    [self addSubview:self.contentView];
+    self.contentView.frame = self.bounds;
+    
+    self.statusBarClickable = [LLTool statusBarClickable];
+    self.inactiveAlpha = [LLConfig shared].inactiveAlpha;
 }
 
+#pragma mark - Primary
 - (void)becomeActive {
     self.active = YES;
     self.alpha = [LLConfig shared].activeAlpha;
@@ -204,6 +201,14 @@ typedef NS_ENUM(NSUInteger, LLEntryBallViewDirection) {
     } completion:^(BOOL finished) {
         self.userInteractionEnabled = YES;
     }];
+}
+
+#pragma mark - Getters and setters
+- (UIView *)contentView {
+    if (!_contentView) {
+        _contentView = [LLFactory getView];
+    }
+    return _contentView;
 }
 
 @end
