@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLDetailTitleCell : LLTitleCell
 
+@property (nonatomic, strong, readonly) UILabel *detailLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

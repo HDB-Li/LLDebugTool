@@ -69,17 +69,28 @@
     [self loadData];
 }
 
+#pragma mark - UITableViewDataSource
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[LLDetailTitleCell class]]) {
+        LLDetailTitleCell *detailCell = (LLDetailTitleCell *)cell;
+        detailCell.detailLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return cell;
+}
+
 #pragma mark - Primary
 - (void)loadData {
     [self.objectDatas removeAllObjects];
     Class cls = self.selectView.class;
-    while (cls) {
+    while (cls && cls != [NSObject class]) {
         LLTitleCellCategoryModel *model = [self sectionModelWithClass:cls];
         if (model) {
             [self.objectDatas addObject:model];
         }
         cls = [cls superclass];
     }
+    [self.objectDatas insertObject:[self sectionModelWithClass:[NSObject class]] atIndex:0];
     [self.dataArray removeAllObjects];
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         [self.dataArray addObjectsFromArray:self.objectDatas];
@@ -166,8 +177,8 @@
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Line Break" detailTitle:label.LL_lineBreakModeDescription]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Highlighted" detailTitle:label.highlightedTextColor.LL_description]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Shadow" detailTitle:label.shadowColor.LL_description]];
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]]];
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]]];
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:section];
 }

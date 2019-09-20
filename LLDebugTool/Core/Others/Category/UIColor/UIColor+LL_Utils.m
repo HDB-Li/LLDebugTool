@@ -82,36 +82,7 @@
         return @"Clear Color";
     }
     
-    NSString *color = @"";
-    if ([self isEqual:[UIColor blackColor]]) {
-        color = @"Black Color";
-    } else if ([self isEqual:[UIColor darkGrayColor]]) {
-        color = @"DarkGray Color";
-    } else if ([self isEqual:[UIColor lightGrayColor]]) {
-        color = @"LightGray Color";
-    } else if ([self isEqual:[UIColor whiteColor]]) {
-        color = @"White Color";
-    } else if ([self isEqual:[UIColor grayColor]]) {
-        color = @"Gray Color";
-    } else if ([self isEqual:[UIColor redColor]]) {
-        color = @"Red Color";
-    } else if ([self isEqual:[UIColor greenColor]]) {
-        color = @"Green Color";
-    } else if ([self isEqual:[UIColor blueColor]]) {
-        color = @"Blue Color";
-    } else if ([self isEqual:[UIColor cyanColor]]) {
-        color = @"Cyan Color";
-    } else if ([self isEqual:[UIColor yellowColor]]) {
-        color = @"Yellow Color";
-    } else if ([self isEqual:[UIColor magentaColor]]) {
-        color = @"Magenta Color";
-    } else if ([self isEqual:[UIColor orangeColor]]) {
-        color = @"Orange Color";
-    } else if ([self isEqual:[UIColor purpleColor]]) {
-        color = @"Purple Color";
-    } else if ([self isEqual:[UIColor brownColor]]) {
-        color = @"Brown Color";
-    }
+    NSString *color = [self LL_textDescription] ?: @"";
     
     NSArray *rgba = [self LL_RGBA];
     int r = [rgba[0] doubleValue] * 255.0;
@@ -130,6 +101,67 @@
     }
     
     return color;
+}
+
+- (NSString *)LL_textDescription {
+    if ([self isEqual:[UIColor clearColor]]) {
+        return @"Clear Color";
+    } else if ([self isEqual:[UIColor blackColor]]) {
+        return @"Black Color";
+    } else if ([self isEqual:[UIColor darkGrayColor]]) {
+        return @"DarkGray Color";
+    } else if ([self isEqual:[UIColor lightGrayColor]]) {
+        return @"LightGray Color";
+    } else if ([self isEqual:[UIColor whiteColor]]) {
+        return @"White Color";
+    } else if ([self isEqual:[UIColor grayColor]]) {
+        return @"Gray Color";
+    } else if ([self isEqual:[UIColor redColor]]) {
+        return @"Red Color";
+    } else if ([self isEqual:[UIColor greenColor]]) {
+        return @"Green Color";
+    } else if ([self isEqual:[UIColor blueColor]]) {
+        return @"Blue Color";
+    } else if ([self isEqual:[UIColor cyanColor]]) {
+        return @"Cyan Color";
+    } else if ([self isEqual:[UIColor yellowColor]]) {
+        return @"Yellow Color";
+    } else if ([self isEqual:[UIColor magentaColor]]) {
+        return @"Magenta Color";
+    } else if ([self isEqual:[UIColor orangeColor]]) {
+        return @"Orange Color";
+    } else if ([self isEqual:[UIColor purpleColor]]) {
+        return @"Purple Color";
+    } else if ([self isEqual:[UIColor brownColor]]) {
+        return @"Brown Color";
+    } else if ([self isEqual:[UIColor systemRedColor]]) {
+        return @"System Red Color";
+    } else if ([self isEqual:[UIColor systemGreenColor]]) {
+        return @"System Green Color";
+    } else if ([self isEqual:[UIColor systemBlueColor]]) {
+        return @"System Blue Color";
+    } else if ([self isEqual:[UIColor systemOrangeColor]]) {
+        return @"System Orange Color";
+    } else if ([self isEqual:[UIColor systemYellowColor]]) {
+        return @"System Yellow Color";
+    } else if ([self isEqual:[UIColor systemPinkColor]]) {
+        return @"System Pink Color";
+    } else if ([self isEqual:[UIColor systemTealColor]]) {
+        return @"System Teal Color";
+    } else if ([self isEqual:[UIColor systemGrayColor]]) {
+        return @"System Gray Color";
+    } else if ([self isEqual:[UIColor lightTextColor]]) {
+        return @"Light Text Color";
+    } else if ([self isEqual:[UIColor darkTextColor]]) {
+        return @"Dark Text Color";
+    } else if ([self isEqual:[UIColor groupTableViewBackgroundColor]]) {
+        return @"Group Table View Background Color";
+    } else if (@available(iOS 9.0, *)) {
+        if ([self isEqual:[UIColor systemPurpleColor]]) {
+            return @"System Purple Color";
+        }
+    }
+    return nil;
 }
 
 - (UIColor *)LL_mixtureWithColor:(UIColor *)color radio:(CGFloat)radio {

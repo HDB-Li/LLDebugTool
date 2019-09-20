@@ -48,7 +48,7 @@
         make.left.mas_equalTo(kLLGeneralMargin);
         make.top.mas_equalTo(kLLGeneralMargin);
         self.titleLabelBottomCons = make.bottom.mas_equalTo(-kLLGeneralMargin);
-        make.width.mas_equalTo(110);
+        make.width.mas_equalTo(120);
     }];
 }
 
