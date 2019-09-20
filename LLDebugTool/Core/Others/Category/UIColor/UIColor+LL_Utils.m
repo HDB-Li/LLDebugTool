@@ -82,25 +82,28 @@
         return @"Clear Color";
     }
     
-    NSString *color = [self LL_systemColorName] ?: @"";
+    NSString *color = [self LL_systemColorName];
     
+    if (color) {
+        color = [color stringByAppendingFormat:@" (%@)",[self LL_RGBADescrption]];
+    } else {
+        color = [self LL_RGBADescrption];
+    }
+    
+    return color;
+}
+
+- (NSString *)LL_RGBADescrption {
     NSArray *rgba = [self LL_RGBA];
     int r = [rgba[0] doubleValue] * 255.0;
     int g = [rgba[1] doubleValue] * 255.0;
     int b = [rgba[2] doubleValue] * 255.0;
     int a = [rgba[3] doubleValue] * 255.0;
-    
-    if ([color length]) {
-        color = [color stringByAppendingFormat:@" (#%02X%02X%02X)", r, g, b];
-    } else {
-        color = [NSString stringWithFormat:@"#%02X%02X%02X", r, g, b];
-    }
-    
+    NSString *desc = [NSString stringWithFormat:@"#%02X%02X%02X",r,g,b];
     if (a < 255) {
-        color = [color stringByAppendingFormat:@", Alpha: %0.2f", [rgba[3] doubleValue]];
+        desc = [desc stringByAppendingFormat:@", Alpha: %0.2f", [rgba[3] doubleValue]];
     }
-    
-    return color;
+    return desc;
 }
 
 - (NSString *)LL_systemColorName {
