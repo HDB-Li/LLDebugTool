@@ -41,6 +41,8 @@
     
     [self.contentView addSubview:self.detailLabel];
     
+    [self.titleLabelBottomCons uninstall];
+    
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-kLLGeneralMargin);
         make.top.mas_equalTo(kLLGeneralMargin);
@@ -57,7 +59,11 @@
 #pragma mark - Getters and setters
 - (void)setModel:(LLTitleCellModel *)model {
     [super setModel:model];
-    self.detailLabel.text = model.detailTitle;
+    if (model.detailTitle == nil || model.detailTitle.length == 0) {
+        self.detailLabel.text = @" ";
+    } else {
+        self.detailLabel.text = model.detailTitle;
+    }
 }
 
 - (UILabel *)detailLabel {

@@ -125,29 +125,44 @@
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Interaction" detailTitle:[NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"]]];
+    
+    NSString *userInterface = [NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"];
+    NSString *multipleTouch = [NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"];
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]]];
+    
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Tint" detailTitle:[self colorDescription:view.tintColor]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:[NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hidden %@", view.isHidden ? @"On" : @"Off"]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clears Graphics Context %@", view.clearsContextBeforeDrawing ? @"On" : @"Off"]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clip To Bounds %@", view.clipsToBounds ? @"On" : @"Off"]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Autoresizes Subviews %@", view.autoresizesSubviews ? @"On" : @"Off"]]];
+    
+    NSString *opaque = [NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"];
+    NSString *hidden = [NSString stringWithFormat:@"Hidden %@", view.isHidden ? @"On" : @"Off"];
+    NSString *context = [NSString stringWithFormat:@"Clears Graphics Context %@", view.clearsContextBeforeDrawing ? @"On" : @"Off"];
+    NSString *clipToBounds = [NSString stringWithFormat:@"Clip To Bounds %@", view.clipsToBounds ? @"On" : @"Off"];
+    NSString *autoresizes = [NSString stringWithFormat:@"Autoresizes Subviews %@", view.autoresizesSubviews ? @"On" : @"Off"];
+    
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:[@[opaque, hidden, context, clipToBounds, autoresizes] componentsJoinedByString:@"\n\n"]]];
+
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:section];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithLabel:(UILabel *)label {
     NSMutableArray *section = [[NSMutableArray alloc] init];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:label.text]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:label.attributedText == nil ? @"Attributed Text" : @"Plain Text"]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[self colorDescription:label.textColor]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:label.font.description]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", label.LL_textAlignmentDescription]]];
+    
+    NSString *text = label.text ?: @"<nil>";
+    NSString *attributedText = label.attributedText == nil ? @"Attributed Text" : @"Plain Text";
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[@[text, attributedText] componentsJoinedByString:@"\n\n"]]];
+
+    NSString *textColor = [self colorDescription:label.textColor];
+    NSString *font = label.font.description ?: @"<nil>";
+    NSString *aligned = [NSString stringWithFormat:@"Aligned %@", label.LL_textAlignmentDescription];
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[@[textColor, font, aligned] componentsJoinedByString:@"\n\n"]]];
+
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"]]];
+    
+    NSString *behavior = [NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"];
+    NSString *highlighted = [NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"];
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[@[behavior, highlighted] componentsJoinedByString:@"\n\n"]]];
+
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Line Break" detailTitle:label.LL_lineBreakModeDescription]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]]];
@@ -159,11 +174,17 @@
 
 - (LLTitleCellCategoryModel *)sectionModelWithControl:(UIControl *)control {
     NSMutableArray *section = [[NSMutableArray alloc] init];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Alignment" detailTitle:[NSString stringWithFormat:@"%@ Horizonally", [control LL_contentHorizontalAlignmentDescription]]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"%@ Vertically", [control LL_contentVerticalAlignmentDescription]]]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Content" detailTitle:control.isSelected ? @"Selected" : @"Not Selected"]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:control.isEnabled ? @"Enabled" : @"Not Enabled"]];
-    [section addObject:[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:control.isHighlighted ? @"Highlighted" : @"Not Highlighted"]];
+    
+    NSString *alignment = [NSString stringWithFormat:@"%@ Horizonally", [control LL_contentHorizontalAlignmentDescription]];
+    NSString *vertically = [NSString stringWithFormat:@"%@ Vertically", [control LL_contentVerticalAlignmentDescription]];
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Alignment" detailTitle:[@[alignment, vertically] componentsJoinedByString:@"\n\n"]]];
+    
+    NSString *selected = control.isSelected ? @"Selected" : @"Not Selected";
+    NSString *enabled = control.isEnabled ? @"Enabled" : @"Not Enabled";
+    NSString *highlighted = control.isHighlighted ? @"Highlighted" : @"Not Highlighted";
+    
+    [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Content" detailTitle:[@[selected, enabled, highlighted] componentsJoinedByString:@"\n\n"]]];
+
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Control" items:section];
 }
 

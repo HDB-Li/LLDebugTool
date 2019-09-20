@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic, strong) MASConstraint *titleLabelBottomCons;
+
 @end
 
 @implementation LLTitleCell
@@ -39,12 +41,13 @@
 - (void)initUI {
     [super initUI];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [self.contentView addSubview:self.titleLabel];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kLLGeneralMargin);
         make.top.mas_equalTo(kLLGeneralMargin);
-        make.bottom.mas_equalTo(-kLLGeneralMargin);
+        self.titleLabelBottomCons = make.bottom.mas_equalTo(-kLLGeneralMargin);
         make.width.mas_equalTo(110);
     }];
 }
