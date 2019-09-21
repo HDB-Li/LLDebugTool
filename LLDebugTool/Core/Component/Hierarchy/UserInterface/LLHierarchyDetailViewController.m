@@ -292,9 +292,11 @@
         [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].backgroundColor} forState:UIControlStateSelected];
         _segmentedControl.backgroundColor = [LLThemeManager shared].containerColor;
         _segmentedControl.tintColor = [LLThemeManager shared].primaryColor;
+#ifdef __IPHONE_13_0
         if (@available(iOS 13.0, *)) {
             _segmentedControl.selectedSegmentTintColor = [LLThemeManager shared].primaryColor;
         }
+#endif
         _segmentedControl.selectedSegmentIndex = 0;
     }
     return _segmentedControl;
