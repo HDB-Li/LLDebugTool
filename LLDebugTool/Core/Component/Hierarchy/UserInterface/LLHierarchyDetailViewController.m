@@ -127,16 +127,13 @@
 - (LLTitleCellCategoryModel *)sectionModelWithObject:(NSObject *)object {
     NSMutableArray *section = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Class Name" detailTitle:NSStringFromClass(object.class)];
-    model1.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Class Name" detailTitle:NSStringFromClass(object.class)];
     [section addObject:model1];
     
-    LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p",object]];
-    model2.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    LLTitleCellModel *model2 = [self submodelWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p",object]];
     [section addObject:model2];
     
-    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Description" detailTitle:object.description];
-    model3.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Description" detailTitle:object.description];
     [section addObject:model3];
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Object" items:section];
 }
@@ -144,30 +141,27 @@
 - (LLTitleCellCategoryModel *)sectionModelWithView:(UIView *)view {
     NSMutableArray *section = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Layer" detailTitle:view.layer.description];
-    model1.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Layer" detailTitle:view.layer.description];
     [section addObject:model1];
     
-    LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)];
+    LLTitleCellModel *model2 = [self modelWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)];
     [section addObject:model2];
     
-    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription];
-    model3.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription];
     [section addObject:model3];
     
-    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]];
+    LLTitleCellModel *model4 = [self modelWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]];
     [section addObject:model4];
     
     NSString *userInterface = [NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"];
     NSString *multipleTouch = [NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"];
-    LLTitleCellModel *model5 = [[LLTitleCellModel alloc] initWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]];
+    LLTitleCellModel *model5 = [self modelWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]];
     [section addObject:model5];
     
-    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
-    model6.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    LLTitleCellModel *model6 = [self submodelWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
     [section addObject:model6];
     
-    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
+    LLTitleCellModel *model7 = [self submodelWithTitle:<#(NSString *)#> detailTitle:<#(NSString *)#>] [[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
     model7.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
     [section addObject:model7];
     
@@ -273,6 +267,20 @@
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"Animation Highlighted" detailTitle:imageView.highlightedAnimationImages ? imageView.highlightedAnimationImages.description : @"No image"]];
     [section addObject:[[LLTitleCellModel alloc] initWithTitle:@"State" detailTitle:imageView.isHighlighted ? @"Highlighted" : @"Not Highlighted"]];
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Image View" items:section];
+}
+
+- (LLTitleCellModel *)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
+    return [self modelWithTitle:title detailTitle:detailTitle insets:UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0)];
+}
+
+- (LLTitleCellModel *)submodelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
+    return [self modelWithTitle:title detailTitle:detailTitle insets:UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0)];
+}
+
+- (LLTitleCellModel *)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle insets:(UIEdgeInsets)insets {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:title detailTitle:detailTitle];
+    model.separatorInsets = insets;
+    return model;
 }
 
 - (NSString *)colorDescription:(UIColor *_Nullable)color {
