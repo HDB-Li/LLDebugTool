@@ -51,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    self.name = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
+    self.name = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;

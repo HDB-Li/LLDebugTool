@@ -74,7 +74,7 @@ static unsigned long long _absolutelyIdentity = 0;
 }
 
 + (NSString *)stringFromFrame:(CGRect)frame {
-    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[[LLFormatterTool shared] formatNumber:@(frame.origin.x)],[[LLFormatterTool shared] formatNumber:@(frame.origin.y)],[[LLFormatterTool shared] formatNumber:@(frame.size.width)],[[LLFormatterTool shared] formatNumber:@(frame.size.height)]];
+    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[LLFormatterTool formatNumber:@(frame.origin.x)],[LLFormatterTool formatNumber:@(frame.origin.y)],[LLFormatterTool formatNumber:@(frame.size.width)],[LLFormatterTool formatNumber:@(frame.size.height)]];
 }
 
 + (UIWindow *)topWindow {

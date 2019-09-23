@@ -86,7 +86,7 @@ static LLScreenshotHelper *_instance = nil;
         return;
     }
     if (name.length == 0) {
-        name = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
+        name = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     }
     name = [name stringByAppendingPathExtension:@"png"];
     NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];

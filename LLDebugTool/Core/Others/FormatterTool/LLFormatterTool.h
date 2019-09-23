@@ -41,20 +41,13 @@ typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
 @interface LLFormatterTool : NSObject
 
 /**
- Singleton
-
- @return Singleton.
- */
-+ (instancetype)shared;
-
-/**
  Format date use style.
 
  @param date Date.
  @param style FormatterToolDateStyle.
  @return Format string.
  */
-- (NSString *_Nullable)stringFromDate:(NSDate *)date style:(FormatterToolDateStyle)style;
++ (NSString *_Nullable)stringFromDate:(NSDate *)date style:(FormatterToolDateStyle)style;
 
 /**
  Get date use formatted string use style
@@ -63,7 +56,7 @@ typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
  @param style FormatterToolDateStyle
  @return Date.
  */
-- (NSDate *_Nullable)dateFromString:(NSString *)string style:(FormatterToolDateStyle)style;
++ (NSDate *_Nullable)dateFromString:(NSString *)string style:(FormatterToolDateStyle)style;
 
 /**
  Format a CGFloat value with maximumFractionDigits = 2.
@@ -71,7 +64,7 @@ typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
  @param number NSNumber.
  @return Format string.
  */
-- (NSString *)formatNumber:(NSNumber *)number;
++ (NSString *)formatNumber:(NSNumber *)number;
 
 @end
 

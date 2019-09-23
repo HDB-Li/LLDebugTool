@@ -52,7 +52,7 @@
             NSMutableArray *days = [[NSMutableArray alloc] init];
             NSDate *date = [fromDate copy];
             while ([endDate timeIntervalSinceDate:date] >= 0) {
-                NSString *dateString = [[LLFormatterTool shared] stringFromDate:date style:FormatterToolDateStyle2];
+                NSString *dateString = [LLFormatterTool stringFromDate:date style:FormatterToolDateStyle2];
                 if (dateString.length) {
                     [days addObject:dateString];
                 }

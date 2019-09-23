@@ -108,8 +108,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [[LLFormatterTool shared] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
-        NSDate *endDate = [[LLFormatterTool shared] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *fromDate = [LLFormatterTool dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *endDate = [LLFormatterTool dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         NSMutableArray *userIds = [[NSMutableArray alloc] init];
         
         for (LLFilterLabelModel *model in self.userIdDataArray) {

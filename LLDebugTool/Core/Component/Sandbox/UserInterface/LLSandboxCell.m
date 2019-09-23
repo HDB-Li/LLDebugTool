@@ -50,7 +50,7 @@
 - (void)confirmWithModel:(LLSandboxModel *)model {
     _model = model;
     self.nameLabel.text = model.name;
-    self.dateLabel.text = [NSString stringWithFormat:@"%@", [[LLFormatterTool shared] stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", [LLFormatterTool stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
     self.sizeLabel.text = [NSString stringWithFormat:@"%@",model.totalFileSizeString];
     if (model.isDirectory && model.subModels.count) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

@@ -67,8 +67,8 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        NSDate *fromDate = [[LLFormatterTool shared] dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
-        NSDate *endDate = [[LLFormatterTool shared] dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *fromDate = [LLFormatterTool dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
+        NSDate *endDate = [LLFormatterTool dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         _changeBlock(fromDate,endDate);
     }
 }

@@ -90,8 +90,8 @@
     NSString *fromString = data.lastObject.startDate;
     NSString *endString = data.firstObject.startDate;
     
-    NSDate *fromDate = [[LLFormatterTool shared] dateFromString:fromString style:FormatterToolDateStyle1];
-    NSDate *endDate = [[LLFormatterTool shared] dateFromString:endString style:FormatterToolDateStyle1];
+    NSDate *fromDate = [LLFormatterTool dateFromString:fromString style:FormatterToolDateStyle1];
+    NSDate *endDate = [LLFormatterTool dateFromString:endString style:FormatterToolDateStyle1];
     if (!fromDate) {
         fromDate = [NSDate date];
     }

@@ -162,7 +162,7 @@
     LLTitleCellModel *model6 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"]];
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [self submodelWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
+    LLTitleCellModel *model7 = [self submodelWithTitle:@"Alpha" detailTitle:[LLFormatterTool formatNumber:@(view.alpha)]];
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [self submodelWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
@@ -242,7 +242,7 @@
     LLTitleCellModel *model10 = [self submodelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:label.lineBreakMode]];
     [settings addObject:model10];
     
-    LLTitleCellModel *model11 = [self modelWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]];
+    LLTitleCellModel *model11 = [self modelWithTitle:@"Min Font Scale" detailTitle:[LLFormatterTool formatNumber:@(label.minimumScaleFactor)]];
     [settings addObject:model11];
     
     LLTitleCellModel *model12 = [self submodelWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]];
@@ -251,7 +251,7 @@
     LLTitleCellModel *model13 = [self submodelWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]];
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [self modelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]];
+    LLTitleCellModel *model14 = [self modelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[LLFormatterTool formatNumber:@(label.shadowOffset.width)], [LLFormatterTool formatNumber:@(label.shadowOffset.height)]]];
     [settings addObject:model14];
 
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:settings];
@@ -313,7 +313,7 @@
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    LLTitleCellModel *model10 = [self submodelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(button.titleShadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(button.titleShadowOffset.height)]]];
+    LLTitleCellModel *model10 = [self submodelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[LLFormatterTool formatNumber:@(button.titleShadowOffset.width)], [LLFormatterTool formatNumber:@(button.titleShadowOffset.height)]]];
     [settings addObject:model10];
 #pragma clang diagnostic pop
     
@@ -335,22 +335,22 @@
     [settings addObject:model15];
 #pragma clang diagnostic pop
     
-    LLTitleCellModel *model16 = [self submodelWithTitle:@"Content Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.top)], [[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.bottom)]]];
+    LLTitleCellModel *model16 = [self submodelWithTitle:@"Content Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [LLFormatterTool formatNumber:@(button.contentEdgeInsets.top)], [LLFormatterTool formatNumber:@(button.contentEdgeInsets.bottom)]]];
     [settings addObject:model16];
     
-    LLTitleCellModel *model17 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.left)],[[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.right)]]];
+    LLTitleCellModel *model17 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[LLFormatterTool formatNumber:@(button.contentEdgeInsets.left)],[LLFormatterTool formatNumber:@(button.contentEdgeInsets.right)]]];
     [settings addObject:model17];
     
-    LLTitleCellModel *model18 = [self submodelWithTitle:@"Title Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.top)], [[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.bottom)]]];
+    LLTitleCellModel *model18 = [self submodelWithTitle:@"Title Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [LLFormatterTool formatNumber:@(button.titleEdgeInsets.top)], [LLFormatterTool formatNumber:@(button.titleEdgeInsets.bottom)]]];
     [settings addObject:model18];
     
-    LLTitleCellModel *model19 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.left)],[[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.right)]]];
+    LLTitleCellModel *model19 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[LLFormatterTool formatNumber:@(button.titleEdgeInsets.left)],[LLFormatterTool formatNumber:@(button.titleEdgeInsets.right)]]];
     [settings addObject:model19];
     
-    LLTitleCellModel *model20 = [self submodelWithTitle:@"Image Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.top)], [[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.bottom)]]];
+    LLTitleCellModel *model20 = [self submodelWithTitle:@"Image Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [LLFormatterTool formatNumber:@(button.imageEdgeInsets.top)], [LLFormatterTool formatNumber:@(button.imageEdgeInsets.bottom)]]];
     [settings addObject:model20];
     
-    LLTitleCellModel *model21 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.left)],[[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.right)]]];
+    LLTitleCellModel *model21 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[LLFormatterTool formatNumber:@(button.imageEdgeInsets.left)],[LLFormatterTool formatNumber:@(button.imageEdgeInsets.right)]]];
     [settings addObject:model21];
     
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Button" items:settings];
@@ -397,7 +397,7 @@
     }
     
     NSArray *rgba = [color LL_RGBA];
-    return [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [[LLFormatterTool shared] formatNumber:rgba[0]], [[LLFormatterTool shared] formatNumber:rgba[1]], [[LLFormatterTool shared] formatNumber:rgba[2]], [[LLFormatterTool shared] formatNumber:rgba[3]]];
+    return [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [LLFormatterTool formatNumber:rgba[0]], [LLFormatterTool formatNumber:rgba[1]], [LLFormatterTool formatNumber:rgba[2]], [LLFormatterTool formatNumber:rgba[3]]];
 }
 
 #pragma mark - Getters and setters
