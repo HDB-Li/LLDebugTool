@@ -20,6 +20,7 @@
 #import "TestCrashViewController.h"
 #import "TestColorStyleViewController.h"
 #import "TestWindowStyleViewController.h"
+#import "TestHierarchyViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -121,10 +122,6 @@ static NSString *const kCellID = @"cellID";
 
 - (void)testSandbox {
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSandbox];
-}
-
-- (void)testHierarchy {
-    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionHierarchy];
 }
 
 #pragma mark - UITableView
@@ -257,7 +254,8 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 4) {
         [self testSandbox];
     } else if (indexPath.section == 5) {
-        [self testHierarchy];
+        TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
             TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] init];
