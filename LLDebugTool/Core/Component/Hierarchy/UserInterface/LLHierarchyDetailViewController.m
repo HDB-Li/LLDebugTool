@@ -180,7 +180,7 @@
 
 #ifdef __IPHONE_13_0
     
-    LLTitleCellModel *model10 = [self modelWithTitle:@"Trait Collection" detailTitle:nil];
+    LLTitleCellModel *model10 = [self submodelWithTitle:@"Trait Collection" detailTitle:nil];
     [settings addObject:model10];
     
     NSString *userInterfaceStyle = nil;
@@ -200,7 +200,7 @@
                 break;
         }
     }
-    LLTitleCellModel *model11 = [self modelWithTitle:nil detailTitle:userInterfaceStyle];
+    LLTitleCellModel *model11 = [self submodelWithTitle:nil detailTitle:userInterfaceStyle];
     [settings addObject:model11];
     
     NSString *verticalSizeClass = nil;
@@ -219,7 +219,7 @@
             break;
     }
     
-    LLTitleCellModel *model12 = [self modelWithTitle:nil detailTitle:verticalSizeClass];
+    LLTitleCellModel *model12 = [self submodelWithTitle:nil detailTitle:verticalSizeClass];
     [settings addObject:model12];
     
     
@@ -239,7 +239,7 @@
             break;
     }
     
-    LLTitleCellModel *model13 = [self modelWithTitle:nil detailTitle:horizontalSizeClass];
+    LLTitleCellModel *model13 = [self submodelWithTitle:nil detailTitle:horizontalSizeClass];
     [settings addObject:model13];
     
     NSString *layoutDirection = nil;
