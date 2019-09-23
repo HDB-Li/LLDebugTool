@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
 
 @protocol LLHierarchyInfoViewDelegate <NSObject, LLBaseInfoViewDelegate>
 
-- (void)LLHierarchyInfoViewDidSelectMoreInfoButton:(LLHierarchyInfoView *)view;
+- (void)LLHierarchyInfoView:(LLHierarchyInfoView *)view didSelectAt:(LLHierarchyInfoViewAction)action;
 
 @end
 
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
 
 @property (nonatomic, strong, nullable, readonly) UIView *selectedView;
 
-- (void)updateSelectedViews:(NSArray <UIView *>*)views;
+- (void)updateSelectedView:(UIView *)view;
 
 @end
 

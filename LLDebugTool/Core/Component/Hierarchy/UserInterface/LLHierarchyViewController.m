@@ -126,6 +126,50 @@
     return rect;
 }
 
+- (UIView *)findSelectedViewInViews:(NSArray *)selectedViews {
+    if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+        NSMutableArray *views = [[NSMutableArray alloc] init];
+        for (UIView *view in selectedViews) {
+            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
+                [views addObject:view];
+            }
+        }
+        return [views lastObject];
+    } else {
+        return [selectedViews lastObject];
+    }
+}
+
+- (NSArray <UIView *>*)findParentViewsBySelectedView:(UIView *)selectedView {
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    UIView *view = [selectedView superview];
+    while (view) {
+        if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
+                [views addObject:view];
+            }
+        } else {
+            [views addObject:view];
+        }
+        view = view.superview;
+    }
+    return [views copy];
+}
+
+- (NSArray <UIView *>*)findSubviewsBySelectedView:(UIView *)selectedView {
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    for (UIView *view in selectedView.subviews) {
+        if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
+                [views addObject:view];
+            }
+        } else {
+            [views addObject:view];
+        }
+    }
+    return [views copy];
+}
+
 #pragma mark - LLHierarchyPickerViewDelegate
 - (void)LLHierarchyView:(LLHierarchyView *)view didMoveTo:(NSArray <UIView *>*)selectedViews {
     
@@ -146,7 +190,7 @@
         [self.observeViews addObjectsFromArray:selectedViews];
     }
 
-    [self.infoView updateSelectedViews:selectedViews];
+    [self.infoView updateSelectedView:[self findSelectedViewInViews:selectedViews]];
 }
 
 #pragma mark - LLBaseInfoViewDelegate
@@ -155,16 +199,63 @@
 }
 
 #pragma mark - LLHierarchyInfoViewDelegate
-- (void)LLHierarchyInfoViewDidSelectMoreInfoButton:(LLHierarchyInfoView *)view {
+- (void)LLHierarchyInfoView:(LLHierarchyInfoView *)view didSelectAt:(LLHierarchyInfoViewAction)action {
     UIView *selectView = self.infoView.selectedView;
     if (selectView == nil) {
         [LLTool log:@"Failed to show hierarchy detail viewController"];
         return;
     }
+    switch (action) {
+        case LLHierarchyInfoViewActionShowMoreInfo:{
+            [self showHierarchyInfo:selectView];
+        }
+            break;
+        case LLHierarchyInfoViewActionShowParent: {
+            [self showParentSheet:selectView];
+        }
+            break;
+        case LLHierarchyInfoViewActionShowSubview: {
+            [self showSubviewSheet:selectView];
+        }
+            break;
+    }
+}
+
+- (void)showHierarchyInfo:(UIView *)selectView {
     LLHierarchyDetailViewController *vc = [[LLHierarchyDetailViewController alloc] init];
     vc.selectView = selectView;
     LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)showParentSheet:(UIView *)selectView {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    NSArray *parentViews = [self findParentViewsBySelectedView:selectView];
+    for (UIView *view in parentViews) {
+        [actions addObject:NSStringFromClass(view.class)];
+    }
+    if (actions.count == 0) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
+        [weakSelf.infoView updateSelectedView:parentViews[index]];
+    }];
+}
+
+- (void)showSubviewSheet:(UIView *)selectView {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    NSArray *parentViews = [self findSubviewsBySelectedView:selectView];
+    for (UIView *view in parentViews) {
+        [actions addObject:NSStringFromClass(view.class)];
+    }
+    if (actions.count == 0) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
+        [weakSelf.infoView updateSelectedView:parentViews[index]];
+    }];
 }
 
 #pragma mark - Getters and setters

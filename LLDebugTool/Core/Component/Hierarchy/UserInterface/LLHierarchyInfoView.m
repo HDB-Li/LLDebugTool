@@ -35,8 +35,6 @@
 
 @interface LLHierarchyInfoView ()
 
-@property (nonatomic, strong, nullable) NSArray <UIView *>*selectedViews;
-
 @property (nonatomic, strong, nullable) UIView *selectedView;
 
 @property (nonatomic, strong) UILabel *contentLabel;
@@ -57,11 +55,9 @@
 
 @dynamic delegate;
 
-- (void)updateSelectedViews:(NSArray <UIView *>*)selectedViews {
+- (void)updateSelectedView:(UIView *)selectedView {
     
-    self.selectedViews = selectedViews;
-    
-    UIView *view = [self findSelectedViewInViews:selectedViews];
+    UIView *view = selectedView;
     
     if (self.selectedView == view) {
         return;
@@ -145,38 +141,9 @@
     [self.actionContentView addSubview:self.moreButton];
 }
 
-- (UIView *)findSelectedViewInViews:(NSArray *)selectedViews {
-    if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
-        NSMutableArray *views = [[NSMutableArray alloc] init];
-        for (UIView *view in selectedViews) {
-            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
-                [views addObject:view];
-            }
-        }
-        return [views lastObject];
-    } else {
-        return [selectedViews lastObject];
-    }
-}
-
 #pragma mark - Event responses
-- (void)moreButtonClicked:(UIButton *)sender {
-    if (!self.selectedView) {
-        return;
-    }
-    [self.delegate LLHierarchyInfoViewDidSelectMoreInfoButton:self];
-}
-
-- (void)parentViewsButtonClicked:(UIButton *)sender {
-    
-}
-
-- (void)subviewsButtonClicked:(UIButton *)sender {
-
-}
-
 - (void)buttonClicked:(UIButton *)sender {
-    1
+    [self.delegate LLHierarchyInfoView:self didSelectAt:sender.tag];
 }
 
 #pragma mark - Getters and setters
@@ -206,7 +173,7 @@
 
 - (UIButton *)parentViewsButton {
     if (!_parentViewsButton) {
-        _parentViewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(parentViewsButtonClicked:)];
+        _parentViewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
         [_parentViewsButton setTitle:@"Parent Views" forState:UIControlStateNormal];
         [_parentViewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _parentViewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -225,7 +192,7 @@
 
 - (UIButton *)subviewsButton {
     if (!_subviewsButton) {
-        _subviewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(subviewsButtonClicked:)];
+        _subviewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
         [_subviewsButton setTitle:@"Subviews" forState:UIControlStateNormal];
         [_subviewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _subviewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -244,7 +211,7 @@
 
 - (UIButton *)moreButton {
     if (!_moreButton) {
-        _moreButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(moreButtonClicked:)];
+        _moreButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
         [_moreButton setTitle:@"More Info" forState:UIControlStateNormal];
         [_moreButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
