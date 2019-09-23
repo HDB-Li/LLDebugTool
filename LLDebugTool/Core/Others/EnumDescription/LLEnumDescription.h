@@ -46,9 +46,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)controlContentHorizontalAlignmentDescription:(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
 
-+ (NSString *)buttonTypeDescription:(UIButtonType)buttonType;
++ (NSString *_Nullable)buttonTypeDescription:(UIButtonType)buttonType;
 
-+ (NSString *)controlStateDescription:(UIControlState)state;
++ (NSString *_Nullable)controlStateDescription:(UIControlState)state;
+
++ (NSString *_Nullable)textBorderStyleDescription:(UITextBorderStyle)style;
+
++ (NSString *_Nullable)textFieldViewModeDescription:(UITextFieldViewMode)mode;
+
++ (NSString *_Nullable)textAutocapitalizationTypeDescription:(UITextAutocapitalizationType)type;
+
++ (NSString *_Nullable)textAutocorrectionTypeDescription:(UITextAutocorrectionType)type;
+
++ (NSString *_Nullable)keyboardTypeDescription:(UIKeyboardType)type;
+
++ (NSString *_Nullable)keyboardAppearanceDescription:(UIKeyboardAppearance)appearance;
+
++ (NSString *_Nullable)returnKeyTypeDescription:(UIReturnKeyType)type;
+
 
 @end
 

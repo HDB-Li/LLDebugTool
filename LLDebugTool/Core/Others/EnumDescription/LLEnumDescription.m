@@ -214,4 +214,130 @@
     return nil;
 }
 
++ (NSString *)textBorderStyleDescription:(UITextBorderStyle)style {
+    switch (style) {
+        case UITextBorderStyleNone:
+            return @"None";
+        case UITextBorderStyleLine:
+            return @"Line";
+        case UITextBorderStyleBezel:
+            return @"Bezel";
+        case UITextBorderStyleRoundedRect:
+            return @"Rounded Rect";
+    }
+    return nil;
+}
+
++ (NSString *)textFieldViewModeDescription:(UITextFieldViewMode)mode {
+    switch (mode) {
+        case UITextFieldViewModeNever:
+            return @"Never appears";
+        case UITextFieldViewModeWhileEditing:
+            return @"While editing";
+        case UITextFieldViewModeUnlessEditing:
+            return @"Unless editing";
+        case UITextFieldViewModeAlways:
+            return @"Always appears";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)textAutocapitalizationTypeDescription:(UITextAutocapitalizationType)type {
+    switch (type) {
+        case UITextAutocapitalizationTypeNone:
+            return @"None";
+        case UITextAutocapitalizationTypeWords:
+            return @"Words";
+        case UITextAutocapitalizationTypeSentences:
+            return @"Sentences";
+        case UITextAutocapitalizationTypeAllCharacters:
+            return @"All characters";
+    }
+    return nil;
+}
+
++ (NSString *)textAutocorrectionTypeDescription:(UITextAutocorrectionType)type {
+    switch (type) {
+        case UITextAutocorrectionTypeDefault:
+            return @"Default";
+        case UITextAutocorrectionTypeYes:
+            return @"YES";
+        case UITextAutocorrectionTypeNo:
+            return @"NO";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)keyboardTypeDescription:(UIKeyboardType)type {
+    switch (type) {
+        case UIKeyboardTypeDefault:
+            return @"Default";
+        case UIKeyboardTypeASCIICapable:
+            return @"ASCII capable";
+        case UIKeyboardTypeNumbersAndPunctuation:
+            return @"Numbers and punctuation";
+        case UIKeyboardTypeURL:
+            return @"URL";
+        case UIKeyboardTypeNumberPad:
+            return @"Number pad";
+        case UIKeyboardTypePhonePad:
+            return @"Phone pad";
+        case UIKeyboardTypeNamePhonePad:
+            return @"Name phone pad";
+        case UIKeyboardTypeEmailAddress:
+            return @"Email address";
+        case UIKeyboardTypeDecimalPad:
+            return @"Decimal pad";
+        case UIKeyboardTypeTwitter:
+            return @"Twitter";
+        case UIKeyboardTypeWebSearch:
+            return @"Web search";
+        case UIKeyboardTypeASCIICapableNumberPad:
+            return @"ASCII capable number pad";
+    }
+    return nil;
+}
+
++ (NSString *)keyboardAppearanceDescription:(UIKeyboardAppearance)appearance {
+    switch (appearance) {
+        case UIKeyboardAppearanceDefault:
+            return @"Default";
+        case UIKeyboardAppearanceDark:
+            return @"Dark";
+        case UIKeyboardAppearanceLight:
+            return @"Light";
+    }
+    return nil;
+}
+
++ (NSString *)returnKeyTypeDescription:(UIReturnKeyType)type {
+    switch (type) {
+        case UIReturnKeyDefault:
+            return @"Default";
+        case UIReturnKeyGo:
+            return @"Go";
+        case UIReturnKeyGoogle:
+            return @"Google";
+        case UIReturnKeyJoin:
+            return @"Join";
+        case UIReturnKeyNext:
+            return @"Next";
+        case UIReturnKeyRoute:
+            return @"Route";
+        case UIReturnKeySearch:
+            return @"Search";
+        case UIReturnKeySend:
+            return @"Send";
+        case UIReturnKeyYahoo:
+            return @"Yahoo";
+        case UIReturnKeyDone:
+            return @"Done";
+        case UIReturnKeyEmergencyCall:
+            return @"Emergency call";
+        case UIReturnKeyContinue:
+            return @"Continue";
+    }
+    return nil;
+}
+
 @end

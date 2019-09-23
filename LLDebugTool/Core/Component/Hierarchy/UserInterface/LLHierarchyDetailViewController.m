@@ -372,6 +372,75 @@
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Image View" items:settings];
 }
 
+- (LLTitleCellCategoryModel *)sectionModelWithTextField:(UITextField *)textField {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Plain Text" detailTitle:textField.text ?: @"<empty string>"];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self submodelWithTitle:@"Attributed Text" detailTitle:textField.attributedText ? textField.attributedText.string : @"<empty string>"];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@",textField.allowsEditingTextAttributes ? @"On" : @"Off"]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self submodelWithTitle:@"Color" detailTitle:[self colorDescription:textField.textColor]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self submodelWithTitle:@"Font" detailTitle:textField.font.description];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self submodelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:textField.textAlignment]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self modelWithTitle:@"Placeholder" detailTitle:textField.placeholder ?: (textField.attributedPlaceholder ? textField.attributedPlaceholder.string : @"<empty string>")];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self submodelWithTitle:@"Background" detailTitle:textField.background ? textField.background.description : @"No image"];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self modelWithTitle:@"Disabled" detailTitle:textField.disabledBackground ? textField.disabledBackground.description : @"No image"];
+    [settings addObject:model9];
+    
+    LLTitleCellModel *model10 = [self modelWithTitle:@"Border Style" detailTitle:[LLEnumDescription textBorderStyleDescription:textField.borderStyle]];
+    [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self submodelWithTitle:@"Clear Button" detailTitle:[LLEnumDescription textFieldViewModeDescription:textField.clearButtonMode]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clear when editing begins %@",textField.clearsOnBeginEditing ? @"On" : @"Off"]];
+    [settings addObject:model12];
+    
+    LLTitleCellModel *model13 = [self submodelWithTitle:@"Min Font Size" detailTitle:[LLFormatterTool formatNumber:@(textField.minimumFontSize)]];
+    [settings addObject:model13];
+    
+    LLTitleCellModel *model14 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Adjusts to Fit %@",textField.adjustsFontSizeToFitWidth ? @"On" : @"Off"]];
+    [settings addObject:model14];
+    
+    LLTitleCellModel *model15 = [self submodelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:textField.autocapitalizationType]];
+    [settings addObject:model15];
+    
+    LLTitleCellModel *model16 = [self submodelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:textField.autocorrectionType]];
+    [settings addObject:model16];
+    
+    LLTitleCellModel *model17 = [self submodelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:textField.keyboardType]];
+    [settings addObject:model17];
+    
+    LLTitleCellModel *model18 = [self submodelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:textField.keyboardAppearance]];
+    [settings addObject:model18];
+    
+    LLTitleCellModel *model19 = [self submodelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:textField.returnKeyType]];
+    [settings addObject:model19];
+    
+    LLTitleCellModel *model20 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@", textField.enablesReturnKeyAutomatically ? @"On" : @"Off"]];
+    [settings addObject:model20];
+    
+    LLTitleCellModel *model21 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",textField.secureTextEntry ? @"On" : @"Off"]];
+    [settings addObject:model21];
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text Field" items:settings];
+}
+
 - (LLTitleCellModel *)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
     return [self modelWithTitle:title detailTitle:detailTitle insets:UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0)];
 }
