@@ -31,8 +31,6 @@
 
 "sandbox.info" = "展示沙盒信息";
 
-"hierarchy.info" = "展示结构功能";
-
 "color.style" = "使用ColorStyle颜色颜色";
 "color.custom" = "使用自定义颜色配置";
 "color.none" = "不使用颜色配置";
