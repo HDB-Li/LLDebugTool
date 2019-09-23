@@ -159,38 +159,6 @@ static const char kLLVerticalPaddingKey;
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (NSString *)LL_contentModeDescription {
-    switch (self.contentMode) {
-        case UIViewContentModeScaleToFill:
-            return @"ScaleToFill";
-        case UIViewContentModeScaleAspectFit:
-            return @"ScaleAspectFit";
-        case UIViewContentModeScaleAspectFill:
-            return @"ScaleAspectFill";
-        case UIViewContentModeRedraw:
-            return @"Redraw";
-        case UIViewContentModeCenter:
-            return @"Center";
-        case UIViewContentModeTop:
-            return @"Top";
-        case UIViewContentModeBottom:
-            return @"Bottom";
-        case UIViewContentModeLeft:
-            return @"Left";
-        case UIViewContentModeRight:
-            return @"Right";
-        case UIViewContentModeTopLeft:
-            return @"TopLeft";
-        case UIViewContentModeTopRight:
-            return @"TopRight";
-        case UIViewContentModeBottomLeft:
-            return @"BottomLeft";
-        case UIViewContentModeBottomRight:
-            return @"BottomRight";
-    }
-    return nil;
-}
-
 - (void)LL_setCornerRadius:(CGFloat)cornerRadius {
     self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;

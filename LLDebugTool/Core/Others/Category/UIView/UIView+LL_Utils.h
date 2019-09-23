@@ -53,8 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGFloat LL_right;
 
-@property (nonatomic, copy, readonly, nullable) NSString *LL_contentModeDescription;
-
 - (void)LL_setCornerRadius:(CGFloat)cornerRadius;
 
 - (void)LL_setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;

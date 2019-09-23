@@ -1,5 +1,5 @@
 //
-//  UILabel+LL_Utils.h
+//  LLEnumDescription.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,34 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UILabel (LL_Utils)
+@interface LLEnumDescription : NSObject
 
-- (NSString *_Nullable)LL_textAlignmentDescription;
++ (NSString *_Nullable)lineBreakModeDescription:(NSLineBreakMode)mode;
 
-- (NSString *_Nullable)LL_baselineAdjustmentDescription;
++ (NSString *_Nullable)userInterfaceStyleDescription:(UIUserInterfaceStyle)style API_AVAILABLE(ios(12.0));
 
-- (NSString *_Nullable)LL_lineBreakModeDescription;
++ (NSString *_Nullable)userInterfaceSizeClassDescription:(UIUserInterfaceSizeClass)sizeClass;
+
++ (NSString *_Nullable)traitEnvironmentLayoutDirectionDescription:(UITraitEnvironmentLayoutDirection)direction API_AVAILABLE(ios(10.0));
+
++ (NSString *_Nullable)viewContentModeDescription:(UIViewContentMode)mode;
+
++ (NSString *_Nullable)textAlignmentDescription:(NSTextAlignment)textAlignment;
+
++ (NSString *_Nullable)baselineAdjustmentDescription:(UIBaselineAdjustment)baselineAdjustment;
+
++ (NSString *_Nullable)controlContentVerticalAlignmentDescription:(UIControlContentVerticalAlignment)contentVerticalAlignment;
+
++ (NSString *_Nullable)controlContentHorizontalAlignmentDescription:(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
+
++ (NSString *)buttonTypeDescription:(UIButtonType)buttonType;
+
++ (NSString *)controlStateDescription:(UIControlState)state;
 
 @end
 

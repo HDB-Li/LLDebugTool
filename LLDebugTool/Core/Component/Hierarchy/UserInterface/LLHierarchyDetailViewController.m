@@ -28,13 +28,13 @@
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "UIColor+LL_Utils.h"
-#import "UILabel+LL_Utils.h"
-#import "UIControl+LL_Utils.h"
 #import "UIButton+LL_Utils.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
 #import "LLDetailTitleCell.h"
 #import "UIImage+LL_Utils.h"
+#import "LLEnumDescription.h"
+#import "LLFormatterTool.h"
 
 @interface LLHierarchyDetailViewController ()
 
@@ -150,119 +150,60 @@
     LLTitleCellModel *model2 = [self modelWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self submodelWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription];
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Content Model" detailTitle:[LLEnumDescription viewContentModeDescription:view.contentMode]];
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self modelWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]];
     [settings addObject:model4];
-    
-    NSString *userInterface = [NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"];
-    NSString *multipleTouch = [NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"];
-    LLTitleCellModel *model5 = [self modelWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]];
+        
+    LLTitleCellModel *model5 = [self submodelWithTitle:@"Interaction" detailTitle:[NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"]];
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [self submodelWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
+    LLTitleCellModel *model6 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"]];
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [self submodelWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
+    LLTitleCellModel *model7 = [self submodelWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [self modelWithTitle:@"Tint" detailTitle:[self colorDescription:view.tintColor]];
+    LLTitleCellModel *model8 = [self submodelWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
     [settings addObject:model8];
     
-    NSString *opaque = [NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"];
-    NSString *hidden = [NSString stringWithFormat:@"Hidden %@", view.isHidden ? @"On" : @"Off"];
-    NSString *context = [NSString stringWithFormat:@"Clears Graphics Context %@", view.clearsContextBeforeDrawing ? @"On" : @"Off"];
-    NSString *clipToBounds = [NSString stringWithFormat:@"Clip To Bounds %@", view.clipsToBounds ? @"On" : @"Off"];
-    NSString *autoresizes = [NSString stringWithFormat:@"Autoresizes Subviews %@", view.autoresizesSubviews ? @"On" : @"Off"];
-    LLTitleCellModel *model9 = [self modelWithTitle:@"Drawing" detailTitle:[@[opaque, hidden, context, clipToBounds, autoresizes] componentsJoinedByString:@"\n\n"]];
+    LLTitleCellModel *model9 = [self modelWithTitle:@"Tint" detailTitle:[self colorDescription:view.tintColor]];
     [settings addObject:model9];
-
-#ifdef __IPHONE_13_0
     
-    LLTitleCellModel *model10 = [self submodelWithTitle:@"Trait Collection" detailTitle:nil];
+    LLTitleCellModel *model10 = [self submodelWithTitle:@"Drawing" detailTitle:[NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"]];
     [settings addObject:model10];
     
-    NSString *userInterfaceStyle = nil;
-    if (@available(iOS 12.0, *)) {
-        switch (view.traitCollection.userInterfaceStyle) {
-            case UIUserInterfaceStyleUnspecified: {
-                userInterfaceStyle = @"Unspecified User Interface Style";
-            }
-                break;
-            case UIUserInterfaceStyleLight: {
-                userInterfaceStyle = @"Light User Interface Style";
-            }
-                break;
-            case UIUserInterfaceStyleDark:{
-                userInterfaceStyle = @"Dark User Interface Style";
-            }
-                break;
-        }
-    }
-    LLTitleCellModel *model11 = [self submodelWithTitle:nil detailTitle:userInterfaceStyle];
+    LLTitleCellModel *model11 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hidden %@", view.isHidden ? @"On" : @"Off"]];
     [settings addObject:model11];
     
-    NSString *verticalSizeClass = nil;
-    switch (view.traitCollection.verticalSizeClass) {
-        case UIUserInterfaceSizeClassUnspecified: {
-            verticalSizeClass = @"Unspecified";
-        }
-            break;
-        case UIUserInterfaceSizeClassCompact: {
-            verticalSizeClass = @"Compact Vertical Size Class";
-        }
-            break;
-        case UIUserInterfaceSizeClassRegular: {
-            verticalSizeClass = @"Regular Vertical Size Class";
-        }
-            break;
-    }
-    
-    LLTitleCellModel *model12 = [self submodelWithTitle:nil detailTitle:verticalSizeClass];
+    LLTitleCellModel *model12 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clears Graphics Context %@", view.clearsContextBeforeDrawing ? @"On" : @"Off"]];
     [settings addObject:model12];
     
-    
-    NSString *horizontalSizeClass = nil;
-    switch (view.traitCollection.horizontalSizeClass) {
-        case UIUserInterfaceSizeClassUnspecified: {
-            horizontalSizeClass = @"Unspecified";
-        }
-            break;
-        case UIUserInterfaceSizeClassCompact: {
-            horizontalSizeClass = @"Compact Horizontal Size Class";
-        }
-            break;
-        case UIUserInterfaceSizeClassRegular: {
-            horizontalSizeClass = @"Regular Horizontal Size Class";
-        }
-            break;
-    }
-    
-    LLTitleCellModel *model13 = [self submodelWithTitle:nil detailTitle:horizontalSizeClass];
+    LLTitleCellModel *model13 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clip To Bounds %@", view.clipsToBounds ? @"On" : @"Off"]];
     [settings addObject:model13];
     
-    NSString *layoutDirection = nil;
-    if (@available(iOS 10.0, *)) {
-        switch (view.traitCollection.layoutDirection) {
-            case UITraitEnvironmentLayoutDirectionUnspecified:{
-                layoutDirection = @"Unspecified";
-            }
-                break;
-            case UITraitEnvironmentLayoutDirectionLeftToRight: {
-                layoutDirection = @"Left To Right Layout";
-            }
-                break;
-            case UITraitEnvironmentLayoutDirectionRightToLeft: {
-                layoutDirection = @"Right To Left Layout";
-            }
-                break;
-        }
-    }
-    LLTitleCellModel *model14 = [self modelWithTitle:nil detailTitle:layoutDirection];
+    LLTitleCellModel *model14 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Autoresizes Subviews %@", view.autoresizesSubviews ? @"On" : @"Off"]];
     [settings addObject:model14];
     
-#endif
+    LLTitleCellModel *model15 = [self submodelWithTitle:@"Trait Collection" detailTitle:nil];
+    [settings addObject:model15];
+    
+    if (@available(iOS 12.0, *)) {
+        LLTitleCellModel *model16 = [self submodelWithTitle:nil detailTitle:[LLEnumDescription userInterfaceStyleDescription:view.traitCollection.userInterfaceStyle]];
+        [settings addObject:model16];
+    }
+    
+    LLTitleCellModel *model17 = [self submodelWithTitle:nil detailTitle:[@"Vertical" stringByAppendingFormat:@" %@",[LLEnumDescription userInterfaceSizeClassDescription:view.traitCollection.verticalSizeClass]]];
+    [settings addObject:model17];
+    
+    LLTitleCellModel *model18 = [self submodelWithTitle:nil detailTitle:[@"Horizontal" stringByAppendingFormat:@" %@",[LLEnumDescription userInterfaceSizeClassDescription:view.traitCollection.horizontalSizeClass]]];
+    [settings addObject:model18];
+    
+    if (@available(iOS 10.0, *)) {
+        LLTitleCellModel *model19 = [self modelWithTitle:nil detailTitle:[LLEnumDescription traitEnvironmentLayoutDirectionDescription:view.traitCollection.layoutDirection]];
+        [settings addObject:model19];
+    }
 
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:settings];
 }
@@ -271,42 +212,47 @@
     
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    NSString *text = label.text ?: @"<nil>";
-    NSString *attributedText = label.attributedText == nil ? @"Attributed Text" : @"Plain Text";
-    LLTitleCellModel *model1 = [self submodelWithTitle:@"Text" detailTitle:[@[text, attributedText] componentsJoinedByString:@"\n\n"]];
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Text" detailTitle:label.text ?: @"<nil>"];
     [settings addObject:model1];
-
-    NSString *textColor = [self colorDescription:label.textColor];
-    NSString *font = label.font.description ?: @"<nil>";
-    NSString *aligned = [NSString stringWithFormat:@"Aligned %@", label.LL_textAlignmentDescription];
-    LLTitleCellModel *model2 = [self submodelWithTitle:@"Text" detailTitle:[@[textColor, font, aligned] componentsJoinedByString:@"\n\n"]];
-    [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self submodelWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]];
+    LLTitleCellModel *model2 = [self submodelWithTitle:nil detailTitle:label.attributedText == nil ? @"Attributed Text" : @"Plain Text"];
+    [settings addObject:model2];
+
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Text" detailTitle:[self colorDescription:label.textColor]];
     [settings addObject:model3];
     
-    NSString *behavior = [NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"];
-    NSString *highlighted = [NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"];
-    LLTitleCellModel *model4 = [self modelWithTitle:@"Behavior" detailTitle:[@[behavior, highlighted] componentsJoinedByString:@"\n\n"]];
+    LLTitleCellModel *model4 = [self submodelWithTitle:nil detailTitle:label.font.description ?: @"<nil>"];
     [settings addObject:model4];
-
-    LLTitleCellModel *model5 = [self submodelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]];
+    
+    LLTitleCellModel *model5 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", [LLEnumDescription textAlignmentDescription:label.textAlignment]]];
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [self submodelWithTitle:@"Line Break" detailTitle:label.LL_lineBreakModeDescription];
+    LLTitleCellModel *model6 = [self submodelWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]];
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [self modelWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]];
+    LLTitleCellModel *model7 = [self submodelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"]];
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [self submodelWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]];
+    LLTitleCellModel *model8 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"]];
     [settings addObject:model8];
-    
-    LLTitleCellModel *model9 = [self submodelWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]];
+
+    LLTitleCellModel *model9 = [self submodelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",[LLEnumDescription baselineAdjustmentDescription:label.baselineAdjustment]]];
     [settings addObject:model9];
     
-    LLTitleCellModel *model10 = [self modelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]];
+    LLTitleCellModel *model10 = [self submodelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:label.lineBreakMode]];
     [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self modelWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self submodelWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]];
+    [settings addObject:model12];
+    
+    LLTitleCellModel *model13 = [self submodelWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]];
+    [settings addObject:model13];
+    
+    LLTitleCellModel *model14 = [self modelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]];
+    [settings addObject:model14];
 
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:settings];
 }
@@ -315,17 +261,20 @@
     
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    NSString *alignment = [NSString stringWithFormat:@"%@ Horizonally", [control LL_contentHorizontalAlignmentDescription]];
-    NSString *vertically = [NSString stringWithFormat:@"%@ Vertically", [control LL_contentVerticalAlignmentDescription]];
-    LLTitleCellModel *model1 = [self modelWithTitle:@"Alignment" detailTitle:[@[alignment, vertically] componentsJoinedByString:@"\n\n"]];
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Alignment" detailTitle:[NSString stringWithFormat:@"%@ Horizonally", [LLEnumDescription controlContentHorizontalAlignmentDescription:control.contentHorizontalAlignment]]];
     [settings addObject:model1];
     
-    NSString *selected = control.isSelected ? @"Selected" : @"Not Selected";
-    NSString *enabled = control.isEnabled ? @"Enabled" : @"Not Enabled";
-    NSString *highlighted = control.isHighlighted ? @"Highlighted" : @"Not Highlighted";
-    
-    LLTitleCellModel *model2 = [self modelWithTitle:@"Content" detailTitle:[@[selected, enabled, highlighted] componentsJoinedByString:@"\n\n"]];
+    LLTitleCellModel *model2 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"%@ Vertically", [LLEnumDescription controlContentVerticalAlignmentDescription:control.contentVerticalAlignment]]];
     [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Content" detailTitle:control.isSelected ? @"Selected" : @"Not Selected"];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self submodelWithTitle:nil detailTitle:control.isEnabled ? @"Enabled" : @"Not Enabled"];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self modelWithTitle:nil detailTitle:control.isHighlighted ? @"Highlighted" : @"Not Highlighted"];
+    [settings addObject:model5];
 
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Control" items:settings];
 }
@@ -334,32 +283,75 @@
     
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self modelWithTitle:@"Type" detailTitle:[button LL_typeDescription]];
+    LLTitleCellModel *model1 = [self modelWithTitle:@"Type" detailTitle:[LLEnumDescription buttonTypeDescription:button.buttonType]];
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [self modelWithTitle:@"State" detailTitle:[button LL_stateDescription]];
+    LLTitleCellModel *model2 = [self submodelWithTitle:@"State" detailTitle:[LLEnumDescription controlStateDescription:button.state]];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self modelWithTitle:@"Title" detailTitle:button.currentTitle];
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Title" detailTitle:button.currentTitle ?: @"<nil>"];
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [self modelWithTitle:@"Title" detailTitle:button.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"];
+    LLTitleCellModel *model4 = [self submodelWithTitle:nil detailTitle:button.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"];
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [self modelWithTitle:@"Text Color" detailTitle:[self colorDescription:button.currentTitleColor]];
+    LLTitleCellModel *model5 = [self submodelWithTitle:@"Text Color" detailTitle:[self colorDescription:button.currentTitleColor]];
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [self modelWithTitle:@"Shadow Color" detailTitle:[self colorDescription:button.currentTitleShadowColor]];
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [self modelWithTitle:@"Target" detailTitle:button.allTargets.description];
+    id target = button.allTargets.allObjects.firstObject;
+    LLTitleCellModel *model7 = [self submodelWithTitle:@"Target" detailTitle:target ? [NSString stringWithFormat:@"%@",target] : @"<nil>"];
     [settings addObject:model7];
-    
-    LLTitleCellModel *model8 = [self modelWithTitle:@"Action" detailTitle:button.allTargets.description];
+
+    LLTitleCellModel *model8 = [self modelWithTitle:@"Action" detailTitle:[button actionsForTarget:target forControlEvent:UIControlEventTouchUpInside].firstObject ?: @"<null>"];;
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [self modelWithTitle:@"Image" detailTitle:button.currentImage ? button.currentImage.description : @"No image"];
     [settings addObject:model9];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    LLTitleCellModel *model10 = [self submodelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(button.titleShadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(button.titleShadowOffset.height)]]];
+    [settings addObject:model10];
+#pragma clang diagnostic pop
+    
+    LLTitleCellModel *model11 = [self submodelWithTitle:@"On Highlight" detailTitle:button.reversesTitleShadowWhenHighlighted ? @"Shadow Reverses" : @"Normal Shadow"];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self submodelWithTitle:nil detailTitle:button.showsTouchWhenHighlighted ? @"Shows Touch" : @"Doesn't Show Touch"];
+    [settings addObject:model12];
+    
+    LLTitleCellModel *model13 = [self submodelWithTitle:nil detailTitle:button.adjustsImageWhenHighlighted ? @"Adjusts Image" : @"No Image Adjustment"];
+    [settings addObject:model13];
+    
+    LLTitleCellModel *model14 = [self submodelWithTitle:@"When Disabled" detailTitle:button.adjustsImageWhenDisabled ? @"Adjusts Image" : @"No Image Adjustment"];
+    [settings addObject:model14];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    LLTitleCellModel *model15 = [self modelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:button.lineBreakMode]];
+    [settings addObject:model15];
+#pragma clang diagnostic pop
+    
+    LLTitleCellModel *model16 = [self submodelWithTitle:@"Content Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.top)], [[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.bottom)]]];
+    [settings addObject:model16];
+    
+    LLTitleCellModel *model17 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.left)],[[LLFormatterTool shared] formatNumber:@(button.contentEdgeInsets.right)]]];
+    [settings addObject:model17];
+    
+    LLTitleCellModel *model18 = [self submodelWithTitle:@"Title Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.top)], [[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.bottom)]]];
+    [settings addObject:model18];
+    
+    LLTitleCellModel *model19 = [self submodelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.left)],[[LLFormatterTool shared] formatNumber:@(button.titleEdgeInsets.right)]]];
+    [settings addObject:model19];
+    
+    LLTitleCellModel *model20 = [self submodelWithTitle:@"Image Insets" detailTitle:[NSString stringWithFormat:@"top %@    bottom %@", [[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.top)], [[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.bottom)]]];
+    [settings addObject:model20];
+    
+    LLTitleCellModel *model21 = [self modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"left %@    right %@",[[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.left)],[[LLFormatterTool shared] formatNumber:@(button.imageEdgeInsets.right)]]];
+    [settings addObject:model21];
     
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Button" items:settings];
 }
@@ -398,7 +390,12 @@
     if (!color) {
         return @"<nil color>";
     }
-
+    
+    NSString *colorName = [color LL_systemColorName];
+    if (colorName) {
+        return colorName;
+    }
+    
     NSArray *rgba = [color LL_RGBA];
     return [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [[LLFormatterTool shared] formatNumber:rgba[0]], [[LLFormatterTool shared] formatNumber:rgba[1]], [[LLFormatterTool shared] formatNumber:rgba[2]], [[LLFormatterTool shared] formatNumber:rgba[3]]];
 }
