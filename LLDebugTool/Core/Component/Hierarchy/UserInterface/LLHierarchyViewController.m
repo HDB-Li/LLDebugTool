@@ -146,8 +146,7 @@
         [self.observeViews addObjectsFromArray:selectedViews];
     }
 
-    UIView *selectedView = [selectedViews lastObject];
-    [self.infoView updateView:selectedView];
+    [self.infoView updateSelectedViews:selectedViews];
 }
 
 #pragma mark - LLBaseInfoViewDelegate

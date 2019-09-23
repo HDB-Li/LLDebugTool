@@ -279,6 +279,10 @@ static LLDebugTool *_instance = nil;
     if (showWidgetBorder != nil) {
         [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
     }
+    NSNumber *hierarchyIgnorePrivateClass = [LLSettingManager shared].hierarchyIgnorePrivateClass;
+    if (hierarchyIgnorePrivateClass != nil) {
+        [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
+    }
 }
 
 - (void)registerNotifications {

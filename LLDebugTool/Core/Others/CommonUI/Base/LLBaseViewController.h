@@ -39,6 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
 
 /**
+ Simple sheet.
+ */
+- (void)showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(NSString *_Nullable)currentAction completion:(void (^ _Nullable)(NSInteger index))completion;
+
+/**
  * Left navigation item action.
  */
 - (void)leftItemClick:(UIButton *)sender;

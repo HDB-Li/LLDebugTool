@@ -277,6 +277,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
 
+#pragma mark - Hierarchy
+
+/**
+ Hierarchy function ignore private class or not.
+ */
+@property (nonatomic, assign, getter=isHierarchyIgnorePrivateClass) BOOL hierarchyIgnorePrivateClass;
+
 #pragma mark - Widget Border
 
 /**

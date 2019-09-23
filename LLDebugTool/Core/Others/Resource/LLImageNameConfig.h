@@ -95,8 +95,8 @@ static NSString *const kSelectImageName = @"LL-select";
 static NSString *const kUnselectImageName = @"LL-unselect";
 
 // Hierarchy
-static NSString *const kFoldArrowImageName = @"LL-foldArrow";
-static NSString *const kPickImageName = @"LL-pick";
+static NSString *const kParentImageName = @"LL-parent";
+static NSString *const kSubviewImageName = @"LL-subview";
 static NSString *const kInfoImageName = @"LL-info";
 
 // Screenshot

@@ -25,6 +25,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
+    LLHierarchyInfoViewActionShowParent,
+    LLHierarchyInfoViewActionShowSubview,
+    LLHierarchyInfoViewActionShowMoreInfo
+};
+
 @class LLHierarchyInfoView;
 
 @protocol LLHierarchyInfoViewDelegate <NSObject, LLBaseInfoViewDelegate>
@@ -39,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable, readonly) UIView *selectedView;
 
-- (void)updateView:(UIView *)view;
+- (void)updateSelectedViews:(NSArray <UIView *>*)views;
 
 @end
 

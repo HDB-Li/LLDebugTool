@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSNumber *showWidgetBorder;
 
+@property (nonatomic, strong) NSNumber *hierarchyIgnorePrivateClass;
+
 + (instancetype)shared;
 
 @end

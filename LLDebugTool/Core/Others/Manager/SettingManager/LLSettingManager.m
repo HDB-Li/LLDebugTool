@@ -38,6 +38,7 @@ static NSString *shakeToHideKey = @"shakeToHideKey";
 static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
 static NSString *magnifierSizeKey = @"magnifierSizeKey";
 static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
+static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassKey";
 
 @implementation LLSettingManager
 
@@ -128,6 +129,14 @@ static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 
 - (NSNumber *)showWidgetBorder {
     return [NSUserDefaults LL_numberForKey:showWidgetBorderKey];
+}
+
+- (void)setHierarchyIgnorePrivateClass:(NSNumber *)hierarchyIgnorePrivateClass {
+    [NSUserDefaults LL_setNumber:hierarchyIgnorePrivateClass forKey:hierarchyIgnorePrivateClassKey];
+}
+
+- (NSNumber *)hierarchyIgnorePrivateClass {
+    return [NSUserDefaults LL_numberForKey:hierarchyIgnorePrivateClassKey];
 }
 
 @end

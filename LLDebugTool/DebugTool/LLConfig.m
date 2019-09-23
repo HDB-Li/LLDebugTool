@@ -170,6 +170,9 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
     _magnifierSize = kLLMagnifierWindowSize;
     
+    // Set hierarchy
+    _hierarchyIgnorePrivateClass = YES;
+    
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
     
