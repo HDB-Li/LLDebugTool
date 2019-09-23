@@ -126,128 +126,258 @@
 
 - (LLTitleCellCategoryModel *)sectionModelWithObject:(NSObject *)object {
     
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
     LLTitleCellModel *model1 = [self submodelWithTitle:@"Class Name" detailTitle:NSStringFromClass(object.class)];
+    [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self submodelWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p",object]];
+    [settings addObject:model2];
     
     LLTitleCellModel *model3 = [self submodelWithTitle:@"Description" detailTitle:object.description];
-
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Object" items:@[model1, model2, model3]];
+    [settings addObject:model3];
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Object" items:settings];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithView:(UIView *)view {
     
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
     LLTitleCellModel *model1 = [self submodelWithTitle:@"Layer" detailTitle:view.layer.description];
+    [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self modelWithTitle:@"Layer Class" detailTitle:NSStringFromClass(view.layer.class)];
+    [settings addObject:model2];
     
     LLTitleCellModel *model3 = [self submodelWithTitle:@"Content Model" detailTitle:view.LL_contentModeDescription];
+    [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self modelWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)view.tag]];
+    [settings addObject:model4];
     
     NSString *userInterface = [NSString stringWithFormat:@"User Interaction Enabled %@", view.isUserInteractionEnabled ? @"On" : @"Off"];
     NSString *multipleTouch = [NSString stringWithFormat:@"Multiple Touch %@", view.isMultipleTouchEnabled ? @"On" : @"Off"];
     LLTitleCellModel *model5 = [self modelWithTitle:@"Interaction" detailTitle:[@[userInterface, multipleTouch] componentsJoinedByString:@"\n\n"]];
+    [settings addObject:model5];
     
     LLTitleCellModel *model6 = [self submodelWithTitle:@"Alpha" detailTitle:[[LLFormatterTool shared] formatNumber:@(view.alpha)]];
+    [settings addObject:model6];
     
     LLTitleCellModel *model7 = [self submodelWithTitle:@"Background" detailTitle:[self colorDescription:view.backgroundColor]];
+    [settings addObject:model7];
     
     LLTitleCellModel *model8 = [self modelWithTitle:@"Tint" detailTitle:[self colorDescription:view.tintColor]];
-
+    [settings addObject:model8];
+    
     NSString *opaque = [NSString stringWithFormat:@"Opaque %@", view.isOpaque ? @"On" : @"Off"];
     NSString *hidden = [NSString stringWithFormat:@"Hidden %@", view.isHidden ? @"On" : @"Off"];
     NSString *context = [NSString stringWithFormat:@"Clears Graphics Context %@", view.clearsContextBeforeDrawing ? @"On" : @"Off"];
     NSString *clipToBounds = [NSString stringWithFormat:@"Clip To Bounds %@", view.clipsToBounds ? @"On" : @"Off"];
     NSString *autoresizes = [NSString stringWithFormat:@"Autoresizes Subviews %@", view.autoresizesSubviews ? @"On" : @"Off"];
     LLTitleCellModel *model9 = [self modelWithTitle:@"Drawing" detailTitle:[@[opaque, hidden, context, clipToBounds, autoresizes] componentsJoinedByString:@"\n\n"]];
+    [settings addObject:model9];
 
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:@[model1, model2, model3, model4, model5, model6, model7, model8, model9]];
+#ifdef __IPHONE_13_0
+    
+    LLTitleCellModel *model10 = [self modelWithTitle:@"Trait Collection" detailTitle:nil];
+    [settings addObject:model10];
+    
+    NSString *userInterfaceStyle = nil;
+    if (@available(iOS 12.0, *)) {
+        switch (view.traitCollection.userInterfaceStyle) {
+            case UIUserInterfaceStyleUnspecified: {
+                userInterfaceStyle = @"Unspecified User Interface Style";
+            }
+                break;
+            case UIUserInterfaceStyleLight: {
+                userInterfaceStyle = @"Light User Interface Style";
+            }
+                break;
+            case UIUserInterfaceStyleDark:{
+                userInterfaceStyle = @"Dark User Interface Style";
+            }
+                break;
+        }
+    }
+    LLTitleCellModel *model11 = [self modelWithTitle:nil detailTitle:userInterfaceStyle];
+    [settings addObject:model11];
+    
+    NSString *verticalSizeClass = nil;
+    switch (view.traitCollection.verticalSizeClass) {
+        case UIUserInterfaceSizeClassUnspecified: {
+            verticalSizeClass = @"Unspecified";
+        }
+            break;
+        case UIUserInterfaceSizeClassCompact: {
+            verticalSizeClass = @"Compact Vertical Size Class";
+        }
+            break;
+        case UIUserInterfaceSizeClassRegular: {
+            verticalSizeClass = @"Regular Vertical Size Class";
+        }
+            break;
+    }
+    
+    LLTitleCellModel *model12 = [self modelWithTitle:nil detailTitle:verticalSizeClass];
+    [settings addObject:model12];
+    
+    
+    NSString *horizontalSizeClass = nil;
+    switch (view.traitCollection.horizontalSizeClass) {
+        case UIUserInterfaceSizeClassUnspecified: {
+            horizontalSizeClass = @"Unspecified";
+        }
+            break;
+        case UIUserInterfaceSizeClassCompact: {
+            horizontalSizeClass = @"Compact Horizontal Size Class";
+        }
+            break;
+        case UIUserInterfaceSizeClassRegular: {
+            horizontalSizeClass = @"Regular Horizontal Size Class";
+        }
+            break;
+    }
+    
+    LLTitleCellModel *model13 = [self modelWithTitle:nil detailTitle:horizontalSizeClass];
+    [settings addObject:model13];
+    
+    NSString *layoutDirection = nil;
+    if (@available(iOS 10.0, *)) {
+        switch (view.traitCollection.layoutDirection) {
+            case UITraitEnvironmentLayoutDirectionUnspecified:{
+                layoutDirection = @"Unspecified";
+            }
+                break;
+            case UITraitEnvironmentLayoutDirectionLeftToRight: {
+                layoutDirection = @"Left To Right Layout";
+            }
+                break;
+            case UITraitEnvironmentLayoutDirectionRightToLeft: {
+                layoutDirection = @"Right To Left Layout";
+            }
+                break;
+        }
+    }
+    LLTitleCellModel *model14 = [self modelWithTitle:nil detailTitle:layoutDirection];
+    [settings addObject:model14];
+    
+#endif
+
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:settings];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithLabel:(UILabel *)label {
     
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
     NSString *text = label.text ?: @"<nil>";
     NSString *attributedText = label.attributedText == nil ? @"Attributed Text" : @"Plain Text";
     LLTitleCellModel *model1 = [self submodelWithTitle:@"Text" detailTitle:[@[text, attributedText] componentsJoinedByString:@"\n\n"]];
+    [settings addObject:model1];
 
     NSString *textColor = [self colorDescription:label.textColor];
     NSString *font = label.font.description ?: @"<nil>";
     NSString *aligned = [NSString stringWithFormat:@"Aligned %@", label.LL_textAlignmentDescription];
     LLTitleCellModel *model2 = [self submodelWithTitle:@"Text" detailTitle:[@[textColor, font, aligned] componentsJoinedByString:@"\n\n"]];
-
+    [settings addObject:model2];
+    
     LLTitleCellModel *model3 = [self submodelWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)label.numberOfLines]];
+    [settings addObject:model3];
     
     NSString *behavior = [NSString stringWithFormat:@"Enabled %@",label.isEnabled ? @"On" : @"Off"];
     NSString *highlighted = [NSString stringWithFormat:@"Highlighted %@",label.isHighlighted ? @"On" : @"Off"];
     LLTitleCellModel *model4 = [self modelWithTitle:@"Behavior" detailTitle:[@[behavior, highlighted] componentsJoinedByString:@"\n\n"]];
+    [settings addObject:model4];
 
     LLTitleCellModel *model5 = [self submodelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",label.LL_baselineAdjustmentDescription]];
+    [settings addObject:model5];
     
     LLTitleCellModel *model6 = [self submodelWithTitle:@"Line Break" detailTitle:label.LL_lineBreakModeDescription];
+    [settings addObject:model6];
     
     LLTitleCellModel *model7 = [self modelWithTitle:@"Min Font Scale" detailTitle:[[LLFormatterTool shared] formatNumber:@(label.minimumScaleFactor)]];
+    [settings addObject:model7];
     
     LLTitleCellModel *model8 = [self submodelWithTitle:@"Highlighted" detailTitle:[self colorDescription:label.highlightedTextColor]];
+    [settings addObject:model8];
     
     LLTitleCellModel *model9 = [self submodelWithTitle:@"Shadow" detailTitle:[self colorDescription:label.shadowColor]];
+    [settings addObject:model9];
     
     LLTitleCellModel *model10 = [self modelWithTitle:@"Shadow Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[[LLFormatterTool shared] formatNumber:@(label.shadowOffset.width)], [[LLFormatterTool shared] formatNumber:@(label.shadowOffset.height)]]];
+    [settings addObject:model10];
 
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:@[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10]];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:settings];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithControl:(UIControl *)control {
     
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
     NSString *alignment = [NSString stringWithFormat:@"%@ Horizonally", [control LL_contentHorizontalAlignmentDescription]];
     NSString *vertically = [NSString stringWithFormat:@"%@ Vertically", [control LL_contentVerticalAlignmentDescription]];
     LLTitleCellModel *model1 = [self modelWithTitle:@"Alignment" detailTitle:[@[alignment, vertically] componentsJoinedByString:@"\n\n"]];
+    [settings addObject:model1];
     
     NSString *selected = control.isSelected ? @"Selected" : @"Not Selected";
     NSString *enabled = control.isEnabled ? @"Enabled" : @"Not Enabled";
     NSString *highlighted = control.isHighlighted ? @"Highlighted" : @"Not Highlighted";
     
     LLTitleCellModel *model2 = [self modelWithTitle:@"Content" detailTitle:[@[selected, enabled, highlighted] componentsJoinedByString:@"\n\n"]];
+    [settings addObject:model2];
 
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Control" items:@[model1, model2]];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Control" items:settings];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithButton:(UIButton *)button {
     
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
     LLTitleCellModel *model1 = [self modelWithTitle:@"Type" detailTitle:[button LL_typeDescription]];
+    [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self modelWithTitle:@"State" detailTitle:[button LL_stateDescription]];
+    [settings addObject:model2];
     
     LLTitleCellModel *model3 = [self modelWithTitle:@"Title" detailTitle:button.currentTitle];
+    [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self modelWithTitle:@"Title" detailTitle:button.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"];
+    [settings addObject:model4];
     
     LLTitleCellModel *model5 = [self modelWithTitle:@"Text Color" detailTitle:[self colorDescription:button.currentTitleColor]];
+    [settings addObject:model5];
     
     LLTitleCellModel *model6 = [self modelWithTitle:@"Shadow Color" detailTitle:[self colorDescription:button.currentTitleShadowColor]];
+    [settings addObject:model6];
     
     LLTitleCellModel *model7 = [self modelWithTitle:@"Target" detailTitle:button.allTargets.description];
-
+    [settings addObject:model7];
+    
     LLTitleCellModel *model8 = [self modelWithTitle:@"Action" detailTitle:button.allTargets.description];
+    [settings addObject:model8];
     
     LLTitleCellModel *model9 = [self modelWithTitle:@"Image" detailTitle:button.currentImage ? button.currentImage.description : @"No image"];
+    [settings addObject:model9];
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Button" items:@[model1, model2, model3, model4, model5, model6, model7, model8, model9]];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Button" items:settings];
 }
 
 - (LLTitleCellCategoryModel *)sectionModelWithImageView:(UIImageView *)imageView {
     
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
     LLTitleCellModel *model1 = [self modelWithTitle:@"Image" detailTitle:imageView.image ? imageView.image.description : @"No image"];
+    [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self modelWithTitle:@"Highlighted" detailTitle:imageView.highlightedImage ? imageView.highlightedImage.description : @"No image"];
+    [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self modelWithTitle:@"Animation Image" detailTitle:imageView.animationImages ? imageView.animationImages.description : @"No image"];
+    LLTitleCellModel *model3 = [self modelWithTitle:@"State" detailTitle:imageView.isHighlighted ? @"Highlighted" : @"Not Highlighted"];
+    [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [self modelWithTitle:@"Animation Highlighted" detailTitle:imageView.highlightedAnimationImages ? imageView.highlightedAnimationImages.description : @"No image"];
-    
-    LLTitleCellModel *model5 = [self modelWithTitle:@"State" detailTitle:imageView.isHighlighted ? @"Highlighted" : @"Not Highlighted"];
-
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Image View" items:@[model1, model2, model3, model4, model5]];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Image View" items:settings];
 }
 
 - (LLTitleCellModel *)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
