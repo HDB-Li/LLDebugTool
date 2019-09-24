@@ -59,9 +59,17 @@
     
     UIView *view = selectedView;
     
+    if (!view) {
+        return;
+    }
+    
     if (self.selectedView == view) {
         return;
     }
+    
+    self.moreButton.enabled = YES;
+    self.parentViewsButton.enabled = view.superview;
+    self.subviewsButton.enabled = view.subviews.count;
     
     self.selectedView = view;
     
@@ -186,6 +194,7 @@
         _parentViewsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
         [_parentViewsButton setImage:[[UIImage LL_imageNamed:kParentImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         _parentViewsButton.tag = LLHierarchyInfoViewActionShowParent;
+        _parentViewsButton.enabled = NO;
     }
     return _parentViewsButton;
 }
@@ -205,6 +214,7 @@
         _subviewsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
         [_subviewsButton setImage:[[UIImage LL_imageNamed:kSubviewImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         _subviewsButton.tag = LLHierarchyInfoViewActionShowSubview;
+        _subviewsButton.enabled = NO;
     }
     return _subviewsButton;
 }
@@ -224,6 +234,7 @@
         _moreButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
         [_moreButton setImage:[[UIImage LL_imageNamed:kInfoImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         _moreButton.tag = LLHierarchyInfoViewActionShowMoreInfo;
+        _moreButton.enabled = NO;
     }
     return _moreButton;
 }

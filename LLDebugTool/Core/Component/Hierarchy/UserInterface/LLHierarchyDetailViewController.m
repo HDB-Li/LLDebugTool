@@ -69,6 +69,11 @@
     [self loadData];
 }
 
+#pragma mark - Over write
+- (void)leftItemClick:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
