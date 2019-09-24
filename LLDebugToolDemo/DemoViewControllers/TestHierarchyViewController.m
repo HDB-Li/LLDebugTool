@@ -10,7 +10,7 @@
 #import "LLHierarchyHelper.h"
 #import "LLDebugTool.h"
 
-@interface TestHierarchyViewController ()
+@interface TestHierarchyViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -34,7 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView"];
     [self testHierarchy];
 }
 
@@ -74,6 +74,7 @@
     } else if (index == 4) {
         UITextField *textField = [[UITextField alloc] init];
         textField.placeholder = @"Text Field";
+        textField.delegate = self;
         view = textField;
     } else if (index == 5)  {
         UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"1", @"2"]];
@@ -89,12 +90,21 @@
         UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] init];
         [activity startAnimating];
         view = activity;
+    } else if (index == 9) {
+        UIProgressView *progress = [[UIProgressView alloc] init];
+        view = progress;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     view.tag = 100;
-    view.userInteractionEnabled = NO;
     return view;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIView *view = [cell viewWithTag:100];
+    if (view) {
+        view.frame = CGRectMake(view.frame.origin.x, (44 - view.frame.size.height) / 2.0, view.frame.size.width, view.frame.size.height);
+    }
 }
 
 #pragma mark - Actions
@@ -104,6 +114,12 @@
 
 - (void)touchUpInside:(UIButton *)sender {
     
+}
+
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField endEditing:YES];
+    return YES;
 }
 
 @end

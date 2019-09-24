@@ -358,4 +358,14 @@
     return nil;
 }
 
++ (NSString *_Nullable)progressViewStyleDescription:(UIProgressViewStyle)style {
+    switch (style) {
+        case UIProgressViewStyleDefault:
+            return @"Default";
+        case UIProgressViewStyleBar:
+            return @"Bar";
+    }
+    return nil;
+}
+
 @end

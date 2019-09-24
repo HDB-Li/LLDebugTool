@@ -66,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style;
 
++ (NSString *_Nullable)progressViewStyleDescription:(UIProgressViewStyle)style;
+
 @end
 
 NS_ASSUME_NONNULL_END
