@@ -234,9 +234,6 @@
     for (UIView *view in parentViews) {
         [actions addObject:NSStringFromClass(view.class)];
     }
-    if (actions.count == 0) {
-        return;
-    }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
         [weakSelf.infoView updateSelectedView:parentViews[index]];
@@ -248,9 +245,6 @@
     NSArray *parentViews = [self findSubviewsBySelectedView:selectView];
     for (UIView *view in parentViews) {
         [actions addObject:NSStringFromClass(view.class)];
-    }
-    if (actions.count == 0) {
-        return;
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
