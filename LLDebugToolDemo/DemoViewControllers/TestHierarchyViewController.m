@@ -34,7 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider"];
     [self testHierarchy];
 }
 
@@ -79,6 +79,9 @@
         UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"1", @"2"]];
         control.selectedSegmentIndex = 0;
         view = control;
+    } else if (index == 6) {
+        UISlider *slider = [[UISlider alloc] init];
+        view = slider;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];

@@ -127,6 +127,9 @@
     } else if (cls == [UISegmentedControl class]) {
         UISegmentedControl *control = (UISegmentedControl *)self.selectView;
         return [self sectionModelWithSegmentedControl:control];
+    } else if (cls == [UISlider class]) {
+        UISlider *slider = (UISlider *)self.selectView;
+        return [self sectionModelWithSlider:slider];
     }
     return nil;
 }
@@ -483,6 +486,39 @@
     [settings addObject:model9];
     
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Segmented Control" items:settings];
+}
+
+- (LLTitleCellCategoryModel *)sectionModelWithSlider:(UISlider *)slider {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Current" detailTitle:[LLFormatterTool formatNumber:@(slider.value)]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self submodelWithTitle:@"Minimum" detailTitle:[LLFormatterTool formatNumber:@(slider.minimumValue)]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self modelWithTitle:@"Maximum" detailTitle:[LLFormatterTool formatNumber:@(slider.maximumValue)]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self submodelWithTitle:@"Min Image" detailTitle:slider.minimumValueImage ? slider.minimumValueImage.description : @"No image"];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self modelWithTitle:@"Max Image" detailTitle:slider.maximumValueImage ? slider.maximumValueImage.description : @"No image"];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self submodelWithTitle:@"Min Track Tint" detailTitle:[self colorDescription:slider.minimumTrackTintColor]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self submodelWithTitle:@"Max Track Tint" detailTitle:[self colorDescription:slider.maximumTrackTintColor]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self modelWithTitle:@"Thumb Tint" detailTitle:[self colorDescription:slider.tintColor]];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self modelWithTitle:@"Events" detailTitle:[NSString stringWithFormat:@"Continuous Update %@", slider.continuous ? @"On" : @"Off"]];
+    [settings addObject:model9];
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Slider" items:settings];
 }
 
 - (LLTitleCellModel *)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
