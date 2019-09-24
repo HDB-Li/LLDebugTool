@@ -64,6 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)returnKeyTypeDescription:(UIReturnKeyType)type;
 
++ (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style;
 
 @end
 

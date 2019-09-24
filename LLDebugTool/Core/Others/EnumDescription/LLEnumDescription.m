@@ -340,4 +340,22 @@
     return nil;
 }
 
++ (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style {
+    switch (style) {
+#ifdef __IPHONE_13_0
+        case UIActivityIndicatorViewStyleMedium:
+            return @"Medium";
+        case UIActivityIndicatorViewStyleLarge:
+            return @"Large";
+#endif
+        case UIActivityIndicatorViewStyleWhiteLarge:
+            return @"White Large";
+        case UIActivityIndicatorViewStyleWhite:
+            return @"White";
+        case UIActivityIndicatorViewStyleGray:
+            return @"Gray";
+    }
+    return nil;
+}
+
 @end

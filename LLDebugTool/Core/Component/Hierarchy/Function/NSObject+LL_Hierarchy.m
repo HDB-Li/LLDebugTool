@@ -65,13 +65,16 @@
         return @"<nil color>";
     }
     
-    NSString *colorName = [color LL_systemColorName];
-    if (colorName) {
-        return colorName;
-    }
-    
     NSArray *rgba = [color LL_RGBA];
-    return [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [LLFormatterTool formatNumber:rgba[0]], [LLFormatterTool formatNumber:rgba[1]], [LLFormatterTool formatNumber:rgba[2]], [LLFormatterTool formatNumber:rgba[3]]];
+    NSString *rgb = [NSString stringWithFormat:@"R:%@ G:%@ B:%@ A:%@", [LLFormatterTool formatNumber:rgba[0]], [LLFormatterTool formatNumber:rgba[1]], [LLFormatterTool formatNumber:rgba[2]], [LLFormatterTool formatNumber:rgba[3]]];
+    
+    NSString *colorName = [color LL_systemColorName];
+    
+    return colorName ? [rgb stringByAppendingFormat:@"\n%@",colorName] : rgb;
+}
+
+- (NSString *)LL_hierarchyBoolDescription:(BOOL)flag {
+    return flag ? @"On" : @"Off";
 }
 
 @end
@@ -93,10 +96,10 @@
     LLTitleCellModel *model4 = [self LL_normalInsetsCellModelWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.tag]];
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Interaction" detailTitle:[NSString stringWithFormat:@"User Interaction Enabled %@", self.isUserInteractionEnabled ? @"On" : @"Off"]];
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Interaction" detailTitle:[NSString stringWithFormat:@"User Interaction Enabled %@",[self LL_hierarchyBoolDescription:self.isUserInteractionEnabled]]];
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", self.isMultipleTouchEnabled ? @"On" : @"Off"]];
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", [self LL_hierarchyBoolDescription:self.isMultipleTouchEnabled]]];
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Alpha" detailTitle:[LLFormatterTool formatNumber:@(self.alpha)]];
@@ -108,19 +111,19 @@
     LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:@"Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     [settings addObject:model9];
     
-    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Drawing" detailTitle:[NSString stringWithFormat:@"Opaque %@", self.isOpaque ? @"On" : @"Off"]];
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Drawing" detailTitle:[NSString stringWithFormat:@"Opaque %@",[self LL_hierarchyBoolDescription:self.isOpaque]]];
     [settings addObject:model10];
     
-    LLTitleCellModel *model11 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hidden %@", self.isHidden ? @"On" : @"Off"]];
+    LLTitleCellModel *model11 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hidden %@",[self LL_hierarchyBoolDescription:self.isHidden]]];
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clears Graphics Context %@", self.clearsContextBeforeDrawing ? @"On" : @"Off"]];
+    LLTitleCellModel *model12 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clears Graphics Context %@",[self LL_hierarchyBoolDescription:self.clearsContextBeforeDrawing]]];
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clip To Bounds %@", self.clipsToBounds ? @"On" : @"Off"]];
+    LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clip To Bounds %@",[self LL_hierarchyBoolDescription:self.clipsToBounds]]];
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Autoresizes Subviews %@", self.autoresizesSubviews ? @"On" : @"Off"]];
+    LLTitleCellModel *model14 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Autoresizes Subviews %@", [self LL_hierarchyBoolDescription:self.autoresizesSubviews]]];
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [self LL_noneInsetsCellModelWithTitle:@"Trait Collection" detailTitle:nil];
@@ -178,10 +181,10 @@
     LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfLines]];
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Enabled %@",self.isEnabled ? @"On" : @"Off"]];
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Enabled %@",[self LL_hierarchyBoolDescription:self.isEnabled]]];
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Highlighted %@",self.isHighlighted ? @"On" : @"Off"]];
+    LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Highlighted %@", [self LL_hierarchyBoolDescription:self.isHighlighted]]];
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [self LL_noneInsetsCellModelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",[LLEnumDescription baselineAdjustmentDescription:self.baselineAdjustment]]];
@@ -374,7 +377,7 @@
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Attributed Text" detailTitle:self.attributedText ? self.attributedText.string : @"<empty string>"];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@",self.allowsEditingTextAttributes ? @"On" : @"Off"]];
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@", [self LL_hierarchyBoolDescription:self.allowsEditingTextAttributes]]];
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]];
@@ -401,13 +404,13 @@
     LLTitleCellModel *model11 = [self LL_noneInsetsCellModelWithTitle:@"Clear Button" detailTitle:[LLEnumDescription textFieldViewModeDescription:self.clearButtonMode]];
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clear when editing begins %@",self.clearsOnBeginEditing ? @"On" : @"Off"]];
+    LLTitleCellModel *model12 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clear when editing begins %@", [self LL_hierarchyBoolDescription:self.clearsOnBeginEditing]]];
     [settings addObject:model12];
     
     LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:@"Min Font Size" detailTitle:[LLFormatterTool formatNumber:@(self.minimumFontSize)]];
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Adjusts to Fit %@",self.adjustsFontSizeToFitWidth ? @"On" : @"Off"]];
+    LLTitleCellModel *model14 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Adjusts to Fit %@",[self LL_hierarchyBoolDescription:self.adjustsFontSizeToFitWidth]]];
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [self LL_noneInsetsCellModelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]];
@@ -425,10 +428,10 @@
     LLTitleCellModel *model19 = [self LL_noneInsetsCellModelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]];
     [settings addObject:model19];
     
-    LLTitleCellModel *model20 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@", self.enablesReturnKeyAutomatically ? @"On" : @"Off"]];
+    LLTitleCellModel *model20 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@", [self LL_hierarchyBoolDescription:self.enablesReturnKeyAutomatically]]];
     [settings addObject:model20];
     
-    LLTitleCellModel *model21 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",self.secureTextEntry ? @"On" : @"Off"]];
+    LLTitleCellModel *model21 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",[self LL_hierarchyBoolDescription:self.secureTextEntry]]];
     [settings addObject:model21];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text Field" items:settings];
@@ -521,7 +524,7 @@
     LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:@"Events" detailTitle:[NSString stringWithFormat:@"Continuous Update %@", self.continuous ? @"On" : @"Off"]];
+    LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:@"Events" detailTitle:[NSString stringWithFormat:@"Continuous Update %@", [self LL_hierarchyBoolDescription:self.continuous]]];
     [settings addObject:model9];
     
     LLTitleCellCategoryModel *model =  [[LLTitleCellCategoryModel alloc] initWithTitle:@"Slider" items:settings];
@@ -542,7 +545,7 @@
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"State" detailTitle:self.isOn ? @"On" : @"Off"];
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"State" detailTitle:[self LL_hierarchyBoolDescription:self.isOn]];
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"On Tint" detailTitle:[self LL_hierarchyColorDescription:self.onTintColor]];
@@ -552,6 +555,36 @@
     [settings addObject:model3];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Switch" items:settings];
+    
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UIActivityIndicatorView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription activityIndicatorViewStyleDescription:self.activityIndicatorViewStyle]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.color]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Animating %@", [self LL_hierarchyBoolDescription:self.isAnimating]]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hides When Stopped %@", [self LL_hierarchyBoolDescription:self.hidesWhenStopped]]];
+    [settings addObject:model4];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Activity Indicator View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
