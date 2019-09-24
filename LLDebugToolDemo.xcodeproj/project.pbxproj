@@ -77,6 +77,7 @@
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
 		36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E493832303E7D700B89F41 /* LLFunctionComponent.m */; };
 		36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E5602623331FA100B8D388 /* LLBaseTableViewController.m */; };
+		36E90D042339F4D400ED43B3 /* NSObject+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */; };
 		36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F30D992301699E00976937 /* LLEntryViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
@@ -355,6 +356,8 @@
 		36E493832303E7D700B89F41 /* LLFunctionComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionComponent.m; sourceTree = "<group>"; };
 		36E5602523331FA100B8D388 /* LLBaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewController.h; sourceTree = "<group>"; };
 		36E5602623331FA100B8D388 /* LLBaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewController.m; sourceTree = "<group>"; };
+		36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LL_Hierarchy.m"; sourceTree = "<group>"; };
 		36F30D982301699E00976937 /* LLEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryViewController.h; sourceTree = "<group>"; };
 		36F30D992301699E00976937 /* LLEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryViewController.m; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
@@ -1251,6 +1254,8 @@
 				C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */,
 				C49856C522ED90B400E9FBE2 /* LLHierarchyModel.h */,
 				C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */,
+				36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */,
+				36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -2047,6 +2052,7 @@
 				C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */,
 				C498569A22ED8D4800E9FBE2 /* LLCrashViewController.m in Sources */,
 				36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */,
+				36E90D042339F4D400ED43B3 /* NSObject+LL_Hierarchy.m in Sources */,
 				36AB449E231FC5D800AC772B /* LLTitleCellCategoryModel.m in Sources */,
 				C498568022ED8D4800E9FBE2 /* LLScreenshotBaseOperation.m in Sources */,
 				C498568322ED8D4800E9FBE2 /* LLScreenshotSelectorView.m in Sources */,
