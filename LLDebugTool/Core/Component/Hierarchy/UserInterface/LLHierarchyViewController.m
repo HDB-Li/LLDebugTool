@@ -230,7 +230,7 @@
 
 - (void)showParentSheet:(UIView *)selectView {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    NSArray *parentViews = [self findParentViewsBySelectedView:selectView];
+    __block NSArray *parentViews = [self findParentViewsBySelectedView:selectView];
     for (UIView *view in parentViews) {
         [actions addObject:NSStringFromClass(view.class)];
     }
@@ -242,13 +242,13 @@
 
 - (void)showSubviewSheet:(UIView *)selectView {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    NSArray *parentViews = [self findSubviewsBySelectedView:selectView];
-    for (UIView *view in parentViews) {
+    __block NSArray *subviews = [self findSubviewsBySelectedView:selectView];
+    for (UIView *view in subviews) {
         [actions addObject:NSStringFromClass(view.class)];
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
-        [weakSelf setNewSelectView:parentViews[index]];
+        [weakSelf setNewSelectView:subviews[index]];
     }];
 }
 
