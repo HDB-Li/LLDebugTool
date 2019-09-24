@@ -124,6 +124,9 @@
     } else if (cls == [UIImageView class]) {
         UIImageView *imageView = (UIImageView *)self.selectView;
         return [self sectionModelWithImageView:imageView];
+    } else if (cls == [UISegmentedControl class]) {
+        UISegmentedControl *control = (UISegmentedControl *)self.selectView;
+        return [self sectionModelWithSegmentedControl:control];
     }
     return nil;
 }
@@ -444,6 +447,42 @@
     [settings addObject:model21];
     
     return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text Field" items:settings];
+}
+
+- (LLTitleCellCategoryModel *)sectionModelWithSegmentedControl:(UISegmentedControl *)control {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self submodelWithTitle:@"Behavior" detailTitle:control.isMomentary ? @"Momentary" : @"Persistent Selection"];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self modelWithTitle:@"Segments" detailTitle:[NSString stringWithFormat:@"%ld",control.numberOfSegments]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self submodelWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld",control.selectedSegmentIndex]];
+    [settings addObject:model3];
+    
+    if (@available(iOS 13.0, *)) {
+        LLTitleCellModel *model4 = [self submodelWithTitle:@"Title" detailTitle:control.largeContentTitle ?: @"<null>"];
+        [settings addObject:model4];
+        
+        LLTitleCellModel *model5 = [self submodelWithTitle:@"Image" detailTitle:control.largeContentImage ? control.largeContentImage.description : @"No image"];
+        [settings addObject:model5];
+    }
+    
+    LLTitleCellModel *model6 = [self modelWithTitle:@"Selected" detailTitle:[control isEnabledForSegmentAtIndex:control.selectedSegmentIndex] ? @"Enabled" : @"Not Enabled"];
+    [settings addObject:model6];
+    
+    CGSize size = [control contentOffsetForSegmentAtIndex:control.selectedSegmentIndex];
+    LLTitleCellModel *model7 = [self submodelWithTitle:@"Offset" detailTitle:[NSString stringWithFormat:@"w %@   h %@",[LLFormatterTool formatNumber:@(size.width)], [LLFormatterTool formatNumber:@(size.height)]]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self submodelWithTitle:@"Size Mode" detailTitle:control.apportionsSegmentWidthsByContent ? @"Proportional to Content" : @"Equal Widths"];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self modelWithTitle:@"Width" detailTitle:[LLFormatterTool formatNumber:@([control widthForSegmentAtIndex:control.selectedSegmentIndex])]];
+    [settings addObject:model9];
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Segmented Control" items:settings];
 }
 
 - (LLTitleCellModel *)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {

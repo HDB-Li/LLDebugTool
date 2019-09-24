@@ -12,6 +12,8 @@
 
 @interface TestHierarchyViewController ()
 
+@property (nonatomic, strong) NSArray *dataArray;
+
 @end
 
 @implementation TestHierarchyViewController
@@ -32,36 +34,22 @@
         [view addSubview:btn];
         view;
     });
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl"];
     [self testHierarchy];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.text = [self getCellTitle:indexPath.row];
+    cell.textLabel.text = self.dataArray[indexPath.row];
     UIView *view = [cell viewWithTag:100];
     [view removeFromSuperview];
     view = [self getCellView:indexPath.row];
     [cell.contentView addSubview:view];
     return cell;
-}
-
-- (NSString *)getCellTitle:(NSInteger)index {
-    if (index == 0) {
-        return @"UIView";
-    } else if (index == 1) {
-        return @"UILabel";
-    } else if (index == 2) {
-        return @"UIImageView";
-    } else if (index == 3) {
-        return @"UIButton";
-    } else if (index == 4) {
-        return @"UITextField";
-    }
-    return nil;
 }
 
 - (UIView *)getCellView:(NSInteger)index {
@@ -87,8 +75,12 @@
         UITextField *textField = [[UITextField alloc] init];
         textField.placeholder = @"Text Field";
         view = textField;
+    } else if (index == 5)  {
+        UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"1", @"2"]];
+        control.selectedSegmentIndex = 0;
+        view = control;
     }
-    view.frame = CGRectMake(10 * 2 + 120, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - 120, 44 - 5 * 2);
+    view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     view.tag = 100;
     view.userInteractionEnabled = NO;
