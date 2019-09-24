@@ -236,7 +236,7 @@
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
-        [weakSelf.infoView updateSelectedView:parentViews[index]];
+        [weakSelf setNewSelectView:parentViews[index]];
     }];
 }
 
@@ -248,8 +248,12 @@
     }
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
-        [weakSelf.infoView updateSelectedView:parentViews[index]];
+        [weakSelf setNewSelectView:parentViews[index]];
     }];
+}
+
+- (void)setNewSelectView:(UIView *)view {
+    [self LLHierarchyView:self.pickerView didMoveTo:@[view]];
 }
 
 #pragma mark - Getters and setters
