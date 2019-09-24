@@ -651,3 +651,39 @@
 }
 
 @end
+
+@implementation UIPageControl (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Pages" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfPages]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Current Page" detailTitle:[NSString stringWithFormat:@"%ld",self.currentPage]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Hides for Single Page %@",[self LL_hierarchyBoolDescription:self.hidesForSinglePage]]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Defers Page Display %@", [self LL_hierarchyBoolDescription:self.defersCurrentPageDisplay]]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Tint Color" detailTitle:[self LL_hierarchyColorDescription:self.pageIndicatorTintColor]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:@"Current Page" detailTitle:[self LL_hierarchyColorDescription:self.currentPageIndicatorTintColor]];
+    [settings addObject:model6];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Page Control" items:settings];
+    
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
