@@ -68,6 +68,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)progressViewStyleDescription:(UIProgressViewStyle)style;
 
++ (NSString *_Nullable)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style;
+
++ (NSString *_Nullable)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode;
+
++ (NSString *_Nullable)tableViewStyleDescription:(UITableViewStyle)style;
+
++ (NSString *_Nullable)tableViewCellSeparatorStyleDescription:(UITableViewCellSeparatorStyle)style;
+
++ (NSString *_Nullable)tableViewSeparatorInsetReferenceDescription:(UITableViewSeparatorInsetReference)reference API_AVAILABLE(ios(11.0));
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -81,8 +81,16 @@
     return image ? image.description : @"No image";
 }
 
-- (NSString *)LL_hierarchyTextDescription:(NSString *)text {
-    return text ?: @"<nil>";
+- (NSString *)LL_hierarchyObjectDescription:(NSObject *)obj {
+    NSString *text = @"<nil>";
+    if (obj) {
+        if ([obj isKindOfClass:[NSString class]]) {
+            text = (NSString *)obj;
+        } else {
+            text = [NSString stringWithFormat:@"%@",obj];
+        }
+    }
+    return text;
 }
 
 - (NSString *)LL_hierarchySizeDescription:(CGSize)size {
@@ -183,7 +191,7 @@
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]];
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Text" detailTitle:[self LL_hierarchyObjectDescription:self.text]];
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:self.attributedText == nil ? @"Plain Text" : @"Attributed Text"];
@@ -192,7 +200,7 @@
     LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.textColor]];
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[self LL_hierarchyTextDescription:self.font.description]];
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[self LL_hierarchyObjectDescription:self.font.description]];
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", [LLEnumDescription textAlignmentDescription:self.textAlignment]]];
@@ -282,7 +290,7 @@
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"State" detailTitle:[LLEnumDescription controlStateDescription:self.state]];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.currentTitle]];
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Title" detailTitle:[self LL_hierarchyObjectDescription:self.currentTitle]];
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:self.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"];
@@ -298,7 +306,7 @@
     LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Target" detailTitle:target ? [NSString stringWithFormat:@"%@",target] : @"<nil>"];
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:@"Action" detailTitle:[self LL_hierarchyTextDescription:[self actionsForTarget:target forControlEvent:UIControlEventTouchUpInside].firstObject]];;
+    LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:@"Action" detailTitle:[self LL_hierarchyObjectDescription:[self actionsForTarget:target forControlEvent:UIControlEventTouchUpInside].firstObject]];;
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.currentImage]];
@@ -391,10 +399,10 @@
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyTextDescription:self.text]];
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyObjectDescription:self.text]];
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyTextDescription:self.attributedText.string]];
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText.string]];
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@", [self LL_hierarchyBoolDescription:self.allowsEditingTextAttributes]]];
@@ -403,13 +411,13 @@
     LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]];
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Font" detailTitle:[self LL_hierarchyTextDescription:self.font.description]];
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font.description]];
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]];
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [self LL_normalInsetsCellModelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder ?: self.attributedPlaceholder.string]];
+    LLTitleCellModel *model7 = [self LL_normalInsetsCellModelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyObjectDescription:self.placeholder ?: self.attributedPlaceholder.string]];
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:@"Background" detailTitle: [self LL_hierarchyImageDescription:self.background]];
@@ -482,7 +490,7 @@
     [settings addObject:model3];
     
     if (@available(iOS 13.0, *)) {
-        LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.largeContentTitle]];
+        LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Title" detailTitle:[self LL_hierarchyObjectDescription:self.largeContentTitle]];
         [settings addObject:model4];
         
         LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Image" detailTitle: [self LL_hierarchyImageDescription:self.largeContentImage]];
@@ -715,6 +723,149 @@
     [settings addObject:model7];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Stepper" items:settings];
+    
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UIScrollView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_normalInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription scrollViewIndicatorStyleDescription:self.indicatorStyle]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Indicators" detailTitle:[NSString stringWithFormat:@"Shows Horizontal Indicator %@",[self LL_hierarchyBoolDescription:self.showsHorizontalScrollIndicator]]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Vertical Indicator %@",[self LL_hierarchyBoolDescription:self.showsVerticalScrollIndicator]]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Scrolling" detailTitle:[NSString stringWithFormat:@"Scrolling %@", self.scrollEnabled ? @"Enabled" : @"Not Enabled"]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Paging %@", self.pagingEnabled ? @"Enabled" : @"Disabled"]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Direction Lock %@",self.isDirectionalLockEnabled ? @"Enabled" : @"Disabled"]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Bounce" detailTitle:[NSString stringWithFormat:@"Bounces %@",[self LL_hierarchyBoolDescription:self.bounces]]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Bounce Horizontal %@",[self LL_hierarchyBoolDescription:self.alwaysBounceHorizontal]]];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Bounce Vertical %@",[self LL_hierarchyBoolDescription:self.alwaysBounceVertical]]];
+    [settings addObject:model9];
+    
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Zoom Min" detailTitle:[LLFormatterTool formatNumber:@(self.minimumZoomScale)]];
+    [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self LL_normalInsetsCellModelWithTitle:@"Max" detailTitle:[LLFormatterTool formatNumber:@(self.maximumZoomScale)]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self LL_noneInsetsCellModelWithTitle:@"Touch" detailTitle:[NSString stringWithFormat:@"Zoom Bounces %@",[self LL_hierarchyBoolDescription:self.isZoomBouncing]]];
+    [settings addObject:model12];
+    
+    LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Delays Content Touches %@",[self LL_hierarchyBoolDescription:self.delaysContentTouches]]];
+    [settings addObject:model13];
+    
+    LLTitleCellModel *model14 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Cancellable Content Touches %@",[self LL_hierarchyBoolDescription:self.canCancelContentTouches]]];
+    [settings addObject:model14];
+    
+    LLTitleCellModel *model15 = [self LL_normalInsetsCellModelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription scrollViewKeyboardDismissModeDescription:self.keyboardDismissMode]];
+    [settings addObject:model15];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Scroll View" items:settings];
+    
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UITableView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfSections]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription tableViewStyleDescription:self.style]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Separator" detailTitle:[LLEnumDescription tableViewCellSeparatorStyleDescription:self.separatorStyle]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.separatorColor]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]];
+    [settings addObject:model8];
+    
+    if (@available(iOS 11.0, *)) {
+        LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:self.separatorInsetReference]];
+        [settings addObject:model9];
+    }
+    
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Selection" detailTitle:self.allowsSelection ? @"Allowed" : @"Disabled"];
+    [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelection ? @"" : @"Disabled"]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self LL_noneInsetsCellModelWithTitle:@"Edit Selection" detailTitle:self.allowsSelectionDuringEditing ? @"Allowed" : @"Disabled"];
+    [settings addObject:model12];
+    
+    LLTitleCellModel *model13 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelection ? @"" : @"Disabled"]];
+    [settings addObject:model13];
+    
+    LLTitleCellModel *model14 = [self LL_noneInsetsCellModelWithTitle:@"Min Display" detailTitle:[NSString stringWithFormat:@"%ld",self.sectionIndexMinimumDisplayRowCount]];
+    [settings addObject:model14];
+    
+    LLTitleCellModel *model15 = [self LL_noneInsetsCellModelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexColor]];
+    [settings addObject:model15];
+    
+    LLTitleCellModel *model16 = [self LL_noneInsetsCellModelWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexBackgroundColor]];
+    [settings addObject:model16];
+    
+    LLTitleCellModel *model17 = [self LL_normalInsetsCellModelWithTitle:@"Tracking" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexTrackingBackgroundColor]];
+    [settings addObject:model17];
+    
+    LLTitleCellModel *model18 = [self LL_noneInsetsCellModelWithTitle:@"Row Height" detailTitle:[LLFormatterTool formatNumber:@(self.rowHeight)]];
+    [settings addObject:model18];
+    
+    LLTitleCellModel *model19 = [self LL_noneInsetsCellModelWithTitle:@"Section Header" detailTitle:[LLFormatterTool formatNumber:@(self.sectionHeaderHeight)]];
+    [settings addObject:model19];
+    
+    LLTitleCellModel *model20 = [self LL_normalInsetsCellModelWithTitle:@"Section Footer" detailTitle:[LLFormatterTool formatNumber:@(self.sectionFooterHeight)]];
+    [settings addObject:model20];
+
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Table View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {

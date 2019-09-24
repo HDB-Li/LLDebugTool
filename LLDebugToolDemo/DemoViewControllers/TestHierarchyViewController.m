@@ -34,7 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell"];
     [self testHierarchy];
 }
 
@@ -101,6 +101,15 @@
     } else if (index == 11) {
         UIStepper *stepper = [[UIStepper alloc] init];
         view = stepper;
+    } else if (index == 12) {
+        UIScrollView *scrollView = [[UIScrollView alloc] init];
+        view = scrollView;
+    } else if (index == 13) {
+        UITableView *tableView = [[UITableView alloc] init];
+        view = tableView;
+    } else if (index == 14) {
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        view = cell;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];

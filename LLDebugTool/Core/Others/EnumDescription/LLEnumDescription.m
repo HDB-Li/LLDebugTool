@@ -368,4 +368,64 @@
     return nil;
 }
 
++ (NSString *_Nullable)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style {
+    switch (style) {
+        case UIScrollViewIndicatorStyleDefault:
+            return @"Default";
+        case UIScrollViewIndicatorStyleBlack:
+            return @"Black";
+        case UIScrollViewIndicatorStyleWhite:
+            return @"White";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode {
+    switch (mode) {
+        case UIScrollViewKeyboardDismissModeNone:
+            return @"Do not dismiss";
+        case UIScrollViewKeyboardDismissModeOnDrag:
+            return @"Dismiss on drag";
+        case UIScrollViewKeyboardDismissModeInteractive:
+            return @"Dismiss interactively";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)tableViewStyleDescription:(UITableViewStyle)style {
+    switch (style) {
+        case UITableViewStylePlain:
+            return @"Plain";
+        case UITableViewStyleGrouped:
+            return @"Grouped";
+#ifdef __IPHONE_13_0
+        case UITableViewStyleInsetGrouped:
+            return @"Inset Grouped";
+#endif
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)tableViewCellSeparatorStyleDescription:(UITableViewCellSeparatorStyle)style {
+    switch (style) {
+        case UITableViewCellSeparatorStyleNone:
+            return @"None";
+        case UITableViewCellSeparatorStyleSingleLine:
+            return @"Single Line";
+        case UITableViewCellSeparatorStyleSingleLineEtched:
+            return @"Single Line Etched";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)tableViewSeparatorInsetReferenceDescription:(UITableViewSeparatorInsetReference)reference {
+    switch (reference) {
+        case UITableViewSeparatorInsetFromCellEdges:
+            return @"From Cell Edges";
+        case UITableViewSeparatorInsetFromAutomaticInsets:
+            return @"Automatic Insets";
+    }
+    return nil;
+}
+
 @end
