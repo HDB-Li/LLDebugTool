@@ -43,7 +43,9 @@ static const char kLLModelNameKey;
 {
     NSString *platform = [self LL_platform];
     if ([platform hasPrefix:@"iPhone"]) {
-#warning FIX iPhone 11.
+        if ([platform isEqualToString:@"iPhone12,5"])   return @"iPhone 11 Pro Max";
+        if ([platform isEqualToString:@"iPhone12,3"])   return @"iPhone 11 Pro";
+        if ([platform isEqualToString:@"iPhone12,1"])   return @"iPhone 11";
         if ([platform isEqualToString:@"iPhone11,8"])   return @"iPhone XR";
         if ([platform isEqualToString:@"iPhone11,6"])   return @"iPhone XS Max";
         if ([platform isEqualToString:@"iPhone11,4"])   return @"iPhone XS Max";
@@ -142,8 +144,8 @@ static const char kLLModelNameKey;
         return @"iPod";
         
     } else {
-        if ([platform isEqualToString:@"i386"])       return @"simulator";
-        if ([platform isEqualToString:@"x86_64"])     return @"simulator";
+        if ([platform isEqualToString:@"i386"])       return @"iPhone Simulator";
+        if ([platform isEqualToString:@"x86_64"])     return @"iPhone Simulator";
     }
     return @"unknown";
 }
