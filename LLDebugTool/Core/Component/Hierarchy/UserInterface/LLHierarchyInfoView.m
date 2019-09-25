@@ -112,15 +112,7 @@
     
     [self.contentLabel sizeToFit];
     
-    CGFloat height = self.contentLabel.LL_height + kLLGeneralMargin * 3 + self.actionContentViewHeight;
-    if (height != self.LL_height) {
-        self.LL_height = height;
-        if (!self.isMoved) {
-            if (self.LL_bottom != LL_SCREEN_HEIGHT - kLLGeneralMargin * 2) {
-                self.LL_bottom = LL_SCREEN_HEIGHT - kLLGeneralMargin * 2;
-            }
-        }
-    }
+    [self updateHeightIfNeeded];
 }
 
 - (void)layoutSubviews {
@@ -147,11 +139,26 @@
     [self.actionContentView addSubview:self.parentViewsButton];
     [self.actionContentView addSubview:self.subviewsButton];
     [self.actionContentView addSubview:self.moreButton];
+    
+    [self updateHeightIfNeeded];
 }
 
 #pragma mark - Event responses
 - (void)buttonClicked:(UIButton *)sender {
     [self.delegate LLHierarchyInfoView:self didSelectAt:sender.tag];
+}
+
+#pragma mark - Primary
+- (void)updateHeightIfNeeded {
+    CGFloat height = kLLGeneralMargin + MAX(self.contentLabel.LL_height, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
+    if (height != self.LL_height) {
+        self.LL_height = height;
+        if (!self.isMoved) {
+            if (self.LL_bottom != LL_SCREEN_HEIGHT - kLLGeneralMargin * 2) {
+                self.LL_bottom = LL_SCREEN_HEIGHT - kLLGeneralMargin * 2;
+            }
+        }
+    }
 }
 
 #pragma mark - Getters and setters

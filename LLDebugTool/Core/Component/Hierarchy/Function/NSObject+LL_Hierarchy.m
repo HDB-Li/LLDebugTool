@@ -86,6 +86,9 @@
     if (obj) {
         if ([obj isKindOfClass:[NSString class]]) {
             text = (NSString *)obj;
+            if ([text length] == 0) {
+                text = @"<empty string>";
+            }
         } else {
             text = [NSString stringWithFormat:@"%@",obj];
         }
@@ -969,6 +972,94 @@
     [settings addObject:model1];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Collection Reusable View" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UITextView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyObjectDescription:self.text]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText.string]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@",[self LL_hierarchyBoolDescription:self.allowsEditingTextAttributes]]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Editable %@",[self LL_hierarchyBoolDescription:self.isEditable]]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Selectable %@",[self LL_hierarchyBoolDescription:self.isSelectable]]];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self LL_noneInsetsCellModelWithTitle:@"Data Detectors" detailTitle:[NSString stringWithFormat:@"Phone Number %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypePhoneNumber]]];
+    [settings addObject:model9];
+    
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Link %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeLink]]];
+    [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Address %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeAddress]]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Calendar Event %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeCalendarEvent]]];
+    [settings addObject:model12];
+    
+    if (@available(iOS 10.0, *)) {
+        LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shipment Tracking Number %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeShipmentTrackingNumber]]];
+        [settings addObject:model13];
+        
+        LLTitleCellModel *model14 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Flight Number %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeFlightNumber]]];
+        [settings addObject:model14];
+        
+        LLTitleCellModel *model15 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Lookup Suggestion %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeLookupSuggestion]]];
+        [settings addObject:model15];
+    } else {
+        model12.separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
+    }
+    
+    LLTitleCellModel *model16 = [self LL_noneInsetsCellModelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]];
+    [settings addObject:model16];
+    
+    LLTitleCellModel *model17 = [self LL_noneInsetsCellModelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]];
+    [settings addObject:model17];
+    
+    LLTitleCellModel *model18 = [self LL_noneInsetsCellModelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]];
+    [settings addObject:model18];
+    
+    LLTitleCellModel *model19 = [self LL_noneInsetsCellModelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]];
+    [settings addObject:model19];
+    
+    LLTitleCellModel *model20 = [self LL_noneInsetsCellModelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]];
+    [settings addObject:model20];
+    
+    LLTitleCellModel *model21 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@",[self LL_hierarchyBoolDescription:self.enablesReturnKeyAutomatically]]];
+    [settings addObject:model21];
+    
+    LLTitleCellModel *model22 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",[self LL_hierarchyBoolDescription:self.isSecureTextEntry]]];
+    [settings addObject:model22];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text View" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {

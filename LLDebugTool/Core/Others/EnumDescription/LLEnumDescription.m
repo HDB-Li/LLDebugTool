@@ -251,7 +251,7 @@
         case UITextAutocapitalizationTypeSentences:
             return @"Sentences";
         case UITextAutocapitalizationTypeAllCharacters:
-            return @"All characters";
+            return @"All Characters";
     }
     return nil;
 }
