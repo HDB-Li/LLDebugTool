@@ -458,4 +458,18 @@
     return nil;
 }
 
++ (NSString *_Nullable)datePickerModeDescription:(UIDatePickerMode)mode {
+    switch (mode) {
+        case UIDatePickerModeDate:
+            return @"Date";
+        case UIDatePickerModeTime:
+            return @"Time";
+        case UIDatePickerModeDateAndTime:
+            return @"Date and Time";
+        case UIDatePickerModeCountDownTimer:
+            return @"Count Down Timer";
+    }
+    return nil;
+}
+
 @end

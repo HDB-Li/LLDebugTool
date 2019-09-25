@@ -34,8 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView"];
-    [self testHierarchy];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testHierarchy)];
 }
 
@@ -120,6 +119,12 @@
     } else if (index == 17) {
         UITextView *textView = [[UITextView alloc] init];
         view = textView;
+    } else if (index == 18) {
+        UIDatePicker *picker = [[UIDatePicker alloc] init];
+        view = picker;
+    } else if (index == 19) {
+        UIPickerView *picker = [[UIPickerView alloc] init];
+        view = picker;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];

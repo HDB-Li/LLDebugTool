@@ -1071,3 +1071,67 @@
 }
 
 @end
+
+@implementation UIDatePicker (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Mode" detailTitle:[LLEnumDescription datePickerModeDescription:self.datePickerMode]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Locale Identifier" detailTitle:self.locale.localeIdentifier];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:@"Interval" detailTitle:[NSString stringWithFormat:@"%ld",self.minuteInterval]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Date" detailTitle:[self LL_hierarchyObjectDescription:self.date]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Min Date" detailTitle:[self LL_hierarchyObjectDescription:self.minimumDate]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:@"Max Date" detailTitle:[self LL_hierarchyObjectDescription:self.maximumDate]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Count Down" detailTitle:[LLFormatterTool formatNumber:@(self.countDownDuration)]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:@"Count Down in Seconds"];
+    [settings addObject:model8];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Date Picker" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+
+@implementation UIPickerView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_normalInsetsCellModelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
+    [settings addObject:model1];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Picker View" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end

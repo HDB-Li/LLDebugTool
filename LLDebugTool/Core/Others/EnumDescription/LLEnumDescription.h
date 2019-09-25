@@ -82,6 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type;
 
++ (NSString *_Nullable)datePickerModeDescription:(UIDatePickerMode)mode;
+
 @end
 
 NS_ASSUME_NONNULL_END
