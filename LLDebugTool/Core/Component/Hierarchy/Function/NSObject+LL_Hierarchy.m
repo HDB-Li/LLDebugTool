@@ -877,3 +877,55 @@
 }
 
 @end
+
+@implementation UITableViewCell (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_normalInsetsCellModelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.imageView.image]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_normalInsetsCellModelWithTitle:@"Identifier" detailTitle:[self LL_hierarchyObjectDescription:self.reuseIdentifier]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Selection" detailTitle:[LLEnumDescription tableViewCellSelectionStyleDescription:self.selectionStyle]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Accessory" detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.accessoryType]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_normalInsetsCellModelWithTitle:@"Editing Acc." detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.editingAccessoryType]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:@"Indentation" detailTitle:[NSString stringWithFormat:@"%ld",self.indentationLevel]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[LLFormatterTool formatNumber:@(self.indentationWidth)]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Indent While Editing %@",[self LL_hierarchyBoolDescription:self.shouldIndentWhileEditing]]];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Re-order Controls %@",[self LL_hierarchyBoolDescription:self.showsReorderControl]]];
+    [settings addObject:model9];
+    
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]];
+    [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]];
+    [settings addObject:model11];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Table View Cell" items:settings];
+    
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end

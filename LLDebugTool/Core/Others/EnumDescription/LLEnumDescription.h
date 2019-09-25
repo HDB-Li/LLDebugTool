@@ -78,6 +78,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)tableViewSeparatorInsetReferenceDescription:(UITableViewSeparatorInsetReference)reference API_AVAILABLE(ios(11.0));
 
++ (NSString *_Nullable)tableViewCellSelectionStyleDescription:(UITableViewCellSelectionStyle)style;
+
++ (NSString *_Nullable)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type;
+
 @end
 
 NS_ASSUME_NONNULL_END

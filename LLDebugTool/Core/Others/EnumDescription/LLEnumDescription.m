@@ -428,4 +428,34 @@
     return nil;
 }
 
++ (NSString *_Nullable)tableViewCellSelectionStyleDescription:(UITableViewCellSelectionStyle)style {
+    switch (style) {
+        case UITableViewCellSelectionStyleNone:
+            return @"None";
+        case UITableViewCellSelectionStyleBlue:
+            return @"Blue";
+        case UITableViewCellSelectionStyleGray:
+            return @"Gray";
+        case UITableViewCellSelectionStyleDefault:
+            return @"Default";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type {
+    switch (type) {
+        case UITableViewCellAccessoryNone:
+            return @"None";
+        case UITableViewCellAccessoryDisclosureIndicator:
+            return @"Disclosure Indicator";
+        case UITableViewCellAccessoryDetailDisclosureButton:
+            return @"Disclosure Button";
+        case UITableViewCellAccessoryCheckmark:
+            return @"Checkmark";
+        case UITableViewCellAccessoryDetailButton:
+            return @"Detail Button";
+    }
+    return nil;
+}
+
 @end
