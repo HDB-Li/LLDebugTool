@@ -929,3 +929,54 @@
 }
 
 @end
+
+@implementation UICollectionView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_normalInsetsCellModelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfSections]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_normalInsetsCellModelWithTitle:@"Layout" detailTitle:[self LL_hierarchyObjectDescription:self.collectionViewLayout]];
+    [settings addObject:model4];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Collection View" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UICollectionReusableView (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Identifier" detailTitle:[self LL_hierarchyObjectDescription:self.reuseIdentifier]];
+    [settings addObject:model1];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Collection Reusable View" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end

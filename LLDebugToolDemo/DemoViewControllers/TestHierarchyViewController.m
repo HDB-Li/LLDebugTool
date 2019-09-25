@@ -34,7 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView"];
     [self testHierarchy];
 }
 
@@ -110,6 +110,12 @@
     } else if (index == 14) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         view = cell;
+    } else if (index == 15) {
+        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        view = collectionView;
+    } else if (index == 16) {
+        UICollectionReusableView *reusableView = [[UICollectionReusableView alloc] init];
+        view = reusableView;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
