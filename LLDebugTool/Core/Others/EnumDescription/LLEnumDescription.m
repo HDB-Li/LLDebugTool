@@ -488,4 +488,28 @@
     return nil;
 }
 
++ (NSString *_Nullable)searchBarStyleDescription:(UISearchBarStyle)style {
+    switch (style) {
+        case UISearchBarStyleDefault:
+            return @"Default";
+        case UISearchBarStyleMinimal:
+            return @"Minimal";
+        case UISearchBarStyleProminent:
+            return @"Prominent";
+    }
+    return nil;
+}
+
++ (NSString *_Nullable)tabBarItemPositioningDescription:(UITabBarItemPositioning)positioning {
+    switch (positioning) {
+        case UITabBarItemPositioningAutomatic:
+            return @"Automatic";
+        case UITabBarItemPositioningFill:
+            return @"Fill";
+        case UITabBarItemPositioningCentered:
+            return @"Centered";
+    }
+    return nil;
+}
+
 @end

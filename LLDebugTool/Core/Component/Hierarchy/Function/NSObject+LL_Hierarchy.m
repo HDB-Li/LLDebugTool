@@ -108,6 +108,10 @@
     return [NSString stringWithFormat:@"left %@    right %@",[LLFormatterTool formatNumber:@(insets.left)], [LLFormatterTool formatNumber:@(insets.right)]];
 }
 
+- (NSString *)LL_hierarchyOffsetDescription:(UIOffset)offset {
+    return [NSString stringWithFormat:@"h %@   v %@",[LLFormatterTool formatNumber:@(offset.horizontal)], [LLFormatterTool formatNumber:@(offset.vertical)]];
+}
+
 @end
 
 @implementation UIView (LL_Hierarchy)
@@ -1206,6 +1210,177 @@
     }
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Navigation Bar" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UIToolbar (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    [settings addObject:model3];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Tool Bar" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UITabBar (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:@"Selection" detailTitle:[self LL_hierarchyImageDescription:self.selectionIndicatorImage]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription tabBarItemPositioningDescription:self.itemPositioning]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:@"Item Width" detailTitle:[LLFormatterTool formatNumber:@(self.itemWidth)]];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:@"Item Spacing" detailTitle:[LLFormatterTool formatNumber:@(self.itemSpacing)]];
+    [settings addObject:model9];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Tab Bar" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UISearchBar (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Text" detailTitle:[self LL_hierarchyObjectDescription:self.text]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyObjectDescription:self.placeholder]];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:@"Prompt" detailTitle:[self LL_hierarchyObjectDescription:self.prompt]];
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Search Style" detailTitle:[LLEnumDescription searchBarStyleDescription:self.searchBarStyle]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Bar Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self LL_normalInsetsCellModelWithTitle:@"Scope Bar" detailTitle:[self LL_hierarchyImageDescription:self.scopeBarBackgroundImage]];
+    [settings addObject:model9];
+    
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Text Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchTextPositionAdjustment]];
+    [settings addObject:model10];
+    
+    LLTitleCellModel *model11 = [self LL_normalInsetsCellModelWithTitle:@"BG Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchFieldBackgroundPositionAdjustment]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self LL_noneInsetsCellModelWithTitle:@"Options" detailTitle:[NSString stringWithFormat:@"Shows Search Results Button %@",[self LL_hierarchyBoolDescription:self.showsSearchResultsButton]]];
+    [settings addObject:model12];
+    
+    LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Bookmarks Button %@",[self LL_hierarchyBoolDescription:self.showsBookmarkButton]]];
+    [settings addObject:model13];
+    
+    LLTitleCellModel *model14 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Cancel Button %@",[self LL_hierarchyBoolDescription:self.showsCancelButton]]];
+    [settings addObject:model14];
+    
+    LLTitleCellModel *model15 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Scope Bar %@",[self LL_hierarchyBoolDescription:self.showsScopeBar]]];
+    [settings addObject:model15];
+    
+    LLTitleCellModel *model16 = [self LL_normalInsetsCellModelWithTitle:@"Scope Titles" detailTitle:[self LL_hierarchyObjectDescription:self.scopeButtonTitles]];
+    [settings addObject:model16];
+    
+    LLTitleCellModel *model17 = [self LL_noneInsetsCellModelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]];
+    [settings addObject:model17];
+    
+    LLTitleCellModel *model18 = [self LL_noneInsetsCellModelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]];
+    [settings addObject:model18];
+    
+    LLTitleCellModel *model19 = [self LL_normalInsetsCellModelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]];
+    [settings addObject:model19];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Search Bar" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UIWindow (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Key Window %@",[self LL_hierarchyBoolDescription:self.isKeyWindow]]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_normalInsetsCellModelWithTitle:@"Root Controller" detailTitle:[self LL_hierarchyObjectDescription:self.rootViewController]];
+    [settings addObject:model2];
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Window" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {

@@ -34,7 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView", @"UINavigationBar"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView", @"UINavigationBar", @"UIToolbar", @"UITabBar", @"UISearchBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testHierarchy)];
 }
 
@@ -127,6 +127,15 @@
         view = picker;
     } else if (index == 20) {
         UINavigationBar *bar = [[UINavigationBar alloc] init];
+        view = bar;
+    } else if (index == 21) {
+        UIToolbar *bar = [[UIToolbar alloc] init];
+        view = bar;
+    } else if (index == 22) {
+        UITabBar *bar = [[UITabBar alloc] init];
+        view = bar;
+    } else if (index == 23) {
+        UISearchBar *bar = [[UISearchBar alloc] init];
         view = bar;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
