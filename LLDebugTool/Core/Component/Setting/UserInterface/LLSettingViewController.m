@@ -88,8 +88,12 @@
     LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
     
+    // Hierarchy
+    [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
+    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
+    
     [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:@[category0, category1, category2, category3, category4]];
+    [self.dataArray addObjectsFromArray:@[category0, category1, category2, category3, category4, category5]];
     [self.tableView reloadData];
 }
 
@@ -331,6 +335,20 @@
     [LLConfig shared].magnifierSize = size;
     [LLSettingManager shared].magnifierSize = @(size);
     [self loadData];
+}
+
+- (LLTitleCellModel *)getHierarchyIgnorePrivateClassModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Ignore Private" flag:[LLConfig shared].hierarchyIgnorePrivateClass];
+    __weak typeof(self) weakSelf = self;
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewHierarchyIgnorePrivateClass:[obj boolValue]];
+    };
+    return model;
+}
+
+- (void)setNewHierarchyIgnorePrivateClass:(BOOL)hierarchyIgnorePrivateClass {
+    [LLConfig shared].hierarchyIgnorePrivateClass = hierarchyIgnorePrivateClass;
+    [LLSettingManager shared].hierarchyIgnorePrivateClass = @(hierarchyIgnorePrivateClass);
 }
 
 @end
