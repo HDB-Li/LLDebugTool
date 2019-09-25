@@ -29,9 +29,6 @@
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 
-static NSString *const kAppInfoCellID = @"AppInfoCellID";
-static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
-
 @interface LLAppInfoViewController ()
 
 @end
@@ -40,14 +37,12 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kAppInfoHeaderID];
+    self.navigationItem.title = [[LLAppInfoHelper shared] deviceName] ?: @"App Infos";
+    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.oriDataArray removeAllObjects];
-    [self.oriDataArray addObjectsFromArray:[[LLAppInfoHelper shared] appInfos]];
-    self.navigationItem.title = [UIDevice currentDevice].name ? : @"App Infos";
     [self registerLLAppInfoHelperNotification];
 }
 
@@ -65,72 +60,61 @@ static NSString *const kAppInfoHeaderID = @"AppInfoHeaderID";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LLAppInfoHelperDidUpdateAppInfosNotificationName object:nil];
 }
 
-- (void)didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:(NSNotification *)notifi {
-    NSArray *dynamic = notifi.object;
-    [self.oriDataArray replaceObjectAtIndex:0 withObject:dynamic];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+- (void)didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:(NSNotification *)notification {
+    [self updateDynamicData];
 }
 
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.oriDataArray.count;
+#pragma mark - UITableViewDataSource
+
+#pragma mark - Primary
+- (void)loadData {
+    [self.dataArray removeAllObjects];
+    
+    [self.dataArray addObject:[self dynamicData]];
+    [self.dataArray addObject:[self applicationData]];
+    [self.dataArray addObject:[self deviceData]];
+
+    [self.tableView reloadData];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.oriDataArray[section] count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kAppInfoCellID];
-    if (!cell) {
-        cell = [[LLBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kAppInfoCellID];
-        cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
-        cell.detailTextLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
-        cell.detailTextLabel.minimumScaleFactor = 0.5;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+- (void)updateDynamicData {
+    if (self.dataArray.count > 1) {
+        [self.dataArray replaceObjectAtIndex:0 withObject:[self dynamicData]];
+        [self.tableView reloadData];
     }
-    NSDictionary *dic = self.oriDataArray[indexPath.section][indexPath.row];
-    cell.textLabel.text = dic.allKeys.firstObject;
-    cell.detailTextLabel.text = dic.allValues.firstObject;
-    return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kAppInfoHeaderID];
-    view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30);
-    if (view.backgroundView == nil) {
-        view.backgroundView = ({
-            UIView *backgroundView = [LLFactory getView];
-            backgroundView.backgroundColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.2];
-            backgroundView.frame = view.bounds;
-            backgroundView;
-        });
+- (LLTitleCellCategoryModel *)dynamicData {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dic in [[LLAppInfoHelper shared] dynamicInfos]) {
+        LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:dic.allKeys.firstObject detailTitle:dic.allValues.firstObject];
+        [settings addObject:model];
     }
-
-    if (section == 0) {
-        view.textLabel.text = @"Dynamic Information";
-    } else if (section == 1) {
-        view.textLabel.text = @"Application Information";
-    } else if (section == 2) {
-        view.textLabel.text = @"Device Information";
-    }
-    return view;
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Dynamic" items:settings];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    if (![header.textLabel.textColor isEqual:[LLThemeManager shared].primaryColor]) {
-        header.textLabel.textColor = [LLThemeManager shared].primaryColor;
+- (LLTitleCellCategoryModel *)applicationData {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dic in [[LLAppInfoHelper shared] applicationInfos]) {
+        LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:dic.allKeys.firstObject detailTitle:dic.allValues.firstObject];
+        [settings addObject:model];
     }
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Application" items:settings];
+}
+
+- (LLTitleCellCategoryModel *)deviceData {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dic in [[LLAppInfoHelper shared] deviceInfos]) {
+        LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:dic.allKeys.firstObject detailTitle:dic.allValues.firstObject];
+        [settings addObject:model];
+    }
+    
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Device" items:settings];
 }
 
 @end
