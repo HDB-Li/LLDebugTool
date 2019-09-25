@@ -1114,7 +1114,6 @@
 
 @end
 
-
 @implementation UIPickerView (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
@@ -1124,6 +1123,89 @@
     [settings addObject:model1];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Picker View" items:settings];
+                                
+    NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
+    if (models.count > 0) {
+        [models insertObject:model atIndex:1];
+    } else {
+        [models addObject:model];
+    }
+    return [models copy];
+}
+
+@end
+
+@implementation UINavigationBar (LL_Hierarchy)
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]];
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]];
+    [settings addObject:model2];
+    
+    if (@available(iOS 11.0, *)) {
+        LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Prefers Large Titles %@",[self LL_hierarchyBoolDescription:self.prefersLargeTitles]]];
+        [settings addObject:model3];
+    }
+    
+    LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Shadow Image" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]];
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:@"Back Image" detailTitle:[self LL_hierarchyImageDescription:self.backIndicatorImage]];
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [self LL_normalInsetsCellModelWithTitle:@"Back Mask" detailTitle:[self LL_hierarchyImageDescription:self.backIndicatorTransitionMaskImage]];
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [self LL_noneInsetsCellModelWithTitle:@"Title Attr." detailTitle:nil];
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [self LL_noneInsetsCellModelWithTitle:@"Title Font" detailTitle:[self LL_hierarchyColorDescription:self.titleTextAttributes[NSFontAttributeName]]];
+    [settings addObject:model9];
+    
+    LLTitleCellModel *model10 = [self LL_noneInsetsCellModelWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.titleTextAttributes[NSForegroundColorAttributeName]]];
+    [settings addObject:model10];
+    
+    NSShadow *shadow = self.titleTextAttributes[NSShadowAttributeName];
+    if (![shadow isKindOfClass:[NSShadow class]]) {
+        shadow = nil;
+    }
+    
+    LLTitleCellModel *model11 = [self LL_noneInsetsCellModelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:shadow.shadowColor]];
+    [settings addObject:model11];
+    
+    LLTitleCellModel *model12 = [self LL_normalInsetsCellModelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:shadow.shadowOffset]];
+    [settings addObject:model12];
+    
+    if (@available(iOS 11.0, *)) {
+        LLTitleCellModel *model13 = [self LL_noneInsetsCellModelWithTitle:@"Large Title Attr." detailTitle:nil];
+        [settings addObject:model13];
+        
+        LLTitleCellModel *model14 = [self LL_noneInsetsCellModelWithTitle:@"Title Font" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSFontAttributeName]]];
+        [settings addObject:model14];
+        
+        LLTitleCellModel *model15 = [self LL_noneInsetsCellModelWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSForegroundColorAttributeName]]];
+        [settings addObject:model15];
+        
+        shadow = self.largeTitleTextAttributes[NSShadowAttributeName];
+        if (![shadow isKindOfClass:[NSShadow class]]) {
+            shadow = nil;
+        }
+        
+        LLTitleCellModel *model16 = [self LL_noneInsetsCellModelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:shadow.shadowColor]];
+        [settings addObject:model16];
+        
+        LLTitleCellModel *model17 = [self LL_normalInsetsCellModelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:shadow.shadowOffset]];
+        [settings addObject:model17];
+    }
+    
+    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Navigation Bar" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {

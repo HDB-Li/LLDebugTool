@@ -20,12 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"test.hierarchy", nil);
-    self.tableView.tableFooterView = ({
+    self.title = NSLocalizedString(@"hierarchy.info", nil);
+    self.tableView.tableHeaderView = ({
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 55)];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.frame = CGRectMake(40, 10, view.frame.size.width - 40 * 2, view.frame.size.height - 10 * 2);
-        [btn setTitle:NSLocalizedString(@"hierarchy.info", nil) forState:UIControlStateNormal];
+        [btn setTitle:NSLocalizedString(@"test.hierarchy", nil) forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(testHierarchy) forControlEvents:UIControlEventTouchUpInside];
         btn.layer.borderWidth = 1;
         btn.layer.borderColor = btn.tintColor.CGColor;
@@ -34,7 +34,7 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView", @"UINavigationBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testHierarchy)];
 }
 
@@ -125,6 +125,9 @@
     } else if (index == 19) {
         UIPickerView *picker = [[UIPickerView alloc] init];
         view = picker;
+    } else if (index == 20) {
+        UINavigationBar *bar = [[UINavigationBar alloc] init];
+        view = bar;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
