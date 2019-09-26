@@ -718,7 +718,7 @@
 			path = WidgetBorder;
 			sourceTree = "<group>";
 		};
-		364CF3D6232656FC000B513F /* Component */ = {
+		364CF3D6232656FC000B513F /* View */ = {
 			isa = PBXGroup;
 			children = (
 				360AE62F2330D9B90073FECD /* TitleCell */,
@@ -731,7 +731,7 @@
 				C4B4E3E422F9C90900F70277 /* LLTabBarButton */,
 				C4B4E3E722F9C90900F70277 /* LLFilterView */,
 			);
-			path = Component;
+			path = View;
 			sourceTree = "<group>";
 		};
 		364CF3D7232659EB000B513F /* Ruler */ = {
@@ -799,6 +799,14 @@
 				3668D0C92303BB1F00D58C0B /* LLSettingManager.m */,
 			);
 			path = SettingManager;
+			sourceTree = "<group>";
+		};
+		366BC49B233C6463009BDA4A /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4E41422F9C90900F70277 /* EntryWindow */,
+			);
+			path = Window;
 			sourceTree = "<group>";
 		};
 		3694F8712338995F007B07CA /* EnumDescription */ = {
@@ -1571,8 +1579,9 @@
 		C4B4E3D822F9C90900F70277 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				364CF3D6232656FC000B513F /* Component */,
-				C4B4E3FC22F9C90900F70277 /* View */,
+				366BC49B233C6463009BDA4A /* Window */,
+				364CF3D6232656FC000B513F /* View */,
+				C4B4E3FC22F9C90900F70277 /* ViewController */,
 				C4B4E41722F9C90900F70277 /* Base */,
 			);
 			path = CommonUI;
@@ -1640,13 +1649,12 @@
 			path = LLFilterView;
 			sourceTree = "<group>";
 		};
-		C4B4E3FC22F9C90900F70277 /* View */ = {
+		C4B4E3FC22F9C90900F70277 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				3603883A23335DC30026BC9E /* TitleViewController */,
-				C4B4E41422F9C90900F70277 /* EntryWindow */,
 			);
-			path = View;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C4B4E3FD22F9C90900F70277 /* Function */ = {
