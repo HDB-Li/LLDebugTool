@@ -247,4 +247,15 @@
     return slider;
 }
 
+#pragma mark - UIScrollView
++ (UIScrollView *)getScrollView {
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    if (@available(iOS 11.0, *)) {
+        scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    }
+    return scrollView;
+}
+
 @end

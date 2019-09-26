@@ -124,6 +124,15 @@
     self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
+#pragma mark - Over Write
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    for (UIView *view in self.view.subviews) {
+        [self layoutViewsAndSubviews:view];
+    }
+    [self.view layoutIfNeeded];
+}
+
 #pragma mark - Primary
 - (void)resetDefaultSettings {
     // Used to solve problems caused by modifying some systems default values with Runtime in the project.
@@ -175,6 +184,13 @@
         [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
     }
     return btn;
+}
+
+- (void)layoutViewsAndSubviews:(UIView *)view {
+    [view setNeedsLayout];
+    for (UIView *subview in view.subviews) {
+        [self layoutViewsAndSubviews:subview];
+    }
 }
 
 #pragma mark - Event response

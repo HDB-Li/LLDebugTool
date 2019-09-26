@@ -356,6 +356,13 @@ Get Slider.
 */
 + (UISlider *)getSlider;
 
+#pragma mark - UIScrollView
+
+/**
+ Get ScrollView.
+ */
++ (UIScrollView *)getScrollView;
+
 @end
 
 NS_ASSUME_NONNULL_END
