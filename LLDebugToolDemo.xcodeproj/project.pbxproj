@@ -51,6 +51,7 @@
 		36596BCE22FD172D00BBB6FA /* LLBaseInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCD22FD172D00BBB6FA /* LLBaseInfoView.m */; };
 		36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */; };
 		3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3668D0C92303BB1F00D58C0B /* LLSettingManager.m */; };
+		366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366BC4A1233C64F4009BDA4A /* LLFilterView.m */; };
 		36743D412313879700002A92 /* LLReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 36743D3F2313879700002A92 /* LLReachability.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
@@ -300,6 +301,8 @@
 		36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoView.m; sourceTree = "<group>"; };
 		3668D0C82303BB1F00D58C0B /* LLSettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingManager.h; sourceTree = "<group>"; };
 		3668D0C92303BB1F00D58C0B /* LLSettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingManager.m; sourceTree = "<group>"; };
+		366BC4A0233C64F4009BDA4A /* LLFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFilterView.h; sourceTree = "<group>"; };
+		366BC4A1233C64F4009BDA4A /* LLFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterView.m; sourceTree = "<group>"; };
 		36743D3F2313879700002A92 /* LLReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLReachability.m; sourceTree = "<group>"; };
 		36743D402313879700002A92 /* LLReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLReachability.h; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -1627,6 +1630,8 @@
 		C4B4E3E722F9C90900F70277 /* FilterView */ = {
 			isa = PBXGroup;
 			children = (
+				366BC4A0233C64F4009BDA4A /* LLFilterView.h */,
+				366BC4A1233C64F4009BDA4A /* LLFilterView.m */,
 				C4B4E3F922F9C90900F70277 /* LLFilterDateView.h */,
 				C4B4E3F022F9C90900F70277 /* LLFilterDateView.m */,
 				C4B4E3ED22F9C90900F70277 /* LLFilterLabelCell.h */,
@@ -2134,6 +2139,7 @@
 				C49856A822ED8D4800E9FBE2 /* LLLogViewController.m in Sources */,
 				C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */,
 				C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */,
+				366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */,
 				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
 				C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */,
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,

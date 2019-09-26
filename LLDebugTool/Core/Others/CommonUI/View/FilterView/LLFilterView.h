@@ -1,5 +1,5 @@
 //
-//  LLNetworkFilterView.h
+//  LLFilterView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLFilterView.h"
-#import "LLNetworkModel.h"
+#import "LLBaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLNetworkFilterChangeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
+@interface LLFilterView : LLBaseView
 
-@interface LLNetworkFilterView : LLFilterView
+@property (nonatomic, strong) NSArray <NSString *>*titles;
 
-@property (nonatomic, copy, nullable) LLNetworkFilterChangeBlock changeBlock;
+@property (nonatomic, strong) NSArray <UIView *>*filterViews;
 
-- (void)configWithData:(NSArray <LLNetworkModel *>*_Nullable)data;
+- (BOOL)isFiltering;
+
+- (void)cancelFiltering;
+
+- (void)updateFilterButton:(UIView *)filterView count:(NSInteger)count;
 
 @end
 
