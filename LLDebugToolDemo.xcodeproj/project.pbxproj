@@ -698,13 +698,13 @@
 			path = DemoViewControllers;
 			sourceTree = "<group>";
 		};
-		362AA6AE23274FBB00F33EC4 /* LLPickerView */ = {
+		362AA6AE23274FBB00F33EC4 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
 				362AA6AF23274FCF00F33EC4 /* LLPickerView.h */,
 				362AA6B023274FCF00F33EC4 /* LLPickerView.m */,
 			);
-			path = LLPickerView;
+			path = PickerView;
 			sourceTree = "<group>";
 		};
 		3633F581232F390600C62185 /* WidgetBorder */ = {
@@ -722,14 +722,14 @@
 			isa = PBXGroup;
 			children = (
 				360AE62F2330D9B90073FECD /* TitleCell */,
-				362AA6AE23274FBB00F33EC4 /* LLPickerView */,
-				364EF63C2321F4C00067C7D7 /* LLColorPicker */,
-				365912512320BCF500FDA6A0 /* LLTitleView */,
-				C4B4E3D922F9C90900F70277 /* LLSubTitleTableViewCell */,
-				C4B4E3DE22F9C90900F70277 /* LLSearchBar */,
-				C4B4E3E122F9C90900F70277 /* LLNoneCopyTextField */,
-				C4B4E3E422F9C90900F70277 /* LLTabBarButton */,
-				C4B4E3E722F9C90900F70277 /* LLFilterView */,
+				362AA6AE23274FBB00F33EC4 /* PickerView */,
+				364EF63C2321F4C00067C7D7 /* ColorPicker */,
+				365912512320BCF500FDA6A0 /* TitleView */,
+				C4B4E3D922F9C90900F70277 /* SubTitleTableViewCell */,
+				C4B4E3DE22F9C90900F70277 /* SearchBar */,
+				C4B4E3E122F9C90900F70277 /* NoneCopyTextField */,
+				C4B4E3E422F9C90900F70277 /* TabBarButton */,
+				C4B4E3E722F9C90900F70277 /* FilterView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -759,7 +759,7 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
-		364EF63C2321F4C00067C7D7 /* LLColorPicker */ = {
+		364EF63C2321F4C00067C7D7 /* ColorPicker */ = {
 			isa = PBXGroup;
 			children = (
 				364EF6402321F9940067C7D7 /* LLRGB.h */,
@@ -771,7 +771,7 @@
 				364EF64C23220C8D0067C7D7 /* LLColorPickerView.h */,
 				364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */,
 			);
-			path = LLColorPicker;
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		3655D50E2329E01300490B36 /* UIResponder */ = {
@@ -783,13 +783,13 @@
 			path = UIResponder;
 			sourceTree = "<group>";
 		};
-		365912512320BCF500FDA6A0 /* LLTitleView */ = {
+		365912512320BCF500FDA6A0 /* TitleView */ = {
 			isa = PBXGroup;
 			children = (
 				365912522320BD0C00FDA6A0 /* LLTitleView.h */,
 				365912532320BD0C00FDA6A0 /* LLTitleView.m */,
 			);
-			path = LLTitleView;
+			path = TitleView;
 			sourceTree = "<group>";
 		};
 		3668D0C72303BAF400D58C0B /* SettingManager */ = {
@@ -1587,44 +1587,44 @@
 			path = CommonUI;
 			sourceTree = "<group>";
 		};
-		C4B4E3D922F9C90900F70277 /* LLSubTitleTableViewCell */ = {
+		C4B4E3D922F9C90900F70277 /* SubTitleTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E3DB22F9C90900F70277 /* LLSubTitleTableViewCell.h */,
 				C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */,
 				C4B4E3DC22F9C90900F70277 /* LLUITableViewLongPressGestureRecognizerDelegate.h */,
 			);
-			path = LLSubTitleTableViewCell;
+			path = SubTitleTableViewCell;
 			sourceTree = "<group>";
 		};
-		C4B4E3DE22F9C90900F70277 /* LLSearchBar */ = {
+		C4B4E3DE22F9C90900F70277 /* SearchBar */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E3DF22F9C90900F70277 /* LLSearchBar.h */,
 				C4B4E3E022F9C90900F70277 /* LLSearchBar.m */,
 			);
-			path = LLSearchBar;
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
-		C4B4E3E122F9C90900F70277 /* LLNoneCopyTextField */ = {
+		C4B4E3E122F9C90900F70277 /* NoneCopyTextField */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E3E222F9C90900F70277 /* LLNoneCopyTextField.h */,
 				C4B4E3E322F9C90900F70277 /* LLNoneCopyTextField.m */,
 			);
-			path = LLNoneCopyTextField;
+			path = NoneCopyTextField;
 			sourceTree = "<group>";
 		};
-		C4B4E3E422F9C90900F70277 /* LLTabBarButton */ = {
+		C4B4E3E422F9C90900F70277 /* TabBarButton */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E3E522F9C90900F70277 /* LLButton.h */,
 				C4B4E3E622F9C90900F70277 /* LLButton.m */,
 			);
-			path = LLTabBarButton;
+			path = TabBarButton;
 			sourceTree = "<group>";
 		};
-		C4B4E3E722F9C90900F70277 /* LLFilterView */ = {
+		C4B4E3E722F9C90900F70277 /* FilterView */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E3F922F9C90900F70277 /* LLFilterDateView.h */,
@@ -1646,7 +1646,7 @@
 				C4B4E3E922F9C90900F70277 /* LLFilterDatePickerView.h */,
 				C4B4E3F222F9C90900F70277 /* LLFilterDatePickerView.m */,
 			);
-			path = LLFilterView;
+			path = FilterView;
 			sourceTree = "<group>";
 		};
 		C4B4E3FC22F9C90900F70277 /* ViewController */ = {
