@@ -24,6 +24,7 @@
 #import "LLThemeManager.h"
 #import "UIColor+LL_Utils.h"
 #import "LLFactory.h"
+#import "NSObject+LL_Runtime.h"
 
 static LLThemeManager *_instance = nil;
 
@@ -66,7 +67,11 @@ NSString *const kThemeManagerUpdateBackgroundColorNotificaionName = @"kThemeMana
 #pragma mark - Primary
 - (void)initial {
     // Get system tint color.
+#ifdef __IPHONE_13_0
     _systemTintColor = [UIColor systemBlueColor];
+#else
+    _systemTintColor = [UIColor performSelector:NSSelectorFromString(@"systemBlueColor")];
+#endif
     _primaryColor = [UIColor blackColor];
     _backgroundColor = [UIColor whiteColor];
     [self calculateColorIfNeeded];

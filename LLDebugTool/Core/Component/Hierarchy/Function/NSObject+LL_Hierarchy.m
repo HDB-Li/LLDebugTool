@@ -502,6 +502,7 @@
     LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld",self.selectedSegmentIndex]];
     [settings addObject:model3];
     
+#ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
         LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.largeContentTitle]];
         [settings addObject:model4];
@@ -509,6 +510,7 @@
         LLTitleCellModel *model5 = [self LL_noneInsetsCellModelWithTitle:@"Image" detailTitle: [self LL_hierarchyImageDescription:self.largeContentImage]];
         [settings addObject:model5];
     }
+#endif
     
     LLTitleCellModel *model6 = [self LL_normalInsetsCellModelWithTitle:@"Selected" detailTitle:[self isEnabledForSegmentAtIndex:self.selectedSegmentIndex] ? @"Enabled" : @"Not Enabled"];
     [settings addObject:model6];

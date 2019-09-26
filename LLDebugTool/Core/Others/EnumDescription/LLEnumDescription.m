@@ -478,10 +478,6 @@
             return @"Default";
         case UIBarStyleBlack:
             return @"Black";
-#ifndef __IPHONE_13_0
-        case UIBarStyleBlackOpaque:
-            return @"Black Opaque";
-#endif
         case UIBarStyleBlackTranslucent:
             return @"Black Translucent";
         }

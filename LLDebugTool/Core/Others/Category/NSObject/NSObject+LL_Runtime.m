@@ -69,6 +69,24 @@
     return [[self class] LL_getPropertyNames];
 }
 
++ (NSArray *)LL_getInstanceMethodsNames {
+    unsigned int count;
+    // Get methods list.
+    Method *methods = class_copyMethodList([self class], &count);
+    // Get name
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i = 0; i < count; i++) {
+        Method method = methods[i];
+        SEL sel = method_getName(method);
+        NSString *name = NSStringFromSelector(sel);
+        if (name.length) {
+            [array addObject:name];
+        }
+    }
+    free(methods);
+    return array;
+}
+
 - (void)LL_setStringProperty:(NSString *)string key:(const char *)key {
     objc_setAssociatedObject(self, key, string, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
