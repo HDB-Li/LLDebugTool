@@ -25,6 +25,7 @@
 #import "LLScreenshotBaseOperation.h"
 #import "LLFactory.h"
 #import "LLConst.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLScreenshotImageView ()
 
@@ -239,8 +240,7 @@
     self.operations = [[NSMutableArray alloc] init];
     
     self.imageView = [LLFactory getImageView:self frame:self.bounds];
-    self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.imageView.layer.borderWidth = 2;
+    [self.imageView LL_setBorderColor:[UIColor whiteColor] borderWidth:2];
     self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.imageView.layer.shadowOffset = CGSizeZero;
     self.imageView.layer.shadowOpacity = 0.5;

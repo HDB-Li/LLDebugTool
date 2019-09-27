@@ -26,6 +26,7 @@
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
 #import "LLConst.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLScreenshotSelectorView ()
 
@@ -69,8 +70,7 @@
 - (void)initUI {
     [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
+    [self LL_setCornerRadius:5];
     self.model = [[LLScreenshotSelectorModel alloc] init];
     
     NSInteger count = 9;

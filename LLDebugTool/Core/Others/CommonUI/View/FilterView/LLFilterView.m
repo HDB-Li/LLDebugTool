@@ -165,8 +165,7 @@
         [btn setTitle:self.titles[i] forState:UIControlStateNormal];
         btn.tag = i;
         [btn LL_setCornerRadius:5];
-        btn.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        btn.layer.borderWidth = 0.5;
+        [btn LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:0.5];
         [self.filterBtns addObject:btn];
     }
 }

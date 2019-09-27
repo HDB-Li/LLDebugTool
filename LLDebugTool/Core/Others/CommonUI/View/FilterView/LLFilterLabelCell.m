@@ -27,6 +27,7 @@
 #import "LLFactory.h"
 #import "Masonry.h"
 #import "LLConst.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLFilterLabelCell ()
 
@@ -73,10 +74,8 @@
     if (!_bgView) {
         _bgView = [LLFactory getView];
         _bgView.backgroundColor = [UIColor whiteColor];
-        _bgView.layer.cornerRadius = 5;
-        _bgView.layer.borderWidth = 0.5;
-        _bgView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        _bgView.layer.masksToBounds = YES;
+        [_bgView LL_setCornerRadius:5];
+        [_bgView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:0.5];
     }
     return _bgView;
 }

@@ -42,8 +42,7 @@
     self.inactiveAlpha = 1;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.contentView.layer.borderWidth = 1;
-    self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     
     self.label = [LLFactory getLabel:self.contentView frame:CGRectMake(5, 0, 100, self.LL_height) text:@"Debug" font:16 textColor:[LLThemeManager shared].primaryColor];
     [self.label sizeToFit];

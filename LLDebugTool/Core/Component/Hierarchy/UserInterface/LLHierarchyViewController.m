@@ -87,8 +87,7 @@
     borderView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:borderView];
     [self.view sendSubviewToBack:borderView];
-    borderView.layer.borderWidth = borderWidth;
-    borderView.layer.borderColor = view.LL_hashColor.CGColor;
+    [borderView LL_setBorderColor:view.LL_hashColor borderWidth:borderWidth];
     borderView.frame = [self frameInLocalForView:view];
     [self.borderViews setObject:borderView forKey:@(view.hash)];
 

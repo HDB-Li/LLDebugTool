@@ -87,10 +87,8 @@
 - (void)initUI {
     [super initUI];
     self.overflow = YES;
-    self.layer.cornerRadius = self.LL_width / 2.0;
-    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    self.layer.borderWidth = 2;
-    self.layer.masksToBounds = YES;
+    [self LL_setCornerRadius:self.LL_width / 2.0];
+    [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     
     NSInteger zoomLevel = [LLConfig shared].magnifierZoomLevel;
     

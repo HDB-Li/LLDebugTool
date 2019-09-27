@@ -66,8 +66,7 @@
 - (UIView *)colorView {
     if (!_colorView) {
         _colorView = [LLFactory getView];
-        _colorView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        _colorView.layer.borderWidth = 0.5;
+        [_colorView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:0.5];
     }
     return _colorView;
 }

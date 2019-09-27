@@ -41,9 +41,8 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    self.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    self.layer.borderWidth = 2;
-    self.layer.cornerRadius = 5;
+    [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
+    [self LL_setCornerRadius:5];
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     
     self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30) target:self action:@selector(closeButtonClicked:)];

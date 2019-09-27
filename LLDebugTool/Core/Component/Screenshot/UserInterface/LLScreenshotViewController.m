@@ -31,6 +31,7 @@
 #import "LLScreenshotHelper.h"
 #import "LLThemeManager.h"
 #import "LLImageNameConfig.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLScreenshotViewController ()
 
@@ -46,10 +47,8 @@
     self.view.backgroundColor = [UIColor clearColor];
     CGFloat width = 60;
     self.captureButton = [LLFactory getButton:self.view frame:CGRectMake((self.view.LL_width - 60) / 2.0, self.view.LL_bottom - kLLGeneralMargin * 2 - width, width, width) target:self action:@selector(captureButtonClicked:)];
-    self.captureButton.layer.cornerRadius = width / 2.0;
-    self.captureButton.layer.masksToBounds = YES;
-    self.captureButton.layer.borderWidth = 1;
-    self.captureButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    [self.captureButton LL_setCornerRadius:width / 2.0];
+    [self.captureButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     self.captureButton.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.captureButton setImage:[UIImage LL_imageNamed:kCaptureImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
         

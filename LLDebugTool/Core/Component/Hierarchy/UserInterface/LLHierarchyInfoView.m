@@ -32,6 +32,7 @@
 #import "LLConst.h"
 #import "LLToastUtils.h"
 #import "LLImageNameConfig.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLHierarchyInfoView ()
 
@@ -193,10 +194,8 @@
         [_parentViewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _parentViewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _parentViewsButton.backgroundColor = [LLThemeManager shared].backgroundColor;
-        _parentViewsButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        _parentViewsButton.layer.borderWidth = 1;
-        _parentViewsButton.layer.cornerRadius = 5;
-        _parentViewsButton.layer.masksToBounds = YES;
+        [_parentViewsButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+        [_parentViewsButton LL_setCornerRadius:5];
         _parentViewsButton.tintColor = [LLThemeManager shared].primaryColor;
         _parentViewsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
         [_parentViewsButton setImage:[[UIImage LL_imageNamed:kParentImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -213,10 +212,8 @@
         [_subviewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _subviewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _subviewsButton.backgroundColor = [LLThemeManager shared].backgroundColor;
-        _subviewsButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        _subviewsButton.layer.borderWidth = 1;
-        _subviewsButton.layer.cornerRadius = 5;
-        _subviewsButton.layer.masksToBounds = YES;
+        [_subviewsButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+        [_subviewsButton LL_setCornerRadius:5];
         _subviewsButton.tintColor = [LLThemeManager shared].primaryColor;
         _subviewsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
         [_subviewsButton setImage:[[UIImage LL_imageNamed:kSubviewImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -233,10 +230,8 @@
         [_moreButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _moreButton.backgroundColor = [LLThemeManager shared].backgroundColor;
-        _moreButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-        _moreButton.layer.borderWidth = 1;
-        _moreButton.layer.cornerRadius = 5;
-        _moreButton.layer.masksToBounds = YES;
+        [_moreButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+        [_moreButton LL_setCornerRadius:5];
         _moreButton.tintColor = [LLThemeManager shared].primaryColor;
         _moreButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
         [_moreButton setImage:[[UIImage LL_imageNamed:kInfoImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
