@@ -103,6 +103,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
+    [super deleteFilesWithIndexPaths:indexPaths];
     __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.datas[indexPath.row]];
