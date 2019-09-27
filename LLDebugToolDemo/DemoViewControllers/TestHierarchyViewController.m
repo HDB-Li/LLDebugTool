@@ -36,6 +36,8 @@
     });
     self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView", @"UINavigationBar", @"UIToolbar", @"UITabBar", @"UISearchBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testHierarchy)];
+    
+    [self testHierarchy];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
