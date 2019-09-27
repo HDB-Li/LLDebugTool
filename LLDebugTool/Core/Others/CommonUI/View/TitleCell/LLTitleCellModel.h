@@ -32,7 +32,7 @@ typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 
 @interface LLTitleCellModel : NSObject
 
-@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, copy, nullable, readonly) NSString *title;
 
 @property (nonatomic, copy, readonly) NSString *cellClass;
 
@@ -58,16 +58,16 @@ typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 @property (nonatomic, assign) UIEdgeInsets separatorInsets;
 
 // LLTitleSwitchCell
-- (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag;
+- (instancetype)initWithTitle:(NSString *_Nullable)title flag:(BOOL)flag;
 
 // LLDetailTitleCell
-- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle;
+- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle;
 
 // LLDetailTitleSelectorCell
-- (instancetype)initWithTitle:(NSString *)title detailTitleSelector:(NSString *)detailTitle;
+- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitleSelector:(NSString *_Nullable)detailTitle;
 
 // LLTitleSliderCell
-- (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
+- (instancetype)initWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
 
 @end
 
