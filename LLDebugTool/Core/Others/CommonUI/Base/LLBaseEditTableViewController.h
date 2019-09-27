@@ -23,6 +23,7 @@
 
 #import "LLBaseTableViewController.h"
 #import "LLBaseModel.h"
+#import "LLTableViewSelectableDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,14 +52,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Original data array.
  */
-@property (nonatomic, strong, readonly) NSMutableArray *oriDataArray;
+@property (nonatomic, strong, readonly) NSMutableArray<LLTableViewSelectableDelegate> *oriDataArray;
 
 /**
  * Filter data array.
  */
-@property (nonatomic, strong, readonly) NSMutableArray *searchDataArray;
+@property (nonatomic, strong, readonly) NSMutableArray<LLTableViewSelectableDelegate> *searchDataArray;
 
-@property (nonatomic, strong, readonly) NSMutableArray *datas;
+@property (nonatomic, strong, readonly) NSMutableArray<LLTableViewSelectableDelegate> *datas;
 
 /**
  * Header view use to show searchBar and filter view.
@@ -99,12 +100,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Share files action. Must call super method.
  */
-- (void)shareFilesWithIndexPaths:(NSArray *)indexPaths;
+- (void)shareFilesWithIndexPaths:(NSArray <NSIndexPath *>*)indexPaths;
 
 /**
  * Delete files action. Must call super method.
  */
-- (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths;
+- (void)deleteFilesWithIndexPaths:(NSArray <NSIndexPath *>*)indexPaths;
 
 /**
  * Rewrite method to control whether is searching. Must call super method.

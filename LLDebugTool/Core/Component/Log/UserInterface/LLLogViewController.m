@@ -119,9 +119,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
-            [weakSelf.oriDataArray removeObjectsInArray:models];
-            [weakSelf.searchDataArray removeObjectsInArray:models];
-            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf updateAfterDelete:models indexPaths:indexPaths];
         } else {
             [weakSelf showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
                 if (action == 1) {
@@ -130,6 +128,34 @@ static NSString *const kLogCellID = @"LLLogCell";
             }];
         }
     }];
+}
+
+- (void)updateAfterDelete:(NSArray *)models indexPaths:(NSArray *)indexPaths {
+    NSMutableSet *set = [NSMutableSet setWithArray:[self.tableView indexPathsForVisibleRows]];
+    [set intersectSet:[NSSet setWithArray:indexPaths]];
+    if ([set count] > 0) {
+        NSMutableArray *noAnimateModels = [[NSMutableArray alloc] initWithArray:models];
+        NSMutableArray *animatedModels = [[NSMutableArray alloc] init];
+        
+        for (NSIndexPath *indexPath in set.allObjects) {
+            LLLogModel *model = self.datas[indexPath.row];
+            [noAnimateModels removeObject:model];
+            [animatedModels addObject:model];
+        }
+        [self.oriDataArray removeObjectsInArray:animatedModels];
+        [self.searchDataArray removeObjectsInArray:animatedModels];
+        [self.tableView deleteRowsAtIndexPaths:set.allObjects withRowAnimation:UITableViewRowAnimationFade];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.oriDataArray removeObjectsInArray:noAnimateModels];
+            [self.searchDataArray removeObjectsInArray:noAnimateModels];
+            [self.tableView reloadData];
+        });
+    } else {
+        [self.oriDataArray removeObjectsInArray:models];
+        [self.searchDataArray removeObjectsInArray:models];
+        [self.tableView reloadData];
+    }
+
 }
 
 #pragma mark - TableView

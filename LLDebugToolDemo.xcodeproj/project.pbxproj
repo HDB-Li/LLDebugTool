@@ -54,6 +54,7 @@
 		366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366BC4A1233C64F4009BDA4A /* LLFilterView.m */; };
 		36743D412313879700002A92 /* LLReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 36743D3F2313879700002A92 /* LLReachability.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
+		368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 368CB9E0233DFC3A009DFFDB /* LLTableViewSelectableModel.m */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
 		36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */; };
 		3694F874233899E4007B07CA /* LLEnumDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 3694F873233899E4007B07CA /* LLEnumDescription.m */; };
@@ -309,6 +310,9 @@
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		367E27A420A1A8490032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		368CB9DF233DFC3A009DFFDB /* LLTableViewSelectableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTableViewSelectableModel.h; sourceTree = "<group>"; };
+		368CB9E0233DFC3A009DFFDB /* LLTableViewSelectableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewSelectableModel.m; sourceTree = "<group>"; };
+		368CB9E3233E004F009DFFDB /* LLTableViewSelectableDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTableViewSelectableDelegate.h; sourceTree = "<group>"; };
 		3691A61C20C7E63B00E22192 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3691A61E20C7E63D00E22192 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3694F872233899E4007B07CA /* LLEnumDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEnumDescription.h; sourceTree = "<group>"; };
@@ -810,6 +814,24 @@
 				C4B4E41422F9C90900F70277 /* EntryWindow */,
 			);
 			path = Window;
+			sourceTree = "<group>";
+		};
+		368CB9DE233DFC22009DFFDB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				368CB9E2233DFFE0009DFFDB /* LLTableViewSelectableModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		368CB9E2233DFFE0009DFFDB /* LLTableViewSelectableModel */ = {
+			isa = PBXGroup;
+			children = (
+				368CB9DF233DFC3A009DFFDB /* LLTableViewSelectableModel.h */,
+				368CB9E0233DFC3A009DFFDB /* LLTableViewSelectableModel.m */,
+				368CB9E3233E004F009DFFDB /* LLTableViewSelectableDelegate.h */,
+			);
+			path = LLTableViewSelectableModel;
 			sourceTree = "<group>";
 		};
 		3694F8712338995F007B07CA /* EnumDescription */ = {
@@ -1582,6 +1604,7 @@
 		C4B4E3D822F9C90900F70277 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				368CB9DE233DFC22009DFFDB /* Model */,
 				366BC49B233C6463009BDA4A /* Window */,
 				364CF3D6232656FC000B513F /* View */,
 				C4B4E3FC22F9C90900F70277 /* ViewController */,
@@ -1994,6 +2017,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B4E44922F9C90900F70277 /* NSArray+LL_Utils.m in Sources */,
+				368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */,
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
 				C49856B122ED8DEC00E9FBE2 /* LLConfig.m in Sources */,

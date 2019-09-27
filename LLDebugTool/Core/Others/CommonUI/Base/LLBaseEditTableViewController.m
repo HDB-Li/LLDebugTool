@@ -27,13 +27,14 @@
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
+#import "LLTableViewSelectableModel.h"
 #import <objc/runtime.h>
 
 @interface LLBaseEditTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *oriDataArray;
+@property (nonatomic, strong) NSMutableArray<LLTableViewSelectableDelegate> *oriDataArray;
 
-@property (nonatomic, strong) NSMutableArray *searchDataArray;
+@property (nonatomic, strong) NSMutableArray<LLTableViewSelectableDelegate> *searchDataArray;
 
 @property (nonatomic, copy) NSString *selectAllString;
 
@@ -168,26 +169,23 @@
 }
 
 - (void)updateTableViewCellSelectedStyle:(BOOL)selected {
-    NSInteger row = [self tableView:self.tableView numberOfRowsInSection:0];
-    for (int j = 0; j < row; j++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:0];
-        if (selected) {
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        } else {
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        }
+    for (NSInteger i = 0; i < self.datas.count; i++) {
+        LLTableViewSelectableModel *model = self.datas[i];
+        [model setSelected:selected];
     }
+    
+    [self.tableView reloadData];
 }
 
 - (void)shareItemClick:(UIBarButtonItem *)sender {
-    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
+    NSArray *indexPaths = self.indexPathsForSelectedRows;
     if (indexPaths.count) {
         [self shareFilesWithIndexPaths:indexPaths];
     }
 }
 
 - (void)deleteItemClick:(UIBarButtonItem *)sender {
-    NSArray *indexPaths = self.tableView.indexPathsForSelectedRows;
+    NSArray *indexPaths = self.indexPathsForSelectedRows;
     [self showDeleteAlertWithIndexPaths:indexPaths];
 }
 
@@ -199,6 +197,19 @@
             }
         }];
     }
+}
+
+- (NSArray *)indexPathsForSelectedRows {
+    NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+    
+    for (NSInteger i = 0; i < self.datas.count; i++) {
+        id<LLTableViewSelectableDelegate> model = self.datas[i];
+        if ([model isSelected]) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+    }
+    
+    return [indexPaths copy];
 }
 
 - (void)endEditing {
@@ -224,15 +235,22 @@
     return [[UITableViewCell alloc] init];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<LLTableViewSelectableDelegate> model = self.datas[indexPath.row];
+    [cell setSelected:[model isSelected]];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing) {
-        if (self.tableView.indexPathsForSelectedRows.count == self.datas.count) {
+        if (self.indexPathsForSelectedRows.count == self.datas.count) {
             if ([self.selectAllItem.title isEqualToString:self.selectAllString]) {
                 self.selectAllItem.title = self.cancelAllString;
             }
         }
         self.shareItem.enabled = YES;
         self.deleteItem.enabled = YES;
+        id<LLTableViewSelectableDelegate> model = self.datas[indexPath.row];
+        [model setSelected:YES];
     } else {
         if (self.isSelectEnable) {
             [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -242,10 +260,12 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing) {
+        id<LLTableViewSelectableDelegate> model = self.datas[indexPath.row];
+        [model setSelected:NO];
         if (![self.selectAllItem.title isEqualToString:self.selectAllString]) {
             self.selectAllItem.title = self.selectAllString;
         }
-        if (self.tableView.indexPathsForSelectedRows.count == 0) {
+        if (self.indexPathsForSelectedRows.count == 0) {
             self.shareItem.enabled = NO;
             self.deleteItem.enabled = NO;
         }
@@ -302,16 +322,16 @@
 }
 
 #pragma mark - Getters and setters
-- (NSMutableArray *)oriDataArray {
+- (NSMutableArray<LLTableViewSelectableDelegate> *)oriDataArray {
     if (!_oriDataArray) {
-        _oriDataArray = [[NSMutableArray alloc] init];
+        _oriDataArray = [[NSMutableArray<LLTableViewSelectableDelegate> alloc] init];
     }
     return _oriDataArray;
 }
 
-- (NSMutableArray *)searchDataArray {
+- (NSMutableArray<LLTableViewSelectableDelegate> *)searchDataArray {
     if (!_searchDataArray) {
-        _searchDataArray = [[NSMutableArray alloc] init];
+        _searchDataArray = [[NSMutableArray<LLTableViewSelectableDelegate> alloc] init];
     }
     return _searchDataArray;
 }
