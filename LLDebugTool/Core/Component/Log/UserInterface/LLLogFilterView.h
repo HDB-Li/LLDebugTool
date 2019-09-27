@@ -21,21 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseView.h"
+#import "LLFilterView.h"
 #import "LLLogModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^LLLogFilterChangeBlock)(NSArray *_Nullable levels, NSArray *_Nullable events, NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
 
-@interface LLLogFilterView : LLBaseView
+@interface LLLogFilterView : LLFilterView
 
 @property (copy, nonatomic, nullable) LLLogFilterChangeBlock changeBlock;
 
 - (void)configWithData:(NSArray <LLLogModel *>*)data;
-
-- (BOOL)isFiltering;
-- (void)cancelFiltering;
 
 @end
 

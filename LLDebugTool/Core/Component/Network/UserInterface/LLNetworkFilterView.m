@@ -52,6 +52,7 @@
 
 @implementation LLNetworkFilterView
 
+#pragma mark - Public
 - (void)configWithData:(NSArray <LLNetworkModel *>*)data {
   
     NSMutableSet *hostSet = [NSMutableSet set];
@@ -97,9 +98,6 @@
     // Date Part
     self.dateView.hidden = YES;
     [self.dateView updateFromDate:fromDate endDate:endDate];
-    
-    // Final
-//    [self bringSubviewToFront:self.btnsBgView];
 }
 
 - (void)reCalculateFilters {
