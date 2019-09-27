@@ -43,6 +43,8 @@ static LLDebugTool *_instance = nil;
 
 @property (nonatomic, copy) NSString *versionNumber;
 
+@property (nonatomic, assign) BOOL installed;
+
 @end
 
 @implementation LLDebugTool
@@ -86,7 +88,10 @@ static LLDebugTool *_instance = nil;
         }
         [self prepareToStart];
         // show window
-        [self showWindow];
+        if (self.installed || ![LLConfig shared].hideWhenInstall) {
+            self.installed = YES;
+            [self showWindow];
+        }
         
         [self registerNotifications];
     }
