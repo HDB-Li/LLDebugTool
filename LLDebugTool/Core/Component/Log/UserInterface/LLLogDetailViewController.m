@@ -27,7 +27,7 @@
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
-@interface LLLogDetailViewController () <LLSubTitleTableViewCellDelegate>
+@interface LLLogDetailViewController () <UITableViewDataSource, LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titleArray;
 
@@ -42,11 +42,12 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Details";
+    self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kLogContentCellID];
     [self loadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.contentArray.count;
 }
