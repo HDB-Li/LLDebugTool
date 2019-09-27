@@ -69,10 +69,28 @@
     return [[self class] LL_getPropertyNames];
 }
 
-+ (NSArray *)LL_getInstanceMethodsNames {
++ (NSArray *)LL_getInstanceMethodNames {
     unsigned int count;
     // Get methods list.
     Method *methods = class_copyMethodList([self class], &count);
+    // Get name
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i = 0; i < count; i++) {
+        Method method = methods[i];
+        SEL sel = method_getName(method);
+        NSString *name = NSStringFromSelector(sel);
+        if (name.length) {
+            [array addObject:name];
+        }
+    }
+    free(methods);
+    return array;
+}
+
++ (NSArray *)LL_getClassMethodNames {
+    unsigned int count;
+    // Get methods list.
+    Method *methods = class_copyMethodList(object_getClass([self class]), &count);
     // Get name
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (int i = 0; i < count; i++) {
