@@ -496,10 +496,10 @@
     LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:self.isMomentary ? @"Momentary" : @"Persistent Selection"];
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [self LL_normalInsetsCellModelWithTitle:@"Segments" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfSegments]];
+    LLTitleCellModel *model2 = [self LL_normalInsetsCellModelWithTitle:@"Segments" detailTitle:[NSString stringWithFormat:@"%ld",(unsigned long)self.numberOfSegments]];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld",self.selectedSegmentIndex]];
+    LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.selectedSegmentIndex]];
     [settings addObject:model3];
     
 #ifdef __IPHONE_13_0
@@ -680,10 +680,10 @@
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Pages" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfPages]];
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Pages" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfPages]];
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Current Page" detailTitle:[NSString stringWithFormat:@"%ld",self.currentPage]];
+    LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Current Page" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.currentPage]];
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Hides for Single Page %@",[self LL_hierarchyBoolDescription:self.hidesForSinglePage]]];
@@ -818,7 +818,7 @@
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfSections]];
+    LLTitleCellModel *model1 = [self LL_noneInsetsCellModelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfSections]];
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Style" detailTitle:[LLEnumDescription tableViewStyleDescription:self.style]];
@@ -859,7 +859,7 @@
     LLTitleCellModel *model13 = [self LL_normalInsetsCellModelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelection ? @"" : @"Disabled"]];
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [self LL_noneInsetsCellModelWithTitle:@"Min Display" detailTitle:[NSString stringWithFormat:@"%ld",self.sectionIndexMinimumDisplayRowCount]];
+    LLTitleCellModel *model14 = [self LL_noneInsetsCellModelWithTitle:@"Min Display" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.sectionIndexMinimumDisplayRowCount]];
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [self LL_noneInsetsCellModelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexColor]];
@@ -914,7 +914,7 @@
     LLTitleCellModel *model5 = [self LL_normalInsetsCellModelWithTitle:@"Editing Acc." detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.editingAccessoryType]];
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:@"Indentation" detailTitle:[NSString stringWithFormat:@"%ld",self.indentationLevel]];
+    LLTitleCellModel *model6 = [self LL_noneInsetsCellModelWithTitle:@"Indentation" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.indentationLevel]];
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:[LLFormatterTool formatNumber:@(self.indentationWidth)]];
@@ -950,7 +950,7 @@
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [self LL_normalInsetsCellModelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",self.numberOfSections]];
+    LLTitleCellModel *model1 = [self LL_normalInsetsCellModelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfSections]];
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
@@ -1095,7 +1095,7 @@
     LLTitleCellModel *model2 = [self LL_noneInsetsCellModelWithTitle:@"Locale Identifier" detailTitle:self.locale.localeIdentifier];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:@"Interval" detailTitle:[NSString stringWithFormat:@"%ld",self.minuteInterval]];
+    LLTitleCellModel *model3 = [self LL_normalInsetsCellModelWithTitle:@"Interval" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.minuteInterval]];
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:@"Date" detailTitle:[self LL_hierarchyObjectDescription:self.date]];

@@ -69,7 +69,7 @@
     }
     
     self.moreButton.enabled = YES;
-    self.parentViewsButton.enabled = view.superview;
+    self.parentViewsButton.enabled = view.superview != nil;
     self.subviewsButton.enabled = view.subviews.count;
     
     self.selectedView = view;
