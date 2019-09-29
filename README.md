@@ -46,8 +46,6 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 
 ## What's new in 1.3.2
 
-## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.2) (09/29/2019)
-
 ###  Add `Ruler`,  `Widget Border` function.
 
 Ruler function : Convenient tools to display touch point information.
