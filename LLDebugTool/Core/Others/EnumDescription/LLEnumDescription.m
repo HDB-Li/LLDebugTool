@@ -348,12 +348,15 @@
         case UIActivityIndicatorViewStyleLarge:
             return @"Large";
 #endif
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case UIActivityIndicatorViewStyleWhiteLarge:
             return @"White Large";
         case UIActivityIndicatorViewStyleWhite:
             return @"White";
         case UIActivityIndicatorViewStyleGray:
             return @"Gray";
+#pragma clang diagnostic pop
     }
     return nil;
 }
@@ -412,8 +415,11 @@
             return @"None";
         case UITableViewCellSeparatorStyleSingleLine:
             return @"Single Line";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case UITableViewCellSeparatorStyleSingleLineEtched:
             return @"Single Line Etched";
+#pragma clang diagnostic pop
     }
     return nil;
 }
@@ -478,8 +484,11 @@
             return @"Default";
         case UIBarStyleBlack:
             return @"Black";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case UIBarStyleBlackTranslucent:
             return @"Black Translucent";
+#pragma clang diagnostic pop
         }
     return nil;
 }

@@ -219,7 +219,10 @@
     [UIView animateWithDuration:0.25 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
     }];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [[UIApplication sharedApplication] setStatusBarStyle:style animated:YES];
+#pragma clang diagnostic pop
 }
 
 - (LLTitleCellModel *)getEntryWindowStyleModel {
