@@ -232,7 +232,7 @@ static NSString *const kCellID = @"cellID";
                 }
                     break;
                 case LLConfigEntryWindowStyleTrailing: {
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTrailing";
                 }
                     break;
 #ifndef __IPHONE_13_0
