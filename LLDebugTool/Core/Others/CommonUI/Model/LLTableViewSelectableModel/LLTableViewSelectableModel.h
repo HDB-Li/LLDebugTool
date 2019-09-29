@@ -28,8 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLTableViewSelectableModel : LLStorageModel <LLTableViewSelectableDelegate>
 
-- (void)setSelected:(BOOL)selected;
-
 @end
 
 NS_ASSUME_NONNULL_END
