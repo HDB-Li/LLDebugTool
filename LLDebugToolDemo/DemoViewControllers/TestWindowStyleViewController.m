@@ -57,13 +57,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        [self testSuspensionBallWindowStyle];
+        [self testBallWindowStyle];
     } else if (indexPath.row == 1) {
         [self testTitleWindowStyle];
     } else if (indexPath.row == 2) {
-        [self testSuspensionLeadingWindowStyle];
+        [self testLeadingWindowStyle];
     } else if (indexPath.row == 3) {
-        [self testSuspensionTrailingWindowStyle];
+        [self testTrailingWindowStyle];
     } else if (indexPath.row == 4) {
         [self testNetBarWindowStyle];
     } else if (indexPath.row == 5) {
@@ -73,7 +73,7 @@
 }
 
 #pragma mark - Actions
-- (void)testSuspensionBallWindowStyle {
+- (void)testBallWindowStyle {
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleBall;
 }
 
@@ -81,11 +81,11 @@
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTitle;
 }
 
-- (void)testSuspensionLeadingWindowStyle {
+- (void)testLeadingWindowStyle {
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
 }
 
-- (void)testSuspensionTrailingWindowStyle {
+- (void)testTrailingWindowStyle {
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
 }
 
