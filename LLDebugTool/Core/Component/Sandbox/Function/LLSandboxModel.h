@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
+#import "LLTableViewSelectableModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  Sandbox model. Save and show sandbox infos.
  */
-@interface LLSandboxModel : LLBaseModel
+@interface LLSandboxModel : LLTableViewSelectableModel
 
 /**
  File path.

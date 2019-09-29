@@ -31,7 +31,7 @@
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
-@interface LLNetworkDetailViewController () <LLSubTitleTableViewCellDelegate>
+@interface LLNetworkDetailViewController () <UITableViewDataSource, LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titleArray;
 
@@ -46,12 +46,13 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Details";
+    self.tableView.dataSource = self;
     [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:kNetworkImageCellID];
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kNetworkContentCellID];
     [self loadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.contentArray.count;
 }

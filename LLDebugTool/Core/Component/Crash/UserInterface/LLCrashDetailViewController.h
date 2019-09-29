@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseEditTableViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLCrashModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLCrashDetailViewController : LLBaseEditTableViewController
+@interface LLCrashDetailViewController : LLBaseTableViewController
 
 /**
  * Model to show

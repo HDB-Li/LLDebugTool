@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLStorageModel.h"
+#import "LLTableViewSelectableModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  Network model. Save and show network request infos.
  */
-@interface LLNetworkModel : LLStorageModel
+@interface LLNetworkModel : LLTableViewSelectableModel
 
 #pragma mark - Request
 /**

@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLStorageModel.h"
+#import "LLTableViewSelectableModel.h"
 #import "LLCrashSignalModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLCrashModel : LLStorageModel
+@interface LLCrashModel : LLTableViewSelectableModel
 
 /**
  * Crash Name

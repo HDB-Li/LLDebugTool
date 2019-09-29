@@ -35,7 +35,7 @@
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
-@interface LLCrashDetailViewController () <LLSubTitleTableViewCellDelegate>
+@interface LLCrashDetailViewController () <UITableViewDataSource, LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titleArray;
 
@@ -50,6 +50,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.model.name;
+    self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashContentCellID];
     
     self.titleArray = [[NSMutableArray alloc] init];
@@ -58,7 +59,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     [self loadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.titleArray.count;
 }

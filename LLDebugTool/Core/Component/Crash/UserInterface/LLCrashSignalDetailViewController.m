@@ -28,7 +28,7 @@
 
 static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
-@interface LLCrashSignalDetailViewController ()<LLSubTitleTableViewCellDelegate>
+@interface LLCrashSignalDetailViewController ()<UITableViewDataSource, LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titleArray;
 
@@ -43,6 +43,8 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.model.name;
+    
+    self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashSignalContentCellID];
     
     self.titleArray = [[NSMutableArray alloc] init];
@@ -51,6 +53,7 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
     [self loadData];
 }
 
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.titleArray.count;
 }
@@ -73,6 +76,7 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
     }
 }
 
+#pragma mark - LLSubTitleTableViewCellDelegate
 - (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];

@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseEditTableViewController.h"
+#import "LLBaseTableViewController.h"
 #import "LLNetworkModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLNetworkDetailViewController : LLBaseEditTableViewController
+@interface LLNetworkDetailViewController : LLBaseTableViewController
 
 @property (nonatomic, strong) LLNetworkModel *model;
 

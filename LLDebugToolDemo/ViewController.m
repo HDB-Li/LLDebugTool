@@ -107,7 +107,10 @@ static NSString *const kCellID = @"cellID";
     // Log.
     // NSLocalizedString is used for multiple languages.
     // You can just use as LLog(@"What you want to pring").
-    LLog(NSLocalizedString(@"initial.log", nil));
+    for (int i = 0; i < 10000; i++) {
+        LLog([NSString stringWithFormat:@"%ld",i]);
+//    LLog(NSLocalizedString(@"initial.log", nil));
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
