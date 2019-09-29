@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.1-blue.svg)](https://img.shields.io/badge/pod-v1.3.1-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.2-blue.svg)](https://img.shields.io/badge/pod-v1.3.2-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -44,30 +44,27 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## What's new in 1.3.1
+## What's new in 1.3.2
 
-###  Hierarchy and magnifying is coming.
+## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.2) (09/29/2019)
 
-Hierarchy function : Now you can use `Hierarchy` function to see every element on screen, and you can visually see their frame and properties, `Hierarchy info` will come soon.
+###  Add `Ruler`,  `Widget Border` function.
 
-Magnifying function : Now you can use `Magnifying` function to see the contents or color of each pixel, this makes it easier for you to communicate with the UI designer.
+Ruler function : Convenient tools to display touch point information.
 
-More changes can be viewed in [Version 1.3.1 Project](https://github.com/HDB-Li/LLDebugTool/projects/8).
+Widget Border function : Display element border, convenient to see the view's frame.
+
+More changes can be viewed in [Version 1.3.2 Project](https://github.com/HDB-Li/LLDebugTool/projects/9).
 
 #### Add
 
-* Refactory UI hierarchy, now use many windows to display functions, each function use one window, more information you can see `LLWindowManager.m`.
+* Add `LLSettingManager` to control some settings in tool, you can configure `LLConfig`'s options dynamically without re-archiving.
 
-#### Update
-
-* Changed folder path.
-* Update a new user interface.
-* Fix in iOS 13.
+* Add `Hierarchy Detail Info` function to show more detail info of target view. Similar to `Debug View Hierarchy` function in XCode.
 
 #### Remove
 
-* `LLDebugTool` didn't supports component-based now. This is a useless feature and adds to the difficulty of calling between modules. `LLDebugTool` is later maintained as a single app rather than as multiple functional modules.
-* Remove some unused files, methods and macros.
+* Remove all xib files, it wastes compilation time. In contrast, you need to introduce [Masonry](https://github.com/SnapKit/Masonry) lib.
         
 ## What can you do with LLDebugTool?
 
@@ -89,6 +86,10 @@ More changes can be viewed in [Version 1.3.1 Project](https://github.com/HDB-Li/
 
 - determine UI elements and colors in your App more accurately.
 
+- easy access to and comparison of point information.
+
+- easy access to element borders and frames.
+
 ## Adding LLDebugTool to your project
 
 ### CocoaPods
@@ -98,7 +99,7 @@ More changes can be viewed in [Version 1.3.1 Project](https://github.com/HDB-Li/
 ##### Objective - C
 
 > 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`. 
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.1' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.2' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugTool', '~> 1.0.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 5. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
@@ -106,7 +107,7 @@ More changes can be viewed in [Version 1.3.1 Project](https://github.com/HDB-Li/
 ##### Swift
 
 > 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0'`.
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.1' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.2' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugToolSwift', '~> 1.0.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Must be added in the Podfile **`use_frameworks!`**.
 > 5. Install the pod(s) by running `pod install`. If you can't search `LLDebugToolSwift` or you can't find the newest release version, running `pod repo update` before `pod install`.
@@ -141,7 +142,8 @@ Alternatively you can directly add the source folder named LLDebugTool.  to your
 > 1. Download the [latest code version](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or add the repository as a git submodule to your git-tracked project.
 > 2. Open your project in Xcode, then drag and drop the source folder named `LLDebugTool`. When you are prompted to "Choose options for adding these files", be sure to check the "Copy items if needed".
 > 3. Integrated [FMDB](https://github.com/ccgus/fmdb) to your project,FMDB is an Objective-C wrapper around SQLite.
-> 4. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
+> 4. Integrated [Masonry](https://github.com/SnapKit/Masonry) to your project, Masonry is an Objective-C constraint library. There are no specific version requirements, but it is recommended that you use the latest version.
+> 5. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
 
 ##### Swift
 
@@ -149,7 +151,8 @@ Alternatively you can directly add the source folder named LLDebugTool.  to your
 > 2. Download the [LLDebugToolSwift latest code version](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) or add the repository as a git submodule to your git-tracked project.
 > 3. Open your project in Xcode, then drag and drop the source folder named `LLDebugTool` and `LLDebugToolSwift`. When you are prompted to "Choose options for adding these files", be sure to check the "Copy items if needed".
 > 4. Integrated [FMDB](https://github.com/ccgus/fmdb) to your project,FMDB is an Objective-C wrapper around SQLite.
-> 5. Include LLDebugTool wherever you need it with `import LLDebugToolSwift"`.
+> 5. Integrated [Masonry](https://github.com/SnapKit/Masonry) to your project, Masonry is an Objective-C constraint library. There are no specific version requirements, but it is recommended that you use the latest version.
+> 6. Include LLDebugTool wherever you need it with `import LLDebugToolSwift"`.
 
 ## Usage
 
@@ -338,10 +341,18 @@ LLDebugTool provides a view structure tool for viewing elements' properties and 
 
 LLDebugTool provides a magnify tool for magnifying local uis and viewing color values at specified pixel.
 
+### Ruler
+
+LLDebugTool provides a convenient tools to display touch point information.
+
+### Widget Border
+
+LLDebugTool provides a function to display element border, convenient to see the view's frame.
+
 ### More Usage
 
 * You can get more help by looking at the [Wiki](https://github.com/HDB-Li/LLDebugTool/wiki).
-* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under MacOS 10.14.6, XCode 10.2.1, iOS 12.1, CocoaPods 1.7.5. If there is any version compatibility problem, please let me know.
+* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under MacOS 10.14.6, XCode 11.0, iOS 13.0, CocoaPods 1.7.5. If there is any version compatibility problem, please let me know.
 
 ## Requirements
 
@@ -375,7 +386,7 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 
 * `Components`
   
-  - `Network` Use to monitoring network request.
+  - `Network` Used to monitoring network request.
   - `Log` Used to quick print and save log.
   - `Crash` Used to collect crash information when an App crashes.
   - `AppInfo` Use to monitoring app's properties.
@@ -383,6 +394,10 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
   - `Screenshot` Used to process and display screenshots.
   - `Hierarchy` Used to process and present the view structure.
   - `Magnifier` Used for magnifying glass function.
+  - `Ruler` Used to ruler function.
+  - `Widget Border` User to widget border function.
+  - `Function` Used to show functions.
+  - `Setting` Used to dynamically set configs.
   
 ## Communication
 

@@ -1,10 +1,12 @@
-## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.1) (09/29/2019)
+## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.2) (09/29/2019)
 
 ###  Add `Ruler`,  `Widget Border` function.
 
 Ruler function : Convenient tools to display touch point information.
 
 Widget Border function : Display element border, convenient to see the view's frame.
+
+More changes can be viewed in [Version 1.3.2 Project](https://github.com/HDB-Li/LLDebugTool/projects/9).
 
 #### Add
 
