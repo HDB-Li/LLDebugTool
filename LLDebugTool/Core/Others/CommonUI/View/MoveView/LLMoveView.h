@@ -1,5 +1,5 @@
 //
-//  LLBaseComponentViewController.m
+//  LLMoveView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,31 +21,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentViewController.h"
-#import "LLBaseComponentWindow.h"
+#import "LLBaseView.h"
 
-@interface LLBaseComponentViewController ()
+NS_ASSUME_NONNULL_BEGIN
 
-@end
+@interface LLMoveView : LLBaseView
 
-@implementation LLBaseComponentViewController
+@property (nonatomic, assign, getter=isOverflow) BOOL overflow;
 
-- (void)componentDidLoad:(NSDictionary *)data {
-    if ([self.view.window isKindOfClass:[LLBaseComponentWindow class]]) {
-        LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;
-        [window componentDidFinish];
-    } else {
-        NSAssert(NO, ([NSString stringWithFormat:@"%@'s window must be LLBaseComponentWindow", NSStringFromClass(self.class)]));
-    }
-}
+@property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
 
-- (void)leftItemClick:(UIButton *)sender {
-    if ([self.view.window isKindOfClass:[LLBaseComponentWindow class]]) {
-        LLBaseComponentWindow *window = (LLBaseComponentWindow *)self.view.window;
-        [window componentDidFinish];
-    } else {
-        [super leftItemClick:sender];
-    }
-}
+@property (nonatomic, assign, getter=isMoveable) BOOL moveable;
+
+/// Moveable range.
+@property (nonatomic, assign) CGRect moveableRect;
+
+- (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
+
+- (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
 
 @end
+
+NS_ASSUME_NONNULL_END

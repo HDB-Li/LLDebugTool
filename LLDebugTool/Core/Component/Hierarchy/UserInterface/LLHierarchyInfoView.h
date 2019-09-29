@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseInfoView.h"
+#import "LLInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,13 +33,13 @@ typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
 
 @class LLHierarchyInfoView;
 
-@protocol LLHierarchyInfoViewDelegate <NSObject, LLBaseInfoViewDelegate>
+@protocol LLHierarchyInfoViewDelegate <NSObject, LLInfoViewDelegate>
 
 - (void)LLHierarchyInfoView:(LLHierarchyInfoView *)view didSelectAt:(LLHierarchyInfoViewAction)action;
 
 @end
 
-@interface LLHierarchyInfoView : LLBaseInfoView
+@interface LLHierarchyInfoView : LLInfoView
 
 @property (nonatomic, weak, nullable) id<LLHierarchyInfoViewDelegate> delegate;
 

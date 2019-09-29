@@ -1,5 +1,5 @@
 //
-//  LLBaseEditTableViewController.h
+//  LLEditTableViewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseEditTableViewController : LLBaseTableViewController <UITableViewDataSource, UISearchBarDelegate>
+@interface LLEditTableViewController : LLBaseTableViewController <UITableViewDataSource, UISearchBarDelegate>
 
 /**
  * Whether use searchBar. Default is NO.

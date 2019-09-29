@@ -193,7 +193,7 @@
 }
 
 #pragma mark - LLBaseInfoViewDelegate
-- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+- (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view {
     [self componentDidLoad:nil];
 }
 

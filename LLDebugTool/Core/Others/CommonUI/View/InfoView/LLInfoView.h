@@ -1,5 +1,5 @@
 //
-//  LLBaseAnimateView.h
+//  LLInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseView.h"
+#import "LLMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseAnimateView : LLBaseView
+@class LLInfoView;
 
-@property (nonatomic, strong, readonly) UIView *contentView;
+@protocol LLInfoViewDelegate <NSObject>
 
-- (void)show;
+- (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view;
 
-- (void)hide;
+@end
+
+@interface LLInfoView : LLMoveView
+
+@property (nonatomic, weak, nullable) id<LLInfoViewDelegate> delegate;
+
+@property (nonatomic, strong, readonly) UIButton *closeButton;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  LLBaseInfoView.h
+//  LLInfoView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,37 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveView.h"
+#import "LLInfoView.h"
+#import "LLFactory.h"
+#import "LLImageNameConfig.h"
+#import "UIView+LL_Utils.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
+#import "LLThemeManager.h"
+#import "LLConst.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@interface LLInfoView ()
 
-@class LLBaseInfoView;
-
-@protocol LLBaseInfoViewDelegate <NSObject>
-
-- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view;
-
-@end
-
-@interface LLBaseInfoView : LLBaseMoveView
-
-@property (nonatomic, weak, nullable) id<LLBaseInfoViewDelegate> delegate;
-
-@property (nonatomic, strong, readonly) UIButton *closeButton;
+@property (nonatomic, strong) UIButton *closeButton;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLInfoView
+
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
+    [self LL_setCornerRadius:5];
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    
+    self.closeButton = [LLFactory getButton:self frame:CGRectMake(self.LL_width - kLLGeneralMargin - 30, kLLGeneralMargin, 30, 30) target:self action:@selector(closeButtonClicked:)];
+    [self.closeButton setImage:[UIImage LL_imageNamed:kCloseImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
+}
+
+#pragma mark - Primary
+- (void)closeButtonClicked:(UIButton *)sender {
+    [self.delegate LLInfoViewDidSelectCloseButton:self];
+}
+
+@end

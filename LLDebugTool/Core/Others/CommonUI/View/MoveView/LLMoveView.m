@@ -1,5 +1,5 @@
 //
-//  LLBaseMoveView.m
+//  LLMoveView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveView.h"
+#import "LLMoveView.h"
 #import "LLMacros.h"
 #import "UIView+LL_Utils.h"
 
-@interface LLBaseMoveView ()
+@interface LLMoveView ()
 
 @property (nonatomic, assign) BOOL moved;
 
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation LLBaseMoveView
+@implementation LLMoveView
 
 - (void)initUI {
     [super initUI];

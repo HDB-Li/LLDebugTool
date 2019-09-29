@@ -1,5 +1,5 @@
 //
-//  LLBaseComponentWindow.h
+//  LLBaseComponentViewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseWindow.h"
+#import "LLBaseComponentViewController.h"
+#import "LLComponentWindow.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@protocol LLComponentCompleteDelegate <NSObject>
-
-- (void)componentDidFinish;
+@interface LLBaseComponentViewController ()
 
 @end
 
-@interface LLBaseComponentWindow : LLBaseWindow<LLComponentCompleteDelegate>
+@implementation LLBaseComponentViewController
+
+- (void)componentDidLoad:(NSDictionary *)data {
+    if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
+        LLComponentWindow *window = (LLComponentWindow *)self.view.window;
+        [window componentDidFinish];
+    } else {
+        NSAssert(NO, ([NSString stringWithFormat:@"%@'s window must be LLBaseComponentWindow", NSStringFromClass(self.class)]));
+    }
+}
+
+- (void)leftItemClick:(UIButton *)sender {
+    if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
+        LLComponentWindow *window = (LLComponentWindow *)self.view.window;
+        [window componentDidFinish];
+    } else {
+        [super leftItemClick:sender];
+    }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

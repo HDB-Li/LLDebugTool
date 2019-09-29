@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseEditTableViewController.h"
+#import "LLEditTableViewController.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
@@ -30,7 +30,7 @@
 #import "LLTableViewSelectableModel.h"
 #import <objc/runtime.h>
 
-@interface LLBaseEditTableViewController ()
+@interface LLEditTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray<LLTableViewSelectableDelegate> *oriDataArray;
 
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation LLBaseEditTableViewController
+@implementation LLEditTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

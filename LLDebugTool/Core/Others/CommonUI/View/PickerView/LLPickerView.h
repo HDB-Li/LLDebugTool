@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveView.h"
+#import "LLMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLPickerView : LLBaseMoveView
+@interface LLPickerView : LLMoveView
 
 @end
 

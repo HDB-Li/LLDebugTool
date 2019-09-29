@@ -30,7 +30,7 @@
 #import "LLThemeManager.h"
 #import "UIView+LL_Utils.h"
 
-@interface LLRulerViewController ()<LLRulerPickerViewDelegate, LLBaseInfoViewDelegate>
+@interface LLRulerViewController ()<LLRulerPickerViewDelegate, LLInfoViewDelegate>
 
 @property (nonatomic, strong) LLRulerPickerView *pickerView;
 
@@ -140,7 +140,7 @@
 }
 
 #pragma mark - LLBaseInfoViewDelegate
-- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+- (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view {
     [self componentDidLoad:nil];
 }
 

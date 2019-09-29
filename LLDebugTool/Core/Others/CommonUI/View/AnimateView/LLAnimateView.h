@@ -1,5 +1,5 @@
 //
-//  LLBaseComponentWindow.m
+//  LLAnimateView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,12 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLBaseView.h"
 
-@implementation LLBaseComponentWindow
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)componentDidFinish {
-    NSAssert(NO, @"Sub class must rewrite componentDidFinish:");
-}
+@interface LLAnimateView : LLBaseView
+
+@property (nonatomic, strong, readonly) UIView *contentView;
+
+- (void)show;
+
+- (void)hide;
 
 @end
+
+NS_ASSUME_NONNULL_END

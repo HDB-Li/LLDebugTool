@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentWindow.h"
+#import "LLComponentWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyWindow : LLBaseComponentWindow
+@interface LLHierarchyWindow : LLComponentWindow
 
 @end
 

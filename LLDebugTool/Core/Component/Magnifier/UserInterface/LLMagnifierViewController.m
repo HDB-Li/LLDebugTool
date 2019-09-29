@@ -28,7 +28,7 @@
 #import "LLMacros.h"
 #import "LLConst.h"
 
-@interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLBaseInfoViewDelegate>
+@interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLInfoViewDelegate>
 
 @property (nonatomic, strong) LLMagnifierView *magnifierView;
 
@@ -60,7 +60,7 @@
 }
 
 #pragma mark - LLBaseInfoViewDelegate
-- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+- (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view {
     [self componentDidLoad:nil];
 }
 

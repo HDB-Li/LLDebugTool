@@ -1,5 +1,5 @@
 //
-//  LLBaseAnimateView.m
+//  LLAnimateView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseAnimateView.h"
+#import "LLAnimateView.h"
 #import "LLFactory.h"
 #import "UIView+LL_Utils.h"
 #import "LLMacros.h"
 
-@interface LLBaseAnimateView ()
+@interface LLAnimateView ()
 
 @property (nonatomic, strong) UIView *contentView;
 
 @end
 
-@implementation LLBaseAnimateView
+@implementation LLAnimateView
 
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {

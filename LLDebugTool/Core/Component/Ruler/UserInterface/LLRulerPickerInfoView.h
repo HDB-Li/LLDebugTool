@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseInfoView.h"
+#import "LLInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLRulerPickerInfoView : LLBaseInfoView
+@interface LLRulerPickerInfoView : LLInfoView
 
 - (void)updatePoint:(CGPoint)point;
 

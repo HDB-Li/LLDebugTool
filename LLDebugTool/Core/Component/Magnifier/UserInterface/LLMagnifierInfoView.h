@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseInfoView.h"
+#import "LLInfoView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLMagnifierInfoView : LLBaseInfoView
+@interface LLMagnifierInfoView : LLInfoView
 
 - (void)update:(NSString *)hexColor point:(CGPoint)point;
 

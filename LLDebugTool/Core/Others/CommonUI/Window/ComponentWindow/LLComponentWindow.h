@@ -1,5 +1,5 @@
 //
-//  LLBaseMoveView.h
+//  LLComponentWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseView.h"
+#import "LLBaseWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLBaseMoveView : LLBaseView
+@protocol LLComponentCompleteDelegate <NSObject>
 
-@property (nonatomic, assign, getter=isOverflow) BOOL overflow;
+- (void)componentDidFinish;
 
-@property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
+@end
 
-@property (nonatomic, assign, getter=isMoveable) BOOL moveable;
-
-/// Moveable range.
-@property (nonatomic, assign) CGRect moveableRect;
-
-- (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
-
-- (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
+@interface LLComponentWindow : LLBaseWindow<LLComponentCompleteDelegate>
 
 @end
 
