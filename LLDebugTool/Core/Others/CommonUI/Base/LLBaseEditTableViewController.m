@@ -72,6 +72,10 @@
     sender.selected = !sender.selected;
     [self.tableView setEditing:sender.isSelected animated:YES];
     [self.navigationController setToolbarHidden:!sender.isSelected animated:YES];
+    for (id<LLTableViewSelectableDelegate> model in self.datas) {
+        [model setSelected:NO];
+    }
+    [self.tableView reloadData];
     if (self.isSelectEnable) {
         if (sender.isSelected) {
             self.selectAllItem.title = self.selectAllString;
@@ -237,7 +241,11 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     id<LLTableViewSelectableDelegate> model = self.datas[indexPath.row];
-    [cell setSelected:[model isSelected]];
+    if ([model isSelected]) {
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    } else {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
