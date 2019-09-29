@@ -54,8 +54,6 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 元素边框功能：显示元素边框，方便查看视图的Frame信息。
 
-更多的修改内容可以查看 [Version 1.3.2 Project](https://github.com/HDB-Li/LLDebugTool/projects/9).
-
 #### 新增
 
 * 添加 `LLSettingManager` 来控制工具中的一些设置，您可以动态配置 `LLConfig` 的选项，而无需重新打包。

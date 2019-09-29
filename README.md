@@ -54,8 +54,6 @@ Ruler function : Convenient tools to display touch point information.
 
 Widget Border function : Display element border, convenient to see the view's frame.
 
-More changes can be viewed in [Version 1.3.2 Project](https://github.com/HDB-Li/LLDebugTool/projects/9).
-
 #### Add
 
 * Add `LLSettingManager` to control some settings in tool, you can configure `LLConfig`'s options dynamically without re-archiving.
