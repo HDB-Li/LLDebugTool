@@ -28,7 +28,7 @@
 #import "LLMacros.h"
 #import "LLConst.h"
 
-@interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLBaseInfoViewDelegate>
+@interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLInfoViewDelegate>
 
 @property (nonatomic, strong) LLMagnifierView *magnifierView;
 
@@ -38,13 +38,9 @@
 
 @implementation LLMagnifierViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.view.backgroundColor = [UIColor clearColor];
     
     CGFloat height = 60;
@@ -64,7 +60,7 @@
 }
 
 #pragma mark - LLBaseInfoViewDelegate
-- (void)LLBaseInfoViewDidSelectCloseButton:(LLBaseInfoView *)view {
+- (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view {
     [self componentDidLoad:nil];
 }
 

@@ -27,29 +27,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Action enums.
- 
- - LLDebugToolActionNetwork: Network function.
- - LLDebugToolActionLog: Log function.
- - LLDebugToolActionCrash: Crash function.
- - LLDebugToolActionAppInfo: App info function.
- - LLDebugToolActionSandbox: Sandbox function.
- - LLDebugToolActionScreenshot: Screenshot function.
- - LLDebugToolActionHierarchy: Hierarchy function.
- - LLDebugToolActionMagnifier: Magnifier function.
- */
-typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
-    LLDebugToolActionNetwork,
-    LLDebugToolActionLog,
-    LLDebugToolActionCrash,
-    LLDebugToolActionAppInfo,
-    LLDebugToolActionSandbox,
-    LLDebugToolActionScreenshot,
-    LLDebugToolActionHierarchy,
-    LLDebugToolActionMagnifier
-};
-
-/**
  Control whether DebugTool is started.
  */
 @interface LLDebugTool : NSObject

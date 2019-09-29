@@ -109,8 +109,12 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     [LLThemeManager shared].statusBarStyle = statusBarStyle;
 }
 
-- (CGFloat)suspensionBallWidth {
-    return MAX(_suspensionBallWidth, kLLSuspensionWindowMinWidth);
+- (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
+    _entryWindowBallWidth = MIN(MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth), kLLEntryWindowMaxBallWidth);
+}
+
+- (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
+    _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
 }
 
 - (void)setMagnifierSize:(NSInteger)magnifierSize {
@@ -154,17 +158,20 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _colorStyle = LLConfigColorStyleHack;
     
     // Set default suspension ball attributes.
-    _suspensionBallWidth = kLLSuspensionWindowWidth;
-    _suspensionWindowHideWidth = kLLSuspensionWindowHideWidth;
-    _suspensionWindowTop = kLLSuspensionWindowTop;
-    _normalAlpha = kLLSuspensionWindowNormalAlpha;
-    _activeAlpha = kLLSuspensionWindowActiveAlpha;
-    _suspensionBallMoveable = YES;
-    _autoAdjustSuspensionWindow = YES;
+    _entryWindowBallWidth = kLLEntryWindowBallWidth;
+    _entryWindowDisplayPercent = kLLEntryWindowDisplayPercent;
+    _entryWindowFirstDisplayPosition = CGPointMake(kLLEntryWindowFirstDisplayPositionX, kLLEntryWindowFirstDisplayPositionY);
+    _inactiveAlpha = kLLInactiveAlpha;
+    _activeAlpha = kLLActiveAlpha;
+    _shrinkToEdgeWhenInactive = YES;
+    _shakeToHide = YES;
     
     // Set default magnifier properties.
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
     _magnifierSize = kLLMagnifierWindowSize;
+    
+    // Set hierarchy
+    _hierarchyIgnorePrivateClass = YES;
     
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
@@ -172,8 +179,12 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     // Set log style.
     _logStyle = LLConfigLogDetail;
     
+    // Click action
+    _clickAction = LLDebugToolActionFunction;
+    _doubleClickAction = LLDebugToolActionConvenientScreenshot;
+    
     // Set default window's style.
-    _entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
+    _entryWindowStyle = LLConfigEntryWindowStyleBall;
     
     // Set default availables.
     _availables = LLConfigAvailableAll;

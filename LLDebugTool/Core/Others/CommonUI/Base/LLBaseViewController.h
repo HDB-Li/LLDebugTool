@@ -39,6 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)showAlertControllerWithMessage:(NSString *_Nullable)message handler:(void (^_Nullable)(NSInteger action))handler;
 
 /**
+ Simple sheet.
+ */
+- (void)showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(NSString *_Nullable)currentAction completion:(void (^ _Nullable)(NSInteger index))completion;
+
+/**
  * Left navigation item action.
  */
 - (void)leftItemClick:(UIButton *)sender;
@@ -67,6 +72,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param flag is left navigation item or right navigation item.
  */
 - (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag;
+
+/// Called when window is show.
+- (void)becomeVisable;
+
+/// Called when [LLThemeManager primaryColor] changed.
+- (void)primaryColorChanged;
+
+/// Called when [LLThemeManager backgroundColor] changed.
+- (void)backgroundColorChanged;
 
 @end
 

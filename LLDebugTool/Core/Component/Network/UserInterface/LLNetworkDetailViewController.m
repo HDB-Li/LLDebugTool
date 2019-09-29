@@ -31,7 +31,7 @@
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
 static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
-@interface LLNetworkDetailViewController () <LLSubTitleTableViewCellDelegate>
+@interface LLNetworkDetailViewController () <UITableViewDataSource, LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titleArray;
 
@@ -45,10 +45,14 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = @"Details";
+    self.tableView.dataSource = self;
+    [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:kNetworkImageCellID];
+    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kNetworkContentCellID];
+    [self loadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.contentArray.count;
 }
@@ -109,16 +113,6 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 }
 
 #pragma mark - Primary
-/**
- * initial method
- */
-- (void)initial {
-    self.navigationItem.title = @"Details";
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkImageCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kNetworkImageCellID];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kNetworkContentCellID];
-    [self loadData];
-}
-
 - (void)loadData {
     if (self.model) {
         self.titleArray = [[NSMutableArray alloc] init];

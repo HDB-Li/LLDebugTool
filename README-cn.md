@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.1-blue.svg)](https://img.shields.io/badge/Pod-v1.3.1-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.2-blue.svg)](https://img.shields.io/badge/Pod-v1.3.2-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -44,30 +44,25 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.3.1)
+## 最近更新 (1.3.2)
 
-###  视图结构功能和放大镜功能。
+## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.2) (09/29/2019)
 
-视图结构功能：现在你可以使用`Hierarchy`函数来查看屏幕上的每个元素，并且可以直观地看到它们的frame和属性，接下来会增加`Hierarchy info`的实现。
+###  新增 `格尺`，`元素边框` 功能。
 
-放大镜功能：现在你可以使用`Magnifying`功能来查看每个像素的内容或颜色，这让你和UI设计师的沟通更方便。
+格尺功能：方便的工具显示触点信息。
 
-更多的修改内容可以查看 [Version 1.3.1 Project](https://github.com/HDB-Li/LLDebugTool/projects/8)。
+元素边框功能：显示元素边框，方便查看视图的Frame信息。
 
 #### 新增
 
-* 重构了UI层次结构，现在使用多个窗口来显示具体功能，每个功能使用一个`Window`，更多信息可以看到`LLWindowManager.m`。
+* 添加 `LLSettingManager` 来控制工具中的一些设置，您可以动态配置 `LLConfig` 的选项，而无需重新打包。
 
-#### 更新
-
-* 更改文件路径。
-* 更新一些UI展示。
-* 适配iOS 13。
+* 添加 `Hierarchy Detail Info` 功能，显示更多目标视图的详细信息。类似于XCode中的 `Debug View Hierarchy` 功能。
 
 #### 删除
 
-* `LLDebugTool`现在不支持基于组件化，这是一个无用的特性，并且增加了模块之间调用的难度。`LLDebugTool`后来被维护类似一个应用程序，而不是多个功能模块。
-* 删除一些不再使用的文件、方法和宏。
+* 删除所有xib文件，这会浪费编译时间。相反，您需要引入[Masonry](https://github.com/snapkit/Masonry)。
 
 ## 我能用LLDebugTool做什么?
 
@@ -89,6 +84,10 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 - 更准确地确定App里的UI元素和颜色。
 
+- 便捷的获取和对比位置信息。
+
+- 便捷的查看元素边框及位置。
+
 ## 添加 LLDebugTool 到你的项目中
 
 ### CocoaPods
@@ -98,7 +97,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 ##### Objective - C
 
 > 1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。
-> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.3.1' ,:configurations => ['Debug']`。
+> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.3.2' ,:configurations => ['Debug']`。
 > 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugTool' , '~> 1.0.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugTool`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
 > 4. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 > 5. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
@@ -106,7 +105,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 ##### Swift
 
 > 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。
-> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.3.1' ,:configurations => ['Debug']`。
+> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.3.2' ,:configurations => ['Debug']`。
 > 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugToolSwift' , '~> 1.0.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugToolSwift`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
 > 4. 必须在Podfile中添加 **`use_frameworks!`** 。
 > 5. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
@@ -141,7 +140,8 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 > 1. 下载[最新的代码版本](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或将存储库作为git子模块添加到您的git跟踪项目中。
 > 2. 在Xcode中打开项目，然后拖拽名为“LLDebugTool”的源文件夹到你的项目中。当提示Choose options for adding these files时，务必勾选Copy items if needed这项。
 > 3. 集成[FMDB](https://github.com/ccgus/fmdb)到项目中，FMDB是一个围绕SQLite的Objective-C包装器开源库。
-> 4. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
+> 4. 集成[Masonry](https://github.com/snapkit/Masonry)到项目中，Masonry是一个约束库。
+> 5. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
 ##### Swift
 
@@ -149,7 +149,8 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 > 2. 下载[最新的Swift扩展代码版本](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)或将存储库作为git子模块添加到您的git跟踪项目中。
 > 3. 在Xcode中打开项目，然后拖拽名为“LLDebugTool”和“LLDebugToolSwift”的源文件夹到你的项目中。当提示Choose options for adding these files时，务必勾选Copy items if needed这项。
 > 4. 集成[FMDB](https://github.com/ccgus/fmdb)到项目中，FMDB是一个围绕SQLite的Objective-C包装器开源库。
-> 5. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
+> 5. 集成[Masonry](https://github.com/snapkit/Masonry)到项目中，Masonry是一个约束库。
+> 6. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
 
 ## 如何使用
 
@@ -338,10 +339,18 @@ LLDebugTool提供了一个视图结构工具，用于在非Debug模式下查看�
 
 LLDebugTool提供了一个放大镜的工具，用于放大局部UI和查看指定位置的颜色值。
 
+### 格尺
+
+LLDebugTool提供了一个格尺工具，用于便捷的获取和对比位置信息。
+
+### 元素边框
+
+LLDebugTool提供了一个元素边框工具，便捷的查看元素边框及位置。
+
 ### 更多使用
 
 * 你可以通过查看[Wiki](https://github.com/HDB-Li/LLDebugTool/wiki)，获得更多帮助。
-* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或[LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在MacOS 10.14.6，XCode 10.2.1，iOS 12.1，CocoaPods 1.7.5下运行的，如果有任何版本兼容问题，请告诉我。
+* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或[LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在MacOS 10.14.6，XCode 11.0，iOS 13.0，CocoaPods 1.7.5下运行的，如果有任何版本兼容问题，请告诉我。
 
 ## 要求
 
@@ -383,6 +392,10 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
   - `Screenshot` 用于处理和展示截屏事件。
   - `Hierarchy` 用于处理和展示视图结构。
   - `Magnifier` 用于放大镜功能。
+  - `Ruler` 用于格尺功能。
+  - `Widget Border` 用于元素边框功能。
+  - `Function` 用于展示功能列表。
+  - `Setting` 用于动态修改配置。
   
 ## 联系
 

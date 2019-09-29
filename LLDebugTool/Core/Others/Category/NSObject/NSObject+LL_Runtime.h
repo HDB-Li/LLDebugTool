@@ -67,6 +67,16 @@ Get all property names.
 - (NSArray *)LL_getPropertyNames;
 
 /**
+ Get all instance method names;
+ */
++ (NSArray *)LL_getInstanceMethodNames;
+
+/**
+Get all class method names;
+*/
++ (NSArray *)LL_getClassMethodNames;
+
+/**
  Add string property.
 
  @param string String value.

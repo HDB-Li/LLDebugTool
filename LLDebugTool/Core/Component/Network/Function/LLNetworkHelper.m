@@ -57,11 +57,11 @@ static LLNetworkHelper *_instance = nil;
 }
 
 - (LLNetworkStatus)currentNetworkStatus {
-    if (@available(iOS 13.0, *)) {
-        return [self.reachability currentReachabilityStatus];
-    } else {
+//    if (@available(iOS 13.0, *)) {
+//        return [self.reachability currentReachabilityStatus];
+//    } else {
         return [self networkStateFromStatebar];
-    }
+//    }
 }
 
 #pragma mark - Primary
@@ -182,8 +182,6 @@ static LLNetworkHelper *_instance = nil;
                     break;
                 case 5:
                     returnValue = LLNetworkStatusReachableViaWiFi;
-                    break;
-                default:
                     break;
             }
         }

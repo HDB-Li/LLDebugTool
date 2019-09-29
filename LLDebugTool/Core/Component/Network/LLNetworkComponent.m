@@ -23,11 +23,19 @@
 
 #import "LLNetworkComponent.h"
 #import "LLWindowManager.h"
+#import "LLNetworkViewController.h"
+#import "LLNavigationController.h"
 
 @implementation LLNetworkComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager networkWindow] animated:YES];
+    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    if ([window isKindOfClass:[LLFunctionWindow class]]) {
+        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
+        [nav pushViewController:[[LLNetworkViewController alloc] init] animated:YES];
+    } else {
+        [[LLWindowManager shared] showWindow:[LLWindowManager networkWindow] animated:YES];
+    }
 }
 
 @end

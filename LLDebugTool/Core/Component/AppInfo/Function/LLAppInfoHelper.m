@@ -112,6 +112,39 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
     return [[NSMutableArray alloc] initWithObjects:dynamic ,apps, devices, nil];
 }
 
+- (NSArray <NSDictionary *>*)dynamicInfos {
+    return @[@{@"CPU" : [self cpuUsage]},
+             @{@"Memory" : [self memoryUsage]},
+             @{@"FPS" : [self fps]},
+             @{@"Data Traffic" : [self dataTraffic]}];
+}
+
+- (NSArray <NSDictionary *>*)applicationInfos {
+    return @[@{@"Name" : [self appName]},
+             @{@"Identifier" : [self bundleIdentifier]},
+             @{@"Version" : [self appVersion]},
+             @{@"Start Time" : [self appStartTimeConsuming]}];
+}
+
+- (NSArray <NSDictionary *>*)deviceInfos {
+    NSArray *devices = @[@{@"Model" : [self deviceModel]},
+                         @{@"Name" : [self deviceName]},
+                         @{@"Version" : [self systemVersion]},
+                         @{@"Resolution" : [self screenResolution]},
+                         @{@"Language" : [self languageCode]},
+                         @{@"Battery" : [self batteryLevel]},
+                         @{@"CPU" : [self cpuType]},
+                         @{@"Disk" : [self disk]},
+                         @{@"Network" : [self networkState]}];
+    
+    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
+    NSString *ssid = [self ssid];
+    if (ssid) {
+        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
+    }
+    return mutDevices;
+}
+
 - (NSDictionary <NSString *, NSString *>*)dynamicAppInfos {
     NSMutableDictionary *infos = [[NSMutableDictionary alloc] init];
     for (NSDictionary *dic in [self dynamicInfos]) {
@@ -245,7 +278,7 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 
 #pragma mark - Primary
 /**
- Initialize something
+ Init something
  */
 - (void)initial {
     _fps = 60;
@@ -273,39 +306,6 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
         [_link invalidate];
         _link = nil;
     }
-}
-
-- (NSArray *)dynamicInfos {
-    return @[@{@"CPU Usage" : [self cpuUsage]},
-             @{@"Memory Usage" : [self memoryUsage]},
-             @{@"FPS" : [self fps]},
-             @{@"Data Traffic" : [self dataTraffic]}];
-}
-
-- (NSArray *)applicationInfos {
-    return @[@{@"App Name" : [self appName]},
-             @{@"Bundle Identifier" : [self bundleIdentifier]},
-             @{@"App Version" : [self appVersion]},
-             @{@"App Start Time" : [self appStartTimeConsuming]}];
-}
-
-- (NSArray *)deviceInfos {
-    NSArray *devices = @[@{@"Device Model" : [self deviceModel]},
-                         @{@"Device Name" : [self deviceName]},
-                         @{@"System Version" : [self systemVersion]},
-                         @{@"Screen Resolution" : [self screenResolution]},
-                         @{@"Language Code" : [self languageCode]},
-                         @{@"Battery Level" : [self batteryLevel]},
-                         @{@"CPU Type" : [self cpuType]},
-                         @{@"Disk" : [self disk]},
-                         @{@"Network State" : [self networkState]}];
-    
-    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
-    NSString *ssid = [self ssid];
-    if (ssid) {
-        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
-    }
-    return mutDevices;
 }
 
 #pragma mark - CPU

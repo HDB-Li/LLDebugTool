@@ -31,14 +31,16 @@
 #import "LLCrashViewController.h"
 #import "LLAppInfoViewController.h"
 #import "LLSandboxViewController.h"
-#import "LLHierarchyViewController.h"
 #import "LLFunctionItemContainerView.h"
 #import "UIView+LL_Utils.h"
 #import "LLThemeManager.h"
 #import "LLConst.h"
 #import "LLWindowManager.h"
+#import "LLSettingViewController.h"
 
-@interface LLFunctionViewController ()<LLHierarchyViewControllerDelegate, LLFunctionContainerViewControllerDelegate>
+@interface LLFunctionViewController ()<LLFunctionContainerViewControllerDelegate>
+
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) LLFunctionItemContainerView *toolContainerView;
 
@@ -50,51 +52,42 @@
 
 @implementation LLFunctionViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    CGRect toolContainerRect = CGRectMake(kLLGeneralMargin, LL_NAVIGATION_HEIGHT + kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, self.toolContainerView.LL_height);
-    if (!CGRectEqualToRect(self.toolContainerView.frame, toolContainerRect)) {
-        self.toolContainerView.frame = toolContainerRect;
-    }
-    
-    CGRect shortCutContainerRect = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + kLLGeneralMargin, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
-    if (!CGRectEqualToRect(self.shortCutContainerView.frame, shortCutContainerRect)) {
-        self.shortCutContainerView.frame = shortCutContainerRect;
-    }
-    
-    CGRect settingButtonRect = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + 30, self.toolContainerView.LL_width, 40);
-    if (!CGRectEqualToRect(self.settingButton.frame, settingButtonRect)) {
-        self.settingButton.frame = settingButtonRect;
-    }
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.title = @"LLDebugTool";
- 
-    self.toolContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
-    self.toolContainerView.delegate = self;
-    [self.view addSubview:self.toolContainerView];
     
-    self.shortCutContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
-    self.shortCutContainerView.delegate = self;
-    [self.view addSubview:self.shortCutContainerView];
-    
-    self.settingButton = [LLFactory getButton:self.view frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
-    [self.settingButton LL_setCornerRadius:5];
-    [self.settingButton setTitle:@"Settings" forState:UIControlStateNormal];
-    [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
-    [self.settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-    self.settingButton.hidden = YES;
+    [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.toolContainerView];
+    [self.scrollView addSubview:self.shortCutContainerView];
+    [self.scrollView addSubview:self.settingButton];
     
     [self loadData];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.scrollView.frame = self.view.bounds;
+        
+    self.toolContainerView.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, self.toolContainerView.LL_height);
+
+    self.shortCutContainerView.frame = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + kLLGeneralMargin, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
+    
+    self.settingButton.frame = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + 30, self.toolContainerView.LL_width, 40);
+    
+    
+    self.scrollView.contentSize = CGSizeMake(0, self.settingButton.LL_bottom + kLLGeneralMargin);
+}
+
+#pragma mark - Over write
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+    self.settingButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+}
+
+#pragma mark - Primary
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork]];
@@ -111,24 +104,58 @@
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot]];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy]];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder]];
+    
     
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = @"Short Cut";
 }
 
-- (void)settingButtonClicked:(UIButton *)sender {
-    
-}
-
 #pragma mark - LLFunctionContainerViewDelegate
-- (void)llFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
+- (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
     LLComponent *component = model.component;
     [component componentDidLoad:nil];
 }
 
-#pragma mark - LLHierarchyViewControllerDelegate
-- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel {
-    [self.delegate LLFunctionViewController:self didSelectedHierarchyModel:selectedModel];
+#pragma mark - Event response
+- (void)settingButtonClicked:(UIButton *)sender {
+    [[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSetting].component componentDidLoad:nil];
+}
+
+#pragma mark - Getters and setters
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [LLFactory getScrollView];
+    }
+    return _scrollView;
+}
+
+- (LLFunctionItemContainerView *)toolContainerView {
+    if (!_toolContainerView) {
+        _toolContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
+        _toolContainerView.delegate = self;
+    }
+    return _toolContainerView;
+}
+
+- (LLFunctionItemContainerView *)shortCutContainerView {
+    if (!_shortCutContainerView) {
+        _shortCutContainerView = [[LLFunctionItemContainerView alloc] initWithFrame:CGRectZero];
+        _shortCutContainerView.delegate = self;
+    }
+    return _shortCutContainerView;
+}
+
+- (UIButton *)settingButton {
+    if (!_settingButton) {
+        _settingButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
+        [_settingButton LL_setCornerRadius:5];
+        [_settingButton setTitle:@"Settings" forState:UIControlStateNormal];
+        [_settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+        [_settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+    }
+    return _settingButton;
 }
 
 @end

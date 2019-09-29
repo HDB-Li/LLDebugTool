@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly, nullable) NSDictionary <NSString *, NSString *>*appInfos;
 
 /**
- Initial method.
+ Init method.
  */
 - (instancetype _Nonnull)initWithName:(NSString *)name stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSDictionary <NSString *, NSString *>*_Nullable)appInfos;
 

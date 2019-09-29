@@ -26,6 +26,7 @@
 #import "LLMacros.h"
 #import "LLTool.h"
 #import "LLFactory.h"
+#import "UIColor+LL_Utils.h"
 
 @interface LLScreenshotBaseOperation ()
 
@@ -59,7 +60,7 @@
 {
     self = [super init];
     if (self) {
-        _selector = [[LLScreenshotSelectorModel alloc] initWithSize:LLScreenshotSelectorActionSmall color:LLScreenshotSelectorActionRed];
+        _selector = [[LLScreenshotSelectorModel alloc] initWithSize:LLScreenshotSelectorSizeActionSmall color:LLScreenshotSelectorColorActionRed];
         _action = LLScreenshotActionRect;
         _path = [UIBezierPath bezierPath];
         _layer = [CAShapeLayer layer];
@@ -81,45 +82,45 @@
     [LLTool log:[NSString stringWithFormat:@"%@ : Subclasses need to be rewritten.", NSStringFromClass(self.class)]];
 }
 
-- (LLScreenshotSelectorAction)size {
+- (LLScreenshotSelectorSizeAction)size {
     return _selector.size;
 }
 
-- (LLScreenshotSelectorAction)color {
+- (LLScreenshotSelectorColorAction)color {
     return _selector.color;
 }
 
 - (UIColor *)redColor {
     if (!_redColor) {
-        _redColor = [UIColor colorWithRed:0xd8/255.0 green:0x1e/255.0 blue:0x06/255.0 alpha:1];
+        _redColor = [UIColor LL_colorWithHex:@"#D81E06"];
     }
     return _redColor;
 }
 
 - (UIColor *)blueColor {
     if (!_blueColor) {
-        _blueColor = [UIColor colorWithRed:0x12/255.0 green:0x96/255.0 blue:0xdb/255.0 alpha:1];
+        _blueColor = [UIColor LL_colorWithHex:@"#1296DB"];
     }
     return _blueColor;
 }
 
 - (UIColor *)greenColor {
     if (!_greenColor) {
-        _greenColor = [UIColor colorWithRed:0x1a/255.0 green:0xfa/255.0 blue:0x29/255.0 alpha:1];
+        _greenColor = [UIColor LL_colorWithHex:@"#1AFA29"];
     }
     return _greenColor;
 }
 
 - (UIColor *)yellowColor {
     if (!_yellowColor) {
-        _yellowColor = [UIColor colorWithRed:0xf4/255.0 green:0xea/255.0 blue:0x2a/255.0 alpha:1];
+        _yellowColor = [UIColor LL_colorWithHex:@"#F4EA2A"];
     }
     return _yellowColor;
 }
 
 - (UIColor *)grayColor {
     if (!_grayColor) {
-        _grayColor = [UIColor colorWithRed:0x2c/255.0 green:0x2c/255.0 blue:0x2c/255.0 alpha:1];
+        _grayColor = [UIColor LL_colorWithHex:@"#2C2C2C"];
     }
     return _grayColor;
 }
@@ -160,48 +161,42 @@
 
 - (CGFloat)sizeBySelector {
     switch (self.size) {
-        case LLScreenshotSelectorActionSmall:
+        case LLScreenshotSelectorSizeActionSmall:
             return 3;
-        case LLScreenshotSelectorActionMedium:
+        case LLScreenshotSelectorSizeActionMedium:
             return 6;
-        case LLScreenshotSelectorActionBig:
+        case LLScreenshotSelectorSizeActionBig:
             return 9;
-        default:
-            break;
     }
     return 3;
 }
 
 - (UIColor *)colorBySelector {
     switch (self.color) {
-        case LLScreenshotSelectorActionRed:
+        case LLScreenshotSelectorColorActionRed:
             return self.redColor;
-        case LLScreenshotSelectorActionBlue:
+        case LLScreenshotSelectorColorActionBlue:
             return self.blueColor;
-        case LLScreenshotSelectorActionGreen:
+        case LLScreenshotSelectorColorActionGreen:
             return self.greenColor;
-        case LLScreenshotSelectorActionYellow:
+        case LLScreenshotSelectorColorActionYellow:
             return self.yellowColor;
-        case LLScreenshotSelectorActionGray:
+        case LLScreenshotSelectorColorActionGray:
             return self.grayColor;
-        case LLScreenshotSelectorActionWhite:
+        case LLScreenshotSelectorColorActionWhite:
             return self.whiteColor;
-        default:
-            break;
     }
     return self.whiteColor;
 }
 
 - (UIFont *)fontBySelector {
     switch (self.size) {
-        case LLScreenshotSelectorActionSmall:
+        case LLScreenshotSelectorSizeActionSmall:
             return self.smallFont;
-        case LLScreenshotSelectorActionMedium:
+        case LLScreenshotSelectorSizeActionMedium:
             return self.mediumFont;
-        case LLScreenshotSelectorActionBig:
+        case LLScreenshotSelectorSizeActionBig:
             return self.bigFont;
-        default:
-            break;
     }
     return self.smallFont;
 }
@@ -263,6 +258,7 @@
         self.layer.strokeColor = [self colorBySelector].CGColor;
         self.layer.fillColor = nil;
         self.layer.path = self.path.CGPath;
+        self.layer.lineCap = kCALineCapRound;
     }
 }
 

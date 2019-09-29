@@ -20,29 +20,31 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-// Default suspension window width.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowWidth;
-// Min width of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowMinWidth;
-// The distance between Suspension window and UIScreen.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowHideWidth;
-// Normal status alpha of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowNormalAlpha;
-// Active status alpha of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowActiveAlpha;
-// Default top of suspension window.
-UIKIT_EXTERN CGFloat const kLLSuspensionWindowTop;
+UIKIT_EXTERN CGFloat const kLLEntryWindowBallWidth;
+UIKIT_EXTERN CGFloat const kLLEntryWindowMinBallWidth;
+UIKIT_EXTERN CGFloat const kLLEntryWindowMaxBallWidth;
+UIKIT_EXTERN CGFloat const kLLEntryWindowDisplayPercent;
+UIKIT_EXTERN CGFloat const kLLEntryWindowMinDisplayPercent;
+UIKIT_EXTERN CGFloat const kLLEntryWindowMaxDisplayPercent;
+UIKIT_EXTERN CGFloat const kLLEntryWindowFirstDisplayPositionX;
+UIKIT_EXTERN CGFloat const kLLEntryWindowFirstDisplayPositionY;
+UIKIT_EXTERN CGFloat const kLLInactiveAlpha;
+UIKIT_EXTERN CGFloat const kLLActiveAlpha;
+UIKIT_EXTERN CGFloat const kLLEntryWindowBigTitleViewHeight;
 
-// Default magnifier window zoom level.
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;
-// Number of rows per magnifier window.
+UIKIT_EXTERN NSInteger const kLLMagnifierWindowMinZoomLevel;
+UIKIT_EXTERN NSInteger const kLLMagnifierWindowMaxZoomLevel;
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowSize;
+UIKIT_EXTERN NSInteger const kLLMagnifierWindowMinSize;
+UIKIT_EXTERN NSInteger const kLLMagnifierWindowMaxSize;
 
-// General margin.
+UIKIT_EXTERN CGFloat const kLLRulerLineWidth;
+
+UIKIT_EXTERN CGFloat const kLLWidgetBorderWidth;
+
 UIKIT_EXTERN CGFloat const kLLGeneralMargin;
-
-// Default EntryView double click component.
-FOUNDATION_EXTERN NSString * const kLLEntryViewDoubleClickComponent;

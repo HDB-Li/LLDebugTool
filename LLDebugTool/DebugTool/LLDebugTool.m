@@ -34,12 +34,16 @@
 #import "LLTool.h"
 #import "LLWindowManager.h"
 #import "LLFunctionItemModel.h"
+#import "LLSettingManager.h"
+#import "UIResponder+LL_Utils.h"
 
 static LLDebugTool *_instance = nil;
 
 @interface LLDebugTool ()
 
 @property (nonatomic, copy) NSString *versionNumber;
+
+@property (nonatomic, assign) BOOL installed;
 
 @end
 
@@ -82,8 +86,14 @@ static LLDebugTool *_instance = nil;
             // Open screenshot
             [[LLScreenshotHelper shared] setEnable:YES];
         }
+        [self prepareToStart];
         // show window
-        [self showWindow];
+        if (self.installed || ![LLConfig shared].hideWhenInstall) {
+            self.installed = YES;
+            [self showWindow];
+        }
+        
+        [self registerNotifications];
     }
 }
 
@@ -109,6 +119,8 @@ static LLDebugTool *_instance = nil;
         [[LLCrashHelper shared] setEnable:NO];
         // hide window
         [self hideWindow];
+        
+        [self unregisterNotifications];
     }
 }
 
@@ -131,27 +143,27 @@ static LLDebugTool *_instance = nil;
     [model.component componentDidLoad:data];
 }
 
-- (void)showDebugViewControllerWithIndex:(NSInteger)index {
-    [self showDebugViewControllerWithIndex:index params:nil];
-}
-
-- (void)showDebugViewControllerWithIndex:(NSInteger)index params:(NSDictionary <NSString *,id>*)params {
-//    [self.windowViewController presentTabbarWithIndex:index params:params];
-}
-
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
+#pragma mark - Notifications
+- (void)didReceiveDidShakeNotification:(NSNotification *)notification {
+    if ([LLConfig shared].isShakeToHide) {
+        if ([LLWindowManager shared].entryWindow.isHidden) {
+            [self showWindow];
+        } else {
+            [self hideWindow];
+        }
+    }
+}
+
 #pragma mark - Primary
-/**
- Initial something.
- */
 - (void)initial {
     // Set Default
     _isBetaVersion = NO;
 
-    _versionNumber = @"1.3.1";
+    _versionNumber = @"1.3.2";
 
     _version = _isBetaVersion ? [_versionNumber stringByAppendingString:@"(BETA)"] : _versionNumber;
     
@@ -229,6 +241,61 @@ static LLDebugTool *_instance = nil;
             completion(YES);
         }
     }
+}
+
+- (void)prepareToStart {
+    NSNumber *doubleClickAction = [LLSettingManager shared].doubleClickAction;
+    if (doubleClickAction != nil) {
+        [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
+    }
+    NSNumber *colorStyle = [LLSettingManager shared].colorStyle;
+    if (colorStyle != nil) {
+        [LLConfig shared].colorStyle = colorStyle.integerValue;
+    }
+    NSNumber *entryWindowStyle = [LLSettingManager shared].entryWindowStyle;
+    if (entryWindowStyle != nil) {
+        [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
+    }
+    NSNumber *statusBarStyle = [LLSettingManager shared].statusBarStyle;
+    if (statusBarStyle != nil) {
+        [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
+    }
+    NSNumber *logStyle = [LLSettingManager shared].logStyle;
+    if (logStyle != nil) {
+        [LLConfig shared].logStyle = logStyle.integerValue;
+    }
+    NSNumber *shrinkToEdgeWhenInactive = [LLSettingManager shared].shrinkToEdgeWhenInactive;
+    if (shrinkToEdgeWhenInactive != nil) {
+        [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
+    }
+    NSNumber *shakeToHide = [LLSettingManager shared].shakeToHide;
+    if (shakeToHide != nil) {
+        [LLConfig shared].shakeToHide = [shakeToHide boolValue];
+    }
+    NSNumber *magnifierZoomLevel = [LLSettingManager shared].magnifierZoomLevel;
+    if (magnifierZoomLevel != nil) {
+        [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
+    }
+    NSNumber *magnifierSize = [LLSettingManager shared].magnifierSize;
+    if (magnifierSize != nil) {
+        [LLConfig shared].magnifierSize = [magnifierSize integerValue];
+    }
+    NSNumber *showWidgetBorder = [LLSettingManager shared].showWidgetBorder;
+    if (showWidgetBorder != nil) {
+        [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
+    }
+    NSNumber *hierarchyIgnorePrivateClass = [LLSettingManager shared].hierarchyIgnorePrivateClass;
+    if (hierarchyIgnorePrivateClass != nil) {
+        [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
+    }
+}
+
+- (void)registerNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDidShakeNotification:) name:kLLDidShakeNotificationName object:nil];
+}
+
+- (void)unregisterNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

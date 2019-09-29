@@ -21,23 +21,37 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+#ifdef __IPHONE_13_0
+    return 4;
+#else
+    return 6;
+#endif
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Use \"LLConfigWindowSuspensionBall\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleSuspensionBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"Ball\"";
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Use \"LLConfigWindowPowerBar\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"Title\"";
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTitle ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
-        cell.textLabel.text = @"Use \"LLConfigWindowNetBar\"";
+        cell.textLabel.text = @"Use \"Leading\"";
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleLeading ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    } else if (indexPath.row == 3) {
+        cell.textLabel.text = @"Use \"Trailing\"";
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+#ifndef __IPHONE_13_0
+    } else if (indexPath.row == 4) {
+        cell.textLabel.text = @"Use \"NetBar\"";
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    } else if (indexPath.row == 5) {
+        cell.textLabel.text = @"Use \"PowerBar\"";
+        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+#endif
     }
-    
     return cell;
 }
 
@@ -45,24 +59,50 @@
     if (indexPath.row == 0) {
         [self testSuspensionBallWindowStyle];
     } else if (indexPath.row == 1) {
-        [self testPowerBarWindowStyle];
+        [self testTitleWindowStyle];
     } else if (indexPath.row == 2) {
+        [self testSuspensionLeadingWindowStyle];
+    } else if (indexPath.row == 3) {
+        [self testSuspensionTrailingWindowStyle];
+    } else if (indexPath.row == 4) {
         [self testNetBarWindowStyle];
+    } else if (indexPath.row == 5) {
+        [self testPowerBarWindowStyle];
     }
     [tableView reloadData];
 }
 
 #pragma mark - Actions
 - (void)testSuspensionBallWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleSuspensionBall;
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleBall;
 }
 
-- (void)testPowerBarWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
+- (void)testTitleWindowStyle {
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTitle;
+}
+
+- (void)testSuspensionLeadingWindowStyle {
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
+}
+
+- (void)testSuspensionTrailingWindowStyle {
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
 }
 
 - (void)testNetBarWindowStyle {
+#ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+#else
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
+#endif
+}
+
+- (void)testPowerBarWindowStyle {
+#ifndef __IPHONE_13_0
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
+#else
+    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
+#endif
 }
 
 @end

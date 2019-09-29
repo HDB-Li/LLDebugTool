@@ -110,7 +110,7 @@
 
 - (UIImage *)LL_resizeTo:(CGSize)size {
     // Create a context for the bitmap and set it to the current context being used.
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     // Draws a resizing image.
     [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
     // Create a resized image from the current context.

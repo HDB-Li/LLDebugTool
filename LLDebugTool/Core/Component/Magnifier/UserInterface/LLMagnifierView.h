@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseMoveView.h"
+#import "LLMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface LLMagnifierView : LLBaseMoveView
+@interface LLMagnifierView : LLMoveView
 
 @property (nonatomic, weak, nullable) id<LLMagnifierViewDelegate> delegate;
 

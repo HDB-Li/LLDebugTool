@@ -22,15 +22,57 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
+#import "LLThemeManager.h"
 
 @implementation LLBaseView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+#pragma mark - Life cycle
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self initUI];
+    }
+    return self;
 }
-*/
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self initUI];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Public
+- (void)initUI {
+    [self addObservers];
+}
+
+- (void)primaryColorChanged {
+    
+}
+
+- (void)backgroundColorChanged {
+    
+}
+
+#pragma mark - Primary
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+}
+
+#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    [self primaryColorChanged];
+}
+
+#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    [self backgroundColorChanged];
+}
+
 
 @end

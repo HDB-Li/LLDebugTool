@@ -24,67 +24,119 @@
 #import "LLSettingManager.h"
 #import "LLFunctionComponent.h"
 #import "LLConst.h"
+#import "NSUserDefaults+LL_Utils.h"
 
 static LLSettingManager *_instance = nil;
 
-@interface LLSettingManager ()
-
-@property (nonatomic, copy) NSString *entryViewDoubleClickComponentKey;
-
-@end
+static NSString *doubleClickActionKey = @"doubleClickActionKey";
+static NSString *colorStyleKey = @"colorStyleKey";
+static NSString *entryWindowStyleKey = @"entryWindowStyleKey";
+static NSString *statusBarStyleKey = @"statusBarStyleKey";
+static NSString *logStyleKey = @"logStyleKey";
+static NSString *shrinkToEdgeWhenInactiveKey = @"shrinkToEdgeWhenInactiveKey";
+static NSString *shakeToHideKey = @"shakeToHideKey";
+static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
+static NSString *magnifierSizeKey = @"magnifierSizeKey";
+static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
+static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassKey";
 
 @implementation LLSettingManager
-
-@synthesize entryViewClickComponent = _entryViewClickComponent;
-@synthesize entryViewDoubleClickComponent = _entryViewDoubleClickComponent;
 
 + (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLSettingManager alloc] init];
-        [_instance initial];
     });
     return _instance;
 }
 
-#pragma mark - Primary
-- (void)initial {
-    _entryViewDoubleClickComponentKey = @"entryViewDoubleClickComponentKey";
+#pragma mark - Getters and Setters
+- (void)setDoubleClickAction:(NSNumber *)doubleClickAction {
+    [NSUserDefaults LL_setNumber:doubleClickAction forKey:doubleClickActionKey];
 }
 
-- (LLComponent *)entryViewClickComponent {
-    if (!_entryViewClickComponent) {
-        _entryViewClickComponent = [[LLFunctionComponent alloc] init];
-    }
-    return _entryViewClickComponent;
+- (NSNumber *)doubleClickAction {
+    return [NSUserDefaults LL_numberForKey:doubleClickActionKey];
 }
 
-- (LLComponent *)entryViewDoubleClickComponent {
-    if (!_entryViewDoubleClickComponent) {
-        NSString *componentName = [self stringForKey:_entryViewDoubleClickComponentKey];
-        Class cls = NSClassFromString(componentName);
-        if (cls == nil || ![cls isKindOfClass:[LLComponent class]]) {
-            cls = NSClassFromString(kLLEntryViewDoubleClickComponent);
-        }
-        _entryViewDoubleClickComponent = [[cls alloc] init];
-    }
-    return _entryViewDoubleClickComponent;
+- (void)setColorStyle:(NSNumber *)colorStyle {
+    [NSUserDefaults LL_setNumber:colorStyle forKey:colorStyleKey];
 }
 
-- (void)setEntryViewDoubleClickComponent:(LLComponent *)entryViewDoubleClickComponent {
-    if (_entryViewDoubleClickComponent != entryViewDoubleClickComponent) {
-        _entryViewDoubleClickComponent = entryViewDoubleClickComponent;
-        [self synchronizeSetString:NSStringFromClass(entryViewDoubleClickComponent.class) forKey:_entryViewDoubleClickComponentKey];
-    }
+- (NSNumber *)colorStyle {
+    return [NSUserDefaults LL_numberForKey:colorStyleKey];
 }
 
-- (NSString *_Nullable)stringForKey:(NSString *)aKey {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"LLDebugTool-%@",aKey]];
+- (void)setEntryWindowStyle:(NSNumber *)entryWindowStyle {
+    [NSUserDefaults LL_setNumber:entryWindowStyle forKey:entryWindowStyleKey];
 }
 
-- (void)synchronizeSetString:(NSString *)string forKey:(NSString *)aKey {
-    [[NSUserDefaults standardUserDefaults] setObject:string forKey:[NSString stringWithFormat:@"LLDebugTool-%@",aKey]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+- (NSNumber *)entryWindowStyle {
+    return [NSUserDefaults LL_numberForKey:entryWindowStyleKey];
+}
+
+- (void)setStatusBarStyle:(NSNumber *)statusBarStyle {
+    [NSUserDefaults LL_setNumber:statusBarStyle forKey:statusBarStyleKey];
+}
+
+- (NSNumber *)statusBarStyle {
+    return [NSUserDefaults LL_numberForKey:statusBarStyleKey];
+}
+
+- (void)setLogStyle:(NSNumber *)logStyle {
+    [NSUserDefaults LL_setNumber:logStyle forKey:logStyleKey];
+}
+
+- (NSNumber *)logStyle {
+    return [NSUserDefaults LL_numberForKey:logStyleKey];
+}
+
+- (void)setShrinkToEdgeWhenInactive:(NSNumber *)shrinkToEdgeWhenInactive {
+    [NSUserDefaults LL_setNumber:shrinkToEdgeWhenInactive forKey:shrinkToEdgeWhenInactiveKey];
+}
+
+- (NSNumber *)shrinkToEdgeWhenInactive {
+    return [NSUserDefaults LL_numberForKey:shrinkToEdgeWhenInactiveKey];
+}
+
+- (void)setShakeToHide:(NSNumber *)shakeToHide {
+    [NSUserDefaults LL_setNumber:shakeToHide forKey:shakeToHideKey];
+}
+
+- (NSNumber *)shakeToHide {
+    return [NSUserDefaults LL_numberForKey:shakeToHideKey];
+}
+
+- (void)setMagnifierZoomLevel:(NSNumber *)magnifierZoomLevel {
+    [NSUserDefaults LL_setNumber:magnifierZoomLevel forKey:magnifierZoomLevelKey];
+}
+
+- (NSNumber *)magnifierZoomLevel {
+    return [NSUserDefaults LL_numberForKey:magnifierZoomLevelKey];
+}
+
+- (void)setMagnifierSize:(NSNumber *)magnifierSize {
+    [NSUserDefaults LL_setNumber:magnifierSize forKey:magnifierSizeKey];
+}
+
+- (NSNumber *)magnifierSize {
+    return [NSUserDefaults LL_numberForKey:magnifierSizeKey];
+}
+
+- (void)setShowWidgetBorder:(NSNumber *)showWidgetBorder {
+    [NSUserDefaults LL_setNumber:showWidgetBorder forKey:showWidgetBorderKey];
+}
+
+- (NSNumber *)showWidgetBorder {
+    return [NSUserDefaults LL_numberForKey:showWidgetBorderKey];
+}
+
+- (void)setHierarchyIgnorePrivateClass:(NSNumber *)hierarchyIgnorePrivateClass {
+    [NSUserDefaults LL_setNumber:hierarchyIgnorePrivateClass forKey:hierarchyIgnorePrivateClassKey];
+}
+
+- (NSNumber *)hierarchyIgnorePrivateClass {
+    return [NSUserDefaults LL_numberForKey:hierarchyIgnorePrivateClassKey];
 }
 
 @end

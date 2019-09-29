@@ -74,26 +74,7 @@ static unsigned long long _absolutelyIdentity = 0;
 }
 
 + (NSString *)stringFromFrame:(CGRect)frame {
-    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[[LLFormatterTool shared] formatNumber:@(frame.origin.x)],[[LLFormatterTool shared] formatNumber:@(frame.origin.y)],[[LLFormatterTool shared] formatNumber:@(frame.size.width)],[[LLFormatterTool shared] formatNumber:@(frame.size.height)]];
-}
-
-+ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask
-{
-    NSArray<NSString *> *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
-    UIInterfaceOrientationMask supportedOrientationsMask = 0;
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationPortrait"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskPortrait;
-    }
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationMaskLandscapeRight"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeRight;
-    }
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationMaskPortraitUpsideDown"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskPortraitUpsideDown;
-    }
-    if ([supportedOrientations containsObject:@"UIInterfaceOrientationLandscapeLeft"]) {
-        supportedOrientationsMask |= UIInterfaceOrientationMaskLandscapeLeft;
-    }
-    return supportedOrientationsMask;
+    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[LLFormatterTool formatNumber:@(frame.origin.x)],[LLFormatterTool formatNumber:@(frame.origin.y)],[LLFormatterTool formatNumber:@(frame.size.width)],[LLFormatterTool formatNumber:@(frame.size.height)]];
 }
 
 + (UIWindow *)topWindow {
@@ -112,6 +93,31 @@ static unsigned long long _absolutelyIdentity = 0;
             NSLog(@"%@ %@",string,kLLLogHelperOpenIssueInGithub);
         }
     });
+}
+
++ (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt {
+    if (synchronous) {
+        if ([LLConfig shared].isShowDebugToolLog) {
+            NSLog(@"%@ %@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+        }
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([LLConfig shared].isShowDebugToolLog) {
+                NSLog(@"%@ %@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+            }
+        });
+    }
+}
+
+static bool _statusBarClickable = YES;
++ (BOOL)statusBarClickable {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (@available(iOS 13.0, *)) {
+            _statusBarClickable = NO;
+        }
+    });
+    return _statusBarClickable;
 }
 
 + (UIView *_Nullable)getUIStatusBarModern {

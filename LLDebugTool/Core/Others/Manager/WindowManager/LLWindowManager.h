@@ -32,9 +32,10 @@
 #import "LLSandboxWindow.h"
 #import "LLCrashWindow.h"
 #import "LLHierarchyWindow.h"
-#import "LLHierarchyPickerWindow.h"
-#import "LLHierarchyDetailWindow.h"
 #import "LLScreenshotWindow.h"
+#import "LLRulerWindow.h"
+#import "LLWidgetBorderWindow.h"
+#import "LLSettingWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -105,25 +106,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (LLSandboxWindow *)sandboxWindow;
 
 /**
- Hierarchy window
+ Hierarchy picker window
  
  @return LLHierarchyWindow.
  */
 + (LLHierarchyWindow *)hierarchyWindow;
-
-/**
- Hierarchy picker window
- 
- @return LLHierarchyPickerWindow.
- */
-+ (LLHierarchyPickerWindow *)hierarchyPickerWindow;
-
-/**
- Hierarchy detail window
- 
- @return LLHierarchyDetailWindow.
- */
-+ (LLHierarchyDetailWindow *)hierarchyDetailWindow;
 
 /**
  Screenshot window
@@ -131,6 +118,27 @@ NS_ASSUME_NONNULL_BEGIN
  @return LLScreenshotWindow.
  */
 + (LLScreenshotWindow *)screenshotWindow;
+
+/**
+Ruler window
+
+@return LLRulerWindow.
+*/
++ (LLRulerWindow *)rulerWindow;
+
+/**
+Widget border window.
+
+@return LLWidgetBorderWindow.
+*/
++ (LLWidgetBorderWindow *)widgetBorderWindow;
+
+/**
+ Setting window.
+ 
+ @return LLSettingWindow.
+ */
++ (LLSettingWindow *)settingWindow;
 
 /**
  Show entry window.
@@ -175,6 +183,11 @@ NS_ASSUME_NONNULL_BEGIN
  @param completion Completion block.
  */
 - (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+
+/**
+ Current visiable window.
+ */
+- (LLBaseWindow *_Nullable)visiableWindow;
 
 @end
 

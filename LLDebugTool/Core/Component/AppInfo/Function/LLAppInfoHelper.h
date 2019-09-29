@@ -74,6 +74,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary <NSString *, NSString *>*)dynamicAppInfos;
 
 /**
+ Dynamic infos.
+ */
+- (NSArray <NSDictionary *>*)dynamicInfos;
+
+/**
+ Application infos.
+ */
+- (NSArray <NSDictionary *>*)applicationInfos;
+
+/**
+ Device infos.
+ */
+- (NSArray <NSDictionary *>*)deviceInfos;
+
+/**
  Current cpu usage.
  */
 - (NSString *)cpuUsage;

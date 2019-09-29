@@ -21,23 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLFilterView.h"
 #import "LLNetworkModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^LLNetworkFilterChangeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
 
-@interface LLNetworkFilterView : UIView
+@interface LLNetworkFilterView : LLFilterView
 
 @property (nonatomic, copy, nullable) LLNetworkFilterChangeBlock changeBlock;
 
-- (instancetype)initWithFrame:(CGRect)frame;
-
 - (void)configWithData:(NSArray <LLNetworkModel *>*_Nullable)data;
-
-- (BOOL)isFiltering;
-- (void)cancelFiltering;
 
 @end
 

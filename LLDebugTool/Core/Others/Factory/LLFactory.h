@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "LLBaseMoveView.h"
+#import "LLMoveView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,113 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIView *)getView;
 
 /**
- Get view with superview.
-
- @param toView superview.
- @return UIView.
- */
-+ (UIView *)getView:(UIView *_Nullable)toView;
-
-/**
- Get view with params.
-
- @param toView superview.
- @param frame frame size.
- @return UIView.
- */
-+ (UIView *)getView:(UIView *_Nullable)toView
-                      frame:(CGRect)frame;
-
-/**
- Get view with params.
-
- @param toView superview.
- @param frame frame size.
- @param backgroundColor background color.
- @return UIView
- */
-+ (UIView *)getView:(UIView *_Nullable)toView
-                      frame:(CGRect)frame
-            backgroundColor:(UIColor *_Nullable)backgroundColor;
-
-/**
- Get primary view.
-
- @return UIView.
- */
-+ (UIView *)getPrimaryView;
-
-/**
- Get primary view with superview.
-
- @param toView superview.
- @return UIView.
- */
-+ (UIView *)getPrimaryView:(UIView *_Nullable)toView;
-
-/**
- Get primary view with params.
-
- @param toView superview.
- @param frame frame size.
- @return UIView
- */
-+ (UIView *)getPrimaryView:(UIView *_Nullable)toView
-                             frame:(CGRect)frame;
-
-/**
- Get primary view with params.
-
- @param toView superview.
- @param frame frame size.
- @param alpha alpha value.
- @return UIView.
- */
-+ (UIView *)getPrimaryView:(UIView *_Nullable)toView
-                             frame:(CGRect)frame
-                             alpha:(CGFloat)alpha;
-
-/**
- Get background view.
-
- @return UIView.
- */
-+ (UIView *)getBackgroundView;
-
-/**
- Get background view with superview.
-
- @param toView superview.
- @return UIView.
- */
-+ (UIView *)getBackgroundView:(UIView *_Nullable)toView;
-
-/**
- Get background view with params.
-
- @param toView superview.
- @param frame frame size.
- @return UIView.
- */
-+ (UIView *)getBackgroundView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame;
-
-/**
- Get background view with params.
-
- @param toView superview.
- @param frame frame size.
- @param alpha alpha value.
- @return UIView.
- */
-+ (UIView *)getBackgroundView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                                alpha:(CGFloat)alpha;
-
-/**
  Create lines of unity.
  */
-+ (UIView *)lineView:(CGRect)frame
++ (UIView *)getLineView:(CGRect)frame
                    superView:(UIView *_Nullable)superView;
 
 #pragma mark - UILabel
@@ -441,6 +337,31 @@ NS_ASSUME_NONNULL_BEGIN
 + (UISegmentedControl *)getSegmentedControl:(UIView *_Nullable)toView
                                       frame:(CGRect)frame
                                       items:(nullable NSArray *)items;
+
+#pragma mark - UISwitch
+
+/**
+Get Switch.
+
+@return UISwitch.
+*/
++ (UISwitch *)getSwitch;
+
+#pragma mark - UISlider
+
+/**
+Get Slider.
+
+@return Slider.
+*/
++ (UISlider *)getSlider;
+
+#pragma mark - UIScrollView
+
+/**
+ Get ScrollView.
+ */
++ (UIScrollView *)getScrollView;
 
 @end
 

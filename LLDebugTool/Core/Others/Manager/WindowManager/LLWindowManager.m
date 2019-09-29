@@ -50,6 +50,7 @@ static LLWindowManager *_instance = nil;
 
 @implementation LLWindowManager
 
+#pragma mark - Public
 + (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -90,16 +91,20 @@ static LLWindowManager *_instance = nil;
     return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
 }
 
-+ (LLHierarchyPickerWindow *)hierarchyPickerWindow {
-    return (LLHierarchyPickerWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyPickerWindow class])];
-}
-
-+ (LLHierarchyDetailWindow *)hierarchyDetailWindow {
-    return (LLHierarchyDetailWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyDetailWindow class])];
-}
-
 + (LLScreenshotWindow *)screenshotWindow {
     return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class])];
+}
+
++ (LLRulerWindow *)rulerWindow {
+    return (LLRulerWindow *)[self createWindowWithClassName:NSStringFromClass([LLRulerWindow class])];
+}
+
++ (LLWidgetBorderWindow *)widgetBorderWindow {
+    return (LLWidgetBorderWindow *)[self createWindowWithClassName:NSStringFromClass([LLWidgetBorderWindow class])];
+}
+
++ (LLSettingWindow *)settingWindow {
+    return (LLSettingWindow *)[self createWindowWithClassName:NSStringFromClass([LLSettingWindow class])];
 }
 
 - (void)showEntryWindow {
@@ -124,6 +129,10 @@ static LLWindowManager *_instance = nil;
 
 - (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
     [self removeWindow:window animated:animated automaticallyShowEntry:YES completion:nil];
+}
+
+- (LLBaseWindow *_Nullable)visiableWindow {
+    return [self.visibleWindows lastObject];
 }
 
 #pragma mark - Primary
@@ -198,11 +207,13 @@ static LLWindowManager *_instance = nil;
             window.LL_x = x;
             window.LL_y = y;
         } completion:^(BOOL finished) {
+            [window becomeVisiable];
             if (completion) {
                 completion();
             }
         }];
     } else {
+        [window becomeVisiable];
         if (completion) {
             completion();
         }
@@ -220,6 +231,9 @@ static LLWindowManager *_instance = nil;
     }
     
     if (!window) {
+        if (completion) {
+            completion();
+        }
         return;
     }
     
@@ -242,8 +256,6 @@ static LLWindowManager *_instance = nil;
                 case LLBaseWindowHideAnimateStylePop: {
                     window.LL_x = LL_SCREEN_WIDTH;
                 }
-                    break;
-                default:
                     break;
             }
         } completion:^(BOOL finished) {

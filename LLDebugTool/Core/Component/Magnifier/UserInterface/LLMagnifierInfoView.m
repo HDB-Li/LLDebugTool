@@ -41,13 +41,6 @@
 
 @implementation LLMagnifierInfoView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)update:(NSString *)hexColor point:(CGPoint)point {
     self.colorView.backgroundColor = [UIColor LL_colorWithHex:hexColor];
     self.colorLabel.text = [NSString stringWithFormat:@"%@\nX: %0.1f, Y: %0.1f", hexColor, point.x, point.y];
@@ -56,25 +49,36 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGRect colorRect = CGRectMake(20, (self.LL_height - 20) / 2.0, 20, 20);
-    if (!CGRectEqualToRect(self.colorView.frame, colorRect)) {
-        self.colorView.frame = colorRect;
-    }
+    self.colorView.frame = CGRectMake(20, (self.LL_height - 20) / 2.0, 20, 20);
     
-    CGRect colorLabelRect = CGRectMake(self.colorView.LL_right + 20, 0, self.LL_width - self.colorView.LL_right - 20, self.LL_height);
-    if (!CGRectEqualToRect(self.colorLabel.frame, colorLabelRect)) {
-        self.colorLabel.frame = colorLabelRect;
-    }
+    self.colorLabel.frame = CGRectMake(self.colorView.LL_right + 20, 0, self.LL_width - self.colorView.LL_right - 20, self.LL_height);
 }
 
-#pragma mark - Primary
-- (void)initial {
-    self.colorView = [LLFactory getView:self frame:CGRectZero];
-    self.colorView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    self.colorView.layer.borderWidth = 0.5;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     
-    self.colorLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
-    self.colorLabel.numberOfLines = 0;
+    [self addSubview:self.colorView];
+    [self addSubview:self.colorLabel];
+}
+
+#pragma mark - Getters and setters
+- (UIView *)colorView {
+    if (!_colorView) {
+        _colorView = [LLFactory getView];
+        [_colorView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:0.5];
+    }
+    return _colorView;
+}
+
+- (UILabel *)colorLabel {
+    if (!_colorLabel) {
+        _colorLabel = [LLFactory getLabel];
+        _colorLabel.font = [UIFont systemFontOfSize:14];
+        _colorLabel.textColor = [LLThemeManager shared].primaryColor;
+        _colorLabel.numberOfLines = 0;
+    }
+    return _colorLabel;
 }
 
 @end

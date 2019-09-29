@@ -26,6 +26,7 @@
 #import "LLImageNameConfig.h"
 #import "LLFactory.h"
 #import "LLConst.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLScreenshotSelectorView ()
 
@@ -39,19 +40,12 @@
 
 @implementation LLScreenshotSelectorView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (LLScreenshotSelectorModel *)currentSelectorModel {
     return _model;
 }
 
 - (void)actionButtonClicked:(UIButton *)sender {
-    if (sender.tag <= LLScreenshotSelectorActionBig) {
+    if (sender.tag <= LLScreenshotSelectorSizeActionBig) {
         // Size button
         if (self.lastSizeButton != sender) {
             self.lastSizeButton.selected = NO;
@@ -72,11 +66,11 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
+    [self LL_setCornerRadius:5];
     self.model = [[LLScreenshotSelectorModel alloc] init];
     
     NSInteger count = 9;
@@ -91,24 +85,24 @@
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
-            case LLScreenshotSelectorActionSmall:{
+            case LLScreenshotSelectorSizeActionSmall:{
                 imageName = kSelectorSmallImageName;
                 selectImageName = kSelectorSmallSelectImageName;
                 button.selected = YES;
                 self.lastSizeButton = button;
             }
                 break;
-            case LLScreenshotSelectorActionMedium:{
+            case LLScreenshotSelectorSizeActionMedium:{
                 imageName = kSelectorMediumImageName;
                 selectImageName = kSelectorMediumSelectImageName;
             }
                 break;
-            case LLScreenshotSelectorActionBig:{
+            case LLScreenshotSelectorSizeActionBig:{
                 imageName = kSelectorBigImageName;
                 selectImageName = kSelectorBigSelectImageName;
             }
                 break;
-            case LLScreenshotSelectorActionRed:{
+            case LLScreenshotSelectorColorActionRed:{
                 imageName = kSelectorRedImageName;
                 selectImageName = kSelectorRedImageName;
                 button.selected = YES;
@@ -116,32 +110,30 @@
                 self.lastColorButton = button;
             }
                 break;
-            case LLScreenshotSelectorActionBlue:{
+            case LLScreenshotSelectorColorActionBlue:{
                 imageName = kSelectorBlueImageName;
                 selectImageName = kSelectorBlueImageName;
             }
                 break;
-            case LLScreenshotSelectorActionGreen:{
+            case LLScreenshotSelectorColorActionGreen:{
                 imageName = kSelectorGreenImageName;
                 selectImageName = kSelectorGreenImageName;
             }
                 break;
-            case LLScreenshotSelectorActionYellow:{
+            case LLScreenshotSelectorColorActionYellow:{
                 imageName = kSelectorYellowImageName;
                 selectImageName = kSelectorYellowImageName;
             }
                 break;
-            case LLScreenshotSelectorActionGray:{
+            case LLScreenshotSelectorColorActionGray:{
                 imageName = kSelectorGrayImageName;
                 selectImageName = kSelectorGrayImageName;
             }
                 break;
-            case LLScreenshotSelectorActionWhite:{
+            case LLScreenshotSelectorColorActionWhite:{
                 imageName = kSelectorWhiteImageName;
                 selectImageName = kSelectorWhiteImageName;
             }
-                break;
-            default:
                 break;
         }
         [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];

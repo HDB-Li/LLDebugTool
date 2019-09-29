@@ -39,20 +39,18 @@
 
 @implementation LLFunctionItemView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initial];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.imageView = [LLFactory getImageView:self];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)setModel:(LLFunctionItemModel *)model {
-    if (_model != model) {
-        _model = model;
-        [self updateUI:model];
-    }
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.imageView.tintColor = [LLThemeManager shared].primaryColor;
 }
 
 - (void)layoutSubviews {
@@ -63,15 +61,18 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.imageView = [LLFactory getImageView:self];
-    self.titleLabel = [LLFactory getLabel:self frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+- (void)updateUI:(LLFunctionItemModel *)model {
+    self.imageView.tintColor = [LLThemeManager shared].primaryColor;
+    self.imageView.image = [[UIImage LL_imageNamed:model.imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.titleLabel.text = model.title;
 }
 
-- (void)updateUI:(LLFunctionItemModel *)model {
-    self.imageView.image = [UIImage LL_imageNamed:model.imageName color:[LLThemeManager shared].primaryColor];
-    self.titleLabel.text = model.title;
+#pragma mark - Getters and setters
+- (void)setModel:(LLFunctionItemModel *)model {
+    if (_model != model) {
+        _model = model;
+        [self updateUI:model];
+    }
 }
 
 @end

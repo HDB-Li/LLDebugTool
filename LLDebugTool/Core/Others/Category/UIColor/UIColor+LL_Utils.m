@@ -82,54 +82,32 @@
         return @"Clear Color";
     }
     
-    NSString *color = @"";
-    if ([self isEqual:[UIColor blackColor]]) {
-        color = @"Black Color";
-    } else if ([self isEqual:[UIColor darkGrayColor]]) {
-        color = @"DarkGray Color";
-    } else if ([self isEqual:[UIColor lightGrayColor]]) {
-        color = @"LightGray Color";
-    } else if ([self isEqual:[UIColor whiteColor]]) {
-        color = @"White Color";
-    } else if ([self isEqual:[UIColor grayColor]]) {
-        color = @"Gray Color";
-    } else if ([self isEqual:[UIColor redColor]]) {
-        color = @"Red Color";
-    } else if ([self isEqual:[UIColor greenColor]]) {
-        color = @"Green Color";
-    } else if ([self isEqual:[UIColor blueColor]]) {
-        color = @"Blue Color";
-    } else if ([self isEqual:[UIColor cyanColor]]) {
-        color = @"Cyan Color";
-    } else if ([self isEqual:[UIColor yellowColor]]) {
-        color = @"Yellow Color";
-    } else if ([self isEqual:[UIColor magentaColor]]) {
-        color = @"Magenta Color";
-    } else if ([self isEqual:[UIColor orangeColor]]) {
-        color = @"Orange Color";
-    } else if ([self isEqual:[UIColor purpleColor]]) {
-        color = @"Purple Color";
-    } else if ([self isEqual:[UIColor brownColor]]) {
-        color = @"Brown Color";
+    NSString *color = [self LL_systemColorName];
+    
+    if (color) {
+        color = [color stringByAppendingFormat:@" (%@)",[self LL_RGBADescrption]];
+    } else {
+        color = [self LL_RGBADescrption];
     }
     
+    return color;
+}
+
+- (NSString *)LL_RGBADescrption {
     NSArray *rgba = [self LL_RGBA];
     int r = [rgba[0] doubleValue] * 255.0;
     int g = [rgba[1] doubleValue] * 255.0;
     int b = [rgba[2] doubleValue] * 255.0;
     int a = [rgba[3] doubleValue] * 255.0;
-    
-    if ([color length]) {
-        color = [color stringByAppendingFormat:@" (#%02X%02X%02X)", r, g, b];
-    } else {
-        color = [NSString stringWithFormat:@"#%02X%02X%02X", r, g, b];
-    }
-    
+    NSString *desc = [NSString stringWithFormat:@"#%02X%02X%02X",r,g,b];
     if (a < 255) {
-        color = [color stringByAppendingFormat:@", Alpha: %0.2f", [rgba[3] doubleValue]];
+        desc = [desc stringByAppendingFormat:@", Alpha: %0.2f", [rgba[3] doubleValue]];
     }
-    
-    return color;
+    return desc;
+}
+
+- (NSString *)LL_systemColorName {
+    return [self valueForKeyPath:@"systemColorName"];
 }
 
 - (UIColor *)LL_mixtureWithColor:(UIColor *)color radio:(CGFloat)radio {

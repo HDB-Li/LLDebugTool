@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLFunctionItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLFunctionItemView : UIView
+@interface LLFunctionItemView : LLBaseView
 
 @property (nonatomic, strong) LLFunctionItemModel *model;
 

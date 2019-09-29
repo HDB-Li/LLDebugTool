@@ -28,7 +28,7 @@
 
 static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
-@interface LLCrashSignalDetailViewController ()<LLSubTitleTableViewCellDelegate>
+@interface LLCrashSignalDetailViewController ()<UITableViewDataSource, LLSubTitleTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *titleArray;
 
@@ -42,9 +42,18 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = self.model.name;
+    
+    self.tableView.dataSource = self;
+    [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashSignalContentCellID];
+    
+    self.titleArray = [[NSMutableArray alloc] init];
+    self.contentArray = [[NSMutableArray alloc] init];
+    
+    [self loadData];
 }
 
+#pragma mark - UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.titleArray.count;
 }
@@ -67,22 +76,13 @@ static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
     }
 }
 
+#pragma mark - LLSubTitleTableViewCellDelegate
 - (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.navigationItem.title = self.model.name;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSubTitleTableViewCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kCrashSignalContentCellID];
-    
-    self.titleArray = [[NSMutableArray alloc] init];
-    self.contentArray = [[NSMutableArray alloc] init];
-    
-    [self loadData];
-}
-
 - (void)loadData {
 
     [self.titleArray removeAllObjects];

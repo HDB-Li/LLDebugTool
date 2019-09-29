@@ -37,7 +37,7 @@ static NSString *const kCellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
@@ -53,11 +53,11 @@ static NSString *const kCellID = @"cellID";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[LLDebugTool sharedTool] executeAction:LLDebugToolActionCrash];
         });
-
+        
     }
     
     //Network Request
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525346881086&di=b234c66c82427034962131d20e9f6b56&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F011cf15548caf50000019ae9c5c728.jpg%402o.jpg"]];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567589759362&di=20c415aa38f25ca77270c717ae988424&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201602%2F15%2F20160215231800_zrCN8.jpeg"]];
     [urlRequest setHTTPMethod:@"GET"];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -116,6 +116,31 @@ static NSString *const kCellID = @"cellID";
 }
 
 #pragma mark - Actions
+- (void)testColorConfig {
+    TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)testWindowStyle {
+    TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)testNetwork {
+    TestNetworkViewController *vc = [[TestNetworkViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)testLog {
+    TestLogViewController *vc = [[TestLogViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)testCrash {
+    TestCrashViewController *vc = [[TestCrashViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)testAppInfo {
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionAppInfo];
 }
@@ -124,34 +149,37 @@ static NSString *const kCellID = @"cellID";
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSandbox];
 }
 
+- (void)testScreenshot {
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionConvenientScreenshot];
+}
+
+- (void)testHierarchy {
+    TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)testMagnifier {
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionMagnifier];
+}
+
+- (void)testRuler {
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionRuler];
+}
+
+- (void)testWidgetBorder {
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionWidgetBorder];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
+    return 11;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 1;
-    }
-    if (section == 1) {
-        return 1;
-    }
-    if (section == 2) {
-        return 1;
-    }
-    if (section == 3) {
-        return 1;
-    }
-    if (section == 4) {
-        return 1;
-    }
-    if (section == 5) {
-        return 1;
-    }
-    if (section == 6) {
         return 2;
     }
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -166,22 +194,6 @@ static NSString *const kCellID = @"cellID";
     cell.detailTextLabel.numberOfLines = 0;
     cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.section == 0) {
-        cell.textLabel.text = NSLocalizedString(@"test.network.request", nil);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 1) {
-        cell.textLabel.text = NSLocalizedString(@"test.log", nil);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 2) {
-        cell.textLabel.text = NSLocalizedString(@"test.crash", nil);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 3) {
-        cell.textLabel.text = NSLocalizedString(@"app.info", nil);
-    } else if (indexPath.section == 4) {
-        cell.textLabel.text = NSLocalizedString(@"sandbox.info", nil);
-    } else if (indexPath.section == 5) {
-        cell.textLabel.text = NSLocalizedString(@"test.hierarchy", nil);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -202,77 +214,121 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
                 }
                     break;
-                default:
-                    break;
             }
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             switch ([LLConfig shared].entryWindowStyle) {
-                case LLConfigEntryWindowStyleSuspensionBall:{
-                    cell.detailTextLabel.text = @"LLConfigWindowSuspensionBall";
+                case LLConfigEntryWindowStyleBall:{
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleBall";
                 }
                     break;
+                case LLConfigEntryWindowStyleTitle:{
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTitle";
+                }
+                    break;
+                case LLConfigEntryWindowStyleLeading: {
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
+                }
+                    break;
+                case LLConfigEntryWindowStyleTrailing: {
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
+                }
+                    break;
+#ifndef __IPHONE_13_0
                 case LLConfigEntryWindowStylePowerBar:{
-                    cell.detailTextLabel.text = @"LLConfigWindowPowerBar";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
                 }
                     break;
                 case LLConfigEntryWindowStyleNetBar:{
-                    cell.detailTextLabel.text = @"LLConfigWindowNetBar";
+                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
                 }
                     break;
-                default:
-                    break;
+#endif
             }
         }
+    } else if (indexPath.section == 1) {
+        cell.textLabel.text = NSLocalizedString(@"test.network.request", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 2) {
+        cell.textLabel.text = NSLocalizedString(@"test.log", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 3) {
+        cell.textLabel.text = NSLocalizedString(@"test.crash", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 4) {
+        cell.textLabel.text = NSLocalizedString(@"app.info", nil);
+    } else if (indexPath.section == 5) {
+        cell.textLabel.text = NSLocalizedString(@"sandbox.info", nil);
+    } else if (indexPath.section == 6) {
+        cell.textLabel.text = NSLocalizedString(@"test.screenshot", nil);
+    } else if (indexPath.section == 7) {
+        cell.textLabel.text = NSLocalizedString(@"test.hierarchy", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 8) {
+        cell.textLabel.text = NSLocalizedString(@"test.magnifier", nil);
+    } else if (indexPath.section == 9) {
+        cell.textLabel.text = NSLocalizedString(@"test.ruler", nil);
+    } else if (indexPath.section == 10) {
+        cell.textLabel.text = NSLocalizedString(@"test.widget.border", nil);
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        TestNetworkViewController *vc = [[TestNetworkViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.section == 1) {
-        TestLogViewController *vc = [[TestLogViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.section == 2) {
-        TestCrashViewController *vc = [[TestCrashViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.section == 3) {
-        [self testAppInfo];
-    } else if (indexPath.section == 4) {
-        [self testSandbox];
-    } else if (indexPath.section == 5) {
-        TestHierarchyViewController *vc = [[TestHierarchyViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.section == 6) {
         if (indexPath.row == 0) {
-            TestColorStyleViewController *vc = [[TestColorStyleViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [self testColorConfig];
         } else if (indexPath.row == 1) {
-            TestWindowStyleViewController *vc = [[TestWindowStyleViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [self testWindowStyle];
         }
+    } else if (indexPath.section == 1) {
+        [self testNetwork];
+    } else if (indexPath.section == 2) {
+        [self testLog];
+    } else if (indexPath.section == 3) {
+        [self testCrash];
+    } else if (indexPath.section == 4) {
+        [self testAppInfo];
+    } else if (indexPath.section == 5) {
+        [self testSandbox];
+    } else if (indexPath.section == 6) {
+        [self testScreenshot];
+    } else if (indexPath.section == 7) {
+        [self testHierarchy];
+    } else if (indexPath.section == 8) {
+        [self testMagnifier];
+    } else if (indexPath.section == 9) {
+        [self testRuler];
+    } else if (indexPath.section == 10) {
+        [self testWidgetBorder];
     }
     [self.tableView reloadData];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return @"Network Request";
-    } else if (section == 1) {
-        return @"Log";
-    } else if (section == 2) {
-        return @"Crash";
-    } else if (section == 3) {
-        return @"App Info";
-    } else if (section == 4) {
-        return @"Sandbox Info";
-    } else if (section == 5) {
-        return @"Hierarchy";
-    } else if (section == 6) {
         return @"LLConfig";
+    } else if (section == 1) {
+        return @"Network Request";
+    } else if (section == 2) {
+        return @"Log";
+    } else if (section == 3) {
+        return @"Crash";
+    } else if (section == 4) {
+        return @"App Info";
+    } else if (section == 5) {
+        return @"Sandbox Info";
+    } else if (section == 6) {
+        return @"Screen Shot";
+    } else if (section == 7) {
+        return @"Hierarchy";
+    } else if (section == 8) {
+        return @"Magnifier";
+    } else if (section == 9) {
+        return @"Ruler";
+    } else if (section == 10) {
+        return @"Widget Border";
     }
     return nil;
 }

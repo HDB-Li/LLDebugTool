@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLScreenshotBaseOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLScreenshotImageView : UIView
+@interface LLScreenshotImageView : LLBaseView
 
 /**
  Image to show.
@@ -47,11 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
  Current selector model.
  */
 @property (nonatomic, strong, nullable) LLScreenshotSelectorModel *currentSelectorModel;
-
-/**
- Specifies the initialization method.
- */
-- (instancetype _Nonnull)initWithFrame:(CGRect)frame;
 
 /**
  Remove last operation in operations.

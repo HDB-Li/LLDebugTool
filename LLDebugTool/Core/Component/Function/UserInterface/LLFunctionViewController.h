@@ -25,20 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLFunctionViewController, LLHierarchyModel;
-
-@protocol LLFunctionViewControllerDelegate <NSObject>
-
-- (void)LLFunctionViewController:(LLFunctionViewController *)viewController didSelectedHierarchyModel:(LLHierarchyModel *)model;
-
-@end
-
 /**
  Function list display viewController.
  */
 @interface LLFunctionViewController : LLBaseComponentViewController
-
-@property (nonatomic, weak, nullable) id<LLFunctionViewControllerDelegate> delegate;
 
 @end
 

@@ -21,13 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
+#import "LLTitleViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHierarchyDetailViewController : LLBaseTableViewController
+@interface LLHierarchyDetailViewController : LLTitleViewController
 
-@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong, nullable) UIView *selectView;
 
 @end
 

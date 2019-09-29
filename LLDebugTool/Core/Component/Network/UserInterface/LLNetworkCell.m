@@ -23,25 +23,23 @@
 
 #import "LLNetworkCell.h"
 #import "LLConfig.h"
+#import "LLFactory.h"
+#import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLNetworkCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *hostLabel;
+@property (nonatomic, strong) UILabel *hostLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *paramLabel;
+@property (nonatomic, strong) UILabel *paramLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
 
 @property (strong, nonatomic) LLNetworkModel *model;
 
 @end
 
 @implementation LLNetworkCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
 
 - (void)confirmWithModel:(LLNetworkModel *)model {
     if (_model != model) {
@@ -52,10 +50,64 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
-    self.hostLabel.font = [UIFont boldSystemFontOfSize:19];
-    self.hostLabel.adjustsFontSizeToFitWidth = YES;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [self.contentView addSubview:self.hostLabel];
+    [self.contentView addSubview:self.dateLabel];
+    [self.contentView addSubview:self.paramLabel];
+    
+    [self.hostLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.right.equalTo(self.dateLabel.mas_left).offset(-kLLGeneralMargin / 2.0);
+    }];
+    
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.hostLabel.mas_centerY);
+        make.right.mas_equalTo(-kLLGeneralMargin);
+        make.width.mas_equalTo(65);
+    }];
+    
+    [self.paramLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.hostLabel.mas_left);
+        make.right.equalTo(self.dateLabel.mas_right);
+        make.top.equalTo(self.hostLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
+    }];
+}
+
+#pragma mark - Getters and setters
+- (UILabel *)hostLabel {
+    if (!_hostLabel) {
+        _hostLabel = [LLFactory getLabel];
+        _hostLabel.font = [UIFont boldSystemFontOfSize:19];
+        _hostLabel.numberOfLines = 0;
+        _hostLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    }
+    return _hostLabel;
+}
+
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [LLFactory getLabel];
+        _dateLabel.font = [UIFont systemFontOfSize:14];
+        _dateLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _dateLabel;
+}
+
+- (UILabel *)paramLabel {
+    if (!_paramLabel) {
+        _paramLabel = [LLFactory getLabel];
+        _paramLabel.font = [UIFont systemFontOfSize:14];
+        _paramLabel.numberOfLines = 0;
+        _paramLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    }
+    return _paramLabel;
 }
 
 @end

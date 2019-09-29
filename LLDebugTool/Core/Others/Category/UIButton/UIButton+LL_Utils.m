@@ -30,46 +30,6 @@
     [self setBackgroundImage:[UIImage LL_imageWithColor:backgroundColor] forState:state];
 }
 
-- (NSString *_Nullable)LL_typeDescription {
-    switch (self.buttonType) {
-        case UIButtonTypeCustom:
-            return @"Custom";
-        case UIButtonTypeSystem:
-            return @"System";
-        case UIButtonTypeDetailDisclosure:
-            return @"Detail Disclosure";
-        case UIButtonTypeInfoLight:
-            return @"Info Light";
-        case UIButtonTypeInfoDark:
-            return @"Info Dark";
-        case UIButtonTypeContactAdd:
-            return @"Contact Add";
-        default:
-            return nil;
-    }
-}
-
-- (NSString *)LL_stateDescription {
-    switch (self.state) {
-        case UIControlStateNormal:
-            return @"Normal";
-        case UIControlStateFocused:
-            return @"Focused";
-        case UIControlStateDisabled:
-            return @"Disabled";
-        case UIControlStateReserved:
-            return @"Reserved";
-        case UIControlStateSelected:
-            return @"Selected";
-        case UIControlStateApplication:
-            return @"Application";
-        case UIControlStateHighlighted:
-            return @"Highlighted";
-        default:
-            return nil;
-    }
-}
-
 // 设置颜色
 + (UIImage *)ll_imageWithColor:(UIColor *)color {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

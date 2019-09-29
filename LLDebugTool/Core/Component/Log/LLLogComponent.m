@@ -23,11 +23,19 @@
 
 #import "LLLogComponent.h"
 #import "LLWindowManager.h"
+#import "LLNavigationController.h"
+#import "LLLogViewController.h"
 
 @implementation LLLogComponent
 
 - (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager logWindow] animated:YES];
+    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    if ([window isKindOfClass:[LLFunctionWindow class]]) {
+        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
+        [nav pushViewController:[[LLLogViewController alloc] init] animated:YES];
+    } else {
+        [[LLWindowManager shared] showWindow:[LLWindowManager logWindow] animated:YES];
+    }
 }
 
 @end

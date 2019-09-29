@@ -30,80 +30,14 @@
 
 #pragma mark - UIView
 + (UIView *)getView {
-    return [self getView:nil];
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-+ (UIView *)getView:(UIView *_Nullable)toView {
-    return [self getView:toView
-                   frame:CGRectZero];
-}
-
-+ (UIView *)getView:(UIView *_Nullable)toView
-                      frame:(CGRect)frame {
-    return [self getView:toView
-                   frame:frame
-         backgroundColor:nil];
-}
-
-+ (UIView *)getView:(UIView *_Nullable)toView
-                      frame:(CGRect)frame
-            backgroundColor:(UIColor *_Nullable)backgroundColor {
-    UIView *view = [[UIView alloc] initWithFrame:frame];
-    [toView addSubview:view];
-    view.backgroundColor = backgroundColor;
-    return view;
-}
-
-+ (UIView *)getPrimaryView {
-    return [self getPrimaryView:nil];
-}
-
-+ (UIView *)getPrimaryView:(UIView *_Nullable)toView {
-    return [self getPrimaryView:toView
-                          frame:CGRectZero];
-}
-
-+ (UIView *)getPrimaryView:(UIView *_Nullable)toView
-                             frame:(CGRect)frame {
-    return [self getPrimaryView:toView
-                          frame:frame
-                          alpha:1];
-}
-
-+ (UIView *)getPrimaryView:(UIView *_Nullable)toView
-                             frame:(CGRect)frame alpha:(CGFloat)alpha {
-    return [self getView:toView
-                   frame:frame
-         backgroundColor:[[LLThemeManager shared].primaryColor colorWithAlphaComponent:alpha]];
-}
-
-+ (UIView *)getBackgroundView {
-    return [self getBackgroundView:nil];
-}
-
-+ (UIView *)getBackgroundView:(UIView *_Nullable)toView {
-    return [self getBackgroundView:toView
-                             frame:CGRectZero];
-}
-
-+ (UIView *)getBackgroundView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame {
-    return [self getBackgroundView:toView
-                             frame:frame
-                             alpha:1];
-}
-
-+ (UIView *)getBackgroundView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                                alpha:(CGFloat)alpha {
-    return [self getView:toView
-                   frame:frame
-         backgroundColor:[[LLThemeManager shared].backgroundColor colorWithAlphaComponent:alpha]];
-}
-
-+ (UIView *)lineView:(CGRect)frame
++ (UIView *)getLineView:(CGRect)frame
                    superView:(UIView *_Nullable)superView {
-    UIView *view = [self getPrimaryView:superView];
+    UIView *view = [self getView];
+    view.backgroundColor = [LLThemeManager shared].primaryColor;
+    [superView addSubview:view];
     return view;
 }
 
@@ -119,7 +53,7 @@
 
 + (UILabel *)getLabel:(UIView *_Nullable)toView
                         frame:(CGRect)frame {
-    return [self getLabel:toView frame:CGRectZero text:nil font:17 textColor:nil];
+    return [self getLabel:toView frame:frame text:nil font:17 textColor:nil];
 }
 
 + (UILabel *)getLabel:(UIView *_Nullable)toView
@@ -241,8 +175,16 @@
     tableView.rowHeight = UITableViewAutomaticDimension;
     // To Control subviews.
     tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    tableView.tableHeaderView = [LLFactory getView:nil frame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
-    tableView.tableFooterView = [LLFactory getView:nil frame:CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN)];
+    tableView.tableHeaderView = ({
+        UIView *view = [LLFactory getView];
+        view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN);
+        view;
+    });
+    tableView.tableFooterView = ({
+        UIView *view = [LLFactory getView];
+        view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, CGFLOAT_MIN);
+        view;
+    });
     return tableView;
 }
 
@@ -291,6 +233,29 @@
     [toView addSubview:control];
     control.frame = frame;
     return control;
+}
+
+#pragma mark - UISwitch
++ (UISwitch *)getSwitch {
+    UISwitch *swit = [[UISwitch alloc] initWithFrame:CGRectZero];
+    return swit;
+}
+
+#pragma mark - UISlider
++ (UISlider *)getSlider {
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectZero];
+    return slider;
+}
+
+#pragma mark - UIScrollView
++ (UIScrollView *)getScrollView {
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    if (@available(iOS 11.0, *)) {
+        scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    }
+    return scrollView;
 }
 
 @end

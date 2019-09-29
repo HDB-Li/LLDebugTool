@@ -54,25 +54,19 @@
     switch (self.level) {
         case LLConfigLogLevelDefault:
             return @"Default";
-            break;
         case LLConfigLogLevelAlert:
             return @"Alert";
-            break;
         case LLConfigLogLevelWarning:
             return @"Warning";
-            break;
         case LLConfigLogLevelError:
             return @"Error";
-            break;
-        default:
-            break;
     }
     return @"Unknown";
 }
 
 - (NSDate *)dateDescription {
     if (!_dateDescription && self.date.length) {
-        _dateDescription = [[LLFormatterTool shared] dateFromString:self.date style:FormatterToolDateStyle1];
+        _dateDescription = [LLFormatterTool dateFromString:self.date style:FormatterToolDateStyle1];
     }
     return _dateDescription;
 }

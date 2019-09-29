@@ -52,11 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)stringFromFrame:(CGRect)frame;
 
 /**
- Supported interface orientations in info.plist.
- */
-+ (UIInterfaceOrientationMask)infoPlistSupportedInterfaceOrientationsMask;
-
-/**
  Top level window.
 
  @return Top level window.
@@ -69,6 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
  @param string log string.
  */
 + (void)log:(NSString *)string;
+
++ (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt;
+
+/// Whether the status bar can be clicked.
++ (BOOL)statusBarClickable;
 
 /// Get UIStatusBar_Modern.
 + (UIView *_Nullable)getUIStatusBarModern;

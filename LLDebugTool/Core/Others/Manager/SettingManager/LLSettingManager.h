@@ -22,15 +22,32 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLSettingManager : NSObject
 
-@property (nonatomic, strong, readonly) LLComponent *entryViewClickComponent;
+@property (nonatomic, strong) NSNumber *doubleClickAction;
 
-@property (nonatomic, strong) LLComponent *entryViewDoubleClickComponent;
+@property (nonatomic, strong) NSNumber *colorStyle;
+
+@property (nonatomic, strong) NSNumber *entryWindowStyle;
+
+@property (nonatomic, strong) NSNumber *statusBarStyle;
+
+@property (nonatomic, strong) NSNumber *logStyle;
+
+@property (nonatomic, strong) NSNumber *shrinkToEdgeWhenInactive;
+
+@property (nonatomic, strong) NSNumber *shakeToHide;
+
+@property (nonatomic, strong) NSNumber *magnifierZoomLevel;
+
+@property (nonatomic, strong) NSNumber *magnifierSize;
+
+@property (nonatomic, strong) NSNumber *showWidgetBorder;
+
+@property (nonatomic, strong) NSNumber *hierarchyIgnorePrivateClass;
 
 + (instancetype)shared;
 

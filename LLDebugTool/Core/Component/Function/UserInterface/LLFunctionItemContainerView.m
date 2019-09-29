@@ -40,27 +40,28 @@
 
 @implementation LLFunctionItemContainerView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self initial];
-    }
-    return self;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.backgroundColor = [LLThemeManager shared].containerColor;
+    self.itemViews = [[NSMutableArray alloc] init];
+    [self LL_setCornerRadius:5];
+    self.titleLabel = [LLFactory getLabel:self frame:CGRectMake(20, 0, self.LL_width - 20, 40) text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    self.lineView = [LLFactory getLineView:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) superView:self];
 }
 
-- (void)setDataArray:(NSArray<LLFunctionItemModel *> *)dataArray {
-    if (_dataArray != dataArray) {
-        _dataArray = dataArray;
-        [self updateUI:dataArray];
-    }
+- (void)primaryColorChanged {
+    [super primaryColorChanged];
+    self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.lineView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.backgroundColor = [LLThemeManager shared].containerColor;
 }
 
-- (void)setTitle:(NSString *)title {
-    if (![_title isEqualToString:title]) {
-        _title = [title copy];
-        self.titleLabel.text = title;
-    }
+- (void)backgroundColorChanged {
+    [super backgroundColorChanged];
+    self.backgroundColor = [LLThemeManager shared].containerColor;
 }
 
 - (void)layoutSubviews {
@@ -81,16 +82,6 @@
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.backgroundColor = [LLThemeManager shared].containerColor;
-    self.itemViews = [[NSMutableArray alloc] init];
-    [self LL_setCornerRadius:5];
-    self.titleLabel = [LLFactory getLabel:self frame:CGRectMake(20, 0, self.LL_width - 20, 40) text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    self.lineView = [LLFactory getView:self frame:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) backgroundColor:[LLThemeManager shared].primaryColor];
-}
-
 - (void)updateUI:(NSArray<LLFunctionItemModel *> *)dataArray {
     for (UIView *view in self.itemViews) {
         [view removeFromSuperview];
@@ -108,11 +99,27 @@
     [self layoutIfNeeded];
 }
 
+#pragma mark - Event responses
 - (void)itemViewClicked:(UITapGestureRecognizer *)tap {
     UIView *view = tap.view;
     if ([view isKindOfClass:[LLFunctionItemView class]]) {
         LLFunctionItemView *itemView = (LLFunctionItemView *)view;
-        [self.delegate llFunctionContainerView:self didSelectAt:itemView.model];
+        [self.delegate LLFunctionContainerView:self didSelectAt:itemView.model];
+    }
+}
+
+#pragma mark - Getters and setters
+- (void)setDataArray:(NSArray<LLFunctionItemModel *> *)dataArray {
+    if (_dataArray != dataArray) {
+        _dataArray = dataArray;
+        [self updateUI:dataArray];
+    }
+}
+
+- (void)setTitle:(NSString *)title {
+    if (![_title isEqualToString:title]) {
+        _title = [title copy];
+        self.titleLabel.text = title;
     }
 }
 

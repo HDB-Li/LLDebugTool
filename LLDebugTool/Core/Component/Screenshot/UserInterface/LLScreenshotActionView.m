@@ -35,13 +35,6 @@
 
 @implementation LLScreenshotActionView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
 - (void)buttonClicked:(UIButton *)sender {
     switch (sender.tag) {
         case LLScreenshotActionRect:
@@ -59,8 +52,6 @@
             }
         }
             break;
-        default:
-            break;
     }
     if ([_delegate respondsToSelector:@selector(LLScreenshotActionView:didSelectedAction:isSelected:position:)]) {
         CGFloat position = sender.frame.origin.x + sender.frame.size.width / 2.0;
@@ -68,8 +59,9 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [self LL_setCornerRadius:5];
     
@@ -124,8 +116,6 @@
                 selectImageName = kSureImageName;
                 break;
             }
-            default:
-                break;
         }
         [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
         [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];

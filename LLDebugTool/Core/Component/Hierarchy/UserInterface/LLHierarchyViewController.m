@@ -22,296 +22,247 @@
 //  SOFTWARE.
 
 #import "LLHierarchyViewController.h"
-#import "LLHierarchyCell.h"
+#import "LLHierarchyView.h"
+#import "LLHierarchyInfoView.h"
+#import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLHierarchyHelper.h"
+#import "UIView+LL_Utils.h"
+#import "LLConst.h"
 #import "LLMacros.h"
+#import "LLWindowManager.h"
 #import "LLThemeManager.h"
+#import "NSObject+LL_Utils.h"
+#import "LLHierarchyDetailViewController.h"
+#import "LLNavigationController.h"
+#import "LLTool.h"
 
-static NSString *const kHierarchyCellID = @"HierarchyCellID";
+@interface LLHierarchyViewController ()<LLHierarchyViewDelegate, LLHierarchyInfoViewDelegate>
 
-@interface LLHierarchyViewController () <LLHierarchyCellDelegate>
+@property (nonatomic, strong) UIView *borderView;
 
-@property (nonatomic, strong) LLHierarchyModel *model;
+@property (nonatomic, strong) LLHierarchyView *pickerView;
 
-@property (nonatomic, strong, nullable) LLHierarchyModel *selectModel;
+@property (nonatomic, strong) LLHierarchyInfoView *infoView;
 
-@property (nonatomic, strong) UISegmentedControl *filterView;
+@property (nonatomic, strong) NSMutableSet *observeViews;
+
+@property (nonatomic, strong) NSMutableDictionary *borderViews;
 
 @end
 
 @implementation LLHierarchyViewController
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.isSearchEnable = YES;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+    self.observeViews = [NSMutableSet set];
+    self.borderViews = [[NSMutableDictionary alloc] init];
+    
+    CGFloat height = 100;
+    self.infoView = [[LLHierarchyInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
+    self.infoView.delegate = self;
+    [self.view addSubview:self.infoView];
+    
+    [self.view addSubview:self.borderView];
+    
+    self.pickerView = [[LLHierarchyView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
+    self.pickerView.delegate = self;
+    [self.view addSubview:self.pickerView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self loadData];
+- (void)dealloc {
+    for (UIView *view in self.observeViews) {
+        [self stopObserveView:view];
+    }
+    [self.observeViews removeAllObjects];
 }
 
 #pragma mark - Primary
-- (void)initial {
-    // TableView
-    self.filterView.frame = CGRectMake(8, self.searchBar.frame.size.height, LL_SCREEN_WIDTH - 8 * 2, 30);
-    [self.headerView addSubview:self.filterView];
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+- (void)beginObserveView:(UIView *)view borderWidth:(CGFloat)borderWidth {
+    if ([self.observeViews containsObject:view]) {
+        return;
+    }
     
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 5, 0, 0);
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLHierarchyCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kHierarchyCellID];    
+    UIView *borderView = [LLFactory getView];
+    borderView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:borderView];
+    [self.view sendSubviewToBack:borderView];
+    [borderView LL_setBorderColor:view.LL_hashColor borderWidth:borderWidth];
+    borderView.frame = [self frameInLocalForView:view];
+    [self.borderViews setObject:borderView forKey:@(view.hash)];
+
+    [view addObserver:self forKeyPath:@"frame" options:0 context:NULL];
 }
 
-- (void)loadData {
-    [self updateModel];
-    [self reloadData];
-//    [self scrollToSelectView];
-}
-
-- (void)updateModel {
-    self.model = [LLHierarchyHelper shared].hierarchyInApplication;
-    self.navigationItem.title = @"View Hierarchy";
-    if (self.selectView) {
-        self.filterView.selectedSegmentIndex = 1;
-    } else {
-        self.filterView.selectedSegmentIndex = 0;
+- (void)stopObserveView:(UIView *)view {
+    if (![self.observeViews containsObject:view]) {
+        return;
     }
-}
-
-- (void)reloadData {
-    [self.dataArray removeAllObjects];
-    if (self.selectView != nil) {
-        NSArray *datas = [self datasFromCurrentModel];
-        LLHierarchyModel *resultModel = nil;
-        for (int i = 0; i < datas.count; i++) {
-            LLHierarchyModel *model = datas[i];
-            if (model.view == self.selectView) {
-                resultModel = model;
-                break;
-            }
-        }
-        self.selectModel = resultModel;
-    }
-    if (self.selectModel && self.filterView.selectedSegmentIndex == 1) {
-        NSArray *datas = [self datasFilterWithCurrentSelectView];
-        [self.dataArray addObjectsFromArray:datas];
-    } else {
-        NSArray *datas = [self datasFilterWithFold];
-        [self.dataArray addObjectsFromArray:datas];
-    }
-    [self.tableView reloadData];
-}
-
-- (void)scrollToSelectView {
-    if (self.selectView != nil) {
-        LLHierarchyModel *resultModel = nil;
-        for (int i = 0; i < self.datas.count; i++) {
-            LLHierarchyModel *model = self.datas[i];
-            if (model.view == self.selectView) {
-                resultModel = model;
-                break;
-            }
-        }
-        if (resultModel != nil) {
-            self.selectModel = resultModel;
-            LLHierarchyModel *currentModel = resultModel;
-            LLHierarchyModel *parentModel = currentModel.parentModel;
-            while (parentModel != nil) {
-                if (parentModel.subModels.count > 1) {
-                    NSInteger index = [parentModel.subModels indexOfObject:currentModel];
-                    for (int i = 0; i < parentModel.subModels.count; i++) {
-                        LLHierarchyModel *subModel = parentModel.subModels[i];
-                        if (i != index) {
-                            subModel.fold = YES;
-                        }
-                    }
-                }
-                currentModel = parentModel;
-                parentModel = currentModel.parentModel;
-            }
-            
-            [self reloadData];
-            
-            NSInteger index = [self.datas indexOfObject:resultModel];
-            
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-        }
-    }
-}
-
-- (NSMutableArray *)datasFromCurrentModel {
-    NSMutableArray *datas = [[NSMutableArray alloc] init];
-    for (LLHierarchyModel *subModel in self.model.subModels) {
-        [datas addObjectsFromArray:[self modelsFromModel:subModel checkFold:NO]];
-    }
-    return datas;
-}
-
-- (NSMutableArray *)datasFilterWithFold {
-    NSMutableArray *datas = [[NSMutableArray alloc] init];
-    for (LLHierarchyModel *subModel in self.model.subModels) {
-        [datas addObjectsFromArray:[self modelsFromModel:subModel checkFold:YES]];
-    }
-    return datas;
-}
-
-- (NSMutableArray *)modelsFromModel:(LLHierarchyModel *)model checkFold:(BOOL)checkFold {
-    NSMutableArray *datas = [[NSMutableArray alloc] init];
-    [datas addObject:model];
-    if (!checkFold || !model.isFold) {
-        for (LLHierarchyModel *subModel in model.subModels) {
-            [datas addObjectsFromArray:[self modelsFromModel:subModel checkFold:checkFold]];
-        }
-    }
-    return datas;
-}
-
-- (NSMutableArray *)datasFilterWithCurrentSelectView {
-    NSMutableArray *datas = [[NSMutableArray alloc] init];
-    [datas addObject:self.selectModel];
-    LLHierarchyModel *parent = self.selectModel.parentModel;
-    while (parent) {
-        [datas insertObject:parent atIndex:0];
-        parent = parent.parentModel;
-    }
-    return datas;
-}
-
-#pragma mark - LLHierarchyCellDelegate
-- (void)LLHierarchyCellDidSelectFoldButton:(LLHierarchyCell *)cell {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    LLHierarchyModel *model = self.datas[indexPath.row];
-    LLHierarchyModel *nextModel = nil;
-    if (model.subModels.count) {
-        if (self.datas.count > indexPath.row + 1) {
-            nextModel = self.datas[indexPath.row + 1];
-        }
-        
-        model.fold = !model.isFold;
-        
-        [self.tableView beginUpdates];
-        
-        NSArray *preData = [NSArray arrayWithArray:self.datas];
-        NSArray *newData = [NSArray arrayWithArray:[self datasFilterWithFold]];
-        
-        NSMutableSet *preSet = [NSMutableSet setWithArray:preData];
-        NSMutableSet *newSet = [NSMutableSet setWithArray:newData];
-        
-        NSMutableSet *intersectSet = [NSMutableSet setWithSet:preSet];
-        [intersectSet intersectSet:newSet];
-        
-        [preSet minusSet:intersectSet];
-        [newSet minusSet:intersectSet];
-        
-        
-        NSMutableArray *deleteIndexPaths = [[NSMutableArray alloc] init];
-        NSMutableArray *insertIndexPaths = [[NSMutableArray alloc] init];
-        
-        for (LLHierarchyModel *model in preSet.allObjects) {
-            NSInteger index = [preData indexOfObject:model];
-            [deleteIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        }
-        
-        for (LLHierarchyModel *model in newSet.allObjects) {
-            NSInteger index = [newData indexOfObject:model];
-            [insertIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        }
-        
-        if (deleteIndexPaths.count) {
-            [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-        }
-        if (insertIndexPaths) {
-            [self.tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-        }
-        [self.dataArray removeAllObjects];
-        [self.dataArray addObjectsFromArray:newData];
-        
-        [self.tableView endUpdates];
-        
-        LLHierarchyCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell updateDirection];
-        
-        NSMutableArray *reloadIndexPaths = [[NSMutableArray alloc] init];
-        if (self.datas.count > indexPath.row + 1) {
-            NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0];
-            [reloadIndexPaths addObject:nextIndexPath];
-        }
-        if (nextModel != nil && [self.datas containsObject:nextModel]) {
-            NSInteger index = [self.datas indexOfObject:nextModel];
-            NSIndexPath *preNextIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
-            [reloadIndexPaths addObject:preNextIndexPath];
-        }
-        if (reloadIndexPaths.count) {
-            [self.tableView reloadRowsAtIndexPaths:reloadIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-        }
-    }
-}
-
-- (void)LLHierarchyCellDidSelectInfoButton:(LLHierarchyCell *)cell {
     
+    UIView *borderView = self.borderViews[@(view.hash)];
+    [borderView removeFromSuperview];
+    [view removeObserver:self forKeyPath:@"frame"];
 }
 
-#pragma mark - TableViewDelegate
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LLHierarchyCell *cell = [tableView dequeueReusableCellWithIdentifier:kHierarchyCellID forIndexPath:indexPath];
-    cell.delegate = self;
-    LLHierarchyModel *model = self.datas[indexPath.row];
-    model.isSelectSection = self.filterView.selectedSegmentIndex == 1;
-    [cell confirmWithModel:model];
-    return cell;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context {
+    if ([object isKindOfClass:[UIView class]]) {
+        UIView *view = (UIView *)object;
+        [self updateOverlayIfNeeded:view];
+    }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    [self leftItemClick:self.leftNavigationButton];
-    [self.delegate LLHierarchyViewController:self didFinishWithSelectedModel:self.datas[indexPath.row]];
+- (void)updateOverlayIfNeeded:(UIView *)view {
+    UIView *borderView = self.borderViews[@(view.hash)];
+    if (borderView) {
+        borderView.frame = [self frameInLocalForView:view];
+    }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.selectModel) {
-        LLHierarchyModel *model = self.datas[indexPath.row];
-        if (model == self.selectModel) {
-            cell.selected = YES;
+- (CGRect)frameInLocalForView:(UIView *)view {
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    CGRect rect = [view convertRect:view.bounds toView:window];
+    rect = [self.view convertRect:rect fromView:window];
+    return rect;
+}
+
+- (UIView *)findSelectedViewInViews:(NSArray *)selectedViews {
+    if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+        NSMutableArray *views = [[NSMutableArray alloc] init];
+        for (UIView *view in selectedViews) {
+            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
+                [views addObject:view];
+            }
+        }
+        return [views lastObject];
+    } else {
+        return [selectedViews lastObject];
+    }
+}
+
+- (NSArray <UIView *>*)findParentViewsBySelectedView:(UIView *)selectedView {
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    UIView *view = [selectedView superview];
+    while (view) {
+        if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
+                [views addObject:view];
+            }
+        } else {
+            [views addObject:view];
+        }
+        view = view.superview;
+    }
+    return [views copy];
+}
+
+- (NSArray <UIView *>*)findSubviewsBySelectedView:(UIView *)selectedView {
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    for (UIView *view in selectedView.subviews) {
+        if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
+                [views addObject:view];
+            }
+        } else {
+            [views addObject:view];
         }
     }
+    return [views copy];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [super searchBar:searchBar textDidChange:searchText];
+#pragma mark - LLHierarchyPickerViewDelegate
+- (void)LLHierarchyView:(LLHierarchyView *)view didMoveTo:(NSArray <UIView *>*)selectedViews {
+    
+    @synchronized (self) {
+        for (UIView *view in self.observeViews) {
+            [self stopObserveView:view];
+        }
+        [self.observeViews removeAllObjects];
+        
+        for (NSInteger i = selectedViews.count - 1; i >= 0; i--) {
+            UIView *view = selectedViews[i];
+            CGFloat borderWidth = 1;
+            if (i == selectedViews.count - 1) {
+                borderWidth = 2;
+            }
+            [self beginObserveView:view borderWidth:borderWidth];
+        }
+        [self.observeViews addObjectsFromArray:selectedViews];
+    }
+
+    [self.infoView updateSelectedView:[self findSelectedViewInViews:selectedViews]];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [super tableView:tableView heightForHeaderInSection:section] + 40;
+#pragma mark - LLBaseInfoViewDelegate
+- (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view {
+    [self componentDidLoad:nil];
 }
 
-#pragma mark - Action
-- (void)segmentedControlValueChanged:(UISegmentedControl *)segmentedControl {
-    if (segmentedControl.selectedSegmentIndex == 1 && self.selectModel == nil) {
-        segmentedControl.selectedSegmentIndex = 0;
-    } else {
-        [self reloadData];
+#pragma mark - LLHierarchyInfoViewDelegate
+- (void)LLHierarchyInfoView:(LLHierarchyInfoView *)view didSelectAt:(LLHierarchyInfoViewAction)action {
+    UIView *selectView = self.infoView.selectedView;
+    if (selectView == nil) {
+        [LLTool log:@"Failed to show hierarchy detail viewController"];
+        return;
+    }
+    switch (action) {
+        case LLHierarchyInfoViewActionShowMoreInfo:{
+            [self showHierarchyInfo:selectView];
+        }
+            break;
+        case LLHierarchyInfoViewActionShowParent: {
+            [self showParentSheet:selectView];
+        }
+            break;
+        case LLHierarchyInfoViewActionShowSubview: {
+            [self showSubviewSheet:selectView];
+        }
+            break;
     }
 }
 
-#pragma mark - Lazy
-- (UISegmentedControl *)filterView {
-    if (!_filterView) {
-        _filterView = [[UISegmentedControl alloc] initWithItems:@[@"In application",@"At tap"]];
-        _filterView.tintColor = [LLThemeManager shared].primaryColor;
-        _filterView.selectedSegmentIndex = 0;
-        [_filterView addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+- (void)showHierarchyInfo:(UIView *)selectView {
+    LLHierarchyDetailViewController *vc = [[LLHierarchyDetailViewController alloc] init];
+    vc.selectView = selectView;
+    LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)showParentSheet:(UIView *)selectView {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    __block NSArray *parentViews = [self findParentViewsBySelectedView:selectView];
+    for (UIView *view in parentViews) {
+        [actions addObject:NSStringFromClass(view.class)];
     }
-    return _filterView;
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
+        [weakSelf setNewSelectView:parentViews[index]];
+    }];
+}
+
+- (void)showSubviewSheet:(UIView *)selectView {
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    __block NSArray *subviews = [self findSubviewsBySelectedView:selectView];
+    for (UIView *view in subviews) {
+        [actions addObject:NSStringFromClass(view.class)];
+    }
+    __weak typeof(self) weakSelf = self;
+    [self showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
+        [weakSelf setNewSelectView:subviews[index]];
+    }];
+}
+
+- (void)setNewSelectView:(UIView *)view {
+    [self LLHierarchyView:self.pickerView didMoveTo:@[view]];
+}
+
+#pragma mark - Getters and setters
+- (UIView *)borderView {
+    if (!_borderView) {
+        _borderView = [LLFactory getView];
+        _borderView.backgroundColor = [UIColor clearColor];
+        _borderView.layer.borderWidth = 2;
+    }
+    return _borderView;
 }
 
 @end

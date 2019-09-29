@@ -29,10 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)LL_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
 
-- (NSString *_Nullable)LL_typeDescription;
-
-- (NSString *)LL_stateDescription;
-
 @end
 
 NS_ASSUME_NONNULL_END

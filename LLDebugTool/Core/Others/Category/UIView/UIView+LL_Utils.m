@@ -33,13 +33,6 @@ static const char kLLVerticalPaddingKey;
     [self LL_swizzleInstanceMethodWithOriginSel:@selector(sizeToFit) swizzledSel:@selector(LL_sizeToFit)];
 }
 
-- (void)LL_sizeToFit {
-    [self LL_sizeToFit];
-    CGRect frame = self.frame;
-    frame.size = CGSizeMake(frame.size.width + 2 * self.LL_horizontalPadding, frame.size.height + 2 * self.LL_verticalPadding);
-    self.frame = frame;
-}
-
 - (void)setLL_horizontalPadding:(CGFloat)LL_horizontalPadding {
     [self LL_setCGFloatProperty:LL_horizontalPadding key:&kLLHorizontalPaddingKey];
 }
@@ -166,39 +159,6 @@ static const char kLLVerticalPaddingKey;
     return self.frame.origin.x + self.frame.size.width;
 }
 
-- (NSString *)LL_contentModeDescription {
-    switch (self.contentMode) {
-        case UIViewContentModeScaleToFill:
-            return @"ScaleToFill";
-        case UIViewContentModeScaleAspectFit:
-            return @"ScaleAspectFit";
-        case UIViewContentModeScaleAspectFill:
-            return @"ScaleAspectFill";
-        case UIViewContentModeRedraw:
-            return @"Redraw";
-        case UIViewContentModeCenter:
-            return @"Center";
-        case UIViewContentModeTop:
-            return @"Top";
-        case UIViewContentModeBottom:
-            return @"Bottom";
-        case UIViewContentModeLeft:
-            return @"Left";
-        case UIViewContentModeRight:
-            return @"Right";
-        case UIViewContentModeTopLeft:
-            return @"TopLeft";
-        case UIViewContentModeTopRight:
-            return @"TopRight";
-        case UIViewContentModeBottomLeft:
-            return @"BottomLeft";
-        case UIViewContentModeBottomRight:
-            return @"BottomRight";
-        default:
-            return nil;
-    }
-}
-
 - (void)LL_setCornerRadius:(CGFloat)cornerRadius {
     self.layer.cornerRadius = cornerRadius;
     self.layer.masksToBounds = YES;
@@ -244,6 +204,16 @@ static const char kLLVerticalPaddingKey;
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+#pragma mark - Primary
+- (void)LL_sizeToFit {
+    [self LL_sizeToFit];
+    if (self.LL_horizontalPadding > 0 || self.LL_verticalPadding > 0) {
+        CGRect frame = self.frame;
+        frame.size = CGSizeMake(frame.size.width + 2 * self.LL_horizontalPadding, frame.size.height + 2 * self.LL_verticalPadding);
+        self.frame = frame;
+    }
 }
 
 @end

@@ -23,16 +23,27 @@
 
 #import "LLConst.h"
 
-CGFloat const kLLSuspensionWindowWidth = 50;
-CGFloat const kLLSuspensionWindowMinWidth = 30;
-CGFloat const kLLSuspensionWindowHideWidth = 10;
-CGFloat const kLLSuspensionWindowNormalAlpha = 0.75;
-CGFloat const kLLSuspensionWindowActiveAlpha = 1.0;
-CGFloat const kLLSuspensionWindowTop = 200;
+CGFloat const kLLEntryWindowBallWidth = 50;
+CGFloat const kLLEntryWindowMinBallWidth = 30;
+CGFloat const kLLEntryWindowMaxBallWidth = 70;
+CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;// Golden section search.
+CGFloat const kLLEntryWindowMinDisplayPercent = 0.1;
+CGFloat const kLLEntryWindowMaxDisplayPercent = 1;
+CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
+CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
+CGFloat const kLLInactiveAlpha = 0.75;
+CGFloat const kLLActiveAlpha = 1.0;
+CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
 
 NSInteger const kLLMagnifierWindowZoomLevel = 10;
+NSInteger const kLLMagnifierWindowMinZoomLevel = 6;
+NSInteger const kLLMagnifierWindowMaxZoomLevel = 14;
 NSInteger const kLLMagnifierWindowSize = 15;
+NSInteger const kLLMagnifierWindowMinSize = 9;
+NSInteger const kLLMagnifierWindowMaxSize = 21;
+
+CGFloat const kLLRulerLineWidth = 1;
+
+CGFloat const kLLWidgetBorderWidth = 1;
 
 CGFloat const kLLGeneralMargin = 10;
-
-NSString * const kLLEntryViewDoubleClickComponent = @"LLConvenientScreenshotComponent";

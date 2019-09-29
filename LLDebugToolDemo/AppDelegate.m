@@ -33,7 +33,7 @@
         
         //####################### Window Style #######################//
         // Uncomment one of the following lines to change the window style.
-        // config.entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+        // config.entryWindowStyle = LLConfigEntryWindowStyleTitle;
         
     }];
     

@@ -29,18 +29,43 @@
 
 @implementation LLBaseTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self baseInitial];
-}
-
+#pragma mark - Life cycle
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self baseInitial];
+        [self initUI];
+        [self configSubviews:self];
+        [self addObservers];
     }
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Public
+- (void)initUI {
+    self.tintColor = [LLThemeManager shared].primaryColor;
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    self.selectedBackgroundView = [LLFactory getView];
+    self.selectedBackgroundView.backgroundColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.2];
+    
+    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+}
+
+- (void)primaryColorChanged {
+    self.tintColor = [LLThemeManager shared].primaryColor;
+    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
+    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
+    [self configSubviews:self];
+}
+
+- (void)backgroundColorChanged {
+    self.backgroundColor = [LLThemeManager shared].backgroundColor;
+}
+
+#pragma mark - Over write
 - (void)layoutSubviews {
     [super layoutSubviews];
     for (UIView *subview in self.subviews) {
@@ -49,45 +74,37 @@
                 if ([view isKindOfClass:[UIImageView class]]) {
                     UIImageView *imageView = (UIImageView *)view;
                     UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-                    if (self.isSelected) {
-                        imageView.image = [[UIImage LL_imageNamed:kCellSelectImageName] imageWithRenderingMode:mode];
-                    } else {
-                        imageView.image = [[UIImage LL_imageNamed:kCellUnselectImageName] imageWithRenderingMode:mode];
+                    if (imageView.image != nil && imageView.image.renderingMode != mode) {
+                        imageView.image = [imageView.image imageWithRenderingMode:mode];
                     }
                     break;
                 }
+            }
+        } else if ([subview isKindOfClass: [UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            if (button.currentBackgroundImage != nil && button.currentBackgroundImage.renderingMode != UIImageRenderingModeAlwaysTemplate) {
+                [button setBackgroundImage:[button.currentBackgroundImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:button.state];
             }
         }
     }
 }
 
-- (void)setAccessoryType:(UITableViewCellAccessoryType)accessoryType {
-    [super setAccessoryType:accessoryType];
-    switch (accessoryType) {
-        case UITableViewCellAccessoryDisclosureIndicator:{
-            self.accessoryView = [LLFactory getImageView:nil frame:CGRectMake(0, 0, 12, 12) image:[[UIImage LL_imageNamed:kRightImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-        }
-            break;
-        case UITableViewCellAccessoryNone: {
-            self.accessoryView = nil;
-        }
-            break;
-        default: {
-            NSAssert(NO, @"Must code accessory type");
-        }
-            break;
-    }
+#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    [self primaryColorChanged];
+}
+
+#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    [self backgroundColorChanged];
 }
 
 #pragma mark - Primary
-- (void)baseInitial {
-    self.tintColor = [LLThemeManager shared].primaryColor;
-    self.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.selectedBackgroundView = [LLFactory getPrimaryView:nil frame:self.frame alpha:0.2];
-    self.textLabel.textColor = [LLThemeManager shared].primaryColor;
-    self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
-    [self configSubviews:self];
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
 }
+
 
 - (void)configSubviews:(UIView *)view {
     if ([view isKindOfClass:[UILabel class]]) {

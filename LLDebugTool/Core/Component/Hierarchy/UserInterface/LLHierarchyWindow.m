@@ -23,27 +23,25 @@
 
 #import "LLHierarchyWindow.h"
 #import "LLHierarchyViewController.h"
-#import "LLNavigationController.h"
 #import "LLWindowManager.h"
+
+@interface LLHierarchyWindow ()
+
+@end
 
 @implementation LLHierarchyWindow
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self initial];
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLHierarchyViewController alloc] init];
+        }
     }
     return self;
 }
 
 - (void)componentDidFinish {
     [[LLWindowManager shared] showEntryWindow];
-}
-
-#pragma mark - Primary
-- (void)initial {
-    if (!self.rootViewController) {
-        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLHierarchyViewController alloc] init]];
-    }
 }
 
 @end

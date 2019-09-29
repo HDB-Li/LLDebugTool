@@ -46,15 +46,9 @@
 
 @implementation LLScreenshotToolbar
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
-
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.clipsToBounds = YES;
     self.selectorViews = [[NSMutableArray alloc] init];
     
@@ -63,7 +57,8 @@
     self.actionView.delegate = self;
     [self addSubview:self.actionView];
     
-    self.selectorBackgroundView = [LLFactory getView:self frame:CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight)];
+    [self addSubview:self.selectorBackgroundView];
+    self.selectorBackgroundView.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight);
     
     CGFloat triangleHeight = 10;
     self.triangleView = [LLFactory getImageView:self.selectorBackgroundView frame:CGRectMake(0, 0, triangleHeight * 2, triangleHeight) image:[UIImage LL_imageNamed:kSelectorTriangleImageName]];
@@ -78,6 +73,7 @@
     [self.selectorBackgroundView bringSubviewToFront:[self.selectorViews firstObject]];
 }
 
+#pragma mark - Primary
 - (void)showSelectorView:(NSInteger)index position:(CGFloat)position {
     LLScreenshotSelectorView *selectedView = self.selectorViews[index - 1];
     if (selectedView != self.lastSelectorView) {
@@ -127,19 +123,12 @@
             }
         }
             break;
-        case LLScreenshotActionBack:{
-            
-        }
+        case LLScreenshotActionBack:
             break;
-        case LLScreenshotActionCancel:{
-            
-        }
+        case LLScreenshotActionCancel:
             break;
-        case LLScreenshotActionConfirm:{
-            
-        }
-            break;
-        default:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionNone:
             break;
     }
     
@@ -154,6 +143,14 @@
         }
         [_delegate LLScreenshotToolbar:self didSelectedAction:action selectorModel:model];
     }
+}
+
+#pragma mark - Getters and setters
+- (UIView *)selectorBackgroundView {
+    if (!_selectorBackgroundView) {
+        _selectorBackgroundView = [LLFactory getView];
+    }
+    return _selectorBackgroundView;
 }
 
 @end

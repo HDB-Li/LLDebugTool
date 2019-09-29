@@ -25,12 +25,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, LLBaseWindowAnimateStyle) {
-    LLBaseWindowAnimateStyleFadeInFadeOut,
-    LLBaseWindowAnimateStylePresentInDismissOut,
-    LLBaseWindowAnimateStylePushInPopOut,
-};
-
 typedef NS_ENUM(NSUInteger, LLBaseWindowShowAnimateStyle) {
     LLBaseWindowShowAnimateStyleFade,
     LLBaseWindowShowAnimateStylePresent,
@@ -45,11 +39,11 @@ typedef NS_ENUM(NSUInteger, LLBaseWindowHideAnimateStyle) {
 
 @interface LLBaseWindow : UIWindow
 
-@property (nonatomic, assign) LLBaseWindowAnimateStyle animateStyle;
-
 @property (nonatomic, assign) LLBaseWindowShowAnimateStyle showAnimateStyle;
 
 @property (nonatomic, assign) LLBaseWindowHideAnimateStyle hideAnimateStyle;
+
+- (void)becomeVisiable;
 
 @end
 

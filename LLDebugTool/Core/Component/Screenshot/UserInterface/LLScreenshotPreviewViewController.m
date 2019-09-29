@@ -47,15 +47,11 @@
 
 @implementation LLScreenshotPreviewViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
-}
-
-#pragma mark - Primary
-- (void)initial {
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    self.name = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
+    self.name = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;
@@ -77,10 +73,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
+#pragma mark - Primary
 - (void)cancelAction {
     [self componentDidLoad:nil];
 }

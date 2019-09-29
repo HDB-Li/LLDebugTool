@@ -26,15 +26,20 @@
 #import "LLConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLThemeManager.h"
+#import "LLFactory.h"
+#import "LLMacros.h"
+#import "LLConst.h"
+#import "Masonry.h"
 
 @interface LLSandboxCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (nonatomic, strong) UIImageView *icon;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+
+@property (nonatomic, strong) UILabel *sizeLabel;
 
 @property (strong, nonatomic) LLSandboxModel *model;
 
@@ -42,15 +47,10 @@
 
 @implementation LLSandboxCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
-
 - (void)confirmWithModel:(LLSandboxModel *)model {
     _model = model;
-    self.titleLabel.text = model.name;
-    self.contentLabel.text = [NSString stringWithFormat:@"%@", [[LLFormatterTool shared] stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
+    self.nameLabel.text = model.name;
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", [LLFormatterTool stringFromDate:model.modifiDate style:FormatterToolDateStyle1]];
     self.sizeLabel.text = [NSString stringWithFormat:@"%@",model.totalFileSizeString];
     if (model.isDirectory && model.subModels.count) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -69,13 +69,41 @@
     }
 }
 
-#pragma mark - Primary
-- (void)initial {
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
-    self.icon.tintColor = [LLThemeManager shared].primaryColor;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UILongPressGestureRecognizer *longPG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureAction:)];
     [self.contentView addGestureRecognizer:longPG];
+    
+    [self.contentView addSubview:self.icon];
+    [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.dateLabel];
+    [self.contentView addSubview:self.sizeLabel];
+    
+    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(40);
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.centerY.equalTo(self.contentView);
+    }];
+    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.icon.mas_right).offset(kLLGeneralMargin);
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.right.mas_equalTo(-kLLGeneralMargin / 2.0);
+    }];
+    
+    [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.nameLabel);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+    }];
+    
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.nameLabel);
+        make.top.equalTo(self.sizeLabel.mas_bottom);
+        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
+    }];
 }
 
 - (void)longPressGestureAction:(UILongPressGestureRecognizer *)sender {
@@ -84,6 +112,41 @@
             [_delegate LL_tableViewCellDidLongPress:self];
         }
     }
+}
+
+#pragma mark - Getters and setters
+- (UILabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [LLFactory getLabel];
+        _nameLabel.font = [UIFont boldSystemFontOfSize:19];
+        _nameLabel.numberOfLines = 0;
+        _nameLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    }
+    return _nameLabel;
+}
+
+- (UIImageView *)icon {
+    if (!_icon) {
+        _icon = [LLFactory getImageView];
+        _icon.tintColor = [LLThemeManager shared].primaryColor;
+    }
+    return _icon;
+}
+
+- (UILabel *)sizeLabel {
+    if (!_sizeLabel) {
+        _sizeLabel = [LLFactory getLabel];
+        _sizeLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _sizeLabel;
+}
+
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [LLFactory getLabel];
+        _dateLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _dateLabel;
 }
 
 @end

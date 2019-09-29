@@ -1,3 +1,21 @@
+## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.2) (09/29/2019)
+
+###  Add `Ruler`,  `Widget Border` function.
+
+Ruler function : Convenient tools to display touch point information.
+
+Widget Border function : Display element border, convenient to see the view's frame.
+
+#### Add
+
+* Add `LLSettingManager` to control some settings in tool, you can configure `LLConfig`'s options dynamically without re-archiving.
+
+* Add `Hierarchy Detail Info` function to show more detail info of target view. Similar to `Debug View Hierarchy` function in XCode.
+
+#### Remove
+
+* Remove all xib files, it wastes compilation time. In contrast, you need to introduce [Masonry](https://github.com/SnapKit/Masonry) lib.
+
 ## [1.3.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.1) (09/06/2019)
 
 ###  Fix some bugs.

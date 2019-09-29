@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLBaseView.h"
 #import "LLFunctionItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -30,13 +30,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LLFunctionContainerViewControllerDelegate <NSObject>
 
-- (void)llFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model;
+- (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model;
 
 @end
 
-@interface LLFunctionItemContainerView : UIView
+@interface LLFunctionItemContainerView : LLBaseView
 
-@property (nonatomic, weak) id<LLFunctionContainerViewControllerDelegate> delegate;
+@property (nonatomic, weak, nullable) id<LLFunctionContainerViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSArray <LLFunctionItemModel *>*dataArray;
 

@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLFunctionItemModel.h"
+#import "LLFunctionComponent.h"
 #import "LLNetworkComponent.h"
 #import "LLLogComponent.h"
 #import "LLNetworkComponent.h"
@@ -29,8 +30,12 @@
 #import "LLCrashComponent.h"
 #import "LLSandboxComponent.h"
 #import "LLScreenshotComponent.h"
+#import "LLConvenientScreenshotComponent.h"
 #import "LLHierarchyComponent.h"
 #import "LLMagnifierComponent.h"
+#import "LLRulerComponent.h"
+#import "LLWidgetBorderComponent.h"
+#import "LLSettingComponent.h"
 #import "LLImageNameConfig.h"
 
 @implementation LLFunctionItemModel
@@ -47,6 +52,10 @@
 
 - (LLComponent *)componentFromAction:(LLDebugToolAction)action {
     switch (action) {
+        case LLDebugToolActionFunction:
+            return [[LLFunctionComponent alloc] init];
+        case LLDebugToolActionSetting:
+            return [[LLSettingComponent alloc] init];
         case LLDebugToolActionNetwork:
             return [[LLNetworkComponent alloc] init];
         case LLDebugToolActionLog:
@@ -59,15 +68,25 @@
             return [[LLSandboxComponent alloc] init];
         case LLDebugToolActionScreenshot:
             return [[LLScreenshotComponent alloc] init];
+        case LLDebugToolActionConvenientScreenshot:
+            return [[LLConvenientScreenshotComponent alloc] init];
         case LLDebugToolActionHierarchy:
             return [[LLHierarchyComponent alloc] init];
         case LLDebugToolActionMagnifier:
             return [[LLMagnifierComponent alloc] init];
+        case LLDebugToolActionRuler:
+            return [[LLRulerComponent alloc] init];
+        case LLDebugToolActionWidgetBorder:
+            return [[LLWidgetBorderComponent alloc] init];
     }
 }
 
 - (NSString *)titleFromAction:(LLDebugToolAction)action {
     switch (action) {
+        case LLDebugToolActionFunction:
+            return @"Function";
+        case LLDebugToolActionSetting:
+            return @"Setting";
         case LLDebugToolActionNetwork:
             return @"Net";
         case LLDebugToolActionLog:
@@ -80,15 +99,24 @@
             return @"Sandbox";
         case LLDebugToolActionScreenshot:
             return @"Screenshot";
+        case LLDebugToolActionConvenientScreenshot:
+            return @"Convenient Screenshot";
         case LLDebugToolActionHierarchy:
             return @"Hierarchy";
         case LLDebugToolActionMagnifier:
             return @"Magnifier";
+        case LLDebugToolActionRuler:
+            return @"Ruler";
+        case LLDebugToolActionWidgetBorder:
+            return @"Widget Border";
     }
 }
 
 - (NSString *)imageNameFromAction:(LLDebugToolAction)action {
     switch (action) {
+        case LLDebugToolActionFunction:
+        case LLDebugToolActionSetting:
+            return @"";
         case LLDebugToolActionNetwork:
             return kNetworkImageName;
         case LLDebugToolActionLog:
@@ -100,11 +128,16 @@
         case LLDebugToolActionSandbox:
             return kSandboxImageName;
         case LLDebugToolActionScreenshot:
+        case LLDebugToolActionConvenientScreenshot:
             return kScreenshotImageName;
         case LLDebugToolActionHierarchy:
             return kHierarchyImageName;
         case LLDebugToolActionMagnifier:
             return kMagnifierImageName;
+        case LLDebugToolActionRuler:
+            return kRulerImageName;
+        case LLDebugToolActionWidgetBorder:
+            return kWidgetBorderImageName;
     }
 }
 

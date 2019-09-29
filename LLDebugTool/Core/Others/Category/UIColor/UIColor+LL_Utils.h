@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)LL_description;
 
+- (NSString *_Nullable)LL_systemColorName;
+
 /**
  Mixture with another color, radio is between 0.0 to 1.0
 

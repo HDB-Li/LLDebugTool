@@ -23,56 +23,152 @@
 
 #import "LLLogCell.h"
 #import "LLConfig.h"
+#import "LLFactory.h"
+#import "Masonry.h"
+#import "LLConst.h"
 
 @interface LLLogCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *fileLabel;
-@property (weak, nonatomic) IBOutlet UILabel *funcLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (nonatomic, strong) UILabel *fileDesLabel;
+@property (nonatomic, strong) UILabel *fileLabel;
+@property (nonatomic, strong) UILabel *funcDesLabel;
+@property (nonatomic, strong) UILabel *funcLabel;
+@property (nonatomic, strong) UILabel *dateDesLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *messageLabel;
 @property (strong, nonatomic) LLLogModel *model;
 
 @end
 
 @implementation LLLogCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self initial];
-}
-
 - (void)confirmWithModel:(LLLogModel *)model {
     _model = model;
-    if (model.file.length) {
-        _fileLabel.attributedText = [self title:@"File : " content:model.file];
-    } else {
-        _fileLabel.attributedText = nil;
-    }
-    if (model.function.length) {
-        _funcLabel.attributedText = [self title:@"Func : " content:model.function];
-    } else {
-        _funcLabel.attributedText = nil;
-    }
-    if (model.date.length) {
-        _dateLabel.attributedText = [self title:@"Date : " content:model.date];
-    } else {
-        _dateLabel.attributedText = nil;
-    }
-    _messageLabel.text = model.message ?: @"None Message";
+    _fileLabel.text = model.file ?: @" ";
+    _funcLabel.text = model.function ?: @" ";
+    _dateLabel.text = model.date ?: @" ";
+    _messageLabel.text = model.message ? model.message : @"None Message";
 }
 
-#pragma mark - Primary
-- (void)initial {
-    self.messageLabel.font = [UIFont boldSystemFontOfSize:18];
-    _fileLabel.text = nil;
-    _funcLabel.text = nil;
-    _dateLabel.text = nil;
-    _messageLabel.text = nil;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    [self.contentView addSubview:self.fileDesLabel];
+    [self.contentView addSubview:self.fileLabel];
+    [self.contentView addSubview:self.funcDesLabel];
+    [self.contentView addSubview:self.funcLabel];
+    [self.contentView addSubview:self.dateDesLabel];
+    [self.contentView addSubview:self.dateLabel];
+    [self.contentView addSubview:self.messageLabel];
+    
+    [self.fileDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.fileLabel.mas_top);
+        make.left.mas_equalTo(kLLGeneralMargin);
+        make.width.mas_equalTo(45);
+    }];
+    
+    [self.fileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kLLGeneralMargin);
+        make.left.equalTo(self.fileDesLabel.mas_right).offset(kLLGeneralMargin / 2.0);
+        make.right.mas_equalTo(-kLLGeneralMargin);
+    }];
+    
+    [self.funcDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.funcLabel.mas_top);
+        make.left.width.equalTo(self.fileDesLabel);
+    }];
+    
+    [self.funcLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.fileLabel);
+        make.top.equalTo(self.fileLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+    }];
+    
+    [self.dateDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.dateLabel.mas_top);
+        make.left.width.equalTo(self.fileDesLabel);
+    }];
+    
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.fileLabel);
+        make.top.equalTo(self.funcLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+    }];
+    
+    [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.fileDesLabel);
+        make.right.equalTo(self.fileLabel);
+        make.top.equalTo(self.dateLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
+        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
+    }];
 }
 
-- (NSAttributedString *)title:(NSString *)title content:(NSString *)content {
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14]}];
-    [attr appendAttributedString:[[NSAttributedString alloc] initWithString:content attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]}]];
-    return attr;
+#pragma mark - Getters and setters
+- (UILabel *)fileDesLabel {
+    if (!_fileDesLabel) {
+        _fileDesLabel = [LLFactory getLabel];
+        _fileDesLabel.text = @"File";
+        _fileDesLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _fileDesLabel;
 }
+
+- (UILabel *)fileLabel {
+    if (!_fileLabel) {
+        _fileLabel = [LLFactory getLabel];
+        _fileLabel.numberOfLines = 0;
+        _fileLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _fileLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    return _fileLabel;
+}
+
+- (UILabel *)funcDesLabel {
+    if (!_funcDesLabel) {
+        _funcDesLabel = [LLFactory getLabel];
+        _funcDesLabel.text = @"Func";
+        _funcDesLabel.numberOfLines = 0;
+        _funcDesLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _funcDesLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _funcDesLabel;
+}
+
+- (UILabel *)funcLabel {
+    if (!_funcLabel) {
+        _funcLabel = [LLFactory getLabel];
+        _funcLabel.numberOfLines = 0;
+        _funcLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _funcLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    return _funcLabel;
+}
+
+- (UILabel *)dateDesLabel {
+    if (!_dateDesLabel) {
+        _dateDesLabel = [LLFactory getLabel];
+        _dateDesLabel.text = @"Date";
+        _dateDesLabel.numberOfLines = 0;
+        _dateDesLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _dateDesLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _dateDesLabel;
+}
+
+- (UILabel *)dateLabel {
+    if (!_dateLabel) {
+        _dateLabel = [LLFactory getLabel];
+        _dateLabel.font = [UIFont boldSystemFontOfSize:14];
+    }
+    return _dateLabel;
+}
+
+- (UILabel *)messageLabel {
+    if (!_messageLabel) {
+        _messageLabel = [LLFactory getLabel];
+        _messageLabel.numberOfLines = 0;
+        _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _messageLabel.font = [UIFont boldSystemFontOfSize:18];
+    }
+    return _messageLabel;
+}
+
 @end

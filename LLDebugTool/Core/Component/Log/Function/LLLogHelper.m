@@ -46,7 +46,7 @@ static LLLogHelper *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    NSString *date = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
     LLConfigLogStyle logStyle = [LLConfig shared].logStyle;
     switch (logStyle) {
         case LLConfigLogDetail:

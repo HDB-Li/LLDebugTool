@@ -25,6 +25,7 @@
 #import "LLScreenshotBaseOperation.h"
 #import "LLFactory.h"
 #import "LLConst.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLScreenshotImageView ()
 
@@ -37,13 +38,6 @@
 @end
 
 @implementation LLScreenshotImageView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        [self initial];
-    }
-    return self;
-}
 
 - (void)removeLastOperation {
     LLScreenshotBaseOperation *operation = self.operations.lastObject;
@@ -63,7 +57,10 @@
             [self.operations removeObject:oper];
         }
             break;
-        default:
+        case LLScreenshotActionBack:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionNone:
             break;
     }
 }
@@ -134,7 +131,10 @@
             [operation.textView becomeFirstResponder];
         }
             break;
-        default:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionBack:
+        case LLScreenshotActionNone:
             break;
     }
 }
@@ -171,7 +171,11 @@
             [self setNeedsDisplay];
         }
             break;
-        default:
+        case LLScreenshotActionText:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionNone:
+        case LLScreenshotActionBack:
             break;
     }
 }
@@ -213,7 +217,11 @@
             [self setNeedsDisplay];
         }
             break;
-        default:
+        case LLScreenshotActionText:
+        case LLScreenshotActionConfirm:
+        case LLScreenshotActionCancel:
+        case LLScreenshotActionNone:
+        case LLScreenshotActionBack:
             break;
     }
 }
@@ -223,16 +231,16 @@
     [self.currentOperation drawImageView:rect];
 }
 
-#pragma mark - Primary
-- (void)initial {
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
     self.backgroundColor = [UIColor whiteColor];
     self.layer.masksToBounds = YES;
     self.userInteractionEnabled = NO;
     self.operations = [[NSMutableArray alloc] init];
     
     self.imageView = [LLFactory getImageView:self frame:self.bounds];
-    self.imageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.imageView.layer.borderWidth = 2;
+    [self.imageView LL_setBorderColor:[UIColor whiteColor] borderWidth:2];
     self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.imageView.layer.shadowOffset = CGSizeZero;
     self.imageView.layer.shadowOpacity = 0.5;

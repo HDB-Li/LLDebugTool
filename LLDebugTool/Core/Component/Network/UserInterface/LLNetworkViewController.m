@@ -64,7 +64,28 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    self.navigationItem.title = @"Network Monitoring";
+    
+    if (_launchDate == nil) {
+        _launchDate = [NSObject LL_launchDate];
+    }
+
+    [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:kNetworkCellID];
+    
+    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
+    __weak typeof(self) weakSelf = self;
+    self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
+        weakSelf.currentHost = hosts;
+        weakSelf.currentTypes = types;
+        weakSelf.currentFromDate = from;
+        weakSelf.currentEndDate = end;
+        [weakSelf filterData];
+    };
+    [self.filterView configWithData:self.oriDataArray];
+    [self.headerView addSubview:self.filterView];
+    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+    
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -82,6 +103,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
+    [super deleteFilesWithIndexPaths:indexPaths];
     __block NSMutableArray *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.datas[indexPath.row]];
@@ -92,7 +114,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
-            [weakSelf.dataArray removeObjectsInArray:models];
+            [weakSelf.oriDataArray removeObjectsInArray:models];
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
@@ -145,42 +167,17 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.navigationItem.title = @"Network Monitoring";
-    
-    if (_launchDate == nil) {
-        _launchDate = [NSObject LL_launchDate];
-    }
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLNetworkCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kNetworkCellID];
-    
-    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
-    __weak typeof(self) weakSelf = self;
-    self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
-        weakSelf.currentHost = hosts;
-        weakSelf.currentTypes = types;
-        weakSelf.currentFromDate = from;
-        weakSelf.currentEndDate = end;
-        [weakSelf filterData];
-    };
-    [self.filterView configWithData:self.dataArray];
-    [self.headerView addSubview:self.filterView];
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
-    
-    [self loadData];
-}
-
 - (void)loadData {
     self.searchBar.text = nil;
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager shared] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
-        [weakSelf.dataArray removeAllObjects];
-        [weakSelf.dataArray addObjectsFromArray:result];
+        [weakSelf.oriDataArray removeAllObjects];
+        [weakSelf.oriDataArray addObjectsFromArray:result];
         [weakSelf.searchDataArray removeAllObjects];
-        [weakSelf.searchDataArray addObjectsFromArray:weakSelf.dataArray];
-        [weakSelf.filterView configWithData:weakSelf.dataArray];
+        [weakSelf.searchDataArray addObjectsFromArray:weakSelf.oriDataArray];
+        [weakSelf.filterView configWithData:weakSelf.oriDataArray];
         [weakSelf.tableView reloadData];
     }];
 }
@@ -188,10 +185,10 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)filterData {
     @synchronized (self) {
         [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        for (LLNetworkModel *model in self.dataArray) {
+        for (LLNetworkModel *model in self.oriDataArray) {
 
             // Filter Host
             if (self.currentHost.count) {

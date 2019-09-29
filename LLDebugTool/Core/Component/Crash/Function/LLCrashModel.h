@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLStorageModel.h"
+#import "LLTableViewSelectableModel.h"
 #import "LLCrashSignalModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLCrashModel : LLStorageModel
+@interface LLCrashModel : LLTableViewSelectableModel
 
 /**
  * Crash Name
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic, readonly) NSString *launchDate;
 
 /**
- * Initial method
+ * Init method
  */
 - (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate;
 

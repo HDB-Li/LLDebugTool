@@ -20,6 +20,8 @@ static NSString *const kSandboxImageName = @"LL-sandbox";
 static NSString *const kScreenshotImageName = @"LL-screenshot";
 static NSString *const kHierarchyImageName = @"LL-hierarchy";
 static NSString *const kMagnifierImageName = @"LL-magnifier";
+static NSString *const kRulerImageName = @"LL-ruler";
+static NSString *const kWidgetBorderImageName = @"LL-widget-border";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";
@@ -89,17 +91,15 @@ static NSString *const kRightImageName = @"LL-right";
 static NSString *const kTopImageName = @"LL-top";
 static NSString *const kBottomImageName = @"LL-bottom";
 static NSString *const kLogoImageName = @"LL-logo";
+static NSString *const kSelectImageName = @"LL-select";
+static NSString *const kUnselectImageName = @"LL-unselect";
 
 // Hierarchy
-static NSString *const kFoldArrowImageName = @"LL-foldArrow";
-static NSString *const kPickImageName = @"LL-pick";
+static NSString *const kParentImageName = @"LL-parent";
+static NSString *const kSubviewImageName = @"LL-subview";
 static NSString *const kInfoImageName = @"LL-info";
 
 // Screenshot
 static NSString *const kCaptureImageName = @"LL-capture";
-
-// Cell
-static NSString *const kCellSelectImageName = @"LL-cell-select";
-static NSString *const kCellUnselectImageName = @"LL-cell-unselect";
 
 #endif /* LLImageNameConfig_h */

@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLStorageModel.h"
+#import "LLTableViewSelectableModel.h"
 #import "LLLogHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Log model. Save and show log infos.
  */
-@interface LLLogModel : LLStorageModel
+@interface LLLogModel : LLTableViewSelectableModel
 
 /**
  File name.
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDate *_Nullable)dateDescription;
 
 /**
- Initialization of the model.
+ Init of the model.
  */
 - (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(NSInteger)lineNo function:(NSString *_Nullable)function level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *_Nullable)userIdentity;
 

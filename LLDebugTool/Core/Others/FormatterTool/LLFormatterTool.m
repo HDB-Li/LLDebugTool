@@ -36,30 +36,26 @@ static LLFormatterTool *_instance = nil;
 
 @implementation LLFormatterTool
 
+#pragma mark - Public
++ (NSString *)stringFromDate:(NSDate *)date style:(FormatterToolDateStyle)style {
+    return [[self shared] stringFromDate:date style:style];
+}
+
++ (NSDate *)dateFromString:(NSString *)string style:(FormatterToolDateStyle)style {
+    return [[self shared] dateFromString:string style:style];
+}
+
++ (NSString *)formatNumber:(NSNumber *)number {
+    return [[self shared] formatNumber:number];
+}
+
+#pragma mark - Primary
 + (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLFormatterTool alloc] init];
-        [_instance initial];
     });
     return _instance;
-}
-
-#pragma mark - Primary
-- (void)initial {
-    
-    NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-    dateFormatter1.dateFormat = [LLConfig shared].dateFormatter;
-
-    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
-    dateFormatter2.dateFormat = @"yyyy-MM-dd";
-    
-    NSDateFormatter *dateFormatter3 = [[NSDateFormatter alloc] init];
-    dateFormatter3.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    
-    self.formatters = @{@(FormatterToolDateStyle1) : dateFormatter1,
-                        @(FormatterToolDateStyle2) : dateFormatter2,
-                        @(FormatterToolDateStyle3) : dateFormatter3};
 }
 
 - (NSString *)stringFromDate:(NSDate *)date style:(FormatterToolDateStyle)style {
@@ -82,7 +78,25 @@ static LLFormatterTool *_instance = nil;
     return [self.numberFormatter stringFromNumber:number];
 }
 
-#pragma mark - Lazy load
+#pragma mark - Getters and setters
+- (NSDictionary *)formatters {
+    if (!_formatters) {
+        NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+        dateFormatter1.dateFormat = [LLConfig shared].dateFormatter;
+        
+        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+        dateFormatter2.dateFormat = @"yyyy-MM-dd";
+        
+        NSDateFormatter *dateFormatter3 = [[NSDateFormatter alloc] init];
+        dateFormatter3.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        
+        _formatters = @{@(FormatterToolDateStyle1) : dateFormatter1,
+                        @(FormatterToolDateStyle2) : dateFormatter2,
+                        @(FormatterToolDateStyle3) : dateFormatter3};
+    }
+    return _formatters;
+}
+
 - (NSNumberFormatter *)numberFormatter {
     if (!_numberFormatter) {
         _numberFormatter = [[NSNumberFormatter alloc] init];

@@ -34,9 +34,17 @@
 
 @implementation LLBaseViewController
 
+#pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self baseInitial];
+    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self resetDefaultSettings];
+    [self setNavigationSettings];
+    [self addObservers];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Public
@@ -54,6 +62,26 @@
     }];
     [alert addAction:cancel];
     [alert addAction:confirm];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:title preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSInteger i = 0; i < actions.count; i++) {
+        NSString *actionTitle = actions[i];
+        __block NSInteger index = i;
+        UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (completion) {
+                completion(index);
+            }
+        }];
+        if (currentAction && [actionTitle isEqualToString:currentAction]) {
+            action.enabled = NO;
+            [action setValue:[UIImage LL_imageNamed:kSelectImageName] forKey:@"image"];
+        }
+        [alert addAction:action];
+    }
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -83,29 +111,29 @@
     }
 }
 
-#pragma mark - Primary
-- (void)baseInitial {
-    [self resetDefaultSettings];
+- (void)becomeVisable {
+    
+}
+
+- (void)primaryColorChanged {
+    [self setNavigationSettings];
+}
+
+- (void)backgroundColorChanged {
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
-    [self initNavigationItems];
+    self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
-- (void)initNavigationItems {
-    if (self.navigationController) {
-        self.navigationItem.hidesBackButton = YES;
-        if (self.navigationController.viewControllers.count <= 1) {
-            [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
-        } else {
-            UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
-            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-        }
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
-        self.navigationController.navigationBar.translucent = YES;
-        self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
+#pragma mark - Over Write
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    for (UIView *view in self.view.subviews) {
+        [self layoutViewsAndSubviews:view];
     }
+    [self.view layoutIfNeeded];
 }
 
+#pragma mark - Primary
 - (void)resetDefaultSettings {
     // Used to solve problems caused by modifying some systems default values with Runtime in the project.
     // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
@@ -116,8 +144,36 @@
     self.navigationController.navigationBar.translucent = YES;
 }
 
+- (void)setNavigationSettings {
+    if (self.navigationController) {
+        self.navigationItem.hidesBackButton = YES;
+        
+        [self initCloseLeftNavigationItem];
+        NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
+        if (index > 0) {
+            UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
+            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+            UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+            self.navigationItem.leftBarButtonItems = @[backButtonItem, self.navigationItem.leftBarButtonItem];
+        }
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
+        self.navigationController.navigationBar.translucent = YES;
+        self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
+        self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
+    }
+}
+
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+}
+
+- (void)initCloseLeftNavigationItem {
+    [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
+}
+
 - (UIButton *)navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
-    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 40, 40) target:target action:action];
+    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 30, 40) target:target action:action];
     btn.showsTouchWhenHighlighted = NO;
     btn.tintColor = [LLThemeManager shared].primaryColor;
     if ([title length]) {
@@ -130,8 +186,47 @@
     return btn;
 }
 
+- (void)layoutViewsAndSubviews:(UIView *)view {
+    [view setNeedsLayout];
+    for (UIView *subview in view.subviews) {
+        [self layoutViewsAndSubviews:subview];
+    }
+}
+
+#pragma mark - Event response
 - (void)backAction:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    [self primaryColorChanged];
+}
+
+#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    [self backgroundColorChanged];
+}
+
+#pragma mark - Over write
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    if (![viewControllerToPresent isKindOfClass:[UIAlertController class]]) {
+        viewControllerToPresent.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    [super presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
 }
 
 @end

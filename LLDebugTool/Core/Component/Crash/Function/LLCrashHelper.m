@@ -153,7 +153,7 @@ static LLCrashHelper *_instance = nil;
 }
 
 - (void)saveException:(NSException *)exception {
-    NSString *date = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
     NSArray *appInfos = [[LLAppInfoHelper shared] appInfos];
 
     if (self.crashModel) {
@@ -172,6 +172,7 @@ static LLCrashHelper *_instance = nil;
             [LLTool log:@"Save crash model success"];
         } synchronous:YES];
     }
+    [LLTool log:[NSString stringWithFormat:@"%@",exception] synchronous:YES withPrompt:NO];
 }
 
 void HandleException(NSException *exception)
@@ -321,12 +322,10 @@ void SignalHandler(int sig)
             name = @"SIGUSR2";
         }
             break;
-        default:{}
-            break;
     }
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
-    NSString *date = [[LLFormatterTool shared] stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
     NSDictionary *appInfos = [[LLAppInfoHelper shared] dynamicAppInfos];
     LLCrashSignalModel *signalModel = [[LLCrashSignalModel alloc] initWithName:name stackSymbols:callStackSymbols date:date userIdentity:[LLConfig shared].userIdentity appInfos:appInfos];
     if ([LLCrashHelper shared].crashModel) {

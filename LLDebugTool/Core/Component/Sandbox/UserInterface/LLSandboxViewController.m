@@ -52,7 +52,17 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initial];
+    // Data source
+    if (_sandboxModel == nil) {
+        _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
+    }
+    if (self.sandboxModel.isHomeDirectory) {
+        self.navigationItem.title = @"Sandbox";
+    } else {
+        self.navigationItem.title = self.sandboxModel.name;
+    }
+    // TableView
+    [self.tableView registerClass:[LLSandboxCell class] forCellReuseIdentifier:kSandboxCellID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,23 +89,6 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 }
 
 #pragma mark - Primary
-/**
- * initial method
- */
-- (void)initial {
-    // Data source
-    if (_sandboxModel == nil) {
-        _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
-    }
-    if (self.sandboxModel.isHomeDirectory) {
-        self.navigationItem.title = @"Sandbox";
-    } else {
-        self.navigationItem.title = self.sandboxModel.name;
-    }
-    // TableView
-    [self.tableView registerNib:[UINib nibWithNibName:@"LLSandboxCell" bundle:[LLConfig shared].XIBBundle] forCellReuseIdentifier:kSandboxCellID];
-}
-
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
     [super deleteFilesWithIndexPaths:indexPaths];
     NSMutableArray *finishedModels = [[NSMutableArray alloc] init];
@@ -109,11 +102,11 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
             [finishedIndexPaths addObject:indexPath];
         }
     }
-    [self.dataArray removeObjectsInArray:finishedModels];
+    [self.oriDataArray removeObjectsInArray:finishedModels];
     [self searchBar:self.searchBar textDidChange:self.searchBar.text];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray *)oriDataArray {
     return self.sandboxModel.subModels;
 }
 
@@ -181,11 +174,11 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     [super searchBar:searchBar textDidChange:searchText];
     if (searchText.length == 0) {
         [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.dataArray];
+        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         [self.tableView reloadData];
     } else {
         [self.searchDataArray removeAllObjects];
-        for (LLSandboxModel *model in self.dataArray) {
+        for (LLSandboxModel *model in self.oriDataArray) {
             [self.searchDataArray addObjectsFromArray:[self modelsByFilter:searchText.lowercaseString model:model]];
         }
         [self.tableView reloadData];

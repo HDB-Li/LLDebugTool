@@ -21,24 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLHierarchyModel.h"
+#import "LLBaseComponentViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol LLHierarchyViewControllerDelegate;
-
-@interface LLHierarchyViewController : LLBaseTableViewController
-
-@property (nonatomic, weak, nullable) id <LLHierarchyViewControllerDelegate> delegate;
-
-@property (nonatomic, strong, nullable) UIView *selectView;
-
-@end
-
-@protocol LLHierarchyViewControllerDelegate <NSObject>
-
-- (void)LLHierarchyViewController:(LLHierarchyViewController *)viewController didFinishWithSelectedModel:(LLHierarchyModel *)selectedModel;
+@interface LLHierarchyViewController : LLBaseComponentViewController
 
 @end
 

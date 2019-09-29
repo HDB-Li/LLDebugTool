@@ -24,6 +24,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Deprecated macro.
+#define LLDebugToolDeprecated(instead) NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
+
 /**
  Color style enum
  
@@ -57,14 +60,27 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 /**
  Window style. Decide how the Window displays.
  
- - LLConfigEntryWindowStyleSuspensionBall: Show as a suspension ball. Moveable and clickable.
- - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStyleBall: Show as a ball. Moveable and clickable.
+ - LLConfigEntryWindowStyleTitle: Show as a big title. Moveable and clickable.
+ - LLConfigEntryWindowStyleLeading: Show as a big title on left. Part moveable and clickable.
+ - LLConfigEntryWindowStyleTrailing: Show as a big title on right. Moveable and clickable.
  - LLConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
+ - LLConfigEntryWindowStyleSuspensionBall: Same to LLConfigEntryWindowStyleBall.
  */
 typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
-    LLConfigEntryWindowStyleSuspensionBall,
-    LLConfigEntryWindowStylePowerBar,
-    LLConfigEntryWindowStyleNetBar,
+    LLConfigEntryWindowStyleBall = 0,
+    LLConfigEntryWindowStyleTitle = 1,
+    LLConfigEntryWindowStyleLeading = 2,
+    LLConfigEntryWindowStyleTrailing = 3,
+#ifdef __IPHONE_13_0
+    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 2,
+    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 3,
+#else
+    LLConfigEntryWindowStyleNetBar = 4,
+    LLConfigEntryWindowStylePowerBar = 5,
+#endif
+    LLConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLConfigEntryWindowStyleBall") = 0,
 };
 
 /**
@@ -115,6 +131,39 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
     LLConfigAvailableNoneHierarchy  = 0xFF - (1 << 6),
 };
 
+/**
+ Action enums.
+ 
+ - LLDebugToolActionFunction: Show function window.
+ - LLDebugToolActionSetting: Show setting function.
+ - LLDebugToolActionNetwork: Network function.
+ - LLDebugToolActionLog: Log function.
+ - LLDebugToolActionCrash: Crash function.
+ - LLDebugToolActionAppInfo: App info function.
+ - LLDebugToolActionSandbox: Sandbox function.
+ - LLDebugToolActionConvenientScreenshot: Convenient screenshot function.
+ - LLDebugToolActionScreenshot: Screenshot function.
+ - LLDebugToolActionHierarchy: Hierarchy function.
+ - LLDebugToolActionMagnifier: Magnifier function.
+ - LLDebugToolActionRuler: Ruler function.
+ - LLDebugToolActionWidgetBorder: Widget border function.
+ */
+typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
+    LLDebugToolActionFunction,
+    LLDebugToolActionSetting,
+    LLDebugToolActionNetwork,
+    LLDebugToolActionLog,
+    LLDebugToolActionCrash,
+    LLDebugToolActionAppInfo,
+    LLDebugToolActionSandbox,
+    LLDebugToolActionScreenshot,
+    LLDebugToolActionConvenientScreenshot,
+    LLDebugToolActionHierarchy,
+    LLDebugToolActionMagnifier,
+    LLDebugToolActionRuler,
+    LLDebugToolActionWidgetBorder
+};
+
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -129,6 +178,47 @@ NS_ASSUME_NONNULL_BEGIN
  @return Singleton
  */
 + (instancetype)shared;
+
+#pragma mark - Entry Window Config
+/**
+ Entry window style. Decide how the Window displays. Default is LLConfigEntryWindowStyleSuspensionBall.
+ */
+@property (nonatomic, assign) LLConfigEntryWindowStyle entryWindowStyle;
+
+/**
+ Entry window ball width, default is kLLEntryWindowBallWidth, must greater than kLLEntryWindowMinBallWidth.
+ */
+@property (nonatomic, assign) CGFloat entryWindowBallWidth;
+
+/**
+ Entry window display percent, 0.1 .. 1.0, default is kLLEntryWindowDisplayPercent.
+ */
+@property (nonatomic, assign) CGFloat entryWindowDisplayPercent;
+
+/**
+ Entry window first display position, default is {kLLEntryWindowFirstDisplayPositionX, kLLEntryWindowFirstDisplayPositionY}.
+ */
+@property (nonatomic, assign) CGPoint entryWindowFirstDisplayPosition;
+
+/**
+ Entry window alpha(not active), default is kLLInactiveAlpha.
+ */
+@property (nonatomic, assign) CGFloat inactiveAlpha;
+
+/**
+ Entry window alpha(active), default is kLLActiveAlpha.
+ */
+@property (nonatomic, assign) CGFloat activeAlpha;
+
+/**
+ Automatic adjust entry window's frame to side, default is YES.
+ */
+@property (nonatomic, assign, getter=isShrinkToEdgeWhenInactive) BOOL shrinkToEdgeWhenInactive;
+
+/**
+ Automatic hide when shake, default is YES.
+ */
+@property (nonatomic, assign, getter=isShakeToHide) BOOL shakeToHide;
 
 #pragma mark - Theme Color.
 /**
@@ -146,48 +236,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
+#pragma mark - Log
+/**
+ Customize the log style. Default is LLConfigLogDetail.
+ */
+@property (nonatomic, assign) LLConfigLogStyle logStyle;
+
 #pragma mark - Date Formatter
 /**
  Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".
  If this value is modified, the old data is not compatible.
  */
 @property (nonatomic, copy) NSString *dateFormatter;
-
-#pragma mark - Suspension Window
-/**
- Suspension ball width, default is kLLSuspensionWindowWidth, must greater than kLLSuspensionWindowMinWidth.
- */
-@property (nonatomic, assign) CGFloat suspensionBallWidth;
-
-/**
- Suspension window hide width, default is kLLSuspensionWindowHideWidth.
- */
-@property (nonatomic, assign) CGFloat suspensionWindowHideWidth;
-
-/**
- Suspension default top, default is kLLSuspensionWindowTop.
- */
-@property (nonatomic, assign) CGFloat suspensionWindowTop;
-
-/**
- Suspension Ball alpha(not active), default is kLLSuspensionWindowNormalAlpha.
- */
-@property (nonatomic, assign) CGFloat normalAlpha;
-
-/**
- Suspension Ball alpha(active), default is kLLSuspensionWindowActiveAlpha.
- */
-@property (nonatomic, assign) CGFloat activeAlpha;
-
-/**
- Whether the suspension ball can be moved, default is YES.
- */
-@property (nonatomic, assign) BOOL suspensionBallMoveable;
-
-/**
- Automatic adjust suspension window's frame, default is YES.
- */
-@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow;
 
 #pragma mark - Magnifier Window
 /**
@@ -210,9 +270,28 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Observer network in hosts, ignore others.
  */
-@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts;
+@property (nonatomic, strong, nullable) NSArray <NSString *>*observerdHosts;
 
-#pragma mark - Settings
+/**
+ Ignored hosts, low level than observerdHosts.
+ */
+@property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
+
+#pragma mark - Hierarchy
+
+/**
+ Hierarchy function ignore private class or not.
+ */
+@property (nonatomic, assign, getter=isHierarchyIgnorePrivateClass) BOOL hierarchyIgnorePrivateClass;
+
+#pragma mark - Widget Border
+
+/**
+Whether show widget border. Default is NO.
+*/
+@property (nonatomic, assign, getter=isShowWidgetBorder) BOOL showWidgetBorder;
+
+#pragma mark - LLDebugTool
 /**
  Whether to print LLDebugTool's log event. Default is YES.
  */
@@ -224,15 +303,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL autoCheckDebugToolVersion;
 
 /**
- Customize the log style. Default is LLConfigLogDetail.
+ Whether show entry window when first install, default is NO, if set YES, entry window won't show when first initial, you can shake to show the entry window.
  */
-@property (nonatomic, assign) LLConfigLogStyle logStyle;
+@property (nonatomic, assign) BOOL hideWhenInstall;
+
+#pragma mark - Click Event
 
 /**
- Entry window style. Decide how the Window displays. Default is LLConfigEntryWindowStyleSuspensionBall.
- */
-@property (nonatomic, assign) LLConfigEntryWindowStyle entryWindowStyle;
+ Click action. Default is LLDebugToolActionFunction.
+*/
+@property (nonatomic, assign, readonly) LLDebugToolAction clickAction;
 
+/**
+ Double click action. Default is LLDebugToolActionConvenientScreenshot.
+ */
+@property (nonatomic, assign) LLDebugToolAction doubleClickAction;
+
+#pragma mark - Function
 /**
  Available features. Default is LLConfigAvailableAll.
  It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
@@ -257,6 +344,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle;
 
+#pragma mark - DEPRECATED
+
+@property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
+@property (nonatomic, assign) CGFloat suspensionWindowHideWidth LLDebugToolDeprecated("Use `entryWindowDisplayPercent` to set display percent.");
+@property (nonatomic, assign) CGFloat suspensionWindowTop LLDebugToolDeprecated("Use `entryWindowFirstDisplayPosition` to set first display position.");
+@property (nonatomic, assign) CGFloat normalAlpha LLDebugToolDeprecated("Use `inactiveAlpha`.");
+@property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
+@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `shrinkToEdgeWhenInactive`.");
+@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
+
 @end
 
 NS_ASSUME_NONNULL_END
+
