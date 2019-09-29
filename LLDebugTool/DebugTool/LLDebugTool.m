@@ -161,7 +161,7 @@ static LLDebugTool *_instance = nil;
 #pragma mark - Primary
 - (void)initial {
     // Set Default
-    _isBetaVersion = YES;
+    _isBetaVersion = NO;
 
     _versionNumber = @"1.3.2";
 
