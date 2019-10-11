@@ -103,6 +103,10 @@ static LLWindowManager *_instance = nil;
     return (LLWidgetBorderWindow *)[self createWindowWithClassName:NSStringFromClass([LLWidgetBorderWindow class])];
 }
 
++ (LLHtmlWindow *)htmlWindow {
+    return (LLHtmlWindow *)[self createWindowWithClassName:NSStringFromClass([LLHtmlWindow class])];
+}
+
 + (LLSettingWindow *)settingWindow {
     return (LLSettingWindow *)[self createWindowWithClassName:NSStringFromClass([LLSettingWindow class])];
 }

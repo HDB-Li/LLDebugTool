@@ -36,6 +36,7 @@
 #import "LLRulerWindow.h"
 #import "LLWidgetBorderWindow.h"
 #import "LLSettingWindow.h"
+#import "LLHtmlWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -132,6 +133,13 @@ Widget border window.
 @return LLWidgetBorderWindow.
 */
 + (LLWidgetBorderWindow *)widgetBorderWindow;
+
+/**
+ Html window.
+ 
+ @return LLHtmlWindow.
+ */
++ (LLHtmlWindow *)htmlWindow;
 
 /**
  Setting window.
