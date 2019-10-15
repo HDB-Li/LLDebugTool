@@ -37,6 +37,10 @@
 "color.custom" = "使用自定义颜色配置";
 "color.none" = "不使用颜色配置";
 
+"show.html" = "展示WebView功能";
+"show.custom.html" = "展示自定义WebViewController功能";
+"custom.html.view.controller" = "自定义WebViewController";
+
 "test.network.request" = "展示网络功能";
 "test.log" = "展示日志功能";
 "test.crash" = "展示崩溃收集功能";
@@ -47,6 +51,7 @@
 "test.magnifier" = "展示放大镜功能";
 "test.ruler" = "展示格尺功能";
 "test.widget.border" = "展示元素边框功能";
+"test.html" = "展示WebView功能";
 
 "new.version" = "有新版本Demo可用";
 "crash.tip" = "如果你的项目/Demo在XCode运行下中包含Exception Breakpoint，你需要在程序崩溃后，继续点击XCode上的`Continue program execution`(Tip 1)，直到程序完全结束(Tip 2)。这个功能在非XCode运行时可以正常使用，在XCode下运行时Exception Breakpoint会优先于LLDebugTool拦截崩溃。";

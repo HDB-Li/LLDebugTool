@@ -21,6 +21,7 @@
 #import "TestColorStyleViewController.h"
 #import "TestWindowStyleViewController.h"
 #import "TestHierarchyViewController.h"
+#import "TestHtmlViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -170,9 +171,14 @@ static NSString *const kCellID = @"cellID";
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionWidgetBorder];
 }
 
+- (void)testHtml {
+    TestHtmlViewController *vc = [[TestHtmlViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 11;
+    return 12;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -271,6 +277,8 @@ static NSString *const kCellID = @"cellID";
         cell.textLabel.text = NSLocalizedString(@"test.ruler", nil);
     } else if (indexPath.section == 10) {
         cell.textLabel.text = NSLocalizedString(@"test.widget.border", nil);
+    } else if (indexPath.section == 11) {
+        cell.textLabel.text = NSLocalizedString(@"test.html", nil);
     }
     return cell;
 }
@@ -302,6 +310,8 @@ static NSString *const kCellID = @"cellID";
         [self testRuler];
     } else if (indexPath.section == 10) {
         [self testWidgetBorder];
+    } else if (indexPath.section == 11) {
+        [self testHtml];
     }
     [self.tableView reloadData];
 }
@@ -329,6 +339,8 @@ static NSString *const kCellID = @"cellID";
         return @"Ruler";
     } else if (section == 10) {
         return @"Widget Border";
+    } else if (section == 11) {
+        return @"Html";
     }
     return nil;
 }
