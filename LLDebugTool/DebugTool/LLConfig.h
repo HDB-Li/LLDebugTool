@@ -292,6 +292,18 @@ Whether show widget border. Default is NO.
 */
 @property (nonatomic, assign, getter=isShowWidgetBorder) BOOL showWidgetBorder;
 
+#pragma mark - Html5
+
+/**
+ Default html5 url string used in Html function. must has prefix with http:// or https://
+ */
+@property (nonatomic, copy, nullable) NSString *defaultHtmlUrl;
+
+/**
+ Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`
+ */
+@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(void);
+
 #pragma mark - LLDebugTool
 /**
  Whether to print LLDebugTool's log event. Default is YES.

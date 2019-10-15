@@ -18,6 +18,7 @@
 #import "LLHtmlViewController.h"
 #import "LLHtmlUIWebViewController.h"
 #import "LLHtmlWkWebViewController.h"
+#import "LLConfig.h"
 #import <WebKit/WebKit.h>
 
 @interface LLHtmlConfigViewController () <UITextFieldDelegate>
@@ -161,7 +162,7 @@
         _headerTextField.delegate = self;
         _headerTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Pleace input url" attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor}];
-        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: @"https://";
+        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLConfig shared].defaultHtmlUrl ?: @"https://");
         UIView *leftView = [LLFactory getView];
         leftView.frame = CGRectMake(0, 0, 10, 1);
         _headerTextField.leftView = leftView;

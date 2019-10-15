@@ -1,5 +1,5 @@
 //
-//  LLComponent.h
+//  LLComponentDelegate.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -22,11 +22,16 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLComponentDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLComponent : NSObject <LLComponentDelegate>
+FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerKey;
+
+FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerPropertiesKey;
+
+@protocol LLComponentDelegate <NSObject>
+
+- (void)componentDidLoad:(NSDictionary <NSString *, id>*_Nullable)data;
 
 @end
 

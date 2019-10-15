@@ -23,6 +23,7 @@
 #import "LLNavigationController.h"
 #import "LLHtmlConfigViewController.h"
 #import "LLWindowManager.h"
+#import "LLConfig.h"
 
 @implementation LLHtmlWindow
 
@@ -30,7 +31,13 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         if (!self.rootViewController) {
-            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLHtmlConfigViewController alloc] init]];
+            UIViewController *vc = nil;
+            if ([LLConfig shared].htmlViewControllerProvider) {
+                vc = [LLConfig shared].htmlViewControllerProvider();
+            } else {
+                vc = [[LLHtmlConfigViewController alloc] init];
+            }
+            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:vc];
         }
     }
     return self;

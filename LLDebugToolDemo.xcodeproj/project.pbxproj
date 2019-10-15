@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
+		360075E2235571EF00A606AC /* TestHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360075E1235571EF00A606AC /* TestHtmlViewController.m */; };
 		3603883D23335DF40026BC9E /* LLTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603883C23335DF40026BC9E /* LLTitleViewController.m */; };
 		360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6362330DC160073FECD /* LLSettingComponent.m */; };
 		360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6392330DC620073FECD /* LLSettingWindow.m */; };
@@ -229,6 +230,9 @@
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
 		250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		360075DF23556DAF00A606AC /* LLComponentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentDelegate.h; sourceTree = "<group>"; };
+		360075E0235571EF00A606AC /* TestHtmlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHtmlViewController.h; sourceTree = "<group>"; };
+		360075E1235571EF00A606AC /* TestHtmlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHtmlViewController.m; sourceTree = "<group>"; };
 		3603883B23335DF40026BC9E /* LLTitleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleViewController.h; sourceTree = "<group>"; };
 		3603883C23335DF40026BC9E /* LLTitleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleViewController.m; sourceTree = "<group>"; };
 		360AE6352330DC160073FECD /* LLSettingComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingComponent.h; sourceTree = "<group>"; };
@@ -719,6 +723,8 @@
 				3629E38A2136830A00226C79 /* TestWindowStyleViewController.m */,
 				36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */,
 				36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */,
+				360075E0235571EF00A606AC /* TestHtmlViewController.h */,
+				360075E1235571EF00A606AC /* TestHtmlViewController.m */,
 			);
 			path = DemoViewControllers;
 			sourceTree = "<group>";
@@ -954,19 +960,11 @@
 		36CDFBC323506361002A913F /* Html */ = {
 			isa = PBXGroup;
 			children = (
-				36CDFBC423506361002A913F /* Function */,
 				36CDFBC523506361002A913F /* UserInterface */,
 				36CDFBC623506374002A913F /* LLHtmlComponent.h */,
 				36CDFBC723506374002A913F /* LLHtmlComponent.m */,
 			);
 			path = Html;
-			sourceTree = "<group>";
-		};
-		36CDFBC423506361002A913F /* Function */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Function;
 			sourceTree = "<group>";
 		};
 		36CDFBC523506361002A913F /* UserInterface */ = {
@@ -1163,6 +1161,7 @@
 				36CDFBC323506361002A913F /* Html */,
 				C4B4E3FD22F9C90900F70277 /* Function */,
 				36AB4494231F9CD600AC772B /* Setting */,
+				360075DF23556DAF00A606AC /* LLComponentDelegate.h */,
 				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
 				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
 			);
@@ -2213,6 +2212,7 @@
 				3678AD172354275B00AC0B2C /* LLHtmlWkWebViewController.m in Sources */,
 				C4B4E47722F9C90900F70277 /* LLBaseModel.m in Sources */,
 				36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */,
+				360075E2235571EF00A606AC /* TestHtmlViewController.m in Sources */,
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,

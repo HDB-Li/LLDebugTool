@@ -113,7 +113,7 @@
         case LLDebugToolActionWidgetBorder:
             return @"Widget Border";
         case LLDebugToolActionHtml:
-            return @"Html";
+            return @"Html5";
     }
 }
 
