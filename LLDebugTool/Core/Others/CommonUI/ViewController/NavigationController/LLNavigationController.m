@@ -31,6 +31,20 @@
 
 @implementation LLNavigationController
 
+#pragma mark - Life cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationBar.translucent = YES;
+    self.navigationBar.translucent = YES;
+    [self primaryColorChanged];
+    [self backgroundColorChanged];
+    [self addObservers];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Over write
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {
@@ -63,6 +77,31 @@
         return [self.visibleViewController preferredInterfaceOrientationForPresentation];
     }
     return UIInterfaceOrientationPortrait;
+}
+
+#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
+- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
+    [self primaryColorChanged];
+}
+
+#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
+- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
+    [self backgroundColorChanged];
+}
+
+#pragma mark - Primary
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+}
+
+- (void)primaryColorChanged {
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
+    self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
+}
+
+- (void)backgroundColorChanged {
+    self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  UIViewController+LL_Utils.h
+//  LLComponentNavigationController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,15 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLNavigationController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (LL_Utils)
-
-- (UIViewController *_Nullable)LL_currentShowingViewController;
-
-- (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action;
+@interface LLComponentNavigationController : LLNavigationController
 
 @end
 

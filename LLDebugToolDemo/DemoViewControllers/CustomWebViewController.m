@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.webView];
     
@@ -29,8 +30,9 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.titleLabel.frame = CGRectMake(0, 0, self.view.frame.size.width, 100);
-    self.webView.frame = CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height - 100);
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y;
+    self.titleLabel.frame = CGRectMake(0, navigationBarHeight, self.view.frame.size.width, 100);
+    self.webView.frame = CGRectMake(0, navigationBarHeight + 100, self.view.frame.size.width, self.view.frame.size.height - 100 - navigationBarHeight);
 }
 
 #pragma mark - Getters and setters

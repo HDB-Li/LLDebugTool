@@ -20,7 +20,7 @@
 //  SOFTWARE.
 
 #import "LLHtmlWindow.h"
-#import "LLNavigationController.h"
+#import "LLComponentNavigationController.h"
 #import "LLHtmlConfigViewController.h"
 #import "LLWindowManager.h"
 #import "LLConfig.h"
@@ -31,13 +31,15 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         if (!self.rootViewController) {
-            UIViewController *vc = nil;
+            UINavigationController *nav = nil;
             if ([LLConfig shared].htmlViewControllerProvider) {
-                vc = [LLConfig shared].htmlViewControllerProvider();
+                UIViewController *vc = [LLConfig shared].htmlViewControllerProvider();
+                nav = [[LLComponentNavigationController alloc] initWithRootViewController:vc];
             } else {
-                vc = [[LLHtmlConfigViewController alloc] init];
+                UIViewController *vc = [[LLHtmlConfigViewController alloc] init];
+                nav = [[LLNavigationController alloc] initWithRootViewController:vc];
             }
-            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:vc];
+            self.rootViewController = nav;
         }
     }
     return self;
