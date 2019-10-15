@@ -178,6 +178,7 @@
     btn.tintColor = [LLThemeManager shared].primaryColor;
     if ([title length]) {
         [btn setTitle:title forState:UIControlStateNormal];
+        [btn setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
     }
     if (imageName) {
         UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;

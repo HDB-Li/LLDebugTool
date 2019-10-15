@@ -28,11 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLTitleCellCategoryModel : NSObject
 
-@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, strong, readonly, nullable) NSString *title;
 
 @property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*items;
 
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray <LLTitleCellModel *>*)items;
+- (instancetype)initWithTitle:(NSString *_Nullable)title items:(NSArray <LLTitleCellModel *>*)items;
 
 @end
 

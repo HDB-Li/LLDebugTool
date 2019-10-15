@@ -83,6 +83,7 @@ NSString *const kThemeManagerUpdateBackgroundColorNotificaionName = @"kThemeMana
     }
     
     _containerColor = [_backgroundColor LL_mixtureWithColor:_primaryColor radio:0.1];
+    _placeHolderColor = [_primaryColor LL_mixtureWithColor:_backgroundColor radio:0.5];
 }
 
 @end

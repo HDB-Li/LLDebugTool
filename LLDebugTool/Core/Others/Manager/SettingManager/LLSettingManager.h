@@ -49,6 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSNumber *hierarchyIgnorePrivateClass;
 
+@property (nonatomic, copy) NSString *webViewClass;
+
+@property (nonatomic, copy) NSString *lastWebViewUrl;
+
 + (instancetype)shared;
 
 @end

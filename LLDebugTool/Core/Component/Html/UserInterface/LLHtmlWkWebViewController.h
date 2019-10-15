@@ -1,5 +1,5 @@
 //
-//  LLHtmlViewController.h
+//  LLHtmlWkWebViewController.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,15 +19,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseComponentViewController.h"
+#import "LLHtmlViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLHtmlViewController : LLBaseComponentViewController
-
-@property (nonatomic, copy) NSString *webViewClass;
-
-@property (nonatomic, copy) NSString *urlString;
+@interface LLHtmlWkWebViewController : LLHtmlViewController
 
 @end
 

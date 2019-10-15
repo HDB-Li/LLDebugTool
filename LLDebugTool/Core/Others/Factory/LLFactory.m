@@ -71,6 +71,12 @@
     return label;
 }
 
+#pragma mark - UITextField
++ (UITextField *)getTextField {
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
+    return textField;
+}
+
 #pragma mark - UITextView
 + (UITextView *)getTextView {
     return [self getTextView:nil];

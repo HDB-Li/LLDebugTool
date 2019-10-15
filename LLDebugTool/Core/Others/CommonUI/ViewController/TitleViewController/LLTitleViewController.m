@@ -64,13 +64,20 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    LLTitleView *view = [[LLTitleView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40)];
     LLTitleCellCategoryModel *model = self.dataArray[section];
+    if (!model.title) {
+        return nil;
+    }
+    LLTitleView *view = [[LLTitleView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40)];
     view.titleLabel.text = model.title;
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    LLTitleCellCategoryModel *model = self.dataArray[section];
+    if (!model.title) {
+        return [super tableView:tableView heightForHeaderInSection:section];
+    }
     return 40;
 }
 

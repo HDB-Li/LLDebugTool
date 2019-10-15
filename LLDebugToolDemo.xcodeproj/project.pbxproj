@@ -53,6 +53,8 @@
 		3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3668D0C92303BB1F00D58C0B /* LLSettingManager.m */; };
 		366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366BC4A1233C64F4009BDA4A /* LLFilterView.m */; };
 		36743D412313879700002A92 /* LLReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 36743D3F2313879700002A92 /* LLReachability.m */; };
+		3678AD142354274F00AC0B2C /* LLHtmlUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678AD132354274F00AC0B2C /* LLHtmlUIWebViewController.m */; };
+		3678AD172354275B00AC0B2C /* LLHtmlWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678AD162354275B00AC0B2C /* LLHtmlWkWebViewController.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 368CB9E0233DFC3A009DFFDB /* LLTableViewSelectableModel.m */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
@@ -310,6 +312,10 @@
 		366BC4A1233C64F4009BDA4A /* LLFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterView.m; sourceTree = "<group>"; };
 		36743D3F2313879700002A92 /* LLReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLReachability.m; sourceTree = "<group>"; };
 		36743D402313879700002A92 /* LLReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLReachability.h; sourceTree = "<group>"; };
+		3678AD122354274F00AC0B2C /* LLHtmlUIWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHtmlUIWebViewController.h; sourceTree = "<group>"; };
+		3678AD132354274F00AC0B2C /* LLHtmlUIWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlUIWebViewController.m; sourceTree = "<group>"; };
+		3678AD152354275B00AC0B2C /* LLHtmlWkWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHtmlWkWebViewController.h; sourceTree = "<group>"; };
+		3678AD162354275B00AC0B2C /* LLHtmlWkWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlWkWebViewController.m; sourceTree = "<group>"; };
 		367E279720A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		367E279820A1A7880032EF0D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		367E27A220A1A8480032EF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -972,6 +978,10 @@
 				36CDFBCD2350639E002A913F /* LLHtmlViewController.m */,
 				36CDFBCF23506C9A002A913F /* LLHtmlConfigViewController.h */,
 				36CDFBD023506C9A002A913F /* LLHtmlConfigViewController.m */,
+				3678AD122354274F00AC0B2C /* LLHtmlUIWebViewController.h */,
+				3678AD132354274F00AC0B2C /* LLHtmlUIWebViewController.m */,
+				3678AD152354275B00AC0B2C /* LLHtmlWkWebViewController.h */,
+				3678AD162354275B00AC0B2C /* LLHtmlWkWebViewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -2162,6 +2172,7 @@
 				36743D412313879700002A92 /* LLReachability.m in Sources */,
 				C4B4E47322F9C90900F70277 /* LLEditTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
+				3678AD142354274F00AC0B2C /* LLHtmlUIWebViewController.m in Sources */,
 				C49856DB22ED90DD00E9FBE2 /* LLNetworkHelper.m in Sources */,
 				36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */,
 				C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */,
@@ -2199,6 +2210,7 @@
 				C49856EC22EDAEFE00E9FBE2 /* LLAppInfoWindow.m in Sources */,
 				C4B4E43B22F9C90900F70277 /* UIImage+LL_Utils.m in Sources */,
 				36596BCE22FD172D00BBB6FA /* LLInfoView.m in Sources */,
+				3678AD172354275B00AC0B2C /* LLHtmlWkWebViewController.m in Sources */,
 				C4B4E47722F9C90900F70277 /* LLBaseModel.m in Sources */,
 				36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */,
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,

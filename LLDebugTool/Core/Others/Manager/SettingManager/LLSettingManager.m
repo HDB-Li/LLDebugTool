@@ -39,6 +39,8 @@ static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
 static NSString *magnifierSizeKey = @"magnifierSizeKey";
 static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassKey";
+static NSString *webViewClassKey = @"webViewClassKey";
+static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
 
 @implementation LLSettingManager
 
@@ -137,6 +139,22 @@ static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassK
 
 - (NSNumber *)hierarchyIgnorePrivateClass {
     return [NSUserDefaults LL_numberForKey:hierarchyIgnorePrivateClassKey];
+}
+
+- (void)setWebViewClass:(NSString *)webViewClass {
+    [NSUserDefaults LL_setString:webViewClass forKey:webViewClassKey];
+}
+
+- (NSString *)webViewClass {
+    return [NSUserDefaults LL_stringForKey:webViewClassKey];
+}
+
+- (void)setLastWebViewUrl:(NSString *)lastWebViewUrl {
+    [NSUserDefaults LL_setString:lastWebViewUrl forKey:lastWebViewUrlKey];
+}
+
+- (NSString *)lastWebViewUrl {
+    return [NSUserDefaults LL_stringForKey:lastWebViewUrlKey];
 }
 
 @end

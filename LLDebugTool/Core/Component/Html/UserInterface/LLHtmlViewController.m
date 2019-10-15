@@ -20,6 +20,7 @@
 //  SOFTWARE.
 
 #import "LLHtmlViewController.h"
+#import "LLTool.h"
 
 @interface LLHtmlViewController ()
 
@@ -29,17 +30,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    if (!self.urlString || self.urlString.length == 0) {
+        self.urlString = @"https://github.com/HDB-Li/LLDebugTool";
+        [LLTool log:@"None url string"];
+    }
+    
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    self.title = url.host ?: self.urlString;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
