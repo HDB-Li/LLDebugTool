@@ -11,7 +11,7 @@
 
 #import "UIImage+LL_Utils.h"
 
-// TabBar Icon
+// TabBar Icon 0xBDBDBD
 static NSString *const kCrashImageName = @"LL-crash";
 static NSString *const kNetworkImageName = @"LL-network";
 static NSString *const kLogImageName = @"LL-log";
@@ -22,6 +22,7 @@ static NSString *const kHierarchyImageName = @"LL-hierarchy";
 static NSString *const kMagnifierImageName = @"LL-magnifier";
 static NSString *const kRulerImageName = @"LL-ruler";
 static NSString *const kWidgetBorderImageName = @"LL-widget-border";
+static NSString *const kHtml5ImageName = @"LL-html5";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";

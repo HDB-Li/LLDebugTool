@@ -144,7 +144,7 @@
         case LLDebugToolActionWidgetBorder:
             return kWidgetBorderImageName;
         case LLDebugToolActionHtml:
-            return @"";
+            return kHtml5ImageName;
     }
 }
 
