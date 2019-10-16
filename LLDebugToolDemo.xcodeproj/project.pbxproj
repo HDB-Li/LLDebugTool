@@ -33,6 +33,7 @@
 		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
 		363158902356ACAA003DEF8C /* UIWebView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631588F2356ACAA003DEF8C /* UIWebView+LL_Utils.m */; };
 		363158932356AF21003DEF8C /* LLNetworkHelper+UIWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158922356AF21003DEF8C /* LLNetworkHelper+UIWebView.m */; };
+		363158972356C37A003DEF8C /* NSInputStream+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */; };
 		3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3633F583232F395100C62185 /* LLWidgetBorderComponent.m */; };
 		363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLTitleSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
@@ -283,6 +284,8 @@
 		3631588F2356ACAA003DEF8C /* UIWebView+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+LL_Utils.m"; sourceTree = "<group>"; };
 		363158912356AF21003DEF8C /* LLNetworkHelper+UIWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNetworkHelper+UIWebView.h"; sourceTree = "<group>"; };
 		363158922356AF21003DEF8C /* LLNetworkHelper+UIWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLNetworkHelper+UIWebView.m"; sourceTree = "<group>"; };
+		363158952356C37A003DEF8C /* NSInputStream+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSInputStream+LL_Utils.h"; sourceTree = "<group>"; };
+		363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSInputStream+LL_Utils.m"; sourceTree = "<group>"; };
 		3633F582232F395100C62185 /* LLWidgetBorderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderComponent.h; sourceTree = "<group>"; };
 		3633F583232F395100C62185 /* LLWidgetBorderComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderComponent.m; sourceTree = "<group>"; };
 		363DEC512325DFE90090E78C /* LLTitleSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSliderCell.h; sourceTree = "<group>"; };
@@ -768,6 +771,15 @@
 				3631588F2356ACAA003DEF8C /* UIWebView+LL_Utils.m */,
 			);
 			path = UIWebView;
+			sourceTree = "<group>";
+		};
+		363158942356C370003DEF8C /* NSInputStream */ = {
+			isa = PBXGroup;
+			children = (
+				363158952356C37A003DEF8C /* NSInputStream+LL_Utils.h */,
+				363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */,
+			);
+			path = NSInputStream;
 			sourceTree = "<group>";
 		};
 		3633F581232F390600C62185 /* WidgetBorder */ = {
@@ -1540,6 +1552,7 @@
 		C4B4E39122F9C90900F70277 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				363158942356C370003DEF8C /* NSInputStream */,
 				3631588D2356AC92003DEF8C /* UIWebView */,
 				3655D50E2329E01300490B36 /* UIResponder */,
 				36BB1E2B2320F941000D8F29 /* NSUserDefaults */,
@@ -2216,6 +2229,7 @@
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
+				363158972356C37A003DEF8C /* NSInputStream+LL_Utils.m in Sources */,
 				364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */,
 				36CDFBCE2350639E002A913F /* LLHtmlViewController.m in Sources */,
 				360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */,
