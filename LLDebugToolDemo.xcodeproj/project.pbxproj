@@ -31,6 +31,8 @@
 		362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AA2326607A00A27F05 /* LLRulerWindow.m */; };
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
 		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
+		363158902356ACAA003DEF8C /* UIWebView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631588F2356ACAA003DEF8C /* UIWebView+LL_Utils.m */; };
+		363158932356AF21003DEF8C /* LLNetworkHelper+UIWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158922356AF21003DEF8C /* LLNetworkHelper+UIWebView.m */; };
 		3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3633F583232F395100C62185 /* LLWidgetBorderComponent.m */; };
 		363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLTitleSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
@@ -277,6 +279,10 @@
 		362F87AD232660A000A27F05 /* LLRulerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerViewController.m; sourceTree = "<group>"; };
 		362F87AF2326614000A27F05 /* LLRulerPickerInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerPickerInfoView.h; sourceTree = "<group>"; };
 		362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoView.m; sourceTree = "<group>"; };
+		3631588E2356ACAA003DEF8C /* UIWebView+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebView+LL_Utils.h"; sourceTree = "<group>"; };
+		3631588F2356ACAA003DEF8C /* UIWebView+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+LL_Utils.m"; sourceTree = "<group>"; };
+		363158912356AF21003DEF8C /* LLNetworkHelper+UIWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNetworkHelper+UIWebView.h"; sourceTree = "<group>"; };
+		363158922356AF21003DEF8C /* LLNetworkHelper+UIWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLNetworkHelper+UIWebView.m"; sourceTree = "<group>"; };
 		3633F582232F395100C62185 /* LLWidgetBorderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderComponent.h; sourceTree = "<group>"; };
 		3633F583232F395100C62185 /* LLWidgetBorderComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderComponent.m; sourceTree = "<group>"; };
 		363DEC512325DFE90090E78C /* LLTitleSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSliderCell.h; sourceTree = "<group>"; };
@@ -753,6 +759,15 @@
 				362AA6B023274FCF00F33EC4 /* LLPickerView.m */,
 			);
 			path = PickerView;
+			sourceTree = "<group>";
+		};
+		3631588D2356AC92003DEF8C /* UIWebView */ = {
+			isa = PBXGroup;
+			children = (
+				3631588E2356ACAA003DEF8C /* UIWebView+LL_Utils.h */,
+				3631588F2356ACAA003DEF8C /* UIWebView+LL_Utils.m */,
+			);
+			path = UIWebView;
 			sourceTree = "<group>";
 		};
 		3633F581232F390600C62185 /* WidgetBorder */ = {
@@ -1450,8 +1465,10 @@
 				C49856D722ED90DD00E9FBE2 /* LLNetworkModel.m */,
 				36743D402313879700002A92 /* LLReachability.h */,
 				36743D3F2313879700002A92 /* LLReachability.m */,
-				C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */,
 				C49856D622ED90DD00E9FBE2 /* LLURLProtocol.h */,
+				C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */,
+				363158912356AF21003DEF8C /* LLNetworkHelper+UIWebView.h */,
+				363158922356AF21003DEF8C /* LLNetworkHelper+UIWebView.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1523,6 +1540,7 @@
 		C4B4E39122F9C90900F70277 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3631588D2356AC92003DEF8C /* UIWebView */,
 				3655D50E2329E01300490B36 /* UIResponder */,
 				36BB1E2B2320F941000D8F29 /* NSUserDefaults */,
 				C4B4E39222F9C90900F70277 /* UIImage */,
@@ -2159,6 +2177,7 @@
 				C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */,
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
 				C4B4E44422F9C90900F70277 /* UIDevice+LL_Utils.m in Sources */,
+				363158902356ACAA003DEF8C /* UIWebView+LL_Utils.m in Sources */,
 				364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */,
 				3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
@@ -2264,6 +2283,7 @@
 				C4B4E44C22F9C90900F70277 /* NSURLSession+LL_Utils.m in Sources */,
 				C49856E122ED90F300E9FBE2 /* LLSandboxHelper.m in Sources */,
 				C498569B22ED8D4800E9FBE2 /* LLCrashCell.m in Sources */,
+				363158932356AF21003DEF8C /* LLNetworkHelper+UIWebView.m in Sources */,
 				C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */,

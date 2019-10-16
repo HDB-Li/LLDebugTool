@@ -41,6 +41,14 @@
 }
 
 #pragma mark - UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [LLTool log:[NSString stringWithFormat:@"Log UIWebView failed in %@, with error %@", self.urlString, error.debugDescription]];
 }
