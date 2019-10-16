@@ -32,6 +32,8 @@
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
 		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
 		363158972356C37A003DEF8C /* NSInputStream+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */; };
+		3631589B2356EB57003DEF8C /* WKWebView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631589A2356EB57003DEF8C /* WKWebView+LL_Utils.m */; };
+		3631589E2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */; };
 		3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3633F583232F395100C62185 /* LLWidgetBorderComponent.m */; };
 		363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLTitleSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
@@ -280,6 +282,10 @@
 		362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoView.m; sourceTree = "<group>"; };
 		363158952356C37A003DEF8C /* NSInputStream+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSInputStream+LL_Utils.h"; sourceTree = "<group>"; };
 		363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSInputStream+LL_Utils.m"; sourceTree = "<group>"; };
+		363158992356EB57003DEF8C /* WKWebView+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+LL_Utils.h"; sourceTree = "<group>"; };
+		3631589A2356EB57003DEF8C /* WKWebView+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+LL_Utils.m"; sourceTree = "<group>"; };
+		3631589C2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNetworkHelper+WKWebView.h"; sourceTree = "<group>"; };
+		3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLNetworkHelper+WKWebView.m"; sourceTree = "<group>"; };
 		3633F582232F395100C62185 /* LLWidgetBorderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderComponent.h; sourceTree = "<group>"; };
 		3633F583232F395100C62185 /* LLWidgetBorderComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderComponent.m; sourceTree = "<group>"; };
 		363DEC512325DFE90090E78C /* LLTitleSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSliderCell.h; sourceTree = "<group>"; };
@@ -765,6 +771,15 @@
 				363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */,
 			);
 			path = NSInputStream;
+			sourceTree = "<group>";
+		};
+		363158982356EB48003DEF8C /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				363158992356EB57003DEF8C /* WKWebView+LL_Utils.h */,
+				3631589A2356EB57003DEF8C /* WKWebView+LL_Utils.m */,
+			);
+			path = WKWebView;
 			sourceTree = "<group>";
 		};
 		3633F581232F390600C62185 /* WidgetBorder */ = {
@@ -1464,6 +1479,8 @@
 				36743D3F2313879700002A92 /* LLReachability.m */,
 				C49856D622ED90DD00E9FBE2 /* LLURLProtocol.h */,
 				C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */,
+				3631589C2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.h */,
+				3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1535,6 +1552,7 @@
 		C4B4E39122F9C90900F70277 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				363158982356EB48003DEF8C /* WKWebView */,
 				363158942356C370003DEF8C /* NSInputStream */,
 				3655D50E2329E01300490B36 /* UIResponder */,
 				36BB1E2B2320F941000D8F29 /* NSUserDefaults */,
@@ -2213,6 +2231,7 @@
 				363158972356C37A003DEF8C /* NSInputStream+LL_Utils.m in Sources */,
 				364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */,
 				36CDFBCE2350639E002A913F /* LLHtmlViewController.m in Sources */,
+				3631589B2356EB57003DEF8C /* WKWebView+LL_Utils.m in Sources */,
 				360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */,
 				C4B4E43F22F9C90900F70277 /* UIButton+LL_Utils.m in Sources */,
 				36CDFBCB23506388002A913F /* LLHtmlWindow.m in Sources */,
@@ -2262,6 +2281,7 @@
 				C49856FB22EDB2BC00E9FBE2 /* LLCrashComponent.m in Sources */,
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
+				3631589E2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m in Sources */,
 				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
 				3600762D2355AEE500A606AC /* LLComponentNavigationController.m in Sources */,
 				36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */,
