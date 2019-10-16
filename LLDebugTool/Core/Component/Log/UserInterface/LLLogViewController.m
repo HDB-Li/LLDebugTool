@@ -32,6 +32,8 @@
 #import "LLSearchBar.h"
 #import "NSObject+LL_Utils.h"
 #import "LLToastUtils.h"
+#import "UIView+LL_Utils.h"
+#import "LLConst.h"
 
 static NSString *const kLogCellID = @"LLLogCell";
 
@@ -74,7 +76,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     // TableView
     [self.tableView registerClass:[LLLogCell class] forCellReuseIdentifier:kLogCellID];
     
-    self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
+    self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
     __weak typeof(self) weakSelf = self;
     self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
         weakSelf.currentLevels = levels;
@@ -89,7 +91,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     [self.filterView configWithData:self.oriDataArray];
     
     [self.headerView addSubview:self.filterView];
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+    self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
     
     [self loadData];
 }
@@ -175,7 +177,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return self.searchBar.frame.size.height + 40;
+    return self.headerView.LL_height;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -184,22 +186,21 @@ static NSString *const kLogCellID = @"LLLogCell";
     [self.filterView cancelFiltering];
 }
 
-#pragma mark - UISearchBarDelegate
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [super searchBarTextDidBeginEditing:searchBar];
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [super textFieldDidBeginEditing:textField];
     [self.filterView cancelFiltering];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [super
-     searchBar:searchBar textDidChange:searchText];
+- (void)textFieldDidChange:(NSString *)text {
+    [super textFieldDidChange:text];
     [self.filterView cancelFiltering];
     [self filterData];
 }
 
 #pragma mark - Primary
 - (void)loadData {
-    self.searchBar.text = nil;
+    self.searchTextField.text = nil;
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager shared] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
@@ -221,8 +222,8 @@ static NSString *const kLogCellID = @"LLLogCell";
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         for (LLLogModel *model in self.oriDataArray) {
             // Filter "Search"
-            if (self.searchBar.text.length) {
-                if (![model.message.lowercaseString containsString:self.searchBar.text.lowercaseString]) {
+            if (self.searchTextField.text.length) {
+                if (![model.message.lowercaseString containsString:self.searchTextField.text.lowercaseString]) {
                     [tempArray addObject:model];
                     continue;
                 }

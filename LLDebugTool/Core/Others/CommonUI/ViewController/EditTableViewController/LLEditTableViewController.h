@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLEditTableViewController : LLBaseTableViewController <UITableViewDataSource, UISearchBarDelegate>
+@interface LLEditTableViewController : LLBaseTableViewController <UITableViewDataSource, UITextFieldDelegate>
 
 /**
  * Whether use searchBar. Default is NO.
@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The searchBar in view controller.
  */
-@property (nonatomic, strong, nullable, readonly) UISearchBar *searchBar;
+@property (nonatomic, strong, nullable, readonly) UITextField *searchTextField;
 
 /**
  * Select all item in toolbar.
@@ -112,6 +112,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)isSearching;
 
+/**
+ Called when text field's text did changed.
+ */
+- (void)textFieldDidChange:(NSString *)text;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -112,17 +112,17 @@ static NSString *const kCrashCellID = @"CrashCellID";
     }
 }
 
-#pragma mark - UISearchController
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [super searchBar:searchBar textDidChange:searchText];
-    if (searchText.length == 0) {
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidChange:(NSString *)text {
+    [super textFieldDidChange:text];
+    if (text.length == 0) {
         [self.searchDataArray removeAllObjects];
         [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         [self.tableView reloadData];
     } else {
         [self.searchDataArray removeAllObjects];
         for (LLCrashModel *model in self.oriDataArray) {
-            if ([model.name.lowercaseString containsString:searchText.lowercaseString] || [model.reason.lowercaseString containsString:searchText.lowercaseString]) {
+            if ([model.name.lowercaseString containsString:text.lowercaseString] || [model.reason.lowercaseString containsString:text.lowercaseString]) {
                 [self.searchDataArray addObject:model];
             }
         }

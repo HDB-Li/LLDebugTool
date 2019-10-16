@@ -28,7 +28,8 @@
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 #import "LLTableViewSelectableModel.h"
-#import <objc/runtime.h>
+#import "LLConst.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLEditTableViewController ()
 
@@ -58,8 +59,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.isSearchEnable) {
-        if (self.searchBar.isFirstResponder) {
-            [self.searchBar resignFirstResponder];
+        if (self.searchTextField.isFirstResponder) {
+            [self.searchTextField resignFirstResponder];
         }
     }
     if (self.isSelectEnable) {
@@ -95,23 +96,33 @@
 }
 
 - (BOOL)isSearching {
-    return self.searchBar.text.length;
+    return self.searchTextField.text.length;
 }
 
 #pragma mark - Primary
 - (void)initSearchEnableFunction {
-    _searchBar = [[UISearchBar alloc] init];
-    self.searchBar.barTintColor = [LLThemeManager shared].backgroundColor;
-    self.searchBar.tintColor = [LLThemeManager shared].primaryColor;
-    self.searchBar.delegate = self;
-    self.searchBar.enablesReturnKeyAutomatically = NO;
-    [self.searchBar sizeToFit];
+    _searchTextField = [LLFactory getTextField];
+    self.searchTextField.textColor = [LLThemeManager shared].primaryColor;
+    self.searchTextField.tintColor = [LLThemeManager shared].primaryColor;
+    self.searchTextField.delegate = self;
+    [self.searchTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.searchTextField.returnKeyType = UIReturnKeySearch;
+    self.searchTextField.backgroundColor = [LLThemeManager shared].containerColor;
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Input filter text." attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor, NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+    self.searchTextField.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, 35);
+    self.searchTextField.leftView = ({
+        UIView *view = [LLFactory getView];
+        view.frame = CGRectMake(0, 0, kLLGeneralMargin, kLLGeneralMargin);
+        view;
+    });
+    self.searchTextField.leftViewMode = UITextFieldViewModeAlways;
 
     _headerView = [LLFactory getView];
     _headerView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    _headerView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchBar.frame.size.height);
+    _headerView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, self.searchTextField.LL_bottom + kLLGeneralMargin);
     [self.view addSubview:_headerView];
-    [self.headerView addSubview:self.searchBar];
+    [self.headerView addSubview:self.searchTextField];
 }
 
 - (void)initSelectEnableFunction {
@@ -151,8 +162,8 @@
 
 - (void)leftItemClick:(UIButton *)sender {
     if (self.isSearchEnable) {
-        if (self.searchBar.isFirstResponder) {
-            [self.searchBar resignFirstResponder];
+        if (self.searchTextField.isFirstResponder) {
+            [self.searchTextField resignFirstResponder];
         }
     }
     [super leftItemClick:sender];
@@ -297,20 +308,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (self.isSearchEnable) {
-        return self.searchBar.frame.size.height;
+        return self.searchTextField.LL_bottom + kLLGeneralMargin;
     }
     return [super tableView:tableView heightForHeaderInSection:section];
 }
 
 #pragma mark - UIScrollView
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (self.isSearchEnable && self.searchBar.isFirstResponder) {
-        [self.searchBar resignFirstResponder];
+    if (self.isSearchEnable && self.searchTextField.isFirstResponder) {
+        [self.searchTextField resignFirstResponder];
     }
 }
 
-#pragma mark - UISearchBar
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidChange:(NSString *)text {
     if ([self.selectAllItem.title isEqualToString:self.cancelAllString]) {
         self.selectAllItem.title = self.selectAllString;
     }
@@ -320,12 +331,13 @@
     }
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    [self searchBar:searchBar textDidChange:searchBar.text];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self textFieldDidChange:textField.text];
+    [textField resignFirstResponder];
+    return YES;
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     
 }
 

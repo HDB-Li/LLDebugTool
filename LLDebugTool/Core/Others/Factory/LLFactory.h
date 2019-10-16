@@ -371,6 +371,13 @@ Get Slider.
  */
 + (UIScrollView *)getScrollView;
 
+#pragma mark - UISearchBar
+
+/**
+ Get search bar.
+ */
++ (UISearchBar *)getSearchBar;
+
 @end
 
 NS_ASSUME_NONNULL_END

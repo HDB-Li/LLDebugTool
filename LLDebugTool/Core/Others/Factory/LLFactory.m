@@ -264,4 +264,10 @@
     return scrollView;
 }
 
+#pragma mark - UISearchBar
++ (UISearchBar *)getSearchBar {
+    UISearchBar *bar = [[UISearchBar alloc] init];
+    return bar;
+}
+
 @end

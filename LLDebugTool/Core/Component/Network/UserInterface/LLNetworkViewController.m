@@ -34,6 +34,8 @@
 #import "LLMacros.h"
 #import "NSObject+LL_Utils.h"
 #import "LLToastUtils.h"
+#import "UIView+LL_Utils.h"
+#import "LLConst.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
@@ -72,7 +74,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
     [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:kNetworkCellID];
     
-    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, LL_SCREEN_WIDTH, 40)];
+    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
     __weak typeof(self) weakSelf = self;
     self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
         weakSelf.currentHost = hosts;
@@ -83,7 +85,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     };
     [self.filterView configWithData:self.oriDataArray];
     [self.headerView addSubview:self.filterView];
-    self.headerView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.filterView.frame.size.height);
+    self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
     
     [self loadData];
 }
@@ -144,7 +146,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [super tableView:tableView heightForHeaderInSection:section] + 40;
+    return self.headerView.LL_height;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -153,22 +155,21 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     [self.filterView cancelFiltering];
 }
 
-#pragma mark - UISearchBarDelegate
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [super searchBarTextDidBeginEditing:searchBar];
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [super textFieldDidBeginEditing:textField];
     [self.filterView cancelFiltering];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [super
-     searchBar:searchBar textDidChange:searchText];
+- (void)textFieldDidChange:(NSString *)text {
+    [super textFieldDidChange:text];
     [self.filterView cancelFiltering];
     [self filterData];
 }
 
 #pragma mark - Primary
 - (void)loadData {
-    self.searchBar.text = nil;
+    self.searchTextField.text = nil;
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
     [[LLStorageManager shared] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
@@ -200,7 +201,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
             }
 
             // Filter "Search"
-            if (self.searchBar.text.length) {
+            if (self.searchTextField.text.length) {
                 NSMutableArray *filterArray = [[NSMutableArray alloc] initWithObjects:model.url.absoluteString ?:model.url.host, nil];
                 BOOL checkHeader = [self.currentTypes containsObject:@"Header"];
                 BOOL checkBody = [self.currentTypes containsObject:@"Body"];
@@ -220,7 +221,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
                 }
                 
                 for (NSString *filter in filterArray) {
-                    if ([filter.lowercaseString containsString:self.searchBar.text.lowercaseString]) {
+                    if ([filter.lowercaseString containsString:self.searchTextField.text.lowercaseString]) {
                         needPop = NO;
                         break;
                     }
