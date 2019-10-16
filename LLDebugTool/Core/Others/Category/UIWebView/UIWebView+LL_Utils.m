@@ -37,10 +37,6 @@
     [self LL_setDelegate:[LLNetworkHelper shared]];
 }
 
-- (id<UIWebViewDelegate>)delegate {
-    return nil;
-}
-
 - (id<UIWebViewDelegate>)LL_delegate {
     return [self LL_realDelegate];
 }
