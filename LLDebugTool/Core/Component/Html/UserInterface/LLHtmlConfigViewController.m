@@ -84,7 +84,7 @@
 
 #pragma mark - Primary
 - (void)setUpUI {
-    self.title = @"Config";
+    self.title = @"WebView Config";
     [self initNavigationItemWithTitle:@"Go" imageName:nil isLeft:NO];
     
     self.webViewClass = [LLSettingManager shared].webViewClass ?: NSStringFromClass([WKWebView class]);
@@ -162,7 +162,7 @@
         _headerTextField.delegate = self;
         _headerTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Pleace input url" attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor}];
-        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLConfig shared].defaultHtmlUrl ?: @"https://");
+        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLConfig shared].defaultHtmlUrl ?: @"https://github.com/HDB-Li/LLDebugTool");
         UIView *leftView = [LLFactory getView];
         leftView.frame = CGRectMake(0, 0, 10, 1);
         _headerTextField.leftView = leftView;
