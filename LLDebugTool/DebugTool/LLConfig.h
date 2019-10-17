@@ -278,6 +278,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
 
+/**
+ Whether observer webView request.
+ */
+@property (nonatomic, assign) BOOL observerWebView;
+
 #pragma mark - Hierarchy
 
 /**
