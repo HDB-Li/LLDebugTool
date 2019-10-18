@@ -1,3 +1,13 @@
+## [1.3.3](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.3) (10/18/2019)
+
+###  Add `Html` function.
+
+You can debug HTML pages through `WKWebView`, `UIWebView` or your customized `ViewController` in your app at any time.
+
+#### Add
+
+* Now `LLURLProtocol` can correctly observe `WKWebView`.
+
 ## [1.3.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.2) (09/29/2019)
 
 ###  Add `Ruler`,  `Widget Border` function.

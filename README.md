@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.2-blue.svg)](https://img.shields.io/badge/pod-v1.3.2-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.3-blue.svg)](https://img.shields.io/badge/pod-v1.3.3-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -27,7 +27,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <div align="left">
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-1.3.2.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot2.gif" width="20%"></img>
 </div>
 
 #### Preview
@@ -45,23 +45,15 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## What's new in 1.3.2
+## What's new in 1.3.3
 
-###  Add `Ruler`,  `Widget Border` function.
+###  Add `Html` function.
 
-Ruler function : Convenient tools to display touch point information.
-
-Widget Border function : Display element border, convenient to see the view's frame.
+You can debug HTML pages through `WKWebView`, `UIWebView` or your customized `ViewController` in your app at any time.
 
 #### Add
 
-* Add `LLSettingManager` to control some settings in tool, you can configure `LLConfig`'s options dynamically without re-archiving.
-
-* Add `Hierarchy Detail Info` function to show more detail info of target view. Similar to `Debug View Hierarchy` function in XCode.
-
-#### Remove
-
-* Remove all xib files, it wastes compilation time. In contrast, you need to introduce [Masonry](https://github.com/SnapKit/Masonry) lib.
+* Now `LLURLProtocol` can correctly observe `WKWebView`.
         
 ## What can you do with LLDebugTool?
 
@@ -96,7 +88,7 @@ Widget Border function : Display element border, convenient to see the view's fr
 ##### Objective - C
 
 > 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0'`. 
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.2' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.3' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugTool', '~> 1.0.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 5. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
@@ -104,7 +96,7 @@ Widget Border function : Display element border, convenient to see the view's fr
 ##### Swift
 
 > 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0'`.
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.2' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.3' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugToolSwift', '~> 1.0.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Must be added in the Podfile **`use_frameworks!`**.
 > 5. Install the pod(s) by running `pod install`. If you can't search `LLDebugToolSwift` or you can't find the newest release version, running `pod repo update` before `pod install`.
@@ -346,10 +338,14 @@ LLDebugTool provides a convenient tools to display touch point information.
 
 LLDebugTool provides a function to display element border, convenient to see the view's frame.
 
+### HTML
+
+LLDebugTool can debug HTML pages through `WKWebView`, `UIWebView` or your customized `ViewController` in your app at any time.
+
 ### More Usage
 
 * You can get more help by looking at the [Wiki](https://github.com/HDB-Li/LLDebugTool/wiki).
-* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under MacOS 10.14.6, XCode 11.0, iOS 13.0, CocoaPods 1.7.5. If there is any version compatibility problem, please let me know.
+* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under MacOS 10.15, XCode 11.1, iOS 13.0, CocoaPods 1.8.4. If there is any version compatibility problem, please let me know.
 
 ## Requirements
 
