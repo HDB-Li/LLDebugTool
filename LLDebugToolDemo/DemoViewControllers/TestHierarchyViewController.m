@@ -58,7 +58,18 @@
     UIView *view = nil;
     if (index == 0) {
         view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        if (@available(iOS 13.0, *)) {
+#ifdef __IPHONE_13_0
+            view.backgroundColor = [UIColor systemGroupedBackgroundColor];
+#else
+            view.backgroundColor = [UIColor performSelector:NSSelectorFromString(@"systemGroupedBackgroundColor")];
+#endif
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+#pragma clang diagnostic pop
+        }
     } else if (index == 1) {
         UILabel *label = [[UILabel alloc] init];
         label.text = @"Label";
@@ -141,7 +152,10 @@
         view = bar;
     }
     view.frame = CGRectMake(10 * 2 + [UIScreen mainScreen].bounds.size.width / 2.0, 5, [UIScreen mainScreen].bounds.size.width - 10 * 3 - [UIScreen mainScreen].bounds.size.width / 2.0, 44 - 5 * 2);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+#pragma clang diagnostic pop
     view.tag = 100;
     return view;
 }

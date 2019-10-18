@@ -58,7 +58,10 @@
         return;
     }
     Class cls = NSClassFromString(self.webViewClass);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls != [UIWebView class] && cls != [WKWebView class]) {
+#pragma clang diagnostic pop
         [[LLToastUtils shared] toastMessage:@"Invalid webView class"];
         return;
     }
@@ -66,7 +69,10 @@
     [LLSettingManager shared].lastWebViewUrl = urlString;
     
     LLHtmlViewController *vc = nil;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls == [UIWebView class]) {
+#pragma clang diagnostic pop
         vc = [[LLHtmlUIWebViewController alloc] init];
     } else {
         vc = [[LLHtmlWkWebViewController alloc] init];
@@ -117,7 +123,10 @@
 - (void)showWebViewClassAlert {
     __block NSMutableArray *actions = [[NSMutableArray alloc] init];
     [actions addObject:NSStringFromClass([WKWebView class])];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [actions addObject:NSStringFromClass([UIWebView class])];
+#pragma clang diagnostic pop
     __weak typeof(self) weakSelf = self;
     [self showActionSheetWithTitle:@"Web View Style" actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
         [weakSelf setNewWebViewClass:actions[index]];

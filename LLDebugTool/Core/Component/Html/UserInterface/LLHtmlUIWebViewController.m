@@ -24,7 +24,10 @@
 
 @interface LLHtmlUIWebViewController () <UIWebViewDelegate>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 @property (nonatomic, strong) UIWebView *webView;
+#pragma clang diagnostic pop
 
 @end
 
@@ -41,22 +44,30 @@
 }
 
 #pragma mark - UIWebViewDelegate
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    [LLTool log:[NSString stringWithFormat:@"UIWebView start load %@",self.urlString]];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
+    [LLTool log:[NSString stringWithFormat:@"UIWebView finish load %@",self.urlString]];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [LLTool log:[NSString stringWithFormat:@"Log UIWebView failed in %@, with error %@", self.urlString, error.debugDescription]];
+    [LLTool log:[NSString stringWithFormat:@"UIWebView failed in %@, with error %@", self.urlString, error.debugDescription]];
 }
+#pragma clang diagnostic pop
 
 #pragma mark - Primary
 - (void)setUpUI {
     if (![self webViewClassIsValid]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         self.webViewClass = NSStringFromClass([UIWebView class]);
+#pragma clang diagnostic pop
     }
     [self.view addSubview:self.webView];
     
@@ -68,13 +79,18 @@
         return NO;
     }
     Class cls = NSClassFromString(self.webViewClass);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls != [UIWebView class]) {
+#pragma clang diagnostic pop
         return NO;
     }
     return YES;
 }
 
 #pragma mark - Getters and setters
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (UIWebView *)webView {
     if (!_webView) {
         _webView = (UIWebView *)[[NSClassFromString(self.webViewClass) alloc] init];
@@ -82,5 +98,6 @@
     }
     return _webView;
 }
+#pragma clang diagnostic pop
 
 @end
