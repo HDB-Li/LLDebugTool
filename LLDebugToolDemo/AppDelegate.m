@@ -35,6 +35,9 @@
         // Uncomment one of the following lines to change the window style.
         // config.entryWindowStyle = LLConfigEntryWindowStyleTitle;
         
+        //####################### Html #######################//
+        config.defaultHtmlUrl = @"https://github.com/HDB-Li/LLDebugTool";
+        
     }];
     
     return YES;
