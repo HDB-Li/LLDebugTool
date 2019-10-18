@@ -59,6 +59,9 @@ static LLFormatterTool *_instance = nil;
 }
 
 - (NSString *)stringFromDate:(NSDate *)date style:(FormatterToolDateStyle)style {
+    if (!date) {
+        return nil;
+    }
     NSDateFormatter *formatter = self.formatters[@(style)];
     if (formatter) {
         return [formatter stringFromDate:date];

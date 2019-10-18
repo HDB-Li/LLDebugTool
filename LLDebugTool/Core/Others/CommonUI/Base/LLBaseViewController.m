@@ -27,6 +27,7 @@
 #import "LLConfig.h"
 #import "LLFactory.h"
 #import "LLThemeManager.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLBaseViewController ()
 
@@ -99,12 +100,12 @@
 
 - (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag {
     if (flag) {
-        UIButton *btn = [self navigationButtonWithTitle:title imageName:imageName target:self action:@selector(leftItemClick:)];
+        UIButton *btn = [self LL_navigationButtonWithTitle:title imageName:imageName target:self action:@selector(leftItemClick:)];
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         self.leftNavigationButton = btn;
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     } else {
-        UIButton *btn = [self navigationButtonWithTitle:title imageName:imageName target:self action:@selector(rightItemClick:)];
+        UIButton *btn = [self LL_navigationButtonWithTitle:title imageName:imageName target:self action:@selector(rightItemClick:)];
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         self.rightNavigationButton = btn;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
@@ -121,7 +122,6 @@
 
 - (void)backgroundColorChanged {
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
 #pragma mark - Over Write
@@ -141,7 +141,6 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.automaticallyAdjustsScrollViewInsets = YES;
 #pragma clang diagnostic pop
-    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)setNavigationSettings {
@@ -151,15 +150,11 @@
         [self initCloseLeftNavigationItem];
         NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
         if (index > 0) {
-            UIButton *btn = [self navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
+            UIButton *btn = [self LL_navigationButtonWithTitle:nil imageName:kBackImageName target:self action:@selector(backAction:)];
             btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
             self.navigationItem.leftBarButtonItems = @[backButtonItem, self.navigationItem.leftBarButtonItem];
         }
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
-        self.navigationController.navigationBar.translucent = YES;
-        self.navigationController.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
-        self.navigationController.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
     }
 }
 
@@ -170,20 +165,6 @@
 
 - (void)initCloseLeftNavigationItem {
     [self initNavigationItemWithTitle:nil imageName:kCloseImageName isLeft:YES];
-}
-
-- (UIButton *)navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
-    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 30, 40) target:target action:action];
-    btn.showsTouchWhenHighlighted = NO;
-    btn.tintColor = [LLThemeManager shared].primaryColor;
-    if ([title length]) {
-        [btn setTitle:title forState:UIControlStateNormal];
-    }
-    if (imageName) {
-        UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-        [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
-    }
-    return btn;
 }
 
 - (void)layoutViewsAndSubviews:(UIView *)view {

@@ -47,6 +47,11 @@ FOUNDATION_EXTERN NSString *const kThemeManagerUpdateBackgroundColorNotificaionN
 @property (nonatomic, copy, readonly) UIColor *containerColor;
 
 /**
+ PlaceHolder color, use on textField/textView, should different with backgroundColor.
+ */
+@property (nonatomic, copy, readonly) UIColor *placeHolderColor;
+
+/**
  Window's statusBarStyle when show.
  */
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;

@@ -30,6 +30,7 @@
 #import "NSData+LL_Utils.h"
 #import "LLTool.h"
 #import "LLAppInfoHelper.h"
+#import "NSInputStream+LL_Utils.h"
 
 static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 
@@ -106,8 +107,11 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     model.headerFields = [self.request.allHTTPHeaderFields mutableCopy];
     
     NSData *data = [self.request.HTTPBody copy];
-    if (data == nil && self.request.HTTPBodyStream) {
-        data = [self dataFromInputStream:self.request.HTTPBodyStream];
+    if (data == nil) {
+        NSInputStream *stream = self.request.HTTPBodyStream;
+        if (stream) {
+            data = [stream LL_toData];
+        }
     }
     if (data && [data length] > 0) {
         model.requestBody = [data LL_toJsonString];
@@ -190,20 +194,6 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
         self.response = response;
         [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
     }
-}
-
-#pragma mark - Primary
-- (NSData *)dataFromInputStream:(NSInputStream *)stream {
-    NSMutableData *data = [[NSMutableData alloc] init];
-    if (stream.streamStatus != NSStreamStatusOpen) {
-        [stream open];
-    }
-    NSInteger readLength;
-    uint8_t buffer[1024];
-    while((readLength = [stream read:buffer maxLength:1024]) > 0) {
-        [data appendBytes:buffer length:readLength];
-    }
-    return data;
 }
 
 @end

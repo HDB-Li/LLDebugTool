@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIViewController *_Nullable)LL_currentShowingViewController;
 
+- (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action;
+
 @end
 
 NS_ASSUME_NONNULL_END

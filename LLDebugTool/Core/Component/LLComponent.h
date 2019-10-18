@@ -22,18 +22,9 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "LLComponentDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerKey;
-
-FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerPropertiesKey;
-
-@protocol LLComponentDelegate <NSObject>
-
-- (void)componentDidLoad:(NSDictionary <NSString *, id>*_Nullable)data;
-
-@end
 
 @interface LLComponent : NSObject <LLComponentDelegate>
 

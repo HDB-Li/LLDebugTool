@@ -22,6 +22,9 @@
 //  SOFTWARE.
 
 #import "UIViewController+LL_Utils.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
+#import "UIImage+LL_Utils.h"
 
 @implementation UIViewController (LL_Utils)
 
@@ -38,6 +41,21 @@
         vc = [[nav visibleViewController] LL_currentShowingViewController];
     }
     return vc;
+}
+
+- (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
+    UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 30, 40) target:target action:action];
+    btn.showsTouchWhenHighlighted = NO;
+    btn.tintColor = [LLThemeManager shared].primaryColor;
+    if ([title length]) {
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+    }
+    if (imageName) {
+        UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
+        [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
+    }
+    return btn;
 }
 
 @end

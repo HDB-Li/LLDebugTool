@@ -35,6 +35,7 @@
 #import "LLMagnifierComponent.h"
 #import "LLRulerComponent.h"
 #import "LLWidgetBorderComponent.h"
+#import "LLHtmlComponent.h"
 #import "LLSettingComponent.h"
 #import "LLImageNameConfig.h"
 
@@ -78,6 +79,8 @@
             return [[LLRulerComponent alloc] init];
         case LLDebugToolActionWidgetBorder:
             return [[LLWidgetBorderComponent alloc] init];
+        case LLDebugToolActionHtml:
+            return [[LLHtmlComponent alloc] init];
     }
 }
 
@@ -109,6 +112,8 @@
             return @"Ruler";
         case LLDebugToolActionWidgetBorder:
             return @"Widget Border";
+        case LLDebugToolActionHtml:
+            return @"Html5";
     }
 }
 
@@ -138,6 +143,8 @@
             return kRulerImageName;
         case LLDebugToolActionWidgetBorder:
             return kWidgetBorderImageName;
+        case LLDebugToolActionHtml:
+            return kHtml5ImageName;
     }
 }
 

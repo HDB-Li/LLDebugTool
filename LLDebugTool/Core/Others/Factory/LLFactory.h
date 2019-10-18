@@ -85,6 +85,14 @@ NS_ASSUME_NONNULL_BEGIN
                          font:(CGFloat)fontSize
                     textColor:(UIColor *_Nullable)textColor;
 
+#pragma mark - UITextField
+/**
+ Get textField
+ 
+ @return UITextField
+ */
++ (UITextField *)getTextField;
+
 #pragma mark - UITextView
 /**
  Get textView.
@@ -362,6 +370,13 @@ Get Slider.
  Get ScrollView.
  */
 + (UIScrollView *)getScrollView;
+
+#pragma mark - UISearchBar
+
+/**
+ Get search bar.
+ */
++ (UISearchBar *)getSearchBar;
 
 @end
 

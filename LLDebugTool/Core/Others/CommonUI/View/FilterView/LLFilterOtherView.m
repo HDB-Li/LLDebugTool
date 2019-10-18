@@ -54,6 +54,8 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 @property (nonatomic, strong) LLFilterTextFieldModel *endDateModel;
 
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 
 @implementation LLFilterOtherView
@@ -153,7 +155,12 @@ static NSString *const kLabelCellID = @"LabelCellID";
     [self.collectionView registerClass:[LLFilterTextFieldCell class] forCellWithReuseIdentifier:kTextFieldCellID];
     [self.collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kLabelCellID];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHeaderID];
-    [LLFactory getLineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
+    self.lineView = [LLFactory getLineView:CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1) superView:self];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.lineView.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource

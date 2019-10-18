@@ -26,6 +26,7 @@
 #import "LLReachability.h"
 #import "LLTool.h"
 #import "NSObject+LL_Runtime.h"
+#import "LLConfig.h"
 
 static LLNetworkHelper *_instance = nil;
 
@@ -77,10 +78,32 @@ static LLNetworkHelper *_instance = nil;
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
         [LLTool log:@"LLNetworkHelper reigsiter URLProtocol fail."];
     }
+    if ([LLConfig shared].observerWebView) {
+        Class cls = NSClassFromString(@"WKBrowsingContextController");
+        SEL sel = NSSelectorFromString(@"registerSchemeForCustomProtocol:");
+        if (cls && [cls respondsToSelector:sel]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [cls performSelector:sel withObject:@"http"];
+            [cls performSelector:sel withObject:@"https"];
+#pragma clang diagnostic pop
+        }
+    }
 }
 
 - (void)unregisterLLURLProtocol {
     [NSURLProtocol unregisterClass:[LLURLProtocol class]];
+    if ([LLConfig shared].observerWebView) {
+        Class cls = NSClassFromString(@"WKBrowsingContextController");
+        SEL sel = NSSelectorFromString(@"unregisterSchemeForCustomProtocol:");
+        if (cls && [cls respondsToSelector:sel]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [cls performSelector:sel withObject:@"http"];
+            [cls performSelector:sel withObject:@"https"];
+#pragma clang diagnostic pop
+        }
+    }
 }
 
 - (LLNetworkStatus)networkStateFromStatebar {

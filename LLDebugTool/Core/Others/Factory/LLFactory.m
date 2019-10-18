@@ -71,6 +71,12 @@
     return label;
 }
 
+#pragma mark - UITextField
++ (UITextField *)getTextField {
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
+    return textField;
+}
+
 #pragma mark - UITextView
 + (UITextView *)getTextView {
     return [self getTextView:nil];
@@ -256,6 +262,12 @@
         scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     }
     return scrollView;
+}
+
+#pragma mark - UISearchBar
++ (UISearchBar *)getSearchBar {
+    UISearchBar *bar = [[UISearchBar alloc] init];
+    return bar;
 }
 
 @end

@@ -103,7 +103,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         }
     }
     [self.oriDataArray removeObjectsInArray:finishedModels];
-    [self searchBar:self.searchBar textDidChange:self.searchBar.text];
+    [self textFieldDidChange:self.searchTextField.text];
 }
 
 - (NSMutableArray *)oriDataArray {
@@ -169,17 +169,17 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     }
 }
 
-#pragma mark - UISearchBar
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [super searchBar:searchBar textDidChange:searchText];
-    if (searchText.length == 0) {
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidChange:(NSString *)text {
+    [super textFieldDidChange:text];
+    if (text.length == 0) {
         [self.searchDataArray removeAllObjects];
         [self.searchDataArray addObjectsFromArray:self.oriDataArray];
         [self.tableView reloadData];
     } else {
         [self.searchDataArray removeAllObjects];
         for (LLSandboxModel *model in self.oriDataArray) {
-            [self.searchDataArray addObjectsFromArray:[self modelsByFilter:searchText.lowercaseString model:model]];
+            [self.searchDataArray addObjectsFromArray:[self modelsByFilter:text.lowercaseString model:model]];
         }
         [self.tableView reloadData];
     }
