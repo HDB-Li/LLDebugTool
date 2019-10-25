@@ -42,6 +42,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)lineBreaks {
+    NSMutableArray *breaks = [[NSMutableArray alloc] init];
+    for (NSLineBreakMode i = NSLineBreakByWordWrapping; i <= NSLineBreakByTruncatingMiddle; i++) {
+        NSString *lineBreak = [self lineBreakModeDescription:i];
+        if (lineBreak) {
+            [breaks addObject:lineBreak];
+        }
+    }
+    return [breaks copy];
+}
+
 + (NSString *_Nullable)userInterfaceStyleDescription:(UIUserInterfaceStyle)style {
     switch (style) {
         case UIUserInterfaceStyleUnspecified:
@@ -137,6 +148,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)textAlignments {
+    NSMutableArray *alignments = [[NSMutableArray alloc] init];
+    for (NSTextAlignment i = NSTextAlignmentLeft; i <= NSTextAlignmentNatural; i++) {
+        NSString *alignment = [self textAlignmentDescription:i];
+        if (alignment) {
+            [alignments addObject:alignment];
+        }
+    }
+    return [alignments copy];
+}
+
 + (NSString *)baselineAdjustmentDescription:(UIBaselineAdjustment)baselineAdjustment {
     switch (baselineAdjustment) {
         case UIBaselineAdjustmentAlignBaselines:
@@ -147,6 +169,17 @@
             return @"None";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)baselineAdjustments {
+    NSMutableArray *adjustments = [[NSMutableArray alloc] init];
+    for (UIBaselineAdjustment i = UIBaselineAdjustmentAlignBaselines; i <= UIBaselineAdjustmentNone; i++) {
+        NSString *adjustment = [self baselineAdjustmentDescription:i];
+        if (adjustment) {
+            [adjustments addObject:adjustment];
+        }
+    }
+    return adjustments;
 }
 
 + (NSString *)controlContentVerticalAlignmentDescription:(UIControlContentVerticalAlignment)contentVerticalAlignment {

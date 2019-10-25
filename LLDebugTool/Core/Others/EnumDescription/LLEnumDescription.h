@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)lineBreakModeDescription:(NSLineBreakMode)mode;
 
++ (NSArray <NSString *>*)lineBreaks;
+
 + (NSString *_Nullable)userInterfaceStyleDescription:(UIUserInterfaceStyle)style API_AVAILABLE(ios(12.0));
 
 + (NSString *_Nullable)userInterfaceSizeClassDescription:(UIUserInterfaceSizeClass)sizeClass;
@@ -42,7 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)textAlignmentDescription:(NSTextAlignment)textAlignment;
 
++ (NSArray <NSString *>*)textAlignments;
+
 + (NSString *_Nullable)baselineAdjustmentDescription:(UIBaselineAdjustment)baselineAdjustment;
+
++ (NSArray <NSString *>*)baselineAdjustments;
 
 + (NSString *_Nullable)controlContentVerticalAlignmentDescription:(UIControlContentVerticalAlignment)contentVerticalAlignment;
 

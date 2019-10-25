@@ -179,7 +179,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Alpha" detailTitle:[LLFormatterTool formatNumber:@(self.alpha)]] noneInsets];
     model7.block = ^{
         [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(self.alpha)] handler:^(NSString * _Nullable newText) {
-            weakSelf.alpha = [[LLFormatterTool formatNumber:@([newText doubleValue])] doubleValue];
+            weakSelf.alpha = [newText doubleValue];
         }];
     };
     [settings addObject:model7];
@@ -260,9 +260,21 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UILabel (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.text handler:^(NSString * _Nullable newText) {
+            if (weakSelf.attributedText == nil) {
+                weakSelf.text = newText;
+            } else {
+                NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithAttributedString:weakSelf.attributedText];
+                [attribute replaceCharactersInRange:NSMakeRange(0, weakSelf.attributedText.length) withString:newText];
+                weakSelf.attributedText = attribute;
+            }
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:self.attributedText == nil ? @"Plain Text" : @"Attributed Text"] noneInsets];
@@ -272,27 +284,65 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%@",[LLFormatterTool formatNumber:@(weakSelf.font.pointSize)]] handler:^(NSString * _Nullable newText) {
+            weakSelf.font = [weakSelf.font fontWithSize:[newText doubleValue]];
+        }];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", [LLEnumDescription textAlignmentDescription:self.textAlignment]]] noneInsets];
+    model5.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAlignments] currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment] completion:^(NSInteger index) {
+            weakSelf.textAlignment = index;
+        }];
+    };
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfLines]] noneInsets];
+    model6.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%ld",(long)weakSelf.numberOfLines] handler:^(NSString * _Nullable newText) {
+            weakSelf.numberOfLines = [newText integerValue];
+        }];
+    };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Enabled %@",[self LL_hierarchyBoolDescription:self.isEnabled]]] noneInsets];
+    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Enabled" flag:self.isEnabled] noneInsets];
+    model7.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.enabled = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Highlighted %@", [self LL_hierarchyBoolDescription:self.isHighlighted]]];
+    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:@"Highlighted" flag:self.isHighlighted];
+    model8.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.highlighted = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [[[LLTitleCellModel alloc] initWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@",[LLEnumDescription baselineAdjustmentDescription:self.baselineAdjustment]]] noneInsets];
+    model9.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription baselineAdjustments] currentAction:[LLEnumDescription baselineAdjustmentDescription:weakSelf.baselineAdjustment] completion:^(NSInteger index) {
+            weakSelf.baselineAdjustment = index;
+        }];
+    };
     [settings addObject:model9];
     
     LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:self.lineBreakMode]] noneInsets];
+    model10.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription lineBreaks] currentAction:[LLEnumDescription lineBreakModeDescription:weakSelf.lineBreakMode] completion:^(NSInteger index) {
+            weakSelf.lineBreakMode = index;
+        }];
+    };
     [settings addObject:model10];
     
     LLTitleCellModel *model11 = [[LLTitleCellModel alloc] initWithTitle:@"Min Font Scale" detailTitle:[LLFormatterTool formatNumber:@(self.minimumScaleFactor)]];
+    model11.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.minimumScaleFactor)] handler:^(NSString * _Nullable newText) {
+            weakSelf.minimumScaleFactor = [newText doubleValue];
+        }];
+    };
     [settings addObject:model11];
     
     LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Highlighted" detailTitle:[self LL_hierarchyColorDescription:self.highlightedTextColor]] noneInsets];
@@ -302,6 +352,19 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model13];
     
     LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.shadowOffset]];
+    model14.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGSize(weakSelf.shadowOffset) handler:^(NSString * _Nullable newText) {
+            CGSize newSize = CGSizeFromString(newText);
+            if (CGSizeEqualToSize(newSize, CGSizeZero)) {
+                if (![newText isEqualToString:NSStringFromCGSize(CGSizeZero)]) {
+                    // Wrong text.
+                    [LLTool log:@"Input a wrong size string."];
+                    return;
+                }
+            }
+            weakSelf.shadowOffset = newSize;
+        }];
+    };
     [settings addObject:model14];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:settings];
