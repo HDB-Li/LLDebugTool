@@ -279,6 +279,7 @@ static NSString *const kCellID = @"cellID";
         cell.textLabel.text = NSLocalizedString(@"test.widget.border", nil);
     } else if (indexPath.section == 11) {
         cell.textLabel.text = NSLocalizedString(@"test.html", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
