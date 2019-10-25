@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)viewContentModeDescription:(UIViewContentMode)mode;
 
++ (NSArray <NSString *>*)viewContentModeDescriptions;
+
 + (NSString *_Nullable)textAlignmentDescription:(NSTextAlignment)textAlignment;
 
 + (NSString *_Nullable)baselineAdjustmentDescription:(UIBaselineAdjustment)baselineAdjustment;

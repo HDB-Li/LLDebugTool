@@ -27,6 +27,7 @@
 #import "LLTitleSliderCell.h"
 #import "LLDetailTitleCell.h"
 #import "LLConst.h"
+#import "LLMacros.h"
 
 @implementation LLTitleCellModel
 
@@ -59,6 +60,16 @@
         _cellClass = NSStringFromClass(LLTitleSliderCell.class);
         _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     }
+    return self;
+}
+
+- (LLTitleCellModel *)normalInsets {
+    self.separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
+    return self;
+}
+
+- (LLTitleCellModel *)noneInsets {
+    self.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
     return self;
 }
 

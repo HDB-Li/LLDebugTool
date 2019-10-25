@@ -66,6 +66,10 @@ typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 // LLTitleSliderCell
 - (instancetype)initWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
 
+- (LLTitleCellModel *)normalInsets;
+
+- (LLTitleCellModel *)noneInsets;
+
 @end
 
 NS_ASSUME_NONNULL_END

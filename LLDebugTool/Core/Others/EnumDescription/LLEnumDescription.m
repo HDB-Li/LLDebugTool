@@ -110,6 +110,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)viewContentModeDescriptions {
+    NSMutableArray *descriptions = [[NSMutableArray alloc] init];
+    for (UIViewContentMode i = UIViewContentModeScaleToFill; i <= UIViewContentModeBottomRight; i++) {
+        NSString *description = [self viewContentModeDescription:i];
+        if (description) {
+            [descriptions addObject:description];
+        }
+    }
+    return [descriptions copy];
+}
+
 + (NSString *)textAlignmentDescription:(NSTextAlignment)textAlignment {
     switch (textAlignment) {
         case NSTextAlignmentLeft:
