@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.public_header_files = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/*.h"
   s.source_files	    = "LLDebugTool/**/*.{h,m}"
   s.resources		    = "LLDebugTool/**/*.{xib,storyboard,bundle}"
-  s.frameworks          = "Foundation", "UIKit", "Photos", "SystemConfiguration", "CoreTelephony", "QuickLook"
+  s.frameworks          = "Foundation", "UIKit", "Photos", "SystemConfiguration", "CoreTelephony", "QuickLook", "WebKit"
   s.dependency            "FMDB", "~> 2.0"
   s.dependency            "Masonry"
 
