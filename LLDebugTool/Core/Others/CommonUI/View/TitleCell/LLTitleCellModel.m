@@ -50,16 +50,6 @@
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title detailTitleSelector:(NSString *)detailTitle {
-    if (self = [super init]) {
-        _title = [title copy];
-        _detailTitle = [detailTitle copy];
-        _cellClass = NSStringFromClass(LLDetailTitleSelectorCell.class);
-        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
-    }
-    return self;
-}
-
 - (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
     if (self = [super init]) {
         _title = [title copy];
@@ -76,13 +66,6 @@
     if (_block != block) {
         _block = [block copy];
         _cellClass = NSStringFromClass(block ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);
-    }
-}
-
-- (void)setChangePropertyBlock:(LLSettingModelChangePropertyBlock)changePropertyBlock {
-    if (_changePropertyBlock != changePropertyBlock) {
-        _changePropertyBlock = [changePropertyBlock copy];
-        _cellClass = NSStringFromClass(changePropertyBlock ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);
     }
 }
 

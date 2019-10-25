@@ -104,7 +104,7 @@
 
 - (LLTitleCellModel *)getDoubleClickComponentModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitleSelector:[LLConfigHelper doubleClickComponentDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitle:[LLConfigHelper doubleClickComponentDescription]];
     model.block = ^{
         [weakSelf showDoubleClickAlert];
     };
@@ -147,7 +147,7 @@
 
 - (LLTitleCellModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper colorStyleDetailDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -182,7 +182,7 @@
 }
 
 - (LLTitleCellModel *)getStatusBarStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitleSelector:[LLConfigHelper statusBarStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitle:[LLConfigHelper statusBarStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showStatusBarStyleAlert];
@@ -228,7 +228,7 @@
 
 - (LLTitleCellModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper entryWindowStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -279,7 +279,7 @@
 }
 
 - (LLTitleCellModel *)getLogStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper logStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
