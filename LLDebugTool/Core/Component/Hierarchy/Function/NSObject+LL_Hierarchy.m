@@ -169,10 +169,19 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", [self LL_hierarchyBoolDescription:self.isMultipleTouchEnabled]]];
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Multiple Touch" flag:self.isMultipleTouchEnabled];
+    model6.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.multipleTouchEnabled = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Alpha" detailTitle:[LLFormatterTool formatNumber:@(self.alpha)]] noneInsets];
+    model7.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(self.alpha)] handler:^(NSString * _Nullable newText) {
+            weakSelf.alpha = [[LLFormatterTool formatNumber:@([newText doubleValue])] doubleValue];
+        }];
+    };
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.backgroundColor]] noneInsets];
@@ -181,19 +190,39 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     [settings addObject:model9];
     
-    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:[NSString stringWithFormat:@"Opaque %@",[self LL_hierarchyBoolDescription:self.isOpaque]]] noneInsets];
+    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Opaque" flag:self.isOpaque] noneInsets];
+    model10.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.opaque = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model10];
     
-    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hidden %@",[self LL_hierarchyBoolDescription:self.isHidden]]] noneInsets];
+    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:@"Hidden" flag:self.isHidden] noneInsets];
+    model11.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.hidden = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clears Graphics Context %@",[self LL_hierarchyBoolDescription:self.clearsContextBeforeDrawing]]] noneInsets];
+    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Clears Graphics Context" flag:self.clearsContextBeforeDrawing] noneInsets];
+    model12.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.clearsContextBeforeDrawing = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clip To Bounds %@",[self LL_hierarchyBoolDescription:self.clipsToBounds]]] noneInsets];
+    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:@"Clip To Bounds" flag:self.clipsToBounds] noneInsets];
+    model13.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.clipsToBounds = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Autoresizes Subviews %@", [self LL_hierarchyBoolDescription:self.autoresizesSubviews]]];
+    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:@"Autoresizes Subviews" flag:self.autoresizesSubviews];
+    model14.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.autoresizesSubviews = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [[[LLTitleCellModel alloc] initWithTitle:@"Trait Collection" detailTitle:nil] noneInsets];
