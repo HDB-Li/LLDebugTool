@@ -72,4 +72,18 @@
     return self;
 }
 
+- (void)setBlock:(LLSettingModelBlock)block {
+    if (_block != block) {
+        _block = [block copy];
+        _cellClass = NSStringFromClass(block ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);
+    }
+}
+
+- (void)setChangePropertyBlock:(LLSettingModelChangePropertyBlock)changePropertyBlock {
+    if (_changePropertyBlock != changePropertyBlock) {
+        _changePropertyBlock = [changePropertyBlock copy];
+        _cellClass = NSStringFromClass(changePropertyBlock ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);
+    }
+}
+
 @end

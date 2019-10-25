@@ -27,6 +27,10 @@
 #import "UIColor+LL_Utils.h"
 #import "LLFormatterTool.h"
 #import "LLEnumDescription.h"
+#import "LLTool.h"
+#import "UIViewController+LL_Utils.h"
+
+NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChangeNotificationName";
 
 @implementation NSObject (LL_Hierarchy)
 
@@ -116,6 +120,19 @@
 
 - (NSString *)LL_hierarchyOffsetDescription:(UIOffset)offset {
     return [NSString stringWithFormat:@"h %@   v %@",[LLFormatterTool formatNumber:@(offset.horizontal)], [LLFormatterTool formatNumber:@(offset.vertical)]];
+}
+
+- (void)LL_showHierarchyChangeAlertWithText:(NSString *)text handler:(nullable void (^)(NSString * _Nullable))handler {
+    [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showTextFieldAlertControllerWithMessage:@"Change Property" text:text handler:^(NSString * _Nullable newText) {
+        if (handler) {
+            handler(newText);
+        }
+        [self LL_postHierarchyChangeNotification];
+    }];
+}
+
+- (void)LL_postHierarchyChangeNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLHierarchyChangeNotificationName object:self];
 }
 
 @end
@@ -304,6 +321,12 @@
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [self LL_noneInsetsCellModelWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.currentTitle]];
+    __weak typeof(self) weakSelf = self;
+    model3.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.currentTitle handler:^(NSString * _Nullable newText) {
+            [weakSelf setTitle:newText forState:weakSelf.state];
+        }];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [self LL_noneInsetsCellModelWithTitle:nil detailTitle:self.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"];

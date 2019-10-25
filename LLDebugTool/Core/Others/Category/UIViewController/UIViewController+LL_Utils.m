@@ -25,6 +25,7 @@
 #import "LLFactory.h"
 #import "LLThemeManager.h"
 #import "UIImage+LL_Utils.h"
+#import "LLImageNameConfig.h"
 
 @implementation UIViewController (LL_Utils)
 
@@ -56,6 +57,57 @@
         [btn setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:mode] forState:UIControlStateNormal];
     }
     return btn;
+}
+
+- (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Note" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        if (handler) {
+            handler(0);
+        }
+    }];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        if (handler) {
+            handler(1);
+        }
+    }];
+    [alert addAction:cancel];
+    [alert addAction:confirm];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)LL_showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:title preferredStyle:UIAlertControllerStyleActionSheet];
+    for (NSInteger i = 0; i < actions.count; i++) {
+        NSString *actionTitle = actions[i];
+        __block NSInteger index = i;
+        UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if (completion) {
+                completion(index);
+            }
+        }];
+        if (currentAction && [actionTitle isEqualToString:currentAction]) {
+            action.enabled = NO;
+            [action setValue:[UIImage LL_imageNamed:kSelectImageName] forKey:@"image"];
+        }
+        [alert addAction:action];
+    }
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString * _Nullable))handler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = text;
+    }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        if (handler) {
+            handler(alert.textFields.firstObject.text);
+        }
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

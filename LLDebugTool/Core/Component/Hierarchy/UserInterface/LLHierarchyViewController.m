@@ -35,6 +35,7 @@
 #import "LLHierarchyDetailViewController.h"
 #import "LLNavigationController.h"
 #import "LLTool.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLHierarchyViewController ()<LLHierarchyViewDelegate, LLHierarchyInfoViewDelegate>
 
@@ -234,7 +235,7 @@
         [actions addObject:NSStringFromClass(view.class)];
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
         [weakSelf setNewSelectView:parentViews[index]];
     }];
 }
@@ -246,7 +247,7 @@
         [actions addObject:NSStringFromClass(view.class)];
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
         [weakSelf setNewSelectView:subviews[index]];
     }];
 }

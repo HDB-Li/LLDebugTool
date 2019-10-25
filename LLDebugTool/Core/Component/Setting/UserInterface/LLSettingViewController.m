@@ -35,6 +35,7 @@
 #import "LLImageNameConfig.h"
 #import "LLConst.h"
 #import "LLTitleSliderCell.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLSettingViewController () <UITableViewDataSource>
 
@@ -119,7 +120,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
         [weakSelf setNewDoubleClick:index + LLDebugToolActionSetting];
     }];
 }
@@ -162,7 +163,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewColorStyle:index];
     }];
 }
@@ -203,7 +204,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewStatusBarStyle:index];
     }];
 }
@@ -248,7 +249,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewEntryWindowStyle:index];
     }];
 }
@@ -295,7 +296,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewLogStyle:index];
     }];
 }

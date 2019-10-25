@@ -87,6 +87,10 @@ static unsigned long long _absolutelyIdentity = 0;
     return topWindow;
 }
 
++ (UIWindow *)keyWindow {
+    return [UIApplication sharedApplication].keyWindow;
+}
+
 + (void)log:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([LLConfig shared].isShowDebugToolLog) {

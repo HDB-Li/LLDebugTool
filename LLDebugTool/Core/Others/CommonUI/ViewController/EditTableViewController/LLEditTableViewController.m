@@ -30,6 +30,7 @@
 #import "LLTableViewSelectableModel.h"
 #import "LLConst.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLEditTableViewController ()
 
@@ -206,7 +207,7 @@
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
-        [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", (long)indexPaths.count] handler:^(NSInteger action) {
+        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", (long)indexPaths.count] handler:^(NSInteger action) {
             if (action == 1) {
                 [self deleteFilesWithIndexPaths:indexPaths];
             }

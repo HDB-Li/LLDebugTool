@@ -33,6 +33,7 @@
 #import "LLDetailTitleCell.h"
 #import "UIImage+LL_Utils.h"
 #import "NSObject+LL_Hierarchy.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLHierarchyDetailViewController ()
 
@@ -65,6 +66,8 @@
     self.tableView.tableHeaderView = headerView;
     
     [self loadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLHierarchyChangeNotification:) name:LLHierarchyChangeNotificationName object:nil];
 }
 
 #pragma mark - Over write
@@ -82,6 +85,11 @@
     LLTitleCellModel *model = self.dataArray[indexPath.section].items[indexPath.row];
     cell.separatorInset = model.separatorInsets;
     return cell;
+}
+
+#pragma mark - NSNotifications
+- (void)didReceiveLLHierarchyChangeNotification:(NSNotification *)notification {
+    [self loadData];
 }
 
 #pragma mark - Primary

@@ -25,6 +25,8 @@
 #import <UIKit/UIKit.h>
 #import "LLTitleCellCategoryModel.h"
 
+FOUNDATION_EXPORT NSNotificationName _Nonnull const LLHierarchyChangeNotificationName;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (LL_Hierarchy)

@@ -19,6 +19,7 @@
 #import "LLHtmlUIWebViewController.h"
 #import "LLHtmlWkWebViewController.h"
 #import "LLConfig.h"
+#import "UIViewController+LL_Utils.h"
 #import <WebKit/WebKit.h>
 
 @interface LLHtmlConfigViewController () <UITextFieldDelegate>
@@ -128,7 +129,7 @@
     [actions addObject:NSStringFromClass([UIWebView class])];
 #pragma clang diagnostic pop
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Web View Style" actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Web View Style" actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
         [weakSelf setNewWebViewClass:actions[index]];
     }];
 }

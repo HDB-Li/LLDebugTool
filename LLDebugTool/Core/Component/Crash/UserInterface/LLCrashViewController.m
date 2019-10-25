@@ -30,6 +30,7 @@
 #import "LLCrashDetailViewController.h"
 #import "LLImageNameConfig.h"
 #import "LLToastUtils.h"
+#import "UIViewController+LL_Utils.h"
 
 static NSString *const kCrashCellID = @"CrashCellID";
 
@@ -87,7 +88,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
-            [weakSelf showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
+            [weakSelf LL_showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
                 if (action == 1) {
                     [weakSelf loadData];
                 }
