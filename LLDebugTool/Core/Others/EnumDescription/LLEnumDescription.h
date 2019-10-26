@@ -52,7 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)controlContentVerticalAlignmentDescription:(UIControlContentVerticalAlignment)contentVerticalAlignment;
 
++ (NSArray <NSString *>*)controlContentVerticalAlignments;
+
 + (NSString *_Nullable)controlContentHorizontalAlignmentDescription:(UIControlContentHorizontalAlignment)contentHorizontalAlignment;
+
++ (NSArray <NSString *>*)controlContentHorizontalAlignments;
 
 + (NSString *_Nullable)buttonTypeDescription:(UIButtonType)buttonType;
 

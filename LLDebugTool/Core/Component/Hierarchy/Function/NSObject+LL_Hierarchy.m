@@ -383,21 +383,45 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIControl (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
+    
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Alignment" detailTitle:[NSString stringWithFormat:@"%@ Horizonally", [LLEnumDescription controlContentHorizontalAlignmentDescription:self.contentHorizontalAlignment]]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription controlContentHorizontalAlignments] currentAction:[LLEnumDescription controlContentHorizontalAlignmentDescription:weakSelf.contentHorizontalAlignment] completion:^(NSInteger index) {
+            weakSelf.contentHorizontalAlignment = index;
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"%@ Vertically", [LLEnumDescription controlContentVerticalAlignmentDescription:self.contentVerticalAlignment]]];
+    model2.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription controlContentVerticalAlignments] currentAction:[LLEnumDescription controlContentVerticalAlignmentDescription:weakSelf.contentVerticalAlignment] completion:^(NSInteger index) {
+            weakSelf.contentVerticalAlignment = index;
+        }];
+    };
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Content" detailTitle:self.isSelected ? @"Selected" : @"Not Selected"] noneInsets];
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Select" flag:self.isSelected] noneInsets];
+    model3.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.selected = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:self.isEnabled ? @"Enabled" : @"Not Enabled"] noneInsets];
+    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Enable" flag:self.isEnabled] noneInsets];
+    model4.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.enabled = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted"];
+    LLTitleCellModel *model5 = [[LLTitleCellModel alloc] initWithTitle:@"Highlight" flag:self.isHighlighted];
+    model5.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.highlighted = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model5];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Control" items:settings];

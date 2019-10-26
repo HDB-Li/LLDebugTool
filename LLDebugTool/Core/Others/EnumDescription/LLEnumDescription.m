@@ -196,6 +196,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)controlContentVerticalAlignments {
+    NSMutableArray *alignments = [[NSMutableArray alloc] init];
+    for (UIControlContentVerticalAlignment i = UIControlContentVerticalAlignmentCenter; i <= UIControlContentVerticalAlignmentFill; i++) {
+        NSString *alignment = [self controlContentVerticalAlignmentDescription:i];
+        if (alignment) {
+            [alignments addObject:alignment];
+        }
+    }
+    return [alignments copy];
+}
+
 + (NSString *)controlContentHorizontalAlignmentDescription:(UIControlContentHorizontalAlignment)contentHorizontalAlignment {
     switch (contentHorizontalAlignment) {
         case UIControlContentHorizontalAlignmentCenter:
@@ -212,6 +223,21 @@
             return @"Trailing";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)controlContentHorizontalAlignments {
+    NSMutableArray *alignments = [[NSMutableArray alloc] init];
+    UIControlContentHorizontalAlignment max = UIControlContentHorizontalAlignmentFill;
+    if (@available(iOS 11.0, *)) {
+        max = UIControlContentHorizontalAlignmentTrailing;
+    }
+    for (UIControlContentHorizontalAlignment i = UIControlContentHorizontalAlignmentCenter; i <= max; i++) {
+        NSString *alignment = [self controlContentHorizontalAlignmentDescription:i];
+        if (alignment) {
+            [alignments addObject:alignment];
+        }
+    }
+    return [alignments copy];
 }
 
 + (NSString *)buttonTypeDescription:(UIButtonType)buttonType {
