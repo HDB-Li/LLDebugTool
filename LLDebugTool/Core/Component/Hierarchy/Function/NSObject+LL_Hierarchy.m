@@ -96,8 +96,28 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     return [NSString stringWithFormat:@"w %@   h %@",[LLFormatterTool formatNumber:@(size.width)], [LLFormatterTool formatNumber:@(size.height)]];
 }
 
+- (CGSize)LL_sizeFromString:(NSString *)string originalSize:(CGSize)size {
+    CGSize newSize = CGSizeFromString(string);
+    if (CGSizeEqualToSize(newSize, CGSizeZero) && ![string isEqualToString:NSStringFromCGSize(CGSizeZero)]) {
+        // Wrong text.
+        [LLTool log:@"Input a wrong size string."];
+        return size;
+    }
+    return newSize;
+}
+
 - (NSString *)LL_hierarchyInsetsTopBottomDescription:(UIEdgeInsets)insets {
     return [NSString stringWithFormat:@"top %@    bottom %@",[LLFormatterTool formatNumber:@(insets.top)], [LLFormatterTool formatNumber:@(insets.bottom)]];
+}
+
+- (UIEdgeInsets)LL_insetsFromString:(NSString *)string originalInsets:(UIEdgeInsets)insets {
+    UIEdgeInsets newInsets = UIEdgeInsetsFromString(string);
+    if (UIEdgeInsetsEqualToEdgeInsets(newInsets, UIEdgeInsetsZero) && ![string isEqualToString:NSStringFromUIEdgeInsets(UIEdgeInsetsZero)]) {
+        // Wrong text.
+        [LLTool log:@"Input a wrong insets string."];
+        return insets;
+    }
+    return newInsets;
 }
 
 - (NSString *)LL_hierarchyInsetsLeftRightDescription:(UIEdgeInsets)insets {
@@ -354,15 +374,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.shadowOffset]];
     model14.block = ^{
         [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGSize(weakSelf.shadowOffset) handler:^(NSString * _Nullable newText) {
-            CGSize newSize = CGSizeFromString(newText);
-            if (CGSizeEqualToSize(newSize, CGSizeZero)) {
-                if (![newText isEqualToString:NSStringFromCGSize(CGSizeZero)]) {
-                    // Wrong text.
-                    [LLTool log:@"Input a wrong size string."];
-                    return;
-                }
-            }
-            weakSelf.shadowOffset = newSize;
+            weakSelf.shadowOffset = [weakSelf LL_sizeFromString:newText originalSize:weakSelf.shadowOffset];
         }];
     };
     [settings addObject:model14];
@@ -481,6 +493,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.titleShadowOffset]] noneInsets];
+    model10.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGSize(weakSelf.titleShadowOffset) handler:^(NSString * _Nullable newText) {
+            weakSelf.titleShadowOffset = [self LL_sizeFromString:newText originalSize:weakSelf.titleShadowOffset];
+        }];
+    };
     [settings addObject:model10];
 #pragma clang diagnostic pop
     
@@ -503,18 +520,33 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 #pragma clang diagnostic pop
     
     LLTitleCellModel *model16 = [[[LLTitleCellModel alloc] initWithTitle:@"Content Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.contentEdgeInsets]] noneInsets];
+    model16.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromUIEdgeInsets(weakSelf.contentEdgeInsets) handler:^(NSString * _Nullable newText) {
+            weakSelf.contentEdgeInsets = [weakSelf LL_insetsFromString:newText originalInsets:weakSelf.contentEdgeInsets];
+        }];
+    };
     [settings addObject:model16];
     
     LLTitleCellModel *model17 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.contentEdgeInsets]] noneInsets];
     [settings addObject:model17];
     
     LLTitleCellModel *model18 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.titleEdgeInsets]] noneInsets];
+    model18.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromUIEdgeInsets(weakSelf.titleEdgeInsets) handler:^(NSString * _Nullable newText) {
+            weakSelf.titleEdgeInsets = [weakSelf LL_insetsFromString:newText originalInsets:weakSelf.titleEdgeInsets];
+        }];
+    };
     [settings addObject:model18];
     
     LLTitleCellModel *model19 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.titleEdgeInsets]] noneInsets];
     [settings addObject:model19];
     
     LLTitleCellModel *model20 = [[[LLTitleCellModel alloc] initWithTitle:@"Image Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.imageEdgeInsets]] noneInsets];
+    model20.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromUIEdgeInsets(weakSelf.imageEdgeInsets) handler:^(NSString * _Nullable newText) {
+            weakSelf.imageEdgeInsets = [weakSelf LL_insetsFromString:newText originalInsets:weakSelf.imageEdgeInsets];
+        }];
+    };
     [settings addObject:model20];
     
     LLTitleCellModel *model21 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.imageEdgeInsets]];
