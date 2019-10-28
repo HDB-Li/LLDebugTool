@@ -847,15 +847,31 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UISlider (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Current" detailTitle:[LLFormatterTool formatNumber:@(self.value)]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.value)] handler:^(NSString * _Nullable newText) {
+            weakSelf.value = [newText floatValue];
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Minimum" detailTitle:[LLFormatterTool formatNumber:@(self.minimumValue)]] noneInsets];
+    model2.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(self.minimumValue)] handler:^(NSString * _Nullable newText) {
+            weakSelf.minimumValue = [newText floatValue];
+        }];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Maximum" detailTitle:[LLFormatterTool formatNumber:@(self.maximumValue)]];
+    model3.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(self.maximumValue)] handler:^(NSString * _Nullable newText) {
+            weakSelf.maximumValue = [newText floatValue];
+        }];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Min Image" detailTitle: [self LL_hierarchyImageDescription:self.minimumValueImage]] noneInsets];
@@ -873,7 +889,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Events" detailTitle:[NSString stringWithFormat:@"Continuous Update %@", [self LL_hierarchyBoolDescription:self.continuous]]];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Continuous" flag:self.isContinuous];
+    model9.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.continuous = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model9];
     
     LLTitleCellCategoryModel *model =  [[LLTitleCellCategoryModel alloc] initWithTitle:@"Slider" items:settings];
