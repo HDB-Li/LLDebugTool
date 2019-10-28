@@ -126,6 +126,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)datePickerModeDescription:(UIDatePickerMode)mode;
 
++ (NSArray <NSString *>*)datePickerModes;
+
 + (NSString *_Nullable)barStyleDescription:(UIBarStyle)style;
 
 + (NSString *_Nullable)searchBarStyleDescription:(UISearchBarStyle)style;

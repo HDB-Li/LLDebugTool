@@ -1782,15 +1782,26 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIDatePicker (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Mode" detailTitle:[LLEnumDescription datePickerModeDescription:self.datePickerMode]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription datePickerModes] currentAction:[LLEnumDescription datePickerModeDescription:weakSelf.datePickerMode] completion:^(NSInteger index) {
+            weakSelf.datePickerMode = index;
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Locale Identifier" detailTitle:self.locale.localeIdentifier] noneInsets];
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Interval" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.minuteInterval]];
+    model3.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%ld",(long)weakSelf.minuteInterval] handler:^(NSString * _Nullable newText) {
+            weakSelf.minuteInterval = [newText integerValue];
+        }];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Date" detailTitle:[self LL_hierarchyObjectDescription:self.date]] noneInsets];

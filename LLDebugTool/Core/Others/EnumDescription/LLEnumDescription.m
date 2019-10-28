@@ -730,6 +730,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)datePickerModes {
+    NSMutableArray *modes = [[NSMutableArray alloc] init];
+    for (UIDatePickerMode i = UIDatePickerModeDate; i <= UIDatePickerModeCountDownTimer; i++) {
+        NSString *mode = [self datePickerModeDescription:i];
+        if (mode) {
+            [modes addObject:mode];
+        }
+    }
+    return [modes copy];
+}
+
 + (NSString *)barStyleDescription:(UIBarStyle)style {
     switch (style) {
         case UIBarStyleDefault:
