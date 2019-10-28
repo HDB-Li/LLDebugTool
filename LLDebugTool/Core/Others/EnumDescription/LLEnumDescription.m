@@ -678,6 +678,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)tableViewCellSelectionStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UITableViewCellSelectionStyle i = UITableViewCellSelectionStyleNone; i <= UITableViewCellSelectionStyleDefault; i++) {
+        NSString *style = [self tableViewCellSelectionStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
 + (NSString *)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type {
     switch (type) {
         case UITableViewCellAccessoryNone:
@@ -692,6 +703,17 @@
             return @"Detail Button";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)tableViewCellAccessoryTypes {
+    NSMutableArray *types = [[NSMutableArray alloc] init];
+    for (UITableViewCellAccessoryType i = UITableViewCellAccessoryNone; i <= UITableViewCellAccessoryDetailButton; i++) {
+        NSString *type = [self tableViewCellAccessoryTypeDescription:i];
+        if (type) {
+            [types addObject:type];
+        }
+    }
+    return [types copy];
 }
 
 + (NSString *)datePickerModeDescription:(UIDatePickerMode)mode {

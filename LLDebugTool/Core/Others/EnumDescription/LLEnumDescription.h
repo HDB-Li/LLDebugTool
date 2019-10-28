@@ -118,7 +118,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)tableViewCellSelectionStyleDescription:(UITableViewCellSelectionStyle)style;
 
++ (NSArray <NSString *>*)tableViewCellSelectionStyles;
+
 + (NSString *_Nullable)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type;
+
++ (NSArray <NSString *>*)tableViewCellAccessoryTypes;
 
 + (NSString *_Nullable)datePickerModeDescription:(UIDatePickerMode)mode;
 

@@ -1437,7 +1437,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UITableViewCell (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
-    
+    __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.imageView.image]];
@@ -1447,27 +1447,65 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Selection" detailTitle:[LLEnumDescription tableViewCellSelectionStyleDescription:self.selectionStyle]] noneInsets];
+    model3.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellSelectionStyles] currentAction:[LLEnumDescription tableViewCellSelectionStyleDescription:weakSelf.selectionStyle] completion:^(NSInteger index) {
+            weakSelf.selectionStyle = index;
+        }];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Accessory" detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.accessoryType]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes] currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.accessoryType] completion:^(NSInteger index) {
+            weakSelf.accessoryType = index;
+        }];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[LLTitleCellModel alloc] initWithTitle:@"Editing Acc." detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.editingAccessoryType]];
+    model5.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes] currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.editingAccessoryType] completion:^(NSInteger index) {
+            weakSelf.editingAccessoryType = index;
+        }];
+    };
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:@"Indentation" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.indentationLevel]] noneInsets];
+    model6.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%ld",(long)weakSelf.indentationLevel] handler:^(NSString * _Nullable newText) {
+            weakSelf.indentationLevel = [newText integerValue];
+        }];
+    };
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[LLFormatterTool formatNumber:@(self.indentationWidth)]] noneInsets];
+    model7.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.indentationWidth)] handler:^(NSString * _Nullable newText) {
+            weakSelf.indentationWidth = [newText doubleValue];
+        }];
+    };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Indent While Editing %@",[self LL_hierarchyBoolDescription:self.shouldIndentWhileEditing]]] noneInsets];
+    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Indent While Editing %@",[self LL_hierarchyBoolDescription:self.shouldIndentWhileEditing]] flag:self.shouldIndentWhileEditing] noneInsets];
+    model8.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.shouldIndentWhileEditing = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Re-order Controls %@",[self LL_hierarchyBoolDescription:self.showsReorderControl]]];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Re-order Controls %@",[self LL_hierarchyBoolDescription:self.showsReorderControl]] flag:self.showsReorderControl];
+    model9.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsReorderControl = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model9];
     
     LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]] noneInsets];
+    model10.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromUIEdgeInsets(weakSelf.separatorInset) handler:^(NSString * _Nullable newText) {
+            weakSelf.separatorInset = [weakSelf LL_insetsFromString:newText originalInsets:weakSelf.separatorInset];
+        }];
+    };
     [settings addObject:model10];
     
     LLTitleCellModel *model11 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]];
