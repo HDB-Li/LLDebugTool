@@ -546,6 +546,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)progressViewStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UIProgressViewStyle i = UIProgressViewStyleDefault; i <= UIProgressViewStyleBar; i++) {
+        NSString *style = [self progressViewStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
 + (NSString *)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style {
     switch (style) {
         case UIScrollViewIndicatorStyleDefault:

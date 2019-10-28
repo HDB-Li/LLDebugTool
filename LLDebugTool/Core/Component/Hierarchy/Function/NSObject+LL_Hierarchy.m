@@ -1002,12 +1002,23 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIProgressView (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription progressViewStyleDescription:self.progressViewStyle]];
+    model1.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription progressViewStyles] currentAction:[LLEnumDescription progressViewStyleDescription:weakSelf.progressViewStyle] completion:^(NSInteger index) {
+            weakSelf.progressViewStyle = index;
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Progress" detailTitle:[LLFormatterTool formatNumber:@(self.progress)]];
+    model2.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.progress)] handler:^(NSString * _Nullable newText) {
+            weakSelf.progress = [newText floatValue];
+        }];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Progress Tint" detailTitle:[self LL_hierarchyColorDescription:self.progressTintColor]] noneInsets];

@@ -96,6 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)progressViewStyleDescription:(UIProgressViewStyle)style;
 
++ (NSArray <NSString *>*)progressViewStyles;
+
 + (NSString *_Nullable)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style;
 
 + (NSString *_Nullable)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode;
