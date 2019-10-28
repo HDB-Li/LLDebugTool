@@ -1305,6 +1305,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UITableView (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfSections]] noneInsets];
@@ -1314,6 +1315,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Separator" detailTitle:[LLEnumDescription tableViewCellSeparatorStyleDescription:self.separatorStyle]] noneInsets];
+    model3.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellSeparatorStyles] currentAction:[LLEnumDescription tableViewCellSeparatorStyleDescription:weakSelf.separatorStyle] completion:^(NSInteger index) {
+            weakSelf.separatorStyle = index;
+        }];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.separatorColor]];
@@ -1326,6 +1332,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]] noneInsets];
+    model7.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromUIEdgeInsets(weakSelf.separatorInset) handler:^(NSString * _Nullable newText) {
+            weakSelf.separatorInset = [weakSelf LL_insetsFromString:newText originalInsets:weakSelf.separatorInset];
+        }];
+    };
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]] noneInsets];
@@ -1333,22 +1344,48 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     
     if (@available(iOS 11.0, *)) {
         LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:self.separatorInsetReference]];
+        model9.block = ^{
+            [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewSeparatorInsetReferences] currentAction:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:weakSelf.separatorInsetReference] completion:^(NSInteger index) {
+                weakSelf.separatorInsetReference = index;
+            }];
+        };
         [settings addObject:model9];
     }
     
-    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Selection" detailTitle:self.allowsSelection ? @"Allowed" : @"Disabled"] noneInsets];
+    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Selection" detailTitle:self.allowsSelection ? @"Allowed" : @"Disabled" flag:self.allowsSelection] noneInsets];
+    model10.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.allowsSelection = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model10];
     
-    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelection ? @"" : @"Disabled"]] noneInsets];
+    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelection ? @"" : @"Disabled"] flag:self.allowsMultipleSelection] noneInsets];
+    model11.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.allowsMultipleSelection = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Edit Selection" detailTitle:self.allowsSelectionDuringEditing ? @"Allowed" : @"Disabled"] noneInsets];
+    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Edit Selection" detailTitle:self.allowsSelectionDuringEditing ? @"Allowed" : @"Disabled" flag:self.allowsSelectionDuringEditing] noneInsets];
+    model12.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.allowsSelectionDuringEditing = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelection ? @"" : @"Disabled"]];
+    LLTitleCellModel *model13 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@",self.allowsMultipleSelectionDuringEditing ? @"" : @"Disabled"] flag:self.allowsMultipleSelectionDuringEditing];
+    model13.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.allowsMultipleSelectionDuringEditing = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model13];
     
     LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:@"Min Display" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.sectionIndexMinimumDisplayRowCount]] noneInsets];
+    model14.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%ld",(long)self.sectionIndexMinimumDisplayRowCount] handler:^(NSString * _Nullable newText) {
+            weakSelf.sectionIndexMinimumDisplayRowCount = [newText integerValue];
+        }];
+    };
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexColor]] noneInsets];
@@ -1361,12 +1398,27 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model17];
     
     LLTitleCellModel *model18 = [[[LLTitleCellModel alloc] initWithTitle:@"Row Height" detailTitle:[LLFormatterTool formatNumber:@(self.rowHeight)]] noneInsets];
+    model18.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.rowHeight)] handler:^(NSString * _Nullable newText) {
+            weakSelf.rowHeight = [newText doubleValue];
+        }];
+    };
     [settings addObject:model18];
     
     LLTitleCellModel *model19 = [[[LLTitleCellModel alloc] initWithTitle:@"Section Header" detailTitle:[LLFormatterTool formatNumber:@(self.sectionHeaderHeight)]] noneInsets];
+    model19.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(self.sectionHeaderHeight)] handler:^(NSString * _Nullable newText) {
+            weakSelf.sectionHeaderHeight = [newText doubleValue];
+        }];
+    };
     [settings addObject:model19];
     
     LLTitleCellModel *model20 = [[LLTitleCellModel alloc] initWithTitle:@"Section Footer" detailTitle:[LLFormatterTool formatNumber:@(self.sectionFooterHeight)]];
+    model20.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.sectionFooterHeight)] handler:^(NSString * _Nullable newText) {
+            weakSelf.sectionFooterHeight = [newText doubleValue];
+        }];
+    };
     [settings addObject:model20];
 
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Table View" items:settings];

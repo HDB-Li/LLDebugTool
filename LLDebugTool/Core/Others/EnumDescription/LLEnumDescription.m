@@ -632,6 +632,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)tableViewCellSeparatorStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UITableViewCellSeparatorStyle i = UITableViewCellSeparatorStyleNone; i <= UITableViewCellSeparatorStyleSingleLineEtched; i++) {
+        NSString *style = [self tableViewCellSeparatorStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
 + (NSString *)tableViewSeparatorInsetReferenceDescription:(UITableViewSeparatorInsetReference)reference {
     switch (reference) {
         case UITableViewSeparatorInsetFromCellEdges:
@@ -640,6 +651,17 @@
             return @"Automatic Insets";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)tableViewSeparatorInsetReferences {
+    NSMutableArray *references = [[NSMutableArray alloc] init];
+    for (UITableViewSeparatorInsetReference i = UITableViewSeparatorInsetFromCellEdges; i <= UITableViewSeparatorInsetFromAutomaticInsets; i++) {
+        NSString *reference = [self tableViewSeparatorInsetReferenceDescription:i];
+        if (reference) {
+            [references addObject:reference];
+        }
+    }
+    return [references copy];
 }
 
 + (NSString *)tableViewCellSelectionStyleDescription:(UITableViewCellSelectionStyle)style {
