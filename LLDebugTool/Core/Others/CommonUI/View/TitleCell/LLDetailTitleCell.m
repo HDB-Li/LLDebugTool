@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) UILabel *detailLabel;
 
+@property (nonatomic, strong) MASConstraint *detailLabelRightCons;
+
 @end
 
 @implementation LLDetailTitleCell
@@ -44,7 +46,7 @@
     [self.titleLabelBottomCons uninstall];
     
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-kLLGeneralMargin);
+        self.detailLabelRightCons = make.right.mas_equalTo(-kLLGeneralMargin);
         make.top.mas_equalTo(kLLGeneralMargin);
         make.bottom.mas_equalTo(-kLLGeneralMargin);
         make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin / 2.0);

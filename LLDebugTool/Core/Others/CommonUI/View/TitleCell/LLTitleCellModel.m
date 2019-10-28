@@ -32,8 +32,13 @@
 @implementation LLTitleCellModel
 
 - (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
+    return [self initWithTitle:title detailTitle:nil flag:flag];
+}
+
+- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle flag:(BOOL)flag {
     if (self = [super init]) {
         _title = [title copy];
+        _detailTitle = [detailTitle copy];
         _flag = flag;
         _cellClass = NSStringFromClass(LLTitleSwitchCell.class);
         _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);

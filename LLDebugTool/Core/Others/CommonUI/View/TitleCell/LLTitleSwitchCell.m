@@ -40,7 +40,10 @@
     [super initUI];
     [self.contentView addSubview:self.swit];
     
+    [self.detailLabelRightCons uninstall];
+    
     [self.swit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.detailLabel.mas_right).offset(kLLGeneralMargin / 2.0);
         make.right.mas_equalTo(-kLLGeneralMargin);
         make.top.mas_equalTo(kLLGeneralMargin);
         make.bottom.mas_equalTo(-kLLGeneralMargin);
