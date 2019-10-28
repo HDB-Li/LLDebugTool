@@ -774,20 +774,40 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UISegmentedControl (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
+    
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:self.isMomentary ? @"Momentary" : @"Persistent Selection"] noneInsets];
+    LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Momentary" flag:self.isMomentary] noneInsets];
+    model1.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.momentary = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Segments" detailTitle:[NSString stringWithFormat:@"%ld",(unsigned long)self.numberOfSegments]];
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.selectedSegmentIndex]] noneInsets];
+    model3.block = ^{
+        NSMutableArray *actions = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < weakSelf.numberOfSegments; i++) {
+            [actions addObject:[NSString stringWithFormat:@"%ld",(long)i]];
+        }
+        [weakSelf LL_showActionSheetWithActions:actions currentAction:[NSString stringWithFormat:@"%ld",(long)weakSelf.selectedSegmentIndex] completion:^(NSInteger index) {
+            weakSelf.selectedSegmentIndex = index;
+        }];
+    };
     [settings addObject:model3];
     
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
-        LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.largeContentTitle]] noneInsets];
+        LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Large title" detailTitle:[self LL_hierarchyTextDescription:self.largeContentTitle]] noneInsets];
+        model4.block = ^{
+            [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.largeContentTitle handler:^(NSString * _Nullable newText) {
+                weakSelf.largeContentTitle = newText;
+            }];
+        };
         [settings addObject:model4];
         
         LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Image" detailTitle: [self LL_hierarchyImageDescription:self.largeContentImage]] noneInsets];
@@ -801,7 +821,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Offset" detailTitle:[self LL_hierarchySizeDescription:[self contentOffsetForSegmentAtIndex:self.selectedSegmentIndex]]] noneInsets];
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Size Mode" detailTitle:self.apportionsSegmentWidthsByContent ? @"Proportional to Content" : @"Equal Widths"] noneInsets];
+    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Apportions segment width" flag:self.apportionsSegmentWidthsByContent] noneInsets];
+    model8.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.apportionsSegmentWidthsByContent = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Width" detailTitle:[LLFormatterTool formatNumber:@([self widthForSegmentAtIndex:self.selectedSegmentIndex])]];
