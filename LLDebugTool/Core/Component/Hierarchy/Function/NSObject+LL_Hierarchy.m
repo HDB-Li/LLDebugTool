@@ -150,6 +150,17 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [[NSNotificationCenter defaultCenter] postNotificationName:LLHierarchyChangeNotificationName object:self];
 }
 
+- (void)LL_replaceAttributeString:(NSString *)newString key:(NSString *)key {
+    NSAttributedString *string = [self valueForKey:key];
+    if (string && ![string isKindOfClass:[NSAttributedString class]]) {
+        [LLTool log:[NSString stringWithFormat:@"KeyPath:%@ isn't a NSAttributedString or nil", key]];
+        return;
+    }
+    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithAttributedString:string];
+    [attribute replaceCharactersInRange:NSMakeRange(0, string.length) withString:newString];
+    [self setValue:string forKey:key];
+}
+
 @end
 
 @implementation UIView (LL_Hierarchy)
@@ -289,9 +300,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
             if (weakSelf.attributedText == nil) {
                 weakSelf.text = newText;
             } else {
-                NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithAttributedString:weakSelf.attributedText];
-                [attribute replaceCharactersInRange:NSMakeRange(0, weakSelf.attributedText.length) withString:newText];
-                weakSelf.attributedText = attribute;
+                [weakSelf LL_replaceAttributeString:newText key:@"attributedText"];
             }
         }];
     };
@@ -601,12 +610,24 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UITextField (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
+    
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.text handler:^(NSString * _Nullable newText) {
+            weakSelf.text = newText;
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText]] noneInsets];
+    model2.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.attributedText.string handler:^(NSString * _Nullable newText) {
+            [weakSelf LL_replaceAttributeString:newText key:@"attributedText"];
+        }];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@", [self LL_hierarchyBoolDescription:self.allowsEditingTextAttributes]]] noneInsets];
@@ -616,12 +637,31 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
+    model5.block = ^{
+      [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%@",[LLFormatterTool formatNumber:@(weakSelf.font.pointSize)]] handler:^(NSString * _Nullable newText) {
+          weakSelf.font = [weakSelf.font fontWithSize:[newText doubleValue]];
+      }];
+    };
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]] noneInsets];
+    model6.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAlignments] currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment] completion:^(NSInteger index) {
+            weakSelf.textAlignment = index;
+        }];
+    };
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder ?: self.attributedPlaceholder.string]];
+    model7.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:(weakSelf.placeholder ?: weakSelf.attributedPlaceholder.string) handler:^(NSString * _Nullable newText) {
+            if (weakSelf.placeholder) {
+                weakSelf.placeholder = newText;
+            } else {
+                [weakSelf LL_replaceAttributeString:newText key:@"attributedPlaceholder"];
+            }
+        }];
+    };
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle: [self LL_hierarchyImageDescription:self.background]] noneInsets];
@@ -631,39 +671,91 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model9];
     
     LLTitleCellModel *model10 = [[LLTitleCellModel alloc] initWithTitle:@"Border Style" detailTitle:[LLEnumDescription textBorderStyleDescription:self.borderStyle]];
+    model10.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textBorderStyles] currentAction:[LLEnumDescription textBorderStyleDescription:weakSelf.borderStyle] completion:^(NSInteger index) {
+            weakSelf.borderStyle = index;
+        }];
+    };
     [settings addObject:model10];
     
     LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:@"Clear Button" detailTitle:[LLEnumDescription textFieldViewModeDescription:self.clearButtonMode]] noneInsets];
+    model11.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textFieldViewModes] currentAction:[LLEnumDescription textFieldViewModeDescription:weakSelf.clearButtonMode] completion:^(NSInteger index) {
+            weakSelf.clearButtonMode = index;
+        }];
+    };
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clear when editing begins %@", [self LL_hierarchyBoolDescription:self.clearsOnBeginEditing]]];
+    LLTitleCellModel *model12 = [[LLTitleCellModel alloc] initWithTitle:@"Clear on edit" flag:self.clearsOnBeginEditing];
+    model12.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.clearsOnBeginEditing = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model12];
     
     LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:@"Min Font Size" detailTitle:[LLFormatterTool formatNumber:@(self.minimumFontSize)]] noneInsets];
+    model13.block = ^{
+      [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.minimumFontSize)] handler:^(NSString * _Nullable newText) {
+            weakSelf.minimumFontSize = [newText doubleValue];
+        }];
+    };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Adjusts to Fit %@",[self LL_hierarchyBoolDescription:self.adjustsFontSizeToFitWidth]]];
+    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:@"Adjust font size" flag:self.adjustsFontSizeToFitWidth];
+    model14.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.adjustsFontSizeToFitWidth = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [[[LLTitleCellModel alloc] initWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
+    model15.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes] currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType] completion:^(NSInteger index) {
+            weakSelf.autocapitalizationType = index;
+        }];
+    };
     [settings addObject:model15];
     
     LLTitleCellModel *model16 = [[[LLTitleCellModel alloc] initWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
+    model16.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes] currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType] completion:^(NSInteger index) {
+            weakSelf.autocorrectionType = index;
+        }];
+    };
     [settings addObject:model16];
     
     LLTitleCellModel *model17 = [[[LLTitleCellModel alloc] initWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]] noneInsets];
+    model17.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardTypes] currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType] completion:^(NSInteger index) {
+            weakSelf.keyboardType = index;
+        }];
+    };
     [settings addObject:model17];
     
     LLTitleCellModel *model18 = [[[LLTitleCellModel alloc] initWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]] noneInsets];
+    model18.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardAppearances] currentAction:[LLEnumDescription keyboardAppearanceDescription:weakSelf.keyboardAppearance] completion:^(NSInteger index) {
+            weakSelf.keyboardAppearance = index;
+        }];
+    };
     [settings addObject:model18];
     
     LLTitleCellModel *model19 = [[[LLTitleCellModel alloc] initWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]] noneInsets];
+    model19.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription returnKeyTypes] currentAction:[LLEnumDescription returnKeyTypeDescription:weakSelf.returnKeyType] completion:^(NSInteger index) {
+            weakSelf.returnKeyType = index;
+        }];
+    };
     [settings addObject:model19];
     
     LLTitleCellModel *model20 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@", [self LL_hierarchyBoolDescription:self.enablesReturnKeyAutomatically]]] noneInsets];
     [settings addObject:model20];
     
-    LLTitleCellModel *model21 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",[self LL_hierarchyBoolDescription:self.secureTextEntry]]];
+    LLTitleCellModel *model21 = [[LLTitleCellModel alloc] initWithTitle:@"Secure Entry" flag:self.isSecureTextEntry];
+    model21.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.secureTextEntry = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model21];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text Field" items:settings];

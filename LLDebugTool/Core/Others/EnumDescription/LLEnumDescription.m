@@ -298,6 +298,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)textBorderStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UITextBorderStyle i = UITextBorderStyleNone; i <= UITextBorderStyleRoundedRect; i++) {
+        NSString *style = [self textBorderStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
 + (NSString *)textFieldViewModeDescription:(UITextFieldViewMode)mode {
     switch (mode) {
         case UITextFieldViewModeNever:
@@ -312,7 +323,18 @@
     return nil;
 }
 
-+ (NSString *_Nullable)textAutocapitalizationTypeDescription:(UITextAutocapitalizationType)type {
++ (NSArray <NSString *>*)textFieldViewModes {
+    NSMutableArray *modes = [[NSMutableArray alloc] init];
+    for (UITextFieldViewMode i = UITextFieldViewModeNever; i <= UITextFieldViewModeAlways; i++) {
+        NSString *mode = [self textFieldViewModeDescription:i];
+        if (mode) {
+            [modes addObject:mode];
+        }
+    }
+    return [modes copy];
+}
+
++ (NSString *)textAutocapitalizationTypeDescription:(UITextAutocapitalizationType)type {
     switch (type) {
         case UITextAutocapitalizationTypeNone:
             return @"None";
@@ -326,19 +348,41 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)textAutocapitalizationTypes {
+    NSMutableArray *types = [[NSMutableArray alloc] init];
+    for (UITextAutocapitalizationType i = UITextAutocapitalizationTypeNone; i <= UITextAutocapitalizationTypeAllCharacters; i++) {
+        NSString *type = [self textAutocapitalizationTypeDescription:i];
+        if (type) {
+            [types addObject:type];
+        }
+    }
+    return [types copy];
+}
+
 + (NSString *)textAutocorrectionTypeDescription:(UITextAutocorrectionType)type {
     switch (type) {
         case UITextAutocorrectionTypeDefault:
             return @"Default";
-        case UITextAutocorrectionTypeYes:
-            return @"YES";
         case UITextAutocorrectionTypeNo:
             return @"NO";
+        case UITextAutocorrectionTypeYes:
+            return @"YES";
     }
     return nil;
 }
 
-+ (NSString *_Nullable)keyboardTypeDescription:(UIKeyboardType)type {
++ (NSArray <NSString *>*)textAutocorrectionTypes {
+    NSMutableArray *types = [[NSMutableArray alloc] init];
+    for (UITextAutocorrectionType i = 0; i <= UITextAutocorrectionTypeYes; i++) {
+        NSString *type = [self textAutocorrectionTypeDescription:i];
+        if (type) {
+            [types addObject:type];
+        }
+    }
+    return [types copy];
+}
+
++ (NSString *)keyboardTypeDescription:(UIKeyboardType)type {
     switch (type) {
         case UIKeyboardTypeDefault:
             return @"Default";
@@ -368,6 +412,21 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)keyboardTypes {
+    NSMutableArray *types = [[NSMutableArray alloc] init];
+    UIKeyboardType max = UIKeyboardTypeWebSearch;
+    if (@available(iOS 10.0, *)) {
+        max = UIKeyboardTypeASCIICapableNumberPad;
+    }
+    for (UIKeyboardType i = UIKeyboardTypeDefault; i <= max; i++) {
+        NSString *type = [self keyboardTypeDescription:i];
+        if (type) {
+            [types addObject:type];
+        }
+    }
+    return [types copy];
+}
+
 + (NSString *)keyboardAppearanceDescription:(UIKeyboardAppearance)appearance {
     switch (appearance) {
         case UIKeyboardAppearanceDefault:
@@ -378,6 +437,17 @@
             return @"Light";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)keyboardAppearances {
+    NSMutableArray *appearances = [[NSMutableArray alloc] init];
+    for (UIKeyboardAppearance i = UIKeyboardAppearanceDefault; i <= UIKeyboardAppearanceLight; i++) {
+        NSString *appearance = [self keyboardAppearanceDescription:i];
+        if (appearance) {
+            [appearances addObject:appearance];
+        }
+    }
+    return [appearances copy];
 }
 
 + (NSString *)returnKeyTypeDescription:(UIReturnKeyType)type {
@@ -408,6 +478,21 @@
             return @"Continue";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)returnKeyTypes {
+    NSMutableArray *types = [[NSMutableArray alloc] init];
+    UIReturnKeyType max = UIReturnKeyEmergencyCall;
+    if (@available(iOS 9.0, *)) {
+        max = UIReturnKeyContinue;
+    }
+    for (UIReturnKeyType i = UIReturnKeyDefault; i <= max; i++) {
+        NSString *type = [self returnKeyTypeDescription:i];
+        if (type) {
+            [types addObject:type];
+        }
+    }
+    return [types copy];
 }
 
 + (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style {

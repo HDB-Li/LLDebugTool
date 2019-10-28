@@ -64,17 +64,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)textBorderStyleDescription:(UITextBorderStyle)style;
 
++ (NSArray <NSString *>*)textBorderStyles;
+
 + (NSString *_Nullable)textFieldViewModeDescription:(UITextFieldViewMode)mode;
+
++ (NSArray <NSString *>*)textFieldViewModes;
 
 + (NSString *_Nullable)textAutocapitalizationTypeDescription:(UITextAutocapitalizationType)type;
 
++ (NSArray <NSString *>*)textAutocapitalizationTypes;
+
 + (NSString *_Nullable)textAutocorrectionTypeDescription:(UITextAutocorrectionType)type;
+
++ (NSArray <NSString *>*)textAutocorrectionTypes;
 
 + (NSString *_Nullable)keyboardTypeDescription:(UIKeyboardType)type;
 
++ (NSArray <NSString *>*)keyboardTypes;
+
 + (NSString *_Nullable)keyboardAppearanceDescription:(UIKeyboardAppearance)appearance;
 
++ (NSArray <NSString *>*)keyboardAppearances;
+
 + (NSString *_Nullable)returnKeyTypeDescription:(UIReturnKeyType)type;
+
++ (NSArray <NSString *>*)returnKeyTypes;
 
 + (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style;
 
