@@ -1049,12 +1049,33 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIPageControl (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Pages" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.numberOfPages]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%ld",(long)weakSelf.numberOfPages] handler:^(NSString * _Nullable newText) {
+            weakSelf.numberOfPages = [newText integerValue];
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Current Page" detailTitle:[NSString stringWithFormat:@"%ld",(long)self.currentPage]] noneInsets];
+    model2.block = ^{
+        if (weakSelf.numberOfPages < 10) {
+            NSMutableArray *actions = [[NSMutableArray alloc] init];
+            for (NSInteger i = 0; i < weakSelf.numberOfPages; i++) {
+                [actions addObject:[NSString stringWithFormat:@"%ld",(long)i]];
+            }
+            [weakSelf LL_showActionSheetWithActions:actions currentAction:[NSString stringWithFormat:@"%ld",(long)weakSelf.currentPage] completion:^(NSInteger index) {
+                weakSelf.currentPage = index;
+            }];
+        } else {
+            [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%ld",(long)weakSelf.currentPage] handler:^(NSString * _Nullable newText) {
+                weakSelf.currentPage = [newText integerValue];
+            }];
+        }
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Hides for Single Page %@",[self LL_hierarchyBoolDescription:self.hidesForSinglePage]]] noneInsets];
