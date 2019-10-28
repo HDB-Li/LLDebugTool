@@ -912,9 +912,14 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UISwitch (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
-    LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"State" detailTitle:[self LL_hierarchyBoolDescription:self.isOn]] noneInsets];
+    LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"State" flag:self.isOn] noneInsets];
+    model1.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.on = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"On Tint" detailTitle:[self LL_hierarchyColorDescription:self.onTintColor]] noneInsets];
