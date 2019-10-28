@@ -100,7 +100,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style;
 
++ (NSArray <NSString *>*)scrollViewIndicatorStyles;
+
 + (NSString *_Nullable)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode;
+
++ (NSArray <NSString *>*)scrollViewKeyboardDismissModes;
 
 + (NSString *_Nullable)tableViewStyleDescription:(UITableViewStyle)style;
 

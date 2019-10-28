@@ -1180,51 +1180,113 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIScrollView (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
+    
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription scrollViewIndicatorStyleDescription:self.indicatorStyle]];
+    model1.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription scrollViewIndicatorStyles] currentAction:[LLEnumDescription scrollViewIndicatorStyleDescription:weakSelf.indicatorStyle] completion:^(NSInteger index) {
+            weakSelf.indicatorStyle = index;
+        }];
+    };
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Indicators" detailTitle:[NSString stringWithFormat:@"Shows Horizontal Indicator %@",[self LL_hierarchyBoolDescription:self.showsHorizontalScrollIndicator]]] noneInsets];
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Shows Horizontal Indicator" flag:self.showsHorizontalScrollIndicator] noneInsets];
+    model2.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsHorizontalScrollIndicator = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Vertical Indicator %@",[self LL_hierarchyBoolDescription:self.showsVerticalScrollIndicator]]];
+    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Shows Vertical Indicator" flag:self.showsVerticalScrollIndicator];
+    model3.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsVerticalScrollIndicator = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Scrolling" detailTitle:[NSString stringWithFormat:@"Scrolling %@", self.scrollEnabled ? @"Enabled" : @"Not Enabled"]] noneInsets];
+    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Scroll enable" flag:self.isScrollEnabled] noneInsets];
+    model4.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.scrollEnabled = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Paging %@", self.pagingEnabled ? @"Enabled" : @"Disabled"]] noneInsets];
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Page enable" flag:self.isPagingEnabled] noneInsets];
+    model5.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.pagingEnabled = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Direction Lock %@",self.isDirectionalLockEnabled ? @"Enabled" : @"Disabled"]];
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Direction lock enable" flag:weakSelf.isDirectionalLockEnabled];
+    model6.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.directionalLockEnabled = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Bounce" detailTitle:[NSString stringWithFormat:@"Bounces %@",[self LL_hierarchyBoolDescription:self.bounces]]] noneInsets];
+    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Bounce" flag:self.bounces] noneInsets];
+    model7.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.bounces = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Bounce Horizontal %@",[self LL_hierarchyBoolDescription:self.alwaysBounceHorizontal]]] noneInsets];
+    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Bounce Horizontal" flag:self.alwaysBounceHorizontal] noneInsets];
+    model8.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.alwaysBounceHorizontal = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Bounce Vertical %@",[self LL_hierarchyBoolDescription:self.alwaysBounceVertical]]];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Bounce Vertical" flag:self.alwaysBounceVertical];
+    model9.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.alwaysBounceVertical = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model9];
     
     LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Zoom Min" detailTitle:[LLFormatterTool formatNumber:@(self.minimumZoomScale)]] noneInsets];
+    model10.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.minimumZoomScale)] handler:^(NSString * _Nullable newText) {
+            weakSelf.minimumZoomScale = [newText doubleValue];
+        }];
+    };
     [settings addObject:model10];
     
     LLTitleCellModel *model11 = [[LLTitleCellModel alloc] initWithTitle:@"Max" detailTitle:[LLFormatterTool formatNumber:@(self.maximumZoomScale)]];
+    model11.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.maximumZoomScale)] handler:^(NSString * _Nullable newText) {
+            weakSelf.maximumZoomScale = [newText doubleValue];
+        }];
+    };
     [settings addObject:model11];
     
     LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Touch" detailTitle:[NSString stringWithFormat:@"Zoom Bounces %@",[self LL_hierarchyBoolDescription:self.isZoomBouncing]]] noneInsets];
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Delays Content Touches %@",[self LL_hierarchyBoolDescription:self.delaysContentTouches]]] noneInsets];
+    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:@"Delays Content Touches" flag:self.delaysContentTouches] noneInsets];
+    model13.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.delaysContentTouches = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Cancellable Content Touches %@",[self LL_hierarchyBoolDescription:self.canCancelContentTouches]]];
+    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:@"Cancellable Content Touches" flag:self.canCancelContentTouches];
+    model14.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.canCancelContentTouches = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:@"Keyboard" detailTitle:[LLEnumDescription scrollViewKeyboardDismissModeDescription:self.keyboardDismissMode]];
+    model15.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription scrollViewKeyboardDismissModes] currentAction:[LLEnumDescription scrollViewKeyboardDismissModeDescription:weakSelf.keyboardDismissMode] completion:^(NSInteger index) {
+            weakSelf.keyboardDismissMode = index;
+        }];
+    };
     [settings addObject:model15];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Scroll View" items:settings];

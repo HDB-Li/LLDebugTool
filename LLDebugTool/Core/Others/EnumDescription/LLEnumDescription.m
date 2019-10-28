@@ -569,6 +569,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)scrollViewIndicatorStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UIScrollViewIndicatorStyle i = UIScrollViewIndicatorStyleDefault; i <= UIScrollViewIndicatorStyleWhite; i++) {
+        NSString *style = [self scrollViewIndicatorStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
 + (NSString *)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode {
     switch (mode) {
         case UIScrollViewKeyboardDismissModeNone:
@@ -579,6 +590,17 @@
             return @"Dismiss interactively";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)scrollViewKeyboardDismissModes {
+    NSMutableArray *modes = [[NSMutableArray alloc] init];
+    for (UIScrollViewKeyboardDismissMode i = UIScrollViewKeyboardDismissModeNone; i <= UIScrollViewKeyboardDismissModeInteractive; i++) {
+        NSString *mode = [self scrollViewKeyboardDismissModeDescription:i];
+        if (mode) {
+            [modes addObject:mode];
+        }
+    }
+    return [modes copy];
 }
 
 + (NSString *)tableViewStyleDescription:(UITableViewStyle)style {
