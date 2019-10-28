@@ -53,7 +53,7 @@
     return [breaks copy];
 }
 
-+ (NSString *_Nullable)userInterfaceStyleDescription:(UIUserInterfaceStyle)style {
++ (NSString *)userInterfaceStyleDescription:(UIUserInterfaceStyle)style {
     switch (style) {
         case UIUserInterfaceStyleUnspecified:
             return @"Unspecified";
@@ -65,7 +65,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)userInterfaceSizeClassDescription:(UIUserInterfaceSizeClass)sizeClass {
++ (NSString *)userInterfaceSizeClassDescription:(UIUserInterfaceSizeClass)sizeClass {
     switch (sizeClass) {
         case UIUserInterfaceSizeClassUnspecified:
             return @"Unspecified";
@@ -77,7 +77,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)traitEnvironmentLayoutDirectionDescription:(UITraitEnvironmentLayoutDirection)direction {
++ (NSString *)traitEnvironmentLayoutDirectionDescription:(UITraitEnvironmentLayoutDirection)direction {
     switch (direction) {
         case UITraitEnvironmentLayoutDirectionUnspecified:
             return @"Unspecified";
@@ -89,7 +89,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)viewContentModeDescription:(UIViewContentMode)mode {
++ (NSString *)viewContentModeDescription:(UIViewContentMode)mode {
     switch (mode) {
         case UIViewContentModeScaleToFill:
             return @"ScaleToFill";
@@ -495,7 +495,7 @@
     return [types copy];
 }
 
-+ (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style {
++ (NSString *)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style {
     switch (style) {
 #ifdef __IPHONE_13_0
         case UIActivityIndicatorViewStyleMedium:
@@ -516,7 +516,27 @@
     return nil;
 }
 
-+ (NSString *_Nullable)progressViewStyleDescription:(UIProgressViewStyle)style {
++ (NSArray <NSString *>*)activityIndicatorViewStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    NSArray *actions = @[@(UIActivityIndicatorViewStyleWhiteLarge),@(UIActivityIndicatorViewStyleWhite),@(UIActivityIndicatorViewStyleGray)];
+#pragma clang diagnostic pop
+#ifdef __IPHONE_13_0
+    if (@available(iOS 13.0, *)) {
+        actions = @[@(UIActivityIndicatorViewStyleMedium),@(UIActivityIndicatorViewStyleLarge),@(UIActivityIndicatorViewStyleWhiteLarge),@(UIActivityIndicatorViewStyleWhite),@(UIActivityIndicatorViewStyleGray)];
+    }
+#endif
+    for (NSNumber *num in actions) {
+        NSString *style = [self activityIndicatorViewStyleDescription:[num integerValue]];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
++ (NSString *)progressViewStyleDescription:(UIProgressViewStyle)style {
     switch (style) {
         case UIProgressViewStyleDefault:
             return @"Default";
@@ -526,7 +546,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style {
++ (NSString *)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style {
     switch (style) {
         case UIScrollViewIndicatorStyleDefault:
             return @"Default";
@@ -538,7 +558,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode {
++ (NSString *)scrollViewKeyboardDismissModeDescription:(UIScrollViewKeyboardDismissMode)mode {
     switch (mode) {
         case UIScrollViewKeyboardDismissModeNone:
             return @"Do not dismiss";
@@ -550,7 +570,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)tableViewStyleDescription:(UITableViewStyle)style {
++ (NSString *)tableViewStyleDescription:(UITableViewStyle)style {
     switch (style) {
         case UITableViewStylePlain:
             return @"Plain";
@@ -564,7 +584,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)tableViewCellSeparatorStyleDescription:(UITableViewCellSeparatorStyle)style {
++ (NSString *)tableViewCellSeparatorStyleDescription:(UITableViewCellSeparatorStyle)style {
     switch (style) {
         case UITableViewCellSeparatorStyleNone:
             return @"None";
@@ -579,7 +599,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)tableViewSeparatorInsetReferenceDescription:(UITableViewSeparatorInsetReference)reference {
++ (NSString *)tableViewSeparatorInsetReferenceDescription:(UITableViewSeparatorInsetReference)reference {
     switch (reference) {
         case UITableViewSeparatorInsetFromCellEdges:
             return @"From Cell Edges";
@@ -589,7 +609,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)tableViewCellSelectionStyleDescription:(UITableViewCellSelectionStyle)style {
++ (NSString *)tableViewCellSelectionStyleDescription:(UITableViewCellSelectionStyle)style {
     switch (style) {
         case UITableViewCellSelectionStyleNone:
             return @"None";
@@ -603,7 +623,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type {
++ (NSString *)tableViewCellAccessoryTypeDescription:(UITableViewCellAccessoryType)type {
     switch (type) {
         case UITableViewCellAccessoryNone:
             return @"None";
@@ -619,7 +639,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)datePickerModeDescription:(UIDatePickerMode)mode {
++ (NSString *)datePickerModeDescription:(UIDatePickerMode)mode {
     switch (mode) {
         case UIDatePickerModeDate:
             return @"Date";
@@ -633,7 +653,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)barStyleDescription:(UIBarStyle)style {
++ (NSString *)barStyleDescription:(UIBarStyle)style {
     switch (style) {
         case UIBarStyleDefault:
             return @"Default";
@@ -648,7 +668,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)searchBarStyleDescription:(UISearchBarStyle)style {
++ (NSString *)searchBarStyleDescription:(UISearchBarStyle)style {
     switch (style) {
         case UISearchBarStyleDefault:
             return @"Default";
@@ -660,7 +680,7 @@
     return nil;
 }
 
-+ (NSString *_Nullable)tabBarItemPositioningDescription:(UITabBarItemPositioning)positioning {
++ (NSString *)tabBarItemPositioningDescription:(UITabBarItemPositioning)positioning {
     switch (positioning) {
         case UITabBarItemPositioningAutomatic:
             return @"Automatic";

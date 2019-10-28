@@ -944,18 +944,46 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIActivityIndicatorView (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription activityIndicatorViewStyleDescription:self.activityIndicatorViewStyle]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription activityIndicatorViewStyles] currentAction:[LLEnumDescription activityIndicatorViewStyleDescription:weakSelf.activityIndicatorViewStyle] completion:^(NSInteger index) {
+            if (index <= UIActivityIndicatorViewStyleGray) {
+                weakSelf.activityIndicatorViewStyle = index;
+            } else {
+                if (@available(iOS 13.0, *)) {
+                    weakSelf.activityIndicatorViewStyle = index + (UIActivityIndicatorViewStyleMedium - UIActivityIndicatorViewStyleGray - 1);
+                }
+            }
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.color]] noneInsets];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Animating %@", [self LL_hierarchyBoolDescription:self.isAnimating]]] noneInsets];
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Animating" flag:self.isAnimating] noneInsets];
+    model3.changePropertyBlock = ^(id  _Nullable obj) {
+        if ([obj boolValue]) {
+            if (!weakSelf.isAnimating) {
+                [weakSelf startAnimating];
+            };
+        } else {
+            if (weakSelf.isAnimating) {
+                [weakSelf stopAnimating];
+            }
+        }
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hides When Stopped %@", [self LL_hierarchyBoolDescription:self.hidesWhenStopped]]];
+    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:@"Hides When Stopped" flag:self.hidesWhenStopped];
+    model4.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.hidesWhenStopped = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model4];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Activity Indicator View" items:settings];

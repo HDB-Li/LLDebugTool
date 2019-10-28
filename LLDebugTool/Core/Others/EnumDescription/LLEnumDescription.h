@@ -92,6 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)activityIndicatorViewStyleDescription:(UIActivityIndicatorViewStyle)style;
 
++ (NSArray <NSString *>*)activityIndicatorViewStyles;
+
 + (NSString *_Nullable)progressViewStyleDescription:(UIProgressViewStyle)style;
 
 + (NSString *_Nullable)scrollViewIndicatorStyleDescription:(UIScrollViewIndicatorStyle)style;
