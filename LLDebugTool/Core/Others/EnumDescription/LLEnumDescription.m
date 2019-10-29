@@ -771,12 +771,23 @@
     switch (style) {
         case UISearchBarStyleDefault:
             return @"Default";
-        case UISearchBarStyleMinimal:
-            return @"Minimal";
         case UISearchBarStyleProminent:
             return @"Prominent";
+        case UISearchBarStyleMinimal:
+            return @"Minimal";
     }
     return nil;
+}
+
++ (NSArray <NSString *>*)searchBarStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UISearchBarStyle i = UISearchBarStyleDefault; i <= UISearchBarStyleMinimal; i++) {
+        NSString *style = [self searchBarStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
 }
 
 + (NSString *)tabBarItemPositioningDescription:(UITabBarItemPositioning)positioning {

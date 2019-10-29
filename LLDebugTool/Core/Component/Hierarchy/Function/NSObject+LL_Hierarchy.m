@@ -2116,24 +2116,54 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UISearchBar (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.text handler:^(NSString * _Nullable newText) {
+            weakSelf.text = newText;
+        }];
+    };
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder]] noneInsets];
+    model2.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.placeholder handler:^(NSString * _Nullable newText) {
+            weakSelf.placeholder = newText;
+        }];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Prompt" detailTitle:[self LL_hierarchyTextDescription:self.prompt]];
+    model3.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:weakSelf.prompt handler:^(NSString * _Nullable newText) {
+            weakSelf.prompt = newText;
+        }];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Search Style" detailTitle:[LLEnumDescription searchBarStyleDescription:self.searchBarStyle]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription searchBarStyles] currentAction:[LLEnumDescription searchBarStyleDescription:weakSelf.searchBarStyle] completion:^(NSInteger index) {
+            weakSelf.searchBarStyle = index;
+        }];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Bar Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    model5.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles] currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle] completion:^(NSInteger index) {
+            weakSelf.barStyle = index;
+        }];
+    };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]] noneInsets];
+    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    model6.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.translucent = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
@@ -2151,28 +2181,59 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model11 = [[LLTitleCellModel alloc] initWithTitle:@"BG Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchFieldBackgroundPositionAdjustment]];
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Options" detailTitle:[NSString stringWithFormat:@"Shows Search Results Button %@",[self LL_hierarchyBoolDescription:self.showsSearchResultsButton]]] noneInsets];
+    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Options" detailTitle:[NSString stringWithFormat:@"Shows Search Results Button %@",[self LL_hierarchyBoolDescription:self.showsSearchResultsButton]] flag:self.showsSearchResultsButton] noneInsets];
+    model12.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsSearchResultsButton = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Bookmarks Button %@",[self LL_hierarchyBoolDescription:self.showsBookmarkButton]]] noneInsets];
+    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Bookmarks Button %@",[self LL_hierarchyBoolDescription:self.showsBookmarkButton]] flag:self.showsBookmarkButton] noneInsets];
+    model13.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsBookmarkButton = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Cancel Button %@",[self LL_hierarchyBoolDescription:self.showsCancelButton]]] noneInsets];
+    LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Cancel Button %@",[self LL_hierarchyBoolDescription:self.showsCancelButton]] flag:self.showsCancelButton] noneInsets];
+    model14.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsCancelButton = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model14];
     
-    LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Scope Bar %@",[self LL_hierarchyBoolDescription:self.showsScopeBar]]];
+    LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Scope Bar %@",[self LL_hierarchyBoolDescription:self.showsScopeBar]] flag:self.showsScopeBar];
+    model15.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.showsScopeBar = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model15];
     
     LLTitleCellModel *model16 = [[LLTitleCellModel alloc] initWithTitle:@"Scope Titles" detailTitle:[self LL_hierarchyObjectDescription:self.scopeButtonTitles]];
     [settings addObject:model16];
     
     LLTitleCellModel *model17 = [[[LLTitleCellModel alloc] initWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
+    model17.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes] currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType] completion:^(NSInteger index) {
+            weakSelf.autocapitalizationType = index;
+        }];
+    };
     [settings addObject:model17];
     
     LLTitleCellModel *model18 = [[[LLTitleCellModel alloc] initWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
+    model18.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes] currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType] completion:^(NSInteger index) {
+            weakSelf.autocorrectionType = index;
+        }];
+    };
     [settings addObject:model18];
     
     LLTitleCellModel *model19 = [[LLTitleCellModel alloc] initWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]];
+    model19.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardTypes] currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType] completion:^(NSInteger index) {
+            weakSelf.keyboardType = index;
+        }];
+    };
     [settings addObject:model19];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Search Bar" items:settings];
