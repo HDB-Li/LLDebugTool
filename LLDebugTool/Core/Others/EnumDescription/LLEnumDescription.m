@@ -756,6 +756,17 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)barStyles {
+    NSMutableArray *styles = [[NSMutableArray alloc] init];
+    for (UIBarStyle i = UIBarStyleDefault; i <= UIBarStyleBlackTranslucent; i++) {
+        NSString *style = [self barStyleDescription:i];
+        if (style) {
+            [styles addObject:style];
+        }
+    }
+    return [styles copy];
+}
+
 + (NSString *)searchBarStyleDescription:(UISearchBarStyle)style {
     switch (style) {
         case UISearchBarStyleDefault:

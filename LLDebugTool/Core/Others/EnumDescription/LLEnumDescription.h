@@ -130,6 +130,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)barStyleDescription:(UIBarStyle)style;
 
++ (NSArray <NSString *>*)barStyles;
+
 + (NSString *_Nullable)searchBarStyleDescription:(UISearchBarStyle)style;
 
 + (NSString *_Nullable)tabBarItemPositioningDescription:(UITabBarItemPositioning)positioning;
