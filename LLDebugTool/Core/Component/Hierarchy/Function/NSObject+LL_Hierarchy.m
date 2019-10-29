@@ -2046,6 +2046,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UITabBar (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]] noneInsets];
@@ -2058,21 +2059,45 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles] currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle] completion:^(NSInteger index) {
+            weakSelf.barStyle = index;
+        }];
+    };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]] noneInsets];
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    model5.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.translucent = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription tabBarItemPositioningDescription:self.itemPositioning]] noneInsets];
+    model7.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tabBarItemPositionings] currentAction:[LLEnumDescription tabBarItemPositioningDescription:weakSelf.itemPositioning] completion:^(NSInteger index) {
+            weakSelf.itemPositioning = index;
+        }];
+    };
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Item Width" detailTitle:[LLFormatterTool formatNumber:@(self.itemWidth)]] noneInsets];
+    model8.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.itemWidth)] handler:^(NSString * _Nullable newText) {
+            weakSelf.itemWidth = [newText doubleValue];
+        }];
+    };
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Item Spacing" detailTitle:[LLFormatterTool formatNumber:@(self.itemSpacing)]];
+    model9.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.itemSpacing)] handler:^(NSString * _Nullable newText) {
+            weakSelf.itemSpacing = [newText doubleValue];
+        }];
+    };
     [settings addObject:model9];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Tab Bar" items:settings];

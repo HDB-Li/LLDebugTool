@@ -136,6 +136,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *_Nullable)tabBarItemPositioningDescription:(UITabBarItemPositioning)positioning;
 
++ (NSArray <NSString *>*)tabBarItemPositionings;
+
 @end
 
 NS_ASSUME_NONNULL_END

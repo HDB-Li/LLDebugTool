@@ -791,4 +791,15 @@
     return nil;
 }
 
++ (NSArray <NSString *>*)tabBarItemPositionings {
+    NSMutableArray *positionings = [[NSMutableArray alloc] init];
+    for (UITabBarItemPositioning i = UITabBarItemPositioningAutomatic; i <= UITabBarItemPositioningCentered; i++) {
+        NSString *positioning = [self tabBarItemPositioningDescription:i];
+        if (positioning) {
+            [positionings addObject:positioning];
+        }
+    }
+    return [positionings copy];
+}
+
 @end
