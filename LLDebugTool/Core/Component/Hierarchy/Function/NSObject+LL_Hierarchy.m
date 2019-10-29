@@ -2008,12 +2008,23 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UIToolbar (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
+    
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles] currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle] completion:^(NSInteger index) {
+            weakSelf.barStyle = index;
+        }];
+    };
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]] noneInsets];
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    model2.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.translucent = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
