@@ -92,11 +92,25 @@
     [self loadData];
 }
 
+#pragma mark - Event responses
+- (void)segmentedControlValueChanged:(UISegmentedControl *)sender {
+    [self reloadTableView];
+}
+
 #pragma mark - Primary
 - (void)loadData {
     [self.objectDatas removeAllObjects];
     NSArray *models = [self.selectView LL_hierarchyCategoryModels];
     [self.objectDatas addObjectsFromArray:models];
+    
+    [self.sizeDatas removeAllObjects];
+    NSArray *sizeModels = [self.selectView LL_sizeHierarchyCategoryModels];
+    [self.sizeDatas addObjectsFromArray:sizeModels];
+    
+    [self reloadTableView];
+}
+
+- (void)reloadTableView {
     [self.dataArray removeAllObjects];
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         [self.dataArray addObjectsFromArray:self.objectDatas];
@@ -109,9 +123,10 @@
 #pragma mark - Getters and setters
 - (UISegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
-        _segmentedControl = [LLFactory getSegmentedControl:nil frame:CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, 30) items:@[@"Object"]/*@[@"Object", @"Size"]*/];
+        _segmentedControl = [LLFactory getSegmentedControl:nil frame:CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, 30) items:@[@"Object", @"Size"]];
         [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor} forState:UIControlStateNormal];
         [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].backgroundColor} forState:UIControlStateSelected];
+        [_segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
         _segmentedControl.backgroundColor = [LLThemeManager shared].containerColor;
         _segmentedControl.tintColor = [LLThemeManager shared].primaryColor;
 #ifdef __IPHONE_13_0

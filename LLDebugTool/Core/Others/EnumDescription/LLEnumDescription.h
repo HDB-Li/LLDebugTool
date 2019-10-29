@@ -140,6 +140,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray <NSString *>*)tabBarItemPositionings;
 
++ (NSString *_Nullable)layoutAttributeDescription:(NSLayoutAttribute)attribute;
+
++ (NSArray <NSString *>*)layoutAttributes;
+
++ (NSString *_Nullable)layoutRelationDescription:(NSLayoutRelation)relation;
+
 @end
 
 NS_ASSUME_NONNULL_END

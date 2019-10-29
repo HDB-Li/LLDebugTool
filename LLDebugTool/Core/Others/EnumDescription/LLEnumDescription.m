@@ -813,4 +813,77 @@
     return [positionings copy];
 }
 
++ (NSString *_Nullable)layoutAttributeDescription:(NSLayoutAttribute)attribute {
+    switch (attribute) {
+        case NSLayoutAttributeLeft:
+            return @"Left";
+        case NSLayoutAttributeRight:
+            return @"Right";
+        case NSLayoutAttributeTop:
+            return @"Top";
+        case NSLayoutAttributeBottom:
+            return @"Bottom";
+        case NSLayoutAttributeLeading:
+            return @"Leading";
+        case NSLayoutAttributeTrailing:
+            return @"Trailing";
+        case NSLayoutAttributeWidth:
+            return @"Width";
+        case NSLayoutAttributeHeight:
+            return @"Height";
+        case NSLayoutAttributeCenterX:
+            return @"CenterX";
+        case NSLayoutAttributeCenterY:
+            return @"CenterY";
+        case NSLayoutAttributeLastBaseline:
+            return @"LastBaseline";
+        case NSLayoutAttributeFirstBaseline:
+            return @"FirstBaseline";
+        case NSLayoutAttributeLeftMargin:
+            return @"LeftMargin";
+        case NSLayoutAttributeRightMargin:
+            return @"RightMargin";
+        case NSLayoutAttributeTopMargin:
+            return @"TopMargin";
+        case NSLayoutAttributeBottomMargin:
+            return @"BottomMargin";
+        case NSLayoutAttributeLeadingMargin:
+            return @"LeadingMargin";
+        case NSLayoutAttributeTrailingMargin:
+            return @"TrailingMargin";
+        case NSLayoutAttributeCenterXWithinMargins:
+            return @"CenterXMargin";
+        case NSLayoutAttributeCenterYWithinMargins:
+            return @"CenterYMargin";
+        case NSLayoutAttributeNotAnAttribute:
+            return nil;
+        default:
+            return nil;
+    }
+}
+
++ (NSArray <NSString *>*)layoutAttributes {
+    NSMutableArray *attributes = [[NSMutableArray alloc] init];
+    for (NSLayoutAttribute i = NSLayoutAttributeNotAnAttribute; i <= NSLayoutAttributeCenterYWithinMargins; i++) {
+        NSString *attribute = [self layoutAttributeDescription:i];
+        if (attribute) {
+            [attributes addObject:attribute];
+        }
+    }
+    return [attributes copy];
+}
+
++ (NSString *_Nullable)layoutRelationDescription:(NSLayoutRelation)relation {
+    switch (relation) {
+        case NSLayoutRelationLessThanOrEqual:
+            return @"<=";
+        case NSLayoutRelationEqual:
+            return @"=";
+        case NSLayoutRelationGreaterThanOrEqual:
+            return @">=";
+        default:
+            return nil;
+    }
+}
+
 @end

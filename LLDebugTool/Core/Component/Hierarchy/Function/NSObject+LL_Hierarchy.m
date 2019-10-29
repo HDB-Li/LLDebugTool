@@ -99,8 +99,22 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     return text;
 }
 
+- (NSString *)LL_hierarchyPointDescription:(CGPoint)point {
+    return [NSString stringWithFormat:@"X: %@   Y: %@",[LLFormatterTool formatNumber:@(point.x)],[LLFormatterTool formatNumber:@(point.y)]];
+}
+
+- (CGPoint)LL_pointFromString:(NSString *)string orginalPoint:(CGPoint)point {
+    CGPoint newPoint = CGPointFromString(string);
+    return newPoint;
+}
+
 - (NSString *)LL_hierarchySizeDescription:(CGSize)size {
-    return [NSString stringWithFormat:@"w %@   h %@",[LLFormatterTool formatNumber:@(size.width)], [LLFormatterTool formatNumber:@(size.height)]];
+    return [NSString stringWithFormat:@"W: %@   H: %@",[LLFormatterTool formatNumber:@(size.width)], [LLFormatterTool formatNumber:@(size.height)]];
+}
+
+- (CGRect)LL_rectFromString:(NSString *)string originalRect:(CGRect)rect {
+    CGRect newRect = CGRectFromString(string);
+    return newRect;
 }
 
 - (CGSize)LL_sizeFromString:(NSString *)string originalSize:(CGSize)size {
@@ -291,6 +305,137 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         [models addObject:model];
     }
     return [models copy];
+}
+
+- (NSArray <LLTitleCellCategoryModel *>*)LL_sizeHierarchyCategoryModels {
+    __weak typeof(self) weakSelf = self;
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    
+    LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Frame" detailTitle:[self LL_hierarchyPointDescription:self.frame.origin]] noneInsets];
+    model1.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGRect(weakSelf.frame) handler:^(NSString * _Nullable newText) {
+            weakSelf.frame = [weakSelf LL_rectFromString:newText originalRect:weakSelf.frame];
+        }];
+    };
+    [settings addObject:model1];
+    
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchySizeDescription:self.frame.size]] noneInsets];
+    [settings addObject:model2];
+    
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Bounds" detailTitle:[self LL_hierarchyPointDescription:self.bounds.origin]] noneInsets];
+    model3.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGRect(weakSelf.bounds) handler:^(NSString * _Nullable newText) {
+            weakSelf.bounds = [weakSelf LL_rectFromString:newText originalRect:weakSelf.bounds];
+        }];
+    };
+    [settings addObject:model3];
+    
+    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchySizeDescription:self.bounds.size]] noneInsets];
+    [settings addObject:model4];
+    
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Center" detailTitle:[self LL_hierarchyPointDescription:self.center]] noneInsets];
+    model5.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGPoint(weakSelf.center) handler:^(NSString * _Nullable newText) {
+            weakSelf.center = [weakSelf LL_pointFromString:newText orginalPoint:weakSelf.center];
+        }];
+    };
+    [settings addObject:model5];
+    
+    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:@"Position" detailTitle:[self LL_hierarchyPointDescription:self.layer.position]] noneInsets];
+    model6.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGPoint(weakSelf.layer.position) handler:^(NSString * _Nullable newText) {
+            weakSelf.layer.position = [weakSelf LL_pointFromString:newText orginalPoint:weakSelf.layer.position];
+        }];
+    };
+    [settings addObject:model6];
+    
+    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Z Position" detailTitle:[LLFormatterTool formatNumber:@(self.layer.zPosition)]];
+    model7.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.layer.zPosition)] handler:^(NSString * _Nullable newText) {
+            weakSelf.layer.zPosition = [newText doubleValue];
+        }];
+    };
+    [settings addObject:model7];
+    
+    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Anchor Point" detailTitle:[self LL_hierarchyPointDescription:self.layer.anchorPoint]] noneInsets];
+    model8.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:NSStringFromCGPoint(weakSelf.layer.anchorPoint) handler:^(NSString * _Nullable newText) {
+            weakSelf.layer.anchorPoint = [weakSelf LL_pointFromString:newText orginalPoint:weakSelf.layer.anchorPoint];
+        }];
+    };
+    [settings addObject:model8];
+    
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Anchor Point Z" detailTitle:[LLFormatterTool formatNumber:@(self.layer.anchorPointZ)]];
+    model9.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(weakSelf.layer.anchorPointZ)] handler:^(NSString * _Nullable newText) {
+            weakSelf.layer.anchorPointZ = [newText doubleValue];
+        }];
+    };
+    [settings addObject:model9];
+
+    for (NSLayoutConstraint *constrain in self.constraints) {
+        if (!constrain.shouldBeArchived) {
+            continue;
+        }
+        NSString *constrainDesc = [self LL_hierarchyLayoutConstraintDescription:constrain];
+        if (constrainDesc) {
+            LLTitleCellModel *mod = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:constrainDesc];
+            [settings addObject:mod];
+        }
+    }
+    
+    for (NSLayoutConstraint *constrain in self.superview.constraints) {
+        if (!constrain.shouldBeArchived) {
+            continue;
+        }
+        if (constrain.firstItem == self || constrain.secondItem == self) {
+            NSString *constrainDesc = [self LL_hierarchyLayoutConstraintDescription:constrain];
+            if (constrainDesc) {
+                LLTitleCellModel *mod = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:constrainDesc];
+                [settings addObject:mod];
+            }
+        }
+    }
+    
+    return @[[[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:settings]];
+}
+
+- (NSString *)LL_hierarchyLayoutConstraintDescription:(NSLayoutConstraint *)constraint {
+    NSMutableString *string = [[NSMutableString alloc] init];
+    if (constraint.firstItem == self) {
+        [string appendString:@"self."];
+    } else if (constraint.firstItem == self.superview) {
+        [string appendString:@"superview."];
+    } else {
+        [string appendFormat:@"%@.",NSStringFromClass([constraint.firstItem class])];
+    }
+    [string appendString:[LLEnumDescription layoutAttributeDescription:constraint.firstAttribute]];
+    [string appendString:[LLEnumDescription layoutRelationDescription:constraint.relation]];
+    if (constraint.secondItem) {
+        if (constraint.secondItem == self) {
+            [string appendString:@"self."];
+        } else if (constraint.secondItem == self.superview) {
+            [string appendString:@"superview."];
+        } else {
+            [string appendFormat:@"%@.",NSStringFromClass([constraint.secondItem class])];
+        }
+        [string appendString:[LLEnumDescription layoutAttributeDescription:constraint.secondAttribute]];
+        if (constraint.multiplier != 1) {
+            [string appendFormat:@" * %@",[LLFormatterTool formatNumber:@(constraint.multiplier)]];
+        }
+        if (constraint.constant > 0) {
+            [string appendFormat:@" + %@",[LLFormatterTool formatNumber:@(constraint.constant)]];
+        } else if (constraint.constant < 0) {
+            [string appendFormat:@" - %@",[LLFormatterTool formatNumber:@(fabs(constraint.constant))]];
+        }
+    } else if (constraint.constant) {
+        [string appendString:[LLFormatterTool formatNumber:@(constraint.constant)]];
+    } else {
+        return nil;
+    }
+    
+    [string appendFormat:@" @ %@",[LLFormatterTool formatNumber:@(constraint.priority)]];
+    return string;
 }
 
 @end

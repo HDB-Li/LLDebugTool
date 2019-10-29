@@ -35,4 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface UIView (LL_Hierarchy)
+
+- (NSArray <LLTitleCellCategoryModel *>*)LL_sizeHierarchyCategoryModels;
+
+@end
+
 NS_ASSUME_NONNULL_END
