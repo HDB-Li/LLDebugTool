@@ -207,7 +207,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Touch %@", [self LL_hierarchyBoolDescription:self.isMultipleTouchEnabled]] flag:self.isMultipleTouchEnabled];
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Multiple Touch" flag:self.isMultipleTouchEnabled];
     model6.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.multipleTouchEnabled = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -228,35 +228,35 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     [settings addObject:model9];
     
-    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:[NSString stringWithFormat:@"Opaque %@",[self LL_hierarchyBoolDescription:self.isOpaque]] flag:self.isOpaque] noneInsets];
+    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:@"Opaque" flag:self.isOpaque] noneInsets];
     model10.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.opaque = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model10];
     
-    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hidden %@",[self LL_hierarchyBoolDescription:self.isHidden]] flag:self.isHidden] noneInsets];
+    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Hidden" flag:self.isHidden] noneInsets];
     model11.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.hidden = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clears Graphics Context %@",[self LL_hierarchyBoolDescription:self.clearsContextBeforeDrawing]] flag:self.clearsContextBeforeDrawing] noneInsets];
+    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Clears Graphics Context" flag:self.clearsContextBeforeDrawing] noneInsets];
     model12.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.clearsContextBeforeDrawing = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clip To Bounds %@",[self LL_hierarchyBoolDescription:self.clipsToBounds]] flag:self.clipsToBounds] noneInsets];
+    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Clip To Bounds" flag:self.clipsToBounds] noneInsets];
     model13.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.clipsToBounds = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Autoresizes Subviews %@", [self LL_hierarchyBoolDescription:self.autoresizesSubviews]] flag:self.autoresizesSubviews];
+    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Autoresizes Subviews" flag:self.autoresizesSubviews];
     model14.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.autoresizesSubviews = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -343,14 +343,14 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Enabled %@",[self LL_hierarchyBoolDescription:self.isEnabled]] flag:self.isEnabled] noneInsets];
+    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:@"Enabled" flag:self.isEnabled] noneInsets];
     model7.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.enabled = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Highlighted %@", [self LL_hierarchyBoolDescription:self.isHighlighted]] flag:self.isHighlighted];
+    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Highlighted" flag:self.isHighlighted];
     model8.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.highlighted = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -637,7 +637,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@", [self LL_hierarchyBoolDescription:self.allowsEditingTextAttributes]]] noneInsets];
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Allows Editing Attributes" flag:self.allowsEditingTextAttributes] noneInsets];
+    model3.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.allowsEditingTextAttributes = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
@@ -693,7 +697,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Clear when editing begins %@", [self LL_hierarchyBoolDescription:self.clearsOnBeginEditing]] flag:self.clearsOnBeginEditing];
+    LLTitleCellModel *model12 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Clear when editing begins" flag:self.clearsOnBeginEditing];
     model12.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.clearsOnBeginEditing = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -708,7 +712,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Adjusts to Fit %@",[self LL_hierarchyBoolDescription:self.adjustsFontSizeToFitWidth]] flag:self.adjustsFontSizeToFitWidth];
+    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Adjusts to Fit" flag:self.adjustsFontSizeToFitWidth];
     model14.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.adjustsFontSizeToFitWidth = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -755,10 +759,14 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model19];
     
-    LLTitleCellModel *model20 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@", [self LL_hierarchyBoolDescription:self.enablesReturnKeyAutomatically]]] noneInsets];
+    LLTitleCellModel *model20 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Auto-enable Return Key" flag:self.enablesReturnKeyAutomatically] noneInsets];
+    model20.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.enablesReturnKeyAutomatically = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model20];
     
-    LLTitleCellModel *model21 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",[self LL_hierarchyBoolDescription:self.isSecureTextEntry]] flag:self.isSecureTextEntry];
+    LLTitleCellModel *model21 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Secure Entry" flag:self.isSecureTextEntry];
     model21.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.secureTextEntry = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -896,7 +904,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Events" detailTitle:[NSString stringWithFormat:@"Continuous Update %@", [self LL_hierarchyBoolDescription:self.isContinuous]] flag:self.isContinuous];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Events" detailTitle:@"Continuous Update" flag:self.isContinuous];
     model9.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.continuous = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -971,7 +979,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.color]] noneInsets];
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Animating %@", [self LL_hierarchyBoolDescription:self.isAnimating]] flag:self.isAnimating] noneInsets];
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:@"Animating" flag:self.isAnimating] noneInsets];
     model3.changePropertyBlock = ^(id  _Nullable obj) {
         if ([obj boolValue]) {
             if (!weakSelf.isAnimating) {
@@ -986,7 +994,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Hides When Stopped %@", [self LL_hierarchyBoolDescription:self.hidesWhenStopped]] flag:self.hidesWhenStopped];
+    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Hides When Stopped" flag:self.hidesWhenStopped];
     model4.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.hidesWhenStopped = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1085,10 +1093,18 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Hides for Single Page %@",[self LL_hierarchyBoolDescription:self.hidesForSinglePage]]] noneInsets];
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:@"Hides for Single Page" flag:self.hidesForSinglePage] noneInsets];
+    model3.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.hidesForSinglePage = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Defers Page Display %@", [self LL_hierarchyBoolDescription:self.defersCurrentPageDisplay]]];
+    LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Defers Page Display" flag:self.defersCurrentPageDisplay];
+    model4.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.defersCurrentPageDisplay = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Tint Color" detailTitle:[self LL_hierarchyColorDescription:self.pageIndicatorTintColor]] noneInsets];
@@ -1150,21 +1166,21 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Autorepeat %@",[self LL_hierarchyBoolDescription:self.autorepeat]] flag:self.autorepeat] noneInsets];
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:@"Autorepeat" flag:self.autorepeat] noneInsets];
     model5.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.autorepeat = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Continuous %@",[self LL_hierarchyBoolDescription:self.isContinuous]] flag:self.isContinuous] noneInsets];
+    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Continuous" flag:self.isContinuous] noneInsets];
     model6.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.continuous = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Wrap %@",[self LL_hierarchyBoolDescription:self.wraps]] flag:self.wraps];
+    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Wrap" flag:self.wraps];
     model7.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.wraps = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1199,56 +1215,56 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Indicators" detailTitle:[NSString stringWithFormat:@"Shows Horizontal Indicator %@",[self LL_hierarchyBoolDescription:self.showsHorizontalScrollIndicator]] flag:self.showsHorizontalScrollIndicator] noneInsets];
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Indicators" detailTitle:@"Shows Horizontal Indicator" flag:self.showsHorizontalScrollIndicator] noneInsets];
     model2.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsHorizontalScrollIndicator = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Vertical Indicator %@",[self LL_hierarchyBoolDescription:self.showsVerticalScrollIndicator]] flag:self.showsVerticalScrollIndicator];
+    LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Shows Vertical Indicator" flag:self.showsVerticalScrollIndicator];
     model3.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsVerticalScrollIndicator = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Scrolling" detailTitle:[NSString stringWithFormat:@"Scrolling %@", self.isScrollEnabled ? @"Enabled" : @"Not Enabled"] flag:self.isScrollEnabled] noneInsets];
+    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Scrolling" detailTitle:@"Enable" flag:self.isScrollEnabled] noneInsets];
     model4.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.scrollEnabled = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Paging %@", self.isPagingEnabled ? @"Enabled" : @"Disabled"] flag:self.isPagingEnabled] noneInsets];
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Paging" flag:self.isPagingEnabled] noneInsets];
     model5.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.pagingEnabled = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Direction Lock %@",self.isDirectionalLockEnabled ? @"Enabled" : @"Disabled"] flag:self.isDirectionalLockEnabled];
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Direction Lock" flag:self.isDirectionalLockEnabled];
     model6.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.directionalLockEnabled = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Bounce" detailTitle:[NSString stringWithFormat:@"Bounces %@",[self LL_hierarchyBoolDescription:self.bounces]] flag:self.bounces] noneInsets];
+    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Bounce" detailTitle:@"Bounces" flag:self.bounces] noneInsets];
     model7.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.bounces = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Bounce Horizontal %@",[self LL_hierarchyBoolDescription:self.alwaysBounceHorizontal]] flag:self.alwaysBounceHorizontal] noneInsets];
+    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Bounce Horizontal" flag:self.alwaysBounceHorizontal] noneInsets];
     model8.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.alwaysBounceHorizontal = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Bounce Vertical %@",[self LL_hierarchyBoolDescription:self.alwaysBounceVertical]] flag:self.alwaysBounceVertical];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Bounce Vertical" flag:self.alwaysBounceVertical];
     model9.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.alwaysBounceVertical = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1274,14 +1290,14 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Touch" detailTitle:[NSString stringWithFormat:@"Zoom Bounces %@",[self LL_hierarchyBoolDescription:self.isZoomBouncing]]] noneInsets];
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Delays Content Touches %@",[self LL_hierarchyBoolDescription:self.delaysContentTouches]] flag:self.delaysContentTouches] noneInsets];
+    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Delays Content Touches" flag:self.delaysContentTouches] noneInsets];
     model13.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.delaysContentTouches = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Cancellable Content Touches %@",[self LL_hierarchyBoolDescription:self.canCancelContentTouches]] flag:self.canCancelContentTouches];
+    LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Cancellable Content Touches" flag:self.canCancelContentTouches];
     model14.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.canCancelContentTouches = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1493,14 +1509,14 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Indent While Editing %@",[self LL_hierarchyBoolDescription:self.shouldIndentWhileEditing]] flag:self.shouldIndentWhileEditing] noneInsets];
+    LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Indent While Editing" flag:self.shouldIndentWhileEditing] noneInsets];
     model8.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.shouldIndentWhileEditing = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Re-order Controls %@",[self LL_hierarchyBoolDescription:self.showsReorderControl]] flag:self.showsReorderControl];
+    LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Shows Re-order Controls" flag:self.showsReorderControl];
     model9.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsReorderControl = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1605,7 +1621,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model2];
     
-    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Allows Editing Attributes %@",[self LL_hierarchyBoolDescription:self.allowsEditingTextAttributes]] flag:self.allowsEditingTextAttributes] noneInsets];
+    LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Allows Editing Attributes" flag:self.allowsEditingTextAttributes] noneInsets];
     model3.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.allowsEditingTextAttributes = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1631,21 +1647,21 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:[NSString stringWithFormat:@"Editable %@",[self LL_hierarchyBoolDescription:self.isEditable]] flag:self.isEditable] noneInsets];
+    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:@"Editable" flag:self.isEditable] noneInsets];
     model7.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.editable = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model7];
     
-    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Selectable %@",[self LL_hierarchyBoolDescription:self.isSelectable]] flag:self.isSelectable];
+    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Selectable" flag:self.isSelectable];
     model8.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.selectable = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[[LLTitleCellModel alloc] initWithTitle:@"Data Detectors" detailTitle:[NSString stringWithFormat:@"Phone Number %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypePhoneNumber]] flag:self.dataDetectorTypes & UIDataDetectorTypePhoneNumber] noneInsets];
+    LLTitleCellModel *model9 = [[[LLTitleCellModel alloc] initWithTitle:@"Data Detectors" detailTitle:@"Phone Number" flag:self.dataDetectorTypes & UIDataDetectorTypePhoneNumber] noneInsets];
     model9.changePropertyBlock = ^(id  _Nullable obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypePhoneNumber;
@@ -1655,7 +1671,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model9];
     
-    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Link %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeLink]] flag:self.dataDetectorTypes & UIDataDetectorTypeLink] noneInsets];
+    LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Link" flag:self.dataDetectorTypes & UIDataDetectorTypeLink] noneInsets];
     model10.changePropertyBlock = ^(id  _Nullable obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeLink;
@@ -1665,7 +1681,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model10];
     
-    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Address %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeAddress]] flag:self.dataDetectorTypes & UIDataDetectorTypeAddress] noneInsets];
+    LLTitleCellModel *model11 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Address" flag:self.dataDetectorTypes & UIDataDetectorTypeAddress] noneInsets];
     model11.changePropertyBlock = ^(id  _Nullable obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeAddress;
@@ -1675,7 +1691,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Calendar Event %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeCalendarEvent]] flag:self.dataDetectorTypes & UIDataDetectorTypeCalendarEvent] noneInsets];
+    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Calendar Event" flag:self.dataDetectorTypes & UIDataDetectorTypeCalendarEvent] noneInsets];
     model12.changePropertyBlock = ^(id  _Nullable obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeCalendarEvent;
@@ -1686,7 +1702,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model12];
     
     if (@available(iOS 10.0, *)) {
-        LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shipment Tracking Number %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeShipmentTrackingNumber]] flag:self.dataDetectorTypes & UIDataDetectorTypeShipmentTrackingNumber] noneInsets];
+        LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Shipment Tracking Number" flag:self.dataDetectorTypes & UIDataDetectorTypeShipmentTrackingNumber] noneInsets];
         model13.changePropertyBlock = ^(id  _Nullable obj) {
             if ([obj boolValue]) {
                 weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeShipmentTrackingNumber;
@@ -1696,7 +1712,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         };
         [settings addObject:model13];
         
-        LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Flight Number %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeFlightNumber]] flag:self.dataDetectorTypes & UIDataDetectorTypeFlightNumber] noneInsets];
+        LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Flight Number" flag:self.dataDetectorTypes & UIDataDetectorTypeFlightNumber] noneInsets];
         model14.changePropertyBlock = ^(id  _Nullable obj) {
             if ([obj boolValue]) {
                 weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeFlightNumber;
@@ -1706,7 +1722,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         };
         [settings addObject:model14];
         
-        LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Lookup Suggestion %@",[self LL_hierarchyBoolDescription:self.dataDetectorTypes & UIDataDetectorTypeLookupSuggestion]] flag:self.dataDetectorTypes & UIDataDetectorTypeLookupSuggestion];
+        LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Lookup Suggestion" flag:self.dataDetectorTypes & UIDataDetectorTypeLookupSuggestion];
         model15.changePropertyBlock = ^(id  _Nullable obj) {
             if ([obj boolValue]) {
                 weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeLookupSuggestion;
@@ -1759,14 +1775,14 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model20];
     
-    LLTitleCellModel *model21 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Auto-enable Return Key %@",[self LL_hierarchyBoolDescription:self.enablesReturnKeyAutomatically]] flag:self.enablesReturnKeyAutomatically] noneInsets];
+    LLTitleCellModel *model21 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Auto-enable Return Key" flag:self.enablesReturnKeyAutomatically] noneInsets];
     model21.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.enablesReturnKeyAutomatically = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model21];
     
-    LLTitleCellModel *model22 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Secure Entry %@",[self LL_hierarchyBoolDescription:self.isSecureTextEntry]] flag:self.isSecureTextEntry];
+    LLTitleCellModel *model22 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Secure Entry" flag:self.isSecureTextEntry];
     model22.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.secureTextEntry = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1896,7 +1912,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
     model2.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -1904,7 +1920,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model2];
     
     if (@available(iOS 11.0, *)) {
-        LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Prefers Large Titles %@",[self LL_hierarchyBoolDescription:self.prefersLargeTitles]] flag:self.prefersLargeTitles] noneInsets];
+        LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Prefers Large Titles" flag:self.prefersLargeTitles] noneInsets];
         model3.changePropertyBlock = ^(id  _Nullable obj) {
             weakSelf.prefersLargeTitles = [obj boolValue];
             [weakSelf LL_postHierarchyChangeNotification];
@@ -2020,7 +2036,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
     model2.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -2066,7 +2082,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
     model5.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -2159,7 +2175,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
     model6.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
@@ -2181,28 +2197,28 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model11 = [[LLTitleCellModel alloc] initWithTitle:@"BG Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchFieldBackgroundPositionAdjustment]];
     [settings addObject:model11];
     
-    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Options" detailTitle:[NSString stringWithFormat:@"Shows Search Results Button %@",[self LL_hierarchyBoolDescription:self.showsSearchResultsButton]] flag:self.showsSearchResultsButton] noneInsets];
+    LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Options" detailTitle:@"Shows Search Results Button" flag:self.showsSearchResultsButton] noneInsets];
     model12.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsSearchResultsButton = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model12];
     
-    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Bookmarks Button %@",[self LL_hierarchyBoolDescription:self.showsBookmarkButton]] flag:self.showsBookmarkButton] noneInsets];
+    LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Shows Bookmarks Button" flag:self.showsBookmarkButton] noneInsets];
     model13.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsBookmarkButton = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model13];
     
-    LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Cancel Button %@",[self LL_hierarchyBoolDescription:self.showsCancelButton]] flag:self.showsCancelButton] noneInsets];
+    LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Shows Cancel Button" flag:self.showsCancelButton] noneInsets];
     model14.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsCancelButton = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
     };
     [settings addObject:model14];
     
-    LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Shows Scope Bar %@",[self LL_hierarchyBoolDescription:self.showsScopeBar]] flag:self.showsScopeBar];
+    LLTitleCellModel *model15 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Shows Scope Bar" flag:self.showsScopeBar];
     model15.changePropertyBlock = ^(id  _Nullable obj) {
         weakSelf.showsScopeBar = [obj boolValue];
         [weakSelf LL_postHierarchyChangeNotification];
