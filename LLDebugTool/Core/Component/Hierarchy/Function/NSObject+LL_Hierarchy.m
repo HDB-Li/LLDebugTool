@@ -82,6 +82,13 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     return text;
 }
 
+- (NSString *)LL_hierarchyDateDescription:(NSDate *)date {
+    if (!date) {
+        return @"<null>";
+    }
+    return [LLFormatterTool stringFromDate:date style:FormatterToolDateStyle3] ?: @"<null>";
+}
+
 - (NSString *)LL_hierarchyTextDescription:(NSString *)text {
     if (text == nil) {
         return @"<nil>";
@@ -1804,20 +1811,41 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model3];
     
-    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Date" detailTitle:[self LL_hierarchyObjectDescription:self.date]] noneInsets];
+    LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Date" detailTitle:[self LL_hierarchyDateDescription:self.date]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool stringFromDate:weakSelf.date style:FormatterToolDateStyle3] handler:^(NSString * _Nullable newText) {
+            NSDate *newDate = [LLFormatterTool dateFromString:newText style:FormatterToolDateStyle3];
+            if (newDate) {
+                weakSelf.date = newDate;
+            }
+        }];
+    };
     [settings addObject:model4];
     
-    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Min Date" detailTitle:[self LL_hierarchyObjectDescription:self.minimumDate]] noneInsets];
+    LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Min Date" detailTitle:[self LL_hierarchyDateDescription:self.minimumDate]] noneInsets];
+    model5.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool stringFromDate:weakSelf.minimumDate style:FormatterToolDateStyle3] handler:^(NSString * _Nullable newText) {
+            NSDate *newDate = [LLFormatterTool dateFromString:newText style:FormatterToolDateStyle3];
+            if (newDate) {
+                weakSelf.minimumDate = newDate;
+            }
+        }];
+    };
     [settings addObject:model5];
     
-    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Max Date" detailTitle:[self LL_hierarchyObjectDescription:self.maximumDate]];
+    LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Max Date" detailTitle:[self LL_hierarchyDateDescription:self.maximumDate]];
+    model6.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool stringFromDate:weakSelf.maximumDate style:FormatterToolDateStyle3] handler:^(NSString * _Nullable newText) {
+            NSDate *newDate = [LLFormatterTool dateFromString:newText style:FormatterToolDateStyle3];
+            if (newDate) {
+                weakSelf.maximumDate = newDate;
+            }
+        }];
+    };
     [settings addObject:model6];
     
-    LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Count Down" detailTitle:[LLFormatterTool formatNumber:@(self.countDownDuration)]] noneInsets];
+    LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Count Down" detailTitle:[LLFormatterTool formatNumber:@(self.countDownDuration)]];
     [settings addObject:model7];
-    
-    LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:@"Count Down in Seconds"];
-    [settings addObject:model8];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Date Picker" items:settings];
                                 
