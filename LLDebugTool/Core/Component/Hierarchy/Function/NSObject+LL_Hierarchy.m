@@ -1884,16 +1884,26 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 @implementation UINavigationBar (LL_Hierarchy)
 
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    __weak typeof(self)weakSelf = self;
+    
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     [settings addObject:model1];
     
-    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]]] noneInsets];
+    LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Translucent %@",[self LL_hierarchyBoolDescription:self.isTranslucent]] flag:self.isTranslucent] noneInsets];
+    model2.changePropertyBlock = ^(id  _Nullable obj) {
+        weakSelf.translucent = [obj boolValue];
+        [weakSelf LL_postHierarchyChangeNotification];
+    };
     [settings addObject:model2];
     
     if (@available(iOS 11.0, *)) {
-        LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Prefers Large Titles %@",[self LL_hierarchyBoolDescription:self.prefersLargeTitles]]] noneInsets];
+        LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[NSString stringWithFormat:@"Prefers Large Titles %@",[self LL_hierarchyBoolDescription:self.prefersLargeTitles]] flag:self.prefersLargeTitles] noneInsets];
+        model3.changePropertyBlock = ^(id  _Nullable obj) {
+            weakSelf.prefersLargeTitles = [obj boolValue];
+            [weakSelf LL_postHierarchyChangeNotification];
+        };
         [settings addObject:model3];
     }
     
@@ -1912,7 +1922,20 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Attr." detailTitle:nil] noneInsets];
     [settings addObject:model8];
     
-    LLTitleCellModel *model9 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Font" detailTitle:[self LL_hierarchyColorDescription:self.titleTextAttributes[NSFontAttributeName]]] noneInsets];
+    LLTitleCellModel *model9 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Font" detailTitle:[self LL_hierarchyObjectDescription:self.titleTextAttributes[NSFontAttributeName]]] noneInsets];
+    if (self.titleTextAttributes[NSFontAttributeName]) {
+        model9.block = ^{
+            __block UIFont *font = weakSelf.titleTextAttributes[NSFontAttributeName];
+            if (!font) {
+                return;
+            }
+            [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%@",[LLFormatterTool formatNumber:@(font.pointSize)]] handler:^(NSString * _Nullable newText) {
+                NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.titleTextAttributes];
+                attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
+                weakSelf.titleTextAttributes = [attributes copy];
+            }];
+        };
+    }
     [settings addObject:model9];
     
     LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.titleTextAttributes[NSForegroundColorAttributeName]]] noneInsets];
@@ -1934,6 +1957,19 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         [settings addObject:model13];
         
         LLTitleCellModel *model14 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Font" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSFontAttributeName]]] noneInsets];
+        if (self.largeTitleTextAttributes[NSFontAttributeName]) {
+            model14.block = ^{
+                __block UIFont *font = weakSelf.largeTitleTextAttributes[NSFontAttributeName];
+                if (!font) {
+                    return;
+                }
+                [weakSelf LL_showHierarchyChangeAlertWithText:[NSString stringWithFormat:@"%@",[LLFormatterTool formatNumber:@(font.pointSize)]] handler:^(NSString * _Nullable newText) {
+                    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.largeTitleTextAttributes];
+                    attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
+                    weakSelf.largeTitleTextAttributes = [attributes copy];
+                }];
+            };
+        }
         [settings addObject:model14];
         
         LLTitleCellModel *model15 = [[[LLTitleCellModel alloc] initWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSForegroundColorAttributeName]]] noneInsets];
