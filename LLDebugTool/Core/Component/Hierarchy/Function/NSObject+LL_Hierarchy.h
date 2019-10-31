@@ -33,6 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray <LLTitleCellCategoryModel *>*)LL_hierarchyCategoryModels;
 
+- (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+- (void)LL_showFrameAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+- (void)LL_showColorAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+- (void)LL_showFontAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
 @end
 
 @interface UIView (LL_Hierarchy)

@@ -482,6 +482,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
             mod.block = ^{
                 [weakSelf LL_showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)] handler:^(NSString * _Nullable newText) {
                     cons.constant = [newText doubleValue];
+                    [weakSelf setNeedsLayout];
                 }];
             };
             [settings addObject:mod];
@@ -501,6 +502,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
                 mod.block = ^{
                     [weakSelf LL_showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)] handler:^(NSString * _Nullable newText) {
                         cons.constant = [newText doubleValue];
+                        [weakSelf setNeedsLayout];
                     }];
                 };
                 [settings addObject:mod];

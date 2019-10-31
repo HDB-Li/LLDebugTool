@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIView *_Nullable)LL_bottomView;
 
-- (void)LL_AddClickListener:(id)target action:(SEL)action;
+- (void)LL_addClickListener:(id)target action:(SEL)action;
 
 - (UIImage *)LL_convertViewToImage;
 

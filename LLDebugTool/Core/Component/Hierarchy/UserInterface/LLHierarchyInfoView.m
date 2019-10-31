@@ -33,12 +33,23 @@
 #import "LLToastUtils.h"
 #import "LLImageNameConfig.h"
 #import "UIView+LL_Utils.h"
+#import "NSObject+LL_Hierarchy.h"
 
 @interface LLHierarchyInfoView ()
 
 @property (nonatomic, strong, nullable) UIView *selectedView;
 
 @property (nonatomic, strong) UILabel *contentLabel;
+
+@property (nonatomic, strong) UILabel *frameLabel;
+
+@property (nonatomic, strong) UILabel *backgroundColorLabel;
+
+@property (nonatomic, strong) UILabel *textColorLabel;
+
+@property (nonatomic, strong) UILabel *fontLabel;
+
+@property (nonatomic, strong) UILabel *tagLabel;
 
 @property (nonatomic, strong) UIView *actionContentView;
 
@@ -77,41 +88,52 @@
     NSDictionary *boldAttri = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]};
     NSDictionary *attri = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     
-    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] init];
-    
     NSMutableAttributedString *name = [[NSMutableAttributedString alloc] initWithString:@"Name: " attributes:boldAttri];
     [name appendAttributedString:[[NSAttributedString alloc] initWithString:NSStringFromClass(view.class) attributes:attri]];
     
-    [attribute appendAttributedString:name];
+    self.contentLabel.attributedText = name;
     
-    NSMutableAttributedString *frame = [[NSMutableAttributedString alloc] initWithString:@"\nFrame: " attributes:boldAttri];
+    NSMutableAttributedString *frame = [[NSMutableAttributedString alloc] initWithString:@"Frame: " attributes:boldAttri];
     [frame appendAttributedString:[[NSAttributedString alloc] initWithString:[LLTool stringFromFrame:view.frame] attributes:attri]];
-    [attribute appendAttributedString:frame];
+    
+    self.frameLabel.attributedText = frame;
     
     if (view.backgroundColor) {
-        NSMutableAttributedString *color = [[NSMutableAttributedString alloc] initWithString:@"\nBackground: " attributes:boldAttri];
+        NSMutableAttributedString *color = [[NSMutableAttributedString alloc] initWithString:@"Background: " attributes:boldAttri];
         [color appendAttributedString:[[NSAttributedString alloc] initWithString:[view.backgroundColor LL_description] attributes:attri]];
-        [attribute appendAttributedString:color];
+        self.backgroundColorLabel.attributedText = color;
+    } else {
+        self.backgroundColorLabel.attributedText = nil;
     }
     
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
-        NSMutableAttributedString *font = [[NSMutableAttributedString alloc] initWithString:@"\nText Color: " attributes:boldAttri];
-        [font appendAttributedString:[[NSAttributedString alloc] initWithString:[label.textColor LL_description] attributes:attri]];
-        [font appendAttributedString:[[NSAttributedString alloc] initWithString:@"\nFont: " attributes:boldAttri]];
+        NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc] initWithString:@"Text Color: " attributes:boldAttri];
+        [textColor appendAttributedString:[[NSAttributedString alloc] initWithString:[label.textColor LL_description] attributes:attri]];
+        self.textColorLabel.attributedText = textColor;
+        
+        NSMutableAttributedString *font = [[NSMutableAttributedString alloc] initWithString:@"Font: " attributes:boldAttri];
         [font appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%0.2f", label.font.pointSize] attributes:attri]];
-        [attribute appendAttributedString:font];
+        self.fontLabel.attributedText = font;
+    } else {
+        self.textColorLabel.attributedText = nil;
+        self.fontLabel.attributedText = nil;
     }
     
     if (view.tag != 0) {
-        NSMutableAttributedString *tag = [[NSMutableAttributedString alloc] initWithString:@"\nTag: " attributes:boldAttri];
+        NSMutableAttributedString *tag = [[NSMutableAttributedString alloc] initWithString:@"Tag: " attributes:boldAttri];
         [tag appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld",(long)view.tag] attributes:attri]];
-        [attribute appendAttributedString:tag];
+        self.tagLabel.attributedText = tag;
+    } else {
+        self.tagLabel.attributedText = nil;
     }
     
-    self.contentLabel.attributedText = attribute;
-    
     [self.contentLabel sizeToFit];
+    [self.frameLabel sizeToFit];
+    [self.backgroundColorLabel sizeToFit];
+    [self.textColorLabel sizeToFit];
+    [self.fontLabel sizeToFit];
+    [self.tagLabel sizeToFit];
     
     [self updateHeightIfNeeded];
 }
@@ -127,7 +149,17 @@
     
     self.moreButton.frame = CGRectMake(kLLGeneralMargin, self.parentViewsButton.LL_bottom + kLLGeneralMargin, self.actionContentView.LL_width - kLLGeneralMargin * 2, self.parentViewsButton.LL_height);
     
-    self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.actionContentView.LL_y - kLLGeneralMargin - kLLGeneralMargin);
+    self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.contentLabel.LL_height);
+    
+    self.frameLabel.frame = CGRectMake(self.contentLabel.LL_x, self.contentLabel.LL_bottom, self.contentLabel.LL_width, self.frameLabel.LL_height);
+    
+    self.backgroundColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.frameLabel.LL_bottom, self.contentLabel.LL_width, self.backgroundColorLabel.LL_height);
+    
+    self.textColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.backgroundColorLabel.LL_bottom, self.contentLabel.LL_width, self.textColorLabel.LL_height);
+    
+    self.fontLabel.frame = CGRectMake(self.contentLabel.LL_x, self.textColorLabel.LL_bottom, self.contentLabel.LL_width, self.fontLabel.LL_height);
+    
+    self.tagLabel.frame = CGRectMake(self.contentLabel.LL_x, self.fontLabel.LL_bottom, self.contentLabel.LL_width, self.tagLabel.LL_height);
 }
 
 #pragma mark - Over write
@@ -136,6 +168,11 @@
     self.actionContentViewHeight = 80;
     
     [self addSubview:self.contentLabel];
+    [self addSubview:self.frameLabel];
+    [self addSubview:self.backgroundColorLabel];
+    [self addSubview:self.textColorLabel];
+    [self addSubview:self.fontLabel];
+    [self addSubview:self.tagLabel];
     [self addSubview:self.actionContentView];
     [self.actionContentView addSubview:self.parentViewsButton];
     [self.actionContentView addSubview:self.subviewsButton];
@@ -149,9 +186,30 @@
     [self.delegate LLHierarchyInfoView:self didSelectAt:sender.tag];
 }
 
+- (void)frameLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [self.selectedView LL_showFrameAlertAndAutomicSetWithKeyPath:@"frame"];
+}
+
+- (void)backgroundColorLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [self.selectedView LL_showColorAlertAndAutomicSetWithKeyPath:@"backgroundColor"];
+}
+
+- (void)textColorLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [self.selectedView LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
+}
+
+- (void)fontLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [self.selectedView LL_showFontAlertAndAutomicSetWithKeyPath:@"font"];
+}
+
+- (void)tagLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [self.selectedView LL_showIntAlertAndAutomicSetWithKeyPath:@"tag"];
+}
+
 #pragma mark - Primary
 - (void)updateHeightIfNeeded {
-    CGFloat height = kLLGeneralMargin + MAX(self.contentLabel.LL_height, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
+    CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height;
+    CGFloat height = kLLGeneralMargin + MAX(contentHeight, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
     if (height != self.LL_height) {
         self.LL_height = height;
         if (!self.isMoved) {
@@ -178,6 +236,56 @@
         _contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
     }
     return _contentLabel;
+}
+
+- (UILabel *)frameLabel {
+    if (!_frameLabel) {
+        _frameLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _frameLabel.numberOfLines = 0;
+        _frameLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_frameLabel LL_addClickListener:self action:@selector(frameLabelTapGestureRecognizer:)];
+    }
+    return _frameLabel;
+}
+
+- (UILabel *)backgroundColorLabel {
+    if (!_backgroundColorLabel) {
+        _backgroundColorLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _backgroundColorLabel.numberOfLines = 0;
+        _backgroundColorLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_backgroundColorLabel LL_addClickListener:self action:@selector(backgroundColorLabelTapGestureRecognizer:)];
+    }
+    return _backgroundColorLabel;
+}
+
+- (UILabel *)textColorLabel {
+    if (!_textColorLabel) {
+        _textColorLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _textColorLabel.numberOfLines = 0;
+        _textColorLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_textColorLabel LL_addClickListener:self action:@selector(textColorLabelTapGestureRecognizer:)];
+    }
+    return _textColorLabel;
+}
+
+- (UILabel *)fontLabel {
+    if (!_fontLabel) {
+        _fontLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _fontLabel.numberOfLines = 0;
+        _fontLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_fontLabel LL_addClickListener:self action:@selector(fontLabelTapGestureRecognizer:)];
+    }
+    return _fontLabel;
+}
+
+- (UILabel *)tagLabel {
+    if (!_tagLabel) {
+        _tagLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _tagLabel.numberOfLines = 0;
+        _tagLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_tagLabel LL_addClickListener:self action:@selector(tagLabelTapGestureRecognizer:)];
+    }
+    return _tagLabel;
 }
 
 - (UIView *)actionContentView {
