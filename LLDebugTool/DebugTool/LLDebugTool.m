@@ -163,7 +163,7 @@ static LLDebugTool *_instance = nil;
     // Set Default
     _isBetaVersion = NO;
 
-    _versionNumber = @"1.3.3";
+    _versionNumber = @"1.3.4";
 
     _version = _isBetaVersion ? [_versionNumber stringByAppendingString:@"(BETA)"] : _versionNumber;
     

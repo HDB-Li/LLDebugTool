@@ -191,7 +191,7 @@ static const char kLLVerticalPaddingKey;
     return view;
 }
 
-- (void)LL_AddClickListener:(id)target action:(SEL)action {
+- (void)LL_addClickListener:(id)target action:(SEL)action {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
     [self addGestureRecognizer:tap];
     self.userInteractionEnabled = YES;

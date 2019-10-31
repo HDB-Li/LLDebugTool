@@ -31,6 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action;
 
+- (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(nullable void (^)(NSInteger action))handler;
+
+- (void)LL_showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(nullable NSString *)currentAction completion:(nullable void (^)(NSInteger index))completion;
+
+- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString * _Nullable))handler;
+
 @end
 
 NS_ASSUME_NONNULL_END

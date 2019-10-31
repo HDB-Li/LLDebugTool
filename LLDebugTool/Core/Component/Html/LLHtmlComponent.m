@@ -22,11 +22,12 @@
 #import "LLHtmlComponent.h"
 #import "LLWindowManager.h"
 #import "LLNavigationController.h"
+#import "LLHtmlConfigViewController.h"
 
 @implementation LLHtmlComponent
 
 - (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
-    LLHtmlWindow *window = [LLWindowManager htmlWindow];
+   
     if (data[kLLComponentWindowRootViewControllerKey]) {
         Class rootViewControllerClass = NSClassFromString(data[kLLComponentWindowRootViewControllerKey]);
         if (rootViewControllerClass != nil) {
@@ -37,10 +38,20 @@
                 [viewController setValue:value forKey:key];
             }
             LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:viewController];
+            LLHtmlWindow *window = [LLWindowManager htmlWindow];
             window.rootViewController = nav;
+            [[LLWindowManager shared] showWindow:window animated:YES];
+            return;
         }
     }
-    [[LLWindowManager shared] showWindow:window animated:YES];
+    
+    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    if ([window isKindOfClass:[LLFunctionWindow class]]) {
+        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
+        [nav pushViewController:[[LLHtmlConfigViewController alloc] init] animated:YES];
+    } else {
+        [[LLWindowManager shared] showWindow:[LLWindowManager htmlWindow] animated:YES];
+    }
 }
 
 @end

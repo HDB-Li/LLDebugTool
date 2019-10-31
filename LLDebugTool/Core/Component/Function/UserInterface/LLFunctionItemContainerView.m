@@ -90,7 +90,7 @@
     for (int i = 0; i < dataArray.count; i++) {
         LLFunctionItemModel *model = dataArray[i];
         LLFunctionItemView *itemView = [[LLFunctionItemView alloc] initWithFrame:CGRectZero];
-        [itemView LL_AddClickListener:self action:@selector(itemViewClicked:)];
+        [itemView LL_addClickListener:self action:@selector(itemViewClicked:)];
         itemView.model = model;
         [self addSubview:itemView];
         [self.itemViews addObject:itemView];

@@ -29,6 +29,7 @@
 #import "LLImageNameConfig.h"
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 #import "LLToastUtils.h"
+#import "UIViewController+LL_Utils.h"
 
 static NSString *const kSandboxCellID = @"LLSandboxCell";
 
@@ -115,7 +116,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     if ([[NSFileManager defaultManager] fileExistsAtPath:model.filePath]) {
         BOOL ret = [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:&error];
         if (!ret) {
-            [self showAlertControllerWithMessage:[NSString stringWithFormat:@"Delete file fail\nFilePath:%@\nError:%@",model.filePath,error.localizedDescription] handler:nil];
+            [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:@"Delete file fail\nFilePath:%@\nError:%@",model.filePath,error.localizedDescription] handler:nil];
         }
         return ret;
     }

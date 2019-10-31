@@ -27,12 +27,18 @@
 #import "LLTitleSliderCell.h"
 #import "LLDetailTitleCell.h"
 #import "LLConst.h"
+#import "LLMacros.h"
 
 @implementation LLTitleCellModel
 
 - (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
+    return [self initWithTitle:title detailTitle:nil flag:flag];
+}
+
+- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle flag:(BOOL)flag {
     if (self = [super init]) {
         _title = [title copy];
+        _detailTitle = [detailTitle copy];
         _flag = flag;
         _cellClass = NSStringFromClass(LLTitleSwitchCell.class);
         _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
@@ -50,16 +56,6 @@
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title detailTitleSelector:(NSString *)detailTitle {
-    if (self = [super init]) {
-        _title = [title copy];
-        _detailTitle = [detailTitle copy];
-        _cellClass = NSStringFromClass(LLDetailTitleSelectorCell.class);
-        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
-    }
-    return self;
-}
-
 - (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
     if (self = [super init]) {
         _title = [title copy];
@@ -70,6 +66,23 @@
         _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     }
     return self;
+}
+
+- (LLTitleCellModel *)normalInsets {
+    self.separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
+    return self;
+}
+
+- (LLTitleCellModel *)noneInsets {
+    self.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
+    return self;
+}
+
+- (void)setBlock:(LLSettingModelBlock)block {
+    if (_block != block) {
+        _block = [block copy];
+        _cellClass = NSStringFromClass(block ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);
+    }
 }
 
 @end

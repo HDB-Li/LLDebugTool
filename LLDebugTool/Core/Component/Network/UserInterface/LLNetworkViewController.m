@@ -36,6 +36,7 @@
 #import "LLToastUtils.h"
 #import "UIView+LL_Utils.h"
 #import "LLConst.h"
+#import "UIViewController+LL_Utils.h"
 
 static NSString *const kNetworkCellID = @"NetworkCellID";
 
@@ -120,7 +121,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
-            [weakSelf showAlertControllerWithMessage:@"Remove network model fail" handler:^(NSInteger action) {
+            [weakSelf LL_showAlertControllerWithMessage:@"Remove network model fail" handler:^(NSInteger action) {
                 if (action == 1) {
                     [weakSelf loadData];
                 }

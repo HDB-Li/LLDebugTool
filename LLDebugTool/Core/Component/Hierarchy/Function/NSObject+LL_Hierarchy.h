@@ -25,11 +25,27 @@
 #import <UIKit/UIKit.h>
 #import "LLTitleCellCategoryModel.h"
 
+FOUNDATION_EXPORT NSNotificationName _Nonnull const LLHierarchyChangeNotificationName;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (LL_Hierarchy)
 
 - (NSArray <LLTitleCellCategoryModel *>*)LL_hierarchyCategoryModels;
+
+- (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+- (void)LL_showFrameAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+- (void)LL_showColorAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+- (void)LL_showFontAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+@end
+
+@interface UIView (LL_Hierarchy)
+
+- (NSArray <LLTitleCellCategoryModel *>*)LL_sizeHierarchyCategoryModels;
 
 @end
 

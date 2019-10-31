@@ -39,6 +39,8 @@ static NSString *const kCellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imgView.tag = 101;
+    
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
@@ -279,6 +281,7 @@ static NSString *const kCellID = @"cellID";
         cell.textLabel.text = NSLocalizedString(@"test.widget.border", nil);
     } else if (indexPath.section == 11) {
         cell.textLabel.text = NSLocalizedString(@"test.html", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }

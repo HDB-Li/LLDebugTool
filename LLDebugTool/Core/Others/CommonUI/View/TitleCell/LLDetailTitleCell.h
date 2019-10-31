@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) UILabel *detailLabel;
 
+@property (nonatomic, strong, readonly) MASConstraint *detailLabelRightCons;
+
 @end
 
 NS_ASSUME_NONNULL_END

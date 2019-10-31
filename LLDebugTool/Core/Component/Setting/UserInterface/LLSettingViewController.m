@@ -35,6 +35,7 @@
 #import "LLImageNameConfig.h"
 #import "LLConst.h"
 #import "LLTitleSliderCell.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLSettingViewController () <UITableViewDataSource>
 
@@ -103,7 +104,7 @@
 
 - (LLTitleCellModel *)getDoubleClickComponentModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitleSelector:[LLConfigHelper doubleClickComponentDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitle:[LLConfigHelper doubleClickComponentDescription]];
     model.block = ^{
         [weakSelf showDoubleClickAlert];
     };
@@ -119,7 +120,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
         [weakSelf setNewDoubleClick:index + LLDebugToolActionSetting];
     }];
 }
@@ -146,7 +147,7 @@
 
 - (LLTitleCellModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper colorStyleDetailDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -162,7 +163,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewColorStyle:index];
     }];
 }
@@ -181,7 +182,7 @@
 }
 
 - (LLTitleCellModel *)getStatusBarStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitleSelector:[LLConfigHelper statusBarStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitle:[LLConfigHelper statusBarStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showStatusBarStyleAlert];
@@ -203,7 +204,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewStatusBarStyle:index];
     }];
 }
@@ -227,7 +228,7 @@
 
 - (LLTitleCellModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper entryWindowStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -248,7 +249,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewEntryWindowStyle:index];
     }];
 }
@@ -278,7 +279,7 @@
 }
 
 - (LLTitleCellModel *)getLogStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitleSelector:[LLConfigHelper logStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
@@ -295,7 +296,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewLogStyle:index];
     }];
 }

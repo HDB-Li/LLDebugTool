@@ -1,3 +1,13 @@
+## [1.3.4](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.4) (10/31/2019)
+
+###  More practical `Hierarchy` function
+
+Now you can use the `Hierarchy` function to dynamically modify attribute values. There are common attributes in the shortcut interface and most attributes in the details interface. It's a very interesting and useful function.
+
+#### Update
+
+* Update `Hierarchy Detail` to dynamic modify properties.
+
 ## [1.3.3](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.3) (10/18/2019)
 
 ###  Add `Html` function.

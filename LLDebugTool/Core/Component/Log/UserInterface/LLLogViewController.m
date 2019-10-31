@@ -34,6 +34,7 @@
 #import "LLToastUtils.h"
 #import "UIView+LL_Utils.h"
 #import "LLConst.h"
+#import "UIViewController+LL_Utils.h"
 
 static NSString *const kLogCellID = @"LLLogCell";
 
@@ -123,7 +124,7 @@ static NSString *const kLogCellID = @"LLLogCell";
         if (result) {
             [weakSelf updateAfterDelete:models indexPaths:indexPaths];
         } else {
-            [weakSelf showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
+            [weakSelf LL_showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
                 if (action == 1) {
                     [weakSelf loadData];
                 }
