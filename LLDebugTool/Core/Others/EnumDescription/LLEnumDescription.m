@@ -816,45 +816,45 @@
 + (NSString *_Nullable)layoutAttributeDescription:(NSLayoutAttribute)attribute {
     switch (attribute) {
         case NSLayoutAttributeLeft:
-            return @"Left";
+            return @"left";
         case NSLayoutAttributeRight:
-            return @"Right";
+            return @"right";
         case NSLayoutAttributeTop:
-            return @"Top";
+            return @"top";
         case NSLayoutAttributeBottom:
-            return @"Bottom";
+            return @"bottom";
         case NSLayoutAttributeLeading:
-            return @"Leading";
+            return @"leading";
         case NSLayoutAttributeTrailing:
-            return @"Trailing";
+            return @"trailing";
         case NSLayoutAttributeWidth:
-            return @"Width";
+            return @"width";
         case NSLayoutAttributeHeight:
-            return @"Height";
+            return @"height";
         case NSLayoutAttributeCenterX:
-            return @"CenterX";
+            return @"centerX";
         case NSLayoutAttributeCenterY:
-            return @"CenterY";
+            return @"centerY";
         case NSLayoutAttributeLastBaseline:
-            return @"LastBaseline";
+            return @"lastBaseline";
         case NSLayoutAttributeFirstBaseline:
-            return @"FirstBaseline";
+            return @"firstBaseline";
         case NSLayoutAttributeLeftMargin:
-            return @"LeftMargin";
+            return @"leftMargin";
         case NSLayoutAttributeRightMargin:
-            return @"RightMargin";
+            return @"rightMargin";
         case NSLayoutAttributeTopMargin:
-            return @"TopMargin";
+            return @"topMargin";
         case NSLayoutAttributeBottomMargin:
-            return @"BottomMargin";
+            return @"bottomMargin";
         case NSLayoutAttributeLeadingMargin:
-            return @"LeadingMargin";
+            return @"leadingMargin";
         case NSLayoutAttributeTrailingMargin:
-            return @"TrailingMargin";
+            return @"trailingMargin";
         case NSLayoutAttributeCenterXWithinMargins:
-            return @"CenterXMargin";
+            return @"centerXMargin";
         case NSLayoutAttributeCenterYWithinMargins:
-            return @"CenterYMargin";
+            return @"centerYMargin";
         case NSLayoutAttributeNotAnAttribute:
             return nil;
         default:

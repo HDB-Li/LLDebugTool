@@ -373,14 +373,23 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     };
     [settings addObject:model9];
 
+    LLTitleCellModel *lastConstrainModel = nil;
+    
     for (NSLayoutConstraint *constrain in self.constraints) {
         if (!constrain.shouldBeArchived) {
             continue;
         }
         NSString *constrainDesc = [self LL_hierarchyLayoutConstraintDescription:constrain];
         if (constrainDesc) {
-            LLTitleCellModel *mod = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:constrainDesc];
+            LLTitleCellModel *mod = [[[LLTitleCellModel alloc] initWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
+            __weak NSLayoutConstraint *cons = constrain;
+            mod.block = ^{
+                [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)] handler:^(NSString * _Nullable newText) {
+                    cons.constant = [newText doubleValue];
+                }];
+            };
             [settings addObject:mod];
+            lastConstrainModel = mod;
         }
     }
     
@@ -391,11 +400,20 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         if (constrain.firstItem == self || constrain.secondItem == self) {
             NSString *constrainDesc = [self LL_hierarchyLayoutConstraintDescription:constrain];
             if (constrainDesc) {
-                LLTitleCellModel *mod = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:constrainDesc];
+                LLTitleCellModel *mod = [[[LLTitleCellModel alloc] initWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
+                __weak NSLayoutConstraint *cons = constrain;
+                mod.block = ^{
+                    [weakSelf LL_showHierarchyChangeAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)] handler:^(NSString * _Nullable newText) {
+                        cons.constant = [newText doubleValue];
+                    }];
+                };
                 [settings addObject:mod];
+                lastConstrainModel = mod;
             }
         }
     }
+    
+    [lastConstrainModel normalInsets];
     
     return @[[[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:settings]];
 }
