@@ -29,6 +29,7 @@
 #import "LLEnumDescription.h"
 #import "LLTool.h"
 #import "UIViewController+LL_Utils.h"
+#import "UIColor+LL_Utils.h"
 
 NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChangeNotificationName";
 
@@ -60,7 +61,27 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     
     NSString *colorName = [color LL_systemColorName];
     
-    return colorName ? [rgb stringByAppendingFormat:@"\n%@",colorName] : rgb;
+    return colorName ? [rgb stringByAppendingFormat:@"\n%@",colorName] : [rgb stringByAppendingFormat:@"\n%@",[color LL_HexString]];
+}
+
+- (UIColor *)LL_colorFromString:(NSString *)string originalColor:(UIColor *)color {
+    BOOL error = NO;
+    UIColor *newColor = [UIColor LL_colorWithHex:string error:&error];
+    if (error) {
+        return color;
+    }
+    return newColor;
+}
+
+- (void)LL_showColorAlertAndAutomicSetWithKey:(NSString *)key {
+    __block UIColor *color = [self valueForKey:key];
+    if (color && ![color isKindOfClass:[UIColor class]]) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    [self LL_showHierarchyChangeAlertWithText:[color LL_HexString] handler:^(NSString * _Nullable newText) {
+        [weakSelf setValue:[weakSelf LL_colorFromString:newText originalColor:color] forKey:key];
+    }];
 }
 
 - (NSString *)LL_hierarchyBoolDescription:(BOOL)flag {
@@ -237,9 +258,15 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.backgroundColor]] noneInsets];
+    model8.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"backgroundColor"];
+    };
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
+    model9.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"tintColor"];
+    };
     [settings addObject:model9];
     
     LLTitleCellModel *model10 = [[[LLTitleCellModel alloc] initWithTitle:@"Drawing" detailTitle:@"Opaque" flag:self.isOpaque] noneInsets];
@@ -480,6 +507,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
+    model3.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"textColor"];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
@@ -545,9 +575,15 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model11];
     
     LLTitleCellModel *model12 = [[[LLTitleCellModel alloc] initWithTitle:@"Highlighted" detailTitle:[self LL_hierarchyColorDescription:self.highlightedTextColor]] noneInsets];
+    model12.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"highlightedTextColor"];
+    };
     [settings addObject:model12];
     
     LLTitleCellModel *model13 = [[[LLTitleCellModel alloc] initWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:self.shadowColor]] noneInsets];
+    model13.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"shadowColor"];
+    };
     [settings addObject:model13];
     
     LLTitleCellModel *model14 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.shadowOffset]];
@@ -654,9 +690,19 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Text Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleColor]] noneInsets];
+    model5.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[weakSelf.currentTitleColor LL_HexString] handler:^(NSString * _Nullable newText) {
+            [weakSelf setTitleColor:[weakSelf LL_colorFromString:newText originalColor:weakSelf.currentTitleColor] forState:weakSelf.state];
+        }];
+    };
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleShadowColor]];
+    model6.block = ^{
+        [weakSelf LL_showHierarchyChangeAlertWithText:[weakSelf.currentTitleShadowColor LL_HexString] handler:^(NSString * _Nullable newText) {
+            [weakSelf setTitleShadowColor:[weakSelf LL_colorFromString:newText originalColor:weakSelf.currentTitleShadowColor] forState:weakSelf.state];
+        }];
+    };
     [settings addObject:model6];
     
     id target = self.allTargets.allObjects.firstObject;
@@ -808,6 +854,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"textColor"];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
@@ -1059,12 +1108,21 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[[LLTitleCellModel alloc] initWithTitle:@"Min Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.minimumTrackTintColor]] noneInsets];
+    model6.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"minimumTrackTintColor"];
+    };
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Max Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.maximumTrackTintColor]] noneInsets];
+    model7.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"maximumTrackTintColor"];
+    };
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[LLTitleCellModel alloc] initWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
+    model8.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"tintColor"];
+    };
     [settings addObject:model8];
     
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Events" detailTitle:@"Continuous Update" flag:self.isContinuous];
@@ -1101,9 +1159,15 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"On Tint" detailTitle:[self LL_hierarchyColorDescription:self.onTintColor]] noneInsets];
+    model2.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"onTintColor"];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.thumbTintColor]];
+    model3.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"thumbTintColor"];
+    };
     [settings addObject:model3];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Switch" items:settings];
@@ -1140,6 +1204,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model1];
     
     LLTitleCellModel *model2 = [[[LLTitleCellModel alloc] initWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.color]] noneInsets];
+    model2.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"color"];
+    };
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Behavior" detailTitle:@"Animating" flag:self.isAnimating] noneInsets];
@@ -1200,9 +1267,15 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Progress Tint" detailTitle:[self LL_hierarchyColorDescription:self.progressTintColor]] noneInsets];
+    model3.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"progressTintColor"];
+    };
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:@"Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.trackTintColor]];
+    model4.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"trackTintColor"];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Progress Image" detailTitle:[self LL_hierarchyImageDescription:self.progressImage]] noneInsets];
@@ -1271,9 +1344,15 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Tint Color" detailTitle:[self LL_hierarchyColorDescription:self.pageIndicatorTintColor]] noneInsets];
+    model5.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"pageIndicatorTintColor"];
+    };
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Current Page" detailTitle:[self LL_hierarchyColorDescription:self.currentPageIndicatorTintColor]];
+    model6.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"currentPageIndicatorTintColor"];
+    };
     [settings addObject:model6];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Page Control" items:settings];
@@ -1509,6 +1588,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.separatorColor]];
+    model4.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"separatorColor"];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]] noneInsets];
@@ -1575,12 +1657,24 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model14];
     
     LLTitleCellModel *model15 = [[[LLTitleCellModel alloc] initWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexColor]] noneInsets];
+    model15.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"sectionIndexColor"];
+    };
     [settings addObject:model15];
     
     LLTitleCellModel *model16 = [[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexBackgroundColor]] noneInsets];
+    model16.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"sectionIndexBackgroundColor"];
+    };
     [settings addObject:model16];
     
     LLTitleCellModel *model17 = [[LLTitleCellModel alloc] initWithTitle:@"Tracking" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexTrackingBackgroundColor]];
+    model17.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"sectionIndexTrackingBackgroundColor"];
+    };
+    model17.block = ^{
+        
+    };
     [settings addObject:model17];
     
     LLTitleCellModel *model18 = [[[LLTitleCellModel alloc] initWithTitle:@"Row Height" detailTitle:[LLFormatterTool formatNumber:@(self.rowHeight)]] noneInsets];
@@ -1792,6 +1886,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model3];
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"textColor"];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
@@ -2092,6 +2189,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     }
     
     LLTitleCellModel *model4 = [[[LLTitleCellModel alloc] initWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]] noneInsets];
+    model4.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"barTintColor"];
+    };
     [settings addObject:model4];
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Shadow Image" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]] noneInsets];
@@ -2207,6 +2307,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model2];
     
     LLTitleCellModel *model3 = [[LLTitleCellModel alloc] initWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    model3.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"barTintColor"];
+    };
     [settings addObject:model3];
     
     LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Tool Bar" items:settings];
@@ -2253,6 +2356,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model5];
     
     LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    model6.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"barTintColor"];
+    };
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription tabBarItemPositioningDescription:self.itemPositioning]] noneInsets];
@@ -2346,6 +2452,9 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     [settings addObject:model6];
     
     LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    model7.block = ^{
+        [weakSelf LL_showColorAlertAndAutomicSetWithKey:@"barTintColor"];
+    };
     [settings addObject:model7];
     
     LLTitleCellModel *model8 = [[[LLTitleCellModel alloc] initWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]] noneInsets];

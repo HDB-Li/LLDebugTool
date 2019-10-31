@@ -26,7 +26,14 @@
 @implementation UIColor (LL_Utils)
 
 + (UIColor *)LL_colorWithHex:(NSString *)hex {
+    return [self LL_colorWithHex:hex error:nil];
+}
+
++ (UIColor *)LL_colorWithHex:(NSString *)hex error:(BOOL *)error {
     if ([hex length] < 6){//长度不合法
+        if (error) {
+            *error = YES;
+        }
         return [UIColor blackColor];
     }
     NSString *tempString = [hex lowercaseString];
@@ -36,6 +43,9 @@
         tempString = [tempString substringFromIndex:1];
     }
     if ([tempString length] != 6){
+        if (error) {
+            *error = YES;
+        }
         return [UIColor blackColor];
     }
     
@@ -54,6 +64,9 @@
     [[NSScanner scannerWithString:rString] scanHexInt:&r];
     [[NSScanner scannerWithString:gString] scanHexInt:&g];
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    if (error) {
+        *error = NO;
+    }
     return [UIColor colorWithRed:((float) r / 255.0f)
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)

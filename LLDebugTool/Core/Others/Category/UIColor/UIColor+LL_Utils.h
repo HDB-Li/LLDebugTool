@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)LL_colorWithHex:(NSString *)hex;
 
++ (UIColor *)LL_colorWithHex:(NSString *)hex error:(BOOL *_Nullable)error;
+
 - (NSArray *)LL_RGBA;
 
 - (NSString *)LL_HexString;
