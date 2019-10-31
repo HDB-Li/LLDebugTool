@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.3-blue.svg)](https://img.shields.io/badge/Pod-v1.3.3-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.4-blue.svg)](https://img.shields.io/badge/Pod-v1.3.4-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -45,15 +45,15 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.3.3)
+## 最近更新 (1.3.4)
 
-###  新增 `Html` 功能。
+###  更实用的 `Hierarchy` 功能
 
-你可以在你的app中随时调试通过 `WKWebView`，`UIWebView` 或者你自定义的`ViewController`来调试html页面。
+现在你可以用 `Hierarchy` 功能动态的修改属性值。在快捷界面里有常用的属性，在详情界面里有大部分的属性。
 
-#### 新增
+#### 更新
 
-* 现在 `LLURLProtocol` 可以正确的监听 `WKWebView`。
+* 更新 `Hierarchy Detail` 实现动态修改属性值的功能。
 
 ## 我能用LLDebugTool做什么?
 
@@ -71,13 +71,15 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 - 截屏、标注并分享。
 
-- 更直观的查看视图结构。
+- 更直观的查看视图结构，并修改具体属性值。
 
 - 更准确地确定App里的UI元素和颜色。
 
 - 便捷的获取和对比位置信息。
 
 - 便捷的查看元素边框及位置。
+
+- 快速的Html容器入口。
 
 ## 添加 LLDebugTool 到你的项目中
 
@@ -87,17 +89,17 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 ##### Objective - C
 
-> 1. 添加 `pod 'LLDebugTool' , '~> 1.0.0'` 到你的Podfile里。
-> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.3.3' ,:configurations => ['Debug']`。
-> 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugTool' , '~> 1.0.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugTool`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
+> 1. 添加 `pod 'LLDebugTool' , '~> 1.0'` 到你的Podfile里。
+> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.3.4' ,:configurations => ['Debug']`。
+> 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugTool' , '~> 1.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugTool`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
 > 4. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 > 5. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
 
 ##### Swift
 
-> 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0.0'` 到你的Podfile里。
-> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.3.3' ,:configurations => ['Debug']`。
-> 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugToolSwift' , '~> 1.0.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugToolSwift`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
+> 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0'` 到你的Podfile里。
+> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.3.4' ,:configurations => ['Debug']`。
+> 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugToolSwift' , '~> 1.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugToolSwift`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
 > 4. 必须在Podfile中添加 **`use_frameworks!`** 。
 > 5. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 > 6. 在你需要使用LLDebugTool的文件里添加`import LLDebugToolSwift`。
@@ -324,7 +326,7 @@ LLDebugTool提供了一个截屏功能，并且可以进行简单的绘画和标
 
 ### 视图结构
 
-LLDebugTool提供了一个视图结构工具，用于在非Debug模式下查看元素的属性和信息。
+LLDebugTool提供了一个视图结构工具，用于在非Debug模式下查看或者修改元素的属性和信息。
 
 ### 放大镜
 
