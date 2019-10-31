@@ -28,6 +28,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot2.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
 </div>
 
 #### Preview
@@ -46,6 +47,8 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 </div>
 
 ## What's new in 1.3.4
+
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
 
 ###  More practical `Hierarchy` function
 
