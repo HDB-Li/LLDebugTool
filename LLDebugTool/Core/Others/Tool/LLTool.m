@@ -88,7 +88,10 @@ static unsigned long long _absolutelyIdentity = 0;
 }
 
 + (UIWindow *)keyWindow {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return [UIApplication sharedApplication].keyWindow;
+#pragma clang diagnostic pop
 }
 
 + (void)log:(NSString *)string {

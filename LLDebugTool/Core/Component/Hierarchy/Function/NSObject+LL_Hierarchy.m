@@ -285,7 +285,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         [LLTool log:[NSString stringWithFormat:@"KeyPath:%@ isn't a NSAttributedString or nil", key]];
         return;
     }
-    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithAttributedString:string];
+    NSMutableAttributedString *attribute = string ? [[NSMutableAttributedString alloc] initWithAttributedString:string] : [[NSMutableAttributedString alloc] init];
     [attribute replaceCharactersInRange:NSMakeRange(0, string.length) withString:newString];
     [self setValue:string forKey:key];
 }
@@ -1223,6 +1223,8 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLEnumDescription activityIndicatorViewStyleDescription:self.activityIndicatorViewStyle]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription activityIndicatorViewStyles] currentAction:[LLEnumDescription activityIndicatorViewStyleDescription:weakSelf.activityIndicatorViewStyle] completion:^(NSInteger index) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             if (index <= UIActivityIndicatorViewStyleGray) {
                 weakSelf.activityIndicatorViewStyle = index;
             } else {
@@ -1230,6 +1232,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
                     weakSelf.activityIndicatorViewStyle = index + (UIActivityIndicatorViewStyleMedium - UIActivityIndicatorViewStyleGray - 1);
                 }
             }
+#pragma clang diagnostic pop
         }];
     };
     [settings addObject:model1];

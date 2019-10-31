@@ -521,12 +521,12 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSArray *actions = @[@(UIActivityIndicatorViewStyleWhiteLarge),@(UIActivityIndicatorViewStyleWhite),@(UIActivityIndicatorViewStyleGray)];
-#pragma clang diagnostic pop
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
         actions = @[@(UIActivityIndicatorViewStyleMedium),@(UIActivityIndicatorViewStyleLarge),@(UIActivityIndicatorViewStyleWhiteLarge),@(UIActivityIndicatorViewStyleWhite),@(UIActivityIndicatorViewStyleGray)];
     }
 #endif
+#pragma clang diagnostic pop
     for (NSNumber *num in actions) {
         NSString *style = [self activityIndicatorViewStyleDescription:[num integerValue]];
         if (style) {
@@ -634,12 +634,15 @@
 
 + (NSArray <NSString *>*)tableViewCellSeparatorStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     for (UITableViewCellSeparatorStyle i = UITableViewCellSeparatorStyleNone; i <= UITableViewCellSeparatorStyleSingleLineEtched; i++) {
         NSString *style = [self tableViewCellSeparatorStyleDescription:i];
         if (style) {
             [styles addObject:style];
         }
     }
+#pragma clang diagnostic pop
     return [styles copy];
 }
 
@@ -758,12 +761,15 @@
 
 + (NSArray <NSString *>*)barStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     for (UIBarStyle i = UIBarStyleDefault; i <= UIBarStyleBlackTranslucent; i++) {
         NSString *style = [self barStyleDescription:i];
         if (style) {
             [styles addObject:style];
         }
     }
+#pragma clang diagnostic pop
     return [styles copy];
 }
 
