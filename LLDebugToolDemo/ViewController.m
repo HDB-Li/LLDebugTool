@@ -39,6 +39,8 @@ static NSString *const kCellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imgView.tag = 101;
+    
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
