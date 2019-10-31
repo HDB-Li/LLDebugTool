@@ -181,7 +181,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     
     // Click action
     _clickAction = LLDebugToolActionFunction;
-    _doubleClickAction = LLDebugToolActionConvenientScreenshot;
+    _doubleClickAction = LLDebugToolActionHierarchy;
     
     // Set default window's style.
     _entryWindowStyle = LLConfigEntryWindowStyleBall;
