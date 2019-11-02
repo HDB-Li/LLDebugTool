@@ -258,20 +258,22 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 }
 
 - (void)LL_showTextFieldAlertWithText:(NSString *)text handler:(nullable void (^)(NSString * _Nullable newText))handler {
+    __weak typeof(self) weakSelf = self;
     [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showTextFieldAlertControllerWithMessage:@"Change Property" text:text handler:^(NSString * _Nullable newText) {
         if (handler) {
             handler(newText);
         }
-        [self LL_postHierarchyChangeNotification];
+        [weakSelf LL_postHierarchyChangeNotification];
     }];
 }
 
 - (void)LL_showActionSheetWithActions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion {
+    __weak typeof(self) weakSelf = self;
     [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showActionSheetWithTitle:@"Change Property" actions:actions currentAction:currentAction completion:^(NSInteger index) {
         if (completion) {
             completion(index);
         }
-        [self LL_postHierarchyChangeNotification];
+        [weakSelf LL_postHierarchyChangeNotification];
     }];
 }
 

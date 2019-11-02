@@ -134,7 +134,6 @@
 		C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */; };
 		C49856C322ED909F00E9FBE2 /* LLCrashSignalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */; };
 		C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */; };
-		C49856CA22ED90B400E9FBE2 /* LLHierarchyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */; };
 		C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856CE22ED90C800E9FBE2 /* LLLogModel.m */; };
 		C49856D122ED90C800E9FBE2 /* LLLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856CF22ED90C800E9FBE2 /* LLLogHelper.m */; };
 		C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */; };
@@ -490,10 +489,8 @@
 		C49856BE22ED909F00E9FBE2 /* LLCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashHelper.h; sourceTree = "<group>"; };
 		C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalModel.m; sourceTree = "<group>"; };
 		C49856C022ED909F00E9FBE2 /* LLCrashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashModel.h; sourceTree = "<group>"; };
-		C49856C522ED90B400E9FBE2 /* LLHierarchyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHierarchyModel.h; sourceTree = "<group>"; };
 		C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyHelper.m; sourceTree = "<group>"; };
 		C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHierarchyHelper.h; sourceTree = "<group>"; };
-		C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyModel.m; sourceTree = "<group>"; };
 		C49856CC22ED90C800E9FBE2 /* LLLogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogModel.h; sourceTree = "<group>"; };
 		C49856CD22ED90C800E9FBE2 /* LLLogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogHelper.h; sourceTree = "<group>"; };
 		C49856CE22ED90C800E9FBE2 /* LLLogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogModel.m; sourceTree = "<group>"; };
@@ -1449,8 +1446,6 @@
 			children = (
 				C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */,
 				C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */,
-				C49856C522ED90B400E9FBE2 /* LLHierarchyModel.h */,
-				C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */,
 				36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */,
 				36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */,
 			);
@@ -2355,7 +2350,6 @@
 				C49856E222ED90F300E9FBE2 /* LLSandboxModel.m in Sources */,
 				C4B4E47022F9C90900F70277 /* LLBaseViewController.m in Sources */,
 				363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */,
-				C49856CA22ED90B400E9FBE2 /* LLHierarchyModel.m in Sources */,
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
 				C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */,
 				C49856F522EDB1FE00E9FBE2 /* LLSandboxComponent.m in Sources */,
