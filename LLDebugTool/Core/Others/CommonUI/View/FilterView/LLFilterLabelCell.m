@@ -25,7 +25,6 @@
 #import "LLConfig.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "Masonry.h"
 #import "LLConst.h"
 #import "UIView+LL_Utils.h"
 
@@ -60,13 +59,26 @@
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.label];
     
-    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.bottom.mas_equalTo(0);
-    }];
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_equalTo(kLLGeneralMargin / 2.0);
-        make.right.bottom.mas_equalTo(-kLLGeneralMargin / 2.0);
-    }];
+    [self addBgViewConstraints];
+    [self addLabelConstraints];
+}
+
+- (void)addBgViewConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.bgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.bgView.superview attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.bgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.bgView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.bgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.bgView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.bgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bgView.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    self.bgView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.bgView.superview addConstraints:@[top, left, right, bottom]];
+}
+
+- (void)addLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.label.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.label.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.label.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.label.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin / 2.0];
+    self.label.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.label.superview addConstraints:@[top, left, right, bottom]];
 }
 
 #pragma mark - Getters and setters

@@ -23,7 +23,6 @@
 
 #import "LLBaseTableViewCell.h"
 #import "LLTitleCellModel.h"
-#import "Masonry.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
-@property (nonatomic, strong, readonly) MASConstraint *titleLabelBottomCons;
+@property (nonatomic, strong, readonly) NSLayoutConstraint *titleLabelBottomCons;
 
 @property (nonatomic, strong) LLTitleCellModel *model;
 

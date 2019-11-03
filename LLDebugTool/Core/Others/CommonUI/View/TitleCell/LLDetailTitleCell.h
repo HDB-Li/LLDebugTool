@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) UILabel *detailLabel;
 
-@property (nonatomic, strong, readonly) MASConstraint *detailLabelRightCons;
+@property (nonatomic, strong, readonly) NSLayoutConstraint *detailLabelRightCons;
 
 @end
 

@@ -27,7 +27,6 @@
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConst.h"
-#import "Masonry.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLSubTitleTableViewCell ()

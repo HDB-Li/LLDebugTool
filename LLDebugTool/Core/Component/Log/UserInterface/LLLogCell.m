@@ -24,7 +24,6 @@
 #import "LLLogCell.h"
 #import "LLConfig.h"
 #import "LLFactory.h"
-#import "Masonry.h"
 #import "LLConst.h"
 
 @interface LLLogCell ()
