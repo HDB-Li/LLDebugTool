@@ -72,10 +72,11 @@
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:45];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     bottom.priority = UILayoutPriorityDefaultHigh;
     self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.imgView.superview addConstraints:@[top, height, left, bottom]];
+    [self.imgView.superview addConstraints:@[top, height, left, right, bottom]];
     
     self.imgViewHeightCons = height;
 }
