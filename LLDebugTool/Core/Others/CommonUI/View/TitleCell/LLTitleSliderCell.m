@@ -57,9 +57,10 @@
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.valueLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:-kLLGeneralMargin];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin];
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:35];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin /2.0];
     self.slider.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.slider.superview addConstraints:@[right, left, top, bottom]];
+    [self.slider.superview addConstraints:@[right, left, top, height, bottom]];
 }
 
 #pragma mark - Primary
