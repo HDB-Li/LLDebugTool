@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSData utils.
 @interface NSData (LL_Utils)
 
 /**

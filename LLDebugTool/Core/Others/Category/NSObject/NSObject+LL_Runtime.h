@@ -26,6 +26,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSObject runtime.
 @interface NSObject (LL_Runtime)
 
 /**

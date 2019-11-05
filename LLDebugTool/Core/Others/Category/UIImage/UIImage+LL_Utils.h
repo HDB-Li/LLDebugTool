@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Image utils.
 @interface UIImage (LL_Utils)
 
 /**

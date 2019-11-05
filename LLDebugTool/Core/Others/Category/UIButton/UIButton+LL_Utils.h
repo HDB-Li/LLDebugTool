@@ -25,8 +25,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIButton utils
 @interface UIButton (LL_Utils)
 
+/// Set backgroundColor for state.
+/// @param backgroundColor Color.
+/// @param state State.
 - (void)LL_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state;
 
 @end

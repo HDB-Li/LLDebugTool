@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSString utils.
 @interface NSString (LL_Utils)
 
 /**

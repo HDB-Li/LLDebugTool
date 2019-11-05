@@ -27,12 +27,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSObject utils.
 @interface NSObject (LL_Utils)
 
+/// Launch date.
 + (NSString *)LL_launchDate;
 
+/// Start load time.
 + (NSTimeInterval)LL_startLoadTime;
 
+/// Object hash color.
 - (UIColor *)LL_hashColor;
 
 @end

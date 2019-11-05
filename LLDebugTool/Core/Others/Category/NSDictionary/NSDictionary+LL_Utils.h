@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Dictionary utils.
 @interface NSDictionary (LL_Utils)
 
+/// Convert to json string.
 - (NSString *_Nullable)LL_toJsonString;
 
 @end

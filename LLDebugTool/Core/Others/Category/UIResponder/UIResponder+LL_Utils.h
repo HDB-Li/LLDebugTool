@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSNotificationName const kLLDidShakeNotificationName;
 
+/// UIResponder utils.
 @interface UIResponder (LL_Utils)
 
 @end

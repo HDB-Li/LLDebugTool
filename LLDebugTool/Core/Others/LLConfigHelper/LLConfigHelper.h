@@ -22,11 +22,13 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #import "LLConfig.h"
 #import "LLDebugTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Config description helper.
 @interface LLConfigHelper : NSObject
 
 #pragma mark - Description

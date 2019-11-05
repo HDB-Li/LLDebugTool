@@ -97,7 +97,7 @@ static unsigned long long _absolutelyIdentity = 0;
 + (void)log:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([LLConfig shared].isShowDebugToolLog) {
-            NSLog(@"%@ %@",string,kLLLogHelperOpenIssueInGithub);
+            NSLog(@"%@,%@",string,kLLLogHelperOpenIssueInGithub);
         }
     });
 }
@@ -105,12 +105,12 @@ static unsigned long long _absolutelyIdentity = 0;
 + (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt {
     if (synchronous) {
         if ([LLConfig shared].isShowDebugToolLog) {
-            NSLog(@"%@ %@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+            NSLog(@"%@,%@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
         }
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([LLConfig shared].isShowDebugToolLog) {
-                NSLog(@"%@ %@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+                NSLog(@"%@,%@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
             }
         });
     }

@@ -25,18 +25,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIColor utils.
 @interface UIColor (LL_Utils)
 
+/// Color with hex.
+/// @param hex Hex string.
 + (UIColor *)LL_colorWithHex:(NSString *)hex;
 
+/// Color with hex and error
+/// @param hex Hex string.
+/// @param error Error.
 + (UIColor *)LL_colorWithHex:(NSString *)hex error:(BOOL *_Nullable)error;
 
+/// Convert to rgba number array.
 - (NSArray *)LL_RGBA;
 
+/// Convert to hex string.
 - (NSString *)LL_HexString;
 
+/// Description.
 - (NSString *)LL_description;
 
+/// System color name if exist.
 - (NSString *_Nullable)LL_systemColorName;
 
 /**
