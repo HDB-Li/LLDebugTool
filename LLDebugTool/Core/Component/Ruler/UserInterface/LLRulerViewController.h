@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Ruler function view controller.
 @interface LLRulerViewController : LLBaseComponentViewController
 
 @end
