@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Sandbox function component.
 @interface LLSandboxComponent : LLComponent
 
 @end

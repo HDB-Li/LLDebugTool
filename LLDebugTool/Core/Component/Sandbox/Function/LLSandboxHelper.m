@@ -23,6 +23,8 @@
 
 #import "LLSandboxHelper.h"
 
+#import "LLSandboxModel.h"
+
 static LLSandboxHelper *_instance = nil;
 
 @implementation LLSandboxHelper

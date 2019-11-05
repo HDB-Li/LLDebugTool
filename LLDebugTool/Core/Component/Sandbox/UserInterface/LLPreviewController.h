@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// File preview controller.
 @interface LLPreviewController : QLPreviewController
 
+/// File paths.
 @property (nonatomic, strong, nullable) NSArray <NSString *>*filePaths;
 
 @end
