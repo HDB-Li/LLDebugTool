@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// App info function window.
 @interface LLAppInfoWindow : LLComponentWindow
 
 @end

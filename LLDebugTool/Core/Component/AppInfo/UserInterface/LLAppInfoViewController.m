@@ -22,12 +22,13 @@
 //  SOFTWARE.
 
 #import "LLAppInfoViewController.h"
+
 #import "LLBaseTableViewCell.h"
 #import "LLAppInfoHelper.h"
+#import "LLThemeManager.h"
+#import "LLFactory.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
-#import "LLFactory.h"
-#import "LLThemeManager.h"
 
 @interface LLAppInfoViewController ()
 
