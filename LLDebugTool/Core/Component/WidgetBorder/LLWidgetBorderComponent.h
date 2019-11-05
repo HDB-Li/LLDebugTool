@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Widget border function component.
 @interface LLWidgetBorderComponent : LLComponent
 
 @end

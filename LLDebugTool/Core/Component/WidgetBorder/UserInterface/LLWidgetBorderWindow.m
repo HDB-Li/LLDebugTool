@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLWidgetBorderWindow.h"
-#import "LLWindowManager.h"
+
 #import "LLWidgetBorderViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLWidgetBorderWindow
 
