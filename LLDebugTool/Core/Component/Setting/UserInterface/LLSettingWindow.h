@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Setting window.
 @interface LLSettingWindow : LLComponentWindow
 
 @end

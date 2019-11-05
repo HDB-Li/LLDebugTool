@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLSettingWindow.h"
+
 #import "LLSettingViewController.h"
 #import "LLNavigationController.h"
 #import "LLWindowManager.h"

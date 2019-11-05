@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLSettingComponent.h"
-#import "LLWindowManager.h"
-#import "LLNavigationController.h"
+
 #import "LLSettingViewController.h"
+#import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLSettingComponent
 

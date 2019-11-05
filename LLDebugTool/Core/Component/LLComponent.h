@@ -26,6 +26,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Component file.
 @interface LLComponent : NSObject <LLComponentDelegate>
 
 @end

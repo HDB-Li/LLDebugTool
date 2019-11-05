@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Setting view controller.
 @interface LLSettingViewController : LLTitleViewController
 
 @end
