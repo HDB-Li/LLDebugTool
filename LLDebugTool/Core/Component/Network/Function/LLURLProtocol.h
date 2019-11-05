@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// specially url protocol, use to hook network request.
 @interface LLURLProtocol : NSURLProtocol
 
 @end

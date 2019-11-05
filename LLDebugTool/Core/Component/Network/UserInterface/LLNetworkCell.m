@@ -22,8 +22,10 @@
 //  SOFTWARE.
 
 #import "LLNetworkCell.h"
-#import "LLConfig.h"
+
+#import "LLNetworkModel.h"
 #import "LLFactory.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 @interface LLNetworkCell ()

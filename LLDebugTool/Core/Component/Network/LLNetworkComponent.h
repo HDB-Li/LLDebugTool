@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Network function component.
 @interface LLNetworkComponent : LLComponent
 
 @end

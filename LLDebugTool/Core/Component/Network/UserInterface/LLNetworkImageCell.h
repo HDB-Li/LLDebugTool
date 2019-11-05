@@ -25,8 +25,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Network function image cell.
 @interface LLNetworkImageCell : LLBaseTableViewCell
 
+/// Set up image to cell.
+/// @param image UIImage.
 - (void)setUpImage:(UIImage *)image;
 
 @end

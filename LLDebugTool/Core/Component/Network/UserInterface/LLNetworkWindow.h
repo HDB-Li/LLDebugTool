@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Network function window, use to show or hide network function.
 @interface LLNetworkWindow : LLComponentWindow
 
 @end

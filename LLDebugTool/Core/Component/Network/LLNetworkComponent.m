@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLNetworkComponent.h"
-#import "LLWindowManager.h"
+
 #import "LLNetworkViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLNetworkComponent
 

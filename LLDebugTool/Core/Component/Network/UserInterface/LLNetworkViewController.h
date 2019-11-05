@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Network function view controller.
 @interface LLNetworkViewController : LLEditTableViewController
 
 @property (nonatomic, copy, nullable) NSString *launchDate;

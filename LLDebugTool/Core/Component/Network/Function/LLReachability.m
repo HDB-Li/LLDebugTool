@@ -21,15 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "LLReachability.h"
+
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <sys/socket.h>
+#import <netinet/in.h>
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 #import <netdb.h>
-#import <sys/socket.h>
-#import <netinet/in.h>
-
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-
-#import "LLReachability.h"
 
 NSString *kLLReachabilityChangedNotification = @"kLLNetworkReachabilityChangedNotification";
 

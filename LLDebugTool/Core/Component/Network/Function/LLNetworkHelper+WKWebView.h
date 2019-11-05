@@ -20,10 +20,12 @@
 //  SOFTWARE.
 
 #import "LLNetworkHelper.h"
+
 #import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Unused file, but it's an idea to hook delegate.
 @interface LLNetworkHelper (WKWebView) <WKNavigationDelegate>
 
 //@property (nonatomic, strong, readonly) NSMutableDictionary <NSString *, NSDate *>*webViews;

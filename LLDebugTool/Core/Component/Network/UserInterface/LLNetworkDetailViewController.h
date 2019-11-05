@@ -22,12 +22,15 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
-#import "LLNetworkModel.h"
+
+@class LLNetworkModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Network function detail view controller.
 @interface LLNetworkDetailViewController : LLBaseTableViewController
 
+/// The model  use to detail.
 @property (nonatomic, strong) LLNetworkModel *model;
 
 @end

@@ -22,12 +22,16 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewCell.h"
-#import "LLNetworkModel.h"
+
+@class LLNetworkModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Network function cell.
 @interface LLNetworkCell : LLBaseTableViewCell
 
+/// Config model to cell.
+/// @param model LLNetworkModel.
 - (void)confirmWithModel:(LLNetworkModel *)model;
 
 @end
