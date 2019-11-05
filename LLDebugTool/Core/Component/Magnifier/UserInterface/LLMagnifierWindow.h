@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Magnifier function window.
 @interface LLMagnifierWindow : LLComponentWindow
 
 @end

@@ -22,12 +22,14 @@
 //  SOFTWARE.
 
 #import "LLMagnifierView.h"
-#import "LLConfig.h"
-#import "UIView+LL_Utils.h"
+
 #import "LLScreenshotHelper.h"
+#import "LLThemeManager.h"
+#import "LLConfig.h"
+
 #import "UIImage+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
-#import "LLThemeManager.h"
+#import "UIView+LL_Utils.h"
 
 @interface LLMagnifierView ()
 

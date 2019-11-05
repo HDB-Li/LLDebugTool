@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Magnifier info view.
 @interface LLMagnifierInfoView : LLInfoView
 
 - (void)update:(NSString *)hexColor point:(CGPoint)point;

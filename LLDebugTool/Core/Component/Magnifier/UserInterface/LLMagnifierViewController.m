@@ -22,8 +22,9 @@
 //  SOFTWARE.
 
 #import "LLMagnifierViewController.h"
-#import "LLMagnifierView.h"
+
 #import "LLMagnifierInfoView.h"
+#import "LLMagnifierView.h"
 #import "LLConfig.h"
 #import "LLMacros.h"
 #import "LLConst.h"

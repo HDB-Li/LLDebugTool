@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Magnifier function view controller.
 @interface LLMagnifierViewController : LLBaseComponentViewController
 
 @end

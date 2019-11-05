@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLMagnifierComponent.h"
+
 #import "LLWindowManager.h"
 
 @implementation LLMagnifierComponent
