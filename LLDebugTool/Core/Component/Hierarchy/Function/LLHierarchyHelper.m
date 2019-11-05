@@ -23,6 +23,8 @@
 
 #import "LLHierarchyHelper.h"
 
+#import <UIKit/UIKit.h>
+
 static LLHierarchyHelper *_instance = nil;
 
 @implementation LLHierarchyHelper

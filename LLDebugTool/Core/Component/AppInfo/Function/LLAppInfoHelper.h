@@ -21,7 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Notifications will post each second on main thread.
@@ -32,18 +34,16 @@
  Response data traffic is download data.
  Total data traffic is total data.
  */
-UIKIT_EXTERN NSNotificationName _Nonnull const LLAppInfoHelperDidUpdateAppInfosNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLAppInfoHelperDidUpdateAppInfosNotificationName;
 
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperCPUKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperMemoryUsedKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperMemoryFreeKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperMemoryTotalKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperFPSKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperRequestDataTrafficKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperResponseDataTrafficKey;
-UIKIT_EXTERN NSString * _Nonnull const LLAppInfoHelperTotalDataTrafficKey;
-
-NS_ASSUME_NONNULL_BEGIN
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperCPUKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperMemoryUsedKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperMemoryFreeKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperMemoryTotalKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperFPSKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperRequestDataTrafficKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperResponseDataTrafficKey;
+FOUNDATION_EXPORT NSString * const LLAppInfoHelperTotalDataTrafficKey;
 
 /**
  Monitoring app's properties.

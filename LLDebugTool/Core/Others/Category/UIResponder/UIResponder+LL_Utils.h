@@ -23,9 +23,9 @@
 
 #import <UIKit/UIKit.h>
 
-UIKIT_EXTERN NSNotificationName _Nonnull const kLLDidShakeNotificationName;
-
 NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSNotificationName const kLLDidShakeNotificationName;
 
 @interface UIResponder (LL_Utils)
 

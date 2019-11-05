@@ -22,7 +22,6 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "LLStorageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
