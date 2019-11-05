@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Convenient screenshot component.
 @interface LLConvenientScreenshotComponent : LLComponent
 
 @end

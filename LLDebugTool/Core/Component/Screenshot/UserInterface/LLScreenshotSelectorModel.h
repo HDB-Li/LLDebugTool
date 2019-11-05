@@ -26,12 +26,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Screen shot selector model.
 @interface LLScreenshotSelectorModel : LLBaseModel
 
+/// Size property.
 @property (nonatomic, assign) LLScreenshotSelectorSizeAction size;
 
+/// Color property
 @property (nonatomic, assign) LLScreenshotSelectorColorAction color;
 
+/// Instance mythod.
+/// @param size Size.
+/// @param color Color.
 - (instancetype _Nonnull)initWithSize:(LLScreenshotSelectorSizeAction)size color:(LLScreenshotSelectorColorAction)color;
 
 @end

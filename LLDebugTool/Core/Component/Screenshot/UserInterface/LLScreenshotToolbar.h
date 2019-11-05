@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
+
 #import "LLScreenshotDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,14 +30,17 @@ NS_ASSUME_NONNULL_BEGIN
 @class LLScreenshotToolbar;
 @class LLScreenshotSelectorModel;
 
+/// Screenshot tool bar action delegate.
 @protocol LLScreenshotToolbarDelegate <NSObject>
 
 - (void)LLScreenshotToolbar:(LLScreenshotToolbar *)toolBar didSelectedAction:(LLScreenshotAction)action selectorModel:(LLScreenshotSelectorModel *_Nullable)selectorModel;
 
 @end
 
+/// Screenshot tool bar.
 @interface LLScreenshotToolbar : LLBaseView
 
+/// Action delegate.
 @property (nonatomic, weak, nullable) id <LLScreenshotToolbarDelegate> delegate;
 
 @end

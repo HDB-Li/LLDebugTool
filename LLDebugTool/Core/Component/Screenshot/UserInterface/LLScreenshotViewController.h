@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Screen shot view controller.
 @interface LLScreenshotViewController : LLBaseComponentViewController
 
 @end

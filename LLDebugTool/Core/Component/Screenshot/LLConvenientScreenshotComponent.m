@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLConvenientScreenshotComponent.h"
+
 #import "LLScreenshotHelper.h"
 
 @implementation LLConvenientScreenshotComponent

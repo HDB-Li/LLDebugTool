@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLScreenshotWindow.h"
+
 #import "LLScreenshotViewController.h"
 #import "LLWindowManager.h"
 

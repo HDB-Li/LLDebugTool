@@ -22,12 +22,16 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #import <UIKit/UIKit.h>
-#import "LLScreenshotSelectorModel.h"
+
 #import "LLScreenshotDefine.h"
+
+@class LLScreenshotSelectorModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Screenshot operation.
 @interface LLScreenshotBaseOperation : NSObject
 
 @property (nonatomic, assign, readonly) LLScreenshotAction action;

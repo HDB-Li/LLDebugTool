@@ -22,12 +22,14 @@
 //  SOFTWARE.
 
 #import "LLScreenshotHelper.h"
+
+#import "LLScreenshotPreviewViewController.h"
+#import "LLScreenshotComponent.h"
+#import "LLFormatterTool.h"
+#import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLTool.h"
-#import "LLFormatterTool.h"
-#import "LLScreenshotComponent.h"
-#import "LLScreenshotPreviewViewController.h"
-#import "LLMacros.h"
+
 
 static LLScreenshotHelper *_instance = nil;
 
