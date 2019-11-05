@@ -22,9 +22,11 @@
 //  SOFTWARE.
 
 #import "LLCrashSignalDetailViewController.h"
+
 #import "LLSubTitleTableViewCell.h"
-#import "LLConfig.h"
+#import "LLCrashSignalModel.h"
 #import "LLToastUtils.h"
+#import "LLConfig.h"
 
 static NSString *const kCrashSignalContentCellID = @"CrashSignalContentCellID";
 

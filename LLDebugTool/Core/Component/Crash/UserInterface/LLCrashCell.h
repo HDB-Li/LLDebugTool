@@ -22,12 +22,16 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewCell.h"
-#import "LLCrashModel.h"
+
+@class LLCrashModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Crash function cell.
 @interface LLCrashCell : LLBaseTableViewCell
 
+/// Config cell with model.
+/// @param model LLCrashModel.
 - (void)confirmWithModel:(LLCrashModel *)model;
 
 @end

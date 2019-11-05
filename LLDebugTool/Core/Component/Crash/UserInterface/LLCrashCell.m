@@ -22,8 +22,10 @@
 //  SOFTWARE.
 
 #import "LLCrashCell.h"
-#import "LLConfig.h"
+
+#import "LLCrashModel.h"
 #import "LLFactory.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 @interface LLCrashCell ()

@@ -22,12 +22,15 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
-#import "LLCrashSignalModel.h"
+
+@class LLCrashSignalModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Signal crash detail view controller.
 @interface LLCrashSignalDetailViewController : LLBaseTableViewController
 
+/// Model used to detail.
 @property (nonatomic, strong) LLCrashSignalModel *model;
 
 @end

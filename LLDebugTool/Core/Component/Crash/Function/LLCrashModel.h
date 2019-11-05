@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLTableViewSelectableModel.h"
-#import "LLCrashSignalModel.h"
+
+@class LLCrashSignalModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Crash model.
 @interface LLCrashModel : LLTableViewSelectableModel
 
 /**

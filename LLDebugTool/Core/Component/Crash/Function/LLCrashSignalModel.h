@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Signal crash model.
 @interface LLCrashSignalModel : LLBaseModel
 
 /**

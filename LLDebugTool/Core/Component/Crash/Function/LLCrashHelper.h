@@ -22,7 +22,8 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLCrashModel.h"
+
+@class LLCrashModel;
 
 NS_ASSUME_NONNULL_BEGIN
 

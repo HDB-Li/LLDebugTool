@@ -22,16 +22,19 @@
 //  SOFTWARE.
 
 #import "LLCrashDetailViewController.h"
-#import "LLSubTitleTableViewCell.h"
-#import "LLMacros.h"
-#import "LLStorageManager.h"
-#import "LLConfig.h"
+
 #import "LLCrashSignalDetailViewController.h"
-#import "LLToastUtils.h"
 #import "LLNetworkViewController.h"
+#import "LLSubTitleTableViewCell.h"
 #import "LLLogViewController.h"
-#import "LLLogModel.h"
+#import "LLCrashSignalModel.h"
+#import "LLStorageManager.h"
 #import "LLNetworkModel.h"
+#import "LLToastUtils.h"
+#import "LLCrashModel.h"
+#import "LLLogModel.h"
+#import "LLMacros.h"
+#import "LLConfig.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
