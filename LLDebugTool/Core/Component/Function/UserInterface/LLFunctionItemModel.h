@@ -22,8 +22,10 @@
 //  SOFTWARE.
 
 #import "LLBaseModel.h"
-#import "LLComponent.h"
+
 #import "LLDebugTool.h"
+
+@class LLComponent;
 
 NS_ASSUME_NONNULL_BEGIN
 

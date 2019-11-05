@@ -36,6 +36,7 @@
 #import "LLFunctionItemModel.h"
 #import "LLSettingManager.h"
 #import "UIResponder+LL_Utils.h"
+#import "LLComponent.h"
 
 static LLDebugTool *_instance = nil;
 

@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Function window.
 @interface LLFunctionWindow : LLComponentWindow
 
 @end

@@ -31,6 +31,7 @@
 #import "LLEntryBigTitleView.h"
 #import "LLTool.h"
 #import "LLConst.h"
+#import "LLComponent.h"
 #import "LLFunctionItemModel.h"
 
 @interface LLEntryViewController ()

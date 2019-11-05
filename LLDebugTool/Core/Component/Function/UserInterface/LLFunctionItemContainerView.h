@@ -22,24 +22,30 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
-#import "LLFunctionItemModel.h"
+
+@class LLFunctionItemModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class LLFunctionItemContainerView;
 
+/// Function container view delegate.
 @protocol LLFunctionContainerViewControllerDelegate <NSObject>
 
 - (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model;
 
 @end
 
+/// Function item container view.
 @interface LLFunctionItemContainerView : LLBaseView
 
+/// Action delegate.
 @property (nonatomic, weak, nullable) id<LLFunctionContainerViewControllerDelegate> delegate;
 
+/// Items.
 @property (nonatomic, strong) NSArray <LLFunctionItemModel *>*dataArray;
 
+/// Title.
 @property (nonatomic, copy) NSString *title;
 
 @end
