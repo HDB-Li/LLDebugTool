@@ -23,10 +23,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Html view controller.
 @interface LLHtmlViewController : LLBaseComponentViewController
 
+/// Web view class.
 @property (nonatomic, copy) NSString *webViewClass;
 
+/// Target url.
 @property (nonatomic, copy) NSString *urlString;
 
 @end

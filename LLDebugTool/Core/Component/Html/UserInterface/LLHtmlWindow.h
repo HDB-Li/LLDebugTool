@@ -23,6 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Html function window.
 @interface LLHtmlWindow : LLComponentWindow
 
 @end

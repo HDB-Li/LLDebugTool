@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Html config view controller.
 @interface LLHtmlConfigViewController : LLTitleViewController
 
 @end

@@ -23,6 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Html function component.
 @interface LLHtmlComponent : LLComponent
 
 @end

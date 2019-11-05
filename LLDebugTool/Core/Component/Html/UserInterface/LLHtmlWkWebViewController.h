@@ -23,6 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Html WKWebView controller.
 @interface LLHtmlWkWebViewController : LLHtmlViewController
 
 @end
