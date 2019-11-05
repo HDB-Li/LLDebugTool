@@ -22,7 +22,8 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLStorageModel.h"
+
+@class LLStorageModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,7 +33,6 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
 /**
  Operation database.
  */
-// TODO: Change from synchronous to asynchronous.
 @interface LLStorageManager : NSObject
 
 /**

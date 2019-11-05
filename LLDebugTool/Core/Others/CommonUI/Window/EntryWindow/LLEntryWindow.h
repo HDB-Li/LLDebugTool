@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Entry window.
 @interface LLEntryWindow : LLBaseWindow
 
 @end

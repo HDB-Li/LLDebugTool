@@ -24,6 +24,7 @@
 #import "LLAppInfoViewController.h"
 
 #import "LLBaseTableViewCell.h"
+#import "LLTitleCellModel.h"
 #import "LLAppInfoHelper.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"

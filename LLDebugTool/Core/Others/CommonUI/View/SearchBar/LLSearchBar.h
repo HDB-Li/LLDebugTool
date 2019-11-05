@@ -25,10 +25,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Search bar back view.
 @interface LLSearchBarBackView : LLBaseView
 
 @end
 
+/// Search bar.
 @interface LLSearchBar : UISearchBar
 
 @end

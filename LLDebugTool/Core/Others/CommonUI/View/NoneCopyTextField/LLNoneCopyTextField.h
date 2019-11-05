@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// None copy text field.
 @interface LLNoneCopyTextField : UITextField
 
 @end

@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLDetailTitleCell.h"
+
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConst.h"

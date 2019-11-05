@@ -25,34 +25,49 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Setting manager.
 @interface LLSettingManager : NSObject
 
+/// Double click.
 @property (nonatomic, strong) NSNumber *doubleClickAction;
 
+/// Color style
 @property (nonatomic, strong) NSNumber *colorStyle;
 
+/// Entry window style.
 @property (nonatomic, strong) NSNumber *entryWindowStyle;
 
+/// Status bar style.
 @property (nonatomic, strong) NSNumber *statusBarStyle;
 
+/// Log style.
 @property (nonatomic, strong) NSNumber *logStyle;
 
+/// Shrink to edge when inactive.
 @property (nonatomic, strong) NSNumber *shrinkToEdgeWhenInactive;
 
+/// Shake to hide.
 @property (nonatomic, strong) NSNumber *shakeToHide;
 
+/// Magnifier zoom level.
 @property (nonatomic, strong) NSNumber *magnifierZoomLevel;
 
+/// Magnifier size.
 @property (nonatomic, strong) NSNumber *magnifierSize;
 
+/// Show widget border or not.
 @property (nonatomic, strong) NSNumber *showWidgetBorder;
 
+/// Hierarchy function ignore private class or not.
 @property (nonatomic, strong) NSNumber *hierarchyIgnorePrivateClass;
 
+/// Web view class.
 @property (nonatomic, copy) NSString *webViewClass;
 
+/// Last web view url.
 @property (nonatomic, copy) NSString *lastWebViewUrl;
 
+/// Shared instance.
 + (instancetype)shared;
 
 @end

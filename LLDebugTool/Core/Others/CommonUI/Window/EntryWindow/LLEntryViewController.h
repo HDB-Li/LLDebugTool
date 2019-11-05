@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Entry view controller.
 @interface LLEntryViewController : LLBaseViewController
 
 @end

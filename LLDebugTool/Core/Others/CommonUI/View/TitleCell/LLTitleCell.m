@@ -22,8 +22,9 @@
 //  SOFTWARE.
 
 #import "LLTitleCell.h"
-#import "LLFactory.h"
+
 #import "LLThemeManager.h"
+#import "LLFactory.h"
 #import "LLConst.h"
 
 @interface LLTitleCell ()

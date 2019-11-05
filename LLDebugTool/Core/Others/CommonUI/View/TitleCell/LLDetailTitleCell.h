@@ -25,10 +25,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Detail title cell.
 @interface LLDetailTitleCell : LLTitleCell
 
+/// Detail title label.
 @property (nonatomic, strong, readonly) UILabel *detailLabel;
 
+/// Detail title label right constraint.
 @property (nonatomic, strong, readonly) NSLayoutConstraint *detailLabelRightCons;
 
 @end

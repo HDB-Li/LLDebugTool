@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLSearchBar.h"
+
 #import "LLMacros.h"
 
 @implementation LLSearchBarBackView

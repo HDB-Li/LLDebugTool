@@ -26,12 +26,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Title cell.
 @interface LLTitleCell : LLBaseTableViewCell
 
+/// Title label.
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
+/// Title label bottom constraint.
 @property (nonatomic, strong, readonly) NSLayoutConstraint *titleLabelBottomCons;
 
+/// Config model.
 @property (nonatomic, strong) LLTitleCellModel *model;
 
 @end

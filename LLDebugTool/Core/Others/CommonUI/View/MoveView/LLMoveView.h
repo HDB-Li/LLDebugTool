@@ -25,19 +25,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Move view.
 @interface LLMoveView : LLBaseView
 
+/// Whether over flow.
 @property (nonatomic, assign, getter=isOverflow) BOOL overflow;
 
+/// Whether is moved.
 @property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
 
+/// Whether moveable.
 @property (nonatomic, assign, getter=isMoveable) BOOL moveable;
 
 /// Moveable range.
 @property (nonatomic, assign) CGRect moveableRect;
 
+/// Will move.
+/// @param sender Sender
+/// @param offsetPoint Point.
 - (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
 
+/// Did move
+/// @param sender Sender
+/// @param offsetPoint Point.
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
 
 @end

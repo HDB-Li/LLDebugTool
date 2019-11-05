@@ -25,14 +25,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLSettingModelBlock)(void);
-
-typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
-
+/// Title cell model.
 @interface LLTitleCellModel : NSObject
 
+/// Title
 @property (nonatomic, copy, nullable, readonly) NSString *title;
 
+/// Cell class.
 @property (nonatomic, copy, readonly) NSString *cellClass;
 
 // Style1
@@ -49,9 +48,9 @@ typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 @property (nonatomic, assign, readonly) CGFloat maxValue;
 
 // Block
-@property (nonatomic, copy, nullable) LLSettingModelBlock block;
+@property (nonatomic, copy, nullable) void(^block)(void);
 
-@property (nonatomic, copy, nullable) LLSettingModelChangePropertyBlock changePropertyBlock;
+@property (nonatomic, copy, nullable) void(^changePropertyBlock)(__nullable id obj);
 
 // Separator
 @property (nonatomic, assign) UIEdgeInsets separatorInsets;
@@ -66,8 +65,10 @@ typedef void(^LLSettingModelChangePropertyBlock)(__nullable id obj);
 // LLTitleSliderCell
 - (instancetype)initWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
 
+/// Normal insets.
 - (LLTitleCellModel *)normalInsets;
 
+/// None insets.
 - (LLTitleCellModel *)noneInsets;
 
 @end

@@ -15,6 +15,7 @@
 #import "LLTitleCellCategoryModel.h"
 #import "LLHtmlViewController.h"
 #import "LLSettingManager.h"
+#import "LLTitleCellModel.h"
 #import "LLThemeManager.h"
 #import "LLToastUtils.h"
 #import "LLFactory.h"

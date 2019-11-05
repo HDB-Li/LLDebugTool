@@ -22,8 +22,10 @@
 //  SOFTWARE.
 
 #import "LLSettingManager.h"
+
 #import "LLFunctionComponent.h"
 #import "LLConst.h"
+
 #import "NSUserDefaults+LL_Utils.h"
 
 static LLSettingManager *_instance = nil;

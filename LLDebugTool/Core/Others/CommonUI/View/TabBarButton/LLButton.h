@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Button.
 @interface LLButton : UIButton
 
 + (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font tintColor:(UIColor *)tintColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor;

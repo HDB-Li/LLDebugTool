@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Entry big title view.
 @interface LLEntryBigTitleView : LLEntryView
 
 @end
