@@ -1,5 +1,5 @@
 //
-//  LLHierarchyView.h
+//  LLHierarchyPickerView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,17 +25,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLHierarchyView;
+@class LLHierarchyPickerView;
 
-@protocol LLHierarchyViewDelegate <NSObject>
+/// Hierarchy picker view delegate.
+@protocol LLHierarchyPickerViewDelegate <NSObject>
 
-- (void)LLHierarchyView:(LLHierarchyView *)view didMoveTo:(NSArray <UIView *>*)selectedViews;
+- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(NSArray <UIView *>*)selectedViews;
 
 @end
 
-@interface LLHierarchyView : LLPickerView
+/// Hierarchy picker view.
+@interface LLHierarchyPickerView : LLPickerView
 
-@property (nonatomic, weak, nullable) id<LLHierarchyViewDelegate> delegate;
+/// Action delegate.
+@property (nonatomic, weak, nullable) id<LLHierarchyPickerViewDelegate> delegate;
 
 @end
 

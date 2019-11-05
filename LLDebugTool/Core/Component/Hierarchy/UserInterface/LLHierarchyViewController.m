@@ -22,26 +22,28 @@
 //  SOFTWARE.
 
 #import "LLHierarchyViewController.h"
-#import "LLHierarchyView.h"
-#import "LLHierarchyInfoView.h"
-#import "LLFactory.h"
-#import "LLConfig.h"
-#import "UIView+LL_Utils.h"
-#import "LLConst.h"
-#import "LLMacros.h"
-#import "LLWindowManager.h"
-#import "LLThemeManager.h"
-#import "NSObject+LL_Utils.h"
+
 #import "LLHierarchyDetailViewController.h"
 #import "LLNavigationController.h"
+#import "LLHierarchyInfoView.h"
+#import "LLHierarchyPickerView.h"
+#import "LLWindowManager.h"
+#import "LLThemeManager.h"
+#import "LLFactory.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
+#import "LLConst.h"
 #import "LLTool.h"
-#import "UIViewController+LL_Utils.h"
 
-@interface LLHierarchyViewController ()<LLHierarchyViewDelegate, LLHierarchyInfoViewDelegate>
+#import "UIViewController+LL_Utils.h"
+#import "NSObject+LL_Utils.h"
+#import "UIView+LL_Utils.h"
+
+@interface LLHierarchyViewController ()<LLHierarchyPickerViewDelegate, LLHierarchyInfoViewDelegate>
 
 @property (nonatomic, strong) UIView *borderView;
 
-@property (nonatomic, strong) LLHierarchyView *pickerView;
+@property (nonatomic, strong) LLHierarchyPickerView *pickerView;
 
 @property (nonatomic, strong) LLHierarchyInfoView *infoView;
 
@@ -66,7 +68,7 @@
     
     [self.view addSubview:self.borderView];
     
-    self.pickerView = [[LLHierarchyView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
+    self.pickerView = [[LLHierarchyPickerView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
     self.pickerView.delegate = self;
     [self.view addSubview:self.pickerView];
 }
@@ -171,7 +173,7 @@
 }
 
 #pragma mark - LLHierarchyPickerViewDelegate
-- (void)LLHierarchyView:(LLHierarchyView *)view didMoveTo:(NSArray <UIView *>*)selectedViews {
+- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(NSArray <UIView *>*)selectedViews {
     
     @synchronized (self) {
         for (UIView *view in self.observeViews) {
@@ -253,7 +255,7 @@
 }
 
 - (void)setNewSelectView:(UIView *)view {
-    [self LLHierarchyView:self.pickerView didMoveTo:@[view]];
+    [self LLHierarchyPickerView:self.pickerView didMoveTo:@[view]];
 }
 
 #pragma mark - Getters and setters

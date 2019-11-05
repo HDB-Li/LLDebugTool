@@ -21,17 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Hierarchy function helper.
 @interface LLHierarchyHelper : NSObject
 
+/// Shared instance.
 + (instancetype _Nonnull)shared;
 
+/// All window in application.
 - (NSArray <UIWindow *>*)allWindows;
 
+/// All window in application without class.
+/// @param cls Ignore class.
 - (NSArray <UIWindow *>*)allWindowsIgnoreClass:(Class _Nullable)cls;
 
 @end

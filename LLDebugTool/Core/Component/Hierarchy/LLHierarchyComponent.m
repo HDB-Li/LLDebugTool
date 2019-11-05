@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLHierarchyComponent.h"
+
 #import "LLWindowManager.h"
 
 @implementation LLHierarchyComponent

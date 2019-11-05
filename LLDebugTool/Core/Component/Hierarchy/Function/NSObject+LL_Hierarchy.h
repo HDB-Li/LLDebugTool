@@ -21,9 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "LLTitleCellCategoryModel.h"
+
+@class LLTitleCellCategoryModel;
 
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLHierarchyChangeNotificationName;
 

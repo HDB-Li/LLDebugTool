@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Hierarchy detail view controller.
 @interface LLHierarchyDetailViewController : LLTitleViewController
 
+/// Selected view to detail.
 @property (nonatomic, strong, nullable) UIView *selectView;
 
 @end

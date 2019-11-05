@@ -1,5 +1,5 @@
 //
-//  LLHierarchyView.m
+//  LLHierarchyPickerView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,19 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyView.h"
-#import "LLConfig.h"
-#import "UIView+LL_Utils.h"
-#import "LLHierarchyHelper.h"
-#import "LLBaseWindow.h"
-#import "LLThemeManager.h"
+#import "LLHierarchyPickerView.h"
 
-@implementation LLHierarchyView
+#import "LLHierarchyHelper.h"
+#import "LLThemeManager.h"
+#import "LLBaseWindow.h"
+#import "LLConfig.h"
+
+#import "UIView+LL_Utils.h"
+
+@implementation LLHierarchyPickerView
 
 #pragma mark - Over write
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
     NSArray <UIView *>*views = [self viewForSelectionAtPoint:self.center];
-    [self.delegate LLHierarchyView:self didMoveTo:views];
+    [self.delegate LLHierarchyPickerView:self didMoveTo:views];
 }
 
 #pragma mark - Primary
