@@ -22,12 +22,15 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
-#import "LLLogModel.h"
+
+@class LLLogModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Log detail view controller.
 @interface LLLogDetailViewController : LLBaseTableViewController
 
+/// Model use to detail.
 @property (nonatomic, strong) LLLogModel *model;
 
 @end

@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLLogComponent.h"
-#import "LLWindowManager.h"
+
 #import "LLNavigationController.h"
 #import "LLLogViewController.h"
+#import "LLWindowManager.h"
 
 @implementation LLLogComponent
 

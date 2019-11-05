@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Network function view controller.
 @interface LLNetworkViewController : LLEditTableViewController
 
+/// The specified launch date, if nil, represents the data currently running, if not nil, is the data at the specified time. Default is nil.
 @property (nonatomic, copy, nullable) NSString *launchDate;
 
 @end

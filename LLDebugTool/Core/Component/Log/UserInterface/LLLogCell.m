@@ -22,8 +22,10 @@
 //  SOFTWARE.
 
 #import "LLLogCell.h"
-#import "LLConfig.h"
+
+#import "LLLogModel.h"
 #import "LLFactory.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 @interface LLLogCell ()

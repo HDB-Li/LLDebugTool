@@ -22,8 +22,10 @@
 //  SOFTWARE.
 
 #import "LLLogDetailViewController.h"
+
 #import "LLSubTitleTableViewCell.h"
 #import "LLToastUtils.h"
+#import "LLLogModel.h"
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
