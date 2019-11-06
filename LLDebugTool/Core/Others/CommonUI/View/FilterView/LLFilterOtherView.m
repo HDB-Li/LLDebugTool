@@ -22,14 +22,16 @@
 //  SOFTWARE.
 
 #import "LLFilterOtherView.h"
+
+#import "LLFilterTextFieldModel.h"
 #import "LLFilterTextFieldCell.h"
-#import "LLFilterLabelCell.h"
 #import "LLFilterLabelModel.h"
-#import "LLMacros.h"
-#import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLFilterLabelCell.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
+#import "LLFactory.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
 #import "LLConst.h"
 
 static NSString *const kHeaderID = @"HeaderID";

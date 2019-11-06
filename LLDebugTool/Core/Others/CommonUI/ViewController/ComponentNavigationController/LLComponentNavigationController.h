@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Component navigation controller.
 @interface LLComponentNavigationController : LLNavigationController
 
 @end

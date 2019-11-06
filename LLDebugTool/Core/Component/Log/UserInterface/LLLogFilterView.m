@@ -23,6 +23,7 @@
 
 #import "LLLogFilterView.h"
 
+#import "LLFilterLabelModel.h"
 #import "LLFilterEventView.h"
 #import "LLFilterOtherView.h"
 #import "LLFormatterTool.h"

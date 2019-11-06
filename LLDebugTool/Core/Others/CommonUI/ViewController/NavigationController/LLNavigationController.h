@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Navigation controller.
 @interface LLNavigationController : UINavigationController
 
 @end

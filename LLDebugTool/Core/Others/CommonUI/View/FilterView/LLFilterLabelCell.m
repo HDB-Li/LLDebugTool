@@ -22,10 +22,13 @@
 //  SOFTWARE.
 
 #import "LLFilterLabelCell.h"
-#import "LLConfig.h"
+
+#import "LLFilterLabelModel.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
+#import "LLConfig.h"
 #import "LLConst.h"
+
 #import "UIView+LL_Utils.h"
 
 @interface LLFilterLabelCell ()

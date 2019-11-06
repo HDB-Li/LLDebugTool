@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Factory.
 @interface LLFactory : NSObject
 
 #pragma mark - UIView

@@ -23,6 +23,7 @@
 
 #import "LLAppInfoViewController.h"
 
+#import "LLTitleCellCategoryModel.h"
 #import "LLBaseTableViewCell.h"
 #import "LLTitleCellModel.h"
 #import "LLAppInfoHelper.h"

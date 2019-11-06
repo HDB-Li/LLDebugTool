@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLBaseModel.h"
+
 #import "NSObject+LL_Runtime.h"
 
 @implementation LLBaseModel

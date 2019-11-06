@@ -33,6 +33,7 @@
 #import "LLFunctionItemModel.h"
 #import "LLWindowManager.h"
 #import "LLThemeManager.h"
+#import "LLComponent.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
 #import "LLMacros.h"

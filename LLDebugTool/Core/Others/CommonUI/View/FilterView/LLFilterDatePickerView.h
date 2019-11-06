@@ -22,14 +22,21 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLFilterTextFieldModel.h"
+
+@class LLFilterTextFieldModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Filter date picker view.
 @interface LLFilterDatePickerView : UIPickerView
 
+/// Instance method.
+/// @param frame Frame size.
+/// @param fromDate From date.
+/// @param endDate End date.
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame fromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate;
 
+/// Current date.
 - (NSString *_Nullable)currentDateString;
 
 @end

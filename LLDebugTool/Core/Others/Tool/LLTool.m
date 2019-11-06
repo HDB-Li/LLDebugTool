@@ -22,11 +22,12 @@
 //  SOFTWARE.
 
 #import "LLTool.h"
-#import "LLConfig.h"
-#import "LLMacros.h"
+
+#import "LLLogHelperEventDefine.h"
 #import "LLFormatterTool.h"
 #import "LLDebugTool.h"
-#import "LLLogHelperEventDefine.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
 
 static unsigned long long _absolutelyIdentity = 0;
 

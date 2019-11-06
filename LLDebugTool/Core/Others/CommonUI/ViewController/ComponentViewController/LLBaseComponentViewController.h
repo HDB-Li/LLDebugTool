@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
-#import "LLComponent.h"
+
+#import "LLComponentDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Component view controller.
 @interface LLBaseComponentViewController : LLBaseViewController<LLComponentDelegate>
 
 @end

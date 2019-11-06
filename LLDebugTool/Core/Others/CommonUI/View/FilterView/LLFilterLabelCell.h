@@ -22,12 +22,16 @@
 //  SOFTWARE.
 
 #import "LLBaseCollectionViewCell.h"
-#import "LLFilterLabelModel.h"
+
+@class LLFilterLabelModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Filter label cell.
 @interface LLFilterLabelCell : LLBaseCollectionViewCell
 
+/// Config cell with model
+/// @param model LLFilterLabelModel
 - (void)confirmWithModel:(LLFilterLabelModel *)model;
 
 @end

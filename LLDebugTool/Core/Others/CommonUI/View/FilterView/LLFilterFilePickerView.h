@@ -22,12 +22,17 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "LLFilterTextFieldModel.h"
+
+@class LLFilterTextFieldModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Filter file picker view.
 @interface LLFilterFilePickerView : UIPickerView
 
+/// Instance method.
+/// @param frame Frame size.
+/// @param model LLFilterTextFieldModel
 - (instancetype _Nonnull)initWithFrame:(CGRect)frame model:(LLFilterTextFieldModel *)model;
 
 @end

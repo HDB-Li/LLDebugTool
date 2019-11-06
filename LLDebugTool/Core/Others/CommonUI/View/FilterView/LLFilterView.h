@@ -25,16 +25,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Filter view.
 @interface LLFilterView : LLBaseView
 
+/// Filter titles.
 @property (nonatomic, strong) NSArray <NSString *>*titles;
 
+/// Filter views.
 @property (nonatomic, strong) NSArray <UIView *>*filterViews;
 
+/// Is filtering.
 - (BOOL)isFiltering;
 
+/// Cancel filter.
 - (void)cancelFiltering;
 
+/// Update filter count.
+/// @param filterView Filter button
+/// @param count Count.
 - (void)updateFilterButton:(UIView *)filterView count:(NSInteger)count;
 
 @end

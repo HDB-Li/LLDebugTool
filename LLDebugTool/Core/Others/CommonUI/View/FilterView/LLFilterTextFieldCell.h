@@ -22,16 +22,19 @@
 //  SOFTWARE.
 
 #import "LLBaseCollectionViewCell.h"
-#import "LLFilterTextFieldModel.h"
+
+@class LLFilterTextFieldModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLFilterOtherTextFieldCellBlock)(void);
-
+/// Filter text field cell.
 @interface LLFilterTextFieldCell : LLBaseCollectionViewCell
 
-@property (copy, nonatomic, nullable) LLFilterOtherTextFieldCellBlock confirmBlock;
+/// Confirm block.
+@property (copy, nonatomic, nullable) void(^confirmBlock)(void);
 
+/// Config cell with model.
+/// @param model LLFilterTextFieldModel
 - (void)confirmWithModel:(LLFilterTextFieldModel *)model;
 
 @end

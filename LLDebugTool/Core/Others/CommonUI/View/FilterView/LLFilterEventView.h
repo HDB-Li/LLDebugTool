@@ -22,17 +22,16 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
-#import "LLFilterLabelModel.h"
+
+@class LLFilterLabelModel;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void(^LLFilterEventViewChangeBlock)(NSArray *_Nullable events);
 
 @interface LLFilterEventView : LLBaseView
 
 @property (assign, nonatomic) NSInteger averageCount;
 
-@property (copy, nonatomic, nullable) LLFilterEventViewChangeBlock changeBlock;
+@property (copy, nonatomic, nullable) void(^changeBlock)(NSArray *_Nullable events);
 
 - (void)updateDataArray:(NSArray <LLFilterLabelModel *>*_Nullable)dataArray;
 

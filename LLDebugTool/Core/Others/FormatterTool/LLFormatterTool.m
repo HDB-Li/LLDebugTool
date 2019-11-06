@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLFormatterTool.h"
+
 #import "LLConfig.h"
 
 static LLFormatterTool *_instance = nil;

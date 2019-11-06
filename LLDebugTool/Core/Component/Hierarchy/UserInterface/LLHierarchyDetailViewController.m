@@ -23,6 +23,7 @@
 
 #import "LLHierarchyDetailViewController.h"
 
+#import "LLTitleCellCategoryModel.h"
 #import "LLDetailTitleCell.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"

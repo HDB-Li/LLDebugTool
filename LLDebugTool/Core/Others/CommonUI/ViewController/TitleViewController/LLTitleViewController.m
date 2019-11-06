@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLTitleViewController.h"
+
+#import "LLDetailTitleSelectorCell.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleSwitchCell.h"
-#import "LLDetailTitleSelectorCell.h"
 #import "LLTitleSliderCell.h"
 #import "LLTitleView.h"
 #import "LLMacros.h"

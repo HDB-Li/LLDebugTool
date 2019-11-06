@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Base table view controller.
 @interface LLBaseTableViewController : LLBaseComponentViewController <UITableViewDelegate>
 
 /**
