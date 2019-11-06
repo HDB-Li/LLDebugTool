@@ -25,8 +25,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLFilterOtherViewChangeBlock)(NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
-
 /// Filter other view.
 @interface LLFilterOtherView : LLBaseView
 
