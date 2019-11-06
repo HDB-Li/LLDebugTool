@@ -44,11 +44,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
-/**
- This time crash model.
- */
-@property (nonatomic, strong, nullable) LLCrashModel *crashModel;
-
 @end
 
 NS_ASSUME_NONNULL_END

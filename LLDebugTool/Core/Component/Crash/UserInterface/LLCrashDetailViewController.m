@@ -23,11 +23,9 @@
 
 #import "LLCrashDetailViewController.h"
 
-#import "LLCrashSignalDetailViewController.h"
 #import "LLNetworkViewController.h"
 #import "LLSubTitleTableViewCell.h"
 #import "LLLogViewController.h"
-#import "LLCrashSignalModel.h"
 #import "LLStorageManager.h"
 #import "LLNetworkModel.h"
 #import "LLToastUtils.h"
@@ -92,18 +90,6 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         LLNetworkViewController *vc = [[LLNetworkViewController alloc] init];
         vc.launchDate = self.model.launchDate;
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([title hasPrefix:@"Signal"]) {
-        NSInteger index = 0;
-        for (NSString *str in self.titleArray) {
-            if ([str isEqualToString:title]) {
-                break;
-            } else if ([str hasPrefix:@"Signal"]) {
-                index++;
-            }
-        }
-        LLCrashSignalDetailViewController *vc = [[LLCrashSignalDetailViewController alloc] init];
-        vc.model = self.model.signals[index];
-        [self.navigationController pushViewController:vc animated:YES];
     } else if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
         [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
@@ -158,9 +144,9 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.contentArray addObject:[NSString stringWithFormat:@"%ld network requests",(unsigned long)networkRequests.count]];
     }
     
-    for (LLCrashSignalModel *signal in _model.signals) {
-        [self.titleArray addObject:[NSString stringWithFormat:@"Signal (%@)",signal.name]];
-        [self.contentArray addObject:_model.date];
+    if (_model.thread) {
+        [self.titleArray addObject:@"Thread"];
+        [self.contentArray addObject:_model.thread];
     }
     
     if (_model.userIdentity) {

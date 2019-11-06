@@ -118,7 +118,6 @@
 		C498569A22ED8D4800E9FBE2 /* LLCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565322ED8D4700E9FBE2 /* LLCrashViewController.m */; };
 		C498569B22ED8D4800E9FBE2 /* LLCrashCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565422ED8D4700E9FBE2 /* LLCrashCell.m */; };
 		C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */; };
-		C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565822ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.m */; };
 		C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565F22ED8D4800E9FBE2 /* LLSandboxCell.m */; };
 		C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */; };
 		C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498566122ED8D4800E9FBE2 /* LLPreviewController.m */; };
@@ -132,7 +131,6 @@
 		C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856B722ED908300E9FBE2 /* LLAppInfoHelper.m */; };
 		C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */; };
 		C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */; };
-		C49856C322ED909F00E9FBE2 /* LLCrashSignalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */; };
 		C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */; };
 		C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856CE22ED90C800E9FBE2 /* LLLogModel.m */; };
 		C49856D122ED90C800E9FBE2 /* LLLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856CF22ED90C800E9FBE2 /* LLLogHelper.m */; };
@@ -455,12 +453,10 @@
 		C498564622ED8D4700E9FBE2 /* LLNetworkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkDetailViewController.m; sourceTree = "<group>"; };
 		C498564D22ED8D4700E9FBE2 /* LLCrashDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashDetailViewController.h; sourceTree = "<group>"; };
 		C498564E22ED8D4700E9FBE2 /* LLCrashCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashCell.h; sourceTree = "<group>"; };
-		C498565122ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalDetailViewController.h; sourceTree = "<group>"; };
 		C498565322ED8D4700E9FBE2 /* LLCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashViewController.m; sourceTree = "<group>"; };
 		C498565422ED8D4700E9FBE2 /* LLCrashCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashCell.m; sourceTree = "<group>"; };
 		C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashDetailViewController.m; sourceTree = "<group>"; };
 		C498565722ED8D4700E9FBE2 /* LLCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashViewController.h; sourceTree = "<group>"; };
-		C498565822ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalDetailViewController.m; sourceTree = "<group>"; };
 		C498565F22ED8D4800E9FBE2 /* LLSandboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxCell.m; sourceTree = "<group>"; };
 		C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxViewController.m; sourceTree = "<group>"; };
 		C498566122ED8D4800E9FBE2 /* LLPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPreviewController.m; sourceTree = "<group>"; };
@@ -485,9 +481,7 @@
 		C49856B822ED908300E9FBE2 /* LLAppInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoHelper.h; sourceTree = "<group>"; };
 		C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelper.m; sourceTree = "<group>"; };
 		C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashModel.m; sourceTree = "<group>"; };
-		C49856BD22ED909F00E9FBE2 /* LLCrashSignalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalModel.h; sourceTree = "<group>"; };
 		C49856BE22ED909F00E9FBE2 /* LLCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashHelper.h; sourceTree = "<group>"; };
-		C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalModel.m; sourceTree = "<group>"; };
 		C49856C022ED909F00E9FBE2 /* LLCrashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashModel.h; sourceTree = "<group>"; };
 		C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyHelper.m; sourceTree = "<group>"; };
 		C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHierarchyHelper.h; sourceTree = "<group>"; };
@@ -1326,8 +1320,6 @@
 				C498565322ED8D4700E9FBE2 /* LLCrashViewController.m */,
 				C498564D22ED8D4700E9FBE2 /* LLCrashDetailViewController.h */,
 				C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */,
-				C498565122ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.h */,
-				C498565822ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.m */,
 				C49856FC22EDB2DD00E9FBE2 /* LLCrashWindow.h */,
 				C49856FD22EDB2DD00E9FBE2 /* LLCrashWindow.m */,
 			);
@@ -1435,8 +1427,6 @@
 				C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */,
 				C49856C022ED909F00E9FBE2 /* LLCrashModel.h */,
 				C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */,
-				C49856BD22ED909F00E9FBE2 /* LLCrashSignalModel.h */,
-				C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -2179,7 +2169,6 @@
 				C49856F822EDB22100E9FBE2 /* LLSandboxWindow.m in Sources */,
 				C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m in Sources */,
 				36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */,
-				C49856C322ED909F00E9FBE2 /* LLCrashSignalModel.m in Sources */,
 				C4B4E46D22F9C90900F70277 /* LLComponentWindow.m in Sources */,
 				C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */,
 				C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */,
@@ -2299,7 +2288,6 @@
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */,
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
-				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,
 				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,

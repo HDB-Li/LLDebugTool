@@ -23,6 +23,8 @@
 
 #import "LLTool.h"
 
+#import <pthread/pthread.h>
+
 #import "LLLogHelperEventDefine.h"
 #import "LLFormatterTool.h"
 #import "LLDebugTool.h"
@@ -31,14 +33,17 @@
 
 static unsigned long long _absolutelyIdentity = 0;
 
+static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
+
 @implementation LLTool
 
 #pragma mark - Class Method
 + (NSString *)absolutelyIdentity {
-    @synchronized (self) {
-        _absolutelyIdentity++;
-        return [NSString stringWithFormat:@"%lld",_absolutelyIdentity];
-    }
+    unsigned long long identity = 0;
+    pthread_mutex_lock(&mutex_t);
+    identity = _absolutelyIdentity++;
+    pthread_mutex_unlock(&mutex_t);
+    return [NSString stringWithFormat:@"%lld",identity];
 }
 
 + (BOOL)createDirectoryAtPath:(NSString *)path {
