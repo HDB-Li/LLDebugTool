@@ -64,6 +64,14 @@
         return;
     }
     Class cls = NSClassFromString(self.webViewClass);
+    
+    UIViewController *customViewController = [LLConfig shared].htmlViewControllerProvider(urlString);
+    if (customViewController && cls == [customViewController class]) {
+        [LLSettingManager shared].lastWebViewUrl = urlString;
+        [self.navigationController pushViewController:customViewController animated:YES];
+        return;
+    }
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls != [UIWebView class] && cls != [WKWebView class]) {
@@ -96,7 +104,7 @@
 
 #pragma mark - Primary
 - (void)setUpUI {
-    self.title = @"WebView Config";
+    self.title = @"WebView";
     [self initNavigationItemWithTitle:@"Go" imageName:nil isLeft:NO];
     
     self.webViewClass = [LLSettingManager shared].webViewClass ?: NSStringFromClass([WKWebView class]);
@@ -133,6 +141,10 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [actions addObject:NSStringFromClass([UIWebView class])];
 #pragma clang diagnostic pop
+    UIViewController *vc = [LLConfig shared].htmlViewControllerProvider(nil);
+    if (vc) {
+        [actions addObject:NSStringFromClass([vc class])];
+    }
     __weak typeof(self) weakSelf = self;
     [self LL_showActionSheetWithTitle:@"Web View Style" actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
         [weakSelf setNewWebViewClass:actions[index]];

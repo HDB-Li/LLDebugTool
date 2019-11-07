@@ -25,7 +25,7 @@
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.webView];
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com/HDB-Li/LLDebugTool"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url ?:  @"https://github.com/HDB-Li/LLDebugTool"]]];
 }
 
 - (void)viewDidLayoutSubviews {

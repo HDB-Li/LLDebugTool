@@ -54,8 +54,10 @@
 
 - (void)testCustomHtmlViewController {
     if (![LLConfig shared].htmlViewControllerProvider) {
-        [LLConfig shared].htmlViewControllerProvider = ^UIViewController * _Nonnull{
-            return [[CustomWebViewController alloc] init];
+        [LLConfig shared].htmlViewControllerProvider = ^UIViewController * _Nonnull(NSString * _Nonnull url) {
+            CustomWebViewController *vc = [[CustomWebViewController alloc] init];
+            vc.url = url;
+            return vc;
         };
     }
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionHtml];

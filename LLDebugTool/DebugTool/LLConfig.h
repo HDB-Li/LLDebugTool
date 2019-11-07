@@ -306,7 +306,7 @@ Whether show widget border. Default is NO.
 /**
  Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`. ViewController must set background color.
  */
-@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(void);
+@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
 
 #pragma mark - LLDebugTool
 /**
