@@ -31,16 +31,19 @@
 @implementation NSURLSessionConfiguration (LL_Utils)
 
 + (void)load {
-    [self LL_swizzleClassMethodWithOriginSel:@selector(defaultSessionConfiguration) swizzledSel:@selector(LL_defaultSessionConfiguration)];
-    
-    [self LL_swizzleClassMethodWithOriginSel:@selector(ephemeralSessionConfiguration) swizzledSel:@selector(LL_ephemeralSessionConfiguration)];
-    
-    Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ? : NSClassFromString(@"NSURLSessionConfiguration");
-    
-    Method method1 = class_getInstanceMethod(cls, @selector(protocolClasses));
-    Method method2 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
-    
-    [self LL_swizzleMethod:method1 anotherMethod:method2];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[NSURLSessionConfiguration class] LL_swizzleClassMethodWithOriginSel:@selector(defaultSessionConfiguration) swizzledSel:@selector(LL_defaultSessionConfiguration)];
+        
+        [[NSURLSessionConfiguration class] LL_swizzleClassMethodWithOriginSel:@selector(ephemeralSessionConfiguration) swizzledSel:@selector(LL_ephemeralSessionConfiguration)];
+        
+        Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ? : NSClassFromString(@"NSURLSessionConfiguration");
+        
+        Method method1 = class_getInstanceMethod(cls, @selector(protocolClasses));
+        Method method2 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
+        
+        [[NSURLSessionConfiguration class] LL_swizzleMethod:method1 anotherMethod:method2];
+    });
 }
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {

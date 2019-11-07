@@ -29,14 +29,17 @@
 @implementation UIWindow (LL_Utils)
 
 + (void)load {
-//    NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
-//    SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
-    
-    NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
-    SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
-    
-//    [self LL_swizzleInstanceMethodWithOriginSel:canAffectSelector swizzledSel:@selector(_LL_canAffectStatusBarAppearance)];
-    [self LL_swizzleInstanceMethodWithOriginSel:canBecomeKeySelector swizzledSel:@selector(_LL_canBecomeKeyWindow)];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //    NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
+        //    SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
+        
+        NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
+        SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
+        
+        //    [[UIWindow class] LL_swizzleInstanceMethodWithOriginSel:canAffectSelector swizzledSel:@selector(_LL_canAffectStatusBarAppearance)];
+        [[UIWindow class] LL_swizzleInstanceMethodWithOriginSel:canBecomeKeySelector swizzledSel:@selector(_LL_canBecomeKeyWindow)];
+    });
 }
 
 - (UIViewController *)LL_currentShowingViewController {

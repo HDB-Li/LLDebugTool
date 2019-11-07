@@ -30,7 +30,10 @@ NSNotificationName const kLLDidShakeNotificationName = @"kLLDidShakeNotification
 @implementation UIResponder (LL_Utils)
 
 + (void)load {
-    [self LL_swizzleInstanceMethodWithOriginSel:@selector(motionBegan:withEvent:) swizzledSel:@selector(LL_motionBegan:withEvent:)];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[UIResponder class] LL_swizzleInstanceMethodWithOriginSel:@selector(motionBegan:withEvent:) swizzledSel:@selector(LL_motionBegan:withEvent:)];
+    });
 }
 
 - (void)LL_motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
