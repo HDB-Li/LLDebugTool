@@ -1,3 +1,13 @@
+## [1.3.6](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.6) (11/07/2019)
+
+###  Optimize functional experience
+
+* Remove `Masonry`.
+* Fix some bugs.
+* More code comments.
+* Fix error in XCode 10.
+* Fix a crash when call twice load method. 
+
 ## [1.3.5](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.5) (11/07/2019)
 
 ###  Optimize functional experience

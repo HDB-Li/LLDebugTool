@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.5-blue.svg)](https://img.shields.io/badge/pod-v1.3.5-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.6-blue.svg)](https://img.shields.io/badge/pod-v1.3.6-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -46,7 +46,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## What's new in 1.3.5
+## What's new in 1.3.6
 
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
 
@@ -56,6 +56,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 * Fix some bugs.
 * More code comments.
 * Fix error in XCode 10.
+* Fix a crash when call twice load method. 
         
 ## What can you do with LLDebugTool?
 
@@ -92,7 +93,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 ##### Objective - C
 
 > 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0'`. 
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.5' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.6' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugTool', '~> 1.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 5. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
@@ -100,7 +101,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 ##### Swift
 
 > 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0'`.
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.5' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.6' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugToolSwift', '~> 1.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Must be added in the Podfile **`use_frameworks!`**.
 > 5. Install the pod(s) by running `pod install`. If you can't search `LLDebugToolSwift` or you can't find the newest release version, running `pod repo update` before `pod install`.
