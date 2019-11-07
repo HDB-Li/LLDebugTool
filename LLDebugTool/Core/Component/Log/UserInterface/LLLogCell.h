@@ -22,12 +22,16 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewCell.h"
-#import "LLLogModel.h"
+
+@class LLLogModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Log function cell.
 @interface LLLogCell : LLBaseTableViewCell
 
+/// Config cell with model.
+/// @param model LLLogModel.
 - (void)confirmWithModel:(LLLogModel *)model;
 
 @end

@@ -20,6 +20,7 @@
 //  SOFTWARE.
 
 #import "LLHtmlWindow.h"
+
 #import "LLComponentNavigationController.h"
 #import "LLHtmlConfigViewController.h"
 #import "LLWindowManager.h"
@@ -30,15 +31,11 @@
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+        self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
         if (!self.rootViewController) {
-            UINavigationController *nav = nil;
-            if ([LLConfig shared].htmlViewControllerProvider) {
-                UIViewController *vc = [LLConfig shared].htmlViewControllerProvider();
-                nav = [[LLComponentNavigationController alloc] initWithRootViewController:vc];
-            } else {
-                UIViewController *vc = [[LLHtmlConfigViewController alloc] init];
-                nav = [[LLNavigationController alloc] initWithRootViewController:vc];
-            }
+            LLHtmlConfigViewController *vc = [[LLHtmlConfigViewController alloc] init];
+            LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
             self.rootViewController = nav;
         }
     }

@@ -25,10 +25,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Table view selectable model delegate.
 @protocol LLTableViewSelectableDelegate <NSObject>
 
+/// Set selected
+/// @param selected isSelected.
 - (void)setSelected:(BOOL)selected;
 
+/// Get selected.
 - (BOOL)isSelected;
 
 @end

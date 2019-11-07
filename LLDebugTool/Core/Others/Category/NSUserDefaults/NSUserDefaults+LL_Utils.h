@@ -25,15 +25,34 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSUserDefaults utils.
 @interface NSUserDefaults (LL_Utils)
 
+/// Get string for key.
+/// @param aKey Key.
 + (NSString *_Nullable)LL_stringForKey:(NSString *)aKey;
+
+/// Set string for key.
+/// @param string String
+/// @param aKey Key.
 + (void)LL_setString:(NSString *)string forKey:(NSString *)aKey;
 
+/// Get integer for key.
+/// @param aKey Key
 + (NSInteger)LL_integerForKey:(NSString *)aKey;
+
+/// Set integer for key.
+/// @param value Integer
+/// @param aKey Key.
 + (void)LL_setInteger:(NSInteger)value forKey:(NSString *)aKey;
 
+/// Get number for key.
+/// @param aKey Key.
 + (NSNumber *)LL_numberForKey:(NSString *)aKey;
+
+/// Set number for key.
+/// @param num Number
+/// @param aKey Key.
 + (void)LL_setNumber:(NSNumber *)num forKey:(NSString *)aKey;
 
 @end

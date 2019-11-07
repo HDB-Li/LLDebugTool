@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLTableViewSelectableModel.h"
-#import "LLCrashSignalModel.h"
+
+@class LLCrashSignalModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Crash model.
 @interface LLCrashModel : LLTableViewSelectableModel
 
 /**
@@ -54,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic, readonly, nullable) NSString *date;
 
 /**
+ * Thread description.
+ */
+@property (copy, nonatomic, readonly, nullable) NSString *thread;
+
+/**
  * Custom User Identity
  */
 @property (copy, nonatomic, readonly, nullable) NSString *userIdentity;
@@ -64,24 +71,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly, nullable) NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*appInfos;
 
 /**
- Signal models.
- */
-@property (strong, nonatomic, readonly) NSArray <LLCrashSignalModel *>*signals;
-
-/**
  * App LaunchDate
  */
 @property (copy, nonatomic, readonly) NSString *launchDate;
 
 /**
- * Init method
+ Model identity.
  */
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate;
+@property (nonatomic, copy, readonly) NSString *identity;
 
 /**
- Append a signal model.
+ * Init method
  */
-- (void)appendSignalModel:(LLCrashSignalModel *)model;
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate;
 
 /**
  Update appInfo

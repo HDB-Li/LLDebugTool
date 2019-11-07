@@ -25,46 +25,73 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIView utils.
 @interface UIView (LL_Utils)
 
+/// Horizontal padding.
 @property (nonatomic, assign) CGFloat LL_horizontalPadding;
 
+/// Vertical padding.
 @property (nonatomic, assign) CGFloat LL_verticalPadding;
 
+/// X
 @property (nonatomic, assign) CGFloat LL_x;
 
+/// Y
 @property (nonatomic, assign) CGFloat LL_y;
 
+/// CenterX
 @property (nonatomic, assign) CGFloat LL_centerX;
 
+/// CenterY
 @property (nonatomic, assign) CGFloat LL_centerY;
 
+/// Width
 @property (nonatomic, assign) CGFloat LL_width;
 
+/// Height
 @property (nonatomic, assign) CGFloat LL_height;
 
+/// Size
 @property (nonatomic, assign) CGSize LL_size;
 
+/// Top
 @property (nonatomic, assign) CGFloat LL_top;
 
+/// Bottom
 @property (nonatomic, assign) CGFloat LL_bottom;
 
+/// Left
 @property (nonatomic, assign) CGFloat LL_left;
 
+/// Right
 @property (nonatomic, assign) CGFloat LL_right;
 
+/// Set corner radius
+/// @param cornerRadius Radius.
 - (void)LL_setCornerRadius:(CGFloat)cornerRadius;
 
+/// Set border color and width.
+/// @param borderColor Color
+/// @param borderWidth Width.
 - (void)LL_setBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
 
+/// Remove all subviews.
 - (void)LL_removeAllSubviews;
 
+/// Remove all subviews but ignore in array.
+/// @param views Ignore view array.
 - (void)LL_removeAllSubviewsIgnoreIn:(NSArray <UIView *>*_Nullable)views;
 
+/// The most bottom view.
 - (UIView *_Nullable)LL_bottomView;
 
+/// Add tap to view.
+/// @param target Target
+/// @param action Action.
 - (void)LL_addClickListener:(id)target action:(SEL)action;
 
+/// Convert to image.
 - (UIImage *)LL_convertViewToImage;
 
 @end

@@ -22,12 +22,14 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
+
 #import "LLScreenshotDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class LLScreenshotActionView;
 
+/// Action delegate.
 @protocol LLScreenshotActionViewDelegate <NSObject>
 
 @optional
@@ -38,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// Screen shot action view.
 @interface LLScreenshotActionView : LLBaseView
 
 /**

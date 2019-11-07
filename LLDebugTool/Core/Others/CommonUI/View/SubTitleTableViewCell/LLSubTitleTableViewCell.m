@@ -22,12 +22,13 @@
 //  SOFTWARE.
 
 #import "LLSubTitleTableViewCell.h"
-#import "LLConfig.h"
-#import "LLMacros.h"
+
 #import "LLThemeManager.h"
 #import "LLFactory.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
 #import "LLConst.h"
-#import "Masonry.h"
+
 #import "UIView+LL_Utils.h"
 
 @interface LLSubTitleTableViewCell ()
@@ -37,6 +38,8 @@
 @property (nonatomic, strong) UITextView *contentTextView;
 
 @property (nonatomic, assign) NSInteger maxTextViewHeight;
+
+@property (nonatomic, strong) NSLayoutConstraint *contentTextViewHeightCons;
 
 @end
 
@@ -49,14 +52,10 @@
         self.contentTextView.text = _contentText;
         CGSize size = [self.contentTextView sizeThatFits:CGSizeMake(LL_SCREEN_WIDTH - kLLGeneralMargin * 2, CGFLOAT_MAX)];
         if (size.height >= self.maxTextViewHeight) {
-            [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(self.maxTextViewHeight);
-            }];
+            self.contentTextViewHeightCons.constant = self.maxTextViewHeight;
             self.contentTextView.scrollEnabled = YES;
         } else {
-            [self.contentTextView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(size.height);
-            }];
+            self.contentTextViewHeightCons.constant = size.height;
             self.contentTextView.scrollEnabled = NO;
         }
         [self setNeedsLayout];
@@ -73,20 +72,30 @@
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.contentTextView];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.right.mas_equalTo(kLLGeneralMargin);
-        make.height.mas_equalTo(25);
-    }];
+    [self addTitleLabelConstraints];
+    [self addContentTextViewConstraints];
+}
+
+- (void)addTitleLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:25];
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.titleLabel.superview addConstraints:@[top, left, right, height]];
+}
+
+- (void)addContentTextViewConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.contentTextView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.contentTextView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.contentTextView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.contentTextView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:20];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.contentTextView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentTextView.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    self.contentTextView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentTextView.superview addConstraints:@[top, left, right, height, bottom]];
     
-    [self.contentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-        make.left.right.equalTo(self.titleLabel);
-        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-        make.height.mas_equalTo(20);
-    }];
+    self.contentTextViewHeightCons = height;
 }
 
 #pragma mark - Event Responses

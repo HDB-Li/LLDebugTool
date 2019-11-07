@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Crash function view controller.
 @interface LLCrashViewController : LLEditTableViewController
 
 @end

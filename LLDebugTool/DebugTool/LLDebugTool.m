@@ -36,6 +36,7 @@
 #import "LLFunctionItemModel.h"
 #import "LLSettingManager.h"
 #import "UIResponder+LL_Utils.h"
+#import "LLComponent.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -163,7 +164,7 @@ static LLDebugTool *_instance = nil;
     // Set Default
     _isBetaVersion = NO;
 
-    _versionNumber = @"1.3.4";
+    _versionNumber = @"1.3.5";
 
     _version = _isBetaVersion ? [_versionNumber stringByAppendingString:@"(BETA)"] : _versionNumber;
     

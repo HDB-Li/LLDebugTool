@@ -22,8 +22,9 @@
 //  SOFTWARE.
 
 #import "LLCrashWindow.h"
-#import "LLCrashViewController.h"
+
 #import "LLNavigationController.h"
+#import "LLCrashViewController.h"
 #import "LLWindowManager.h"
 
 @implementation LLCrashWindow

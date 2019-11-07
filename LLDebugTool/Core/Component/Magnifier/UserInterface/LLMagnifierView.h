@@ -27,14 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class LLMagnifierView;
 
+/// Magnifier action delegate.
 @protocol LLMagnifierViewDelegate <NSObject>
 
 - (void)LLMagnifierView:(LLMagnifierView *)view update:(NSString *)hexColor at:(CGPoint)point;
 
 @end
 
+/// Magnifier view.
 @interface LLMagnifierView : LLMoveView
 
+/// Action delegate.
 @property (nonatomic, weak, nullable) id<LLMagnifierViewDelegate> delegate;
 
 @end

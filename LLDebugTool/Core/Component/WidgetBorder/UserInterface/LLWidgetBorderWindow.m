@@ -22,14 +22,17 @@
 //  SOFTWARE.
 
 #import "LLWidgetBorderWindow.h"
-#import "LLWindowManager.h"
+
 #import "LLWidgetBorderViewController.h"
 #import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLWidgetBorderWindow
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+        self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
         if (!self.rootViewController) {
             self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLWidgetBorderViewController alloc] init]];
         }

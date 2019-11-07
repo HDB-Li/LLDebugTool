@@ -33,10 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// Info view.
 @interface LLInfoView : LLMoveView
 
+/// Action delegate.
 @property (nonatomic, weak, nullable) id<LLInfoViewDelegate> delegate;
 
+/// Close button.
 @property (nonatomic, strong, readonly) UIButton *closeButton;
 
 @end

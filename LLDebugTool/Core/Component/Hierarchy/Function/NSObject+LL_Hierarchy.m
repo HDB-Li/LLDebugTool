@@ -22,12 +22,15 @@
 //  SOFTWARE.
 
 #import "NSObject+LL_Hierarchy.h"
-#import "LLConst.h"
-#import "LLMacros.h"
-#import "UIColor+LL_Utils.h"
-#import "LLFormatterTool.h"
+
+#import "LLTitleCellCategoryModel.h"
 #import "LLEnumDescription.h"
+#import "LLTitleCellModel.h"
+#import "LLFormatterTool.h"
+#import "LLMacros.h"
+#import "LLConst.h"
 #import "LLTool.h"
+
 #import "UIViewController+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
 
@@ -258,20 +261,22 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 }
 
 - (void)LL_showTextFieldAlertWithText:(NSString *)text handler:(nullable void (^)(NSString * _Nullable newText))handler {
+    __weak typeof(self) weakSelf = self;
     [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showTextFieldAlertControllerWithMessage:@"Change Property" text:text handler:^(NSString * _Nullable newText) {
         if (handler) {
             handler(newText);
         }
-        [self LL_postHierarchyChangeNotification];
+        [weakSelf LL_postHierarchyChangeNotification];
     }];
 }
 
 - (void)LL_showActionSheetWithActions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion {
+    __weak typeof(self) weakSelf = self;
     [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showActionSheetWithTitle:@"Change Property" actions:actions currentAction:currentAction completion:^(NSInteger index) {
         if (completion) {
             completion(index);
         }
-        [self LL_postHierarchyChangeNotification];
+        [weakSelf LL_postHierarchyChangeNotification];
     }];
 }
 
@@ -1228,9 +1233,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
             if (index <= UIActivityIndicatorViewStyleGray) {
                 weakSelf.activityIndicatorViewStyle = index;
             } else {
+#ifdef __IPHONE_13_0
                 if (@available(iOS 13.0, *)) {
                     weakSelf.activityIndicatorViewStyle = index + (UIActivityIndicatorViewStyleMedium - UIActivityIndicatorViewStyleGray - 1);
                 }
+#endif
             }
 #pragma clang diagnostic pop
         }];

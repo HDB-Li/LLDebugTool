@@ -27,18 +27,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// HSB
 @interface LLHSB : NSObject
 
+/// Hue
 @property (nonatomic, assign) CGFloat hue;
 
+/// Saturation
 @property (nonatomic, assign) CGFloat saturation;
 
+/// Brightness
 @property (nonatomic, assign) CGFloat brightness;
 
+/// Alpha
 @property (nonatomic, assign) CGFloat alpha;
 
+/// Instance method.
+/// @param hue Hue
+/// @param saturation Saturation
+/// @param brightness Brightness
+/// @param alpha Alpha
 - (instancetype)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha;
 
+/// Convert to RGB.
 - (LLRGB *)toRGB;
 
 @end

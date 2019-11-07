@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// App info function component.
 @interface LLAppInfoComponent : LLComponent
 
 @end

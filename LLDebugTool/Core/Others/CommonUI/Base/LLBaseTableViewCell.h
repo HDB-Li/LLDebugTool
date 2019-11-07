@@ -25,12 +25,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Base table view cell.
 @interface LLBaseTableViewCell : UITableViewCell
 
+/// Init UI method. must call super.
 - (void)initUI;
 
+/// Primary color changed notification. must call super.
 - (void)primaryColorChanged;
 
+/// Background color changed notification. must call super.
 - (void)backgroundColorChanged;
 
 @end

@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLEditTableViewController.h"
-#import "LLSandboxModel.h"
+
+@class LLSandboxModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Sandbox function view controller.
 @interface LLSandboxViewController : LLEditTableViewController
 
 /**

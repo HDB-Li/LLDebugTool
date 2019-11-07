@@ -22,16 +22,19 @@
 //  SOFTWARE.
 
 #import "LLFilterView.h"
-#import "LLNetworkModel.h"
+
+@class LLNetworkModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLNetworkFilterChangeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
-
+/// Network function filter view.
 @interface LLNetworkFilterView : LLFilterView
 
-@property (nonatomic, copy, nullable) LLNetworkFilterChangeBlock changeBlock;
+/// Filter change block.
+@property (nonatomic, copy, nullable) void(^changeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
 
+/// Config filter with array data.
+/// @param data An LLNetworkModel array data.
 - (void)configWithData:(NSArray <LLNetworkModel *>*_Nullable)data;
 
 @end

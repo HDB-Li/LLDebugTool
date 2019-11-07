@@ -25,10 +25,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Ruler picker info view.
 @interface LLRulerPickerInfoView : LLInfoView
 
+/// Update point info.
+/// @param point Point
 - (void)updatePoint:(CGPoint)point;
 
+/// Update start point info.
+/// @param point Point.
 - (void)updateStartPoint:(CGPoint)point;
 
 @end

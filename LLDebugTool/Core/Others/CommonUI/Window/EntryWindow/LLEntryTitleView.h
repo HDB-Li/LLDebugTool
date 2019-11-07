@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Entry title view.
 @interface LLEntryTitleView : LLEntryView
 
 @end

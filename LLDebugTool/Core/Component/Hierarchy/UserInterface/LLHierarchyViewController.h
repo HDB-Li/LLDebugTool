@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Hierarchy function view controller.
 @interface LLHierarchyViewController : LLBaseComponentViewController
 
 @end

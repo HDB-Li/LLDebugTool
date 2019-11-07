@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLTitleView.h"
-#import "LLFactory.h"
+
 #import "LLThemeManager.h"
-#import "UIView+LL_Utils.h"
+#import "LLFactory.h"
 #import "LLConst.h"
+
+#import "UIView+LL_Utils.h"
 
 @interface LLTitleView ()
 

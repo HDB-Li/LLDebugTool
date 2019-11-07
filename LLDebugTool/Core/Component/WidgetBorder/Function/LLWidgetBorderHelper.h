@@ -25,10 +25,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Widget border helper.
 @interface LLWidgetBorderHelper : NSObject
 
+/// Shared instance.
 + (instancetype)shared;
 
+/// Set enable or not.
+/// @param isEnable Is enable.
 - (void)enable:(BOOL)isEnable;
 
 @end

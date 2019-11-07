@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Widget border window.
 @interface LLWidgetBorderWindow : LLComponentWindow
 
 @end

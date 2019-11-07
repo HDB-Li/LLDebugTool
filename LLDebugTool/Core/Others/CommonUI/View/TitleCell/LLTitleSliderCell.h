@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Slider cell.
 @interface LLTitleSliderCell : LLTitleCell
 
 @end

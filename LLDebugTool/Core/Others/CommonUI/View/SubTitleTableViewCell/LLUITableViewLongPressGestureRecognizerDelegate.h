@@ -22,7 +22,8 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+
+@class UITableViewCell;
 
 NS_ASSUME_NONNULL_BEGIN
 

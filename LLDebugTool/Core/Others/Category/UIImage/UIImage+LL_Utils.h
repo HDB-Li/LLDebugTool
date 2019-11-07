@@ -22,10 +22,10 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Image utils.
 @interface UIImage (LL_Utils)
 
 /**

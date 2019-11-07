@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSInputStream utils.
 @interface NSInputStream (LL_Utils)
 
+/// Convert to data.
 - (NSData *)LL_toData;
 
 @end

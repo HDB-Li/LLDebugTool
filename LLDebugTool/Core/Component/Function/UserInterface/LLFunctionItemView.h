@@ -22,12 +22,15 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
-#import "LLFunctionItemModel.h"
+
+@class LLFunctionItemModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Function item view.
 @interface LLFunctionItemView : LLBaseView
 
+/// Model config to view.
 @property (nonatomic, strong) LLFunctionItemModel *model;
 
 @end

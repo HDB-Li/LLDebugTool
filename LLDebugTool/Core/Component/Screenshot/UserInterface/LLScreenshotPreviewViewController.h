@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Screen shot preview view controller.
 @interface LLScreenshotPreviewViewController : LLBaseComponentViewController
 
+/// Image to preview.
 @property (nonatomic, strong) UIImage *image;
 
 @end

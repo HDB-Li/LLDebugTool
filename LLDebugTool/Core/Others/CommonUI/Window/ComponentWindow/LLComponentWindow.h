@@ -25,12 +25,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Component delegate.
 @protocol LLComponentCompleteDelegate <NSObject>
 
 - (void)componentDidFinish;
 
 @end
 
+/// Component window.
 @interface LLComponentWindow : LLBaseWindow<LLComponentCompleteDelegate>
 
 @end

@@ -22,12 +22,14 @@
 //  SOFTWARE.
 
 #import "LLBaseView.h"
+
 #import "LLScreenshotDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class LLScreenshotSelectorModel;
 
+/// Screenshot selector view.
 @interface LLScreenshotSelectorView : LLBaseView
 
 /**

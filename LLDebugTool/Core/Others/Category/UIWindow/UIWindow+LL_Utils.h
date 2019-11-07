@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIWindow utils.
 @interface UIWindow (LL_Utils)
 
 /**

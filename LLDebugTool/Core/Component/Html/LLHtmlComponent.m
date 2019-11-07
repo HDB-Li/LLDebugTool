@@ -20,9 +20,10 @@
 //  SOFTWARE.
 
 #import "LLHtmlComponent.h"
-#import "LLWindowManager.h"
-#import "LLNavigationController.h"
+
 #import "LLHtmlConfigViewController.h"
+#import "LLNavigationController.h"
+#import "LLWindowManager.h"
 
 @implementation LLHtmlComponent
 

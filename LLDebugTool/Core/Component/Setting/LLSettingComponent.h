@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Setting component.
 @interface LLSettingComponent : LLComponent
 
 @end

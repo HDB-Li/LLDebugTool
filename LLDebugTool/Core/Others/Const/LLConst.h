@@ -22,7 +22,6 @@
 //  SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 
 UIKIT_EXTERN CGFloat const kLLEntryWindowBallWidth;
 UIKIT_EXTERN CGFloat const kLLEntryWindowMinBallWidth;

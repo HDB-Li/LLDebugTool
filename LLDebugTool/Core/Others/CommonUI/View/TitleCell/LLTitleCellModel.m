@@ -78,7 +78,7 @@
     return self;
 }
 
-- (void)setBlock:(LLSettingModelBlock)block {
+- (void)setBlock:(void (^)(void))block {
     if (_block != block) {
         _block = [block copy];
         _cellClass = NSStringFromClass(block ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);

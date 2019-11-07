@@ -25,16 +25,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Entry view.
 @interface LLEntryView : LLMoveView
 
+/// is active
 @property (nonatomic, assign, readonly, getter=isActive) BOOL active;
 
+/// Content view.
 @property (nonatomic, strong, readonly) UIView *contentView;
 
+/// Inactive alpha.
 @property (nonatomic, assign) CGFloat inactiveAlpha;
 
+/// Become active in animate.
 - (void)animatedBecomeActive;
 
+/// Resign active.
+/// @param animated Animated.
 - (void)resignActive:(BOOL)animated;
 
 @end

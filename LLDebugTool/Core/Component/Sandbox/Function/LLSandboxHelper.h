@@ -22,7 +22,8 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLSandboxModel.h"
+
+@class LLSandboxModel;
 
 NS_ASSUME_NONNULL_BEGIN
 

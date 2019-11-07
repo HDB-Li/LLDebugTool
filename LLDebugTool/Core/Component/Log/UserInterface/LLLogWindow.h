@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Log function window.
 @interface LLLogWindow : LLComponentWindow
 
 @end

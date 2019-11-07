@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Picker view.
 @interface LLPickerView : LLMoveView
 
 @end

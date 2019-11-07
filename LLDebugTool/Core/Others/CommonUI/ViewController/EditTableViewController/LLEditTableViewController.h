@@ -22,11 +22,12 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
-#import "LLBaseModel.h"
+
 #import "LLTableViewSelectableDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Editable table view controller.
 @interface LLEditTableViewController : LLBaseTableViewController <UITableViewDataSource, UITextFieldDelegate>
 
 /**

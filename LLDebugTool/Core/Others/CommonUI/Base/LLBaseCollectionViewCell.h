@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Base collection view cell.
 @interface LLBaseCollectionViewCell : UICollectionViewCell
 
+/// Init UI method. must call super.
 - (void)initUI;
 
 @end

@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// HSB preview.
 @interface LLHSBPreviewView : LLBaseView
 
 @end

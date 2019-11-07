@@ -15,7 +15,7 @@
 		3603883D23335DF40026BC9E /* LLTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603883C23335DF40026BC9E /* LLTitleViewController.m */; };
 		360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6362330DC160073FECD /* LLSettingComponent.m */; };
 		360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6392330DC620073FECD /* LLSettingWindow.m */; };
-		360D8A4F22FD52A9003693AE /* LLHierarchyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyView.m */; };
+		360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */; };
 		360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5122FD636D003693AE /* LLHierarchyViewController.m */; };
 		360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
@@ -118,7 +118,6 @@
 		C498569A22ED8D4800E9FBE2 /* LLCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565322ED8D4700E9FBE2 /* LLCrashViewController.m */; };
 		C498569B22ED8D4800E9FBE2 /* LLCrashCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565422ED8D4700E9FBE2 /* LLCrashCell.m */; };
 		C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */; };
-		C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565822ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.m */; };
 		C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C498565F22ED8D4800E9FBE2 /* LLSandboxCell.m */; };
 		C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */; };
 		C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498566122ED8D4800E9FBE2 /* LLPreviewController.m */; };
@@ -132,9 +131,7 @@
 		C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856B722ED908300E9FBE2 /* LLAppInfoHelper.m */; };
 		C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */; };
 		C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */; };
-		C49856C322ED909F00E9FBE2 /* LLCrashSignalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */; };
 		C49856C922ED90B400E9FBE2 /* LLHierarchyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */; };
-		C49856CA22ED90B400E9FBE2 /* LLHierarchyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */; };
 		C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856CE22ED90C800E9FBE2 /* LLLogModel.m */; };
 		C49856D122ED90C800E9FBE2 /* LLLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856CF22ED90C800E9FBE2 /* LLLogHelper.m */; };
 		C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */; };
@@ -248,8 +245,8 @@
 		360AE6362330DC160073FECD /* LLSettingComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingComponent.m; sourceTree = "<group>"; };
 		360AE6382330DC620073FECD /* LLSettingWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingWindow.h; sourceTree = "<group>"; };
 		360AE6392330DC620073FECD /* LLSettingWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingWindow.m; sourceTree = "<group>"; };
-		360D8A4D22FD52A9003693AE /* LLHierarchyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyView.h; sourceTree = "<group>"; };
-		360D8A4E22FD52A9003693AE /* LLHierarchyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyView.m; sourceTree = "<group>"; };
+		360D8A4D22FD52A9003693AE /* LLHierarchyPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyPickerView.h; sourceTree = "<group>"; };
+		360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerView.m; sourceTree = "<group>"; };
 		360D8A5022FD636D003693AE /* LLHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyViewController.h; sourceTree = "<group>"; };
 		360D8A5122FD636D003693AE /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
 		360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoView.h; sourceTree = "<group>"; };
@@ -456,12 +453,10 @@
 		C498564622ED8D4700E9FBE2 /* LLNetworkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworkDetailViewController.m; sourceTree = "<group>"; };
 		C498564D22ED8D4700E9FBE2 /* LLCrashDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashDetailViewController.h; sourceTree = "<group>"; };
 		C498564E22ED8D4700E9FBE2 /* LLCrashCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashCell.h; sourceTree = "<group>"; };
-		C498565122ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalDetailViewController.h; sourceTree = "<group>"; };
 		C498565322ED8D4700E9FBE2 /* LLCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashViewController.m; sourceTree = "<group>"; };
 		C498565422ED8D4700E9FBE2 /* LLCrashCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashCell.m; sourceTree = "<group>"; };
 		C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashDetailViewController.m; sourceTree = "<group>"; };
 		C498565722ED8D4700E9FBE2 /* LLCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashViewController.h; sourceTree = "<group>"; };
-		C498565822ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalDetailViewController.m; sourceTree = "<group>"; };
 		C498565F22ED8D4800E9FBE2 /* LLSandboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxCell.m; sourceTree = "<group>"; };
 		C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSandboxViewController.m; sourceTree = "<group>"; };
 		C498566122ED8D4800E9FBE2 /* LLPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLPreviewController.m; sourceTree = "<group>"; };
@@ -486,14 +481,10 @@
 		C49856B822ED908300E9FBE2 /* LLAppInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoHelper.h; sourceTree = "<group>"; };
 		C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelper.m; sourceTree = "<group>"; };
 		C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashModel.m; sourceTree = "<group>"; };
-		C49856BD22ED909F00E9FBE2 /* LLCrashSignalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashSignalModel.h; sourceTree = "<group>"; };
 		C49856BE22ED909F00E9FBE2 /* LLCrashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashHelper.h; sourceTree = "<group>"; };
-		C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCrashSignalModel.m; sourceTree = "<group>"; };
 		C49856C022ED909F00E9FBE2 /* LLCrashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCrashModel.h; sourceTree = "<group>"; };
-		C49856C522ED90B400E9FBE2 /* LLHierarchyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHierarchyModel.h; sourceTree = "<group>"; };
 		C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyHelper.m; sourceTree = "<group>"; };
 		C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLHierarchyHelper.h; sourceTree = "<group>"; };
-		C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyModel.m; sourceTree = "<group>"; };
 		C49856CC22ED90C800E9FBE2 /* LLLogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogModel.h; sourceTree = "<group>"; };
 		C49856CD22ED90C800E9FBE2 /* LLLogHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogHelper.h; sourceTree = "<group>"; };
 		C49856CE22ED90C800E9FBE2 /* LLLogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLogModel.m; sourceTree = "<group>"; };
@@ -1269,8 +1260,8 @@
 				362F3CE522F01AF70087B0E4 /* LLHierarchyWindow.m */,
 				360D8A5022FD636D003693AE /* LLHierarchyViewController.h */,
 				360D8A5122FD636D003693AE /* LLHierarchyViewController.m */,
-				360D8A4D22FD52A9003693AE /* LLHierarchyView.h */,
-				360D8A4E22FD52A9003693AE /* LLHierarchyView.m */,
+				360D8A4D22FD52A9003693AE /* LLHierarchyPickerView.h */,
+				360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */,
 				360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */,
 				360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */,
 				C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */,
@@ -1329,8 +1320,6 @@
 				C498565322ED8D4700E9FBE2 /* LLCrashViewController.m */,
 				C498564D22ED8D4700E9FBE2 /* LLCrashDetailViewController.h */,
 				C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */,
-				C498565122ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.h */,
-				C498565822ED8D4700E9FBE2 /* LLCrashSignalDetailViewController.m */,
 				C49856FC22EDB2DD00E9FBE2 /* LLCrashWindow.h */,
 				C49856FD22EDB2DD00E9FBE2 /* LLCrashWindow.m */,
 			);
@@ -1438,8 +1427,6 @@
 				C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */,
 				C49856C022ED909F00E9FBE2 /* LLCrashModel.h */,
 				C49856BC22ED909F00E9FBE2 /* LLCrashModel.m */,
-				C49856BD22ED909F00E9FBE2 /* LLCrashSignalModel.h */,
-				C49856BF22ED909F00E9FBE2 /* LLCrashSignalModel.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1449,8 +1436,6 @@
 			children = (
 				C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */,
 				C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */,
-				C49856C522ED90B400E9FBE2 /* LLHierarchyModel.h */,
-				C49856C822ED90B400E9FBE2 /* LLHierarchyModel.m */,
 				36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */,
 				36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */,
 			);
@@ -2184,7 +2169,6 @@
 				C49856F822EDB22100E9FBE2 /* LLSandboxWindow.m in Sources */,
 				C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m in Sources */,
 				36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */,
-				C49856C322ED909F00E9FBE2 /* LLCrashSignalModel.m in Sources */,
 				C4B4E46D22F9C90900F70277 /* LLComponentWindow.m in Sources */,
 				C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */,
 				C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */,
@@ -2197,7 +2181,7 @@
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
 				C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */,
 				3694F874233899E4007B07CA /* LLEnumDescription.m in Sources */,
-				360D8A4F22FD52A9003693AE /* LLHierarchyView.m in Sources */,
+				360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */,
 				3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */,
 				C49856FE22EDB2DD00E9FBE2 /* LLCrashWindow.m in Sources */,
 				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
@@ -2304,7 +2288,6 @@
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */,
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
-				C498569D22ED8D4800E9FBE2 /* LLCrashSignalDetailViewController.m in Sources */,
 				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,
@@ -2355,7 +2338,6 @@
 				C49856E222ED90F300E9FBE2 /* LLSandboxModel.m in Sources */,
 				C4B4E47022F9C90900F70277 /* LLBaseViewController.m in Sources */,
 				363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */,
-				C49856CA22ED90B400E9FBE2 /* LLHierarchyModel.m in Sources */,
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
 				C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */,
 				C49856F522EDB1FE00E9FBE2 /* LLSandboxComponent.m in Sources */,
@@ -2610,7 +2592,7 @@
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2631,7 +2613,7 @@
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3.4;
+				MARKETING_VERSION = 1.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

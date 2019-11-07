@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Unused file , but it's an idea to hook delegate.
 @interface WKWebView (LL_Utils)
 
 //// Record really target.

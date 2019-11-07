@@ -22,9 +22,9 @@
 //  SOFTWARE.
 
 #import "LLTitleSliderCell.h"
-#import "LLFactory.h"
-#import "Masonry.h"
+
 #import "LLThemeManager.h"
+#import "LLFactory.h"
 #import "LLConst.h"
 
 @interface LLTitleSliderCell ()
@@ -43,17 +43,25 @@
     [self.contentView addSubview:self.slider];
     [self.contentView addSubview:self.valueLabel];
     
-    [self.valueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-kLLGeneralMargin);
-        make.centerY.mas_equalTo(self.contentView);
-    }];
-    
-    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.valueLabel.mas_left).offset(-kLLGeneralMargin);
-        make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin);
-        make.top.mas_equalTo(kLLGeneralMargin / 2.0);
-        make.bottom.mas_equalTo(-kLLGeneralMargin / 2.0);
-    }];
+    [self addValueLabelConstraints];
+    [self addSliderConstraints];
+}
+
+- (void)addValueLabelConstraints {
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.valueLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.valueLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
+    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.valueLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.valueLabel.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    self.valueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.valueLabel.superview addConstraints:@[right, centerY]];
+}
+
+- (void)addSliderConstraints {
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.valueLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:-kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:35];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin /2.0];
+    self.slider.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.slider.superview addConstraints:@[right, left, top, height, bottom]];
 }
 
 #pragma mark - Primary

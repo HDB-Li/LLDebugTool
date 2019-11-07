@@ -23,6 +23,8 @@
 
 #import "LLHierarchyHelper.h"
 
+#import <UIKit/UIKit.h>
+
 static LLHierarchyHelper *_instance = nil;
 
 @implementation LLHierarchyHelper
@@ -73,31 +75,6 @@ static LLHierarchyHelper *_instance = nil;
     [results removeObjectsInArray:removeResults];
     
     return [NSArray arrayWithArray:results];
-}
-
-- (LLHierarchyModel *)hierarchyInApplication {
-    NSMutableArray <LLHierarchyModel *>*allViews = [NSMutableArray array];
-    NSArray <UIWindow *>*windows = [self allWindows];
-    for (int i = 0; i < windows.count; i++) {
-        UIWindow *window = windows[i];
-        [allViews addObject:[self hierarchyInView:window section:0 row:i]];
-    }
-    LLHierarchyModel *model = [[LLHierarchyModel alloc] initWithSubModels:allViews];
-    return model;
-}
-
-- (LLHierarchyModel *)hierarchyInView:(UIView *)view {
-    return [self hierarchyInView:view section:0 row:0];
-}
-
-#pragma mark - Primary
-- (LLHierarchyModel *)hierarchyInView:(UIView *)view section:(NSInteger)section row:(NSInteger)row {
-    NSMutableArray *subModels = [[NSMutableArray alloc] init];
-    for (int i = 0; i < view.subviews.count; i++) {
-        UIView *subView = view.subviews[i];
-        [subModels addObject:[self hierarchyInView:subView section:section + 1 row:i]];
-    }
-    return [[LLHierarchyModel alloc] initWithView:view section:section row:row subModels:subModels];
 }
 
 @end

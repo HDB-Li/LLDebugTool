@@ -22,9 +22,12 @@
 //  SOFTWARE.
 
 #import "LLCrashModel.h"
+
+#import "LLTool.h"
+
+#import "NSDictionary+LL_Utils.h"
 #import "NSObject+LL_Utils.h"
 #import "NSString+LL_Utils.h"
-#import "NSDictionary+LL_Utils.h"
 #import "NSArray+LL_Utils.h"
 
 @interface LLCrashModel ()
@@ -35,23 +38,21 @@
 
 @implementation LLCrashModel
 
-- (instancetype)initWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo stackSymbols:(NSArray *)stackSymbols date:(NSString *)date userIdentity:(NSString *)userIdentity appInfos:(NSArray *)appInfos launchDate:(NSString *)launchDate {
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate {
     if (self = [super init]) {
         _name = [name copy];
         _reason = [reason copy];
         _userInfo = [userInfo copy];
         _stackSymbols = [stackSymbols copy];
         _date = [date copy];
+        _thread = [thread copy];
         _userIdentity = [userIdentity copy];
         _appInfos = [appInfos copy];
         _launchDate = [launchDate copy];
         _signals = [[NSMutableArray alloc] init];
+        _identity = [launchDate stringByAppendingString:[LLTool absolutelyIdentity]];
     }
     return self;
-}
-
-- (void)appendSignalModel:(LLCrashSignalModel *)model {
-    [_signals addObject:model];
 }
 
 - (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
@@ -59,7 +60,7 @@
 }
 
 - (NSString *)storageIdentity {
-    return self.launchDate;
+    return self.identity;
 }
 
 - (BOOL)operationOnMainThread {

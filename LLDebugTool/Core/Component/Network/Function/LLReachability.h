@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>
 
@@ -37,6 +38,8 @@ typedef NS_ENUM(NSUInteger, LLNetworkStatus) {
 FOUNDATION_EXTERN NSString *kLLReachabilityChangedNotification;
 
 // Also see https://developer.apple.com/library/archive/samplecode/Reachability/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007324-Intro-DontLinkElementID_2
+
+/// Network state reachability.
 @interface LLReachability : NSObject
 
 /*!

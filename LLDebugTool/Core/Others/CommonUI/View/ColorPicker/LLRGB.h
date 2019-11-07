@@ -25,16 +25,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// RGB
 @interface LLRGB : NSObject
 
+/// Red
 @property (nonatomic, assign) CGFloat red;
 
+/// Green
 @property (nonatomic, assign) CGFloat green;
 
+/// Blue
 @property (nonatomic, assign) CGFloat blue;
 
+/// Alpha
 @property (nonatomic, assign) CGFloat alpha;
 
+/// Instance method.
+/// @param red Red
+/// @param green Green
+/// @param blue Blue
+/// @param alpha Alpha.
 - (instancetype)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 
 @end

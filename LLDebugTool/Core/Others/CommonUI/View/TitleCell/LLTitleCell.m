@@ -22,16 +22,16 @@
 //  SOFTWARE.
 
 #import "LLTitleCell.h"
-#import "LLFactory.h"
+
 #import "LLThemeManager.h"
-#import "Masonry.h"
+#import "LLFactory.h"
 #import "LLConst.h"
 
 @interface LLTitleCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
-@property (nonatomic, strong) MASConstraint *titleLabelBottomCons;
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelBottomCons;
 
 @end
 
@@ -44,12 +44,18 @@
     
     [self.contentView addSubview:self.titleLabel];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.top.mas_equalTo(kLLGeneralMargin);
-        self.titleLabelBottomCons = make.bottom.mas_equalTo(-kLLGeneralMargin);
-        make.width.mas_equalTo(120);
-    }];
+    [self addTitleLabelConstrains];
+}
+
+- (void)addTitleLabelConstrains {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addConstraints:@[left, top, width, bottom]];
+    
+    self.titleLabelBottomCons = bottom;
 }
 
 #pragma mark - Over write

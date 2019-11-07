@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CustomWebViewController : UIViewController
 
+@property (nonatomic, nullable, copy) NSString *url;
+
 @end
 
 NS_ASSUME_NONNULL_END

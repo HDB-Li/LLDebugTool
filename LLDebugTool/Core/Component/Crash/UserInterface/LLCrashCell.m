@@ -22,10 +22,11 @@
 //  SOFTWARE.
 
 #import "LLCrashCell.h"
-#import "LLConfig.h"
+
+#import "LLCrashModel.h"
 #import "LLFactory.h"
+#import "LLConfig.h"
 #import "LLConst.h"
-#import "Masonry.h"
 
 @interface LLCrashCell ()
 
@@ -58,22 +59,35 @@
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.dateLabel];
     
-    [self.reasonLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.right.mas_equalTo(-kLLGeneralMargin);
-    }];
-    
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.reasonLabel);
-        make.top.equalTo(self.reasonLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-    }];
-    
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.reasonLabel);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
-    }];
+    [self addReasonLabelConstraints];
+    [self addNameLabelConstraints];
+    [self addDateLabelConstraints];
+}
+
+- (void)addReasonLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.reasonLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.reasonLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.reasonLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
+    self.reasonLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.reasonLabel.superview addConstraints:@[top, left, right]];
+}
+
+- (void)addNameLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.nameLabel.superview addConstraints:@[left, right, top]];
+}
+
+- (void)addDateLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.reasonLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.nameLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.dateLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.dateLabel.superview addConstraints:@[left, right, top, bottom]];
 }
 
 #pragma mark - Getters and setters

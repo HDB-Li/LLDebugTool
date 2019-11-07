@@ -22,10 +22,13 @@
 //  SOFTWARE.
 
 #import "LLScreenshotBaseOperation.h"
+
+#import "LLScreenshotSelectorModel.h"
 #import "LLImageNameConfig.h"
+#import "LLFactory.h"
 #import "LLMacros.h"
 #import "LLTool.h"
-#import "LLFactory.h"
+
 #import "UIColor+LL_Utils.h"
 
 @interface LLScreenshotBaseOperation ()

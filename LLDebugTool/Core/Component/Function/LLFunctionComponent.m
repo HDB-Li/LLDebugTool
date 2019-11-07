@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLFunctionComponent.h"
+
 #import "LLWindowManager.h"
 
 @implementation LLFunctionComponent

@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
     FormatterToolDateStyle3
 };
 
+/// Date / Number formatter tool.
 @interface LLFormatterTool : NSObject
 
 /**

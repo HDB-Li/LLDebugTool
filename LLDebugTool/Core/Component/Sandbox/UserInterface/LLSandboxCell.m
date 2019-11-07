@@ -22,14 +22,16 @@
 //  SOFTWARE.
 
 #import "LLSandboxCell.h"
-#import "LLFormatterTool.h"
-#import "LLConfig.h"
+
 #import "LLImageNameConfig.h"
+#import "LLFormatterTool.h"
+#import "LLSandboxModel.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLMacros.h"
+#import "LLConfig.h"
 #import "LLConst.h"
-#import "Masonry.h"
+
 
 @interface LLSandboxCell ()
 
@@ -82,28 +84,43 @@
     [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.sizeLabel];
     
-    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(40);
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.centerY.equalTo(self.contentView);
-    }];
-    
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.icon.mas_right).offset(kLLGeneralMargin);
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.right.mas_equalTo(-kLLGeneralMargin / 2.0);
-    }];
-    
-    [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.nameLabel);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-    }];
-    
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.nameLabel);
-        make.top.equalTo(self.sizeLabel.mas_bottom);
-        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
-    }];
+    [self addIconConstraints];
+    [self addNameLabelConstraints];
+    [self addSizeLabelConstraints];
+    [self addDateLabelConstraints];
+}
+
+- (void)addIconConstraints {
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:40];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.icon.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.icon.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    self.icon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.icon.superview addConstraints:@[width, left, centerY]];
+}
+
+- (void)addNameLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.icon attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.nameLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.nameLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.nameLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin / 2.0];
+    self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.nameLabel.superview addConstraints:@[left, top, right]];
+}
+
+- (void)addDateLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.nameLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.sizeLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.dateLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.dateLabel.superview addConstraints:@[left, top, bottom]];
+}
+
+- (void)addSizeLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.sizeLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.nameLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.sizeLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.nameLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.sizeLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.nameLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    self.sizeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.sizeLabel.superview addConstraints:@[left, right, top]];
 }
 
 - (void)longPressGestureAction:(UILongPressGestureRecognizer *)sender {

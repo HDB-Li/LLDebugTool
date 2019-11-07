@@ -22,22 +22,23 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "LLHierarchyModel.h"
+
+@class UIWindow;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Hierarchy function helper.
 @interface LLHierarchyHelper : NSObject
 
+/// Shared instance.
 + (instancetype _Nonnull)shared;
 
+/// All window in application.
 - (NSArray <UIWindow *>*)allWindows;
 
+/// All window in application without class.
+/// @param cls Ignore class.
 - (NSArray <UIWindow *>*)allWindowsIgnoreClass:(Class _Nullable)cls;
-
-- (LLHierarchyModel *)hierarchyInApplication;
-
-- (LLHierarchyModel *)hierarchyInView:(UIView *)view;
 
 @end
 

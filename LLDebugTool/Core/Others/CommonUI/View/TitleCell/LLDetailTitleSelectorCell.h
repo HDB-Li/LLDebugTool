@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Detail title selector cell.
 @interface LLDetailTitleSelectorCell : LLDetailTitleCell
 
 @end

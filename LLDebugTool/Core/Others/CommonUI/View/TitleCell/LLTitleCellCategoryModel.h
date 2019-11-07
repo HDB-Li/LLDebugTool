@@ -22,16 +22,23 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "LLTitleCellModel.h"
+
+@class LLTitleCellModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Title cell category model.
 @interface LLTitleCellCategoryModel : NSObject
 
+/// Category title.
 @property (nonatomic, strong, readonly, nullable) NSString *title;
 
+/// Items.
 @property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*items;
 
+/// Instance method.
+/// @param title Title
+/// @param items Items.
 - (instancetype)initWithTitle:(NSString *_Nullable)title items:(NSArray <LLTitleCellModel *>*)items;
 
 @end

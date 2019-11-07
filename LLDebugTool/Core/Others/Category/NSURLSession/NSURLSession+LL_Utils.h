@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSURLSession utils.
 @interface NSURLSession (LL_Utils)
 
 @end

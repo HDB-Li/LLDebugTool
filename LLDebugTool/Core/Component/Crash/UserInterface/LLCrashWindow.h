@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Crash window function.
 @interface LLCrashWindow : LLComponentWindow
 
 @end

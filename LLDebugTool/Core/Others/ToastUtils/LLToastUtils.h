@@ -25,14 +25,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Toast utils.
 @interface LLToastUtils : NSObject
 
+/// Shared instance.
 + (instancetype)shared;
 
+/// Toast message.
+/// @param message message.
 - (void)toastMessage:(NSString *)message;
 
+/// Loading message
+/// @param message message.
 - (void)loadingMessage:(NSString *)message;
 
+/// Hide message.
 - (void)hide;
 
 @end

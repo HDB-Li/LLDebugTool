@@ -1,3 +1,12 @@
+## [1.3.5](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.5) (11/07/2019)
+
+###  Optimize functional experience
+
+* Remove `Masonry`.
+* Fix some bugs.
+* More code comments.
+* Fix error in XCode 10.
+
 ## [1.3.4](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.4) (10/31/2019)
 
 ###  More practical `Hierarchy` function

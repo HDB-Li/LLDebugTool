@@ -21,20 +21,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Filter text field model.
 @interface LLFilterTextFieldModel : NSObject
 
 // Normal
 @property (copy, nonatomic, nullable) NSString *title;
 
+/// Current filter.
 @property (copy, nonatomic, nullable) NSString *currentFilter;
 
+/// Title width.
 @property (assign, nonatomic) CGFloat titleWidth;
 
+/// Whether adjust width to title.
 @property (assign, nonatomic) BOOL autoAdjustWidthToTitle;
 
 // File Part

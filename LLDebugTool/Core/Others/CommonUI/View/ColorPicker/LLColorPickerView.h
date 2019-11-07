@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Color picker view.
 @interface LLColorPickerView : LLAnimateView
 
 @end

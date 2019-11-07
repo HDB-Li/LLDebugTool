@@ -23,6 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Html UIWebView controller.
 @interface LLHtmlUIWebViewController : LLHtmlViewController
 
 @end

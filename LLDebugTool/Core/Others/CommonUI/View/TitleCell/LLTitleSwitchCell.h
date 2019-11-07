@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Switch cell.
 @interface LLTitleSwitchCell : LLDetailTitleCell
 
 @end

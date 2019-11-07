@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIDevice utils.
 @interface UIDevice (LL_Utils)
 /**
  * Change platform name to model name, such as change "iPhone10,6" to "iPhone X".

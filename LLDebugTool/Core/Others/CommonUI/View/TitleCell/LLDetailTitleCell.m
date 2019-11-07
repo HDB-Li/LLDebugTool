@@ -22,16 +22,16 @@
 //  SOFTWARE.
 
 #import "LLDetailTitleCell.h"
+
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "Masonry.h"
 #import "LLConst.h"
 
 @interface LLDetailTitleCell ()
 
 @property (nonatomic, strong) UILabel *detailLabel;
 
-@property (nonatomic, strong) MASConstraint *detailLabelRightCons;
+@property (nonatomic, strong) NSLayoutConstraint *detailLabelRightCons;
 
 @end
 
@@ -43,14 +43,19 @@
     
     [self.contentView addSubview:self.detailLabel];
     
-    [self.titleLabelBottomCons uninstall];
+    [self.contentView removeConstraint:self.titleLabelBottomCons];
+    [self addDetailLabelConstraints];
+}
+
+- (void)addDetailLabelConstraints {
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.detailLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.detailLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.detailLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin / 2.0];
+    self.detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addConstraints:@[right, top, bottom, left]];
     
-    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        self.detailLabelRightCons = make.right.mas_equalTo(-kLLGeneralMargin);
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.bottom.mas_equalTo(-kLLGeneralMargin);
-        make.left.equalTo(self.titleLabel.mas_right).offset(kLLGeneralMargin / 2.0);
-    }];
+    self.detailLabelRightCons = right;
 }
 
 - (void)primaryColorChanged {

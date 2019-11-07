@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Base view controller.
 @interface LLBaseViewController : UIViewController
 
 /// Left navigation item's custom view.

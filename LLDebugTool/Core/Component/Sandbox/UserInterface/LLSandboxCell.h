@@ -22,15 +22,21 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewCell.h"
-#import "LLSandboxModel.h"
+
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
+
+@class LLSandboxModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Sandbox function cell.
 @interface LLSandboxCell : LLBaseTableViewCell
 
+/// Long press gesture recognizer delegate.
 @property (nonatomic, weak, nullable) id <LLUITableViewLongPressGestureRecognizerDelegate> delegate;
 
+/// Config cell with model.
+/// @param model LLSandboxModel.
 - (void)confirmWithModel:(LLSandboxModel *)model;
 
 @end

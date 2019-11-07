@@ -23,16 +23,19 @@
 
 #import "LLBaseTableViewCell.h"
 #import "LLTitleCellModel.h"
-#import "Masonry.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Title cell.
 @interface LLTitleCell : LLBaseTableViewCell
 
+/// Title label.
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
-@property (nonatomic, strong, readonly) MASConstraint *titleLabelBottomCons;
+/// Title label bottom constraint.
+@property (nonatomic, strong, readonly) NSLayoutConstraint *titleLabelBottomCons;
 
+/// Config model.
 @property (nonatomic, strong) LLTitleCellModel *model;
 
 @end

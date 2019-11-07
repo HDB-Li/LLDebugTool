@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLRulerComponent.h"
+
 #import "LLWindowManager.h"
 
 @implementation LLRulerComponent

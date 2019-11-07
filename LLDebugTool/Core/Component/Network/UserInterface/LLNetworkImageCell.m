@@ -22,9 +22,9 @@
 //  SOFTWARE.
 
 #import "LLNetworkImageCell.h"
-#import "LLMacros.h"
+
 #import "LLFactory.h"
-#import "Masonry.h"
+#import "LLMacros.h"
 #import "LLConst.h"
 
 @interface LLNetworkImageCell ()
@@ -32,6 +32,8 @@
 @property (nonatomic, strong) UIImageView *imgView;
 
 @property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) NSLayoutConstraint *imgViewHeightCons;
 
 @end
 
@@ -42,9 +44,7 @@
     if (image) {
         CGSize size = image.size;
         CGFloat height = LL_SCREEN_WIDTH * size.height / size.width;
-        [self.imgView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(height);
-        }];
+        self.imgViewHeightCons.constant = height;
         [self setNeedsLayout];
         [self layoutIfNeeded];
     }
@@ -56,19 +56,30 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.imgView];
+
+    [self addTitleLabelConstraints];
+    [self addImgViewConstraints];
+}
+
+- (void)addTitleLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:25];
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.titleLabel.superview addConstraints:@[left, top, height]];
+}
+
+- (void)addImgViewConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:45];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.imgView.superview addConstraints:@[top, height, left, right, bottom]];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.height.mas_equalTo(25);
-    }];
-    
-    [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-        make.height.mas_equalTo(45);
-        make.left.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0).priorityHigh();
-    }];
+    self.imgViewHeightCons = height;
 }
 
 #pragma mark - Getters and setters

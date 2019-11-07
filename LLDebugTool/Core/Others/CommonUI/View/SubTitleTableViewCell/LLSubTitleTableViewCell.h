@@ -34,12 +34,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// Sub title cell.
 @interface LLSubTitleTableViewCell : LLBaseTableViewCell
 
+/// Title label.
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
+/// Title content.
 @property (copy, nonatomic, nullable) NSString *contentText;
 
+/// Action delegate.
 @property (weak, nonatomic, nullable) id <LLSubTitleTableViewCellDelegate> delegate;
 
 @end

@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Screen shot component.
 @interface LLScreenshotComponent : LLComponent
 
 @end

@@ -27,14 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class LLRulerPickerView;
 
+/// Ruler picker view delegate.
 @protocol LLRulerPickerViewDelegate <NSObject>
 
 - (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow state:(UIGestureRecognizerState)state;
 
 @end
 
+/// Ruler picker view.
 @interface LLRulerPickerView : LLPickerView
 
+/// Action delegate.
 @property (nonatomic, weak, nullable) id<LLRulerPickerViewDelegate> delegate;
 
 @end

@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// NSHttpURLResponse utils.
 @interface NSHTTPURLResponse (LL_Utils)
 
 /**

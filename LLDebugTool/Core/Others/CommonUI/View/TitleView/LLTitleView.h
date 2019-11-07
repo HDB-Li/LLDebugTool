@@ -25,8 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Title view.
 @interface LLTitleView : LLBaseView
 
+/// Title label.
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 
 @end

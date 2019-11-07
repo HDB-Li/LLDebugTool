@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLNetworkCell.h"
-#import "LLConfig.h"
+
+#import "LLNetworkModel.h"
 #import "LLFactory.h"
-#import "Masonry.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 @interface LLNetworkCell ()
@@ -60,24 +61,35 @@
     [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.paramLabel];
     
-    [self.hostLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.right.equalTo(self.dateLabel.mas_left).offset(-kLLGeneralMargin / 2.0);
-    }];
-    
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.hostLabel.mas_centerY);
-        make.right.mas_equalTo(-kLLGeneralMargin);
-        make.width.mas_equalTo(65);
-    }];
-    
-    [self.paramLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.hostLabel.mas_left);
-        make.right.equalTo(self.dateLabel.mas_right);
-        make.top.equalTo(self.hostLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
-    }];
+    [self addHostLabelConstraints];
+    [self addDateLabelConstraints];
+    [self addParamLabelConstraints];
+}
+
+- (void)addHostLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.hostLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.hostLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.hostLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.hostLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.hostLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.dateLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:-kLLGeneralMargin / 2.0];
+    self.hostLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.hostLabel.superview addConstraints:@[top, left, right]];
+}
+
+- (void)addDateLabelConstraints {
+    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.hostLabel attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.dateLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:65];
+    self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.dateLabel.superview addConstraints:@[centerY, right, width]];
+}
+
+- (void)addParamLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.paramLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.hostLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.paramLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.dateLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.paramLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.hostLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.paramLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.paramLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    self.paramLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.paramLabel.superview addConstraints:@[left, right, top, bottom]];
 }
 
 #pragma mark - Getters and setters

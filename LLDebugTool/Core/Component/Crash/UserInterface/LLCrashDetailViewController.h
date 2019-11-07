@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewController.h"
-#import "LLCrashModel.h"
+
+@class LLCrashModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Crash detail view controller.
 @interface LLCrashDetailViewController : LLBaseTableViewController
 
 /**

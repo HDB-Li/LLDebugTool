@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Hierarchy function component.
 @interface LLHierarchyComponent : LLComponent
 
 @end

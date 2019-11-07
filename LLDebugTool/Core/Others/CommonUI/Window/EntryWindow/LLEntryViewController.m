@@ -22,16 +22,19 @@
 //  SOFTWARE.
 
 #import "LLEntryViewController.h"
-#import "LLEntryBallView.h"
-#import "LLConfig.h"
-#import "UIView+LL_Utils.h"
-#import "LLMacros.h"
+
+#import "LLEntryBigTitleView.h"
+#import "LLFunctionItemModel.h"
 #import "LLSettingManager.h"
 #import "LLEntryTitleView.h"
-#import "LLEntryBigTitleView.h"
-#import "LLTool.h"
+#import "LLEntryBallView.h"
+#import "LLComponent.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
 #import "LLConst.h"
-#import "LLFunctionItemModel.h"
+#import "LLTool.h"
+
+#import "UIView+LL_Utils.h"
 
 @interface LLEntryViewController ()
 

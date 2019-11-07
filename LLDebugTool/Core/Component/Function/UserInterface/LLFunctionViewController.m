@@ -22,21 +22,24 @@
 //  SOFTWARE.
 
 #import "LLFunctionViewController.h"
-#import "LLFunctionItemModel.h"
-#import "LLConfig.h"
-#import "LLMacros.h"
-#import "LLFactory.h"
+
+#import "LLFunctionItemContainerView.h"
 #import "LLNetworkViewController.h"
-#import "LLLogViewController.h"
-#import "LLCrashViewController.h"
 #import "LLAppInfoViewController.h"
 #import "LLSandboxViewController.h"
-#import "LLFunctionItemContainerView.h"
-#import "UIView+LL_Utils.h"
-#import "LLThemeManager.h"
-#import "LLConst.h"
-#import "LLWindowManager.h"
 #import "LLSettingViewController.h"
+#import "LLCrashViewController.h"
+#import "LLLogViewController.h"
+#import "LLFunctionItemModel.h"
+#import "LLWindowManager.h"
+#import "LLThemeManager.h"
+#import "LLComponent.h"
+#import "LLFactory.h"
+#import "LLConfig.h"
+#import "LLMacros.h"
+#import "LLConst.h"
+
+#import "UIView+LL_Utils.h"
 
 @interface LLFunctionViewController ()<LLFunctionContainerViewControllerDelegate>
 

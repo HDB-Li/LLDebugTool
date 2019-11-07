@@ -1,5 +1,5 @@
 //
-//  LLCrashSignalDetailViewController.h
+//  LLHierarchyPickerView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseTableViewController.h"
-#import "LLCrashSignalModel.h"
+#import "LLPickerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLCrashSignalDetailViewController : LLBaseTableViewController
+@class LLHierarchyPickerView;
 
-@property (nonatomic, strong) LLCrashSignalModel *model;
+/// Hierarchy picker view delegate.
+@protocol LLHierarchyPickerViewDelegate <NSObject>
+
+- (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(NSArray <UIView *>*)selectedViews;
+
+@end
+
+/// Hierarchy picker view.
+@interface LLHierarchyPickerView : LLPickerView
+
+/// Action delegate.
+@property (nonatomic, weak, nullable) id<LLHierarchyPickerViewDelegate> delegate;
 
 @end
 

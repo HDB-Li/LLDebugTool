@@ -29,8 +29,11 @@ FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerKey;
 
 FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerPropertiesKey;
 
+/// Component delegate.
 @protocol LLComponentDelegate <NSObject>
 
+/// Component did load.
+/// @param data Extra data.
 - (void)componentDidLoad:(NSDictionary <NSString *, id>*_Nullable)data;
 
 @end

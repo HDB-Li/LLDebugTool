@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLBaseComponentViewController.h"
+
 #import "LLComponentWindow.h"
 
 @interface LLBaseComponentViewController ()

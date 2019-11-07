@@ -25,16 +25,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIViewController utils.
 @interface UIViewController (LL_Utils)
 
+/// Current visiable view controller.
 - (UIViewController *_Nullable)LL_currentShowingViewController;
 
+/// Get navigation button
+/// @param title Title
+/// @param imageName Image name
+/// @param target Target
+/// @param action Action
 - (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action;
 
+/// Show alert controller with message
+/// @param message Message
+/// @param handler Action handler.
 - (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(nullable void (^)(NSInteger action))handler;
 
+/// Show action sheet.
+/// @param title Title
+/// @param actions Actions
+/// @param currentAction Current action.
+/// @param completion Completion block.
 - (void)LL_showActionSheetWithTitle:(NSString *)title actions:(NSArray *)actions currentAction:(nullable NSString *)currentAction completion:(nullable void (^)(NSInteger index))completion;
 
+/// Show text field alert.
+/// @param message Message
+/// @param text Text field's text
+/// @param handler Action handler.
 - (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString * _Nullable))handler;
 
 @end

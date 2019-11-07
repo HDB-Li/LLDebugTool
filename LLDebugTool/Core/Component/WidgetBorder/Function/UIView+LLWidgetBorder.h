@@ -25,10 +25,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// UIView widget border category.
 @interface UIView (LLWidgetBorder)
 
+/// Widget border layer.
 @property (nonatomic, strong) CALayer *LL_borderLayer;
 
+/// Update widget border enable.
+/// @param enable is enable.
 - (void)LL_updateBorderLayer:(BOOL)enable;
 
 @end

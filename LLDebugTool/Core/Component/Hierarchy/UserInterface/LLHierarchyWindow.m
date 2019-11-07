@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLHierarchyWindow.h"
+
 #import "LLHierarchyViewController.h"
 #import "LLWindowManager.h"
 

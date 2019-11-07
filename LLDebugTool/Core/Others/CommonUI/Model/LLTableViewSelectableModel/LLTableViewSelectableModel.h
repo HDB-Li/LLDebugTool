@@ -22,10 +22,12 @@
 //  SOFTWARE.
 
 #import "LLStorageModel.h"
+
 #import "LLTableViewSelectableDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Table view selectable model.
 @interface LLTableViewSelectableModel : LLStorageModel <LLTableViewSelectableDelegate>
 
 @end

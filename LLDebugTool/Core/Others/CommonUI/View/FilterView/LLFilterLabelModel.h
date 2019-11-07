@@ -25,12 +25,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Filter label model.
 @interface LLFilterLabelModel : NSObject
 
+/// Title message.
 @property (nonatomic, copy, readonly, nullable) NSString *message;
 
+/// Is selected.
 @property (nonatomic, assign) BOOL isSelected;
 
+/// Instance method.
+/// @param message Title message.
 - (instancetype _Nonnull)initWithMessage:(NSString *_Nullable)message;
 
 @end

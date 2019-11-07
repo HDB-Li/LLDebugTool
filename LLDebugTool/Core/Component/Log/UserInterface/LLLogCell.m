@@ -22,9 +22,10 @@
 //  SOFTWARE.
 
 #import "LLLogCell.h"
-#import "LLConfig.h"
+
+#import "LLLogModel.h"
 #import "LLFactory.h"
-#import "Masonry.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 @interface LLLogCell ()
@@ -61,44 +62,71 @@
     [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.messageLabel];
     
-    [self.fileDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.fileLabel.mas_top);
-        make.left.mas_equalTo(kLLGeneralMargin);
-        make.width.mas_equalTo(45);
-    }];
-    
-    [self.fileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kLLGeneralMargin);
-        make.left.equalTo(self.fileDesLabel.mas_right).offset(kLLGeneralMargin / 2.0);
-        make.right.mas_equalTo(-kLLGeneralMargin);
-    }];
-    
-    [self.funcDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.funcLabel.mas_top);
-        make.left.width.equalTo(self.fileDesLabel);
-    }];
-    
-    [self.funcLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.fileLabel);
-        make.top.equalTo(self.fileLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-    }];
-    
-    [self.dateDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.dateLabel.mas_top);
-        make.left.width.equalTo(self.fileDesLabel);
-    }];
-    
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.fileLabel);
-        make.top.equalTo(self.funcLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-    }];
-    
-    [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.fileDesLabel);
-        make.right.equalTo(self.fileLabel);
-        make.top.equalTo(self.dateLabel.mas_bottom).offset(kLLGeneralMargin / 2.0);
-        make.bottom.mas_equalTo(-kLLGeneralMargin).priorityHigh();
-    }];
+    [self addFileDesLabelConstraints];
+    [self addFileLabelConstraints];
+    [self addFuncDesLabelConstraints];
+    [self addFuncLabelConstraints];
+    [self addDateDesLabelConstraints];
+    [self addDateLabelConstraints];
+    [self addMessageLabelConstraints];
+}
+
+- (void)addFileDesLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.fileDesLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.fileDesLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.fileDesLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:45];
+    self.fileDesLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.fileDesLabel.superview addConstraints:@[top, left, width]];
+}
+
+- (void)addFileLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.fileLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.fileLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.fileLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.fileLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.fileLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
+    self.fileLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.fileLabel.superview addConstraints:@[top, left, right]];
+}
+
+- (void)addFuncDesLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.funcDesLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.funcLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.funcDesLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.funcDesLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    self.funcDesLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.funcDesLabel.superview addConstraints:@[top, left, width]];
+}
+
+- (void)addFuncLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.funcLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.funcLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.funcLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    self.funcLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.funcLabel.superview addConstraints:@[left, right, top]];
+}
+
+- (void)addDateDesLabelConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.dateDesLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.dateLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.dateDesLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.dateDesLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    self.dateDesLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.dateDesLabel.superview addConstraints:@[top, left, width]];
+}
+
+- (void)addDateLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.dateLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.funcLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    self.dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.dateLabel.superview addConstraints:@[left, right, top]];
+}
+
+- (void)addMessageLabelConstraints {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.messageLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.fileDesLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.messageLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.fileLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.messageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.dateLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.messageLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.messageLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
+    bottom.priority = UILayoutPriorityDefaultHigh;
+    self.messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.messageLabel.superview addConstraints:@[left, right, top, bottom]];
 }
 
 #pragma mark - Getters and setters

@@ -25,6 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Ruler function component.
 @interface LLRulerComponent : LLComponent
 
 @end
