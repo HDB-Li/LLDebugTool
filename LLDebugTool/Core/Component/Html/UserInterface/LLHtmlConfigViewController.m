@@ -65,17 +65,20 @@
     }
     Class cls = NSClassFromString(self.webViewClass);
     
-    UIViewController *customViewController = [LLConfig shared].htmlViewControllerProvider(urlString);
-    if (customViewController && cls == [customViewController class]) {
-        [LLSettingManager shared].lastWebViewUrl = urlString;
-        [self.navigationController pushViewController:customViewController animated:YES];
-        return;
-    }
-    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls != [UIWebView class] && cls != [WKWebView class]) {
 #pragma clang diagnostic pop
+        if ([LLConfig shared].htmlViewControllerProvider != nil) {
+            UIViewController *customViewController = [LLConfig shared].htmlViewControllerProvider(urlString);
+            if (customViewController && cls == [customViewController class]) {
+                [LLSettingManager shared].lastWebViewUrl = urlString;
+                [self.navigationController pushViewController:customViewController animated:YES];
+                return;
+            }
+            [[LLToastUtils shared] toastMessage:@"Provider custom webView failed."];
+            return;
+        }
         [[LLToastUtils shared] toastMessage:@"Invalid webView class"];
         return;
     }
@@ -141,9 +144,11 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [actions addObject:NSStringFromClass([UIWebView class])];
 #pragma clang diagnostic pop
-    UIViewController *vc = [LLConfig shared].htmlViewControllerProvider(nil);
-    if (vc) {
-        [actions addObject:NSStringFromClass([vc class])];
+    if ([LLConfig shared].htmlViewControllerProvider != nil) {
+        UIViewController *vc = [LLConfig shared].htmlViewControllerProvider(nil);
+        if (vc) {
+            [actions addObject:NSStringFromClass([vc class])];
+        }
     }
     __weak typeof(self) weakSelf = self;
     [self LL_showActionSheetWithTitle:@"Web View Style" actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {

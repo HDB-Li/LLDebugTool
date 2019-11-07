@@ -31,7 +31,10 @@
 @implementation NSURLSession (LL_Utils)
 
 + (void)load {
-    [self LL_swizzleClassMethodWithOriginSel:@selector(sessionWithConfiguration:delegate:delegateQueue:) swizzledSel:@selector(LL_sessionWithConfiguration:delegate:delegateQueue:)];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[NSURLSession class] LL_swizzleClassMethodWithOriginSel:@selector(sessionWithConfiguration:delegate:delegateQueue:) swizzledSel:@selector(LL_sessionWithConfiguration:delegate:delegateQueue:)];
+    });
 }
 
 + (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue {

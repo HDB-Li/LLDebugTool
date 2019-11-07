@@ -31,7 +31,10 @@ static const char kLLVerticalPaddingKey;
 @implementation UIView (LL_Utils)
 
 + (void)load {
-    [self LL_swizzleInstanceMethodWithOriginSel:@selector(sizeToFit) swizzledSel:@selector(LL_sizeToFit)];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[UIView class] LL_swizzleInstanceMethodWithOriginSel:@selector(sizeToFit) swizzledSel:@selector(LL_sizeToFit)];
+    });
 }
 
 - (void)setLL_horizontalPadding:(CGFloat)LL_horizontalPadding {
