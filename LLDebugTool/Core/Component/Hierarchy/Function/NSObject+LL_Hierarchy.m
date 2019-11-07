@@ -1233,9 +1233,11 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
             if (index <= UIActivityIndicatorViewStyleGray) {
                 weakSelf.activityIndicatorViewStyle = index;
             } else {
+#ifdef __IPHONE_13_0
                 if (@available(iOS 13.0, *)) {
                     weakSelf.activityIndicatorViewStyle = index + (UIActivityIndicatorViewStyleMedium - UIActivityIndicatorViewStyleGray - 1);
                 }
+#endif
             }
 #pragma clang diagnostic pop
         }];
