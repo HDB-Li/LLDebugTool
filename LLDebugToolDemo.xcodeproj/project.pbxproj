@@ -86,7 +86,6 @@
 		36CDFBCE2350639E002A913F /* LLHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CDFBCD2350639E002A913F /* LLHtmlViewController.m */; };
 		36CDFBD123506C9A002A913F /* LLHtmlConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CDFBD023506C9A002A913F /* LLHtmlConfigViewController.m */; };
 		36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DC10FC22FA60B90078B7BC /* LLToastUtils.m */; };
-		36DDE5EF237427C7003170F2 /* NSURLProtocol+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DDE5EE237427C7003170F2 /* NSURLProtocol+LL_Utils.m */; };
 		36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
@@ -386,8 +385,6 @@
 		36CDFBD023506C9A002A913F /* LLHtmlConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlConfigViewController.m; sourceTree = "<group>"; };
 		36DC10FB22FA60B90078B7BC /* LLToastUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLToastUtils.h; sourceTree = "<group>"; };
 		36DC10FC22FA60B90078B7BC /* LLToastUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLToastUtils.m; sourceTree = "<group>"; };
-		36DDE5ED237427C7003170F2 /* NSURLProtocol+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+LL_Utils.h"; sourceTree = "<group>"; };
-		36DDE5EE237427C7003170F2 /* NSURLProtocol+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+LL_Utils.m"; sourceTree = "<group>"; };
 		36DDED7423331967008DD7F9 /* LLDetailTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleCell.h; sourceTree = "<group>"; };
 		36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCell.m; sourceTree = "<group>"; };
 		36E248852123BAE300D03F44 /* LLDebugToolDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1469,8 +1466,6 @@
 				C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */,
 				3631589C2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.h */,
 				3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */,
-				36DDE5ED237427C7003170F2 /* NSURLProtocol+LL_Utils.h */,
-				36DDE5EE237427C7003170F2 /* NSURLProtocol+LL_Utils.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -2256,7 +2251,6 @@
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,
-				36DDE5EF237427C7003170F2 /* NSURLProtocol+LL_Utils.m in Sources */,
 				364EF6452321FA740067C7D7 /* LLHSB.m in Sources */,
 				36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */,
 				36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */,
