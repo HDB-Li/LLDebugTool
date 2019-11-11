@@ -42,6 +42,7 @@
 }
 
 + (void)LL_swizzleMethod:(Method)method1 anotherMethod:(Method)method2 {
+    NSAssert(method1 && method2, @"Can't swizzle method, because method is nil");
     method_exchangeImplementations(method1, method2);
 }
 
