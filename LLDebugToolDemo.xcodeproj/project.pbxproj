@@ -41,11 +41,7 @@
 		364570FA2313B80800C29200 /* README-cn.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F62313B80800C29200 /* README-cn.md */; };
 		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
 		364CF3DB23265A1C000B513F /* LLRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 364CF3DA23265A1C000B513F /* LLRulerComponent.m */; };
-		364EF6422321F9940067C7D7 /* LLRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF6412321F9940067C7D7 /* LLRGB.m */; };
-		364EF6452321FA740067C7D7 /* LLHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF6442321FA740067C7D7 /* LLHSB.m */; };
-		364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF647232204630067C7D7 /* LLHSBPreviewView.m */; };
 		364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64A2322087C0067C7D7 /* LLAnimateView.m */; };
-		364EF64E23220C8D0067C7D7 /* LLColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */; };
 		3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */; };
 		365912502320B3E300FDA6A0 /* LLTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3659124F2320B3E300FDA6A0 /* LLTitleCell.m */; };
 		365912542320BD0C00FDA6A0 /* LLTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365912532320BD0C00FDA6A0 /* LLTitleView.m */; };
@@ -291,16 +287,8 @@
 		364570FB2313B82200C29200 /* LLDebugTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.podspec; sourceTree = "<group>"; };
 		364CF3D923265A1C000B513F /* LLRulerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerComponent.h; sourceTree = "<group>"; };
 		364CF3DA23265A1C000B513F /* LLRulerComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerComponent.m; sourceTree = "<group>"; };
-		364EF6402321F9940067C7D7 /* LLRGB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRGB.h; sourceTree = "<group>"; };
-		364EF6412321F9940067C7D7 /* LLRGB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRGB.m; sourceTree = "<group>"; };
-		364EF6432321FA740067C7D7 /* LLHSB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHSB.h; sourceTree = "<group>"; };
-		364EF6442321FA740067C7D7 /* LLHSB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHSB.m; sourceTree = "<group>"; };
-		364EF646232204630067C7D7 /* LLHSBPreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHSBPreviewView.h; sourceTree = "<group>"; };
-		364EF647232204630067C7D7 /* LLHSBPreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHSBPreviewView.m; sourceTree = "<group>"; };
 		364EF6492322087C0067C7D7 /* LLAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnimateView.h; sourceTree = "<group>"; };
 		364EF64A2322087C0067C7D7 /* LLAnimateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAnimateView.m; sourceTree = "<group>"; };
-		364EF64C23220C8D0067C7D7 /* LLColorPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLColorPickerView.h; sourceTree = "<group>"; };
-		364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLColorPickerView.m; sourceTree = "<group>"; };
 		3655D50F2329E02600490B36 /* UIResponder+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+LL_Utils.h"; sourceTree = "<group>"; };
 		3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+LL_Utils.m"; sourceTree = "<group>"; };
 		3659124E2320B3E300FDA6A0 /* LLTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCell.h; sourceTree = "<group>"; };
@@ -780,7 +768,6 @@
 				36BB9BC823404ED400629053 /* MoveView */,
 				360AE62F2330D9B90073FECD /* TitleCell */,
 				362AA6AE23274FBB00F33EC4 /* PickerView */,
-				364EF63C2321F4C00067C7D7 /* ColorPicker */,
 				365912512320BCF500FDA6A0 /* TitleView */,
 				C4B4E3D922F9C90900F70277 /* SubTitleTableViewCell */,
 				C4B4E3DE22F9C90900F70277 /* SearchBar */,
@@ -814,21 +801,6 @@
 				362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */,
 			);
 			path = UserInterface;
-			sourceTree = "<group>";
-		};
-		364EF63C2321F4C00067C7D7 /* ColorPicker */ = {
-			isa = PBXGroup;
-			children = (
-				364EF6402321F9940067C7D7 /* LLRGB.h */,
-				364EF6412321F9940067C7D7 /* LLRGB.m */,
-				364EF6432321FA740067C7D7 /* LLHSB.h */,
-				364EF6442321FA740067C7D7 /* LLHSB.m */,
-				364EF646232204630067C7D7 /* LLHSBPreviewView.h */,
-				364EF647232204630067C7D7 /* LLHSBPreviewView.m */,
-				364EF64C23220C8D0067C7D7 /* LLColorPickerView.h */,
-				364EF64D23220C8D0067C7D7 /* LLColorPickerView.m */,
-			);
-			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		3655D50E2329E01300490B36 /* UIResponder */ = {
@@ -2151,7 +2123,6 @@
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
 				C49856B122ED8DEC00E9FBE2 /* LLConfig.m in Sources */,
-				364EF6422321F9940067C7D7 /* LLRGB.m in Sources */,
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C49856F822EDB22100E9FBE2 /* LLSandboxWindow.m in Sources */,
 				C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m in Sources */,
@@ -2200,7 +2171,6 @@
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
 				363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */,
-				364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */,
 				36CDFBCE2350639E002A913F /* LLHtmlViewController.m in Sources */,
 				360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */,
 				C4B4E43F22F9C90900F70277 /* UIButton+LL_Utils.m in Sources */,
@@ -2237,7 +2207,6 @@
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,
-				364EF6452321FA740067C7D7 /* LLHSB.m in Sources */,
 				36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */,
 				36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */,
 				362AA6B123274FCF00F33EC4 /* LLPickerView.m in Sources */,
@@ -2247,7 +2216,6 @@
 				36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */,
 				C4B4E43C22F9C90900F70277 /* NSDictionary+LL_Utils.m in Sources */,
 				C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */,
-				364EF64E23220C8D0067C7D7 /* LLColorPickerView.m in Sources */,
 				C49856FB22EDB2BC00E9FBE2 /* LLCrashComponent.m in Sources */,
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
