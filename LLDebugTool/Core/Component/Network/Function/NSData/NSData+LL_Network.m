@@ -1,7 +1,7 @@
 //
-//  NSURLSession+LL_Utils.h
+//  NSData+LL_Network.m
 //
-//  Copyright (c) 2018 LLBaseFoundation Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "NSData+LL_Network.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation NSData (LL_Network)
 
-/// NSURLSession utils.
-@interface NSURLSession (LL_Utils)
+- (NSString *)LL_toJsonString {
+    
+    NSString *string = nil;
+    
+    id json = [NSJSONSerialization JSONObjectWithData:self options:0 error:NULL];
+    if ([NSJSONSerialization isValidJSONObject:json]) {
+        string = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
+        // NSJSONSerialization escapes forward slashes. We want pretty json, so run through and unescape the slashes.
+        string = [string stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    } else {
+        string = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
+    }
+    
+    return string;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -1,5 +1,5 @@
 //
-//  UIDevice+LL_Utils.h
+//  NSURLSessionConfiguration+LL_Network.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,16 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// UIDevice utils.
-@interface UIDevice (LL_Utils)
-/**
- * Change platform name to model name, such as change "iPhone10,6" to "iPhone X".
- */
-@property (nonatomic, copy, readonly) NSString *LL_modelName;
+/// NSURLSessionConfiguration utils.
+@interface NSURLSessionConfiguration (LL_Network)
 
 @end
 

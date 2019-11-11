@@ -1,5 +1,5 @@
 //
-//  NSURLSessionConfiguration+LL_Utils.h
+//  NSInputStream+LL_Network.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,8 +25,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// NSURLSessionConfiguration utils.
-@interface NSURLSessionConfiguration (LL_Utils)
+/// NSInputStream utils.
+@interface NSInputStream (LL_Network)
+
+/// Convert to data.
+- (NSData *)LL_toData;
 
 @end
 

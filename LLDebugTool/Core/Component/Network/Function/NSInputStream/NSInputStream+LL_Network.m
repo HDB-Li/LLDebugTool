@@ -1,5 +1,5 @@
 //
-//  NSData+LL_Utils.m
+//  NSInputStream+LL_Network.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,24 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSData+LL_Utils.h"
+#import "NSInputStream+LL_Network.h"
 
-@implementation NSData (LL_Utils)
+@implementation NSInputStream (LL_Network)
 
-- (NSString *)LL_toJsonString {
-    
-    NSString *string = nil;
-    
-    id json = [NSJSONSerialization JSONObjectWithData:self options:0 error:NULL];
-    if ([NSJSONSerialization isValidJSONObject:json]) {
-        string = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
-        // NSJSONSerialization escapes forward slashes. We want pretty json, so run through and unescape the slashes.
-        string = [string stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    } else {
-        string = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
+- (NSData *)LL_toData {
+    NSMutableData *data = [[NSMutableData alloc] init];
+    if (self.streamStatus != NSStreamStatusOpen) {
+        [self open];
     }
-    
-    return string;
+    NSInteger readLength;
+    uint8_t buffer[1024];
+    while((readLength = [self read:buffer maxLength:1024]) > 0) {
+        [data appendBytes:buffer length:readLength];
+    }
+    return [data copy];
 }
 
 @end

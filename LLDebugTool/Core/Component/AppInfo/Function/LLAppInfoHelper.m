@@ -31,7 +31,7 @@
 #import "LLNetworkHelper.h"
 #import "LLMacros.h"
 
-#import "UIDevice+LL_Utils.h"
+#import "UIDevice+LL_AppInfo.h"
 #import "NSObject+LL_Utils.h"
 
 static LLAppInfoHelper *_instance = nil;

@@ -30,9 +30,9 @@
 #import "LLConfig.h"
 #import "LLTool.h"
 
-#import "NSHTTPURLResponse+LL_Utils.h"
-#import "NSInputStream+LL_Utils.h"
-#import "NSData+LL_Utils.h"
+#import "NSHTTPURLResponse+LL_Network.h"
+#import "NSInputStream+LL_Network.h"
+#import "NSData+LL_Network.h"
 
 static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 

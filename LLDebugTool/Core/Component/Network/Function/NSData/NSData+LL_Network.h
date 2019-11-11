@@ -1,5 +1,5 @@
 //
-//  NSInputStream+LL_Utils.h
+//  NSData+LL_Network.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,11 +25,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// NSInputStream utils.
-@interface NSInputStream (LL_Utils)
+/// NSData utils.
+@interface NSData (LL_Network)
 
-/// Convert to data.
-- (NSData *)LL_toData;
+/**
+ Convert to json string, if failed or empty, return empty string.
+
+ @return Json string.
+ */
+- (NSString *_Nullable)LL_toJsonString;
 
 @end
 

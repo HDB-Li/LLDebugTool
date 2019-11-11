@@ -1,5 +1,5 @@
 //
-//  WKWebView+LL_Utils.m
+//  UIDevice+LL_AppInfo.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,35 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "WKWebView+LL_Utils.h"
+#import <UIKit/UIKit.h>
 
-#import "LLNetworkHelper+WKWebView.h"
-#import "NSObject+LL_Runtime.h"
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation WKWebView (LL_Utils)
-
-//+ (void)load {
-//    [self LL_swizzleInstanceMethodWithOriginSel:@selector(setNavigationDelegate:) swizzledSel:@selector(LL_setNavigationDelegate:)];
-//    [self LL_swizzleInstanceMethodWithOriginSel:@selector(navigationDelegate) swizzledSel:@selector(LL_navigationDelegate)];
-//}
-//
-//- (void)LL_setNavigationDelegate:(id<WKNavigationDelegate>)navigationDelegate {
-//    [self setLL_realNavigationDelegate:navigationDelegate];
-//    [self LL_setNavigationDelegate:[LLNetworkHelper shared]];
-//}
-//
-//- (id<WKNavigationDelegate>)LL_navigationDelegate {
-//    return [self LL_realNavigationDelegate];
-//}
-//
-//#pragma mark - Getters and setters
-//- (void)setLL_realNavigationDelegate:(id<WKNavigationDelegate>)LL_realNavigationDelegate {
-//    objc_setAssociatedObject(self, @selector(LL_realNavigationDelegate), LL_realNavigationDelegate, OBJC_ASSOCIATION_ASSIGN);
-//}
-//
-//- (id<WKNavigationDelegate>)LL_realNavigationDelegate {
-//    return objc_getAssociatedObject(self, _cmd);
-//}
-
+/// UIDevice utils.
+@interface UIDevice (LL_AppInfo)
+/**
+ * Change platform name to model name, such as change "iPhone10,6" to "iPhone X".
+ */
+@property (nonatomic, copy, readonly) NSString *LL_modelName;
 
 @end
+
+NS_ASSUME_NONNULL_END

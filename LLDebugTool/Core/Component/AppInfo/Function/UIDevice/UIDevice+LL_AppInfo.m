@@ -1,5 +1,5 @@
 //
-//  UIDevice+LL_Utils.m
+//  UIDevice+LL_AppInfo.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "UIDevice+LL_Utils.h"
+#import "UIDevice+LL_AppInfo.h"
 
 #import <sys/sysctl.h>
 
@@ -29,7 +29,7 @@
 
 static const char kLLModelNameKey;
 
-@implementation UIDevice (LL_Utils)
+@implementation UIDevice (LL_AppInfo)
 
 - (NSString *)LL_modelName {
     NSString *name = [self LL_getStringProperty:&kLLModelNameKey];

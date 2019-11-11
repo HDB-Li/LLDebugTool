@@ -31,8 +31,7 @@
 		362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AA2326607A00A27F05 /* LLRulerWindow.m */; };
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
 		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
-		363158972356C37A003DEF8C /* NSInputStream+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */; };
-		3631589B2356EB57003DEF8C /* WKWebView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631589A2356EB57003DEF8C /* WKWebView+LL_Utils.m */; };
+		363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158962356C37A003DEF8C /* NSInputStream+LL_Network.m */; };
 		3631589E2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */; };
 		3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3633F583232F395100C62185 /* LLWidgetBorderComponent.m */; };
 		363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLTitleSliderCell.m */; };
@@ -161,16 +160,16 @@
 		C4B4E43F22F9C90900F70277 /* UIButton+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3A022F9C90900F70277 /* UIButton+LL_Utils.m */; };
 		C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3A222F9C90900F70277 /* UIColor+LL_Utils.m */; };
 		C4B4E44122F9C90900F70277 /* UIView+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3A622F9C90900F70277 /* UIView+LL_Utils.m */; };
-		C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3A922F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m */; };
-		C4B4E44322F9C90900F70277 /* NSData+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3AB22F9C90900F70277 /* NSData+LL_Utils.m */; };
-		C4B4E44422F9C90900F70277 /* UIDevice+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3AF22F9C90900F70277 /* UIDevice+LL_Utils.m */; };
+		C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3A922F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m */; };
+		C4B4E44322F9C90900F70277 /* NSData+LL_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3AB22F9C90900F70277 /* NSData+LL_Network.m */; };
+		C4B4E44422F9C90900F70277 /* UIDevice+LL_AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3AF22F9C90900F70277 /* UIDevice+LL_AppInfo.m */; };
 		C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3B122F9C90900F70277 /* NSString+LL_Utils.m */; };
 		C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3B422F9C90900F70277 /* UIViewController+LL_Utils.m */; };
-		C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3BA22F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m */; };
+		C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3BA22F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m */; };
 		C4B4E44922F9C90900F70277 /* NSArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3BE22F9C90900F70277 /* NSArray+LL_Utils.m */; };
 		C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3C122F9C90900F70277 /* NSObject+LL_Utils.m */; };
 		C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3C222F9C90900F70277 /* NSObject+LL_Runtime.m */; };
-		C4B4E44C22F9C90900F70277 /* NSURLSession+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3C622F9C90900F70277 /* NSURLSession+LL_Utils.m */; };
+		C4B4E44C22F9C90900F70277 /* NSURLSession+LL_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3C622F9C90900F70277 /* NSURLSession+LL_Network.m */; };
 		C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3C822F9C90900F70277 /* LLConst.m */; };
 		C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3CD22F9C90900F70277 /* LLStorageManager.m */; };
 		C4B4E44F22F9C90900F70277 /* LLStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3CF22F9C90900F70277 /* LLStorageModel.m */; };
@@ -277,10 +276,8 @@
 		362F87AD232660A000A27F05 /* LLRulerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerViewController.m; sourceTree = "<group>"; };
 		362F87AF2326614000A27F05 /* LLRulerPickerInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerPickerInfoView.h; sourceTree = "<group>"; };
 		362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoView.m; sourceTree = "<group>"; };
-		363158952356C37A003DEF8C /* NSInputStream+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSInputStream+LL_Utils.h"; sourceTree = "<group>"; };
-		363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSInputStream+LL_Utils.m"; sourceTree = "<group>"; };
-		363158992356EB57003DEF8C /* WKWebView+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+LL_Utils.h"; sourceTree = "<group>"; };
-		3631589A2356EB57003DEF8C /* WKWebView+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+LL_Utils.m"; sourceTree = "<group>"; };
+		363158952356C37A003DEF8C /* NSInputStream+LL_Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSInputStream+LL_Network.h"; sourceTree = "<group>"; };
+		363158962356C37A003DEF8C /* NSInputStream+LL_Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSInputStream+LL_Network.m"; sourceTree = "<group>"; };
 		3631589C2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNetworkHelper+WKWebView.h"; sourceTree = "<group>"; };
 		3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLNetworkHelper+WKWebView.m"; sourceTree = "<group>"; };
 		3633F582232F395100C62185 /* LLWidgetBorderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderComponent.h; sourceTree = "<group>"; };
@@ -544,26 +541,26 @@
 		C4B4E3A322F9C90900F70277 /* UIColor+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E3A522F9C90900F70277 /* UIView+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E3A622F9C90900F70277 /* UIView+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Utils.m"; sourceTree = "<group>"; };
-		C4B4E3A822F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+LL_Utils.h"; sourceTree = "<group>"; };
-		C4B4E3A922F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+LL_Utils.m"; sourceTree = "<group>"; };
-		C4B4E3AB22F9C90900F70277 /* NSData+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+LL_Utils.m"; sourceTree = "<group>"; };
-		C4B4E3AC22F9C90900F70277 /* NSData+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+LL_Utils.h"; sourceTree = "<group>"; };
-		C4B4E3AE22F9C90900F70277 /* UIDevice+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LL_Utils.h"; sourceTree = "<group>"; };
-		C4B4E3AF22F9C90900F70277 /* UIDevice+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LL_Utils.m"; sourceTree = "<group>"; };
+		C4B4E3A822F9C90900F70277 /* NSHTTPURLResponse+LL_Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+LL_Network.h"; sourceTree = "<group>"; };
+		C4B4E3A922F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+LL_Network.m"; sourceTree = "<group>"; };
+		C4B4E3AB22F9C90900F70277 /* NSData+LL_Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+LL_Network.m"; sourceTree = "<group>"; };
+		C4B4E3AC22F9C90900F70277 /* NSData+LL_Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+LL_Network.h"; sourceTree = "<group>"; };
+		C4B4E3AE22F9C90900F70277 /* UIDevice+LL_AppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+LL_AppInfo.h"; sourceTree = "<group>"; };
+		C4B4E3AF22F9C90900F70277 /* UIDevice+LL_AppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+LL_AppInfo.m"; sourceTree = "<group>"; };
 		C4B4E3B122F9C90900F70277 /* NSString+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LL_Utils.m"; sourceTree = "<group>"; };
 		C4B4E3B222F9C90900F70277 /* NSString+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E3B422F9C90900F70277 /* UIViewController+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LL_Utils.m"; sourceTree = "<group>"; };
 		C4B4E3B522F9C90900F70277 /* UIViewController+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LL_Utils.h"; sourceTree = "<group>"; };
-		C4B4E3BA22F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+LL_Utils.m"; sourceTree = "<group>"; };
-		C4B4E3BB22F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+LL_Utils.h"; sourceTree = "<group>"; };
+		C4B4E3BA22F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+LL_Network.m"; sourceTree = "<group>"; };
+		C4B4E3BB22F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+LL_Network.h"; sourceTree = "<group>"; };
 		C4B4E3BD22F9C90900F70277 /* NSArray+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E3BE22F9C90900F70277 /* NSArray+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LL_Utils.m"; sourceTree = "<group>"; };
 		C4B4E3C022F9C90900F70277 /* NSObject+LL_Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LL_Runtime.h"; sourceTree = "<group>"; };
 		C4B4E3C122F9C90900F70277 /* NSObject+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LL_Utils.m"; sourceTree = "<group>"; };
 		C4B4E3C222F9C90900F70277 /* NSObject+LL_Runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LL_Runtime.m"; sourceTree = "<group>"; };
 		C4B4E3C322F9C90900F70277 /* NSObject+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LL_Utils.h"; sourceTree = "<group>"; };
-		C4B4E3C522F9C90900F70277 /* NSURLSession+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+LL_Utils.h"; sourceTree = "<group>"; };
-		C4B4E3C622F9C90900F70277 /* NSURLSession+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+LL_Utils.m"; sourceTree = "<group>"; };
+		C4B4E3C522F9C90900F70277 /* NSURLSession+LL_Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+LL_Network.h"; sourceTree = "<group>"; };
+		C4B4E3C622F9C90900F70277 /* NSURLSession+LL_Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+LL_Network.m"; sourceTree = "<group>"; };
 		C4B4E3C822F9C90900F70277 /* LLConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLConst.m; sourceTree = "<group>"; };
 		C4B4E3C922F9C90900F70277 /* LLConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLConst.h; sourceTree = "<group>"; };
 		C4B4E3CC22F9C90900F70277 /* LLStorageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLStorageModel.h; sourceTree = "<group>"; };
@@ -758,19 +755,10 @@
 		363158942356C370003DEF8C /* NSInputStream */ = {
 			isa = PBXGroup;
 			children = (
-				363158952356C37A003DEF8C /* NSInputStream+LL_Utils.h */,
-				363158962356C37A003DEF8C /* NSInputStream+LL_Utils.m */,
+				363158952356C37A003DEF8C /* NSInputStream+LL_Network.h */,
+				363158962356C37A003DEF8C /* NSInputStream+LL_Network.m */,
 			);
 			path = NSInputStream;
-			sourceTree = "<group>";
-		};
-		363158982356EB48003DEF8C /* WKWebView */ = {
-			isa = PBXGroup;
-			children = (
-				363158992356EB57003DEF8C /* WKWebView+LL_Utils.h */,
-				3631589A2356EB57003DEF8C /* WKWebView+LL_Utils.m */,
-			);
-			path = WKWebView;
 			sourceTree = "<group>";
 		};
 		3633F581232F390600C62185 /* WidgetBorder */ = {
@@ -1414,6 +1402,7 @@
 		C49856B622ED908300E9FBE2 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				C4B4E3AD22F9C90900F70277 /* UIDevice */,
 				C49856B822ED908300E9FBE2 /* LLAppInfoHelper.h */,
 				C49856B722ED908300E9FBE2 /* LLAppInfoHelper.m */,
 			);
@@ -1434,6 +1423,7 @@
 		C49856C422ED90B400E9FBE2 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				3694F8712338995F007B07CA /* EnumDescription */,
 				C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */,
 				C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */,
 				36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */,
@@ -1456,6 +1446,11 @@
 		C49856D222ED90DD00E9FBE2 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				C4B4E3C422F9C90900F70277 /* NSURLSession */,
+				C4B4E3B922F9C90900F70277 /* NSURLSessionConfiguration */,
+				C4B4E3AA22F9C90900F70277 /* NSData */,
+				C4B4E3A722F9C90900F70277 /* NSHTTPURLResponse */,
+				363158942356C370003DEF8C /* NSInputStream */,
 				C49856D322ED90DD00E9FBE2 /* LLNetworkHelper.h */,
 				C49856D822ED90DD00E9FBE2 /* LLNetworkHelper.m */,
 				C49856D422ED90DD00E9FBE2 /* LLNetworkModel.h */,
@@ -1509,7 +1504,6 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				3694F8712338995F007B07CA /* EnumDescription */,
 				36BB1E1C2320E88A000D8F29 /* LLConfigHelper */,
 				36DC10FA22FA60AA0078B7BC /* ToastUtils */,
 				C4B4E38F22F9C90900F70277 /* Define */,
@@ -1537,8 +1531,6 @@
 		C4B4E39122F9C90900F70277 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				363158982356EB48003DEF8C /* WKWebView */,
-				363158942356C370003DEF8C /* NSInputStream */,
 				3655D50E2329E01300490B36 /* UIResponder */,
 				36BB1E2B2320F941000D8F29 /* NSUserDefaults */,
 				C4B4E39222F9C90900F70277 /* UIImage */,
@@ -1547,15 +1539,10 @@
 				C4B4E39E22F9C90900F70277 /* UIButton */,
 				C4B4E3A122F9C90900F70277 /* UIColor */,
 				C4B4E3A422F9C90900F70277 /* UIView */,
-				C4B4E3A722F9C90900F70277 /* NSHTTPURLResponse */,
-				C4B4E3AA22F9C90900F70277 /* NSData */,
-				C4B4E3AD22F9C90900F70277 /* UIDevice */,
 				C4B4E3B022F9C90900F70277 /* NSString */,
 				C4B4E3B322F9C90900F70277 /* UIViewController */,
-				C4B4E3B922F9C90900F70277 /* NSURLSessionConfiguration */,
 				C4B4E3BC22F9C90900F70277 /* NSArray */,
 				C4B4E3BF22F9C90900F70277 /* NSObject */,
-				C4B4E3C422F9C90900F70277 /* NSURLSession */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1617,8 +1604,8 @@
 		C4B4E3A722F9C90900F70277 /* NSHTTPURLResponse */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3A822F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.h */,
-				C4B4E3A922F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m */,
+				C4B4E3A822F9C90900F70277 /* NSHTTPURLResponse+LL_Network.h */,
+				C4B4E3A922F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m */,
 			);
 			path = NSHTTPURLResponse;
 			sourceTree = "<group>";
@@ -1626,8 +1613,8 @@
 		C4B4E3AA22F9C90900F70277 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3AC22F9C90900F70277 /* NSData+LL_Utils.h */,
-				C4B4E3AB22F9C90900F70277 /* NSData+LL_Utils.m */,
+				C4B4E3AC22F9C90900F70277 /* NSData+LL_Network.h */,
+				C4B4E3AB22F9C90900F70277 /* NSData+LL_Network.m */,
 			);
 			path = NSData;
 			sourceTree = "<group>";
@@ -1635,8 +1622,8 @@
 		C4B4E3AD22F9C90900F70277 /* UIDevice */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3AE22F9C90900F70277 /* UIDevice+LL_Utils.h */,
-				C4B4E3AF22F9C90900F70277 /* UIDevice+LL_Utils.m */,
+				C4B4E3AE22F9C90900F70277 /* UIDevice+LL_AppInfo.h */,
+				C4B4E3AF22F9C90900F70277 /* UIDevice+LL_AppInfo.m */,
 			);
 			path = UIDevice;
 			sourceTree = "<group>";
@@ -1662,8 +1649,8 @@
 		C4B4E3B922F9C90900F70277 /* NSURLSessionConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3BB22F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.h */,
-				C4B4E3BA22F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m */,
+				C4B4E3BB22F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.h */,
+				C4B4E3BA22F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m */,
 			);
 			path = NSURLSessionConfiguration;
 			sourceTree = "<group>";
@@ -1691,8 +1678,8 @@
 		C4B4E3C422F9C90900F70277 /* NSURLSession */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3C522F9C90900F70277 /* NSURLSession+LL_Utils.h */,
-				C4B4E3C622F9C90900F70277 /* NSURLSession+LL_Utils.m */,
+				C4B4E3C522F9C90900F70277 /* NSURLSession+LL_Network.h */,
+				C4B4E3C622F9C90900F70277 /* NSURLSession+LL_Network.m */,
 			);
 			path = NSURLSession;
 			sourceTree = "<group>";
@@ -2167,13 +2154,13 @@
 				364EF6422321F9940067C7D7 /* LLRGB.m in Sources */,
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C49856F822EDB22100E9FBE2 /* LLSandboxWindow.m in Sources */,
-				C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Utils.m in Sources */,
+				C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m in Sources */,
 				36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */,
 				C4B4E46D22F9C90900F70277 /* LLComponentWindow.m in Sources */,
 				C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */,
 				C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */,
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
-				C4B4E44422F9C90900F70277 /* UIDevice+LL_Utils.m in Sources */,
+				C4B4E44422F9C90900F70277 /* UIDevice+LL_AppInfo.m in Sources */,
 				364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */,
 				3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */,
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
@@ -2212,10 +2199,9 @@
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
-				363158972356C37A003DEF8C /* NSInputStream+LL_Utils.m in Sources */,
+				363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */,
 				364EF648232204630067C7D7 /* LLHSBPreviewView.m in Sources */,
 				36CDFBCE2350639E002A913F /* LLHtmlViewController.m in Sources */,
-				3631589B2356EB57003DEF8C /* WKWebView+LL_Utils.m in Sources */,
 				360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */,
 				C4B4E43F22F9C90900F70277 /* UIButton+LL_Utils.m in Sources */,
 				36CDFBCB23506388002A913F /* LLHtmlWindow.m in Sources */,
@@ -2233,7 +2219,7 @@
 				360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */,
 				C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
-				C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Utils.m in Sources */,
+				C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m in Sources */,
 				C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */,
 				C498569A22ED8D4800E9FBE2 /* LLCrashViewController.m in Sources */,
 				36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */,
@@ -2276,10 +2262,10 @@
 				C4B4E46022F9C90900F70277 /* LLFilterEventView.m in Sources */,
 				C49856A722ED8D4800E9FBE2 /* LLLogDetailViewController.m in Sources */,
 				362AA6AD23272E2200F33EC4 /* LLRulerPickerView.m in Sources */,
-				C4B4E44322F9C90900F70277 /* NSData+LL_Utils.m in Sources */,
+				C4B4E44322F9C90900F70277 /* NSData+LL_Network.m in Sources */,
 				C4B4E45122F9C90900F70277 /* LLThemeManager.m in Sources */,
 				C49856E622EDAC9400E9FBE2 /* LLAppInfoComponent.m in Sources */,
-				C4B4E44C22F9C90900F70277 /* NSURLSession+LL_Utils.m in Sources */,
+				C4B4E44C22F9C90900F70277 /* NSURLSession+LL_Network.m in Sources */,
 				C49856E122ED90F300E9FBE2 /* LLSandboxHelper.m in Sources */,
 				C498569B22ED8D4800E9FBE2 /* LLCrashCell.m in Sources */,
 				C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */,

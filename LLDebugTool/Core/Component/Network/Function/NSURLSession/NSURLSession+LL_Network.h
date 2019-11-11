@@ -1,5 +1,5 @@
 //
-//  NSURLSession+LL_Utils.m
+//  NSURLSession+LL_Network.h
 //
 //  Copyright (c) 2018 LLBaseFoundation Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,31 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "NSURLSession+LL_Utils.h"
+#import <Foundation/Foundation.h>
 
-#import "LLNetworkHelper.h"
-#import "LLURLProtocol.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "NSObject+LL_Runtime.h"
-
-@implementation NSURLSession (LL_Utils)
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [[NSURLSession class] LL_swizzleClassMethodWithOriginSel:@selector(sessionWithConfiguration:delegate:delegateQueue:) swizzledSel:@selector(LL_sessionWithConfiguration:delegate:delegateQueue:)];
-    });
-}
-
-+ (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue {
-    if ([LLNetworkHelper shared].isEnabled) {
-        NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:configuration.protocolClasses];
-        if (![protocols containsObject:[LLURLProtocol class]]) {
-            [protocols insertObject:[LLURLProtocol class] atIndex:0];
-        }
-        configuration.protocolClasses = protocols;
-    }
-    return [self LL_sessionWithConfiguration:configuration delegate:delegate delegateQueue:queue];
-}
+/// NSURLSession utils.
+@interface NSURLSession (LL_Network)
 
 @end
+
+NS_ASSUME_NONNULL_END
