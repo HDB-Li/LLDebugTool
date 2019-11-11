@@ -50,8 +50,8 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 @implementation LLURLProtocol
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if (![request.URL.scheme isEqualToString:@"http"] &&
-        ![request.URL.scheme isEqualToString:@"https"]) {
+    NSString *scheme = request.URL.scheme;
+    if ([scheme caseInsensitiveCompare:@"http"] != NSOrderedSame && [scheme caseInsensitiveCompare:@"https"] != NSOrderedSame) {
         return NO;
     }
     
