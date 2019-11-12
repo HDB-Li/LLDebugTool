@@ -21,6 +21,8 @@
 
 #import "LLComponent.h"
 
+#import "LLHtmlWindow.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Html function component.

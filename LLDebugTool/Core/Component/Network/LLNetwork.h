@@ -1,5 +1,5 @@
 //
-//  LLHierarchyComponent.m
+//  LLNetwork.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyComponent.h"
+#ifndef LLNetwork_h
+#define LLNetwork_h
 
-#import "LLWindowManager+Hierarchy.h"
 
-@implementation LLHierarchyComponent
-
-- (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyWindow] animated:YES];
-}
-
-@end
+#endif /* LLNetwork_h */

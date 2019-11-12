@@ -25,7 +25,8 @@
 
 #import "LLNavigationController.h"
 #import "LLCrashViewController.h"
-#import "LLWindowManager.h"
+
+#import "LLWindowManager+Crash.h"
 
 @implementation LLCrashComponent
 

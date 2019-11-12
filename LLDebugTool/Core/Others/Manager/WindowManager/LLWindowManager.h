@@ -23,20 +23,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LLWidgetBorderWindow.h"
-#import "LLScreenshotWindow.h"
-#import "LLHierarchyWindow.h"
-#import "LLMagnifierWindow.h"
 #import "LLFunctionWindow.h"
-#import "LLNetworkWindow.h"
-#import "LLAppInfoWindow.h"
-#import "LLSandboxWindow.h"
 #import "LLSettingWindow.h"
 #import "LLEntryWindow.h"
-#import "LLCrashWindow.h"
-#import "LLRulerWindow.h"
-#import "LLHtmlWindow.h"
-#import "LLLogWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -63,83 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return LLFunctionWindow.
  */
 + (LLFunctionWindow *)functionWindow;
-
-/**
- Magnifier window
- 
- @return LLMagnifierWindow.
- */
-+ (LLMagnifierWindow *)magnifierWindow;
-
-/**
- Network window
- 
- @return LLNetworkWindow.
- */
-+ (LLNetworkWindow *)networkWindow;
-
-/**
- Log window
- 
- @return LLLogWindow.
- */
-+ (LLLogWindow *)logWindow;
-
-/**
- Crash window
- 
- @return LLCrashWindow.
- */
-+ (LLCrashWindow *)crashWindow;
-
-/**
- AppInfo window
- 
- @return LLAppInfoWindow.
- */
-+ (LLAppInfoWindow *)appInfoWindow;
-
-/**
- Sandbox window
- 
- @return LLSandboxWindow.
- */
-+ (LLSandboxWindow *)sandboxWindow;
-
-/**
- Hierarchy picker window
- 
- @return LLHierarchyWindow.
- */
-+ (LLHierarchyWindow *)hierarchyWindow;
-
-/**
- Screenshot window
- 
- @return LLScreenshotWindow.
- */
-+ (LLScreenshotWindow *)screenshotWindow;
-
-/**
-Ruler window
-
-@return LLRulerWindow.
-*/
-+ (LLRulerWindow *)rulerWindow;
-
-/**
-Widget border window.
-
-@return LLWidgetBorderWindow.
-*/
-+ (LLWidgetBorderWindow *)widgetBorderWindow;
-
-/**
- Html window.
- 
- @return LLHtmlWindow.
- */
-+ (LLHtmlWindow *)htmlWindow;
 
 /**
  Setting window.
@@ -196,6 +108,13 @@ Widget border window.
  Current visiable window.
  */
 - (LLBaseWindow *_Nullable)visiableWindow;
+
+@end
+
+#pragma mark - Internal
+@interface LLWindowManager (Internal)
+
++ (LLBaseWindow *)createWindowWithClassName:(NSString *)className;
 
 @end
 

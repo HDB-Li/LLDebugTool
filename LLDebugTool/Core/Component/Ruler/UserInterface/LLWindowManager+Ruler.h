@@ -1,5 +1,5 @@
 //
-//  LLHierarchyComponent.m
+//  LLWindowManager+Ruler.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyComponent.h"
+#import "LLWindowManager.h"
 
-#import "LLWindowManager+Hierarchy.h"
+#import "LLRulerWindow.h"
 
-@implementation LLHierarchyComponent
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyWindow] animated:YES];
-}
+@interface LLWindowManager (Ruler)
+
+/**
+Ruler window
+
+@return LLRulerWindow.
+*/
++ (LLRulerWindow *)rulerWindow;
 
 @end
+
+NS_ASSUME_NONNULL_END

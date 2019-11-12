@@ -1,5 +1,5 @@
 //
-//  LLHierarchyComponent.m
+//  LLWindowManager+Hierarchy.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyComponent.h"
-
 #import "LLWindowManager+Hierarchy.h"
 
-@implementation LLHierarchyComponent
+@implementation LLWindowManager (Hierarchy)
 
-- (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyWindow] animated:YES];
++ (LLHierarchyWindow *)hierarchyWindow {
+    return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
 }
 
 @end

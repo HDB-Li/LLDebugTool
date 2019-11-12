@@ -1,5 +1,5 @@
 //
-//  LLHierarchyComponent.m
+//  LLWindowManager+Magnifier.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLHierarchyComponent.h"
+#import "LLWindowManager+Magnifier.h"
 
-#import "LLWindowManager+Hierarchy.h"
+@implementation LLWindowManager (Magnifier)
 
-@implementation LLHierarchyComponent
-
-- (void)componentDidLoad:(NSDictionary *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager hierarchyWindow] animated:YES];
++ (LLMagnifierWindow *)magnifierWindow {
+    return (LLMagnifierWindow *)[self createWindowWithClassName:NSStringFromClass([LLMagnifierWindow class])];
 }
 
 @end

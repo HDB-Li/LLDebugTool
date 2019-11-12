@@ -25,7 +25,8 @@
 
 #import "LLNetworkViewController.h"
 #import "LLNavigationController.h"
-#import "LLWindowManager.h"
+
+#import "LLWindowManager+Network.h"
 
 @implementation LLNetworkComponent
 

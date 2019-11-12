@@ -13,6 +13,17 @@
 		360075E5235576A800A606AC /* CustomWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360075E4235576A800A606AC /* CustomWebViewController.m */; };
 		3600762D2355AEE500A606AC /* LLComponentNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600762C2355AEE500A606AC /* LLComponentNavigationController.m */; };
 		3603883D23335DF40026BC9E /* LLTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603883C23335DF40026BC9E /* LLTitleViewController.m */; };
+		36059406237AB24000C2D8FF /* LLWindowManager+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059405237AB24000C2D8FF /* LLWindowManager+Network.m */; };
+		36059409237AB26C00C2D8FF /* LLWindowManager+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059408237AB26C00C2D8FF /* LLWindowManager+AppInfo.m */; };
+		3605940C237AB69E00C2D8FF /* LLWindowManager+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 3605940B237AB69E00C2D8FF /* LLWindowManager+Log.m */; };
+		3605940F237AB6E500C2D8FF /* LLWindowManager+Crash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3605940E237AB6E500C2D8FF /* LLWindowManager+Crash.m */; };
+		36059412237AB73800C2D8FF /* LLWindowManager+Sandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059411237AB73800C2D8FF /* LLWindowManager+Sandbox.m */; };
+		36059415237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059414237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m */; };
+		36059418237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059417237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m */; };
+		3605941B237AB82100C2D8FF /* LLWindowManager+Magnifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 3605941A237AB82100C2D8FF /* LLWindowManager+Magnifier.m */; };
+		3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3605941D237AB85400C2D8FF /* LLWindowManager+Ruler.m */; };
+		36059421237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059420237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.m */; };
+		36059424237AB90B00C2D8FF /* LLWindowManager+Html.m in Sources */ = {isa = PBXBuildFile; fileRef = 36059423237AB90B00C2D8FF /* LLWindowManager+Html.m */; };
 		360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6362330DC160073FECD /* LLSettingComponent.m */; };
 		360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AE6392330DC620073FECD /* LLSettingWindow.m */; };
 		360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */; };
@@ -235,6 +246,30 @@
 		3600762C2355AEE500A606AC /* LLComponentNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentNavigationController.m; sourceTree = "<group>"; };
 		3603883B23335DF40026BC9E /* LLTitleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleViewController.h; sourceTree = "<group>"; };
 		3603883C23335DF40026BC9E /* LLTitleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleViewController.m; sourceTree = "<group>"; };
+		36059400237AAB8000C2D8FF /* LLNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetwork.h; sourceTree = "<group>"; };
+		36059401237AAED300C2D8FF /* LLAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAppInfo.h; sourceTree = "<group>"; };
+		36059404237AB24000C2D8FF /* LLWindowManager+Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Network.h"; sourceTree = "<group>"; };
+		36059405237AB24000C2D8FF /* LLWindowManager+Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Network.m"; sourceTree = "<group>"; };
+		36059407237AB26C00C2D8FF /* LLWindowManager+AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+AppInfo.h"; sourceTree = "<group>"; };
+		36059408237AB26C00C2D8FF /* LLWindowManager+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+AppInfo.m"; sourceTree = "<group>"; };
+		3605940A237AB69E00C2D8FF /* LLWindowManager+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Log.h"; sourceTree = "<group>"; };
+		3605940B237AB69E00C2D8FF /* LLWindowManager+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Log.m"; sourceTree = "<group>"; };
+		3605940D237AB6E500C2D8FF /* LLWindowManager+Crash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Crash.h"; sourceTree = "<group>"; };
+		3605940E237AB6E500C2D8FF /* LLWindowManager+Crash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Crash.m"; sourceTree = "<group>"; };
+		36059410237AB73800C2D8FF /* LLWindowManager+Sandbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Sandbox.h"; sourceTree = "<group>"; };
+		36059411237AB73800C2D8FF /* LLWindowManager+Sandbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Sandbox.m"; sourceTree = "<group>"; };
+		36059413237AB7AC00C2D8FF /* LLWindowManager+Screenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Screenshot.h"; sourceTree = "<group>"; };
+		36059414237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Screenshot.m"; sourceTree = "<group>"; };
+		36059416237AB7E600C2D8FF /* LLWindowManager+Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Hierarchy.h"; sourceTree = "<group>"; };
+		36059417237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Hierarchy.m"; sourceTree = "<group>"; };
+		36059419237AB82100C2D8FF /* LLWindowManager+Magnifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Magnifier.h"; sourceTree = "<group>"; };
+		3605941A237AB82100C2D8FF /* LLWindowManager+Magnifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Magnifier.m"; sourceTree = "<group>"; };
+		3605941C237AB85400C2D8FF /* LLWindowManager+Ruler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Ruler.h"; sourceTree = "<group>"; };
+		3605941D237AB85400C2D8FF /* LLWindowManager+Ruler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Ruler.m"; sourceTree = "<group>"; };
+		3605941F237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+WidgetBorder.h"; sourceTree = "<group>"; };
+		36059420237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+WidgetBorder.m"; sourceTree = "<group>"; };
+		36059422237AB90B00C2D8FF /* LLWindowManager+Html.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Html.h"; sourceTree = "<group>"; };
+		36059423237AB90B00C2D8FF /* LLWindowManager+Html.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Html.m"; sourceTree = "<group>"; };
 		360AE6352330DC160073FECD /* LLSettingComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingComponent.h; sourceTree = "<group>"; };
 		360AE6362330DC160073FECD /* LLSettingComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingComponent.m; sourceTree = "<group>"; };
 		360AE6382330DC620073FECD /* LLSettingWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingWindow.h; sourceTree = "<group>"; };
@@ -676,6 +711,25 @@
 			children = (
 				C4B4E3CE22F9C90900F70277 /* LLStorageManager.h */,
 				C4B4E3CD22F9C90900F70277 /* LLStorageManager.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		36059403237AB0B100C2D8FF /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				360075DF23556DAF00A606AC /* LLComponentDelegate.h */,
+				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
+				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
+				C4B4E3FD22F9C90900F70277 /* Function */,
+				36AB4494231F9CD600AC772B /* Setting */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		36059425237ABC8200C2D8FF /* Storage */ = {
+			isa = PBXGroup;
+			children = (
 				C4B4E3CC22F9C90900F70277 /* LLStorageModel.h */,
 				C4B4E3CF22F9C90900F70277 /* LLStorageModel.m */,
 			);
@@ -806,6 +860,8 @@
 				362AA6AC23272E2200F33EC4 /* LLRulerPickerView.m */,
 				362F87AF2326614000A27F05 /* LLRulerPickerInfoView.h */,
 				362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */,
+				3605941C237AB85400C2D8FF /* LLWindowManager+Ruler.h */,
+				3605941D237AB85400C2D8FF /* LLWindowManager+Ruler.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -849,6 +905,7 @@
 		368CB9DE233DFC22009DFFDB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				36059425237ABC8200C2D8FF /* Storage */,
 				368CB9E2233DFFE0009DFFDB /* LLTableViewSelectableModel */,
 			);
 			path = Model;
@@ -944,6 +1001,8 @@
 				36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */,
 				36CD3A7223306D6000C9C22C /* LLWidgetBorderViewController.h */,
 				36CD3A7323306D6000C9C22C /* LLWidgetBorderViewController.m */,
+				3605941F237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.h */,
+				36059420237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -982,6 +1041,8 @@
 				3678AD132354274F00AC0B2C /* LLHtmlUIWebViewController.m */,
 				3678AD152354275B00AC0B2C /* LLHtmlWkWebViewController.h */,
 				3678AD162354275B00AC0B2C /* LLHtmlWkWebViewController.m */,
+				36059422237AB90B00C2D8FF /* LLWindowManager+Html.h */,
+				36059423237AB90B00C2D8FF /* LLWindowManager+Html.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1162,11 +1223,6 @@
 				364CF3D7232659EB000B513F /* Ruler */,
 				3633F581232F390600C62185 /* WidgetBorder */,
 				36CDFBC323506361002A913F /* Html */,
-				C4B4E3FD22F9C90900F70277 /* Function */,
-				36AB4494231F9CD600AC772B /* Setting */,
-				360075DF23556DAF00A606AC /* LLComponentDelegate.h */,
-				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
-				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1206,6 +1262,8 @@
 				C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */,
 				C45BA2CF22F47997006B833A /* LLScreenshotPreviewViewController.h */,
 				C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */,
+				36059413237AB7AC00C2D8FF /* LLWindowManager+Screenshot.h */,
+				36059414237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1234,6 +1292,8 @@
 				360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */,
 				C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */,
 				C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */,
+				36059416237AB7E600C2D8FF /* LLWindowManager+Hierarchy.h */,
+				36059417237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1245,6 +1305,7 @@
 				C498563A22ED8D4700E9FBE2 /* UserInterface */,
 				C49856FF22EDB35000E9FBE2 /* LLNetworkComponent.h */,
 				C498570022EDB35000E9FBE2 /* LLNetworkComponent.m */,
+				36059400237AAB8000C2D8FF /* LLNetwork.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1264,6 +1325,8 @@
 				C498564622ED8D4700E9FBE2 /* LLNetworkDetailViewController.m */,
 				C498570222EDB37200E9FBE2 /* LLNetworkWindow.h */,
 				C498570322EDB37200E9FBE2 /* LLNetworkWindow.m */,
+				36059404237AB24000C2D8FF /* LLWindowManager+Network.h */,
+				36059405237AB24000C2D8FF /* LLWindowManager+Network.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1290,6 +1353,8 @@
 				C498565522ED8D4700E9FBE2 /* LLCrashDetailViewController.m */,
 				C49856FC22EDB2DD00E9FBE2 /* LLCrashWindow.h */,
 				C49856FD22EDB2DD00E9FBE2 /* LLCrashWindow.m */,
+				3605940D237AB6E500C2D8FF /* LLWindowManager+Crash.h */,
+				3605940E237AB6E500C2D8FF /* LLWindowManager+Crash.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1316,6 +1381,8 @@
 				C498566022ED8D4800E9FBE2 /* LLSandboxViewController.m */,
 				C49856F622EDB22100E9FBE2 /* LLSandboxWindow.h */,
 				C49856F722EDB22100E9FBE2 /* LLSandboxWindow.m */,
+				36059410237AB73800C2D8FF /* LLWindowManager+Sandbox.h */,
+				36059411237AB73800C2D8FF /* LLWindowManager+Sandbox.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1344,6 +1411,8 @@
 				C498567022ED8D4800E9FBE2 /* LLLogDetailViewController.m */,
 				C49856F022EDB0CD00E9FBE2 /* LLLogWindow.h */,
 				C49856F122EDB0CD00E9FBE2 /* LLLogWindow.m */,
+				3605940A237AB69E00C2D8FF /* LLWindowManager+Log.h */,
+				3605940B237AB69E00C2D8FF /* LLWindowManager+Log.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1355,6 +1424,7 @@
 				C498567922ED8D4800E9FBE2 /* UserInterface */,
 				C49856E422EDAC9400E9FBE2 /* LLAppInfoComponent.h */,
 				C49856E522EDAC9400E9FBE2 /* LLAppInfoComponent.m */,
+				36059401237AAED300C2D8FF /* LLAppInfo.h */,
 			);
 			path = AppInfo;
 			sourceTree = "<group>";
@@ -1366,6 +1436,8 @@
 				C498567A22ED8D4800E9FBE2 /* LLAppInfoViewController.m */,
 				C49856EA22EDAEFE00E9FBE2 /* LLAppInfoWindow.h */,
 				C49856EB22EDAEFE00E9FBE2 /* LLAppInfoWindow.m */,
+				36059407237AB26C00C2D8FF /* LLWindowManager+AppInfo.h */,
+				36059408237AB26C00C2D8FF /* LLWindowManager+AppInfo.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1477,6 +1549,8 @@
 				36596BCA22FD07B500BBB6FA /* LLMagnifierView.m */,
 				36596BCF22FD1DF300BBB6FA /* LLMagnifierInfoView.h */,
 				36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */,
+				36059419237AB82100C2D8FF /* LLWindowManager+Magnifier.h */,
+				3605941A237AB82100C2D8FF /* LLWindowManager+Magnifier.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1484,6 +1558,7 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				36059403237AB0B100C2D8FF /* Component */,
 				36BB1E1C2320E88A000D8F29 /* LLConfigHelper */,
 				36DC10FA22FA60AA0078B7BC /* ToastUtils */,
 				C4B4E38F22F9C90900F70277 /* Define */,
@@ -2106,6 +2181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B4E44922F9C90900F70277 /* NSArray+LL_Utils.m in Sources */,
+				3605940F237AB6E500C2D8FF /* LLWindowManager+Crash.m in Sources */,
 				368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */,
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
@@ -2130,6 +2206,7 @@
 				3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */,
 				C49856FE22EDB2DD00E9FBE2 /* LLCrashWindow.m in Sources */,
 				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
+				3605940C237AB69E00C2D8FF /* LLWindowManager+Log.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
@@ -2142,7 +2219,9 @@
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
 				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
 				36CDFBD123506C9A002A913F /* LLHtmlConfigViewController.m in Sources */,
+				3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
+				36059418237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m in Sources */,
 				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
@@ -2150,10 +2229,12 @@
 				C4B4E47322F9C90900F70277 /* LLEditTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
 				3678AD142354274F00AC0B2C /* LLHtmlUIWebViewController.m in Sources */,
+				36059424237AB90B00C2D8FF /* LLWindowManager+Html.m in Sources */,
 				C49856DB22ED90DD00E9FBE2 /* LLNetworkHelper.m in Sources */,
 				36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */,
 				C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */,
 				C4B4E45822F9C90900F70277 /* LLFilterFilePickerView.m in Sources */,
+				36059409237AB26C00C2D8FF /* LLWindowManager+AppInfo.m in Sources */,
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
@@ -2223,6 +2304,7 @@
 				C49856E122ED90F300E9FBE2 /* LLSandboxHelper.m in Sources */,
 				C498569B22ED8D4800E9FBE2 /* LLCrashCell.m in Sources */,
 				C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */,
+				36059412237AB73800C2D8FF /* LLWindowManager+Sandbox.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
@@ -2232,6 +2314,7 @@
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,
 				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
+				36059415237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m in Sources */,
 				C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */,
 				C498568122ED8D4800E9FBE2 /* LLScreenshotSelectorModel.m in Sources */,
 				C4B4E45F22F9C90900F70277 /* LLFilterLabelCell.m in Sources */,
@@ -2239,6 +2322,7 @@
 				C4B4E46122F9C90900F70277 /* LLFilterLabelModel.m in Sources */,
 				C4B4E47822F9C90900F70277 /* LLFormatterTool.m in Sources */,
 				C4B4E46E22F9C90900F70277 /* LLBaseWindow.m in Sources */,
+				36059421237AB88F00C2D8FF /* LLWindowManager+WidgetBorder.m in Sources */,
 				C4B4E46F22F9C90900F70277 /* LLNavigationController.m in Sources */,
 				C498568E22ED8D4800E9FBE2 /* LLNetworkImageCell.m in Sources */,
 				C49856B522ED905F00E9FBE2 /* LLScreenshotHelper.m in Sources */,
@@ -2248,6 +2332,8 @@
 				C4B4E46222F9C90900F70277 /* LLFunctionViewController.m in Sources */,
 				C4B4E47A22F9C90900F70277 /* LLFactory.m in Sources */,
 				C498570722EDB3EF00E9FBE2 /* LLHierarchyComponent.m in Sources */,
+				36059406237AB24000C2D8FF /* LLWindowManager+Network.m in Sources */,
+				3605941B237AB82100C2D8FF /* LLWindowManager+Magnifier.m in Sources */,
 				C4B4E44122F9C90900F70277 /* UIView+LL_Utils.m in Sources */,
 				C49856F222EDB0CD00E9FBE2 /* LLLogWindow.m in Sources */,
 				C49856DA22ED90DD00E9FBE2 /* LLNetworkModel.m in Sources */,
