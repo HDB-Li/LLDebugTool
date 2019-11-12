@@ -28,7 +28,6 @@
 #import "LLStorageManager.h"
 #import "LLLogFilterView.h"
 #import "LLToastUtils.h"
-#import "LLSearchBar.h"
 #import "LLLogModel.h"
 #import "LLLogCell.h"
 #import "LLConfig.h"

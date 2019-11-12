@@ -172,7 +172,6 @@
 		C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3D122F9C90900F70277 /* LLWindowManager.m */; };
 		C4B4E45122F9C90900F70277 /* LLThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3D422F9C90900F70277 /* LLThemeManager.m */; };
 		C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */; };
-		C4B4E45422F9C90900F70277 /* LLSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3E022F9C90900F70277 /* LLSearchBar.m */; };
 		C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3E322F9C90900F70277 /* LLNoneCopyTextField.m */; };
 		C4B4E45622F9C90900F70277 /* LLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3E622F9C90900F70277 /* LLButton.m */; };
 		C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3EA22F9C90900F70277 /* LLFilterOtherView.m */; };
@@ -563,8 +562,6 @@
 		C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSubTitleTableViewCell.m; sourceTree = "<group>"; };
 		C4B4E3DB22F9C90900F70277 /* LLSubTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSubTitleTableViewCell.h; sourceTree = "<group>"; };
 		C4B4E3DC22F9C90900F70277 /* LLUITableViewLongPressGestureRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUITableViewLongPressGestureRecognizerDelegate.h; sourceTree = "<group>"; };
-		C4B4E3DF22F9C90900F70277 /* LLSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSearchBar.h; sourceTree = "<group>"; };
-		C4B4E3E022F9C90900F70277 /* LLSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSearchBar.m; sourceTree = "<group>"; };
 		C4B4E3E222F9C90900F70277 /* LLNoneCopyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLNoneCopyTextField.h; sourceTree = "<group>"; };
 		C4B4E3E322F9C90900F70277 /* LLNoneCopyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNoneCopyTextField.m; sourceTree = "<group>"; };
 		C4B4E3E522F9C90900F70277 /* LLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLButton.h; sourceTree = "<group>"; };
@@ -674,6 +671,17 @@
 			path = TitleViewController;
 			sourceTree = "<group>";
 		};
+		360593FF237AA8A300C2D8FF /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4E3CE22F9C90900F70277 /* LLStorageManager.h */,
+				C4B4E3CD22F9C90900F70277 /* LLStorageManager.m */,
+				C4B4E3CC22F9C90900F70277 /* LLStorageModel.h */,
+				C4B4E3CF22F9C90900F70277 /* LLStorageModel.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		360AE62F2330D9B90073FECD /* TitleCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,7 +778,6 @@
 				362AA6AE23274FBB00F33EC4 /* PickerView */,
 				365912512320BCF500FDA6A0 /* TitleView */,
 				C4B4E3D922F9C90900F70277 /* SubTitleTableViewCell */,
-				C4B4E3DE22F9C90900F70277 /* SearchBar */,
 				C4B4E3E122F9C90900F70277 /* NoneCopyTextField */,
 				C4B4E3E422F9C90900F70277 /* TabBarButton */,
 				C4B4E3E722F9C90900F70277 /* FilterView */,
@@ -1135,6 +1142,7 @@
 			isa = PBXGroup;
 			children = (
 				C498561222ED8D4700E9FBE2 /* Component */,
+				360593FF237AA8A300C2D8FF /* Storage */,
 				C4B4E38B22F9C90900F70277 /* Others */,
 			);
 			path = Core;
@@ -1669,22 +1677,10 @@
 			isa = PBXGroup;
 			children = (
 				3668D0C72303BAF400D58C0B /* SettingManager */,
-				C4B4E3CB22F9C90900F70277 /* StorageManager */,
 				C4B4E3D022F9C90900F70277 /* WindowManager */,
 				C4B4E3D322F9C90900F70277 /* ThemeManager */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		C4B4E3CB22F9C90900F70277 /* StorageManager */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4E3CE22F9C90900F70277 /* LLStorageManager.h */,
-				C4B4E3CD22F9C90900F70277 /* LLStorageManager.m */,
-				C4B4E3CC22F9C90900F70277 /* LLStorageModel.h */,
-				C4B4E3CF22F9C90900F70277 /* LLStorageModel.m */,
-			);
-			path = StorageManager;
 			sourceTree = "<group>";
 		};
 		C4B4E3D022F9C90900F70277 /* WindowManager */ = {
@@ -1733,15 +1729,6 @@
 				C4B4E3DC22F9C90900F70277 /* LLUITableViewLongPressGestureRecognizerDelegate.h */,
 			);
 			path = SubTitleTableViewCell;
-			sourceTree = "<group>";
-		};
-		C4B4E3DE22F9C90900F70277 /* SearchBar */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4E3DF22F9C90900F70277 /* LLSearchBar.h */,
-				C4B4E3E022F9C90900F70277 /* LLSearchBar.m */,
-			);
-			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		C4B4E3E122F9C90900F70277 /* NoneCopyTextField */ = {
@@ -2182,7 +2169,6 @@
 				36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */,
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,
-				C4B4E45422F9C90900F70277 /* LLSearchBar.m in Sources */,
 				362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */,
 				C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */,
 				C4B4E47B22F9C90900F70277 /* LLTool.m in Sources */,
