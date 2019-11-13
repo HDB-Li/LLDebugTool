@@ -29,4 +29,9 @@
 #warning 需要修改
 }
 
++ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
+    #warning 需要修改
+    return nil;
+}
+
 @end

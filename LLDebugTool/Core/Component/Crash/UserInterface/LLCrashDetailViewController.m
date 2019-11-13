@@ -23,7 +23,6 @@
 
 #import "LLCrashDetailViewController.h"
 
-#import "LLNetworkViewController.h"
 #import "LLSubTitleTableViewCell.h"
 #import "LLLogViewController.h"
 #import "LLStorageManager.h"
@@ -33,6 +32,8 @@
 #import "LLLogModel.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
+
+#import "LLRouter+Network.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -87,9 +88,10 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         vc.launchDate = self.model.launchDate;
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([title isEqualToString:@"Network Requests"]) {
-        LLNetworkViewController *vc = [[LLNetworkViewController alloc] init];
-        vc.launchDate = self.model.launchDate;
-        [self.navigationController pushViewController:vc animated:YES];
+        UIViewController *vc = [LLRouter NetworkViewControllerWithLaunchDate:self.model.launchDate];
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }        
     } else if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
         [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];

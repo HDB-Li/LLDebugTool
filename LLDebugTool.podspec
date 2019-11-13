@@ -29,12 +29,12 @@ Pod::Spec.new do |s|
     ss.dependency                 "FMDB", "~> 2.0"
   end
   
-#  s.subspec 'Crash' do |ss|
-#    ss.public_header_files      = "LLDebugTool/Core/Component/Crash/LLCrash.h"
-#    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Crash/**/*.{h,m}", "LLDebugTool/Core/Storage/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
-#    ss.resources                = "LLDebugTool/Components/Crash/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Storage/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
-#    ss.dependency                 "FMDB", "~> 2.0"
-#  end
+  s.subspec 'Crash' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/Crash/LLCrash.h"
+    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Crash/**/*.{h,m}", "LLDebugTool/Core/Storage/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
+    ss.resources                = "LLDebugTool/Components/Crash/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Storage/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
+    ss.dependency                 "FMDB", "~> 2.0"
+  end
 
   s.subspec 'AppInfo' do |ss|
     ss.public_header_files      = "LLDebugTool/Core/Component/AppInfo/LLAppInfo.h"

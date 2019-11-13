@@ -134,4 +134,14 @@
     return returnValue;
 }
 
++ (UIViewController *)NetworkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate {
+    Class cls = NSClassFromString(@"LLNetworkViewController");
+    if (!cls) {
+        return nil;
+    }
+    UIViewController *vc = [[cls alloc] init];
+    [vc setValue:launchDate forKey:@"launchDate"];
+    return vc;
+}
+
 @end

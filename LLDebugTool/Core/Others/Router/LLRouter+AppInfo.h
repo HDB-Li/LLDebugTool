@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
++ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
+
 @end
 
 NS_ASSUME_NONNULL_END

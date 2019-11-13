@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (LLNetworkStatus)networkStateFromStatebar;
 
++ (UIViewController *_Nullable)NetworkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate;
+
 @end
 
 NS_ASSUME_NONNULL_END
