@@ -32,9 +32,7 @@
 #import "FMDatabase.h"
 #endif
 
-#import "LLNetworkModel.h"
-#import "LLCrashModel.h"
-#import "LLLogModel.h"
+#import "LLStorageModel.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 
@@ -75,6 +73,9 @@ static NSString *const kDatabaseVersion = @"1";
 
 #pragma mark - Public
 - (BOOL)registerClass:(Class)cls {
+    if (!cls) {
+        return YES;
+    }
     if (![self isRegisteredClass:cls]) {
         __block BOOL ret = NO;
         [_dbQueue inDatabase:^(FMDatabase * db) {
@@ -201,7 +202,7 @@ static NSString *const kDatabaseVersion = @"1";
     }
     
     // Check datas.
-    __block Class cls = [models.firstObject class];
+    __block Class cls = [[models firstObject] class];
     if (![self isRegisteredClass:cls]) {
         [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
@@ -293,53 +294,6 @@ static NSString *const kDatabaseVersion = @"1";
     [self performBoolComplete:complete param:@(ret) synchronous:synchronous];
 }
 
-- (void)updateDatabaseWithVersion:(NSString *)version complete:(LLStorageManagerBoolBlock)complete {
-    if ([version isEqualToString:@"1.1.3"]) {
-        // Update to version 1.1.3
-        [self update113VersionWithComplete:complete];
-    }
-}
-
-- (void)update113VersionWithComplete:(LLStorageManagerBoolBlock)complete {
-    // Check thread.
-    if ([[NSThread currentThread] isMainThread]) {
-        dispatch_async(_queue, ^{
-            [self update113VersionWithComplete:complete];
-        });
-        return;
-    }
-    
-    // Perform database operations
-    __block NSMutableArray *tables = [[NSMutableArray alloc] init];
-    [_dbQueue inDatabase:^(FMDatabase * db) {
-        FMResultSet *set = [db executeQuery:@"select name from sqlite_master where type='table' order by name;"];
-        while ([set next]) {
-            NSString *name = [set stringForColumn:@"name"];
-            if (name) {
-                [tables addObject:name];
-            }
-        }
-    }];
-    
-    __block BOOL ret1 = YES;
-    __block BOOL ret2 = YES;
-    __block BOOL ret3 = YES;
-    
-    [_dbQueue inDatabase:^(FMDatabase * db) {
-        if ([tables containsObject:@"CrashModelTable"]) {
-            ret1 = [db executeUpdate:@"DROP TABLE CrashModelTable"];
-        }
-        if ([tables containsObject:@"LogModelTable"]) {
-            ret2 = [db executeUpdate:@"DROP TABLE LogModelTable"];
-        }
-        if ([tables containsObject:@"NetworkModelTable"]) {
-            ret3 = [db executeUpdate:@"DROP TABLE NetworkModelTable"];
-        }
-    }];
-    
-    [self performBoolComplete:complete param:@(ret1 && ret2 && ret3) synchronous:NO];
-}
-
 #pragma mark - Primary
 /**
  Initsomething
@@ -366,9 +320,9 @@ static NSString *const kDatabaseVersion = @"1";
     
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:filePath];
     
-    BOOL ret1 = [self registerClass:[LLCrashModel class]];;
-    BOOL ret2 = [self registerClass:[LLNetworkModel class]];;
-    BOOL ret3 = [self registerClass:[LLLogModel class]];;
+    BOOL ret1 = [self registerClass:NSClassFromString(@"LLCrashModel")];;
+    BOOL ret2 = [self registerClass:NSClassFromString(@"LLNetworkModel")];;
+    BOOL ret3 = [self registerClass:NSClassFromString(@"LLLogModel")];;
 
     return ret1 && ret2 && ret3;
 }
@@ -388,9 +342,13 @@ static NSString *const kDatabaseVersion = @"1";
 
     __block NSArray *crashModels = @[];
  
-    [self getModels:[LLCrashModel class] launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
-        crashModels = result;
-    } synchronous:YES];
+    Class cls = NSClassFromString(@"LLCrashModel");
+    
+    if (cls) {
+        [self getModels:cls launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
+            crashModels = result;
+        } synchronous:YES];
+    }
     
     NSMutableArray *launchDates = [[NSMutableArray alloc] initWithObjects:[NSObject LL_launchDate], nil];
     for (LLStorageModel *model in crashModels) {
@@ -407,20 +365,25 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret = YES;
     __block BOOL ret2 = YES;
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        NSString *logTableName = [self tableNameFromClass:[LLLogModel class]];
-        NSString *launchDateString = [self convertArrayToSQL:launchDates];
-        ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString]];
-        if (!ret) {
-            [LLTool log:@"Remove launch log fail"];
+        Class cls = NSClassFromString(@"LLLogModel");
+        if (cls) {
+            NSString *logTableName = [self tableNameFromClass:cls];
+            NSString *launchDateString = [self convertArrayToSQL:launchDates];
+            ret = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",logTableName,kLaunchDateColumn,launchDateString]];
+            if (!ret) {
+                [LLTool log:@"Remove launch log fail"];
+            }
         }
         
-        NSString *networkTableName = [self tableNameFromClass:[LLNetworkModel class]];
-        NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];
-        ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString]];
-        if (!ret2) {
-            [LLTool log:@"Remove launch network fail"];
+        Class cls2 = NSClassFromString(@"LLNetworkModel");
+        if (cls2) {
+            NSString *networkTableName = [self tableNameFromClass:cls2];
+            NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];
+            ret2 = [db executeUpdate:[NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ NOT IN %@;",networkTableName,kLaunchDateColumn,networkLaunchDateString]];
+            if (!ret2) {
+                [LLTool log:@"Remove launch network fail"];
+            }
         }
-        
     }];
 
     return ret && ret2;

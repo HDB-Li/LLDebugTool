@@ -22,16 +22,14 @@
 //  SOFTWARE.
 
 #import "LLConfig.h"
-#import "LLFactory.h"
-#import "LLConst.h"
+
 #import "LLThemeManager.h"
-#import "LLTool.h"
 #import "LLDebugTool.h"
-#import "LLNetworkHelper.h"
-#import "LLLogHelper.h"
-#import "LLCrashHelper.h"
-#import "LLAppInfoHelper.h"
-#import "LLScreenshotHelper.h"
+#import "LLFactory.h"
+#import "LLRouter.h"
+#import "LLConst.h"
+#import "LLTool.h"
+
 
 static LLConfig *_instance = nil;
 
@@ -89,11 +87,11 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             BOOL crashEnable = availables & LLConfigAvailableCrash;
             BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
             BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
-            [[LLNetworkHelper shared] setEnable:networkEnable];
-            [[LLLogHelper shared] setEnable:logEnable];
-            [[LLCrashHelper shared] setEnable:crashEnable];
-            [[LLAppInfoHelper shared] setEnable:appInfoEnable];
-            [[LLScreenshotHelper shared] setEnable:screenshotEnable];
+            [LLRouter setNetworkHelperEnable:networkEnable];
+            [LLRouter setLogHelperEnable:logEnable];
+            [LLRouter setCrashHelperEnable:crashEnable];
+            [LLRouter setAppInfoHelperEnable:appInfoEnable];
+            [LLRouter setScreenshotHelperEnable:screenshotEnable];
         }
     }
 }

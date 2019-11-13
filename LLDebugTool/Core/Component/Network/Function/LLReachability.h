@@ -26,14 +26,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>
 
-typedef NS_ENUM(NSUInteger, LLNetworkStatus) {
-    LLNetworkStatusNotReachable = 0,
-    LLNetworkStatusReachableViaWiFi,
-    LLNetworkStatusReachableViaWWAN,
-    LLNetworkStatusReachableViaWWAN2G,
-    LLNetworkStatusReachableViaWWAN3G,
-    LLNetworkStatusReachableViaWWAN4G
-};
+#import "LLNetworkDefine.h"
 
 FOUNDATION_EXTERN NSString *kLLReachabilityChangedNotification;
 

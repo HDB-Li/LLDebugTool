@@ -1,5 +1,5 @@
 //
-//  LLFunctionItemModel.h
+//  LLRouter+AppInfo.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,46 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
-
-#import "LLDebugTool.h"
-
-@class LLComponent;
+#import "LLRouter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- The model of LLFunctionCell.
- */
-@interface LLFunctionItemModel : LLBaseModel
+@interface LLRouter (AppInfo)
 
-/**
- The name of the display image.
- */
-@property (nonatomic, copy, readonly) NSString *imageName;
-
-/**
- The title to display.
- */
-@property (nonatomic, copy, readonly) NSString *title;
-
-/**
- Specified action.
- */
-@property (nonatomic, assign, readonly) LLDebugToolAction action;
-
-/**
- Action component.
- */
-@property (nonatomic, strong, readonly) LLComponent *component;
-
-/**
- Specifies the init method.
-
- @param action Specified action.
- @return Instance object.
- */
-- (instancetype _Nullable)initWithAction:(LLDebugToolAction)action;
++ (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
 @end
 

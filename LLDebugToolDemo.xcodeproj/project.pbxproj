@@ -76,6 +76,9 @@
 		36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4497231F9D0700AC772B /* LLSettingViewController.m */; };
 		36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449A231FC57D00AC772B /* LLTitleCellModel.m */; };
 		36AB449E231FC5D800AC772B /* LLTitleCellCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449D231FC5D800AC772B /* LLTitleCellCategoryModel.m */; };
+		36B8563E237BA9F600210B94 /* LLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B8563D237BA9F600210B94 /* LLRouter.m */; };
+		36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85646237BE48D00210B94 /* LLRouter+Network.m */; };
+		36B8564A237BF0F800210B94 /* LLRouter+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */; };
 		36BB1E1B2320E679000D8F29 /* LLDetailTitleSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */; };
 		36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */; };
 		36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */; };
@@ -372,6 +375,15 @@
 		36AB449D231FC5D800AC772B /* LLTitleCellCategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellCategoryModel.m; sourceTree = "<group>"; };
 		36AB44A9231FC7A700AC772B /* LLTitleSwitchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSwitchCell.h; sourceTree = "<group>"; };
 		36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCell.m; sourceTree = "<group>"; };
+		36B8563C237BA9F600210B94 /* LLRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRouter.h; sourceTree = "<group>"; };
+		36B8563D237BA9F600210B94 /* LLRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRouter.m; sourceTree = "<group>"; };
+		36B85642237BE2D900210B94 /* LLNetworkDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkDefine.h; sourceTree = "<group>"; };
+		36B85645237BE48D00210B94 /* LLRouter+Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Network.h"; sourceTree = "<group>"; };
+		36B85646237BE48D00210B94 /* LLRouter+Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Network.m"; sourceTree = "<group>"; };
+		36B85648237BF0F800210B94 /* LLRouter+AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+AppInfo.h"; sourceTree = "<group>"; };
+		36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+AppInfo.m"; sourceTree = "<group>"; };
+		36B8564B237BF2A100210B94 /* LLLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLog.h; sourceTree = "<group>"; };
+		36B8564C237C0B7300210B94 /* LLCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrash.h; sourceTree = "<group>"; };
 		36BB1E192320E679000D8F29 /* LLDetailTitleSelectorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCell.h; sourceTree = "<group>"; };
 		36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCell.m; sourceTree = "<group>"; };
 		36BB1E1D2320E89C000D8F29 /* LLConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLConfigHelper.h; sourceTree = "<group>"; };
@@ -949,6 +961,19 @@
 			path = AnimateView;
 			sourceTree = "<group>";
 		};
+		36B8563B237BA9E600210B94 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				36B8563C237BA9F600210B94 /* LLRouter.h */,
+				36B8563D237BA9F600210B94 /* LLRouter.m */,
+				36B85645237BE48D00210B94 /* LLRouter+Network.h */,
+				36B85646237BE48D00210B94 /* LLRouter+Network.m */,
+				36B85648237BF0F800210B94 /* LLRouter+AppInfo.h */,
+				36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		36BB1E1C2320E88A000D8F29 /* LLConfigHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1338,6 +1363,7 @@
 				C498564C22ED8D4700E9FBE2 /* UserInterface */,
 				C49856F922EDB2BC00E9FBE2 /* LLCrashComponent.h */,
 				C49856FA22EDB2BC00E9FBE2 /* LLCrashComponent.m */,
+				36B8564C237C0B7300210B94 /* LLCrash.h */,
 			);
 			path = Crash;
 			sourceTree = "<group>";
@@ -1394,6 +1420,7 @@
 				C498566D22ED8D4800E9FBE2 /* UserInterface */,
 				C49856ED22EDB07300E9FBE2 /* LLLogComponent.h */,
 				C49856EE22EDB07300E9FBE2 /* LLLogComponent.m */,
+				36B8564B237BF2A100210B94 /* LLLog.h */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -1558,6 +1585,7 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				36B8563B237BA9E600210B94 /* Router */,
 				36059403237AB0B100C2D8FF /* Component */,
 				36BB1E1C2320E88A000D8F29 /* LLConfigHelper */,
 				36DC10FA22FA60AA0078B7BC /* ToastUtils */,
@@ -1579,6 +1607,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B4E39022F9C90900F70277 /* LLLogHelperEventDefine.h */,
+				36B85642237BE2D900210B94 /* LLNetworkDefine.h */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -2242,6 +2271,7 @@
 				36CDFBCE2350639E002A913F /* LLHtmlViewController.m in Sources */,
 				360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */,
 				C4B4E43F22F9C90900F70277 /* UIButton+LL_Utils.m in Sources */,
+				36B8563E237BA9F600210B94 /* LLRouter.m in Sources */,
 				36CDFBCB23506388002A913F /* LLHtmlWindow.m in Sources */,
 				C49856D022ED90C800E9FBE2 /* LLLogModel.m in Sources */,
 				36596BC822FD065D00BBB6FA /* LLMoveView.m in Sources */,
@@ -2311,6 +2341,7 @@
 				360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */,
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
 				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,
+				36B8564A237BF0F800210B94 /* LLRouter+AppInfo.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,
 				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
@@ -2367,6 +2398,7 @@
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
 				C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */,
 				C49856F522EDB1FE00E9FBE2 /* LLSandboxComponent.m in Sources */,
+				36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */,
 				C49856E922EDACD200E9FBE2 /* LLComponent.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,

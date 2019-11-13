@@ -23,66 +23,88 @@
 
 #import "LLFunctionItemModel.h"
 
-#import "LLConvenientScreenshotComponent.h"
-#import "LLWidgetBorderComponent.h"
-#import "LLScreenshotComponent.h"
-#import "LLHierarchyComponent.h"
-#import "LLMagnifierComponent.h"
-#import "LLFunctionComponent.h"
-#import "LLNetworkComponent.h"
-#import "LLNetworkComponent.h"
-#import "LLAppInfoComponent.h"
-#import "LLSandboxComponent.h"
-#import "LLSettingComponent.h"
 #import "LLImageNameConfig.h"
-#import "LLCrashComponent.h"
-#import "LLRulerComponent.h"
-#import "LLHtmlComponent.h"
-#import "LLLogComponent.h"
 
 @implementation LLFunctionItemModel
 
-- (instancetype _Nonnull )initWithAction:(LLDebugToolAction)action {
+- (instancetype _Nullable)initWithAction:(LLDebugToolAction)action {
     if (self = [super init]) {
         _action = action;
+        LLComponent *component = [self componentFromAction:action];
+        if (!component) {
+            return nil;
+        }
+        _component = component;
         _imageName = [self imageNameFromAction:action];
         _title = [self titleFromAction:action];
-        _component = [self componentFromAction:action];
     }
     return self;
 }
 
-- (LLComponent *)componentFromAction:(LLDebugToolAction)action {
+- (LLComponent *_Nullable)componentFromAction:(LLDebugToolAction)action {
+    NSString *component = nil;
     switch (action) {
-        case LLDebugToolActionFunction:
-            return [[LLFunctionComponent alloc] init];
-        case LLDebugToolActionSetting:
-            return [[LLSettingComponent alloc] init];
-        case LLDebugToolActionNetwork:
-            return [[LLNetworkComponent alloc] init];
-        case LLDebugToolActionLog:
-            return [[LLLogComponent alloc] init];
-        case LLDebugToolActionCrash:
-            return [[LLCrashComponent alloc] init];
-        case LLDebugToolActionAppInfo:
-            return [[LLAppInfoComponent alloc] init];
-        case LLDebugToolActionSandbox:
-            return [[LLSandboxComponent alloc] init];
-        case LLDebugToolActionScreenshot:
-            return [[LLScreenshotComponent alloc] init];
-        case LLDebugToolActionConvenientScreenshot:
-            return [[LLConvenientScreenshotComponent alloc] init];
-        case LLDebugToolActionHierarchy:
-            return [[LLHierarchyComponent alloc] init];
-        case LLDebugToolActionMagnifier:
-            return [[LLMagnifierComponent alloc] init];
-        case LLDebugToolActionRuler:
-            return [[LLRulerComponent alloc] init];
-        case LLDebugToolActionWidgetBorder:
-            return [[LLWidgetBorderComponent alloc] init];
-        case LLDebugToolActionHtml:
-            return [[LLHtmlComponent alloc] init];
+        case LLDebugToolActionFunction: {
+            component = @"LLFunctionComponent";
+        }
+            break;
+        case LLDebugToolActionSetting: {
+            component = @"LLSettingComponent";
+        }
+            break;
+        case LLDebugToolActionNetwork: {
+            component = @"LLNetworkComponent";
+        }
+            break;
+        case LLDebugToolActionLog: {
+            component = @"LLLogComponent";
+        }
+            break;
+        case LLDebugToolActionCrash: {
+            component = @"LLCrashComponent";
+        }
+            break;
+        case LLDebugToolActionAppInfo: {
+            component = @"LLAppInfoComponent";
+        }
+            break;
+        case LLDebugToolActionSandbox: {
+            component = @"LLSandboxComponent";
+        }
+            break;
+        case LLDebugToolActionScreenshot: {
+            component = @"LLScreenshotComponent";
+        }
+            break;
+        case LLDebugToolActionConvenientScreenshot: {
+            component = @"LLConvenientScreenshotComponent";
+        }
+            break;
+        case LLDebugToolActionHierarchy: {
+            component = @"LLHierarchyComponent";
+        }
+            break;
+        case LLDebugToolActionMagnifier: {
+            component = @"LLMagnifierComponent";
+        }
+            break;
+        case LLDebugToolActionRuler: {
+            component = @"LLRulerComponent";
+        }
+            break;
+        case LLDebugToolActionWidgetBorder: {
+            component = @"LLWidgetBorderComponent";
+        }
+            break;
+        case LLDebugToolActionHtml: {
+            component = @"LLHtmlComponent";
+        }
+            break;
     }
+    if (component) {
+        return [[NSClassFromString(component) alloc] init];
+    }
+    return nil;
 }
 
 - (NSString *)titleFromAction:(LLDebugToolAction)action {

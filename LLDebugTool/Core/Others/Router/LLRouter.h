@@ -1,5 +1,5 @@
 //
-//  LLFunctionItemModel.h
+//  LLRouter.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,46 +21,43 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseModel.h"
+#import <Foundation/Foundation.h>
 
-#import "LLDebugTool.h"
-
-@class LLComponent;
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- The model of LLFunctionCell.
- */
-@interface LLFunctionItemModel : LLBaseModel
+/// Router
+@interface LLRouter : NSObject
 
-/**
- The name of the display image.
- */
-@property (nonatomic, copy, readonly) NSString *imageName;
+/// Set LLCrashHelper enable.
+/// @param isEnable Is enable.
++ (void)setCrashHelperEnable:(BOOL)isEnable;
 
-/**
- The title to display.
- */
-@property (nonatomic, copy, readonly) NSString *title;
+/// Set LLLogHelper enable.
+/// @param isEnable Is enable.
++ (void)setLogHelperEnable:(BOOL)isEnable;
 
-/**
- Specified action.
- */
-@property (nonatomic, assign, readonly) LLDebugToolAction action;
+/// Set LLNetworkHelper enable.
+/// @param isEnable Is enable.
++ (void)setNetworkHelperEnable:(BOOL)isEnable;
 
-/**
- Action component.
- */
-@property (nonatomic, strong, readonly) LLComponent *component;
+/// Set LLAppInfoHelper enable.
+/// @param isEnable Is enable.
++ (void)setAppInfoHelperEnable:(BOOL)isEnable;
 
-/**
- Specifies the init method.
+/// Set LLScreenshotHelper enable.
+/// @param isEnable Is enable.
++ (void)setScreenshotHelperEnable:(BOOL)isEnable;
 
- @param action Specified action.
- @return Instance object.
- */
-- (instancetype _Nullable)initWithAction:(LLDebugToolAction)action;
+/// Call LLLogHelper if enable.
+/// @param file File name.
+/// @param function Function name.
+/// @param lineNo Line No.
+/// @param level Level.
+/// @param onEvent Event.
+/// @param message Message.
++ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message;
 
 @end
 

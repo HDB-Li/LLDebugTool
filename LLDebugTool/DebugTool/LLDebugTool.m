@@ -22,21 +22,18 @@
 //  SOFTWARE.
 
 #import "LLDebugTool.h"
-#import "LLScreenshotHelper.h"
-#import "LLStorageManager.h"
-#import "LLNetworkHelper.h"
-#import "LLCrashHelper.h"
-#import "LLLogHelper.h"
-#import "LLAppInfoHelper.h"
-#import "LLDebugToolMacros.h"
+
 #import "LLLogHelperEventDefine.h"
+#import "LLFunctionItemModel.h"
+#import "LLDebugToolMacros.h"
+#import "LLSettingManager.h"
+#import "LLWindowManager.h"
+#import "LLComponent.h"
+#import "LLRouter.h"
 #import "LLConfig.h"
 #import "LLTool.h"
-#import "LLWindowManager.h"
-#import "LLFunctionItemModel.h"
-#import "LLSettingManager.h"
+
 #import "UIResponder+LL_Utils.h"
-#import "LLComponent.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -69,23 +66,23 @@ static LLDebugTool *_instance = nil;
         LLConfigAvailableFeature available = [LLConfig shared].availables;
         if (available & LLConfigAvailableCrash) {
             // Open crash helper
-            [[LLCrashHelper shared] setEnable:YES];
+            [LLRouter setCrashHelperEnable:YES];
         }
         if (available & LLConfigAvailableLog) {
             // Open log helper
-            [[LLLogHelper shared] setEnable:YES];
+            [LLRouter setLogHelperEnable:YES];
         }
         if (available & LLConfigAvailableNetwork) {
             // Open network monitoring
-            [[LLNetworkHelper shared] setEnable:YES];
+            [LLRouter setNetworkHelperEnable:YES];
         }
         if (available & LLConfigAvailableAppInfo) {
             // Open app monitoring
-            [[LLAppInfoHelper shared] setEnable:YES];
+            [LLRouter setAppInfoHelperEnable:YES];
         }
         if (available & LLConfigAvailableScreenshot) {
             // Open screenshot
-            [[LLScreenshotHelper shared] setEnable:YES];
+            [LLRouter setScreenshotHelperEnable:YES];
         }
         [self prepareToStart];
         // show window
@@ -109,15 +106,15 @@ static LLDebugTool *_instance = nil;
     if (_isWorking) {
         _isWorking = NO;
         // Close screenshot
-        [[LLScreenshotHelper shared] setEnable:NO];
+        [LLRouter setScreenshotHelperEnable:NO];
         // Close app monitoring
-        [[LLAppInfoHelper shared] setEnable:NO];
+        [LLRouter setAppInfoHelperEnable:NO];
         // Close network monitoring
-        [[LLNetworkHelper shared] setEnable:NO];
+        [LLRouter setNetworkHelperEnable:NO];
         // Close log helper
-        [[LLLogHelper shared] setEnable:NO];
+        [LLRouter setLogHelperEnable:NO];
         // Close crash helper
-        [[LLCrashHelper shared] setEnable:NO];
+        [LLRouter setCrashHelperEnable:NO];
         // hide window
         [self hideWindow];
         
@@ -145,7 +142,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
+    [LLRouter logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
 #pragma mark - Notifications
@@ -186,14 +183,8 @@ static LLDebugTool *_instance = nil;
     }
     
     if ([self.versionNumber compare:version] == NSOrderedDescending) {
-        // Do update if needed.
-        [self updateSomethingWithVersion:version completion:^(BOOL result) {
-            if (!result) {
-                NSLog(@"Failed to update old data");
-            }
-            [localInfo setObject:self.versionNumber forKey:@"version"];
-            [localInfo writeToFile:filePath atomically:YES];
-        }];
+        [localInfo setObject:self.versionNumber forKey:@"version"];
+        [localInfo writeToFile:filePath atomically:YES];
     }
     
     if (self.isBetaVersion) {
@@ -227,21 +218,6 @@ static LLDebugTool *_instance = nil;
             [dataTask resume];
         }
     });
-}
-
-- (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {
-    // Refactory database. Need rename tableName and table structure.
-    if ([version compare:@"1.1.3"] == NSOrderedAscending) {
-        [[LLStorageManager shared] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
-            if (completion) {
-                completion(result);
-            }
-        }];
-    } else {
-        if (completion) {
-            completion(YES);
-        }
-    }
 }
 
 - (void)prepareToStart {
