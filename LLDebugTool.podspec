@@ -78,4 +78,10 @@ Pod::Spec.new do |s|
     ss.resources                = "LLDebugTool/Components/WidgetBorder/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
   end
   
+  s.subspec 'Html' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/Html/LLHtml.h"
+    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Html/**/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
+    ss.resources                = "LLDebugTool/Components/Html/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
+  end
+  
 end
