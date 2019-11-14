@@ -42,4 +42,10 @@ Pod::Spec.new do |s|
     ss.resources                = "LLDebugTool/Components/AppInfo/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
   end
   
+  s.subspec 'Sandbox' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/Sandbox/LLSandbox.h"
+    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Sandbox/**/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
+    ss.resources                = "LLDebugTool/Components/Sandbox/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
+  end
+  
 end
