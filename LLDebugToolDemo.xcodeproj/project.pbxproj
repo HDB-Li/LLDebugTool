@@ -52,6 +52,7 @@
 		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
 		364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */; };
 		364AC6F3237CE8F5007F0F29 /* LLRouter+Crash.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */; };
+		364AC6FA237CFB84007F0F29 /* LLRouter+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */; };
 		364CF3DB23265A1C000B513F /* LLRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 364CF3DA23265A1C000B513F /* LLRulerComponent.m */; };
 		364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64A2322087C0067C7D7 /* LLAnimateView.m */; };
 		3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */; };
@@ -327,6 +328,10 @@
 		364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Crash.m"; sourceTree = "<group>"; };
 		364AC6F4237CEE98007F0F29 /* LLSandbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandbox.h; sourceTree = "<group>"; };
 		364AC6F5237CF63F007F0F29 /* LLScreenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshot.h; sourceTree = "<group>"; };
+		364AC6F6237CF7C8007F0F29 /* LLHierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchy.h; sourceTree = "<group>"; };
+		364AC6F7237CFA8D007F0F29 /* LLMagnifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifier.h; sourceTree = "<group>"; };
+		364AC6F8237CFB84007F0F29 /* LLRouter+Screenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Screenshot.h"; sourceTree = "<group>"; };
+		364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Screenshot.m"; sourceTree = "<group>"; };
 		364CF3D923265A1C000B513F /* LLRulerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerComponent.h; sourceTree = "<group>"; };
 		364CF3DA23265A1C000B513F /* LLRulerComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerComponent.m; sourceTree = "<group>"; };
 		364EF6492322087C0067C7D7 /* LLAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnimateView.h; sourceTree = "<group>"; };
@@ -979,6 +984,8 @@
 				364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */,
 				36B85648237BF0F800210B94 /* LLRouter+AppInfo.h */,
 				36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */,
+				364AC6F8237CFB84007F0F29 /* LLRouter+Screenshot.h */,
+				364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1310,6 +1317,7 @@
 				C498562B22ED8D4700E9FBE2 /* UserInterface */,
 				C498570522EDB3EF00E9FBE2 /* LLHierarchyComponent.h */,
 				C498570622EDB3EF00E9FBE2 /* LLHierarchyComponent.m */,
+				364AC6F6237CF7C8007F0F29 /* LLHierarchy.h */,
 			);
 			path = Hierarchy;
 			sourceTree = "<group>";
@@ -1570,6 +1578,7 @@
 				C498571522EDE39700E9FBE2 /* UserInterface */,
 				C498571222EDE35D00E9FBE2 /* LLMagnifierComponent.h */,
 				C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */,
+				364AC6F7237CFA8D007F0F29 /* LLMagnifier.h */,
 			);
 			path = Magnifier;
 			sourceTree = "<group>";
@@ -2312,6 +2321,7 @@
 				36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */,
 				360075E2235571EF00A606AC /* TestHtmlViewController.m in Sources */,
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,
+				364AC6FA237CFB84007F0F29 /* LLRouter+Screenshot.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,
 				36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */,

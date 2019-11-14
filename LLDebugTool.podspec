@@ -54,4 +54,16 @@ Pod::Spec.new do |s|
     ss.resources                = "LLDebugTool/Components/Screenshot/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
   end
   
+  s.subspec 'Hierarchy' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/Hierarchy/LLHierarchy.h"
+    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Hierarchy/**/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
+    ss.resources                = "LLDebugTool/Components/Hierarchy/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
+  end
+  
+  s.subspec 'Magnifier' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/Magnifier/LLMagnifier.h"
+    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Magnifier/**/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
+    ss.resources                = "LLDebugTool/Components/Magnifier/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
+  end
+  
 end
