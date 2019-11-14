@@ -37,6 +37,9 @@
 #import "LLTool.h"
 
 #import "NSObject+LL_Utils.h"
+#import "LLRouter+Network.h"
+#import "LLRouter+Crash.h"
+#import "LLRouter+Log.h"
 
 static LLStorageManager *_instance = nil;
 
@@ -135,8 +138,10 @@ static NSString *const kDatabaseVersion = @"1";
     }
     
     // Check datas.
-    if (![self isRegisteredClass:cls]) {
-        [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+    if (!cls || ![self isRegisteredClass:cls]) {
+        if (cls) {
+            [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        }
         [self performArrayComplete:complete param:@[] synchronous:synchronous];
         return;
     }
@@ -320,9 +325,9 @@ static NSString *const kDatabaseVersion = @"1";
     
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:filePath];
     
-    BOOL ret1 = [self registerClass:NSClassFromString(@"LLCrashModel")];;
-    BOOL ret2 = [self registerClass:NSClassFromString(@"LLNetworkModel")];;
-    BOOL ret3 = [self registerClass:NSClassFromString(@"LLLogModel")];;
+    BOOL ret1 = [self registerClass:[LLRouter crashModelClass]];;
+    BOOL ret2 = [self registerClass:[LLRouter networkModelClass]];;
+    BOOL ret3 = [self registerClass:[LLRouter logModelClass]];;
 
     return ret1 && ret2 && ret3;
 }
@@ -342,7 +347,7 @@ static NSString *const kDatabaseVersion = @"1";
 
     __block NSArray *crashModels = @[];
  
-    Class cls = NSClassFromString(@"LLCrashModel");
+    Class cls = [LLRouter crashModelClass];
     
     if (cls) {
         [self getModels:cls launchDate:nil storageIdentity:nil complete:^(NSArray<LLStorageModel *> *result) {
@@ -365,7 +370,7 @@ static NSString *const kDatabaseVersion = @"1";
     __block BOOL ret = YES;
     __block BOOL ret2 = YES;
     [_dbQueue inDatabase:^(FMDatabase * db) {
-        Class cls = NSClassFromString(@"LLLogModel");
+        Class cls = [LLRouter logModelClass];
         if (cls) {
             NSString *logTableName = [self tableNameFromClass:cls];
             NSString *launchDateString = [self convertArrayToSQL:launchDates];
@@ -375,7 +380,7 @@ static NSString *const kDatabaseVersion = @"1";
             }
         }
         
-        Class cls2 = NSClassFromString(@"LLNetworkModel");
+        Class cls2 = [LLRouter networkModelClass];
         if (cls2) {
             NSString *networkTableName = [self tableNameFromClass:cls2];
             NSString *networkLaunchDateString = [self convertArrayToSQL:launchDates];

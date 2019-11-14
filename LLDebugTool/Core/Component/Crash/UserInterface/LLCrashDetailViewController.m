@@ -24,16 +24,14 @@
 #import "LLCrashDetailViewController.h"
 
 #import "LLSubTitleTableViewCell.h"
-#import "LLLogViewController.h"
 #import "LLStorageManager.h"
-#import "LLNetworkModel.h"
 #import "LLToastUtils.h"
 #import "LLCrashModel.h"
-#import "LLLogModel.h"
 #import "LLMacros.h"
 #import "LLConfig.h"
 
 #import "LLRouter+Network.h"
+#import "LLRouter+Log.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -84,11 +82,12 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *title = self.titleArray[indexPath.row];
     if ([title isEqualToString:@"Logs"]) {
-        LLLogViewController *vc = [[LLLogViewController alloc] init];
-        vc.launchDate = self.model.launchDate;
-        [self.navigationController pushViewController:vc animated:YES];
+        UIViewController *vc = [LLRouter logViewControllerWithLaunchDate:self.model.launchDate];
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else if ([title isEqualToString:@"Network Requests"]) {
-        UIViewController *vc = [LLRouter NetworkViewControllerWithLaunchDate:self.model.launchDate];
+        UIViewController *vc = [LLRouter networkViewControllerWithLaunchDate:self.model.launchDate];
         if (vc) {
             [self.navigationController pushViewController:vc animated:YES];
         }        
@@ -107,10 +106,10 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:@"Loading"];
-    [[LLStorageManager shared] getModels:[LLLogModel class] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+    [[LLStorageManager shared] getModels:[LLRouter logModelClass] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
         // Get log models.
         __block NSArray *logs = result;
-        [[LLStorageManager shared] getModels:[LLNetworkModel class] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
+        [[LLStorageManager shared] getModels:[LLRouter networkModelClass] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
             [[LLToastUtils shared] hide];
             // Get nework requests.
             NSArray *networkRequests = result;

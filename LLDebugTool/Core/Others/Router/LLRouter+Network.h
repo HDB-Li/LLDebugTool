@@ -29,9 +29,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRouter (Network)
 
+/// Network status from state bar.
 + (LLNetworkStatus)networkStateFromStatebar;
 
-+ (UIViewController *_Nullable)NetworkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate;
+
+/// Get LLNetworkViewController.
+/// @param launchDate Launch date.
++ (UIViewController *_Nullable)networkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate;
+
+/// LLNetworkModel class.
++ (Class _Nullable)networkModelClass;
+
+/// LLNetworkViewController class.
++ (Class _Nullable)networkViewControllerClass;
 
 @end
 

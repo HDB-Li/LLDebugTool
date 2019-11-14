@@ -1,5 +1,5 @@
 //
-//  LLRouter+AppInfo.h
+//  LLRouter+Crash.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLRouter.h"
+#import "LLRouter+Crash.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLRouter (Crash)
 
-@interface LLRouter (AppInfo)
-
-/// Call LLAppInfoHelper if able.
-+ (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
-
-/// Call by LLAppInfoHelper if able.
-+ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
++ (Class _Nullable)crashModelClass {
+    return NSClassFromString(@"LLCrashModel");
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

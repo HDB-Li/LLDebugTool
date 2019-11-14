@@ -134,14 +134,22 @@
     return returnValue;
 }
 
-+ (UIViewController *)NetworkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate {
-    Class cls = NSClassFromString(@"LLNetworkViewController");
++ (UIViewController *)networkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate {
+    Class cls = [self networkViewControllerClass];
     if (!cls) {
         return nil;
     }
     UIViewController *vc = [[cls alloc] init];
     [vc setValue:launchDate forKey:@"launchDate"];
     return vc;
+}
+
++ (Class _Nullable)networkModelClass {
+    return NSClassFromString(@"LLNetworkModel");
+}
+
++ (Class _Nullable)networkViewControllerClass {
+    return NSClassFromString(@"LLNetworkViewController");
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  LLRouter+AppInfo.h
+//  LLRouter+Log.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLRouter.h"
+#import "LLRouter+Log.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLRouter (Log)
 
-@interface LLRouter (AppInfo)
++ (UIViewController *_Nullable)logViewControllerWithLaunchDate:(NSString *_Nullable)launchDate {
+    Class cls = [self logViewControllerClass];
+    if (!cls) {
+        return nil;
+    }
+    UIViewController *vc = [[cls alloc] init];
+    [vc setValue:launchDate forKey:@"launchDate"];
+    return vc;
+}
 
-/// Call LLAppInfoHelper if able.
-+ (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
++ (Class _Nullable)logModelClass {
+    return NSClassFromString(@"LLLogModel");
+}
 
-/// Call by LLAppInfoHelper if able.
-+ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
++ (Class _Nullable)logViewControllerClass {
+    return NSClassFromString(@"LLLogViewController");
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

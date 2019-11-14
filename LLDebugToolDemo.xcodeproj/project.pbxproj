@@ -43,7 +43,6 @@
 		362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87AD232660A000A27F05 /* LLRulerViewController.m */; };
 		362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */; };
 		363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 363158962356C37A003DEF8C /* NSInputStream+LL_Network.m */; };
-		3631589E2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */; };
 		3633F584232F395100C62185 /* LLWidgetBorderComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3633F583232F395100C62185 /* LLWidgetBorderComponent.m */; };
 		363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363DEC522325DFE90090E78C /* LLTitleSliderCell.m */; };
 		364570F72313B80800C29200 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 364570F32313B80800C29200 /* LICENSE */; };
@@ -51,6 +50,8 @@
 		364570F92313B80800C29200 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F52313B80800C29200 /* CHANGELOG.md */; };
 		364570FA2313B80800C29200 /* README-cn.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F62313B80800C29200 /* README-cn.md */; };
 		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
+		364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */; };
+		364AC6F3237CE8F5007F0F29 /* LLRouter+Crash.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */; };
 		364CF3DB23265A1C000B513F /* LLRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 364CF3DA23265A1C000B513F /* LLRulerComponent.m */; };
 		364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64A2322087C0067C7D7 /* LLAnimateView.m */; };
 		3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */; };
@@ -311,8 +312,6 @@
 		362F87B02326614000A27F05 /* LLRulerPickerInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoView.m; sourceTree = "<group>"; };
 		363158952356C37A003DEF8C /* NSInputStream+LL_Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSInputStream+LL_Network.h"; sourceTree = "<group>"; };
 		363158962356C37A003DEF8C /* NSInputStream+LL_Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSInputStream+LL_Network.m"; sourceTree = "<group>"; };
-		3631589C2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLNetworkHelper+WKWebView.h"; sourceTree = "<group>"; };
-		3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLNetworkHelper+WKWebView.m"; sourceTree = "<group>"; };
 		3633F582232F395100C62185 /* LLWidgetBorderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderComponent.h; sourceTree = "<group>"; };
 		3633F583232F395100C62185 /* LLWidgetBorderComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderComponent.m; sourceTree = "<group>"; };
 		363DEC512325DFE90090E78C /* LLTitleSliderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSliderCell.h; sourceTree = "<group>"; };
@@ -322,6 +321,10 @@
 		364570F52313B80800C29200 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		364570F62313B80800C29200 /* README-cn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-cn.md"; sourceTree = "<group>"; };
 		364570FB2313B82200C29200 /* LLDebugTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.podspec; sourceTree = "<group>"; };
+		364AC6EE237CE50F007F0F29 /* LLRouter+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Log.h"; sourceTree = "<group>"; };
+		364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Log.m"; sourceTree = "<group>"; };
+		364AC6F1237CE8F5007F0F29 /* LLRouter+Crash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Crash.h"; sourceTree = "<group>"; };
+		364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Crash.m"; sourceTree = "<group>"; };
 		364CF3D923265A1C000B513F /* LLRulerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerComponent.h; sourceTree = "<group>"; };
 		364CF3DA23265A1C000B513F /* LLRulerComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerComponent.m; sourceTree = "<group>"; };
 		364EF6492322087C0067C7D7 /* LLAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnimateView.h; sourceTree = "<group>"; };
@@ -968,6 +971,10 @@
 				36B8563D237BA9F600210B94 /* LLRouter.m */,
 				36B85645237BE48D00210B94 /* LLRouter+Network.h */,
 				36B85646237BE48D00210B94 /* LLRouter+Network.m */,
+				364AC6EE237CE50F007F0F29 /* LLRouter+Log.h */,
+				364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */,
+				364AC6F1237CE8F5007F0F29 /* LLRouter+Crash.h */,
+				364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */,
 				36B85648237BF0F800210B94 /* LLRouter+AppInfo.h */,
 				36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */,
 			);
@@ -1538,8 +1545,6 @@
 				36743D3F2313879700002A92 /* LLReachability.m */,
 				C49856D622ED90DD00E9FBE2 /* LLURLProtocol.h */,
 				C49856D522ED90DD00E9FBE2 /* LLURLProtocol.m */,
-				3631589C2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.h */,
-				3631589D2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -2238,6 +2243,7 @@
 				3605940C237AB69E00C2D8FF /* LLWindowManager+Log.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
+				364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */,
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
 				3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */,
@@ -2316,7 +2322,6 @@
 				C49856FB22EDB2BC00E9FBE2 /* LLCrashComponent.m in Sources */,
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
-				3631589E2356EC6E003DEF8C /* LLNetworkHelper+WKWebView.m in Sources */,
 				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
 				3600762D2355AEE500A606AC /* LLComponentNavigationController.m in Sources */,
 				36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */,
@@ -2384,6 +2389,7 @@
 				36CDFBC823506374002A913F /* LLHtmlComponent.m in Sources */,
 				C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */,
 				C498570122EDB35000E9FBE2 /* LLNetworkComponent.m in Sources */,
+				364AC6F3237CE8F5007F0F29 /* LLRouter+Crash.m in Sources */,
 				365912502320B3E300FDA6A0 /* LLTitleCell.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,

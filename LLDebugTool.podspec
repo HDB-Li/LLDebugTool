@@ -15,12 +15,12 @@ Pod::Spec.new do |s|
   s.frameworks          = "Foundation", "UIKit", "Photos", "SystemConfiguration", "CoreTelephony", "QuickLook", "WebKit"
   s.dependency            "FMDB", "~> 2.0"
 
-#  s.subspec 'Network' do |ss|
-#    ss.public_header_files      = "LLDebugTool/Core/Component/Network/LLNetwork.h"
-#    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Network/**/*.{h,m}", "LLDebugTool/Core/Storage/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
-#    ss.resources                = "LLDebugTool/Components/Network/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Storage/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
-#   ss.dependency                 "FMDB", "~> 2.0"
-# end
+  s.subspec 'Network' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/Network/LLNetwork.h"
+    ss.source_files             = "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Component/Network/**/*.{h,m}", "LLDebugTool/Core/Storage/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}"
+    ss.resources                = "LLDebugTool/Components/Network/**/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Storage/*.{xib,storyboard,bundle}", "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
+   ss.dependency                 "FMDB", "~> 2.0"
+ end
 
   s.subspec 'Log' do |ss|
     ss.public_header_files      = "LLDebugTool/Core/Component/Log/LLLog.h"
