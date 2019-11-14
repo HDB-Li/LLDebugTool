@@ -326,6 +326,7 @@
 		364AC6F1237CE8F5007F0F29 /* LLRouter+Crash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Crash.h"; sourceTree = "<group>"; };
 		364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Crash.m"; sourceTree = "<group>"; };
 		364AC6F4237CEE98007F0F29 /* LLSandbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandbox.h; sourceTree = "<group>"; };
+		364AC6F5237CF63F007F0F29 /* LLScreenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshot.h; sourceTree = "<group>"; };
 		364CF3D923265A1C000B513F /* LLRulerComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerComponent.h; sourceTree = "<group>"; };
 		364CF3DA23265A1C000B513F /* LLRulerComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerComponent.m; sourceTree = "<group>"; };
 		364EF6492322087C0067C7D7 /* LLAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnimateView.h; sourceTree = "<group>"; };
@@ -1269,6 +1270,7 @@
 				C498570C22EDB49700E9FBE2 /* LLScreenshotComponent.m */,
 				36BB1E3523211AF9000D8F29 /* LLConvenientScreenshotComponent.h */,
 				36BB1E3623211AF9000D8F29 /* LLConvenientScreenshotComponent.m */,
+				364AC6F5237CF63F007F0F29 /* LLScreenshot.h */,
 			);
 			path = Screenshot;
 			sourceTree = "<group>";
