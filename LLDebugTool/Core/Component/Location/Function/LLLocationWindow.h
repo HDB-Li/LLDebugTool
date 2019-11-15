@@ -1,7 +1,5 @@
 //
-//  LLTitleView.h
-//
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  LLLocationWindow.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +19,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseView.h"
+#import "LLComponentWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Title view.
-@interface LLTitleView : LLBaseView
-
-/// Title label.
-@property (nonatomic, strong, readonly) UILabel *titleLabel;
+@interface LLLocationWindow : LLComponentWindow
 
 @end
 

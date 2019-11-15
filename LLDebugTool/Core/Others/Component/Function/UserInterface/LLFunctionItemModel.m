@@ -100,6 +100,9 @@
             component = @"LLHtmlComponent";
         }
             break;
+        case LLDebugToolActionLocation: {
+            component = @"LLLocationComponent";
+        }
     }
     if (component) {
         return [[NSClassFromString(component) alloc] init];
@@ -108,67 +111,131 @@
 }
 
 - (NSString *)titleFromAction:(LLDebugToolAction)action {
+    NSString *title = @"";
     switch (action) {
-        case LLDebugToolActionFunction:
-            return @"Function";
-        case LLDebugToolActionSetting:
-            return @"Setting";
-        case LLDebugToolActionNetwork:
-            return @"Net";
-        case LLDebugToolActionLog:
-            return @"Log";
-        case LLDebugToolActionCrash:
-            return @"Crash";
-        case LLDebugToolActionAppInfo:
-            return @"App Info";
-        case LLDebugToolActionSandbox:
-            return @"Sandbox";
-        case LLDebugToolActionScreenshot:
-            return @"Screenshot";
-        case LLDebugToolActionConvenientScreenshot:
-            return @"Convenient Screenshot";
-        case LLDebugToolActionHierarchy:
-            return @"Hierarchy";
-        case LLDebugToolActionMagnifier:
-            return @"Magnifier";
-        case LLDebugToolActionRuler:
-            return @"Ruler";
-        case LLDebugToolActionWidgetBorder:
-            return @"Widget Border";
-        case LLDebugToolActionHtml:
-            return @"Html5";
+        case LLDebugToolActionFunction: {
+            title = @"Function";
+        }
+            break;
+        case LLDebugToolActionSetting: {
+            title = @"Setting";
+        }
+            break;
+        case LLDebugToolActionNetwork: {
+            title = @"Net";
+        }
+            break;
+        case LLDebugToolActionLog: {
+            title = @"Log";
+        }
+            break;
+        case LLDebugToolActionCrash: {
+            title = @"Crash";
+        }
+            break;
+        case LLDebugToolActionAppInfo: {
+            title = @"App Info";
+        }
+            break;
+        case LLDebugToolActionSandbox: {
+            title = @"Sandbox";
+        }
+            break;
+        case LLDebugToolActionScreenshot: {
+            title = @"Screenshot";
+        }
+            break;
+        case LLDebugToolActionConvenientScreenshot: {
+            title = @"Convenient Screenshot";
+        }
+            break;
+        case LLDebugToolActionHierarchy: {
+            title = @"Hierarchy";
+        }
+            break;
+        case LLDebugToolActionMagnifier: {
+            title = @"Magnifier";
+        }
+            break;
+        case LLDebugToolActionRuler: {
+            title = @"Ruler";
+        }
+            break;
+        case LLDebugToolActionWidgetBorder: {
+            title = @"Widget Border";
+        }
+            break;
+        case LLDebugToolActionHtml: {
+            title = @"Html5";
+        }
+            break;
+        case LLDebugToolActionLocation: {
+            title = @"Location";
+        }
+            break;
     }
+    return title;
 }
 
 - (NSString *)imageNameFromAction:(LLDebugToolAction)action {
+    NSString *imageName = @"";
     switch (action) {
         case LLDebugToolActionFunction:
-        case LLDebugToolActionSetting:
-            return @"";
-        case LLDebugToolActionNetwork:
-            return kNetworkImageName;
-        case LLDebugToolActionLog:
-            return kLogImageName;
-        case LLDebugToolActionCrash:
-            return kCrashImageName;
-        case LLDebugToolActionAppInfo:
-            return kAppImageName;
-        case LLDebugToolActionSandbox:
-            return kSandboxImageName;
+        case LLDebugToolActionSetting: {
+            imageName = @"";
+        }
+            break;
+        case LLDebugToolActionNetwork: {
+            imageName = kNetworkImageName;
+        }
+            break;
+        case LLDebugToolActionLog: {
+            imageName = kLogImageName;
+        }
+            break;
+        case LLDebugToolActionCrash: {
+            imageName = kCrashImageName;
+        }
+            break;
+        case LLDebugToolActionAppInfo: {
+            imageName = kAppImageName;
+        }
+            break;
+        case LLDebugToolActionSandbox: {
+            imageName = kSandboxImageName;
+        }
+            break;
         case LLDebugToolActionScreenshot:
-        case LLDebugToolActionConvenientScreenshot:
-            return kScreenshotImageName;
-        case LLDebugToolActionHierarchy:
-            return kHierarchyImageName;
-        case LLDebugToolActionMagnifier:
-            return kMagnifierImageName;
-        case LLDebugToolActionRuler:
-            return kRulerImageName;
-        case LLDebugToolActionWidgetBorder:
-            return kWidgetBorderImageName;
-        case LLDebugToolActionHtml:
-            return kHtml5ImageName;
+        case LLDebugToolActionConvenientScreenshot: {
+            imageName = kScreenshotImageName;
+        }
+            break;
+        case LLDebugToolActionHierarchy: {
+            imageName = kHierarchyImageName;
+        }
+            break;
+        case LLDebugToolActionMagnifier: {
+            imageName = kMagnifierImageName;
+        }
+            break;
+        case LLDebugToolActionRuler: {
+            imageName = kRulerImageName;
+        }
+            break;
+        case LLDebugToolActionWidgetBorder: {
+            imageName = kWidgetBorderImageName;
+        }
+            break;
+        case LLDebugToolActionHtml: {
+            imageName = kHtml5ImageName;
+        }
+            break;
+        case LLDebugToolActionLocation: {
+            imageName = kLocationImageName;
+        }
+            break;
     }
+    return imageName;
 }
 
 @end

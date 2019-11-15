@@ -1,7 +1,5 @@
 //
-//  LLTitleView.m
-//
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  LLLocationHelper.m
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,43 +19,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLTitleView.h"
+#import "LLLocationHelper.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLConst.h"
+static LLLocationHelper *_instance = nil;
 
-#import "UIView+LL_Utils.h"
+@implementation LLLocationHelper
 
-@interface LLTitleView ()
-
-@property (nonatomic, strong) UILabel *titleLabel;
-
-@end
-
-@implementation LLTitleView
-
-#pragma mark - Over write
-- (void)initUI {
-    [super initUI];
-    self.backgroundColor = [LLThemeManager shared].containerColor;
-    
-    [self addSubview:self.titleLabel];
++ (instancetype)shared {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [[LLLocationHelper alloc] init];
+    });
+    return _instance;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    self.titleLabel.frame = CGRectMake(kLLGeneralMargin, 0, self.LL_width - kLLGeneralMargin * 2, self.LL_height);
-}
-
-#pragma mark - Getters and setters
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:18 textColor:[LLThemeManager shared].primaryColor];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    }
-    return _titleLabel;
+- (void)setEnable:(BOOL)enable {
+    _enable = enable;
 }
 
 @end

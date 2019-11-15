@@ -161,7 +161,8 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionMagnifier,
     LLDebugToolActionRuler,
     LLDebugToolActionWidgetBorder,
-    LLDebugToolActionHtml
+    LLDebugToolActionHtml,
+    LLDebugToolActionLocation
 };
 
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;

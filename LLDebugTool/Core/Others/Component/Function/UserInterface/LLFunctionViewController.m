@@ -92,6 +92,7 @@
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash]];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo]];
     [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox]];
+    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLocation]];
     
     self.toolContainerView.dataArray = [items copy];
     self.toolContainerView.title = @"Function";
