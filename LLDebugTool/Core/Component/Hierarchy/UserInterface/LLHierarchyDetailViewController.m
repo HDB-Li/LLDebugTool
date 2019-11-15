@@ -25,10 +25,10 @@
 
 #import "LLTitleCellCategoryModel.h"
 #import "LLDetailTitleCell.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLConst.h"
 

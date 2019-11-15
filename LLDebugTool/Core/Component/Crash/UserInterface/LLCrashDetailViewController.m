@@ -24,10 +24,10 @@
 #import "LLCrashDetailViewController.h"
 
 #import "LLSubTitleTableViewCell.h"
+#import "LLInternalMacros.h"
 #import "LLStorageManager.h"
 #import "LLToastUtils.h"
 #import "LLCrashModel.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 
 #import "LLRouter+Network.h"

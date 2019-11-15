@@ -23,9 +23,9 @@
 
 #import "LLFactory.h"
 
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 
 @implementation LLFactory
 

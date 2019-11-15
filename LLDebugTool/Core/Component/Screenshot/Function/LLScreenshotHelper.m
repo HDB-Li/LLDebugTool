@@ -25,8 +25,8 @@
 
 #import "LLScreenshotPreviewViewController.h"
 #import "LLScreenshotComponent.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 

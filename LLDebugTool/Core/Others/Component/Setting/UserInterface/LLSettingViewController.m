@@ -28,12 +28,12 @@
 #import "LLTitleSwitchCell.h"
 #import "LLImageNameConfig.h"
 #import "LLTitleSliderCell.h"
+#import "LLInternalMacros.h"
 #import "LLSettingManager.h"
 #import "LLConfigHelper.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"

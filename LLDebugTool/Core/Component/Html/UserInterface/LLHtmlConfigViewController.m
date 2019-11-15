@@ -31,10 +31,10 @@
 #import "LLHtmlViewController.h"
 #import "LLSettingManager.h"
 #import "LLTitleCellModel.h"
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLToastUtils.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLConst.h"
 

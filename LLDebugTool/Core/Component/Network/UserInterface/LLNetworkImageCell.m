@@ -23,8 +23,8 @@
 
 #import "LLNetworkImageCell.h"
 
+#import "LLInternalMacros.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 @interface LLNetworkImageCell ()

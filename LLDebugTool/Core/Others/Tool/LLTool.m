@@ -26,10 +26,10 @@
 #import <pthread/pthread.h>
 
 #import "LLLogHelperEventDefine.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLDebugTool.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 
 static unsigned long long _absolutelyIdentity = 0;
 

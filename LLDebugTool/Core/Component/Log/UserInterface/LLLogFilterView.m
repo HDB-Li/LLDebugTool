@@ -26,11 +26,11 @@
 #import "LLFilterLabelModel.h"
 #import "LLFilterEventView.h"
 #import "LLFilterOtherView.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
 #import "LLLogModel.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLConst.h"
 

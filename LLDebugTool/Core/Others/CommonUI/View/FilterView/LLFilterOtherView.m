@@ -27,11 +27,11 @@
 #import "LLFilterTextFieldCell.h"
 #import "LLFilterLabelModel.h"
 #import "LLFilterLabelCell.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 static NSString *const kHeaderID = @"HeaderID";

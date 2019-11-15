@@ -1,5 +1,5 @@
 //
-//  LLMacros.h
+//  LLInternalMacros.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,8 +21,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLMacros_h
-#define LLMacros_h
+#ifndef LLInternalMacros_h
+#define LLInternalMacros_h
 
 // Screen width.
 #define LL_SCREEN_WIDTH (MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height))
@@ -44,4 +44,4 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 // Layout length by horizontal direction in 414px.
 #define LL_LAYOUT_HORIZONTAL(length) (length * LL_SCREEN_WIDTH / 414.0)
 
-#endif /* LLMacros_h */
+#endif /* LLInternalMacros_h */

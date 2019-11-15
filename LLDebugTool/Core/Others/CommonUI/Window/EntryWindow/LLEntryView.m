@@ -23,9 +23,9 @@
 
 #import "LLEntryView.h"
 
+#import "LLInternalMacros.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLTool.h"
 
 #import "UIView+LL_Utils.h"

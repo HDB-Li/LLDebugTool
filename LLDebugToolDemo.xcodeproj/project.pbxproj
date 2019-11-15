@@ -618,7 +618,7 @@
 		C4B4E3D222F9C90900F70277 /* LLWindowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLWindowManager.h; sourceTree = "<group>"; };
 		C4B4E3D422F9C90900F70277 /* LLThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLThemeManager.m; sourceTree = "<group>"; };
 		C4B4E3D522F9C90900F70277 /* LLThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLThemeManager.h; sourceTree = "<group>"; };
-		C4B4E3D722F9C90900F70277 /* LLMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMacros.h; sourceTree = "<group>"; };
+		C4B4E3D722F9C90900F70277 /* LLInternalMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLInternalMacros.h; sourceTree = "<group>"; };
 		C4B4E3DA22F9C90900F70277 /* LLSubTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSubTitleTableViewCell.m; sourceTree = "<group>"; };
 		C4B4E3DB22F9C90900F70277 /* LLSubTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSubTitleTableViewCell.h; sourceTree = "<group>"; };
 		C4B4E3DC22F9C90900F70277 /* LLUITableViewLongPressGestureRecognizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUITableViewLongPressGestureRecognizerDelegate.h; sourceTree = "<group>"; };
@@ -1832,7 +1832,7 @@
 		C4B4E3D622F9C90900F70277 /* Macros */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3D722F9C90900F70277 /* LLMacros.h */,
+				C4B4E3D722F9C90900F70277 /* LLInternalMacros.h */,
 			);
 			path = Macros;
 			sourceTree = "<group>";

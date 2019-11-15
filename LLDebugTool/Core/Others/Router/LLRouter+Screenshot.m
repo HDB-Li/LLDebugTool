@@ -23,7 +23,7 @@
 
 #import "LLRouter+Screenshot.h"
 
-#import "LLMacros.h"
+#import "LLInternalMacros.h"
 #import "LLTool.h"
 
 @implementation LLRouter (Screenshot)

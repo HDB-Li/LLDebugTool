@@ -27,8 +27,8 @@
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleSwitchCell.h"
 #import "LLTitleSliderCell.h"
+#import "LLInternalMacros.h"
 #import "LLTitleView.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 @interface LLTitleViewController ()

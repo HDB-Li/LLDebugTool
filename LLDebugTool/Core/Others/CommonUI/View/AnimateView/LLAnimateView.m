@@ -23,8 +23,8 @@
 
 #import "LLAnimateView.h"
 
+#import "LLInternalMacros.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 
 #import "UIView+LL_Utils.h"
 

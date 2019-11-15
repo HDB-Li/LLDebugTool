@@ -22,12 +22,13 @@
 //  SOFTWARE.
 
 #import "LLTitleCellModel.h"
-#import "LLTitleSwitchCell.h"
+
 #import "LLDetailTitleSelectorCell.h"
 #import "LLTitleSliderCell.h"
 #import "LLDetailTitleCell.h"
+#import "LLTitleSwitchCell.h"
+#import "LLInternalMacros.h"
 #import "LLConst.h"
-#import "LLMacros.h"
 
 @implementation LLTitleCellModel
 
