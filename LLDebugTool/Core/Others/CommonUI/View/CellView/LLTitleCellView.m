@@ -1,5 +1,5 @@
 //
-//  LLTitleCell.m
+//  LLTitleCellView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLTitleCell.h"
+#import "LLTitleCellView.h"
 
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConst.h"
 
-@interface LLTitleCell ()
+#import "UIView+LL_Utils.h"
+
+@interface LLTitleCellView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -35,14 +37,12 @@
 
 @end
 
-@implementation LLTitleCell
+@implementation LLTitleCellView
 
-#pragma mark - Public
 - (void)initUI {
     [super initUI];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [self.contentView addSubview:self.titleLabel];
+    [self addSubview:self.titleLabel];
     
     [self addTitleLabelConstrains];
 }
@@ -65,9 +65,9 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLTitleCellModel *)model {
-    _model = model;
-    self.titleLabel.text = model.title;
+- (void)setTitle:(NSString *)title {
+    _title = [title copy];
+    self.titleLabel.text = title;
 }
 
 - (UILabel *)titleLabel {

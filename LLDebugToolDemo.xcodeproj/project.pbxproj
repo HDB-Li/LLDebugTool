@@ -75,6 +75,7 @@
 		36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */; };
 		3694F874233899E4007B07CA /* LLEnumDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 3694F873233899E4007B07CA /* LLEnumDescription.m */; };
 		36A0007720BE863700AE8810 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0007620BE863700AE8810 /* NetTool.m */; };
+		36A2524D237EA2A00082D408 /* LLPinAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A2524C237EA2A00082D408 /* LLPinAnnotationView.m */; };
 		36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4497231F9D0700AC772B /* LLSettingViewController.m */; };
 		36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449A231FC57D00AC772B /* LLTitleCellModel.m */; };
 		36AB449E231FC5D800AC772B /* LLTitleCellCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449D231FC5D800AC772B /* LLTitleCellCategoryModel.m */; };
@@ -93,6 +94,10 @@
 		36C9F7FD237E7DF30021BA2D /* LLLocationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F7FC237E7DF30021BA2D /* LLLocationWindow.m */; };
 		36C9F800237E7E080021BA2D /* LLLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F7FF237E7E080021BA2D /* LLLocationViewController.m */; };
 		36C9F803237E7E850021BA2D /* LLWindowManager+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F802237E7E850021BA2D /* LLWindowManager+Location.m */; };
+		36C9F80A237E8A340021BA2D /* LLTitleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F809237E8A340021BA2D /* LLTitleCellView.m */; };
+		36C9F80D237E8B2E0021BA2D /* LLDetailTitleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F80C237E8B2E0021BA2D /* LLDetailTitleCellView.m */; };
+		36C9F810237E8C8A0021BA2D /* LLTitleSwitchCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F80F237E8C8A0021BA2D /* LLTitleSwitchCellView.m */; };
+		36C9F813237E9B1D0021BA2D /* LLAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F812237E9B1D0021BA2D /* LLAnnotation.m */; };
 		36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */; };
 		36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7323306D6000C9C22C /* LLWidgetBorderViewController.m */; };
 		36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7723307BEA00C9C22C /* LLWidgetBorderHelper.m */; };
@@ -385,6 +390,8 @@
 		3694F873233899E4007B07CA /* LLEnumDescription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEnumDescription.m; sourceTree = "<group>"; };
 		36A0007520BE863700AE8810 /* NetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		36A0007620BE863700AE8810 /* NetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
+		36A2524B237EA2A00082D408 /* LLPinAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLPinAnnotationView.h; sourceTree = "<group>"; };
+		36A2524C237EA2A00082D408 /* LLPinAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPinAnnotationView.m; sourceTree = "<group>"; };
 		36AB4496231F9D0700AC772B /* LLSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingViewController.h; sourceTree = "<group>"; };
 		36AB4497231F9D0700AC772B /* LLSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingViewController.m; sourceTree = "<group>"; };
 		36AB4499231FC57D00AC772B /* LLTitleCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCellModel.h; sourceTree = "<group>"; };
@@ -427,6 +434,14 @@
 		36C9F7FF237E7E080021BA2D /* LLLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationViewController.m; sourceTree = "<group>"; };
 		36C9F801237E7E850021BA2D /* LLWindowManager+Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Location.h"; sourceTree = "<group>"; };
 		36C9F802237E7E850021BA2D /* LLWindowManager+Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Location.m"; sourceTree = "<group>"; };
+		36C9F808237E8A340021BA2D /* LLTitleCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCellView.h; sourceTree = "<group>"; };
+		36C9F809237E8A340021BA2D /* LLTitleCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellView.m; sourceTree = "<group>"; };
+		36C9F80B237E8B2E0021BA2D /* LLDetailTitleCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleCellView.h; sourceTree = "<group>"; };
+		36C9F80C237E8B2E0021BA2D /* LLDetailTitleCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCellView.m; sourceTree = "<group>"; };
+		36C9F80E237E8C8A0021BA2D /* LLTitleSwitchCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSwitchCellView.h; sourceTree = "<group>"; };
+		36C9F80F237E8C8A0021BA2D /* LLTitleSwitchCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCellView.m; sourceTree = "<group>"; };
+		36C9F811237E9B1D0021BA2D /* LLAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnnotation.h; sourceTree = "<group>"; };
+		36C9F812237E9B1D0021BA2D /* LLAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAnnotation.m; sourceTree = "<group>"; };
 		36CD3A6F23306D4B00C9C22C /* LLWidgetBorderWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderWindow.h; sourceTree = "<group>"; };
 		36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderWindow.m; sourceTree = "<group>"; };
 		36CD3A7223306D6000C9C22C /* LLWidgetBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderViewController.h; sourceTree = "<group>"; };
@@ -869,13 +884,12 @@
 		364CF3D6232656FC000B513F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				36C9F804237E84910021BA2D /* SwitchCellView */,
+				36C9F804237E84910021BA2D /* CellView */,
 				36B5EC7C2340512400736213 /* AnimateView */,
 				36DA3B872340508D0081BCC6 /* InfoView */,
 				36BB9BC823404ED400629053 /* MoveView */,
 				360AE62F2330D9B90073FECD /* TitleCell */,
 				362AA6AE23274FBB00F33EC4 /* PickerView */,
-				365912512320BCF500FDA6A0 /* TitleView */,
 				C4B4E3D922F9C90900F70277 /* SubTitleTableViewCell */,
 				C4B4E3E122F9C90900F70277 /* NoneCopyTextField */,
 				C4B4E3E422F9C90900F70277 /* TabBarButton */,
@@ -919,13 +933,6 @@
 				3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */,
 			);
 			path = UIResponder;
-			sourceTree = "<group>";
-		};
-		365912512320BCF500FDA6A0 /* TitleView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TitleView;
 			sourceTree = "<group>";
 		};
 		3668D0C72303BAF400D58C0B /* SettingManager */ = {
@@ -1072,6 +1079,16 @@
 		36C9F7F6237E7DA10021BA2D /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				36C9F7FB237E7DF30021BA2D /* LLLocationWindow.h */,
+				36C9F7FC237E7DF30021BA2D /* LLLocationWindow.m */,
+				36C9F7FE237E7E080021BA2D /* LLLocationViewController.h */,
+				36C9F7FF237E7E080021BA2D /* LLLocationViewController.m */,
+				36C9F801237E7E850021BA2D /* LLWindowManager+Location.h */,
+				36C9F802237E7E850021BA2D /* LLWindowManager+Location.m */,
+				36C9F811237E9B1D0021BA2D /* LLAnnotation.h */,
+				36C9F812237E9B1D0021BA2D /* LLAnnotation.m */,
+				36A2524B237EA2A00082D408 /* LLPinAnnotationView.h */,
+				36A2524C237EA2A00082D408 /* LLPinAnnotationView.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1081,21 +1098,21 @@
 			children = (
 				36C9F7F8237E7DD50021BA2D /* LLLocationHelper.h */,
 				36C9F7F9237E7DD50021BA2D /* LLLocationHelper.m */,
-				36C9F7FB237E7DF30021BA2D /* LLLocationWindow.h */,
-				36C9F7FC237E7DF30021BA2D /* LLLocationWindow.m */,
-				36C9F7FE237E7E080021BA2D /* LLLocationViewController.h */,
-				36C9F7FF237E7E080021BA2D /* LLLocationViewController.m */,
-				36C9F801237E7E850021BA2D /* LLWindowManager+Location.h */,
-				36C9F802237E7E850021BA2D /* LLWindowManager+Location.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
 		};
-		36C9F804237E84910021BA2D /* SwitchCellView */ = {
+		36C9F804237E84910021BA2D /* CellView */ = {
 			isa = PBXGroup;
 			children = (
+				36C9F808237E8A340021BA2D /* LLTitleCellView.h */,
+				36C9F809237E8A340021BA2D /* LLTitleCellView.m */,
+				36C9F80B237E8B2E0021BA2D /* LLDetailTitleCellView.h */,
+				36C9F80C237E8B2E0021BA2D /* LLDetailTitleCellView.m */,
+				36C9F80E237E8C8A0021BA2D /* LLTitleSwitchCellView.h */,
+				36C9F80F237E8C8A0021BA2D /* LLTitleSwitchCellView.m */,
 			);
-			path = SwitchCellView;
+			path = CellView;
 			sourceTree = "<group>";
 		};
 		36CD3A6E23306D3A00C9C22C /* UserInterface */ = {
@@ -2323,6 +2340,7 @@
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
 				36C9F7FA237E7DD50021BA2D /* LLLocationHelper.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
+				36C9F813237E9B1D0021BA2D /* LLAnnotation.m in Sources */,
 				364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */,
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
@@ -2372,6 +2390,7 @@
 				C4B4E47B22F9C90900F70277 /* LLTool.m in Sources */,
 				360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */,
 				C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */,
+				36A2524D237EA2A00082D408 /* LLPinAnnotationView.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m in Sources */,
 				C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */,
@@ -2403,6 +2422,7 @@
 				C4B4E43C22F9C90900F70277 /* NSDictionary+LL_Utils.m in Sources */,
 				C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */,
 				C49856FB22EDB2BC00E9FBE2 /* LLCrashComponent.m in Sources */,
+				36C9F80A237E8A340021BA2D /* LLTitleCellView.m in Sources */,
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
 				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
@@ -2460,9 +2480,11 @@
 				C49856A822ED8D4800E9FBE2 /* LLLogViewController.m in Sources */,
 				C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */,
 				C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */,
+				36C9F80D237E8B2E0021BA2D /* LLDetailTitleCellView.m in Sources */,
 				366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */,
 				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
 				C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */,
+				36C9F810237E8C8A0021BA2D /* LLTitleSwitchCellView.m in Sources */,
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,
 				C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */,
 				C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */,
@@ -2735,7 +2757,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6MPGS9SDU4;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2756,7 +2778,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6MPGS9SDU4;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

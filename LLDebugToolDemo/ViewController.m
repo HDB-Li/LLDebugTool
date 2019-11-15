@@ -14,6 +14,7 @@
 // Used to example.
 #import "NetTool.h"
 #import <Photos/PHPhotoLibrary.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "TestNetworkViewController.h"
 #import "TestLogViewController.h"
@@ -31,6 +32,7 @@ static NSString *const kCellID = @"cellID";
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 
@@ -45,6 +47,10 @@ static NSString *const kCellID = @"cellID";
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
     }];
+    
+    // Try to get location permission, and if possible, mock location will get your current location.
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager requestWhenInUseAuthorization];
     
     // LLDebugTool need time to start.
     sleep(0.5);

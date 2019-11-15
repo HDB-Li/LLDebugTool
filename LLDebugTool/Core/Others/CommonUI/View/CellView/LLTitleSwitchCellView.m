@@ -1,5 +1,5 @@
 //
-//  LLTitleSwitchCell.m
+//  LLTitleSwitchCellView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,26 +21,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLTitleSwitchCell.h"
+#import "LLTitleSwitchCellView.h"
 
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConst.h"
 
-@interface LLTitleSwitchCell ()
+@interface LLTitleSwitchCellView ()
 
 @property (nonatomic, strong) UISwitch *swit;
 
 @end
 
-@implementation LLTitleSwitchCell
+@implementation LLTitleSwitchCellView
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    [self.contentView addSubview:self.swit];
     
-    [self.contentView removeConstraint:self.detailLabelRightCons];
+    [self addSubview:self.swit];
+    
+    [self removeConstraint:self.detailLabelRightCons];
     
     [self addSwitConstraints];
 }
@@ -51,8 +52,10 @@
     NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.swit.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
     NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:51];
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:31];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.swit.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
+    top.priority = UILayoutPriorityDefaultHigh;
     self.swit.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.swit.superview addConstraints:@[left, right, centerY, width, height]];
+    [self.swit.superview addConstraints:@[left, right, centerY, width, height, top]];
 }
 
 - (void)primaryColorChanged {
@@ -62,16 +65,16 @@
 
 #pragma mark - Event responses
 - (void)switchValueChanged:(UISwitch *)sender {
-    self.model.flag = sender.isOn;
-    if (self.model.changePropertyBlock) {
-        self.model.changePropertyBlock(@(sender.isOn));
-    }
+//    self.model.flag = sender.isOn;
+//    if (self.model.changePropertyBlock) {
+//        self.model.changePropertyBlock(@(sender.isOn));
+//    }
 }
 
 #pragma mark - Getters and settings
-- (void)setModel:(LLTitleCellModel *)model {
-    [super setModel:model];
-    _swit.on = model.flag;
+- (void)setOn:(BOOL)on {
+    _on = on;
+    _swit.on = on;
 }
 
 - (UISwitch *)swit {

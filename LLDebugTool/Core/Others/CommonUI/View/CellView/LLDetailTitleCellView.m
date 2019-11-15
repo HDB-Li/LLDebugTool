@@ -1,5 +1,5 @@
 //
-//  LLDetailTitleCell.m
+//  LLDetailTitleCellView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLDetailTitleCell.h"
+#import "LLDetailTitleCellView.h"
 
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConst.h"
 
-@interface LLDetailTitleCell ()
+@interface LLDetailTitleCellView ()
 
 @property (nonatomic, strong) UILabel *detailLabel;
 
@@ -35,16 +35,17 @@
 
 @end
 
-@implementation LLDetailTitleCell
+@implementation LLDetailTitleCellView
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
     
-    [self.contentView addSubview:self.detailLabel];
+    [self addSubview:self.detailLabel];
     
-    [self.contentView removeConstraint:self.titleLabelBottomCons];
     [self addDetailLabelConstraints];
+    
+    self.detailTitle = @"";
 }
 
 - (void)addDetailLabelConstraints {
@@ -64,12 +65,12 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLTitleCellModel *)model {
-    [super setModel:model];
-    if (model.detailTitle == nil || model.detailTitle.length == 0) {
+- (void)setDetailTitle:(NSString *)detailTitle {
+    detailTitle = [detailTitle copy];
+    if (detailTitle == nil || detailTitle.length == 0) {
         self.detailLabel.text = @" ";
     } else {
-        self.detailLabel.text = model.detailTitle;
+        self.detailLabel.text = detailTitle;
     }
 }
 

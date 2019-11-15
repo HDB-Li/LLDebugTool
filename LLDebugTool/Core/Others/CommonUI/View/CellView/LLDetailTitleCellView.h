@@ -1,5 +1,7 @@
 //
-//  LLLocationViewController.m
+//  LLDetailTitleCellView.h
+//
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,23 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLocationViewController.h"
+#import "LLTitleCellView.h"
 
-#import "LLThemeManager.h"
+NS_ASSUME_NONNULL_BEGIN
 
-@interface LLLocationViewController ()
+@interface LLDetailTitleCellView : LLTitleCellView
 
-@end
+/// Detail title label.
+@property (nonatomic, strong, readonly) UILabel *detailLabel;
 
-@implementation LLLocationViewController
+/// Detail title label right constraint.
+@property (nonatomic, strong, readonly) NSLayoutConstraint *detailLabelRightCons;
 
-#pragma mark - Life cycle
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"Mock Location";
-    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
-}
-
-#pragma mark - Getters and setters
+@property (nonatomic, copy, nullable) NSString *detailTitle;
 
 @end
+
+NS_ASSUME_NONNULL_END
