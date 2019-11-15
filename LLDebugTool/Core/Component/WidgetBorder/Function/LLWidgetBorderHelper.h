@@ -31,9 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Shared instance.
 + (instancetype)shared;
 
-/// Set enable or not.
-/// @param isEnable Is enable.
-- (void)enable:(BOOL)isEnable;
+/**
+ Set enable to monitoring network request.
+ */
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 @end
 
