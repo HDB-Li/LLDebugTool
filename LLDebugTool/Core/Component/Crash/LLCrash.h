@@ -24,12 +24,6 @@
 #ifndef LLCrash_h
 #define LLCrash_h
 
-#ifndef LLDEBUGTOOL_CRASH
-#define LLDEBUGTOOL_CRASH
-
 #import "LLCrashHelper.h"
-
-#endif
-
 
 #endif /* LLCrash_h */

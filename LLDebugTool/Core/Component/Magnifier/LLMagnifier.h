@@ -24,9 +24,4 @@
 #ifndef LLMagnifier_h
 #define LLMagnifier_h
 
-#ifndef LLDEBUGTOOL_MAGNIFIER
-#define LLDEBUGTOOL_MAGNIFIER
-
-#endif
-
 #endif /* LLMagnifier_h */

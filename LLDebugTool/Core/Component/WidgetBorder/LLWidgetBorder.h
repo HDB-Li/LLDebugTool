@@ -24,11 +24,6 @@
 #ifndef LLWidgetBorder_h
 #define LLWidgetBorder_h
 
-#ifndef LLDEBUGTOOL_WIDGET_BORDER
-#define LLDEBUGTOOL_WIDGET_BORDER
-
 #import "LLWidgetBorderHelper.h"
-
-#endif
 
 #endif /* LLWidgetBorder_h */

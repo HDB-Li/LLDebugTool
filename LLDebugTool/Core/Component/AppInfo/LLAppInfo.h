@@ -24,11 +24,6 @@
 #ifndef LLAppInfo_h
 #define LLAppInfo_h
 
-#ifndef LLDEBUGTOOL_APPINFO
-#define LLDEBUGTOOL_APPINFO
-
 #import "LLAppInfoHelper.h"
-
-#endif
 
 #endif /* LLAppInfo_h */

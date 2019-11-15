@@ -24,11 +24,6 @@
 #ifndef LLLog_h
 #define LLLog_h
 
-#ifndef LLDEBUGTOOL_LOG
-#define LLDEBUGTOOL_LOG
-
 #import "LLLogHelper.h"
-
-#endif
 
 #endif /* LLLog_h */

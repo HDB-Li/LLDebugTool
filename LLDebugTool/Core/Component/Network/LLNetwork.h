@@ -24,11 +24,6 @@
 #ifndef LLNetwork_h
 #define LLNetwork_h
 
-#ifndef LLDEBUGTOOL_NETWORK
-#define LLDEBUGTOOL_NETWORK
-
 #import "LLNetworkHelper.h"
-
-#endif
 
 #endif /* LLNetwork_h */

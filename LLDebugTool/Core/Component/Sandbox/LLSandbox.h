@@ -24,12 +24,6 @@
 #ifndef LLSandbox_h
 #define LLSandbox_h
 
-#ifndef LLDEBUGTOOL_SANDBOX
-#define LLDEBUGTOOL_SANDBOX
-
 #import "LLSandboxHelper.h"
-
-#endif
-
 
 #endif /* LLSandbox_h */

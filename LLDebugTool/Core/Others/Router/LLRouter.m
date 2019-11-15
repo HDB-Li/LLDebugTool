@@ -48,7 +48,10 @@
 
 #pragma mark - Primary
 + (void)setEnable:(BOOL)isEnable className:(NSString *)className {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     SEL selector = @selector(setEnable:);
+#pragma clang diagnostic pop
     id sharedInstance = [self sharedWithClassName:className];
     if (!sharedInstance) {
         return;

@@ -24,12 +24,6 @@
 #ifndef LLScreenshot_h
 #define LLScreenshot_h
 
-#ifndef LLDEBUGTOOL_SCREENSHOT
-#define LLDEBUGTOOL_SCREENSHOT
-
 #import "LLScreenshotHelper.h"
-
-#endif
-
 
 #endif /* LLScreenshot_h */
