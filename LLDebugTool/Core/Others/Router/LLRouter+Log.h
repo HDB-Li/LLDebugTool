@@ -27,6 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRouter (Log)
 
+/// Call LLLogHelper if enable.
+/// @param file File name.
+/// @param function Function name.
+/// @param lineNo Line No.
+/// @param level Level.
+/// @param onEvent Event.
+/// @param message Message.
++ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message;
+
 /// Get LLLogViewController
 /// @param launchDate Launch date.
 + (UIViewController *_Nullable)logViewControllerWithLaunchDate:(NSString *_Nullable)launchDate;

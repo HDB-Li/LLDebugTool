@@ -25,5 +25,10 @@
 #ifndef LLHtml_h
 #define LLHtml_h
 
+#ifndef LLDEBUGTOOL_HTML
+#define LLDEBUGTOOL_HTML
+
+#endif
+
 
 #endif /* LLHtml_h */

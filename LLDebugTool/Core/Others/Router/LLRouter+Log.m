@@ -23,7 +23,17 @@
 
 #import "LLRouter+Log.h"
 
+#ifdef LLDEBUGTOOL_LOG
+#import "LLLog.h"
+#endif
+
 @implementation LLRouter (Log)
+
++ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
+#ifdef LLDEBUGTOOL_LOG
+    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
+#endif
+}
 
 + (UIViewController *_Nullable)logViewControllerWithLaunchDate:(NSString *_Nullable)launchDate {
     Class cls = [self logViewControllerClass];

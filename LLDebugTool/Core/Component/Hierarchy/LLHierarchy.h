@@ -24,5 +24,11 @@
 #ifndef LLHierarchy_h
 #define LLHierarchy_h
 
+#ifndef LLDEBUGTOOL_HIERARCHY
+#define LLDEBUGTOOL_HIERARCHY
+
+#import "LLHierarchyHelper.h"
+
+#endif
 
 #endif /* LLHierarchy_h */

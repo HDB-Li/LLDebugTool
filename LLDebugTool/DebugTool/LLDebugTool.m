@@ -29,11 +29,11 @@
 #import "LLSettingManager.h"
 #import "LLWindowManager.h"
 #import "LLComponent.h"
-#import "LLRouter.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 
 #import "UIResponder+LL_Utils.h"
+#import "LLRouter+Log.h"
 
 static LLDebugTool *_instance = nil;
 

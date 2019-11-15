@@ -23,8 +23,6 @@
 
 #import "LLRouter.h"
 
-//#import "LLLogHelper.h"
-
 @implementation LLRouter
 
 #pragma mark - Public
@@ -46,11 +44,6 @@
 
 + (void)setScreenshotHelperEnable:(BOOL)isEnable {
     [self setEnable:isEnable className:[self screenshotHelper]];
-}
-
-+ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-#warning 需要修改
-//    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
 #pragma mark - Primary

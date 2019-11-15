@@ -24,5 +24,9 @@
 #ifndef LLRuler_h
 #define LLRuler_h
 
+#ifndef LLDEBUGTOOL_RULER
+#define LLDEBUGTOOL_RULER
+
+#endif
 
 #endif /* LLRuler_h */

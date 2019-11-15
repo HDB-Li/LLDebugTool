@@ -50,15 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param isEnable Is enable.
 + (void)setScreenshotHelperEnable:(BOOL)isEnable;
 
-/// Call LLLogHelper if enable.
-/// @param file File name.
-/// @param function Function name.
-/// @param lineNo Line No.
-/// @param level Level.
-/// @param onEvent Event.
-/// @param message Message.
-+ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message;
-
 @end
 
 NS_ASSUME_NONNULL_END
