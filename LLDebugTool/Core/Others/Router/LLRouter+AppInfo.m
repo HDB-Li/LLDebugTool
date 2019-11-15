@@ -23,15 +23,24 @@
 
 #import "LLRouter+AppInfo.h"
 
+#ifdef LLDEBUGTOOL_APP_INFO
+#import "LLAppInfoHelper.h"
+#endif
+
 @implementation LLRouter (AppInfo)
 
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
-#warning 需要修改
+#ifdef LLDEBUGTOOL_APP_INFO
+    [[LLAppInfoHelper shared] updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
+#endif
 }
 
 + (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
-    #warning 需要修改
+#ifdef LLDEBUGTOOL_APP_INFO
+    return [[LLAppInfoHelper shared] appInfos];
+#else
     return nil;
+#endif
 }
 
 @end
