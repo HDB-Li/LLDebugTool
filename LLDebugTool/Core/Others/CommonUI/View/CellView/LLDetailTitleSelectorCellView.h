@@ -1,5 +1,5 @@
 //
-//  LLTitleCellView.h
+//  LLDetailTitleSelectorCellView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,25 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseView.h"
+#import "LLDetailTitleCellView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLTitleCellView : LLBaseView
-
-/// Title label.
-@property (nonatomic, strong, readonly) UILabel *titleLabel;
-
-/// Title label bottom constraint.
-@property (nonatomic, strong, readonly) NSLayoutConstraint *titleLabelBottomCons;
-
-@property (nonatomic, copy, nullable) NSString *title;
-
-/// Need line with left margin kLLGeneralMargin.
-- (void)needLine;
-
-/// Need full line.
-- (void)needFullLine;
+@interface LLDetailTitleSelectorCellView : LLDetailTitleCellView
 
 @end
 

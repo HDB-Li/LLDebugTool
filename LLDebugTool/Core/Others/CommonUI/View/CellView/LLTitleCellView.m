@@ -35,12 +35,18 @@
 
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelBottomCons;
 
+@property (nonatomic, strong) UIView *line;
+
+@property (nonatomic, assign) CGFloat leftMargin;
+
 @end
 
 @implementation LLTitleCellView
 
 - (void)initUI {
     [super initUI];
+    
+    self.leftMargin = kLLGeneralMargin;
     
     [self addSubview:self.titleLabel];
     
@@ -58,7 +64,21 @@
     self.titleLabelBottomCons = bottom;
 }
 
+- (void)needLine {
+    [self addSubview:self.line];
+}
+
+- (void)needFullLine {
+    self.leftMargin = 0;
+    [self addSubview:self.line];
+}
+
 #pragma mark - Over write
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _line.frame = CGRectMake(self.leftMargin, self.LL_height - 1, self.LL_width - self.leftMargin, 1);
+}
+
 - (void)primaryColorChanged {
     [super primaryColorChanged];
     _titleLabel.textColor = [LLThemeManager shared].primaryColor;
@@ -75,6 +95,13 @@
         _titleLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:16 textColor:[LLThemeManager shared].primaryColor];
     }
     return _titleLabel;
+}
+
+- (UIView *)line {
+    if (!_line) {
+        _line = [LLFactory getLineView:CGRectZero superView:nil];
+    }
+    return _line;
 }
 
 @end

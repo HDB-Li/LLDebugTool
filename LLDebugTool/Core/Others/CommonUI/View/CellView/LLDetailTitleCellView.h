@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Detail title label right constraint.
 @property (nonatomic, strong, readonly) NSLayoutConstraint *detailLabelRightCons;
 
+/// Detail title
 @property (nonatomic, copy, nullable) NSString *detailTitle;
 
 @end

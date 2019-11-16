@@ -23,11 +23,13 @@
 
 #import <MapKit/MapKit.h>
 
+#import "LLDetailTitleSelectorCellView.h"
 #import "LLTitleSwitchCellView.h"
 #import "LLPinAnnotationView.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLAnnotation.h"
+#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -36,6 +38,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 @interface LLLocationViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) LLTitleSwitchCellView *switchView;
+
+@property (nonatomic, strong) LLDetailTitleSelectorCellView *locationDescriptView;
 
 @property (nonatomic, strong) MKMapView *mapView;
 
@@ -56,23 +60,45 @@ static NSString *const kAnnotationID = @"AnnotationID";
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     
     [self.view addSubview:self.switchView];
+    [self.view addSubview:self.locationDescriptView];
     [self.view addSubview:self.mapView];
     
     [self addSwitchViewConstraints];
+    [self addLocationDescriptViewConstraints];
     [self loadData];
 }
 
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = CGRectMake(0, self.switchView.LL_bottom, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.switchView.LL_bottom);
+    self.mapView.frame = CGRectMake(0, self.locationDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.switchView.LL_bottom - kLLGeneralMargin);
 }
 
 #pragma mark - MKMapViewDelegate
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
     if (!self.isAddAnnotation) {
-        [self updateAnnotationCoordinate:mapView.region.center];
+        [self updateAnnotationCoordinate:mapView.region.center automicSetRegion:NO];
     }
+}
+
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
+    
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    
+}
+
+- (void)mapViewDidChangeVisibleRegion:(MKMapView *)mapView {
+//    [self updateAnnotationCoordinate:mapView.region.center automicSetRegion:NO];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -89,7 +115,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     CLLocation *location = [locations firstObject];
     if (location) {
         [manager stopUpdatingLocation];
-        [self updateAnnotationCoordinate:location.coordinate];
+        [self updateAnnotationCoordinate:location.coordinate automicSetRegion:YES];
     }
 }
 
@@ -102,9 +128,21 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.switchView.superview addConstraints:@[top, left, right]];
 }
 
-- (void)updateAnnotationCoordinate:(CLLocationCoordinate2D)coordinate {
+- (void)addLocationDescriptViewConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.switchView attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.locationDescriptView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.locationDescriptView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    self.locationDescriptView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.locationDescriptView.superview addConstraints:@[top, left, right]];
+}
+
+- (void)updateAnnotationCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion {
     self.annotation.coordinate = coordinate;
     self.annotation.title = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
+    self.locationDescriptView.detailTitle = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
+    if (automicSetRegion) {
+        self.mapView.region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.05, 0.05));
+    }
     if (!self.isAddAnnotation) {
         self.isAddAnnotation = YES;
         [self.mapView addAnnotation:self.annotation];
@@ -124,8 +162,20 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _switchView = [[LLTitleSwitchCellView alloc] init];
         _switchView.backgroundColor = [LLThemeManager shared].containerColor;
         _switchView.title = @"Mock Location";
+        [_switchView needLine];
     }
     return _switchView;
+}
+
+- (LLDetailTitleSelectorCellView *)locationDescriptView {
+    if (!_locationDescriptView) {
+        _locationDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
+        _locationDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
+        _locationDescriptView.title = @"Lat & Lng";
+        _locationDescriptView.detailTitle = @"0, 0";
+        [_locationDescriptView needFullLine];
+    }
+    return _locationDescriptView;
 }
 
 - (MKMapView *)mapView {
