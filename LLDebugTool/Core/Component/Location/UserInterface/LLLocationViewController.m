@@ -81,24 +81,10 @@ static NSString *const kAnnotationID = @"AnnotationID";
     }
 }
 
-- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered {
-    
-}
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    
-}
-
-- (void)mapViewDidChangeVisibleRegion:(MKMapView *)mapView {
-//    [self updateAnnotationCoordinate:mapView.region.center automicSetRegion:NO];
-}
-
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    
-}
-
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    
+    if (CLLocationCoordinate2DIsValid(view.annotation.coordinate)) {
+        [self updateLocationDescriptViewDetailTitle:view.annotation.coordinate];
+    }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -138,8 +124,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)updateAnnotationCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion {
     self.annotation.coordinate = coordinate;
-    self.annotation.title = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
-    self.locationDescriptView.detailTitle = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
+    [self updateLocationDescriptViewDetailTitle:coordinate];
     if (automicSetRegion) {
         self.mapView.region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.05, 0.05));
     }
@@ -148,6 +133,10 @@ static NSString *const kAnnotationID = @"AnnotationID";
         [self.mapView addAnnotation:self.annotation];
         [self.mapView selectAnnotation:self.annotation animated:YES];
     }
+}
+
+- (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate {
+    self.locationDescriptView.detailTitle = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
 }
 
 - (void)loadData {

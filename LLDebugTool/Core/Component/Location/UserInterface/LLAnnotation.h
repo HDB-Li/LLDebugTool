@@ -29,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 /// Title
-@property (nonatomic, copy, nullable) NSString *title;
+@property (nonatomic, readonly, copy, nullable) NSString *title;
 
 /// Subtitle
-@property (nonatomic, copy, nullable) NSString *subtitle;
+@property (nonatomic, readonly, copy, nullable) NSString *subtitle;
 
 @end
 

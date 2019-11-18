@@ -23,4 +23,9 @@
 
 @implementation LLAnnotation
 
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
+    _coordinate = coordinate;
+    _title = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
+}
+
 @end
