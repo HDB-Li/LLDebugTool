@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Switch state.
 @property (nonatomic, assign, getter=isOn) BOOL on;
 
+/// Change property block.
+@property (nonatomic, copy, nullable) void(^changePropertyBlock)(BOOL isOn);
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -65,10 +65,9 @@
 
 #pragma mark - Event responses
 - (void)switchValueChanged:(UISwitch *)sender {
-//    self.model.flag = sender.isOn;
-//    if (self.model.changePropertyBlock) {
-//        self.model.changePropertyBlock(@(sender.isOn));
-//    }
+    if (_changePropertyBlock) {
+        _changePropertyBlock(self.isOn);
+    }
 }
 
 #pragma mark - Getters and settings
