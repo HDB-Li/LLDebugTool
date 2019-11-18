@@ -66,7 +66,7 @@
 
 #pragma mark - Getters and setters
 - (void)setDetailTitle:(NSString *)detailTitle {
-    detailTitle = [detailTitle copy];
+    _detailTitle = [detailTitle copy];
     if (detailTitle == nil || detailTitle.length == 0) {
         self.detailLabel.text = @" ";
     } else {

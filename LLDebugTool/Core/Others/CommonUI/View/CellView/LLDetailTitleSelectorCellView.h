@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLDetailTitleSelectorCellView : LLDetailTitleCellView
 
+/// Tap block
+@property (nonatomic, copy, nullable) void(^block)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

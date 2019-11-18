@@ -28,6 +28,8 @@
 #import "LLFactory.h"
 #import "LLConst.h"
 
+#import "UIView+LL_Utils.h"
+
 @interface LLDetailTitleSelectorCellView ()
 
 @property (nonatomic, strong) UIImageView *accessoryView;
@@ -45,6 +47,8 @@
     self.detailLabelRightCons.constant = -(kLLGeneralMargin - 2) - 14 - kLLGeneralMargin;
     
     [self addAccessoryViewConstraints];
+    
+    [self LL_addClickListener:self action:@selector(tapAction:)];
 }
 
 #pragma mark - Primary
@@ -55,6 +59,12 @@
     NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.accessoryView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.accessoryView.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
     self.accessoryView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.accessoryView.superview addConstraints:@[width, height, right, centerY]];
+}
+
+- (void)tapAction:(UITapGestureRecognizer *)sender {
+    if (_block) {
+        _block();
+    }
 }
 
 #pragma mark - Getters and setters

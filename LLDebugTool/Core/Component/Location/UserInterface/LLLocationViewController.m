@@ -31,6 +31,7 @@
 #import "LLAnnotation.h"
 #import "LLConst.h"
 
+#import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 
 static NSString *const kAnnotationID = @"AnnotationID";
@@ -48,6 +49,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, assign) BOOL isAddAnnotation;
+
+@property (nonatomic, assign) BOOL userChangeAnnotation;
 
 @end
 
@@ -84,6 +87,14 @@ static NSString *const kAnnotationID = @"AnnotationID";
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if (CLLocationCoordinate2DIsValid(view.annotation.coordinate)) {
         [self updateLocationDescriptViewDetailTitle:view.annotation.coordinate];
+        if (view.annotation.coordinate.latitude != self.mapView.centerCoordinate.latitude || view.annotation.coordinate.longitude != self.mapView.centerCoordinate.longitude) {
+            if (self.userChangeAnnotation) {
+                [self.mapView setCenterCoordinate:view.annotation.coordinate animated:YES];
+            } else {
+                self.userChangeAnnotation = YES;
+                [self animatedUpdateMapRegion:view.annotation.coordinate];
+            }
+        }
     }
 }
 
@@ -126,13 +137,20 @@ static NSString *const kAnnotationID = @"AnnotationID";
     self.annotation.coordinate = coordinate;
     [self updateLocationDescriptViewDetailTitle:coordinate];
     if (automicSetRegion) {
-        self.mapView.region = MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.05, 0.05));
+        [self animatedUpdateMapRegion:coordinate];
     }
     if (!self.isAddAnnotation) {
         self.isAddAnnotation = YES;
         [self.mapView addAnnotation:self.annotation];
         [self.mapView selectAnnotation:self.annotation animated:YES];
+    } else {
+        [self.mapView deselectAnnotation:self.annotation animated:NO];
+        [self.mapView selectAnnotation:self.annotation animated:NO];
     }
+}
+
+- (void)animatedUpdateMapRegion:(CLLocationCoordinate2D)coordinate {
+    [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.1, 0.1)) animated:YES];
 }
 
 - (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate {
@@ -143,6 +161,24 @@ static NSString *const kAnnotationID = @"AnnotationID";
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
         [self.locationManager startUpdatingLocation];
     }
+}
+
+#pragma mark - Event response
+- (void)locationDescriptViewDidSelect {
+    __weak typeof(self) weakSelf = self;
+    [self LL_showTextFieldAlertControllerWithMessage:@"Lat & Lng" text:self.locationDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
+        NSString *text = [newText stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSArray *array = [text componentsSeparatedByString:@","];
+        if (array.count != 2) {
+            return;
+        }
+        CLLocationDegrees lat = [array[0] doubleValue];
+        CLLocationDegrees lng = [array[1] doubleValue];
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat, lng);
+        if (CLLocationCoordinate2DIsValid(coordinate)) {
+            [weakSelf updateAnnotationCoordinate:coordinate automicSetRegion:YES];
+        }
+    }];
 }
 
 #pragma mark - Getters and setters
@@ -163,6 +199,10 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _locationDescriptView.title = @"Lat & Lng";
         _locationDescriptView.detailTitle = @"0, 0";
         [_locationDescriptView needFullLine];
+        __weak typeof(self) weakSelf = self;
+        _locationDescriptView.block = ^{
+            [weakSelf locationDescriptViewDidSelect];
+        };
     }
     return _locationDescriptView;
 }
