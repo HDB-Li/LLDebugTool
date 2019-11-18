@@ -27,6 +27,7 @@
 #import "LLTitleSwitchCellView.h"
 #import "LLPinAnnotationView.h"
 #import "LLInternalMacros.h"
+#import "LLLocationHelper.h"
 #import "LLThemeManager.h"
 #import "LLAnnotation.h"
 #import "LLConst.h"
@@ -36,7 +37,7 @@
 
 static NSString *const kAnnotationID = @"AnnotationID";
 
-@interface LLLocationViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface LLLocationViewController () <MKMapViewDelegate>
 
 @property (nonatomic, strong) LLTitleSwitchCellView *switchView;
 
@@ -46,11 +47,9 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 @property (nonatomic, strong) LLAnnotation *annotation;
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
-
 @property (nonatomic, assign) BOOL isAddAnnotation;
 
-@property (nonatomic, assign) BOOL userChangeAnnotation;
+@property (nonatomic, assign) BOOL automicSetRegion;
 
 @end
 
@@ -74,46 +73,39 @@ static NSString *const kAnnotationID = @"AnnotationID";
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = CGRectMake(0, self.locationDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.switchView.LL_bottom - kLLGeneralMargin);
+    self.mapView.frame = CGRectMake(0, self.locationDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.locationDescriptView.LL_bottom - kLLGeneralMargin);
 }
 
 #pragma mark - MKMapViewDelegate
-- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
-    if (!self.isAddAnnotation) {
-        [self updateAnnotationCoordinate:mapView.region.center automicSetRegion:NO];
-    }
-}
-
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    if (CLLocationCoordinate2DIsValid(view.annotation.coordinate)) {
-        [self updateLocationDescriptViewDetailTitle:view.annotation.coordinate];
-        if (view.annotation.coordinate.latitude != self.mapView.centerCoordinate.latitude || view.annotation.coordinate.longitude != self.mapView.centerCoordinate.longitude) {
-            if (self.userChangeAnnotation) {
-                [self.mapView setCenterCoordinate:view.annotation.coordinate animated:YES];
-            } else {
-                self.userChangeAnnotation = YES;
-                [self animatedUpdateMapRegion:view.annotation.coordinate];
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
+    if (oldState == MKAnnotationViewDragStateEnding && newState == MKAnnotationViewDragStateNone) {
+        id <MKAnnotation> annotation = view.annotation;
+        if (![annotation isKindOfClass:[LLAnnotation class]]) {
+            return;
+        }
+        if (CLLocationCoordinate2DIsValid(annotation.coordinate)) {
+            [self updateLocationDescriptViewDetailTitle:annotation.coordinate];
+            if (annotation.coordinate.latitude != self.mapView.centerCoordinate.latitude || annotation.coordinate.longitude != self.mapView.centerCoordinate.longitude) {
+                if (self.automicSetRegion) {
+                    [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
+                } else {
+                    [self animatedUpdateMapRegion:view.annotation.coordinate];
+                }
             }
         }
     }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    LLPinAnnotationView *annotationView = (LLPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:kAnnotationID];
-    if (!annotationView) {
-        annotationView = [[LLPinAnnotationView alloc] initWithAnnotation:nil reuseIdentifier:kAnnotationID];
+    if ([annotation isKindOfClass:[LLAnnotation class]]) {
+        LLPinAnnotationView *annotationView = (LLPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:kAnnotationID];
+        if (!annotationView) {
+            annotationView = [[LLPinAnnotationView alloc] initWithAnnotation:nil reuseIdentifier:kAnnotationID];
+        }
+        annotationView.annotation = annotation;
+        return annotationView;
     }
-    annotationView.annotation = annotation;
-    return annotationView;
-}
-
-#pragma mark - CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *location = [locations firstObject];
-    if (location) {
-        [manager stopUpdatingLocation];
-        [self updateAnnotationCoordinate:location.coordinate automicSetRegion:YES];
-    }
+    return nil;
 }
 
 #pragma mark - Primary
@@ -150,6 +142,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 }
 
 - (void)animatedUpdateMapRegion:(CLLocationCoordinate2D)coordinate {
+    self.automicSetRegion = YES;
     [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.1, 0.1)) animated:YES];
 }
 
@@ -157,10 +150,18 @@ static NSString *const kAnnotationID = @"AnnotationID";
     self.locationDescriptView.detailTitle = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
 }
 
+- (void)updateSwitchViewValue:(BOOL)isOn {
+    [LLLocationHelper shared].enable = isOn;
+}
+
 - (void)loadData {
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [self.locationManager startUpdatingLocation];
+    CLLocationCoordinate2D mockCoordinate = [LLLocationHelper shared].mockCoordinate2D;
+    BOOL automicSetRegion = YES;
+    if (mockCoordinate.latitude == 0 && mockCoordinate.longitude == 0) {
+        mockCoordinate = CLLocationCoordinate2DMake(kLLDefaultMockLocationLatitude, kLLDefaultMockLocationLongitude);
+        automicSetRegion = NO;
     }
+    [self updateAnnotationCoordinate:mockCoordinate automicSetRegion:automicSetRegion];
 }
 
 #pragma mark - Event response
@@ -187,6 +188,11 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _switchView = [[LLTitleSwitchCellView alloc] init];
         _switchView.backgroundColor = [LLThemeManager shared].containerColor;
         _switchView.title = @"Mock Location";
+        _switchView.on = [LLLocationHelper shared].enable;
+        __weak typeof(self) weakSelf = self;
+        _switchView.changePropertyBlock = ^(BOOL isOn) {
+            [weakSelf updateSwitchViewValue:isOn];
+        };
         [_switchView needLine];
     }
     return _switchView;
@@ -220,14 +226,6 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _annotation = [[LLAnnotation alloc] init];
     }
     return _annotation;
-}
-
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        _locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
-    }
-    return _locationManager;
 }
 
 @end

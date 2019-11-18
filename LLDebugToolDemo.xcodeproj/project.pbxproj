@@ -29,6 +29,9 @@
 		360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */; };
 		360D8A5222FD636D003693AE /* LLHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5122FD636D003693AE /* LLHierarchyViewController.m */; };
 		360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */; };
+		361C383E2382690100487FA4 /* LLProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C383D2382690100487FA4 /* LLProxy.m */; };
+		361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C384023826B2000487FA4 /* LLLocationProxy.m */; };
+		361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */; };
 		362649C3237F905A0057BE3B /* LLDetailTitleSelectorCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362649C2237F905A0057BE3B /* LLDetailTitleSelectorCellView.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
@@ -296,6 +299,12 @@
 		360D8A5122FD636D003693AE /* LLHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewController.m; sourceTree = "<group>"; };
 		360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoView.h; sourceTree = "<group>"; };
 		360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoView.m; sourceTree = "<group>"; };
+		361C383C2382690100487FA4 /* LLProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLProxy.h; sourceTree = "<group>"; };
+		361C383D2382690100487FA4 /* LLProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProxy.m; sourceTree = "<group>"; };
+		361C383F23826B2000487FA4 /* LLLocationProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationProxy.h; sourceTree = "<group>"; };
+		361C384023826B2000487FA4 /* LLLocationProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationProxy.m; sourceTree = "<group>"; };
+		361C384323826B9200487FA4 /* CLLocationManager+LL_Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+LL_Location.h"; sourceTree = "<group>"; };
+		361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+LL_Location.m"; sourceTree = "<group>"; };
 		362649C1237F905A0057BE3B /* LLDetailTitleSelectorCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCellView.h; sourceTree = "<group>"; };
 		362649C2237F905A0057BE3B /* LLDetailTitleSelectorCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCellView.m; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
@@ -829,6 +838,24 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
+		361C383B238268E700487FA4 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				361C383C2382690100487FA4 /* LLProxy.h */,
+				361C383D2382690100487FA4 /* LLProxy.m */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
+		361C384223826B7200487FA4 /* CLLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				361C384323826B9200487FA4 /* CLLocationManager+LL_Location.h */,
+				361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */,
+			);
+			path = CLLocationManager;
+			sourceTree = "<group>";
+		};
 		3629E3852136830A00226C79 /* DemoViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1099,8 +1126,11 @@
 		36C9F7F7237E7DA80021BA2D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				361C384223826B7200487FA4 /* CLLocationManager */,
 				36C9F7F8237E7DD50021BA2D /* LLLocationHelper.h */,
 				36C9F7F9237E7DD50021BA2D /* LLLocationHelper.m */,
+				361C383F23826B2000487FA4 /* LLLocationProxy.h */,
+				361C384023826B2000487FA4 /* LLLocationProxy.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1690,6 +1720,7 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				361C383B238268E700487FA4 /* Proxy */,
 				36B8563B237BA9E600210B94 /* Router */,
 				36059403237AB0B100C2D8FF /* Component */,
 				36BB1E1C2320E88A000D8F29 /* LLConfigHelper */,
@@ -2388,6 +2419,7 @@
 				36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */,
 				36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */,
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,
+				361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,
 				362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */,
 				36C9F7F5237E7D990021BA2D /* LLLocationComponent.m in Sources */,
@@ -2504,6 +2536,7 @@
 				365912502320B3E300FDA6A0 /* LLTitleCell.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
+				361C383E2382690100487FA4 /* LLProxy.m in Sources */,
 				36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */,
 				3603883D23335DF40026BC9E /* LLTitleViewController.m in Sources */,
 				C4B4E44F22F9C90900F70277 /* LLStorageModel.m in Sources */,
@@ -2520,6 +2553,7 @@
 				C49856E922EDACD200E9FBE2 /* LLComponent.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,
+				361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */,
 				C4B4E45D22F9C90900F70277 /* LLFilterTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

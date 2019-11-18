@@ -47,3 +47,6 @@ UIKIT_EXTERN CGFloat const kLLRulerLineWidth;
 UIKIT_EXTERN CGFloat const kLLWidgetBorderWidth;
 
 UIKIT_EXTERN CGFloat const kLLGeneralMargin;
+
+UIKIT_EXTERN double const kLLDefaultMockLocationLatitude;
+UIKIT_EXTERN double const kLLDefaultMockLocationLongitude;

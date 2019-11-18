@@ -1,5 +1,5 @@
 //
-//  LLLocationHelper.h
+//  LLLocationProxy.m
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,24 +19,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <CoreLocation/CoreLocation.h>
+#import "LLLocationProxy.h"
 
-NS_ASSUME_NONNULL_BEGIN
+#import "LLLocationHelper.h"
 
-/// Location helper.
-@interface LLLocationHelper : NSObject
+@implementation LLLocationProxy
 
-/// Shared instance.
-+ (instancetype)shared;
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (aSelector == @selector(locationManager:didUpdateLocations:)) {
+        return YES;
+    }
+    return [super respondsToSelector:aSelector];
+}
 
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/// Mock location.
-@property (nonatomic, assign) CLLocationCoordinate2D mockCoordinate2D;
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    if ([self.target respondsToSelector:_cmd]) {
+        if ([LLLocationHelper shared].enable) {
+            CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLLocationHelper shared].mockCoordinate2D.latitude longitude:[LLLocationHelper shared].mockCoordinate2D.longitude];
+            locations = @[mockLocation];
+        }
+        [self.target locationManager:manager didUpdateLocations:locations];
+    }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

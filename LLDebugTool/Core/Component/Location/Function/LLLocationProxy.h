@@ -1,5 +1,5 @@
 //
-//  LLLocationHelper.h
+//  LLLocationProxy.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,23 +19,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "LLProxy.h"
+
 #import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Location helper.
-@interface LLLocationHelper : NSObject
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/// Mock location.
-@property (nonatomic, assign) CLLocationCoordinate2D mockCoordinate2D;
+@interface LLLocationProxy : LLProxy <CLLocationManagerDelegate>
 
 @end
 

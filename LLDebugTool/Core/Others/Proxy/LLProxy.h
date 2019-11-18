@@ -1,5 +1,7 @@
 //
-//  LLLocationHelper.h
+//  LLProxy.h
+//
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,23 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <CoreLocation/CoreLocation.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Location helper.
-@interface LLLocationHelper : NSObject
+/// Base proxy.
+@interface LLProxy : NSProxy
 
-/// Shared instance.
-+ (instancetype)shared;
+@property (nonatomic, weak, readonly, nullable) id target;
 
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/// Mock location.
-@property (nonatomic, assign) CLLocationCoordinate2D mockCoordinate2D;
+/// Instance method.
+/// @param target Target.
+- (instancetype)initWithTarget:(nullable id)target;
 
 @end
 
