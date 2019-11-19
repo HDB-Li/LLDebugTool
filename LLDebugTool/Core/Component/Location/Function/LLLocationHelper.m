@@ -33,8 +33,4 @@ static LLLocationHelper *_instance = nil;
     return _instance;
 }
 
-- (void)setEnable:(BOOL)enable {
-    _enable = enable;
-}
-
 @end
