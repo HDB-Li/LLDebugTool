@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong) TestLocationAnnotation *annotation;
 
+@property (nonatomic, strong) UILabel *toastLabel;
+
 @property (nonatomic, strong) CLLocationManager *manager;
 
 @end
@@ -39,15 +41,24 @@
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"test.location", nil);
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testMockLocation)];
     
     [self.view addSubview:self.mapView];
+    [self.view addSubview:self.toastLabel];
     [self.manager startUpdatingLocation];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = self.view.bounds;
+    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
+    self.toastLabel.frame = CGRectMake(0, navigationBarHeight, self.view.frame.size.width, 80);
+    self.mapView.frame = CGRectMake(0, navigationBarHeight + 80, self.view.frame.size.width, self.view.frame.size.height - navigationBarHeight - 80);
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -60,10 +71,14 @@
     if (![self.mapView.annotations containsObject:self.annotation]) {
         [self.mapView addAnnotation:self.annotation];
         self.mapView.region = MKCoordinateRegionMake(locations.firstObject.coordinate, MKCoordinateSpanMake(0.05, 0.05));
+    } else {
+        self.mapView.centerCoordinate = locations.firstObject.coordinate;
     }
+    _toastLabel.text = [NSString stringWithFormat:@"Lat & Lng : %0.6f, %0.6f", self.annotation.coordinate.latitude, self.annotation.coordinate.longitude];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    _toastLabel.text = @"Failed";
     NSLog(@"%@, %@",NSStringFromSelector(_cmd), error);
 }
 
@@ -93,6 +108,15 @@
         _annotation = [[TestLocationAnnotation alloc] init];
     }
     return _annotation;
+}
+
+- (UILabel *)toastLabel {
+    if (!_toastLabel) {
+        _toastLabel = [[UILabel alloc] init];
+        _toastLabel.textAlignment = NSTextAlignmentCenter;
+        _toastLabel.text = @"Lat & Lng : 0, 0";
+    }
+    return _toastLabel;
 }
 
 - (CLLocationManager *)manager {
