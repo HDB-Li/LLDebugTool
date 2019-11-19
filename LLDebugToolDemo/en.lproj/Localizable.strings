@@ -52,6 +52,7 @@
 "test.ruler" = "Show ruler function";
 "test.widget.border" = "Show widget border function";
 "test.html" = "Show html webview function";
+"test.location" = "Show mock location function";
 
 "new.version" = "A new version demo is available";
 "crash.tip" = "If your project/Demo under run XCode contains Exception Breakpoint, you need to after the program crashes, Continue to click on the XCode ` Continue program execution `(Tip 1), until the end of the program completely(Tip 2). This function can be used normally when non-xcode runs, and when run under XCode, Exception Breakpoint takes precedence over LLDebugTool intercept crash.";

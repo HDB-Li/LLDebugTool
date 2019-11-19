@@ -23,6 +23,7 @@
 #import "TestWindowStyleViewController.h"
 #import "TestHierarchyViewController.h"
 #import "TestHtmlViewController.h"
+#import "TestLocationViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -184,9 +185,14 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)testLocation {
+    TestLocationViewController *vc = [[TestLocationViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 12;
+    return 13;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -288,6 +294,9 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 11) {
         cell.textLabel.text = NSLocalizedString(@"test.html", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 12) {
+        cell.textLabel.text = NSLocalizedString(@"test.location", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -321,6 +330,8 @@ static NSString *const kCellID = @"cellID";
         [self testWidgetBorder];
     } else if (indexPath.section == 11) {
         [self testHtml];
+    } else if (indexPath.section == 12) {
+        [self testLocation];
     }
     [self.tableView reloadData];
 }
@@ -350,6 +361,8 @@ static NSString *const kCellID = @"cellID";
         return @"Widget Border";
     } else if (section == 11) {
         return @"Html";
+    } else if (section == 12) {
+        return @"Location";
     }
     return nil;
 }

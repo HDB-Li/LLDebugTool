@@ -32,6 +32,7 @@
 		361C383E2382690100487FA4 /* LLProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C383D2382690100487FA4 /* LLProxy.m */; };
 		361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C384023826B2000487FA4 /* LLLocationProxy.m */; };
 		361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */; };
+		3624D3FB23839DD700DBE692 /* TestLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3624D3FA23839DD700DBE692 /* TestLocationViewController.m */; };
 		362649C3237F905A0057BE3B /* LLDetailTitleSelectorCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362649C2237F905A0057BE3B /* LLDetailTitleSelectorCellView.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
@@ -305,6 +306,8 @@
 		361C384023826B2000487FA4 /* LLLocationProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationProxy.m; sourceTree = "<group>"; };
 		361C384323826B9200487FA4 /* CLLocationManager+LL_Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocationManager+LL_Location.h"; sourceTree = "<group>"; };
 		361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+LL_Location.m"; sourceTree = "<group>"; };
+		3624D3F923839DD700DBE692 /* TestLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLocationViewController.h; sourceTree = "<group>"; };
+		3624D3FA23839DD700DBE692 /* TestLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLocationViewController.m; sourceTree = "<group>"; };
 		362649C1237F905A0057BE3B /* LLDetailTitleSelectorCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCellView.h; sourceTree = "<group>"; };
 		362649C2237F905A0057BE3B /* LLDetailTitleSelectorCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCellView.m; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
@@ -877,6 +880,8 @@
 				360075E1235571EF00A606AC /* TestHtmlViewController.m */,
 				360075E3235576A800A606AC /* CustomWebViewController.h */,
 				360075E4235576A800A606AC /* CustomWebViewController.m */,
+				3624D3F923839DD700DBE692 /* TestLocationViewController.h */,
+				3624D3FA23839DD700DBE692 /* TestLocationViewController.m */,
 			);
 			path = DemoViewControllers;
 			sourceTree = "<group>";
@@ -2509,6 +2514,7 @@
 				C4B4E46222F9C90900F70277 /* LLFunctionViewController.m in Sources */,
 				C4B4E47A22F9C90900F70277 /* LLFactory.m in Sources */,
 				C498570722EDB3EF00E9FBE2 /* LLHierarchyComponent.m in Sources */,
+				3624D3FB23839DD700DBE692 /* TestLocationViewController.m in Sources */,
 				36059406237AB24000C2D8FF /* LLWindowManager+Network.m in Sources */,
 				3605941B237AB82100C2D8FF /* LLWindowManager+Magnifier.m in Sources */,
 				C4B4E44122F9C90900F70277 /* UIView+LL_Utils.m in Sources */,
