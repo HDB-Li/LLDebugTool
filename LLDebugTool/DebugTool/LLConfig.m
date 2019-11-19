@@ -171,6 +171,10 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     // Set hierarchy
     _hierarchyIgnorePrivateClass = YES;
     
+    // Set location
+    _mockLocationLatitude = 0;
+    _mockLocationLongitude = 0;
+    
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
     

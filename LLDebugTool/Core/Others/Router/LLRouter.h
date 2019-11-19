@@ -50,6 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param isEnable Is enable.
 + (void)setScreenshotHelperEnable:(BOOL)isEnable;
 
+/// Set LLLocationHelper enable.
+/// @param isEnable Is enable.
++ (void)setLocationHelperEnable:(BOOL)isEnable;
+
 @end
 
 NS_ASSUME_NONNULL_END

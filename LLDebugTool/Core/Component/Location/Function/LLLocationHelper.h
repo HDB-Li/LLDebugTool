@@ -34,9 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
-/// Mock location.
-@property (nonatomic, assign) CLLocationCoordinate2D mockCoordinate2D;
-
 @end
 
 NS_ASSUME_NONNULL_END

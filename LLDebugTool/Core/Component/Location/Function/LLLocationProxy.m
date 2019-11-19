@@ -22,6 +22,7 @@
 #import "LLLocationProxy.h"
 
 #import "LLLocationHelper.h"
+#import "LLConfig.h"
 
 @implementation LLLocationProxy
 
@@ -36,7 +37,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if ([self.target respondsToSelector:_cmd]) {
         if ([LLLocationHelper shared].enable) {
-            CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLLocationHelper shared].mockCoordinate2D.latitude longitude:[LLLocationHelper shared].mockCoordinate2D.longitude];
+            CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
             locations = @[mockLocation];
         }
         [self.target locationManager:manager didUpdateLocations:locations];

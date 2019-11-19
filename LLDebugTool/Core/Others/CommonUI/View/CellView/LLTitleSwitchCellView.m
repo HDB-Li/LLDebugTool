@@ -72,8 +72,11 @@
 
 #pragma mark - Getters and settings
 - (void)setOn:(BOOL)on {
-    _on = on;
     _swit.on = on;
+}
+
+- (BOOL)isOn {
+    return _swit.isOn;
 }
 
 - (UISwitch *)swit {

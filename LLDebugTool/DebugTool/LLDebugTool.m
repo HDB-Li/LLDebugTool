@@ -221,49 +221,60 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)prepareToStart {
-    NSNumber *doubleClickAction = [LLSettingManager shared].doubleClickAction;
+    LLSettingManager *manager = [LLSettingManager shared];
+    NSNumber *doubleClickAction = manager.doubleClickAction;
     if (doubleClickAction != nil) {
         [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
     }
-    NSNumber *colorStyle = [LLSettingManager shared].colorStyle;
+    NSNumber *colorStyle = manager.colorStyle;
     if (colorStyle != nil) {
         [LLConfig shared].colorStyle = colorStyle.integerValue;
     }
-    NSNumber *entryWindowStyle = [LLSettingManager shared].entryWindowStyle;
+    NSNumber *entryWindowStyle = manager.entryWindowStyle;
     if (entryWindowStyle != nil) {
         [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
     }
-    NSNumber *statusBarStyle = [LLSettingManager shared].statusBarStyle;
+    NSNumber *statusBarStyle = manager.statusBarStyle;
     if (statusBarStyle != nil) {
         [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
     }
-    NSNumber *logStyle = [LLSettingManager shared].logStyle;
+    NSNumber *logStyle = manager.logStyle;
     if (logStyle != nil) {
         [LLConfig shared].logStyle = logStyle.integerValue;
     }
-    NSNumber *shrinkToEdgeWhenInactive = [LLSettingManager shared].shrinkToEdgeWhenInactive;
+    NSNumber *shrinkToEdgeWhenInactive = manager.shrinkToEdgeWhenInactive;
     if (shrinkToEdgeWhenInactive != nil) {
         [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
     }
-    NSNumber *shakeToHide = [LLSettingManager shared].shakeToHide;
+    NSNumber *shakeToHide = manager.shakeToHide;
     if (shakeToHide != nil) {
         [LLConfig shared].shakeToHide = [shakeToHide boolValue];
     }
-    NSNumber *magnifierZoomLevel = [LLSettingManager shared].magnifierZoomLevel;
+    NSNumber *magnifierZoomLevel = manager.magnifierZoomLevel;
     if (magnifierZoomLevel != nil) {
         [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
     }
-    NSNumber *magnifierSize = [LLSettingManager shared].magnifierSize;
+    NSNumber *magnifierSize = manager.magnifierSize;
     if (magnifierSize != nil) {
         [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
-    NSNumber *showWidgetBorder = [LLSettingManager shared].showWidgetBorder;
+    NSNumber *showWidgetBorder = manager.showWidgetBorder;
     if (showWidgetBorder != nil) {
         [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
     }
-    NSNumber *hierarchyIgnorePrivateClass = [LLSettingManager shared].hierarchyIgnorePrivateClass;
+    NSNumber *hierarchyIgnorePrivateClass = manager.hierarchyIgnorePrivateClass;
     if (hierarchyIgnorePrivateClass != nil) {
         [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
+    }
+    NSNumber *mockLocationEnable = manager.mockLocationEnable;
+    if (mockLocationEnable) {
+        [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
+    }
+    NSNumber *mockLocationLatitude = manager.mockLocationLatitude;
+    NSNumber *mockLocationLogitude = manager.mockLocationLongitude;
+    if (mockLocationLatitude && mockLocationLogitude) {
+        [LLConfig shared].mockLocationLatitude = [mockLocationLatitude doubleValue];
+        [LLConfig shared].mockLocationLongitude = [mockLocationLogitude doubleValue];
     }
 }
 

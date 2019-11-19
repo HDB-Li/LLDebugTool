@@ -43,6 +43,9 @@ static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassKey";
 static NSString *webViewClassKey = @"webViewClassKey";
 static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
+static NSString *mockLocationEnableKey = @"mockLocationEnableKey";
+static NSString *mockLocationLatitudeKey = @"mockLocationLatitudeKey";
+static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
 
 @implementation LLSettingManager
 
@@ -157,6 +160,30 @@ static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
 
 - (NSString *)lastWebViewUrl {
     return [NSUserDefaults LL_stringForKey:lastWebViewUrlKey];
+}
+
+- (void)setMockLocationEnable:(NSNumber *)mockLocationEnable {
+    [NSUserDefaults LL_setNumber:mockLocationEnable forKey:mockLocationEnableKey];
+}
+
+- (NSNumber *)mockLocationEnable {
+    return [NSUserDefaults LL_numberForKey:mockLocationEnableKey];
+}
+
+- (void)setMockLocationLatitude:(NSNumber *)mockLocationLatitude {
+    [NSUserDefaults LL_setNumber:mockLocationLatitude forKey:mockLocationLatitudeKey];
+}
+
+- (NSNumber *)mockLocationLatitude {
+    return [NSUserDefaults LL_numberForKey:mockLocationLatitudeKey];
+}
+
+- (void)setMockLocationLongitude:(NSNumber *)mockLocationLongitude {
+    [NSUserDefaults LL_setNumber:mockLocationLongitude forKey:mockLocationLongitudeKey];
+}
+
+- (NSNumber *)mockLocationLongitude {
+    return [NSUserDefaults LL_numberForKey:mockLocationLongitudeKey];
 }
 
 @end

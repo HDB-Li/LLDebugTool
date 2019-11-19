@@ -46,6 +46,10 @@
     [self setEnable:isEnable className:[self screenshotHelper]];
 }
 
++ (void)setLocationHelperEnable:(BOOL)isEnable {
+    [self setEnable:isEnable className:[self locationHelper]];
+}
+
 #pragma mark - Primary
 + (void)setEnable:(BOOL)isEnable className:(NSString *)className {
 #pragma clang diagnostic push
@@ -98,6 +102,11 @@
 /// LLScreenshotHelper class name.
 + (NSString *)screenshotHelper {
     return @"LLScreenshotHelper";
+}
+
+/// LLLocationHelper class name.
++ (NSString *)locationHelper {
+    return @"LLLocationHelper";
 }
 
 @end

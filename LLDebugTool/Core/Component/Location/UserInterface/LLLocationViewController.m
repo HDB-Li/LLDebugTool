@@ -28,8 +28,10 @@
 #import "LLPinAnnotationView.h"
 #import "LLInternalMacros.h"
 #import "LLLocationHelper.h"
+#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLAnnotation.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"
@@ -37,7 +39,7 @@
 
 static NSString *const kAnnotationID = @"AnnotationID";
 
-@interface LLLocationViewController () <MKMapViewDelegate>
+@interface LLLocationViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) LLTitleSwitchCellView *switchView;
 
@@ -46,6 +48,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 @property (nonatomic, strong) MKMapView *mapView;
 
 @property (nonatomic, strong) LLAnnotation *annotation;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, assign) BOOL isAddAnnotation;
 
@@ -85,6 +89,9 @@ static NSString *const kAnnotationID = @"AnnotationID";
         }
         if (CLLocationCoordinate2DIsValid(annotation.coordinate)) {
             [self updateLocationDescriptViewDetailTitle:annotation.coordinate];
+            if ([LLLocationHelper shared].isEnabled) {
+                [self setUpMockCoordinate:annotation.coordinate];
+            }
             if (annotation.coordinate.latitude != self.mapView.centerCoordinate.latitude || annotation.coordinate.longitude != self.mapView.centerCoordinate.longitude) {
                 if (self.automicSetRegion) {
                     [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
@@ -106,6 +113,15 @@ static NSString *const kAnnotationID = @"AnnotationID";
         return annotationView;
     }
     return nil;
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = [locations firstObject];
+    if (location) {
+        [manager stopUpdatingLocation];
+        [self updateAnnotationCoordinate:location.coordinate automicSetRegion:YES];
+    }
 }
 
 #pragma mark - Primary
@@ -143,7 +159,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)animatedUpdateMapRegion:(CLLocationCoordinate2D)coordinate {
     self.automicSetRegion = YES;
-    [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.1, 0.1)) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.05, 0.05)) animated:YES];
 }
 
 - (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate {
@@ -152,14 +168,28 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)updateSwitchViewValue:(BOOL)isOn {
     [LLLocationHelper shared].enable = isOn;
+    [LLSettingManager shared].mockLocationEnable = @(isOn);
+    if (isOn) {
+        [self setUpMockCoordinate:self.annotation.coordinate];
+    }
+}
+
+- (void)setUpMockCoordinate:(CLLocationCoordinate2D)coordinate {
+    [LLConfig shared].mockLocationLatitude = coordinate.latitude;
+    [LLConfig shared].mockLocationLongitude = coordinate.longitude;
+    [LLSettingManager shared].mockLocationLatitude = @(coordinate.latitude);
+    [LLSettingManager shared].mockLocationLongitude = @(coordinate.longitude);
 }
 
 - (void)loadData {
-    CLLocationCoordinate2D mockCoordinate = [LLLocationHelper shared].mockCoordinate2D;
+    CLLocationCoordinate2D mockCoordinate = CLLocationCoordinate2DMake([LLConfig shared].mockLocationLatitude, [LLConfig shared].mockLocationLongitude);
     BOOL automicSetRegion = YES;
     if (mockCoordinate.latitude == 0 && mockCoordinate.longitude == 0) {
         mockCoordinate = CLLocationCoordinate2DMake(kLLDefaultMockLocationLatitude, kLLDefaultMockLocationLongitude);
         automicSetRegion = NO;
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+            [self.locationManager startUpdatingLocation];
+        }
     }
     [self updateAnnotationCoordinate:mockCoordinate automicSetRegion:automicSetRegion];
 }
@@ -226,6 +256,14 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _annotation = [[LLAnnotation alloc] init];
     }
     return _annotation;
+}
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
 }
 
 @end

@@ -309,6 +309,18 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
 
+#pragma mark - Location
+
+/**
+ Mock location latitude.
+ */
+@property (nonatomic, assign) double mockLocationLatitude;
+
+/**
+ Mock location longitude.
+ */
+@property (nonatomic, assign) double mockLocationLongitude;
+
 #pragma mark - LLDebugTool
 /**
  Whether to print LLDebugTool's log event. Default is YES.
