@@ -33,6 +33,7 @@
 		361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C384023826B2000487FA4 /* LLLocationProxy.m */; };
 		361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */; };
 		3624D3FB23839DD700DBE692 /* TestLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3624D3FA23839DD700DBE692 /* TestLocationViewController.m */; };
+		3624D3FF2383F72B00DBE692 /* MKMapView+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 3624D3FE2383F72B00DBE692 /* MKMapView+LL_Location.m */; };
 		362649C3237F905A0057BE3B /* LLDetailTitleSelectorCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 362649C2237F905A0057BE3B /* LLDetailTitleSelectorCellView.m */; };
 		3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3862136830A00226C79 /* BaseTestViewController.m */; };
 		3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629E3872136830A00226C79 /* TestCrashViewController.m */; };
@@ -308,6 +309,8 @@
 		361C384423826B9200487FA4 /* CLLocationManager+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocationManager+LL_Location.m"; sourceTree = "<group>"; };
 		3624D3F923839DD700DBE692 /* TestLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLocationViewController.h; sourceTree = "<group>"; };
 		3624D3FA23839DD700DBE692 /* TestLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLocationViewController.m; sourceTree = "<group>"; };
+		3624D3FD2383F72B00DBE692 /* MKMapView+LL_Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKMapView+LL_Location.h"; sourceTree = "<group>"; };
+		3624D3FE2383F72B00DBE692 /* MKMapView+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+LL_Location.m"; sourceTree = "<group>"; };
 		362649C1237F905A0057BE3B /* LLDetailTitleSelectorCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCellView.h; sourceTree = "<group>"; };
 		362649C2237F905A0057BE3B /* LLDetailTitleSelectorCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCellView.m; sourceTree = "<group>"; };
 		3629E3862136830A00226C79 /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
@@ -859,6 +862,15 @@
 			path = CLLocationManager;
 			sourceTree = "<group>";
 		};
+		3624D3FC2383F71600DBE692 /* MKMapView */ = {
+			isa = PBXGroup;
+			children = (
+				3624D3FD2383F72B00DBE692 /* MKMapView+LL_Location.h */,
+				3624D3FE2383F72B00DBE692 /* MKMapView+LL_Location.m */,
+			);
+			path = MKMapView;
+			sourceTree = "<group>";
+		};
 		3629E3852136830A00226C79 /* DemoViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1131,6 +1143,7 @@
 		36C9F7F7237E7DA80021BA2D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				3624D3FC2383F71600DBE692 /* MKMapView */,
 				361C384223826B7200487FA4 /* CLLocationManager */,
 				36C9F7F8237E7DD50021BA2D /* LLLocationHelper.h */,
 				36C9F7F9237E7DD50021BA2D /* LLLocationHelper.m */,
@@ -2396,6 +2409,7 @@
 				3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
 				36059418237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m in Sources */,
+				3624D3FF2383F72B00DBE692 /* MKMapView+LL_Location.m in Sources */,
 				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,

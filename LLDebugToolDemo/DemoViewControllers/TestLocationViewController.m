@@ -99,6 +99,7 @@
 - (MKMapView *)mapView {
     if (!_mapView) {
         _mapView = [[MKMapView alloc] init];
+        _mapView.showsUserLocation = YES;
     }
     return _mapView;
 }
