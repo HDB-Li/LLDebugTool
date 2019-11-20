@@ -31,10 +31,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SEL sel = NSSelectorFromString(@"_updateUserLocationViewWithLocation:hadUserLocation:");
-        if (sel) {
-            [self LL_swizzleInstanceMethodWithOriginSel:sel swizzledSel:@selector(LL_updateUserLocationViewWithLocation:hadUserLocation:)];
-        }
+        [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"_updateUserLocationViewWithLocation:hadUserLocation:") swizzledSel:@selector(LL_updateUserLocationViewWithLocation:hadUserLocation:)];
     });
 }
 
