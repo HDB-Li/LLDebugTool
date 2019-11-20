@@ -624,7 +624,7 @@
 		C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierComponent.m; sourceTree = "<group>"; };
 		C498571622EDE3F800E9FBE2 /* LLMagnifierWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMagnifierWindow.h; sourceTree = "<group>"; };
 		C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierWindow.m; sourceTree = "<group>"; };
-		C4B4E39022F9C90900F70277 /* LLLogHelperEventDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogHelperEventDefine.h; sourceTree = "<group>"; };
+		C4B4E39022F9C90900F70277 /* LLLogDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogDefine.h; sourceTree = "<group>"; };
 		C4B4E39322F9C90900F70277 /* UIImage+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E39422F9C90900F70277 /* UIImage+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LL_Utils.m"; sourceTree = "<group>"; };
 		C4B4E39622F9C90900F70277 /* NSDictionary+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LL_Utils.m"; sourceTree = "<group>"; };
@@ -1760,7 +1760,7 @@
 		C4B4E38F22F9C90900F70277 /* Define */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E39022F9C90900F70277 /* LLLogHelperEventDefine.h */,
+				C4B4E39022F9C90900F70277 /* LLLogDefine.h */,
 				36B85642237BE2D900210B94 /* LLNetworkDefine.h */,
 			);
 			path = Define;

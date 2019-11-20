@@ -89,7 +89,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 #pragma mark - Version Control
-
 /**
 LLDebugTool's version.
 */
@@ -106,7 +105,6 @@ Whether is Beta.
 + (BOOL)isBetaVersion;
 
 #pragma mark - DEPRECATED
-
 /**
  LLDebugTool's version.
  */

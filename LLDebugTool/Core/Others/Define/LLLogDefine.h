@@ -1,5 +1,5 @@
 //
-//  LLLogHelperEventDefine.h
+//  LLLogDefine.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLLogHelperEventDefine_h
-#define LLLogHelperEventDefine_h
+#ifndef LLLogDefine_h
+#define LLLogDefine_h
 
 // Define
-static NSString *const kLLLogHelperUseBetaAlert = @"You are using a Beta version, please use release version.";
-static NSString *const kLLLogHelperOpenIssueInGithub = @"Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.";
+static NSString *const kLLDebugToolLogUseBetaAlert = @"You are using a Beta version, please use release version.";
+static NSString *const kLLDebugToolLogOpenIssueInGithub = @"Open an issue in \"https://github.com/HDB-Li/LLDebugTool\" if you need to get more help.";
 
-#endif /* LLLogHelperEventDefine_h */
+#endif /* LLLogDefine_h */

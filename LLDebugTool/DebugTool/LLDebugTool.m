@@ -23,12 +23,12 @@
 
 #import "LLDebugTool.h"
 
-#import "LLLogHelperEventDefine.h"
 #import "LLFunctionItemModel.h"
 #import "LLDebugToolMacros.h"
 #import "LLSettingManager.h"
 #import "LLWindowManager.h"
 #import "LLComponent.h"
+#import "LLLogDefine.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 
@@ -183,7 +183,7 @@ static LLDebugTool *_instance = nil;
     
     if ([LLDebugTool isBetaVersion]) {
         // This method called in instancetype, can't use macros to log.
-        [LLTool log:kLLLogHelperUseBetaAlert];
+        [LLTool log:kLLDebugToolLogUseBetaAlert];
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

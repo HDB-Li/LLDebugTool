@@ -310,7 +310,6 @@ Whether show widget border. Default is NO.
 @property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
 
 #pragma mark - Location
-
 /**
  Mock location latitude.
  */
