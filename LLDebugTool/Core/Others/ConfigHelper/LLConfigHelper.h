@@ -1,5 +1,5 @@
 //
-//  LLLogHelper.h
+//  LLConfigHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,43 +23,34 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LLConfig+Log.h"
+#import "LLConfig.h"
+#import "LLDebugTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
+/// Config description helper.
+@interface LLConfigHelper : NSObject
 
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
+#pragma mark - Description
++ (NSString *)colorStyleDetailDescription;
 
-/**
- Set enable to save log model.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
++ (NSString *)colorStyleDetailDescription:(LLConfigColorStyle)colorStyle;
 
-/**
- Return log levels string.
- */
-+ (NSArray <NSString *>*)levelsDescription;
++ (NSString *)colorStyleDescription;
 
-/**
- Print and save a log model with infos.
++ (NSString *)colorStyleDescription:(LLConfigColorStyle)colorStyle;
 
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
++ (NSString *)entryWindowStyleDescription;
+
++ (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle;
+
++ (NSString *)statusBarStyleDescription;
+
++ (NSString *)statusBarStyleDescription:(UIStatusBarStyle)statusBarStyle;
+
++ (NSString *)doubleClickComponentDescription;
+
++ (NSString *)componentDescription:(LLDebugToolAction)action;
 
 @end
 

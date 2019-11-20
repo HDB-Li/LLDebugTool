@@ -74,8 +74,11 @@
     if (!cls) {
         return nil;
     }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     NSAssert([cls respondsToSelector:@selector(shared)], @"Get shared instance failed.");
     return [cls performSelector:@selector(shared)];
+#pragma clang diagnostic pop
 }
 
 #pragma mark Getters

@@ -112,25 +112,6 @@
     return nil;
 }
 
-+ (NSString *)logStyleDescription {
-    return [self logStyleDescription:[LLConfig shared].logStyle];
-}
-
-+ (NSString *)logStyleDescription:(LLConfigLogStyle)style {
-    switch (style) {
-        case LLConfigLogDetail:
-            return @"Detail";
-        case LLConfigLogFileFuncDesc:
-            return @"File Func Desc";
-        case LLConfigLogFileDesc:
-            return @"File Desc";
-        case LLConfigLogNormal:
-            return @"Normal";
-        case LLConfigLogNone:
-            return @"None";
-    }
-}
-
 + (NSString *)doubleClickComponentDescription {
     return [self componentDescription:[LLConfig shared].doubleClickAction];
 }

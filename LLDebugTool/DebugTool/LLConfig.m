@@ -30,6 +30,12 @@
 #import "LLConst.h"
 #import "LLTool.h"
 
+#ifdef LLDEBUGTOOL_MAGNIFIER
+#import "LLConfig+Magnifier.h"
+#endif
+#ifdef LLDEBUGTOOL_HIERARCHY
+#import "LLConfig+Hierarchy.h"
+#endif
 
 static LLConfig *_instance = nil;
 
@@ -115,16 +121,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
 }
 
-- (void)setMagnifierSize:(NSInteger)magnifierSize {
-    if (_magnifierSize != magnifierSize) {
-        if (magnifierSize % 2 == 0) {
-            _magnifierSize = magnifierSize + 1;
-        } else {
-            _magnifierSize = magnifierSize;
-        }
-    }
-}
-
 #pragma mark - Primary
 /**
  Initialize something.
@@ -165,11 +161,11 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _shakeToHide = YES;
     
     // Set default magnifier properties.
-    _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
-    _magnifierSize = kLLMagnifierWindowSize;
+    self.magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
+    self.magnifierSize = kLLMagnifierWindowSize;
     
     // Set hierarchy
-    _hierarchyIgnorePrivateClass = YES;
+    self.hierarchyIgnorePrivateClass = YES;
     
     // Set location
     _mockLocationLatitude = 0;
@@ -177,9 +173,6 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
-    
-    // Set log style.
-    _logStyle = LLConfigLogDetail;
     
     // Click action
     _clickAction = LLDebugToolActionFunction;

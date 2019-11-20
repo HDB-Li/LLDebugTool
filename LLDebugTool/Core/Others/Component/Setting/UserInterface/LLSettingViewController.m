@@ -38,6 +38,19 @@
 
 #import "UIViewController+LL_Utils.h"
 
+#ifdef LLDEBUGTOOL_LOG
+#import "LLConfigHelper+Log.h"
+#import "LLConfig+Log.h"
+#endif
+
+#ifdef LLDEBUGTOOL_MAGNIFIER
+#import "LLConfig+Magnifier.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HIERARCHY
+#import "LLConfig+Hierarchy.h"
+#endif
+
 @interface LLSettingViewController () <UITableViewDataSource>
 
 @end
@@ -79,21 +92,25 @@
     LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Entry Window" items:settings];
     [settings removeAllObjects];
     
+#ifdef LLDEBUGTOOL_LOG
     // Log
     [settings addObject:[self getLogStyleModel]];
     LLTitleCellCategoryModel *category3 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Log" items:settings];
     [settings removeAllObjects];
-    
+#endif
+#ifdef LLDEBUGTOOL_MAGNIFIER
     // Magnifier
     [settings addObject:[self getMagnifierZoomLevelModel]];
     [settings addObject:[self getMagnifierSizeModel]];
     LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
-    
+#endif
+#ifdef LLDEBUGTOOL_HIERARCHY
     // Hierarchy
     [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
     LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
-    
+    [settings removeAllObjects];
+#endif
     [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:@[category0, category1, category2, category3, category4, category5]];
     [self.tableView reloadData];
@@ -279,6 +296,7 @@
     [LLSettingManager shared].shrinkToEdgeWhenInactive = @(isShrinkToEdgeWhenInactive);
 }
 
+#ifdef LLDEBUGTOOL_LOG
 - (LLTitleCellModel *)getLogStyleModel {
     LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
@@ -311,7 +329,9 @@
     [LLSettingManager shared].logStyle = @(style);
     [self loadData];
 }
+#endif
 
+#ifdef LLDEBUGTOOL_MAGNIFIER
 - (LLTitleCellModel *)getMagnifierZoomLevelModel {
     LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Zoom Level" value:[LLConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
     __weak typeof(self) weakSelf = self;
@@ -341,7 +361,8 @@
     [LLSettingManager shared].magnifierSize = @(size);
     [self loadData];
 }
-
+#endif
+#ifdef LLDEBUGTOOL_HIERARCHY
 - (LLTitleCellModel *)getHierarchyIgnorePrivateClassModel {
     LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Ignore Private" flag:[LLConfig shared].hierarchyIgnorePrivateClass];
     __weak typeof(self) weakSelf = self;
@@ -355,5 +376,6 @@
     [LLConfig shared].hierarchyIgnorePrivateClass = hierarchyIgnorePrivateClass;
     [LLSettingManager shared].hierarchyIgnorePrivateClass = @(hierarchyIgnorePrivateClass);
 }
+#endif
 
 @end

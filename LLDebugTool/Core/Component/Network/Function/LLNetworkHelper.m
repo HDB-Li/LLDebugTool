@@ -25,10 +25,10 @@
 
 #import "LLReachability.h"
 #import "LLURLProtocol.h"
-#import "LLConfig.h"
 #import "LLTool.h"
 
 #import "LLRouter+Network.h"
+#import "LLConfig+Network.h"
 
 static LLNetworkHelper *_instance = nil;
 

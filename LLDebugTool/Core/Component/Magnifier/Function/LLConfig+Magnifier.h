@@ -1,5 +1,5 @@
 //
-//  LLLogHelper.h
+//  LLConfig+Magnifier.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,45 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-
-#import "LLConfig+Log.h"
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
+@interface LLConfig (Magnifier)
 
 /**
- Singleton to control enable.
- 
- @return Singleton
+ Magnifier window zoom level, number of pixels per color, default is kLLMagnifierWindowZoomLevel.
  */
-+ (instancetype)shared;
+@property (nonatomic, assign) NSInteger magnifierZoomLevel;
 
 /**
- Set enable to save log model.
+ Number of rows per magnifier window, default is kLLMagnifierWindowSize.
  */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Return log levels string.
- */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+@property (nonatomic, assign) NSInteger magnifierSize;
 
 @end
 

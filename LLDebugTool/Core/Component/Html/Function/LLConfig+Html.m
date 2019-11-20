@@ -1,7 +1,5 @@
 //
-//  LLLogHelper.h
-//
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  LLConfig+Html.m
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,46 +19,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLConfig+Html.h"
 
-#import "LLConfig+Log.h"
+#import "NSObject+LL_Runtime.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLConfig (Html)
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
+- (void)setDefaultHtmlUrl:(NSString *)defaultHtmlUrl {
+    objc_setAssociatedObject(self, @selector(defaultHtmlUrl), defaultHtmlUrl, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
 
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
+- (NSString *)defaultHtmlUrl {
+    return objc_getAssociatedObject(self, _cmd);
+}
 
-/**
- Set enable to save log model.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+- (void)setHtmlViewControllerProvider:(UIViewController * _Nonnull (^)(NSString * _Nullable))htmlViewControllerProvider {
+    objc_setAssociatedObject(self, @selector(htmlViewControllerProvider), htmlViewControllerProvider, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
 
-/**
- Return log levels string.
- */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+- (UIViewController * _Nonnull (^)(NSString * _Nullable))htmlViewControllerProvider {
+    return objc_getAssociatedObject(self, _cmd);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

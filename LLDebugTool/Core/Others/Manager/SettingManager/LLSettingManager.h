@@ -79,6 +79,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Shared instance.
 + (instancetype)shared;
 
+/// Set up config.
+- (void)prepareForConfig;
+
 @end
 
 NS_ASSUME_NONNULL_END

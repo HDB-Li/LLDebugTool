@@ -24,9 +24,9 @@
 #import "LLMagnifierView.h"
 
 #import "LLThemeManager.h"
-#import "LLConfig.h"
 
 #import "LLRouter+Screenshot.h"
+#import "LLConfig+Magnifier.h"
 #import "UIImage+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
 #import "UIView+LL_Utils.h"

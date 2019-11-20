@@ -1,5 +1,5 @@
 //
-//  LLLogHelper.h
+//  LLConfig+Log.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,45 +21,48 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-
-#import "LLConfig+Log.h"
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
-
-/**
- Singleton to control enable.
+ Log style for [LLDebugTool logInFile...]. Customize the log you want.
  
- @return Singleton
+ - LLConfigLogDetail: Show all detail info. Contain event, file, line, func, date and desc.
+ - LLConfigLogFileFuncDesc : Show with event, file, func and desc.
+ - LLConfigLogFileDesc : Show with event, file and desc.
+ - LLConfigLogNormal: Show as system NSLog
+ - LLConfigLogNone: Don't show anything.
  */
-+ (instancetype)shared;
+typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
+    LLConfigLogDetail,
+    LLConfigLogFileFuncDesc,
+    LLConfigLogFileDesc,
+    LLConfigLogNormal,
+    LLConfigLogNone,
+};
 
 /**
- Set enable to save log model.
+ Log Level. It can be used for filter.
+ 
+ - LLConfigLogLevelDefault: Use to save message or note.
+ - LLConfigLogLevelAlert: Use to save alert message.
+ - LLConfigLogLevelWarning: Use to save warning message.
+ - LLConfigLogLevelError: Use to save error message.
  */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
+    LLConfigLogLevelDefault,
+    LLConfigLogLevelAlert,
+    LLConfigLogLevelWarning,
+    LLConfigLogLevelError,
+};
+
+@interface LLConfig (Log)
 
 /**
- Return log levels string.
+ Customize the log style. Default is LLConfigLogDetail.
  */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+@property (nonatomic, assign) LLConfigLogStyle logStyle;
 
 @end
 

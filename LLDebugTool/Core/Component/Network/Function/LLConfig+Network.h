@@ -1,5 +1,5 @@
 //
-//  LLLogHelper.h
+//  LLConfig+Network.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,45 +21,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-
-#import "LLConfig+Log.h"
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
+@interface LLConfig (Network)
 
 /**
- Singleton to control enable.
- 
- @return Singleton
+ Observer network in hosts, ignore others.
  */
-+ (instancetype)shared;
+@property (nonatomic, strong, nullable) NSArray <NSString *>*observerdHosts;
 
 /**
- Set enable to save log model.
+ Ignored hosts, low level than observerdHosts.
  */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+@property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
 
 /**
- Return log levels string.
+ Whether observer webView request.
  */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+@property (nonatomic, assign) BOOL observerWebView;
 
 @end
 

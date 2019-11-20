@@ -35,11 +35,11 @@
 #import "LLThemeManager.h"
 #import "LLToastUtils.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "LLConfig+Html.h"
 
 @interface LLHtmlConfigViewController () <UITextFieldDelegate>
 

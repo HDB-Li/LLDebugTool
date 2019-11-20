@@ -51,7 +51,7 @@
 
 #pragma mark - Getters and setters
 - (void)setLL_delegateProxy:(LLLocationProxy *)LL_delegateProxy {
-    objc_setAssociatedObject(self, @selector(LL_delegateProxy), LL_delegateProxy, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(LL_delegateProxy), LL_delegateProxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (LLLocationProxy *)LL_delegateProxy {

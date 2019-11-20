@@ -1,7 +1,5 @@
 //
-//  LLLogHelper.h
-//
-//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//  LLConfig+Html.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,45 +19,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-
-#import "LLConfig+Log.h"
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
+@interface LLConfig (Html)
 
 /**
- Singleton to control enable.
- 
- @return Singleton
+ Default html5 url string used in Html function. must has prefix with http:// or https://
  */
-+ (instancetype)shared;
+@property (nonatomic, copy, nullable) NSString *defaultHtmlUrl;
 
 /**
- Set enable to save log model.
+ Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`. ViewController must set background color.
  */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Return log levels string.
- */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
 
 @end
 

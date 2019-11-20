@@ -1,5 +1,5 @@
 //
-//  LLLogHelper.h
+//  LLConfigHelper+Log.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,46 +21,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLConfigHelper+Log.h"
 
-#import "LLConfig+Log.h"
+@implementation LLConfigHelper (Log)
 
-NS_ASSUME_NONNULL_BEGIN
++ (NSString *)logStyleDescription {
+    return [self logStyleDescription:[LLConfig shared].logStyle];
+}
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
-
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
-
-/**
- Set enable to save log model.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Return log levels string.
- */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
++ (NSString *)logStyleDescription:(LLConfigLogStyle)style {
+    switch (style) {
+        case LLConfigLogDetail:
+            return @"Detail";
+        case LLConfigLogFileFuncDesc:
+            return @"File Func Desc";
+        case LLConfigLogFileDesc:
+            return @"File Desc";
+        case LLConfigLogNormal:
+            return @"Normal";
+        case LLConfigLogNone:
+            return @"None";
+    }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

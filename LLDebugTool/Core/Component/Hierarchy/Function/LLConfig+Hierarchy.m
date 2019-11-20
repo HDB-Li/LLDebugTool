@@ -1,5 +1,5 @@
 //
-//  LLConfigHelper.h
+//  LLConfig+Hierarchy.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,41 +21,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLConfig+Hierarchy.h"
 
-#import "LLConfig.h"
-#import "LLDebugTool.h"
+#import "NSObject+LL_Runtime.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLConfig (Hierarchy)
 
-/// Config description helper.
-@interface LLConfigHelper : NSObject
+- (void)setHierarchyIgnorePrivateClass:(BOOL)hierarchyIgnorePrivateClass {
+    objc_setAssociatedObject(self, @selector(isHierarchyIgnorePrivateClass), @(hierarchyIgnorePrivateClass), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
-#pragma mark - Description
-+ (NSString *)colorStyleDetailDescription;
-
-+ (NSString *)colorStyleDetailDescription:(LLConfigColorStyle)colorStyle;
-
-+ (NSString *)colorStyleDescription;
-
-+ (NSString *)colorStyleDescription:(LLConfigColorStyle)colorStyle;
-
-+ (NSString *)entryWindowStyleDescription;
-
-+ (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle;
-
-+ (NSString *)statusBarStyleDescription;
-
-+ (NSString *)statusBarStyleDescription:(UIStatusBarStyle)statusBarStyle;
-
-+ (NSString *)logStyleDescription;
-
-+ (NSString *)logStyleDescription:(LLConfigLogStyle)style;
-
-+ (NSString *)doubleClickComponentDescription;
-
-+ (NSString *)componentDescription:(LLDebugToolAction)action;
+- (BOOL)isHierarchyIgnorePrivateClass {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -29,7 +29,8 @@
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+
+#import "LLConfig+WidgetBorder.h"
 
 @interface LLWidgetBorderViewController ()<UITableViewDelegate, UITableViewDataSource>
 

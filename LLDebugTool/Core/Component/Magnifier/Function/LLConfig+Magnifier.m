@@ -1,5 +1,5 @@
 //
-//  LLLogHelper.h
+//  LLConfig+Magnifier.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,46 +21,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLConfig+Magnifier.h"
 
-#import "LLConfig+Log.h"
+#import "NSObject+LL_Runtime.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLConfig (Magnifier)
 
-/**
- Quick print and save log.
- */
-@interface LLLogHelper : NSObject
+- (void)setMagnifierZoomLevel:(NSInteger)magnifierZoomLevel {
+    objc_setAssociatedObject(self, @selector(magnifierZoomLevel), @(magnifierZoomLevel), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
+- (NSInteger)magnifierZoomLevel {
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
 
-/**
- Set enable to save log model.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+- (void)setMagnifierSize:(NSInteger)magnifierSize {
+    if (magnifierSize % 2 == 0) {
+        magnifierSize = magnifierSize + 1;
+    } else {
+        magnifierSize = magnifierSize;
+    }
+    objc_setAssociatedObject(self, @selector(magnifierSize), @(magnifierSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
-/**
- Return log levels string.
- */
-+ (NSArray <NSString *>*)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+- (NSInteger)magnifierSize {
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

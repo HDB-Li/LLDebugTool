@@ -24,9 +24,27 @@
 #import "LLSettingManager.h"
 
 #import "LLFunctionComponent.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 #import "NSUserDefaults+LL_Utils.h"
+#import "LLRouter.h"
+
+#ifdef LLDEBUGTOOL_LOG
+#import "LLConfig+Log.h"
+#endif
+
+#ifdef LLDEBUGTOOL_MAGNIFIER
+#import "LLConfig+Magnifier.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HIERARCHY
+#import "LLConfig+Hierarchy.h"
+#endif
+
+#ifdef LLDEBUGTOOL_WIDGET_BORDER
+#import "LLConfig+WidgetBorder.h"
+#endif
 
 static LLSettingManager *_instance = nil;
 
@@ -55,6 +73,71 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
         _instance = [[LLSettingManager alloc] init];
     });
     return _instance;
+}
+
+- (void)prepareForConfig {
+    NSNumber *doubleClickAction = self.doubleClickAction;
+    if (doubleClickAction != nil) {
+        [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
+    }
+    NSNumber *colorStyle = self.colorStyle;
+    if (colorStyle != nil) {
+        [LLConfig shared].colorStyle = colorStyle.integerValue;
+    }
+    NSNumber *entryWindowStyle = self.entryWindowStyle;
+    if (entryWindowStyle != nil) {
+        [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
+    }
+    NSNumber *statusBarStyle = self.statusBarStyle;
+    if (statusBarStyle != nil) {
+        [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
+    }
+#ifdef LLDEBUGTOOL_LOG
+    NSNumber *logStyle = self.logStyle;
+    if (logStyle != nil) {
+        [LLConfig shared].logStyle = logStyle.integerValue;
+    }
+#endif
+    NSNumber *shrinkToEdgeWhenInactive = self.shrinkToEdgeWhenInactive;
+    if (shrinkToEdgeWhenInactive != nil) {
+        [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
+    }
+    NSNumber *shakeToHide = self.shakeToHide;
+    if (shakeToHide != nil) {
+        [LLConfig shared].shakeToHide = [shakeToHide boolValue];
+    }
+#ifdef LLDEBUGTOOL_MAGNIFIER
+    NSNumber *magnifierZoomLevel = self.magnifierZoomLevel;
+    if (magnifierZoomLevel != nil) {
+        [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
+    }
+    NSNumber *magnifierSize = self.magnifierSize;
+    if (magnifierSize != nil) {
+        [LLConfig shared].magnifierSize = [magnifierSize integerValue];
+    }
+#endif
+#ifdef LLDEBUGTOOL_WIDGET_BORDER
+    NSNumber *showWidgetBorder = self.showWidgetBorder;
+    if (showWidgetBorder != nil) {
+        [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
+    }
+#endif
+#ifdef LLDEBUGTOOL_HIERARCHY
+    NSNumber *hierarchyIgnorePrivateClass = self.hierarchyIgnorePrivateClass;
+    if (hierarchyIgnorePrivateClass != nil) {
+        [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
+    }
+#endif
+    NSNumber *mockLocationEnable = self.mockLocationEnable;
+    if (mockLocationEnable) {
+        [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
+    }
+    NSNumber *mockLocationLatitude = self.mockLocationLatitude;
+    NSNumber *mockLocationLogitude = self.mockLocationLongitude;
+    if (mockLocationLatitude && mockLocationLogitude) {
+        [LLConfig shared].mockLocationLatitude = [mockLocationLatitude doubleValue];
+        [LLConfig shared].mockLocationLongitude = [mockLocationLogitude doubleValue];
+    }
 }
 
 #pragma mark - Getters and Setters
