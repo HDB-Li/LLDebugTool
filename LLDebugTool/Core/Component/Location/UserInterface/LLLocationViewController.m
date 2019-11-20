@@ -94,17 +94,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
             return;
         }
         if (CLLocationCoordinate2DIsValid(annotation.coordinate)) {
-            [self updateLocationDescriptViewDetailTitle:annotation.coordinate reverse:YES];
-            if ([LLLocationHelper shared].isEnabled) {
-                [self setUpMockCoordinate:annotation.coordinate];
-            }
-            if (annotation.coordinate.latitude != self.mapView.centerCoordinate.latitude || annotation.coordinate.longitude != self.mapView.centerCoordinate.longitude) {
-                if (self.automicSetRegion) {
-                    [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
-                } else {
-                    [self animatedUpdateMapRegion:view.annotation.coordinate];
-                }
-            }
+            [self setUpCoordinate:annotation.coordinate automicSetRegion:YES placemark:nil];
         }
     }
 }
@@ -126,7 +116,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     CLLocation *location = [locations firstObject];
     if (location) {
         [manager stopUpdatingLocation];
-        [self updateAnnotationCoordinate:location.coordinate automicSetRegion:YES reverse:YES];
+        [self setUpCoordinate:location.coordinate automicSetRegion:YES placemark:nil];
     }
 }
 
@@ -155,12 +145,28 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.addressDescriptView.superview addConstraints:@[top, left, right]];
 }
 
-- (void)updateAnnotationCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion reverse:(BOOL)reverse {
+- (void)setUpCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion placemark:(CLPlacemark *)placemark {
+    // Set annotation.
     self.annotation.coordinate = coordinate;
-    [self updateLocationDescriptViewDetailTitle:coordinate reverse:reverse];
-    if (automicSetRegion) {
-        [self animatedUpdateMapRegion:coordinate];
+    if ([LLLocationHelper shared].enable) {
+        [self setUpMockCoordinate:coordinate];
     }
+    // Automic set map region
+    if (automicSetRegion) {
+        if (self.automicSetRegion) {
+            [self.mapView setCenterCoordinate:coordinate animated:YES];
+        } else {
+            [self animatedUpdateMapRegion:coordinate];
+        }
+    }
+    // Set location title
+    [self updateLocationDescriptViewDetailTitle:coordinate];
+    if (placemark) {
+        [self updateAddressDescriptViewDetailTitle:placemark];
+    } else {
+        [self reverseGeocode:coordinate];
+    }
+    // Update
     if (!self.isAddAnnotation) {
         self.isAddAnnotation = YES;
         [self.mapView addAnnotation:self.annotation];
@@ -176,15 +182,28 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.05, 0.05)) animated:YES];
 }
 
-- (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate reverse:(BOOL)reverse {
+- (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate {
     self.locationDescriptView.detailTitle = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
-    if (reverse) {
-        [self reverseGeocode:coordinate];
-    }
 }
 
 - (void)updateAddressDescriptViewDetailTitle:(CLPlacemark *)placemark {
-    self.addressDescriptView.detailTitle = [NSString stringWithFormat:@"%@%@%@", placemark.administrativeArea, placemark.locality, placemark.name];
+    NSString *name = placemark.name;
+    NSString *locality = placemark.locality;
+    NSString *administrativeArea = placemark.administrativeArea;
+    
+    NSString *description = @"";
+    if (name) {
+        description = [description stringByAppendingString:name];
+    }
+    if (locality && ![description hasPrefix:locality]) {
+        if (!administrativeArea || ![description hasPrefix:[NSString stringWithFormat:@"%@%@",administrativeArea, locality]]) {
+            description = [locality stringByAppendingString:description];
+        }
+    }
+    if (administrativeArea && ![description hasPrefix:administrativeArea]) {
+        description = [administrativeArea stringByAppendingString:description];
+    }
+    self.addressDescriptView.detailTitle = description;
 }
 
 - (void)updateSwitchViewValue:(BOOL)isOn {
@@ -206,11 +225,9 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.geocoder cancelGeocode];
     __weak typeof(self) weakSelf = self;
     [self.geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (error || placemarks.count == 0) {
-            weakSelf.addressDescriptView.detailTitle = nil;
-        } else {
+        if (!error && placemarks.count > 0) {
             CLPlacemark *placemark = placemarks.firstObject;
-            weakSelf.addressDescriptView.detailTitle = [NSString stringWithFormat:@"%@%@%@", placemark.administrativeArea, placemark.locality, placemark.name];
+            [weakSelf updateAddressDescriptViewDetailTitle:placemark];
         }
     }];
 }
@@ -219,12 +236,9 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.geocoder cancelGeocode];
     __weak typeof(self) weakSelf = self;
     [self.geocoder geocodeAddressString:address inRegion:nil completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (error || placemarks.count == 0) {
-            weakSelf.addressDescriptView.detailTitle = nil;
-        } else {
+        if (!error && placemarks.count > 0) {
             CLPlacemark *placemark = placemarks.firstObject;
-            [weakSelf updateAnnotationCoordinate:placemark.location.coordinate automicSetRegion:YES reverse:NO];
-            weakSelf.addressDescriptView.detailTitle = [NSString stringWithFormat:@"%@", placemark.name];
+            [weakSelf setUpCoordinate:placemark.location.coordinate automicSetRegion:YES placemark:placemark];
         }
     }];
 }
@@ -239,7 +253,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
             [self.locationManager startUpdatingLocation];
         }
     }
-    [self updateAnnotationCoordinate:mockCoordinate automicSetRegion:automicSetRegion reverse:YES];
+    [self setUpCoordinate:mockCoordinate automicSetRegion:automicSetRegion placemark:nil];
 }
 
 #pragma mark - Event response
@@ -255,7 +269,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
         CLLocationDegrees lng = [array[1] doubleValue];
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat, lng);
         if (CLLocationCoordinate2DIsValid(coordinate)) {
-            [weakSelf updateAnnotationCoordinate:coordinate automicSetRegion:YES reverse:YES];
+            [weakSelf setUpCoordinate:coordinate automicSetRegion:YES placemark:nil];
         }
     }];
 }
