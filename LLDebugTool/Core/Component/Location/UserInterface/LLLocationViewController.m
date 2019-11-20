@@ -45,11 +45,15 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 @property (nonatomic, strong) LLDetailTitleSelectorCellView *locationDescriptView;
 
+@property (nonatomic, strong) LLDetailTitleSelectorCellView *addressDescriptView;
+
 @property (nonatomic, strong) MKMapView *mapView;
 
 @property (nonatomic, strong) LLAnnotation *annotation;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, strong) CLGeocoder *geocoder;
 
 @property (nonatomic, assign) BOOL isAddAnnotation;
 
@@ -67,17 +71,19 @@ static NSString *const kAnnotationID = @"AnnotationID";
     
     [self.view addSubview:self.switchView];
     [self.view addSubview:self.locationDescriptView];
+    [self.view addSubview:self.addressDescriptView];
     [self.view addSubview:self.mapView];
     
     [self addSwitchViewConstraints];
     [self addLocationDescriptViewConstraints];
+    [self addAddressDescriptViewConstraints];
     [self loadData];
 }
 
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = CGRectMake(0, self.locationDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.locationDescriptView.LL_bottom - kLLGeneralMargin);
+    self.mapView.frame = CGRectMake(0, self.addressDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.addressDescriptView.LL_bottom - kLLGeneralMargin);
 }
 
 #pragma mark - MKMapViewDelegate
@@ -88,7 +94,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
             return;
         }
         if (CLLocationCoordinate2DIsValid(annotation.coordinate)) {
-            [self updateLocationDescriptViewDetailTitle:annotation.coordinate];
+            [self updateLocationDescriptViewDetailTitle:annotation.coordinate reverse:YES];
             if ([LLLocationHelper shared].isEnabled) {
                 [self setUpMockCoordinate:annotation.coordinate];
             }
@@ -120,7 +126,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     CLLocation *location = [locations firstObject];
     if (location) {
         [manager stopUpdatingLocation];
-        [self updateAnnotationCoordinate:location.coordinate automicSetRegion:YES];
+        [self updateAnnotationCoordinate:location.coordinate automicSetRegion:YES reverse:YES];
     }
 }
 
@@ -141,9 +147,17 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.locationDescriptView.superview addConstraints:@[top, left, right]];
 }
 
-- (void)updateAnnotationCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion {
+- (void)addAddressDescriptViewConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.addressDescriptView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.locationDescriptView attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.addressDescriptView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.addressDescriptView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.addressDescriptView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.addressDescriptView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    self.addressDescriptView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.addressDescriptView.superview addConstraints:@[top, left, right]];
+}
+
+- (void)updateAnnotationCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion reverse:(BOOL)reverse {
     self.annotation.coordinate = coordinate;
-    [self updateLocationDescriptViewDetailTitle:coordinate];
+    [self updateLocationDescriptViewDetailTitle:coordinate reverse:reverse];
     if (automicSetRegion) {
         [self animatedUpdateMapRegion:coordinate];
     }
@@ -162,8 +176,15 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.mapView setRegion:MKCoordinateRegionMake(coordinate, MKCoordinateSpanMake(0.05, 0.05)) animated:YES];
 }
 
-- (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate {
+- (void)updateLocationDescriptViewDetailTitle:(CLLocationCoordinate2D)coordinate reverse:(BOOL)reverse {
     self.locationDescriptView.detailTitle = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
+    if (reverse) {
+        [self reverseGeocode:coordinate];
+    }
+}
+
+- (void)updateAddressDescriptViewDetailTitle:(CLPlacemark *)placemark {
+    self.addressDescriptView.detailTitle = [NSString stringWithFormat:@"%@%@%@", placemark.administrativeArea, placemark.locality, placemark.name];
 }
 
 - (void)updateSwitchViewValue:(BOOL)isOn {
@@ -181,6 +202,33 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [LLSettingManager shared].mockLocationLongitude = @(coordinate.longitude);
 }
 
+- (void)reverseGeocode:(CLLocationCoordinate2D)coordinate {
+    [self.geocoder cancelGeocode];
+    __weak typeof(self) weakSelf = self;
+    [self.geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error || placemarks.count == 0) {
+            weakSelf.addressDescriptView.detailTitle = nil;
+        } else {
+            CLPlacemark *placemark = placemarks.firstObject;
+            weakSelf.addressDescriptView.detailTitle = [NSString stringWithFormat:@"%@%@%@", placemark.administrativeArea, placemark.locality, placemark.name];
+        }
+    }];
+}
+
+- (void)geocodeAddress:(NSString *)address {
+    [self.geocoder cancelGeocode];
+    __weak typeof(self) weakSelf = self;
+    [self.geocoder geocodeAddressString:address inRegion:nil completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error || placemarks.count == 0) {
+            weakSelf.addressDescriptView.detailTitle = nil;
+        } else {
+            CLPlacemark *placemark = placemarks.firstObject;
+            [weakSelf updateAnnotationCoordinate:placemark.location.coordinate automicSetRegion:YES reverse:NO];
+            weakSelf.addressDescriptView.detailTitle = [NSString stringWithFormat:@"%@", placemark.name];
+        }
+    }];
+}
+
 - (void)loadData {
     CLLocationCoordinate2D mockCoordinate = CLLocationCoordinate2DMake([LLConfig shared].mockLocationLatitude, [LLConfig shared].mockLocationLongitude);
     BOOL automicSetRegion = YES;
@@ -191,7 +239,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
             [self.locationManager startUpdatingLocation];
         }
     }
-    [self updateAnnotationCoordinate:mockCoordinate automicSetRegion:automicSetRegion];
+    [self updateAnnotationCoordinate:mockCoordinate automicSetRegion:automicSetRegion reverse:YES];
 }
 
 #pragma mark - Event response
@@ -207,8 +255,15 @@ static NSString *const kAnnotationID = @"AnnotationID";
         CLLocationDegrees lng = [array[1] doubleValue];
         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat, lng);
         if (CLLocationCoordinate2DIsValid(coordinate)) {
-            [weakSelf updateAnnotationCoordinate:coordinate automicSetRegion:YES];
+            [weakSelf updateAnnotationCoordinate:coordinate automicSetRegion:YES reverse:YES];
         }
+    }];
+}
+
+- (void)addressDescriptViewDidSelect {
+    __weak typeof(self) weakSelf = self;
+    [self LL_showTextFieldAlertControllerWithMessage:@"Address" text:self.addressDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
+        [weakSelf geocodeAddress:newText];
     }];
 }
 
@@ -234,13 +289,27 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _locationDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
         _locationDescriptView.title = @"Lat & Lng";
         _locationDescriptView.detailTitle = @"0, 0";
-        [_locationDescriptView needFullLine];
+        [_locationDescriptView needLine];
         __weak typeof(self) weakSelf = self;
         _locationDescriptView.block = ^{
             [weakSelf locationDescriptViewDidSelect];
         };
     }
     return _locationDescriptView;
+}
+
+- (LLDetailTitleSelectorCellView *)addressDescriptView {
+    if (!_addressDescriptView) {
+        _addressDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
+        _addressDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
+        _addressDescriptView.title = @"Address";
+        [_addressDescriptView needFullLine];
+        __weak typeof(self) weakSelf = self;
+        _addressDescriptView.block = ^{
+            [weakSelf addressDescriptViewDidSelect];
+        };
+    }
+    return _addressDescriptView;
 }
 
 - (MKMapView *)mapView {
@@ -264,6 +333,13 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _locationManager.delegate = self;
     }
     return _locationManager;
+}
+
+- (CLGeocoder *)geocoder {
+    if (!_geocoder) {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    return _geocoder;
 }
 
 @end
