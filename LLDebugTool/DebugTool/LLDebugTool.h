@@ -76,18 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data;
 
-/**
- Print and save a log model with infos.
- 
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
-
 #pragma mark - Version Control
 /**
 LLDebugTool's version.
@@ -118,3 +106,51 @@ Whether is Beta.
 @end
 
 NS_ASSUME_NONNULL_END
+
+@interface LLDebugTool (Log)
+
+/**
+ Print and save a log model with infos. LLConfigLogLevelDefault.
+ 
+ @param file File name.
+ @param function Function name.
+ @param lineNo Line number.
+ @param onEvent Event,can filter by this.
+ @param message Message.
+ */
+- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+/**
+Print and save a log model with infos. LLConfigLogLevelAlert.
+
+@param file File name.
+@param function Function name.
+@param lineNo Line number.
+@param onEvent Event,can filter by this.
+@param message Message.
+*/
+- (void)alertLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+/**
+Print and save a log model with infos. LLConfigLogLevelWarning.
+
+@param file File name.
+@param function Function name.
+@param lineNo Line number.
+@param onEvent Event,can filter by this.
+@param message Message.
+*/
+- (void)warningLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+/**
+Print and save a log model with infos. LLConfigLogLevelError.
+
+@param file File name.
+@param function Function name.
+@param lineNo Line number.
+@param onEvent Event,can filter by this.
+@param message Message.
+*/
+- (void)errorLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+@end

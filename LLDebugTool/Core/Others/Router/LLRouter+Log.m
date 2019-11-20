@@ -29,9 +29,35 @@
 
 @implementation LLRouter (Log)
 
-+ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
++ (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
 #ifdef LLDEBUGTOOL_LOG
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
+    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelDefault onEvent:onEvent message:message];
+#else
+    NSLog(message);
+#endif
+}
+
++ (void)alertLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+#ifdef LLDEBUGTOOL_LOG
+    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelAlert onEvent:onEvent message:message];
+#else
+    NSLog(message);
+#endif
+}
+
++ (void)warningLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+#ifdef LLDEBUGTOOL_LOG
+    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelWarning onEvent:onEvent message:message];
+#else
+    NSLog(message);
+#endif
+}
+
++ (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+#ifdef LLDEBUGTOOL_LOG
+    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelError onEvent:onEvent message:message];
+#else
+    NSLog(message);
 #endif
 }
 

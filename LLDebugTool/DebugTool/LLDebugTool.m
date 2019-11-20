@@ -29,7 +29,6 @@
 #import "LLWindowManager.h"
 #import "LLComponent.h"
 #import "LLLogDefine.h"
-#import "LLConfig.h"
 #import "LLTool.h"
 
 #import "UIResponder+LL_Utils.h"
@@ -128,10 +127,6 @@ static LLDebugTool *_instance = nil;
 - (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data {
     LLFunctionItemModel *model = [[LLFunctionItemModel alloc] initWithAction:action];
     [model.component componentDidLoad:data];
-}
-
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    [LLRouter logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
 + (NSString *)version {
@@ -287,6 +282,26 @@ static LLDebugTool *_instance = nil;
 
 - (BOOL)isBetaVersion {
     return [LLDebugTool isBetaVersion];
+}
+
+@end
+
+@implementation LLDebugTool (Log)
+
+- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter logInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+}
+
+- (void)alertLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter alertLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+}
+
+- (void)warningLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter warningLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+}
+
+- (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter errorLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
 }
 
 @end
