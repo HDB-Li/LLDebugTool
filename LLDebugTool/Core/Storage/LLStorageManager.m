@@ -28,8 +28,7 @@
 #elif __has_include("<FMDB.h>")
 #import "<FMDB.h>"
 #else
-#import "FMDatabaseQueue.h"
-#import "FMDatabase.h"
+#import <FMDB/FMDB.h>
 #endif
 
 #import "LLStorageModel.h"
