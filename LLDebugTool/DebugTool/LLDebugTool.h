@@ -62,16 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isWorking;
 
 /**
- LLDebugTool's version.
- */
-@property (nonatomic, copy, readonly) NSString * version;
-
-/**
- Whether is Beta.
- */
-@property (nonatomic, assign, readonly) BOOL isBetaVersion;
-
-/**
  Execute action.
  
  @param action Action.
@@ -97,6 +87,35 @@ NS_ASSUME_NONNULL_BEGIN
  @param message Message.
  */
 - (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+#pragma mark - Version Control
+
+/**
+LLDebugTool's version.
+*/
++ (NSString *)version;
+
+/**
+ Version number.
+ */
++ (NSString *)versionNumber;
+
+/**
+Whether is Beta.
+*/
++ (BOOL)isBetaVersion;
+
+#pragma mark - DEPRECATED
+
+/**
+ LLDebugTool's version.
+ */
+@property (nonatomic, copy, readonly) NSString * version LLDebugToolDeprecated("Use class method.");
+
+/**
+ Whether is Beta.
+ */
+@property (nonatomic, assign, readonly) BOOL isBetaVersion LLDebugToolDeprecated("Use class method.");
 
 @end
 

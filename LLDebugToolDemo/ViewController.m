@@ -102,8 +102,8 @@ static NSString *const kCellID = @"cellID";
             if (array2.count >= 2) {
                 NSString *newVersion = array2[0];
                 if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                    if ([[LLDebugTool sharedTool].version compare:newVersion] == NSOrderedAscending) {
-                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool sharedTool].version] preferredStyle:UIAlertControllerStyleAlert];
+                    if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
                         [vc addAction:action];
                         [self presentViewController:vc animated:YES completion:nil];

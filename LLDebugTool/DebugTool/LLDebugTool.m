@@ -39,8 +39,6 @@ static LLDebugTool *_instance = nil;
 
 @interface LLDebugTool ()
 
-@property (nonatomic, copy) NSString *versionNumber;
-
 @property (nonatomic, assign) BOOL installed;
 
 @end
@@ -136,6 +134,18 @@ static LLDebugTool *_instance = nil;
     [LLRouter logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
 }
 
++ (NSString *)version {
+    return [self isBetaVersion] ? [[self versionNumber] stringByAppendingString:@"(BETA)"] : [self versionNumber];
+}
+
++ (NSString *)versionNumber {
+    return @"1.3.6";
+}
+
++ (BOOL)isBetaVersion {
+    return NO;
+}
+
 #pragma mark - Notifications
 - (void)didReceiveDidShakeNotification:(NSNotification *)notification {
     if ([LLConfig shared].isShakeToHide) {
@@ -149,13 +159,6 @@ static LLDebugTool *_instance = nil;
 
 #pragma mark - Primary
 - (void)initial {
-    // Set Default
-    _isBetaVersion = NO;
-
-    _versionNumber = @"1.3.6";
-
-    _version = _isBetaVersion ? [_versionNumber stringByAppendingString:@"(BETA)"] : _versionNumber;
-    
     // Check version.
     [self checkVersion];
 }
@@ -173,12 +176,12 @@ static LLDebugTool *_instance = nil;
         version = @"0.0.0";
     }
     
-    if ([self.versionNumber compare:version] == NSOrderedDescending) {
-        [localInfo setObject:self.versionNumber forKey:@"version"];
+    if ([[LLDebugTool versionNumber] compare:version] == NSOrderedDescending) {
+        [localInfo setObject:[LLDebugTool versionNumber] forKey:@"version"];
         [localInfo writeToFile:filePath atomically:YES];
     }
     
-    if (self.isBetaVersion) {
+    if ([LLDebugTool isBetaVersion]) {
         // This method called in instancetype, can't use macros to log.
         [LLTool log:kLLLogHelperUseBetaAlert];
     }
@@ -197,8 +200,8 @@ static LLDebugTool *_instance = nil;
                         if (array2.count >= 2) {
                             NSString *newVersion = array2[0];
                             if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                                if ([self.version compare:newVersion] == NSOrderedAscending) {
-                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,self.version];
+                                if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,[LLDebugTool versionNumber]];
                                     [LLTool log:message];
                                 }
                             }
@@ -275,6 +278,15 @@ static LLDebugTool *_instance = nil;
 
 - (void)unregisterNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - DEPRECATED
+- (NSString *)version {
+    return [LLDebugTool version];
+}
+
+- (BOOL)isBetaVersion {
+    return [LLDebugTool isBetaVersion];
 }
 
 @end
