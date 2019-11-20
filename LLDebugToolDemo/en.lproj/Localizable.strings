@@ -8,6 +8,8 @@
 
 "initial.log" = "This is an initialization log";
 "normal.log.info" = "This is a common level log that can be used for burial or information printing";
+"alert.log.info" = "This is an alert level log";
+"warning.log.info" = "This is a warning level log";
 "error.log.info" = "This is an error level log that can be used to record errors.";
 "call" = "call somebody";
 "call.log.info" = "This is a log on event \"call somebody\", can be used to analysis or record for a problem";
@@ -18,6 +20,8 @@
 "HTML.network" = "HTML(NSURLSession/HTML Response)";
 
 "insert.log" = "Insert a log";
+"insert.alert.log" = "Insert a log with alert level";
+"insert.warning.log" = "Insert a log with warning level";
 "insert.error.log" = "Insert a log with error level";
 "insert.call.log" = "Insert a log on event \"call somebody\"";
 

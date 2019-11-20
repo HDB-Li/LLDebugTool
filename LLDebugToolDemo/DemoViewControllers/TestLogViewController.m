@@ -21,7 +21,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -29,8 +29,12 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = NSLocalizedString(@"insert.log", nil);
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = NSLocalizedString(@"insert.error.log", nil);
+        cell.textLabel.text = NSLocalizedString(@"insert.alert.log", nil);
     } else if (indexPath.row == 2) {
+        cell.textLabel.text = NSLocalizedString(@"insert.warning.log", nil);
+    } else if (indexPath.row == 3) {
+        cell.textLabel.text = NSLocalizedString(@"insert.error.log", nil);
+    } else if (indexPath.row == 4) {
         cell.textLabel.text = NSLocalizedString(@"insert.call.log", nil);
     }
     
@@ -41,8 +45,12 @@
     if (indexPath.row == 0) {
         [self testNormalLog];
     } else if (indexPath.row == 1) {
-        [self testErrorLog];
+        [self testAlertLog];
     } else if (indexPath.row == 2) {
+        [self testWarningLog];
+    } else if (indexPath.row == 3) {
+        [self testErrorLog];
+    } else if (indexPath.row == 4) {
         [self testEventLog];
     }
 }
@@ -50,6 +58,16 @@
 #pragma mark - Actions
 - (void)testNormalLog {
     LLog(NSLocalizedString(@"normal.log.info", nil));
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
+}
+
+- (void)testAlertLog {
+    LLog_Alert(NSLocalizedString(@"alert.log.info", nil));
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
+}
+
+- (void)testWarningLog {
+    LLog_Warning(NSLocalizedString(@"warning.log.info", nil));
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
 }
 

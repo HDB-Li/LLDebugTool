@@ -8,6 +8,8 @@
 
 "initial.log" = "这是一条初始化的log";
 "normal.log.info" = "这是一条普通级别的log,可用于埋点或信息打印";
+"alert.log.info" = "这是一条提示级别的log";
+"warning.log.info" = "这是一条警告级别的log";
 "error.log.info" = "这是一条错误级别的log,可用于记录错误";
 "call" = "打电话";
 "call.log.info" = "这是一条关于\"打电话\"事件的log,用于针对某个问题的分析或记录";
@@ -18,6 +20,8 @@
 "HTML.network" = "HTML网络请求(NSURLSession/HTML Response)";
 
 "insert.log" = "插入一条Log";
+"insert.alert.log" = "插入一条Alert级别的Log";
+"insert.warning.log" = "插入一条Warning级别的Log";
 "insert.error.log" = "插入一条Error级别的Log";
 "insert.call.log" = "插入一条\"打电话\"事件的log";
 
