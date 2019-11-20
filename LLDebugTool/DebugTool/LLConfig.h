@@ -349,13 +349,6 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, assign) LLDebugToolAction doubleClickAction;
 
-#pragma mark - Function
-/**
- Available features. Default is LLConfigAvailableAll.
- It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
- */
-@property (nonatomic, assign) LLConfigAvailableFeature availables;
-
 #pragma mark - Folder Path
 /**
  The folder path for LLDebugTool. The database is created and read in this directory.
@@ -383,6 +376,11 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
 @property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `shrinkToEdgeWhenInactive`.");
 @property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
+/**
+ Available features. Default is LLConfigAvailableAll.
+ It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
+ */
+@property (nonatomic, assign) LLConfigAvailableFeature availables LLDebugToolDeprecated("Unsupported, use LLDebugTool/{subspec} replace.");
 
 @end
 

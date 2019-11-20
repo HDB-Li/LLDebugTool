@@ -63,27 +63,18 @@ static LLDebugTool *_instance = nil;
 - (void)startWorking{
     if (!_isWorking) {
         _isWorking = YES;
-        LLConfigAvailableFeature available = [LLConfig shared].availables;
-        if (available & LLConfigAvailableCrash) {
-            // Open crash helper
-            [LLRouter setCrashHelperEnable:YES];
-        }
-        if (available & LLConfigAvailableLog) {
-            // Open log helper
-            [LLRouter setLogHelperEnable:YES];
-        }
-        if (available & LLConfigAvailableNetwork) {
-            // Open network monitoring
-            [LLRouter setNetworkHelperEnable:YES];
-        }
-        if (available & LLConfigAvailableAppInfo) {
-            // Open app monitoring
-            [LLRouter setAppInfoHelperEnable:YES];
-        }
-        if (available & LLConfigAvailableScreenshot) {
-            // Open screenshot
-            [LLRouter setScreenshotHelperEnable:YES];
-        }
+
+        // Open crash helper
+        [LLRouter setCrashHelperEnable:YES];
+        // Open log helper
+        [LLRouter setLogHelperEnable:YES];
+        // Open network monitoring
+        [LLRouter setNetworkHelperEnable:YES];
+        // Open app monitoring
+        [LLRouter setAppInfoHelperEnable:YES];
+        // Open screenshot
+        [LLRouter setScreenshotHelperEnable:YES];
+        // Prepare to start.
         [self prepareToStart];
         // show window
         if (self.installed || ![LLConfig shared].hideWhenInstall) {
