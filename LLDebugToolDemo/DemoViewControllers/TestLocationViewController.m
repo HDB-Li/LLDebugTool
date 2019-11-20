@@ -23,7 +23,7 @@
 
 @end
 
-@interface TestLocationViewController () <CLLocationManagerDelegate>
+@interface TestLocationViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) MKMapView *mapView;
 
@@ -59,6 +59,11 @@
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height;
     self.toastLabel.frame = CGRectMake(0, navigationBarHeight, self.view.frame.size.width, 80);
     self.mapView.frame = CGRectMake(0, navigationBarHeight + 80, self.view.frame.size.width, self.view.frame.size.height - navigationBarHeight - 80);
+}
+
+#pragma mark - MKMapViewDelegate
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    NSLog(@"%@, %@",NSStringFromSelector(_cmd), userLocation);
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -100,6 +105,7 @@
     if (!_mapView) {
         _mapView = [[MKMapView alloc] init];
         _mapView.showsUserLocation = YES;
+        _mapView.delegate = self;
     }
     return _mapView;
 }
