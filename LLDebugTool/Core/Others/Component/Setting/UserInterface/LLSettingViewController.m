@@ -103,6 +103,13 @@
     [settings removeAllObjects];
     [self.dataArray addObject:category3];
 #endif
+#ifdef LLDEBUGTOOL_HIERARCHY
+    // Hierarchy
+    [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
+    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
+    [settings removeAllObjects];
+    [self.dataArray addObject:category5];
+#endif
 #ifdef LLDEBUGTOOL_MAGNIFIER
     // Magnifier
     [settings addObject:[self getMagnifierZoomLevelModel]];
@@ -110,13 +117,6 @@
     LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category4];
-#endif
-#ifdef LLDEBUGTOOL_HIERARCHY
-    // Hierarchy
-    [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
-    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category5];
 #endif
     [self.tableView reloadData];
 }
