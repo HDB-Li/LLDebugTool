@@ -24,6 +24,22 @@
 #ifndef LLScreenshot_h
 #define LLScreenshot_h
 
+#import "LLConvenientScreenshotComponent.h"
+#import "LLScreenshotComponent.h"
+
 #import "LLScreenshotHelper.h"
+
+#import "LLScreenshotPreviewViewController.h"
+#import "LLScreenshotViewController.h"
+#import "LLScreenshotBaseOperation.h"
+#import "LLScreenshotSelectorModel.h"
+#import "LLScreenshotSelectorView.h"
+#import "LLScreenshotActionView.h"
+#import "LLScreenshotImageView.h"
+#import "LLScreenshotToolbar.h"
+#import "LLScreenshotWindow.h"
+#import "LLScreenshotDefine.h"
+
+#import "LLWindowManager+Screenshot.h"
 
 #endif /* LLScreenshot_h */
