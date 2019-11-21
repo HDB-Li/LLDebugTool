@@ -24,6 +24,20 @@
 #ifndef LLHierarchy_h
 #define LLHierarchy_h
 
+#import "LLHierarchyComponent.h"
+
 #import "LLHierarchyHelper.h"
+#import "LLEnumDescription.h"
+
+#import "NSObject+LL_Hierarchy.h"
+#import "LLConfig+Hierarchy.h"
+
+#import "LLHierarchyDetailViewController.h"
+#import "LLHierarchyViewController.h"
+#import "LLHierarchyPickerView.h"
+#import "LLHierarchyInfoView.h"
+#import "LLHierarchyWindow.h"
+
+#import "LLWindowManager+Hierarchy.h"
 
 #endif /* LLHierarchy_h */
