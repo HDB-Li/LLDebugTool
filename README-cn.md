@@ -339,7 +339,7 @@ LLDebugTool提供了一个元素边框工具，便捷的查看元素边框及位
 
 LLDebugTool可以在你的app中随时调试通过 `WKWebView`，`UIWebView` 或者你自定义的`ViewController`来调试html页面。
 
-### Location
+### 定位
 
 LLDebugTool可以随时在你的app中模拟定位信息，支持 `CLLocationManager` 和 `MKMapView`。
 
