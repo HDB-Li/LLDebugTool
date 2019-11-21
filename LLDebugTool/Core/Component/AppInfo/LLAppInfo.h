@@ -24,6 +24,15 @@
 #ifndef LLAppInfo_h
 #define LLAppInfo_h
 
+#import "LLAppInfoComponent.h"
+
 #import "LLAppInfoHelper.h"
+
+#import "UIDevice+LL_AppInfo.h"
+
+#import "LLAppInfoViewController.h"
+#import "LLAppInfoWindow.h"
+
+#import "LLWindowManager+AppInfo.h"
 
 #endif /* LLAppInfo_h */
