@@ -114,37 +114,45 @@
         
     self.toolContainerView.dataArray = [items copy];
     self.toolContainerView.title = @"Function";
+    self.toolContainerView.hidden = items.count == 0;
     
     [items removeAllObjects];
     
     LLFunctionItemModel *screenshot = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot];
-    LLFunctionItemModel *hierarchy = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy];
-    LLFunctionItemModel *magnifier = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier];
-    LLFunctionItemModel *ruler = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler];
-    LLFunctionItemModel *widgetBorder = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder];
-    LLFunctionItemModel *html = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml];
-    
     if (screenshot) {
         [items addObject:screenshot];
     }
+    
+    LLFunctionItemModel *hierarchy = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy];
     if (hierarchy) {
         [items addObject:hierarchy];
     }
+    
+    LLFunctionItemModel *magnifier = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier];
     if (magnifier) {
         [items addObject:magnifier];
     }
+    
+    LLFunctionItemModel *ruler = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler];
     if (ruler) {
         [items addObject:ruler];
     }
+    
+    LLFunctionItemModel *widgetBorder = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder];
     if (widgetBorder) {
         [items addObject:widgetBorder];
     }
+    
+    LLFunctionItemModel *html = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml];
     if (html) {
         [items addObject:html];
     }
     
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = @"Short Cut";
+    self.shortCutContainerView.hidden = items.count == 0;
+    
+    [items removeAllObjects];
 }
 
 #pragma mark - LLFunctionContainerViewDelegate
