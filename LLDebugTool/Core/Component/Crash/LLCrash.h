@@ -24,6 +24,16 @@
 #ifndef LLCrash_h
 #define LLCrash_h
 
+#import "LLCrashComponent.h"
+
 #import "LLCrashHelper.h"
+#import "LLCrashModel.h"
+
+#import "LLCrashDetailViewController.h"
+#import "LLCrashViewController.h"
+#import "LLCrashWindow.h"
+#import "LLCrashCell.h"
+
+#import "LLWindowManager+Crash.h"
 
 #endif /* LLCrash_h */
