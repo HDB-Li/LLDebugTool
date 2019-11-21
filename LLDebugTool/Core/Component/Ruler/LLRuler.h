@@ -24,4 +24,13 @@
 #ifndef LLRuler_h
 #define LLRuler_h
 
+#import "LLRulerComponent.h"
+
+#import "LLRulerViewController.h"
+#import "LLRulerPickerInfoView.h"
+#import "LLRulerPickerView.h"
+#import "LLRulerWindow.h"
+
+#import "LLWindowManager+Ruler.h"
+
 #endif /* LLRuler_h */
