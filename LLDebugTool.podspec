@@ -19,8 +19,8 @@ Pod::Spec.new do |s|
  end
 
   s.subspec 'Log' do |ss|
-    ss.public_header_files      = "LLDebugTool/Core/Component/Log/**/*.h"
-    ss.source_files             = "LLDebugTool/Core/Component/Log/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/LLDebugTool.h", "LLDebugTool/Core/Component/Log/**/*.h"
+    ss.source_files             = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/LLDebugTool.h", "LLDebugTool/Core/Component/Log/**/*.{h,m}"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_LOG=1'}
     ss.dependency                 "LLDebugTool/Storage"
   end
