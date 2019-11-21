@@ -22,6 +22,20 @@
 #ifndef LLLocation_h
 #define LLLocation_h
 
+#import "LLLocationComponent.h"
+
 #import "LLLocationHelper.h"
+#import "LLLocationProxy.h"
+
+#import "CLLocationManager+LL_Location.h"
+#import "MKMapView+LL_Location.h"
+#import "LLConfig+Location.h"
+
+#import "LLLocationViewController.h"
+#import "LLPinAnnotationView.h"
+#import "LLLocationWindow.h"
+#import "LLAnnotation.h"
+
+#import "LLWindowManager+Location.h"
 
 #endif /* LLLocation_h */
