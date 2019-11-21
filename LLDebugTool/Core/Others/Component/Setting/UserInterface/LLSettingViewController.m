@@ -136,15 +136,17 @@
 
 - (void)showDoubleClickAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
+    __block NSMutableArray *indexs = [[NSMutableArray alloc] init];
     for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionWidgetBorder + 1; i++) {
         NSString *action = [LLConfigHelper componentDescription:i];
         if (action) {
             [actions addObject:action];
+            [indexs addObject:@(i)];
         }
     }
     __weak typeof(self) weakSelf = self;
     [self LL_showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
-        [weakSelf setNewDoubleClick:index + LLDebugToolActionSetting];
+        [weakSelf setNewDoubleClick:[indexs[index] unsignedIntegerValue]];
     }];
 }
 
