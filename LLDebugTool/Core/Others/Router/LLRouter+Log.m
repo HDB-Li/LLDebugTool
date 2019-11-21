@@ -33,7 +33,7 @@
 #ifdef LLDEBUGTOOL_LOG
     [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelDefault onEvent:onEvent message:message];
 #else
-    NSLog(message);
+    NSLog(@"%@", message);
 #endif
 }
 
@@ -41,7 +41,7 @@
 #ifdef LLDEBUGTOOL_LOG
     [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelAlert onEvent:onEvent message:message];
 #else
-    NSLog(message);
+    NSLog(@"%@", message);
 #endif
 }
 
@@ -49,7 +49,7 @@
 #ifdef LLDEBUGTOOL_LOG
     [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelWarning onEvent:onEvent message:message];
 #else
-    NSLog(message);
+    NSLog(@"%@", message);
 #endif
 }
 
@@ -57,7 +57,7 @@
 #ifdef LLDEBUGTOOL_LOG
     [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLConfigLogLevelError onEvent:onEvent message:message];
 #else
-    NSLog(message);
+    NSLog(@"%@", message);
 #endif
 }
 

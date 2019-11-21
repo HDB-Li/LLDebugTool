@@ -135,12 +135,8 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
     
     // Set XIB resources.
-    _XIBBundle = [NSBundle bundleForClass:self.class];
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
-    if (!_XIBBundle) {
-        [LLTool log:@"Failed to load the XIB bundle"];
-    }
     if (!_imageBundle) {
         [LLTool log:@"Failed to load the image bundle"];
     }
@@ -160,17 +156,15 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _shrinkToEdgeWhenInactive = YES;
     _shakeToHide = YES;
     
+#ifdef LLDEBUGTOOL_MAGNIFIER
     // Set default magnifier properties.
     self.magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
     self.magnifierSize = kLLMagnifierWindowSize;
-    
+#endif
+#ifdef LLDEBUGTOOL_HIERARCHY
     // Set hierarchy
     self.hierarchyIgnorePrivateClass = YES;
-    
-    // Set location
-    _mockLocationLatitude = 0;
-    _mockLocationLongitude = 0;
-    
+#endif
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
     

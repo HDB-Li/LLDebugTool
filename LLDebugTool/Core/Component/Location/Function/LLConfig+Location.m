@@ -1,5 +1,5 @@
 //
-//  MKMapView+LL_Location.m
+//  LLConfig+Location.m
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,27 +19,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "MKMapView+LL_Location.h"
-
-#import "LLLocationHelper.h"
-
-#import "NSObject+LL_Runtime.h"
 #import "LLConfig+Location.h"
 
-@implementation MKMapView (LL_Location)
+#import "NSObject+LL_Runtime.h"
 
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"_updateUserLocationViewWithLocation:hadUserLocation:") swizzledSel:@selector(LL_updateUserLocationViewWithLocation:hadUserLocation:)];
-    });
+@implementation LLConfig (Location)
+
+- (void)setMockLocationLatitude:(double)mockLocationLatitude {
+    objc_setAssociatedObject(self, @selector(mockLocationLatitude), @(mockLocationLatitude), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)LL_updateUserLocationViewWithLocation:(CLLocation *)location hadUserLocation:(BOOL)hadUserLocation {
-    if ([LLLocationHelper shared].enable) {
-        location = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
-    }
-    [self LL_updateUserLocationViewWithLocation:location hadUserLocation:hadUserLocation];
+- (double)mockLocationLatitude {
+    return [objc_getAssociatedObject(self, _cmd) doubleValue];
+}
+
+- (void)setMockLocationLongitude:(double)mockLocationLongitude {
+    objc_setAssociatedObject(self, @selector(mockLocationLongitude), @(mockLocationLongitude), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (double)mockLocationLongitude {
+    return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }
 
 @end

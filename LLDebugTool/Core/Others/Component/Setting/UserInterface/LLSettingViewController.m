@@ -71,12 +71,14 @@
 
 #pragma mark - Primary
 - (void)loadData {
+    [self.dataArray removeAllObjects];
     NSMutableArray *settings = [[NSMutableArray alloc] init];
     
     // Short Cut
     [settings addObject:[self getDoubleClickComponentModel]];
     LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Short Cut" items:settings];
     [settings removeAllObjects];
+    [self.dataArray addObject:category0];
     
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
@@ -84,6 +86,7 @@
     
     LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Color" items:settings];
     [settings removeAllObjects];
+    [self.dataArray addObject:category1];
     
     // EntryWindowStyle
     [settings addObject:[self getEntryWindowStyleModel]];
@@ -91,12 +94,14 @@
     [settings addObject:[self getShakeToHideModel]];
     LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Entry Window" items:settings];
     [settings removeAllObjects];
+    [self.dataArray addObject:category2];
     
 #ifdef LLDEBUGTOOL_LOG
     // Log
     [settings addObject:[self getLogStyleModel]];
     LLTitleCellCategoryModel *category3 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Log" items:settings];
     [settings removeAllObjects];
+    [self.dataArray addObject:category3];
 #endif
 #ifdef LLDEBUGTOOL_MAGNIFIER
     // Magnifier
@@ -104,15 +109,15 @@
     [settings addObject:[self getMagnifierSizeModel]];
     LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
+    [self.dataArray addObject:category4];
 #endif
 #ifdef LLDEBUGTOOL_HIERARCHY
     // Hierarchy
     [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
     LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
     [settings removeAllObjects];
+    [self.dataArray addObject:category5];
 #endif
-    [self.dataArray removeAllObjects];
-    [self.dataArray addObjectsFromArray:@[category0, category1, category2, category3, category4, category5]];
     [self.tableView reloadData];
 }
 

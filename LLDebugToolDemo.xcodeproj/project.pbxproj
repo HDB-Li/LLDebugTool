@@ -111,6 +111,7 @@
 		36C9F80D237E8B2E0021BA2D /* LLDetailTitleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F80C237E8B2E0021BA2D /* LLDetailTitleCellView.m */; };
 		36C9F810237E8C8A0021BA2D /* LLTitleSwitchCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F80F237E8C8A0021BA2D /* LLTitleSwitchCellView.m */; };
 		36C9F813237E9B1D0021BA2D /* LLAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9F812237E9B1D0021BA2D /* LLAnnotation.m */; };
+		36CA97BF238619C50004D884 /* LLConfig+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA97BE238619C50004D884 /* LLConfig+Location.m */; };
 		36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */; };
 		36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7323306D6000C9C22C /* LLWidgetBorderViewController.m */; };
 		36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD3A7723307BEA00C9C22C /* LLWidgetBorderHelper.m */; };
@@ -481,6 +482,8 @@
 		36C9F80F237E8C8A0021BA2D /* LLTitleSwitchCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCellView.m; sourceTree = "<group>"; };
 		36C9F811237E9B1D0021BA2D /* LLAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnnotation.h; sourceTree = "<group>"; };
 		36C9F812237E9B1D0021BA2D /* LLAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAnnotation.m; sourceTree = "<group>"; };
+		36CA97BD238619C50004D884 /* LLConfig+Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLConfig+Location.h"; sourceTree = "<group>"; };
+		36CA97BE238619C50004D884 /* LLConfig+Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLConfig+Location.m"; sourceTree = "<group>"; };
 		36CD3A6F23306D4B00C9C22C /* LLWidgetBorderWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderWindow.h; sourceTree = "<group>"; };
 		36CD3A7023306D4B00C9C22C /* LLWidgetBorderWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderWindow.m; sourceTree = "<group>"; };
 		36CD3A7223306D6000C9C22C /* LLWidgetBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderViewController.h; sourceTree = "<group>"; };
@@ -1188,6 +1191,8 @@
 				36C9F7F9237E7DD50021BA2D /* LLLocationHelper.m */,
 				361C383F23826B2000487FA4 /* LLLocationProxy.h */,
 				361C384023826B2000487FA4 /* LLLocationProxy.m */,
+				36CA97BD238619C50004D884 /* LLConfig+Location.h */,
+				36CA97BE238619C50004D884 /* LLConfig+Location.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -2502,6 +2507,7 @@
 				363F020123854B5B00631D2E /* LLConfig+Hierarchy.m in Sources */,
 				C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */,
 				36A2524D237EA2A00082D408 /* LLPinAnnotationView.m in Sources */,
+				36CA97BF238619C50004D884 /* LLConfig+Location.m in Sources */,
 				C43BA81A205AB095006307BE /* main.m in Sources */,
 				C4B4E44222F9C90900F70277 /* NSHTTPURLResponse+LL_Network.m in Sources */,
 				C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */,

@@ -22,7 +22,8 @@
 #import "LLLocationProxy.h"
 
 #import "LLLocationHelper.h"
-#import "LLConfig.h"
+
+#import "LLConfig+Location.h"
 
 @implementation LLLocationProxy
 

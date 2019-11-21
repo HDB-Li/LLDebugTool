@@ -52,4 +52,8 @@
 #import "LLConfig+Html.h"
 #endif
 
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLConfig+Location.h"
+#endif
+
 #endif /* LLDebug_h */

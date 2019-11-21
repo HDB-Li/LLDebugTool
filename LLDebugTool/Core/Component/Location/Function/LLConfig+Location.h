@@ -1,5 +1,5 @@
 //
-//  MKMapView+LL_Location.m
+//  LLConfig+Location.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,27 +19,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "MKMapView+LL_Location.h"
+#import "LLConfig.h"
 
-#import "LLLocationHelper.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "NSObject+LL_Runtime.h"
-#import "LLConfig+Location.h"
+@interface LLConfig (Location)
 
-@implementation MKMapView (LL_Location)
+/**
+ Mock location latitude.
+ */
+@property (nonatomic, assign) double mockLocationLatitude;
 
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"_updateUserLocationViewWithLocation:hadUserLocation:") swizzledSel:@selector(LL_updateUserLocationViewWithLocation:hadUserLocation:)];
-    });
-}
-
-- (void)LL_updateUserLocationViewWithLocation:(CLLocation *)location hadUserLocation:(BOOL)hadUserLocation {
-    if ([LLLocationHelper shared].enable) {
-        location = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
-    }
-    [self LL_updateUserLocationViewWithLocation:location hadUserLocation:hadUserLocation];
-}
+/**
+ Mock location longitude.
+ */
+@property (nonatomic, assign) double mockLocationLongitude;
 
 @end
+
+NS_ASSUME_NONNULL_END

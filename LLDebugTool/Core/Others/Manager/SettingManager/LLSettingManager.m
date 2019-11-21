@@ -46,6 +46,10 @@
 #import "LLConfig+WidgetBorder.h"
 #endif
 
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLConfig+Location.h"
+#endif
+
 static LLSettingManager *_instance = nil;
 
 static NSString *doubleClickActionKey = @"doubleClickActionKey";
@@ -128,6 +132,7 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
         [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
     }
 #endif
+#ifdef LLDEBUGTOOL_LOCATION
     NSNumber *mockLocationEnable = self.mockLocationEnable;
     if (mockLocationEnable) {
         [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
@@ -138,6 +143,7 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
         [LLConfig shared].mockLocationLatitude = [mockLocationLatitude doubleValue];
         [LLConfig shared].mockLocationLongitude = [mockLocationLogitude doubleValue];
     }
+#endif
 }
 
 #pragma mark - Getters and Setters

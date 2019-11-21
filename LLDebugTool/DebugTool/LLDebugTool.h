@@ -49,6 +49,10 @@
 #import "LLConfig+Html.h"
 #endif
 
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLConfig+Location.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**

@@ -220,17 +220,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, nullable) NSString *userIdentity;
 
-#pragma mark - Location
-/**
- Mock location latitude.
- */
-@property (nonatomic, assign) double mockLocationLatitude;
-
-/**
- Mock location longitude.
- */
-@property (nonatomic, assign) double mockLocationLongitude;
-
 #pragma mark - LLDebugTool
 /**
  Whether to print LLDebugTool's log event. Default is YES.
@@ -248,7 +237,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL hideWhenInstall;
 
 #pragma mark - Click Event
-
 /**
  Click action. Default is LLDebugToolActionFunction.
 */
@@ -272,11 +260,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *imageBundle;
 
-/**
- XIB resource bundle.
- */
-@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle;
-
 #pragma mark - DEPRECATED
 
 @property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
@@ -290,7 +273,11 @@ NS_ASSUME_NONNULL_BEGIN
  Available features. Default is LLConfigAvailableAll.
  It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
  */
-@property (nonatomic, assign) LLConfigAvailableFeature availables LLDebugToolDeprecated("Unsupported, use LLDebugTool/{subspec} replace.");
+@property (nonatomic, assign) LLConfigAvailableFeature availables LLDebugToolDeprecated("Unsupported in v1.3.7, use LLDebugTool/{subspec} replace.");
+/**
+ XIB resource bundle.
+ */
+@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle LLDebugToolDeprecated("Unused in v1.3.7.");
 
 @end
 
