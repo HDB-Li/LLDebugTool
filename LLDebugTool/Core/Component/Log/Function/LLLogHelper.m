@@ -26,9 +26,9 @@
 #import "LLStorageManager.h"
 #import "LLFormatterTool.h"
 #import "LLLogModel.h"
+#import "LLConfig.h"
 
 #import "NSObject+LL_Utils.h"
-#import "LLConfig+Log.h"
 
 static LLLogHelper *_instance = nil;
 

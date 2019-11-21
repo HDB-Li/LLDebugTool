@@ -38,19 +38,6 @@
 
 #import "UIViewController+LL_Utils.h"
 
-#ifdef LLDEBUGTOOL_LOG
-#import "LLConfigHelper+Log.h"
-#import "LLConfig+Log.h"
-#endif
-
-#ifdef LLDEBUGTOOL_MAGNIFIER
-#import "LLConfig+Magnifier.h"
-#endif
-
-#ifdef LLDEBUGTOOL_HIERARCHY
-#import "LLConfig+Hierarchy.h"
-#endif
-
 @interface LLSettingViewController () <UITableViewDataSource>
 
 @end
@@ -103,6 +90,13 @@
     [settings removeAllObjects];
     [self.dataArray addObject:category3];
 #endif
+#ifdef LLDEBUGTOOL_HIERARCHY
+    // Hierarchy
+    [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
+    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
+    [settings removeAllObjects];
+    [self.dataArray addObject:category5];
+#endif
 #ifdef LLDEBUGTOOL_MAGNIFIER
     // Magnifier
     [settings addObject:[self getMagnifierZoomLevelModel]];
@@ -110,13 +104,6 @@
     LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category4];
-#endif
-#ifdef LLDEBUGTOOL_HIERARCHY
-    // Hierarchy
-    [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
-    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category5];
 #endif
     [self.tableView reloadData];
 }
@@ -136,15 +123,17 @@
 
 - (void)showDoubleClickAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
+    __block NSMutableArray *indexs = [[NSMutableArray alloc] init];
     for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionWidgetBorder + 1; i++) {
         NSString *action = [LLConfigHelper componentDescription:i];
         if (action) {
             [actions addObject:action];
+            [indexs addObject:@(i)];
         }
     }
     __weak typeof(self) weakSelf = self;
     [self LL_showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
-        [weakSelf setNewDoubleClick:index + LLDebugToolActionSetting];
+        [weakSelf setNewDoubleClick:[indexs[index] unsignedIntegerValue]];
     }];
 }
 

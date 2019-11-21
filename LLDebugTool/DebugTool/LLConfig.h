@@ -135,6 +135,38 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionLocation
 };
 
+/**
+ Log style for [LLDebugTool logInFile...]. Customize the log you want.
+ 
+ - LLConfigLogDetail: Show all detail info. Contain event, file, line, func, date and desc.
+ - LLConfigLogFileFuncDesc : Show with event, file, func and desc.
+ - LLConfigLogFileDesc : Show with event, file and desc.
+ - LLConfigLogNormal: Show as system NSLog
+ - LLConfigLogNone: Don't show anything.
+ */
+typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
+    LLConfigLogDetail,
+    LLConfigLogFileFuncDesc,
+    LLConfigLogFileDesc,
+    LLConfigLogNormal,
+    LLConfigLogNone,
+};
+
+/**
+ Log Level. It can be used for filter.
+ 
+ - LLConfigLogLevelDefault: Use to save message or note.
+ - LLConfigLogLevelAlert: Use to save alert message.
+ - LLConfigLogLevelWarning: Use to save warning message.
+ - LLConfigLogLevelError: Use to save error message.
+ */
+typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
+    LLConfigLogLevelDefault,
+    LLConfigLogLevelAlert,
+    LLConfigLogLevelWarning,
+    LLConfigLogLevelError,
+};
+
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -206,6 +238,73 @@ NS_ASSUME_NONNULL_BEGIN
  Window's statusBarStyle when show.
  */
 - (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
+
+#pragma mark - Network
+/**
+ Observer network in hosts, ignore others.
+ */
+@property (nonatomic, strong, nullable) NSArray <NSString *>*observerdHosts;
+
+/**
+ Ignored hosts, low level than observerdHosts.
+ */
+@property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
+
+/**
+ Whether observer webView request.
+ */
+@property (nonatomic, assign) BOOL observerWebView;
+
+#pragma mark - Log
+/**
+ Customize the log style. Default is LLConfigLogDetail.
+ */
+@property (nonatomic, assign) LLConfigLogStyle logStyle;
+
+#pragma mark - Hierarchy
+/**
+ Hierarchy function ignore private class or not.
+ */
+@property (nonatomic, assign, getter=isHierarchyIgnorePrivateClass) BOOL hierarchyIgnorePrivateClass;
+
+#pragma mark - Magnifier
+/**
+ Magnifier window zoom level, number of pixels per color, default is kLLMagnifierWindowZoomLevel.
+ */
+@property (nonatomic, assign) NSInteger magnifierZoomLevel;
+
+/**
+ Number of rows per magnifier window, default is kLLMagnifierWindowSize.
+ */
+@property (nonatomic, assign) NSInteger magnifierSize;
+
+#pragma mark - Widget Border
+/**
+Whether show widget border. Default is NO.
+*/
+@property (nonatomic, assign, getter=isShowWidgetBorder) BOOL showWidgetBorder;
+
+#pragma mark - Html
+/**
+ Default html5 url string used in Html function. must has prefix with http:// or https://
+ */
+@property (nonatomic, copy, nullable) NSString *defaultHtmlUrl;
+
+/**
+ Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`. ViewController must set background color.
+ */
+@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
+
+#pragma mark - Location
+/**
+ Mock location latitude.
+ */
+@property (nonatomic, assign) double mockLocationLatitude;
+
+/**
+ Mock location longitude.
+ */
+@property (nonatomic, assign) double mockLocationLongitude;
 
 #pragma mark - Date Formatter
 /**

@@ -29,9 +29,6 @@
 #import "LLLogHelper.h"
 #import "LLLogModel.h"
 
-#import "LLConfigHelper+Log.h"
-#import "LLConfig+Log.h"
-
 #import "LLLogDetailViewController.h"
 #import "LLLogViewController.h"
 #import "LLLogFilterView.h"

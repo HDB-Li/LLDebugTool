@@ -25,30 +25,10 @@
 
 #import "LLFunctionComponent.h"
 #import "LLConfig.h"
+#import "LLRouter.h"
 #import "LLConst.h"
 
 #import "NSUserDefaults+LL_Utils.h"
-#import "LLRouter.h"
-
-#ifdef LLDEBUGTOOL_LOG
-#import "LLConfig+Log.h"
-#endif
-
-#ifdef LLDEBUGTOOL_MAGNIFIER
-#import "LLConfig+Magnifier.h"
-#endif
-
-#ifdef LLDEBUGTOOL_HIERARCHY
-#import "LLConfig+Hierarchy.h"
-#endif
-
-#ifdef LLDEBUGTOOL_WIDGET_BORDER
-#import "LLConfig+WidgetBorder.h"
-#endif
-
-#ifdef LLDEBUGTOOL_LOCATION
-#import "LLConfig+Location.h"
-#endif
 
 static LLSettingManager *_instance = nil;
 

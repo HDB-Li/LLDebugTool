@@ -22,9 +22,9 @@
 #import "MKMapView+LL_Location.h"
 
 #import "LLLocationHelper.h"
+#import "LLConfig.h"
 
 #import "NSObject+LL_Runtime.h"
-#import "LLConfig+Location.h"
 
 @implementation MKMapView (LL_Location)
 

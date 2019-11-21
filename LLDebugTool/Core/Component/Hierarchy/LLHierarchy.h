@@ -30,7 +30,6 @@
 #import "LLEnumDescription.h"
 
 #import "NSObject+LL_Hierarchy.h"
-#import "LLConfig+Hierarchy.h"
 
 #import "LLHierarchyDetailViewController.h"
 #import "LLHierarchyViewController.h"
