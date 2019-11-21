@@ -25,4 +25,16 @@
 #ifndef LLHtml_h
 #define LLHtml_h
 
+#import "LLHtmlComponent.h"
+
+#import "LLConfig+Html.h"
+
+#import "LLHtmlConfigViewController.h"
+#import "LLHtmlUIWebViewController.h"
+#import "LLHtmlWkWebViewController.h"
+#import "LLHtmlViewController.h"
+#import "LLHtmlWindow.h"
+
+#import "LLWindowManager+Html.h"
+
 #endif /* LLHtml_h */
