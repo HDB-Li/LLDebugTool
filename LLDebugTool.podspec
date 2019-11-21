@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "LLDebugTool"
-  s.version             = "1.3.7"
+  s.version             = "1.3.6.2"
   s.summary             = "LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations."
   s.homepage            = "https://github.com/HDB-Li/LLDebugTool"
   s.license             = "MIT"
@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
   s.requires_arc        = true
 
   s.subspec 'Network' do |ss|
-    ss.public_header_files      = "LLDebugTool/Core/Component/Network/**/*.h"
-    ss.source_files             = "LLDebugTool/Core/Component/Network/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/LLDebug.h", "LLDebugTool/Core/Component/Network/**/*.h"
+    ss.source_files             = "LLDebugTool/LLDebug.h", "LLDebugTool/Core/Component/Network/**/*.{h,m}"
     ss.frameworks               = "SystemConfiguration", "CoreTelephony"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_NETWORK=1'}
     ss.dependency                 "LLDebugTool/Storage"
