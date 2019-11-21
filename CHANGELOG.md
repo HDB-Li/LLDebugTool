@@ -1,3 +1,11 @@
+## [1.3.7](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.7) (11/21/2019)
+
+###  `Mock Location` function and split into components.
+
+* Split into components, you can now integrate only a few components by `LLDebugTool/{subspec}`, such as `LLDebugTool/Network`、`LLDebugTool/Log`.
+* New `Mock Location` function, now you can mock location to anywhere at anytime. Support `CLLocationManager` and `MKMapView`.
+* Support `generate_multiple_pod_projects` in podfile.
+
 ## [1.3.6](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.6) (11/07/2019)
 
 ###  Optimize functional experience

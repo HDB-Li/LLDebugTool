@@ -8,7 +8,7 @@
 
 #import "TestHtmlViewController.h"
 #import "CustomWebViewController.h"
-#import "LLDebugTool.h"
+#import "LLDebug.h"
 
 @interface TestHtmlViewController ()
 

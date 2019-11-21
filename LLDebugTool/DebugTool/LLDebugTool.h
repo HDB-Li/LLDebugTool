@@ -22,7 +22,36 @@
 //  SOFTWARE.
 
 #import <Foundation/Foundation.h>
+
 #import "LLConfig.h"
+
+#ifdef LLDEBUGTOOL_NETWORK
+#import "LLConfig+Network.h"
+#endif
+
+#ifdef LLDEBUGTOOL_LOG
+#import "LLConfig+Log.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HIERARCHY
+#import "LLConfig+Hierarchy.h"
+#endif
+
+#ifdef LLDEBUGTOOL_MAGNIFIER
+#import "LLConfig+Magnifier.h"
+#endif
+
+#ifdef LLDEBUGTOOL_WIDGET_BORDER
+#import "LLConfig+WidgetBorder.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HTML
+#import "LLConfig+Html.h"
+#endif
+
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLConfig+Location.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -61,16 +90,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isWorking;
 
 /**
- LLDebugTool's version.
- */
-@property (nonatomic, copy, readonly) NSString * version;
-
-/**
- Whether is Beta.
- */
-@property (nonatomic, assign, readonly) BOOL isBetaVersion;
-
-/**
  Execute action.
  
  @param action Action.
@@ -85,18 +104,81 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data;
 
+#pragma mark - Version Control
 /**
- Print and save a log model with infos.
- 
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
+LLDebugTool's version.
+*/
++ (NSString *)version;
+
+/**
+ Version number.
  */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
++ (NSString *)versionNumber;
+
+/**
+Whether is Beta.
+*/
++ (BOOL)isBetaVersion;
+
+#pragma mark - DEPRECATED
+/**
+ LLDebugTool's version.
+ */
+@property (nonatomic, copy, readonly) NSString * version LLDebugToolDeprecated("Use class method.");
+
+/**
+ Whether is Beta.
+ */
+@property (nonatomic, assign, readonly) BOOL isBetaVersion LLDebugToolDeprecated("Use class method.");
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+@interface LLDebugTool (Log)
+
+/**
+ Print and save a log model with infos. LLConfigLogLevelDefault.
+ 
+ @param file File name.
+ @param function Function name.
+ @param lineNo Line number.
+ @param onEvent Event,can filter by this.
+ @param message Message.
+ */
+- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+/**
+Print and save a log model with infos. LLConfigLogLevelAlert.
+
+@param file File name.
+@param function Function name.
+@param lineNo Line number.
+@param onEvent Event,can filter by this.
+@param message Message.
+*/
+- (void)alertLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+/**
+Print and save a log model with infos. LLConfigLogLevelWarning.
+
+@param file File name.
+@param function Function name.
+@param lineNo Line number.
+@param onEvent Event,can filter by this.
+@param message Message.
+*/
+- (void)warningLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+/**
+Print and save a log model with infos. LLConfigLogLevelError.
+
+@param file File name.
+@param function Function name.
+@param lineNo Line number.
+@param onEvent Event,can filter by this.
+@param message Message.
+*/
+- (void)errorLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+
+@end

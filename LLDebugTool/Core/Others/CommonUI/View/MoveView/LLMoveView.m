@@ -23,7 +23,7 @@
 
 #import "LLMoveView.h"
 
-#import "LLMacros.h"
+#import "LLInternalMacros.h"
 
 #import "UIView+LL_Utils.h"
 

@@ -29,7 +29,8 @@
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+
+#import "LLConfig+WidgetBorder.h"
 
 @interface LLWidgetBorderViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -57,7 +58,7 @@
     model1.changePropertyBlock = ^(id  _Nullable obj) {
         [LLConfig shared].showWidgetBorder = [obj boolValue];
         [LLSettingManager shared].showWidgetBorder = @([obj boolValue]);
-        [[LLWidgetBorderHelper shared] enable:[obj boolValue]];
+        [[LLWidgetBorderHelper shared] setEnable:[obj boolValue]];
     };
     self.dataArray = @[model1];
 }

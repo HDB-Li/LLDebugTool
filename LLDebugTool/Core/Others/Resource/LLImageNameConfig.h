@@ -23,6 +23,7 @@ static NSString *const kMagnifierImageName = @"LL-magnifier";
 static NSString *const kRulerImageName = @"LL-ruler";
 static NSString *const kWidgetBorderImageName = @"LL-widget-border";
 static NSString *const kHtml5ImageName = @"LL-html5";
+static NSString *const kLocationImageName = @"LL-location";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";

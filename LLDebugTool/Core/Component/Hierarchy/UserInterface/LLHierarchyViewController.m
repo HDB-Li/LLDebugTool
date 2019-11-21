@@ -27,15 +27,15 @@
 #import "LLNavigationController.h"
 #import "LLHierarchyInfoView.h"
 #import "LLHierarchyPickerView.h"
+#import "LLInternalMacros.h"
 #import "LLWindowManager.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 #import "LLTool.h"
 
 #import "UIViewController+LL_Utils.h"
+#import "LLConfig+Hierarchy.h"
 #import "NSObject+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 

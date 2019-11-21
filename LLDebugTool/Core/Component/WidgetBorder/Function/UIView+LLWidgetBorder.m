@@ -24,9 +24,9 @@
 #import "UIView+LLWidgetBorder.h"
 
 #import "LLThemeManager.h"
-#import "LLConfig.h"
 #import "LLConst.h"
 
+#import "LLConfig+WidgetBorder.h"
 #import "NSObject+LL_Runtime.h"
 
 static const char kLLBorderLayerKey;

@@ -25,9 +25,9 @@
 
 #import "LLTitleCellCategoryModel.h"
 #import "LLEnumDescription.h"
+#import "LLInternalMacros.h"
 #import "LLTitleCellModel.h"
 #import "LLFormatterTool.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 #import "LLTool.h"
 

@@ -24,9 +24,31 @@
 #import "LLSettingManager.h"
 
 #import "LLFunctionComponent.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 #import "NSUserDefaults+LL_Utils.h"
+#import "LLRouter.h"
+
+#ifdef LLDEBUGTOOL_LOG
+#import "LLConfig+Log.h"
+#endif
+
+#ifdef LLDEBUGTOOL_MAGNIFIER
+#import "LLConfig+Magnifier.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HIERARCHY
+#import "LLConfig+Hierarchy.h"
+#endif
+
+#ifdef LLDEBUGTOOL_WIDGET_BORDER
+#import "LLConfig+WidgetBorder.h"
+#endif
+
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLConfig+Location.h"
+#endif
 
 static LLSettingManager *_instance = nil;
 
@@ -43,6 +65,9 @@ static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
 static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassKey";
 static NSString *webViewClassKey = @"webViewClassKey";
 static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
+static NSString *mockLocationEnableKey = @"mockLocationEnableKey";
+static NSString *mockLocationLatitudeKey = @"mockLocationLatitudeKey";
+static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
 
 @implementation LLSettingManager
 
@@ -52,6 +77,73 @@ static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
         _instance = [[LLSettingManager alloc] init];
     });
     return _instance;
+}
+
+- (void)prepareForConfig {
+    NSNumber *doubleClickAction = self.doubleClickAction;
+    if (doubleClickAction != nil) {
+        [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
+    }
+    NSNumber *colorStyle = self.colorStyle;
+    if (colorStyle != nil) {
+        [LLConfig shared].colorStyle = colorStyle.integerValue;
+    }
+    NSNumber *entryWindowStyle = self.entryWindowStyle;
+    if (entryWindowStyle != nil) {
+        [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
+    }
+    NSNumber *statusBarStyle = self.statusBarStyle;
+    if (statusBarStyle != nil) {
+        [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
+    }
+#ifdef LLDEBUGTOOL_LOG
+    NSNumber *logStyle = self.logStyle;
+    if (logStyle != nil) {
+        [LLConfig shared].logStyle = logStyle.integerValue;
+    }
+#endif
+    NSNumber *shrinkToEdgeWhenInactive = self.shrinkToEdgeWhenInactive;
+    if (shrinkToEdgeWhenInactive != nil) {
+        [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
+    }
+    NSNumber *shakeToHide = self.shakeToHide;
+    if (shakeToHide != nil) {
+        [LLConfig shared].shakeToHide = [shakeToHide boolValue];
+    }
+#ifdef LLDEBUGTOOL_MAGNIFIER
+    NSNumber *magnifierZoomLevel = self.magnifierZoomLevel;
+    if (magnifierZoomLevel != nil) {
+        [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
+    }
+    NSNumber *magnifierSize = self.magnifierSize;
+    if (magnifierSize != nil) {
+        [LLConfig shared].magnifierSize = [magnifierSize integerValue];
+    }
+#endif
+#ifdef LLDEBUGTOOL_WIDGET_BORDER
+    NSNumber *showWidgetBorder = self.showWidgetBorder;
+    if (showWidgetBorder != nil) {
+        [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
+    }
+#endif
+#ifdef LLDEBUGTOOL_HIERARCHY
+    NSNumber *hierarchyIgnorePrivateClass = self.hierarchyIgnorePrivateClass;
+    if (hierarchyIgnorePrivateClass != nil) {
+        [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
+    }
+#endif
+#ifdef LLDEBUGTOOL_LOCATION
+    NSNumber *mockLocationEnable = self.mockLocationEnable;
+    if (mockLocationEnable != nil) {
+        [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
+    }
+    NSNumber *mockLocationLatitude = self.mockLocationLatitude;
+    NSNumber *mockLocationLogitude = self.mockLocationLongitude;
+    if (mockLocationLatitude && mockLocationLogitude) {
+        [LLConfig shared].mockLocationLatitude = [mockLocationLatitude doubleValue];
+        [LLConfig shared].mockLocationLongitude = [mockLocationLogitude doubleValue];
+    }
+#endif
 }
 
 #pragma mark - Getters and Setters
@@ -157,6 +249,30 @@ static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
 
 - (NSString *)lastWebViewUrl {
     return [NSUserDefaults LL_stringForKey:lastWebViewUrlKey];
+}
+
+- (void)setMockLocationEnable:(NSNumber *)mockLocationEnable {
+    [NSUserDefaults LL_setNumber:mockLocationEnable forKey:mockLocationEnableKey];
+}
+
+- (NSNumber *)mockLocationEnable {
+    return [NSUserDefaults LL_numberForKey:mockLocationEnableKey];
+}
+
+- (void)setMockLocationLatitude:(NSNumber *)mockLocationLatitude {
+    [NSUserDefaults LL_setNumber:mockLocationLatitude forKey:mockLocationLatitudeKey];
+}
+
+- (NSNumber *)mockLocationLatitude {
+    return [NSUserDefaults LL_numberForKey:mockLocationLatitudeKey];
+}
+
+- (void)setMockLocationLongitude:(NSNumber *)mockLocationLongitude {
+    [NSUserDefaults LL_setNumber:mockLocationLongitude forKey:mockLocationLongitudeKey];
+}
+
+- (NSNumber *)mockLocationLongitude {
+    return [NSUserDefaults LL_numberForKey:mockLocationLongitudeKey];
 }
 
 @end

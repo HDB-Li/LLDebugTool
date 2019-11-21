@@ -53,7 +53,7 @@
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.detailLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin / 2.0];
     self.detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addConstraints:@[right, top, bottom, left]];
+    [self.detailLabel.superview addConstraints:@[right, top, bottom, left]];
     
     self.detailLabelRightCons = right;
 }

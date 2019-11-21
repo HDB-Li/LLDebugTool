@@ -39,9 +39,10 @@ static LLWidgetBorderHelper *_instance = nil;
     return _instance;
 }
 
-- (void)enable:(BOOL)isEnable {
+- (void)setEnable:(BOOL)enable {
+    _enable = enable;
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
-        [window LL_updateBorderLayer:isEnable];
+        [window LL_updateBorderLayer:enable];
     }
 }
 

@@ -25,12 +25,12 @@
 
 #import "LLEntryBigTitleView.h"
 #import "LLFunctionItemModel.h"
+#import "LLInternalMacros.h"
 #import "LLSettingManager.h"
 #import "LLEntryTitleView.h"
 #import "LLEntryBallView.h"
 #import "LLComponent.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 #import "LLTool.h"
 

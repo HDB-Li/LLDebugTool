@@ -25,11 +25,11 @@
 
 #import <pthread/pthread.h>
 
-#import "LLLogHelperEventDefine.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLDebugTool.h"
+#import "LLLogDefine.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 
 static unsigned long long _absolutelyIdentity = 0;
 
@@ -103,7 +103,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 + (void)log:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([LLConfig shared].isShowDebugToolLog) {
-            NSLog(@"%@,%@",string,kLLLogHelperOpenIssueInGithub);
+            NSLog(@"%@,%@",string,kLLDebugToolLogOpenIssueInGithub);
         }
     });
 }
@@ -111,12 +111,12 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 + (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt {
     if (synchronous) {
         if ([LLConfig shared].isShowDebugToolLog) {
-            NSLog(@"%@,%@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+            NSLog(@"%@,%@",string,prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
         }
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([LLConfig shared].isShowDebugToolLog) {
-                NSLog(@"%@,%@",string,prompt ? kLLLogHelperOpenIssueInGithub : @"");
+                NSLog(@"%@,%@",string,prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
             }
         });
     }

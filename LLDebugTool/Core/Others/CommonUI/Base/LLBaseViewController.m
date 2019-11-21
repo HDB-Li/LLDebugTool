@@ -24,9 +24,9 @@
 #import "LLBaseViewController.h"
 
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 
 #import "UIViewController+LL_Utils.h"

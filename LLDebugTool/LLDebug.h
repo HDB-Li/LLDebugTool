@@ -24,8 +24,36 @@
 #ifndef LLDebug_h
 #define LLDebug_h
 
-#import "LLDebugTool.h"
 #import "LLConfig.h"
+#import "LLDebugTool.h"
 #import "LLDebugToolMacros.h"
+
+#ifdef LLDEBUGTOOL_NETWORK
+#import "LLConfig+Network.h"
+#endif
+
+#ifdef LLDEBUGTOOL_LOG
+#import "LLConfig+Log.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HIERARCHY
+#import "LLConfig+Hierarchy.h"
+#endif
+
+#ifdef LLDEBUGTOOL_MAGNIFIER
+#import "LLConfig+Magnifier.h"
+#endif
+
+#ifdef LLDEBUGTOOL_WIDGET_BORDER
+#import "LLConfig+WidgetBorder.h"
+#endif
+
+#ifdef LLDEBUGTOOL_HTML
+#import "LLConfig+Html.h"
+#endif
+
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLConfig+Location.h"
+#endif
 
 #endif /* LLDebug_h */

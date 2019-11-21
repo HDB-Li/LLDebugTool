@@ -25,14 +25,13 @@
 
 #import "LLLogDetailViewController.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLStorageManager.h"
 #import "LLLogFilterView.h"
 #import "LLToastUtils.h"
-#import "LLSearchBar.h"
 #import "LLLogModel.h"
 #import "LLLogCell.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"

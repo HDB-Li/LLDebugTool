@@ -67,8 +67,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// Last web view url.
 @property (nonatomic, copy) NSString *lastWebViewUrl;
 
+/// Mock location enable or not.
+@property (nonatomic, strong) NSNumber *mockLocationEnable;
+
+/// Last mock location latitude.
+@property (nonatomic, strong) NSNumber *mockLocationLatitude;
+
+/// Last mock location longitude.
+@property (nonatomic, strong) NSNumber *mockLocationLongitude;
+
 /// Shared instance.
 + (instancetype)shared;
+
+/// Set up config.
+- (void)prepareForConfig;
 
 @end
 

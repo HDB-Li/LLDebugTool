@@ -23,7 +23,7 @@
 
 #import "LLRulerComponent.h"
 
-#import "LLWindowManager.h"
+#import "LLWindowManager+Ruler.h"
 
 @implementation LLRulerComponent
 

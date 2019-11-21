@@ -25,7 +25,8 @@
 
 #import "LLNavigationController.h"
 #import "LLLogViewController.h"
-#import "LLWindowManager.h"
+
+#import "LLWindowManager+Log.h"
 
 @implementation LLLogComponent
 

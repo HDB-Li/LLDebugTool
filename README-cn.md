@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.6-blue.svg)](https://img.shields.io/badge/Pod-v1.3.6-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.7-blue.svg)](https://img.shields.io/badge/Pod-v1.3.7-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -25,38 +25,28 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 #### Gif
 
 <div align="left">
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot2.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot2.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot4.gif" width="18%"></img>
 </div>
 
 #### 预览
 
 <div align="left">
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="18%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-2.png" width="18%"> </img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-7.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-8.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-9.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## 最近更新 (1.3.6)
+## 最近更新 (1.3.7)
 
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot4.gif" width="20%"></img>
 
-###  优化功能体验
+###  `模拟定位` 功能和组件化。
 
-* 移除 `Masonry`。
-* 修复已知问题。
-* 添加更多注释。
-* 修复XCode 10无法编译的问题。
-* 修复调用二次load方法的崩溃。
+* 拆分成组件后，你可以只通过 `LLDebugTool/{subspec}` 去集成某些组件，例如 `LLDebugTool/Network`、`LLDebugToolLog`。
+* 新的 `模拟定位` 功能，现在你可以在任何时候模拟到任何地点。支持`CLLocationManager` 和 `MKMapView`。
+* 支持Podfile中的 `generate_multiple_pod_projects`。
 
 ## 我能用LLDebugTool做什么?
 
@@ -84,6 +74,8 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 - 快速的Html容器入口。
 
+- 模拟定位。
+
 ## 添加 LLDebugTool 到你的项目中
 
 ### CocoaPods
@@ -93,7 +85,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 ##### Objective - C
 
 > 1. 添加 `pod 'LLDebugTool' , '~> 1.0'` 到你的Podfile里。
-> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.3.6' ,:configurations => ['Debug']`。
+> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugTool' , '1.3.7' ,:configurations => ['Debug']`。
 > 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugTool' , '~> 1.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugTool`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
 > 4. 终端输入`pod install`来进行集成。搜索不到`LLDebugTool`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
 > 5. 在你需要使用LLDebugTool的文件里添加`#import "LLDebug.h"`，或者直接在pch文件中添加`#import "LLDebug.h"`。
@@ -101,7 +93,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 ##### Swift
 
 > 1. 添加 `pod 'LLDebugToolSwift' , '~> 1.0'` 到你的Podfile里。
-> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.3.6' ,:configurations => ['Debug']`。
+> 2. 如果只想在Debug模式下使用，则添加`pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']` 到你的Podfile里，详细的配置方式可以查看[Wiki/如何仅在Debug环境中使用](https://github.com/HDB-Li/LLDebugTool/wiki/如何仅在Debug环境中使用)。如果你想要指定某个版本，可以类似这样使用 `pod 'LLDebugToolSwift' , '1.3.7' ,:configurations => ['Debug']`。
 > 3. 推荐的方式是采用多Target来处理，只在Debug Target中添加`pod 'LLDebugToolSwift' , '~> 1.0'`，这样做的好处既不污染Product环境的代码，又可以在Archive Debug环境的App时，将`LLDebugToolSwift`集成进去（如果采用`:configurations => ['Debug']`的方式，只能通过XCode运行，不可以Archive成App）。
 > 4. 必须在Podfile中添加 **`use_frameworks!`** 。
 > 5. 终端输入`pod install`来进行集成。搜索不到`LLDebugToolSwift`或者搜不到最新版本时，可先运行`pod repo update`，再执行`pod install`。
@@ -347,10 +339,14 @@ LLDebugTool提供了一个元素边框工具，便捷的查看元素边框及位
 
 LLDebugTool可以在你的app中随时调试通过 `WKWebView`，`UIWebView` 或者你自定义的`ViewController`来调试html页面。
 
+### 定位
+
+LLDebugTool可以随时在你的app中模拟定位信息，支持 `CLLocationManager` 和 `MKMapView`。
+
 ### 更多使用
 
 * 你可以通过查看[Wiki](https://github.com/HDB-Li/LLDebugTool/wiki)，获得更多帮助。
-* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或[LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在MacOS 10.15，XCode 11.1，iOS 13.0，CocoaPods 1.8.4下运行的，如果有任何版本兼容问题，请告诉我。
+* 你可以下载并运行[LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip)或[LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip)来发现LLDebugTool的更多使用方式。Demo是在MacOS 10.15.1，XCode 11.2.1，iOS 13.2.2，CocoaPods 1.8.4下运行的，如果有任何版本兼容问题，请告诉我。
 
 ## 要求
 
@@ -367,6 +363,10 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 * `QuickLook`
 
 * `CoreTelephony`
+
+* `CoreLocation`
+
+* `MapKit`
 
 ## 结构
 
@@ -394,6 +394,8 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
   - `Magnifier` 用于放大镜功能。
   - `Ruler` 用于格尺功能。
   - `Widget Border` 用于元素边框功能。
+  - `Html` 用于动态调试Web界面。
+  - `Location` 用于模拟定位功能。
   - `Function` 用于展示功能列表。
   - `Setting` 用于动态修改配置。
   

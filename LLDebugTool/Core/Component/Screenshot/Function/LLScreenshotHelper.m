@@ -25,11 +25,12 @@
 
 #import "LLScreenshotPreviewViewController.h"
 #import "LLScreenshotComponent.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 #import "LLTool.h"
 
+#import "LLRouter+Screenshot.h"
 
 static LLScreenshotHelper *_instance = nil;
 
@@ -76,7 +77,7 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 - (UIImage *_Nullable)imageFromScreen:(CGFloat)scale {
-    return [self screenshotWithScale:scale];
+    return [LLRouter screenshotWithScale:scale];
 }
 
 #pragma mark - Screenshot
@@ -118,59 +119,6 @@ static LLScreenshotHelper *_instance = nil;
 
 - (void)unregisterScreenshot {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationUserDidTakeScreenshotNotification object:nil];
-}
-
-- (nullable UIImage *)screenshotWithScale:(CGFloat)scale
-{
-    CGSize imageSize = CGSizeMake(LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-#pragma clang diagnostic pop
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
-    UIView *statusBar = [LLTool getUIStatusBarModern];
-    if ([statusBar isKindOfClass:[UIView class]]) {
-        [windows addObject:statusBar];
-    }
-    for (UIView *window in windows)
-    {
-        Class cls = NSClassFromString(@"LLBaseWindow");
-        if (!window.isHidden && cls != nil && ![window isKindOfClass:cls]) {
-            CGContextSaveGState(context);
-            CGContextTranslateCTM(context, window.center.x, window.center.y);
-            CGContextConcatCTM(context, window.transform);
-            CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
-            if (orientation == UIInterfaceOrientationLandscapeLeft)
-            {
-                CGContextRotateCTM(context, M_PI_2);
-                CGContextTranslateCTM(context, 0, -imageSize.width);
-            }
-            else if (orientation == UIInterfaceOrientationLandscapeRight)
-            {
-                CGContextRotateCTM(context, -M_PI_2);
-                CGContextTranslateCTM(context, -imageSize.height, 0);
-            } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                CGContextRotateCTM(context, M_PI);
-                CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
-            }
-            if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
-            {
-                [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
-            }
-            else
-            {
-                [window.layer renderInContext:context];
-            }
-            CGContextRestoreGState(context);
-        }
-    }
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 
 @end

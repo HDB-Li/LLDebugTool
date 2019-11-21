@@ -8,6 +8,8 @@
 
 "initial.log" = "This is an initialization log";
 "normal.log.info" = "This is a common level log that can be used for burial or information printing";
+"alert.log.info" = "This is an alert level log";
+"warning.log.info" = "This is a warning level log";
 "error.log.info" = "This is an error level log that can be used to record errors.";
 "call" = "call somebody";
 "call.log.info" = "This is a log on event \"call somebody\", can be used to analysis or record for a problem";
@@ -18,6 +20,8 @@
 "HTML.network" = "HTML(NSURLSession/HTML Response)";
 
 "insert.log" = "Insert a log";
+"insert.alert.log" = "Insert a log with alert level";
+"insert.warning.log" = "Insert a log with warning level";
 "insert.error.log" = "Insert a log with error level";
 "insert.call.log" = "Insert a log on event \"call somebody\"";
 
@@ -52,6 +56,7 @@
 "test.ruler" = "Show ruler function";
 "test.widget.border" = "Show widget border function";
 "test.html" = "Show html webview function";
+"test.location" = "Show mock location function";
 
 "new.version" = "A new version demo is available";
 "crash.tip" = "If your project/Demo under run XCode contains Exception Breakpoint, you need to after the program crashes, Continue to click on the XCode ` Continue program execution `(Tip 1), until the end of the program completely(Tip 2). This function can be used normally when non-xcode runs, and when run under XCode, Exception Breakpoint takes precedence over LLDebugTool intercept crash.";

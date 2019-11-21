@@ -60,6 +60,7 @@
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin / 2.0];
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:35];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin /2.0];
+    bottom.priority = UILayoutPriorityDefaultHigh;
     self.slider.translatesAutoresizingMaskIntoConstraints = NO;
     [self.slider.superview addConstraints:@[right, left, top, height, bottom]];
 }

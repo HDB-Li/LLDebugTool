@@ -23,7 +23,7 @@
 
 #import "LLScreenshotComponent.h"
 
-#import "LLWindowManager.h"
+#import "LLWindowManager+Screenshot.h"
 
 @implementation LLScreenshotComponent
 

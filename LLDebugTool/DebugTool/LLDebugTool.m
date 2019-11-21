@@ -22,27 +22,21 @@
 //  SOFTWARE.
 
 #import "LLDebugTool.h"
-#import "LLScreenshotHelper.h"
-#import "LLStorageManager.h"
-#import "LLNetworkHelper.h"
-#import "LLCrashHelper.h"
-#import "LLLogHelper.h"
-#import "LLAppInfoHelper.h"
-#import "LLDebugToolMacros.h"
-#import "LLLogHelperEventDefine.h"
-#import "LLConfig.h"
-#import "LLTool.h"
-#import "LLWindowManager.h"
+
 #import "LLFunctionItemModel.h"
+#import "LLDebugToolMacros.h"
 #import "LLSettingManager.h"
-#import "UIResponder+LL_Utils.h"
+#import "LLWindowManager.h"
 #import "LLComponent.h"
+#import "LLLogDefine.h"
+#import "LLTool.h"
+
+#import "UIResponder+LL_Utils.h"
+#import "LLRouter+Log.h"
 
 static LLDebugTool *_instance = nil;
 
 @interface LLDebugTool ()
-
-@property (nonatomic, copy) NSString *versionNumber;
 
 @property (nonatomic, assign) BOOL installed;
 
@@ -66,27 +60,18 @@ static LLDebugTool *_instance = nil;
 - (void)startWorking{
     if (!_isWorking) {
         _isWorking = YES;
-        LLConfigAvailableFeature available = [LLConfig shared].availables;
-        if (available & LLConfigAvailableCrash) {
-            // Open crash helper
-            [[LLCrashHelper shared] setEnable:YES];
-        }
-        if (available & LLConfigAvailableLog) {
-            // Open log helper
-            [[LLLogHelper shared] setEnable:YES];
-        }
-        if (available & LLConfigAvailableNetwork) {
-            // Open network monitoring
-            [[LLNetworkHelper shared] setEnable:YES];
-        }
-        if (available & LLConfigAvailableAppInfo) {
-            // Open app monitoring
-            [[LLAppInfoHelper shared] setEnable:YES];
-        }
-        if (available & LLConfigAvailableScreenshot) {
-            // Open screenshot
-            [[LLScreenshotHelper shared] setEnable:YES];
-        }
+
+        // Open crash helper
+        [LLRouter setCrashHelperEnable:YES];
+        // Open log helper
+        [LLRouter setLogHelperEnable:YES];
+        // Open network monitoring
+        [LLRouter setNetworkHelperEnable:YES];
+        // Open app monitoring
+        [LLRouter setAppInfoHelperEnable:YES];
+        // Open screenshot
+        [LLRouter setScreenshotHelperEnable:YES];
+        // Prepare to start.
         [self prepareToStart];
         // show window
         if (self.installed || ![LLConfig shared].hideWhenInstall) {
@@ -109,15 +94,15 @@ static LLDebugTool *_instance = nil;
     if (_isWorking) {
         _isWorking = NO;
         // Close screenshot
-        [[LLScreenshotHelper shared] setEnable:NO];
+        [LLRouter setScreenshotHelperEnable:NO];
         // Close app monitoring
-        [[LLAppInfoHelper shared] setEnable:NO];
+        [LLRouter setAppInfoHelperEnable:NO];
         // Close network monitoring
-        [[LLNetworkHelper shared] setEnable:NO];
+        [LLRouter setNetworkHelperEnable:NO];
         // Close log helper
-        [[LLLogHelper shared] setEnable:NO];
+        [LLRouter setLogHelperEnable:NO];
         // Close crash helper
-        [[LLCrashHelper shared] setEnable:NO];
+        [LLRouter setCrashHelperEnable:NO];
         // hide window
         [self hideWindow];
         
@@ -144,8 +129,16 @@ static LLDebugTool *_instance = nil;
     [model.component componentDidLoad:data];
 }
 
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:level onEvent:onEvent message:message];
++ (NSString *)version {
+    return [self isBetaVersion] ? [[self versionNumber] stringByAppendingString:@"(BETA)"] : [self versionNumber];
+}
+
++ (NSString *)versionNumber {
+    return @"1.3.7";
+}
+
++ (BOOL)isBetaVersion {
+    return NO;
 }
 
 #pragma mark - Notifications
@@ -161,13 +154,6 @@ static LLDebugTool *_instance = nil;
 
 #pragma mark - Primary
 - (void)initial {
-    // Set Default
-    _isBetaVersion = NO;
-
-    _versionNumber = @"1.3.6";
-
-    _version = _isBetaVersion ? [_versionNumber stringByAppendingString:@"(BETA)"] : _versionNumber;
-    
     // Check version.
     [self checkVersion];
 }
@@ -185,20 +171,14 @@ static LLDebugTool *_instance = nil;
         version = @"0.0.0";
     }
     
-    if ([self.versionNumber compare:version] == NSOrderedDescending) {
-        // Do update if needed.
-        [self updateSomethingWithVersion:version completion:^(BOOL result) {
-            if (!result) {
-                NSLog(@"Failed to update old data");
-            }
-            [localInfo setObject:self.versionNumber forKey:@"version"];
-            [localInfo writeToFile:filePath atomically:YES];
-        }];
+    if ([[LLDebugTool versionNumber] compare:version] == NSOrderedDescending) {
+        [localInfo setObject:[LLDebugTool versionNumber] forKey:@"version"];
+        [localInfo writeToFile:filePath atomically:YES];
     }
     
-    if (self.isBetaVersion) {
+    if ([LLDebugTool isBetaVersion]) {
         // This method called in instancetype, can't use macros to log.
-        [LLTool log:kLLLogHelperUseBetaAlert];
+        [LLTool log:kLLDebugToolLogUseBetaAlert];
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -215,8 +195,8 @@ static LLDebugTool *_instance = nil;
                         if (array2.count >= 2) {
                             NSString *newVersion = array2[0];
                             if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                                if ([self.version compare:newVersion] == NSOrderedAscending) {
-                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,self.version];
+                                if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,[LLDebugTool versionNumber]];
                                     [LLTool log:message];
                                 }
                             }
@@ -229,66 +209,8 @@ static LLDebugTool *_instance = nil;
     });
 }
 
-- (void)updateSomethingWithVersion:(NSString *)version completion:(void (^)(BOOL result))completion {
-    // Refactory database. Need rename tableName and table structure.
-    if ([version compare:@"1.1.3"] == NSOrderedAscending) {
-        [[LLStorageManager shared] updateDatabaseWithVersion:@"1.1.3" complete:^(BOOL result) {
-            if (completion) {
-                completion(result);
-            }
-        }];
-    } else {
-        if (completion) {
-            completion(YES);
-        }
-    }
-}
-
 - (void)prepareToStart {
-    NSNumber *doubleClickAction = [LLSettingManager shared].doubleClickAction;
-    if (doubleClickAction != nil) {
-        [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
-    }
-    NSNumber *colorStyle = [LLSettingManager shared].colorStyle;
-    if (colorStyle != nil) {
-        [LLConfig shared].colorStyle = colorStyle.integerValue;
-    }
-    NSNumber *entryWindowStyle = [LLSettingManager shared].entryWindowStyle;
-    if (entryWindowStyle != nil) {
-        [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
-    }
-    NSNumber *statusBarStyle = [LLSettingManager shared].statusBarStyle;
-    if (statusBarStyle != nil) {
-        [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
-    }
-    NSNumber *logStyle = [LLSettingManager shared].logStyle;
-    if (logStyle != nil) {
-        [LLConfig shared].logStyle = logStyle.integerValue;
-    }
-    NSNumber *shrinkToEdgeWhenInactive = [LLSettingManager shared].shrinkToEdgeWhenInactive;
-    if (shrinkToEdgeWhenInactive != nil) {
-        [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
-    }
-    NSNumber *shakeToHide = [LLSettingManager shared].shakeToHide;
-    if (shakeToHide != nil) {
-        [LLConfig shared].shakeToHide = [shakeToHide boolValue];
-    }
-    NSNumber *magnifierZoomLevel = [LLSettingManager shared].magnifierZoomLevel;
-    if (magnifierZoomLevel != nil) {
-        [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
-    }
-    NSNumber *magnifierSize = [LLSettingManager shared].magnifierSize;
-    if (magnifierSize != nil) {
-        [LLConfig shared].magnifierSize = [magnifierSize integerValue];
-    }
-    NSNumber *showWidgetBorder = [LLSettingManager shared].showWidgetBorder;
-    if (showWidgetBorder != nil) {
-        [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
-    }
-    NSNumber *hierarchyIgnorePrivateClass = [LLSettingManager shared].hierarchyIgnorePrivateClass;
-    if (hierarchyIgnorePrivateClass != nil) {
-        [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
-    }
+    [[LLSettingManager shared] prepareForConfig];
 }
 
 - (void)registerNotifications {
@@ -297,6 +219,35 @@ static LLDebugTool *_instance = nil;
 
 - (void)unregisterNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - DEPRECATED
+- (NSString *)version {
+    return [LLDebugTool version];
+}
+
+- (BOOL)isBetaVersion {
+    return [LLDebugTool isBetaVersion];
+}
+
+@end
+
+@implementation LLDebugTool (Log)
+
+- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter logInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+}
+
+- (void)alertLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter alertLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+}
+
+- (void)warningLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter warningLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+}
+
+- (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [LLRouter errorLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
 }
 
 @end

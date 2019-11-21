@@ -52,7 +52,7 @@
     NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:51];
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:31];
     self.swit.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addConstraints:@[left, right, centerY, width, height]];
+    [self.swit.superview addConstraints:@[left, right, centerY, width, height]];
 }
 
 - (void)primaryColorChanged {

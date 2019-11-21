@@ -24,10 +24,10 @@
 #import "LLInfoView.h"
 
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 #import "UIView+LL_Utils.h"

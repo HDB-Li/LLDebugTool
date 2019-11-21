@@ -23,7 +23,7 @@
 
 #import "LLHierarchyComponent.h"
 
-#import "LLWindowManager.h"
+#import "LLWindowManager+Hierarchy.h"
 
 @implementation LLHierarchyComponent
 

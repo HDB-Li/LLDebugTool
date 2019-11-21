@@ -28,11 +28,11 @@
 #import <mach-o/arch.h>
 #import <mach/mach.h>
 
-#import "LLNetworkHelper.h"
-#import "LLMacros.h"
+#import "LLInternalMacros.h"
 
-#import "UIDevice+LL_Utils.h"
+#import "UIDevice+LL_AppInfo.h"
 #import "NSObject+LL_Utils.h"
+#import "LLRouter+Network.h"
 
 static LLAppInfoHelper *_instance = nil;
 
@@ -461,7 +461,7 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
 
 - (NSString *)currentNetworkStatusDescription {
     NSString *returnValue = @"Unknown";
-    switch ([[LLNetworkHelper shared] currentNetworkStatus]) {
+    switch ([LLRouter networkStateFromStatebar]) {
         case LLNetworkStatusNotReachable:{
             returnValue = @"Unknown";
         }

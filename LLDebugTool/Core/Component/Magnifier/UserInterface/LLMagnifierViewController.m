@@ -24,10 +24,11 @@
 #import "LLMagnifierViewController.h"
 
 #import "LLMagnifierInfoView.h"
+#import "LLInternalMacros.h"
 #import "LLMagnifierView.h"
-#import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
+
+#import "LLConfig+Magnifier.h"
 
 @interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLInfoViewDelegate>
 

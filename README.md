@@ -3,7 +3,7 @@
 </p>
 
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
-[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.6-blue.svg)](https://img.shields.io/badge/pod-v1.3.6-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/badge/pod-v1.3.7-blue.svg)](https://img.shields.io/badge/pod-v1.3.7-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
 [![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -25,38 +25,28 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 #### Gif
 
 <div align="left">
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot2.gif" width="20%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/screenGif.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot2.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="18%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot4.gif" width="18%"></img>
 </div>
 
 #### Preview
 
 <div align="left">
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-1.png" width="18%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-2.png" width="18%"> </img>
 <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-3.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-4.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-5.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-6.png" width="18%"></img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-7.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-8.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-9.png" width="18%"> </img>
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenShot-10.png" width="18%"> </img>
 </div>
 
-## What's new in 1.3.6
+## What's new in 1.3.7
 
-<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot3.gif" width="20%"></img>
+<img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/ScreenGif-Screenshot4.gif" width="20%"></img>
 
-###  Optimize functional experience
+###  `Mock Location` function and split into components.
 
-* Remove `Masonry`.
-* Fix some bugs.
-* More code comments.
-* Fix error in XCode 10.
-* Fix a crash when call twice load method. 
+* Split into components, you can now integrate only a few components by `LLDebugTool/{subspec}`, such as `LLDebugTool/Network`、`LLDebugTool/Log`.
+* New `Mock Location` function, now you can mock location to anywhere at anytime. Support `CLLocationManager` and `MKMapView`.
+* Support `generate_multiple_pod_projects` in podfile.
         
 ## What can you do with LLDebugTool?
 
@@ -72,17 +62,19 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 
 - Easier observe app's memory, CPU, FPS and other information.
 
-- take screenshots, tag and share.
+- Take screenshots, tag and share.
 
-- more intuitive view of view structure and dynamic modify properties.
+- More intuitive view of view structure and dynamic modify properties.
 
-- determine UI elements and colors in your App more accurately.
+- Determine UI elements and colors in your App more accurately.
 
-- easy access to and comparison of point information.
+- Easy access to and comparison of point information.
 
-- easy access to element borders and frames.
+- Easy access to element borders and frames.
 
-- quick entry for html.
+- Quick entry for html.
+
+- Mock location at anytime.
 
 ## Adding LLDebugTool to your project
 
@@ -93,7 +85,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 ##### Objective - C
 
 > 1. Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0'`. 
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.6' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugTool to your Podfile `pod 'LLDebugTool' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugTool' , '1.3.7' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugTool', '~> 1.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Install the pod(s) by running `pod install`. If you can't search `LLDebugTool` or you can't find the newest release version, running `pod repo update` before `pod install`.
 > 5. Include LLDebugTool wherever you need it with `#import "LLDebug.h"` or you can write `#import "LLDebug.h"` in your .pch  in your .pch file.
@@ -101,7 +93,7 @@ Choose LLDebugTool for your next project, or migrate over your existing projects
 ##### Swift
 
 > 1. Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0'`.
-> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.6' ,:configurations => ['Debug']`.
+> 2. If only you want to use it only in Debug mode, Add a pod entry for LLDebugToolSwift to your Podfile `pod 'LLDebugToolSwift' , '~> 1.0' ,:configurations => ['Debug']`, Details also see [Wiki/Use in Debug environment](https://github.com/HDB-Li/LLDebugTool/wiki/Use-in-Debug-environment). If you want to specify the version, use as `pod 'LLDebugToolSwift' , '1.3.7' ,:configurations => ['Debug']`.
 > 3. The recommended approach is to use multiple targets and only add `pod 'LLDebugToolSwift', '~> 1.0'` to Debug Target. This has the advantage of not contamiling the code in the Product environment and can be integrated into the App in the Archive Debug environment (if `:configurations => ['Debug']`, it can only run through XCode. It is not possible to Archive as an App).
 > 4. Must be added in the Podfile **`use_frameworks!`**.
 > 5. Install the pod(s) by running `pod install`. If you can't search `LLDebugToolSwift` or you can't find the newest release version, running `pod repo update` before `pod install`.
@@ -347,10 +339,14 @@ LLDebugTool provides a function to display element border, convenient to see the
 
 LLDebugTool can debug HTML pages through `WKWebView`, `UIWebView` or your customized `ViewController` in your app at any time.
 
+### Location
+
+LLDebugTool provides a function to mock location at anytime.
+
 ### More Usage
 
 * You can get more help by looking at the [Wiki](https://github.com/HDB-Li/LLDebugTool/wiki).
-* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under MacOS 10.15, XCode 11.1, iOS 13.0, CocoaPods 1.8.4. If there is any version compatibility problem, please let me know.
+* You can download and run the [LLDebugToolDemo](https://github.com/HDB-Li/LLDebugTool/archive/master.zip) or [LLDebugToolSwiftDemo](https://github.com/HDB-Li/LLDebugToolSwift/archive/master.zip) to find more use with LLDebugTool. The demo is build under MacOS 10.15.1, XCode 11.2.1, iOS 13.2.2, CocoaPods 1.8.4. If there is any version compatibility problem, please let me know.
 
 ## Requirements
 
@@ -367,6 +363,10 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 * `QuickLook`
 
 * `CoreTelephony`
+
+* `CoreLocation`
+
+* `MapKit`
 
 ## Architecture
 
@@ -395,6 +395,8 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
   - `Ruler` Used to ruler function.
   - `Widget Border` User to widget border function.
   - `Function` Used to show functions.
+  - `Html` Used to dynamic test web view.
+  - `Location` Used to mock location.
   - `Setting` Used to dynamically set configs.
   
 ## Communication

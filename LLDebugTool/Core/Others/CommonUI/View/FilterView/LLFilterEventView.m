@@ -25,9 +25,9 @@
 
 #import "LLFilterLabelModel.h"
 #import "LLFilterLabelCell.h"
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLConfig.h"
 
 static NSString *const kEventCellID = @"EventCellID";

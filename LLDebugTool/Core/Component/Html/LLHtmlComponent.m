@@ -23,7 +23,8 @@
 
 #import "LLHtmlConfigViewController.h"
 #import "LLNavigationController.h"
-#import "LLWindowManager.h"
+
+#import "LLWindowManager+Html.h"
 
 @implementation LLHtmlComponent
 

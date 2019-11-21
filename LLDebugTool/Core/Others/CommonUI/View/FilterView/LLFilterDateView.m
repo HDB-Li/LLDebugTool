@@ -25,11 +25,11 @@
 
 #import "LLFilterTextFieldModel.h"
 #import "LLFilterTextFieldCell.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";

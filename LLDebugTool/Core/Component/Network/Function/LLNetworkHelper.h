@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LLReachability.h"
+#import "LLNetworkDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

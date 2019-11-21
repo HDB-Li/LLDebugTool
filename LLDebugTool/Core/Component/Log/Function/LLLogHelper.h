@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LLConfig.h"
+#import "LLConfig+Log.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -29,9 +29,9 @@
 #import "LLScreenshotImageView.h"
 #import "LLScreenshotToolbar.h"
 #import "LLScreenshotHelper.h"
+#import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLToastUtils.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 #import "UIView+LL_Utils.h"

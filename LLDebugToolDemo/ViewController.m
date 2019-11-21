@@ -14,6 +14,7 @@
 // Used to example.
 #import "NetTool.h"
 #import <Photos/PHPhotoLibrary.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "TestNetworkViewController.h"
 #import "TestLogViewController.h"
@@ -22,6 +23,7 @@
 #import "TestWindowStyleViewController.h"
 #import "TestHierarchyViewController.h"
 #import "TestHtmlViewController.h"
+#import "TestLocationViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -31,6 +33,7 @@ static NSString *const kCellID = @"cellID";
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
 
@@ -45,6 +48,10 @@ static NSString *const kCellID = @"cellID";
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
     }];
+    
+    // Try to get location permission, and if possible, mock location will get your current location.
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager requestWhenInUseAuthorization];
     
     // LLDebugTool need time to start.
     sleep(0.5);
@@ -95,8 +102,8 @@ static NSString *const kCellID = @"cellID";
             if (array2.count >= 2) {
                 NSString *newVersion = array2[0];
                 if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                    if ([[LLDebugTool sharedTool].version compare:newVersion] == NSOrderedAscending) {
-                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool sharedTool].version] preferredStyle:UIAlertControllerStyleAlert];
+                    if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
                         [vc addAction:action];
                         [self presentViewController:vc animated:YES completion:nil];
@@ -178,9 +185,14 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)testLocation {
+    TestLocationViewController *vc = [[TestLocationViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 12;
+    return 13;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -282,6 +294,9 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 11) {
         cell.textLabel.text = NSLocalizedString(@"test.html", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 12) {
+        cell.textLabel.text = NSLocalizedString(@"test.location", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -315,6 +330,8 @@ static NSString *const kCellID = @"cellID";
         [self testWidgetBorder];
     } else if (indexPath.section == 11) {
         [self testHtml];
+    } else if (indexPath.section == 12) {
+        [self testLocation];
     }
     [self.tableView reloadData];
 }
@@ -344,6 +361,8 @@ static NSString *const kCellID = @"cellID";
         return @"Widget Border";
     } else if (section == 11) {
         return @"Html";
+    } else if (section == 12) {
+        return @"Location";
     }
     return nil;
 }

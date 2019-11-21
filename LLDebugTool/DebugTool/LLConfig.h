@@ -42,21 +42,6 @@ typedef NS_ENUM(NSUInteger, LLConfigColorStyle) {
 };
 
 /**
- Log Level. It can be used for filter.
- 
- - LLConfigLogLevelDefault: Use to save message or note.
- - LLConfigLogLevelAlert: Use to save alert message.
- - LLConfigLogLevelWarning: Use to save warning message.
- - LLConfigLogLevelError: Use to save error message.
- */
-typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
-    LLConfigLogLevelDefault,
-    LLConfigLogLevelAlert,
-    LLConfigLogLevelWarning,
-    LLConfigLogLevelError,
-};
-
-/**
  Window style. Decide how the Window displays.
  
  - LLConfigEntryWindowStyleBall: Show as a ball. Moveable and clickable.
@@ -80,23 +65,6 @@ typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
     LLConfigEntryWindowStylePowerBar = 5,
 #endif
     LLConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLConfigEntryWindowStyleBall") = 0,
-};
-
-/**
- Log style for [LLDebugTool logInFile...]. Customize the log you want.
- 
- - LLConfigLogDetail: Show all detail info. Contain event, file, line, func, date and desc.
- - LLConfigLogFileFuncDesc : Show with event, file, func and desc.
- - LLConfigLogFileDesc : Show with event, file and desc.
- - LLConfigLogNormal: Show as system NSLog
- - LLConfigLogNone: Don't show anything.
- */
-typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
-    LLConfigLogDetail,
-    LLConfigLogFileFuncDesc,
-    LLConfigLogFileDesc,
-    LLConfigLogNormal,
-    LLConfigLogNone,
 };
 
 /**
@@ -146,6 +114,8 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
  - LLDebugToolActionMagnifier: Magnifier function.
  - LLDebugToolActionRuler: Ruler function.
  - LLDebugToolActionWidgetBorder: Widget border function.
+ - LLDebugToolActionHtml: Html function.
+ - LLDebugToolActionLocation: Mock location function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionFunction,
@@ -161,7 +131,8 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionMagnifier,
     LLDebugToolActionRuler,
     LLDebugToolActionWidgetBorder,
-    LLDebugToolActionHtml
+    LLDebugToolActionHtml,
+    LLDebugToolActionLocation
 };
 
 FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
@@ -236,12 +207,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
-#pragma mark - Log
-/**
- Customize the log style. Default is LLConfigLogDetail.
- */
-@property (nonatomic, assign) LLConfigLogStyle logStyle;
-
 #pragma mark - Date Formatter
 /**
  Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".
@@ -249,64 +214,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *dateFormatter;
 
-#pragma mark - Magnifier Window
-/**
- Magnifier window zoom level, number of pixels per color, default is kLLMagnifierWindowZoomLevel.
- */
-@property (nonatomic, assign) NSInteger magnifierZoomLevel;
-
-/**
- Number of rows per magnifier window, default is kLLMagnifierWindowSize.
- */
-@property (nonatomic, assign) NSInteger magnifierSize;
-
 #pragma mark - User Identity
 /**
  Tag user name is used to create the crash/network/log model.
  */
 @property (nonatomic, copy, nullable) NSString *userIdentity;
-
-#pragma mark - Network
-/**
- Observer network in hosts, ignore others.
- */
-@property (nonatomic, strong, nullable) NSArray <NSString *>*observerdHosts;
-
-/**
- Ignored hosts, low level than observerdHosts.
- */
-@property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
-
-/**
- Whether observer webView request.
- */
-@property (nonatomic, assign) BOOL observerWebView;
-
-#pragma mark - Hierarchy
-
-/**
- Hierarchy function ignore private class or not.
- */
-@property (nonatomic, assign, getter=isHierarchyIgnorePrivateClass) BOOL hierarchyIgnorePrivateClass;
-
-#pragma mark - Widget Border
-
-/**
-Whether show widget border. Default is NO.
-*/
-@property (nonatomic, assign, getter=isShowWidgetBorder) BOOL showWidgetBorder;
-
-#pragma mark - Html5
-
-/**
- Default html5 url string used in Html function. must has prefix with http:// or https://
- */
-@property (nonatomic, copy, nullable) NSString *defaultHtmlUrl;
-
-/**
- Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`. ViewController must set background color.
- */
-@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
 
 #pragma mark - LLDebugTool
 /**
@@ -325,7 +237,6 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign) BOOL hideWhenInstall;
 
 #pragma mark - Click Event
-
 /**
  Click action. Default is LLDebugToolActionFunction.
 */
@@ -335,13 +246,6 @@ Whether show widget border. Default is NO.
  Double click action. Default is LLDebugToolActionConvenientScreenshot.
  */
 @property (nonatomic, assign) LLDebugToolAction doubleClickAction;
-
-#pragma mark - Function
-/**
- Available features. Default is LLConfigAvailableAll.
- It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
- */
-@property (nonatomic, assign) LLConfigAvailableFeature availables;
 
 #pragma mark - Folder Path
 /**
@@ -356,11 +260,6 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *imageBundle;
 
-/**
- XIB resource bundle.
- */
-@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle;
-
 #pragma mark - DEPRECATED
 
 @property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
@@ -370,6 +269,15 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
 @property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `shrinkToEdgeWhenInactive`.");
 @property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
+/**
+ Available features. Default is LLConfigAvailableAll.
+ It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
+ */
+@property (nonatomic, assign) LLConfigAvailableFeature availables LLDebugToolDeprecated("Unsupported in v1.3.7, use LLDebugTool/{subspec} replace.");
+/**
+ XIB resource bundle.
+ */
+@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle LLDebugToolDeprecated("Unused in v1.3.7.");
 
 @end
 

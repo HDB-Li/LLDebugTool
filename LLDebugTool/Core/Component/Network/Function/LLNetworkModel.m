@@ -28,7 +28,7 @@
 
 #import "NSDictionary+LL_Utils.h"
 #import "NSString+LL_Utils.h"
-#import "NSData+LL_Utils.h"
+#import "NSData+LL_Network.h"
 
 @interface LLNetworkModel ()
 

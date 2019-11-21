@@ -53,7 +53,7 @@
     NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addConstraints:@[left, top, width, bottom]];
+    [self.titleLabel.superview addConstraints:@[left, top, width, bottom]];
     
     self.titleLabelBottomCons = bottom;
 }

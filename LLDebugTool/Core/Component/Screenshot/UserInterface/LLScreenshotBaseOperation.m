@@ -25,8 +25,8 @@
 
 #import "LLScreenshotSelectorModel.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLFactory.h"
-#import "LLMacros.h"
 #import "LLTool.h"
 
 #import "UIColor+LL_Utils.h"

@@ -27,6 +27,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Only for demo display. If you apply for location permission, mock location will get your current location.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Only for demo display. If you apply for photo album permission in your project, screenshot will be stored in photo album at the same time</string>
 	<key>NSPhotoLibraryUsageDescription</key>

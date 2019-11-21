@@ -25,7 +25,8 @@
 
 #import "LLAppInfoViewController.h"
 #import "LLNavigationController.h"
-#import "LLWindowManager.h"
+
+#import "LLWindowManager+AppInfo.h"
 
 @implementation LLAppInfoComponent
 

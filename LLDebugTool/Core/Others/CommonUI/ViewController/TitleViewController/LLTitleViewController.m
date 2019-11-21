@@ -27,8 +27,8 @@
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleSwitchCell.h"
 #import "LLTitleSliderCell.h"
-#import "LLTitleView.h"
-#import "LLMacros.h"
+#import "LLInternalMacros.h"
+#import "LLTitleHeaderView.h"
 #import "LLConst.h"
 
 @interface LLTitleViewController ()
@@ -69,7 +69,7 @@
     if (!model.title) {
         return nil;
     }
-    LLTitleView *view = [[LLTitleView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40)];
+    LLTitleHeaderView *view = [[LLTitleHeaderView alloc] initWithFrame:CGRectMake(0, 0, LL_SCREEN_WIDTH, 40)];
     view.titleLabel.text = model.title;
     return view;
 }

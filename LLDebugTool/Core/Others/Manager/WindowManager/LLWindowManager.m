@@ -23,9 +23,9 @@
 
 #import "LLWindowManager.h"
 
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLConfig.h"
-#import "LLMacros.h"
 #import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
@@ -63,50 +63,6 @@ static LLWindowManager *_instance = nil;
 
 + (LLFunctionWindow *)functionWindow {
     return (LLFunctionWindow *)[self createWindowWithClassName:NSStringFromClass([LLFunctionWindow class])];
-}
-
-+ (LLMagnifierWindow *)magnifierWindow {
-    return (LLMagnifierWindow *)[self createWindowWithClassName:NSStringFromClass([LLMagnifierWindow class])];
-}
-
-+ (LLNetworkWindow *)networkWindow {
-    return (LLNetworkWindow *)[self createWindowWithClassName:NSStringFromClass([LLNetworkWindow class])];
-}
-
-+ (LLLogWindow *)logWindow {
-    return (LLLogWindow *)[self createWindowWithClassName:NSStringFromClass([LLLogWindow class])];
-}
-
-+ (LLCrashWindow *)crashWindow {
-    return (LLCrashWindow *)[self createWindowWithClassName:NSStringFromClass([LLCrashWindow class])];
-}
-
-+ (LLAppInfoWindow *)appInfoWindow {
-    return (LLAppInfoWindow *)[self createWindowWithClassName:NSStringFromClass([LLAppInfoWindow class])];
-}
-
-+ (LLSandboxWindow *)sandboxWindow {
-    return (LLSandboxWindow *)[self createWindowWithClassName:NSStringFromClass([LLSandboxWindow class])];
-}
-
-+ (LLHierarchyWindow *)hierarchyWindow {
-    return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
-}
-
-+ (LLScreenshotWindow *)screenshotWindow {
-    return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class])];
-}
-
-+ (LLRulerWindow *)rulerWindow {
-    return (LLRulerWindow *)[self createWindowWithClassName:NSStringFromClass([LLRulerWindow class])];
-}
-
-+ (LLWidgetBorderWindow *)widgetBorderWindow {
-    return (LLWidgetBorderWindow *)[self createWindowWithClassName:NSStringFromClass([LLWidgetBorderWindow class])];
-}
-
-+ (LLHtmlWindow *)htmlWindow {
-    return (LLHtmlWindow *)[self createWindowWithClassName:NSStringFromClass([LLHtmlWindow class])];
 }
 
 + (LLSettingWindow *)settingWindow {
@@ -299,6 +255,19 @@ static LLWindowManager *_instance = nil;
     }
 }
 
+#pragma mark - Lazy
+- (LLEntryWindow *)entryWindow {
+    if (!_entryWindow) {
+        _entryWindow = (LLEntryWindow *)[[self class] createWindowWithClassName:NSStringFromClass([LLEntryWindow class])];
+    }
+    return _entryWindow;
+}
+
+@end
+
+#pragma mark - Internal
+@implementation LLWindowManager (Internal)
+
 + (LLBaseWindow *)createWindowWithClassName:(NSString *)className {
     Class cls = NSClassFromString(className);
     NSAssert(cls, ([NSString stringWithFormat:@"%@ can't register a class.",className]));
@@ -312,14 +281,6 @@ static LLWindowManager *_instance = nil;
     }
     NSAssert([window isKindOfClass:[LLBaseWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLBaseWindow class",className]));
     return window;
-}
-
-#pragma mark - Lazy
-- (LLEntryWindow *)entryWindow {
-    if (!_entryWindow) {
-        _entryWindow = (LLEntryWindow *)[[self class] createWindowWithClassName:NSStringFromClass([LLEntryWindow class])];
-    }
-    return _entryWindow;
 }
 
 @end
