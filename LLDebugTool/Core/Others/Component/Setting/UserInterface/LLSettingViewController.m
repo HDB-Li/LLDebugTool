@@ -38,19 +38,6 @@
 
 #import "UIViewController+LL_Utils.h"
 
-#ifdef LLDEBUGTOOL_LOG
-#import "LLConfigHelper+Log.h"
-#import "LLConfig+Log.h"
-#endif
-
-#ifdef LLDEBUGTOOL_MAGNIFIER
-#import "LLConfig+Magnifier.h"
-#endif
-
-#ifdef LLDEBUGTOOL_HIERARCHY
-#import "LLConfig+Hierarchy.h"
-#endif
-
 @interface LLSettingViewController () <UITableViewDataSource>
 
 @end

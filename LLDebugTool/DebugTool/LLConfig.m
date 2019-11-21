@@ -27,15 +27,9 @@
 #import "LLDebugTool.h"
 #import "LLFactory.h"
 #import "LLRouter.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
-
-#ifdef LLDEBUGTOOL_MAGNIFIER
-#import "LLConfig+Magnifier.h"
-#endif
-#ifdef LLDEBUGTOOL_HIERARCHY
-#import "LLConfig+Hierarchy.h"
-#endif
 
 static LLConfig *_instance = nil;
 
@@ -119,6 +113,16 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 
 - (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
     _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
+}
+
+- (void)setMagnifierSize:(NSInteger)magnifierSize {
+    if (_magnifierSize != magnifierSize) {
+        if (magnifierSize % 2 == 0) {
+            _magnifierSize = magnifierSize + 1;
+        } else {
+            _magnifierSize = magnifierSize;
+        }
+    }
 }
 
 #pragma mark - Primary

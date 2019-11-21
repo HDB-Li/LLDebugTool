@@ -26,13 +26,13 @@
 #import "LLStorageManager.h"
 #import "LLFormatterTool.h"
 #import "LLNetworkModel.h"
+#import "LLConfig.h"
 #import "LLTool.h"
 
 #import "NSHTTPURLResponse+LL_Network.h"
 #import "NSInputStream+LL_Network.h"
 #import "NSData+LL_Network.h"
 #import "LLRouter+AppInfo.h"
-#import "LLConfig+Network.h"
 
 static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
 

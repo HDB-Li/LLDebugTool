@@ -26,8 +26,6 @@
 
 #import "LLMagnifierComponent.h"
 
-#import "LLConfig+Magnifier.h"
-
 #import "LLMagnifierViewController.h"
 #import "LLMagnifierInfoView.h"
 #import "LLMagnifierWindow.h"

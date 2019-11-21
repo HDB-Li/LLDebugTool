@@ -29,7 +29,6 @@
 #import "LLWidgetBorderHelper.h"
 
 #import "UIView+LLWidgetBorder.h"
-#import "LLConfig+WidgetBorder.h"
 
 #import "LLWidgetBorderViewController.h"
 #import "LLWidgetBorderWindow.h"

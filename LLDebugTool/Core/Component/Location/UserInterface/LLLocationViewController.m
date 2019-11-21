@@ -31,11 +31,11 @@
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLAnnotation.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
-#import "LLConfig+Location.h"
 
 static NSString *const kAnnotationID = @"AnnotationID";
 

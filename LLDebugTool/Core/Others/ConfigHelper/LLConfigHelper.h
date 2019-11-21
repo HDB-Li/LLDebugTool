@@ -48,6 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)statusBarStyleDescription:(UIStatusBarStyle)statusBarStyle;
 
++ (NSString *)logStyleDescription;
+
++ (NSString *)logStyleDescription:(LLConfigLogStyle)style;
+
 + (NSString *)doubleClickComponentDescription;
 
 + (NSString *)componentDescription:(LLDebugToolAction)action;

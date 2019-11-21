@@ -29,7 +29,6 @@
 
 #import "CLLocationManager+LL_Location.h"
 #import "MKMapView+LL_Location.h"
-#import "LLConfig+Location.h"
 
 #import "LLLocationViewController.h"
 #import "LLPinAnnotationView.h"
