@@ -134,7 +134,7 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
 #endif
 #ifdef LLDEBUGTOOL_LOCATION
     NSNumber *mockLocationEnable = self.mockLocationEnable;
-    if (mockLocationEnable) {
+    if (mockLocationEnable != nil) {
         [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
     }
     NSNumber *mockLocationLatitude = self.mockLocationLatitude;
