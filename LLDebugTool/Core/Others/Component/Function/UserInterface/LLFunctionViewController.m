@@ -87,24 +87,61 @@
 #pragma mark - Primary
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLog]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLocation]];
-    
+    LLFunctionItemModel *network = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork];
+    if (network) {
+        [items addObject:network];
+    }
+    LLFunctionItemModel *log = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLog];
+    if (log) {
+        [items addObject:log];
+    }
+    LLFunctionItemModel *crash = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash];
+    if (crash) {
+        [items addObject:crash];
+    }
+    LLFunctionItemModel *appInfo = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo];
+    if (appInfo) {
+        [items addObject:appInfo];
+    }
+    LLFunctionItemModel *sandbox = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox];
+    if (sandbox) {
+        [items addObject:sandbox];
+    }
+    LLFunctionItemModel *location = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLocation];
+    if (location) {
+        [items addObject:location];
+    }
+        
     self.toolContainerView.dataArray = [items copy];
     self.toolContainerView.title = @"Function";
     
     [items removeAllObjects];
     
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder]];
-    [items addObject:[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml]];
+    LLFunctionItemModel *screenshot = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot];
+    LLFunctionItemModel *hierarchy = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy];
+    LLFunctionItemModel *magnifier = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier];
+    LLFunctionItemModel *ruler = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler];
+    LLFunctionItemModel *widgetBorder = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder];
+    LLFunctionItemModel *html = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml];
+    
+    if (screenshot) {
+        [items addObject:screenshot];
+    }
+    if (hierarchy) {
+        [items addObject:hierarchy];
+    }
+    if (magnifier) {
+        [items addObject:magnifier];
+    }
+    if (ruler) {
+        [items addObject:ruler];
+    }
+    if (widgetBorder) {
+        [items addObject:widgetBorder];
+    }
+    if (html) {
+        [items addObject:html];
+    }
     
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = @"Short Cut";
