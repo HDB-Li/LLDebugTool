@@ -24,6 +24,16 @@
 #ifndef LLWidgetBorder_h
 #define LLWidgetBorder_h
 
+#import "LLWidgetBorderComponent.h"
+
 #import "LLWidgetBorderHelper.h"
+
+#import "UIView+LLWidgetBorder.h"
+#import "LLConfig+WidgetBorder.h"
+
+#import "LLWidgetBorderViewController.h"
+#import "LLWidgetBorderWindow.h"
+
+#import "LLWindowManager+WidgetBorder.h"
 
 #endif /* LLWidgetBorder_h */
