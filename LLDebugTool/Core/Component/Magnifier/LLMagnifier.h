@@ -24,4 +24,15 @@
 #ifndef LLMagnifier_h
 #define LLMagnifier_h
 
+#import "LLMagnifierComponent.h"
+
+#import "LLConfig+Magnifier.h"
+
+#import "LLMagnifierViewController.h"
+#import "LLMagnifierInfoView.h"
+#import "LLMagnifierWindow.h"
+#import "LLMagnifierView.h"
+
+#import "LLWindowManager+Magnifier.h"
+
 #endif /* LLMagnifier_h */
