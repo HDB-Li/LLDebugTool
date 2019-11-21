@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "LLDebugTool"
-  s.version             = "1.3.6.3"
+  s.version             = "1.3.7"
   s.summary             = "LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations."
   s.homepage            = "https://github.com/HDB-Li/LLDebugTool"
   s.license             = "MIT"
@@ -11,16 +11,16 @@ Pod::Spec.new do |s|
   s.requires_arc        = true
 
   s.subspec 'Network' do |ss|
-    ss.public_header_files      = "LLDebugTool/LLDebug.h", "LLDebugTool/Core/Component/Network/**/*.h"
-    ss.source_files             = "LLDebugTool/LLDebug.h", "LLDebugTool/Core/Component/Network/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/Core/Component/Network/**/*.h"
+    ss.source_files             = "LLDebugTool/Core/Component/Network/**/*.{h,m}"
     ss.frameworks               = "SystemConfiguration", "CoreTelephony"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_NETWORK=1'}
     ss.dependency                 "LLDebugTool/Storage"
  end
 
   s.subspec 'Log' do |ss|
-    ss.public_header_files      = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/LLDebugTool.h", "LLDebugTool/Core/Component/Log/**/*.h"
-    ss.source_files             = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/LLDebugTool.h", "LLDebugTool/Core/Component/Log/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/Core/Component/Log/**/*.h"
+    ss.source_files             = "LLDebugTool/Core/Component/Log/**/*.{h,m}"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_LOG=1'}
     ss.dependency                 "LLDebugTool/Storage"
   end
@@ -64,11 +64,10 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Magnifier' do |ss|
-    ss.public_header_files      = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/*.h", "LLDebugTool/Core/Others/**/*.h", "LLDebugTool/Core/Component/Magnifier/**/*.h"
-    ss.source_files             = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}", "LLDebugTool/Core/Component/Magnifier/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/Core/Component/Magnifier/**/*.h"
+    ss.source_files             = "LLDebugTool/Core/Component/Magnifier/**/*.{h,m}"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_MAGNIFIER=1'}
-    ss.resources                = "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
-#    ss.dependency                 "LLDebugTool/Core"
+    ss.dependency                 "LLDebugTool/Core"
   end
   
   s.subspec 'Ruler' do |ss|
@@ -94,12 +93,11 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Location' do |ss|
-    ss.public_header_files      = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/*.h"
-    ss.source_files             = "LLDebugTool/LLDebug.h", "LLDebugTool/DebugTool/*.{h,m}", "LLDebugTool/Core/Others/**/*.{h,m}", "LLDebugTool/Core/Component/Location/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/Core/Component/Location/**/*.h"
+    ss.source_files             = "LLDebugTool/Core/Component/Location/**/*.{h,m}"
     ss.frameworks               = "CoreLocation", "MapKit"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_LOCATION=1'}
-    ss.resources                = "LLDebugTool/Core/Others/**/*.{xib,storyboard,bundle}"
-#    ss.dependency                 "LLDebugTool/Core"
+    ss.dependency                 "LLDebugTool/Core"
   end
   
   # Primary
