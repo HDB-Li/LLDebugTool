@@ -48,11 +48,13 @@
 - (void)addSwitConstraints {
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.detailLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin / 2.0];
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.swit.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
-    NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.swit.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
     NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:51];
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:31];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.swit.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin / 2.0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.swit attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.swit.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin / 2.0];
+    bottom.priority = UILayoutPriorityDefaultHigh;
     self.swit.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.swit.superview addConstraints:@[left, right, centerY, width, height]];
+    [self.swit.superview addConstraints:@[left, right, width, height, top, bottom]];
 }
 
 - (void)primaryColorChanged {
