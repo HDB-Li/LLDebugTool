@@ -24,6 +24,16 @@
 #ifndef LLSandbox_h
 #define LLSandbox_h
 
+#import "LLSandboxComponent.h"
+
 #import "LLSandboxHelper.h"
+#import "LLSandboxModel.h"
+
+#import "LLSandboxViewController.h"
+#import "LLPreviewController.h"
+#import "LLSandboxWindow.h"
+#import "LLSandboxCell.h"
+
+#import "LLWindowManager+Sandbox.h"
 
 #endif /* LLSandbox_h */
