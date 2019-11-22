@@ -51,29 +51,18 @@
     [self addObservers];
 }
 
-- (void)primaryColorChanged {
-    
-}
-
-- (void)backgroundColorChanged {
+- (void)themeColorChanged {
     
 }
 
 #pragma mark - Primary
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateThemeColorNotificaion:) name:kThemeManagerUpdateThemeColorNotificaionName object:nil];
 }
 
-#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
-- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
-    [self primaryColorChanged];
+#pragma mark - kThemeManagerUpdateThemeColorNotificaionName
+- (void)didReceiveThemeManagerUpdateThemeColorNotificaion:(NSNotification *)notification {
+    [self themeColorChanged];
 }
-
-#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
-- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
-    [self backgroundColorChanged];
-}
-
 
 @end

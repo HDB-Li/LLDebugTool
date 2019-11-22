@@ -69,7 +69,6 @@
     
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
-    [settings addObject:[self getStatusBarStyleModel]];
     
     LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Color" items:settings];
     [settings removeAllObjects];
@@ -191,51 +190,6 @@
         [LLSettingManager shared].colorStyle = @(style);
         [self loadData];
     }
-}
-
-- (LLTitleCellModel *)getStatusBarStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitle:[LLConfigHelper statusBarStyleDescription]];
-    __weak typeof(self) weakSelf = self;
-    model.block = ^{
-        [weakSelf showStatusBarStyleAlert];
-    };
-    return model;
-}
-
-- (void)showStatusBarStyleAlert {
-    NSMutableArray *actions = [[NSMutableArray alloc] init];
-#ifdef __IPHONE_13_0
-    NSInteger count = 4;
-#else
-    NSInteger count = 3;
-#endif
-    for (NSInteger i = 0; i < count; i++) {
-        NSString *action = [LLConfigHelper statusBarStyleDescription:i];
-        if (action) {
-            [actions addObject:action];
-        }
-    }
-    __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
-        [weakSelf setNewStatusBarStyle:index];
-    }];
-}
-
-- (void)setNewStatusBarStyle:(UIStatusBarStyle)style {
-    if (style == [LLThemeManager shared].statusBarStyle) {
-        return;
-    }
-    
-    [[LLConfig shared] configStatusBarStyle:style];
-    [LLSettingManager shared].statusBarStyle = @(style);
-    [self loadData];
-    [UIView animateWithDuration:0.25 animations:^{
-        [self setNeedsStatusBarAppearanceUpdate];
-    }];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[UIApplication sharedApplication] setStatusBarStyle:style animated:YES];
-#pragma clang diagnostic pop
 }
 
 - (LLTitleCellModel *)getEntryWindowStyleModel {

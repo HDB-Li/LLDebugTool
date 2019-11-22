@@ -58,8 +58,8 @@
     self.detailLabelRightCons = right;
 }
 
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     _detailLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 

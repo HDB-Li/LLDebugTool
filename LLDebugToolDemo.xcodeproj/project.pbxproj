@@ -61,6 +61,7 @@
 		364AC6FA237CFB84007F0F29 /* LLRouter+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */; };
 		364CF3DB23265A1C000B513F /* LLRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 364CF3DA23265A1C000B513F /* LLRulerComponent.m */; };
 		364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64A2322087C0067C7D7 /* LLAnimateView.m */; };
+		3652EDF42387D0BD00D5D531 /* LLThemeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652EDF32387D0BD00D5D531 /* LLThemeColor.m */; };
 		3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */; };
 		365912502320B3E300FDA6A0 /* LLTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3659124F2320B3E300FDA6A0 /* LLTitleCell.m */; };
 		365912542320BD0C00FDA6A0 /* LLTitleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365912532320BD0C00FDA6A0 /* LLTitleHeaderView.m */; };
@@ -367,6 +368,8 @@
 		364CF3DA23265A1C000B513F /* LLRulerComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerComponent.m; sourceTree = "<group>"; };
 		364EF6492322087C0067C7D7 /* LLAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAnimateView.h; sourceTree = "<group>"; };
 		364EF64A2322087C0067C7D7 /* LLAnimateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAnimateView.m; sourceTree = "<group>"; };
+		3652EDF22387D0BD00D5D531 /* LLThemeColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLThemeColor.h; sourceTree = "<group>"; };
+		3652EDF32387D0BD00D5D531 /* LLThemeColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLThemeColor.m; sourceTree = "<group>"; };
 		3655D50F2329E02600490B36 /* UIResponder+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+LL_Utils.h"; sourceTree = "<group>"; };
 		3655D5102329E02600490B36 /* UIResponder+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+LL_Utils.m"; sourceTree = "<group>"; };
 		3659124E2320B3E300FDA6A0 /* LLTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCell.h; sourceTree = "<group>"; };
@@ -1955,6 +1958,8 @@
 			children = (
 				C4B4E3D522F9C90900F70277 /* LLThemeManager.h */,
 				C4B4E3D422F9C90900F70277 /* LLThemeManager.m */,
+				3652EDF22387D0BD00D5D531 /* LLThemeColor.h */,
+				3652EDF32387D0BD00D5D531 /* LLThemeColor.m */,
 			);
 			path = ThemeManager;
 			sourceTree = "<group>";
@@ -2491,6 +2496,7 @@
 				C4B4E46022F9C90900F70277 /* LLFilterEventView.m in Sources */,
 				C49856A722ED8D4800E9FBE2 /* LLLogDetailViewController.m in Sources */,
 				362AA6AD23272E2200F33EC4 /* LLRulerPickerView.m in Sources */,
+				3652EDF42387D0BD00D5D531 /* LLThemeColor.m in Sources */,
 				C4B4E44322F9C90900F70277 /* NSData+LL_Network.m in Sources */,
 				C4B4E45122F9C90900F70277 /* LLThemeManager.m in Sources */,
 				C49856E622EDAC9400E9FBE2 /* LLAppInfoComponent.m in Sources */,

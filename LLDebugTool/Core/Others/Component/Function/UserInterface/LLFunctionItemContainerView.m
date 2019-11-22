@@ -54,15 +54,10 @@
     self.lineView = [LLFactory getLineView:CGRectMake(10, self.titleLabel.LL_bottom - 1, self.LL_width - 10 * 2, 1) superView:self];
 }
 
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
     self.lineView.backgroundColor = [LLThemeManager shared].backgroundColor;
-    self.backgroundColor = [LLThemeManager shared].containerColor;
-}
-
-- (void)backgroundColorChanged {
-    [super backgroundColorChanged];
     self.backgroundColor = [LLThemeManager shared].containerColor;
 }
 

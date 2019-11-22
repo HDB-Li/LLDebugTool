@@ -59,8 +59,8 @@
 }
 
 #pragma mark - Over write
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     _titleLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 

@@ -78,8 +78,8 @@
 }
 
 #pragma mark - Over write
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
     self.settingButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
 }

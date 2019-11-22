@@ -221,15 +221,6 @@ static LLDebugTool *_instance = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - DEPRECATED
-- (NSString *)version {
-    return [LLDebugTool version];
-}
-
-- (BOOL)isBetaVersion {
-    return [LLDebugTool isBetaVersion];
-}
-
 @end
 
 @implementation LLDebugTool (Log)

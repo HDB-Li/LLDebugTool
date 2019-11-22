@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, LLConfigColorStyle) {
     LLConfigColorStyleHack,
     LLConfigColorStyleSimple,
     LLConfigColorStyleSystem,
-    LLConfigColorStyleCustom,
+    LLConfigColorStyleCustom
 };
 
 /**
@@ -225,19 +225,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Theme Color.
 /**
- Use preset the color configuration. For details, please see LLConfigColorStyle.
+ Use preset the color configuration. For details, please see LLConfigColorStyle. If you want to use custom style, use configPrimaryColor:backgroundColor:statusBarStyle: replace.
  */
 @property (nonatomic, assign) LLConfigColorStyle colorStyle;
 
 /**
  Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
  */
-- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
-
-/**
- Window's statusBarStyle when show.
- */
-- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
+- (void)configPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
 #pragma mark - Network
 /**
@@ -358,25 +353,6 @@ Whether show widget border. Default is NO.
  Image resource bundle.
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *imageBundle;
-
-#pragma mark - DEPRECATED
-
-@property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
-@property (nonatomic, assign) CGFloat suspensionWindowHideWidth LLDebugToolDeprecated("Use `entryWindowDisplayPercent` to set display percent.");
-@property (nonatomic, assign) CGFloat suspensionWindowTop LLDebugToolDeprecated("Use `entryWindowFirstDisplayPosition` to set first display position.");
-@property (nonatomic, assign) CGFloat normalAlpha LLDebugToolDeprecated("Use `inactiveAlpha`.");
-@property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
-@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `shrinkToEdgeWhenInactive`.");
-@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
-/**
- Available features. Default is LLConfigAvailableAll.
- It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
- */
-@property (nonatomic, assign) LLConfigAvailableFeature availables LLDebugToolDeprecated("Unsupported in v1.3.7, use LLDebugTool/{subspec} replace.");
-/**
- XIB resource bundle.
- */
-@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle LLDebugToolDeprecated("Unused in v1.3.7.");
 
 @end
 

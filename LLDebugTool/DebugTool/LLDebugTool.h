@@ -92,17 +92,6 @@ Whether is Beta.
 */
 + (BOOL)isBetaVersion;
 
-#pragma mark - DEPRECATED
-/**
- LLDebugTool's version.
- */
-@property (nonatomic, copy, readonly) NSString * version LLDebugToolDeprecated("Use class method.");
-
-/**
- Whether is Beta.
- */
-@property (nonatomic, assign, readonly) BOOL isBetaVersion LLDebugToolDeprecated("Use class method.");
-
 @end
 
 NS_ASSUME_NONNULL_END

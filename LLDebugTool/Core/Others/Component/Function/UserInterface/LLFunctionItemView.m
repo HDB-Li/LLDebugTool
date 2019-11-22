@@ -50,8 +50,8 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     self.titleLabel.textColor = [LLThemeManager shared].primaryColor;
     self.imageView.tintColor = [LLThemeManager shared].primaryColor;
 }

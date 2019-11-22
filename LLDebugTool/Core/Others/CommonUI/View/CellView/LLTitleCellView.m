@@ -79,8 +79,8 @@
     _line.frame = CGRectMake(self.leftMargin, self.LL_height - 1, self.LL_width - self.leftMargin, 1);
 }
 
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     _titleLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 

@@ -37,9 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// Entry window style.
 @property (nonatomic, strong) NSNumber *entryWindowStyle;
 
-/// Status bar style.
-@property (nonatomic, strong) NSNumber *statusBarStyle;
-
 /// Log style.
 @property (nonatomic, strong) NSNumber *logStyle;
 

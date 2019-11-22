@@ -55,16 +55,12 @@
     self.LL_width = self.label.LL_right + 5;
 }
 
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
+    self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
     self.icon.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
     self.label.textColor = [LLThemeManager shared].primaryColor;
-}
-
-- (void)backgroundColorChanged {
-    [super backgroundColorChanged];
-    self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
 
 @end

@@ -67,11 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Called when window is show.
 - (void)becomeVisable;
 
-/// Called when [LLThemeManager primaryColor] changed.
-- (void)primaryColorChanged;
-
-/// Called when [LLThemeManager backgroundColor] changed.
-- (void)backgroundColorChanged;
+/// Called when [LLThemeManager themeColor] changed.
+- (void)themeColorChanged;
 
 @end
 
