@@ -183,6 +183,9 @@
 		C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498570F22EDB4B600E9FBE2 /* LLScreenshotWindow.m */; };
 		C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */; };
 		C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */; };
+		C4AEB701238AD7EB0054CD37 /* LLShortCutComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AEB700238AD7EB0054CD37 /* LLShortCutComponent.m */; };
+		C4AEB706238AD8A90054CD37 /* LLShortCutHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AEB705238AD8A90054CD37 /* LLShortCutHelper.m */; };
+		C4AEB709238AD9870054CD37 /* LLShortCutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AEB708238AD9870054CD37 /* LLShortCutWindow.m */; };
 		C4B4E43B22F9C90900F70277 /* UIImage+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E39422F9C90900F70277 /* UIImage+LL_Utils.m */; };
 		C4B4E43C22F9C90900F70277 /* NSDictionary+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E39622F9C90900F70277 /* NSDictionary+LL_Utils.m */; };
 		C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E39922F9C90900F70277 /* UIWindow+LL_Utils.m */; };
@@ -627,6 +630,13 @@
 		C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierComponent.m; sourceTree = "<group>"; };
 		C498571622EDE3F800E9FBE2 /* LLMagnifierWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLMagnifierWindow.h; sourceTree = "<group>"; };
 		C498571722EDE3F800E9FBE2 /* LLMagnifierWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierWindow.m; sourceTree = "<group>"; };
+		C4AEB6FE238AD7D70054CD37 /* LLShortCut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLShortCut.h; sourceTree = "<group>"; };
+		C4AEB6FF238AD7EB0054CD37 /* LLShortCutComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLShortCutComponent.h; sourceTree = "<group>"; };
+		C4AEB700238AD7EB0054CD37 /* LLShortCutComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutComponent.m; sourceTree = "<group>"; };
+		C4AEB704238AD8A90054CD37 /* LLShortCutHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLShortCutHelper.h; sourceTree = "<group>"; };
+		C4AEB705238AD8A90054CD37 /* LLShortCutHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutHelper.m; sourceTree = "<group>"; };
+		C4AEB707238AD9870054CD37 /* LLShortCutWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLShortCutWindow.h; sourceTree = "<group>"; };
+		C4AEB708238AD9870054CD37 /* LLShortCutWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutWindow.m; sourceTree = "<group>"; };
 		C4B4E39022F9C90900F70277 /* LLLogDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogDefine.h; sourceTree = "<group>"; };
 		C4B4E39322F9C90900F70277 /* UIImage+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LL_Utils.h"; sourceTree = "<group>"; };
 		C4B4E39422F9C90900F70277 /* UIImage+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LL_Utils.m"; sourceTree = "<group>"; };
@@ -1402,6 +1412,7 @@
 				3633F581232F390600C62185 /* WidgetBorder */,
 				36CDFBC323506361002A913F /* Html */,
 				36C9F7F1237E7D280021BA2D /* Location */,
+				C4AEB6FD238AD69D0054CD37 /* ShortCut */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1736,6 +1747,36 @@
 				3605941A237AB82100C2D8FF /* LLWindowManager+Magnifier.m */,
 			);
 			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4AEB6FD238AD69D0054CD37 /* ShortCut */ = {
+			isa = PBXGroup;
+			children = (
+				C4AEB703238AD8790054CD37 /* Function */,
+				C4AEB702238AD7F50054CD37 /* UserInterface */,
+				C4AEB6FF238AD7EB0054CD37 /* LLShortCutComponent.h */,
+				C4AEB700238AD7EB0054CD37 /* LLShortCutComponent.m */,
+				C4AEB6FE238AD7D70054CD37 /* LLShortCut.h */,
+			);
+			path = ShortCut;
+			sourceTree = "<group>";
+		};
+		C4AEB702238AD7F50054CD37 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4AEB707238AD9870054CD37 /* LLShortCutWindow.h */,
+				C4AEB708238AD9870054CD37 /* LLShortCutWindow.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4AEB703238AD8790054CD37 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4AEB704238AD8A90054CD37 /* LLShortCutHelper.h */,
+				C4AEB705238AD8A90054CD37 /* LLShortCutHelper.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		C4B4E38B22F9C90900F70277 /* Others */ = {
@@ -2369,6 +2410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B4E44922F9C90900F70277 /* NSArray+LL_Utils.m in Sources */,
+				C4AEB701238AD7EB0054CD37 /* LLShortCutComponent.m in Sources */,
 				3605940F237AB6E500C2D8FF /* LLWindowManager+Crash.m in Sources */,
 				368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */,
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
@@ -2544,6 +2586,7 @@
 				C49856A822ED8D4800E9FBE2 /* LLLogViewController.m in Sources */,
 				C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */,
 				C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */,
+				C4AEB709238AD9870054CD37 /* LLShortCutWindow.m in Sources */,
 				36C9F80D237E8B2E0021BA2D /* LLDetailTitleCellView.m in Sources */,
 				366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */,
 				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
@@ -2562,6 +2605,7 @@
 				365912502320B3E300FDA6A0 /* LLTitleCell.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
+				C4AEB706238AD8A90054CD37 /* LLShortCutHelper.m in Sources */,
 				361C383E2382690100487FA4 /* LLProxy.m in Sources */,
 				36CD3A7823307BEA00C9C22C /* LLWidgetBorderHelper.m in Sources */,
 				3603883D23335DF40026BC9E /* LLTitleViewController.m in Sources */,
