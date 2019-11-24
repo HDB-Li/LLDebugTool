@@ -56,6 +56,87 @@
     return _systemThemeColor;
 }
 
++ (LLThemeColor *)grassThemeColor {
+    static LLThemeColor *_grassThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _grassThemeColor;
+}
+
++ (LLThemeColor *)homebrewThemeColor {
+    static LLThemeColor *_homebrewThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _homebrewThemeColor;
+}
+
++ (LLThemeColor *)manPageThemeColor {
+    static LLThemeColor *_manPageThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _manPageThemeColor;
+}
+
++ (LLThemeColor *)novelThemeColor {
+    static LLThemeColor *_novelThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _novelThemeColor;
+}
+
++ (LLThemeColor *)oceanThemeColor {
+    static LLThemeColor *_oceanThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _oceanThemeColor;
+}
+
++ (LLThemeColor *)proThemeColor {
+    static LLThemeColor *_proThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _proThemeColor;
+}
+
++ (LLThemeColor *)redSandsThemeColor {
+    static LLThemeColor *_redSandsThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _redSandsThemeColor;
+}
+
++ (LLThemeColor *)silverAerogelThemeColor {
+    static LLThemeColor *_silverAerogelThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _silverAerogelThemeColor;
+}
+
++ (LLThemeColor *)solidColorsThemeColor {
+    static LLThemeColor *_solidColorsThemeColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+    });
+    return _solidColorsThemeColor;
+}
+
 - (instancetype)initWithPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
     if (self = [super init]) {
         _primaryColor = primaryColor;

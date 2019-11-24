@@ -230,6 +230,42 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigColorStyleSystem";
                 }
                     break;
+                case LLConfigColorStyleGrass: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleGrass";
+                    break;
+                }
+                case LLConfigColorStyleHomebrew: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleHomebrew";
+                    break;
+                }
+                case LLConfigColorStyleManPage: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleManPage";
+                    break;
+                }
+                case LLConfigColorStyleNovel: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleNovel";
+                    break;
+                }
+                case LLConfigColorStyleOcean: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleOcean";
+                    break;
+                }
+                case LLConfigColorStylePro: {
+                    cell.detailTextLabel.text = @"LLConfigColorStylePro";
+                    break;
+                }
+                case LLConfigColorStyleRedSands: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleRedSands";
+                    break;
+                }
+                case LLConfigColorStyleSilverAerogel: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleSilverAerogel";
+                    break;
+                }
+                case LLConfigColorStyleSolidColors: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleSolidColors";
+                    break;
+                }
                 case LLConfigColorStyleCustom:{
                     cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
                 }

@@ -44,6 +44,24 @@
             return @"Simple";
         case LLConfigColorStyleSystem:
             return @"System";
+        case LLConfigColorStyleGrass:
+            return @"Grass";
+        case LLConfigColorStyleHomebrew:
+            return @"Homebrew";
+        case LLConfigColorStyleManPage:
+            return @"Man Page";
+        case LLConfigColorStyleNovel:
+            return @"Novel";
+        case LLConfigColorStyleOcean:
+            return @"Ocean";
+        case LLConfigColorStylePro:
+            return @"Pro";
+        case LLConfigColorStyleRedSands:
+            return @"Red Sands";
+        case LLConfigColorStyleSilverAerogel:
+            return @"Silver Aerogel";
+        case LLConfigColorStyleSolidColors:
+            return @"Solid Colors";
         case LLConfigColorStyleCustom:
             return [NSString stringWithFormat:@"%@\n%@",[[LLThemeManager shared].primaryColor LL_description],[[LLThemeManager shared].backgroundColor LL_description]];
     }
@@ -61,6 +79,24 @@
             return @"Simple";
         case LLConfigColorStyleSystem:
             return @"System";
+        case LLConfigColorStyleGrass:
+            return @"Grass";
+        case LLConfigColorStyleHomebrew:
+            return @"Homebrew";
+        case LLConfigColorStyleManPage:
+            return @"Man Page";
+        case LLConfigColorStyleNovel:
+            return @"Novel";
+        case LLConfigColorStyleOcean:
+            return @"Ocean";
+        case LLConfigColorStylePro:
+            return @"Pro";
+        case LLConfigColorStyleRedSands:
+            return @"Red Sands";
+        case LLConfigColorStyleSilverAerogel:
+            return @"Silver Aerogel";
+        case LLConfigColorStyleSolidColors:
+            return @"Solid Colors";
         case LLConfigColorStyleCustom:
             return @"Custom";
     }

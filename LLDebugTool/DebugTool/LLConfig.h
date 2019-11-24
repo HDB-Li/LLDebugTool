@@ -38,6 +38,15 @@ typedef NS_ENUM(NSUInteger, LLConfigColorStyle) {
     LLConfigColorStyleHack,
     LLConfigColorStyleSimple,
     LLConfigColorStyleSystem,
+    LLConfigColorStyleGrass,
+    LLConfigColorStyleHomebrew,
+    LLConfigColorStyleManPage,
+    LLConfigColorStyleNovel,
+    LLConfigColorStyleOcean,
+    LLConfigColorStylePro,
+    LLConfigColorStyleRedSands,
+    LLConfigColorStyleSilverAerogel,
+    LLConfigColorStyleSolidColors,
     LLConfigColorStyleCustom
 };
 

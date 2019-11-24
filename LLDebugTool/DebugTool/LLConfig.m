@@ -121,6 +121,42 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
                 [LLThemeManager shared].themeColor = [LLThemeColor systemThemeColor];
             }
                 break;
+            case LLConfigColorStyleGrass: {
+                [LLThemeManager shared].themeColor = [LLThemeColor grassThemeColor];
+            }
+                break;
+            case LLConfigColorStyleHomebrew: {
+                [LLThemeManager shared].themeColor = [LLThemeColor homebrewThemeColor];
+            }
+                break;
+            case LLConfigColorStyleManPage: {
+                [LLThemeManager shared].themeColor = [LLThemeColor manPageThemeColor];
+            }
+                break;
+            case LLConfigColorStyleNovel: {
+                [LLThemeManager shared].themeColor = [LLThemeColor novelThemeColor];
+            }
+                break;
+            case LLConfigColorStyleOcean: {
+                [LLThemeManager shared].themeColor = [LLThemeColor oceanThemeColor];
+            }
+                break;
+            case LLConfigColorStylePro: {
+                [LLThemeManager shared].themeColor = [LLThemeColor proThemeColor];
+            }
+                break;
+            case LLConfigColorStyleRedSands: {
+                [LLThemeManager shared].themeColor = [LLThemeColor redSandsThemeColor];
+            }
+                break;
+            case LLConfigColorStyleSilverAerogel: {
+                [LLThemeManager shared].themeColor = [LLThemeColor silverAerogelThemeColor];
+            }
+                break;
+            case LLConfigColorStyleSolidColors: {
+                [LLThemeManager shared].themeColor = [LLThemeColor solidColorsThemeColor];
+            }
+                break;
             case LLConfigColorStyleCustom: {
                 [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property."];
                 [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];

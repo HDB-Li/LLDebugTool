@@ -62,6 +62,33 @@ NS_ASSUME_NONNULL_BEGIN
 /// System theme color. White backgroundColor and system tint textColor.
 + (LLThemeColor *)systemThemeColor;
 
+/// Grass theme color.
++ (LLThemeColor *)grassThemeColor;
+
+/// Homebrew theme color.
++ (LLThemeColor *)homebrewThemeColor;
+
+/// Man page theme color.
++ (LLThemeColor *)manPageThemeColor;
+
+/// Novel theme color.
++ (LLThemeColor *)novelThemeColor;
+
+/// Ocean theme color.
++ (LLThemeColor *)oceanThemeColor;
+
+/// Pro theme color.
++ (LLThemeColor *)proThemeColor;
+
+/// Red sands theme color.
++ (LLThemeColor *)redSandsThemeColor;
+
+/// Silver aerogel theme color.
++ (LLThemeColor *)silverAerogelThemeColor;
+
+/// Solid colors theme color.
++ (LLThemeColor *)solidColorsThemeColor;
+
 /// Initial method.
 /// @param primaryColor Primary color.
 /// @param backgroundColor Background color.
