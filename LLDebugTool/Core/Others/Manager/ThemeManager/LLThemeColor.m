@@ -33,7 +33,7 @@
     static LLThemeColor *_hackThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _hackThemeColor = [self colorWithPrimaryColor:[UIColor greenColor] backgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1] statusBarStyle:UIStatusBarStyleLightContent];
+        _hackThemeColor = [self colorWithPrimaryColor:[UIColor greenColor] backgroundColor:[UIColor LL_colorWithHex:@"#333333"] statusBarStyle:UIStatusBarStyleLightContent];
     });
     return _hackThemeColor;
 }
@@ -60,7 +60,7 @@
     static LLThemeColor *_grassThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _grassThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#FFF0A5"] backgroundColor:[UIColor LL_colorWithHex:@"#13773D"] statusBarStyle:UIStatusBarStyleLightContent];
     });
     return _grassThemeColor;
 }
@@ -69,7 +69,7 @@
     static LLThemeColor *_homebrewThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _homebrewThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#28FE14"] backgroundColor:[UIColor LL_colorWithHex:@"#000000"] statusBarStyle:UIStatusBarStyleLightContent];
     });
     return _homebrewThemeColor;
 }
@@ -78,7 +78,7 @@
     static LLThemeColor *_manPageThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _manPageThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#FEF49C"] statusBarStyle:UIStatusBarStyleDefault];
     });
     return _manPageThemeColor;
 }
@@ -87,7 +87,7 @@
     static LLThemeColor *_novelThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _novelThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#3B2322"] backgroundColor:[UIColor LL_colorWithHex:@"#DFDBC3"] statusBarStyle:UIStatusBarStyleDefault];
     });
     return _novelThemeColor;
 }
@@ -96,7 +96,7 @@
     static LLThemeColor *_oceanThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _oceanThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#FFFFFF"] backgroundColor:[UIColor LL_colorWithHex:@"#224FBC"] statusBarStyle:UIStatusBarStyleLightContent];
     });
     return _oceanThemeColor;
 }
@@ -105,7 +105,7 @@
     static LLThemeColor *_proThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _proThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#F2F2F2"] backgroundColor:[UIColor LL_colorWithHex:@"#000000"] statusBarStyle:UIStatusBarStyleLightContent];
     });
     return _proThemeColor;
 }
@@ -114,7 +114,7 @@
     static LLThemeColor *_redSandsThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _redSandsThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#D7C9A7"] backgroundColor:[UIColor LL_colorWithHex:@"#7A251E"] statusBarStyle:UIStatusBarStyleLightContent];
     });
     return _redSandsThemeColor;
 }
@@ -123,7 +123,7 @@
     static LLThemeColor *_silverAerogelThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _silverAerogelThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#929292"] statusBarStyle:UIStatusBarStyleDefault];
     });
     return _silverAerogelThemeColor;
 }
@@ -132,7 +132,7 @@
     static LLThemeColor *_solidColorsThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
+        _solidColorsThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#FFFFFF"] statusBarStyle:UIStatusBarStyleDefault];
     });
     return _solidColorsThemeColor;
 }

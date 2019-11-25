@@ -167,7 +167,7 @@
 
 - (void)showColorStyleAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 3; i++) {
+    for (LLConfigColorStyle i = LLConfigColorStyleHack; i < LLConfigColorStyleCustom; i++) {
         NSString *action = [LLConfigHelper colorStyleDescription:i];
         if (action) {
             [actions addObject:action];

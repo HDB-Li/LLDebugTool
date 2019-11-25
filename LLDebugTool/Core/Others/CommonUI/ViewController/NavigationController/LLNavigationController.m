@@ -93,6 +93,8 @@
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
     self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
     self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
+    [self setNeedsStatusBarAppearanceUpdate];
+    [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:NO];
 }
 
 @end

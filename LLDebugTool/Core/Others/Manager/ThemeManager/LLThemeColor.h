@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, readonly) UIStatusBarStyle statusBarStyle;
 
-/// Hack theme color. Green backgroundColor and white textColor.
+/// Hack theme color. Green backgroundColor and #333333 textColor.
 + (LLThemeColor *)hackThemeColor;
 
 /// Simple theme color. White backgroundColor and darkTextColor textColor.
@@ -62,31 +62,31 @@ NS_ASSUME_NONNULL_BEGIN
 /// System theme color. White backgroundColor and system tint textColor.
 + (LLThemeColor *)systemThemeColor;
 
-/// Grass theme color.
+/// Grass theme color. #13773D backgroundColor and #FFF0A5 textColor.
 + (LLThemeColor *)grassThemeColor;
 
-/// Homebrew theme color.
+/// Homebrew theme color. Black backgroundColor and #28FE14 textColor.
 + (LLThemeColor *)homebrewThemeColor;
 
-/// Man page theme color.
+/// Man page theme color. #FEF49C backgroundColor and black textColor.
 + (LLThemeColor *)manPageThemeColor;
 
-/// Novel theme color.
+/// Novel theme color. #DFDBC3 backgroundColor and #3B2322 textColor.
 + (LLThemeColor *)novelThemeColor;
 
-/// Ocean theme color.
+/// Ocean theme color.  #224FBC backgroundColor and white textColor.
 + (LLThemeColor *)oceanThemeColor;
 
-/// Pro theme color.
+/// Pro theme color. Black backgroundColor and #F2F2F2 textColor.
 + (LLThemeColor *)proThemeColor;
 
-/// Red sands theme color.
+/// Red sands theme color. #7A251E backgroundColor and #D7C9A7 textColor.
 + (LLThemeColor *)redSandsThemeColor;
 
-/// Silver aerogel theme color.
+/// Silver aerogel theme color. #929292 backgroundColor and black textColor.
 + (LLThemeColor *)silverAerogelThemeColor;
 
-/// Solid colors theme color.
+/// Solid colors theme color. White backgroundColor and black textColor.
 + (LLThemeColor *)solidColorsThemeColor;
 
 /// Initial method.

@@ -29,9 +29,18 @@
 /**
  Color style enum
  
- - LLConfigColorStyleHack: Green backgroundColor and white textColor.
+ - LLConfigColorStyleHack: Green backgroundColor and #333333 textColor.
  - LLConfigColorStyleSimple: White backgroundColor and darkTextColor textColor.
  - LLConfigColorStyleSystem: White backgroundColor and system tint textColor.
+ - LLConfigColorStyleGrass: #13773D backgroundColor and #FFF0A5 textColor.
+ - LLConfigColorStyleHomebrew: Black backgroundColor and #28FE14 textColor.
+ - LLConfigColorStyleManPage: #FEF49C backgroundColor and black textColor.
+ - LLConfigColorStyleNovel: #DFDBC3 backgroundColor and #3B2322 textColor.
+ - LLConfigColorStyleOcean: #224FBC backgroundColor and white textColor.
+ - LLConfigColorStylePro: Black backgroundColor and #F2F2F2 textColor.
+ - LLConfigColorStyleRedSands: #7A251E backgroundColor and #D7C9A7 textColor.
+ - LLConfigColorStyleSilverAerogel: #929292 backgroundColor and black textColor.
+ - LLConfigColorStyleSolidColors: White backgroundColor and black textColor.
  - LLConfigColorStyleCustom: Use custom backgroundColor and textColor.
  */
 typedef NS_ENUM(NSUInteger, LLConfigColorStyle) {
