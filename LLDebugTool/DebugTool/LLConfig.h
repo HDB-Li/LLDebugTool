@@ -134,6 +134,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
  - LLDebugToolActionWidgetBorder: Widget border function.
  - LLDebugToolActionHtml: Html function.
  - LLDebugToolActionLocation: Mock location function.
+ - LLDebugToolActionShortCut: Short cut function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionFunction,
@@ -150,7 +151,8 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionRuler,
     LLDebugToolActionWidgetBorder,
     LLDebugToolActionHtml,
-    LLDebugToolActionLocation
+    LLDebugToolActionLocation,
+    LLDebugToolActionShortCut
 };
 
 /**

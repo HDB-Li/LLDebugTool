@@ -148,6 +148,11 @@
         [items addObject:html];
     }
     
+    LLFunctionItemModel *shortCut = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionShortCut];
+    if (shortCut) {
+        [items addObject:shortCut];
+    }
+    
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = @"Short Cut";
     self.shortCutContainerView.hidden = items.count == 0;

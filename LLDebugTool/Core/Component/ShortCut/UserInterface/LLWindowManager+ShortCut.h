@@ -1,5 +1,5 @@
 //
-//  LLShortCutHelper.h
+//  LLWindowManager+ShortCut.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,28 +19,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLWindowManager.h"
 
-@class LLShortCutModel;
+#import "LLShortCutWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Short cut helper.
-@interface LLShortCutHelper : NSObject
+@interface LLWindowManager (ShortCut)
 
-/// Register action models.
-@property (nonatomic, strong, readonly) NSArray <LLShortCutModel *>*actions;
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/// Register an action.
-/// @param model Action model.
-- (void)registerAction:(LLShortCutModel *)model;
-
-/// Unregister an action.
-/// @param model Action model.
-- (void)unregisterAction:(LLShortCutModel *)model;
+/// Short cut window.
++ (LLShortCutWindow *)shortCutWindow;
 
 @end
 

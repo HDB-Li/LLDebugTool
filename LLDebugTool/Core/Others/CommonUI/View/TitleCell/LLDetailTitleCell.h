@@ -21,12 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLTitleCell.h"
+#import "LLLeftTitleCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Detail title cell.
-@interface LLDetailTitleCell : LLTitleCell
+@interface LLDetailTitleCell : LLLeftTitleCell
 
 /// Detail title label.
 @property (nonatomic, strong, readonly) UILabel *detailLabel;

@@ -21,14 +21,26 @@
 
 #import "LLShortCutWindow.h"
 
+#import "LLShortCutViewController.h"
+#import "LLNavigationController.h"
+#import "LLWindowManager.h"
+
 @implementation LLShortCutWindow
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
+        self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
+        if (!self.rootViewController) {
+            self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLShortCutViewController alloc] init]];
+        }
+    }
+    return self;
 }
-*/
+
+#pragma mark - Over write
+- (void)componentDidFinish {
+    [[LLWindowManager shared] showEntryWindow];
+}
 
 @end

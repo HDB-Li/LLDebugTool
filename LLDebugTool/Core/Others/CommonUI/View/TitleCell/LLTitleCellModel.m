@@ -32,6 +32,20 @@
 
 @implementation LLTitleCellModel
 
+- (instancetype)initWithTitle:(NSString *_Nullable)title {
+    return [self initWithTitle:title block:nil];
+}
+
+- (instancetype)initWithTitle:(NSString *_Nullable)title block:(void(^_Nullable)(void))block {
+    if (self = [super init]) {
+        _title = [title copy];
+        _block = [block copy];
+        _cellClass = NSStringFromClass(LLTitleCell.class);
+        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
+    }
+    return self;
+}
+
 - (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
     return [self initWithTitle:title detailTitle:nil flag:flag];
 }

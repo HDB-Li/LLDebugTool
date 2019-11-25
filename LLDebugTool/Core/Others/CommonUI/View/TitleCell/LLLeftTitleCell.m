@@ -1,5 +1,7 @@
 //
-//  LLShortCutHelper.h
+//  LLLeftTitleCell.m
+//
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,29 +21,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLLeftTitleCell.h"
 
-@class LLShortCutModel;
+@implementation LLLeftTitleCell
 
-NS_ASSUME_NONNULL_BEGIN
-
-/// Short cut helper.
-@interface LLShortCutHelper : NSObject
-
-/// Register action models.
-@property (nonatomic, strong, readonly) NSArray <LLShortCutModel *>*actions;
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/// Register an action.
-/// @param model Action model.
-- (void)registerAction:(LLShortCutModel *)model;
-
-/// Unregister an action.
-/// @param model Action model.
-- (void)unregisterAction:(LLShortCutModel *)model;
+- (void)initUI {
+    [super initUI];
+    
+    [self.titleLabel.superview removeConstraint:self.titleLabelRightCons];
+    
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
+    [self.titleLabel.superview addConstraint:width];
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

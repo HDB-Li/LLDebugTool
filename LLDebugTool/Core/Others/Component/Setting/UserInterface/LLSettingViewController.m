@@ -51,11 +51,6 @@
     [self loadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setUpUI];
-}
-
 #pragma mark - Primary
 - (void)loadData {
     [self.dataArray removeAllObjects];
@@ -107,10 +102,6 @@
     [self.tableView reloadData];
 }
 
-- (void)setUpUI {
-    self.tableView.frame = self.view.bounds;
-}
-
 - (LLTitleCellModel *)getDoubleClickComponentModel {
     __weak typeof(self) weakSelf = self;
     LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitle:[LLConfigHelper doubleClickComponentDescription]];
@@ -123,7 +114,7 @@
 - (void)showDoubleClickAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     __block NSMutableArray *indexs = [[NSMutableArray alloc] init];
-    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionWidgetBorder + 1; i++) {
+    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionShortCut + 1; i++) {
         NSString *action = [LLConfigHelper componentDescription:i];
         if (action) {
             [actions addObject:action];

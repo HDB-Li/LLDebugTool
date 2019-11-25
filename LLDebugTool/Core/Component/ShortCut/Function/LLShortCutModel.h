@@ -1,5 +1,5 @@
 //
-//  LLShortCutHelper.h
+//  LLShortCutModel.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -21,26 +21,27 @@
 
 #import <Foundation/Foundation.h>
 
-@class LLShortCutModel;
-
 NS_ASSUME_NONNULL_BEGIN
 
-/// Short cut helper.
-@interface LLShortCutHelper : NSObject
+/// Short cut action model.
+@interface LLShortCutModel : NSObject
 
-/// Register action models.
-@property (nonatomic, strong, readonly) NSArray <LLShortCutModel *>*actions;
+/// Display name.
+@property (nonatomic, copy) NSString *name;
 
-/// Shared instance.
-+ (instancetype)shared;
+/// Action block.
+@property (nonatomic, copy) NSString *_Nullable(^action)(void);
 
-/// Register an action.
-/// @param model Action model.
-- (void)registerAction:(LLShortCutModel *)model;
+/// Initial method.
+/// @param name Name.
+/// @param action Action block.
+- (instancetype)initWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
 
-/// Unregister an action.
-/// @param model Action model.
-- (void)unregisterAction:(LLShortCutModel *)model;
+/// Visiable view controller.
++ (LLShortCutModel *)visiableViewControllerModel;
+
+/// Clear all user default settings.
++ (LLShortCutModel *)resetStandardUserDefaultsModel;
 
 @end
 

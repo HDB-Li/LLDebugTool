@@ -1,5 +1,7 @@
 //
-//  LLShortCutHelper.h
+//  LLLeftTitleCell.h
+//
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,28 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
-
-@class LLShortCutModel;
+#import "LLTitleCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Short cut helper.
-@interface LLShortCutHelper : NSObject
-
-/// Register action models.
-@property (nonatomic, strong, readonly) NSArray <LLShortCutModel *>*actions;
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/// Register an action.
-/// @param model Action model.
-- (void)registerAction:(LLShortCutModel *)model;
-
-/// Unregister an action.
-/// @param model Action model.
-- (void)unregisterAction:(LLShortCutModel *)model;
+/// Title cell.
+@interface LLLeftTitleCell : LLTitleCell
 
 @end
 

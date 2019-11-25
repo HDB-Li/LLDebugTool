@@ -103,6 +103,11 @@
         case LLDebugToolActionLocation: {
             component = @"LLLocationComponent";
         }
+            break;
+        case LLDebugToolActionShortCut: {
+            component = @"LLShortCutComponent";
+        }
+            break;
     }
     if (component) {
         return [[NSClassFromString(component) alloc] init];
@@ -173,6 +178,10 @@
             title = @"Location";
         }
             break;
+        case LLDebugToolActionShortCut: {
+            title = @"Short Cut";
+        }
+            break;
     }
     return title;
 }
@@ -232,6 +241,10 @@
             break;
         case LLDebugToolActionLocation: {
             imageName = kLocationImageName;
+        }
+            break;
+        case LLDebugToolActionShortCut: {
+            imageName = kShortCutImageName;
         }
             break;
     }

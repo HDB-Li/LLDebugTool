@@ -22,11 +22,11 @@
 //  SOFTWARE.
 
 #import "LLBaseTableViewCell.h"
+
 #import "LLTitleCellModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Title cell.
 @interface LLTitleCell : LLBaseTableViewCell
 
 /// Title label.
@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Title label bottom constraint.
 @property (nonatomic, strong, readonly) NSLayoutConstraint *titleLabelBottomCons;
+
+/// Title label right constraint.
+@property (nonatomic, strong, readonly, nullable) NSLayoutConstraint *titleLabelRightCons;
 
 /// Config model.
 @property (nonatomic, strong) LLTitleCellModel *model;
