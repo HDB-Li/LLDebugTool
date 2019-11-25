@@ -35,9 +35,26 @@
 "function.screenshot" = "Screenshot";
 "function.convenient.screenshot" = "Convenient Screenshot";
 "function.hierarchy" = "Hierarchy";
+"function.hierarchy.detail" = "Hierarchy Details";
 "function.magnifier" = "Magnifier";
 "function.ruler" = "Ruler";
 "function.widget.border" = "Widget Border";
-"function.html" = "HTML";
+"function.html" = "WebView";
 "function.short.cut" = "Short Cut";
 "function.setting" = "Settings";
+"function.detail" = "Details";
+
+// Setting
+"setting.short.cut" = "Short Cut";
+"setting.double.click" = "Double Click";
+"setting.color" = "Color";
+"setting.style" = "Style";
+"setting.entry.window" = "Entry Window";
+"setting.shrink" = "Shrink To Edge";
+"setting.shake" = "Shake To Hide";
+"setting.log" = "Log";
+"setting.hierarchy" = "Hierarchy";
+"setting.ignore.private" = "Ignore Private";
+"setting.magnifier" = "Magnifier";
+"setting.zoom.level" = "Zoom Level";
+"setting.zoom.size" = "Size";

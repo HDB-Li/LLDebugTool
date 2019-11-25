@@ -67,7 +67,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Network Monitoring";
+    self.title = LLLocalizedString(@"function.net");
     
     if (_launchDate == nil) {
         _launchDate = [NSObject LL_launchDate];

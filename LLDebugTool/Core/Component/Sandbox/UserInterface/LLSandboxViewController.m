@@ -26,6 +26,7 @@
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 #import "LLPreviewController.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLSandboxHelper.h"
 #import "LLSandboxModel.h"
 #import "LLSandboxCell.h"
@@ -61,9 +62,9 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
     }
     if (self.sandboxModel.isHomeDirectory) {
-        self.navigationItem.title = @"Sandbox";
+        self.title = LLLocalizedString(@"function.sandbox");
     } else {
-        self.navigationItem.title = self.sandboxModel.name;
+        self.title = self.sandboxModel.name;
     }
     // TableView
     [self.tableView registerClass:[LLSandboxCell class] forCellReuseIdentifier:kSandboxCellID];

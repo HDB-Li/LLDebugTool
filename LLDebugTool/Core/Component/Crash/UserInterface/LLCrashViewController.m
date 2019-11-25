@@ -25,6 +25,7 @@
 
 #import "LLCrashDetailViewController.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLStorageManager.h"
 #import "LLCrashHelper.h"
 #import "LLToastUtils.h"
@@ -55,7 +56,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Crash Report";
+    self.title = LLLocalizedString(@"function.crash");
     [self.tableView registerClass:[LLCrashCell class] forCellReuseIdentifier:kCrashCellID];
     
     [self loadData];

@@ -24,6 +24,7 @@
 #import "LLLogDetailViewController.h"
 
 #import "LLSubTitleTableViewCell.h"
+#import "LLInternalMacros.h"
 #import "LLToastUtils.h"
 #import "LLLogModel.h"
 
@@ -43,7 +44,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Details";
+    self.title = LLLocalizedString(@"function.detail");
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kLogContentCellID];
     [self loadData];

@@ -25,6 +25,7 @@
 
 #import "LLWidgetBorderHelper.h"
 #import "LLTitleSwitchCell.h"
+#import "LLInternalMacros.h"
 #import "LLTitleCellModel.h"
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
@@ -44,7 +45,7 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Widget Border";
+    self.title = LLLocalizedString(@"function.widget.border");
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.view addSubview:self.tableView];
     self.tableView.frame = self.view.bounds;

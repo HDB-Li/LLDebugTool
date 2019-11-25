@@ -35,9 +35,26 @@
 "function.screenshot" = "截屏";
 "function.convenient.screenshot" = "快速截屏";
 "function.hierarchy" = "视图结构";
+"function.hierarchy.detail" = "视图详情";
 "function.magnifier" = "放大镜";
 "function.ruler" = "格尺";
 "function.widget.border" = "元素边框";
-"function.html" = "HTML";
+"function.html" = "WebView";
 "function.short.cut" = "快捷操作";
 "function.setting" = "设置";
+"function.detail" = "详情";
+
+// Setting
+"setting.short.cut" = "快捷操作";
+"setting.double.click" = "双击事件";
+"setting.color" = "主题色";
+"setting.style" = "样式";
+"setting.entry.window" = "主窗口";
+"setting.shrink" = "收缩到边界";
+"setting.shake" = "摇晃手机隐藏";
+"setting.log" = "日志";
+"setting.hierarchy" = "视图结构";
+"setting.ignore.private" = "忽略私有类";
+"setting.magnifier" = "放大镜";
+"setting.zoom.level" = "缩放等级";
+"setting.zoom.size" = "缩放大小";

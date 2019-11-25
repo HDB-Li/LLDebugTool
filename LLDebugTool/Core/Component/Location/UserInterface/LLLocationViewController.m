@@ -66,7 +66,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Mock Location";
+    self.title = LLLocalizedString(@"function.location");
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     
     [self.view addSubview:self.switchView];

@@ -23,9 +23,11 @@
 
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
+#import "LLInternalMacros.h"
 #import "LLShortCutHelper.h"
 #import "LLShortCutModel.h"
 #import "LLToastUtils.h"
+#import "LLConfig.h"
 
 @interface LLShortCutViewController () <UITableViewDataSource>
 
@@ -35,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Short Cut";
+    self.title = LLLocalizedString(@"function.short.cut");
     [self loadData];
 }
 

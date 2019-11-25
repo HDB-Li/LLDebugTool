@@ -25,6 +25,7 @@
 
 #import "LLSubTitleTableViewCell.h"
 #import "LLNetworkImageCell.h"
+#import "LLInternalMacros.h"
 #import "LLNetworkModel.h"
 #import "LLToastUtils.h"
 #import "LLConfig.h"
@@ -48,7 +49,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Details";
+    self.title = LLLocalizedString(@"function.detail");
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:kNetworkImageCellID];
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kNetworkContentCellID];

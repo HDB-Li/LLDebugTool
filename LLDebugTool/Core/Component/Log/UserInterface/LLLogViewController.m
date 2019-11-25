@@ -70,7 +70,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Log Tracker";
+    self.title = LLLocalizedString(@"function.log");
     
     if (_launchDate == nil) {
         _launchDate = [NSObject LL_launchDate];

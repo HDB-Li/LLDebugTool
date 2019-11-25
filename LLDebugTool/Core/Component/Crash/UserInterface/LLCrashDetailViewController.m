@@ -49,7 +49,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = self.model.name;
+    self.title = self.model.name;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashContentCellID];
     

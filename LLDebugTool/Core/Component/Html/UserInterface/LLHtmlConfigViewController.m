@@ -122,7 +122,7 @@
 
 #pragma mark - Primary
 - (void)setUpUI {
-    self.title = @"WebView";
+    self.title = LLLocalizedString(@"function.html");
     [self initNavigationItemWithTitle:@"Go" imageName:nil isLeft:NO];
     
     self.webViewClass = [LLSettingManager shared].webViewClass ?: NSStringFromClass([WKWebView class]);
