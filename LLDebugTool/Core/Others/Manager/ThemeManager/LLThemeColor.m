@@ -162,8 +162,6 @@
 #pragma mark - Primary
 - (void)calculateColorIfNeeded {
     if (_primaryColor == nil || _backgroundColor == nil) {
-        _containerColor = nil;
-        _placeHolderColor = nil;
         return;
     }
     
