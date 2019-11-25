@@ -59,9 +59,8 @@
     }
     
     LLTitleCellCategoryModel *category = [[LLTitleCellCategoryModel alloc] initWithTitle:nil items:settings];
-    [settings removeAllObjects];
-
     [self.dataArray addObject:category];
+    [settings removeAllObjects];
 }
 
 @end
