@@ -24,6 +24,7 @@
 #import "TestHierarchyViewController.h"
 #import "TestHtmlViewController.h"
 #import "TestLocationViewController.h"
+#import "TestShortCutViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -190,9 +191,14 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)testShortCut {
+    TestShortCutViewController *vc = [[TestShortCutViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 13;
+    return 14;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -232,40 +238,40 @@ static NSString *const kCellID = @"cellID";
                     break;
                 case LLConfigColorStyleGrass: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleGrass";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleHomebrew: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleHomebrew";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleManPage: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleManPage";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleNovel: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleNovel";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleOcean: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleOcean";
-                    break;
                 }
+                    break;
                 case LLConfigColorStylePro: {
                     cell.detailTextLabel.text = @"LLConfigColorStylePro";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleRedSands: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleRedSands";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleSilverAerogel: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleSilverAerogel";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleSolidColors: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleSolidColors";
-                    break;
                 }
+                    break;
                 case LLConfigColorStyleCustom:{
                     cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
                 }
@@ -333,6 +339,9 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 12) {
         cell.textLabel.text = NSLocalizedString(@"test.location", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 13) {
+        cell.textLabel.text = NSLocalizedString(@"test.short.cut", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -368,6 +377,8 @@ static NSString *const kCellID = @"cellID";
         [self testHtml];
     } else if (indexPath.section == 12) {
         [self testLocation];
+    } else if (indexPath.section == 13) {
+        [self testShortCut];
     }
     [self.tableView reloadData];
 }
@@ -399,6 +410,8 @@ static NSString *const kCellID = @"cellID";
         return @"Html";
     } else if (section == 12) {
         return @"Location";
+    } else if (section == 13) {
+        return @"Short Cut";
     }
     return nil;
 }

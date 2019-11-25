@@ -45,6 +45,8 @@
 "show.custom.html" = "Show custom html view controller function";
 "custom.html.view.controller" = "Custom Web View Controller";
 
+"add.custom.short.cut" = "Add a custom short cut";
+
 "test.network.request" = "Show network request function";
 "test.log" = "Show log function";
 "test.crash" = "Show crash catch function";
@@ -57,6 +59,7 @@
 "test.widget.border" = "Show widget border function";
 "test.html" = "Show html webview function";
 "test.location" = "Show mock location function";
+"test.short.cut" = "Show short cut function";
 
 "new.version" = "A new version demo is available";
 "crash.tip" = "If your project/Demo under run XCode contains Exception Breakpoint, you need to after the program crashes, Continue to click on the XCode ` Continue program execution `(Tip 1), until the end of the program completely(Tip 2). This function can be used normally when non-xcode runs, and when run under XCode, Exception Breakpoint takes precedence over LLDebugTool intercept crash.";

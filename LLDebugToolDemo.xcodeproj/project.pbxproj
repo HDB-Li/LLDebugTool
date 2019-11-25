@@ -126,6 +126,7 @@
 		36F93CB5238BA24E0008C92E /* LLShortCutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB4238BA24E0008C92E /* LLShortCutModel.m */; };
 		36F93CB8238BB4680008C92E /* LLTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB7238BB4680008C92E /* LLTitleCell.m */; };
 		36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */; };
+		36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -515,6 +516,8 @@
 		36F93CB7238BB4680008C92E /* LLTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCell.m; sourceTree = "<group>"; };
 		36F93CB9238BC2450008C92E /* LLRouter+ShortCut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+ShortCut.h"; sourceTree = "<group>"; };
 		36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+ShortCut.m"; sourceTree = "<group>"; };
+		36F93CBC238BC59C0008C92E /* TestShortCutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestShortCutViewController.h; sourceTree = "<group>"; };
+		36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestShortCutViewController.m; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -924,6 +927,8 @@
 				360075E4235576A800A606AC /* CustomWebViewController.m */,
 				3624D3F923839DD700DBE692 /* TestLocationViewController.h */,
 				3624D3FA23839DD700DBE692 /* TestLocationViewController.m */,
+				36F93CBC238BC59C0008C92E /* TestShortCutViewController.h */,
+				36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */,
 			);
 			path = DemoViewControllers;
 			sourceTree = "<group>";
@@ -2456,6 +2461,7 @@
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
 				C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */,
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
+				36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */,
 				C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */,
 				3694F874233899E4007B07CA /* LLEnumDescription.m in Sources */,
 				360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */,
