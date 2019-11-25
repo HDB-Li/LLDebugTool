@@ -21,7 +21,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -29,6 +29,8 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = NSLocalizedString(@"add.custom.short.cut", nil);
+    } else if (indexPath.row == 1) {
+        cell.textLabel.text = NSLocalizedString(@"add.custom.none.return.short.cut", nil);
     }
     return cell;
 }
@@ -36,6 +38,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         [self testCustomShortCut];
+    } else if (indexPath.row == 1) {
+        [self testCustomShortCutWithNoneReturn];
     }
 }
 
@@ -43,6 +47,14 @@
 - (void)testCustomShortCut {
     [[LLDebugTool sharedTool] registerShortCutWithName:@"Toast date" action:^NSString * _Nullable{
         return [[NSDate date] description];
+    }];
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionShortCut];
+}
+
+- (void)testCustomShortCutWithNoneReturn {
+    [[LLDebugTool sharedTool] registerShortCutWithName:@"Do anything" action:^NSString * _Nullable{
+        NSLog(@"You can do anything at here.");
+        return nil;
     }];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionShortCut];
 }

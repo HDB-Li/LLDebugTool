@@ -46,6 +46,7 @@
 "custom.html.view.controller" = "自定义WebViewController";
 
 "add.custom.short.cut" = "添加一个自定义的快捷操作";
+"add.custom.none.return.short.cut" = "添加一个没有返回值的自定义的快捷操作";
 
 "test.network.request" = "展示网络功能";
 "test.log" = "展示日志功能";

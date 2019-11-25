@@ -46,6 +46,7 @@
 "custom.html.view.controller" = "Custom Web View Controller";
 
 "add.custom.short.cut" = "Add a custom short cut";
+"add.custom.none.return.short.cut" = "Add a none return custome short cut";
 
 "test.network.request" = "Show network request function";
 "test.log" = "Show log function";
