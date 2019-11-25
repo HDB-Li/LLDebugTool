@@ -125,6 +125,7 @@
 		36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB1238B778A0008C92E /* LLWindowManager+ShortCut.m */; };
 		36F93CB5238BA24E0008C92E /* LLShortCutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB4238BA24E0008C92E /* LLShortCutModel.m */; };
 		36F93CB8238BB4680008C92E /* LLTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB7238BB4680008C92E /* LLTitleCell.m */; };
+		36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -512,6 +513,8 @@
 		36F93CB4238BA24E0008C92E /* LLShortCutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutModel.m; sourceTree = "<group>"; };
 		36F93CB6238BB4680008C92E /* LLTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCell.h; sourceTree = "<group>"; };
 		36F93CB7238BB4680008C92E /* LLTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCell.m; sourceTree = "<group>"; };
+		36F93CB9238BC2450008C92E /* LLRouter+ShortCut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+ShortCut.h"; sourceTree = "<group>"; };
+		36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+ShortCut.m"; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1089,6 +1092,8 @@
 				36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */,
 				364AC6F8237CFB84007F0F29 /* LLRouter+Screenshot.h */,
 				364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */,
+				36F93CB9238BC2450008C92E /* LLRouter+ShortCut.h */,
+				36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -2505,6 +2510,7 @@
 				C4B4E47622F9C90900F70277 /* LLBaseTableViewCell.m in Sources */,
 				36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */,
 				36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */,
+				36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */,
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,
 				361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,

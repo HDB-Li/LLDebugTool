@@ -94,8 +94,6 @@ Whether is Beta.
 
 @end
 
-NS_ASSUME_NONNULL_END
-
 @interface LLDebugTool (Log)
 
 /**
@@ -143,3 +141,14 @@ Print and save a log model with infos. LLConfigLogLevelError.
 - (void)errorLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 @end
+
+@interface LLDebugTool (ShortCut)
+
+/// Register a short cut action in ShortCut function.
+/// @param name Display name for short cut.
+/// @param action Action block, return a message to toast, if nothing return nil.
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
+
+@end
+
+NS_ASSUME_NONNULL_END
