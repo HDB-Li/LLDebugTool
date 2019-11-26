@@ -58,3 +58,23 @@
 "setting.magnifier" = "放大镜";
 "setting.zoom.level" = "缩放等级";
 "setting.zoom.size" = "缩放大小";
+
+// Normal
+"select.all" = "全选";
+"cancel.all" = "取消全选";
+"share" = "分享";
+"delete" = "删除";
+"input.filter.text" = "输入筛选文字";
+
+// Network
+"network.detail" = "网络详情";
+
+// App Info
+"app.info.dynamic" = "动态信息";
+"app.info.application" = "应用信息";
+"app.info.device" = "设备信息";
+
+// Location
+"location.mock.location" = "模拟定位";
+"location.lat.lng" = "纬度 & 经度";
+"location.address" = "地址";

@@ -259,7 +259,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 #pragma mark - Event response
 - (void)locationDescriptViewDidSelect {
     __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertControllerWithMessage:@"Lat & Lng" text:self.locationDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
+    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.lat.lng") text:self.locationDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
         NSString *text = [newText stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSArray *array = [text componentsSeparatedByString:@","];
         if (array.count != 2) {
@@ -276,7 +276,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)addressDescriptViewDidSelect {
     __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertControllerWithMessage:@"Address" text:self.addressDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
+    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.address") text:self.addressDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
         [weakSelf geocodeAddress:newText];
     }];
 }
@@ -286,7 +286,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     if (!_switchView) {
         _switchView = [[LLTitleSwitchCellView alloc] init];
         _switchView.backgroundColor = [LLThemeManager shared].containerColor;
-        _switchView.title = @"Mock Location";
+        _switchView.title = LLLocalizedString(@"location.mock.location");
         _switchView.on = [LLLocationHelper shared].enable;
         __weak typeof(self) weakSelf = self;
         _switchView.changePropertyBlock = ^(BOOL isOn) {
@@ -301,7 +301,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     if (!_locationDescriptView) {
         _locationDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
         _locationDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
-        _locationDescriptView.title = @"Lat & Lng";
+        _locationDescriptView.title = LLLocalizedString(@"location.lat.lng");
         _locationDescriptView.detailTitle = @"0, 0";
         [_locationDescriptView needLine];
         __weak typeof(self) weakSelf = self;
@@ -316,7 +316,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     if (!_addressDescriptView) {
         _addressDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
         _addressDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
-        _addressDescriptView.title = @"Address";
+        _addressDescriptView.title = LLLocalizedString(@"location.address");
         [_addressDescriptView needFullLine];
         __weak typeof(self) weakSelf = self;
         _addressDescriptView.block = ^{

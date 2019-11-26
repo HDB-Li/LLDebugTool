@@ -49,7 +49,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = LLLocalizedString(@"function.detail");
+    self.title = LLLocalizedString(@"network.detail");
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLNetworkImageCell class] forCellReuseIdentifier:kNetworkImageCellID];
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kNetworkContentCellID];
@@ -121,19 +121,21 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     if (self.model) {
         self.titleArray = [[NSMutableArray alloc] init];
         self.contentArray = [[NSMutableArray alloc] init];
+        // Request url.
         [self.titleArray addObject:@"Request Url"];
         [self.contentArray addObject:self.model.url.absoluteString?:@"unknown"];
+        
+        // Method.
         if (self.model.method) {
             [self.titleArray addObject:@"Method"];
             [self.contentArray addObject:self.model.method];
         }
+        
+        // Status code.
         [self.titleArray addObject:@"Status Code"];
         [self.contentArray addObject:self.model.statusCode?:@"0"];
         
-        if (self.model.error) {
-            [self.titleArray addObject:@"Error"];
-            [self.contentArray addObject:self.model.error.localizedDescription];
-        }
+        // Header
         if (self.model.headerFields.count) {
             [self.titleArray addObject:@"Header Fields"];
             NSMutableString *string = [[NSMutableString alloc] init];
@@ -142,25 +144,12 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             }
             [self.contentArray addObject:string];
         }
-        if (self.model.mimeType) {
-            [self.titleArray addObject:@"Mime Type"];
-            [self.contentArray addObject:self.model.mimeType];
-        }
-        if (self.model.startDate) {
-            [self.titleArray addObject:@"Start Date"];
-            [self.contentArray addObject:self.model.startDate];
-        }
-        if (self.model.totalDuration) {
-            [self.titleArray addObject:@"Total Duration"];
-            [self.contentArray addObject:self.model.totalDuration];
-        }
-        if (self.model.totalDataTraffic) {
-            [self.titleArray addObject:@"Data Traffic"];
-            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)",self.model.totalDataTraffic,self.model.requestDataTraffic,self.model.responseDataTraffic]];
-        }
         
+        // Request body.
         [self.titleArray addObject:@"Request Body"];
         [self.contentArray addObject:self.model.requestBody ?: @"Null"];
+        
+        // Response data.
         if (self.model.responseData) {
             [self.titleArray addObject:@"Response Body"];
             if (self.model.isImage) {
@@ -168,6 +157,36 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             } else {
                 [self.contentArray addObject:self.model.responseString.length ? self.model.responseString : self.model.responseData];
             }
+        }
+        
+        // Error
+        if (self.model.error) {
+            [self.titleArray addObject:@"Error"];
+            [self.contentArray addObject:self.model.error.localizedDescription];
+        }
+        
+        // Mime type.
+        if (self.model.mimeType) {
+            [self.titleArray addObject:@"Mime Type"];
+            [self.contentArray addObject:self.model.mimeType];
+        }
+        
+        // Start date.
+        if (self.model.startDate) {
+            [self.titleArray addObject:@"Start Date"];
+            [self.contentArray addObject:self.model.startDate];
+        }
+        
+        // Total duration.
+        if (self.model.totalDuration) {
+            [self.titleArray addObject:@"Total Duration"];
+            [self.contentArray addObject:self.model.totalDuration];
+        }
+        
+        // Total data traffic.
+        if (self.model.totalDataTraffic) {
+            [self.titleArray addObject:@"Data Traffic"];
+            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)",self.model.totalDataTraffic,self.model.requestDataTraffic,self.model.responseDataTraffic]];
         }
     }
 }

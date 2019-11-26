@@ -95,7 +95,7 @@
         [settings addObject:model];
     }
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Dynamic" items:settings];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.dynamic") items:settings];
 }
 
 - (LLTitleCellCategoryModel *)applicationData {
@@ -106,7 +106,7 @@
         [settings addObject:model];
     }
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Application" items:settings];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.application") items:settings];
 }
 
 - (LLTitleCellCategoryModel *)deviceData {
@@ -117,7 +117,7 @@
         [settings addObject:model];
     }
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Device" items:settings];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.device") items:settings];
 }
 
 @end

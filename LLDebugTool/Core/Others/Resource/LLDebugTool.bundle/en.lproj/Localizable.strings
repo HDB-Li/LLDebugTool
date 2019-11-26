@@ -58,3 +58,23 @@
 "setting.magnifier" = "Magnifier";
 "setting.zoom.level" = "Zoom Level";
 "setting.zoom.size" = "Size";
+
+// Normal
+"select.all" = "Select All";
+"cancel.all" = "Cancel All";
+"share" = "Share";
+"delete" = "Delete";
+"input.filter.text" = "Input filter text";
+
+// Network
+"network.detail" = "Network Details";
+
+// App Info
+"app.info.dynamic" = "Dynamic";
+"app.info.application" = "Application";
+"app.info.device" = "Device";
+
+// Location
+"location.mock.location" = "Mock Location";
+"location.lat.lng" = "Lat & Lng";
+"location.address" = "Address";
