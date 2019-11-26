@@ -299,7 +299,7 @@
 - (UIButton *)parentViewsButton {
     if (!_parentViewsButton) {
         _parentViewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
-        [_parentViewsButton setTitle:@"Parent Views" forState:UIControlStateNormal];
+        [_parentViewsButton setTitle:LLLocalizedString(@"hierarchy.parent") forState:UIControlStateNormal];
         [_parentViewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _parentViewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _parentViewsButton.backgroundColor = [LLThemeManager shared].backgroundColor;
@@ -317,7 +317,7 @@
 - (UIButton *)subviewsButton {
     if (!_subviewsButton) {
         _subviewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
-        [_subviewsButton setTitle:@"Subviews" forState:UIControlStateNormal];
+        [_subviewsButton setTitle:LLLocalizedString(@"hierarchy.subview") forState:UIControlStateNormal];
         [_subviewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _subviewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _subviewsButton.backgroundColor = [LLThemeManager shared].backgroundColor;
@@ -335,7 +335,7 @@
 - (UIButton *)moreButton {
     if (!_moreButton) {
         _moreButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
-        [_moreButton setTitle:@"More Info" forState:UIControlStateNormal];
+        [_moreButton setTitle:LLLocalizedString(@"hierarchy.more") forState:UIControlStateNormal];
         [_moreButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _moreButton.backgroundColor = [LLThemeManager shared].backgroundColor;

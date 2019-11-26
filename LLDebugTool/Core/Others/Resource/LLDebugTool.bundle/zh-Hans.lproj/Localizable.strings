@@ -85,4 +85,7 @@
 "screenshot.image.name" = "输入图片名称";
 
 // Hierarchy
+"hierarchy.parent" = "父视图";
+"hierarchy.subview" = "子视图";
+"hierarchy.more" = "更多信息";
 "hierarchy.change.property" = "修改属性";

@@ -237,7 +237,7 @@
         [actions addObject:NSStringFromClass(view.class)];
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Parent Views" actions:actions currentAction:nil completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"hierarchy.parent") actions:actions currentAction:nil completion:^(NSInteger index) {
         [weakSelf setNewSelectView:parentViews[index]];
     }];
 }
@@ -249,7 +249,7 @@
         [actions addObject:NSStringFromClass(view.class)];
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Subviews" actions:actions currentAction:nil completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"hierarchy.subview") actions:actions currentAction:nil completion:^(NSInteger index) {
         [weakSelf setNewSelectView:subviews[index]];
     }];
 }
