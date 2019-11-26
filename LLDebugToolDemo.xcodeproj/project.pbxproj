@@ -78,6 +78,7 @@
 		3678AD172354275B00AC0B2C /* LLHtmlWkWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678AD162354275B00AC0B2C /* LLHtmlWkWebViewController.m */; };
 		367E27A120A1A8480032EF0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367E27A320A1A8480032EF0D /* Localizable.strings */; };
 		368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 368CB9E0233DFC3A009DFFDB /* LLTableViewSelectableModel.m */; };
+		368E79E6238CF8F20028382A /* LLNetworkFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368E79E5238CF8F20028382A /* LLNetworkFilterViewController.m */; };
 		3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3691A61D20C7E63B00E22192 /* InfoPlist.strings */; };
 		36940514232636AC00C4B146 /* LLTitleSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */; };
 		3694F874233899E4007B07CA /* LLEnumDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 3694F873233899E4007B07CA /* LLEnumDescription.m */; };
@@ -414,6 +415,8 @@
 		368CB9DF233DFC3A009DFFDB /* LLTableViewSelectableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTableViewSelectableModel.h; sourceTree = "<group>"; };
 		368CB9E0233DFC3A009DFFDB /* LLTableViewSelectableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewSelectableModel.m; sourceTree = "<group>"; };
 		368CB9E3233E004F009DFFDB /* LLTableViewSelectableDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTableViewSelectableDelegate.h; sourceTree = "<group>"; };
+		368E79E4238CF8F20028382A /* LLNetworkFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkFilterViewController.h; sourceTree = "<group>"; };
+		368E79E5238CF8F20028382A /* LLNetworkFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkFilterViewController.m; sourceTree = "<group>"; };
 		3691A61C20C7E63B00E22192 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3691A61E20C7E63D00E22192 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3694F872233899E4007B07CA /* LLEnumDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEnumDescription.h; sourceTree = "<group>"; };
@@ -1543,6 +1546,8 @@
 				C498570322EDB37200E9FBE2 /* LLNetworkWindow.m */,
 				36059404237AB24000C2D8FF /* LLWindowManager+Network.h */,
 				36059405237AB24000C2D8FF /* LLWindowManager+Network.m */,
+				368E79E4238CF8F20028382A /* LLNetworkFilterViewController.h */,
+				368E79E5238CF8F20028382A /* LLNetworkFilterViewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -2483,6 +2488,7 @@
 				36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */,
 				362F3CE622F01AF70087B0E4 /* LLHierarchyWindow.m in Sources */,
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
+				368E79E6238CF8F20028382A /* LLNetworkFilterViewController.m in Sources */,
 				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
 				36CDFBD123506C9A002A913F /* LLHtmlConfigViewController.m in Sources */,
 				3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */,
