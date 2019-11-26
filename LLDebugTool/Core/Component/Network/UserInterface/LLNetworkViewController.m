@@ -113,7 +113,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     }
     
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Deleting"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"deleting")];
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
@@ -121,7 +121,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
-            [weakSelf LL_showAlertControllerWithMessage:@"Remove network model fail" handler:^(NSInteger action) {
+            [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:^(NSInteger action) {
                 if (action == 1) {
                     [weakSelf loadData];
                 }
@@ -172,7 +172,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 - (void)loadData {
     self.searchTextField.text = nil;
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
     [[LLStorageManager shared] getModels:[LLNetworkModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
         [weakSelf.oriDataArray removeAllObjects];

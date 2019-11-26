@@ -63,8 +63,21 @@
     return btn;
 }
 
+- (void)LL_showConfirmAlertControllerWithMessage:(NSString *)message handler:(void (^)(void))handler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LLLocalizedString(@"note") message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:LLLocalizedString(@"confirm") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        if (handler) {
+            handler();
+        }
+    }];
+    [alert addAction:confirm];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
 - (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Note" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LLLocalizedString(@"note") message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:LLLocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
         if (handler) {
             handler(0);

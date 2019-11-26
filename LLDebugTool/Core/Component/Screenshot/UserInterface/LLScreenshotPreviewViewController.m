@@ -97,13 +97,13 @@
         [[LLScreenshotHelper shared] saveScreenshot:image name:name complete:nil];
         if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-            [[LLToastUtils shared] toastMessage:@"Save image in sandbox and album."];
+            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox.album")];
         } else {
-            [[LLToastUtils shared] toastMessage:@"Save image in sandbox."];
+            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox")];
         }
     } else {
         self.toolBar.hidden = NO;
-        [[LLToastUtils shared] toastMessage:@"Save image failed."];
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.fail")];
     }
     [self componentDidLoad:nil];
 }

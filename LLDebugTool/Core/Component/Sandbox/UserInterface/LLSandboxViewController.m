@@ -120,7 +120,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     if ([[NSFileManager defaultManager] fileExistsAtPath:model.filePath]) {
         BOOL ret = [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:&error];
         if (!ret) {
-            [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:@"Delete file fail\nFilePath:%@\nError:%@",model.filePath,error.localizedDescription] handler:nil];
+            [self LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:nil];
         }
         return ret;
     }
@@ -148,7 +148,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 vc.sandboxModel = model;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                [[LLToastUtils shared] toastMessage:@"Empty folder"];
+                [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
             }
         } else {
             if (model.canPreview) {
@@ -206,7 +206,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LLSandboxModel *model = self.datas[indexPath.row];
     [UIPasteboard generalPasteboard].string = model.filePath;
-    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy File Path Success\n%@",model.filePath]];
+    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.path.suceess"),model.filePath]];
 }
 
 @end

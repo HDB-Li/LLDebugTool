@@ -98,14 +98,14 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             }
             if ([image isKindOfClass:[UIImage class]]) {
                 [[UIPasteboard generalPasteboard] setImage:image];
-                [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+                [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
             }
         } else if ([obj isKindOfClass:[NSData class]] || [obj isKindOfClass:[NSString class]]) {
             if ([obj isKindOfClass:[NSData class]]) {
                 obj = [self convertDataToHexStr:obj];
             }
             [[UIPasteboard generalPasteboard] setString:obj];
-            [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+            [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
         }
     }
 }

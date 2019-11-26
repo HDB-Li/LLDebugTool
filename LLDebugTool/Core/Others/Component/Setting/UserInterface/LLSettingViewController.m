@@ -135,7 +135,7 @@
 
 - (LLTitleCellModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.style") detailTitle:[LLConfigHelper colorStyleDetailDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -151,7 +151,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"setting.style") actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewColorStyle:index];
     }];
 }
@@ -171,7 +171,7 @@
 
 - (LLTitleCellModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.style") detailTitle:[LLConfigHelper entryWindowStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -192,7 +192,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"setting.style") actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewEntryWindowStyle:index];
     }];
 }
@@ -237,7 +237,7 @@
 
 #ifdef LLDEBUGTOOL_LOG
 - (LLTitleCellModel *)getLogStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.style") detailTitle:[LLConfigHelper logStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
@@ -254,7 +254,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"setting.style") actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewLogStyle:index];
     }];
 }

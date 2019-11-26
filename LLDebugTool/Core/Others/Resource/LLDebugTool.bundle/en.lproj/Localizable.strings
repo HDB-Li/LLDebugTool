@@ -48,7 +48,6 @@
 "setting.short.cut" = "Short Cut";
 "setting.double.click" = "Double Click";
 "setting.color" = "Color";
-"setting.style" = "Style";
 "setting.entry.window" = "Entry Window";
 "setting.shrink" = "Shrink To Edge";
 "setting.shake" = "Shake To Hide";
@@ -65,8 +64,17 @@
 "share" = "Share";
 "delete" = "Delete";
 "input.filter.text" = "Input filter text";
+"note" = "Note";
 "cancel" = "Cancel";
 "confirm" = "Confirm";
+"style" = "Style";
+"sure.to.delete" = "Sure to delete these %ld items?";
+"deleting" = "Deleting...";
+"loading" = "Loading...";
+"copy.success" = "Copy \"%@\" Success";
+"empty.folder" = "Empty folder";
+"copy.path.suceess" = "Copy File Path Success\n%@";
+"remove.fail" = "Remove data failed";
 
 // Network
 "network.detail" = "Network Details";
@@ -83,9 +91,22 @@
 
 // Screenshot
 "screenshot.image.name" = "Enter the image name";
+"screenshot.save.in.sandbox.album" = "Save image in sanbox and album";
+"screenshot.save.in.sandbox" = "Save image in sandbox";
+"screenshot.save.fail" = "Save image failed";
 
 // Hierarchy
 "hierarchy.parent" = "Parent Views";
 "hierarchy.subview" = "Subviews";
 "hierarchy.more" = "More Info";
 "hierarchy.change.property" = "Change Property";
+
+// Html
+"html.input.url" = "Pleace input url";
+"html.empty.url" = "Empty URL";
+"html.url.check" = "URL must has prefix with https:// or http://";
+"html.provider.fail" = "Provider custom webView failed";
+"html.invalid.class" = "Invalid webView class";
+
+// Short cut
+"short.cut.execute" = "Execute '%@' Success";

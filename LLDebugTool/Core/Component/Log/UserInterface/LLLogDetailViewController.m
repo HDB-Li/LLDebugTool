@@ -70,7 +70,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
     if ([self.canCopyArray containsObject:title]) {
         NSString *content = self.contentArray[indexPath.row];
         [UIPasteboard generalPasteboard].string = content;
-        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
     }
 }
 

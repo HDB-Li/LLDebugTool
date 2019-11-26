@@ -209,9 +209,10 @@
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
-        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", (long)indexPaths.count] handler:^(NSInteger action) {
+        __weak typeof(self) weakSelf = self;
+        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:LLLocalizedString(@"sure.to.delete"), (long)indexPaths.count] handler:^(NSInteger action) {
             if (action == 1) {
-                [self deleteFilesWithIndexPaths:indexPaths];
+                [weakSelf deleteFilesWithIndexPaths:indexPaths];
             }
         }];
     }

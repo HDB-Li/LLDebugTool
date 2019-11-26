@@ -53,7 +53,7 @@
         LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:action.name block:^{
             NSString *message = action.action();
             if (![message length]) {
-                message = [NSString stringWithFormat:@"Execute '%@' success.", action.name];
+                message = [NSString stringWithFormat:LLLocalizedString(@"short.cut.execute"), action.name];
             }
             [[LLToastUtils shared] toastMessage:message];
         }];
