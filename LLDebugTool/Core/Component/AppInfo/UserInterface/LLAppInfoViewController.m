@@ -67,8 +67,6 @@
     [self updateDynamicData];
 }
 
-#pragma mark - UITableViewDataSource
-
 #pragma mark - Primary
 - (void)loadData {
     [self.dataArray removeAllObjects];

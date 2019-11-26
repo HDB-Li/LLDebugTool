@@ -102,7 +102,7 @@
 "hierarchy.change.property" = "Change Property";
 
 // Html
-"html.input.url" = "Pleace input url";
+"html.input.url" = "Please input url";
 "html.empty.url" = "Empty URL";
 "html.url.check" = "URL must has prefix with https:// or http://";
 "html.provider.fail" = "Provider custom webView failed";

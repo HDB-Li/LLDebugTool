@@ -29,7 +29,7 @@
 #import "LLToastUtils.h"
 #import "LLConfig.h"
 
-@interface LLShortCutViewController () <UITableViewDataSource>
+@interface LLShortCutViewController ()
 
 @end
 

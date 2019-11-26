@@ -38,7 +38,7 @@
 
 #import "UIViewController+LL_Utils.h"
 
-@interface LLSettingViewController () <UITableViewDataSource>
+@interface LLSettingViewController ()
 
 @end
 
