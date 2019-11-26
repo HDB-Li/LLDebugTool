@@ -65,6 +65,8 @@
 "share" = "Share";
 "delete" = "Delete";
 "input.filter.text" = "Input filter text";
+"cancel" = "Cancel";
+"confirm" = "Confirm";
 
 // Network
 "network.detail" = "Network Details";
@@ -78,6 +80,9 @@
 "location.mock.location" = "Mock Location";
 "location.lat.lng" = "Lat & Lng";
 "location.address" = "Address";
+
+// Screenshot
+"screenshot.image.name" = "Enter the image name";
 
 // Hierarchy
 "hierarchy.change.property" = "Change Property";

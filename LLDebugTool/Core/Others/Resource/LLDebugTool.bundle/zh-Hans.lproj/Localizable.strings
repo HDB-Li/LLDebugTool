@@ -65,6 +65,8 @@
 "share" = "分享";
 "delete" = "删除";
 "input.filter.text" = "输入筛选文字";
+"cancel" = "取消";
+"confirm" = "确认";
 
 // Network
 "network.detail" = "网络详情";
@@ -78,6 +80,9 @@
 "location.mock.location" = "模拟定位";
 "location.lat.lng" = "纬度 & 经度";
 "location.address" = "地址";
+
+// Screenshot
+"screenshot.image.name" = "输入图片名称";
 
 // Hierarchy
 "hierarchy.change.property" = "修改属性";
