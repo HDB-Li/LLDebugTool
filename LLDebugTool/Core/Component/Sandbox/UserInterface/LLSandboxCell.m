@@ -91,11 +91,12 @@
 }
 
 - (void)addIconConstraints {
-    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:40];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:30];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:30];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.icon.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
     NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.icon attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.icon.superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:0];
     self.icon.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.icon.superview addConstraints:@[width, left, centerY]];
+    [self.icon.superview addConstraints:@[width, height, left, centerY]];
 }
 
 - (void)addNameLabelConstraints {
