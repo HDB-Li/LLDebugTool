@@ -78,3 +78,6 @@
 "location.mock.location" = "模拟定位";
 "location.lat.lng" = "纬度 & 经度";
 "location.address" = "地址";
+
+// Hierarchy
+"hierarchy.change.property" = "修改属性";

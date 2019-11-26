@@ -28,6 +28,7 @@
 #import "LLInternalMacros.h"
 #import "LLTitleCellModel.h"
 #import "LLFormatterTool.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
 
@@ -262,7 +263,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 
 - (void)LL_showTextFieldAlertWithText:(NSString *)text handler:(nullable void (^)(NSString * _Nullable newText))handler {
     __weak typeof(self) weakSelf = self;
-    [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showTextFieldAlertControllerWithMessage:@"Change Property" text:text handler:^(NSString * _Nullable newText) {
+    [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"hierarchy.change.property") text:text handler:^(NSString * _Nullable newText) {
         if (handler) {
             handler(newText);
         }
@@ -272,7 +273,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
 
 - (void)LL_showActionSheetWithActions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion {
     __weak typeof(self) weakSelf = self;
-    [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showActionSheetWithTitle:@"Change Property" actions:actions currentAction:currentAction completion:^(NSInteger index) {
+    [[LLTool keyWindow].rootViewController.LL_currentShowingViewController LL_showActionSheetWithTitle:LLLocalizedString(@"hierarchy.change.property") actions:actions currentAction:currentAction completion:^(NSInteger index) {
         if (completion) {
             completion(index);
         }

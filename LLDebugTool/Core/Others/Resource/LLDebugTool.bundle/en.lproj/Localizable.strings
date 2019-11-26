@@ -78,3 +78,6 @@
 "location.mock.location" = "Mock Location";
 "location.lat.lng" = "Lat & Lng";
 "location.address" = "Address";
+
+// Hierarchy
+"hierarchy.change.property" = "Change Property";
