@@ -59,6 +59,10 @@
     
 }
 
+- (void)backAction:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     return YES;
 }
@@ -134,12 +138,6 @@
         [self layoutViewsAndSubviews:subview];
     }
 }
-
-#pragma mark - Event response
-- (void)backAction:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 #pragma mark - kThemeManagerUpdateThemeColorNotificaionName
 - (void)didReceiveThemeManagerUpdateThemeColorNotificaion:(NSNotification *)notification {

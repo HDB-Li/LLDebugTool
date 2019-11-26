@@ -47,6 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)rightItemClick:(UIButton *)sender;
 
 /**
+ Back action.
+ */
+- (void)backAction:(UIButton *)sender;
+
+/**
  Whether hit test at point with event.
 
  @param point Point
