@@ -91,6 +91,9 @@ static NSString *const kLogCellID = @"LLLogCell";
         weakSelf.currentUserIdentities = userIdentities;
         [weakSelf filterData];
     };
+    self.filterView.filterChangeStateBlock = ^{
+        [weakSelf.tableView reloadData];
+    };
     [self.filterView configWithData:self.oriDataArray];
     
     [self.headerView addSubview:self.filterView];

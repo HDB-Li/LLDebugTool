@@ -104,7 +104,6 @@
 - (void)filterButtonClick:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected == NO) {
-        self.LL_height = self.normalHeight;
         [self hideDetailView:sender.tag];
     } else {
         for (UIButton *btn in self.filterBtns) {
@@ -131,7 +130,9 @@
         self.LL_height = self.normalHeight + height;
         self.superview.LL_height = self.superview.LL_height + height;
     } completion:^(BOOL finished) {
-
+        if (self.filterChangeStateBlock) {
+            self.filterChangeStateBlock();
+        }
     }];
 }
 
@@ -146,6 +147,9 @@
     } completion:^(BOOL finished) {
         view.LL_height = height;
         view.hidden = YES;
+        if (self.filterChangeStateBlock) {
+            self.filterChangeStateBlock();
+        }
     }];
 }
 

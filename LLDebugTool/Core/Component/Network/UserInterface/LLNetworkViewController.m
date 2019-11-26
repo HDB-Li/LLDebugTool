@@ -84,6 +84,9 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         weakSelf.currentEndDate = end;
         [weakSelf filterData];
     };
+    self.filterView.filterChangeStateBlock = ^{
+        [weakSelf.tableView reloadData];
+    };
     [self.filterView configWithData:self.oriDataArray];
     [self.headerView addSubview:self.filterView];
     self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
