@@ -129,6 +129,8 @@
 		36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */; };
 		36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
+		C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */ = {isa = PBXBuildFile; fileRef = C4299E6523940F5C005845A2 /* LLDebugTool.html */; };
+		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -528,6 +530,9 @@
 		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4299E6523940F5C005845A2 /* LLDebugTool.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LLDebugTool.html; sourceTree = "<group>"; };
+		C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHtmlPreviewController.h; sourceTree = "<group>"; };
+		C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewController.m; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1343,6 +1348,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C4299E6423940CB3005845A2 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C4299E6523940F5C005845A2 /* LLDebugTool.html */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C43BA7FE205AB095006307BE = {
 			isa = PBXGroup;
 			children = (
@@ -1375,6 +1388,7 @@
 			isa = PBXGroup;
 			children = (
 				3629E3852136830A00226C79 /* DemoViewControllers */,
+				C4299E6423940CB3005845A2 /* Resource */,
 				36A0007520BE863700AE8810 /* NetTool.h */,
 				36A0007620BE863700AE8810 /* NetTool.m */,
 				C43BA80A205AB095006307BE /* AppDelegate.h */,
@@ -1606,6 +1620,8 @@
 				C49856F722EDB22100E9FBE2 /* LLSandboxWindow.m */,
 				36059410237AB73800C2D8FF /* LLWindowManager+Sandbox.h */,
 				36059411237AB73800C2D8FF /* LLWindowManager+Sandbox.m */,
+				C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */,
+				C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -2354,6 +2370,7 @@
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,
+				C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */,
 				364570F72313B80800C29200 /* LICENSE in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				364570F92313B80800C29200 /* CHANGELOG.md in Resources */,
@@ -2630,6 +2647,7 @@
 				36C9F80D237E8B2E0021BA2D /* LLDetailTitleCellView.m in Sources */,
 				366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */,
 				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
+				C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */,
 				C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */,
 				36C9F810237E8C8A0021BA2D /* LLTitleSwitchCellView.m in Sources */,
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,

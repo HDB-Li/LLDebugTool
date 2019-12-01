@@ -52,6 +52,7 @@
         _modifiDate = attributes[NSFileModificationDate];
         _isHidden = [attributes[NSFileExtensionHidden] boolValue];
         _isHomeDirectory = [filePath isEqualToString:NSHomeDirectory()];
+        _isHtml = [filePath.pathExtension caseInsensitiveCompare:@"html"] == NSOrderedSame;
     }
     return self;
 }

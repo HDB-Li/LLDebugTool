@@ -57,6 +57,7 @@ static NSString *const kCellID = @"cellID";
 - (void)doSomeActions {
     [self requestPhotoAuthorization];
     [self requestLocationAuthorization];
+    [self doSandboxIfNeeded];
     [self doCrashIfNeeded];
     [self doNetwork];
     [self doLog];
@@ -83,6 +84,22 @@ static NSString *const kCellID = @"cellID";
             [[LLDebugTool sharedTool] executeAction:LLDebugToolActionCrash];
         });
         
+    }
+}
+
+- (void)doSandboxIfNeeded {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
+    NSString *htmlPath = [documentsPath stringByAppendingPathComponent:@"LLDebugTool.html"];
+    if (![manager fileExistsAtPath:htmlPath]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:@"html"];
+        if (path) {
+            NSError *error = nil;
+            if (![manager copyItemAtPath:path toPath:htmlPath error:&error]) {
+                NSLog(@"Copy resource failed");
+            }
+
+        }
     }
 }
 

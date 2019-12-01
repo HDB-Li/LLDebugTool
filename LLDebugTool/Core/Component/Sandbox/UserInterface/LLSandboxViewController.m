@@ -24,6 +24,7 @@
 #import "LLSandboxViewController.h"
 
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
+#import "LLSandboxHtmlPreviewController.h"
 #import "LLPreviewController.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
@@ -151,7 +152,11 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
             }
         } else {
-            if (model.canPreview) {
+            if (model.isHtml) {
+                LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
+                vc.filePath = model.filePath;
+                [self.navigationController pushViewController:vc animated:YES];
+            } else if (model.canPreview) {
                 LLPreviewController *vc = [[LLPreviewController alloc] init];
                 NSMutableArray *paths = [[NSMutableArray alloc] init];
                 NSInteger index = 0;

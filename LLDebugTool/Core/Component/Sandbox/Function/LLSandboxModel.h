@@ -91,6 +91,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic, readonly) BOOL canPreview;
 
 /**
+ Whether is a html file.
+ */
+@property (assign, nonatomic, readonly) BOOL isHtml;
+
+/**
  Submodels in the path.
  */
 @property (strong, nonatomic) NSMutableArray <LLSandboxModel *> *subModels;
