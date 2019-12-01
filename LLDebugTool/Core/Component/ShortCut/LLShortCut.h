@@ -22,5 +22,15 @@
 #ifndef LLShortCut_h
 #define LLShortCut_h
 
+#import "LLShortCutComponent.h"
+
+#import "LLShortCutHelper.h"
+#import "LLShortCutModel.h"
+
+#import "LLShortCutViewController.h"
+#import "LLShortCutWindow.h"
+
+#import "LLWindowManager+ShortCut.h"
+
 
 #endif /* LLShortCut_h */
