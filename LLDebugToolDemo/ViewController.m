@@ -43,21 +43,39 @@ static NSString *const kCellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgView.tag = 101;
-    
+    // LLDebugTool need time to start.
+    sleep(0.5);
+    [self doSomeActions];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+#pragma mark - Primary
+- (void)doSomeActions {
+    [self requestPhotoAuthorization];
+    [self requestLocationAuthorization];
+    [self doCrashIfNeeded];
+    [self doNetwork];
+    [self doLog];
+}
+
+- (void)requestPhotoAuthorization {
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
     }];
-    
+}
+
+- (void)requestLocationAuthorization {
     // Try to get location permission, and if possible, mock location will get your current location.
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
-    
-    // LLDebugTool need time to start.
-    sleep(0.5);
-    __block __weak typeof(self) weakSelf = self;
-    
+}
+
+- (void)doCrashIfNeeded {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"openCrash"]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openCrash"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -66,64 +84,66 @@ static NSString *const kCellID = @"cellID";
         });
         
     }
-    
+}
+
+- (void)doNetwork {
+    __block __weak typeof(self) weakSelf = self;
     //Network Request
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567589759362&di=20c415aa38f25ca77270c717ae988424&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201602%2F15%2F20160215231800_zrCN8.jpeg"]];
-    [urlRequest setHTTPMethod:@"GET"];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!connectionError) {
-                UIImage *image = [[UIImage alloc] initWithData:data];
-                weakSelf.imgView.image = image;
-            }
-        });
-    }];
-#pragma clang diagnostic pop
-    
-    // Json Response
-    [[NetTool shared].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567589759362&di=20c415aa38f25ca77270c717ae988424&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201602%2F15%2F20160215231800_zrCN8.jpeg"]];
+        [urlRequest setHTTPMethod:@"GET"];
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!connectionError) {
+                    UIImage *image = [[UIImage alloc] initWithData:data];
+                    weakSelf.imgView.image = image;
+                }
+            });
+        }];
+    #pragma clang diagnostic pop
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // Json Response
+        [[NetTool shared].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
         
-    }];
-    
-    //NSURLSession
-    NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
-    [htmlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        // Not important. Just check to see if the current Demo version is consistent with the latest version.
-        // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
-        NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
-        if (array.count > 2) {
-            NSString *str = array[1];
-            NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
-            if (array2.count >= 2) {
-                NSString *newVersion = array2[0];
-                if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                    if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
-                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
-                        [vc addAction:action];
-                        [self presentViewController:vc animated:YES completion:nil];
+        //NSURLSession
+        NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
+        [htmlRequest setHTTPMethod:@"GET"];
+        NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            // Not important. Just check to see if the current Demo version is consistent with the latest version.
+            // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
+            NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
+            if (array.count > 2) {
+                NSString *str = array[1];
+                NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
+                if (array2.count >= 2) {
+                    NSString *newVersion = array2[0];
+                    if ([newVersion componentsSeparatedByString:@"."].count == 3) {
+                        if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
+                            [vc addAction:action];
+                            [self presentViewController:vc animated:YES completion:nil];
+                        }
                     }
                 }
             }
-        }
-    }];
-    [dataTask resume];
-    
+        }];
+        [dataTask resume];
+}
+
+- (void)doLog {
     // Log.
     // NSLocalizedString is used for multiple languages.
     // You can just use as LLog(@"What you want to pring").
     LLog(NSLocalizedString(@"initial.log", nil));
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    
+    LLog_Alert_Event(@"Demo", NSLocalizedString(@"initial.log", nil));
 }
 
 #pragma mark - Actions
