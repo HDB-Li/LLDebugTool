@@ -247,6 +247,7 @@
 		C4B4E47922F9C90900F70277 /* LLDebugTool.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4B4E43222F9C90900F70277 /* LLDebugTool.bundle */; };
 		C4B4E47A22F9C90900F70277 /* LLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E43522F9C90900F70277 /* LLFactory.m */; };
 		C4B4E47B22F9C90900F70277 /* LLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E43822F9C90900F70277 /* LLTool.m */; };
+		C4E5AAB4239562BF00132916 /* LLDebugTool.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C4E5AAB3239562BE00132916 /* LLDebugTool.pdf */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -770,6 +771,7 @@
 		C4B4E43622F9C90900F70277 /* LLFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFactory.h; sourceTree = "<group>"; };
 		C4B4E43822F9C90900F70277 /* LLTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTool.m; sourceTree = "<group>"; };
 		C4B4E43922F9C90900F70277 /* LLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTool.h; sourceTree = "<group>"; };
+		C4E5AAB3239562BE00132916 /* LLDebugTool.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = LLDebugTool.pdf; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1351,6 +1353,7 @@
 		C4299E6423940CB3005845A2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C4E5AAB3239562BE00132916 /* LLDebugTool.pdf */,
 				C4299E6523940F5C005845A2 /* LLDebugTool.html */,
 			);
 			path = Resource;
@@ -2368,6 +2371,7 @@
 			files = (
 				C4B4E47922F9C90900F70277 /* LLDebugTool.bundle in Resources */,
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
+				C4E5AAB4239562BF00132916 /* LLDebugTool.pdf in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,
 				C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */,

@@ -152,11 +152,15 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
             }
         } else {
-            if (model.isHtml) {
-                LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
-                vc.filePath = model.filePath;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else if (model.canPreview) {
+            if (@available(iOS 13.0, *)) {
+                if (model.canOpenWithWebView) {
+                    LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
+                    vc.filePath = model.filePath;
+                    [self.navigationController pushViewController:vc animated:YES];
+                    return;
+                }
+            }
+            if (model.canPreview) {
                 LLPreviewController *vc = [[LLPreviewController alloc] init];
                 NSMutableArray *paths = [[NSMutableArray alloc] init];
                 NSInteger index = 0;

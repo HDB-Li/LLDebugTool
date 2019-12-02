@@ -94,6 +94,9 @@
     if (!url) {
         return;
     }
+    
+    self.title = [self.filePath lastPathComponent];
+    
     if (@available(iOS 9.0, *)) {
         [self.webView loadFileURL:url allowingReadAccessToURL:url];
     } else {

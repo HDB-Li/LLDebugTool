@@ -52,7 +52,13 @@
         _modifiDate = attributes[NSFileModificationDate];
         _isHidden = [attributes[NSFileExtensionHidden] boolValue];
         _isHomeDirectory = [filePath isEqualToString:NSHomeDirectory()];
-        _isHtml = [filePath.pathExtension caseInsensitiveCompare:@"html"] == NSOrderedSame;
+        NSArray *extensions = @[@"html",@"pdf"];
+        [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithWebView = YES;
+                *stop = YES;
+            }
+        }];
     }
     return self;
 }

@@ -101,6 +101,17 @@ static NSString *const kCellID = @"cellID";
 
         }
     }
+    
+    NSString *pdfPath = [documentsPath stringByAppendingPathComponent:@"LLDebugTool.pdf"];
+    if (![manager fileExistsAtPath:pdfPath]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:@"pdf"];
+        if (path) {
+            NSError *error = nil;
+            if (![manager copyItemAtPath:path toPath:pdfPath error:&error]) {
+                NSLog(@"Copy resource failed");
+            }
+        }
+    }
 }
 
 - (void)doNetwork {

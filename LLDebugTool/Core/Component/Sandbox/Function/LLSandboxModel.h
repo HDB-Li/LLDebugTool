@@ -91,9 +91,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic, readonly) BOOL canPreview;
 
 /**
- Whether is a html file.
+ Whether can open with webview.
  */
-@property (assign, nonatomic, readonly) BOOL isHtml;
+@property (assign, nonatomic, readonly) BOOL canOpenWithWebView;
 
 /**
  Submodels in the path.
