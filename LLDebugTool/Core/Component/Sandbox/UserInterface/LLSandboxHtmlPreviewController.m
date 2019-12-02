@@ -25,6 +25,7 @@
 
 #import <WebKit/WebKit.h>
 
+#import "LLImageNameConfig.h"
 #import "LLTool.h"
 
 #import "UIViewController+LL_Utils.h"
