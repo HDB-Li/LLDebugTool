@@ -33,6 +33,7 @@ static NSString *const kEditImageName = @"LL-edit";
 static NSString *const kDoneImageName = @"LL-done";
 static NSString *const kBackImageName = @"LL-back";
 static NSString *const kFilterImageName = @"LL-filter";
+static NSString *const kShareImageName = @"LL-share";
 
 // Folder
 static NSString *const kFolderImageName = @"LL-folder";
