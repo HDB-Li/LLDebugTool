@@ -88,26 +88,23 @@ static NSString *const kCellID = @"cellID";
 }
 
 - (void)doSandboxIfNeeded {
+    [self copyFileWithExtensionIfNeeded:@"html"];
+    [self copyFileWithExtensionIfNeeded:@"pdf"];
+    [self copyFileWithExtensionIfNeeded:@"docx"];
+}
+
+- (void)copyFileWithExtensionIfNeeded:(NSString *)extension {
+    if ([extension length] == 0) {
+        return;
+    }
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
-    NSString *htmlPath = [documentsPath stringByAppendingPathComponent:@"LLDebugTool.html"];
-    if (![manager fileExistsAtPath:htmlPath]) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:@"html"];
+    NSString *targetPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"LLDebugTool.%@",extension]];
+    if (![manager fileExistsAtPath:targetPath]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:extension];
         if (path) {
             NSError *error = nil;
-            if (![manager copyItemAtPath:path toPath:htmlPath error:&error]) {
-                NSLog(@"Copy resource failed");
-            }
-
-        }
-    }
-    
-    NSString *pdfPath = [documentsPath stringByAppendingPathComponent:@"LLDebugTool.pdf"];
-    if (![manager fileExistsAtPath:pdfPath]) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:@"pdf"];
-        if (path) {
-            NSError *error = nil;
-            if (![manager copyItemAtPath:path toPath:pdfPath error:&error]) {
+            if (![manager copyItemAtPath:path toPath:targetPath error:&error]) {
                 NSLog(@"Copy resource failed");
             }
         }
