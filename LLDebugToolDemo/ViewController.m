@@ -88,10 +88,12 @@ static NSString *const kCellID = @"cellID";
 }
 
 - (void)doSandboxIfNeeded {
-    NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages"];
-    for (NSString *extension in extensions) {
-        [self copyFileWithExtensionIfNeeded:extension];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt"];
+        for (NSString *extension in extensions) {
+            [self copyFileWithExtensionIfNeeded:extension];
+        }
+    });
 }
 
 - (void)copyFileWithExtensionIfNeeded:(NSString *)extension {
