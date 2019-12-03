@@ -88,7 +88,7 @@ static NSString *const kCellID = @"cellID";
 }
 
 - (void)doSandboxIfNeeded {
-    NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc"];
+    NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages"];
     for (NSString *extension in extensions) {
         [self copyFileWithExtensionIfNeeded:extension];
     }

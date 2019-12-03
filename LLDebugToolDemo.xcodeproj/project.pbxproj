@@ -131,6 +131,7 @@
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C423EC4B2396A8B600A95271 /* LLDebugTool.docx in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4A2396A8B500A95271 /* LLDebugTool.docx */; };
 		C423EC4D2396AE9400A95271 /* LLDebugTool.doc in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4C2396AE9400A95271 /* LLDebugTool.doc */; };
+		C423EC4F2396B1D800A95271 /* LLDebugTool.pages in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4E2396B1D800A95271 /* LLDebugTool.pages */; };
 		C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */ = {isa = PBXBuildFile; fileRef = C4299E6523940F5C005845A2 /* LLDebugTool.html */; };
 		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
@@ -535,6 +536,7 @@
 		ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C423EC4A2396A8B500A95271 /* LLDebugTool.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.docx; sourceTree = "<group>"; };
 		C423EC4C2396AE9400A95271 /* LLDebugTool.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.doc; sourceTree = "<group>"; };
+		C423EC4E2396B1D800A95271 /* LLDebugTool.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.pages; sourceTree = "<group>"; };
 		C4299E6523940F5C005845A2 /* LLDebugTool.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LLDebugTool.html; sourceTree = "<group>"; };
 		C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHtmlPreviewController.h; sourceTree = "<group>"; };
 		C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewController.m; sourceTree = "<group>"; };
@@ -1361,6 +1363,7 @@
 				C4E5AAB3239562BE00132916 /* LLDebugTool.pdf */,
 				C423EC4A2396A8B500A95271 /* LLDebugTool.docx */,
 				C423EC4C2396AE9400A95271 /* LLDebugTool.doc */,
+				C423EC4E2396B1D800A95271 /* LLDebugTool.pages */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2387,6 +2390,7 @@
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				364570F92313B80800C29200 /* CHANGELOG.md in Resources */,
 				367E27A120A1A8480032EF0D /* Localizable.strings in Resources */,
+				C423EC4F2396B1D800A95271 /* LLDebugTool.pages in Resources */,
 				364570F82313B80800C29200 /* README.md in Resources */,
 				364570FA2313B80800C29200 /* README-cn.md in Resources */,
 				C43BA812205AB095006307BE /* Main.storyboard in Resources */,
