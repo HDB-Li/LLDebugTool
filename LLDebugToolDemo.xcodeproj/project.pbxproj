@@ -134,6 +134,7 @@
 		C423EC4F2396B1D800A95271 /* LLDebugTool.pages in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4E2396B1D800A95271 /* LLDebugTool.pages */; };
 		C423EC512396B35600A95271 /* LLDebugTool.txt in Resources */ = {isa = PBXBuildFile; fileRef = C423EC502396B35600A95271 /* LLDebugTool.txt */; };
 		C423EC532396B4B100A95271 /* LLDebugTool.md in Resources */ = {isa = PBXBuildFile; fileRef = C423EC522396B4B100A95271 /* LLDebugTool.md */; };
+		C423EC552396B63200A95271 /* LLDebugTool.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = C423EC542396B63200A95271 /* LLDebugTool.xlsx */; };
 		C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */ = {isa = PBXBuildFile; fileRef = C4299E6523940F5C005845A2 /* LLDebugTool.html */; };
 		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
@@ -541,6 +542,7 @@
 		C423EC4E2396B1D800A95271 /* LLDebugTool.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.pages; sourceTree = "<group>"; };
 		C423EC502396B35600A95271 /* LLDebugTool.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.txt; sourceTree = "<group>"; };
 		C423EC522396B4B100A95271 /* LLDebugTool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LLDebugTool.md; sourceTree = "<group>"; };
+		C423EC542396B63200A95271 /* LLDebugTool.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.xlsx; sourceTree = "<group>"; };
 		C4299E6523940F5C005845A2 /* LLDebugTool.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LLDebugTool.html; sourceTree = "<group>"; };
 		C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHtmlPreviewController.h; sourceTree = "<group>"; };
 		C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewController.m; sourceTree = "<group>"; };
@@ -1370,6 +1372,7 @@
 				C423EC4E2396B1D800A95271 /* LLDebugTool.pages */,
 				C423EC502396B35600A95271 /* LLDebugTool.txt */,
 				C423EC522396B4B100A95271 /* LLDebugTool.md */,
+				C423EC542396B63200A95271 /* LLDebugTool.xlsx */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2391,6 +2394,7 @@
 				C423EC532396B4B100A95271 /* LLDebugTool.md in Resources */,
 				C4E5AAB4239562BF00132916 /* LLDebugTool.pdf in Resources */,
 				C423EC4B2396A8B600A95271 /* LLDebugTool.docx in Resources */,
+				C423EC552396B63200A95271 /* LLDebugTool.xlsx in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,
 				C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */,
