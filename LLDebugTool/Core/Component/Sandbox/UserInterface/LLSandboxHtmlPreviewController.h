@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseComponentViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSandboxHtmlPreviewController : LLBaseViewController
+@interface LLSandboxHtmlPreviewController : LLBaseComponentViewController
 
 @property (nonatomic, copy) NSString *filePath;
 
