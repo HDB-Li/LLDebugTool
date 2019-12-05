@@ -25,6 +25,7 @@
 
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 #import "LLSandboxHtmlPreviewController.h"
+#import "LLSandboxTextPreviewController.h"
 #import "LLPreviewController.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
@@ -155,6 +156,11 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
             if (@available(iOS 13.0, *)) {
                 if (model.canOpenWithWebView) {
                     LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
+                    vc.filePath = model.filePath;
+                    [self.navigationController pushViewController:vc animated:YES];
+                    return;
+                } else if (model.canOpenWithTextView) {
+                    LLSandboxTextPreviewController *vc = [[LLSandboxTextPreviewController alloc] init];
                     vc.filePath = model.filePath;
                     [self.navigationController pushViewController:vc animated:YES];
                     return;

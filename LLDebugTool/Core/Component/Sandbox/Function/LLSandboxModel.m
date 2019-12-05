@@ -52,10 +52,17 @@
         _modifiDate = attributes[NSFileModificationDate];
         _isHidden = [attributes[NSFileExtensionHidden] boolValue];
         _isHomeDirectory = [filePath isEqualToString:NSHomeDirectory()];
-        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers", @"json", @"plist"];
+        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers"];
         [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
                 self->_canOpenWithWebView = YES;
+                *stop = YES;
+            }
+        }];
+        extensions = @[@"json", @"plist"];
+        [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithTextView = YES;
                 *stop = YES;
             }
         }];

@@ -70,7 +70,7 @@
         return mutString;
     }
     for (NSInteger i = 0; i < indent; i++) {
-        [mutString appendFormat:@"  "];
+        [mutString appendFormat:@"\t"];
     }
     return mutString;
 }
