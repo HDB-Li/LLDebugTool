@@ -129,6 +129,7 @@
 		36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */; };
 		36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
+		C413AE8523995CEF001EB1F9 /* JsonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C413AE8423995CEF001EB1F9 /* JsonTool.m */; };
 		C423EC4B2396A8B600A95271 /* LLDebugTool.docx in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4A2396A8B500A95271 /* LLDebugTool.docx */; };
 		C423EC4D2396AE9400A95271 /* LLDebugTool.doc in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4C2396AE9400A95271 /* LLDebugTool.doc */; };
 		C423EC4F2396B1D800A95271 /* LLDebugTool.pages in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4E2396B1D800A95271 /* LLDebugTool.pages */; };
@@ -541,6 +542,8 @@
 		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C413AE8323995CEF001EB1F9 /* JsonTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JsonTool.h; sourceTree = "<group>"; };
+		C413AE8423995CEF001EB1F9 /* JsonTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonTool.m; sourceTree = "<group>"; };
 		C423EC4A2396A8B500A95271 /* LLDebugTool.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.docx; sourceTree = "<group>"; };
 		C423EC4C2396AE9400A95271 /* LLDebugTool.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.doc; sourceTree = "<group>"; };
 		C423EC4E2396B1D800A95271 /* LLDebugTool.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.pages; sourceTree = "<group>"; };
@@ -1370,6 +1373,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C413AE8223995CE0001EB1F9 /* JsonTool */ = {
+			isa = PBXGroup;
+			children = (
+				C413AE8323995CEF001EB1F9 /* JsonTool.h */,
+				C413AE8423995CEF001EB1F9 /* JsonTool.m */,
+			);
+			path = JsonTool;
+			sourceTree = "<group>";
+		};
 		C4299E6423940CB3005845A2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1866,6 +1878,7 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				C413AE8223995CE0001EB1F9 /* JsonTool */,
 				361C383B238268E700487FA4 /* Proxy */,
 				36B8563B237BA9E600210B94 /* Router */,
 				36059403237AB0B100C2D8FF /* Component */,
@@ -2586,6 +2599,7 @@
 				36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */,
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,
 				361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */,
+				C413AE8523995CEF001EB1F9 /* JsonTool.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,
 				362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */,
 				36C9F7F5237E7D990021BA2D /* LLLocationComponent.m in Sources */,

@@ -121,6 +121,7 @@
             [LLTool log:@"Load plist failed"];
             return;
         }
+        htmlString = [NSString stringWithFormat:@"<div style=\"font-size: 35px;\">%@</div>",htmlString];
         [self loadHtmlString:htmlString];
     } else {
         if (@available(iOS 9.0, *)) {
