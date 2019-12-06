@@ -1,5 +1,5 @@
 //
-//  LLSandboxHtmlPreviewController.h
+//  LLSandboxImagePreviewController.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,8 +25,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// WKWebView preview controller.
-@interface LLSandboxHtmlPreviewController : LLSandboxPreviewController
+/// ImageView preview controller.
+@interface LLSandboxImagePreviewController : LLSandboxPreviewController
 
 @end
 

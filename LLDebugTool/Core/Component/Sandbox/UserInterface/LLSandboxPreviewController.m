@@ -1,5 +1,5 @@
 //
-//  LLSandboxHtmlPreviewController.h
+//  LLSandboxPreviewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,11 +23,40 @@
 
 #import "LLSandboxPreviewController.h"
 
-NS_ASSUME_NONNULL_BEGIN
+#import "LLImageNameConfig.h"
 
-/// WKWebView preview controller.
-@interface LLSandboxHtmlPreviewController : LLSandboxPreviewController
+#import "UIViewController+LL_Utils.h"
+
+@interface LLSandboxPreviewController ()
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLSandboxPreviewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self initNavigationItemWithTitle:nil imageName:kShareImageName isLeft:NO];
+    
+    if (!self.filePath) {
+        return;
+    }
+    
+    self.title = [self.filePath lastPathComponent];
+}
+
+#pragma mark - Over write
+- (void)rightItemClick:(UIButton *)sender {
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:self.filePath]] applicationActivities:nil];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+#pragma mark - Getters and setters
+- (NSURL *)fileURL {
+    if (!_fileURL && self.filePath) {
+        _fileURL = [NSURL URLWithString:self.filePath];
+    }
+    return _fileURL;
+}
+
+@end

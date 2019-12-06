@@ -25,7 +25,6 @@
 
 #import <WebKit/WebKit.h>
 
-#import "LLImageNameConfig.h"
 #import "LLTool.h"
 
 #import "UIViewController+LL_Utils.h"
@@ -48,11 +47,6 @@
 }
 
 #pragma mark - Over write
-- (void)rightItemClick:(UIButton *)sender {
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:self.filePath]] applicationActivities:nil];
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.webView.frame = self.view.bounds;
@@ -91,26 +85,18 @@
 
 #pragma mark - Primary
 - (void)setUpUI {
-    [self initNavigationItemWithTitle:nil imageName:kShareImageName isLeft:NO];
     
     [self.view addSubview:self.webView];
-    
-    if (!self.filePath) {
+        
+    if (!self.fileURL) {
         return;
     }
-    
-    NSURL *url = [NSURL fileURLWithPath:self.filePath];
-    if (!url) {
-        return;
-    }
-    
-    self.title = [self.filePath lastPathComponent];
     
     if (@available(iOS 9.0, *)) {
-        [self.webView loadFileURL:url allowingReadAccessToURL:url];
+        [self.webView loadFileURL:self.fileURL allowingReadAccessToURL:self.fileURL];
     } else {
         NSError *error = nil;
-        NSString *string = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+        NSString *string = [[NSString alloc] initWithContentsOfURL:self.fileURL encoding:NSUTF8StringEncoding error:&error];
         if (error) {
             [LLTool log:@"Load html string failed"];
             return;

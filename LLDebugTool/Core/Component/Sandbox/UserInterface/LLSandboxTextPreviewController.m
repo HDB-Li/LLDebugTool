@@ -23,13 +23,11 @@
 
 #import "LLSandboxTextPreviewController.h"
 
-#import "LLImageNameConfig.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "JsonTool.h"
 #import "LLTool.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "NSDictionary+LL_Utils.h"
 #import "NSArray+LL_Utils.h"
 
@@ -47,11 +45,6 @@
 }
 
 #pragma mark - Over write
-- (void)rightItemClick:(UIButton *)sender {
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:self.filePath]] applicationActivities:nil];
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.textView.frame = self.view.bounds;
@@ -59,26 +52,16 @@
 
 #pragma mark - Primary
 - (void)setUpUI {
-    [self initNavigationItemWithTitle:nil imageName:kShareImageName isLeft:NO];
-    
-    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.view addSubview:self.textView];
     
-    if (!self.filePath) {
+    if (!self.fileURL) {
         return;
     }
-    
-    NSURL *url = [NSURL fileURLWithPath:self.filePath];
-    if (!url) {
-        return;
-    }
-    
-    self.title = [self.filePath lastPathComponent];
-    
+        
     NSString *string = nil;
     if ([self.filePath.pathExtension caseInsensitiveCompare:@"plist"] == NSOrderedSame) {
-        NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfURL:url];
-        NSArray *array = [[NSArray alloc] initWithContentsOfURL:url];
+        NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfURL:self.fileURL];
+        NSArray *array = [[NSArray alloc] initWithContentsOfURL:self.fileURL];
         if (dic != nil) {
             string = [dic LL_toJsonString];
         } else if (array != nil) {
@@ -90,7 +73,7 @@
         }
     } else {
         NSError *error = nil;
-        string = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+        string = [[NSString alloc] initWithContentsOfURL:self.fileURL encoding:NSUTF8StringEncoding error:&error];
         if (error) {
             [LLTool log:@"Get string failed"];
             return;
