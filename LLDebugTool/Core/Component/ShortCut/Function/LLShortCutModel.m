@@ -58,4 +58,26 @@
     return _resetStandardUserDefaultsModel;
 }
 
++ (LLShortCutModel *)clearDiskModel {
+    static LLShortCutModel *_clearDiskModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _clearDiskModel = [[LLShortCutModel alloc] initWithName:@"Clear Disk" action:^NSString * _Nullable{
+            NSFileManager *manager = [NSFileManager defaultManager];
+            NSError *error = nil;
+            NSArray <NSString *>*paths = [manager contentsOfDirectoryAtPath:NSTemporaryDirectory() error:&error];
+            if (error) {
+                return @"Clear Disk Failed";
+            }
+            for (NSString *path in paths) {
+                if (![manager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:path] error:&error]) {
+                    return @"Clear Disk Failed";
+                }
+            }
+            return nil;
+        }];
+    });
+    return _clearDiskModel;
+}
+
 @end

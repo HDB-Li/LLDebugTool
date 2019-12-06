@@ -43,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Clear all user default settings.
 + (LLShortCutModel *)resetStandardUserDefaultsModel;
 
+/// Clear disk.
++ (LLShortCutModel *)clearDiskModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -55,6 +55,7 @@ static LLShortCutHelper *_instance = nil;
         _actions = [[NSMutableArray alloc] init];
         [self registerAction:[LLShortCutModel visiableViewControllerModel]];
         [self registerAction:[LLShortCutModel resetStandardUserDefaultsModel]];
+        [self registerAction:[LLShortCutModel clearDiskModel]];
     }
     return self;
 }
