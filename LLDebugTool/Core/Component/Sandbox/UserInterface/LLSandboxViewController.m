@@ -153,40 +153,63 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
             }
         } else {
-            if (@available(iOS 13.0, *)) {
-                if (model.canOpenWithWebView) {
-                    LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
-                    vc.filePath = model.filePath;
-                    [self.navigationController pushViewController:vc animated:YES];
-                    return;
-                } else if (model.canOpenWithTextView) {
-                    LLSandboxTextPreviewController *vc = [[LLSandboxTextPreviewController alloc] init];
-                    vc.filePath = model.filePath;
-                    [self.navigationController pushViewController:vc animated:YES];
-                    return;
-                }
-            }
-            if (model.canPreview) {
-                LLPreviewController *vc = [[LLPreviewController alloc] init];
-                NSMutableArray *paths = [[NSMutableArray alloc] init];
-                NSInteger index = 0;
-                for (LLSandboxModel *mod in self.datas) {
-                    if (mod == model) {
-                        [paths addObject:mod.filePath];
-                        index = [paths indexOfObject:mod.filePath];
-                    } else if (mod.canPreview) {
-                        [paths addObject:mod.filePath];
+            if (model.canOpenWithTextView) {
+                [self openWithTextPreviewController:model];
+            } else {
+                if (@available(iOS 13.0, *)) {
+                    if (model.canOpenWithWebView) {
+                        [self openWithHtmlPreviewController:model];
+                    } else if (model.canPreview) {
+                        [self openWithPreviewController:model];
+                    } else {
+                        [self showActivityViewController:model];
+                    }
+                } else {
+                    if (model.canPreview) {
+                        [self openWithPreviewController:model];
+                    } else if (model.canOpenWithWebView) {
+                        [self openWithHtmlPreviewController:model];
+                    } else {
+                        [self showActivityViewController:model];
                     }
                 }
-                vc.filePaths = paths;
-                vc.currentPreviewItemIndex = index;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:model.filePath]] applicationActivities:nil];
-                [self presentViewController:vc animated:YES completion:nil];
             }
         }
     }
+}
+
+- (void)openWithTextPreviewController:(LLSandboxModel *)model {
+    LLSandboxTextPreviewController *vc = [[LLSandboxTextPreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithHtmlPreviewController:(LLSandboxModel *)model {
+    LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithPreviewController:(LLSandboxModel *)model {
+    LLPreviewController *vc = [[LLPreviewController alloc] init];
+    NSMutableArray *paths = [[NSMutableArray alloc] init];
+    NSInteger index = 0;
+    for (LLSandboxModel *mod in self.datas) {
+        if (mod == model) {
+            [paths addObject:mod.filePath];
+            index = [paths indexOfObject:mod.filePath];
+        } else if (mod.canPreview) {
+            [paths addObject:mod.filePath];
+        }
+    }
+    vc.filePaths = paths;
+    vc.currentPreviewItemIndex = index;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)showActivityViewController:(LLSandboxModel *)model {
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:model.filePath]] applicationActivities:nil];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate

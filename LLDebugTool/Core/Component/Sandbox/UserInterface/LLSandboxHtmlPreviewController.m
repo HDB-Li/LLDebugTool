@@ -29,8 +29,6 @@
 #import "LLTool.h"
 
 #import "UIViewController+LL_Utils.h"
-#import "NSDictionary+LL_Utils.h"
-#import "NSArray+LL_Utils.h"
 
 @interface LLSandboxHtmlPreviewController () <WKNavigationDelegate, WKUIDelegate>
 
@@ -108,38 +106,17 @@
     
     self.title = [self.filePath lastPathComponent];
     
-    if ([self.filePath.pathExtension caseInsensitiveCompare:@"plist"] == NSOrderedSame) {
-        NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfURL:url];
-        NSArray *array = [[NSArray alloc] initWithContentsOfURL:url];
-        NSString *htmlString = nil;
-        if (dic != nil) {
-            htmlString = [dic LL_toJsonString];
-        } else if (array != nil) {
-            htmlString = [array LL_toJsonString];
-        }
-        if (!htmlString) {
-            [LLTool log:@"Load plist failed"];
+    if (@available(iOS 9.0, *)) {
+        [self.webView loadFileURL:url allowingReadAccessToURL:url];
+    } else {
+        NSError *error = nil;
+        NSString *string = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+        if (error) {
+            [LLTool log:@"Load html string failed"];
             return;
         }
-        htmlString = [NSString stringWithFormat:@"<div style=\"font-size: 35px;\">%@</div>",htmlString];
-        [self loadHtmlString:htmlString];
-    } else {
-        if (@available(iOS 9.0, *)) {
-            [self.webView loadFileURL:url allowingReadAccessToURL:url];
-        } else {
-            NSError *error = nil;
-            NSString *string = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-            if (error) {
-                [LLTool log:@"Load html string failed"];
-                return;
-            }
-            [self loadHtmlString:string];
-        }
+        [self.webView loadHTMLString:string baseURL:[NSURL URLWithString:self.filePath.stringByDeletingLastPathComponent]];
     }
-}
-
-- (void)loadHtmlString:(NSString *)string {
-    [self.webView loadHTMLString:string baseURL:[NSURL URLWithString:self.filePath.stringByDeletingLastPathComponent]];
 }
 
 #pragma mark - Getters and setters

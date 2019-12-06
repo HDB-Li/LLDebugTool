@@ -24,6 +24,8 @@
 #import "LLSandboxTextPreviewController.h"
 
 #import "LLImageNameConfig.h"
+#import "LLThemeManager.h"
+#import "LLFactory.h"
 #import "JsonTool.h"
 #import "LLTool.h"
 
@@ -59,6 +61,7 @@
 - (void)setUpUI {
     [self initNavigationItemWithTitle:nil imageName:kShareImageName isLeft:NO];
     
+    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.view addSubview:self.textView];
     
     if (!self.filePath) {
@@ -99,11 +102,15 @@
 #pragma mark - Getters and setters
 - (UITextView *)textView {
     if (!_textView) {
-        _textView = [[UITextView alloc] init];
+        _textView = [LLFactory getTextView];
         _textView.editable = NO;
         _textView.scrollEnabled = YES;
         _textView.selectable = YES;
         _textView.font = [UIFont systemFontOfSize:14];
+        _textView.tintColor = [LLThemeManager shared].primaryColor;
+        _textView.backgroundColor = [LLThemeManager shared].backgroundColor;
+        _textView.textColor = [LLThemeManager shared].primaryColor;
+        _textView.textContainer.lineBreakMode = NSLineBreakByCharWrapping;
     }
     return _textView;
 }
