@@ -1,5 +1,5 @@
 //
-//  LLSandboxPreviewController.m
+//  LLSandboxVideoPreviewController.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,42 +21,50 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSandboxPreviewController.h"
+#import "LLSandboxVideoPreviewController.h"
 
-#import "LLImageNameConfig.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 
-#import "UIViewController+LL_Utils.h"
+@interface LLSandboxVideoPreviewController ()
 
-@interface LLSandboxPreviewController ()
+@property (nonatomic, strong) AVPlayerViewController *avPlayerViewController;
+
+@property (nonatomic, strong) AVPlayer *avPlayer;
 
 @end
 
-@implementation LLSandboxPreviewController
+@implementation LLSandboxVideoPreviewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self initNavigationItemWithTitle:nil imageName:kShareImageName isLeft:NO];
-    
-    if (!self.filePath) {
-        return;
-    }
-    
-    self.title = [self.filePath lastPathComponent];
+    [self setUpUI];
+}
+
+- (void)setUpUI {
+    [self.view addSubview:self.avPlayerViewController.view];
 }
 
 #pragma mark - Over write
-- (void)rightItemClick:(UIButton *)sender {
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:self.filePath]] applicationActivities:nil];
-    [self presentViewController:vc animated:YES completion:nil];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.avPlayerViewController.view.frame = self.view.bounds;
 }
 
 #pragma mark - Getters and setters
-- (NSURL *)fileURL {
-    if (!_fileURL && self.filePath) {
-        _fileURL = [NSURL fileURLWithPath:self.filePath];
+- (AVPlayerViewController *)avPlayerViewController {
+    if (!_avPlayerViewController) {
+        _avPlayerViewController = [[AVPlayerViewController alloc] init];
+        _avPlayerViewController.player = self.avPlayer;
     }
-    return _fileURL;
+    return _avPlayerViewController;
+}
+
+- (AVPlayer *)avPlayer {
+    if (!_avPlayer) {
+        _avPlayer = [[AVPlayer alloc] initWithURL:self.fileURL];
+    }
+    return _avPlayer;
 }
 
 @end

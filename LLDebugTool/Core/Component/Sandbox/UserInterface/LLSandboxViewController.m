@@ -25,6 +25,7 @@
 
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 #import "LLSandboxImagePreviewController.h"
+#import "LLSandboxVideoPreviewController.h"
 #import "LLSandboxHtmlPreviewController.h"
 #import "LLSandboxTextPreviewController.h"
 #import "LLPreviewController.h"
@@ -158,6 +159,8 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 [self openWithTextPreviewController:model];
             } else if (model.canOpenWithImageView) {
                 [self openWithImagePreviewController:model];
+            } else if (model.canOpenWithVideo) {
+                [self openWithVideoPreviewController:model];
             } else {
                 if (@available(iOS 13.0, *)) {
                     if (model.canOpenWithWebView) {
@@ -189,6 +192,12 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 - (void)openWithImagePreviewController:(LLSandboxModel *)model {
     LLSandboxImagePreviewController *vc = [[LLSandboxImagePreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithVideoPreviewController:(LLSandboxModel *)model {
+    LLSandboxVideoPreviewController *vc = [[LLSandboxVideoPreviewController alloc] init];
     vc.filePath = model.filePath;
     [self.navigationController pushViewController:vc animated:YES];
 }
