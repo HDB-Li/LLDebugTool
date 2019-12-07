@@ -66,6 +66,13 @@
                 *stop = YES;
             }
         }];
+        extensions = @[@"jpeg", @"jpg", @"png"];
+        [extensions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithImageView = YES;
+                *stop = YES;
+            }
+        }];
     }
     return self;
 }

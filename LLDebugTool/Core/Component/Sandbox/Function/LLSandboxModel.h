@@ -101,6 +101,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic, readonly) BOOL canOpenWithTextView;
 
 /**
+ Whether can open with imageView.
+ */
+@property (assign, nonatomic, readonly) BOOL canOpenWithImageView;
+
+/**
  Submodels in the path.
  */
 @property (strong, nonatomic) NSMutableArray <LLSandboxModel *> *subModels;

@@ -143,6 +143,7 @@
 		C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */ = {isa = PBXBuildFile; fileRef = C4299E6523940F5C005845A2 /* LLDebugTool.html */; };
 		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
 		C433489B2398011100A44698 /* LLDebugTool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C433489A2398011100A44698 /* LLDebugTool.plist */; };
+		C434C7A1239B8E5900D35EC8 /* LLDebugTool.png in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -563,6 +564,7 @@
 		C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHtmlPreviewController.h; sourceTree = "<group>"; };
 		C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewController.m; sourceTree = "<group>"; };
 		C433489A2398011100A44698 /* LLDebugTool.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LLDebugTool.plist; sourceTree = "<group>"; };
+		C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LLDebugTool.png; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1409,6 +1411,7 @@
 				C423EC5E2396B7EE00A95271 /* LLDebugTool.json */,
 				C433489A2398011100A44698 /* LLDebugTool.plist */,
 				C4CF72EF239AB35B00B2C4DC /* LLDebugTool.jpeg */,
+				C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2432,6 +2435,7 @@
 			files = (
 				C4B4E47922F9C90900F70277 /* LLDebugTool.bundle in Resources */,
 				C4CF72F0239AB35B00B2C4DC /* LLDebugTool.jpeg in Resources */,
+				C434C7A1239B8E5900D35EC8 /* LLDebugTool.png in Resources */,
 				C423EC512396B35600A95271 /* LLDebugTool.txt in Resources */,
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				C423EC4D2396AE9400A95271 /* LLDebugTool.doc in Resources */,
