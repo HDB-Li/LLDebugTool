@@ -368,6 +368,8 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 
 * `MapKit`
 
+* `AVKit`
+
 ## Architecture
 
 * `LLDebug.h` 
