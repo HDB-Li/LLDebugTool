@@ -147,6 +147,7 @@
 		C434C7A4239B913200D35EC8 /* LLSandboxVideoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7A3239B913200D35EC8 /* LLSandboxVideoPreviewController.m */; };
 		C434C7A6239B93B600D35EC8 /* LLDebugTool.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */; };
 		C434C7A9239B9A2F00D35EC8 /* LLDebugTool.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */; };
+		C434C7AC239B9C0D00D35EC8 /* LLDebugTool.gif in Resources */ = {isa = PBXBuildFile; fileRef = C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -572,6 +573,7 @@
 		C434C7A3239B913200D35EC8 /* LLSandboxVideoPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxVideoPreviewController.m; sourceTree = "<group>"; };
 		C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.mp4; sourceTree = "<group>"; };
 		C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LLDebugTool.mp3; sourceTree = "<group>"; };
+		C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LLDebugTool.gif; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1421,6 +1423,7 @@
 				C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */,
 				C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */,
 				C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */,
+				C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2460,6 +2463,7 @@
 				C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */,
 				364570F72313B80800C29200 /* LICENSE in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
+				C434C7AC239B9C0D00D35EC8 /* LLDebugTool.gif in Resources */,
 				364570F92313B80800C29200 /* CHANGELOG.md in Resources */,
 				C433489B2398011100A44698 /* LLDebugTool.plist in Resources */,
 				367E27A120A1A8480032EF0D /* Localizable.strings in Resources */,

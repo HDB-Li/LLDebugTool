@@ -25,6 +25,7 @@
 
 #import <WebKit/WebKit.h>
 
+#import "LLInternalMacros.h"
 #import "LLTool.h"
 
 #import "UIViewController+LL_Utils.h"
@@ -49,7 +50,7 @@
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.webView.frame = self.view.bounds;
+    self.webView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - LL_NAVIGATION_HEIGHT);
 }
 
 #pragma mark - WKNavigationDelegate

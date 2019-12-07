@@ -23,6 +23,7 @@
 
 #import "LLSandboxTextPreviewController.h"
 
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
 #import "JsonTool.h"
@@ -47,7 +48,7 @@
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.textView.frame = self.view.bounds;
+    self.textView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - LL_NAVIGATION_HEIGHT);
 }
 
 #pragma mark - Primary

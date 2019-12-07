@@ -26,6 +26,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 
+#import "LLInternalMacros.h"
+
 @interface LLSandboxVideoPreviewController ()
 
 @property (nonatomic, strong) AVPlayerViewController *avPlayerViewController;
@@ -48,7 +50,7 @@
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.avPlayerViewController.view.frame = self.view.bounds;
+    self.avPlayerViewController.view.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - LL_NAVIGATION_HEIGHT);
 }
 
 #pragma mark - Getters and setters
