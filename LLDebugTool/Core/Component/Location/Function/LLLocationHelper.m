@@ -23,6 +23,12 @@
 
 static LLLocationHelper *_instance = nil;
 
+@interface LLLocationHelper ()
+
+@property (nonatomic, assign) NSInteger currentMockRouteIndex;
+
+@end
+
 @implementation LLLocationHelper
 
 + (instancetype)shared {

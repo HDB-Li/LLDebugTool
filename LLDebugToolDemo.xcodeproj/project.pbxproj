@@ -148,6 +148,7 @@
 		C434C7A6239B93B600D35EC8 /* LLDebugTool.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */; };
 		C434C7A9239B9A2F00D35EC8 /* LLDebugTool.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */; };
 		C434C7AC239B9C0D00D35EC8 /* LLDebugTool.gif in Resources */ = {isa = PBXBuildFile; fileRef = C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */; };
+		C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -574,6 +575,8 @@
 		C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.mp4; sourceTree = "<group>"; };
 		C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LLDebugTool.mp3; sourceTree = "<group>"; };
 		C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LLDebugTool.gif; sourceTree = "<group>"; };
+		C434C7B3239BB1B000D35EC8 /* CLLocation+LL_Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LL_Location.h"; sourceTree = "<group>"; };
+		C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LL_Location.m"; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1235,6 +1238,7 @@
 		36C9F7F7237E7DA80021BA2D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				C434C7B2239BB19F00D35EC8 /* CLLocation */,
 				3624D3FC2383F71600DBE692 /* MKMapView */,
 				361C384223826B7200487FA4 /* CLLocationManager */,
 				36C9F7F8237E7DD50021BA2D /* LLLocationHelper.h */,
@@ -1426,6 +1430,15 @@
 				C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C434C7B2239BB19F00D35EC8 /* CLLocation */ = {
+			isa = PBXGroup;
+			children = (
+				C434C7B3239BB1B000D35EC8 /* CLLocation+LL_Location.h */,
+				C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */,
+			);
+			path = CLLocation;
 			sourceTree = "<group>";
 		};
 		C43BA7FE205AB095006307BE = {
@@ -2562,6 +2575,7 @@
 				C4AEB701238AD7EB0054CD37 /* LLShortCutComponent.m in Sources */,
 				3605940F237AB6E500C2D8FF /* LLWindowManager+Crash.m in Sources */,
 				368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */,
+				C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */,
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
 				C49856B122ED8DEC00E9FBE2 /* LLConfig.m in Sources */,

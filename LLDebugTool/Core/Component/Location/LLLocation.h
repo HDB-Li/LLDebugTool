@@ -28,6 +28,7 @@
 #import "LLLocationProxy.h"
 
 #import "CLLocationManager+LL_Location.h"
+#import "CLLocation+LL_Location.h"
 #import "MKMapView+LL_Location.h"
 
 #import "LLLocationViewController.h"

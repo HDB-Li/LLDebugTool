@@ -31,6 +31,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self LL_swizzleInstanceMethodWithOriginSel:@selector(setDelegate:) swizzledSel:@selector(LL_setDelegate:)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(delegate) swizzledSel:@selector(LL_delegate)];
+        [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(LL_dealloc)];
     });
 }
 
@@ -45,8 +47,16 @@
     }
 }
 
-- (id<CLLocationManagerDelegate>)delegate {
-    return self.LL_delegateProxy.target;
+- (id<CLLocationManagerDelegate>)LL_delegate {
+    id delegate = [self LL_delegate];
+    if (delegate == self.LL_delegateProxy) {
+        return self.LL_delegateProxy.target;
+    }
+    return delegate;
+}
+
+- (void)LL_dealloc {
+    [self LL_dealloc];
 }
 
 #pragma mark - Getters and setters

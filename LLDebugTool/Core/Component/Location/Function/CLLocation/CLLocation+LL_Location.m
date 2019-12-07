@@ -1,5 +1,5 @@
 //
-//  LLLocationHelper.h
+//  CLLocation+LL_Location.m
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,41 +19,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <CoreLocation/CoreLocation.h>
+#import "CLLocation+LL_Location.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-/// Location helper.
-@interface LLLocationHelper : NSObject
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Whether is mock route.
- */
-@property (nonatomic, assign) BOOL isMockRoute;
-
-/**
- Mock locations for route.
- */
-@property (nonatomic, strong, nullable) NSArray <CLLocation *>*mockRouteLocations;
-
-/**
- Next mock route location, if last will return nil.
- */
-- (CLLocation *_Nullable)nextMockRouteLocation;
-
-/**
- Current mock route location index.
- */
-- (NSInteger)currentMockRouteIndex;
+@implementation CLLocation (LL_Location)
 
 @end
-
-NS_ASSUME_NONNULL_END
