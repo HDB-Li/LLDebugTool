@@ -73,7 +73,7 @@
                 *stop = YES;
             }
         }];
-        extensions = @[@"mp4", @"avi", @"mov", @"m4v", @"3gp"];
+        extensions = @[@"mp4", @"avi", @"mov", @"m4v", @"3gp", @"mpeg", @"mp3", @"wav", @"aac", @"caf"];
         [extensions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
                 self->_canOpenWithVideo = YES;

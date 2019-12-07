@@ -146,6 +146,7 @@
 		C434C7A1239B8E5900D35EC8 /* LLDebugTool.png in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */; };
 		C434C7A4239B913200D35EC8 /* LLSandboxVideoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7A3239B913200D35EC8 /* LLSandboxVideoPreviewController.m */; };
 		C434C7A6239B93B600D35EC8 /* LLDebugTool.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */; };
+		C434C7A9239B9A2F00D35EC8 /* LLDebugTool.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -570,6 +571,7 @@
 		C434C7A2239B913200D35EC8 /* LLSandboxVideoPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxVideoPreviewController.h; sourceTree = "<group>"; };
 		C434C7A3239B913200D35EC8 /* LLSandboxVideoPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxVideoPreviewController.m; sourceTree = "<group>"; };
 		C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.mp4; sourceTree = "<group>"; };
+		C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LLDebugTool.mp3; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1418,6 +1420,7 @@
 				C4CF72EF239AB35B00B2C4DC /* LLDebugTool.jpeg */,
 				C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */,
 				C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */,
+				C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2464,6 +2467,7 @@
 				364570F82313B80800C29200 /* README.md in Resources */,
 				C423EC572396B6B000A95271 /* LLDebugTool.xls in Resources */,
 				364570FA2313B80800C29200 /* README-cn.md in Resources */,
+				C434C7A9239B9A2F00D35EC8 /* LLDebugTool.mp3 in Resources */,
 				C43BA812205AB095006307BE /* Main.storyboard in Resources */,
 				C423EC592396B6F000A95271 /* LLDebugTool.numbers in Resources */,
 				C434C7A6239B93B600D35EC8 /* LLDebugTool.mp4 in Resources */,
