@@ -23,7 +23,6 @@
 
 #import "LLSandboxVideoPreviewController.h"
 
-#import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 
 #import "LLInternalMacros.h"
