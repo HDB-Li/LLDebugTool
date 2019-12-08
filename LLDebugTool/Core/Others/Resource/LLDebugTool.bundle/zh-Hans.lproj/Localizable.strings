@@ -86,8 +86,10 @@
 
 // Location
 "location.mock.location" = "模拟定位";
+"location.mock.route" = "模拟轨迹";
 "location.lat.lng" = "纬度 & 经度";
 "location.address" = "地址";
+"location.route" = "轨迹";
 
 // Screenshot
 "screenshot.image.name" = "输入图片名称";

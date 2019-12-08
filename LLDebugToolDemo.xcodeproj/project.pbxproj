@@ -149,6 +149,8 @@
 		C434C7A9239B9A2F00D35EC8 /* LLDebugTool.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */; };
 		C434C7AC239B9C0D00D35EC8 /* LLDebugTool.gif in Resources */ = {isa = PBXBuildFile; fileRef = C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */; };
 		C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */; };
+		C4379AAD239CB7F8006D5F59 /* LLLocationMockRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */; };
+		C4379AAF239CDF3A006D5F59 /* MockRoute.json in Resources */ = {isa = PBXBuildFile; fileRef = C4379AAE239CDF3A006D5F59 /* MockRoute.json */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA812205AB095006307BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43BA810205AB095006307BE /* Main.storyboard */; };
@@ -577,6 +579,9 @@
 		C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LLDebugTool.gif; sourceTree = "<group>"; };
 		C434C7B3239BB1B000D35EC8 /* CLLocation+LL_Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+LL_Location.h"; sourceTree = "<group>"; };
 		C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LL_Location.m"; sourceTree = "<group>"; };
+		C4379AAB239CB7F8006D5F59 /* LLLocationMockRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationMockRouteModel.h; sourceTree = "<group>"; };
+		C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationMockRouteModel.m; sourceTree = "<group>"; };
+		C4379AAE239CDF3A006D5F59 /* MockRoute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockRoute.json; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1245,6 +1250,8 @@
 				36C9F7F9237E7DD50021BA2D /* LLLocationHelper.m */,
 				361C383F23826B2000487FA4 /* LLLocationProxy.h */,
 				361C384023826B2000487FA4 /* LLLocationProxy.m */,
+				C4379AAB239CB7F8006D5F59 /* LLLocationMockRouteModel.h */,
+				C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1428,6 +1435,7 @@
 				C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */,
 				C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */,
 				C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */,
+				C4379AAE239CDF3A006D5F59 /* MockRoute.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2468,6 +2476,7 @@
 				C423EC4D2396AE9400A95271 /* LLDebugTool.doc in Resources */,
 				C423EC532396B4B100A95271 /* LLDebugTool.md in Resources */,
 				C4E5AAB4239562BF00132916 /* LLDebugTool.pdf in Resources */,
+				C4379AAF239CDF3A006D5F59 /* MockRoute.json in Resources */,
 				C423EC4B2396A8B600A95271 /* LLDebugTool.docx in Resources */,
 				C423EC5F2396B7EE00A95271 /* LLDebugTool.json in Resources */,
 				C423EC552396B63200A95271 /* LLDebugTool.xlsx in Resources */,
@@ -2604,6 +2613,7 @@
 				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
 				3605940C237AB69E00C2D8FF /* LLWindowManager+Log.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
+				C4379AAD239CB7F8006D5F59 /* LLLocationMockRouteModel.m in Sources */,
 				36C9F7FA237E7DD50021BA2D /* LLLocationHelper.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
 				36C9F813237E9B1D0021BA2D /* LLAnnotation.m in Sources */,

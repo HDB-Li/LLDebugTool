@@ -25,6 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXPORT NSNotificationName const LLCLLocationRegisterNotificationName;
+
+FOUNDATION_EXPORT NSNotificationName const LLCLLocationUnRegisterNotificationName;
+
 @interface CLLocationManager (LL_Location)
 
 @property (nonatomic, strong, nullable) LLLocationProxy *LL_delegateProxy;

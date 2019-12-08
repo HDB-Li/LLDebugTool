@@ -24,6 +24,7 @@
 
 #import "LLLocationComponent.h"
 
+#import "LLLocationMockRouteModel.h"
 #import "LLLocationHelper.h"
 #import "LLLocationProxy.h"
 

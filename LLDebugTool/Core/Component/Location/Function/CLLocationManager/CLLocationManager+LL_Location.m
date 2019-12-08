@@ -25,6 +25,10 @@
 
 #import "NSObject+LL_Runtime.h"
 
+NSNotificationName const LLCLLocationRegisterNotificationName = @"LLCLLocationRegisterNotificationName";
+
+NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocationUnRegisterNotificationName";
+
 @implementation CLLocationManager (LL_Location)
 
 + (void)load {
@@ -34,6 +38,12 @@
         [self LL_swizzleInstanceMethodWithOriginSel:@selector(delegate) swizzledSel:@selector(LL_delegate)];
         [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(LL_dealloc)];
     });
+}
+
+- (instancetype)LL_init {
+    CLLocationManager *manager = [self LL_init];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLCLLocationRegisterNotificationName object:manager];
+    return manager;
 }
 
 - (void)LL_setDelegate:(id<CLLocationManagerDelegate>)delegate {
@@ -56,6 +66,7 @@
 }
 
 - (void)LL_dealloc {
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLCLLocationUnRegisterNotificationName object:self];
     [self LL_dealloc];
 }
 

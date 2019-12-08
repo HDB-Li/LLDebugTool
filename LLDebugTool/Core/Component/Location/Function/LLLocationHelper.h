@@ -21,6 +21,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+@class LLLocationMockRouteModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Location helper.
@@ -35,24 +37,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 /**
- Whether is mock route.
+ Is Mock route.
  */
-@property (nonatomic, assign) BOOL isMockRoute;
+@property (nonatomic, assign, readonly) BOOL isMockRoute;
 
 /**
- Mock locations for route.
+ Start mock route locations.
  */
-@property (nonatomic, strong, nullable) NSArray <CLLocation *>*mockRouteLocations;
+- (void)startMockRoute:(LLLocationMockRouteModel *)model;
 
 /**
- Next mock route location, if last will return nil.
+ Stop current mock route.
  */
-- (CLLocation *_Nullable)nextMockRouteLocation;
-
-/**
- Current mock route location index.
- */
-- (NSInteger)currentMockRouteIndex;
+- (void)stopMockRoute;
 
 @end
 

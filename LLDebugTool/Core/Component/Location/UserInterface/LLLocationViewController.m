@@ -41,11 +41,15 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 @interface LLLocationViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@property (nonatomic, strong) LLTitleSwitchCellView *switchView;
+@property (nonatomic, strong) LLTitleSwitchCellView *mockLocationSwitch;
 
 @property (nonatomic, strong) LLDetailTitleSelectorCellView *locationDescriptView;
 
 @property (nonatomic, strong) LLDetailTitleSelectorCellView *addressDescriptView;
+
+@property (nonatomic, strong) LLTitleSwitchCellView *mockRouteSwitch;
+
+@property (nonatomic, strong) LLDetailTitleSelectorCellView *routeDescriptView;
 
 @property (nonatomic, strong) MKMapView *mapView;
 
@@ -69,21 +73,25 @@ static NSString *const kAnnotationID = @"AnnotationID";
     self.title = LLLocalizedString(@"function.location");
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
     
-    [self.view addSubview:self.switchView];
+    [self.view addSubview:self.mockLocationSwitch];
     [self.view addSubview:self.locationDescriptView];
     [self.view addSubview:self.addressDescriptView];
+    [self.view addSubview:self.mockRouteSwitch];
+    [self.view addSubview:self.routeDescriptView];
     [self.view addSubview:self.mapView];
     
-    [self addSwitchViewConstraints];
+    [self addMockLocationSwitchConstraints];
     [self addLocationDescriptViewConstraints];
     [self addAddressDescriptViewConstraints];
+    [self addMockRouteSwitchConstraints];
+    [self addRouteDescriptViewConstraints];
     [self loadData];
 }
 
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = CGRectMake(0, self.addressDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.addressDescriptView.LL_bottom - kLLGeneralMargin);
+    self.mapView.frame = CGRectMake(0, self.routeDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.routeDescriptView.LL_bottom - kLLGeneralMargin);
 }
 
 #pragma mark - MKMapViewDelegate
@@ -121,16 +129,16 @@ static NSString *const kAnnotationID = @"AnnotationID";
 }
 
 #pragma mark - Primary
-- (void)addSwitchViewConstraints {
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.switchView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.switchView.superview attribute:NSLayoutAttributeTop multiplier:1 constant:LL_NAVIGATION_HEIGHT];
-    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.switchView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.switchView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
-    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.switchView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.switchView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
-    self.switchView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.switchView.superview addConstraints:@[top, left, right]];
+- (void)addMockLocationSwitchConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.mockLocationSwitch attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.mockLocationSwitch.superview attribute:NSLayoutAttributeTop multiplier:1 constant:LL_NAVIGATION_HEIGHT];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.mockLocationSwitch attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.mockLocationSwitch.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.mockLocationSwitch attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.mockLocationSwitch.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    self.mockLocationSwitch.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.mockLocationSwitch.superview addConstraints:@[top, left, right]];
 }
 
 - (void)addLocationDescriptViewConstraints {
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.switchView attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.mockLocationSwitch attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.locationDescriptView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.locationDescriptView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.locationDescriptView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
     self.locationDescriptView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -143,6 +151,22 @@ static NSString *const kAnnotationID = @"AnnotationID";
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.addressDescriptView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.addressDescriptView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
     self.addressDescriptView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.addressDescriptView.superview addConstraints:@[top, left, right]];
+}
+
+- (void)addMockRouteSwitchConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.mockRouteSwitch attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.addressDescriptView attribute:NSLayoutAttributeBottom multiplier:1 constant:kLLGeneralMargin];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.mockRouteSwitch attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.mockRouteSwitch.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.mockRouteSwitch attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.mockRouteSwitch.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    self.mockRouteSwitch.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.mockRouteSwitch.superview addConstraints:@[top, left, right]];
+}
+
+- (void)addRouteDescriptViewConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.routeDescriptView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.self.mockRouteSwitch attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.routeDescriptView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.routeDescriptView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.routeDescriptView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.routeDescriptView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    self.routeDescriptView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.routeDescriptView.superview addConstraints:@[top, left, right]];
 }
 
 - (void)setUpCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion placemark:(CLPlacemark *)placemark {
@@ -206,7 +230,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     self.addressDescriptView.detailTitle = description;
 }
 
-- (void)updateSwitchViewValue:(BOOL)isOn {
+- (void)updateMockLocationSwitchValue:(BOOL)isOn {
     [LLLocationHelper shared].enable = isOn;
     [LLSettingManager shared].mockLocationEnable = @(isOn);
     if (isOn) {
@@ -241,6 +265,10 @@ static NSString *const kAnnotationID = @"AnnotationID";
             [weakSelf setUpCoordinate:placemark.location.coordinate automicSetRegion:YES placemark:placemark];
         }
     }];
+}
+
+- (void)updateMockRouteSwitchValue:(BOOL)isOn {
+    
 }
 
 - (void)loadData {
@@ -281,20 +309,24 @@ static NSString *const kAnnotationID = @"AnnotationID";
     }];
 }
 
+- (void)routeDescriptViewDidSelect {
+    
+}
+
 #pragma mark - Getters and setters
-- (LLTitleSwitchCellView *)switchView {
-    if (!_switchView) {
-        _switchView = [[LLTitleSwitchCellView alloc] init];
-        _switchView.backgroundColor = [LLThemeManager shared].containerColor;
-        _switchView.title = LLLocalizedString(@"location.mock.location");
-        _switchView.on = [LLLocationHelper shared].enable;
+- (LLTitleSwitchCellView *)mockLocationSwitch {
+    if (!_mockLocationSwitch) {
+        _mockLocationSwitch = [[LLTitleSwitchCellView alloc] init];
+        _mockLocationSwitch.backgroundColor = [LLThemeManager shared].containerColor;
+        _mockLocationSwitch.title = LLLocalizedString(@"location.mock.location");
+        _mockLocationSwitch.on = [LLLocationHelper shared].enable;
         __weak typeof(self) weakSelf = self;
-        _switchView.changePropertyBlock = ^(BOOL isOn) {
-            [weakSelf updateSwitchViewValue:isOn];
+        _mockLocationSwitch.changePropertyBlock = ^(BOOL isOn) {
+            [weakSelf updateMockLocationSwitchValue:isOn];
         };
-        [_switchView needLine];
+        [_mockLocationSwitch needLine];
     }
-    return _switchView;
+    return _mockLocationSwitch;
 }
 
 - (LLDetailTitleSelectorCellView *)locationDescriptView {
@@ -324,6 +356,35 @@ static NSString *const kAnnotationID = @"AnnotationID";
         };
     }
     return _addressDescriptView;
+}
+
+- (LLTitleSwitchCellView *)mockRouteSwitch {
+    if (!_mockRouteSwitch) {
+        _mockRouteSwitch = [[LLTitleSwitchCellView alloc] init];
+        _mockRouteSwitch.backgroundColor = [LLThemeManager shared].containerColor;
+        _mockRouteSwitch.title = LLLocalizedString(@"location.mock.route");
+        _mockRouteSwitch.on = [LLLocationHelper shared].isMockRoute;
+        __weak typeof(self) weakSelf = self;
+        _mockRouteSwitch.changePropertyBlock = ^(BOOL isOn) {
+            [weakSelf updateMockRouteSwitchValue:isOn];
+        };
+        [_mockRouteSwitch needLine];
+    }
+    return _mockRouteSwitch;
+}
+
+- (LLDetailTitleSelectorCellView *)routeDescriptView {
+    if (!_routeDescriptView) {
+        _routeDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
+        _routeDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
+        _routeDescriptView.title = LLLocalizedString(@"location.route");
+        [_routeDescriptView needFullLine];
+        __weak typeof(self) weakSelf = self;
+        _routeDescriptView.block = ^{
+            [weakSelf routeDescriptViewDidSelect];
+        };
+    }
+    return _routeDescriptView;
 }
 
 - (MKMapView *)mapView {

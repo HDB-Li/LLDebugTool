@@ -1,5 +1,5 @@
 //
-//  CLLocation+LL_Location.m
+//  LLLocationMockRouteModel.h
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,18 +19,37 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "CLLocation+LL_Location.h"
+#import "LLBaseModel.h"
 
-#import "NSObject+LL_Runtime.h"
+#import <CoreLocation/CoreLocation.h>
 
-@implementation CLLocation (LL_Location)
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)setLL_routeLocation:(BOOL)LL_routeLocation {
-    objc_setAssociatedObject(self, @selector(LL_routeLocation), @(LL_routeLocation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
+/// Mock Route model.
+@interface LLLocationMockRouteModel : LLBaseModel
 
-- (BOOL)LL_routeLocation {
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
+/// Mock locations
+@property (nonatomic, copy) NSArray <CLLocation *>*locations;
+
+/// Time interval between two location.
+@property (nonatomic, assign) NSTimeInterval timeInterval;
+
+/// Initial method.
+/// @param locations Mock locations.
+/// @param timeInterval Time interval between two location.
+- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval;
+
+/// Initial a model by a file.
+/// @param filePath File path.
+/// @param timeInterval Time interval between two location.
+- (instancetype)initWithJsonFile:(NSString *)filePath timeInterval:(NSTimeInterval)timeInterval;
+
+/// Next location.
+- (CLLocation *_Nullable)nextLocation;
+
+/// Is finish all location.
+- (BOOL)isFinish;
 
 @end
+
+NS_ASSUME_NONNULL_END

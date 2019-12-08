@@ -86,8 +86,10 @@
 
 // Location
 "location.mock.location" = "Mock Location";
+"location.mock.route" = "Mock Route";
 "location.lat.lng" = "Lat & Lng";
 "location.address" = "Address";
+"location.route" = "Route";
 
 // Screenshot
 "screenshot.image.name" = "Enter the image name";
