@@ -322,6 +322,23 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, assign) double mockLocationLongitude;
 
+/**
+ Add a custom mock route file.
+ */
+- (void)addMockRouteFile:(NSString *)filePath;
+
+/**
+ Add all json file in directory, deep find.
+ */
+- (void)addMockRouteDirectory:(NSString *)fileDirectory;
+
+#pragma mark - ShortCut
+
+/// Register a short cut action in ShortCut function.
+/// @param name Display name for short cut.
+/// @param action Action block, return a message to toast, if nothing return nil.
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
+
 #pragma mark - Date Formatter
 /**
  Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".

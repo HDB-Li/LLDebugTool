@@ -1,5 +1,7 @@
 //
-//  LLLocationHelper.h
+//  LLRouter+Location.m
+//
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -19,58 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <CoreLocation/CoreLocation.h>
+#import "LLRouter+Location.h"
 
-@class LLLocationMockRouteModel;
+#ifdef LLDEBUGTOOL_LOCATION
+#import "LLLocationHelper.h"
+#endif
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLRouter (Location)
 
-/// Location helper.
-@interface LLLocationHelper : NSObject
++ (void)addMockRouteFile:(NSString *)filePath {
+#ifdef LLDEBUGTOOL_LOCATION
+    [[LLLocationHelper shared] addMockRouteFile:filePath];
+#endif
+}
 
-/// Shared instance.
-+ (instancetype)shared;
-
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Is Mock route.
- */
-@property (nonatomic, assign, readonly) BOOL isMockRoute;
-
-/**
- Available route models.
- */
-@property (nonatomic, copy) NSArray <LLLocationMockRouteModel *>*availableRoutes;
-
-/**
- Add a custom mock route file.
- */
-- (void)addMockRouteFile:(NSString *)filePath;
-
-/**
- Add all json file in directory, deep find.
- */
-- (void)addMockRouteDirectory:(NSString *)fileDirectory;
-
-/**
- Remove route from cache.
- */
-- (void)removeRoute:(LLLocationMockRouteModel *)model;
-
-/**
- Start mock route locations.
- */
-- (void)startMockRoute:(LLLocationMockRouteModel *)model;
-
-/**
- Stop current mock route.
- */
-- (void)stopMockRoute;
++ (void)addMockRouteDirectory:(NSString *)fileDirectory {
+#ifdef LLDEBUGTOOL_LOCATION
+    [[LLLocationHelper shared] addMockRouteDirectory:fileDirectory];
+#endif
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

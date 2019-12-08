@@ -32,7 +32,6 @@
 #import "LLTool.h"
 
 #import "UIResponder+LL_Utils.h"
-#import "LLRouter+ShortCut.h"
 #import "LLRouter+Log.h"
 
 static LLDebugTool *_instance = nil;
@@ -240,14 +239,6 @@ static LLDebugTool *_instance = nil;
 
 - (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
     [LLRouter errorLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
-}
-
-@end
-
-@implementation LLDebugTool (ShortCut)
-
-- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action {
-    [LLRouter registerShortCutWithName:name action:action];
 }
 
 @end

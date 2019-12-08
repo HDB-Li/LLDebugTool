@@ -25,7 +25,13 @@
 
 @interface LLLocationMockRouteModel ()
 
+@property (nonatomic, copy) NSString *filePath;
+
 @property (nonatomic, assign) NSInteger index;
+
+@property (nonatomic, assign) BOOL checkAvailable;
+
+@property (nonatomic, assign) BOOL isAvailable;
 
 @end
 
@@ -35,13 +41,15 @@
     if (self = [super init]) {
         _locations = [locations copy];
         _timeInterval = timeInterval;
+        _checkAvailable = YES;
+        _isAvailable = YES;
     }
     return self;
 }
 
 - (instancetype)initWithJsonFile:(NSString *)filePath timeInterval:(NSTimeInterval)timeInterval {
     if (self = [super init]) {
-        [self analysisJsonFile:filePath];
+        _filePath = filePath;
         _timeInterval = timeInterval;
     }
     return self;
@@ -67,24 +75,54 @@
     self.index = 0;
 }
 
+- (BOOL)isAvailable {
+    if (!_checkAvailable) {
+        [self analysisJsonFile:self.filePath];
+        _checkAvailable = YES;
+    }
+    return _isAvailable;
+}
+
 #pragma mark - Primary
 - (void)analysisJsonFile:(NSString *)filePath {
+    // Check nil.
     if ([filePath length] == 0) {
         return;
     }
+    
+    // Check file extension.
+    if (![filePath.pathExtension isEqualToString:@"json"]) {
+        return;
+    }
+    
+    // Convert to data.
     NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
     if ([data length] == 0) {
         return;
     }
     
-    id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    if (!jsonObject || ![jsonObject isKindOfClass:[NSArray class]]) {
+    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    // Check type.
+    if (![object isKindOfClass:[NSDictionary class]]) {
         return;
     }
     
-    NSArray *json = (NSArray *)jsonObject;
+    NSDictionary *json = (NSDictionary *)object;
+    // Check key.
+    if (![json[@"key"] isEqualToString:@"LLDebugTool"]) {
+        return;
+    }
+    
+    NSArray *jsonData = json[@"data"];
+    // Check data.
+    if (![jsonData isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    
+    // Add data.
     NSMutableArray *locations = [[NSMutableArray alloc] init];
-    for (id obj in json) {
+    for (id obj in jsonData) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = (NSDictionary *)obj;
             if (dic[@"lat"] && dic[@"lng"]) {
@@ -96,7 +134,9 @@
             }
         }
     }
+    
     _locations = [locations copy];
+    _isAvailable = YES;
 }
 
 @end

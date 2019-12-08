@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Time interval between two location.
 @property (nonatomic, assign) NSTimeInterval timeInterval;
 
+/// Whether model is available.
+@property (nonatomic, assign, readonly) BOOL isAvailable;
+
 /// Initial method.
 /// @param locations Mock locations.
 /// @param timeInterval Time interval between two location.

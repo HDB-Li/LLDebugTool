@@ -32,6 +32,9 @@
 #import "LLConst.h"
 #import "LLTool.h"
 
+#import "LLRouter+Location.h"
+#import "LLRouter+ShortCut.h"
+
 static LLConfig *_instance = nil;
 
 NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConfigDidUpdateWindowStyleNotificationName";
@@ -50,6 +53,18 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 - (void)configPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
     _colorStyle = LLConfigColorStyleCustom;
     [LLThemeManager shared].themeColor = [LLThemeColor colorWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:statusBarStyle];
+}
+
+- (void)addMockRouteFile:(NSString *)filePath {
+    [LLRouter addMockRouteFile:filePath];
+}
+
+- (void)addMockRouteDirectory:(NSString *)fileDirectory {
+    [LLRouter addMockRouteDirectory:fileDirectory];
+}
+
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action {
+    [LLRouter registerShortCutWithName:name action:action];
 }
 
 #pragma mark - Primary

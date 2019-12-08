@@ -56,17 +56,43 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 #pragma mark - Public
-- (void)addRouteConfig:(LLLocationMockRouteModel *)model {
-    pthread_mutex_lock(&route_mutex_t);
-    if (![self.routes containsObject:model]) {
-        [self.routes addObject:model];
+- (void)addMockRouteFile:(NSString *)filePath {
+    // Check nil.
+    if ([filePath length] == 0) {
+        return;
     }
-    pthread_mutex_unlock(&route_mutex_t);
+    
+    // Check file extension.
+    if (![filePath.pathExtension isEqualToString:@"json"]) {
+        return;
+    }
+        
+    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:5];
+    [self addRoute:model];
 }
 
-- (void)removeRouteConfig:(LLLocationMockRouteModel *)model {
+- (void)addMockRouteDirectory:(NSString *)fileDirectory {
+    if ([fileDirectory length] == 0) {
+        return;
+    }
+    BOOL isDirectory = NO;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileDirectory isDirectory:&isDirectory]) {
+        return;
+    }
+    if (!isDirectory) {
+        [self addMockRouteFile:fileDirectory];
+        return;
+    }
+    NSArray *filePaths = [[NSFileManager defaultManager] subpathsAtPath:fileDirectory];
+    for (NSString *filePath in filePaths) {
+        [self addMockRouteFile:filePath];
+    }
+}
+
+- (void)removeRoute:(LLLocationMockRouteModel *)model {
     pthread_mutex_lock(&route_mutex_t);
     [self.routes removeObject:model];
+    _availableRoutes = [self.routes copy];
     pthread_mutex_unlock(&route_mutex_t);
 }
 
@@ -107,6 +133,15 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 #pragma mark - Primary
+- (void)addRoute:(LLLocationMockRouteModel *)model {
+    pthread_mutex_lock(&route_mutex_t);
+    if (![self.routes containsObject:model]) {
+        [self.routes addObject:model];
+        _availableRoutes = [self.routes copy];
+    }
+    pthread_mutex_unlock(&route_mutex_t);
+}
+
 - (void)registerManager:(CLLocationManager *)manager {
     if (!manager || [manager isKindOfClass:[CLLocationManager class]]) {
         return;

@@ -142,13 +142,4 @@ Print and save a log model with infos. LLConfigLogLevelError.
 
 @end
 
-@interface LLDebugTool (ShortCut)
-
-/// Register a short cut action in ShortCut function.
-/// @param name Display name for short cut.
-/// @param action Action block, return a message to toast, if nothing return nil.
-- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
-
-@end
-
 NS_ASSUME_NONNULL_END
