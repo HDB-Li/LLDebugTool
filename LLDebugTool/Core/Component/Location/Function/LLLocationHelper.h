@@ -42,6 +42,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isMockRoute;
 
 /**
+ Add a route config.
+ */
+- (void)addRouteConfig:(LLLocationMockRouteModel *)model;
+
+/**
+ Remove a route config.
+ */
+- (void)removeRouteConfig:(LLLocationMockRouteModel *)model;
+
+/**
  Start mock route locations.
  */
 - (void)startMockRoute:(LLLocationMockRouteModel *)model;

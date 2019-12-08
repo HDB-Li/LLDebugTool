@@ -63,6 +63,10 @@
     return NO;
 }
 
+- (void)reload {
+    self.index = 0;
+}
+
 #pragma mark - Primary
 - (void)analysisJsonFile:(NSString *)filePath {
     if ([filePath length] == 0) {

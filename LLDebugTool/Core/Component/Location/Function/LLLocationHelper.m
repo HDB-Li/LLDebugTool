@@ -31,9 +31,13 @@ static LLLocationHelper *_instance = nil;
 
 static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
+static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
+
 @interface LLLocationHelper ()
 
 @property (nonatomic, strong) NSMutableSet <CLLocationManager *>*managers;
+
+@property (nonatomic, strong) NSMutableArray <LLLocationMockRouteModel *>*routes;
 
 @property (nonatomic, strong) LLLocationMockRouteModel *routeModel;
 
@@ -52,13 +56,29 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 #pragma mark - Public
+- (void)addRouteConfig:(LLLocationMockRouteModel *)model {
+    pthread_mutex_lock(&route_mutex_t);
+    if (![self.routes containsObject:model]) {
+        [self.routes addObject:model];
+    }
+    pthread_mutex_unlock(&route_mutex_t);
+}
+
+- (void)removeRouteConfig:(LLLocationMockRouteModel *)model {
+    pthread_mutex_lock(&route_mutex_t);
+    [self.routes removeObject:model];
+    pthread_mutex_unlock(&route_mutex_t);
+}
+
 - (void)startMockRoute:(LLLocationMockRouteModel *)model {
+    [self.routeModel reload];
     self.routeModel = model;
     _isMockRoute = YES;
     [self startTimer];
 }
 
 - (void)stopMockRoute {
+    [self.routeModel reload];
     _isMockRoute = NO;
     [self stopTimer];
 }
@@ -145,6 +165,13 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
         _managers = [[NSMutableSet alloc] init];
     }
     return _managers;
+}
+
+- (NSMutableArray<LLLocationMockRouteModel *> *)routes {
+    if (!_routes) {
+        _routes = [[NSMutableArray alloc] init];
+    }
+    return _routes;
 }
 
 @end

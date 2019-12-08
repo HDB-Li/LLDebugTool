@@ -50,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Is finish all location.
 - (BOOL)isFinish;
 
+/// Reload to start.
+- (void)reload;
+
 @end
 
 NS_ASSUME_NONNULL_END
