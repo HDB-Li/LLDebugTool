@@ -36,7 +36,10 @@ NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocation
     dispatch_once(&onceToken, ^{
         [self LL_swizzleInstanceMethodWithOriginSel:@selector(setDelegate:) swizzledSel:@selector(LL_setDelegate:)];
         [self LL_swizzleInstanceMethodWithOriginSel:@selector(delegate) swizzledSel:@selector(LL_delegate)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(init) swizzledSel:@selector(LL_init)];
         [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(LL_dealloc)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(startUpdatingLocation) swizzledSel:@selector(LL_startUpdatingLocation)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(stopUpdatingLocation) swizzledSel:@selector(LL_stopUpdatingLocation)];
     });
 }
 
@@ -70,6 +73,16 @@ NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocation
     [self LL_dealloc];
 }
 
+- (void)LL_startUpdatingLocation {
+    self.LL_isUpdatingLocation = YES;
+    [self LL_startUpdatingLocation];
+}
+
+- (void)LL_stopUpdatingLocation {
+    self.LL_isUpdatingLocation = NO;
+    [self LL_stopUpdatingLocation];
+}
+
 #pragma mark - Getters and setters
 - (void)setLL_delegateProxy:(LLLocationProxy *)LL_delegateProxy {
     objc_setAssociatedObject(self, @selector(LL_delegateProxy), LL_delegateProxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -77,6 +90,14 @@ NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocation
 
 - (LLLocationProxy *)LL_delegateProxy {
     return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setLL_isUpdatingLocation:(BOOL)LL_isUpdatingLocation {
+    objc_setAssociatedObject(self, @selector(LL_isUpdatingLocation), @(LL_isUpdatingLocation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)LL_isUpdatingLocation {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 @end

@@ -24,6 +24,7 @@
 #import <MapKit/MapKit.h>
 
 #import "LLDetailTitleSelectorCellView.h"
+#import "LLLocationMockRouteModel.h"
 #import "LLTitleSwitchCellView.h"
 #import "LLPinAnnotationView.h"
 #import "LLInternalMacros.h"
@@ -271,6 +272,10 @@ static NSString *const kAnnotationID = @"AnnotationID";
     
 }
 
+- (void)selectMockRoute:(LLLocationMockRouteModel *)model {
+    [[LLLocationHelper shared] startMockRoute:model];
+}
+
 - (void)loadData {
     CLLocationCoordinate2D mockCoordinate = CLLocationCoordinate2DMake([LLConfig shared].mockLocationLatitude, [LLConfig shared].mockLocationLongitude);
     BOOL automicSetRegion = YES;
@@ -310,7 +315,15 @@ static NSString *const kAnnotationID = @"AnnotationID";
 }
 
 - (void)routeDescriptViewDidSelect {
-    
+    __weak typeof(self) weakSelf = self;
+    NSMutableArray *actions = [[NSMutableArray alloc] init];
+    __block NSArray *models = [[LLLocationHelper shared].availableRoutes copy];
+    for (LLLocationMockRouteModel *model in models) {
+        [actions addObject:model.name];
+    }
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"location.select.route") actions:actions currentAction:nil completion:^(NSInteger index) {
+        [weakSelf selectMockRoute:models[index]];
+    }];
 }
 
 #pragma mark - Getters and setters

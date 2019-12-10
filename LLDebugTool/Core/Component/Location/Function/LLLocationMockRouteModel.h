@@ -37,15 +37,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// Whether model is available.
 @property (nonatomic, assign, readonly) BOOL isAvailable;
 
+/// Model name.
+@property (nonatomic, copy, readonly) NSString *name;
+
 /// Initial method.
 /// @param locations Mock locations.
 /// @param timeInterval Time interval between two location.
-- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval;
+/// @param name Model name.
+- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name;
 
 /// Initial a model by a file.
 /// @param filePath File path.
 /// @param timeInterval Time interval between two location.
-- (instancetype)initWithJsonFile:(NSString *)filePath timeInterval:(NSTimeInterval)timeInterval;
+/// @param name Model name.
+- (instancetype)initWithJsonFile:(NSString *)filePath timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name;
 
 /// Next location.
 - (CLLocation *_Nullable)nextLocation;

@@ -89,7 +89,8 @@
 "location.mock.route" = "Mock Route";
 "location.lat.lng" = "Lat & Lng";
 "location.address" = "Address";
-"location.route" = "Route";
+"location.route" = "Routes";
+"location.select.route" = "Please select the route";
 
 // Screenshot
 "screenshot.image.name" = "Enter the image name";

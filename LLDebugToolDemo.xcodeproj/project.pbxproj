@@ -139,7 +139,6 @@
 		C423EC552396B63200A95271 /* LLDebugTool.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = C423EC542396B63200A95271 /* LLDebugTool.xlsx */; };
 		C423EC572396B6B000A95271 /* LLDebugTool.xls in Resources */ = {isa = PBXBuildFile; fileRef = C423EC562396B6B000A95271 /* LLDebugTool.xls */; };
 		C423EC592396B6F000A95271 /* LLDebugTool.numbers in Resources */ = {isa = PBXBuildFile; fileRef = C423EC582396B6F000A95271 /* LLDebugTool.numbers */; };
-		C423EC5F2396B7EE00A95271 /* LLDebugTool.json in Resources */ = {isa = PBXBuildFile; fileRef = C423EC5E2396B7EE00A95271 /* LLDebugTool.json */; };
 		C4299E6623940F5C005845A2 /* LLDebugTool.html in Resources */ = {isa = PBXBuildFile; fileRef = C4299E6523940F5C005845A2 /* LLDebugTool.html */; };
 		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
 		C433489B2398011100A44698 /* LLDebugTool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C433489A2398011100A44698 /* LLDebugTool.plist */; };
@@ -150,7 +149,7 @@
 		C434C7AC239B9C0D00D35EC8 /* LLDebugTool.gif in Resources */ = {isa = PBXBuildFile; fileRef = C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */; };
 		C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */; };
 		C4379AAD239CB7F8006D5F59 /* LLLocationMockRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */; };
-		C4379AAF239CDF3A006D5F59 /* MockRoute.json in Resources */ = {isa = PBXBuildFile; fileRef = C4379AAE239CDF3A006D5F59 /* MockRoute.json */; };
+		C4379AAF239CDF3A006D5F59 /* LLDebugTool.json in Resources */ = {isa = PBXBuildFile; fileRef = C4379AAE239CDF3A006D5F59 /* LLDebugTool.json */; };
 		C4379AB2239D35F3006D5F59 /* LLRouter+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379AB1239D35F3006D5F59 /* LLRouter+Location.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
@@ -567,7 +566,6 @@
 		C423EC542396B63200A95271 /* LLDebugTool.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.xlsx; sourceTree = "<group>"; };
 		C423EC562396B6B000A95271 /* LLDebugTool.xls */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.xls; sourceTree = "<group>"; };
 		C423EC582396B6F000A95271 /* LLDebugTool.numbers */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.numbers; sourceTree = "<group>"; };
-		C423EC5E2396B7EE00A95271 /* LLDebugTool.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LLDebugTool.json; sourceTree = "<group>"; };
 		C4299E6523940F5C005845A2 /* LLDebugTool.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LLDebugTool.html; sourceTree = "<group>"; };
 		C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHtmlPreviewController.h; sourceTree = "<group>"; };
 		C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewController.m; sourceTree = "<group>"; };
@@ -582,7 +580,7 @@
 		C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LL_Location.m"; sourceTree = "<group>"; };
 		C4379AAB239CB7F8006D5F59 /* LLLocationMockRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationMockRouteModel.h; sourceTree = "<group>"; };
 		C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationMockRouteModel.m; sourceTree = "<group>"; };
-		C4379AAE239CDF3A006D5F59 /* MockRoute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockRoute.json; sourceTree = "<group>"; };
+		C4379AAE239CDF3A006D5F59 /* LLDebugTool.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LLDebugTool.json; sourceTree = "<group>"; };
 		C4379AB0239D35F3006D5F59 /* LLRouter+Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Location.h"; sourceTree = "<group>"; };
 		C4379AB1239D35F3006D5F59 /* LLRouter+Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Location.m"; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1433,14 +1431,13 @@
 				C423EC542396B63200A95271 /* LLDebugTool.xlsx */,
 				C423EC562396B6B000A95271 /* LLDebugTool.xls */,
 				C423EC582396B6F000A95271 /* LLDebugTool.numbers */,
-				C423EC5E2396B7EE00A95271 /* LLDebugTool.json */,
 				C433489A2398011100A44698 /* LLDebugTool.plist */,
 				C4CF72EF239AB35B00B2C4DC /* LLDebugTool.jpeg */,
 				C434C7A0239B8E5900D35EC8 /* LLDebugTool.png */,
 				C434C7A5239B93B600D35EC8 /* LLDebugTool.mp4 */,
 				C434C7A7239B9A2F00D35EC8 /* LLDebugTool.mp3 */,
 				C434C7AB239B9C0D00D35EC8 /* LLDebugTool.gif */,
-				C4379AAE239CDF3A006D5F59 /* MockRoute.json */,
+				C4379AAE239CDF3A006D5F59 /* LLDebugTool.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2481,9 +2478,8 @@
 				C423EC4D2396AE9400A95271 /* LLDebugTool.doc in Resources */,
 				C423EC532396B4B100A95271 /* LLDebugTool.md in Resources */,
 				C4E5AAB4239562BF00132916 /* LLDebugTool.pdf in Resources */,
-				C4379AAF239CDF3A006D5F59 /* MockRoute.json in Resources */,
+				C4379AAF239CDF3A006D5F59 /* LLDebugTool.json in Resources */,
 				C423EC4B2396A8B600A95271 /* LLDebugTool.docx in Resources */,
-				C423EC5F2396B7EE00A95271 /* LLDebugTool.json in Resources */,
 				C423EC552396B63200A95271 /* LLDebugTool.xlsx in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,

@@ -31,7 +31,10 @@ FOUNDATION_EXPORT NSNotificationName const LLCLLocationUnRegisterNotificationNam
 
 @interface CLLocationManager (LL_Location)
 
+/// Delegate proxy.
 @property (nonatomic, strong, nullable) LLLocationProxy *LL_delegateProxy;
+
+@property (nonatomic, assign) BOOL LL_isUpdatingLocation;
 
 @end
 

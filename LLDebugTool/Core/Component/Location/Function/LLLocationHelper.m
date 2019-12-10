@@ -66,8 +66,11 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (![filePath.pathExtension isEqualToString:@"json"]) {
         return;
     }
+    
+    // Get name.
+    NSString *name = filePath.lastPathComponent;
         
-    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:5];
+    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:1 name:name];
     [self addRoute:model];
 }
 
@@ -85,7 +88,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
     NSArray *filePaths = [[NSFileManager defaultManager] subpathsAtPath:fileDirectory];
     for (NSString *filePath in filePaths) {
-        [self addMockRouteFile:filePath];
+        [self addMockRouteFile:[fileDirectory stringByAppendingPathComponent:filePath]];
     }
 }
 
@@ -135,15 +138,17 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 #pragma mark - Primary
 - (void)addRoute:(LLLocationMockRouteModel *)model {
     pthread_mutex_lock(&route_mutex_t);
-    if (![self.routes containsObject:model]) {
-        [self.routes addObject:model];
-        _availableRoutes = [self.routes copy];
+    if ([model.name length] && model.isAvailable) {
+        if (![self.routes containsObject:model]) {
+            [self.routes addObject:model];
+            _availableRoutes = [self.routes copy];
+        }
     }
     pthread_mutex_unlock(&route_mutex_t);
 }
 
 - (void)registerManager:(CLLocationManager *)manager {
-    if (!manager || [manager isKindOfClass:[CLLocationManager class]]) {
+    if (!manager || ![manager isKindOfClass:[CLLocationManager class]]) {
         return;
     }
     pthread_mutex_lock(&mutex_t);
@@ -152,7 +157,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)unregisterManager:(CLLocationManager *)manager {
-    if (!manager || [manager isKindOfClass:[CLLocationManager class]]) {
+    if (!manager || ![manager isKindOfClass:[CLLocationManager class]]) {
         return;
     }
     pthread_mutex_lock(&mutex_t);
@@ -185,7 +190,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (location) {
         NSArray *managers = [self allManagers];
         [managers enumerateObjectsUsingBlock:^(CLLocationManager *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj.delegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]) {
+            if (obj.LL_isUpdatingLocation && [obj.delegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]) {
                 [obj.delegate locationManager:obj didUpdateLocations:@[location]];
             }
         }];

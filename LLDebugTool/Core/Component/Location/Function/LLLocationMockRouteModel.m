@@ -37,20 +37,22 @@
 
 @implementation LLLocationMockRouteModel
 
-- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval {
+- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name {
     if (self = [super init]) {
         _locations = [locations copy];
         _timeInterval = timeInterval;
+        _name = [name copy];
         _checkAvailable = YES;
         _isAvailable = YES;
     }
     return self;
 }
 
-- (instancetype)initWithJsonFile:(NSString *)filePath timeInterval:(NSTimeInterval)timeInterval {
+- (instancetype)initWithJsonFile:(NSString *)filePath timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name {
     if (self = [super init]) {
         _filePath = filePath;
         _timeInterval = timeInterval;
+        _name = [name copy];
     }
     return self;
 }

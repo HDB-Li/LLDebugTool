@@ -90,6 +90,7 @@
 "location.lat.lng" = "纬度 & 经度";
 "location.address" = "地址";
 "location.route" = "轨迹";
+"location.select.route" = "请选择路线";
 
 // Screenshot
 "screenshot.image.name" = "输入图片名称";
