@@ -35,7 +35,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 @interface LLLocationHelper ()
 
-@property (nonatomic, strong) NSMutableSet <CLLocationManager *>*managers;
+@property (nonatomic, strong) NSHashTable <CLLocationManager *>*managers;
 
 @property (nonatomic, strong) NSMutableArray <LLLocationMockRouteModel *>*routes;
 
@@ -200,9 +200,9 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 #pragma mark - Getters and setters
-- (NSMutableSet<CLLocationManager *> *)managers {
+- (NSHashTable<CLLocationManager *> *)managers {
     if (!_managers) {
-        _managers = [[NSMutableSet alloc] init];
+        _managers = [NSHashTable weakObjectsHashTable];
     }
     return _managers;
 }
