@@ -24,6 +24,7 @@
 #import <pthread/pthread.h>
 
 #import "LLLocationMockRouteModel.h"
+#import "LLConfig.h"
 
 #import "CLLocationManager+LL_Location.h"
 
@@ -70,7 +71,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     // Get name.
     NSString *name = filePath.lastPathComponent;
         
-    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:1 name:name];
+    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLConfig shared].mockRouteTimeInterval name:name];
     [self addRoute:model];
 }
 

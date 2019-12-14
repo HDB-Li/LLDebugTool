@@ -323,6 +323,11 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign) double mockLocationLongitude;
 
 /**
+ Time interval in mock route. default is kLLDefaultMockRouteTimeInterval.
+ */
+@property (nonatomic, assign) NSTimeInterval mockRouteTimeInterval;
+
+/**
  Add a custom mock route file.
  */
 - (void)addMockRouteFile:(NSString *)filePath;

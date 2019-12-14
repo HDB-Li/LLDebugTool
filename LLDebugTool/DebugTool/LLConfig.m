@@ -111,6 +111,9 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
     
+    // Set location
+    _mockRouteTimeInterval = kLLDefaultMockRouteTimeInterval;
+
     // Click action
     _clickAction = LLDebugToolActionFunction;
     _doubleClickAction = LLDebugToolActionHierarchy;

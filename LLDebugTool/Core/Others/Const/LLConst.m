@@ -50,3 +50,4 @@ CGFloat const kLLGeneralMargin = 10;
 
 double const kLLDefaultMockLocationLatitude = 39.908722;
 double const kLLDefaultMockLocationLongitude = 116.397499;
+NSTimeInterval const kLLDefaultMockRouteTimeInterval = 2;
