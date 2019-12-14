@@ -104,6 +104,9 @@
 
 - (NSDictionary<NSString *,NSString *> *)cookies {
     if (!_cookies) {
+        if (!self.url) {
+            return nil;
+        }
         NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         NSArray<NSHTTPCookie *> *cookies = [cookieStorage cookiesForURL:self.url];
         if (cookies.count) {
