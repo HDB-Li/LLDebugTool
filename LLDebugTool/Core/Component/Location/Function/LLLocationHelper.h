@@ -71,6 +71,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)stopMockRoute;
 
+/**
+ Whether is LLDebugTool's data in file extend.
+ */
++ (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path;
+
+/**
+ Add LLDebugTool extend data to file.
+ */
++ (BOOL)addLLDebugToolExtendDataWithPath:(NSString *)path;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -112,6 +112,49 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [self stopTimer];
 }
 
++ (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
+    return [[self fileExtendedAttributesWithPath:path] objectForKey:@"LLDebugTool"] ? YES : NO;
+}
+
++ (BOOL)addLLDebugToolExtendDataWithPath:(NSString *)path {
+    if ([path length] == 0) {
+        return NO;
+    }
+    
+    NSDictionary *extendedAttributes = [self fileExtendedAttributesWithPath:path];
+    if (extendedAttributes[@"LLDebugTool"]) {
+        return YES;
+    }
+    
+    NSMutableDictionary *newExtendedAttributes = [[NSMutableDictionary alloc] init];
+    if (extendedAttributes) {
+        [newExtendedAttributes addEntriesFromDictionary:extendedAttributes];
+    }
+    
+    NSData *data = [@"LLDebugTool" dataUsingEncoding:NSUTF8StringEncoding];
+    [newExtendedAttributes setObject:data forKey:@"LLDebugTool"];
+    
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
+    if (error) {
+        return NO;
+    }
+    
+    NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
+    if (attributes) {
+        [newAttributes addEntriesFromDictionary:attributes];
+    }
+    [newAttributes setObject:newExtendedAttributes forKey:@"NSFileExtendedAttributes"];
+    
+    if (![[NSFileManager defaultManager] setAttributes:newAttributes ofItemAtPath:path error:&error]) {
+        return NO;
+    }
+    if (error) {
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Life cycle
 - (instancetype)init {
     if (self = [super init]) {
@@ -197,6 +240,25 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     } else {
         [self stopTimer];
     }
+}
+
++ (NSDictionary *)fileExtendedAttributesWithPath:(NSString *)path {
+    if ([path length] == 0) {
+        return nil;
+    }
+    
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
+    if (error || !attributes) {
+        return nil;
+    }
+    
+    NSDictionary *extendedAttributes = attributes[@"NSFileExtendedAttributes"];
+    if (!extendedAttributes || ![extendedAttributes isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    return extendedAttributes;
 }
 
 #pragma mark - Getters and setters
