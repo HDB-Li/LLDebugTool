@@ -33,6 +33,8 @@ static LLFormatterTool *_instance = nil;
 
 @property (nonatomic, strong) NSNumberFormatter *numberFormatter;
 
+@property (nonatomic, strong) NSNumberFormatter *locationFormatter;
+
 @end
 
 @implementation LLFormatterTool
@@ -48,6 +50,10 @@ static LLFormatterTool *_instance = nil;
 
 + (NSString *)formatNumber:(NSNumber *)number {
     return [[self shared] formatNumber:number];
+}
+
++ (NSString *)formatLocation:(NSNumber *)number {
+    return [[self shared] formatLocation:number];
 }
 
 #pragma mark - Primary
@@ -82,6 +88,10 @@ static LLFormatterTool *_instance = nil;
     return [self.numberFormatter stringFromNumber:number];
 }
 
+- (NSString *_Nullable)formatLocation:(NSNumber *)number {
+    return [self.locationFormatter stringFromNumber:number];
+}
+
 #pragma mark - Getters and setters
 - (NSDictionary *)formatters {
     if (!_formatters) {
@@ -109,6 +119,16 @@ static LLFormatterTool *_instance = nil;
         _numberFormatter.usesGroupingSeparator = NO;
     }
     return _numberFormatter;
+}
+
+- (NSNumberFormatter *)locationFormatter {
+    if (!_locationFormatter) {
+        _locationFormatter = [[NSNumberFormatter alloc] init];
+        _locationFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        _locationFormatter.maximumFractionDigits = 6;
+        _locationFormatter.usesGroupingSeparator = NO;
+    }
+    return _locationFormatter;
 }
 
 @end

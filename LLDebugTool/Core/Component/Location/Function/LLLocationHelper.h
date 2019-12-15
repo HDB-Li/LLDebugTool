@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Stop record route.
  */
-- (void)stopRecordRoute;
+- (NSString *_Nullable)stopRecordRoute;
 
 /**
  Whether is LLDebugTool's data in file extend.

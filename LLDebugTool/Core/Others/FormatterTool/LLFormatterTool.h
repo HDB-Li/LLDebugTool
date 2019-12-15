@@ -65,7 +65,15 @@ typedef NS_ENUM(NSUInteger, FormatterToolDateStyle) {
  @param number NSNumber.
  @return Format string.
  */
-+ (NSString *)formatNumber:(NSNumber *)number;
++ (NSString *_Nullable)formatNumber:(NSNumber *)number;
+
+/**
+Format a CGFloat value with maximumFractionDigits = 6.
+
+@param number NSNumber.
+@return Format string.
+*/
++ (NSString *_Nullable)formatLocation:(NSNumber *)number;
 
 @end
 

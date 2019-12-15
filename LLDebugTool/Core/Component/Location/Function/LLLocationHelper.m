@@ -25,6 +25,7 @@
 
 #import "LLLocationMockRouteModel.h"
 #import "LLInternalMacros.h"
+#import "LLFormatterTool.h"
 #import "LLToastUtils.h"
 #import "LLConfig.h"
 
@@ -131,8 +132,19 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     return YES;
 }
 
-- (void)stopRecordRoute {
-    
+- (NSString *)stopRecordRoute {
+    [self.locationManager stopUpdatingLocation];
+    if (self.locations.count == 0) {
+        return nil;
+    }
+    NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
+    json[@"key"] = @"LLDebugTool";
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    for (CLLocation *location in self.locations) {
+        NSMutableDictionary *locationJson = [[NSMutableDictionary alloc] init];
+        locationJson[@"lng"] = [LLFormatterTool formatLocation:@(location.coordinate.longitude)];
+        locationJson[@"lat"] = [LLFormatterTool formatLocation:@(location.coordinate.latitude)];
+    }
 }
 
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
