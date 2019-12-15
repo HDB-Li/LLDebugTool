@@ -95,6 +95,9 @@
 "location.route.file.error" = "路线文件不可用";
 "location.start.route" = "开始模拟路线定位";
 "location.stop.route" = "结束模拟路线定位";
+"location.record.route" = "记录轨迹";
+"location.record.route.alert" = "开始记录轨迹会停止模拟定位和模拟轨迹，确定开始记录轨迹么？";
+"location.record.route.recording" = "记录轨迹中";
 
 // Screenshot
 "screenshot.image.name" = "输入图片名称";

@@ -55,6 +55,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 @property (nonatomic, strong) LLTitleSwitchCellView *recordRouteSwitch;
 
+@property (nonatomic, strong) NSTimer *recordRouteTimer;
+
 @property (nonatomic, strong) MKMapView *mapView;
 
 @property (nonatomic, strong) LLAnnotation *annotation;
@@ -84,6 +86,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.view addSubview:self.addressDescriptView];
     [self.view addSubview:self.mockRouteSwitch];
     [self.view addSubview:self.routeDescriptView];
+    [self.view addSubview:self.recordRouteSwitch];
     [self.view addSubview:self.mapView];
     
     [self addMockLocationSwitchConstraints];
@@ -91,13 +94,19 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self addAddressDescriptViewConstraints];
     [self addMockRouteSwitchConstraints];
     [self addRouteDescriptViewConstraints];
+    [self addRecordRouteSwitchConstraints];
     [self loadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self stopRecordRouteTimer];
 }
 
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = CGRectMake(0, self.routeDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.routeDescriptView.LL_bottom - kLLGeneralMargin);
+    self.mapView.frame = CGRectMake(0, self.recordRouteSwitch.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.recordRouteSwitch.LL_bottom - kLLGeneralMargin);
 }
 
 #pragma mark - MKMapViewDelegate
@@ -173,6 +182,14 @@ static NSString *const kAnnotationID = @"AnnotationID";
     NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.routeDescriptView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.routeDescriptView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
     self.routeDescriptView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.routeDescriptView.superview addConstraints:@[top, left, right]];
+}
+
+- (void)addRecordRouteSwitchConstraints {
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.recordRouteSwitch attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.self.routeDescriptView attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.recordRouteSwitch attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.recordRouteSwitch.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.recordRouteSwitch attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.recordRouteSwitch.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    self.recordRouteSwitch.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.recordRouteSwitch.superview addConstraints:@[top, left, right]];
 }
 
 - (void)setUpCoordinate:(CLLocationCoordinate2D)coordinate automicSetRegion:(BOOL)automicSetRegion placemark:(CLPlacemark *)placemark {
@@ -298,6 +315,57 @@ static NSString *const kAnnotationID = @"AnnotationID";
     }
 }
 
+- (void)updateRecordRouteSwitchValue:(BOOL)isOn {
+    if (isOn) {
+        if ([LLLocationHelper shared].isMockRoute || [LLLocationHelper shared].enable) {
+            __weak typeof(self) weakSelf = self;
+            [self LL_showAlertControllerWithMessage:LLLocalizedString(@"location.record.route.alert")  handler:^(NSInteger action) {
+                if (action == 1) {
+                    [weakSelf startRecordRoute];
+                } else {
+                    [weakSelf stopRecordRoute];
+                }
+            }];
+        } else {
+            [self startRecordRoute];
+        }
+    } else {
+        [self stopRecordRoute];
+    }
+}
+
+- (void)startRecordRoute {
+    self.recordRouteSwitch.on = YES;
+    self.recordRouteSwitch.detailTitle = LLLocalizedString(@"location.record.route.recording");
+    [self startRecordRouteTimer];
+}
+
+- (void)stopRecordRoute {
+    self.recordRouteSwitch.on = NO;
+    self.recordRouteSwitch.detailTitle = nil;
+    [self stopRecordRouteTimer];
+}
+
+- (void)startRecordRouteTimer {
+    [self stopRecordRouteTimer];
+    self.recordRouteTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(recordRouteTimerAction:) userInfo:nil repeats:YES];
+}
+
+- (void)stopRecordRouteTimer {
+    if ([self.recordRouteTimer isValid]) {
+        [self.recordRouteTimer invalidate];
+        self.recordRouteTimer = nil;
+    }
+}
+
+- (void)recordRouteTimerAction:(NSTimer *)timer {
+    if ([self.recordRouteSwitch.detailTitle hasSuffix:@"..."]) {
+        self.recordRouteSwitch.detailTitle = [self.recordRouteSwitch.detailTitle substringToIndex:self.recordRouteSwitch.detailTitle.length - 3];
+    } else {
+        self.recordRouteSwitch.detailTitle = [self.recordRouteSwitch.detailTitle stringByAppendingString:@"."];
+    }
+}
+
 - (void)loadData {
     CLLocationCoordinate2D mockCoordinate = CLLocationCoordinate2DMake([LLConfig shared].mockLocationLatitude, [LLConfig shared].mockLocationLongitude);
     BOOL automicSetRegion = YES;
@@ -414,13 +482,27 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _routeDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
         _routeDescriptView.title = LLLocalizedString(@"location.route");
         _routeDescriptView.detailTitle = [LLSettingManager shared].mockRouteFileName ? : LLLocalizedString(@"location.select.route");
-        [_routeDescriptView needFullLine];
+        [_routeDescriptView needLine];
         __weak typeof(self) weakSelf = self;
         _routeDescriptView.block = ^{
             [weakSelf routeDescriptViewDidSelect];
         };
     }
     return _routeDescriptView;
+}
+
+- (LLTitleSwitchCellView *)recordRouteSwitch {
+    if (!_recordRouteSwitch) {
+        _recordRouteSwitch = [[LLTitleSwitchCellView alloc] init];
+        _recordRouteSwitch.backgroundColor = [LLThemeManager shared].containerColor;
+        _recordRouteSwitch.title = LLLocalizedString(@"location.record.route");
+        __weak typeof(self) weakSelf = self;
+        _recordRouteSwitch.changePropertyBlock = ^(BOOL isOn) {
+            [weakSelf updateRecordRouteSwitchValue:isOn];
+        };
+        [_recordRouteSwitch needFullLine];
+    }
+    return _recordRouteSwitch;
 }
 
 - (void)setRouteModel:(LLLocationMockRouteModel *)routeModel {

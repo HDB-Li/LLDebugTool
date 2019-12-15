@@ -95,6 +95,9 @@
 "location.route.file.error" = "Location route file is unavailable";
 "location.start.route" = "Start mock route";
 "location.stop.route" = "Stop mock route";
+"location.record.route" = "Record Route";
+"location.record.route.alert" = "Start record route will stop mock location and mock route, are you sure to start record route?";
+"location.record.route.recording" = "Recording location";
 
 // Screenshot
 "screenshot.image.name" = "Enter the image name";
