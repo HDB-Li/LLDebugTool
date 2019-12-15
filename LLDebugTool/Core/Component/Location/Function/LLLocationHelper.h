@@ -72,6 +72,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)stopMockRoute;
 
 /**
+ Start record route.
+ */
+- (BOOL)startRecordRoute;
+
+/**
+ Stop record route.
+ */
+- (void)stopRecordRoute;
+
+/**
  Whether is LLDebugTool's data in file extend.
  */
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path;

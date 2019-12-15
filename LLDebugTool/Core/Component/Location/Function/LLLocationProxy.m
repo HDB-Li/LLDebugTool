@@ -41,13 +41,14 @@
         if ([LLLocationHelper shared].isMockRoute) {
             CLLocation *location = [locations firstObject];
             // Mocking route.
-            if (location && !location.LL_routeLocation) {
+            if (location && !location.LL_isMock) {
                 // Real location, ignore.
                 return;
             }
         } else if ([LLLocationHelper shared].enable) {
             // Mock location.
             CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
+            mockLocation.LL_mock = YES;
             locations = @[mockLocation];
         }
         

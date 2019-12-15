@@ -26,7 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CLLocation (LL_Location)
 
-@property (nonatomic, assign) BOOL LL_routeLocation;
+/// Whether is mock
+@property (nonatomic, assign, getter=LL_isMock) BOOL LL_mock;
 
 @end
 

@@ -25,11 +25,11 @@
 
 @implementation CLLocation (LL_Location)
 
-- (void)setLL_routeLocation:(BOOL)LL_routeLocation {
-    objc_setAssociatedObject(self, @selector(LL_routeLocation), @(LL_routeLocation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setLL_mock:(BOOL)LL_mock {
+    objc_setAssociatedObject(self, @selector(LL_isMock), @(LL_mock), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)LL_routeLocation {
+- (BOOL)LL_isMock {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 

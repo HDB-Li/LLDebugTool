@@ -29,6 +29,7 @@
 #import "LLConfig.h"
 
 #import "CLLocationManager+LL_Location.h"
+#import "CLLocation+LL_Location.h"
 
 static LLLocationHelper *_instance = nil;
 
@@ -36,7 +37,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
-@interface LLLocationHelper ()
+@interface LLLocationHelper () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) NSHashTable <CLLocationManager *>*managers;
 
@@ -45,6 +46,10 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 @property (nonatomic, strong) LLLocationMockRouteModel *routeModel;
 
 @property (nonatomic, strong) NSTimer *mockRouteTimer;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, strong) NSMutableArray <CLLocation *>*locations;
 
 @end
 
@@ -117,6 +122,19 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.stop.route")];
 }
 
+- (BOOL)startRecordRoute {
+    if (![CLLocationManager locationServicesEnabled]) {
+        return NO;
+    }
+    [self.locations removeAllObjects];
+    [self.locationManager startUpdatingLocation];
+    return YES;
+}
+
+- (void)stopRecordRoute {
+    
+}
+
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
     return [[self fileExtendedAttributesWithPath:path] objectForKey:@"LLDebugTool"] ? YES : NO;
 }
@@ -183,6 +201,12 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [self unregisterManager:notification.object];
 }
 
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = [locations firstObject];
+    [self.locations addObject:location];
+}
+
 #pragma mark - Primary
 - (void)addRoute:(LLLocationMockRouteModel *)model {
     pthread_mutex_lock(&route_mutex_t);
@@ -196,7 +220,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)registerManager:(CLLocationManager *)manager {
-    if (!manager || ![manager isKindOfClass:[CLLocationManager class]]) {
+    if (!manager || ![manager isKindOfClass:[CLLocationManager class]] || manager == _locationManager) {
         return;
     }
     pthread_mutex_lock(&mutex_t);
@@ -205,7 +229,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)unregisterManager:(CLLocationManager *)manager {
-    if (!manager || ![manager isKindOfClass:[CLLocationManager class]]) {
+    if (!manager || ![manager isKindOfClass:[CLLocationManager class]] || manager == _locationManager) {
         return;
     }
     pthread_mutex_lock(&mutex_t);
@@ -279,6 +303,21 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
         _routes = [[NSMutableArray alloc] init];
     }
     return _routes;
+}
+
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+    }
+    return _locationManager;
+}
+
+- (NSMutableArray<CLLocation *> *)locations {
+    if (!_locations) {
+        _locations = [[NSMutableArray alloc] init];
+    }
+    return _locations;
 }
 
 @end
