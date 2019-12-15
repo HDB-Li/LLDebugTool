@@ -75,6 +75,7 @@
 "empty.folder" = "Empty folder";
 "copy.path.suceess" = "Copy File Path Success\n%@";
 "remove.fail" = "Remove data failed";
+"unknown" = "Unknown";
 
 // Network
 "network.detail" = "Network Details";
@@ -90,7 +91,10 @@
 "location.lat.lng" = "Lat & Lng";
 "location.address" = "Address";
 "location.route" = "Routes";
-"location.select.route" = "Please select the route";
+"location.select.route" = "Please select route";
+"location.route.file.error" = "Location route file is unavailable";
+"location.start.route" = "Start mock route";
+"location.stop.route" = "Stop mock route";
 
 // Screenshot
 "screenshot.image.name" = "Enter the image name";

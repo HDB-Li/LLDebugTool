@@ -32,6 +32,7 @@
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLAnnotation.h"
+#import "LLToastUtils.h"
 #import "LLConfig.h"
 #import "LLConst.h"
 
@@ -52,6 +53,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 @property (nonatomic, strong) LLDetailTitleSelectorCellView *routeDescriptView;
 
+@property (nonatomic, strong) LLTitleSwitchCellView *recordRouteSwitch;
+
 @property (nonatomic, strong) MKMapView *mapView;
 
 @property (nonatomic, strong) LLAnnotation *annotation;
@@ -63,6 +66,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 @property (nonatomic, assign) BOOL isAddAnnotation;
 
 @property (nonatomic, assign) BOOL automicSetRegion;
+
+@property (nonatomic, strong) LLLocationMockRouteModel *routeModel;
 
 @end
 
@@ -269,11 +274,28 @@ static NSString *const kAnnotationID = @"AnnotationID";
 }
 
 - (void)updateMockRouteSwitchValue:(BOOL)isOn {
-    
+    if (isOn) {
+        if (self.routeModel) {
+            [[LLLocationHelper shared] startMockRoute:self.routeModel];
+        } else {
+            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.select.route")];
+            self.mockRouteSwitch.on = NO;
+        }
+    } else {
+        [[LLLocationHelper shared] stopMockRoute];
+    }
 }
 
 - (void)selectMockRoute:(LLLocationMockRouteModel *)model {
-    [[LLLocationHelper shared] startMockRoute:model];
+    if (model.isAvailable) {
+        self.routeModel = model;
+        [[LLLocationHelper shared] startMockRoute:model];
+        self.mockRouteSwitch.on = YES;
+        [LLSettingManager shared].mockRouteFilePath = model.filePath;
+        [LLSettingManager shared].mockRouteFileName = model.name;
+    } else {
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.route.file.error")];
+    }
 }
 
 - (void)loadData {
@@ -391,6 +413,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _routeDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
         _routeDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
         _routeDescriptView.title = LLLocalizedString(@"location.route");
+        _routeDescriptView.detailTitle = [LLSettingManager shared].mockRouteFileName ? : LLLocalizedString(@"location.select.route");
         [_routeDescriptView needFullLine];
         __weak typeof(self) weakSelf = self;
         _routeDescriptView.block = ^{
@@ -398,6 +421,13 @@ static NSString *const kAnnotationID = @"AnnotationID";
         };
     }
     return _routeDescriptView;
+}
+
+- (void)setRouteModel:(LLLocationMockRouteModel *)routeModel {
+    if (_routeModel != routeModel) {
+        _routeModel = routeModel;
+        self.routeDescriptView.detailTitle = routeModel.name ?: LLLocalizedString(@"unknown");
+    }
 }
 
 - (MKMapView *)mapView {

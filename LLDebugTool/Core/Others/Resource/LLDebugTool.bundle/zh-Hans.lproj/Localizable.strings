@@ -75,6 +75,7 @@
 "empty.folder" = "空文件夹";
 "copy.path.suceess" = "复制文件路径成功\n%@";
 "remove.fail" = "删除数据失败";
+"unknown" = "未知";
 
 // Network
 "network.detail" = "网络详情";
@@ -91,6 +92,9 @@
 "location.address" = "地址";
 "location.route" = "轨迹";
 "location.select.route" = "请选择路线";
+"location.route.file.error" = "路线文件不可用";
+"location.start.route" = "开始模拟路线定位";
+"location.stop.route" = "结束模拟路线定位";
 
 // Screenshot
 "screenshot.image.name" = "输入图片名称";

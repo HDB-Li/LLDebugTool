@@ -48,6 +48,8 @@ static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
 static NSString *mockLocationEnableKey = @"mockLocationEnableKey";
 static NSString *mockLocationLatitudeKey = @"mockLocationLatitudeKey";
 static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
+static NSString *mockRouteFilePathKey = @"mockRouteFilePathKey";
+static NSString *mockRouteFileNameKey = @"mockRouteFileNameKey";
 
 @implementation LLSettingManager
 
@@ -231,6 +233,22 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
 
 - (NSNumber *)mockLocationLongitude {
     return [NSUserDefaults LL_numberForKey:mockLocationLongitudeKey];
+}
+
+- (void)setMockRouteFilePath:(NSString *)mockRouteFilePath {
+    [NSUserDefaults LL_setString:mockRouteFilePath forKey:mockRouteFilePathKey];
+}
+
+- (NSString *)mockRouteFilePath {
+    return [NSUserDefaults LL_stringForKey:mockRouteFilePathKey];
+}
+
+- (void)setMockRouteFileName:(NSString *)mockRouteFileName {
+    [NSUserDefaults LL_setString:mockRouteFileName forKey:mockRouteFileNameKey];
+}
+
+- (NSString *)mockRouteFileName {
+    return [NSUserDefaults LL_stringForKey:mockRouteFileNameKey];
 }
 
 @end

@@ -24,6 +24,8 @@
 #import <pthread/pthread.h>
 
 #import "LLLocationMockRouteModel.h"
+#import "LLInternalMacros.h"
+#import "LLToastUtils.h"
 #import "LLConfig.h"
 
 #import "CLLocationManager+LL_Location.h"
@@ -69,7 +71,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
     
     // Get name.
-    NSString *name = filePath.lastPathComponent;
+    NSString *name = [filePath.lastPathComponent stringByDeletingPathExtension];
         
     LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLConfig shared].mockRouteTimeInterval name:name];
     [self addRoute:model];
@@ -105,12 +107,14 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     self.routeModel = model;
     _isMockRoute = YES;
     [self startTimer];
+    [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.start.route")];
 }
 
 - (void)stopMockRoute {
     [self.routeModel reload];
     _isMockRoute = NO;
     [self stopTimer];
+    [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.stop.route")];
 }
 
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
@@ -182,7 +186,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 #pragma mark - Primary
 - (void)addRoute:(LLLocationMockRouteModel *)model {
     pthread_mutex_lock(&route_mutex_t);
-    if ([model.name length] && model.isAvailable) {
+    if ([model.name length]) {
         if (![self.routes containsObject:model]) {
             [self.routes addObject:model];
             _availableRoutes = [self.routes copy];
