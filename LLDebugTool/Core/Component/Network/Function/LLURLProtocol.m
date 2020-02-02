@@ -114,11 +114,11 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     if (data == nil) {
         NSInputStream *stream = self.request.HTTPBodyStream;
         if (stream) {
-            data = [stream LL_toData];
+            data = [stream LL_data];
         }
     }
     if (data && [data length] > 0) {
-        model.requestBody = [data LL_toJsonString];
+        model.requestBody = [data LL_jsonString];
     }
     
     // Response

@@ -64,9 +64,9 @@
         NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfURL:self.fileURL];
         NSArray *array = [[NSArray alloc] initWithContentsOfURL:self.fileURL];
         if (dic != nil) {
-            string = [dic LL_toJsonString];
+            string = [dic LL_jsonString];
         } else if (array != nil) {
-            string = [array LL_toJsonString];
+            string = [array LL_jsonString];
         }
         if (!string) {
             [LLTool log:@"Load plist failed"];

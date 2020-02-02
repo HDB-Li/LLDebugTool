@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Json Dictionary.
  */
-- (NSDictionary *_Nullable)LL_toJsonDictionary;
+- (NSDictionary *_Nullable)LL_jsonDictionary;
 
 /**
  Convert to json array.

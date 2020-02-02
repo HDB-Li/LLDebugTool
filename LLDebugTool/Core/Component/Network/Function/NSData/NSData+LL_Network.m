@@ -25,7 +25,7 @@
 
 @implementation NSData (LL_Network)
 
-- (NSString *)LL_toJsonString {
+- (NSString *)LL_jsonString {
     
     NSString *string = nil;
     
