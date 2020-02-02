@@ -37,7 +37,7 @@
     [super viewDidLoad];
     self.navigationBar.translucent = YES;
     self.navigationBar.translucent = YES;
-    [self themeColorChanged];
+    [self updateNavigationBarTheme];
     [self addObservers];
 }
 
@@ -90,9 +90,17 @@
 }
 
 - (void)themeColorChanged {
+    [self updateNavigationBarTheme];
+    [self updateStatusBarTheme];
+}
+
+- (void)updateNavigationBarTheme {
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
     self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
     self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
+}
+
+- (void)updateStatusBarTheme {
     [self setNeedsStatusBarAppearanceUpdate];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
