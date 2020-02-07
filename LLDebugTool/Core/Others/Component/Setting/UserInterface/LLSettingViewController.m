@@ -179,11 +179,10 @@
 }
 
 - (void)showEntryWindowStyleAlert {
-#ifdef __IPHONE_13_0
-    NSInteger count = 4;
-#else
     NSInteger count = 6;
-#endif
+    if (@available(iOS 13.0, *)) {
+        count = 4;
+    }
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < count; i++) {
         NSString *action = [LLConfigHelper entryWindowStyleDescription:i];

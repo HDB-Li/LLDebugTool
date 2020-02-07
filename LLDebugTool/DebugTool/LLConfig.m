@@ -185,6 +185,13 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 }
 
 - (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
+    if (@available(iOS 13.0, *)) {
+        if (entryStyle == LLConfigEntryWindowStyleNetBar) {
+            entryStyle = LLConfigEntryWindowStyleLeading;
+        } else if (entryStyle == LLConfigEntryWindowStylePowerBar) {
+            entryStyle = LLConfigEntryWindowStyleTrailing;
+        }
+    }
     if (_entryWindowStyle != entryStyle) {
         _entryWindowStyle = entryStyle;
         [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];

@@ -345,7 +345,6 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTrailing";
                 }
                     break;
-#ifndef __IPHONE_13_0
                 case LLConfigEntryWindowStylePowerBar:{
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
                 }
@@ -354,7 +353,6 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
                 }
                     break;
-#endif
             }
         }
     } else if (indexPath.section == 1) {
@@ -462,6 +460,10 @@ static NSString *const kCellID = @"cellID";
         return @"Short Cut";
     }
     return nil;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
 }
 
 @end

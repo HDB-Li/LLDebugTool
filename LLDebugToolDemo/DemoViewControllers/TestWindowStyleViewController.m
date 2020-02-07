@@ -21,11 +21,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#ifdef __IPHONE_13_0
-    return 4;
-#else
+    if (@available(iOS 13.0, *)) {
+        return 4;
+    }
     return 6;
-#endif
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -43,14 +42,12 @@
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Use \"Trailing\"";
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-#ifndef __IPHONE_13_0
     } else if (indexPath.row == 4) {
         cell.textLabel.text = @"Use \"NetBar\"";
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 5) {
         cell.textLabel.text = @"Use \"PowerBar\"";
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-#endif
     }
     return cell;
 }
@@ -90,19 +87,11 @@
 }
 
 - (void)testNetBarWindowStyle {
-#ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
-#else
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
-#endif
 }
 
 - (void)testPowerBarWindowStyle {
-#ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
-#else
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
-#endif
 }
 
 @end

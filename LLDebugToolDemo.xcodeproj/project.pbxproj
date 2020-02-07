@@ -270,6 +270,8 @@
 		C4CF72F0239AB35B00B2C4DC /* LLDebugTool.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C4CF72EF239AB35B00B2C4DC /* LLDebugTool.jpeg */; };
 		C4CF72F3239AB3F100B2C4DC /* LLSandboxImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F2239AB3F100B2C4DC /* LLSandboxImagePreviewController.m */; };
 		C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F5239AB41400B2C4DC /* LLSandboxPreviewController.m */; };
+		C4D164AB23EAECE9007A141E /* LLEntryStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */; };
+		C4D51D6B23E9A8A8009DAB1A /* LLMoveWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */; };
 		C4E5AAB4239562BF00132916 /* LLDebugTool.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C4E5AAB3239562BE00132916 /* LLDebugTool.pdf */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
@@ -825,6 +827,10 @@
 		C4CF72F2239AB3F100B2C4DC /* LLSandboxImagePreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxImagePreviewController.m; sourceTree = "<group>"; };
 		C4CF72F4239AB41400B2C4DC /* LLSandboxPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxPreviewController.h; sourceTree = "<group>"; };
 		C4CF72F5239AB41400B2C4DC /* LLSandboxPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxPreviewController.m; sourceTree = "<group>"; };
+		C4D164A923EAECE9007A141E /* LLEntryStyleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryStyleModel.h; sourceTree = "<group>"; };
+		C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryStyleModel.m; sourceTree = "<group>"; };
+		C4D51D6923E9A8A8009DAB1A /* LLMoveWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMoveWindow.h; sourceTree = "<group>"; };
+		C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMoveWindow.m; sourceTree = "<group>"; };
 		C4E5AAB3239562BE00132916 /* LLDebugTool.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = LLDebugTool.pdf; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1030,6 +1036,7 @@
 		364CF3D6232656FC000B513F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C4D51D6823E9A88D009DAB1A /* MoveWindow */,
 				36C9F804237E84910021BA2D /* CellView */,
 				36B5EC7C2340512400736213 /* AnimateView */,
 				36DA3B872340508D0081BCC6 /* InfoView */,
@@ -2262,6 +2269,8 @@
 			children = (
 				C4B4E41522F9C90900F70277 /* LLEntryWindow.h */,
 				C4B4E41622F9C90900F70277 /* LLEntryWindow.m */,
+				C4D164A923EAECE9007A141E /* LLEntryStyleModel.h */,
+				C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */,
 				36F30D982301699E00976937 /* LLEntryViewController.h */,
 				36F30D992301699E00976937 /* LLEntryViewController.m */,
 				36BC8E23231D052300E4D29B /* LLEntryView.h */,
@@ -2331,6 +2340,15 @@
 				C4B4E43822F9C90900F70277 /* LLTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		C4D51D6823E9A88D009DAB1A /* MoveWindow */ = {
+			isa = PBXGroup;
+			children = (
+				C4D51D6923E9A8A8009DAB1A /* LLMoveWindow.h */,
+				C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */,
+			);
+			path = MoveWindow;
 			sourceTree = "<group>";
 		};
 		E99ABDA4555CAF38A3D78EE6 /* Pods */ = {
@@ -2591,6 +2609,7 @@
 				C49856B122ED8DEC00E9FBE2 /* LLConfig.m in Sources */,
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C49856F822EDB22100E9FBE2 /* LLSandboxWindow.m in Sources */,
+				C4D164AB23EAECE9007A141E /* LLEntryStyleModel.m in Sources */,
 				C4B4E44822F9C90900F70277 /* NSURLSessionConfiguration+LL_Network.m in Sources */,
 				36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */,
 				C4B4E46D22F9C90900F70277 /* LLComponentWindow.m in Sources */,
@@ -2634,6 +2653,7 @@
 				3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
 				36059418237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m in Sources */,
+				C4D51D6B23E9A8A8009DAB1A /* LLMoveWindow.m in Sources */,
 				3624D3FF2383F72B00DBE692 /* MKMapView+LL_Location.m in Sources */,
 				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,

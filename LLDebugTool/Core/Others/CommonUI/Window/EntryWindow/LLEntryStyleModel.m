@@ -1,5 +1,5 @@
 //
-//  LLEntryViewController.h
+//  LLEntryStyleModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,28 +21,39 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLEntryStyleModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
+#import "LLConfig.h"
 
-@class LLEntryViewController;
-@class LLEntryStyleModel;
+@implementation LLEntryStyleModel
 
-/// Entry view controller delegate.
-@protocol LLEntryViewControllerDelegate <NSObject>
-
-/// Need update window size.
-/// @param viewController Current view controller.
-/// @param style New style
-- (void)LLEntryViewController:(LLEntryViewController *)viewController style:(LLEntryStyleModel *)style;
+- (instancetype)initWithWindowStyle:(LLConfigEntryWindowStyle)windowStyle moveableRect:(CGRect)moveableRect frame:(CGRect)frame {
+    if (self = [super init]) {
+        _windowStyle = windowStyle;
+        _moveableRect = moveableRect;
+        _frame = frame;
+        _moveable = YES;
+        _inactiveAlpha = 1.0;
+        switch (windowStyle) {
+            case LLConfigEntryWindowStyleBall: {
+                _overflow = YES;
+                _inactiveAlpha = [LLConfig shared].inactiveAlpha;
+            }
+                break;
+            case LLConfigEntryWindowStyleTitle: {
+                _inactiveAlpha = [LLConfig shared].inactiveAlpha;
+            }
+                break;
+            case LLConfigEntryWindowStyleNetBar:
+            case LLConfigEntryWindowStylePowerBar: {
+                _moveable = NO;
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    return self;
+}
 
 @end
-
-/// Entry view controller.
-@interface LLEntryViewController : LLBaseViewController
-
-@property (nonatomic, weak, nullable) id<LLEntryViewControllerDelegate> delegate;
-
-@end
-
-NS_ASSUME_NONNULL_END

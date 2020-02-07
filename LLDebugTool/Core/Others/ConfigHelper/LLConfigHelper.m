@@ -116,12 +116,10 @@
             return @"Leading";
         case LLConfigEntryWindowStyleTrailing:
             return @"Trailing";
-#ifndef __IPHONE_13_0
         case LLConfigEntryWindowStyleNetBar:
             return @"Net Bar";
         case LLConfigEntryWindowStylePowerBar:
             return @"Power Bar";
-#endif
     }
 }
 

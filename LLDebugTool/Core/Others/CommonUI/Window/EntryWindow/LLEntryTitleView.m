@@ -43,7 +43,6 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    self.inactiveAlpha = 1;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];

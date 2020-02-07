@@ -1,5 +1,5 @@
 //
-//  LLEntryViewController.h
+//  LLMoveWindow.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,27 +21,33 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLEntryViewController;
-@class LLEntryStyleModel;
+@interface LLMoveWindow : LLBaseWindow
 
-/// Entry view controller delegate.
-@protocol LLEntryViewControllerDelegate <NSObject>
+/// Whether over flow.
+@property (nonatomic, assign, getter=isOverflow) BOOL overflow;
 
-/// Need update window size.
-/// @param viewController Current view controller.
-/// @param style New style
-- (void)LLEntryViewController:(LLEntryViewController *)viewController style:(LLEntryStyleModel *)style;
+/// Whether is moved.
+@property (nonatomic, assign, readonly, getter=isMoved) BOOL moved;
 
-@end
+/// Whether moveable.
+@property (nonatomic, assign, getter=isMoveable) BOOL moveable;
 
-/// Entry view controller.
-@interface LLEntryViewController : LLBaseViewController
+/// Moveable range.
+@property (nonatomic, assign) CGRect moveableRect;
 
-@property (nonatomic, weak, nullable) id<LLEntryViewControllerDelegate> delegate;
+/// Will move.
+/// @param sender Sender
+/// @param offsetPoint Point.
+- (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
+
+/// Did move
+/// @param sender Sender
+/// @param offsetPoint Point.
+- (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint;
 
 @end
 

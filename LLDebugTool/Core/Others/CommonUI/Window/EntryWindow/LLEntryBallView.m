@@ -41,7 +41,6 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    self.overflow = YES;
     
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];

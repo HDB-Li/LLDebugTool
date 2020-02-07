@@ -21,28 +21,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLMoveView.h"
+#import "LLBaseView.h"
+
+#import "LLEntryStyleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Entry view.
-@interface LLEntryView : LLMoveView
-
-/// is active
-@property (nonatomic, assign, readonly, getter=isActive) BOOL active;
+@interface LLEntryView : LLBaseView
 
 /// Content view.
 @property (nonatomic, strong, readonly) UIView *contentView;
 
-/// Inactive alpha.
-@property (nonatomic, assign) CGFloat inactiveAlpha;
-
-/// Become active in animate.
-- (void)animatedBecomeActive;
-
-/// Resign active.
-/// @param animated Animated.
-- (void)resignActive:(BOOL)animated;
+/// Style model.
+@property (nonatomic, strong) LLEntryStyleModel *styleModel;
 
 @end
 

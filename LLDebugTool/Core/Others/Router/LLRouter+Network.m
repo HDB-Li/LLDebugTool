@@ -37,7 +37,6 @@
     }
     UIView * statusBarModern = [LLTool getUIStatusBarModern];
     if (@available(iOS 13.0, *)) {
-#ifdef __IPHONE_13_0
         if (statusBarModern) {
             // _UIStatusBarDataCellularEntry
             id currentData = [[statusBarModern valueForKeyPath:@"_statusBar"] valueForKeyPath:@"currentData"];
@@ -68,7 +67,6 @@
                 }
             }
         }
-#endif
     } else {
         if ([statusBarModern isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")]) {
             // For iPhoneX

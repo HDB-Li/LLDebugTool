@@ -75,13 +75,8 @@ typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
     LLConfigEntryWindowStyleTitle = 1,
     LLConfigEntryWindowStyleLeading = 2,
     LLConfigEntryWindowStyleTrailing = 3,
-#ifdef __IPHONE_13_0
-    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 2,
-    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 3,
-#else
-    LLConfigEntryWindowStyleNetBar = 4,
-    LLConfigEntryWindowStylePowerBar = 5,
-#endif
+    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 4,
+    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 5,
     LLConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLConfigEntryWindowStyleBall") = 0,
 };
 

@@ -1,5 +1,5 @@
 //
-//  LLEntryViewController.h
+//  LLEntryStyleModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,27 +21,38 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseViewController.h"
+#import "LLBaseModel.h"
+
+#import <UIKit/UIKit.h>
+
+#import "LLConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LLEntryViewController;
-@class LLEntryStyleModel;
+@interface LLEntryStyleModel : LLBaseModel
 
-/// Entry view controller delegate.
-@protocol LLEntryViewControllerDelegate <NSObject>
+@property (nonatomic, assign) LLConfigEntryWindowStyle windowStyle;
 
-/// Need update window size.
-/// @param viewController Current view controller.
-/// @param style New style
-- (void)LLEntryViewController:(LLEntryViewController *)viewController style:(LLEntryStyleModel *)style;
+/// Whether over flow.
+@property (nonatomic, assign, getter=isOverflow) BOOL overflow;
 
-@end
+/// Whether moveable.
+@property (nonatomic, assign, getter=isMoveable) BOOL moveable;
 
-/// Entry view controller.
-@interface LLEntryViewController : LLBaseViewController
+/// Moveable range.
+@property (nonatomic, assign) CGRect moveableRect;
 
-@property (nonatomic, weak, nullable) id<LLEntryViewControllerDelegate> delegate;
+/// Inactive alpha.
+@property (nonatomic, assign) CGFloat inactiveAlpha;
+
+/// Origin frame.
+@property (nonatomic, assign) CGRect frame;
+
+/// Initial method
+/// @param windowStyle Window style.
+/// @param moveableRect Moveable rect.
+/// @param frame Origin frame.
+- (instancetype)initWithWindowStyle:(LLConfigEntryWindowStyle)windowStyle moveableRect:(CGRect)moveableRect frame:(CGRect)frame;
 
 @end
 
