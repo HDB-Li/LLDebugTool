@@ -176,7 +176,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
             }
                 break;
             case LLConfigColorStyleCustom: {
-                [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property."];
+                [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property"];
                 [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
             }
                 break;

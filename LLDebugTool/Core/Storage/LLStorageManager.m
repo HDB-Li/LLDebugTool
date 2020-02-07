@@ -83,7 +83,7 @@ static NSString *const kDatabaseVersion = @"1";
         [_dbQueue inDatabase:^(FMDatabase * db) {
             ret = [db executeUpdate:[self createTableSQLFromClass:cls]];
             if (!ret) {
-                [LLTool log:[NSString stringWithFormat:@"Create %@ table failed.",NSStringFromClass(cls)]];
+                [LLTool log:[NSString stringWithFormat:@"Create %@ table failed",NSStringFromClass(cls)]];
             }
         }];
         if (ret) {
@@ -139,7 +139,7 @@ static NSString *const kDatabaseVersion = @"1";
     // Check datas.
     if (!cls || ![self isRegisteredClass:cls]) {
         if (cls) {
-            [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+            [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister",NSStringFromClass(cls)]];
         }
         [self performArrayComplete:complete param:@[] synchronous:synchronous];
         return;
@@ -208,7 +208,7 @@ static NSString *const kDatabaseVersion = @"1";
     // Check datas.
     __block Class cls = [[models firstObject] class];
     if (![self isRegisteredClass:cls]) {
-        [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -216,7 +216,7 @@ static NSString *const kDatabaseVersion = @"1";
     __block NSMutableSet *identities = [NSMutableSet set];
     for (LLStorageModel *model in models) {
         if (![model.class isEqual:cls]) {
-            [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because models in array isn't some class.",NSStringFromClass(cls)]];
+            [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because models in array isn't some class",NSStringFromClass(cls)]];
             [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
             return;
         }
@@ -254,7 +254,7 @@ static NSString *const kDatabaseVersion = @"1";
     
     // Check datas.
     if (![self isRegisteredClass:cls]) {
-        [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Remove %@ failed, because model is unregister",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -453,14 +453,14 @@ static NSString *const kDatabaseVersion = @"1";
     
     // Check datas.
     if (![self isRegisteredClass:cls]) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model is unregister",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSString *launchDate = [NSObject LL_launchDate];
     if (launchDate.length == 0) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
@@ -469,14 +469,14 @@ static NSString *const kDatabaseVersion = @"1";
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
 #pragma clang diagnostic pop
     if (data.length == 0) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }
     
     NSString *identity = model.storageIdentity;
     if (identity.length == 0) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil.",NSStringFromClass(cls)]];
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil",NSStringFromClass(cls)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }

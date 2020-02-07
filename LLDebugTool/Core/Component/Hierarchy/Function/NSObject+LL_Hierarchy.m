@@ -130,7 +130,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     CGRect newRect = CGRectFromString(string);
     if (CGRectEqualToRect(newRect, CGRectZero) && ![string isEqualToString:NSStringFromCGRect(CGRectZero)]) {
         // Wrong text.
-        [LLTool log:@"Input a wrong rect string."];
+        [LLTool log:@"Input a wrong rect string"];
         return rect;
     }
     return newRect;
@@ -140,7 +140,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     CGSize newSize = CGSizeFromString(string);
     if (CGSizeEqualToSize(newSize, CGSizeZero) && ![string isEqualToString:NSStringFromCGSize(CGSizeZero)]) {
         // Wrong text.
-        [LLTool log:@"Input a wrong size string."];
+        [LLTool log:@"Input a wrong size string"];
         return size;
     }
     return newSize;
@@ -154,7 +154,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     UIEdgeInsets newInsets = UIEdgeInsetsFromString(string);
     if (UIEdgeInsetsEqualToEdgeInsets(newInsets, UIEdgeInsetsZero) && ![string isEqualToString:NSStringFromUIEdgeInsets(UIEdgeInsetsZero)]) {
         // Wrong text.
-        [LLTool log:@"Input a wrong insets string."];
+        [LLTool log:@"Input a wrong insets string"];
         return insets;
     }
     return newInsets;

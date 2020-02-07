@@ -82,7 +82,7 @@
 }
 
 - (void)drawImageView:(CGRect)rect {
-    [LLTool log:[NSString stringWithFormat:@"%@ : Subclasses need to be rewritten.", NSStringFromClass(self.class)]];
+    [LLTool log:[NSString stringWithFormat:@"%@ : Subclasses need to be rewritten", NSStringFromClass(self.class)]];
 }
 
 - (LLScreenshotSelectorSizeAction)size {
