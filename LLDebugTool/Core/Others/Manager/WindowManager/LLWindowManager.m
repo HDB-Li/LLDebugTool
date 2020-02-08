@@ -137,10 +137,10 @@ static LLWindowManager *_instance = nil;
         if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
             self.keyWindow = [UIApplication sharedApplication].keyWindow;
             self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+            [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
         }
         [window makeKeyAndVisible];
         window.windowLevel = self.presentWindowLevel;
-        [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
     }
 #pragma clang diagnostic pop
     
