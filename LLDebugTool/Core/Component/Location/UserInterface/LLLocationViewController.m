@@ -108,7 +108,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 #pragma mark - Over write
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.mapView.frame = CGRectMake(0, self.recordRouteSwitch.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.recordRouteSwitch.LL_bottom - kLLGeneralMargin);
+    self.mapView.frame = CGRectMake(0, self.addressDescriptView.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - self.addressDescriptView.LL_bottom - kLLGeneralMargin);
 }
 
 #pragma mark - MKMapViewDelegate

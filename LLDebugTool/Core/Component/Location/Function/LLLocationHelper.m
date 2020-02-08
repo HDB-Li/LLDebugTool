@@ -147,6 +147,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
         locationJson[@"lng"] = [LLFormatterTool formatLocation:@(location.coordinate.longitude)];
         locationJson[@"lat"] = [LLFormatterTool formatLocation:@(location.coordinate.latitude)];
     }
+    return nil;
 }
 
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
