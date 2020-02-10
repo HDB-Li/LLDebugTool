@@ -1,3 +1,7 @@
+## [1.3.7.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.7.1) (02/10/2020)
+
+### Fix some bugs.
+
 ## [1.3.7](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.7) (11/21/2019)
 
 ###  `Mock Location` function and split into components.
