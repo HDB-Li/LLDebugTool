@@ -186,11 +186,14 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 
 - (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
     if (@available(iOS 13.0, *)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         if (entryStyle == LLConfigEntryWindowStyleNetBar) {
             entryStyle = LLConfigEntryWindowStyleLeading;
         } else if (entryStyle == LLConfigEntryWindowStylePowerBar) {
             entryStyle = LLConfigEntryWindowStyleTrailing;
         }
+#pragma clang diagnostic pop
     }
     if (_entryWindowStyle != entryStyle) {
         _entryWindowStyle = entryStyle;

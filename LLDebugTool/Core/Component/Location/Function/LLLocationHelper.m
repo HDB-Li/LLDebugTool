@@ -141,7 +141,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     json[@"key"] = @"LLDebugTool";
-    NSMutableArray *data = [[NSMutableArray alloc] init];
+//    NSMutableArray *data = [[NSMutableArray alloc] init];
     for (CLLocation *location in self.locations) {
         NSMutableDictionary *locationJson = [[NSMutableDictionary alloc] init];
         locationJson[@"lng"] = [LLFormatterTool formatLocation:@(location.coordinate.longitude)];

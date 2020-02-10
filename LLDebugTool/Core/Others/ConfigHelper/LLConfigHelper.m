@@ -116,10 +116,13 @@
             return @"Leading";
         case LLConfigEntryWindowStyleTrailing:
             return @"Trailing";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLConfigEntryWindowStyleNetBar:
             return @"Net Bar";
         case LLConfigEntryWindowStylePowerBar:
             return @"Power Bar";
+#pragma clang diagnostic pop
     }
 }
 

@@ -44,11 +44,14 @@
                 _inactiveAlpha = [LLConfig shared].inactiveAlpha;
             }
                 break;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             case LLConfigEntryWindowStyleNetBar:
             case LLConfigEntryWindowStylePowerBar: {
                 _moveable = NO;
             }
                 break;
+#pragma clang diagnostic pop
             default:
                 break;
         }

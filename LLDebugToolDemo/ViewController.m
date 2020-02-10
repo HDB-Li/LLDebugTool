@@ -345,6 +345,8 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTrailing";
                 }
                     break;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 case LLConfigEntryWindowStylePowerBar:{
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
                 }
@@ -353,6 +355,7 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
                 }
                     break;
+#pragma clang diagnostic pop
             }
         }
     } else if (indexPath.section == 1) {

@@ -94,6 +94,8 @@
             [self.view addSubview:self.trailingView];
         }
             break;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLConfigEntryWindowStyleNetBar: {
             [self.activeView removeFromSuperview];
             self.activeView = self.netView;
@@ -106,6 +108,7 @@
             [self.view addSubview:self.powerView];
         }
             break;
+#pragma clang diagnostic pop
     }
     [self.delegate LLEntryViewController:self style:self.activeView.styleModel];
 }
@@ -120,10 +123,13 @@
             return self.leadingView;
         case LLConfigEntryWindowStyleTrailing:
             return self.trailingView;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLConfigEntryWindowStyleNetBar:
             return self.netView;
         case LLConfigEntryWindowStylePowerBar:
             return self.powerView;
+#pragma clang diagnostic pop
     }
 }
 
@@ -194,7 +200,10 @@
             _netView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
             frame = CGRectMake(0, 0, _netView.LL_width, _netView.LL_height);
         }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         _netView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleNetBar moveableRect:CGRectNull frame:frame];
+#pragma clang diagnostic pop
     }
     return _netView;
 }
@@ -211,7 +220,10 @@
             frame.size = _powerView.LL_size;
             frame.origin.x = LL_SCREEN_WIDTH - frame.size.width;
         }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         _powerView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStylePowerBar moveableRect:CGRectNull frame:frame];
+#pragma clang diagnostic pop
     }
     return _powerView;
 }
