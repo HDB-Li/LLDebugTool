@@ -25,8 +25,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class LLEntryViewController;
+@class LLEntryStyleModel;
+
+/// Entry view controller delegate.
+@protocol LLEntryViewControllerDelegate <NSObject>
+
+/// Need update window size.
+/// @param viewController Current view controller.
+/// @param style New style
+- (void)LLEntryViewController:(LLEntryViewController *)viewController style:(LLEntryStyleModel *)style;
+
+@end
+
 /// Entry view controller.
 @interface LLEntryViewController : LLBaseViewController
+
+@property (nonatomic, weak, nullable) id<LLEntryViewControllerDelegate> delegate;
 
 @end
 

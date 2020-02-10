@@ -42,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
+    [self.tableView registerClass:[LLTitleCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleCell class])];
     [self.tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
     [self.tableView registerClass:[LLDetailTitleCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleCell class])];
     [self.tableView registerClass:[LLDetailTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleSelectorCell class])];

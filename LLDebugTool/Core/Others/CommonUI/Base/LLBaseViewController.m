@@ -59,6 +59,10 @@
     
 }
 
+- (void)backAction:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     return YES;
 }
@@ -81,11 +85,8 @@
     
 }
 
-- (void)primaryColorChanged {
+- (void)themeColorChanged {
     [self setNavigationSettings];
-}
-
-- (void)backgroundColorChanged {
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
 }
 
@@ -124,8 +125,7 @@
 }
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateThemeColorNotificaion:) name:kThemeManagerUpdateThemeColorNotificaionName object:nil];
 }
 
 - (void)initCloseLeftNavigationItem {
@@ -139,20 +139,9 @@
     }
 }
 
-#pragma mark - Event response
-- (void)backAction:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
-- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
-    [self primaryColorChanged];
-}
-
-#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
-- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
-    [self backgroundColorChanged];
+#pragma mark - kThemeManagerUpdateThemeColorNotificaionName
+- (void)didReceiveThemeManagerUpdateThemeColorNotificaion:(NSNotification *)notification {
+    [self themeColorChanged];
 }
 
 #pragma mark - Over write

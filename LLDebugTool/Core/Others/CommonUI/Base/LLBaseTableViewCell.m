@@ -55,15 +55,12 @@
     self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 
-- (void)primaryColorChanged {
+- (void)themeColorChanged {
     self.tintColor = [LLThemeManager shared].primaryColor;
     self.textLabel.textColor = [LLThemeManager shared].primaryColor;
     self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
-    [self configSubviews:self];
-}
-
-- (void)backgroundColorChanged {
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [self configSubviews:self];
 }
 
 #pragma mark - Over write
@@ -90,22 +87,15 @@
     }
 }
 
-#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
-- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
-    [self primaryColorChanged];
-}
-
-#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
-- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
-    [self backgroundColorChanged];
+#pragma mark - kThemeManagerUpdateThemeColorNotificaionName
+- (void)didReceiveThemeManagerUpdateThemeColorNotificaion:(NSNotification *)notification {
+    [self themeColorChanged];
 }
 
 #pragma mark - Primary
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateThemeColorNotificaion:) name:kThemeManagerUpdateThemeColorNotificaionName object:nil];
 }
-
 
 - (void)configSubviews:(UIView *)view {
     if ([view isKindOfClass:[UILabel class]]) {

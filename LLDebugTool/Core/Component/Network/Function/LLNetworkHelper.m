@@ -78,7 +78,7 @@ static LLNetworkHelper *_instance = nil;
 
 - (void)registerLLURLProtocol {
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
-        [LLTool log:@"LLNetworkHelper reigsiter URLProtocol fail."];
+        [LLTool log:@"LLNetworkHelper reigsiter URLProtocol fail"];
     }
     if ([LLConfig shared].observerWebView) {
         Class cls = NSClassFromString(@"WKBrowsingContextController");

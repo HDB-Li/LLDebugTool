@@ -38,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param action Action
 - (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action;
 
+/// Show alert controller with confirm action.
+/// @param message Message
+/// @param handler Action handler.
+- (void)LL_showConfirmAlertControllerWithMessage:(NSString *)message handler:(nullable void (^)(void))handler;
+
 /// Show alert controller with message
 /// @param message Message
 /// @param handler Action handler.

@@ -1,6 +1,8 @@
 //
 //  LLLocation.h
 //
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -24,10 +26,12 @@
 
 #import "LLLocationComponent.h"
 
+#import "LLLocationMockRouteModel.h"
 #import "LLLocationHelper.h"
 #import "LLLocationProxy.h"
 
 #import "CLLocationManager+LL_Location.h"
+#import "CLLocation+LL_Location.h"
 #import "MKMapView+LL_Location.h"
 
 #import "LLLocationViewController.h"

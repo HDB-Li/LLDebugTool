@@ -25,7 +25,7 @@
 
 @implementation NSInputStream (LL_Network)
 
-- (NSData *)LL_toData {
+- (NSData *)LL_data {
     NSMutableData *data = [[NSMutableData alloc] init];
     if (self.streamStatus != NSStreamStatusOpen) {
         [self open];

@@ -74,7 +74,7 @@
 }
 
 - (void)testCustomColorConfig {
-    [[LLConfig shared] configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+    [[LLConfig shared] configPrimaryColor:[UIColor whiteColor] backgroundColor:[UIColor orangeColor] statusBarStyle:UIStatusBarStyleDefault];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
 }
 

@@ -24,6 +24,7 @@ static NSString *const kRulerImageName = @"LL-ruler";
 static NSString *const kWidgetBorderImageName = @"LL-widget-border";
 static NSString *const kHtml5ImageName = @"LL-html5";
 static NSString *const kLocationImageName = @"LL-location";
+static NSString *const kShortCutImageName = @"LL-short-cut";
 
 // Navigation Item Icon
 static NSString *const kClearImageName = @"LL-clear";
@@ -31,6 +32,8 @@ static NSString *const kCloseImageName = @"LL-close";
 static NSString *const kEditImageName = @"LL-edit";
 static NSString *const kDoneImageName = @"LL-done";
 static NSString *const kBackImageName = @"LL-back";
+static NSString *const kFilterImageName = @"LL-filter";
+static NSString *const kShareImageName = @"LL-share";
 
 // Folder
 static NSString *const kFolderImageName = @"LL-folder";

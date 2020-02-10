@@ -92,20 +92,7 @@ Whether is Beta.
 */
 + (BOOL)isBetaVersion;
 
-#pragma mark - DEPRECATED
-/**
- LLDebugTool's version.
- */
-@property (nonatomic, copy, readonly) NSString * version LLDebugToolDeprecated("Use class method.");
-
-/**
- Whether is Beta.
- */
-@property (nonatomic, assign, readonly) BOOL isBetaVersion LLDebugToolDeprecated("Use class method.");
-
 @end
-
-NS_ASSUME_NONNULL_END
 
 @interface LLDebugTool (Log)
 
@@ -154,3 +141,5 @@ Print and save a log model with infos. LLConfigLogLevelError.
 - (void)errorLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 @end
+
+NS_ASSUME_NONNULL_END

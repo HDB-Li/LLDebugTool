@@ -37,8 +37,7 @@
     [super viewDidLoad];
     self.navigationBar.translucent = YES;
     self.navigationBar.translucent = YES;
-    [self primaryColorChanged];
-    [self backgroundColorChanged];
+    [self updateNavigationBarTheme];
     [self addObservers];
 }
 
@@ -80,29 +79,33 @@
     return UIInterfaceOrientationPortrait;
 }
 
-#pragma mark - kThemeManagerUpdatePrimaryColorNotificaionName
-- (void)didReceiveThemeManagerUpdatePrimaryColorNotificaion:(NSNotification *)notification {
-    [self primaryColorChanged];
-}
-
-#pragma mark - kThemeManagerUpdateBackgroundColorNotificaionName
-- (void)didReceiveThemeManagerUpdateBackgroundColorNotificaion:(NSNotification *)notification {
-    [self backgroundColorChanged];
+#pragma mark - kThemeManagerUpdateThemeColorNotificaionName
+- (void)didReceiveThemeManagerUpdateThemeColorNotificaion:(NSNotification *)notification {
+    [self themeColorChanged];
 }
 
 #pragma mark - Primary
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdatePrimaryColorNotificaion:) name:kThemeManagerUpdatePrimaryColorNotificaionName object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateBackgroundColorNotificaion:) name:kThemeManagerUpdateBackgroundColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateThemeColorNotificaion:) name:kThemeManagerUpdateThemeColorNotificaionName object:nil];
 }
 
-- (void)primaryColorChanged {
+- (void)themeColorChanged {
+    [self updateNavigationBarTheme];
+    [self updateStatusBarTheme];
+}
+
+- (void)updateNavigationBarTheme {
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
     self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
+    self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
-- (void)backgroundColorChanged {
-    self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
+- (void)updateStatusBarTheme {
+    [self setNeedsStatusBarAppearanceUpdate];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:NO];
+#pragma clang diagnostic pop
 }
 
 @end

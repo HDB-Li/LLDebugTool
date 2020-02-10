@@ -74,12 +74,12 @@
     self.settingButton.frame = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + 30, self.toolContainerView.LL_width, 40);
     
     
-    self.scrollView.contentSize = CGSizeMake(0, self.settingButton.LL_bottom + kLLGeneralMargin);
+    self.scrollView.contentSize = CGSizeMake(0, self.settingButton.LL_bottom + 30);
 }
 
 #pragma mark - Over write
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
     self.settingButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
 }
@@ -113,7 +113,7 @@
     }
         
     self.toolContainerView.dataArray = [items copy];
-    self.toolContainerView.title = @"Function";
+    self.toolContainerView.title = LLLocalizedString(@"function.function");
     self.toolContainerView.hidden = items.count == 0;
     
     [items removeAllObjects];
@@ -148,8 +148,13 @@
         [items addObject:html];
     }
     
+    LLFunctionItemModel *shortCut = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionShortCut];
+    if (shortCut) {
+        [items addObject:shortCut];
+    }
+    
     self.shortCutContainerView.dataArray = [items copy];
-    self.shortCutContainerView.title = @"Short Cut";
+    self.shortCutContainerView.title = LLLocalizedString(@"function.short.cut");
     self.shortCutContainerView.hidden = items.count == 0;
     
     [items removeAllObjects];
@@ -194,7 +199,7 @@
     if (!_settingButton) {
         _settingButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(settingButtonClicked:)];
         [_settingButton LL_setCornerRadius:5];
-        [_settingButton setTitle:@"Settings" forState:UIControlStateNormal];
+        [_settingButton setTitle:LLLocalizedString(@"function.setting") forState:UIControlStateNormal];
         [_settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
         [_settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     }

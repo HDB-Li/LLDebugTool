@@ -37,9 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// Entry window style.
 @property (nonatomic, strong) NSNumber *entryWindowStyle;
 
-/// Status bar style.
-@property (nonatomic, strong) NSNumber *statusBarStyle;
-
 /// Log style.
 @property (nonatomic, strong) NSNumber *logStyle;
 
@@ -75,6 +72,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Last mock location longitude.
 @property (nonatomic, strong) NSNumber *mockLocationLongitude;
+
+/// Last mock route file path.
+@property (nonatomic, copy) NSString *mockRouteFilePath;
+
+/// Last mock route file display name.
+@property (nonatomic, copy) NSString *mockRouteFileName;
 
 /// Shared instance.
 + (instancetype)shared;

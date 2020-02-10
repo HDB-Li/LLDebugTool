@@ -126,19 +126,21 @@ static LLWindowManager *_instance = nil;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (window == self.entryWindow) {
-        [self.keyWindow makeKeyWindow];
-        self.keyWindow = nil;
+        if (self.keyWindow) {
+            [self.keyWindow makeKeyWindow];
+            self.keyWindow = nil;
+            [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle];
+        }
         window.hidden = NO;
         window.windowLevel = self.entryWindowLevel;
-        [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle];
     } else {
         if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
             self.keyWindow = [UIApplication sharedApplication].keyWindow;
             self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+            [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
         }
         [window makeKeyAndVisible];
         window.windowLevel = self.presentWindowLevel;
-        [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
     }
 #pragma clang diagnostic pop
     

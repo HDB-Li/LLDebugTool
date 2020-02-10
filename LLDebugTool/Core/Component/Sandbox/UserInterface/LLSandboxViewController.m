@@ -24,8 +24,13 @@
 #import "LLSandboxViewController.h"
 
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
+#import "LLSandboxImagePreviewController.h"
+#import "LLSandboxVideoPreviewController.h"
+#import "LLSandboxHtmlPreviewController.h"
+#import "LLSandboxTextPreviewController.h"
 #import "LLPreviewController.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLSandboxHelper.h"
 #import "LLSandboxModel.h"
 #import "LLSandboxCell.h"
@@ -61,9 +66,9 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
         _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
     }
     if (self.sandboxModel.isHomeDirectory) {
-        self.navigationItem.title = @"Sandbox";
+        self.title = LLLocalizedString(@"function.sandbox");
     } else {
-        self.navigationItem.title = self.sandboxModel.name;
+        self.title = self.sandboxModel.name;
     }
     // TableView
     [self.tableView registerClass:[LLSandboxCell class] forCellReuseIdentifier:kSandboxCellID];
@@ -119,7 +124,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     if ([[NSFileManager defaultManager] fileExistsAtPath:model.filePath]) {
         BOOL ret = [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:&error];
         if (!ret) {
-            [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:@"Delete file fail\nFilePath:%@\nError:%@",model.filePath,error.localizedDescription] handler:nil];
+            [self LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:nil];
         }
         return ret;
     }
@@ -147,30 +152,82 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
                 vc.sandboxModel = model;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                [[LLToastUtils shared] toastMessage:@"Empty folder"];
+                [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
             }
         } else {
-            if (model.canPreview) {
-                LLPreviewController *vc = [[LLPreviewController alloc] init];
-                NSMutableArray *paths = [[NSMutableArray alloc] init];
-                NSInteger index = 0;
-                for (LLSandboxModel *mod in self.datas) {
-                    if (mod == model) {
-                        [paths addObject:mod.filePath];
-                        index = [paths indexOfObject:mod.filePath];
-                    } else if (mod.canPreview) {
-                        [paths addObject:mod.filePath];
+            if (model.canOpenWithTextView) {
+                [self openWithTextPreviewController:model];
+            } else if (model.canOpenWithImageView) {
+                [self openWithImagePreviewController:model];
+            } else if (model.canOpenWithVideo) {
+                [self openWithVideoPreviewController:model];
+            } else {
+                if (@available(iOS 13.0, *)) {
+                    if (model.canOpenWithWebView) {
+                        [self openWithHtmlPreviewController:model];
+                    } else if (model.canPreview) {
+                        [self openWithPreviewController:model];
+                    } else {
+                        [self showActivityViewController:model];
+                    }
+                } else {
+                    if (model.canPreview) {
+                        [self openWithPreviewController:model];
+                    } else if (model.canOpenWithWebView) {
+                        [self openWithHtmlPreviewController:model];
+                    } else {
+                        [self showActivityViewController:model];
                     }
                 }
-                vc.filePaths = paths;
-                vc.currentPreviewItemIndex = index;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:model.filePath]] applicationActivities:nil];
-                [self presentViewController:vc animated:YES completion:nil];
             }
         }
     }
+}
+
+- (void)openWithTextPreviewController:(LLSandboxModel *)model {
+    LLSandboxTextPreviewController *vc = [[LLSandboxTextPreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithImagePreviewController:(LLSandboxModel *)model {
+    LLSandboxImagePreviewController *vc = [[LLSandboxImagePreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithVideoPreviewController:(LLSandboxModel *)model {
+    LLSandboxVideoPreviewController *vc = [[LLSandboxVideoPreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithHtmlPreviewController:(LLSandboxModel *)model {
+    LLSandboxHtmlPreviewController *vc = [[LLSandboxHtmlPreviewController alloc] init];
+    vc.filePath = model.filePath;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openWithPreviewController:(LLSandboxModel *)model {
+    LLPreviewController *vc = [[LLPreviewController alloc] init];
+    NSMutableArray *paths = [[NSMutableArray alloc] init];
+    NSInteger index = 0;
+    for (LLSandboxModel *mod in self.datas) {
+        if (mod == model) {
+            [paths addObject:mod.filePath];
+            index = [paths indexOfObject:mod.filePath];
+        } else if (mod.canPreview) {
+            [paths addObject:mod.filePath];
+        }
+    }
+    vc.filePaths = paths;
+    vc.currentPreviewItemIndex = index;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)showActivityViewController:(LLSandboxModel *)model {
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:model.filePath]] applicationActivities:nil];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -205,7 +262,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LLSandboxModel *model = self.datas[indexPath.row];
     [UIPasteboard generalPasteboard].string = model.filePath;
-    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy File Path Success\n%@",model.filePath]];
+    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.path.suceess"),model.filePath]];
 }
 
 @end

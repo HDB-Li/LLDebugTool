@@ -1,6 +1,8 @@
 //
 //  LLLocationProxy.m
 //
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -24,6 +26,8 @@
 #import "LLLocationHelper.h"
 #import "LLConfig.h"
 
+#import "CLLocation+LL_Location.h"
+
 @implementation LLLocationProxy
 
 - (BOOL)respondsToSelector:(SEL)aSelector {
@@ -36,10 +40,20 @@
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     if ([self.target respondsToSelector:_cmd]) {
-        if ([LLLocationHelper shared].enable) {
+        if ([LLLocationHelper shared].isMockRoute) {
+            CLLocation *location = [locations firstObject];
+            // Mocking route.
+            if (location && !location.LL_isMock) {
+                // Real location, ignore.
+                return;
+            }
+        } else if ([LLLocationHelper shared].enable) {
+            // Mock location.
             CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
+            mockLocation.LL_mock = YES;
             locations = @[mockLocation];
         }
+        
         [self.target locationManager:manager didUpdateLocations:locations];
     }
 }

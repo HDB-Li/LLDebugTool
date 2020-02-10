@@ -75,7 +75,7 @@
         return;
     }
     if (![urlString.lowercaseString hasPrefix:@"https://"] && ![urlString.lowercaseString hasPrefix:@"http://"]) {
-        [[LLToastUtils shared] toastMessage:@"URL must has prefix with https:// or http://"];
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"html.url.check")];
         return;
     }
     Class cls = NSClassFromString(self.webViewClass);
@@ -91,10 +91,10 @@
                 [self.navigationController pushViewController:customViewController animated:YES];
                 return;
             }
-            [[LLToastUtils shared] toastMessage:@"Provider custom webView failed."];
+            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"html.provider.fail")];
             return;
         }
-        [[LLToastUtils shared] toastMessage:@"Invalid webView class"];
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"html.invalid.class")];
         return;
     }
     
@@ -122,7 +122,7 @@
 
 #pragma mark - Primary
 - (void)setUpUI {
-    self.title = @"WebView";
+    self.title = LLLocalizedString(@"function.html");
     [self initNavigationItemWithTitle:@"Go" imageName:nil isLeft:NO];
     
     self.webViewClass = [LLSettingManager shared].webViewClass ?: NSStringFromClass([WKWebView class]);
@@ -144,7 +144,7 @@
 }
 
 - (LLTitleCellModel *)getWebViewStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:self.webViewClass];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:self.webViewClass];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showWebViewClassAlert];
@@ -166,7 +166,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Web View Style" actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
         [weakSelf setNewWebViewClass:actions[index]];
     }];
 }
@@ -208,7 +208,7 @@
         _headerTextField.textColor = [LLThemeManager shared].primaryColor;
         _headerTextField.delegate = self;
         _headerTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Pleace input url" attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor}];
+        _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"html.input.url") attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor}];
         _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLConfig shared].defaultHtmlUrl ?: @"https://");
         UIView *leftView = [LLFactory getView];
         leftView.frame = CGRectMake(0, 0, 10, 1);

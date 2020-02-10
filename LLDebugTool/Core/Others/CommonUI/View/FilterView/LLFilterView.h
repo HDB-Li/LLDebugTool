@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Filter views.
 @property (nonatomic, strong) NSArray <UIView *>*filterViews;
 
+/// Filter change state.
+@property (nonatomic, copy, nullable) void(^filterChangeStateBlock)(void);
+
 /// Is filtering.
 - (BOOL)isFiltering;
 

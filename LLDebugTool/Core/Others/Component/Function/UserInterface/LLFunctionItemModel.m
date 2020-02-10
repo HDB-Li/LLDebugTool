@@ -24,6 +24,7 @@
 #import "LLFunctionItemModel.h"
 
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 
 @implementation LLFunctionItemModel
 
@@ -103,6 +104,11 @@
         case LLDebugToolActionLocation: {
             component = @"LLLocationComponent";
         }
+            break;
+        case LLDebugToolActionShortCut: {
+//            component = @"LLShortCutComponent";
+        }
+            break;
     }
     if (component) {
         return [[NSClassFromString(component) alloc] init];
@@ -114,63 +120,67 @@
     NSString *title = @"";
     switch (action) {
         case LLDebugToolActionFunction: {
-            title = @"Function";
+            title = LLLocalizedString(@"function.function");
         }
             break;
         case LLDebugToolActionSetting: {
-            title = @"Setting";
+            title = LLLocalizedString(@"function.setting");
         }
             break;
         case LLDebugToolActionNetwork: {
-            title = @"Net";
+            title = LLLocalizedString(@"function.net");
         }
             break;
         case LLDebugToolActionLog: {
-            title = @"Log";
+            title = LLLocalizedString(@"function.log");
         }
             break;
         case LLDebugToolActionCrash: {
-            title = @"Crash";
+            title = LLLocalizedString(@"function.crash");
         }
             break;
         case LLDebugToolActionAppInfo: {
-            title = @"App Info";
+            title = LLLocalizedString(@"function.app.info");
         }
             break;
         case LLDebugToolActionSandbox: {
-            title = @"Sandbox";
+            title = LLLocalizedString(@"function.sandbox");
         }
             break;
         case LLDebugToolActionScreenshot: {
-            title = @"Screenshot";
+            title = LLLocalizedString(@"function.screenshot");
         }
             break;
         case LLDebugToolActionConvenientScreenshot: {
-            title = @"Convenient Screenshot";
+            title = LLLocalizedString(@"function.convenient.screenshot");
         }
             break;
         case LLDebugToolActionHierarchy: {
-            title = @"Hierarchy";
+            title = LLLocalizedString(@"function.hierarchy");
         }
             break;
         case LLDebugToolActionMagnifier: {
-            title = @"Magnifier";
+            title = LLLocalizedString(@"function.magnifier");
         }
             break;
         case LLDebugToolActionRuler: {
-            title = @"Ruler";
+            title = LLLocalizedString(@"function.ruler");
         }
             break;
         case LLDebugToolActionWidgetBorder: {
-            title = @"Widget Border";
+            title = LLLocalizedString(@"function.widget.border");
         }
             break;
         case LLDebugToolActionHtml: {
-            title = @"Html5";
+            title = LLLocalizedString(@"function.html");
         }
             break;
         case LLDebugToolActionLocation: {
-            title = @"Location";
+            title = LLLocalizedString(@"function.location");
+        }
+            break;
+        case LLDebugToolActionShortCut: {
+            title = LLLocalizedString(@"function.short.cut");
         }
             break;
     }
@@ -232,6 +242,10 @@
             break;
         case LLDebugToolActionLocation: {
             imageName = kLocationImageName;
+        }
+            break;
+        case LLDebugToolActionShortCut: {
+            imageName = kShortCutImageName;
         }
             break;
     }

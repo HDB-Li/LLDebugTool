@@ -23,20 +23,11 @@
 
 #import "LLThemeManager.h"
 
-#import "LLFactory.h"
-
-#import "UIColor+LL_Utils.h"
+#import "LLThemeColor.h"
 
 static LLThemeManager *_instance = nil;
 
-NSString *const kThemeManagerUpdatePrimaryColorNotificaionName = @"kThemeManagerUpdatePrimaryColorNotificaionName";
-NSString *const kThemeManagerUpdateBackgroundColorNotificaionName = @"kThemeManagerUpdateBackgroundColorNotificaionName";
-
-@interface LLThemeManager ()
-
-@property (nonatomic, strong) UIColor *systemTintColor;
-
-@end
+NSString *const kThemeManagerUpdateThemeColorNotificaionName = @"kThemeManagerUpdateThemeColorNotificaionName";
 
 @implementation LLThemeManager
 
@@ -49,43 +40,53 @@ NSString *const kThemeManagerUpdateBackgroundColorNotificaionName = @"kThemeMana
     return _instance;
 }
 
-- (void)setPrimaryColor:(UIColor * _Nonnull)primaryColor {
-    if (_primaryColor != primaryColor) {
-        _primaryColor = primaryColor;
-        [self calculateColorIfNeeded];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdatePrimaryColorNotificaionName object:primaryColor];
-    }
-}
-
-- (void)setBackgroundColor:(UIColor * _Nonnull)backgroundColor {
-    if (_backgroundColor != backgroundColor) {
-        _backgroundColor = backgroundColor;
-        [self calculateColorIfNeeded];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdateBackgroundColorNotificaionName object:backgroundColor];
-    }
++ (UIColor *)systemTintColor {
+    static UIColor *_systemTintColor = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+#ifdef __IPHONE_13_0
+        _systemTintColor = [UIColor systemBlueColor];
+#else
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        _systemTintColor = [UIColor performSelector:NSSelectorFromString(@"systemBlueColor")];
+#pragma clang diagnostic pop
+#endif
+    });
+    return _systemTintColor;
 }
 
 #pragma mark - Primary
 - (void)initial {
-    // Get system tint color.
-#ifdef __IPHONE_13_0
-    _systemTintColor = [UIColor systemBlueColor];
-#else
-    _systemTintColor = [UIColor performSelector:NSSelectorFromString(@"systemBlueColor")];
-#endif
-    _primaryColor = [UIColor blackColor];
-    _backgroundColor = [UIColor whiteColor];
-    [self calculateColorIfNeeded];
-    _statusBarStyle = UIStatusBarStyleDefault;
+    _themeColor = [LLThemeColor hackThemeColor];
 }
 
-- (void)calculateColorIfNeeded {
-    if (_primaryColor == nil || _backgroundColor == nil) {
-        return;
+#pragma mark - Getters and setters
+- (void)setThemeColor:(LLThemeColor *)themeColor {
+    if (_themeColor != themeColor) {
+        _themeColor = themeColor;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdateThemeColorNotificaionName object:nil];
     }
-    
-    _containerColor = [_backgroundColor LL_mixtureWithColor:_primaryColor radio:0.1];
-    _placeHolderColor = [_primaryColor LL_mixtureWithColor:_backgroundColor radio:0.5];
+}
+
+- (UIColor *)primaryColor {
+    return _themeColor.primaryColor;
+}
+
+- (UIColor *)backgroundColor {
+    return _themeColor.backgroundColor;
+}
+
+- (UIColor *)containerColor {
+    return _themeColor.containerColor;
+}
+
+- (UIColor *)placeHolderColor {
+    return _themeColor.placeHolderColor;
+}
+
+- (UIStatusBarStyle)statusBarStyle {
+    return _themeColor.statusBarStyle;
 }
 
 @end

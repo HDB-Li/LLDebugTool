@@ -38,6 +38,9 @@
         //####################### Html #######################//
         config.defaultHtmlUrl = @"https://github.com/HDB-Li/LLDebugTool";
         
+        //####################### Location #######################//
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
+        [config addMockRouteDirectory:documentsPath];
     }];
     
     return YES;

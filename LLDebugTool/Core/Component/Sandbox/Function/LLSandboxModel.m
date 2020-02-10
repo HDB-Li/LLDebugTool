@@ -52,6 +52,34 @@
         _modifiDate = attributes[NSFileModificationDate];
         _isHidden = [attributes[NSFileExtensionHidden] boolValue];
         _isHomeDirectory = [filePath isEqualToString:NSHomeDirectory()];
+        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers", @"gif"];
+        [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithWebView = YES;
+                *stop = YES;
+            }
+        }];
+        extensions = @[@"json", @"plist"];
+        [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithTextView = YES;
+                *stop = YES;
+            }
+        }];
+        extensions = @[@"jpeg", @"jpg", @"png"];
+        [extensions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithImageView = YES;
+                *stop = YES;
+            }
+        }];
+        extensions = @[@"mp4", @"avi", @"mov", @"m4v", @"3gp", @"mpeg", @"mp3", @"wav", @"aac", @"caf"];
+        [extensions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
+                self->_canOpenWithVideo = YES;
+                *stop = YES;
+            }
+        }];
     }
     return self;
 }

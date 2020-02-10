@@ -24,6 +24,7 @@
 #import "TestHierarchyViewController.h"
 #import "TestHtmlViewController.h"
 #import "TestLocationViewController.h"
+#import "TestShortCutViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -42,21 +43,40 @@ static NSString *const kCellID = @"cellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imgView.tag = 101;
-    
+    // LLDebugTool need time to start.
+    sleep(0.5);
+    [self doSomeActions];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+#pragma mark - Primary
+- (void)doSomeActions {
+    [self requestPhotoAuthorization];
+    [self requestLocationAuthorization];
+    [self doSandboxIfNeeded];
+    [self doCrashIfNeeded];
+    [self doNetwork];
+    [self doLog];
+}
+
+- (void)requestPhotoAuthorization {
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         
     }];
-    
+}
+
+- (void)requestLocationAuthorization {
     // Try to get location permission, and if possible, mock location will get your current location.
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
-    
-    // LLDebugTool need time to start.
-    sleep(0.5);
-    __block __weak typeof(self) weakSelf = self;
-    
+}
+
+- (void)doCrashIfNeeded {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"openCrash"]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"openCrash"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -65,64 +85,93 @@ static NSString *const kCellID = @"cellID";
         });
         
     }
-    
-    //Network Request
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567589759362&di=20c415aa38f25ca77270c717ae988424&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201602%2F15%2F20160215231800_zrCN8.jpeg"]];
-    [urlRequest setHTTPMethod:@"GET"];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!connectionError) {
-                UIImage *image = [[UIImage alloc] initWithData:data];
-                weakSelf.imgView.image = image;
+}
+
+- (void)doSandboxIfNeeded {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers", @"json", @"plist", @"jpeg", @"png", @"mp4", @"mp3", @"gif"];
+        for (NSString *extension in extensions) {
+            [self copyFileWithExtensionIfNeeded:extension];
+        }
+    });
+}
+
+- (void)copyFileWithExtensionIfNeeded:(NSString *)extension {
+    if ([extension length] == 0) {
+        return;
+    }
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
+    NSString *targetPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"LLDebugTool.%@",extension]];
+    if (![manager fileExistsAtPath:targetPath]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:extension];
+        if (path) {
+            NSError *error = nil;
+            if (![manager copyItemAtPath:path toPath:targetPath error:&error]) {
+                NSLog(@"Copy resource failed");
             }
-        });
-    }];
-#pragma clang diagnostic pop
-    
-    // Json Response
-    [[NetTool shared].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        }
+    }
+}
+
+- (void)doNetwork {
+    __block __weak typeof(self) weakSelf = self;
+    //Network Request
+        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567589759362&di=20c415aa38f25ca77270c717ae988424&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201602%2F15%2F20160215231800_zrCN8.jpeg"]];
+        [urlRequest setHTTPMethod:@"GET"];
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!connectionError) {
+                    UIImage *image = [[UIImage alloc] initWithData:data];
+                    weakSelf.imgView.image = image;
+                }
+            });
+        }];
+    #pragma clang diagnostic pop
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // Json Response
+        [[NetTool shared].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
         
-    }];
-    
-    //NSURLSession
-    NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
-    [htmlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        // Not important. Just check to see if the current Demo version is consistent with the latest version.
-        // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
-        NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
-        if (array.count > 2) {
-            NSString *str = array[1];
-            NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
-            if (array2.count >= 2) {
-                NSString *newVersion = array2[0];
-                if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                    if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
-                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
-                        [vc addAction:action];
-                        [self presentViewController:vc animated:YES completion:nil];
+        //NSURLSession
+        NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
+        [htmlRequest setHTTPMethod:@"GET"];
+        NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            // Not important. Just check to see if the current Demo version is consistent with the latest version.
+            // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
+            NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
+            if (array.count > 2) {
+                NSString *str = array[1];
+                NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
+                if (array2.count >= 2) {
+                    NSString *newVersion = array2[0];
+                    if ([newVersion componentsSeparatedByString:@"."].count == 3) {
+                        if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
+                            [vc addAction:action];
+                            [self presentViewController:vc animated:YES completion:nil];
+                        }
                     }
                 }
             }
-        }
-    }];
-    [dataTask resume];
-    
+        }];
+        [dataTask resume];
+}
+
+- (void)doLog {
     // Log.
     // NSLocalizedString is used for multiple languages.
     // You can just use as LLog(@"What you want to pring").
     LLog(NSLocalizedString(@"initial.log", nil));
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    
+    LLog_Alert_Event(@"Demo", NSLocalizedString(@"initial.log", nil));
 }
 
 #pragma mark - Actions
@@ -190,9 +239,14 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)testShortCut {
+    TestShortCutViewController *vc = [[TestShortCutViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 13;
+    return 14;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -230,6 +284,42 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigColorStyleSystem";
                 }
                     break;
+                case LLConfigColorStyleGrass: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleGrass";
+                }
+                    break;
+                case LLConfigColorStyleHomebrew: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleHomebrew";
+                }
+                    break;
+                case LLConfigColorStyleManPage: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleManPage";
+                }
+                    break;
+                case LLConfigColorStyleNovel: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleNovel";
+                }
+                    break;
+                case LLConfigColorStyleOcean: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleOcean";
+                }
+                    break;
+                case LLConfigColorStylePro: {
+                    cell.detailTextLabel.text = @"LLConfigColorStylePro";
+                }
+                    break;
+                case LLConfigColorStyleRedSands: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleRedSands";
+                }
+                    break;
+                case LLConfigColorStyleSilverAerogel: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleSilverAerogel";
+                }
+                    break;
+                case LLConfigColorStyleSolidColors: {
+                    cell.detailTextLabel.text = @"LLConfigColorStyleSolidColors";
+                }
+                    break;
                 case LLConfigColorStyleCustom:{
                     cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
                 }
@@ -255,7 +345,8 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTrailing";
                 }
                     break;
-#ifndef __IPHONE_13_0
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 case LLConfigEntryWindowStylePowerBar:{
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
                 }
@@ -264,7 +355,7 @@ static NSString *const kCellID = @"cellID";
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
                 }
                     break;
-#endif
+#pragma clang diagnostic pop
             }
         }
     } else if (indexPath.section == 1) {
@@ -296,6 +387,9 @@ static NSString *const kCellID = @"cellID";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 12) {
         cell.textLabel.text = NSLocalizedString(@"test.location", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 13) {
+        cell.textLabel.text = NSLocalizedString(@"test.short.cut", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
@@ -332,6 +426,8 @@ static NSString *const kCellID = @"cellID";
         [self testHtml];
     } else if (indexPath.section == 12) {
         [self testLocation];
+    } else if (indexPath.section == 13) {
+        [self testShortCut];
     }
     [self.tableView reloadData];
 }
@@ -363,8 +459,14 @@ static NSString *const kCellID = @"cellID";
         return @"Html";
     } else if (section == 12) {
         return @"Location";
+    } else if (section == 13) {
+        return @"Short Cut";
     }
     return nil;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
 }
 
 @end

@@ -1,6 +1,8 @@
 //
 //  CLLocationManager+LL_Location.m
 //
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -25,13 +27,28 @@
 
 #import "NSObject+LL_Runtime.h"
 
+NSNotificationName const LLCLLocationRegisterNotificationName = @"LLCLLocationRegisterNotificationName";
+
+NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocationUnRegisterNotificationName";
+
 @implementation CLLocationManager (LL_Location)
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self LL_swizzleInstanceMethodWithOriginSel:@selector(setDelegate:) swizzledSel:@selector(LL_setDelegate:)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(delegate) swizzledSel:@selector(LL_delegate)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(init) swizzledSel:@selector(LL_init)];
+        [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(LL_dealloc)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(startUpdatingLocation) swizzledSel:@selector(LL_startUpdatingLocation)];
+        [self LL_swizzleInstanceMethodWithOriginSel:@selector(stopUpdatingLocation) swizzledSel:@selector(LL_stopUpdatingLocation)];
     });
+}
+
+- (instancetype)LL_init {
+    CLLocationManager *manager = [self LL_init];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLCLLocationRegisterNotificationName object:manager];
+    return manager;
 }
 
 - (void)LL_setDelegate:(id<CLLocationManagerDelegate>)delegate {
@@ -45,8 +62,27 @@
     }
 }
 
-- (id<CLLocationManagerDelegate>)delegate {
-    return self.LL_delegateProxy.target;
+- (id<CLLocationManagerDelegate>)LL_delegate {
+    id delegate = [self LL_delegate];
+    if (delegate == self.LL_delegateProxy) {
+        return self.LL_delegateProxy.target;
+    }
+    return delegate;
+}
+
+- (void)LL_dealloc {
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLCLLocationUnRegisterNotificationName object:self];
+    [self LL_dealloc];
+}
+
+- (void)LL_startUpdatingLocation {
+    self.LL_isUpdatingLocation = YES;
+    [self LL_startUpdatingLocation];
+}
+
+- (void)LL_stopUpdatingLocation {
+    self.LL_isUpdatingLocation = NO;
+    [self LL_stopUpdatingLocation];
 }
 
 #pragma mark - Getters and setters
@@ -56,6 +92,14 @@
 
 - (LLLocationProxy *)LL_delegateProxy {
     return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setLL_isUpdatingLocation:(BOOL)LL_isUpdatingLocation {
+    objc_setAssociatedObject(self, @selector(LL_isUpdatingLocation), @(LL_isUpdatingLocation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)LL_isUpdatingLocation {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 @end

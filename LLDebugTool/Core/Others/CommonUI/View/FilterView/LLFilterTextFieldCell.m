@@ -179,12 +179,12 @@
         _accessoryView.backgroundColor = [UIColor whiteColor];
         _accessoryView.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 40);
         UIButton *cancel = [LLFactory getButton:_accessoryView frame:CGRectMake(12, 0, 60, _accessoryView.frame.size.height) target:self action:@selector(cancelButtonClick:)];
-        [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+        [cancel setTitle:LLLocalizedString(@"cancel") forState:UIControlStateNormal];
         [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         cancel.titleLabel.font = [UIFont systemFontOfSize:15];
         
         UIButton *confirm = [LLFactory getButton:_accessoryView frame:CGRectMake(_accessoryView.frame.size.width - 60 - 12, 0, 60, _accessoryView.frame.size.height) target:self action:@selector(confirmButtonClick:)];
-        [confirm setTitle:@"Confirm" forState:UIControlStateNormal];
+        [confirm setTitle:LLLocalizedString(@"confirm") forState:UIControlStateNormal];
         [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         confirm.titleLabel.font = [UIFont systemFontOfSize:15];
         

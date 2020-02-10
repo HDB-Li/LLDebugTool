@@ -48,6 +48,8 @@ static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
 static NSString *mockLocationEnableKey = @"mockLocationEnableKey";
 static NSString *mockLocationLatitudeKey = @"mockLocationLatitudeKey";
 static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
+static NSString *mockRouteFilePathKey = @"mockRouteFilePathKey";
+static NSString *mockRouteFileNameKey = @"mockRouteFileNameKey";
 
 @implementation LLSettingManager
 
@@ -72,16 +74,10 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
     if (entryWindowStyle != nil) {
         [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
     }
-    NSNumber *statusBarStyle = self.statusBarStyle;
-    if (statusBarStyle != nil) {
-        [[LLConfig shared] configStatusBarStyle:statusBarStyle.integerValue];
-    }
-#ifdef LLDEBUGTOOL_LOG
     NSNumber *logStyle = self.logStyle;
     if (logStyle != nil) {
         [LLConfig shared].logStyle = logStyle.integerValue;
     }
-#endif
     NSNumber *shrinkToEdgeWhenInactive = self.shrinkToEdgeWhenInactive;
     if (shrinkToEdgeWhenInactive != nil) {
         [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
@@ -90,7 +86,6 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
     if (shakeToHide != nil) {
         [LLConfig shared].shakeToHide = [shakeToHide boolValue];
     }
-#ifdef LLDEBUGTOOL_MAGNIFIER
     NSNumber *magnifierZoomLevel = self.magnifierZoomLevel;
     if (magnifierZoomLevel != nil) {
         [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
@@ -99,20 +94,14 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
     if (magnifierSize != nil) {
         [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
-#endif
-#ifdef LLDEBUGTOOL_WIDGET_BORDER
     NSNumber *showWidgetBorder = self.showWidgetBorder;
     if (showWidgetBorder != nil) {
         [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
     }
-#endif
-#ifdef LLDEBUGTOOL_HIERARCHY
     NSNumber *hierarchyIgnorePrivateClass = self.hierarchyIgnorePrivateClass;
     if (hierarchyIgnorePrivateClass != nil) {
         [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
     }
-#endif
-#ifdef LLDEBUGTOOL_LOCATION
     NSNumber *mockLocationEnable = self.mockLocationEnable;
     if (mockLocationEnable != nil) {
         [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
@@ -123,7 +112,6 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
         [LLConfig shared].mockLocationLatitude = [mockLocationLatitude doubleValue];
         [LLConfig shared].mockLocationLongitude = [mockLocationLogitude doubleValue];
     }
-#endif
 }
 
 #pragma mark - Getters and Setters
@@ -149,14 +137,6 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
 
 - (NSNumber *)entryWindowStyle {
     return [NSUserDefaults LL_numberForKey:entryWindowStyleKey];
-}
-
-- (void)setStatusBarStyle:(NSNumber *)statusBarStyle {
-    [NSUserDefaults LL_setNumber:statusBarStyle forKey:statusBarStyleKey];
-}
-
-- (NSNumber *)statusBarStyle {
-    return [NSUserDefaults LL_numberForKey:statusBarStyleKey];
 }
 
 - (void)setLogStyle:(NSNumber *)logStyle {
@@ -253,6 +233,22 @@ static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
 
 - (NSNumber *)mockLocationLongitude {
     return [NSUserDefaults LL_numberForKey:mockLocationLongitudeKey];
+}
+
+- (void)setMockRouteFilePath:(NSString *)mockRouteFilePath {
+    [NSUserDefaults LL_setString:mockRouteFilePath forKey:mockRouteFilePathKey];
+}
+
+- (NSString *)mockRouteFilePath {
+    return [NSUserDefaults LL_stringForKey:mockRouteFilePathKey];
+}
+
+- (void)setMockRouteFileName:(NSString *)mockRouteFileName {
+    [NSUserDefaults LL_setString:mockRouteFileName forKey:mockRouteFileNameKey];
+}
+
+- (NSString *)mockRouteFileName {
+    return [NSUserDefaults LL_stringForKey:mockRouteFileNameKey];
 }
 
 @end

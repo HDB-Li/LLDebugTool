@@ -112,7 +112,7 @@
     self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchTextField.returnKeyType = UIReturnKeySearch;
     self.searchTextField.backgroundColor = [LLThemeManager shared].containerColor;
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Input filter text." attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor, NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"input.filter.text") attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor, NSFontAttributeName : [UIFont systemFontOfSize:14]}];
     self.searchTextField.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, 35);
     self.searchTextField.leftView = ({
         UIView *view = [LLFactory getView];
@@ -129,8 +129,8 @@
 }
 
 - (void)initSelectEnableFunction {
-    self.selectAllString = @"Select All";
-    self.cancelAllString = @"Cancel All";
+    self.selectAllString = LLLocalizedString(@"select.all");
+    self.cancelAllString = LLLocalizedString(@"cancel.all");
     
     // Navigation bar item
     [self initNavigationItemWithTitle:nil imageName:kEditImageName isLeft:NO];
@@ -144,11 +144,11 @@
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    _shareItem = [[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
+    _shareItem = [[UIBarButtonItem alloc] initWithTitle:LLLocalizedString(@"share") style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
     self.shareItem.tintColor = [LLThemeManager shared].primaryColor;
     self.shareItem.enabled = NO;
     
-    _deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
+    _deleteItem = [[UIBarButtonItem alloc] initWithTitle:LLLocalizedString(@"delete") style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
     self.deleteItem.tintColor = [LLThemeManager shared].primaryColor;
     self.deleteItem.enabled = NO;
     NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:self.selectAllItem, spaceItem, nil];
@@ -209,9 +209,10 @@
 
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
-        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:@"Sure to delete these %ld items?", (long)indexPaths.count] handler:^(NSInteger action) {
+        __weak typeof(self) weakSelf = self;
+        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:LLLocalizedString(@"sure.to.delete"), (long)indexPaths.count] handler:^(NSInteger action) {
             if (action == 1) {
-                [self deleteFilesWithIndexPaths:indexPaths];
+                [weakSelf deleteFilesWithIndexPaths:indexPaths];
             }
         }];
     }

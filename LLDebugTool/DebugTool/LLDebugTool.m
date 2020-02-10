@@ -134,7 +134,7 @@ static LLDebugTool *_instance = nil;
 }
 
 + (NSString *)versionNumber {
-    return @"1.3.7";
+    return @"1.3.7.1";
 }
 
 + (BOOL)isBetaVersion {
@@ -219,15 +219,6 @@ static LLDebugTool *_instance = nil;
 
 - (void)unregisterNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - DEPRECATED
-- (NSString *)version {
-    return [LLDebugTool version];
-}
-
-- (BOOL)isBetaVersion {
-    return [LLDebugTool isBetaVersion];
 }
 
 @end

@@ -57,8 +57,8 @@
     [self.swit.superview addConstraints:@[left, right, width, height, top, bottom]];
 }
 
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     _swit.onTintColor = [LLThemeManager shared].primaryColor;
 }
 

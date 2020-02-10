@@ -32,8 +32,10 @@
 #import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLToastUtils.h"
+#import "LLConfig.h"
 #import "LLConst.h"
 
+#import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLScreenshotPreviewViewController () <LLScreenshotToolbarDelegate>
@@ -82,19 +84,10 @@
 }
 
 - (void)confirmAction {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Note" message:@"Enter the image name" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * textField) {
-        textField.text = self.name;
+    __weak typeof(self) weakSelf = self;
+    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"screenshot.image.name") text:self.name handler:^(NSString * _Nullable newText) {
+        [weakSelf doConfirmAction:newText];
     }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-    }];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        [self doConfirmAction:alert.textFields.firstObject.text];
-    }];
-    [alert addAction:cancel];
-    [alert addAction:confirm];
-    
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)doConfirmAction:(NSString *)name {
@@ -104,13 +97,13 @@
         [[LLScreenshotHelper shared] saveScreenshot:image name:name complete:nil];
         if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-            [[LLToastUtils shared] toastMessage:@"Save image in sandbox and album."];
+            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox.album")];
         } else {
-            [[LLToastUtils shared] toastMessage:@"Save image in sandbox."];
+            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox")];
         }
     } else {
         self.toolBar.hidden = NO;
-        [[LLToastUtils shared] toastMessage:@"Save image failed."];
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.fail")];
     }
     [self componentDidLoad:nil];
 }

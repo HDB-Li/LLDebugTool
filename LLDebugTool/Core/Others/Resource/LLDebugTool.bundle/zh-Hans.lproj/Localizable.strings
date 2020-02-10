@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+ //
+ //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+ //
+ //  Permission is hereby granted, free of charge, to any person obtaining a copy
+ //  of this software and associated documentation files (the "Software"), to deal
+ //  in the Software without restriction, including without limitation the rights
+ //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ //  copies of the Software, and to permit persons to whom the Software is
+ //  furnished to do so, subject to the following conditions:
+ //
+ //  The above copyright notice and this permission notice shall be included in all
+ //  copies or substantial portions of the Software.
+ //
+ //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ //  SOFTWARE.
+*/
+
+// Function
+"function.function" = "常用功能";
+"function.short.cut" = "快捷功能";
+
+"function.net" = "网络请求";
+"function.log" = "日志";
+"function.crash" = "崩溃信息";
+"function.app.info" = "应用信息";
+"function.sandbox" = "沙盒文件";
+"function.location" = "模拟定位";
+"function.screenshot" = "截屏";
+"function.convenient.screenshot" = "快速截屏";
+"function.hierarchy" = "视图结构";
+"function.hierarchy.detail" = "视图详情";
+"function.magnifier" = "放大镜";
+"function.ruler" = "格尺";
+"function.widget.border" = "元素边框";
+"function.html" = "WebView";
+"function.short.cut" = "快捷操作";
+"function.setting" = "设置";
+"function.detail" = "详情";
+
+// Setting
+"setting.short.cut" = "快捷操作";
+"setting.double.click" = "双击事件";
+"setting.color" = "主题色";
+"setting.entry.window" = "主窗口";
+"setting.shrink" = "收缩到边界";
+"setting.shake" = "摇晃手机隐藏";
+"setting.log" = "日志";
+"setting.hierarchy" = "视图结构";
+"setting.ignore.private" = "忽略私有类";
+"setting.magnifier" = "放大镜";
+"setting.zoom.level" = "缩放等级";
+"setting.zoom.size" = "缩放大小";
+
+// Normal
+"select.all" = "全选";
+"cancel.all" = "取消全选";
+"share" = "分享";
+"delete" = "删除";
+"input.filter.text" = "输入筛选文字";
+"note" = "提示";
+"cancel" = "取消";
+"confirm" = "确认";
+"style" = "样式";
+"sure.to.delete" = "确定删除选定的%ld项？";
+"deleting" = "删除中...";
+"loading" = "加载中...";
+"copy.success" = "拷贝 \"%@\" 成功";
+"empty.folder" = "空文件夹";
+"copy.path.suceess" = "复制文件路径成功\n%@";
+"remove.fail" = "删除数据失败";
+"unknown" = "未知";
+
+// Network
+"network.detail" = "网络详情";
+
+// App Info
+"app.info.dynamic" = "动态信息";
+"app.info.application" = "应用信息";
+"app.info.device" = "设备信息";
+
+// Location
+"location.mock.location" = "模拟定位";
+"location.mock.route" = "模拟轨迹";
+"location.lat.lng" = "纬度 & 经度";
+"location.address" = "地址";
+"location.route" = "轨迹";
+"location.select.route" = "请选择路线";
+"location.route.file.error" = "路线文件不可用";
+"location.start.route" = "开始模拟路线定位";
+"location.stop.route" = "结束模拟路线定位";
+"location.record.route" = "记录轨迹";
+"location.record.route.alert" = "开始记录轨迹会停止模拟定位和模拟轨迹，确定开始记录轨迹么？";
+"location.record.route.recording" = "记录轨迹中";
+
+// Screenshot
+"screenshot.image.name" = "输入图片名称";
+"screenshot.save.in.sandbox.album" = "保存图片到沙盒和相册";
+"screenshot.save.in.sandbox" = "保存图片到沙盒";
+"screenshot.save.fail" = "保存图片失败";
+
+// Hierarchy
+"hierarchy.parent" = "父视图";
+"hierarchy.subview" = "子视图";
+"hierarchy.more" = "更多信息";
+"hierarchy.change.property" = "修改属性";
+
+// Html
+"html.input.url" = "请输入网址";
+"html.empty.url" = "未输入网址";
+"html.url.check" = "网址必须采用https:// 或者 http://作为前缀";
+"html.provider.fail" = "获取自定义WebView失败";
+"html.invalid.class" = "无效的WebView类";
+
+// Short cut
+"short.cut.execute" = "执行 '%@' 成功";

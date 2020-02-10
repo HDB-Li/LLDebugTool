@@ -25,7 +25,7 @@
 
 @implementation NSString (LL_Utils)
 
-- (NSDictionary *)LL_toJsonDictionary {
+- (NSDictionary *)LL_jsonDictionary {
     NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
     if (jsonData) {
         NSError *error;

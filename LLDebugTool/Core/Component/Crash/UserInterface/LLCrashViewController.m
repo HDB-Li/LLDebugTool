@@ -25,6 +25,7 @@
 
 #import "LLCrashDetailViewController.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLStorageManager.h"
 #import "LLCrashHelper.h"
 #import "LLToastUtils.h"
@@ -55,7 +56,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Crash Report";
+    self.title = LLLocalizedString(@"function.crash");
     [self.tableView registerClass:[LLCrashCell class] forCellReuseIdentifier:kCrashCellID];
     
     [self loadData];
@@ -64,7 +65,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 #pragma mark - Primary
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
     [[LLStorageManager shared] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
         [weakSelf.oriDataArray removeAllObjects];
@@ -82,7 +83,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     }
     
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Deleting"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"deleting")];
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
@@ -90,7 +91,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
             [weakSelf.searchDataArray removeObjectsInArray:models];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         } else {
-            [weakSelf LL_showAlertControllerWithMessage:@"Remove crash model fail" handler:^(NSInteger action) {
+            [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:^(NSInteger action) {
                 if (action == 1) {
                     [weakSelf loadData];
                 }

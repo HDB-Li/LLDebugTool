@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic, strong) NSLayoutConstraint *titleLabelRightCons;
+
 @property (nonatomic, strong) NSLayoutConstraint *titleLabelBottomCons;
 
 @end
@@ -50,17 +52,18 @@
 - (void)addTitleLabelConstrains {
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:kLLGeneralMargin];
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin];
-    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:-kLLGeneralMargin];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.titleLabel.superview addConstraints:@[left, top, width, bottom]];
+    [self.titleLabel.superview addConstraints:@[left, top, right, bottom]];
     
     self.titleLabelBottomCons = bottom;
+    self.titleLabelRightCons = right;
 }
 
 #pragma mark - Over write
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     _titleLabel.textColor = [LLThemeManager shared].primaryColor;
 }
 
@@ -76,5 +79,4 @@
     }
     return _titleLabel;
 }
-
 @end

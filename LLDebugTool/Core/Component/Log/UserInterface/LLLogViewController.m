@@ -70,7 +70,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Log Tracker";
+    self.title = LLLocalizedString(@"function.log");
     
     if (_launchDate == nil) {
         _launchDate = [NSObject LL_launchDate];
@@ -90,6 +90,9 @@ static NSString *const kLogCellID = @"LLLogCell";
         weakSelf.currentEndDate = end;
         weakSelf.currentUserIdentities = userIdentities;
         [weakSelf filterData];
+    };
+    self.filterView.filterChangeStateBlock = ^{
+        [weakSelf.tableView reloadData];
     };
     [self.filterView configWithData:self.oriDataArray];
     
@@ -120,13 +123,13 @@ static NSString *const kLogCellID = @"LLLogCell";
         [models addObject:self.datas[indexPath.row]];
     }
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Deleting"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"deleting")];
     [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
         [[LLToastUtils shared] hide];
         if (result) {
             [weakSelf updateAfterDelete:models indexPaths:indexPaths];
         } else {
-            [weakSelf LL_showAlertControllerWithMessage:@"Remove log model fail" handler:^(NSInteger action) {
+            [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:^(NSInteger action) {
                 if (action == 1) {
                     [weakSelf loadData];
                 }
@@ -205,7 +208,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)loadData {
     self.searchTextField.text = nil;
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
     [[LLStorageManager shared] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
         [[LLToastUtils shared] hide];
         [weakSelf.oriDataArray removeAllObjects];

@@ -1,6 +1,8 @@
 //
 //  CLLocationManager+LL_Location.h
 //
+//  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -25,9 +27,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXPORT NSNotificationName const LLCLLocationRegisterNotificationName;
+
+FOUNDATION_EXPORT NSNotificationName const LLCLLocationUnRegisterNotificationName;
+
 @interface CLLocationManager (LL_Location)
 
+/// Delegate proxy.
 @property (nonatomic, strong, nullable) LLLocationProxy *LL_delegateProxy;
+
+@property (nonatomic, assign) BOOL LL_isUpdatingLocation;
 
 @end
 

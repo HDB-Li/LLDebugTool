@@ -80,7 +80,7 @@ static LLSandboxHelper *_instance = nil;
         if (obj2.isDirectory != obj1.isDirectory) {
             return obj2.isDirectory;
         }
-        return [obj2.modifiDate compare:obj1.modifiDate];
+        return [obj1.name compare:obj2.name];
     }];
 }
 

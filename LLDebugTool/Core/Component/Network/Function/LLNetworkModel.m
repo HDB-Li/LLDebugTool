@@ -76,21 +76,21 @@
 
 - (NSString *)headerString {
     if (!_headerString) {
-        _headerString = [self.headerFields LL_toJsonString];
+        _headerString = [self.headerFields LL_jsonString];
     }
     return _headerString;
 }
 
 - (NSString *)responseHeaderString {
     if (!_responseHeaderString) {
-        _responseHeaderString = [self.responseHeaderFields LL_toJsonString];
+        _responseHeaderString = [self.responseHeaderFields LL_jsonString];
     }
     return _responseHeaderString;
 }
 
 - (NSString *)responseString {
     if (!_responseString && !self.isImage) {
-        _responseString = [self.responseData LL_toJsonString];
+        _responseString = [self.responseData LL_jsonString];
     }
     return _responseString;
 }
@@ -104,6 +104,9 @@
 
 - (NSDictionary<NSString *,NSString *> *)cookies {
     if (!_cookies) {
+        if (!self.url) {
+            return nil;
+        }
         NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         NSArray<NSHTTPCookie *> *cookies = [cookieStorage cookiesForURL:self.url];
         if (cookies.count) {
@@ -137,7 +140,7 @@
 - (unsigned long long)requestDataTrafficValue {
     if (!_requestDataTrafficValue) {
         // Can't get really header in a NSURLRequest, most of the missing headers are small, just add cookie.
-        unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_toJsonString];
+        unsigned long long headerTraffic = [self dataTrafficLength:self.headerString] + [self dataTrafficLength:self.cookies.LL_jsonString];
         unsigned long long bodyTraffic = self.requestBody.LL_byteLength;
         unsigned long long lineTraffic = [self dataTrafficLength:[self simulationHTTPRequestLine]];
         _requestDataTrafficValue = headerTraffic + bodyTraffic + lineTraffic;

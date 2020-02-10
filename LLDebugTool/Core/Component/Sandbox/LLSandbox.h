@@ -29,6 +29,11 @@
 #import "LLSandboxHelper.h"
 #import "LLSandboxModel.h"
 
+#import "LLSandboxVideoPreviewController.h"
+#import "LLSandboxImagePreviewController.h"
+#import "LLSandboxHtmlPreviewController.h"
+#import "LLSandboxTextPreviewController.h"
+#import "LLSandboxPreviewController.h"
 #import "LLSandboxViewController.h"
 #import "LLPreviewController.h"
 #import "LLSandboxWindow.h"

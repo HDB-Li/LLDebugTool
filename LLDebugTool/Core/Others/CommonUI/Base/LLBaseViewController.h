@@ -47,6 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)rightItemClick:(UIButton *)sender;
 
 /**
+ Back action.
+ */
+- (void)backAction:(UIButton *)sender;
+
+/**
  Whether hit test at point with event.
 
  @param point Point
@@ -67,11 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Called when window is show.
 - (void)becomeVisable;
 
-/// Called when [LLThemeManager primaryColor] changed.
-- (void)primaryColorChanged;
-
-/// Called when [LLThemeManager backgroundColor] changed.
-- (void)backgroundColorChanged;
+/// Called when [LLThemeManager themeColor] changed.
+- (void)themeColorChanged;
 
 @end
 

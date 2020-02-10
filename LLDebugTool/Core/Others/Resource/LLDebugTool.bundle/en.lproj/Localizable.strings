@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+ //
+ //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
+ //
+ //  Permission is hereby granted, free of charge, to any person obtaining a copy
+ //  of this software and associated documentation files (the "Software"), to deal
+ //  in the Software without restriction, including without limitation the rights
+ //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ //  copies of the Software, and to permit persons to whom the Software is
+ //  furnished to do so, subject to the following conditions:
+ //
+ //  The above copyright notice and this permission notice shall be included in all
+ //  copies or substantial portions of the Software.
+ //
+ //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ //  SOFTWARE.
+*/
+
+// Function
+"function.function" = "Function";
+"function.short.cut" = "Short Cut";
+
+"function.net" = "Net";
+"function.log" = "Log";
+"function.crash" = "Crash";
+"function.app.info" = "App Info";
+"function.sandbox" = "Sandbox";
+"function.location" = "Location";
+"function.screenshot" = "Screenshot";
+"function.convenient.screenshot" = "Convenient Screenshot";
+"function.hierarchy" = "Hierarchy";
+"function.hierarchy.detail" = "Hierarchy Details";
+"function.magnifier" = "Magnifier";
+"function.ruler" = "Ruler";
+"function.widget.border" = "Widget Border";
+"function.html" = "WebView";
+"function.short.cut" = "Short Cut";
+"function.setting" = "Settings";
+"function.detail" = "Details";
+
+// Setting
+"setting.short.cut" = "Short Cut";
+"setting.double.click" = "Double Click";
+"setting.color" = "Color";
+"setting.entry.window" = "Entry Window";
+"setting.shrink" = "Shrink To Edge";
+"setting.shake" = "Shake To Hide";
+"setting.log" = "Log";
+"setting.hierarchy" = "Hierarchy";
+"setting.ignore.private" = "Ignore Private";
+"setting.magnifier" = "Magnifier";
+"setting.zoom.level" = "Zoom Level";
+"setting.zoom.size" = "Size";
+
+// Normal
+"select.all" = "Select All";
+"cancel.all" = "Cancel All";
+"share" = "Share";
+"delete" = "Delete";
+"input.filter.text" = "Input filter text";
+"note" = "Note";
+"cancel" = "Cancel";
+"confirm" = "Confirm";
+"style" = "Style";
+"sure.to.delete" = "Sure to delete these %ld items?";
+"deleting" = "Deleting...";
+"loading" = "Loading...";
+"copy.success" = "Copy \"%@\" Success";
+"empty.folder" = "Empty folder";
+"copy.path.suceess" = "Copy File Path Success\n%@";
+"remove.fail" = "Remove data failed";
+"unknown" = "Unknown";
+
+// Network
+"network.detail" = "Network Details";
+
+// App Info
+"app.info.dynamic" = "Dynamic";
+"app.info.application" = "Application";
+"app.info.device" = "Device";
+
+// Location
+"location.mock.location" = "Mock Location";
+"location.mock.route" = "Mock Route";
+"location.lat.lng" = "Lat & Lng";
+"location.address" = "Address";
+"location.route" = "Routes";
+"location.select.route" = "Please select route";
+"location.route.file.error" = "Location route file is unavailable";
+"location.start.route" = "Start mock route";
+"location.stop.route" = "Stop mock route";
+"location.record.route" = "Record Route";
+"location.record.route.alert" = "Start record route will stop mock location and mock route, are you sure to start record route?";
+"location.record.route.recording" = "Recording location";
+
+// Screenshot
+"screenshot.image.name" = "Enter the image name";
+"screenshot.save.in.sandbox.album" = "Save image in sanbox and album";
+"screenshot.save.in.sandbox" = "Save image in sandbox";
+"screenshot.save.fail" = "Save image failed";
+
+// Hierarchy
+"hierarchy.parent" = "Parent Views";
+"hierarchy.subview" = "Subviews";
+"hierarchy.more" = "More Info";
+"hierarchy.change.property" = "Change Property";
+
+// Html
+"html.input.url" = "Please input url";
+"html.empty.url" = "Empty URL";
+"html.url.check" = "URL must has prefix with https:// or http://";
+"html.provider.fail" = "Provider custom webView failed";
+"html.invalid.class" = "Invalid webView class";
+
+// Short cut
+"short.cut.execute" = "Execute '%@' Success";

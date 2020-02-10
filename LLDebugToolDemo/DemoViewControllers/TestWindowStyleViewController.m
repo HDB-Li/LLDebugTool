@@ -21,11 +21,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#ifdef __IPHONE_13_0
-    return 4;
-#else
+    if (@available(iOS 13.0, *)) {
+        return 4;
+    }
     return 6;
-#endif
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -43,14 +42,18 @@
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Use \"Trailing\"";
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-#ifndef __IPHONE_13_0
     } else if (indexPath.row == 4) {
         cell.textLabel.text = @"Use \"NetBar\"";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+#pragma clang diagnostic pop
     } else if (indexPath.row == 5) {
         cell.textLabel.text = @"Use \"PowerBar\"";
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-#endif
+#pragma clang diagnostic pop
     }
     return cell;
 }
@@ -90,19 +93,11 @@
 }
 
 - (void)testNetBarWindowStyle {
-#ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
-#else
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
-#endif
 }
 
 - (void)testPowerBarWindowStyle {
-#ifndef __IPHONE_13_0
     [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
-#else
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
-#endif
 }
 
 @end

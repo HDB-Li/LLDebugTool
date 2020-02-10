@@ -64,15 +64,10 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 }
 
 #pragma mark - Over write
-- (void)primaryColorChanged {
-    [super primaryColorChanged];
-    [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
-    [_tableView reloadData];
-}
-
-- (void)backgroundColorChanged {
-    [super backgroundColorChanged];
+- (void)themeColorChanged {
+    [super themeColorChanged];
     _tableView.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [_tableView setSeparatorColor:[LLThemeManager shared].primaryColor];
     [_tableView reloadData];
 }
 

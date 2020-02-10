@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSInputStream (LL_Network)
 
 /// Convert to data.
-- (NSData *)LL_toData;
+- (NSData *)LL_data;
 
 @end
 

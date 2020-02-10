@@ -29,16 +29,34 @@
 /**
  Color style enum
  
- - LLConfigColorStyleHack: Green backgroundColor and white textColor.
+ - LLConfigColorStyleHack: Green backgroundColor and #333333 textColor.
  - LLConfigColorStyleSimple: White backgroundColor and darkTextColor textColor.
  - LLConfigColorStyleSystem: White backgroundColor and system tint textColor.
+ - LLConfigColorStyleGrass: #13773D backgroundColor and #FFF0A5 textColor.
+ - LLConfigColorStyleHomebrew: Black backgroundColor and #28FE14 textColor.
+ - LLConfigColorStyleManPage: #FEF49C backgroundColor and black textColor.
+ - LLConfigColorStyleNovel: #DFDBC3 backgroundColor and #3B2322 textColor.
+ - LLConfigColorStyleOcean: #224FBC backgroundColor and white textColor.
+ - LLConfigColorStylePro: Black backgroundColor and #F2F2F2 textColor.
+ - LLConfigColorStyleRedSands: #7A251E backgroundColor and #D7C9A7 textColor.
+ - LLConfigColorStyleSilverAerogel: #929292 backgroundColor and black textColor.
+ - LLConfigColorStyleSolidColors: White backgroundColor and black textColor.
  - LLConfigColorStyleCustom: Use custom backgroundColor and textColor.
  */
 typedef NS_ENUM(NSUInteger, LLConfigColorStyle) {
     LLConfigColorStyleHack,
     LLConfigColorStyleSimple,
     LLConfigColorStyleSystem,
-    LLConfigColorStyleCustom,
+    LLConfigColorStyleGrass,
+    LLConfigColorStyleHomebrew,
+    LLConfigColorStyleManPage,
+    LLConfigColorStyleNovel,
+    LLConfigColorStyleOcean,
+    LLConfigColorStylePro,
+    LLConfigColorStyleRedSands,
+    LLConfigColorStyleSilverAerogel,
+    LLConfigColorStyleSolidColors,
+    LLConfigColorStyleCustom
 };
 
 /**
@@ -57,13 +75,8 @@ typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
     LLConfigEntryWindowStyleTitle = 1,
     LLConfigEntryWindowStyleLeading = 2,
     LLConfigEntryWindowStyleTrailing = 3,
-#ifdef __IPHONE_13_0
-    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 2,
-    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 3,
-#else
-    LLConfigEntryWindowStyleNetBar = 4,
-    LLConfigEntryWindowStylePowerBar = 5,
-#endif
+    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 4,
+    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 5,
     LLConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLConfigEntryWindowStyleBall") = 0,
 };
 
@@ -116,6 +129,7 @@ typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
  - LLDebugToolActionWidgetBorder: Widget border function.
  - LLDebugToolActionHtml: Html function.
  - LLDebugToolActionLocation: Mock location function.
+ - LLDebugToolActionShortCut: Short cut function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionFunction,
@@ -132,7 +146,8 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionRuler,
     LLDebugToolActionWidgetBorder,
     LLDebugToolActionHtml,
-    LLDebugToolActionLocation
+    LLDebugToolActionLocation,
+    LLDebugToolActionShortCut
 };
 
 /**
@@ -167,9 +182,10 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
     LLConfigLogLevelError,
 };
 
-FOUNDATION_EXPORT NSNotificationName _Nonnull const LLConfigDidUpdateWindowStyleNotificationName;
-
 NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName;
+
 /**
  Config file. Must config properties before [LLDebugTool enable].
  */
@@ -225,19 +241,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Theme Color.
 /**
- Use preset the color configuration. For details, please see LLConfigColorStyle.
+ Use preset the color configuration. For details, please see LLConfigColorStyle. If you want to use custom style, use configPrimaryColor:backgroundColor:statusBarStyle: replace.
  */
 @property (nonatomic, assign) LLConfigColorStyle colorStyle;
 
 /**
  Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
  */
-- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
-
-/**
- Window's statusBarStyle when show.
- */
-- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle;
+- (void)configPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
 #pragma mark - Network
 /**
@@ -306,6 +317,28 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, assign) double mockLocationLongitude;
 
+/**
+ Time interval in mock route. default is kLLDefaultMockRouteTimeInterval.
+ */
+@property (nonatomic, assign) NSTimeInterval mockRouteTimeInterval;
+
+/**
+ Add a custom mock route file.
+ */
+- (void)addMockRouteFile:(NSString *)filePath;
+
+/**
+ Add all json file in directory, deep find.
+ */
+- (void)addMockRouteDirectory:(NSString *)fileDirectory;
+
+#pragma mark - ShortCut
+
+/// Register a short cut action in ShortCut function.
+/// @param name Display name for short cut.
+/// @param action Action block, return a message to toast, if nothing return nil.
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
+
 #pragma mark - Date Formatter
 /**
  Date Format Style. Use to recording time when create model. Default is "yyyy-MM-dd HH:mm:ss".
@@ -358,25 +391,6 @@ Whether show widget border. Default is NO.
  Image resource bundle.
  */
 @property (nonatomic, strong, readonly, nullable) NSBundle *imageBundle;
-
-#pragma mark - DEPRECATED
-
-@property (nonatomic, assign) CGFloat suspensionBallWidth LLDebugToolDeprecated("Use `entryWindowBallWidth`.");
-@property (nonatomic, assign) CGFloat suspensionWindowHideWidth LLDebugToolDeprecated("Use `entryWindowDisplayPercent` to set display percent.");
-@property (nonatomic, assign) CGFloat suspensionWindowTop LLDebugToolDeprecated("Use `entryWindowFirstDisplayPosition` to set first display position.");
-@property (nonatomic, assign) CGFloat normalAlpha LLDebugToolDeprecated("Use `inactiveAlpha`.");
-@property (nonatomic, assign) BOOL suspensionBallMoveable LLDebugToolDeprecated("Deprecated");
-@property (nonatomic, assign, getter=isAutoAdjustSuspensionWindow) BOOL autoAdjustSuspensionWindow LLDebugToolDeprecated("Use `shrinkToEdgeWhenInactive`.");
-@property (nonatomic, strong, nullable) NSArray <NSString *>*hosts LLDebugToolDeprecated("Use `observerdHosts`");
-/**
- Available features. Default is LLConfigAvailableAll.
- It can affect tabbar's display and features on or off. If this value is modified at run time, will automatic called [LLDebugTool stopWorking] and [LLDebugTool startWorking] again to start or close the features, also the tabbar will be updated automatically the next time it appears.
- */
-@property (nonatomic, assign) LLConfigAvailableFeature availables LLDebugToolDeprecated("Unsupported in v1.3.7, use LLDebugTool/{subspec} replace.");
-/**
- XIB resource bundle.
- */
-@property (nonatomic, strong, readonly, nullable) NSBundle *XIBBundle LLDebugToolDeprecated("Unused in v1.3.7.");
 
 @end
 

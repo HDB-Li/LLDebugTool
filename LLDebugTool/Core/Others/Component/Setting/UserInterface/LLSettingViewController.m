@@ -38,7 +38,7 @@
 
 #import "UIViewController+LL_Utils.h"
 
-@interface LLSettingViewController () <UITableViewDataSource>
+@interface LLSettingViewController ()
 
 @end
 
@@ -47,13 +47,8 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Setting";
+    self.title = LLLocalizedString(@"function.setting");
     [self loadData];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self setUpUI];
 }
 
 #pragma mark - Primary
@@ -63,15 +58,14 @@
     
     // Short Cut
     [settings addObject:[self getDoubleClickComponentModel]];
-    LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Short Cut" items:settings];
+    LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.short.cut") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category0];
     
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
-    [settings addObject:[self getStatusBarStyleModel]];
     
-    LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Color" items:settings];
+    LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.color") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category1];
     
@@ -79,21 +73,21 @@
     [settings addObject:[self getEntryWindowStyleModel]];
     [settings addObject:[self getShrinkToEdgeWhenInactiveModel]];
     [settings addObject:[self getShakeToHideModel]];
-    LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Entry Window" items:settings];
+    LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.entry.window") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category2];
     
 #ifdef LLDEBUGTOOL_LOG
     // Log
     [settings addObject:[self getLogStyleModel]];
-    LLTitleCellCategoryModel *category3 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Log" items:settings];
+    LLTitleCellCategoryModel *category3 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.log") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category3];
 #endif
 #ifdef LLDEBUGTOOL_HIERARCHY
     // Hierarchy
     [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
-    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Hierarchy" items:settings];
+    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.hierarchy") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category5];
 #endif
@@ -101,20 +95,16 @@
     // Magnifier
     [settings addObject:[self getMagnifierZoomLevelModel]];
     [settings addObject:[self getMagnifierSizeModel]];
-    LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Magnifier" items:settings];
+    LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.magnifier") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category4];
 #endif
     [self.tableView reloadData];
 }
 
-- (void)setUpUI {
-    self.tableView.frame = self.view.bounds;
-}
-
 - (LLTitleCellModel *)getDoubleClickComponentModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Double Click" detailTitle:[LLConfigHelper doubleClickComponentDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.double.click") detailTitle:[LLConfigHelper doubleClickComponentDescription]];
     model.block = ^{
         [weakSelf showDoubleClickAlert];
     };
@@ -124,7 +114,7 @@
 - (void)showDoubleClickAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     __block NSMutableArray *indexs = [[NSMutableArray alloc] init];
-    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionWidgetBorder + 1; i++) {
+    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionShortCut + 1; i++) {
         NSString *action = [LLConfigHelper componentDescription:i];
         if (action) {
             [actions addObject:action];
@@ -132,7 +122,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Double Click Event" actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"setting.double.click") actions:actions currentAction:[LLConfigHelper doubleClickComponentDescription] completion:^(NSInteger index) {
         [weakSelf setNewDoubleClick:[indexs[index] unsignedIntegerValue]];
     }];
 }
@@ -143,23 +133,9 @@
     [self loadData];
 }
 
-- (LLTitleCellModel *)getShakeToHideModel {
-    __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Shake To Hide" flag:[LLConfig shared].isShakeToHide];
-    model.changePropertyBlock = ^(id  _Nullable obj) {
-        [weakSelf setNewShakeToHide:[obj boolValue]];
-    };
-    return model;
-}
-
-- (void)setNewShakeToHide:(BOOL)isShakeToHide {
-    [LLConfig shared].shakeToHide = isShakeToHide;
-    [LLSettingManager shared].shakeToHide = @(isShakeToHide);
-}
-
 - (LLTitleCellModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper colorStyleDetailDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -168,14 +144,14 @@
 
 - (void)showColorStyleAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 3; i++) {
+    for (LLConfigColorStyle i = LLConfigColorStyleHack; i < LLConfigColorStyleCustom; i++) {
         NSString *action = [LLConfigHelper colorStyleDescription:i];
         if (action) {
             [actions addObject:action];
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Color Style" actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:[LLConfigHelper colorStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewColorStyle:index];
     }];
 }
@@ -193,54 +169,9 @@
     }
 }
 
-- (LLTitleCellModel *)getStatusBarStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Status Bar" detailTitle:[LLConfigHelper statusBarStyleDescription]];
-    __weak typeof(self) weakSelf = self;
-    model.block = ^{
-        [weakSelf showStatusBarStyleAlert];
-    };
-    return model;
-}
-
-- (void)showStatusBarStyleAlert {
-    NSMutableArray *actions = [[NSMutableArray alloc] init];
-#ifdef __IPHONE_13_0
-    NSInteger count = 4;
-#else
-    NSInteger count = 3;
-#endif
-    for (NSInteger i = 0; i < count; i++) {
-        NSString *action = [LLConfigHelper statusBarStyleDescription:i];
-        if (action) {
-            [actions addObject:action];
-        }
-    }
-    __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Status Bar Style" actions:actions currentAction:[LLConfigHelper statusBarStyleDescription] completion:^(NSInteger index) {
-        [weakSelf setNewStatusBarStyle:index];
-    }];
-}
-
-- (void)setNewStatusBarStyle:(UIStatusBarStyle)style {
-    if (style == [LLThemeManager shared].statusBarStyle) {
-        return;
-    }
-    
-    [[LLConfig shared] configStatusBarStyle:style];
-    [LLSettingManager shared].statusBarStyle = @(style);
-    [self loadData];
-    [UIView animateWithDuration:0.25 animations:^{
-        [self setNeedsStatusBarAppearanceUpdate];
-    }];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[UIApplication sharedApplication] setStatusBarStyle:style animated:YES];
-#pragma clang diagnostic pop
-}
-
 - (LLTitleCellModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper entryWindowStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -248,11 +179,10 @@
 }
 
 - (void)showEntryWindowStyleAlert {
-#ifdef __IPHONE_13_0
-    NSInteger count = 4;
-#else
     NSInteger count = 6;
-#endif
+    if (@available(iOS 13.0, *)) {
+        count = 4;
+    }
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < count; i++) {
         NSString *action = [LLConfigHelper entryWindowStyleDescription:i];
@@ -261,7 +191,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Entry Window Style" actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:[LLConfigHelper entryWindowStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewEntryWindowStyle:index];
     }];
 }
@@ -277,7 +207,7 @@
 }
 
 - (LLTitleCellModel *)getShrinkToEdgeWhenInactiveModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Shrink To Edge" flag:[LLConfig shared].isShrinkToEdgeWhenInactive];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.shrink") flag:[LLConfig shared].isShrinkToEdgeWhenInactive];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewShrinkToEdgeWhenInactive:[obj boolValue]];
@@ -290,9 +220,23 @@
     [LLSettingManager shared].shrinkToEdgeWhenInactive = @(isShrinkToEdgeWhenInactive);
 }
 
+- (LLTitleCellModel *)getShakeToHideModel {
+    __weak typeof(self) weakSelf = self;
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.shake") flag:[LLConfig shared].isShakeToHide];
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewShakeToHide:[obj boolValue]];
+    };
+    return model;
+}
+
+- (void)setNewShakeToHide:(BOOL)isShakeToHide {
+    [LLConfig shared].shakeToHide = isShakeToHide;
+    [LLSettingManager shared].shakeToHide = @(isShakeToHide);
+}
+
 #ifdef LLDEBUGTOOL_LOG
 - (LLTitleCellModel *)getLogStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Style" detailTitle:[LLConfigHelper logStyleDescription]];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
@@ -309,7 +253,7 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:@"Log Style" actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:[LLConfigHelper logStyleDescription] completion:^(NSInteger index) {
         [weakSelf setNewLogStyle:index];
     }];
 }
@@ -324,10 +268,24 @@
     [self loadData];
 }
 #endif
+#ifdef LLDEBUGTOOL_HIERARCHY
+- (LLTitleCellModel *)getHierarchyIgnorePrivateClassModel {
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.ignore.private") flag:[LLConfig shared].hierarchyIgnorePrivateClass];
+    __weak typeof(self) weakSelf = self;
+    model.changePropertyBlock = ^(id  _Nullable obj) {
+        [weakSelf setNewHierarchyIgnorePrivateClass:[obj boolValue]];
+    };
+    return model;
+}
 
+- (void)setNewHierarchyIgnorePrivateClass:(BOOL)hierarchyIgnorePrivateClass {
+    [LLConfig shared].hierarchyIgnorePrivateClass = hierarchyIgnorePrivateClass;
+    [LLSettingManager shared].hierarchyIgnorePrivateClass = @(hierarchyIgnorePrivateClass);
+}
+#endif
 #ifdef LLDEBUGTOOL_MAGNIFIER
 - (LLTitleCellModel *)getMagnifierZoomLevelModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Zoom Level" value:[LLConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.zoom.level") value:[LLConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierZoomLevel:[obj integerValue]];
@@ -342,7 +300,7 @@
 }
 
 - (LLTitleCellModel *)getMagnifierSizeModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Size" value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
+    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.zoom.size") value:[LLConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierSize:[obj integerValue]];
@@ -354,21 +312,6 @@
     [LLConfig shared].magnifierSize = size;
     [LLSettingManager shared].magnifierSize = @(size);
     [self loadData];
-}
-#endif
-#ifdef LLDEBUGTOOL_HIERARCHY
-- (LLTitleCellModel *)getHierarchyIgnorePrivateClassModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:@"Ignore Private" flag:[LLConfig shared].hierarchyIgnorePrivateClass];
-    __weak typeof(self) weakSelf = self;
-    model.changePropertyBlock = ^(id  _Nullable obj) {
-        [weakSelf setNewHierarchyIgnorePrivateClass:[obj boolValue]];
-    };
-    return model;
-}
-
-- (void)setNewHierarchyIgnorePrivateClass:(BOOL)hierarchyIgnorePrivateClass {
-    [LLConfig shared].hierarchyIgnorePrivateClass = hierarchyIgnorePrivateClass;
-    [LLSettingManager shared].hierarchyIgnorePrivateClass = @(hierarchyIgnorePrivateClass);
 }
 #endif
 

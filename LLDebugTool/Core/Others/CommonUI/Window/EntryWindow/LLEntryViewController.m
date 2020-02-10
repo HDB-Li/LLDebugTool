@@ -54,41 +54,17 @@
 
 @property (nonatomic, assign) LLConfigEntryWindowStyle style;
 
-@property (nonatomic, assign) BOOL statusBarClickable;
-
 @end
 
 @implementation LLEntryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.statusBarClickable = [LLTool statusBarClickable];
     
     self.view.backgroundColor = [UIColor clearColor];
     self.style = [LLConfig shared].entryWindowStyle;
     
-    // Double tap, to screenshot.
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
-    doubleTap.numberOfTapsRequired = 2;
-    
-    // Tap, to show tool view.
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
-    [tap requireGestureRecognizerToFail:doubleTap];
-    
-    [self.view addGestureRecognizer:tap];
-    [self.view addGestureRecognizer:doubleTap];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
-}
-
-#pragma mark - Over write
-- (void)backgroundColorChanged {
-    [super backgroundColorChanged];
-    self.view.backgroundColor = [UIColor clearColor];
-}
-
-- (void)becomeVisable {
-    [super becomeVisable];
-    [self.activeView resignActive:NO];
 }
 
 #pragma mark - Primary
@@ -118,7 +94,8 @@
             [self.view addSubview:self.trailingView];
         }
             break;
-#ifndef __IPHONE_13_0
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLConfigEntryWindowStyleNetBar: {
             [self.activeView removeFromSuperview];
             self.activeView = self.netView;
@@ -131,27 +108,9 @@
             [self.view addSubview:self.powerView];
         }
             break;
-#endif
+#pragma clang diagnostic pop
     }
-}
-
-- (void)tapGR:(UITapGestureRecognizer *)sender {
-    [self.activeView animatedBecomeActive];
-    [[[LLFunctionItemModel alloc] initWithAction:[LLConfig shared].clickAction].component componentDidLoad:nil];
-}
-
-- (void)doubleTapGR:(UITapGestureRecognizer *)sender {
-    [self.activeView animatedBecomeActive];
-    [[[LLFunctionItemModel alloc] initWithAction:[LLConfig shared].doubleClickAction].component componentDidLoad:nil];
-}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-    UIView *activeView = [self activeEntryView];
-    CGPoint activePoint = [self.view convertPoint:point toView:activeView];
-    if ([activeView pointInside:activePoint withEvent:event]) {
-        return YES;
-    }
-    return NO;
+    [self.delegate LLEntryViewController:self style:self.activeView.styleModel];
 }
 
 - (UIView *)activeEntryView {
@@ -164,12 +123,13 @@
             return self.leadingView;
         case LLConfigEntryWindowStyleTrailing:
             return self.trailingView;
-#ifndef __IPHONE_13_0
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLConfigEntryWindowStyleNetBar:
             return self.netView;
         case LLConfigEntryWindowStylePowerBar:
             return self.powerView;
-#endif
+#pragma clang diagnostic pop
     }
 }
 
@@ -190,7 +150,8 @@
         CGRect frame = CGRectZero;
         frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
         frame.size = CGSizeMake(width, width);
-        _ballView = [[LLEntryBallView alloc] initWithFrame:frame];
+        _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        _ballView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleBall moveableRect:CGRectNull frame:frame];
     }
     return _ballView;
 }
@@ -199,8 +160,9 @@
     if (!_bigTitleView) {
         CGRect frame = CGRectZero;
         frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
-        frame.size = CGSizeMake(100, kLLEntryWindowBigTitleViewHeight);
-        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:frame];
+        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
+        frame.size = _bigTitleView.LL_size;
+        _bigTitleView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleTitle moveableRect:CGRectNull frame:frame];
     }
     return _bigTitleView;
 }
@@ -209,9 +171,9 @@
     if (!_leadingView) {
         CGRect frame = CGRectZero;
         frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
-        frame.size = CGSizeMake(100, kLLEntryWindowBigTitleViewHeight);
-        _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:frame];
-        _leadingView.moveableRect = CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0);
+        _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
+        frame.size = _leadingView.LL_size;
+        _leadingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleLeading moveableRect:CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0) frame:frame];
     }
     return _leadingView;
 }
@@ -220,39 +182,48 @@
     if (!_trailingView) {
         CGRect frame = CGRectZero;
         frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
-        frame.size = CGSizeMake(100, kLLEntryWindowBigTitleViewHeight);
-        _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:frame];
-        _trailingView.LL_right = LL_SCREEN_WIDTH;
-        _trailingView.moveableRect = CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0);
+        _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
+        frame.size = _trailingView.LL_size;
+        frame.origin.x = LL_SCREEN_WIDTH - frame.size.width;
+        _trailingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleTrailing moveableRect:CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0) frame:frame];
     }
     return _trailingView;
 }
 
 - (LLEntryView *)netView {
     if (!_netView) {
+        CGRect frame = CGRectZero;
         if (LL_IS_SPECIAL_SCREEN) {
             _netView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
-            _netView.LL_y = (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0;
-            _netView.LL_left = LL_LAYOUT_HORIZONTAL(25);
+            frame = CGRectMake(LL_LAYOUT_HORIZONTAL(25), (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0, _netView.LL_width, _netView.LL_height);
         } else {
             _netView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+            frame = CGRectMake(0, 0, _netView.LL_width, _netView.LL_height);
         }
-        _netView.moveable = NO;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        _netView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleNetBar moveableRect:CGRectNull frame:frame];
+#pragma clang diagnostic pop
     }
     return _netView;
 }
 
 - (LLEntryView *)powerView {
     if (!_powerView) {
+        CGRect frame = CGRectZero;
         if (LL_IS_SPECIAL_SCREEN) {
             _powerView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
-            _powerView.LL_y = (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0;
-            _powerView.LL_right = LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25);
+            frame.size = _powerView.LL_size;
+            frame.origin = CGPointMake(LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) - frame.size.width, (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0);
         } else {
             _powerView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-            _powerView.LL_right = LL_SCREEN_WIDTH;
+            frame.size = _powerView.LL_size;
+            frame.origin.x = LL_SCREEN_WIDTH - frame.size.width;
         }
-        _powerView.moveable = NO;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        _powerView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStylePowerBar moveableRect:CGRectNull frame:frame];
+#pragma clang diagnostic pop
     }
     return _powerView;
 }

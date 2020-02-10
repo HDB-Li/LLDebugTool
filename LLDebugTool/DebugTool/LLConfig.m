@@ -24,12 +24,16 @@
 #import "LLConfig.h"
 
 #import "LLThemeManager.h"
+#import "LLThemeColor.h"
 #import "LLDebugTool.h"
 #import "LLFactory.h"
 #import "LLRouter.h"
 #import "LLConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
+
+#import "LLRouter+Location.h"
+#import "LLRouter+ShortCut.h"
 
 static LLConfig *_instance = nil;
 
@@ -46,83 +50,21 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     return _instance;
 }
 
-- (void)setColorStyle:(LLConfigColorStyle)colorStyle {
-    if (colorStyle != LLConfigColorStyleCustom) {
-        _colorStyle = colorStyle;
-        [self updateColor];
-    }
-}
-
-- (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
-    if (_entryWindowStyle != entryStyle) {
-        _entryWindowStyle = entryStyle;
-        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];
-    }
-}
-
-- (void)setAvailables:(LLConfigAvailableFeature)availables {
-    if (_availables != availables) {
-        BOOL networkEnable = availables & LLConfigAvailableNetwork;
-        BOOL logEnable = availables & LLConfigAvailableLog;
-        BOOL crashEnable = availables & LLConfigAvailableCrash;
-        BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
-        BOOL sandboxEnable = availables & LLConfigAvailableSandbox;
-        BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
-        BOOL hierarchyEnable = availables & LLConfigAvailableHierarchy;
-        if (!networkEnable && !logEnable && !crashEnable && !appInfoEnable && !sandboxEnable && !screenshotEnable && !hierarchyEnable) {
-            // Can't set none availables.
-            return;
-        }
-        BOOL allEnable = networkEnable && logEnable && crashEnable && appInfoEnable && sandboxEnable && screenshotEnable && hierarchyEnable;
-        if (allEnable && (availables != LLConfigAvailableAll)) {
-            // Check if input wrong.
-            _availables = LLConfigAvailableAll;
-        } else {
-            _availables = availables;
-        }
-        // Start or close features.
-        if ([LLDebugTool sharedTool].isWorking) {
-            BOOL networkEnable = availables & LLConfigAvailableNetwork;
-            BOOL logEnable = availables & LLConfigAvailableLog;
-            BOOL crashEnable = availables & LLConfigAvailableCrash;
-            BOOL appInfoEnable = availables & LLConfigAvailableAppInfo;
-            BOOL screenshotEnable = availables & LLConfigAvailableScreenshot;
-            [LLRouter setNetworkHelperEnable:networkEnable];
-            [LLRouter setLogHelperEnable:logEnable];
-            [LLRouter setCrashHelperEnable:crashEnable];
-            [LLRouter setAppInfoHelperEnable:appInfoEnable];
-            [LLRouter setScreenshotHelperEnable:screenshotEnable];
-        }
-    }
-}
-
-- (void)configBackgroundColor:(UIColor *)backgroundColor primaryColor:(UIColor *)primaryColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
+- (void)configPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
     _colorStyle = LLConfigColorStyleCustom;
-    [[LLThemeManager shared] setPrimaryColor:primaryColor];
-    [[LLThemeManager shared] setBackgroundColor:backgroundColor];
-    [[LLThemeManager shared] setStatusBarStyle:statusBarStyle];
+    [LLThemeManager shared].themeColor = [LLThemeColor colorWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:statusBarStyle];
 }
 
-- (void)configStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
-    [LLThemeManager shared].statusBarStyle = statusBarStyle;
+- (void)addMockRouteFile:(NSString *)filePath {
+    [LLRouter addMockRouteFile:filePath];
 }
 
-- (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
-    _entryWindowBallWidth = MIN(MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth), kLLEntryWindowMaxBallWidth);
+- (void)addMockRouteDirectory:(NSString *)fileDirectory {
+    [LLRouter addMockRouteDirectory:fileDirectory];
 }
 
-- (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
-    _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
-}
-
-- (void)setMagnifierSize:(NSInteger)magnifierSize {
-    if (_magnifierSize != magnifierSize) {
-        if (magnifierSize % 2 == 0) {
-            _magnifierSize = magnifierSize + 1;
-        } else {
-            _magnifierSize = magnifierSize;
-        }
-    }
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action {
+    [LLRouter registerShortCutWithName:name action:action];
 }
 
 #pragma mark - Primary
@@ -160,57 +102,120 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _shrinkToEdgeWhenInactive = YES;
     _shakeToHide = YES;
     
-#ifdef LLDEBUGTOOL_MAGNIFIER
     // Set default magnifier properties.
-    self.magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
-    self.magnifierSize = kLLMagnifierWindowSize;
-#endif
-#ifdef LLDEBUGTOOL_HIERARCHY
+    _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
+    _magnifierSize = kLLMagnifierWindowSize;
+
     // Set hierarchy
-    self.hierarchyIgnorePrivateClass = YES;
-#endif
+    _hierarchyIgnorePrivateClass = YES;
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
     
+    // Set location
+    _mockRouteTimeInterval = kLLDefaultMockRouteTimeInterval;
+
     // Click action
     _clickAction = LLDebugToolActionFunction;
     _doubleClickAction = LLDebugToolActionHierarchy;
     
     // Set default window's style.
     _entryWindowStyle = LLConfigEntryWindowStyleBall;
-    
-    // Set default availables.
-    _availables = LLConfigAvailableAll;
-    
-    // Update color.
-    [self updateColor];
 }
 
-- (void)updateColor {
-    switch (self.colorStyle) {
-        case LLConfigColorStyleSimple:{
-            [[LLThemeManager shared] setPrimaryColor:[UIColor darkTextColor]];
-            [[LLThemeManager shared] setBackgroundColor:[UIColor whiteColor]];
-            [[LLThemeManager shared] setStatusBarStyle:UIStatusBarStyleDefault];
+#pragma mark - Getters and setters
+- (void)setColorStyle:(LLConfigColorStyle)colorStyle {
+    if (_colorStyle != colorStyle) {
+        _colorStyle = colorStyle;
+        switch (colorStyle) {
+            case LLConfigColorStyleHack: {
+                [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
+            }
+                break;
+            case LLConfigColorStyleSimple: {
+                [LLThemeManager shared].themeColor = [LLThemeColor simpleThemeColor];
+            }
+                break;
+            case LLConfigColorStyleSystem: {
+                [LLThemeManager shared].themeColor = [LLThemeColor systemThemeColor];
+            }
+                break;
+            case LLConfigColorStyleGrass: {
+                [LLThemeManager shared].themeColor = [LLThemeColor grassThemeColor];
+            }
+                break;
+            case LLConfigColorStyleHomebrew: {
+                [LLThemeManager shared].themeColor = [LLThemeColor homebrewThemeColor];
+            }
+                break;
+            case LLConfigColorStyleManPage: {
+                [LLThemeManager shared].themeColor = [LLThemeColor manPageThemeColor];
+            }
+                break;
+            case LLConfigColorStyleNovel: {
+                [LLThemeManager shared].themeColor = [LLThemeColor novelThemeColor];
+            }
+                break;
+            case LLConfigColorStyleOcean: {
+                [LLThemeManager shared].themeColor = [LLThemeColor oceanThemeColor];
+            }
+                break;
+            case LLConfigColorStylePro: {
+                [LLThemeManager shared].themeColor = [LLThemeColor proThemeColor];
+            }
+                break;
+            case LLConfigColorStyleRedSands: {
+                [LLThemeManager shared].themeColor = [LLThemeColor redSandsThemeColor];
+            }
+                break;
+            case LLConfigColorStyleSilverAerogel: {
+                [LLThemeManager shared].themeColor = [LLThemeColor silverAerogelThemeColor];
+            }
+                break;
+            case LLConfigColorStyleSolidColors: {
+                [LLThemeManager shared].themeColor = [LLThemeColor solidColorsThemeColor];
+            }
+                break;
+            case LLConfigColorStyleCustom: {
+                [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property"];
+                [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
+            }
+                break;
         }
-            break;
-        case LLConfigColorStyleSystem: {
-            [[LLThemeManager shared] setPrimaryColor:[LLThemeManager shared].systemTintColor];
-            [[LLThemeManager shared] setBackgroundColor:[UIColor whiteColor]];
-            [[LLThemeManager shared] setStatusBarStyle:UIStatusBarStyleDefault];
+    }
+}
+
+- (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
+    if (@available(iOS 13.0, *)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        if (entryStyle == LLConfigEntryWindowStyleNetBar) {
+            entryStyle = LLConfigEntryWindowStyleLeading;
+        } else if (entryStyle == LLConfigEntryWindowStylePowerBar) {
+            entryStyle = LLConfigEntryWindowStyleTrailing;
         }
-            break;
-        case LLConfigColorStyleCustom:{
-            
+#pragma clang diagnostic pop
+    }
+    if (_entryWindowStyle != entryStyle) {
+        _entryWindowStyle = entryStyle;
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];
+    }
+}
+
+- (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
+    _entryWindowBallWidth = MIN(MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth), kLLEntryWindowMaxBallWidth);
+}
+
+- (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
+    _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
+}
+
+- (void)setMagnifierSize:(NSInteger)magnifierSize {
+    if (_magnifierSize != magnifierSize) {
+        if (magnifierSize % 2 == 0) {
+            _magnifierSize = magnifierSize + 1;
+        } else {
+            _magnifierSize = magnifierSize;
         }
-            break;
-        case LLConfigColorStyleHack:
-        default:{
-            [[LLThemeManager shared] setPrimaryColor:[UIColor greenColor]];
-            [[LLThemeManager shared] setBackgroundColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1]];
-            [[LLThemeManager shared] setStatusBarStyle:UIStatusBarStyleLightContent];
-        }
-            break;
     }
 }
 

@@ -23,10 +23,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class LLThemeColor;
+
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN NSString *const kThemeManagerUpdatePrimaryColorNotificaionName;
-FOUNDATION_EXTERN NSString *const kThemeManagerUpdateBackgroundColorNotificaionName;
+FOUNDATION_EXTERN NSString *const kThemeManagerUpdateThemeColorNotificaionName;
 
 /// Theme manager.
 @interface LLThemeManager : NSObject
@@ -34,32 +35,32 @@ FOUNDATION_EXTERN NSString *const kThemeManagerUpdateBackgroundColorNotificaionN
 /**
  Primary color, use on text and border.
  */
-@property (nonatomic, copy) UIColor *primaryColor;
+@property (nonatomic, copy, readonly, nullable) UIColor *primaryColor;
 
 /**
  Background color, use on background.
  */
-@property (nonatomic, copy) UIColor *backgroundColor;
+@property (nonatomic, copy, readonly, nullable) UIColor *backgroundColor;
 
 /**
  Container color, use on containerView, should different with backgroundColor.
  */
-@property (nonatomic, copy, readonly) UIColor *containerColor;
+@property (nonatomic, copy, readonly, nullable) UIColor *containerColor;
 
 /**
  PlaceHolder color, use on textField/textView, should different with backgroundColor.
  */
-@property (nonatomic, copy, readonly) UIColor *placeHolderColor;
+@property (nonatomic, copy, readonly, nullable) UIColor *placeHolderColor;
 
 /**
  Window's statusBarStyle when show.
  */
-@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
+@property (nonatomic, assign, readonly) UIStatusBarStyle statusBarStyle;
 
 /**
- System tint color.
+ Theme color config.
  */
-@property (nonatomic, strong, readonly) UIColor *systemTintColor;
+@property (nonatomic, strong, nullable) LLThemeColor *themeColor;
 
 /**
  Singleton
@@ -67,6 +68,9 @@ FOUNDATION_EXTERN NSString *const kThemeManagerUpdateBackgroundColorNotificaionN
  @return singleton.
  */
 + (instancetype)shared;
+
+/// System tint color.
++ (UIColor *)systemTintColor;
 
 @end
 

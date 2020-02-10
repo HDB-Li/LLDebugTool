@@ -49,7 +49,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = self.model.name;
+    self.title = self.model.name;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashContentCellID];
     
@@ -93,7 +93,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         }        
     } else if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
-        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:@"Copy \"%@\" Success",title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
     }
 }
 
@@ -105,7 +105,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 #pragma mark - Primary
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
-    [[LLToastUtils shared] loadingMessage:@"Loading"];
+    [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
     [[LLStorageManager shared] getModels:[LLRouter logModelClass] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
         // Get log models.
         __block NSArray *logs = result;

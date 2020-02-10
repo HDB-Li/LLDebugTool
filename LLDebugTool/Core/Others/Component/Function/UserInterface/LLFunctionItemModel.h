@@ -25,7 +25,7 @@
 
 #import "LLDebugTool.h"
 
-@class LLComponent;
+#import "LLComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

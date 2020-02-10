@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSArray (LL_Utils)
 
 /// Convert to json string.
-- (NSString *_Nullable)LL_toJsonString;
+- (NSString *_Nullable)LL_jsonString;
 
 @end
 

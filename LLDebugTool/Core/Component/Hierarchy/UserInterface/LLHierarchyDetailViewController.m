@@ -54,7 +54,7 @@
     [super viewDidLoad];
     NSAssert(self.selectView, @"SelectView can't be nil");
     
-    self.navigationItem.title = @"Hierarchy Detail";
+    self.title = LLLocalizedString(@"function.hierarchy.detail");
     self.objectDatas = [[NSMutableArray alloc] init];
     self.sizeDatas = [[NSMutableArray alloc] init];
     

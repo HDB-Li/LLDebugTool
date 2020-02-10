@@ -31,11 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Init UI method. must call super.
 - (void)initUI;
 
-/// Primary color changed notification. must call super.
-- (void)primaryColorChanged;
-
-/// Background color changed notification. must call super.
-- (void)backgroundColorChanged;
+/// Theme color changed notification. must call super.
+- (void)themeColorChanged;
 
 @end
 

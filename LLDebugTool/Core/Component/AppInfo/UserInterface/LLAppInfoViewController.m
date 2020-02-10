@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = [[LLAppInfoHelper shared] deviceName] ?: @"App Infos";
+    self.title = [[LLAppInfoHelper shared] deviceName] ?: LLLocalizedString(@"function.app.info");
     [self loadData];
 }
 
@@ -66,8 +66,6 @@
 - (void)didReceiveLLAppInfoHelperDidUpdateAppInfosNotification:(NSNotification *)notification {
     [self updateDynamicData];
 }
-
-#pragma mark - UITableViewDataSource
 
 #pragma mark - Primary
 - (void)loadData {
@@ -95,7 +93,7 @@
         [settings addObject:model];
     }
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Dynamic" items:settings];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.dynamic") items:settings];
 }
 
 - (LLTitleCellCategoryModel *)applicationData {
@@ -106,7 +104,7 @@
         [settings addObject:model];
     }
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Application" items:settings];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.application") items:settings];
 }
 
 - (LLTitleCellCategoryModel *)deviceData {
@@ -117,7 +115,7 @@
         [settings addObject:model];
     }
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:@"Device" items:settings];
+    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.device") items:settings];
 }
 
 @end

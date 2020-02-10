@@ -34,7 +34,7 @@
 #import "NSData+LL_Network.h"
 #import "LLRouter+AppInfo.h"
 
-static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
+static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
 
 @interface LLURLProtocol () <NSURLSessionDataDelegate>
 
@@ -55,25 +55,27 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
         return NO;
     }
     
-    if ([NSURLProtocol propertyForKey:HTTPHandledIdentifier inRequest:request] ) {
+    if ([NSURLProtocol propertyForKey:kLLURLProtocolIdentifier inRequest:request] ) {
         return NO;
     }
     
     if ([LLConfig shared].observerdHosts.count > 0) {
-        NSString *url = [request.URL.absoluteString lowercaseString];
-        for (NSString *_url in [LLConfig shared].observerdHosts) {
-            if ([url rangeOfString:[_url lowercaseString]].location != NSNotFound)
+        NSString *host = request.URL.host;
+        for (NSString *observerdHost in [LLConfig shared].observerdHosts) {
+            if ([host caseInsensitiveCompare:observerdHost] == NSOrderedSame) {
                 return YES;
+            }
         }
         return NO;
     }
     
     if ([LLConfig shared].ignoredHosts.count > 0) {
-        NSString *url = [request.URL.absoluteString lowercaseString];
-        for (NSString *_url in [LLConfig shared].ignoredHosts) {
-            if ([url rangeOfString:[_url lowercaseString]].location != NSNotFound)
+        NSString *host = request.URL.host;
+        for (NSString *ignoredHost in [LLConfig shared].ignoredHosts) {
+            if ([host caseInsensitiveCompare:ignoredHost] == NSOrderedSame) {
                 return NO;
-        }
+            }
+        }        
     }
     
     return YES;
@@ -83,7 +85,7 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     
     NSMutableURLRequest *mutableReqeust = [request mutableCopy];
     [NSURLProtocol setProperty:@YES
-                        forKey:HTTPHandledIdentifier
+                        forKey:kLLURLProtocolIdentifier
                      inRequest:mutableReqeust];
 //    return [mutableReqeust copy];
     return mutableReqeust;
@@ -112,11 +114,11 @@ static NSString *const HTTPHandledIdentifier = @"HttpHandleIdentifier";
     if (data == nil) {
         NSInputStream *stream = self.request.HTTPBodyStream;
         if (stream) {
-            data = [stream LL_toData];
+            data = [stream LL_data];
         }
     }
     if (data && [data length] > 0) {
-        model.requestBody = [data LL_toJsonString];
+        model.requestBody = [data LL_jsonString];
     }
     
     // Response

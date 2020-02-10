@@ -50,3 +50,4 @@ UIKIT_EXTERN CGFloat const kLLGeneralMargin;
 
 UIKIT_EXTERN double const kLLDefaultMockLocationLatitude;
 UIKIT_EXTERN double const kLLDefaultMockLocationLongitude;
+UIKIT_EXTERN NSTimeInterval const kLLDefaultMockRouteTimeInterval;

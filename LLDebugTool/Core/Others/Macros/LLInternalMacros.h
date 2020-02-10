@@ -44,4 +44,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 // Layout length by horizontal direction in 414px.
 #define LL_LAYOUT_HORIZONTAL(length) (length * LL_SCREEN_WIDTH / 414.0)
 
+#define LLLocalizedString(key) \
+[[LLConfig shared].imageBundle localizedStringForKey:(key) value:@"" table:nil]
+
 #endif /* LLInternalMacros_h */
