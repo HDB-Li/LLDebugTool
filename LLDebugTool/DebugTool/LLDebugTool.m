@@ -134,7 +134,7 @@ static LLDebugTool *_instance = nil;
 }
 
 + (NSString *)versionNumber {
-    return @"1.3.7.1";
+    return @"1.3.8";
 }
 
 + (BOOL)isBetaVersion {
