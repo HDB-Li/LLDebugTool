@@ -24,7 +24,7 @@
 
 // Function
 "function.function" = "Function";
-"function.short.cut" = "Short Cut";
+"function.short" = "Short Cut";
 
 "function.net" = "Net";
 "function.log" = "Log";

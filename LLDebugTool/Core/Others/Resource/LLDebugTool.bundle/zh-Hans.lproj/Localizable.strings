@@ -24,7 +24,7 @@
 
 // Function
 "function.function" = "常用功能";
-"function.short.cut" = "快捷功能";
+"function.short" = "快捷功能";
 
 "function.net" = "网络请求";
 "function.log" = "日志";

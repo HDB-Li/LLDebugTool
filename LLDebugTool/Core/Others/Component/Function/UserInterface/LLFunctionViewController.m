@@ -154,7 +154,7 @@
     }
     
     self.shortCutContainerView.dataArray = [items copy];
-    self.shortCutContainerView.title = LLLocalizedString(@"function.short.cut");
+    self.shortCutContainerView.title = LLLocalizedString(@"function.short");
     self.shortCutContainerView.hidden = items.count == 0;
     
     [items removeAllObjects];
