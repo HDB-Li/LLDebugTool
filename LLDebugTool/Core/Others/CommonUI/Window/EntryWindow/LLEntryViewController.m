@@ -62,6 +62,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor clearColor];
+    self.updateBackgroundColor = NO;
     self.style = [LLConfig shared].entryWindowStyle;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];

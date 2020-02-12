@@ -87,7 +87,9 @@
 
 - (void)themeColorChanged {
     [self setNavigationSettings];
-    self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
+    if (self.updateBackgroundColor) {
+        self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
+    }
 }
 
 #pragma mark - Over Write
@@ -101,6 +103,7 @@
 
 #pragma mark - Primary
 - (void)resetDefaultSettings {
+    self.updateBackgroundColor = YES;
     // Used to solve problems caused by modifying some systems default values with Runtime in the project.
     // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
 #pragma clang diagnostic push

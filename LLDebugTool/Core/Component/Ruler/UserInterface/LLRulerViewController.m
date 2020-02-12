@@ -64,6 +64,7 @@
     self.startPoint = CGPointZero;
     [self.view.layer addSublayer:self.lineLayer];
     self.view.backgroundColor = [UIColor clearColor];
+    self.updateBackgroundColor = NO;
     
     [self.view addSubview:self.horizontalLine];
     [self.view addSubview:self.verticalLine];

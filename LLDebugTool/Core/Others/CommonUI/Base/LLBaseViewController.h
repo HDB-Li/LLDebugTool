@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Right navigation item's custom view.
 @property (nonatomic, strong, nullable) UIButton *rightNavigationButton;
 
+/// Whether auto update backgroundColor, default is YES.
+@property (nonatomic, assign) BOOL updateBackgroundColor;
+
 /**
  * Left navigation item action.
  */
