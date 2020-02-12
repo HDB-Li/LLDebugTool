@@ -82,7 +82,7 @@
     return @[@(r),@(g),@(b),@(a)];
 }
 
-- (NSString *)LL_HexString {
+- (NSString *)LL_hexString {
     NSArray *rgba = [self LL_RGBA];
     int r = [rgba[0] doubleValue] * 255.0;
     int g = [rgba[1] doubleValue] * 255.0;

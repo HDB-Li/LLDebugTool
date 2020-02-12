@@ -1,6 +1,11 @@
-## [1.3.7.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.7.1) (02/10/2020)
+## [1.3.8](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.8) (02/12/2020)
 
-### Fix some bugs.
+### Add `Short Cut` function and fix some bugs.
+
+* `Short Cut` is a dynamic entrance for user to run code.
+* Multi language support.
+* Support for more file formats in `Sandbox`.
+* More color configs.
 
 ## [1.3.7](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.7) (11/21/2019)
 

@@ -22,27 +22,13 @@
 //  SOFTWARE.
 
 #import "UIButton+LL_Utils.h"
+
 #import "UIImage+LL_Utils.h"
 
 @implementation UIButton (LL_Utils)
 
 - (void)LL_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state {
     [self setBackgroundImage:[UIImage LL_imageWithColor:backgroundColor] forState:state];
-}
-
-// 设置颜色
-+ (UIImage *)ll_imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
 }
 
 @end

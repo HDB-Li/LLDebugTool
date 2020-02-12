@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "LLDebugTool"
-  s.version             = "1.3.7.1"
+  s.version             = "1.3.8"
   s.summary             = "LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations."
   s.homepage            = "https://github.com/HDB-Li/LLDebugTool"
   s.license             = "MIT"
@@ -100,12 +100,12 @@ Pod::Spec.new do |s|
     ss.dependency                 "LLDebugTool/Core"
   end
   
-#  s.subspec 'ShortCut' do |ss|
-#    ss.public_header_files      = "LLDebugTool/Core/Component/ShortCut/**/*.h"
-#    ss.source_files             = "LLDebugTool/Core/Component/ShortCut/**/*.{h,m}"
-#    ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_SHORT_CUT=1'}
-#    ss.dependency                 "LLDebugTool/Core"
-#  end
+  s.subspec 'ShortCut' do |ss|
+    ss.public_header_files      = "LLDebugTool/Core/Component/ShortCut/**/*.h"
+    ss.source_files             = "LLDebugTool/Core/Component/ShortCut/**/*.{h,m}"
+    ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_SHORT_CUT=1'}
+    ss.dependency                 "LLDebugTool/Core"
+  end
   
   # Primary
   s.subspec 'Storage' do |ss|

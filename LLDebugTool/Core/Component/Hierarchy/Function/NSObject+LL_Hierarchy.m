@@ -65,7 +65,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     
     NSString *colorName = [color LL_systemColorName];
     
-    return colorName ? [rgb stringByAppendingFormat:@"\n%@",colorName] : [rgb stringByAppendingFormat:@"\n%@",[color LL_HexString]];
+    return colorName ? [rgb stringByAppendingFormat:@"\n%@",colorName] : [rgb stringByAppendingFormat:@"\n%@",[color LL_hexString]];
 }
 
 - (UIColor *)LL_colorFromString:(NSString *)string originalColor:(UIColor *)color {
@@ -188,7 +188,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
         return;
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertWithText:[color LL_HexString] handler:^(NSString * _Nullable newText) {
+    [self LL_showTextFieldAlertWithText:[color LL_hexString] handler:^(NSString * _Nullable newText) {
         [weakSelf setValue:[weakSelf LL_colorFromString:newText originalColor:color] forKeyPath:keyPath];
     }];
 }
@@ -754,7 +754,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     
     LLTitleCellModel *model5 = [[[LLTitleCellModel alloc] initWithTitle:@"Text Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleColor]] noneInsets];
     model5.block = ^{
-        [weakSelf LL_showTextFieldAlertWithText:[weakSelf.currentTitleColor LL_HexString] handler:^(NSString * _Nullable newText) {
+        [weakSelf LL_showTextFieldAlertWithText:[weakSelf.currentTitleColor LL_hexString] handler:^(NSString * _Nullable newText) {
             [weakSelf setTitleColor:[weakSelf LL_colorFromString:newText originalColor:weakSelf.currentTitleColor] forState:weakSelf.state];
         }];
     };
@@ -762,7 +762,7 @@ NSNotificationName const LLHierarchyChangeNotificationName = @"LLHierarchyChange
     
     LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Shadow Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleShadowColor]];
     model6.block = ^{
-        [weakSelf LL_showTextFieldAlertWithText:[weakSelf.currentTitleShadowColor LL_HexString] handler:^(NSString * _Nullable newText) {
+        [weakSelf LL_showTextFieldAlertWithText:[weakSelf.currentTitleShadowColor LL_hexString] handler:^(NSString * _Nullable newText) {
             [weakSelf setTitleShadowColor:[weakSelf LL_colorFromString:newText originalColor:weakSelf.currentTitleShadowColor] forState:weakSelf.state];
         }];
     };

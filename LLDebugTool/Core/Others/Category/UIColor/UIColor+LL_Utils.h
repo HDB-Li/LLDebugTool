@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)LL_RGBA;
 
 /// Convert to hex string.
-- (NSString *)LL_HexString;
+- (NSString *)LL_hexString;
 
 /// Description.
 - (NSString *)LL_description;
