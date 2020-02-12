@@ -106,7 +106,7 @@
         }
             break;
         case LLDebugToolActionShortCut: {
-//            component = @"LLShortCutComponent";
+            component = @"LLShortCutComponent";
         }
             break;
     }

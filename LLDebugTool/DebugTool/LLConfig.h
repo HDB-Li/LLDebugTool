@@ -81,37 +81,6 @@ typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
 };
 
 /**
- Customize available Features.
- 
- - LLConfigAvailableNetwork: Network functions available.
- - LLConfigAvailableLog: Log functions avalable.
- - LLConfigAvailableCrash: Crash functions available.
- - LLConfigAvailableAppInfo: AppInfo functions available.
- - LLConfigAvailableSandbox: Sandbox functions available.
- - LLConfigAvailableScreenshot: Screenshot functions available.
- - LLConfigAvailableAll: All available.
- */
-typedef NS_OPTIONS(NSUInteger, LLConfigAvailableFeature) {
-    LLConfigAvailableNetwork    = 1 << 0,
-    LLConfigAvailableLog        = 1 << 1,
-    LLConfigAvailableCrash      = 1 << 2,
-    LLConfigAvailableAppInfo    = 1 << 3,
-    LLConfigAvailableSandbox    = 1 << 4,
-    LLConfigAvailableScreenshot = 1 << 5,
-    LLConfigAvailableHierarchy  = 1 << 6,
-    LLConfigAvailableAll        = 0xFF,
-    
-    // Quick options
-    LLConfigAvailableNoneNetwork    = 0xFF - (1 << 0),
-    LLConfigAvailableNoneLog        = 0xFF - (1 << 1),
-    LLConfigAvailableNoneCrash      = 0xFF - (1 << 2),
-    LLConfigAvailableNoneAppInfo    = 0xFF - (1 << 3),
-    LLConfigAvailableNoneSandbox    = 0xFF - (1 << 4),
-    LLConfigAvailableNoneScreenshot = 0xFF - (1 << 5),
-    LLConfigAvailableNoneHierarchy  = 0xFF - (1 << 6),
-};
-
-/**
  Action enums.
  
  - LLDebugToolActionFunction: Show function window.
