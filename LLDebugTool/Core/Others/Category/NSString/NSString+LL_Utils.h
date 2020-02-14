@@ -49,6 +49,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (unsigned long long)LL_byteLength;
 
+/// Calculate height with attributes.
+/// @param attributes Attributes.
+/// @param maxWidth Max width.
+/// @param minHeight Min height.
 - (CGFloat)LL_heightWithAttributes:(NSDictionary *_Nullable)attributes maxWidth:(CGFloat)maxWidth minHeight:(CGFloat)minHeight;
 
 @end

@@ -128,7 +128,7 @@
 }
 
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveThemeManagerUpdateThemeColorNotificaion:) name:kThemeManagerUpdateThemeColorNotificaionName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateThemeNotification:) name:LLDebugToolUpdateThemeNotificationName object:nil];
 }
 
 - (void)initCloseLeftNavigationItem {
@@ -142,8 +142,8 @@
     }
 }
 
-#pragma mark - kThemeManagerUpdateThemeColorNotificaionName
-- (void)didReceiveThemeManagerUpdateThemeColorNotificaion:(NSNotification *)notification {
+#pragma mark - LLDebugToolUpdateThemeNotificationName
+- (void)didReceiveDebugToolUpdateThemeNotification:(NSNotification *)notification {
     [self themeColorChanged];
 }
 

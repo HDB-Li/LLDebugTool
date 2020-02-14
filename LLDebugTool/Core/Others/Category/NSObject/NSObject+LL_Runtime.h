@@ -82,7 +82,7 @@ Get all class method names;
  @param string String value.
  @param key Key.
  */
-- (void)LL_setStringProperty:(NSString *_Nullable)string key:(const char *)key;
+- (void)LL_setStringProperty:(NSString *_Nullable)string key:(const void *)key;
 
 /**
  Get string property.
@@ -90,7 +90,7 @@ Get all class method names;
  @param key Key.
  @return String value.
  */
-- (NSString *_Nullable)LL_getStringProperty:(const char *)key;
+- (NSString *_Nullable)LL_getStringProperty:(const void *)key;
 
 /**
  Add CGFloat property.
@@ -98,7 +98,7 @@ Get all class method names;
  @param number CGFloat value.
  @param key Key.
  */
-- (void)LL_setCGFloatProperty:(CGFloat)number key:(const char *)key;
+- (void)LL_setCGFloatProperty:(CGFloat)number key:(const void *)key;
 
 /**
  Get CGFloat property.
@@ -106,7 +106,7 @@ Get all class method names;
  @param key Key.
  @return CGFloat value.
  */
-- (CGFloat)LL_getCGFloatProperty:(const char *)key;
+- (CGFloat)LL_getCGFloatProperty:(const void *)key;
 
 @end
 

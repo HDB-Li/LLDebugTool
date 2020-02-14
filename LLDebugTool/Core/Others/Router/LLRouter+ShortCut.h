@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRouter (ShortCut)
 
-/// Register into LLShortCutHelper if enable.
+/// Register into ShortCutHelper if enable.
 + (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
 
 @end

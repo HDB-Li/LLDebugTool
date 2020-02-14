@@ -25,9 +25,6 @@
 
 #import "NSObject+LL_Runtime.h"
 
-static const char kLLHorizontalPaddingKey;
-static const char kLLVerticalPaddingKey;
-
 @implementation UIView (LL_Utils)
 
 + (void)load {
@@ -38,19 +35,19 @@ static const char kLLVerticalPaddingKey;
 }
 
 - (void)setLL_horizontalPadding:(CGFloat)LL_horizontalPadding {
-    [self LL_setCGFloatProperty:LL_horizontalPadding key:&kLLHorizontalPaddingKey];
+    [self LL_setCGFloatProperty:LL_horizontalPadding key:@selector(LL_horizontalPadding)];
 }
 
 - (CGFloat)LL_horizontalPadding {
-    return [self LL_getCGFloatProperty:&kLLHorizontalPaddingKey];
+    return [self LL_getCGFloatProperty:_cmd];
 }
 
 - (void)setLL_verticalPadding:(CGFloat)LL_verticalPadding {
-    [self LL_setCGFloatProperty:LL_verticalPadding key:&kLLVerticalPaddingKey];
+    [self LL_setCGFloatProperty:LL_verticalPadding key:@selector(LL_verticalPadding)];
 }
 
 - (CGFloat)LL_verticalPadding {
-    return [self LL_getCGFloatProperty:&kLLVerticalPaddingKey];
+    return [self LL_getCGFloatProperty:_cmd];
 }
 
 - (void)setLL_x:(CGFloat)LL_x {

@@ -214,7 +214,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)registerNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDidShakeNotification:) name:kLLDidShakeNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDidShakeNotification:) name:LLDidShakeNotificationName object:nil];
 }
 
 - (void)unregisterNotifications {

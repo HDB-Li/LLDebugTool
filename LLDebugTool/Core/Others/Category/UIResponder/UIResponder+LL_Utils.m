@@ -25,7 +25,7 @@
 
 #import "NSObject+LL_Runtime.h"
 
-NSNotificationName const kLLDidShakeNotificationName = @"kLLDidShakeNotificationName";
+NSNotificationName const LLDidShakeNotificationName = @"LLDidShakeNotificationName";
 
 @implementation UIResponder (LL_Utils)
 
@@ -39,7 +39,7 @@ NSNotificationName const kLLDidShakeNotificationName = @"kLLDidShakeNotification
 - (void)LL_motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     [self LL_motionBegan:motion withEvent:event];
     if (motion == UIEventSubtypeMotionShake) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kLLDidShakeNotificationName object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLDidShakeNotificationName object:self];
     }
 }
 

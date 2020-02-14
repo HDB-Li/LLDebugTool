@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN NSString *const kThemeManagerUpdateThemeColorNotificaionName;
+FOUNDATION_EXTERN NSString *const LLDebugToolUpdateThemeNotificationName;
 
 /// Theme manager.
 @interface LLThemeManager : NSObject

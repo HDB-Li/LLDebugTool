@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRouter (AppInfo)
 
-/// Call LLAppInfoHelper if able.
+/// Call AppInfoHelper if able.
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
-/// Call by LLAppInfoHelper if able.
+/// Call by AppInfoHelper if able.
 + (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
 
 @end

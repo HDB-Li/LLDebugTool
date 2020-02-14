@@ -109,19 +109,19 @@
     return array;
 }
 
-- (void)LL_setStringProperty:(NSString *)string key:(const char *)key {
+- (void)LL_setStringProperty:(NSString *)string key:(const void *)key {
     objc_setAssociatedObject(self, key, string, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (NSString *_Nullable)LL_getStringProperty:(const char *)key {
+- (NSString *_Nullable)LL_getStringProperty:(const void *)key {
     return objc_getAssociatedObject(self, key);
 }
 
-- (void)LL_setCGFloatProperty:(CGFloat)number key:(const char *)key {
+- (void)LL_setCGFloatProperty:(CGFloat)number key:(const void *)key {
     objc_setAssociatedObject(self, key, @(number), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGFloat)LL_getCGFloatProperty:(const char *)key {
+- (CGFloat)LL_getCGFloatProperty:(const void *)key {
     return (CGFloat)[objc_getAssociatedObject(self, key) doubleValue];
 }
 

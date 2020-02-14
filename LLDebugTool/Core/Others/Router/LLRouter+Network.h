@@ -33,14 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (LLNetworkStatus)networkStateFromStatebar;
 
 
-/// Get LLNetworkViewController.
+/// Get NetworkViewController.
 /// @param launchDate Launch date.
 + (UIViewController *_Nullable)networkViewControllerWithLaunchDate:(NSString *_Nullable)launchDate;
 
-/// LLNetworkModel class.
+/// NetworkModel class.
 + (Class _Nullable)networkModelClass;
 
-/// LLNetworkViewController class.
+/// NetworkViewController class.
 + (Class _Nullable)networkViewControllerClass;
 
 @end

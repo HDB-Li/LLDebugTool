@@ -27,7 +27,7 @@
 
 static LLThemeManager *_instance = nil;
 
-NSString *const kThemeManagerUpdateThemeColorNotificaionName = @"kThemeManagerUpdateThemeColorNotificaionName";
+NSString *const LLDebugToolUpdateThemeNotificationName = @"LLDebugToolUpdateThemeNotificationName";
 
 @implementation LLThemeManager
 
@@ -65,7 +65,7 @@ NSString *const kThemeManagerUpdateThemeColorNotificaionName = @"kThemeManagerUp
 - (void)setThemeColor:(LLThemeColor *)themeColor {
     if (_themeColor != themeColor) {
         _themeColor = themeColor;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kThemeManagerUpdateThemeColorNotificaionName object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolUpdateThemeNotificationName object:nil];
     }
 }
 

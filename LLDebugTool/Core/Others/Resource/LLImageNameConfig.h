@@ -12,99 +12,99 @@
 #import "UIImage+LL_Utils.h"
 
 // TabBar Icon 0xBDBDBD
-static NSString *const kCrashImageName = @"LL-crash";
-static NSString *const kNetworkImageName = @"LL-network";
-static NSString *const kLogImageName = @"LL-log";
-static NSString *const kAppImageName = @"LL-app";
-static NSString *const kSandboxImageName = @"LL-sandbox";
-static NSString *const kScreenshotImageName = @"LL-screenshot";
-static NSString *const kHierarchyImageName = @"LL-hierarchy";
-static NSString *const kMagnifierImageName = @"LL-magnifier";
-static NSString *const kRulerImageName = @"LL-ruler";
-static NSString *const kWidgetBorderImageName = @"LL-widget-border";
-static NSString *const kHtml5ImageName = @"LL-html5";
-static NSString *const kLocationImageName = @"LL-location";
-static NSString *const kShortCutImageName = @"LL-short-cut";
+static NSString *const kCrashImageName = @"crash";
+static NSString *const kNetworkImageName = @"network";
+static NSString *const kLogImageName = @"log";
+static NSString *const kAppImageName = @"app";
+static NSString *const kSandboxImageName = @"sandbox";
+static NSString *const kScreenshotImageName = @"screenshot";
+static NSString *const kHierarchyImageName = @"hierarchy";
+static NSString *const kMagnifierImageName = @"magnifier";
+static NSString *const kRulerImageName = @"ruler";
+static NSString *const kWidgetBorderImageName = @"widget-border";
+static NSString *const kHtml5ImageName = @"html5";
+static NSString *const kLocationImageName = @"location";
+static NSString *const kShortCutImageName = @"short-cut";
 
 // Navigation Item Icon
-static NSString *const kClearImageName = @"LL-clear";
-static NSString *const kCloseImageName = @"LL-close";
-static NSString *const kEditImageName = @"LL-edit";
-static NSString *const kDoneImageName = @"LL-done";
-static NSString *const kBackImageName = @"LL-back";
-static NSString *const kFilterImageName = @"LL-filter";
-static NSString *const kShareImageName = @"LL-share";
+static NSString *const kClearImageName = @"clear";
+static NSString *const kCloseImageName = @"close";
+static NSString *const kEditImageName = @"edit";
+static NSString *const kDoneImageName = @"done";
+static NSString *const kBackImageName = @"back";
+static NSString *const kFilterImageName = @"filter";
+static NSString *const kShareImageName = @"share";
 
 // Folder
-static NSString *const kFolderImageName = @"LL-folder";
-static NSString *const kEmptyFolderImageName = @"LL-folder-empty";
+static NSString *const kFolderImageName = @"folder";
+static NSString *const kEmptyFolderImageName = @"folder-empty";
 
 // Draw   0x148816
-static NSString *const kCancelImageName = @"LL-cancel";
-static NSString *const kLineImageName = @"LL-line";
-static NSString *const kLineSelectImageName = @"LL-line-select";
-static NSString *const kPenImageName = @"LL-pen";
-static NSString *const kPenSelectImageName = @"LL-pen-select";
-static NSString *const kRectImageName = @"LL-rect";
-static NSString *const kRectSelectImageName = @"LL-rect-select";
-static NSString *const kRoundImageName = @"LL-round";
-static NSString *const kRoundSelectImageName = @"LL-round-select";
-static NSString *const kSureImageName = @"LL-sure";
-static NSString *const kTextImageName = @"LL-text";
-static NSString *const kTextSelectImageName = @"LL-text-select";
-static NSString *const kUndoImageName = @"LL-undo";
-static NSString *const kUndoDisableImageName = @"LL-undo-disable";
+static NSString *const kCancelImageName = @"cancel";
+static NSString *const kLineImageName = @"line";
+static NSString *const kLineSelectImageName = @"line-select";
+static NSString *const kPenImageName = @"pen";
+static NSString *const kPenSelectImageName = @"pen-select";
+static NSString *const kRectImageName = @"rect";
+static NSString *const kRectSelectImageName = @"rect-select";
+static NSString *const kRoundImageName = @"round";
+static NSString *const kRoundSelectImageName = @"round-select";
+static NSString *const kSureImageName = @"sure";
+static NSString *const kTextImageName = @"text";
+static NSString *const kTextSelectImageName = @"text-select";
+static NSString *const kUndoImageName = @"undo";
+static NSString *const kUndoDisableImageName = @"undo-disable";
 
 // Selector
-static NSString *const kSelectorTriangleImageName = @"LL-selector-triangle";
-static NSString *const kSelectorSmallImageName = @"LL-selector-small";
-static NSString *const kSelectorSmallSelectImageName = @"LL-selector-small-select";
-static NSString *const kSelectorMediumImageName = @"LL-selector-medium";
-static NSString *const kSelectorMediumSelectImageName = @"LL-selector-medium-select";
-static NSString *const kSelectorBigImageName = @"LL-selector-big";
-static NSString *const kSelectorBigSelectImageName = @"LL-selector-big-select";
-static NSString *const kSelectorRedImageName = @"LL-selector-red";
-static NSString *const kSelectorBlueImageName = @"LL-selector-blue";
-static NSString *const kSelectorGreenImageName = @"LL-selector-green";
-static NSString *const kSelectorYellowImageName = @"LL-selector-yellow";
-static NSString *const kSelectorGrayImageName = @"LL-selector-gray";
-static NSString *const kSelectorWhiteImageName = @"LL-selector-white";
+static NSString *const kSelectorTriangleImageName = @"selector-triangle";
+static NSString *const kSelectorSmallImageName = @"selector-small";
+static NSString *const kSelectorSmallSelectImageName = @"selector-small-select";
+static NSString *const kSelectorMediumImageName = @"selector-medium";
+static NSString *const kSelectorMediumSelectImageName = @"selector-medium-select";
+static NSString *const kSelectorBigImageName = @"selector-big";
+static NSString *const kSelectorBigSelectImageName = @"selector-big-select";
+static NSString *const kSelectorRedImageName = @"selector-red";
+static NSString *const kSelectorBlueImageName = @"selector-blue";
+static NSString *const kSelectorGreenImageName = @"selector-green";
+static NSString *const kSelectorYellowImageName = @"selector-yellow";
+static NSString *const kSelectorGrayImageName = @"selector-gray";
+static NSString *const kSelectorWhiteImageName = @"selector-white";
 
 // Sandbox File Type Icon
-static NSString *const kSandboxFileUnknownImageName = @"LL-unknown";
-static NSString *const kSandboxFileAviImageName = @"LL-avi";
-static NSString *const kSandboxFileCssImageName = @"LL-css";
-static NSString *const kSandboxFileDocImageName = @"LL-doc";
-static NSString *const kSandboxFileGifImageName = @"LL-gif";
-static NSString *const kSandboxFileHtmlImageName = @"LL-html";
-static NSString *const kSandboxFileJpgImageName = @"LL-jpg";
-static NSString *const kSandboxFileJsImageName = @"LL-js";
-static NSString *const kSandboxFileMovImageName = @"LL-mov";
-static NSString *const kSandboxFileMp3ImageName = @"LL-mp3";
-static NSString *const kSandboxFilePdfImageName = @"LL-pdf";
-static NSString *const kSandboxFilePngImageName = @"LL-png";
-static NSString *const kSandboxFileSqlImageName = @"LL-sql";
-static NSString *const kSandboxFileWavImageName = @"LL-wav";
-static NSString *const kSandboxFileXlsImageName = @"LL-xls";
-static NSString *const kSandboxFileZipImageName = @"LL-zip";
-static NSString *const kSandboxFileFolderImageName = @"LL-folder";
-static NSString *const kSandboxFileEmptyFolderImageName = @"LL-folder-empty";
+static NSString *const kSandboxFileUnknownImageName = @"unknown";
+static NSString *const kSandboxFileAviImageName = @"avi";
+static NSString *const kSandboxFileCssImageName = @"css";
+static NSString *const kSandboxFileDocImageName = @"doc";
+static NSString *const kSandboxFileGifImageName = @"gif";
+static NSString *const kSandboxFileHtmlImageName = @"html";
+static NSString *const kSandboxFileJpgImageName = @"jpg";
+static NSString *const kSandboxFileJsImageName = @"js";
+static NSString *const kSandboxFileMovImageName = @"mov";
+static NSString *const kSandboxFileMp3ImageName = @"mp3";
+static NSString *const kSandboxFilePdfImageName = @"pdf";
+static NSString *const kSandboxFilePngImageName = @"png";
+static NSString *const kSandboxFileSqlImageName = @"sql";
+static NSString *const kSandboxFileWavImageName = @"wav";
+static NSString *const kSandboxFileXlsImageName = @"xls";
+static NSString *const kSandboxFileZipImageName = @"zip";
+static NSString *const kSandboxFileFolderImageName = @"folder";
+static NSString *const kSandboxFileEmptyFolderImageName = @"folder-empty";
 
 // Common 2c2c2c
-static NSString *const kLeftImageName = @"LL-left";
-static NSString *const kRightImageName = @"LL-right";
-static NSString *const kTopImageName = @"LL-top";
-static NSString *const kBottomImageName = @"LL-bottom";
-static NSString *const kLogoImageName = @"LL-logo";
-static NSString *const kSelectImageName = @"LL-select";
-static NSString *const kUnselectImageName = @"LL-unselect";
+static NSString *const kLeftImageName = @"left";
+static NSString *const kRightImageName = @"right";
+static NSString *const kTopImageName = @"top";
+static NSString *const kBottomImageName = @"bottom";
+static NSString *const kLogoImageName = @"logo";
+static NSString *const kSelectImageName = @"select";
+static NSString *const kUnselectImageName = @"unselect";
 
 // Hierarchy
-static NSString *const kParentImageName = @"LL-parent";
-static NSString *const kSubviewImageName = @"LL-subview";
-static NSString *const kInfoImageName = @"LL-info";
+static NSString *const kParentImageName = @"parent";
+static NSString *const kSubviewImageName = @"subview";
+static NSString *const kInfoImageName = @"info";
 
 // Screenshot
-static NSString *const kCaptureImageName = @"LL-capture";
+static NSString *const kCaptureImageName = @"capture";
 
 #endif /* LLImageNameConfig_h */

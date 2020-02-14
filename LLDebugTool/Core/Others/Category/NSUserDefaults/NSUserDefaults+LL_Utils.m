@@ -44,11 +44,11 @@
 }
 
 + (NSNumber *)LL_numberForKey:(NSString *)aKey {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:aKey];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:[self getKey:aKey]];
 }
 
 + (void)LL_setNumber:(NSNumber *)num forKey:(NSString *)aKey {
-    [[NSUserDefaults standardUserDefaults] setObject:num forKey:aKey];
+    [[NSUserDefaults standardUserDefaults] setObject:num forKey:[self getKey:aKey]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

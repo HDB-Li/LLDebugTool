@@ -26,7 +26,7 @@
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "JsonTool.h"
+#import "LLJsonTool.h"
 #import "LLTool.h"
 
 #import "NSDictionary+LL_Utils.h"
@@ -80,7 +80,7 @@
             return;
         }
     }
-    self.textView.text = [JsonTool formatJsonString:string];
+    self.textView.text = [LLJsonTool formatJsonString:string];
 }
 
 #pragma mark - Getters and setters

@@ -32,25 +32,6 @@
 
 static LLSettingManager *_instance = nil;
 
-static NSString *doubleClickActionKey = @"doubleClickActionKey";
-static NSString *colorStyleKey = @"colorStyleKey";
-static NSString *entryWindowStyleKey = @"entryWindowStyleKey";
-static NSString *statusBarStyleKey = @"statusBarStyleKey";
-static NSString *logStyleKey = @"logStyleKey";
-static NSString *shrinkToEdgeWhenInactiveKey = @"shrinkToEdgeWhenInactiveKey";
-static NSString *shakeToHideKey = @"shakeToHideKey";
-static NSString *magnifierZoomLevelKey = @"magnifierZoomLevelKey";
-static NSString *magnifierSizeKey = @"magnifierSizeKey";
-static NSString *showWidgetBorderKey = @"showWidgetBorderKey";
-static NSString *hierarchyIgnorePrivateClassKey = @"hierarchyIgnorePrivateClassKey";
-static NSString *webViewClassKey = @"webViewClassKey";
-static NSString *lastWebViewUrlKey = @"lastWebViewUrlKey";
-static NSString *mockLocationEnableKey = @"mockLocationEnableKey";
-static NSString *mockLocationLatitudeKey = @"mockLocationLatitudeKey";
-static NSString *mockLocationLongitudeKey = @"mockLocationLongitudeKey";
-static NSString *mockRouteFilePathKey = @"mockRouteFilePathKey";
-static NSString *mockRouteFileNameKey = @"mockRouteFileNameKey";
-
 @implementation LLSettingManager
 
 + (instancetype)shared {
@@ -116,139 +97,139 @@ static NSString *mockRouteFileNameKey = @"mockRouteFileNameKey";
 
 #pragma mark - Getters and Setters
 - (void)setDoubleClickAction:(NSNumber *)doubleClickAction {
-    [NSUserDefaults LL_setNumber:doubleClickAction forKey:doubleClickActionKey];
+    [NSUserDefaults LL_setNumber:doubleClickAction forKey:@"doubleClickAction"];
 }
 
 - (NSNumber *)doubleClickAction {
-    return [NSUserDefaults LL_numberForKey:doubleClickActionKey];
+    return [NSUserDefaults LL_numberForKey:@"doubleClickAction"];
 }
 
 - (void)setColorStyle:(NSNumber *)colorStyle {
-    [NSUserDefaults LL_setNumber:colorStyle forKey:colorStyleKey];
+    [NSUserDefaults LL_setNumber:colorStyle forKey:@"colorStyle"];
 }
 
 - (NSNumber *)colorStyle {
-    return [NSUserDefaults LL_numberForKey:colorStyleKey];
+    return [NSUserDefaults LL_numberForKey:@"colorStyle"];
 }
 
 - (void)setEntryWindowStyle:(NSNumber *)entryWindowStyle {
-    [NSUserDefaults LL_setNumber:entryWindowStyle forKey:entryWindowStyleKey];
+    [NSUserDefaults LL_setNumber:entryWindowStyle forKey:@"entryWindowStyle"];
 }
 
 - (NSNumber *)entryWindowStyle {
-    return [NSUserDefaults LL_numberForKey:entryWindowStyleKey];
+    return [NSUserDefaults LL_numberForKey:@"entryWindowStyle"];
 }
 
 - (void)setLogStyle:(NSNumber *)logStyle {
-    [NSUserDefaults LL_setNumber:logStyle forKey:logStyleKey];
+    [NSUserDefaults LL_setNumber:logStyle forKey:@"logStyle"];
 }
 
 - (NSNumber *)logStyle {
-    return [NSUserDefaults LL_numberForKey:logStyleKey];
+    return [NSUserDefaults LL_numberForKey:@"logStyle"];
 }
 
 - (void)setShrinkToEdgeWhenInactive:(NSNumber *)shrinkToEdgeWhenInactive {
-    [NSUserDefaults LL_setNumber:shrinkToEdgeWhenInactive forKey:shrinkToEdgeWhenInactiveKey];
+    [NSUserDefaults LL_setNumber:shrinkToEdgeWhenInactive forKey:@"shrinkToEdgeWhenInactive"];
 }
 
 - (NSNumber *)shrinkToEdgeWhenInactive {
-    return [NSUserDefaults LL_numberForKey:shrinkToEdgeWhenInactiveKey];
+    return [NSUserDefaults LL_numberForKey:@"shrinkToEdgeWhenInactive"];
 }
 
 - (void)setShakeToHide:(NSNumber *)shakeToHide {
-    [NSUserDefaults LL_setNumber:shakeToHide forKey:shakeToHideKey];
+    [NSUserDefaults LL_setNumber:shakeToHide forKey:@"shakeToHide"];
 }
 
 - (NSNumber *)shakeToHide {
-    return [NSUserDefaults LL_numberForKey:shakeToHideKey];
+    return [NSUserDefaults LL_numberForKey:@"shakeToHide"];
 }
 
 - (void)setMagnifierZoomLevel:(NSNumber *)magnifierZoomLevel {
-    [NSUserDefaults LL_setNumber:magnifierZoomLevel forKey:magnifierZoomLevelKey];
+    [NSUserDefaults LL_setNumber:magnifierZoomLevel forKey:@"magnifierZoomLevel"];
 }
 
 - (NSNumber *)magnifierZoomLevel {
-    return [NSUserDefaults LL_numberForKey:magnifierZoomLevelKey];
+    return [NSUserDefaults LL_numberForKey:@"magnifierZoomLevel"];
 }
 
 - (void)setMagnifierSize:(NSNumber *)magnifierSize {
-    [NSUserDefaults LL_setNumber:magnifierSize forKey:magnifierSizeKey];
+    [NSUserDefaults LL_setNumber:magnifierSize forKey:@"magnifierSize"];
 }
 
 - (NSNumber *)magnifierSize {
-    return [NSUserDefaults LL_numberForKey:magnifierSizeKey];
+    return [NSUserDefaults LL_numberForKey:@"magnifierSize"];
 }
 
 - (void)setShowWidgetBorder:(NSNumber *)showWidgetBorder {
-    [NSUserDefaults LL_setNumber:showWidgetBorder forKey:showWidgetBorderKey];
+    [NSUserDefaults LL_setNumber:showWidgetBorder forKey:@"showWidgetBorder"];
 }
 
 - (NSNumber *)showWidgetBorder {
-    return [NSUserDefaults LL_numberForKey:showWidgetBorderKey];
+    return [NSUserDefaults LL_numberForKey:@"showWidgetBorder"];
 }
 
 - (void)setHierarchyIgnorePrivateClass:(NSNumber *)hierarchyIgnorePrivateClass {
-    [NSUserDefaults LL_setNumber:hierarchyIgnorePrivateClass forKey:hierarchyIgnorePrivateClassKey];
+    [NSUserDefaults LL_setNumber:hierarchyIgnorePrivateClass forKey:@"hierarchyIgnorePrivateClass"];
 }
 
 - (NSNumber *)hierarchyIgnorePrivateClass {
-    return [NSUserDefaults LL_numberForKey:hierarchyIgnorePrivateClassKey];
+    return [NSUserDefaults LL_numberForKey:@"hierarchyIgnorePrivateClass"];
 }
 
 - (void)setWebViewClass:(NSString *)webViewClass {
-    [NSUserDefaults LL_setString:webViewClass forKey:webViewClassKey];
+    [NSUserDefaults LL_setString:webViewClass forKey:@"webViewClass"];
 }
 
 - (NSString *)webViewClass {
-    return [NSUserDefaults LL_stringForKey:webViewClassKey];
+    return [NSUserDefaults LL_stringForKey:@"webViewClass"];
 }
 
 - (void)setLastWebViewUrl:(NSString *)lastWebViewUrl {
-    [NSUserDefaults LL_setString:lastWebViewUrl forKey:lastWebViewUrlKey];
+    [NSUserDefaults LL_setString:lastWebViewUrl forKey:@"lastWebViewUrl"];
 }
 
 - (NSString *)lastWebViewUrl {
-    return [NSUserDefaults LL_stringForKey:lastWebViewUrlKey];
+    return [NSUserDefaults LL_stringForKey:@"lastWebViewUrl"];
 }
 
 - (void)setMockLocationEnable:(NSNumber *)mockLocationEnable {
-    [NSUserDefaults LL_setNumber:mockLocationEnable forKey:mockLocationEnableKey];
+    [NSUserDefaults LL_setNumber:mockLocationEnable forKey:@"mockLocationEnable"];
 }
 
 - (NSNumber *)mockLocationEnable {
-    return [NSUserDefaults LL_numberForKey:mockLocationEnableKey];
+    return [NSUserDefaults LL_numberForKey:@"mockLocationEnable"];
 }
 
 - (void)setMockLocationLatitude:(NSNumber *)mockLocationLatitude {
-    [NSUserDefaults LL_setNumber:mockLocationLatitude forKey:mockLocationLatitudeKey];
+    [NSUserDefaults LL_setNumber:mockLocationLatitude forKey:@"mockLocationLatitude"];
 }
 
 - (NSNumber *)mockLocationLatitude {
-    return [NSUserDefaults LL_numberForKey:mockLocationLatitudeKey];
+    return [NSUserDefaults LL_numberForKey:@"mockLocationLatitude"];
 }
 
 - (void)setMockLocationLongitude:(NSNumber *)mockLocationLongitude {
-    [NSUserDefaults LL_setNumber:mockLocationLongitude forKey:mockLocationLongitudeKey];
+    [NSUserDefaults LL_setNumber:mockLocationLongitude forKey:@"mockLocationLongitude"];
 }
 
 - (NSNumber *)mockLocationLongitude {
-    return [NSUserDefaults LL_numberForKey:mockLocationLongitudeKey];
+    return [NSUserDefaults LL_numberForKey:@"mockLocationLongitude"];
 }
 
 - (void)setMockRouteFilePath:(NSString *)mockRouteFilePath {
-    [NSUserDefaults LL_setString:mockRouteFilePath forKey:mockRouteFilePathKey];
+    [NSUserDefaults LL_setString:mockRouteFilePath forKey:@"mockRouteFilePath"];
 }
 
 - (NSString *)mockRouteFilePath {
-    return [NSUserDefaults LL_stringForKey:mockRouteFilePathKey];
+    return [NSUserDefaults LL_stringForKey:@"mockRouteFilePath"];
 }
 
 - (void)setMockRouteFileName:(NSString *)mockRouteFileName {
-    [NSUserDefaults LL_setString:mockRouteFileName forKey:mockRouteFileNameKey];
+    [NSUserDefaults LL_setString:mockRouteFileName forKey:@"mockRouteFileName"];
 }
 
 - (NSString *)mockRouteFileName {
-    return [NSUserDefaults LL_stringForKey:mockRouteFileNameKey];
+    return [NSUserDefaults LL_stringForKey:@"mockRouteFileName"];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  JsonTool.h
+//  LLJsonTool.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Json format tool
-@interface JsonTool : NSObject
+@interface LLJsonTool : NSObject
 
 /// Format json string.
 /// @param aString Input string.

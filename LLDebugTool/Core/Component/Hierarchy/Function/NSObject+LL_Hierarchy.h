@@ -25,9 +25,9 @@
 
 @class LLTitleCellCategoryModel;
 
-FOUNDATION_EXPORT NSNotificationName _Nonnull const LLHierarchyChangeNotificationName;
-
 NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSNotificationName const LLHierarchyChangeNotificationName;
 
 @interface NSObject (LL_Hierarchy)
 

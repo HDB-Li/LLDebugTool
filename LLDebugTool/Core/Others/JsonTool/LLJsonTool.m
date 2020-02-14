@@ -1,5 +1,5 @@
 //
-//  JsonTool.m
+//  LLJsonTool.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,9 +21,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "JsonTool.h"
+#import "LLJsonTool.h"
 
-@implementation JsonTool
+@implementation LLJsonTool
 
 + (NSString *)formatJsonString:(NSString *)aString {
     

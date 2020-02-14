@@ -82,32 +82,32 @@
 }
 
 #pragma mark Getters
-/// LLCrashHelper class name.
+/// CrashHelper class name.
 + (NSString *)crashHelper {
     return @"LLCrashHelper";
 }
 
-/// LLLogHelper class name.
+/// LogHelper class name.
 + (NSString *)logHelper {
     return @"LLLogHelper";
 }
 
-/// LLNetworkHelper class name.
+/// NetworkHelper class name.
 + (NSString *)networkHelper {
     return @"LLNetworkHelper";
 }
 
-/// LLAppInfoHelper class name.
+/// AppInfoHelper class name.
 + (NSString *)appInfoHelper {
     return @"LLAppInfoHelper";
 }
 
-/// LLScreenshotHelper class name.
+/// ScreenshotHelper class name.
 + (NSString *)screenshotHelper {
     return @"LLScreenshotHelper";
 }
 
-/// LLLocationHelper class name.
+/// LocationHelper class name.
 + (NSString *)locationHelper {
     return @"LLLocationHelper";
 }
