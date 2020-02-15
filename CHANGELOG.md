@@ -1,4 +1,4 @@
-## [1.3.8](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.8) (02/12/2020)
+## [1.3.8](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.8) (02/15/2020)
 
 ### Add `Short Cut` function and fix some bugs.
 
