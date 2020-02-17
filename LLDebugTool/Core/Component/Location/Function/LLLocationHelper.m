@@ -196,23 +196,24 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 #pragma mark - Life cycle
 - (instancetype)init {
     if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLCLLocationRegisterNotification:) name:LLCLLocationRegisterNotificationName object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLCLLocationUnRegisterNotification:) name:LLCLLocationUnRegisterNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolRegisterCLLocationNotification:) name:LLDebugToolRegisterCLLocationNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUnregisterCLLocationNotification:) name:LLDebugToolUnregisterCLLocationNotification object:nil];
     }
     return self;
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLCLLocationRegisterNotificationName object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLCLLocationUnRegisterNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLDebugToolRegisterCLLocationNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LLDebugToolUnregisterCLLocationNotification object:nil];
 }
 
-#pragma mark - NSNotification
-- (void)didReceiveLLCLLocationRegisterNotification:(NSNotification *)notification {
+#pragma mark - LLDebugToolRegisterCLLocationNotification
+- (void)didReceiveDebugToolRegisterCLLocationNotification:(NSNotification *)notification {
     [self registerManager:notification.object];
 }
 
-- (void)didReceiveLLCLLocationUnRegisterNotification:(NSNotification *)notification {
+#pragma mark - LLDebugToolUnregisterCLLocationNotification
+- (void)didReceiveDebugToolUnregisterCLLocationNotification:(NSNotification *)notification {
     [self unregisterManager:notification.object];
 }
 

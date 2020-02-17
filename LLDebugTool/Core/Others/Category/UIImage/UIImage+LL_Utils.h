@@ -25,28 +25,30 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSString * LLImageName NS_TYPED_ENUM;
+
 /// Image utils.
 @interface UIImage (LL_Utils)
 
 /**
  * Image in LLDebugTool's bundle.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name;
++ (UIImage *_Nullable)LL_imageNamed:(LLImageName)name;
 
 /**
  * Image in LLDebugTool's bundle with the specified size.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size;
++ (UIImage *_Nullable)LL_imageNamed:(LLImageName)name size:(CGSize)size;
 
 /**
  * Image in LLDebugTool's bundle with the specified color.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name color:(UIColor *)color;
++ (UIImage *_Nullable)LL_imageNamed:(LLImageName)name color:(UIColor *)color;
 
 /**
  * Image in LLDebugTool's bundle with the specified size and color.
  */
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size color:(UIColor *)color;
++ (UIImage *_Nullable)LL_imageNamed:(LLImageName)name size:(CGSize)size color:(UIColor *)color;
 
 /**
  * Image from data.

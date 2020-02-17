@@ -38,7 +38,7 @@
 
 @implementation LLCrashModel
 
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate {
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate {
     if (self = [super init]) {
         _name = [name copy];
         _reason = [reason copy];
@@ -47,7 +47,7 @@
         _date = [date copy];
         _thread = [thread copy];
         _userIdentity = [userIdentity copy];
-        _appInfos = [appInfos copy];
+        _appInfoDescription = [appInfoDescription copy];
         _launchDate = [launchDate copy];
         _signals = [[NSMutableArray alloc] init];
         _identity = [launchDate stringByAppendingString:[LLTool absolutelyIdentity]];
@@ -55,8 +55,8 @@
     return self;
 }
 
-- (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
-    _appInfos = [appInfos copy];
+- (void)updateAppInfoDescription:(NSString *)appInfoDescription {
+    _appInfoDescription = [appInfoDescription copy];
 }
 
 - (NSString *)storageIdentity {
@@ -68,7 +68,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfos:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_jsonString,self.stackSymbols.LL_jsonString,self.date,self.userIdentity,self.appInfos.LL_jsonString,self.launchDate];
+    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfoDescription:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_jsonString,self.stackSymbols.LL_jsonString,self.date,self.userIdentity,self.appInfoDescription,self.launchDate];
 }
 
 @end

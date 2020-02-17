@@ -27,9 +27,9 @@
 
 #import "NSObject+LL_Runtime.h"
 
-NSNotificationName const LLCLLocationRegisterNotificationName = @"LLCLLocationRegisterNotificationName";
+NSNotificationName const LLDebugToolRegisterCLLocationNotification = @"LLDebugToolRegisterCLLocationNotification";
 
-NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocationUnRegisterNotificationName";
+NSNotificationName const LLDebugToolUnregisterCLLocationNotification = @"LLDebugToolUnregisterCLLocationNotification";
 
 @implementation CLLocationManager (LL_Location)
 
@@ -47,7 +47,7 @@ NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocation
 
 - (instancetype)LL_init {
     CLLocationManager *manager = [self LL_init];
-    [[NSNotificationCenter defaultCenter] postNotificationName:LLCLLocationRegisterNotificationName object:manager];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolRegisterCLLocationNotification object:manager];
     return manager;
 }
 
@@ -71,7 +71,7 @@ NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocation
 }
 
 - (void)LL_dealloc {
-    [[NSNotificationCenter defaultCenter] postNotificationName:LLCLLocationUnRegisterNotificationName object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolUnregisterCLLocationNotification object:self];
     [self LL_dealloc];
 }
 

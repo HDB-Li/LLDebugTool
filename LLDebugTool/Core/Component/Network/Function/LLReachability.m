@@ -30,7 +30,7 @@
 #import <ifaddrs.h>
 #import <netdb.h>
 
-NSString *kLLReachabilityChangedNotification = @"kLLNetworkReachabilityChangedNotification";
+NSString *LLReachabilityChangeNotification = @"kLLNetworkReachabilityChangedNotification";
 
 
 #pragma mark - Supporting functions
@@ -66,7 +66,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
     LLReachability* noteObject = (__bridge LLReachability *)info;
     // Post a notification to notify the client that the network reachability changed.
-    [[NSNotificationCenter defaultCenter] postNotificationName: kLLReachabilityChangedNotification object: noteObject];
+    [[NSNotificationCenter defaultCenter] postNotificationName: LLReachabilityChangeNotification object: noteObject];
 }
 
 

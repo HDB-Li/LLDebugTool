@@ -34,16 +34,18 @@ NS_ASSUME_NONNULL_BEGIN
  Response data traffic is download data.
  Total data traffic is total data.
  */
-FOUNDATION_EXPORT NSNotificationName const LLAppInfoHelperDidUpdateAppInfosNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateAppInfoNotification;
 
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperCPUKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperMemoryUsedKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperMemoryFreeKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperMemoryTotalKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperFPSKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperRequestDataTrafficKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperResponseDataTrafficKey;
-FOUNDATION_EXPORT NSString * const LLAppInfoHelperTotalDataTrafficKey;
+typedef NSString * LLAppInfoHelperKey NS_TYPED_ENUM;
+
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperCPUKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperFPSKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey;
 
 /**
  Monitoring app's properties.
@@ -65,27 +67,7 @@ FOUNDATION_EXPORT NSString * const LLAppInfoHelperTotalDataTrafficKey;
 /**
  Get current app infos. Include "CPU Usage","Memory Usage","FPS","Data Traffic","App Name","Bundle Identifier","App Version","App Start Time","Device Model","Device Name","System Version","Screen Resolution","Language Code","Battery Level","CPU Type","Disk","Network State" and "SSID".
  */
-- (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos;
-
-/**
- Get dynamic app infos this time.
- */
-- (NSDictionary <NSString *, NSString *>*)dynamicAppInfos;
-
-/**
- Dynamic infos.
- */
-- (NSArray <NSDictionary *>*)dynamicInfos;
-
-/**
- Application infos.
- */
-- (NSArray <NSDictionary *>*)applicationInfos;
-
-/**
- Device infos.
- */
-- (NSArray <NSDictionary *>*)deviceInfos;
+- (NSString *)appInfoDescription;
 
 /**
  Current cpu usage.

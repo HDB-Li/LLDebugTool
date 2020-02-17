@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSNotificationName const LLHierarchyChangeNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolChangeHierarchyNotification;
 
 @interface NSObject (LL_Hierarchy)
 

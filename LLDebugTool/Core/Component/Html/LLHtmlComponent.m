@@ -32,11 +32,11 @@
 
 - (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
    
-    if (data[kLLComponentWindowRootViewControllerKey]) {
-        Class rootViewControllerClass = NSClassFromString(data[kLLComponentWindowRootViewControllerKey]);
+    if (data[LLComponentDelegateRootViewControllerKey]) {
+        Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);
         if (rootViewControllerClass != nil) {
             UIViewController *viewController = [[rootViewControllerClass alloc] init];
-            NSDictionary *properties = data[kLLComponentWindowRootViewControllerPropertiesKey];
+            NSDictionary *properties = data[LLComponentDelegateRootViewControllerPropertiesKey];
             for (NSString *key in properties) {
                 id value = properties[key];
                 [viewController setValue:value forKey:key];

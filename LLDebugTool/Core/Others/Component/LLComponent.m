@@ -23,8 +23,8 @@
 
 #import "LLComponent.h"
 
-NSString *const kLLComponentWindowRootViewControllerKey = @"LLComponentWindowRootViewControllerKey";
-NSString *const kLLComponentWindowRootViewControllerPropertiesKey = @"LLComponentWindowRootViewControllerPropertiesKey";
+LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey = @"LLComponentWindowRootViewControllerKey";
+LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey = @"LLComponentWindowRootViewControllerPropertiesKey";
 
 @implementation LLComponent
 

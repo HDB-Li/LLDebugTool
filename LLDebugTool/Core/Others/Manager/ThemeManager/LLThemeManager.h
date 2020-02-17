@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN NSString *const LLDebugToolUpdateThemeNotificationName;
+FOUNDATION_EXTERN NSNotificationName const LLDebugToolUpdateThemeNotification;
 
 /// Theme manager.
 @interface LLThemeManager : NSObject

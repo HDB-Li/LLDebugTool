@@ -27,9 +27,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSNotificationName const LLCLLocationRegisterNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolRegisterCLLocationNotification;
 
-FOUNDATION_EXPORT NSNotificationName const LLCLLocationUnRegisterNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolUnregisterCLLocationNotification;
 
 @interface CLLocationManager (LL_Location)
 

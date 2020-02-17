@@ -28,6 +28,7 @@
 #import <mach/mach.h>
 
 #import "LLFormatterTool.h"
+#import "LLTool.h"
 
 static uint64_t _loadTime;
 static NSTimeInterval _startLoadTime;
@@ -46,23 +47,25 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
  Record the launch time of App.
  */
 + (void)load {
-    _loadTime = mach_absolute_time();
-    mach_timebase_info(&_timebaseInfo);
-    
-    _loadDate = [[NSDate date] timeIntervalSince1970];
-    
-    @autoreleasepool {
-        __block __weak id<NSObject> obs;
-        obs = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
-                                                                object:nil queue:nil
-                                                            usingBlock:^(NSNotification *note) {
-                                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                                    _applicationRespondedTime = mach_absolute_time();
-                                                                    _startLoadTime = MachTimeToSeconds(_applicationRespondedTime - _loadTime);
-                                                                });
-                                                                [[NSNotificationCenter defaultCenter] removeObserver:obs];
-                                                            }];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _loadTime = mach_absolute_time();
+        mach_timebase_info(&_timebaseInfo);
+        
+        _loadDate = [[NSDate date] timeIntervalSince1970];
+        
+        @autoreleasepool {
+            __block __weak id<NSObject> obs;
+            obs = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
+                                                                    object:nil queue:nil
+                                                                usingBlock:^(NSNotification *note) {
+                _applicationRespondedTime = mach_absolute_time();
+                _startLoadTime = MachTimeToSeconds(_applicationRespondedTime - _loadTime);
+                [LLTool availableDebugTool];
+                [[NSNotificationCenter defaultCenter] removeObserver:obs];
+            }];
+        }
+    });
 }
 
 + (NSString *)LL_launchDate {

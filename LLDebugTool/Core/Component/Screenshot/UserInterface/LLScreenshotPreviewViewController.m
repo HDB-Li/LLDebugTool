@@ -74,8 +74,8 @@
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveKeyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveKeyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark - Primary
@@ -122,8 +122,8 @@
     }
 }
 
-#pragma mark - NSNotification
-- (void)keyboardWillShowNotification:(NSNotification *)notifi {
+#pragma mark - UIKeyboardWillShowNotification
+- (void)didReceiveKeyboardWillShowNotification:(NSNotification *)notifi {
     NSDictionary *userInfo = notifi.userInfo;
     CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -140,7 +140,8 @@
     }
 }
 
-- (void)keyboardWillHideNotification:(NSNotification *)notifi {
+#pragma mark - UIKeyboardWillHideNotification
+- (void)didReceiveKeyboardWillHideNotification:(NSNotification *)notifi {
     NSDictionary *userInfo = notifi.userInfo;
     CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     if (!CGRectEqualToRect(self.imageView.frame, self.originalImageFrame)) {

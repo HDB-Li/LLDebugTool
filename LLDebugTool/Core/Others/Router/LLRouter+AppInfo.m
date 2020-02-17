@@ -35,9 +35,9 @@
 #endif
 }
 
-+ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*)appInfos {
++ (NSString *)appInfoDescription {
 #ifdef LLDEBUGTOOL_APP_INFO
-    return [[LLAppInfoHelper shared] appInfos];
+    return [[LLAppInfoHelper shared] appInfoDescription];
 #else
     return nil;
 #endif

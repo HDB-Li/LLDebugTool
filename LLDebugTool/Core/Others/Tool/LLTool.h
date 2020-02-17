@@ -77,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Get UIStatusBar_Modern.
 + (UIView *_Nullable)getUIStatusBarModern;
 
+/// Avalable debug tool.
++ (void)availableDebugTool;
+
 @end
 
 NS_ASSUME_NONNULL_END

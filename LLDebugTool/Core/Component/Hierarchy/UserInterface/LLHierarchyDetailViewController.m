@@ -70,7 +70,7 @@
     
     [self loadData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLHierarchyChangeNotification:) name:LLHierarchyChangeNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolChangeHierarchyNotification:) name:LLDebugToolChangeHierarchyNotification object:nil];
 }
 
 #pragma mark - Over write
@@ -90,8 +90,8 @@
     return cell;
 }
 
-#pragma mark - NSNotifications
-- (void)didReceiveLLHierarchyChangeNotification:(NSNotification *)notification {
+#pragma mark - LLDebugToolChangeHierarchyNotification
+- (void)didReceiveDebugToolChangeHierarchyNotification:(NSNotification *)notification {
     [self loadData];
 }
 

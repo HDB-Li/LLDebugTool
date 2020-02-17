@@ -170,18 +170,9 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         }
         [self.contentArray addObject:content];
     }
-    if (_model.appInfos.count) {
+    if (_model.appInfoDescription) {
         [self.titleArray addObject:@"App Infos"];
-        NSMutableString *str = [[NSMutableString alloc] init];
-        for (NSArray *array in _model.appInfos) {
-            for (NSDictionary *dic in array) {
-                for (NSString *key in dic) {
-                    [str appendFormat:@"%@ : %@\n",key,dic[key]];
-                }
-            }
-            [str appendString:@"\n"];
-        }
-        [self.contentArray addObject:str];
+        [self.contentArray addObject:_model.appInfoDescription];
     }
     [self.tableView reloadData];
 }

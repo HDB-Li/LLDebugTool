@@ -141,8 +141,8 @@ static LLDebugTool *_instance = nil;
     return NO;
 }
 
-#pragma mark - Notifications
-- (void)didReceiveDidShakeNotification:(NSNotification *)notification {
+#pragma mark - LLDebugToolShakeNotification
+- (void)didReceiveDebugToolShakeNotification:(NSNotification *)notification {
     if ([LLConfig shared].isShakeToHide) {
         if ([LLWindowManager shared].entryWindow.isHidden) {
             [self showWindow];
@@ -214,7 +214,7 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)registerNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDidShakeNotification:) name:LLDidShakeNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolShakeNotification:) name:LLDebugToolShakeNotification object:nil];
 }
 
 - (void)unregisterNotifications {

@@ -157,9 +157,9 @@ static LLCrashHelper *_instance = nil;
 
 - (void)saveException:(NSException *)exception {
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    NSArray *appInfos = [LLRouter appInfos];
+    NSString *appInfoDescription = [LLRouter appInfoDescription];
 
-    LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLConfig shared].userIdentity appInfos:appInfos launchDate:[NSObject LL_launchDate]];
+    LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLConfig shared].userIdentity appInfoDescription:appInfoDescription launchDate:[NSObject LL_launchDate]];
     [[LLStorageManager shared] saveModel:model complete:^(BOOL result) {
         [LLTool log:@"Save crash model success"];
     } synchronous:YES];
@@ -317,7 +317,7 @@ void SignalHandler(int sig)
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    LLCrashModel *model = [[LLCrashModel alloc] initWithName:name reason:[NSString stringWithFormat:@"%@ Signal",name] userInfo:nil stackSymbols:callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLConfig shared].userIdentity appInfos:[LLRouter appInfos] launchDate:[NSObject LL_launchDate]];
+    LLCrashModel *model = [[LLCrashModel alloc] initWithName:name reason:[NSString stringWithFormat:@"%@ Signal",name] userInfo:nil stackSymbols:callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLConfig shared].userIdentity appInfoDescription:[LLRouter appInfoDescription] launchDate:[NSObject LL_launchDate]];
     [[LLStorageManager shared] saveModel:model complete:^(BOOL result) {
         [LLTool log:@"Save signal model success"];
     } synchronous:YES];

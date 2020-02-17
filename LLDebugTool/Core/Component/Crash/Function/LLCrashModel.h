@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * App Infos
  */
-@property (strong, nonatomic, readonly, nullable) NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*appInfos;
+@property (strong, nonatomic, readonly, nullable) NSString *appInfoDescription;
 
 /**
  * App LaunchDate
@@ -83,12 +83,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Init method
  */
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos launchDate:(NSString *)launchDate;
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate;
 
 /**
  Update appInfo
  */
-- (void)updateAppInfos:(NSArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
+- (void)updateAppInfoDescription:(NSString *_Nullable)appInfoDescription;
 
 @end
 

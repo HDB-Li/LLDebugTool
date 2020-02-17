@@ -37,7 +37,7 @@
 
 static LLConfig *_instance = nil;
 
-NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConfigDidUpdateWindowStyleNotificationName";
+NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToolUpdateWindowStyleNotification";
 
 @implementation LLConfig
 
@@ -197,7 +197,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     }
     if (_entryWindowStyle != entryStyle) {
         _entryWindowStyle = entryStyle;
-        [[NSNotificationCenter defaultCenter] postNotificationName:LLConfigDidUpdateWindowStyleNotificationName object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolUpdateWindowStyleNotification object:nil userInfo:nil];
     }
 }
 

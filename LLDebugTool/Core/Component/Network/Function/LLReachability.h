@@ -28,7 +28,7 @@
 
 #import "LLNetworkDefine.h"
 
-FOUNDATION_EXTERN NSString *kLLReachabilityChangedNotification;
+FOUNDATION_EXTERN NSNotificationName LLReachabilityChangeNotification;
 
 // Also see https://developer.apple.com/library/archive/samplecode/Reachability/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007324-Intro-DontLinkElementID_2
 

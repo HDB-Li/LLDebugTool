@@ -65,7 +65,7 @@
     self.updateBackgroundColor = NO;
     self.style = [LLConfig shared].entryWindowStyle;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:) name:LLConfigDidUpdateWindowStyleNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateWindowStyleNotification:) name:LLDebugToolUpdateWindowStyleNotification object:nil];
 }
 
 #pragma mark - Primary
@@ -134,8 +134,8 @@
     }
 }
 
-#pragma mark - LLConfigDidUpdateWindowStyleNotificationName
-- (void)didReceiveLLConfigDidUpdateWindowStyleNotificationNameNotification:(NSNotification *)notifi {
+#pragma mark - LLDebugToolUpdateWindowStyleNotification
+- (void)didReceiveDebugToolUpdateWindowStyleNotification:(NSNotification *)notifi {
     self.style = [LLConfig shared].entryWindowStyle;
 }
 

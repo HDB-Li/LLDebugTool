@@ -152,4 +152,8 @@ static bool _statusBarClickable = YES;
     return [[UIApplication sharedApplication] valueForKey:@"_statusBar"];
 }
 
++ (void)availableDebugTool {
+    [LLDebugTool sharedTool];
+}
+
 @end

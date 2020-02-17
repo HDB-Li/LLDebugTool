@@ -66,7 +66,7 @@ static LLScreenshotHelper *_instance = nil;
     if (self.enable) {
         UIImage *image = [self imageFromScreen];
         if (image) {
-            NSDictionary *data = @{kLLComponentWindowRootViewControllerKey : NSStringFromClass(LLScreenshotPreviewViewController.class),kLLComponentWindowRootViewControllerPropertiesKey : @{@"image" : image}};
+            NSDictionary *data = @{LLComponentDelegateRootViewControllerKey : NSStringFromClass(LLScreenshotPreviewViewController.class),LLComponentDelegateRootViewControllerPropertiesKey : @{@"image" : image}};
             [[[LLScreenshotComponent alloc] init] componentDidLoad:data];
         }
     }    
@@ -103,7 +103,7 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification
-- (void)receiveUserDidTakeScreenshotNotification:(NSNotification *)notification {
+- (void)didReceiveApplicationUserDidTakeScreenshotNotification:(NSNotification *)notification {
     [self simulateTakeScreenshot];
 }
 
@@ -114,7 +114,7 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 - (void)registerScreenshot {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveUserDidTakeScreenshotNotification:) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveApplicationUserDidTakeScreenshotNotification:) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
 }
 
 - (void)unregisterScreenshot {

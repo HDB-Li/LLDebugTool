@@ -25,16 +25,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerKey;
+typedef NSString * LLComponentDelegateKey NS_TYPED_ENUM;
 
-FOUNDATION_EXTERN NSString *const kLLComponentWindowRootViewControllerPropertiesKey;
+FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey;
+
+FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey;
 
 /// Component delegate.
 @protocol LLComponentDelegate <NSObject>
 
 /// Component did load.
 /// @param data Extra data.
-- (void)componentDidLoad:(NSDictionary <NSString *, id>*_Nullable)data;
+- (void)componentDidLoad:(NSDictionary <LLComponentDelegateKey, id>*_Nullable)data;
 
 @end
 

@@ -57,10 +57,10 @@
 
 #pragma mark - Primary
 - (void)addObservers {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateThemeNotification:) name:LLDebugToolUpdateThemeNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateThemeNotification:) name:LLDebugToolUpdateThemeNotification object:nil];
 }
 
-#pragma mark - LLDebugToolUpdateThemeNotificationName
+#pragma mark - LLDebugToolUpdateThemeNotification
 - (void)didReceiveDebugToolUpdateThemeNotification:(NSNotification *)notification {
     [self themeColorChanged];
 }

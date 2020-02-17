@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSNotificationName const LLDidShakeNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolShakeNotification;
 
 /// UIResponder utils.
 @interface UIResponder (LL_Utils)

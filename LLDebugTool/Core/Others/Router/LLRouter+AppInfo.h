@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic;
 
 /// Call by AppInfoHelper if able.
-+ (NSMutableArray <NSArray <NSDictionary <NSString *,NSString *>*>*>*_Nullable)appInfos;
++ (NSString *_Nullable)appInfoDescription;
 
 @end
 

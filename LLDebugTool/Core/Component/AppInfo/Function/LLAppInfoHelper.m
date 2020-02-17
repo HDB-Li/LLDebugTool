@@ -36,15 +36,15 @@
 
 static LLAppInfoHelper *_instance = nil;
 
-NSNotificationName const LLAppInfoHelperDidUpdateAppInfosNotificationName = @"LLAppInfoHelperDidUpdateAppInfosNotificationName";
-NSString * const LLAppInfoHelperCPUKey = @"LLAppInfoHelperCPUKey";
-NSString * const LLAppInfoHelperMemoryUsedKey = @"LLAppInfoHelperMemoryUsedKey";
-NSString * const LLAppInfoHelperMemoryFreeKey = @"LLAppInfoHelperMemoryFreeKey";
-NSString * const LLAppInfoHelperMemoryTotalKey = @"LLAppInfoHelperMemoryTotalKey";
-NSString * const LLAppInfoHelperFPSKey = @"LLAppInfoHelperFPSKey";
-NSString * const LLAppInfoHelperRequestDataTrafficKey = @"LLAppInfoHelperRequestDataTrafficKey";
-NSString * const LLAppInfoHelperResponseDataTrafficKey = @"LLAppInfoHelperResponseDataTrafficKey";
-NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalDataTrafficKey";
+NSNotificationName const LLDebugToolUpdateAppInfoNotification = @"LLDebugToolUpdateAppInfoNotification";
+LLAppInfoHelperKey const LLAppInfoHelperCPUKey = @"LLAppInfoHelperCPUKey";
+LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedKey = @"LLAppInfoHelperMemoryUsedKey";
+LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeKey = @"LLAppInfoHelperMemoryFreeKey";
+LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalKey = @"LLAppInfoHelperMemoryTotalKey";
+LLAppInfoHelperKey const LLAppInfoHelperFPSKey = @"LLAppInfoHelperFPSKey";
+LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficKey = @"LLAppInfoHelperRequestDataTrafficKey";
+LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficKey = @"LLAppInfoHelperResponseDataTrafficKey";
+LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalDataTrafficKey";
 
 @interface LLAppInfoHelper ()
 {
@@ -102,61 +102,65 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
     }
 }
 
-- (NSMutableArray <NSArray <NSDictionary *>*>*)appInfos {
+- (NSString *)appInfoDescription {
     
-    NSArray *dynamic = [self dynamicInfos];
+    NSMutableString *desc = [[NSMutableString alloc] init];
+
+    // CPU Usage
+    [desc appendFormat:@"CPU : %@\n", self.cpuUsage];
     
-    // App Info
-    NSArray *apps = [self applicationInfos];
-
-    // Device Info
-    NSArray *devices = [self deviceInfos];
+    // Memory Usage
+    [desc appendFormat:@"Memory : %@\n", self.memoryUsage];
     
-    return [[NSMutableArray alloc] initWithObjects:dynamic ,apps, devices, nil];
-}
-
-- (NSArray <NSDictionary *>*)dynamicInfos {
-    return @[@{@"CPU" : [self cpuUsage]},
-             @{@"Memory" : [self memoryUsage]},
-             @{@"FPS" : [self fps]},
-             @{@"Data Traffic" : [self dataTraffic]}];
-}
-
-- (NSArray <NSDictionary *>*)applicationInfos {
-    return @[@{@"Name" : [self appName]},
-             @{@"Identifier" : [self bundleIdentifier]},
-             @{@"Version" : [self appVersion]},
-             @{@"Start Time" : [self appStartTimeConsuming]}];
-}
-
-- (NSArray <NSDictionary *>*)deviceInfos {
-    NSArray *devices = @[@{@"Model" : [self deviceModel]},
-                         @{@"Name" : [self deviceName]},
-                         @{@"Version" : [self systemVersion]},
-                         @{@"Resolution" : [self screenResolution]},
-                         @{@"Language" : [self languageCode]},
-                         @{@"Battery" : [self batteryLevel]},
-                         @{@"CPU" : [self cpuType]},
-                         @{@"Disk" : [self disk]},
-                         @{@"Network" : [self networkState]}];
+    // FPS
+    [desc appendFormat:@"FPS : %@\n", self.fps];
     
-    NSMutableArray *mutDevices = [[NSMutableArray alloc] initWithArray:devices];
-    NSString *ssid = [self ssid];
-    if (ssid) {
-        [mutDevices insertObject:@{@"SSID" : ssid} atIndex:7];
-    }
-    return mutDevices;
-}
+    // Data Traffic
+    [desc appendFormat:@"Data Traffic : %@\n\n", self.dataTraffic];
 
-- (NSDictionary <NSString *, NSString *>*)dynamicAppInfos {
-    NSMutableDictionary *infos = [[NSMutableDictionary alloc] init];
-    for (NSDictionary *dic in [self dynamicInfos]) {
-        [infos addEntriesFromDictionary:dic];
-    }
+    // App Name
+    [desc appendFormat:@"Name : %@\n", self.appName];
     
-    infos[@"Disk"] = [self disk];
-    infos[@"Network State"] = [self networkState];
-    return infos;
+    // Bundle Identifier
+    [desc appendFormat:@"Identifier : %@\n", self.bundleIdentifier];
+    
+    // App Version
+    [desc appendFormat:@"Version : %@\n", self.appVersion];
+    
+    // Start Time
+    [desc appendFormat:@"Start Time : %@\n\n", self.appStartTimeConsuming];
+
+    // Model
+    [desc appendFormat:@"Model : %@\n", self.deviceModel];
+    
+    // Name
+    [desc appendFormat:@"Name : %@\n", self.deviceName];
+    
+    // Version
+    [desc appendFormat:@"Version : %@\n", self.systemVersion];
+    
+    // Resolution
+    [desc appendFormat:@"Resolution : %@\n", self.screenResolution];
+    
+    // Language
+    [desc appendFormat:@"Language : %@\n", self.languageCode];
+    
+    // Battery
+    [desc appendFormat:@"Battery : %@\n", self.batteryLevel];
+    
+    //CPU
+    [desc appendFormat:@"CPU : %@\n", self.cpuType];
+    
+    // Disk
+    [desc appendFormat:@"Disk : %@\n", self.disk];
+    
+    // SSID
+    [desc appendFormat:@"SSID : %@\n", self.ssid ?: @"Unknown"];
+    
+    // Network
+    [desc appendFormat:@"Network : %@\n\n", self.networkState];
+    
+    return [desc copy];
 }
 
 - (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
@@ -397,15 +401,26 @@ NSString * const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalData
     _freeMemory = stat.bytes_free;
     _totalMemory = stat.bytes_total;
     _cpu = [self getCpuUsage];
-    [self postAppInfoHelperDidUpdateAppInfosNotification];
+    [self postDebugToolUpdateAppInfoNotification];
 }
 
-- (void)postAppInfoHelperDidUpdateAppInfosNotification {
+- (void)postDebugToolUpdateAppInfoNotification {
     if ([[NSThread currentThread] isMainThread]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LLAppInfoHelperDidUpdateAppInfosNotificationName object:[self dynamicInfos] userInfo:@{LLAppInfoHelperCPUKey:@(_cpu),LLAppInfoHelperFPSKey:@(_fps),LLAppInfoHelperMemoryFreeKey:@(_freeMemory),LLAppInfoHelperMemoryUsedKey:@(_usedMemory),LLAppInfoHelperMemoryTotalKey:@(_totalMemory),LLAppInfoHelperRequestDataTrafficKey:@(_requestDataTraffic),LLAppInfoHelperResponseDataTrafficKey:@(_responseDataTraffic),LLAppInfoHelperTotalDataTrafficKey:@(_totalDataTraffic)}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolUpdateAppInfoNotification
+                                                            object:self
+                                                          userInfo:@{
+                                                              LLAppInfoHelperCPUKey : @(_cpu),
+                                                              LLAppInfoHelperFPSKey : @(_fps),
+                                                              LLAppInfoHelperMemoryFreeKey : @(_freeMemory),
+                                                              LLAppInfoHelperMemoryUsedKey : @(_usedMemory),
+                                                              LLAppInfoHelperMemoryTotalKey : @(_totalMemory),
+                                                              LLAppInfoHelperRequestDataTrafficKey : @(_requestDataTraffic),
+                                                              LLAppInfoHelperResponseDataTrafficKey : @(_responseDataTraffic),
+                                                              LLAppInfoHelperTotalDataTrafficKey : @(_totalDataTraffic)
+                                                          }];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self postAppInfoHelperDidUpdateAppInfosNotification];
+            [self postDebugToolUpdateAppInfoNotification];
         });
     }
 }

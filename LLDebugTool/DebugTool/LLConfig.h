@@ -153,7 +153,7 @@ typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotification;
 
 /**
  Config file. Must config properties before [LLDebugTool enable].
