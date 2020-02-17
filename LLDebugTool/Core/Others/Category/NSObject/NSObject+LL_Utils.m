@@ -54,6 +54,7 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
         
         _loadDate = [[NSDate date] timeIntervalSince1970];
         
+        [LLTool availableDebugTool];
         @autoreleasepool {
             __block __weak id<NSObject> obs;
             obs = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
@@ -61,7 +62,7 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
                                                                 usingBlock:^(NSNotification *note) {
                 _applicationRespondedTime = mach_absolute_time();
                 _startLoadTime = MachTimeToSeconds(_applicationRespondedTime - _loadTime);
-                [LLTool availableDebugTool];
+                
                 [[NSNotificationCenter defaultCenter] removeObserver:obs];
             }];
         }

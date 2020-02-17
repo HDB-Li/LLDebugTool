@@ -32,7 +32,12 @@
 #import "LLTool.h"
 
 #import "UIResponder+LL_Utils.h"
+#import "NSObject+LL_Runtime.h"
 #import "LLRouter+Log.h"
+
+NSNotificationName const LLDebugToolStartWorkingNotificationName = @"LLDebugToolStartWorkingNotificationName";
+
+LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorkingConfigNotificationKey = @"LLDebugToolStartWorkingConfigNotificationKey";
 
 static LLDebugTool *_instance = nil;
 
@@ -75,11 +80,13 @@ static LLDebugTool *_instance = nil;
         [self prepareToStart];
         // show window
         if (self.installed || ![LLConfig shared].hideWhenInstall) {
-            self.installed = YES;
             [self showWindow];
         }
-        
-        [self registerNotifications];
+        if (!self.installed) {
+            // Check version.
+            [self checkVersionAtGlobal];
+        }
+        self.installed = YES;
     }
 }
 
@@ -105,8 +112,6 @@ static LLDebugTool *_instance = nil;
         [LLRouter setCrashHelperEnable:NO];
         // hide window
         [self hideWindow];
-        
-        [self unregisterNotifications];
     }
 }
 
@@ -138,11 +143,19 @@ static LLDebugTool *_instance = nil;
 }
 
 + (BOOL)isBetaVersion {
-    return NO;
+    return YES;
+}
+
+#pragma mark - Life Cycle
+- (void)dealloc {
+    [self unregisterNotifications];
 }
 
 #pragma mark - LLDebugToolShakeNotification
 - (void)didReceiveDebugToolShakeNotification:(NSNotification *)notification {
+    if (!self.isWorking) {
+        return;
+    }
     if ([LLConfig shared].isShakeToHide) {
         if ([LLWindowManager shared].entryWindow.isHidden) {
             [self showWindow];
@@ -152,10 +165,34 @@ static LLDebugTool *_instance = nil;
     }
 }
 
+#pragma mark - LLDebugToolStartWorkingNotificationName
+- (void)didReceiveDebugToolStartWorkingNotification:(NSNotification *)notification {
+    if (self.isWorking) {
+        return;
+    }
+    
+    NSDictionary *data = notification.userInfo[LLDebugToolStartWorkingConfigNotificationKey];
+    if (data && [data isKindOfClass:[NSDictionary class]]) {
+        NSArray *propertys = [LLConfig LL_getPropertyNames];
+        for (NSString *key in data) {
+            if ([propertys containsObject:key]) {
+                [[LLConfig shared] setValue:data[key] forKey:key];
+            }
+        }
+    }
+    [self startWorking];
+}
+
 #pragma mark - Primary
 - (void)initial {
-    // Check version.
-    [self checkVersion];
+    // Register notification
+    [self registerNotifications];
+}
+
+- (void)checkVersionAtGlobal {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self checkVersion];
+    });
 }
 
 - (void)checkVersion {
@@ -180,33 +217,6 @@ static LLDebugTool *_instance = nil;
         // This method called in instancetype, can't use macros to log.
         [LLTool log:kLLDebugToolLogUseBetaAlert];
     }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // Check whether has a new LLDebugTool version.
-        if ([LLConfig shared].autoCheckDebugToolVersion) {
-            NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
-            NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if (error == nil && data != nil) {
-                    NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
-                    if (array.count > 2) {
-                        NSString *str = array[1];
-                        NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
-                        if (array2.count >= 2) {
-                            NSString *newVersion = array2[0];
-                            if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                                if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
-                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,[LLDebugTool versionNumber]];
-                                    [LLTool log:message];
-                                }
-                            }
-                        }
-                    }
-                }
-            }];
-            [dataTask resume];
-        }
-    });
 }
 
 - (void)prepareToStart {
@@ -215,6 +225,7 @@ static LLDebugTool *_instance = nil;
 
 - (void)registerNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolShakeNotification:) name:LLDebugToolShakeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolStartWorkingNotification:) name:LLDebugToolStartWorkingNotificationName object:nil];
 }
 
 - (void)unregisterNotifications {

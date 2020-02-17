@@ -27,6 +27,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolStartWorkingNotificationName;
+
+typedef NSString * LLDebugToolStartWorkingNotificationKey NS_TYPED_ENUM;
+
+FOUNDATION_EXPORT LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorkingConfigNotificationKey;
+
 /**
  Control whether DebugTool is started.
  */

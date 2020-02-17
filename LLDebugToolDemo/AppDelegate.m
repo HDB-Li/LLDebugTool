@@ -21,28 +21,39 @@
 
     // Start working with config.
     [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLConfig * _Nonnull config) {
-        
+
         //####################### Color Style #######################//
         // Uncomment one of the following lines to change the color configuration.
         // config.colorStyle = LLConfigColorStyleSystem;
         // [config configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
-        
+
         //####################### User Identity #######################//
         // Use this line to tag user. More config please see "LLConfig.h".
         config.userIdentity = @"Miss L";
-        
+
         //####################### Window Style #######################//
         // Uncomment one of the following lines to change the window style.
         // config.entryWindowStyle = LLConfigEntryWindowStyleTitle;
-        
+
         //####################### Html #######################//
         config.defaultHtmlUrl = @"https://github.com/HDB-Li/LLDebugTool";
-        
+
         //####################### Location #######################//
         NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
         [config addMockRouteDirectory:documentsPath];
     }];
     
+    /*
+     // You can start LLDebugTool use notification and didn't import anything.
+    NSDictionary *data = @{
+        @"colorStyle" : @(2), // LLConfigColorStyleSystem
+        @"userIdentity" : @"Miss L",
+        @"entryWindowStyle" : @(1), //LLConfigEntryWindowStyleTitle
+        @"defaultHtmlUrl" : @"https://github.com/HDB-Li/LLDebugTool"
+    };
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolStartWorkingNotificationName object:nil userInfo:@{LLDebugToolStartWorkingConfigNotificationKey : data}];
+    */
     return YES;
 }
 
