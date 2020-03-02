@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		C49A78D1240BB5D2003D1F80 /* OCLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C49A78D4240BB5D2003D1F80 /* Build configuration list for PBXAggregateTarget "OCLint" */;
+			buildPhases = (
+				C49A78D5240BB5DC003D1F80 /* OCLint Script */,
+			);
+			dependencies = (
+			);
+			name = OCLint;
+			productName = OCLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
 		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
@@ -2429,6 +2443,7 @@
 		C43BA7FF205AB095006307BE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = li;
 				TargetAttributes = {
@@ -2444,6 +2459,10 @@
 					};
 					C43BA806205AB095006307BE = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					C49A78D1240BB5D2003D1F80 = {
+						CreatedOnToolsVersion = 11.3.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2465,6 +2484,7 @@
 				C43BA806205AB095006307BE /* LLDebugToolDemo */,
 				36E248842123BAE300D03F44 /* LLDebugToolDemoTests */,
 				36E248922123BAE900D03F44 /* LLDebugToolDemoUITests */,
+				C49A78D1240BB5D2003D1F80 /* OCLint */,
 			);
 		};
 /* End PBXProject section */
@@ -2557,6 +2577,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C49A78D5240BB5DC003D1F80 /* OCLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "OCLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export LC_CTYPE=en_US.UTF-8\n# 脚本只要发生错误，就终止执行\nset -euo pipefail \n\necho '执行OCLint Script'\n\n# 删除DerivedData的build文件\necho $(dirname ${BUILD_DIR})\nrm -rf $(dirname ${BUILD_DIR})\n\n# 1. 环境配置，判断是否安装oclint，没有则安装\nif which oclint 2>/dev/null; then\necho 'oclint already installed'\nelse # install oclint\necho 'installing oclint'\nbrew tap oclint/formulae\nbrew install oclint\nfi\n\n# 2.0 使用xcodebuild构建项目，并且使用xcprretty将便于产物转换为json\nprojectDir=${PROJECT_DIR}\n\n# Project name\nprojectName=\"LLDebugToolDemo\"\n\n# 运行xcodebuild\nxcodebuild -scheme ${projectName} -workspace ${projectName}.xcworkspace clean && xcodebuild clean && xcodebuild -scheme ${projectName} -workspace ${projectName}.xcworkspace -configuration Debug -sdk iphonesimulator COMPILER_INDEX_STORE_ENABLE=NO | xcpretty -r json-compilation-database  -o compile_commands.json\n\n# 3.0 判断json是否\nif [ -f ./compile_commands.json ]; then echo \"compile_commands.json 文件存在\";\nelse echo \"-----compile_commands.json文件不存在-----\"; fi\n\n# 4.0 oclint分析json\noclint-json-compilation-database -e Pods -- -report-type xcode\n\necho '执行完成OCLint Script'\n";
 		};
 		D88507F3CEB58B2391736619 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3073,9 +3111,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				COMPILER_INDEX_STORE_ENABLE = Default;
+				DEVELOPMENT_TEAM = UU2K72AM2R;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3098,7 +3137,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3111,9 +3150,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				COMPILER_INDEX_STORE_ENABLE = Default;
+				DEVELOPMENT_TEAM = UU2K72AM2R;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3136,10 +3176,28 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = HDB.LLDebugToolDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C49A78D2240BB5D2003D1F80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU2K72AM2R;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C49A78D3240BB5D2003D1F80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU2K72AM2R;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -3178,6 +3236,15 @@
 			buildConfigurations = (
 				C43BA81E205AB095006307BE /* Debug */,
 				C43BA81F205AB095006307BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C49A78D4240BB5D2003D1F80 /* Build configuration list for PBXAggregateTarget "OCLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C49A78D2240BB5D2003D1F80 /* Debug */,
+				C49A78D3240BB5D2003D1F80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
