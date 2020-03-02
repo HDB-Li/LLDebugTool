@@ -32,7 +32,7 @@ NSNotificationName const LLDebugToolShakeNotification = @"LLDebugToolShakeNotifi
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[UIResponder class] LL_swizzleInstanceMethodWithOriginSel:@selector(motionBegan:withEvent:) swizzledSel:@selector(LL_motionBegan:withEvent:)];
+        [[UIResponder class] LL_swizzleInstanceSelector:@selector(motionBegan:withEvent:) anotherSelector:@selector(LL_motionBegan:withEvent:)];
     });
 }
 

@@ -36,12 +36,12 @@ NSNotificationName const LLDebugToolUnregisterCLLocationNotification = @"LLDebug
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self LL_swizzleInstanceMethodWithOriginSel:@selector(setDelegate:) swizzledSel:@selector(LL_setDelegate:)];
-        [self LL_swizzleInstanceMethodWithOriginSel:@selector(delegate) swizzledSel:@selector(LL_delegate)];
-        [self LL_swizzleInstanceMethodWithOriginSel:@selector(init) swizzledSel:@selector(LL_init)];
-        [self LL_swizzleInstanceMethodWithOriginSel:NSSelectorFromString(@"dealloc") swizzledSel:@selector(LL_dealloc)];
-        [self LL_swizzleInstanceMethodWithOriginSel:@selector(startUpdatingLocation) swizzledSel:@selector(LL_startUpdatingLocation)];
-        [self LL_swizzleInstanceMethodWithOriginSel:@selector(stopUpdatingLocation) swizzledSel:@selector(LL_stopUpdatingLocation)];
+        [self LL_swizzleInstanceSelector:@selector(setDelegate:) anotherSelector:@selector(LL_setDelegate:)];
+        [self LL_swizzleInstanceSelector:@selector(delegate) anotherSelector:@selector(LL_delegate)];
+        [self LL_swizzleInstanceSelector:@selector(init) anotherSelector:@selector(LL_init)];
+        [self LL_swizzleInstanceSelector:NSSelectorFromString(@"dealloc") anotherSelector:@selector(LL_dealloc)];
+        [self LL_swizzleInstanceSelector:@selector(startUpdatingLocation) anotherSelector:@selector(LL_startUpdatingLocation)];
+        [self LL_swizzleInstanceSelector:@selector(stopUpdatingLocation) anotherSelector:@selector(LL_stopUpdatingLocation)];
     });
 }
 

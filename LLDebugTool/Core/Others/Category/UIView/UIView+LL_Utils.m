@@ -30,7 +30,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[UIView class] LL_swizzleInstanceMethodWithOriginSel:@selector(sizeToFit) swizzledSel:@selector(LL_sizeToFit)];
+        [[UIView class] LL_swizzleInstanceSelector:@selector(sizeToFit) anotherSelector:@selector(LL_sizeToFit)];
     });
 }
 

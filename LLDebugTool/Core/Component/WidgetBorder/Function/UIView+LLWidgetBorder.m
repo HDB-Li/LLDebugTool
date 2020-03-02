@@ -36,7 +36,7 @@ static const char kLLBorderLayerKey;
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[UIView class] LL_swizzleInstanceMethodWithOriginSel:@selector(layoutSubviews) swizzledSel:@selector(LL_layoutSubviews)];
+        [[UIView class] LL_swizzleInstanceSelector:@selector(layoutSubviews) anotherSelector:@selector(LL_layoutSubviews)];
     });
 }
 

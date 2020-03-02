@@ -33,7 +33,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[NSURLSession class] LL_swizzleClassMethodWithOriginSel:@selector(sessionWithConfiguration:delegate:delegateQueue:) swizzledSel:@selector(LL_sessionWithConfiguration:delegate:delegateQueue:)];
+        [[NSURLSession class] LL_swizzleClassSelector:@selector(sessionWithConfiguration:delegate:delegateQueue:) anotherSelector:@selector(LL_sessionWithConfiguration:delegate:delegateQueue:)];
     });
 }
 

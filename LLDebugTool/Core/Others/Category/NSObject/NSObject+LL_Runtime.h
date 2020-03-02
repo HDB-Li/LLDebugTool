@@ -35,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param oriSel Original selector.
  @param swiSel Swizzled selector.
  */
-+ (void)LL_swizzleClassMethodWithOriginSel:(SEL)oriSel
-                               swizzledSel:(SEL)swiSel;
++ (void)LL_swizzleClassSelector:(SEL)oriSel
+                anotherSelector:(SEL)swiSel;
 
 /**
  Swizzle instance method.
@@ -44,8 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param oriSel Original selector.
  @param swiSel Swizzled selector.
  */
-+ (void)LL_swizzleInstanceMethodWithOriginSel:(SEL)oriSel
-                                  swizzledSel:(SEL)swiSel;
++ (void)LL_swizzleInstanceSelector:(SEL)oriSel
+                   anotherSelector:(SEL)swiSel;
 
 /// Swizzle method.
 /// @param method1 Method1

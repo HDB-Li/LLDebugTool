@@ -38,7 +38,7 @@
         SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
         
         //    [[UIWindow class] LL_swizzleInstanceMethodWithOriginSel:canAffectSelector swizzledSel:@selector(_LL_canAffectStatusBarAppearance)];
-        [[UIWindow class] LL_swizzleInstanceMethodWithOriginSel:canBecomeKeySelector swizzledSel:@selector(_LL_canBecomeKeyWindow)];
+        [[UIWindow class] LL_swizzleInstanceSelector:canBecomeKeySelector anotherSelector:@selector(_LL_canBecomeKeyWindow)];
     });
 }
 

@@ -33,9 +33,9 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[NSURLSessionConfiguration class] LL_swizzleClassMethodWithOriginSel:@selector(defaultSessionConfiguration) swizzledSel:@selector(LL_defaultSessionConfiguration)];
+        [[NSURLSessionConfiguration class] LL_swizzleClassSelector:@selector(defaultSessionConfiguration) anotherSelector:@selector(LL_defaultSessionConfiguration)];
         
-        [[NSURLSessionConfiguration class] LL_swizzleClassMethodWithOriginSel:@selector(ephemeralSessionConfiguration) swizzledSel:@selector(LL_ephemeralSessionConfiguration)];
+        [[NSURLSessionConfiguration class] LL_swizzleClassSelector:@selector(ephemeralSessionConfiguration) anotherSelector:@selector(LL_ephemeralSessionConfiguration)];
         
         Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ? : NSClassFromString(@"NSURLSessionConfiguration");
         
