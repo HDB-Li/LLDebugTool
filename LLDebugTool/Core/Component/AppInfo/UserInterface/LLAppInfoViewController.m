@@ -100,7 +100,7 @@
     // Data traffic
     [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Data Traffic" detailTitle:[LLAppInfoHelper shared].dataTraffic]];
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.dynamic") items:settings];
+    return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.dynamic") items:settings];
 }
 
 - (LLTitleCellCategoryModel *)applicationData {
@@ -118,7 +118,7 @@
     // Start time
     [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Start Time" detailTitle:[LLAppInfoHelper shared].appStartTimeConsuming]];
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.application") items:settings];
+    return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.application") items:settings];
 }
 
 - (LLTitleCellCategoryModel *)deviceData {
@@ -151,7 +151,7 @@
     // Network
     [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Network" detailTitle:[LLAppInfoHelper shared].networkState]];
     
-    return [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"app.info.device") items:settings];
+    return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.device") items:settings];
 }
 
 @end

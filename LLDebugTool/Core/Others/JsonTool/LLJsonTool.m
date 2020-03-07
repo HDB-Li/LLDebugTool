@@ -25,7 +25,9 @@
 
 @implementation LLJsonTool
 
-+ (NSString *)formatJsonString:(NSString *)aString {
++ (NSString *)formatJsonString:(NSString *)jsonString {
+    
+    NSString *aString = jsonString;
     
     aString = [aString stringByReplacingOccurrencesOfString:@" " withString:@""];
     aString = [aString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
@@ -44,20 +46,15 @@
         current = [aString substringWithRange:NSMakeRange(i, 1)];
         if ([current isEqualToString:@"{"] || [current isEqualToString:@"["]) {
             [targetString appendString:current];
-            [targetString appendString:@"\r\n"];
             indent++;
             [self addBlankStringWithString:targetString indent:indent];
         } else if ([current isEqualToString:@"}"] || [current isEqualToString:@"]"]) {
-            [targetString appendString:@"\r\n"];
             indent--;
             [self addBlankStringWithString:targetString indent:indent];
             [targetString appendString:current];
-        } else if ([current isEqualToString:@","]) {
+        } else if ([current isEqualToString:@","] && ![last isEqual:@"\\"]) {
             [targetString appendString:current];
-            if (![last isEqual:@"\\"]) {
-                [targetString appendString:@"\r\n"];
-                [self addBlankStringWithString:targetString indent:indent];
-            }
+            [self addBlankStringWithString:targetString indent:indent];
         } else {
             [targetString appendString:current];
         }
@@ -65,7 +62,9 @@
     return [targetString copy];
 }
 
+#pragma mark - Primary
 + (NSMutableString *)addBlankStringWithString:(NSMutableString *)mutString indent:(NSInteger)indent {
+    [mutString appendString:@"\r\n"];
     if (indent < 0) {
         return mutString;
     }

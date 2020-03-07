@@ -1,5 +1,5 @@
 //
-//  LLTitleCellCategoryModel.h
+//  LLInternalMacrosTool.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,26 +21,53 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLInternalMacrosTool.h"
 
-@class LLTitleCellModel;
+static BOOL isCalculateSpecialScreen = NO;
+static BOOL isIPhoneX = NO;
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLInternalMacrosTool
 
-/// Title cell category model.
-@interface LLTitleCellCategoryModel : NSObject
++ (CGFloat)screenWidth {
+    return MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+}
 
-/// Category title.
-@property (nonatomic, strong, readonly, nullable) NSString *title;
++ (CGFloat)screenHeight {
+    return MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+}
 
-/// Items.
-@property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*items;
++ (CGFloat)statusBarHeight {
+    return [self isSpecialScreen] ? 44 : 20;
+}
 
-/// Instance method.
-/// @param title Title
-/// @param items Items.
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title items:(NSArray <LLTitleCellModel *>*)items;
++ (CGFloat)navigationHeight {
+    return [self statusBarHeight] + 44;
+}
+
++ (CGFloat)bottomDangerHeight {
+    return [self isSpecialScreen] ? 34 : 0;
+}
+
++ (CGFloat)isSpecialScreen {
+    if (!isCalculateSpecialScreen) {
+        isCalculateSpecialScreen = YES;
+        if (@available(iOS 11.0, *)) {
+            isIPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;
+        }
+    }
+    return isIPhoneX;
+}
+
++ (CGFloat)layoutHorizontal:(CGFloat)length {
+    return length * [self screenWidth] / 414.0;
+}
+
++ (CGFloat)minWithA:(CGFloat)a b:(CGFloat)b {
+    return MIN(a, b);
+}
+
++ (CGFloat)maxWithA:(CGFloat)a b:(CGFloat)b {
+    return MAX(a, b);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

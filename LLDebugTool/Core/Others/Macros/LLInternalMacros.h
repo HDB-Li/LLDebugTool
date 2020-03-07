@@ -24,25 +24,26 @@
 #ifndef LLInternalMacros_h
 #define LLInternalMacros_h
 
+#import "LLInternalMacrosTool.h"
+
 // Screen width.
-#define LL_SCREEN_WIDTH (MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height))
+#define LL_SCREEN_WIDTH [LLInternalMacrosTool screenWidth]
 // Screen height.
-#define LL_SCREEN_HEIGHT (MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height))
+#define LL_SCREEN_HEIGHT [LLInternalMacrosTool screenHeight]
 // Status bar height.
-#define LL_STATUS_BAR_HEIGHT (LL_IS_SPECIAL_SCREEN ? 44 : 20)
+#define LL_STATUS_BAR_HEIGHT [LLInternalMacrosTool statusBarHeight]
 // Navigation bar height.
-#define LL_NAVIGATION_HEIGHT (LL_STATUS_BAR_HEIGHT + 44)
+#define LL_NAVIGATION_HEIGHT [LLInternalMacrosTool navigationHeight]
 // Bottom danger height.
-#define LL_BOTTOM_DANGER_HEIGHT (LL_IS_SPECIAL_SCREEN ? 34 : 0)
+#define LL_BOTTOM_DANGER_HEIGHT [LLInternalMacrosTool bottomDangerHeight]
 // Whether is special screen.
-#define LL_IS_SPECIAL_SCREEN \
-({BOOL isPhoneX = NO;\
-if (@available(iOS 11.0, *)) {\
-isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
-}\
-(isPhoneX);})
+#define LL_IS_SPECIAL_SCREEN [LLInternalMacrosTool isSpecialScreen]
 // Layout length by horizontal direction in 414px.
-#define LL_LAYOUT_HORIZONTAL(length) (length * LL_SCREEN_WIDTH / 414.0)
+#define LL_LAYOUT_HORIZONTAL(length) [LLInternalMacrosTool layoutHorizontal:length]
+// Get min
+#define LL_MIN(numA, numB) [LLInternalMacrosTool minWithA:numA b:numB]
+// Get max
+#define LL_MAX(numA, numB) [LLInternalMacrosTool maxWithA:numA b:numB]
 
 #define LLLocalizedString(key) \
 [[LLConfig shared].imageBundle localizedStringForKey:(key) value:@"" table:nil]

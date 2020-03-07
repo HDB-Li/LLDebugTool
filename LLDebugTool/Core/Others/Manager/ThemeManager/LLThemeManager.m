@@ -24,6 +24,7 @@
 #import "LLThemeManager.h"
 
 #import "LLThemeColor.h"
+#import "LLTool.h"
 
 static LLThemeManager *_instance = nil;
 
@@ -54,6 +55,33 @@ NSNotificationName const LLDebugToolUpdateThemeNotification = @"LLDebugToolUpdat
 #endif
     });
     return _systemTintColor;
+}
+
+- (void)updateWithColorStyle:(LLConfigColorStyle)colorStyle {
+    NSDictionary *json = @{
+        @(LLConfigColorStyleHack) : [LLThemeColor hackThemeColor],
+        @(LLConfigColorStyleSimple) : [LLThemeColor simpleThemeColor],
+        @(LLConfigColorStyleSystem) : [LLThemeColor systemThemeColor],
+        @(LLConfigColorStyleGrass) : [LLThemeColor grassThemeColor],
+        @(LLConfigColorStyleHomebrew) : [LLThemeColor homebrewThemeColor],
+        @(LLConfigColorStyleManPage) : [LLThemeColor manPageThemeColor],
+        @(LLConfigColorStyleNovel) : [LLThemeColor novelThemeColor],
+        @(LLConfigColorStyleOcean) : [LLThemeColor oceanThemeColor],
+        @(LLConfigColorStylePro) : [LLThemeColor proThemeColor],
+        @(LLConfigColorStyleRedSands) : [LLThemeColor redSandsThemeColor],
+        @(LLConfigColorStyleSilverAerogel) : [LLThemeColor silverAerogelThemeColor],
+        @(LLConfigColorStyleSolidColors) : [LLThemeColor solidColorsThemeColor],
+        @(LLConfigColorStyleCustom) : [LLThemeColor hackThemeColor]
+    };
+    if (colorStyle == LLConfigColorStyleCustom) {
+        [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property"];
+    }
+    LLThemeColor *color = json[@(colorStyle)];
+    if (!color) {
+        color = [LLThemeColor hackThemeColor];
+        [LLTool log:[NSString stringWithFormat:@"updateWithColorStyle unknown : %@", @(colorStyle)]];
+    }
+    self.themeColor = color;
 }
 
 #pragma mark - Primary

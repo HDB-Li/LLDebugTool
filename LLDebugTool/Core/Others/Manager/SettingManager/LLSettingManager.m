@@ -43,30 +43,61 @@ static LLSettingManager *_instance = nil;
 }
 
 - (void)prepareForConfig {
+    [self prepareDoubleClickAction];
+    [self prepareColorStyle];
+    [self prepareEntryWindowStyle];
+    [self prepareLogStyle];
+    [self prepareShrinkToEdgeWhenInactive];
+    [self prepareShakeToHide];
+    [self prepareMagnifier];
+    [self prepareShowWidgetBorder];
+    [self prepareHierarchyIgnorePrivateClass];
+    [self prepareMockLocationEnable];
+}
+
+- (void)prepareDoubleClickAction {
     NSNumber *doubleClickAction = self.doubleClickAction;
     if (doubleClickAction != nil) {
         [LLConfig shared].doubleClickAction = [doubleClickAction integerValue];
     }
+}
+
+- (void)prepareColorStyle {
     NSNumber *colorStyle = self.colorStyle;
     if (colorStyle != nil) {
         [LLConfig shared].colorStyle = colorStyle.integerValue;
     }
+}
+
+- (void)prepareEntryWindowStyle {
     NSNumber *entryWindowStyle = self.entryWindowStyle;
     if (entryWindowStyle != nil) {
         [LLConfig shared].entryWindowStyle = entryWindowStyle.integerValue;
     }
+}
+
+- (void)prepareLogStyle {
     NSNumber *logStyle = self.logStyle;
     if (logStyle != nil) {
         [LLConfig shared].logStyle = logStyle.integerValue;
     }
+}
+
+- (void)prepareShrinkToEdgeWhenInactive {
     NSNumber *shrinkToEdgeWhenInactive = self.shrinkToEdgeWhenInactive;
     if (shrinkToEdgeWhenInactive != nil) {
         [LLConfig shared].shrinkToEdgeWhenInactive = [shrinkToEdgeWhenInactive boolValue];
     }
+}
+
+- (void)prepareShakeToHide {
     NSNumber *shakeToHide = self.shakeToHide;
     if (shakeToHide != nil) {
         [LLConfig shared].shakeToHide = [shakeToHide boolValue];
     }
+}
+
+- (void)prepareMagnifier {
     NSNumber *magnifierZoomLevel = self.magnifierZoomLevel;
     if (magnifierZoomLevel != nil) {
         [LLConfig shared].magnifierZoomLevel = [magnifierZoomLevel integerValue];
@@ -75,14 +106,23 @@ static LLSettingManager *_instance = nil;
     if (magnifierSize != nil) {
         [LLConfig shared].magnifierSize = [magnifierSize integerValue];
     }
+}
+
+- (void)prepareShowWidgetBorder {
     NSNumber *showWidgetBorder = self.showWidgetBorder;
     if (showWidgetBorder != nil) {
         [LLConfig shared].showWidgetBorder = [showWidgetBorder boolValue];
     }
+}
+
+- (void)prepareHierarchyIgnorePrivateClass {
     NSNumber *hierarchyIgnorePrivateClass = self.hierarchyIgnorePrivateClass;
     if (hierarchyIgnorePrivateClass != nil) {
         [LLConfig shared].hierarchyIgnorePrivateClass = [hierarchyIgnorePrivateClass boolValue];
     }
+}
+
+- (void)prepareMockLocationEnable {
     NSNumber *mockLocationEnable = self.mockLocationEnable;
     if (mockLocationEnable != nil) {
         [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];

@@ -33,6 +33,8 @@
 #import "LLConfig.h"
 #import "LLConst.h"
 
+#import "UIViewController+LL_Utils.h"
+#import "NSMutableArray+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLFunctionViewController ()<LLFunctionContainerViewControllerDelegate>
@@ -44,6 +46,8 @@
 @property (nonatomic, strong) LLFunctionItemContainerView *shortCutContainerView;
 
 @property (nonatomic, strong) UIButton *settingButton;
+
+@property (nonatomic, strong) UIButton *stopButton;
 
 @end
 
@@ -58,6 +62,7 @@
     [self.scrollView addSubview:self.toolContainerView];
     [self.scrollView addSubview:self.shortCutContainerView];
     [self.scrollView addSubview:self.settingButton];
+    [self.scrollView addSubview:self.stopButton];
     
     [self loadData];
 }
@@ -66,15 +71,16 @@
     [super viewDidLayoutSubviews];
     
     self.scrollView.frame = self.view.bounds;
-        
+    
     self.toolContainerView.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, self.toolContainerView.LL_height);
-
+    
     self.shortCutContainerView.frame = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + kLLGeneralMargin, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
     
-    self.settingButton.frame = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + 30, self.toolContainerView.LL_width, 40);
+    self.settingButton.frame = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + kLLGeneralMargin * 3, self.toolContainerView.LL_width, 40);
     
+    self.stopButton.frame = CGRectMake(self.settingButton.LL_left, self.settingButton.LL_bottom + kLLGeneralMargin, self.settingButton.LL_width, 40);
     
-    self.scrollView.contentSize = CGSizeMake(0, self.settingButton.LL_bottom + 30);
+    self.scrollView.contentSize = CGSizeMake(0, self.stopButton.LL_bottom + kLLGeneralMargin * 3);
 }
 
 #pragma mark - Over write
@@ -82,82 +88,79 @@
     [super themeColorChanged];
     [self.settingButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
     self.settingButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
+    self.stopButton.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
 }
 
 #pragma mark - Primary
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    LLFunctionItemModel *network = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork];
-    if (network) {
-        [items addObject:network];
-    }
-    LLFunctionItemModel *log = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLog];
-    if (log) {
-        [items addObject:log];
-    }
-    LLFunctionItemModel *crash = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash];
-    if (crash) {
-        [items addObject:crash];
-    }
-    LLFunctionItemModel *appInfo = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo];
-    if (appInfo) {
-        [items addObject:appInfo];
-    }
-    LLFunctionItemModel *sandbox = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox];
-    if (sandbox) {
-        [items addObject:sandbox];
-    }
-    LLFunctionItemModel *location = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLocation];
-    if (location) {
-        [items addObject:location];
-    }
-        
+    
+    [items addObjectsFromArray:[self loadToolContainerData]];
+    
     self.toolContainerView.dataArray = [items copy];
     self.toolContainerView.title = LLLocalizedString(@"function.function");
     self.toolContainerView.hidden = items.count == 0;
     
     [items removeAllObjects];
     
-    LLFunctionItemModel *screenshot = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot];
-    if (screenshot) {
-        [items addObject:screenshot];
-    }
-    
-    LLFunctionItemModel *hierarchy = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy];
-    if (hierarchy) {
-        [items addObject:hierarchy];
-    }
-    
-    LLFunctionItemModel *magnifier = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier];
-    if (magnifier) {
-        [items addObject:magnifier];
-    }
-    
-    LLFunctionItemModel *ruler = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler];
-    if (ruler) {
-        [items addObject:ruler];
-    }
-    
-    LLFunctionItemModel *widgetBorder = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder];
-    if (widgetBorder) {
-        [items addObject:widgetBorder];
-    }
-    
-    LLFunctionItemModel *html = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml];
-    if (html) {
-        [items addObject:html];
-    }
-    
-    LLFunctionItemModel *shortCut = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionShortCut];
-    if (shortCut) {
-        [items addObject:shortCut];
-    }
+    [items addObjectsFromArray:[self loadShortCutContainerDate]];
     
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = LLLocalizedString(@"function.short");
     self.shortCutContainerView.hidden = items.count == 0;
     
     [items removeAllObjects];
+}
+
+- (NSArray *)loadToolContainerData {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    
+    LLFunctionItemModel *network = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork];
+    [items LL_addObject:network];
+    
+    LLFunctionItemModel *log = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLog];
+    [items LL_addObject:log];
+    
+    LLFunctionItemModel *crash = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash];
+    [items LL_addObject:crash];
+    
+    LLFunctionItemModel *appInfo = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo];
+    [items LL_addObject:appInfo];
+    
+    LLFunctionItemModel *sandbox = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox];
+    [items LL_addObject:sandbox];
+    
+    LLFunctionItemModel *location = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLocation];
+    [items LL_addObject:location];
+    
+    return [items copy];
+}
+
+- (NSArray *)loadShortCutContainerDate {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    
+    LLFunctionItemModel *screenshot = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot];
+    [items LL_addObject:screenshot];
+    
+    LLFunctionItemModel *hierarchy = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy];
+    [items LL_addObject:hierarchy];
+    
+    LLFunctionItemModel *magnifier = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier];
+    [items LL_addObject:magnifier];
+    
+    LLFunctionItemModel *ruler = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler];
+    [items LL_addObject:ruler];
+    
+    LLFunctionItemModel *widgetBorder = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder];
+    [items LL_addObject:widgetBorder];
+    
+    LLFunctionItemModel *html = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml];
+    [items LL_addObject:html];
+    
+    LLFunctionItemModel *shortCut = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionShortCut];
+    [items LL_addObject:shortCut];
+    
+    return [items copy];
 }
 
 #pragma mark - LLFunctionContainerViewDelegate
@@ -169,6 +172,12 @@
 #pragma mark - Event response
 - (void)settingButtonClicked:(UIButton *)sender {
     [[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSetting].component componentDidLoad:nil];
+}
+
+- (void)stopButtonClicked:(UIButton *)sender {
+    [self LL_showAlertControllerWithMessage:LLLocalizedString(@"function.alert.stop") handler:^(NSInteger action) {
+        [[LLDebugTool sharedTool] stopWorking];
+    }];
 }
 
 #pragma mark - Getters and setters
@@ -204,6 +213,18 @@
         [_settingButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     }
     return _settingButton;
+}
+
+- (UIButton *)stopButton {
+    if (!_stopButton) {
+        _stopButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(stopButtonClicked:)];
+        [_stopButton LL_setCornerRadius:5];
+        [_stopButton setTitle:LLLocalizedString(@"function.stop") forState:UIControlStateNormal];
+        [_stopButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_stopButton setBackgroundColor:[UIColor redColor]];
+        [_stopButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+    }
+    return _stopButton;
 }
 
 @end

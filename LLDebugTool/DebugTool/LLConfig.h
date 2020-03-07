@@ -337,6 +337,11 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, assign) BOOL hideWhenInstall;
 
+/**
+ Whether auto start working in next running after called startWorking, default is YES.
+ */
+@property (nonatomic, assign) BOOL startWorkingNextTime;
+
 #pragma mark - Click Event
 /**
  Click action. Default is LLDebugToolActionFunction.

@@ -62,7 +62,7 @@
         [settings addObject:model];
     }
     
-    LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Host" items:settings];
+    LLTitleCellCategoryModel *category0 = [LLTitleCellCategoryModel modelWithTitle:@"Host" items:settings];
     [self.dataArray addObject:category0];
     [settings removeAllObjects];
     
@@ -72,7 +72,7 @@
         [settings addObject:model];
     }
     
-    LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Filter" items:settings];
+    LLTitleCellCategoryModel *category1 = [LLTitleCellCategoryModel modelWithTitle:@"Filter" items:settings];
     [self.dataArray addObject:category1];
     [settings removeAllObjects];
     
@@ -94,7 +94,7 @@
     
     [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Please Select From Date"]];
     [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Please Select End Date"]];
-    LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Date" items:settings];
+    LLTitleCellCategoryModel *category2 = [LLTitleCellCategoryModel modelWithTitle:@"Date" items:settings];
     [self.dataArray addObject:category2];
     [settings removeAllObjects];
     

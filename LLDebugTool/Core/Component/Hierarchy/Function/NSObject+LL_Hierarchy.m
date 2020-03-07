@@ -52,7 +52,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model3 = [[[LLTitleCellModel alloc] initWithTitle:@"Description" detailTitle:self.description] noneInsets];
     [settings addObject:model3];
     
-    return @[[[LLTitleCellCategoryModel alloc] initWithTitle:@"Object" items:settings]];
+    return @[[LLTitleCellCategoryModel modelWithTitle:@"Object" items:settings]];
 }
 
 - (NSString *)LL_hierarchyColorDescription:(UIColor *_Nullable)color {
@@ -412,7 +412,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         [settings addObject:model19];
     }
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -519,7 +519,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     
     [lastConstrainModel normalInsets];
     
-    return @[[[LLTitleCellCategoryModel alloc] initWithTitle:@"View" items:settings]];
+    return @[[LLTitleCellCategoryModel modelWithTitle:@"View" items:settings]];
 }
 
 - (NSString *)LL_hierarchyLayoutConstraintDescription:(NSLayoutConstraint *)constraint {
@@ -657,7 +657,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model14];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Label" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Label" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -714,7 +714,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model5];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Control" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Control" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -832,7 +832,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model21 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.imageEdgeInsets]];
     [settings addObject:model21];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Button" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Button" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -865,7 +865,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Image View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Image View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1030,7 +1030,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model21];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text Field" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Text Field" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1101,7 +1101,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model9 = [[LLTitleCellModel alloc] initWithTitle:@"Width" detailTitle:[LLFormatterTool formatNumber:@([self widthForSegmentAtIndex:self.selectedSegmentIndex])]];
     [settings addObject:model9];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Segmented Control" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Segmented Control" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1169,7 +1169,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model9];
     
-    LLTitleCellCategoryModel *model =  [[LLTitleCellCategoryModel alloc] initWithTitle:@"Slider" items:settings];
+    LLTitleCellCategoryModel *model =  [LLTitleCellCategoryModel modelWithTitle:@"Slider" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1207,7 +1207,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Switch" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Switch" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1273,7 +1273,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model4];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Activity Indicator View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Activity Indicator View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1324,7 +1324,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model6 = [[LLTitleCellModel alloc] initWithTitle:@"Track Image" detailTitle:[self LL_hierarchyImageDescription:self.trackImage]];
     [settings addObject:model6];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Progress View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Progress View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1391,7 +1391,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model6];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Page Control" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Page Control" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1457,7 +1457,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model7];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Stepper" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Stepper" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1578,7 +1578,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model15];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Scroll View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Scroll View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1715,7 +1715,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model20];
 
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Table View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Table View" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1799,7 +1799,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model11 = [[LLTitleCellModel alloc] initWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]];
     [settings addObject:model11];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Table View Cell" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Table View Cell" items:settings];
     
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1829,7 +1829,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model4 = [[LLTitleCellModel alloc] initWithTitle:@"Layout" detailTitle:[self LL_hierarchyObjectDescription:self.collectionViewLayout]];
     [settings addObject:model4];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Collection View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Collection View" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -1850,7 +1850,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model1 = [[[LLTitleCellModel alloc] initWithTitle:@"Identifier" detailTitle:[self LL_hierarchyTextDescription:self.reuseIdentifier]] noneInsets];
     [settings addObject:model1];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Collection Reusable View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Collection Reusable View" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2051,7 +2051,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model22];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Text View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Text View" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2108,7 +2108,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model7 = [[LLTitleCellModel alloc] initWithTitle:@"Count Down" detailTitle:[LLFormatterTool formatNumber:@(self.countDownDuration)]];
     [settings addObject:model7];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Date Picker" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Date Picker" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2129,7 +2129,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
     [settings addObject:model1];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Picker View" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Picker View" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2256,7 +2256,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         [settings addObject:model17];
     }
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Navigation Bar" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Navigation Bar" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2297,7 +2297,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Tool Bar" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Tool Bar" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2366,7 +2366,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model9];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Tab Bar" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Tab Bar" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2499,7 +2499,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model19];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Search Bar" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Search Bar" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {
@@ -2523,7 +2523,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     LLTitleCellModel *model2 = [[LLTitleCellModel alloc] initWithTitle:@"Root Controller" detailTitle:[self LL_hierarchyObjectDescription:self.rootViewController]];
     [settings addObject:model2];
     
-    LLTitleCellCategoryModel *model = [[LLTitleCellCategoryModel alloc] initWithTitle:@"Window" items:settings];
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Window" items:settings];
                                 
     NSMutableArray *models = [[NSMutableArray alloc] initWithArray:[super LL_hierarchyCategoryModels]];
     if (models.count > 0) {

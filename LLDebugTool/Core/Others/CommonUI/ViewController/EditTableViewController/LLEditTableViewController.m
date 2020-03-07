@@ -265,10 +265,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.tableView.isEditing) {
-        if (self.indexPathsForSelectedRows.count == self.datas.count) {
-            if ([self.selectAllItem.title isEqualToString:self.selectAllString]) {
-                self.selectAllItem.title = self.cancelAllString;
-            }
+        BOOL isSelectAll = self.indexPathsForSelectedRows.count == self.datas.count;
+        BOOL isTitleEqual = [self.selectAllItem.title isEqualToString:self.selectAllString];
+        if (isSelectAll && isTitleEqual) {
+            self.selectAllItem.title = self.cancelAllString;
         }
         self.shareItem.enabled = YES;
         self.deleteItem.enabled = YES;

@@ -23,6 +23,8 @@
 
 #import "LLDebugTool.h"
 
+#import <pthread/pthread.h>
+
 #import "LLFunctionItemModel.h"
 #import "LLDebugToolMacros.h"
 #import "LLSettingManager.h"
@@ -40,6 +42,8 @@ NSNotificationName const LLDebugToolStartWorkingNotificationName = @"LLDebugTool
 LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorkingConfigNotificationKey = @"LLDebugToolStartWorkingConfigNotificationKey";
 
 static LLDebugTool *_instance = nil;
+
+static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 @interface LLDebugTool ()
 
@@ -63,31 +67,36 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)startWorking{
-    if (!_isWorking) {
-        _isWorking = YES;
-
-        // Open crash helper
-        [LLRouter setCrashHelperEnable:YES];
-        // Open log helper
-        [LLRouter setLogHelperEnable:YES];
-        // Open network monitoring
-        [LLRouter setNetworkHelperEnable:YES];
-        // Open app monitoring
-        [LLRouter setAppInfoHelperEnable:YES];
-        // Open screenshot
-        [LLRouter setScreenshotHelperEnable:YES];
-        // Prepare to start.
-        [self prepareToStart];
-        // show window
-        if (self.installed || ![LLConfig shared].hideWhenInstall) {
-            [self showWindow];
-        }
-        if (!self.installed) {
-            // Check version.
-            [self checkVersionAtGlobal];
-        }
-        self.installed = YES;
+    pthread_mutex_lock(&mutex_t);
+    if (_isWorking) {
+        pthread_mutex_unlock(&mutex_t);
+        return;
     }
+    _isWorking = YES;
+    [LLTool setStartWorkingAfterApplicationDidFinishLaunching:YES];
+    pthread_mutex_unlock(&mutex_t);
+    
+    // Open crash helper
+    [LLRouter setCrashHelperEnable:YES];
+    // Open log helper
+    [LLRouter setLogHelperEnable:YES];
+    // Open network monitoring
+    [LLRouter setNetworkHelperEnable:YES];
+    // Open app monitoring
+    [LLRouter setAppInfoHelperEnable:YES];
+    // Open screenshot
+    [LLRouter setScreenshotHelperEnable:YES];
+    // Prepare to start.
+    [self prepareToStart];
+    // show window
+    if (self.installed || ![LLConfig shared].hideWhenInstall) {
+        [self showWindow];
+    }
+    if (!self.installed) {
+        // Check version.
+        [self checkVersionAtGlobal];
+    }
+    self.installed = YES;
 }
 
 - (void)startWorkingWithConfigBlock:(void (^)(LLConfig *config))configBlock {
@@ -98,21 +107,27 @@ static LLDebugTool *_instance = nil;
 }
 
 - (void)stopWorking {
-    if (_isWorking) {
-        _isWorking = NO;
-        // Close screenshot
-        [LLRouter setScreenshotHelperEnable:NO];
-        // Close app monitoring
-        [LLRouter setAppInfoHelperEnable:NO];
-        // Close network monitoring
-        [LLRouter setNetworkHelperEnable:NO];
-        // Close log helper
-        [LLRouter setLogHelperEnable:NO];
-        // Close crash helper
-        [LLRouter setCrashHelperEnable:NO];
-        // hide window
-        [self hideWindow];
+    pthread_mutex_lock(&mutex_t);
+    if (!_isWorking) {
+        pthread_mutex_unlock(&mutex_t);
+        return;
     }
+    _isWorking = NO;
+    [LLTool setStartWorkingAfterApplicationDidFinishLaunching:NO];
+    pthread_mutex_unlock(&mutex_t);
+
+    // Close screenshot
+    [LLRouter setScreenshotHelperEnable:NO];
+    // Close app monitoring
+    [LLRouter setAppInfoHelperEnable:NO];
+    // Close network monitoring
+    [LLRouter setNetworkHelperEnable:NO];
+    // Close log helper
+    [LLRouter setLogHelperEnable:NO];
+    // Close crash helper
+    [LLRouter setCrashHelperEnable:NO];
+    // hide window
+    [self hideWindow];
 }
 
 - (void)showWindow
@@ -172,7 +187,7 @@ static LLDebugTool *_instance = nil;
     }
     
     NSDictionary *data = notification.userInfo[LLDebugToolStartWorkingConfigNotificationKey];
-    if (data && [data isKindOfClass:[NSDictionary class]]) {
+    if ([data isKindOfClass:[NSDictionary class]]) {
         NSArray *propertys = [LLConfig LL_getPropertyNames];
         for (NSString *key in data) {
             if ([propertys containsObject:key]) {
@@ -209,7 +224,7 @@ static LLDebugTool *_instance = nil;
     }
     
     if ([[LLDebugTool versionNumber] compare:version] == NSOrderedDescending) {
-        [localInfo setObject:[LLDebugTool versionNumber] forKey:@"version"];
+        localInfo[@"version"] = [LLDebugTool versionNumber];
         [localInfo writeToFile:filePath atomically:YES];
     }
     

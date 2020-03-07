@@ -179,24 +179,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     CGFloat left = self.LL_centerX;
     CGFloat right = LL_SCREEN_WIDTH - self.LL_centerX;
     CGFloat bottom = LL_SCREEN_HEIGHT - self.LL_centerY;
-    CGFloat min = MIN(MIN(MIN(left, right), bottom), top);
-    LLEntryWindowDirection direction = LLEntryWindowDirectionLeft;
-    if (min == right) {
-        direction = LLEntryWindowDirectionRight;
-    } else if (min == bottom) {
-        direction = LLEntryWindowDirectionBottom;
-    } else if (min == top) {
-        if (self.statusBarClickable) {
-            direction = LLEntryWindowDirectionTop;
-        } else {
-            min = MIN(MIN(left, right), bottom);
-            if (min == right) {
-                direction = LLEntryWindowDirectionRight;
-            } else if (min == bottom) {
-                direction = LLEntryWindowDirectionBottom;
-            }
-        }
-    }
+    LLEntryWindowDirection direction = [self directionWithEdge:UIEdgeInsetsMake(top, left, bottom, right)];
     
     CGPoint endPoint = self.center;
     switch (direction) {
@@ -257,6 +240,32 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     } completion:^(BOOL finished) {
         self.userInteractionEnabled = YES;
     }];
+}
+
+- (LLEntryWindowDirection)directionWithEdge:(UIEdgeInsets)edge {
+    CGFloat top = edge.top;
+    CGFloat left = edge.left;
+    CGFloat right = edge.right;
+    CGFloat bottom = edge.bottom;
+    CGFloat min = MIN(MIN(MIN(left, right), bottom), top);
+    LLEntryWindowDirection direction = LLEntryWindowDirectionLeft;
+    if (min == right) {
+        direction = LLEntryWindowDirectionRight;
+    } else if (min == bottom) {
+        direction = LLEntryWindowDirectionBottom;
+    } else if (min == top) {
+        if (self.statusBarClickable) {
+            direction = LLEntryWindowDirectionTop;
+        } else {
+            min = MIN(MIN(left, right), bottom);
+            if (min == right) {
+                direction = LLEntryWindowDirectionRight;
+            } else if (min == bottom) {
+                direction = LLEntryWindowDirectionBottom;
+            }
+        }
+    }
+    return direction;
 }
 
 #pragma mark - LLEntryViewControllerDelegate

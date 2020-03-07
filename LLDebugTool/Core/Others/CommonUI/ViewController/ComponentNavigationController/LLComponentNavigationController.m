@@ -38,7 +38,8 @@
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     if (self = [super initWithRootViewController:rootViewController]) {
-        if (![rootViewController isKindOfClass:[LLBaseViewController class]]) {
+        Class cls = [LLBaseViewController class];
+        if (![rootViewController isKindOfClass:cls]) {
             UIButton *btn = [self LL_navigationButtonWithTitle:nil imageName:kCloseImageName target:self action:@selector(leftItemClick:)];
             btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             rootViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];

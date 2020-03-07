@@ -26,6 +26,8 @@
 #import "LLInternalMacros.h"
 #import "LLTool.h"
 
+#import "UIView+LL_Utils.h"
+
 @implementation LLRouter (Screenshot)
 
 + (nullable UIImage *)screenshotWithScale:(CGFloat)scale
@@ -39,10 +41,9 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
-    UIView *statusBar = [LLTool getUIStatusBarModern];
-    if ([statusBar isKindOfClass:[UIView class]]) {
-        [windows addObject:statusBar];
-    }
+    
+    [self appendStatusBar:windows];
+    
     for (UIView *window in windows)
     {
         Class cls = NSClassFromString(@"LLBaseWindow");
@@ -51,19 +52,17 @@
             CGContextTranslateCTM(context, window.center.x, window.center.y);
             CGContextConcatCTM(context, window.transform);
             CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
-            if (orientation == UIInterfaceOrientationLandscapeLeft)
-            {
-                CGContextRotateCTM(context, M_PI_2);
-                CGContextTranslateCTM(context, 0, -imageSize.width);
+            
+            CGFloat rotate = [self rotateForOrientation:orientation];
+            if (rotate) {
+                CGContextRotateCTM(context, rotate);
             }
-            else if (orientation == UIInterfaceOrientationLandscapeRight)
-            {
-                CGContextRotateCTM(context, -M_PI_2);
-                CGContextTranslateCTM(context, -imageSize.height, 0);
-            } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                CGContextRotateCTM(context, M_PI);
-                CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+            
+            CGSize translate = [self translateForOrientation:orientation imageSize:imageSize];
+            if (!CGSizeEqualToSize(CGSizeZero, translate)) {
+                CGContextTranslateCTM(context, translate.width, translate.height);
             }
+
             if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
             {
                 [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
@@ -79,6 +78,36 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+#pragma mark - Primary
++ (void)appendStatusBar:(NSMutableArray *)windows {
+    UIView *statusBar = [LLTool getUIStatusBarModern];
+    if ([statusBar isKindOfClass:[UIView class]]) {
+        [windows addObject:statusBar];
+    }
+}
+
++ (CGFloat)rotateForOrientation:(UIInterfaceOrientation)orientation {
+    if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        return M_PI_2;
+    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        return -M_PI_2;
+    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return M_PI;
+    }
+    return 0;
+}
+
++ (CGSize)translateForOrientation:(UIInterfaceOrientation)orientation imageSize:(CGSize)imageSize {
+    if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        return CGSizeMake(0, -imageSize.width);
+    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        return CGSizeMake(-imageSize.height, 0);
+    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return CGSizeMake(-imageSize.width, -imageSize.height);
+    }
+    return CGSizeZero;
 }
 
 @end

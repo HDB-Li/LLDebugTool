@@ -43,6 +43,8 @@
 "function.short.cut" = "快捷操作";
 "function.setting" = "设置";
 "function.detail" = "详情";
+"function.stop" = "停用DebugTool";
+"function.alert.stop" = "确定停用么？";
 
 // Setting
 "setting.short.cut" = "快捷操作";

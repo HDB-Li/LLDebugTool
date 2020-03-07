@@ -244,9 +244,13 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)testStartWorking {
+    [[LLDebugTool sharedTool] startWorking];
+}
+
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 14;
+    return 15;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -391,6 +395,8 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 13) {
         cell.textLabel.text = NSLocalizedString(@"test.short.cut", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 14) {
+        cell.textLabel.text = @"调用 [LLDebugTool startWorking]";
     }
     return cell;
 }
@@ -428,6 +434,8 @@ static NSString *const kCellID = @"cellID";
         [self testLocation];
     } else if (indexPath.section == 13) {
         [self testShortCut];
+    } else if (indexPath.section == 14) {
+        [self testStartWorking];
     }
     [self.tableView reloadData];
 }
@@ -461,6 +469,8 @@ static NSString *const kCellID = @"cellID";
         return @"Location";
     } else if (section == 13) {
         return @"Short Cut";
+    } else if (section == 14) {
+        return @"Action";
     }
     return nil;
 }

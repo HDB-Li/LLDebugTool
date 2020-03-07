@@ -135,7 +135,7 @@
     
     // Short Cut
     [settings addObject:[self getWebViewStyleModel]];
-    LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:nil items:settings];
+    LLTitleCellCategoryModel *category0 = [LLTitleCellCategoryModel modelWithTitle:nil items:settings];
     [settings removeAllObjects];
     
     [self.dataArray removeAllObjects];

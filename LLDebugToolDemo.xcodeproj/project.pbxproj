@@ -174,6 +174,8 @@
 		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
 		C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */; };
 		C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */; };
+		C472443E24128FED00F623CD /* NSMutableArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */; };
+		C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C47244402412A44900F623CD /* LLInternalMacrosTool.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
 		C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561A22ED8D4700E9FBE2 /* LLScreenshotToolbar.m */; };
 		C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */; };
@@ -615,6 +617,10 @@
 		C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotViewController.m; sourceTree = "<group>"; };
 		C45BA2CF22F47997006B833A /* LLScreenshotPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotPreviewViewController.h; sourceTree = "<group>"; };
 		C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewViewController.m; sourceTree = "<group>"; };
+		C472443C24128FED00F623CD /* NSMutableArray+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+LL_Utils.h"; sourceTree = "<group>"; };
+		C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+LL_Utils.m"; sourceTree = "<group>"; };
+		C472443F2412A44900F623CD /* LLInternalMacrosTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLInternalMacrosTool.h; sourceTree = "<group>"; };
+		C47244402412A44900F623CD /* LLInternalMacrosTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInternalMacrosTool.m; sourceTree = "<group>"; };
 		C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
 		C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
@@ -1532,6 +1538,15 @@
 			path = LLDebugTool;
 			sourceTree = "<group>";
 		};
+		C472443B24128FCE00F623CD /* NSMutableArray */ = {
+			isa = PBXGroup;
+			children = (
+				C472443C24128FED00F623CD /* NSMutableArray+LL_Utils.h */,
+				C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */,
+			);
+			path = NSMutableArray;
+			sourceTree = "<group>";
+		};
 		C49854A522ED8D0E00E9FBE2 /* DebugTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1989,6 +2004,7 @@
 		C4B4E39122F9C90900F70277 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				C472443B24128FCE00F623CD /* NSMutableArray */,
 				3655D50E2329E01300490B36 /* UIResponder */,
 				36BB1E2B2320F941000D8F29 /* NSUserDefaults */,
 				C4B4E39222F9C90900F70277 /* UIImage */,
@@ -2185,6 +2201,8 @@
 			isa = PBXGroup;
 			children = (
 				C4B4E3D722F9C90900F70277 /* LLInternalMacros.h */,
+				C472443F2412A44900F623CD /* LLInternalMacrosTool.h */,
+				C47244402412A44900F623CD /* LLInternalMacrosTool.m */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -2696,6 +2714,7 @@
 				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
+				C472443E24128FED00F623CD /* NSMutableArray+LL_Utils.m in Sources */,
 				36743D412313879700002A92 /* LLReachability.m in Sources */,
 				C4B4E47322F9C90900F70277 /* LLEditTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
@@ -2725,6 +2744,7 @@
 				361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */,
 				C413AE8523995CEF001EB1F9 /* LLJsonTool.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,
+				C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */,
 				362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */,
 				36C9F7F5237E7D990021BA2D /* LLLocationComponent.m in Sources */,
 				C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */,

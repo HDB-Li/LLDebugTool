@@ -74,7 +74,7 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)hideEntryWindow {
-    [self removeWindow:self.entryWindow animated:YES automaticallyShowEntry:NO completion:nil];
+    [self removeAllVisibleWindows];
 }
 
 - (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated {
@@ -90,7 +90,7 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
-    [self removeWindow:window animated:animated automaticallyShowEntry:YES completion:nil];
+    [self removeWindow:window animated:animated showEntry:YES completion:nil];
 }
 
 - (LLBaseWindow *_Nullable)visiableWindow {
@@ -120,9 +120,21 @@ static LLWindowManager *_instance = nil;
     
     
     if (!window) {
+        if (completion) {
+            completion();
+        }
         return;
     }
     [self removeAllVisibleWindows];
+
+    [self recordKeywindowAndStatusBar:window animated:animated];
+    
+    [self.visibleWindows addObject:window];
+    
+    [self performAddWindow:window animated:animated completion:completion];
+}
+
+- (void)recordKeywindowAndStatusBar:(UIWindow *)window animated:(BOOL)animated {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (window == self.entryWindow) {
@@ -143,9 +155,9 @@ static LLWindowManager *_instance = nil;
         window.windowLevel = self.presentWindowLevel;
     }
 #pragma clang diagnostic pop
-    
-    [self.visibleWindows addObject:window];
-    
+}
+
+- (void)performAddWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
@@ -184,12 +196,12 @@ static LLWindowManager *_instance = nil;
     }
 }
 
-- (void)removeWindow:(LLBaseWindow *)window animated:(BOOL)animated automaticallyShowEntry:(BOOL)automaticallyShowEntry completion:(void (^)(void))completion {
+- (void)removeWindow:(LLBaseWindow *)window animated:(BOOL)animated showEntry:(BOOL)showEntry completion:(void (^)(void))completion {
     
     // Avoid call on child thread.
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self removeWindow:window animated:animated automaticallyShowEntry:automaticallyShowEntry completion:completion];
+            [self removeWindow:window animated:animated showEntry:showEntry completion:completion];
         });
         return;
     }
@@ -201,8 +213,12 @@ static LLWindowManager *_instance = nil;
         return;
     }
     
-    [self removeVisibleWindow:window automaticallyShowEntry:automaticallyShowEntry];
+    [self removeVisibleWindow:window showEntry:showEntry];
     
+    [self performRemoveWindow:window animated:animated completion:completion];
+}
+
+- (void)performRemoveWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
@@ -243,14 +259,14 @@ static LLWindowManager *_instance = nil;
 
 - (void)removeAllVisibleWindows {
     for (LLBaseWindow *window in self.visibleWindows) {
-        [self removeWindow:window animated:YES automaticallyShowEntry:NO completion:nil];
+        [self removeWindow:window animated:YES showEntry:NO completion:nil];
     }
     [self.visibleWindows removeAllObjects];
 }
 
-- (void)removeVisibleWindow:(LLBaseWindow *)window automaticallyShowEntry:(BOOL)automaticallyShowEntry {
+- (void)removeVisibleWindow:(LLBaseWindow *)window showEntry:(BOOL)showEntry {
     [self.visibleWindows removeObject:window];
-    if (automaticallyShowEntry) {
+    if (showEntry) {
         if (self.visibleWindows.count == 0) {
             [self showEntryWindow];
         }

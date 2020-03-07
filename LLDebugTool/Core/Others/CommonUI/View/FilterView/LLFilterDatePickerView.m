@@ -37,8 +37,10 @@
 
 @implementation LLFilterDatePickerView
 
-- (instancetype)initWithFrame:(CGRect)frame fromDate:(NSDate *)fromDate endDate:(NSDate *)endDate {
+- (instancetype)initWithFrame:(CGRect)frame fromDate:(NSDate *)from endDate:(NSDate *)end {
     if (self = [super initWithFrame:frame]) {
+        NSDate *fromDate = from;
+        NSDate *endDate = end;
         if (!fromDate) {
             fromDate = [NSDate date];
         }
@@ -146,8 +148,9 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (component == 0) {
-        if (self.isSelectAll != (row == 0)) {
-            self.isSelectAll = (row == 0);
+        BOOL rowIsZero = (row == 0);
+        if (self.isSelectAll != rowIsZero) {
+            self.isSelectAll = rowIsZero;
             [self reloadAllComponents];
         }
     }

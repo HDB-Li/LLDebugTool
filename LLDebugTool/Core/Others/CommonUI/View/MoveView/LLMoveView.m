@@ -52,7 +52,7 @@
     if (!self.isMoved) {
         self.moved = YES;
     }
-
+    
     CGPoint offsetPoint = [sender translationInView:sender.view];
     
     [self viewWillUpdateOffset:sender offset:offsetPoint];
@@ -71,41 +71,13 @@
     center.y += point.y;
     
     if (self.isOverflow) {
-        center.x = MIN(center.x, self.superview.LL_width);
-        center.x = MAX(center.x, 0);
-        
-        center.y = MIN(center.y, self.superview.LL_height);
-        center.y = MAX(center.y, 0);
+        center = [self adjustOverflow:center];
     } else {
-        
-        if (center.x < self.LL_width / 2.0) {
-            center.x = self.LL_width / 2.0;
-        } else if (center.x > self.superview.LL_width - self.LL_width / 2.0) {
-            center.x = self.superview.LL_width - self.LL_width / 2.0;
-        }
-        
-        if (center.y < self.LL_height / 2.0) {
-            center.y = self.LL_height / 2.0;
-        } else if (center.y > self.superview.LL_height - self.LL_height / 2.0) {
-            center.y = self.superview.LL_height - self.LL_height / 2.0;
-        }
+        center = [self adjustCenter:center];
     }
     
-    if (!CGRectIsNull(_moveableRect)) {
-        if (!CGRectContainsPoint(_moveableRect, center)) {
-            if (center.x < _moveableRect.origin.x) {
-                center.x = _moveableRect.origin.x;
-            } else if (center.x > _moveableRect.origin.x + _moveableRect.size.width) {
-                center.x = _moveableRect.origin.x + _moveableRect.size.width;
-            }
-            if (center.y < _moveableRect.origin.y) {
-                center.y = _moveableRect.origin.y;
-            } else if (center.y > _moveableRect.origin.y + _moveableRect.size.height) {
-                center.y = _moveableRect.origin.y + _moveableRect.size.height;
-            }
-        }
-    }
-
+    center = [self adjustMoveableRect:center];
+    
     self.center = center;
 }
 
@@ -123,6 +95,54 @@
         _moveable = moveable;
         self.panGestureRecognizer.enabled = moveable;
     }
+}
+
+- (CGPoint)adjustOverflow:(CGPoint)center {
+    CGPoint newCenter = CGPointMake(center.x, center.y);
+    newCenter.x = MIN(newCenter.x, self.superview.LL_width);
+    newCenter.x = MAX(newCenter.x, 0);
+    
+    newCenter.y = MIN(newCenter.y, self.superview.LL_height);
+    newCenter.y = MAX(newCenter.y, 0);
+    
+    return newCenter;
+}
+
+- (CGPoint)adjustCenter:(CGPoint)center {
+    CGPoint newCenter = CGPointMake(center.x, center.y);
+    
+    if (newCenter.x < self.LL_width / 2.0) {
+        newCenter.x = self.LL_width / 2.0;
+    } else if (newCenter.x > self.superview.LL_width - self.LL_width / 2.0) {
+        newCenter.x = self.superview.LL_width - self.LL_width / 2.0;
+    }
+    
+    if (newCenter.y < self.LL_height / 2.0) {
+        newCenter.y = self.LL_height / 2.0;
+    } else if (newCenter.y > self.superview.LL_height - self.LL_height / 2.0) {
+        newCenter.y = self.superview.LL_height - self.LL_height / 2.0;
+    }
+    
+    return newCenter;
+}
+
+- (CGPoint)adjustMoveableRect:(CGPoint)center {
+    CGPoint newCenter = CGPointMake(center.x, center.y);
+    
+    if (!CGRectIsNull(_moveableRect) && !CGRectContainsPoint(_moveableRect, newCenter)) {
+        if (newCenter.x < _moveableRect.origin.x) {
+            newCenter.x = _moveableRect.origin.x;
+        } else if (newCenter.x > _moveableRect.origin.x + _moveableRect.size.width) {
+            newCenter.x = _moveableRect.origin.x + _moveableRect.size.width;
+        }
+        
+        if (newCenter.y < _moveableRect.origin.y) {
+            newCenter.y = _moveableRect.origin.y;
+        } else if (newCenter.y > _moveableRect.origin.y + _moveableRect.size.height) {
+            newCenter.y = _moveableRect.origin.y + _moveableRect.size.height;
+        }
+    }
+    return newCenter;
 }
 
 @end

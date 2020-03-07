@@ -29,6 +29,7 @@
 
 #import "LLFormatterTool.h"
 #import "LLTool.h"
+#import "LLConfig.h"
 
 static uint64_t _loadTime;
 static NSTimeInterval _startLoadTime;
@@ -64,6 +65,9 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
                 _startLoadTime = MachTimeToSeconds(_applicationRespondedTime - _loadTime);
                 
                 [[NSNotificationCenter defaultCenter] removeObserver:obs];
+                if ([LLConfig shared].startWorkingNextTime && [LLTool startWorkingAfterApplicationDidFinishLaunching]) {
+                    [LLTool startWorking];
+                }
             }];
         }
     });

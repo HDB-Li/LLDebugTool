@@ -111,13 +111,13 @@ static LLToastUtils *_instance = nil;
 
 - (void)startLoadingMessageTimer {
     [self removeLoadingMessageTimer];
-    _loadingTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadingMessageTimerAction:) userInfo:nil repeats:YES];
+    self.loadingTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loadingMessageTimerAction:) userInfo:nil repeats:YES];
 }
 
 - (void)removeLoadingMessageTimer {
-    if ([_loadingTimer isValid]) {
-        [_loadingTimer invalidate];
-        _loadingTimer = nil;
+    if ([self.loadingTimer isValid]) {
+        [self.loadingTimer invalidate];
+        self.loadingTimer = nil;
     }
 }
 

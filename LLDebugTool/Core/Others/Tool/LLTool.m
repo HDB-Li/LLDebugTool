@@ -31,6 +31,8 @@
 #import "LLLogDefine.h"
 #import "LLConfig.h"
 
+#import "NSUserDefaults+LL_Utils.h"
+
 static unsigned long long _absolutelyIdentity = 0;
 
 static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
@@ -52,7 +54,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
         [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) {
             [self log:[NSString stringWithFormat:@"Create folder fail, path = %@, error = %@",path,error.description]];
-            NSAssert(!error, error.description);
+            NSAssert(NO, error.description);
             return NO;
         }
         return YES;
@@ -154,6 +156,18 @@ static bool _statusBarClickable = YES;
 
 + (void)availableDebugTool {
     [LLDebugTool sharedTool];
+}
+
++ (void)startWorking {
+    [[LLDebugTool sharedTool] startWorking];
+}
+
++ (BOOL)startWorkingAfterApplicationDidFinishLaunching {
+    return [NSUserDefaults LL_boolForKey:@"startWorkingAfterApplicationDidFinishLaunching"];
+}
+
++ (void)setStartWorkingAfterApplicationDidFinishLaunching:(BOOL)isStart {
+    [NSUserDefaults LL_setBool:isStart forKey:@"startWorkingAfterApplicationDidFinishLaunching"];
 }
 
 @end

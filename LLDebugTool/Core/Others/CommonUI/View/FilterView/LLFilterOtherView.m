@@ -83,20 +83,9 @@ static NSString *const kLabelCellID = @"LabelCellID";
     model2.filters = nil;
     self.funcModel = model2;
     
-    self.fromDateModel = [[LLFilterTextFieldModel alloc] init];
-    self.fromDateModel.title = @"From";
-    self.fromDateModel.titleWidth = 60;
-    self.fromDateModel.useDatePicker = YES;
-    self.fromDateModel.fromDate = fromDate;
-    self.fromDateModel.endDate = endDate;
+    self.fromDateModel = [self dateModelWithTitle:@"From" from:fromDate end:endDate];
     
-    self.endDateModel = [[LLFilterTextFieldModel alloc] init];
-    self.endDateModel.title = @"To";
-    self.endDateModel.titleWidth = 60;
-    self.endDateModel.useDatePicker = YES;
-    self.endDateModel.fromDate = fromDate;
-    self.endDateModel.endDate = endDate;
-    
+    self.endDateModel = [self dateModelWithTitle:@"To" from:fromDate end:endDate];
     
     CGFloat headerHeight = 30;
     CGFloat gap = kLLGeneralMargin;
@@ -280,6 +269,17 @@ static NSString *const kLabelCellID = @"LabelCellID";
         return CGSizeMake(LL_SCREEN_WIDTH, 30);
     }
     return CGSizeMake((LL_SCREEN_WIDTH - 5 * 10) / 3.0, 30);
+}
+
+#pragma mark - Primary
+- (LLFilterTextFieldModel *)dateModelWithTitle:(NSString *)title from:(NSDate *)fromDate end:(NSDate *)endDate {
+    LLFilterTextFieldModel *model = [[LLFilterTextFieldModel alloc] init];
+    model.title = title;
+    model.titleWidth = 60;
+    model.useDatePicker = YES;
+    model.fromDate = fromDate;
+    model.endDate = endDate;
+    return model;
 }
 
 @end

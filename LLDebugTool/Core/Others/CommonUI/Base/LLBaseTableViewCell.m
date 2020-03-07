@@ -71,10 +71,7 @@
             for (UIView *view in subview.subviews) {
                 if ([view isKindOfClass:[UIImageView class]]) {
                     UIImageView *imageView = (UIImageView *)view;
-                    UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
-                    if (imageView.image != nil && imageView.image.renderingMode != mode) {
-                        imageView.image = [imageView.image imageWithRenderingMode:mode];
-                    }
+                    [self renderImageViewIfNeeded:imageView];
                     break;
                 }
             }
@@ -105,6 +102,13 @@
         for (UIView *subView in view.subviews) {
             [self configSubviews:subView];
         }
+    }
+}
+
+- (void)renderImageViewIfNeeded:(UIImageView *)imageView {
+    UIImageRenderingMode mode = UIImageRenderingModeAlwaysTemplate;
+    if (imageView.image != nil && imageView.image.renderingMode != mode) {
+        imageView.image = [imageView.image imageWithRenderingMode:mode];
     }
 }
 

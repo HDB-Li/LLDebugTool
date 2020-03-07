@@ -1,5 +1,5 @@
 //
-//  LLTool.h
+//  LLInternalMacrosTool.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,70 +25,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- Work as tool.
- */
-@interface LLTool : NSObject
+// Internal macros tool, to deal high cyclomatic complexity.
+@interface LLInternalMacrosTool : NSObject
 
-/**
- Identity to model. Deal with the same date, start at 1.
- */
-+ (NSString *)absolutelyIdentity;
+// Screen width.
++ (CGFloat)screenWidth;
 
-/**
- Create directory if not exist.
- */
-+ (BOOL)createDirectoryAtPath:(NSString *)path;
+// Screen height.
++ (CGFloat)screenHeight;
 
-/**
- Get rect from two point
- */
-+ (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;
+// Status bar height.
++ (CGFloat)statusBarHeight;
 
-/**
- Frame fromat.
- */
-+ (NSString *)stringFromFrame:(CGRect)frame;
+// Navigation bar height.
++ (CGFloat)navigationHeight;
 
-/**
- Top level window.
+// Bottom danger height.
++ (CGFloat)bottomDangerHeight;
 
- @return Top level window.
- */
-+ (UIWindow *)topWindow;
+// Whether is special screen.
++ (CGFloat)isSpecialScreen;
 
-/**
- Key window.
- */
-+ (UIWindow *)keyWindow;
+// Layout length by horizontal direction in 414px.
++ (CGFloat)layoutHorizontal:(CGFloat)length;
 
-/**
- Internal log.
+// Get min
++ (CGFloat)minWithA:(CGFloat)a b:(CGFloat)b;
 
- @param string log string.
- */
-+ (void)log:(NSString *)string;
-
-+ (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt;
-
-/// Whether the status bar can be clicked.
-+ (BOOL)statusBarClickable;
-
-/// Get UIStatusBar_Modern.
-+ (UIView *_Nullable)getUIStatusBarModern;
-
-/// Avalable debug tool.
-+ (void)availableDebugTool;
-
-/// Start working.
-+ (void)startWorking;
-
-/// Whether start working after application did finish launching.
-+ (BOOL)startWorkingAfterApplicationDidFinishLaunching;
-
-/// Set whether start working after application did finish launching.
-/// @param isStart Is start.
-+ (void)setStartWorkingAfterApplicationDidFinishLaunching:(BOOL)isStart;
+// Get max
++ (CGFloat)maxWithA:(CGFloat)a b:(CGFloat)b;
 
 @end
 

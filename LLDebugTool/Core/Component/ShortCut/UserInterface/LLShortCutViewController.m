@@ -62,7 +62,7 @@
         [settings addObject:model];
     }
     
-    LLTitleCellCategoryModel *category = [[LLTitleCellCategoryModel alloc] initWithTitle:nil items:settings];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:nil items:settings];
     [self.dataArray addObject:category];
     [settings removeAllObjects];
 }

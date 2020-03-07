@@ -70,47 +70,37 @@
 
 #pragma mark - Primary
 - (void)updateStyle:(LLConfigEntryWindowStyle)style {
+    [self.activeView removeFromSuperview];
     switch (style) {
         case LLConfigEntryWindowStyleBall: {
-            [self.activeView removeFromSuperview];
             self.activeView = self.ballView;
-            [self.view addSubview:self.ballView];
         }
             break;
         case LLConfigEntryWindowStyleTitle: {
-            [self.activeView removeFromSuperview];
             self.activeView = self.bigTitleView;
-            [self.view addSubview:self.bigTitleView];
         }
             break;
         case LLConfigEntryWindowStyleLeading: {
-            [self.activeView removeFromSuperview];
             self.activeView = self.leadingView;
-            [self.view addSubview:self.leadingView];
         }
             break;
         case LLConfigEntryWindowStyleTrailing: {
-            [self.activeView removeFromSuperview];
             self.activeView = self.trailingView;
-            [self.view addSubview:self.trailingView];
         }
             break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLConfigEntryWindowStyleNetBar: {
-            [self.activeView removeFromSuperview];
             self.activeView = self.netView;
-            [self.view addSubview:self.netView];
         }
             break;
         case LLConfigEntryWindowStylePowerBar: {
-            [self.activeView removeFromSuperview];
             self.activeView = self.powerView;
-            [self.view addSubview:self.powerView];
         }
             break;
 #pragma clang diagnostic pop
     }
+    [self.view addSubview:self.activeView];
     [self.delegate LLEntryViewController:self style:self.activeView.styleModel];
 }
 

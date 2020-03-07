@@ -52,6 +52,15 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)LL_boolForKey:(NSString *)aKey {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:[self getKey:aKey]];
+}
+
++ (void)LL_setBool:(BOOL)value forKey:(NSString *)aKey {
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:[self getKey:aKey]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Primary
 + (NSString *)getKey:(NSString *)aKey {
     return [NSString stringWithFormat:@"LLDebugTool-%@",aKey];

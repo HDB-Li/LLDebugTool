@@ -29,8 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLJsonTool : NSObject
 
 /// Format json string.
-/// @param aString Input string.
-+ (NSString *)formatJsonString:(NSString *)aString;
+/// @param jsonString Input string.
++ (NSString *)formatJsonString:(NSString *)jsonString;
 
 @end
 

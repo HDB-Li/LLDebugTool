@@ -23,6 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LLConfig.h"
+
 @class LLThemeColor;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -71,6 +73,10 @@ FOUNDATION_EXTERN NSNotificationName const LLDebugToolUpdateThemeNotification;
 
 /// System tint color.
 + (UIColor *)systemTintColor;
+
+/// Update with color style.
+/// @param colorStyle Color style.
+- (void)updateWithColorStyle:(LLConfigColorStyle)colorStyle;
 
 @end
 

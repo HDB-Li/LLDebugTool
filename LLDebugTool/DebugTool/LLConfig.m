@@ -23,6 +23,7 @@
 
 #import "LLConfig.h"
 
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLThemeColor.h"
 #import "LLDebugTool.h"
@@ -81,11 +82,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
     
     // Set XIB resources.
-    NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
-    _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
-    if (!_imageBundle) {
-        [LLTool log:@"Failed to load the image bundle"];
-    }
+    [self setUpBundle];
     
     // Set date formatter string.
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
@@ -120,93 +117,58 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     
     // Set default window's style.
     _entryWindowStyle = LLConfigEntryWindowStyleBall;
+    
+    // Start next time.
+    _startWorkingNextTime = YES;
+}
+
+- (void)setUpBundle {
+    NSBundle *currentBundle = [NSBundle bundleForClass:self.class];
+    NSString *imageBundlePath = [currentBundle pathForResource:@"LLDebugTool" ofType:@"bundle"];
+    if (!imageBundlePath && [NSBundle mainBundle] == currentBundle) {
+        // Can't get a bundle in a static lib. use full path to get bundle.
+        imageBundlePath = [[NSBundle mainBundle] pathForResource:@"Frameworks/LLDebugTool.framework/LLDebugTool" ofType:@"bundle"];
+    }
+    _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
+    if (!_imageBundle) {
+        [LLTool log:@"Failed to load the image bundle"];
+    }
 }
 
 #pragma mark - Getters and setters
 - (void)setColorStyle:(LLConfigColorStyle)colorStyle {
     if (_colorStyle != colorStyle) {
         _colorStyle = colorStyle;
-        switch (colorStyle) {
-            case LLConfigColorStyleHack: {
-                [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
-            }
-                break;
-            case LLConfigColorStyleSimple: {
-                [LLThemeManager shared].themeColor = [LLThemeColor simpleThemeColor];
-            }
-                break;
-            case LLConfigColorStyleSystem: {
-                [LLThemeManager shared].themeColor = [LLThemeColor systemThemeColor];
-            }
-                break;
-            case LLConfigColorStyleGrass: {
-                [LLThemeManager shared].themeColor = [LLThemeColor grassThemeColor];
-            }
-                break;
-            case LLConfigColorStyleHomebrew: {
-                [LLThemeManager shared].themeColor = [LLThemeColor homebrewThemeColor];
-            }
-                break;
-            case LLConfigColorStyleManPage: {
-                [LLThemeManager shared].themeColor = [LLThemeColor manPageThemeColor];
-            }
-                break;
-            case LLConfigColorStyleNovel: {
-                [LLThemeManager shared].themeColor = [LLThemeColor novelThemeColor];
-            }
-                break;
-            case LLConfigColorStyleOcean: {
-                [LLThemeManager shared].themeColor = [LLThemeColor oceanThemeColor];
-            }
-                break;
-            case LLConfigColorStylePro: {
-                [LLThemeManager shared].themeColor = [LLThemeColor proThemeColor];
-            }
-                break;
-            case LLConfigColorStyleRedSands: {
-                [LLThemeManager shared].themeColor = [LLThemeColor redSandsThemeColor];
-            }
-                break;
-            case LLConfigColorStyleSilverAerogel: {
-                [LLThemeManager shared].themeColor = [LLThemeColor silverAerogelThemeColor];
-            }
-                break;
-            case LLConfigColorStyleSolidColors: {
-                [LLThemeManager shared].themeColor = [LLThemeColor solidColorsThemeColor];
-            }
-                break;
-            case LLConfigColorStyleCustom: {
-                [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property"];
-                [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
-            }
-                break;
-        }
+        [[LLThemeManager shared] updateWithColorStyle:colorStyle];
     }
 }
 
 - (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
+    LLConfigEntryWindowStyle style = entryStyle;
     if (@available(iOS 13.0, *)) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         if (entryStyle == LLConfigEntryWindowStyleNetBar) {
-            entryStyle = LLConfigEntryWindowStyleLeading;
+            style = LLConfigEntryWindowStyleLeading;
         } else if (entryStyle == LLConfigEntryWindowStylePowerBar) {
-            entryStyle = LLConfigEntryWindowStyleTrailing;
+            style = LLConfigEntryWindowStyleTrailing;
         }
 #pragma clang diagnostic pop
     }
-    if (_entryWindowStyle != entryStyle) {
-        _entryWindowStyle = entryStyle;
+    if (_entryWindowStyle != style) {
+        _entryWindowStyle = style;
         [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolUpdateWindowStyleNotification object:nil userInfo:nil];
     }
 }
 
 - (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
-    _entryWindowBallWidth = MIN(MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth), kLLEntryWindowMaxBallWidth);
+    CGFloat max = MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth);
+    _entryWindowBallWidth = MIN(max, kLLEntryWindowMaxBallWidth);
 }
 
 - (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
-    _entryWindowDisplayPercent = MIN(MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent), kLLEntryWindowMaxDisplayPercent);
+    CGFloat max = MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent);
+    _entryWindowDisplayPercent = MIN(max, kLLEntryWindowMaxDisplayPercent);
 }
 
 - (void)setMagnifierSize:(NSInteger)magnifierSize {

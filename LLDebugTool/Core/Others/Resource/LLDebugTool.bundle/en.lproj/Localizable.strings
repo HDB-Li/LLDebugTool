@@ -43,6 +43,8 @@
 "function.short.cut" = "Short Cut";
 "function.setting" = "Settings";
 "function.detail" = "Details";
+"function.stop" = "Stop DebugTool";
+"function.alert.stop" = "Are you sure to stop?";
 
 // Setting
 "setting.short.cut" = "Short Cut";

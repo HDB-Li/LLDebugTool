@@ -103,9 +103,7 @@
 #pragma mark - Event responses
 - (void)filterButtonClick:(UIButton *)sender {
     sender.selected = !sender.selected;
-    if (sender.selected == NO) {
-        [self hideDetailView:sender.tag];
-    } else {
+    if (sender.selected) {
         for (UIButton *btn in self.filterBtns) {
             if (btn != sender && btn.selected) {
                 btn.selected = NO;
@@ -113,6 +111,8 @@
             }
         }
         [self showDetailView:sender.tag];
+    } else {
+        [self hideDetailView:sender.tag];
     }
     [self endEditing:YES];
 }

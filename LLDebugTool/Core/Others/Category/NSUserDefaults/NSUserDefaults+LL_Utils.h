@@ -55,6 +55,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param aKey Key.
 + (void)LL_setNumber:(NSNumber *)num forKey:(NSString *)aKey;
 
+/// Get bool for key.
+/// @param aKey Key.
++ (BOOL)LL_boolForKey:(NSString *)aKey;
+
+/// Set bool for key.
+/// @param value Bool
+/// @param aKey Key.
++ (void)LL_setBool:(BOOL)value forKey:(NSString *)aKey;
+
 @end
 
 NS_ASSUME_NONNULL_END

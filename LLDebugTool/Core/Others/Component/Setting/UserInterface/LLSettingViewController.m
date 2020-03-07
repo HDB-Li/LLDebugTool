@@ -58,14 +58,14 @@
     
     // Short Cut
     [settings addObject:[self getDoubleClickComponentModel]];
-    LLTitleCellCategoryModel *category0 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.short.cut") items:settings];
+    LLTitleCellCategoryModel *category0 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.short.cut") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category0];
     
     // ColorStyle
     [settings addObject:[self getColorStyleModel]];
     
-    LLTitleCellCategoryModel *category1 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.color") items:settings];
+    LLTitleCellCategoryModel *category1 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.color") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category1];
     
@@ -73,21 +73,21 @@
     [settings addObject:[self getEntryWindowStyleModel]];
     [settings addObject:[self getShrinkToEdgeWhenInactiveModel]];
     [settings addObject:[self getShakeToHideModel]];
-    LLTitleCellCategoryModel *category2 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.entry.window") items:settings];
+    LLTitleCellCategoryModel *category2 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.entry.window") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category2];
     
 #ifdef LLDEBUGTOOL_LOG
     // Log
     [settings addObject:[self getLogStyleModel]];
-    LLTitleCellCategoryModel *category3 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.log") items:settings];
+    LLTitleCellCategoryModel *category3 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.log") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category3];
 #endif
 #ifdef LLDEBUGTOOL_HIERARCHY
     // Hierarchy
     [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
-    LLTitleCellCategoryModel *category5 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.hierarchy") items:settings];
+    LLTitleCellCategoryModel *category5 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.hierarchy") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category5];
 #endif
@@ -95,7 +95,7 @@
     // Magnifier
     [settings addObject:[self getMagnifierZoomLevelModel]];
     [settings addObject:[self getMagnifierSizeModel]];
-    LLTitleCellCategoryModel *category4 = [[LLTitleCellCategoryModel alloc] initWithTitle:LLLocalizedString(@"setting.magnifier") items:settings];
+    LLTitleCellCategoryModel *category4 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.magnifier") items:settings];
     [settings removeAllObjects];
     [self.dataArray addObject:category4];
 #endif

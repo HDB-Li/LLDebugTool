@@ -1,5 +1,5 @@
 //
-//  LLTitleCellCategoryModel.h
+//  NSMutableArray+LL_Utils.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,23 +23,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class LLTitleCellModel;
-
 NS_ASSUME_NONNULL_BEGIN
 
-/// Title cell category model.
-@interface LLTitleCellCategoryModel : NSObject
+@interface NSMutableArray (LL_Utils)
 
-/// Category title.
-@property (nonatomic, strong, readonly, nullable) NSString *title;
-
-/// Items.
-@property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*items;
-
-/// Instance method.
-/// @param title Title
-/// @param items Items.
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title items:(NSArray <LLTitleCellModel *>*)items;
+/// Add an nullable object.
+/// @param anObject Object.
+- (void)LL_addObject:(id)anObject;
 
 @end
 
