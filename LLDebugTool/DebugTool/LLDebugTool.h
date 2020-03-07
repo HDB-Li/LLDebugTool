@@ -74,14 +74,6 @@ FOUNDATION_EXPORT LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorking
  */
 - (void)executeAction:(LLDebugToolAction)action;
 
-/**
- Execute action.
-
- @param action Action.
- @param data Data.
- */
-- (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data;
-
 #pragma mark - Version Control
 /**
 LLDebugTool's version.

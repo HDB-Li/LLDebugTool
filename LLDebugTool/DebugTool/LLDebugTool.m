@@ -141,12 +141,8 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)executeAction:(LLDebugToolAction)action {
-    [self executeAction:action data:nil];
-}
-
-- (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data {
     LLFunctionItemModel *model = [[LLFunctionItemModel alloc] initWithAction:action];
-    [model.component componentDidLoad:data];
+    [model.component componentDidLoad:nil];
 }
 
 + (NSString *)version {
