@@ -1,5 +1,5 @@
 //
-//  LLConfig.h
+//  LLDebugConfig.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -29,55 +29,55 @@
 /**
  Color style enum
  
- - LLConfigColorStyleHack: Green backgroundColor and #333333 textColor.
- - LLConfigColorStyleSimple: White backgroundColor and darkTextColor textColor.
- - LLConfigColorStyleSystem: White backgroundColor and system tint textColor.
- - LLConfigColorStyleGrass: #13773D backgroundColor and #FFF0A5 textColor.
- - LLConfigColorStyleHomebrew: Black backgroundColor and #28FE14 textColor.
- - LLConfigColorStyleManPage: #FEF49C backgroundColor and black textColor.
- - LLConfigColorStyleNovel: #DFDBC3 backgroundColor and #3B2322 textColor.
- - LLConfigColorStyleOcean: #224FBC backgroundColor and white textColor.
- - LLConfigColorStylePro: Black backgroundColor and #F2F2F2 textColor.
- - LLConfigColorStyleRedSands: #7A251E backgroundColor and #D7C9A7 textColor.
- - LLConfigColorStyleSilverAerogel: #929292 backgroundColor and black textColor.
- - LLConfigColorStyleSolidColors: White backgroundColor and black textColor.
- - LLConfigColorStyleCustom: Use custom backgroundColor and textColor.
+ - LLDebugConfigColorStyleHack: Green backgroundColor and #333333 textColor.
+ - LLDebugConfigColorStyleSimple: White backgroundColor and darkTextColor textColor.
+ - LLDebugConfigColorStyleSystem: White backgroundColor and system tint textColor.
+ - LLDebugConfigColorStyleGrass: #13773D backgroundColor and #FFF0A5 textColor.
+ - LLDebugConfigColorStyleHomebrew: Black backgroundColor and #28FE14 textColor.
+ - LLDebugConfigColorStyleManPage: #FEF49C backgroundColor and black textColor.
+ - LLDebugConfigColorStyleNovel: #DFDBC3 backgroundColor and #3B2322 textColor.
+ - LLDebugConfigColorStyleOcean: #224FBC backgroundColor and white textColor.
+ - LLDebugConfigColorStylePro: Black backgroundColor and #F2F2F2 textColor.
+ - LLDebugConfigColorStyleRedSands: #7A251E backgroundColor and #D7C9A7 textColor.
+ - LLDebugConfigColorStyleSilverAerogel: #929292 backgroundColor and black textColor.
+ - LLDebugConfigColorStyleSolidColors: White backgroundColor and black textColor.
+ - LLDebugConfigColorStyleCustom: Use custom backgroundColor and textColor.
  */
-typedef NS_ENUM(NSUInteger, LLConfigColorStyle) {
-    LLConfigColorStyleHack,
-    LLConfigColorStyleSimple,
-    LLConfigColorStyleSystem,
-    LLConfigColorStyleGrass,
-    LLConfigColorStyleHomebrew,
-    LLConfigColorStyleManPage,
-    LLConfigColorStyleNovel,
-    LLConfigColorStyleOcean,
-    LLConfigColorStylePro,
-    LLConfigColorStyleRedSands,
-    LLConfigColorStyleSilverAerogel,
-    LLConfigColorStyleSolidColors,
-    LLConfigColorStyleCustom
+typedef NS_ENUM(NSUInteger, LLDebugConfigColorStyle) {
+    LLDebugConfigColorStyleHack,
+    LLDebugConfigColorStyleSimple,
+    LLDebugConfigColorStyleSystem,
+    LLDebugConfigColorStyleGrass,
+    LLDebugConfigColorStyleHomebrew,
+    LLDebugConfigColorStyleManPage,
+    LLDebugConfigColorStyleNovel,
+    LLDebugConfigColorStyleOcean,
+    LLDebugConfigColorStylePro,
+    LLDebugConfigColorStyleRedSands,
+    LLDebugConfigColorStyleSilverAerogel,
+    LLDebugConfigColorStyleSolidColors,
+    LLDebugConfigColorStyleCustom
 };
 
 /**
  Window style. Decide how the Window displays.
  
- - LLConfigEntryWindowStyleBall: Show as a ball. Moveable and clickable.
- - LLConfigEntryWindowStyleTitle: Show as a big title. Moveable and clickable.
- - LLConfigEntryWindowStyleLeading: Show as a big title on left. Part moveable and clickable.
- - LLConfigEntryWindowStyleTrailing: Show as a big title on right. Moveable and clickable.
- - LLConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
- - LLConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
- - LLConfigEntryWindowStyleSuspensionBall: Same to LLConfigEntryWindowStyleBall.
+ - LLDebugConfigEntryWindowStyleBall: Show as a ball. Moveable and clickable.
+ - LLDebugConfigEntryWindowStyleTitle: Show as a big title. Moveable and clickable.
+ - LLDebugConfigEntryWindowStyleLeading: Show as a big title on left. Part moveable and clickable.
+ - LLDebugConfigEntryWindowStyleTrailing: Show as a big title on right. Moveable and clickable.
+ - LLDebugConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
+ - LLDebugConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
+ - LLDebugConfigEntryWindowStyleSuspensionBall: Same to LLDebugConfigEntryWindowStyleBall.
  */
-typedef NS_ENUM(NSUInteger, LLConfigEntryWindowStyle) {
-    LLConfigEntryWindowStyleBall = 0,
-    LLConfigEntryWindowStyleTitle = 1,
-    LLConfigEntryWindowStyleLeading = 2,
-    LLConfigEntryWindowStyleTrailing = 3,
-    LLConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleLeading") = 4,
-    LLConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLConfigEntryWindowStyleTrailing") = 5,
-    LLConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLConfigEntryWindowStyleBall") = 0,
+typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
+    LLDebugConfigEntryWindowStyleBall = 0,
+    LLDebugConfigEntryWindowStyleTitle = 1,
+    LLDebugConfigEntryWindowStyleLeading = 2,
+    LLDebugConfigEntryWindowStyleTrailing = 3,
+    LLDebugConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLDebugConfigEntryWindowStyleLeading") = 4,
+    LLDebugConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLDebugConfigEntryWindowStyleTrailing") = 5,
+    LLDebugConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLDebugConfigEntryWindowStyleBall") = 0,
 };
 
 /**
@@ -122,33 +122,33 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
 /**
  Log style for [LLDebugTool logInFile...]. Customize the log you want.
  
- - LLConfigLogDetail: Show all detail info. Contain event, file, line, func, date and desc.
- - LLConfigLogFileFuncDesc : Show with event, file, func and desc.
- - LLConfigLogFileDesc : Show with event, file and desc.
- - LLConfigLogNormal: Show as system NSLog
- - LLConfigLogNone: Don't show anything.
+ - LLDebugConfigLogDetail: Show all detail info. Contain event, file, line, func, date and desc.
+ - LLDebugConfigLogFileFuncDesc : Show with event, file, func and desc.
+ - LLDebugConfigLogFileDesc : Show with event, file and desc.
+ - LLDebugConfigLogNormal: Show as system NSLog
+ - LLDebugConfigLogNone: Don't show anything.
  */
-typedef NS_ENUM(NSUInteger, LLConfigLogStyle) {
-    LLConfigLogDetail,
-    LLConfigLogFileFuncDesc,
-    LLConfigLogFileDesc,
-    LLConfigLogNormal,
-    LLConfigLogNone,
+typedef NS_ENUM(NSUInteger, LLDebugConfigLogStyle) {
+    LLDebugConfigLogDetail,
+    LLDebugConfigLogFileFuncDesc,
+    LLDebugConfigLogFileDesc,
+    LLDebugConfigLogNormal,
+    LLDebugConfigLogNone,
 };
 
 /**
  Log Level. It can be used for filter.
  
- - LLConfigLogLevelDefault: Use to save message or note.
- - LLConfigLogLevelAlert: Use to save alert message.
- - LLConfigLogLevelWarning: Use to save warning message.
- - LLConfigLogLevelError: Use to save error message.
+ - LLDebugConfigLogLevelDefault: Use to save message or note.
+ - LLDebugConfigLogLevelAlert: Use to save alert message.
+ - LLDebugConfigLogLevelWarning: Use to save warning message.
+ - LLDebugConfigLogLevelError: Use to save error message.
  */
-typedef NS_ENUM(NSUInteger, LLConfigLogLevel) {
-    LLConfigLogLevelDefault,
-    LLConfigLogLevelAlert,
-    LLConfigLogLevelWarning,
-    LLConfigLogLevelError,
+typedef NS_ENUM(NSUInteger, LLDebugConfigLogLevel) {
+    LLDebugConfigLogLevelDefault,
+    LLDebugConfigLogLevelAlert,
+    LLDebugConfigLogLevelWarning,
+    LLDebugConfigLogLevelError,
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -158,7 +158,7 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
 /**
  Config file. Must config properties before [LLDebugTool enable].
  */
-@interface LLConfig : NSObject
+@interface LLDebugConfig : NSObject
 
 /**
  Singleton to get/save config.
@@ -169,9 +169,9 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
 
 #pragma mark - Entry Window Config
 /**
- Entry window style. Decide how the Window displays. Default is LLConfigEntryWindowStyleSuspensionBall.
+ Entry window style. Decide how the Window displays. Default is LLDebugConfigEntryWindowStyleSuspensionBall.
  */
-@property (nonatomic, assign) LLConfigEntryWindowStyle entryWindowStyle;
+@property (nonatomic, assign) LLDebugConfigEntryWindowStyle entryWindowStyle;
 
 /**
  Entry window ball width, default is kLLEntryWindowBallWidth, must greater than kLLEntryWindowMinBallWidth.
@@ -210,12 +210,12 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
 
 #pragma mark - Theme Color.
 /**
- Use preset the color configuration. For details, please see LLConfigColorStyle. If you want to use custom style, use configPrimaryColor:backgroundColor:statusBarStyle: replace.
+ Use preset the color configuration. For details, please see LLDebugConfigColorStyle. If you want to use custom style, use configPrimaryColor:backgroundColor:statusBarStyle: replace.
  */
-@property (nonatomic, assign) LLConfigColorStyle colorStyle;
+@property (nonatomic, assign) LLDebugConfigColorStyle colorStyle;
 
 /**
- Customizing the custom color configuration, will auto set colorStyle to LLConfigColorStyleCustom.
+ Customizing the custom color configuration, will auto set colorStyle to LLDebugConfigColorStyleCustom.
  */
 - (void)configPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle;
 
@@ -237,9 +237,9 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
 
 #pragma mark - Log
 /**
- Customize the log style. Default is LLConfigLogDetail.
+ Customize the log style. Default is LLDebugConfigLogDetail.
  */
-@property (nonatomic, assign) LLConfigLogStyle logStyle;
+@property (nonatomic, assign) LLDebugConfigLogStyle logStyle;
 
 #pragma mark - Hierarchy
 /**

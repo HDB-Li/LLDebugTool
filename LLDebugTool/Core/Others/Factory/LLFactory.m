@@ -25,7 +25,7 @@
 
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @implementation LLFactory
 

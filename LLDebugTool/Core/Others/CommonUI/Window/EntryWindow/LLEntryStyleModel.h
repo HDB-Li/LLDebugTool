@@ -25,13 +25,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LLEntryStyleModel : LLBaseModel
 
-@property (nonatomic, assign) LLConfigEntryWindowStyle windowStyle;
+@property (nonatomic, assign) LLDebugConfigEntryWindowStyle windowStyle;
 
 /// Whether over flow.
 @property (nonatomic, assign, getter=isOverflow) BOOL overflow;
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param windowStyle Window style.
 /// @param moveableRect Moveable rect.
 /// @param frame Origin frame.
-- (instancetype)initWithWindowStyle:(LLConfigEntryWindowStyle)windowStyle moveableRect:(CGRect)moveableRect frame:(CGRect)frame;
+- (instancetype)initWithWindowStyle:(LLDebugConfigEntryWindowStyle)windowStyle moveableRect:(CGRect)moveableRect frame:(CGRect)frame;
 
 @end
 

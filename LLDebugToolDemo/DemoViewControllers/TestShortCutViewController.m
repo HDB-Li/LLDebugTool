@@ -45,14 +45,14 @@
 
 #pragma mark - Action
 - (void)testCustomShortCut {
-    [[LLConfig shared] registerShortCutWithName:@"Toast date" action:^NSString * _Nullable{
+    [[LLDebugConfig shared] registerShortCutWithName:@"Toast date" action:^NSString * _Nullable{
         return [[NSDate date] description];
     }];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionShortCut];
 }
 
 - (void)testCustomShortCutWithNoneReturn {
-    [[LLConfig shared] registerShortCutWithName:@"Do anything" action:^NSString * _Nullable{
+    [[LLDebugConfig shared] registerShortCutWithName:@"Do anything" action:^NSString * _Nullable{
         NSLog(@"You can do anything at here.");
         return nil;
     }];

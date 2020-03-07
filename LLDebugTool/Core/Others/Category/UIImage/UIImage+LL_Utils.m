@@ -23,12 +23,12 @@
 
 #import "UIImage+LL_Utils.h"
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @implementation UIImage (LL_Utils)
 
 + (UIImage *)LL_imageNamed:(NSString *)name {
-    return [UIImage imageNamed:name inBundle:[LLConfig shared].imageBundle compatibleWithTraitCollection:nil];
+    return [UIImage imageNamed:name inBundle:[LLDebugConfig shared].imageBundle compatibleWithTraitCollection:nil];
 }
 
 + (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size {

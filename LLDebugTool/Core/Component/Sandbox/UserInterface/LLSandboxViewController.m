@@ -35,7 +35,7 @@
 #import "LLSandboxModel.h"
 #import "LLSandboxCell.h"
 #import "LLToastUtils.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIViewController+LL_Utils.h"
 

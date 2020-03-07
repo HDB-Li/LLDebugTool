@@ -31,7 +31,7 @@
 #import "LLToastUtils.h"
 #import "LLCrashModel.h"
 #import "LLCrashCell.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIViewController+LL_Utils.h"
 

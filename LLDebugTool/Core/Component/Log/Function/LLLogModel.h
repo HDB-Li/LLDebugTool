@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Log level.
  */
-@property (nonatomic, assign, readonly) LLConfigLogLevel level;
+@property (nonatomic, assign, readonly) LLDebugConfigLogLevel level;
 
 /**
  Event.
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *launchDate;
 
 /**
- User identity in LLConfig when printing.
+ User identity in LLDebugConfig when printing.
  */
 @property (nonatomic, copy, readonly, nullable) NSString *userIdentity;
 
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Init of the model.
  */
-- (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(NSInteger)lineNo function:(NSString *_Nullable)function level:(LLConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *_Nullable)userIdentity;
+- (instancetype _Nonnull)initWithFile:(NSString *_Nullable)file lineNo:(NSInteger)lineNo function:(NSString *_Nullable)function level:(LLDebugConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *_Nullable)userIdentity;
 
 @end
 

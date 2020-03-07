@@ -24,7 +24,7 @@
 #ifndef LLDebug_h
 #define LLDebug_h
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLDebugTool.h"
 #import "LLDebugToolMacros.h"
 

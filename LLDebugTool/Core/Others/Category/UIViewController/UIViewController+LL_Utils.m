@@ -27,7 +27,7 @@
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIImage+LL_Utils.h"
 

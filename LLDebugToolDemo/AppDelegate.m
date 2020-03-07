@@ -20,20 +20,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     // Start working with config.
-    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLConfig * _Nonnull config) {
+    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLDebugConfig * _Nonnull config) {
 
         //####################### Color Style #######################//
         // Uncomment one of the following lines to change the color configuration.
-        // config.colorStyle = LLConfigColorStyleSystem;
+        // config.colorStyle = LLDebugConfigColorStyleSystem;
         // [config configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
 
         //####################### User Identity #######################//
-        // Use this line to tag user. More config please see "LLConfig.h".
+        // Use this line to tag user. More config please see "LLDebugConfig.h".
         config.userIdentity = @"Miss L";
 
         //####################### Window Style #######################//
         // Uncomment one of the following lines to change the window style.
-        // config.entryWindowStyle = LLConfigEntryWindowStyleTitle;
+        // config.entryWindowStyle = LLDebugConfigEntryWindowStyleTitle;
 
         //####################### Html #######################//
         config.defaultHtmlUrl = @"https://github.com/HDB-Li/LLDebugTool";
@@ -46,9 +46,9 @@
     /*
      // You can start LLDebugTool use notification and didn't import anything.
     NSDictionary *data = @{
-        @"colorStyle" : @(2), // LLConfigColorStyleSystem
+        @"colorStyle" : @(2), // LLDebugConfigColorStyleSystem
         @"userIdentity" : @"Miss L",
-        @"entryWindowStyle" : @(1), //LLConfigEntryWindowStyleTitle
+        @"entryWindowStyle" : @(1), //LLDebugConfigEntryWindowStyleTitle
         @"defaultHtmlUrl" : @"https://github.com/HDB-Li/LLDebugTool"
     };
 

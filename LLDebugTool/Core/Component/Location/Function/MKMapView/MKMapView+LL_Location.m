@@ -24,7 +24,7 @@
 #import "MKMapView+LL_Location.h"
 
 #import "LLLocationHelper.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "NSObject+LL_Runtime.h"
 
@@ -39,7 +39,7 @@
 
 - (void)LL_updateUserLocationViewWithLocation:(CLLocation *)location hadUserLocation:(BOOL)hadUserLocation {
     if ([LLLocationHelper shared].enable) {
-        location = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
+        location = [[CLLocation alloc] initWithLatitude:[LLDebugConfig shared].mockLocationLatitude longitude:[LLDebugConfig shared].mockLocationLongitude];
     }
     [self LL_updateUserLocationViewWithLocation:location hadUserLocation:hadUserLocation];
 }

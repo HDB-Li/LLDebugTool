@@ -29,7 +29,7 @@
 #import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLToastUtils.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "CLLocationManager+LL_Location.h"
 #import "CLLocation+LL_Location.h"
@@ -81,7 +81,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     // Get name.
     NSString *name = [filePath.lastPathComponent stringByDeletingPathExtension];
         
-    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLConfig shared].mockRouteTimeInterval name:name];
+    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLDebugConfig shared].mockRouteTimeInterval name:name];
     [self addRoute:model];
 }
 

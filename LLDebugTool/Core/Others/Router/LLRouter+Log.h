@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLRouter (Log)
 
-/// Call LLLogHelper if enable. LLConfigLogLevelDefault.
+/// Call LLLogHelper if enable. LLDebugConfigLogLevelDefault.
 /// @param file File name.
 /// @param function Function name.
 /// @param lineNo Line No.
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param message Message.
 + (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
-/// Call LLLogHelper if enable. LLConfigLogLevelAlert.
+/// Call LLLogHelper if enable. LLDebugConfigLogLevelAlert.
 /// @param file File name.
 /// @param function Function name.
 /// @param lineNo Line No.
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param message Message.
 + (void)alertLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
-/// Call LLLogHelper if enable. LLConfigLogLevelWarning.
+/// Call LLLogHelper if enable. LLDebugConfigLogLevelWarning.
 /// @param file File name.
 /// @param function Function name.
 /// @param lineNo Line No.
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param message Message.
 + (void)warningLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
-/// Call LLLogHelper if enable. LLConfigLogLevelError.
+/// Call LLLogHelper if enable. LLDebugConfigLogLevelError.
 /// @param file File name.
 /// @param function Function name.
 /// @param lineNo Line No.

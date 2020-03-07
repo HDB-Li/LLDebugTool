@@ -23,11 +23,11 @@
 
 #import "LLEntryStyleModel.h"
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @implementation LLEntryStyleModel
 
-- (instancetype)initWithWindowStyle:(LLConfigEntryWindowStyle)windowStyle moveableRect:(CGRect)moveableRect frame:(CGRect)frame {
+- (instancetype)initWithWindowStyle:(LLDebugConfigEntryWindowStyle)windowStyle moveableRect:(CGRect)moveableRect frame:(CGRect)frame {
     if (self = [super init]) {
         _windowStyle = windowStyle;
         _moveableRect = moveableRect;
@@ -35,19 +35,19 @@
         _moveable = YES;
         _inactiveAlpha = 1.0;
         switch (windowStyle) {
-            case LLConfigEntryWindowStyleBall: {
+            case LLDebugConfigEntryWindowStyleBall: {
                 _overflow = YES;
-                _inactiveAlpha = [LLConfig shared].inactiveAlpha;
+                _inactiveAlpha = [LLDebugConfig shared].inactiveAlpha;
             }
                 break;
-            case LLConfigEntryWindowStyleTitle: {
-                _inactiveAlpha = [LLConfig shared].inactiveAlpha;
+            case LLDebugConfigEntryWindowStyleTitle: {
+                _inactiveAlpha = [LLDebugConfig shared].inactiveAlpha;
             }
                 break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            case LLConfigEntryWindowStyleNetBar:
-            case LLConfigEntryWindowStylePowerBar: {
+            case LLDebugConfigEntryWindowStyleNetBar:
+            case LLDebugConfigEntryWindowStylePowerBar: {
                 _moveable = NO;
             }
                 break;

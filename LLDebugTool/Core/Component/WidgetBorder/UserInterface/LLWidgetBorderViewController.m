@@ -30,7 +30,7 @@
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @interface LLWidgetBorderViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -54,9 +54,9 @@
 
 #pragma mark - Primary
 - (void)loadData {
-    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"function.widget.border") flag:[LLConfig shared].isShowWidgetBorder];
+    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"function.widget.border") flag:[LLDebugConfig shared].isShowWidgetBorder];
     model1.changePropertyBlock = ^(id  _Nullable obj) {
-        [LLConfig shared].showWidgetBorder = [obj boolValue];
+        [LLDebugConfig shared].showWidgetBorder = [obj boolValue];
         [LLSettingManager shared].showWidgetBorder = @([obj boolValue]);
         [[LLWidgetBorderHelper shared] setEnable:[obj boolValue]];
     };

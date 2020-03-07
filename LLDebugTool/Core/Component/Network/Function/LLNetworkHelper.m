@@ -25,7 +25,7 @@
 
 #import "LLReachability.h"
 #import "LLURLProtocol.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLTool.h"
 
 #import "LLRouter+Network.h"
@@ -80,7 +80,7 @@ static LLNetworkHelper *_instance = nil;
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
         [LLTool log:@"LLNetworkHelper reigsiter URLProtocol fail"];
     }
-    if ([LLConfig shared].observerWebView) {
+    if ([LLDebugConfig shared].observerWebView) {
         Class cls = NSClassFromString(@"WKBrowsingContextController");
         SEL sel = NSSelectorFromString(@"registerSchemeForCustomProtocol:");
         if (cls && [cls respondsToSelector:sel]) {
@@ -95,7 +95,7 @@ static LLNetworkHelper *_instance = nil;
 
 - (void)unregisterLLURLProtocol {
     [NSURLProtocol unregisterClass:[LLURLProtocol class]];
-    if ([LLConfig shared].observerWebView) {
+    if ([LLDebugConfig shared].observerWebView) {
         Class cls = NSClassFromString(@"WKBrowsingContextController");
         SEL sel = NSSelectorFromString(@"unregisterSchemeForCustomProtocol:");
         if (cls && [cls respondsToSelector:sel]) {

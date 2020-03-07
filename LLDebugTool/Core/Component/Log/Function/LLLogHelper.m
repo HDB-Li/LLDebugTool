@@ -26,7 +26,7 @@
 #import "LLStorageManager.h"
 #import "LLFormatterTool.h"
 #import "LLLogModel.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "NSObject+LL_Utils.h"
 
@@ -46,13 +46,13 @@ static LLLogHelper *_instance = nil;
     return @[@"Default",@"Alert",@"Warning",@"Error"];
 }
 
-- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
+- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLDebugConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    LLConfigLogStyle logStyle = [LLConfig shared].logStyle;
+    LLDebugConfigLogStyle logStyle = [LLDebugConfig shared].logStyle;
     switch (logStyle) {
-        case LLConfigLogDetail:
-        case LLConfigLogFileFuncDesc:
-        case LLConfigLogFileDesc:{
+        case LLDebugConfigLogDetail:
+        case LLDebugConfigLogFileFuncDesc:
+        case LLDebugConfigLogFileDesc:{
             
             NSString *header = @"\n--------Debug Tool--------";
             NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>",onEvent];
@@ -68,13 +68,13 @@ static LLLogHelper *_instance = nil;
                 [log appendString:onEventString];
             }
             [log appendString:fileString];
-            if (logStyle == LLConfigLogDetail) {
+            if (logStyle == LLDebugConfigLogDetail) {
                 [log appendString:lineNoString];
             }
-            if (logStyle == LLConfigLogDetail || logStyle == LLConfigLogFileFuncDesc) {
+            if (logStyle == LLDebugConfigLogDetail || logStyle == LLDebugConfigLogFileFuncDesc) {
                 [log appendString:funcString];
             }
-            if (logStyle == LLConfigLogDetail) {
+            if (logStyle == LLDebugConfigLogDetail) {
                 [log appendString:dateString];
             }
             [log appendString:messageString];
@@ -82,10 +82,10 @@ static LLLogHelper *_instance = nil;
             NSLog(@"%@", log);
         }
             break;
-        case LLConfigLogNone: {
+        case LLDebugConfigLogNone: {
         }
             break;
-        case LLConfigLogNormal:
+        case LLDebugConfigLogNormal:
         default:{
             NSLog(@"%@",message);
         }
@@ -93,7 +93,7 @@ static LLLogHelper *_instance = nil;
     }
 
     if (_enable) {
-        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject LL_launchDate] userIdentity:[LLConfig shared].userIdentity];
+        LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject LL_launchDate] userIdentity:[LLDebugConfig shared].userIdentity];
         [[LLStorageManager shared] saveModel:model complete:nil];
     }
 }

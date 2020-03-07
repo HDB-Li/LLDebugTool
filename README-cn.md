@@ -147,7 +147,7 @@ LLDebugTool是一款针对开发者和测试者的调试工具，它可以帮助
 
 你需要在"application:(UIApplication * )application didFinishLaunchingWithOptions:(NSDictionary * )launchOptions"中启动LLDebugTool，否则你可能会丢掉某些信息。
 
-如果你想自定义一些参数，你需要在调用"startWorking"前配置这些参数。更详细的配置信息请看[LLConfig.h](https://github.com/HDB-Li/LLDebugTool/blob/master/LLDebugTool/Config/LLConfig.h)。
+如果你想自定义一些参数，你需要在调用"startWorking"前配置这些参数。更详细的配置信息请看[LLDebugConfig.h](https://github.com/HDB-Li/LLDebugTool/blob/master/LLDebugTool/Config/LLDebugConfig.h)。
 
 * `快速启动`
 
@@ -195,20 +195,20 @@ In Objective-C
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     // Start working with config.
-    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLConfig * _Nonnull config) {
+    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLDebugConfig * _Nonnull config) {
 
         //####################### Color Style #######################//
         // Uncomment one of the following lines to change the color configuration.
-        // config.colorStyle = LLConfigColorStyleSystem;
+        // config.colorStyle = LLDebugConfigColorStyleSystem;
         // [config configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
 
         //####################### User Identity #######################//
-        // Use this line to tag user. More config please see "LLConfig.h".
+        // Use this line to tag user. More config please see "LLDebugConfig.h".
         config.userIdentity = @"Miss L";
 
         //####################### Window Style #######################//
         // Uncomment one of the following lines to change the window style.
-        // config.entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+        // config.entryWindowStyle = LLDebugConfigEntryWindowStyleNetBar;
 
     }];
     
@@ -231,7 +231,7 @@ import LLDebugToolSwift
             // config.configBackgroundColor(.orange, textColor: .white, statusBarStyle: .default)
         
             //####################### User Identity #######################//
-            // Use this line to tag user. More config please see "LLConfig.h".
+            // Use this line to tag user. More config please see "LLDebugConfig.h".
             config.userIdentity = "Miss L";
         
             //####################### Window Style #######################//
@@ -381,7 +381,7 @@ LLDebugTool在支持ios8+，并且需要使用ARC模式。使用到的框架已�
 
     > `LLDebugTool.h` 用于启动和停止LLDebugTool，你需要看一下这个文件。
 
-    > `LLConfig.h` 用于自定义颜色、大小、标识和其他信息。如果您想要配置任何东西，您需要关注这个文件。
+    > `LLDebugConfig.h` 用于自定义颜色、大小、标识和其他信息。如果您想要配置任何东西，您需要关注这个文件。
     
     > `LLDebugToolMacros.h` 快捷的宏定义文件。
 

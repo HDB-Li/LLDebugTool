@@ -29,7 +29,7 @@
 #import "LLFormatterTool.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";

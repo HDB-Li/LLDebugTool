@@ -24,7 +24,7 @@
 #import "LLLocationProxy.h"
 
 #import "LLLocationHelper.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "CLLocation+LL_Location.h"
 
@@ -49,7 +49,7 @@
             }
         } else if ([LLLocationHelper shared].enable) {
             // Mock location.
-            CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLConfig shared].mockLocationLatitude longitude:[LLConfig shared].mockLocationLongitude];
+            CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLDebugConfig shared].mockLocationLatitude longitude:[LLDebugConfig shared].mockLocationLongitude];
             mockLocation.LL_mock = YES;
             locations = @[mockLocation];
         }

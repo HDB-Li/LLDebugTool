@@ -1,5 +1,5 @@
 //
-//  LLConfigHelper.m
+//  LLDebugConfigHelper.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,106 +21,106 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConfigHelper.h"
+#import "LLDebugConfigHelper.h"
 
 #import "LLFunctionItemModel.h"
 #import "LLThemeManager.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIColor+LL_Utils.h"
 
-@implementation LLConfigHelper
+@implementation LLDebugConfigHelper
 
 #pragma mark - Description
 + (NSString *)colorStyleDetailDescription {
-    return [self colorStyleDetailDescription:[LLConfig shared].colorStyle];
+    return [self colorStyleDetailDescription:[LLDebugConfig shared].colorStyle];
 }
 
-+ (NSString *)colorStyleDetailDescription:(LLConfigColorStyle)colorStyle {
++ (NSString *)colorStyleDetailDescription:(LLDebugConfigColorStyle)colorStyle {
     switch (colorStyle) {
-        case LLConfigColorStyleHack:
+        case LLDebugConfigColorStyleHack:
             return @"Hack";
-        case LLConfigColorStyleSimple:
+        case LLDebugConfigColorStyleSimple:
             return @"Simple";
-        case LLConfigColorStyleSystem:
+        case LLDebugConfigColorStyleSystem:
             return @"System";
-        case LLConfigColorStyleGrass:
+        case LLDebugConfigColorStyleGrass:
             return @"Grass";
-        case LLConfigColorStyleHomebrew:
+        case LLDebugConfigColorStyleHomebrew:
             return @"Homebrew";
-        case LLConfigColorStyleManPage:
+        case LLDebugConfigColorStyleManPage:
             return @"Man Page";
-        case LLConfigColorStyleNovel:
+        case LLDebugConfigColorStyleNovel:
             return @"Novel";
-        case LLConfigColorStyleOcean:
+        case LLDebugConfigColorStyleOcean:
             return @"Ocean";
-        case LLConfigColorStylePro:
+        case LLDebugConfigColorStylePro:
             return @"Pro";
-        case LLConfigColorStyleRedSands:
+        case LLDebugConfigColorStyleRedSands:
             return @"Red Sands";
-        case LLConfigColorStyleSilverAerogel:
+        case LLDebugConfigColorStyleSilverAerogel:
             return @"Silver Aerogel";
-        case LLConfigColorStyleSolidColors:
+        case LLDebugConfigColorStyleSolidColors:
             return @"Solid Colors";
-        case LLConfigColorStyleCustom:
+        case LLDebugConfigColorStyleCustom:
             return [NSString stringWithFormat:@"%@\n%@",[[LLThemeManager shared].primaryColor LL_description],[[LLThemeManager shared].backgroundColor LL_description]];
     }
 }
 
 + (NSString *)colorStyleDescription {
-    return [self colorStyleDescription:[LLConfig shared].colorStyle];
+    return [self colorStyleDescription:[LLDebugConfig shared].colorStyle];
 }
 
-+ (NSString *)colorStyleDescription:(LLConfigColorStyle)colorStyle {
++ (NSString *)colorStyleDescription:(LLDebugConfigColorStyle)colorStyle {
     switch (colorStyle) {
-        case LLConfigColorStyleHack:
+        case LLDebugConfigColorStyleHack:
             return @"Hack";
-        case LLConfigColorStyleSimple:
+        case LLDebugConfigColorStyleSimple:
             return @"Simple";
-        case LLConfigColorStyleSystem:
+        case LLDebugConfigColorStyleSystem:
             return @"System";
-        case LLConfigColorStyleGrass:
+        case LLDebugConfigColorStyleGrass:
             return @"Grass";
-        case LLConfigColorStyleHomebrew:
+        case LLDebugConfigColorStyleHomebrew:
             return @"Homebrew";
-        case LLConfigColorStyleManPage:
+        case LLDebugConfigColorStyleManPage:
             return @"Man Page";
-        case LLConfigColorStyleNovel:
+        case LLDebugConfigColorStyleNovel:
             return @"Novel";
-        case LLConfigColorStyleOcean:
+        case LLDebugConfigColorStyleOcean:
             return @"Ocean";
-        case LLConfigColorStylePro:
+        case LLDebugConfigColorStylePro:
             return @"Pro";
-        case LLConfigColorStyleRedSands:
+        case LLDebugConfigColorStyleRedSands:
             return @"Red Sands";
-        case LLConfigColorStyleSilverAerogel:
+        case LLDebugConfigColorStyleSilverAerogel:
             return @"Silver Aerogel";
-        case LLConfigColorStyleSolidColors:
+        case LLDebugConfigColorStyleSolidColors:
             return @"Solid Colors";
-        case LLConfigColorStyleCustom:
+        case LLDebugConfigColorStyleCustom:
             return @"Custom";
     }
 }
 
 + (NSString *)entryWindowStyleDescription {
-    return [self entryWindowStyleDescription:[LLConfig shared].entryWindowStyle];
+    return [self entryWindowStyleDescription:[LLDebugConfig shared].entryWindowStyle];
 }
 
-+ (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle {
++ (NSString *)entryWindowStyleDescription:(LLDebugConfigEntryWindowStyle)windowStyle {
     switch (windowStyle) {
-        case LLConfigEntryWindowStyleBall:
+        case LLDebugConfigEntryWindowStyleBall:
             return @"Ball";
-        case LLConfigEntryWindowStyleTitle:
+        case LLDebugConfigEntryWindowStyleTitle:
             return @"Title";
-        case LLConfigEntryWindowStyleLeading:
+        case LLDebugConfigEntryWindowStyleLeading:
             return @"Leading";
-        case LLConfigEntryWindowStyleTrailing:
+        case LLDebugConfigEntryWindowStyleTrailing:
             return @"Trailing";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        case LLConfigEntryWindowStyleNetBar:
+        case LLDebugConfigEntryWindowStyleNetBar:
             return @"Net Bar";
-        case LLConfigEntryWindowStylePowerBar:
+        case LLDebugConfigEntryWindowStylePowerBar:
             return @"Power Bar";
 #pragma clang diagnostic pop
     }
@@ -150,26 +150,26 @@
 }
 
 + (NSString *)logStyleDescription {
-    return [self logStyleDescription:[LLConfig shared].logStyle];
+    return [self logStyleDescription:[LLDebugConfig shared].logStyle];
 }
 
-+ (NSString *)logStyleDescription:(LLConfigLogStyle)style {
++ (NSString *)logStyleDescription:(LLDebugConfigLogStyle)style {
     switch (style) {
-        case LLConfigLogDetail:
+        case LLDebugConfigLogDetail:
             return @"Detail";
-        case LLConfigLogFileFuncDesc:
+        case LLDebugConfigLogFileFuncDesc:
             return @"File Func Desc";
-        case LLConfigLogFileDesc:
+        case LLDebugConfigLogFileDesc:
             return @"File Desc";
-        case LLConfigLogNormal:
+        case LLDebugConfigLogNormal:
             return @"Normal";
-        case LLConfigLogNone:
+        case LLDebugConfigLogNone:
             return @"None";
     }
 }
 
 + (NSString *)doubleClickComponentDescription {
-    return [self componentDescription:[LLConfig shared].doubleClickAction];
+    return [self componentDescription:[LLDebugConfig shared].doubleClickAction];
 }
 
 + (NSString *)componentDescription:(LLDebugToolAction)action {

@@ -28,7 +28,7 @@
 #import "LLInternalMacros.h"
 #import "LLNetworkModel.h"
 #import "LLToastUtils.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIImage+LL_Utils.h"
 

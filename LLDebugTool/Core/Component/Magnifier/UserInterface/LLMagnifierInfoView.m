@@ -28,7 +28,7 @@
 #import "LLWindowManager.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIColor+LL_Utils.h"
 #import "UIView+LL_Utils.h"

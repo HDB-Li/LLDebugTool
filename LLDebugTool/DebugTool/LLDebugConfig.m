@@ -1,5 +1,5 @@
 //
-//  LLConfig.m
+//  LLDebugConfig.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
@@ -29,30 +29,30 @@
 #import "LLDebugTool.h"
 #import "LLFactory.h"
 #import "LLRouter.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
 
 #import "LLRouter+Location.h"
 #import "LLRouter+ShortCut.h"
 
-static LLConfig *_instance = nil;
+static LLDebugConfig *_instance = nil;
 
 NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToolUpdateWindowStyleNotification";
 
-@implementation LLConfig
+@implementation LLDebugConfig
 
 + (instancetype)shared {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _instance = [[LLConfig alloc] init];
+        _instance = [[LLDebugConfig alloc] init];
         [_instance initial];
     });
     return _instance;
 }
 
 - (void)configPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
-    _colorStyle = LLConfigColorStyleCustom;
+    _colorStyle = LLDebugConfigColorStyleCustom;
     [LLThemeManager shared].themeColor = [LLThemeColor colorWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:statusBarStyle];
 }
 
@@ -88,7 +88,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
     
     // Set default color style.
-    _colorStyle = LLConfigColorStyleHack;
+    _colorStyle = LLDebugConfigColorStyleHack;
     
     // Set default suspension ball attributes.
     _entryWindowBallWidth = kLLEntryWindowBallWidth;
@@ -116,7 +116,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _doubleClickAction = LLDebugToolActionHierarchy;
     
     // Set default window's style.
-    _entryWindowStyle = LLConfigEntryWindowStyleBall;
+    _entryWindowStyle = LLDebugConfigEntryWindowStyleBall;
     
     // Start next time.
     _startWorkingNextTime = YES;
@@ -136,22 +136,22 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 }
 
 #pragma mark - Getters and setters
-- (void)setColorStyle:(LLConfigColorStyle)colorStyle {
+- (void)setColorStyle:(LLDebugConfigColorStyle)colorStyle {
     if (_colorStyle != colorStyle) {
         _colorStyle = colorStyle;
         [[LLThemeManager shared] updateWithColorStyle:colorStyle];
     }
 }
 
-- (void)setEntryWindowStyle:(LLConfigEntryWindowStyle)entryStyle {
-    LLConfigEntryWindowStyle style = entryStyle;
+- (void)setEntryWindowStyle:(LLDebugConfigEntryWindowStyle)entryStyle {
+    LLDebugConfigEntryWindowStyle style = entryStyle;
     if (@available(iOS 13.0, *)) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        if (entryStyle == LLConfigEntryWindowStyleNetBar) {
-            style = LLConfigEntryWindowStyleLeading;
-        } else if (entryStyle == LLConfigEntryWindowStylePowerBar) {
-            style = LLConfigEntryWindowStyleTrailing;
+        if (entryStyle == LLDebugConfigEntryWindowStyleNetBar) {
+            style = LLDebugConfigEntryWindowStyleLeading;
+        } else if (entryStyle == LLDebugConfigEntryWindowStylePowerBar) {
+            style = LLDebugConfigEntryWindowStyleTrailing;
         }
 #pragma clang diagnostic pop
     }

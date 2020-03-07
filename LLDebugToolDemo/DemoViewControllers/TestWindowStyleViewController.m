@@ -32,27 +32,27 @@
     
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Use \"Ball\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Use \"Title\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTitle ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleTitle ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Use \"Leading\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleLeading ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleLeading ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Use \"Trailing\"";
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 4) {
         cell.textLabel.text = @"Use \"NetBar\"";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 #pragma clang diagnostic pop
     } else if (indexPath.row == 5) {
         cell.textLabel.text = @"Use \"PowerBar\"";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        cell.accessoryType = [LLConfig shared].entryWindowStyle == LLConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 #pragma clang diagnostic pop
     }
     return cell;
@@ -77,27 +77,27 @@
 
 #pragma mark - Actions
 - (void)testBallWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleBall;
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleBall;
 }
 
 - (void)testTitleWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTitle;
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleTitle;
 }
 
 - (void)testLeadingWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleLeading;
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleLeading;
 }
 
 - (void)testTrailingWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleTrailing;
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleTrailing;
 }
 
 - (void)testNetBarWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleNetBar;
 }
 
 - (void)testPowerBarWindowStyle {
-    [LLConfig shared].entryWindowStyle = LLConfigEntryWindowStylePowerBar;
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStylePowerBar;
 }
 
 @end

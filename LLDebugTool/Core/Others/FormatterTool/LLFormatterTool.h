@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Date formatter style.
 
- - FormatterToolDateStyle1: LLConfig.dateFormatter
+ - FormatterToolDateStyle1: LLDebugConfig.dateFormatter
  - FormatterToolDateStyle2: "yyyy-MM-dd"
  - FormatterToolDateStyle3: "yyyy-MM-dd HH:mm:ss"
  */

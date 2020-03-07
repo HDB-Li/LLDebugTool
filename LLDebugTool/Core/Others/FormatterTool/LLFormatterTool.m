@@ -23,7 +23,7 @@
 
 #import "LLFormatterTool.h"
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 static LLFormatterTool *_instance = nil;
 
@@ -96,7 +96,7 @@ static LLFormatterTool *_instance = nil;
 - (NSDictionary *)formatters {
     if (!_formatters) {
         NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-        dateFormatter1.dateFormat = [LLConfig shared].dateFormatter;
+        dateFormatter1.dateFormat = [LLDebugConfig shared].dateFormatter;
         
         NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
         dateFormatter2.dateFormat = @"yyyy-MM-dd";

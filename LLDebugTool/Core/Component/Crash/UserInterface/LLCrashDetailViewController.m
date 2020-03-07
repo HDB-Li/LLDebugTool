@@ -28,7 +28,7 @@
 #import "LLStorageManager.h"
 #import "LLToastUtils.h"
 #import "LLCrashModel.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "LLRouter+Network.h"
 #import "LLRouter+Log.h"

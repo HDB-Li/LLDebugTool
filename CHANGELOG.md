@@ -64,7 +64,7 @@ Widget Border function : Display element border, convenient to see the view's fr
 
 #### Add
 
-* Add `LLSettingManager` to control some settings in tool, you can configure `LLConfig`'s options dynamically without re-archiving.
+* Add `LLSettingManager` to control some settings in tool, you can configure `LLDebugConfig`'s options dynamically without re-archiving.
 
 * Add `Hierarchy Detail Info` function to show more detail info of target view. Similar to `Debug View Hierarchy` function in XCode.
 
@@ -191,17 +191,17 @@ More changes can be viewed in [Version 1.1.6 Project](https://github.com/HDB-Li/
 
 ###  Start/stop function module dynamically
 
-Add a options `LLConfigAvailableFeature` in `LLConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module. More changes can be viewed in [Version 1.1.5 Project](https://github.com/HDB-Li/LLDebugTool/projects/4).
+Add a options `LLDebugConfigAvailableFeature` in `LLDebugConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module. More changes can be viewed in [Version 1.1.5 Project](https://github.com/HDB-Li/LLDebugTool/projects/4).
 
 #### Add
 
-* Add a options `LLConfigAvailableFeature` in `LLConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module.
-* Add enumeration values `LLConfigLogFileFuncDesc` and `LLConfigLogFileDesc` in `LLConfigLogStyle`.
+* Add a options `LLDebugConfigAvailableFeature` in `LLDebugConfig` used to control whether to enable ` LLDebugTool` one of function module, now you can dynamically start/stop a module.
+* Add enumeration values `LLDebugConfigLogFileFuncDesc` and `LLDebugConfigLogFileDesc` in `LLDebugConfigLogStyle`.
 
 #### Update
 
-* Update `LLAppHelper` and `LLConfig`, Cleaner code.
-* Update `LLConfig`, now you can dynamic change `colorStyle` and `windowStyle` in running, See demo for more effects.
+* Update `LLAppHelper` and `LLDebugConfig`, Cleaner code.
+* Update `LLDebugConfig`, now you can dynamic change `colorStyle` and `windowStyle` in running, See demo for more effects.
 * Update `LLSubTitleTableViewCell` to fix UITextView bug under ios 8.
 
 #### Extra
@@ -247,7 +247,7 @@ The new version will delete the old version of the table in database, if you nee
 
 * Refactory `LLStorageManager` to make sure it will work well in synchronous and asynchronous or main thread and child thread.
 * `DEPRECATED` some method in `LLStorageManager`, `LLTool` and `LLAppHelper`, More infomations please see`LLStorageManager.h`, `LLTool.h` and `LLAppHelper.h`.
-* Add a enumeration values in `LLConfig` to control `LLLogHelper`'s log style.
+* Add a enumeration values in `LLDebugConfig` to control `LLLogHelper`'s log style.
 
 ## [1.1.2](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.2) (08/09/2018)
 
@@ -262,7 +262,7 @@ Some time suspension ball is too big, so you can put `LLDebugTool` on power bar 
 #### Add
 
 * Add window style enum. now you can show as suspension ball , power bar or network bar.
-* Add some `LLDebugTool` event log, you can close it in `LLConfig`.
+* Add some `LLDebugTool` event log, you can close it in `LLDebugConfig`.
 * Add `LLNetworkFilterView`, now you can filter network with url, header, body or response.
 
 #### Update
@@ -291,7 +291,7 @@ Fix crash when use `use_frameworks!` in `CocoaPods`. (Failed resource loading)
 #### Update
 
 * Use method `[UIImage LL_imageNamed:]` to replace method  `[UIImage imageNamed]`, to solve image resource loading failed.
-* Use `[LLConfig sharedConfig].XIBBundle` to register XIB file, to solve crash when use `use_frameworks!` in `CocoaPods`.
+* Use `[LLDebugConfig sharedConfig].XIBBundle` to register XIB file, to solve crash when use `use_frameworks!` in `CocoaPods`.
 
 ## [1.1.0](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.1.0) (06/07/2018)
 

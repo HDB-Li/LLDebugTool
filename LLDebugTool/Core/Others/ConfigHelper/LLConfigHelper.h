@@ -1,5 +1,5 @@
 //
-//  LLConfigHelper.h
+//  LLDebugConfigHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -24,25 +24,25 @@
 #import <Foundation/Foundation.h>
 
 #import "LLDebugTool.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Config description helper.
-@interface LLConfigHelper : NSObject
+@interface LLDebugConfigHelper : NSObject
 
 #pragma mark - Description
 + (NSString *)colorStyleDetailDescription;
 
-+ (NSString *)colorStyleDetailDescription:(LLConfigColorStyle)colorStyle;
++ (NSString *)colorStyleDetailDescription:(LLDebugConfigColorStyle)colorStyle;
 
 + (NSString *)colorStyleDescription;
 
-+ (NSString *)colorStyleDescription:(LLConfigColorStyle)colorStyle;
++ (NSString *)colorStyleDescription:(LLDebugConfigColorStyle)colorStyle;
 
 + (NSString *)entryWindowStyleDescription;
 
-+ (NSString *)entryWindowStyleDescription:(LLConfigEntryWindowStyle)windowStyle;
++ (NSString *)entryWindowStyleDescription:(LLDebugConfigEntryWindowStyle)windowStyle;
 
 + (NSString *)statusBarStyleDescription;
 
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)logStyleDescription;
 
-+ (NSString *)logStyleDescription:(LLConfigLogStyle)style;
++ (NSString *)logStyleDescription:(LLDebugConfigLogStyle)style;
 
 + (NSString *)doubleClickComponentDescription;
 

@@ -24,7 +24,7 @@
 #import "LLMagnifierView.h"
 
 #import "LLThemeManager.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "LLRouter+Screenshot.h"
 #import "UIImage+LL_Utils.h"
@@ -47,10 +47,10 @@
     
     CGContextClearRect(context, self.frame);
     
-    NSInteger zoomLevel = [LLConfig shared].magnifierZoomLevel;
+    NSInteger zoomLevel = [LLDebugConfig shared].magnifierZoomLevel;
     // Image's scale, default screenshot's scale is [UIScreen mainScreen].scale, but we only use 1.0 is ok.
     CGFloat scale = 1.0;
-    NSInteger size = [LLConfig shared].magnifierSize;
+    NSInteger size = [LLDebugConfig shared].magnifierSize;
     NSInteger skip = 1;
     
     CGPoint currentPoint = CGPointMake(self.targetPoint.x * scale, self.targetPoint.y * scale);
@@ -92,7 +92,7 @@
     [self LL_setCornerRadius:self.LL_width / 2.0];
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     
-    NSInteger zoomLevel = [LLConfig shared].magnifierZoomLevel;
+    NSInteger zoomLevel = [LLDebugConfig shared].magnifierZoomLevel;
     
     NSInteger centerX = self.LL_width / 2.0;
     NSInteger centerY = self.LL_height / 2.0;

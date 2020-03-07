@@ -26,7 +26,7 @@
 #import "LLHierarchyHelper.h"
 #import "LLThemeManager.h"
 #import "LLBaseWindow.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "UIView+LL_Utils.h"
 

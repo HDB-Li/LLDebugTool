@@ -30,7 +30,7 @@
 #import "LLEntryTitleView.h"
 #import "LLEntryBallView.h"
 #import "LLComponent.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
 
@@ -52,7 +52,7 @@
 
 @property (nonatomic, strong) LLEntryView *powerView;
 
-@property (nonatomic, assign) LLConfigEntryWindowStyle style;
+@property (nonatomic, assign) LLDebugConfigEntryWindowStyle style;
 
 @end
 
@@ -63,38 +63,38 @@
     
     self.view.backgroundColor = [UIColor clearColor];
     self.updateBackgroundColor = NO;
-    self.style = [LLConfig shared].entryWindowStyle;
+    self.style = [LLDebugConfig shared].entryWindowStyle;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateWindowStyleNotification:) name:LLDebugToolUpdateWindowStyleNotification object:nil];
 }
 
 #pragma mark - Primary
-- (void)updateStyle:(LLConfigEntryWindowStyle)style {
+- (void)updateStyle:(LLDebugConfigEntryWindowStyle)style {
     [self.activeView removeFromSuperview];
     switch (style) {
-        case LLConfigEntryWindowStyleBall: {
+        case LLDebugConfigEntryWindowStyleBall: {
             self.activeView = self.ballView;
         }
             break;
-        case LLConfigEntryWindowStyleTitle: {
+        case LLDebugConfigEntryWindowStyleTitle: {
             self.activeView = self.bigTitleView;
         }
             break;
-        case LLConfigEntryWindowStyleLeading: {
+        case LLDebugConfigEntryWindowStyleLeading: {
             self.activeView = self.leadingView;
         }
             break;
-        case LLConfigEntryWindowStyleTrailing: {
+        case LLDebugConfigEntryWindowStyleTrailing: {
             self.activeView = self.trailingView;
         }
             break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        case LLConfigEntryWindowStyleNetBar: {
+        case LLDebugConfigEntryWindowStyleNetBar: {
             self.activeView = self.netView;
         }
             break;
-        case LLConfigEntryWindowStylePowerBar: {
+        case LLDebugConfigEntryWindowStylePowerBar: {
             self.activeView = self.powerView;
         }
             break;
@@ -106,19 +106,19 @@
 
 - (UIView *)activeEntryView {
     switch (self.style) {
-        case LLConfigEntryWindowStyleBall:
+        case LLDebugConfigEntryWindowStyleBall:
             return self.ballView;
-        case LLConfigEntryWindowStyleTitle:
+        case LLDebugConfigEntryWindowStyleTitle:
             return self.bigTitleView;
-        case LLConfigEntryWindowStyleLeading:
+        case LLDebugConfigEntryWindowStyleLeading:
             return self.leadingView;
-        case LLConfigEntryWindowStyleTrailing:
+        case LLDebugConfigEntryWindowStyleTrailing:
             return self.trailingView;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        case LLConfigEntryWindowStyleNetBar:
+        case LLDebugConfigEntryWindowStyleNetBar:
             return self.netView;
-        case LLConfigEntryWindowStylePowerBar:
+        case LLDebugConfigEntryWindowStylePowerBar:
             return self.powerView;
 #pragma clang diagnostic pop
     }
@@ -126,23 +126,23 @@
 
 #pragma mark - LLDebugToolUpdateWindowStyleNotification
 - (void)didReceiveDebugToolUpdateWindowStyleNotification:(NSNotification *)notifi {
-    self.style = [LLConfig shared].entryWindowStyle;
+    self.style = [LLDebugConfig shared].entryWindowStyle;
 }
 
 #pragma mark - Lazy
-- (void)setStyle:(LLConfigEntryWindowStyle)style {
+- (void)setStyle:(LLDebugConfigEntryWindowStyle)style {
     _style = style;
     [self updateStyle:style];
 }
 
 - (LLEntryBallView *)ballView {
     if (!_ballView) {
-        CGFloat width = [LLConfig shared].entryWindowBallWidth;
+        CGFloat width = [LLDebugConfig shared].entryWindowBallWidth;
         CGRect frame = CGRectZero;
-        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
         frame.size = CGSizeMake(width, width);
         _ballView = [[LLEntryBallView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
-        _ballView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleBall moveableRect:CGRectNull frame:frame];
+        _ballView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleBall moveableRect:CGRectNull frame:frame];
     }
     return _ballView;
 }
@@ -150,10 +150,10 @@
 - (LLEntryBigTitleView *)bigTitleView {
     if (!_bigTitleView) {
         CGRect frame = CGRectZero;
-        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
         _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
         frame.size = _bigTitleView.LL_size;
-        _bigTitleView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleTitle moveableRect:CGRectNull frame:frame];
+        _bigTitleView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleTitle moveableRect:CGRectNull frame:frame];
     }
     return _bigTitleView;
 }
@@ -161,10 +161,10 @@
 - (LLEntryView *)leadingView {
     if (!_leadingView) {
         CGRect frame = CGRectZero;
-        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
         _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
         frame.size = _leadingView.LL_size;
-        _leadingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleLeading moveableRect:CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0) frame:frame];
+        _leadingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleLeading moveableRect:CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0) frame:frame];
     }
     return _leadingView;
 }
@@ -172,11 +172,11 @@
 - (LLEntryView *)trailingView {
     if (!_trailingView) {
         CGRect frame = CGRectZero;
-        frame.origin = [LLConfig shared].entryWindowFirstDisplayPosition;
+        frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
         _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
         frame.size = _trailingView.LL_size;
         frame.origin.x = LL_SCREEN_WIDTH - frame.size.width;
-        _trailingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleTrailing moveableRect:CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0) frame:frame];
+        _trailingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleTrailing moveableRect:CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0) frame:frame];
     }
     return _trailingView;
 }
@@ -193,7 +193,7 @@
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _netView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStyleNetBar moveableRect:CGRectNull frame:frame];
+        _netView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleNetBar moveableRect:CGRectNull frame:frame];
 #pragma clang diagnostic pop
     }
     return _netView;
@@ -213,7 +213,7 @@
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _powerView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLConfigEntryWindowStylePowerBar moveableRect:CGRectNull frame:frame];
+        _powerView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStylePowerBar moveableRect:CGRectNull frame:frame];
 #pragma clang diagnostic pop
     }
     return _powerView;

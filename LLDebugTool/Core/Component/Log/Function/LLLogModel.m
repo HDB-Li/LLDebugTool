@@ -24,7 +24,7 @@
 #import "LLLogModel.h"
 
 #import "LLFormatterTool.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLTool.h"
 
 @interface LLLogModel ()
@@ -35,7 +35,7 @@
 
 @implementation LLLogModel
 
-- (instancetype)initWithFile:(NSString *)file lineNo:(NSInteger)lineNo function:(NSString *)function level:(LLConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *)userIdentity {
+- (instancetype)initWithFile:(NSString *)file lineNo:(NSInteger)lineNo function:(NSString *)function level:(LLDebugConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message date:(NSString *)date launchDate:(NSString *)launchDate userIdentity:(NSString *)userIdentity {
     if (self = [super init]) {
         _file = [file copy];
         _lineNo = lineNo;
@@ -53,13 +53,13 @@
 
 - (NSString *)levelDescription {
     switch (self.level) {
-        case LLConfigLogLevelDefault:
+        case LLDebugConfigLogLevelDefault:
             return @"Default";
-        case LLConfigLogLevelAlert:
+        case LLDebugConfigLogLevelAlert:
             return @"Alert";
-        case LLConfigLogLevelWarning:
+        case LLDebugConfigLogLevelWarning:
             return @"Warning";
-        case LLConfigLogLevelError:
+        case LLDebugConfigLogLevelError:
             return @"Error";
     }
     return @"Unknown";

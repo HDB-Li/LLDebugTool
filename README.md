@@ -147,7 +147,7 @@ Alternatively you can directly add the source folder named LLDebugTool.  to your
 
 You need to start LLDebugTool at "application:(UIApplication * )application didFinishLaunchingWithOptions:(NSDictionary * )launchOptions", Otherwise you will lose some information. 
 
-If you want to configure some parameters, must configure before "startWorking". More config details see [LLConfig.h](https://github.com/HDB-Li/LLDebugTool/blob/master/LLDebugTool/Config/LLConfig.h).
+If you want to configure some parameters, must configure before "startWorking". More config details see [LLDebugConfig.h](https://github.com/HDB-Li/LLDebugTool/blob/master/LLDebugTool/Config/LLDebugConfig.h).
 
 * `Quick Start`
 
@@ -195,20 +195,20 @@ In Objective-C
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     // Start working with config.
-    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLConfig * _Nonnull config) {
+    [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLDebugConfig * _Nonnull config) {
 
         //####################### Color Style #######################//
         // Uncomment one of the following lines to change the color configuration.
-        // config.colorStyle = LLConfigColorStyleSystem;
+        // config.colorStyle = LLDebugConfigColorStyleSystem;
         // [config configBackgroundColor:[UIColor orangeColor] primaryColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
 
         //####################### User Identity #######################//
-        // Use this line to tag user. More config please see "LLConfig.h".
+        // Use this line to tag user. More config please see "LLDebugConfig.h".
         config.userIdentity = @"Miss L";
 
         //####################### Window Style #######################//
         // Uncomment one of the following lines to change the window style.
-        // config.entryWindowStyle = LLConfigEntryWindowStyleNetBar;
+        // config.entryWindowStyle = LLDebugConfigEntryWindowStyleNetBar;
 
     }];
 
@@ -231,7 +231,7 @@ import LLDebugToolSwift
             // config.configBackgroundColor(.orange, textColor: .white, statusBarStyle: .default)
         
             //####################### User Identity #######################//
-            // Use this line to tag user. More config please see "LLConfig.h".
+            // Use this line to tag user. More config please see "LLDebugConfig.h".
             config.userIdentity = "Miss L";
         
             //####################### Window Style #######################//
@@ -381,7 +381,7 @@ LLDebugTool works on iOS 8+ and requires ARC to build. It depends on the followi
 
     > `LLDebugTool` Used to start and stop LLDebugTool, you need to look at it.
     
-    > `LLConfig` Used for the custom color , size , identification and other information. If you want to configure anything, you need to focus on this file.
+    > `LLDebugConfig` Used for the custom color , size , identification and other information. If you want to configure anything, you need to focus on this file.
     
     > `LLDebugToolMacros.h` Quick macro definition file.
 

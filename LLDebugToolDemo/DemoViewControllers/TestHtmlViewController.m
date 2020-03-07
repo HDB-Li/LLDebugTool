@@ -46,15 +46,15 @@
 
 #pragma mark - Action
 - (void)testHtml {
-    if ([LLConfig shared].htmlViewControllerProvider) {
-        [LLConfig shared].htmlViewControllerProvider = nil;
+    if ([LLDebugConfig shared].htmlViewControllerProvider) {
+        [LLDebugConfig shared].htmlViewControllerProvider = nil;
     }
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionHtml];
 }
 
 - (void)testCustomHtmlViewController {
-    if (![LLConfig shared].htmlViewControllerProvider) {
-        [LLConfig shared].htmlViewControllerProvider = ^UIViewController * _Nonnull(NSString * _Nonnull url) {
+    if (![LLDebugConfig shared].htmlViewControllerProvider) {
+        [LLDebugConfig shared].htmlViewControllerProvider = ^UIViewController * _Nonnull(NSString * _Nonnull url) {
             CustomWebViewController *vc = [[CustomWebViewController alloc] init];
             vc.url = url;
             return vc;

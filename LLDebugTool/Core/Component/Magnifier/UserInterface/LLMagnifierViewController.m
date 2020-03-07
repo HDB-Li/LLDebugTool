@@ -26,7 +26,7 @@
 #import "LLMagnifierInfoView.h"
 #import "LLInternalMacros.h"
 #import "LLMagnifierView.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 @interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLInfoViewDelegate>
@@ -50,7 +50,7 @@
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
     
-    NSInteger width = [LLConfig shared].magnifierZoomLevel * [LLConfig shared].magnifierSize;
+    NSInteger width = [LLDebugConfig shared].magnifierZoomLevel * [LLDebugConfig shared].magnifierSize;
     self.magnifierView = [[LLMagnifierView alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     self.magnifierView.delegate = self;
     [self.view addSubview:self.magnifierView];

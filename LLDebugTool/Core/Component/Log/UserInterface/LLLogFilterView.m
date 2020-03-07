@@ -31,7 +31,7 @@
 #import "LLThemeManager.h"
 #import "LLLogModel.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 #import "UIButton+LL_Utils.h"

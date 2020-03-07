@@ -89,7 +89,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     // Prepare to start.
     [self prepareToStart];
     // show window
-    if (self.installed || ![LLConfig shared].hideWhenInstall) {
+    if (self.installed || ![LLDebugConfig shared].hideWhenInstall) {
         [self showWindow];
     }
     if (!self.installed) {
@@ -99,9 +99,9 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     self.installed = YES;
 }
 
-- (void)startWorkingWithConfigBlock:(void (^)(LLConfig *config))configBlock {
+- (void)startWorkingWithConfigBlock:(void (^)(LLDebugConfig *config))configBlock {
     if (configBlock) {
-        configBlock([LLConfig shared]);
+        configBlock([LLDebugConfig shared]);
     }
     [self startWorking];
 }
@@ -171,7 +171,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (!self.isWorking) {
         return;
     }
-    if ([LLConfig shared].isShakeToHide) {
+    if ([LLDebugConfig shared].isShakeToHide) {
         if ([LLWindowManager shared].entryWindow.isHidden) {
             [self showWindow];
         } else {
@@ -188,10 +188,10 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     
     NSDictionary *data = notification.userInfo[LLDebugToolStartWorkingConfigNotificationKey];
     if ([data isKindOfClass:[NSDictionary class]]) {
-        NSArray *propertys = [LLConfig LL_getPropertyNames];
+        NSArray *propertys = [LLDebugConfig LL_getPropertyNames];
         for (NSString *key in data) {
             if ([propertys containsObject:key]) {
-                [[LLConfig shared] setValue:data[key] forKey:key];
+                [[LLDebugConfig shared] setValue:data[key] forKey:key];
             }
         }
     }
@@ -211,8 +211,8 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)checkVersion {
-    [LLTool createDirectoryAtPath:[LLConfig shared].folderPath];
-    __block NSString *filePath = [[LLConfig shared].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
+    [LLTool createDirectoryAtPath:[LLDebugConfig shared].folderPath];
+    __block NSString *filePath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"LLDebugTool.plist"];
     NSMutableDictionary *localInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
     if (!localInfo) {
         localInfo = [[NSMutableDictionary alloc] init];

@@ -35,7 +35,7 @@
 #import "LLThemeManager.h"
 #import "LLAnnotation.h"
 #import "LLToastUtils.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"
@@ -264,8 +264,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 }
 
 - (void)setUpMockCoordinate:(CLLocationCoordinate2D)coordinate {
-    [LLConfig shared].mockLocationLatitude = coordinate.latitude;
-    [LLConfig shared].mockLocationLongitude = coordinate.longitude;
+    [LLDebugConfig shared].mockLocationLatitude = coordinate.latitude;
+    [LLDebugConfig shared].mockLocationLongitude = coordinate.longitude;
     [LLSettingManager shared].mockLocationLatitude = @(coordinate.latitude);
     [LLSettingManager shared].mockLocationLongitude = @(coordinate.longitude);
 }
@@ -369,7 +369,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 }
 
 - (void)loadData {
-    CLLocationCoordinate2D mockCoordinate = CLLocationCoordinate2DMake([LLConfig shared].mockLocationLatitude, [LLConfig shared].mockLocationLongitude);
+    CLLocationCoordinate2D mockCoordinate = CLLocationCoordinate2DMake([LLDebugConfig shared].mockLocationLatitude, [LLDebugConfig shared].mockLocationLongitude);
     BOOL automicSetRegion = YES;
     if (mockCoordinate.latitude == 0 && mockCoordinate.longitude == 0) {
         mockCoordinate = CLLocationCoordinate2DMake(kLLDefaultMockLocationLatitude, kLLDefaultMockLocationLongitude);

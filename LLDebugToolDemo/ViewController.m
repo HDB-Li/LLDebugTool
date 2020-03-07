@@ -275,88 +275,88 @@ static NSString *const kCellID = @"cellID";
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            switch ([LLConfig shared].colorStyle) {
-                case LLConfigColorStyleHack:{
-                    cell.detailTextLabel.text = @"LLConfigColorStyleHack";
+            switch ([LLDebugConfig shared].colorStyle) {
+                case LLDebugConfigColorStyleHack:{
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleHack";
                 }
                     break;
-                case LLConfigColorStyleSimple:{
-                    cell.detailTextLabel.text = @"LLConfigColorStyleSimple";
+                case LLDebugConfigColorStyleSimple:{
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleSimple";
                 }
                     break;
-                case LLConfigColorStyleSystem:{
-                    cell.detailTextLabel.text = @"LLConfigColorStyleSystem";
+                case LLDebugConfigColorStyleSystem:{
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleSystem";
                 }
                     break;
-                case LLConfigColorStyleGrass: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleGrass";
+                case LLDebugConfigColorStyleGrass: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleGrass";
                 }
                     break;
-                case LLConfigColorStyleHomebrew: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleHomebrew";
+                case LLDebugConfigColorStyleHomebrew: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleHomebrew";
                 }
                     break;
-                case LLConfigColorStyleManPage: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleManPage";
+                case LLDebugConfigColorStyleManPage: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleManPage";
                 }
                     break;
-                case LLConfigColorStyleNovel: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleNovel";
+                case LLDebugConfigColorStyleNovel: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleNovel";
                 }
                     break;
-                case LLConfigColorStyleOcean: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleOcean";
+                case LLDebugConfigColorStyleOcean: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleOcean";
                 }
                     break;
-                case LLConfigColorStylePro: {
-                    cell.detailTextLabel.text = @"LLConfigColorStylePro";
+                case LLDebugConfigColorStylePro: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStylePro";
                 }
                     break;
-                case LLConfigColorStyleRedSands: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleRedSands";
+                case LLDebugConfigColorStyleRedSands: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleRedSands";
                 }
                     break;
-                case LLConfigColorStyleSilverAerogel: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleSilverAerogel";
+                case LLDebugConfigColorStyleSilverAerogel: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleSilverAerogel";
                 }
                     break;
-                case LLConfigColorStyleSolidColors: {
-                    cell.detailTextLabel.text = @"LLConfigColorStyleSolidColors";
+                case LLDebugConfigColorStyleSolidColors: {
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleSolidColors";
                 }
                     break;
-                case LLConfigColorStyleCustom:{
-                    cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
+                case LLDebugConfigColorStyleCustom:{
+                    cell.detailTextLabel.text = @"LLDebugConfigColorStyleCustom";
                 }
                     break;
             }
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            switch ([LLConfig shared].entryWindowStyle) {
-                case LLConfigEntryWindowStyleBall:{
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleBall";
+            switch ([LLDebugConfig shared].entryWindowStyle) {
+                case LLDebugConfigEntryWindowStyleBall:{
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleBall";
                 }
                     break;
-                case LLConfigEntryWindowStyleTitle:{
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTitle";
+                case LLDebugConfigEntryWindowStyleTitle:{
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleTitle";
                 }
                     break;
-                case LLConfigEntryWindowStyleLeading: {
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
+                case LLDebugConfigEntryWindowStyleLeading: {
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleLeading";
                 }
                     break;
-                case LLConfigEntryWindowStyleTrailing: {
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTrailing";
+                case LLDebugConfigEntryWindowStyleTrailing: {
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleTrailing";
                 }
                     break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                case LLConfigEntryWindowStylePowerBar:{
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
+                case LLDebugConfigEntryWindowStylePowerBar:{
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStylePowerBar";
                 }
                     break;
-                case LLConfigEntryWindowStyleNetBar:{
-                    cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
+                case LLDebugConfigEntryWindowStyleNetBar:{
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleNetBar";
                 }
                     break;
 #pragma clang diagnostic pop
@@ -442,7 +442,7 @@ static NSString *const kCellID = @"cellID";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return @"LLConfig";
+        return @"LLDebugConfig";
     } else if (section == 1) {
         return @"Network Request";
     } else if (section == 2) {

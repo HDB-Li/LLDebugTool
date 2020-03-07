@@ -24,7 +24,7 @@
 #import "UIView+LLWidgetBorder.h"
 
 #import "LLThemeManager.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 #import "NSObject+LL_Runtime.h"
@@ -42,7 +42,7 @@ static const char kLLBorderLayerKey;
 
 - (void)LL_layoutSubviews {
     [self LL_layoutSubviews];
-    [self LL_updateBorderLayer:[LLConfig shared].isShowWidgetBorder];
+    [self LL_updateBorderLayer:[LLDebugConfig shared].isShowWidgetBorder];
 }
 
 - (void)LL_updateBorderLayer:(BOOL)enable {

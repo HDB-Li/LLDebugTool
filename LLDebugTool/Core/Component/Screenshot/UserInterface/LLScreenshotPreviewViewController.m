@@ -32,7 +32,7 @@
 #import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
 #import "LLToastUtils.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"

@@ -27,7 +27,7 @@
 #import "LLScreenshotComponent.h"
 #import "LLInternalMacros.h"
 #import "LLFormatterTool.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLTool.h"
 
 #import "LLRouter+Screenshot.h"
@@ -109,7 +109,7 @@ static LLScreenshotHelper *_instance = nil;
 
 #pragma mark - Primary
 - (void)initial {
-    self.screenshotFolderPath = [[LLConfig shared].folderPath stringByAppendingPathComponent:@"Screenshot"];
+    self.screenshotFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Screenshot"];
     [LLTool createDirectoryAtPath:self.screenshotFolderPath];
 }
 

@@ -33,44 +33,44 @@
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleHack\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleHack ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleHack\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleHack ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleSimple\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleSimple ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleSimple\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleSimple ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 2) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleSystem\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleSystem ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleSystem\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleSystem ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 3) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleGrass\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleGrass ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleGrass\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleGrass ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 4) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleHomebrew\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleHomebrew ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleHomebrew\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleHomebrew ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 5) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleManPage\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleManPage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleManPage\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleManPage ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 6) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleNovel\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleNovel ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleNovel\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleNovel ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 7) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleOcean\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleOcean ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleOcean\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleOcean ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 8) {
-        cell.textLabel.text = @"Use \"LLConfigColorStylePro\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStylePro ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStylePro\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStylePro ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 9) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleRedSands\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleRedSands ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleRedSands\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleRedSands ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 10) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleSilverAerogel\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleSilverAerogel ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleSilverAerogel\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleSilverAerogel ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 11) {
-        cell.textLabel.text = @"Use \"LLConfigColorStyleSolidColors\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleSolidColors ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"LLDebugConfigColorStyleSolidColors\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleSolidColors ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else if (indexPath.row == 12) {
-        cell.textLabel.text = @"Use \"[[LLConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault]\"";
-        cell.accessoryType = [LLConfig shared].colorStyle == LLConfigColorStyleCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.textLabel.text = @"Use \"[[LLDebugConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault]\"";
+        cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
     return cell;
@@ -109,67 +109,67 @@
 
 #pragma mark - Actions
 - (void)testHackColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleHack;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleHack;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testSimpleColorSytle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleSimple;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleSimple;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testSystemColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleSystem;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleSystem;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testGrassColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleGrass;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleGrass;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testHomebrewColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleHomebrew;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleHomebrew;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testManPageColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleManPage;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleManPage;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testNovelColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleNovel;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleNovel;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testOceanColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleOcean;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleOcean;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testProColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStylePro;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStylePro;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testRedSandsColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleRedSands;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleRedSands;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testSilverAerogelColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleSilverAerogel;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleSilverAerogel;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testSolidColorsColorStyle {
-    [LLConfig shared].colorStyle = LLConfigColorStyleSolidColors;
+    [LLDebugConfig shared].colorStyle = LLDebugConfigColorStyleSolidColors;
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 
 - (void)testCustomColorConfig {
-    [[LLConfig shared] configPrimaryColor:[UIColor whiteColor] backgroundColor:[UIColor orangeColor] statusBarStyle:UIStatusBarStyleLightContent];
+    [[LLDebugConfig shared] configPrimaryColor:[UIColor whiteColor] backgroundColor:[UIColor orangeColor] statusBarStyle:UIStatusBarStyleLightContent];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionSetting];
 }
 

@@ -37,7 +37,7 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
 
 /**
  Singleton to operation database.
- Database file path is based on LLConfig's folderPath.
+ Database file path is based on LLDebugConfig's folderPath.
 
  @return Singleton
  */

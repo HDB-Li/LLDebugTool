@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -55,7 +55,7 @@ FOUNDATION_EXPORT LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorking
 
  @param configBlock Config block.
  */
-- (void)startWorkingWithConfigBlock:(void (^__nullable)(LLConfig *config))configBlock;
+- (void)startWorkingWithConfigBlock:(void (^__nullable)(LLDebugConfig *config))configBlock;
 
 /**
  Stop working.
@@ -103,7 +103,7 @@ Whether is Beta.
 @interface LLDebugTool (Log)
 
 /**
- Print and save a log model with infos. LLConfigLogLevelDefault.
+ Print and save a log model with infos. LLDebugConfigLogLevelDefault.
  
  @param file File name.
  @param function Function name.
@@ -114,7 +114,7 @@ Whether is Beta.
 - (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 /**
-Print and save a log model with infos. LLConfigLogLevelAlert.
+Print and save a log model with infos. LLDebugConfigLogLevelAlert.
 
 @param file File name.
 @param function Function name.
@@ -125,7 +125,7 @@ Print and save a log model with infos. LLConfigLogLevelAlert.
 - (void)alertLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 /**
-Print and save a log model with infos. LLConfigLogLevelWarning.
+Print and save a log model with infos. LLDebugConfigLogLevelWarning.
 
 @param file File name.
 @param function Function name.
@@ -136,7 +136,7 @@ Print and save a log model with infos. LLConfigLogLevelWarning.
 - (void)warningLogInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
 
 /**
-Print and save a log model with infos. LLConfigLogLevelError.
+Print and save a log model with infos. LLDebugConfigLogLevelError.
 
 @param file File name.
 @param function Function name.

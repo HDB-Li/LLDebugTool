@@ -27,7 +27,7 @@
 #import "LLFunctionItemModel.h"
 #import "LLEntryStyleModel.h"
 #import "LLInternalMacros.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLTool.h"
 
 #import "UIWindow+LL_Utils.h"
@@ -110,28 +110,28 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
 #pragma mark - Events
 - (void)tapGR:(UITapGestureRecognizer *)sender {
     [self animatedBecomeActive];
-    [[[LLFunctionItemModel alloc] initWithAction:[LLConfig shared].clickAction].component componentDidLoad:nil];
+    [[[LLFunctionItemModel alloc] initWithAction:[LLDebugConfig shared].clickAction].component componentDidLoad:nil];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)sender {
     [self animatedBecomeActive];
-    [[[LLFunctionItemModel alloc] initWithAction:[LLConfig shared].doubleClickAction].component componentDidLoad:nil];
+    [[[LLFunctionItemModel alloc] initWithAction:[LLDebugConfig shared].doubleClickAction].component componentDidLoad:nil];
 }
 
 #pragma mark - Primary
 - (void)becomeActive {
     self.active = YES;
-    self.alpha = [LLConfig shared].activeAlpha;
+    self.alpha = [LLDebugConfig shared].activeAlpha;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)animatedBecomeActive {
     self.active = YES;
-    self.alpha = [LLConfig shared].activeAlpha;
+    self.alpha = [LLDebugConfig shared].activeAlpha;
     if (!self.moveable) {
         return;
     }
-    if (![LLConfig shared].isShrinkToEdgeWhenInactive) {
+    if (![LLDebugConfig shared].isShrinkToEdgeWhenInactive) {
         return;
     }
     
@@ -214,26 +214,26 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
 - (void)shrinkToEdgeWhenInactiveIfNeeded {
     self.alpha = self.styleModel.inactiveAlpha;
     self.active = NO;
-    if (![LLConfig shared].isShrinkToEdgeWhenInactive) {
+    if (![LLDebugConfig shared].isShrinkToEdgeWhenInactive) {
         return;
     }
     self.userInteractionEnabled = NO;
     [UIView animateWithDuration:0.25 animations:^{
         switch (self.direction) {
             case LLEntryWindowDirectionLeft: {
-                self.LL_right = [LLConfig shared].entryWindowDisplayPercent * self.LL_width;
+                self.LL_right = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
             }
                 break;
             case LLEntryWindowDirectionTop: {
-                self.LL_bottom = [LLConfig shared].entryWindowDisplayPercent * self.LL_height;
+                self.LL_bottom = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
             }
                 break;
             case LLEntryWindowDirectionRight: {
-                self.LL_left = LL_SCREEN_WIDTH - [LLConfig shared].entryWindowDisplayPercent * self.LL_width;
+                self.LL_left = LL_SCREEN_WIDTH - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
             }
                 break;
             case LLEntryWindowDirectionBottom: {
-                self.LL_top = LL_SCREEN_HEIGHT - [LLConfig shared].entryWindowDisplayPercent * self.LL_height;
+                self.LL_top = LL_SCREEN_HEIGHT - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
             }
                 break;
         }

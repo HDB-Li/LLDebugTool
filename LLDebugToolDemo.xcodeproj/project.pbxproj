@@ -199,7 +199,7 @@
 		C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498567222ED8D4800E9FBE2 /* LLLogFilterView.m */; };
 		C49856AA22ED8D4800E9FBE2 /* LLLogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C498567422ED8D4800E9FBE2 /* LLLogCell.m */; };
 		C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C498567A22ED8D4800E9FBE2 /* LLAppInfoViewController.m */; };
-		C49856B122ED8DEC00E9FBE2 /* LLConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856AF22ED8DEC00E9FBE2 /* LLConfig.m */; };
+		C49856B122ED8DEC00E9FBE2 /* LLDebugConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856AF22ED8DEC00E9FBE2 /* LLDebugConfig.m */; };
 		C49856B522ED905F00E9FBE2 /* LLScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856B422ED905F00E9FBE2 /* LLScreenshotHelper.m */; };
 		C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856B722ED908300E9FBE2 /* LLAppInfoHelper.m */; };
 		C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C49856BB22ED909F00E9FBE2 /* LLCrashHelper.m */; };
@@ -670,8 +670,8 @@
 		C498567522ED8D4800E9FBE2 /* LLLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLogViewController.h; sourceTree = "<group>"; };
 		C498567A22ED8D4800E9FBE2 /* LLAppInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoViewController.m; sourceTree = "<group>"; };
 		C498567B22ED8D4800E9FBE2 /* LLAppInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAppInfoViewController.h; sourceTree = "<group>"; };
-		C49856AF22ED8DEC00E9FBE2 /* LLConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLConfig.m; sourceTree = "<group>"; };
-		C49856B022ED8DEC00E9FBE2 /* LLConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLConfig.h; sourceTree = "<group>"; };
+		C49856AF22ED8DEC00E9FBE2 /* LLDebugConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugConfig.m; sourceTree = "<group>"; };
+		C49856B022ED8DEC00E9FBE2 /* LLDebugConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugConfig.h; sourceTree = "<group>"; };
 		C49856B322ED905F00E9FBE2 /* LLScreenshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelper.h; sourceTree = "<group>"; };
 		C49856B422ED905F00E9FBE2 /* LLScreenshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotHelper.m; sourceTree = "<group>"; };
 		C49856B722ED908300E9FBE2 /* LLAppInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoHelper.m; sourceTree = "<group>"; };
@@ -1552,8 +1552,8 @@
 			children = (
 				C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */,
 				C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */,
-				C49856B022ED8DEC00E9FBE2 /* LLConfig.h */,
-				C49856AF22ED8DEC00E9FBE2 /* LLConfig.m */,
+				C49856B022ED8DEC00E9FBE2 /* LLDebugConfig.h */,
+				C49856AF22ED8DEC00E9FBE2 /* LLDebugConfig.m */,
 				C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */,
 			);
 			path = DebugTool;
@@ -2662,7 +2662,7 @@
 				C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */,
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
-				C49856B122ED8DEC00E9FBE2 /* LLConfig.m in Sources */,
+				C49856B122ED8DEC00E9FBE2 /* LLDebugConfig.m in Sources */,
 				C43BA80F205AB095006307BE /* ViewController.m in Sources */,
 				C49856F822EDB22100E9FBE2 /* LLSandboxWindow.m in Sources */,
 				C4D164AB23EAECE9007A141E /* LLEntryStyleModel.m in Sources */,

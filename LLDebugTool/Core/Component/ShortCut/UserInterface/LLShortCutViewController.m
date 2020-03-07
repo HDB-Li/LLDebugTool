@@ -29,7 +29,7 @@
 #import "LLShortCutHelper.h"
 #import "LLShortCutModel.h"
 #import "LLToastUtils.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @interface LLShortCutViewController ()
 

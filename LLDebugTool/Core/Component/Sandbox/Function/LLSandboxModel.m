@@ -26,7 +26,7 @@
 #import <QuickLook/QuickLook.h>
 
 #import "LLImageNameConfig.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @interface LLSandboxModel ()
 

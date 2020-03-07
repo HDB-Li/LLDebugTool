@@ -29,7 +29,7 @@
 #import "LLFormatterTool.h"
 #import "LLDebugTool.h"
 #import "LLLogDefine.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 #import "NSUserDefaults+LL_Utils.h"
 
@@ -104,7 +104,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 + (void)log:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([LLConfig shared].isShowDebugToolLog) {
+        if ([LLDebugConfig shared].isShowDebugToolLog) {
             NSLog(@"%@,%@",string,kLLDebugToolLogOpenIssueInGithub);
         }
     });
@@ -112,12 +112,12 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 + (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt {
     if (synchronous) {
-        if ([LLConfig shared].isShowDebugToolLog) {
+        if ([LLDebugConfig shared].isShowDebugToolLog) {
             NSLog(@"%@,%@",string,prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
         }
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([LLConfig shared].isShowDebugToolLog) {
+            if ([LLDebugConfig shared].isShowDebugToolLog) {
                 NSLog(@"%@,%@",string,prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
             }
         });

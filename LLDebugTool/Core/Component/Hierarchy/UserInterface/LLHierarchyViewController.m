@@ -31,7 +31,7 @@
 #import "LLWindowManager.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
 
@@ -129,7 +129,7 @@
 }
 
 - (UIView *)findSelectedViewInViews:(NSArray *)selectedViews {
-    if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+    if ([LLDebugConfig shared].isHierarchyIgnorePrivateClass) {
         NSMutableArray *views = [[NSMutableArray alloc] init];
         for (UIView *view in selectedViews) {
             if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
@@ -146,7 +146,7 @@
     NSMutableArray *views = [[NSMutableArray alloc] init];
     UIView *view = [selectedView superview];
     while (view) {
-        if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+        if ([LLDebugConfig shared].isHierarchyIgnorePrivateClass) {
             if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
                 [views addObject:view];
             }
@@ -161,7 +161,7 @@
 - (NSArray <UIView *>*)findSubviewsBySelectedView:(UIView *)selectedView {
     NSMutableArray *views = [[NSMutableArray alloc] init];
     for (UIView *view in selectedView.subviews) {
-        if ([LLConfig shared].isHierarchyIgnorePrivateClass) {
+        if ([LLDebugConfig shared].isHierarchyIgnorePrivateClass) {
             if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
                 [views addObject:view];
             }

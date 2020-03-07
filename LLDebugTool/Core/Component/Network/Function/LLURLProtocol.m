@@ -26,7 +26,7 @@
 #import "LLStorageManager.h"
 #import "LLFormatterTool.h"
 #import "LLNetworkModel.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLTool.h"
 
 #import "NSHTTPURLResponse+LL_Network.h"
@@ -59,9 +59,9 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
         return NO;
     }
     
-    if ([LLConfig shared].observerdHosts.count > 0) {
+    if ([LLDebugConfig shared].observerdHosts.count > 0) {
         NSString *host = request.URL.host;
-        for (NSString *observerdHost in [LLConfig shared].observerdHosts) {
+        for (NSString *observerdHost in [LLDebugConfig shared].observerdHosts) {
             if ([host caseInsensitiveCompare:observerdHost] == NSOrderedSame) {
                 return YES;
             }
@@ -69,9 +69,9 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
         return NO;
     }
     
-    if ([LLConfig shared].ignoredHosts.count > 0) {
+    if ([LLDebugConfig shared].ignoredHosts.count > 0) {
         NSString *host = request.URL.host;
-        for (NSString *ignoredHost in [LLConfig shared].ignoredHosts) {
+        for (NSString *ignoredHost in [LLDebugConfig shared].ignoredHosts) {
             if ([host caseInsensitiveCompare:ignoredHost] == NSOrderedSame) {
                 return NO;
             }

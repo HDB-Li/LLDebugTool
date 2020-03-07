@@ -23,7 +23,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @class LLThemeColor;
 
@@ -76,7 +76,7 @@ FOUNDATION_EXTERN NSNotificationName const LLDebugToolUpdateThemeNotification;
 
 /// Update with color style.
 /// @param colorStyle Color style.
-- (void)updateWithColorStyle:(LLConfigColorStyle)colorStyle;
+- (void)updateWithColorStyle:(LLDebugConfigColorStyle)colorStyle;
 
 @end
 

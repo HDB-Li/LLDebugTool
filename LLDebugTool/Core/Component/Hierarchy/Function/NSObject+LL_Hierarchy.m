@@ -28,7 +28,7 @@
 #import "LLInternalMacros.h"
 #import "LLTitleCellModel.h"
 #import "LLFormatterTool.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
 

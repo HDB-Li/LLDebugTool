@@ -35,7 +35,7 @@
 #import "LLThemeManager.h"
 #import "LLToastUtils.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"
@@ -84,8 +84,8 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls != [UIWebView class] && cls != [WKWebView class]) {
 #pragma clang diagnostic pop
-        if ([LLConfig shared].htmlViewControllerProvider != nil) {
-            UIViewController *customViewController = [LLConfig shared].htmlViewControllerProvider(urlString);
+        if ([LLDebugConfig shared].htmlViewControllerProvider != nil) {
+            UIViewController *customViewController = [LLDebugConfig shared].htmlViewControllerProvider(urlString);
             if (customViewController && cls == [customViewController class]) {
                 [LLSettingManager shared].lastWebViewUrl = urlString;
                 [self.navigationController pushViewController:customViewController animated:YES];
@@ -159,8 +159,8 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [actions addObject:NSStringFromClass([UIWebView class])];
 #pragma clang diagnostic pop
-    if ([LLConfig shared].htmlViewControllerProvider != nil) {
-        UIViewController *vc = [LLConfig shared].htmlViewControllerProvider(nil);
+    if ([LLDebugConfig shared].htmlViewControllerProvider != nil) {
+        UIViewController *vc = [LLDebugConfig shared].htmlViewControllerProvider(nil);
         if (vc) {
             [actions addObject:NSStringFromClass([vc class])];
         }
@@ -209,7 +209,7 @@
         _headerTextField.delegate = self;
         _headerTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"html.input.url") attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor}];
-        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLConfig shared].defaultHtmlUrl ?: @"https://");
+        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLDebugConfig shared].defaultHtmlUrl ?: @"https://");
         UIView *leftView = [LLFactory getView];
         leftView.frame = CGRectMake(0, 0, 10, 1);
         _headerTextField.leftView = leftView;

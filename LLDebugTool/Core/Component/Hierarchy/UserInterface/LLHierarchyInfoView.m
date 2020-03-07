@@ -28,7 +28,7 @@
 #import "LLThemeManager.h"
 #import "LLToastUtils.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 #import "LLTool.h"
 

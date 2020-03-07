@@ -32,7 +32,7 @@
 #endif
 
 #import "LLStorageModel.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLTool.h"
 
 #import "NSObject+LL_Utils.h"
@@ -317,7 +317,7 @@ static NSString *const kDatabaseVersion = @"1";
     self.queue = dispatch_queue_create("LLDebugTool.LLStorageManager", DISPATCH_QUEUE_CONCURRENT);
     self.registerClass = [[NSMutableArray alloc] init];
     
-    self.folderPath = [LLConfig shared].folderPath;
+    self.folderPath = [LLDebugConfig shared].folderPath;
     [LLTool createDirectoryAtPath:self.folderPath];
     
     NSString *filePath = [self.folderPath stringByAppendingPathComponent:@"LLDebugTool.db"];

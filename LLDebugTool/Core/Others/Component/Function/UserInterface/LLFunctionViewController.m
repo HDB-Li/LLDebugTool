@@ -30,7 +30,7 @@
 #import "LLThemeManager.h"
 #import "LLComponent.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 #import "LLConst.h"
 
 #import "UIViewController+LL_Utils.h"

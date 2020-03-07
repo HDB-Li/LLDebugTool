@@ -30,7 +30,7 @@
 #import "LLAppInfoHelper.h"
 #import "LLThemeManager.h"
 #import "LLFactory.h"
-#import "LLConfig.h"
+#import "LLDebugConfig.h"
 
 @interface LLAppInfoViewController ()
 
