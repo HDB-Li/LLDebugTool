@@ -105,7 +105,7 @@
 		36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85646237BE48D00210B94 /* LLRouter+Network.m */; };
 		36B8564A237BF0F800210B94 /* LLRouter+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */; };
 		36BB1E1B2320E679000D8F29 /* LLDetailTitleSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */; };
-		36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */; };
+		36BB1E1F2320E89C000D8F29 /* LLDebugConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLDebugConfigHelper.m */; };
 		36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */; };
 		36BB1E3723211AF9000D8F29 /* LLConvenientScreenshotComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E3623211AF9000D8F29 /* LLConvenientScreenshotComponent.m */; };
 		36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BC8E24231D052300E4D29B /* LLEntryView.m */; };
@@ -488,8 +488,8 @@
 		36B8564C237C0B7300210B94 /* LLCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrash.h; sourceTree = "<group>"; };
 		36BB1E192320E679000D8F29 /* LLDetailTitleSelectorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCell.h; sourceTree = "<group>"; };
 		36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCell.m; sourceTree = "<group>"; };
-		36BB1E1D2320E89C000D8F29 /* LLConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLConfigHelper.h; sourceTree = "<group>"; };
-		36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLConfigHelper.m; sourceTree = "<group>"; };
+		36BB1E1D2320E89C000D8F29 /* LLDebugConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDebugConfigHelper.h; sourceTree = "<group>"; };
+		36BB1E1E2320E89C000D8F29 /* LLDebugConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugConfigHelper.m; sourceTree = "<group>"; };
 		36BB1E2C2320F954000D8F29 /* NSUserDefaults+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+LL_Utils.h"; sourceTree = "<group>"; };
 		36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+LL_Utils.m"; sourceTree = "<group>"; };
 		36BB1E3523211AF9000D8F29 /* LLConvenientScreenshotComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLConvenientScreenshotComponent.h; sourceTree = "<group>"; };
@@ -1199,8 +1199,8 @@
 		36BB1E1C2320E88A000D8F29 /* ConfigHelper */ = {
 			isa = PBXGroup;
 			children = (
-				36BB1E1D2320E89C000D8F29 /* LLConfigHelper.h */,
-				36BB1E1E2320E89C000D8F29 /* LLConfigHelper.m */,
+				36BB1E1D2320E89C000D8F29 /* LLDebugConfigHelper.h */,
+				36BB1E1E2320E89C000D8F29 /* LLDebugConfigHelper.m */,
 			);
 			path = ConfigHelper;
 			sourceTree = "<group>";
@@ -2773,7 +2773,7 @@
 				364AC6FA237CFB84007F0F29 /* LLRouter+Screenshot.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,
-				36BB1E1F2320E89C000D8F29 /* LLConfigHelper.m in Sources */,
+				36BB1E1F2320E89C000D8F29 /* LLDebugConfigHelper.m in Sources */,
 				36BC8E2B231D1C3B00E4D29B /* LLEntryBigTitleView.m in Sources */,
 				362AA6B123274FCF00F33EC4 /* LLPickerView.m in Sources */,
 				362F87B12326614000A27F05 /* LLRulerPickerInfoView.m in Sources */,
