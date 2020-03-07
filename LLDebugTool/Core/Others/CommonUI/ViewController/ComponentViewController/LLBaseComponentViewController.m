@@ -31,7 +31,7 @@
 
 @implementation LLBaseComponentViewController
 
-- (void)componentDidLoad:(NSDictionary *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
     if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
         LLComponentWindow *window = (LLComponentWindow *)self.view.window;
         [window componentDidFinish];

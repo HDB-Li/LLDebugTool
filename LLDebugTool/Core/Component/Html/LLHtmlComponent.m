@@ -30,7 +30,7 @@
 
 @implementation LLHtmlComponent
 
-- (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
    
     if (data[LLComponentDelegateRootViewControllerKey]) {
         Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);

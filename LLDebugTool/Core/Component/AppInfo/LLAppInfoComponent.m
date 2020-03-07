@@ -30,7 +30,7 @@
 
 @implementation LLAppInfoComponent
 
-- (void)componentDidLoad:(NSDictionary *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
     LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
     if ([window isKindOfClass:[LLFunctionWindow class]]) {
         LLNavigationController *nav = (LLNavigationController *)window.rootViewController;

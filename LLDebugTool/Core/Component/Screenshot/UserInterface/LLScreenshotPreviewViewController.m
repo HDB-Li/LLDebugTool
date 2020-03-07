@@ -123,8 +123,8 @@
 }
 
 #pragma mark - UIKeyboardWillShowNotification
-- (void)didReceiveKeyboardWillShowNotification:(NSNotification *)notifi {
-    NSDictionary *userInfo = notifi.userInfo;
+- (void)didReceiveKeyboardWillShowNotification:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
     CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if ([self.imageView.currentOperation isKindOfClass:[LLScreenshotTextOperation class]]) {
@@ -141,8 +141,8 @@
 }
 
 #pragma mark - UIKeyboardWillHideNotification
-- (void)didReceiveKeyboardWillHideNotification:(NSNotification *)notifi {
-    NSDictionary *userInfo = notifi.userInfo;
+- (void)didReceiveKeyboardWillHideNotification:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
     CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     if (!CGRectEqualToRect(self.imageView.frame, self.originalImageFrame)) {
         [UIView animateWithDuration:duration animations:^{

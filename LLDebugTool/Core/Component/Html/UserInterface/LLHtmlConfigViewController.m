@@ -144,7 +144,7 @@
 }
 
 - (LLTitleCellModel *)getWebViewStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:self.webViewClass];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"style") detailTitle:self.webViewClass];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showWebViewClassAlert];

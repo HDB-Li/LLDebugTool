@@ -58,7 +58,7 @@
     }
     
     for (NSString *host in hostSet.allObjects) {
-        LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:host];
+        LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:host];
         [settings addObject:model];
     }
     
@@ -68,7 +68,7 @@
     
     // Filter
     for (NSString *filter in @[@"Header", @"Body", @"Response"]) {
-        LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:filter];
+        LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:filter];
         [settings addObject:model];
     }
     
@@ -92,8 +92,8 @@
 //    self.fromDate = fromDate;
 //    self.endDate = endDate;
     
-    [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Please Select From Date"]];
-    [settings addObject:[[LLTitleCellModel alloc] initWithTitle:@"Please Select End Date"]];
+    [settings addObject:[LLTitleCellModel modelWithTitle:@"Please Select From Date"]];
+    [settings addObject:[LLTitleCellModel modelWithTitle:@"Please Select End Date"]];
     LLTitleCellCategoryModel *category2 = [LLTitleCellCategoryModel modelWithTitle:@"Date" items:settings];
     [self.dataArray addObject:category2];
     [settings removeAllObjects];

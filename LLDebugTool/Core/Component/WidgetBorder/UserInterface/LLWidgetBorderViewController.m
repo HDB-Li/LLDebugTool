@@ -54,7 +54,7 @@
 
 #pragma mark - Primary
 - (void)loadData {
-    LLTitleCellModel *model1 = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"function.widget.border") flag:[LLDebugConfig shared].isShowWidgetBorder];
+    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"function.widget.border") flag:[LLDebugConfig shared].isShowWidgetBorder];
     model1.changePropertyBlock = ^(id  _Nullable obj) {
         [LLDebugConfig shared].showWidgetBorder = [obj boolValue];
         [LLSettingManager shared].showWidgetBorder = @([obj boolValue]);

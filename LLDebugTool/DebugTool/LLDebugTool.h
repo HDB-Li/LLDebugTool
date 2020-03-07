@@ -27,7 +27,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSNotificationName const LLDebugToolStartWorkingNotificationName;
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolStartWorkingNotification;
 
 typedef NSString * LLDebugToolStartWorkingNotificationKey NS_TYPED_ENUM;
 

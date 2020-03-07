@@ -103,7 +103,7 @@
         } else {
             NSString *extension = self.filePath.pathExtension.lowercaseString;
             
-            NSString *imageName = [NSString stringWithFormat:@"LL-%@",extension];
+            NSString *imageName = [NSString stringWithFormat:@"%@",extension];
             UIImage *image = [UIImage LL_imageNamed:imageName];
             if (!image) {
                 if ([extension isEqualToString:@"docx"]) {

@@ -86,45 +86,27 @@
     
     self.selectedView = view;
     
-    NSDictionary *boldAttri = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]};
-    NSDictionary *attri = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    self.contentLabel.attributedText = [self attributedStringWithText:@"Name: " detail:NSStringFromClass(view.class)];
     
-    NSMutableAttributedString *name = [[NSMutableAttributedString alloc] initWithString:@"Name: " attributes:boldAttri];
-    [name appendAttributedString:[[NSAttributedString alloc] initWithString:NSStringFromClass(view.class) attributes:attri]];
-    
-    self.contentLabel.attributedText = name;
-    
-    NSMutableAttributedString *frame = [[NSMutableAttributedString alloc] initWithString:@"Frame: " attributes:boldAttri];
-    [frame appendAttributedString:[[NSAttributedString alloc] initWithString:[LLTool stringFromFrame:view.frame] attributes:attri]];
-    
-    self.frameLabel.attributedText = frame;
+    self.frameLabel.attributedText = [self attributedStringWithText:@"Frame: " detail:[LLTool stringFromFrame:view.frame]];
     
     if (view.backgroundColor) {
-        NSMutableAttributedString *color = [[NSMutableAttributedString alloc] initWithString:@"Background: " attributes:boldAttri];
-        [color appendAttributedString:[[NSAttributedString alloc] initWithString:[view.backgroundColor LL_description] attributes:attri]];
-        self.backgroundColorLabel.attributedText = color;
+        self.backgroundColorLabel.attributedText = [self attributedStringWithText:@"Background: " detail:view.backgroundColor.LL_description];
     } else {
         self.backgroundColorLabel.attributedText = nil;
     }
     
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
-        NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc] initWithString:@"Text Color: " attributes:boldAttri];
-        [textColor appendAttributedString:[[NSAttributedString alloc] initWithString:[label.textColor LL_description] attributes:attri]];
-        self.textColorLabel.attributedText = textColor;
-        
-        NSMutableAttributedString *font = [[NSMutableAttributedString alloc] initWithString:@"Font: " attributes:boldAttri];
-        [font appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%0.2f", label.font.pointSize] attributes:attri]];
-        self.fontLabel.attributedText = font;
+        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:label.textColor.LL_description];
+        self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", label.font.pointSize]];
     } else {
         self.textColorLabel.attributedText = nil;
         self.fontLabel.attributedText = nil;
     }
     
     if (view.tag != 0) {
-        NSMutableAttributedString *tag = [[NSMutableAttributedString alloc] initWithString:@"Tag: " attributes:boldAttri];
-        [tag appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld",(long)view.tag] attributes:attri]];
-        self.tagLabel.attributedText = tag;
+        self.tagLabel.attributedText = [self attributedStringWithText:@"Tag: " detail:[NSString stringWithFormat:@"%ld", (long)view.tag]];
     } else {
         self.tagLabel.attributedText = nil;
     }
@@ -219,6 +201,16 @@
             }
         }
     }
+}
+
+- (NSAttributedString *)attributedStringWithText:(NSString *)text detail:(NSString *)detail {
+    NSDictionary *boldAttri = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]};
+    NSDictionary *attri = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:text attributes:boldAttri];
+    [str appendAttributedString:[[NSAttributedString alloc] initWithString:detail attributes:attri]];
+    
+    return [str copy];
 }
 
 #pragma mark - Getters and setters

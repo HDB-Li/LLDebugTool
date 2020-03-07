@@ -37,7 +37,7 @@
 #import "NSObject+LL_Runtime.h"
 #import "LLRouter+Log.h"
 
-NSNotificationName const LLDebugToolStartWorkingNotificationName = @"LLDebugToolStartWorkingNotificationName";
+NSNotificationName const LLDebugToolStartWorkingNotification = @"LLDebugToolStartWorkingNotification";
 
 LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorkingConfigNotificationKey = @"LLDebugToolStartWorkingConfigNotificationKey";
 
@@ -180,7 +180,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
 }
 
-#pragma mark - LLDebugToolStartWorkingNotificationName
+#pragma mark - LLDebugToolStartWorkingNotification
 - (void)didReceiveDebugToolStartWorkingNotification:(NSNotification *)notification {
     if (self.isWorking) {
         return;
@@ -240,7 +240,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 - (void)registerNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolShakeNotification:) name:LLDebugToolShakeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolStartWorkingNotification:) name:LLDebugToolStartWorkingNotificationName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolStartWorkingNotification:) name:LLDebugToolStartWorkingNotification object:nil];
 }
 
 - (void)unregisterNotifications {

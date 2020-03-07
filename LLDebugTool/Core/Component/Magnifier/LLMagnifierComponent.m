@@ -27,7 +27,7 @@
 
 @implementation LLMagnifierComponent
 
-- (void)componentDidLoad:(NSDictionary *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
     [[LLWindowManager shared] showWindow:[LLWindowManager magnifierWindow] animated:YES];
 }
 

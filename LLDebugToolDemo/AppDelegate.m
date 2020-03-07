@@ -52,7 +52,7 @@
         @"defaultHtmlUrl" : @"https://github.com/HDB-Li/LLDebugTool"
     };
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolStartWorkingNotificationName object:nil userInfo:@{LLDebugToolStartWorkingConfigNotificationKey : data}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolStartWorkingNotification object:nil userInfo:@{LLDebugToolStartWorkingConfigNotificationKey : data}];
     */
     return YES;
 }

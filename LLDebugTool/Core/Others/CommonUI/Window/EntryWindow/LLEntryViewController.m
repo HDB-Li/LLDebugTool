@@ -125,7 +125,7 @@
 }
 
 #pragma mark - LLDebugToolUpdateWindowStyleNotification
-- (void)didReceiveDebugToolUpdateWindowStyleNotification:(NSNotification *)notifi {
+- (void)didReceiveDebugToolUpdateWindowStyleNotification:(NSNotification *)notification {
     self.style = [LLDebugConfig shared].entryWindowStyle;
 }
 

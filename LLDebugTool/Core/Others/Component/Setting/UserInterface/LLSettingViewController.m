@@ -104,7 +104,7 @@
 
 - (LLTitleCellModel *)getDoubleClickComponentModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.double.click") detailTitle:[LLDebugConfigHelper doubleClickComponentDescription]];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"setting.double.click") detailTitle:[LLDebugConfigHelper doubleClickComponentDescription]];
     model.block = ^{
         [weakSelf showDoubleClickAlert];
     };
@@ -135,7 +135,7 @@
 
 - (LLTitleCellModel *)getColorStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLDebugConfigHelper colorStyleDetailDescription]];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"style") detailTitle:[LLDebugConfigHelper colorStyleDetailDescription]];
     model.block = ^{
         [weakSelf showColorStyleAlert];
     };
@@ -171,7 +171,7 @@
 
 - (LLTitleCellModel *)getEntryWindowStyleModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLDebugConfigHelper entryWindowStyleDescription]];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"style") detailTitle:[LLDebugConfigHelper entryWindowStyleDescription]];
     model.block = ^{
         [weakSelf showEntryWindowStyleAlert];
     };
@@ -207,7 +207,7 @@
 }
 
 - (LLTitleCellModel *)getShrinkToEdgeWhenInactiveModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.shrink") flag:[LLDebugConfig shared].isShrinkToEdgeWhenInactive];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"setting.shrink") flag:[LLDebugConfig shared].isShrinkToEdgeWhenInactive];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewShrinkToEdgeWhenInactive:[obj boolValue]];
@@ -222,7 +222,7 @@
 
 - (LLTitleCellModel *)getShakeToHideModel {
     __weak typeof(self) weakSelf = self;
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.shake") flag:[LLDebugConfig shared].isShakeToHide];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"setting.shake") flag:[LLDebugConfig shared].isShakeToHide];
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewShakeToHide:[obj boolValue]];
     };
@@ -236,7 +236,7 @@
 
 #ifdef LLDEBUGTOOL_LOG
 - (LLTitleCellModel *)getLogStyleModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"style") detailTitle:[LLDebugConfigHelper logStyleDescription]];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"style") detailTitle:[LLDebugConfigHelper logStyleDescription]];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showLogStyleAlert];
@@ -270,7 +270,7 @@
 #endif
 #ifdef LLDEBUGTOOL_HIERARCHY
 - (LLTitleCellModel *)getHierarchyIgnorePrivateClassModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.ignore.private") flag:[LLDebugConfig shared].hierarchyIgnorePrivateClass];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"setting.ignore.private") flag:[LLDebugConfig shared].hierarchyIgnorePrivateClass];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewHierarchyIgnorePrivateClass:[obj boolValue]];
@@ -285,7 +285,7 @@
 #endif
 #ifdef LLDEBUGTOOL_MAGNIFIER
 - (LLTitleCellModel *)getMagnifierZoomLevelModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.zoom.level") value:[LLDebugConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"setting.zoom.level") value:[LLDebugConfig shared].magnifierZoomLevel minValue:kLLMagnifierWindowMinZoomLevel maxValue:kLLMagnifierWindowMaxZoomLevel];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierZoomLevel:[obj integerValue]];
@@ -300,7 +300,7 @@
 }
 
 - (LLTitleCellModel *)getMagnifierSizeModel {
-    LLTitleCellModel *model = [[LLTitleCellModel alloc] initWithTitle:LLLocalizedString(@"setting.zoom.size") value:[LLDebugConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
+    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"setting.zoom.size") value:[LLDebugConfig shared].magnifierSize minValue:kLLMagnifierWindowMinSize maxValue:kLLMagnifierWindowMaxSize];
     __weak typeof(self) weakSelf = self;
     model.changePropertyBlock = ^(id  _Nullable obj) {
         [weakSelf setNewMagnifierSize:[obj integerValue]];

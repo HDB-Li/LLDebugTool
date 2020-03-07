@@ -32,6 +32,31 @@
 
 @implementation LLTitleCellModel
 
++ (instancetype)modelWithTitle:(NSString *)title {
+    return [[self alloc] initWithTitle:title];
+}
+
++ (instancetype)modelWithTitle:(NSString *)title block:(void (^)(void))block {
+    return [[self alloc] initWithTitle:title block:block];
+}
+
++ (instancetype)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
+    return [[self alloc] initWithTitle:title detailTitle:detailTitle];
+}
+
++ (instancetype)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle flag:(BOOL)flag {
+    return [[self alloc] initWithTitle:title detailTitle:detailTitle flag:flag];
+}
+
++ (instancetype)modelWithTitle:(NSString *)title flag:(BOOL)flag {
+    return [[self alloc] initWithTitle:title flag:flag];
+}
+
++ (instancetype)modelWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
+    return [[self alloc] initWithTitle:title value:value minValue:minValue maxValue:maxValue];
+}
+
+#pragma mark - Primary
 - (instancetype)initWithTitle:(NSString *_Nullable)title {
     return [self initWithTitle:title block:nil];
 }

@@ -27,7 +27,7 @@
 
 @implementation LLConvenientScreenshotComponent
 
-- (void)componentDidLoad:(NSDictionary<NSString *,id> *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
     [[LLScreenshotHelper shared] simulateTakeScreenshot];
 }
 

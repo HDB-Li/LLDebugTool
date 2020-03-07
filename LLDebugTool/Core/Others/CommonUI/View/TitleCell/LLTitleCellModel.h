@@ -56,18 +56,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UIEdgeInsets separatorInsets;
 
 // LLTitleCell
-- (instancetype)initWithTitle:(NSString *_Nullable)title;
-- (instancetype)initWithTitle:(NSString *_Nullable)title block:(void(^_Nullable)(void))block;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title block:(void(^_Nullable)(void))block;
+
 
 // LLTitleSwitchCell
-- (instancetype)initWithTitle:(NSString *_Nullable)title flag:(BOOL)flag;
-- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle flag:(BOOL)flag;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title flag:(BOOL)flag;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle flag:(BOOL)flag;
 
 // LLDetailTitleCell
-- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle;
 
 // LLTitleSliderCell
-- (instancetype)initWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
 
 /// Normal insets.
 - (LLTitleCellModel *)normalInsets;
