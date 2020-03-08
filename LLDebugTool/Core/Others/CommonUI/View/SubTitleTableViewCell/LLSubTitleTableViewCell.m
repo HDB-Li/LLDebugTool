@@ -23,11 +23,11 @@
 
 #import "LLSubTitleTableViewCell.h"
 
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -66,12 +66,12 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     _maxTextViewHeight = (NSInteger)(LL_SCREEN_HEIGHT * 0.7);
-    
+
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.contentTextView];
-    
+
     [self addTitleLabelConstraints];
     [self addContentTextViewConstraints];
 }
@@ -94,7 +94,7 @@
     bottom.priority = UILayoutPriorityDefaultHigh;
     self.contentTextView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentTextView.superview addConstraints:@[top, left, right, height, bottom]];
-    
+
     self.contentTextViewHeightCons = height;
 }
 
@@ -127,7 +127,7 @@
         _contentTextView.backgroundColor = nil;
         _contentTextView.textColor = [LLThemeManager shared].primaryColor;
         _contentTextView.selectable = NO;
-        
+
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contentLabelTapAction:)];
         [_contentTextView addGestureRecognizer:tap];
     }

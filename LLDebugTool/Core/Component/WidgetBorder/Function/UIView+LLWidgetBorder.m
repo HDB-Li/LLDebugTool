@@ -23,9 +23,9 @@
 
 #import "UIView+LLWidgetBorder.h"
 
-#import "LLThemeManager.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLThemeManager.h"
 
 #import "NSObject+LL_Runtime.h"
 
@@ -46,11 +46,10 @@ static const char kLLBorderLayerKey;
 }
 
 - (void)LL_updateBorderLayer:(BOOL)enable {
-    
     for (UIView *subview in self.subviews) {
         [subview LL_updateBorderLayer:enable];
     }
-    
+
     if (enable) {
         [self.layer addSublayer:self.LL_borderLayer];
         self.LL_borderLayer.frame = self.bounds;

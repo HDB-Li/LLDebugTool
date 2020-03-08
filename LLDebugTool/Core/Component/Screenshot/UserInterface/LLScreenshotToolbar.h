@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLScreenshotToolbar : LLBaseView
 
 /// Action delegate.
-@property (nonatomic, weak, nullable) id <LLScreenshotToolbarDelegate> delegate;
+@property (nonatomic, weak, nullable) id<LLScreenshotToolbarDelegate> delegate;
 
 @end
 

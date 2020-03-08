@@ -33,7 +33,6 @@
 }
 
 - (void)initUI {
-    
 }
 
 @end

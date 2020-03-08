@@ -48,17 +48,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGFloat maxValue;
 
 // Block
-@property (nonatomic, copy, nullable) void(^block)(void);
+@property (nonatomic, copy, nullable) void (^block)(void);
 
-@property (nonatomic, copy, nullable) void(^changePropertyBlock)(__nullable id obj);
+@property (nonatomic, copy, nullable) void (^changePropertyBlock)(__nullable id obj);
 
 // Separator
 @property (nonatomic, assign) UIEdgeInsets separatorInsets;
 
 // LLTitleCell
 + (instancetype)modelWithTitle:(NSString *_Nullable)title;
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title block:(void(^_Nullable)(void))block;
-
++ (instancetype)modelWithTitle:(NSString *_Nullable)title block:(void (^_Nullable)(void))block;
 
 // LLTitleSwitchCell
 + (instancetype)modelWithTitle:(NSString *_Nullable)title flag:(BOOL)flag;

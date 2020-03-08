@@ -34,5 +34,4 @@
 
 #import "LLWindowManager+ShortCut.h"
 
-
 #endif /* LLShortCut_h */

@@ -23,16 +23,16 @@
 
 #import "LLEditTableViewController.h"
 
-#import "LLTableViewSelectableModel.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
+#import "LLTableViewSelectableModel.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLEditTableViewController ()
 
@@ -91,7 +91,6 @@
 }
 
 - (void)shareFilesWithIndexPaths:(NSArray *)indexPaths {
-    
 }
 
 - (void)deleteFilesWithIndexPaths:(NSArray *)indexPaths {
@@ -112,7 +111,7 @@
     self.searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.searchTextField.returnKeyType = UIReturnKeySearch;
     self.searchTextField.backgroundColor = [LLThemeManager shared].containerColor;
-    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"input.filter.text") attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor, NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+    self.searchTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"input.filter.text") attributes:@{NSForegroundColorAttributeName: [LLThemeManager shared].placeHolderColor, NSFontAttributeName: [UIFont systemFontOfSize:14]}];
     self.searchTextField.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, 35);
     self.searchTextField.leftView = ({
         UIView *view = [LLFactory getView];
@@ -131,23 +130,23 @@
 - (void)initSelectEnableFunction {
     self.selectAllString = LLLocalizedString(@"select.all");
     self.cancelAllString = LLLocalizedString(@"cancel.all");
-    
+
     // Navigation bar item
     [self initNavigationItemWithTitle:nil imageName:kEditImageName isLeft:NO];
     [self.rightNavigationButton setImage:[[UIImage LL_imageNamed:kDoneImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateSelected];
-    
+
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    
+
     // ToolBar
     _selectAllItem = [[UIBarButtonItem alloc] initWithTitle:self.selectAllString style:UIBarButtonItemStylePlain target:self action:@selector(selectAllItemClick:)];
     self.selectAllItem.tintColor = [LLThemeManager shared].primaryColor;
-    
+
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
+
     _shareItem = [[UIBarButtonItem alloc] initWithTitle:LLLocalizedString(@"share") style:UIBarButtonItemStylePlain target:self action:@selector(shareItemClick:)];
     self.shareItem.tintColor = [LLThemeManager shared].primaryColor;
     self.shareItem.enabled = NO;
-    
+
     _deleteItem = [[UIBarButtonItem alloc] initWithTitle:LLLocalizedString(@"delete") style:UIBarButtonItemStylePlain target:self action:@selector(deleteItemClick:)];
     self.deleteItem.tintColor = [LLThemeManager shared].primaryColor;
     self.deleteItem.enabled = NO;
@@ -159,7 +158,7 @@
         [items addObject:self.deleteItem];
     }
     [self setToolbarItems:items];
-    
+
     self.navigationController.toolbar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
 
@@ -191,7 +190,7 @@
         LLTableViewSelectableModel *model = self.datas[i];
         [model setSelected:selected];
     }
-    
+
     [self.tableView reloadData];
 }
 
@@ -210,24 +209,25 @@
 - (void)showDeleteAlertWithIndexPaths:(NSArray *)indexPaths {
     if (indexPaths.count) {
         __weak typeof(self) weakSelf = self;
-        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:LLLocalizedString(@"sure.to.delete"), (long)indexPaths.count] handler:^(NSInteger action) {
-            if (action == 1) {
-                [weakSelf deleteFilesWithIndexPaths:indexPaths];
-            }
-        }];
+        [self LL_showAlertControllerWithMessage:[NSString stringWithFormat:LLLocalizedString(@"sure.to.delete"), (long)indexPaths.count]
+                                        handler:^(NSInteger action) {
+                                            if (action == 1) {
+                                                [weakSelf deleteFilesWithIndexPaths:indexPaths];
+                                            }
+                                        }];
     }
 }
 
 - (NSArray *)indexPathsForSelectedRows {
     NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-    
+
     for (NSInteger i = 0; i < self.datas.count; i++) {
         id<LLTableViewSelectableDelegate> model = self.datas[i];
         if ([model isSelected]) {
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
     }
-    
+
     return [indexPaths copy];
 }
 
@@ -342,7 +342,6 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
 }
 
 #pragma mark - Getters and setters

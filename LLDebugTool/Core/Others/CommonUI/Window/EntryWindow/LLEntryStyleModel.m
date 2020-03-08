@@ -38,19 +38,16 @@
             case LLDebugConfigEntryWindowStyleBall: {
                 _overflow = YES;
                 _inactiveAlpha = [LLDebugConfig shared].inactiveAlpha;
-            }
-                break;
+            } break;
             case LLDebugConfigEntryWindowStyleTitle: {
                 _inactiveAlpha = [LLDebugConfig shared].inactiveAlpha;
-            }
-                break;
+            } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
             case LLDebugConfigEntryWindowStyleNetBar:
             case LLDebugConfigEntryWindowStylePowerBar: {
                 _moveable = NO;
-            }
-                break;
+            } break;
 #pragma clang diagnostic pop
             default:
                 break;

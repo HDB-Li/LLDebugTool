@@ -27,8 +27,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^LLStorageManagerBoolBlock)(BOOL result);
-typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable result);
+typedef void (^LLStorageManagerBoolBlock)(BOOL result);
+typedef void (^LLStorageManagerArrayBlock)(NSArray<LLStorageModel *> *_Nullable result);
 
 /**
  Operation database.
@@ -75,8 +75,8 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
  Get models in database. If nothing, it will return an emtpy array. Operation in child thread and callback in main thread.
  */
 - (void)getModels:(Class _Nonnull)cls complete:(LLStorageManagerArrayBlock _Nullable)complete;
-- (void)getModels:(Class _Nonnull)cls launchDate:(NSString * _Nullable)launchDate complete:(LLStorageManagerArrayBlock _Nullable)complete;
-- (void)getModels:(Class _Nonnull)cls launchDate:(NSString * _Nullable)launchDate storageIdentity:(NSString * _Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nonnull)cls launchDate:(NSString *_Nullable)launchDate complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nonnull)cls launchDate:(NSString *_Nullable)launchDate storageIdentity:(NSString *_Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete;
 
 /**
  Get models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
@@ -87,12 +87,12 @@ typedef void(^LLStorageManagerArrayBlock)(NSArray <LLStorageModel *>* _Nullable 
 /**
  Remove models in database. Operation in child thread and callback in main thread.
  */
-- (void)removeModels:(NSArray <LLStorageModel *>*_Nullable)models complete:(LLStorageManagerBoolBlock _Nullable)complete;
+- (void)removeModels:(NSArray<LLStorageModel *> *_Nullable)models complete:(LLStorageManagerBoolBlock _Nullable)complete;
 
 /**
  Remove models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)removeModels:(NSArray <LLStorageModel *>*_Nullable)models complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
+- (void)removeModels:(NSArray<LLStorageModel *> *_Nullable)models complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - Table
 

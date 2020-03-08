@@ -54,12 +54,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Network request header.
  */
-@property (nonatomic, strong, nullable) NSDictionary <NSString *,NSString *>*headerFields;
+@property (nonatomic, strong, nullable) NSDictionary<NSString *, NSString *> *headerFields;
 
 /**
  Cookies.
  */
-@property (nonatomic, strong, readonly, nullable) NSDictionary <NSString *, NSString *>*cookies;
+@property (nonatomic, strong, readonly, nullable) NSDictionary<NSString *, NSString *> *cookies;
 
 #pragma mark - Response
 /**
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Network response header.
  */
-@property (nonatomic, strong, nullable) NSDictionary <NSString *,NSString *>*responseHeaderFields;
+@property (nonatomic, strong, nullable) NSDictionary<NSString *, NSString *> *responseHeaderFields;
 
 #pragma mark - Data traffic
 /**

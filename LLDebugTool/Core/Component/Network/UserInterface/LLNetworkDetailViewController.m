@@ -23,12 +23,12 @@
 
 #import "LLNetworkDetailViewController.h"
 
-#import "LLSubTitleTableViewCell.h"
-#import "LLNetworkImageCell.h"
-#import "LLInternalMacros.h"
-#import "LLNetworkModel.h"
-#import "LLToastUtils.h"
 #import "LLDebugConfig.h"
+#import "LLInternalMacros.h"
+#import "LLNetworkImageCell.h"
+#import "LLNetworkModel.h"
+#import "LLSubTitleTableViewCell.h"
+#import "LLToastUtils.h"
 
 #import "UIImage+LL_Utils.h"
 
@@ -76,7 +76,7 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     if ([obj isKindOfClass:[NSData class]]) {
         obj = [self convertDataToHexStr:obj];
     }
-    
+
     LLSubTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNetworkContentCellID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.titleLabel.text = self.titleArray[indexPath.row];
@@ -98,14 +98,14 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
             }
             if ([image isKindOfClass:[UIImage class]]) {
                 [[UIPasteboard generalPasteboard] setImage:image];
-                [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
+                [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"), title]];
             }
         } else if ([obj isKindOfClass:[NSData class]] || [obj isKindOfClass:[NSString class]]) {
             if ([obj isKindOfClass:[NSData class]]) {
                 obj = [self convertDataToHexStr:obj];
             }
             [[UIPasteboard generalPasteboard] setString:obj];
-            [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
+            [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"), title]];
         }
     }
 }
@@ -123,32 +123,32 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
         self.contentArray = [[NSMutableArray alloc] init];
         // Request url.
         [self.titleArray addObject:@"Request Url"];
-        [self.contentArray addObject:self.model.url.absoluteString?:@"unknown"];
-        
+        [self.contentArray addObject:self.model.url.absoluteString ?: @"unknown"];
+
         // Method.
         if (self.model.method) {
             [self.titleArray addObject:@"Method"];
             [self.contentArray addObject:self.model.method];
         }
-        
+
         // Status code.
         [self.titleArray addObject:@"Status Code"];
-        [self.contentArray addObject:self.model.statusCode?:@"0"];
-        
+        [self.contentArray addObject:self.model.statusCode ?: @"0"];
+
         // Header
         if (self.model.headerFields.count) {
             [self.titleArray addObject:@"Header Fields"];
             NSMutableString *string = [[NSMutableString alloc] init];
             for (NSString *key in self.model.headerFields) {
-                [string appendFormat:@"%@ : %@\n",key,self.model.headerFields[key]];
+                [string appendFormat:@"%@ : %@\n", key, self.model.headerFields[key]];
             }
             [self.contentArray addObject:string];
         }
-        
+
         // Request body.
         [self.titleArray addObject:@"Request Body"];
         [self.contentArray addObject:self.model.requestBody ?: @"Null"];
-        
+
         // Response data.
         if (self.model.responseData) {
             [self.titleArray addObject:@"Response Body"];
@@ -158,55 +158,54 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
                 [self.contentArray addObject:self.model.responseString.length ? self.model.responseString : self.model.responseData];
             }
         }
-        
+
         // Error
         if (self.model.error) {
             [self.titleArray addObject:@"Error"];
             [self.contentArray addObject:self.model.error.localizedDescription];
         }
-        
+
         // Mime type.
         if (self.model.mimeType) {
             [self.titleArray addObject:@"Mime Type"];
             [self.contentArray addObject:self.model.mimeType];
         }
-        
+
         // Start date.
         if (self.model.startDate) {
             [self.titleArray addObject:@"Start Date"];
             [self.contentArray addObject:self.model.startDate];
         }
-        
+
         // Total duration.
         if (self.model.totalDuration) {
             [self.titleArray addObject:@"Total Duration"];
             [self.contentArray addObject:self.model.totalDuration];
         }
-        
+
         // Total data traffic.
         if (self.model.totalDataTraffic) {
             [self.titleArray addObject:@"Data Traffic"];
-            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)",self.model.totalDataTraffic,self.model.requestDataTraffic,self.model.responseDataTraffic]];
+            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)", self.model.totalDataTraffic, self.model.requestDataTraffic, self.model.responseDataTraffic]];
         }
     }
 }
 
 - (NSArray *)canCopyArray {
     if (!_canCopyArray) {
-        _canCopyArray = @[@"Request Url", @"Error", @"Header Fields" ,@"Request Body",@"Response Body"];
+        _canCopyArray = @[@"Request Url", @"Error", @"Header Fields", @"Request Body", @"Response Body"];
     }
     return _canCopyArray;
 }
 
-- (NSString *)convertDataToHexStr:(NSData *)data
-{
+- (NSString *)convertDataToHexStr:(NSData *)data {
     if (!data || [data length] == 0) {
         return @"";
     }
     NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
-    
+
     [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-        unsigned char *dataBytes = (unsigned char*)bytes;
+        unsigned char *dataBytes = (unsigned char *)bytes;
         for (NSInteger i = 0; i < byteRange.length; i++) {
             NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
             if ([hexStr length] == 2) {

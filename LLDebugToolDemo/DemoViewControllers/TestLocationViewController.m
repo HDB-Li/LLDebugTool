@@ -39,11 +39,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.title = NSLocalizedString(@"test.location", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testMockLocation)];
-    
+
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.toastLabel];
     [self.manager startUpdatingLocation];
@@ -63,12 +63,12 @@
 
 #pragma mark - MKMapViewDelegate
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    NSLog(@"%@, %@",NSStringFromSelector(_cmd), userLocation);
+    NSLog(@"%@, %@", NSStringFromSelector(_cmd), userLocation);
 }
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    NSLog(@"%@, %@",NSStringFromSelector(_cmd), locations);
+    NSLog(@"%@, %@", NSStringFromSelector(_cmd), locations);
     if (!locations.firstObject) {
         return;
     }
@@ -84,15 +84,15 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     _toastLabel.text = @"Failed";
-    NSLog(@"%@, %@",NSStringFromSelector(_cmd), error);
+    NSLog(@"%@, %@", NSStringFromSelector(_cmd), error);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 #pragma mark - Event responses

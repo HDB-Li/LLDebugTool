@@ -23,9 +23,9 @@
 
 #import "LLBaseTableViewController.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 static NSString *const kEmptyCellID = @"emptyCellID";
 
@@ -39,8 +39,7 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 @implementation LLBaseTableViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     return [self initWithStyle:UITableViewStyleGrouped];
 }
 
@@ -53,13 +52,13 @@ static NSString *const kEmptyCellID = @"emptyCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self.view addSubview:self.tableView];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
+
     self.tableView.frame = self.view.bounds;
 }
 

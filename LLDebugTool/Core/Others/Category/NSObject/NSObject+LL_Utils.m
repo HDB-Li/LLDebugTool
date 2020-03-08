@@ -27,9 +27,9 @@
 #import <mach-o/arch.h>
 #import <mach/mach.h>
 
+#import "LLDebugConfig.h"
 #import "LLFormatterTool.h"
 #import "LLTool.h"
-#import "LLDebugConfig.h"
 
 static uint64_t _loadTime;
 static NSTimeInterval _startLoadTime;
@@ -52,23 +52,24 @@ static inline NSTimeInterval MachTimeToSeconds(uint64_t machTime) {
     dispatch_once(&onceToken, ^{
         _loadTime = mach_absolute_time();
         mach_timebase_info(&_timebaseInfo);
-        
+
         _loadDate = [[NSDate date] timeIntervalSince1970];
-        
+
         [LLTool availableDebugTool];
         @autoreleasepool {
             __block __weak id<NSObject> obs;
             obs = [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification
-                                                                    object:nil queue:nil
+                                                                    object:nil
+                                                                     queue:nil
                                                                 usingBlock:^(NSNotification *note) {
-                _applicationRespondedTime = mach_absolute_time();
-                _startLoadTime = MachTimeToSeconds(_applicationRespondedTime - _loadTime);
-                
-                [[NSNotificationCenter defaultCenter] removeObserver:obs];
-                if ([LLDebugConfig shared].startWorkingNextTime && [LLTool startWorkingAfterApplicationDidFinishLaunching]) {
-                    [LLTool startWorking];
-                }
-            }];
+                                                                    _applicationRespondedTime = mach_absolute_time();
+                                                                    _startLoadTime = MachTimeToSeconds(_applicationRespondedTime - _loadTime);
+
+                                                                    [[NSNotificationCenter defaultCenter] removeObserver:obs];
+                                                                    if ([LLDebugConfig shared].startWorkingNextTime && [LLTool startWorkingAfterApplicationDidFinishLaunching]) {
+                                                                        [LLTool startWorking];
+                                                                    }
+                                                                }];
         }
     });
 }

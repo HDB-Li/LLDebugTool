@@ -46,6 +46,6 @@
 #define LL_MAX(numA, numB) [LLInternalMacrosTool maxWithA:numA b:numB]
 
 #define LLLocalizedString(key) \
-[[LLDebugConfig shared].imageBundle localizedStringForKey:(key) value:@"" table:nil]
+    [[LLDebugConfig shared].imageBundle localizedStringForKey:(key) value:@"" table:nil]
 
 #endif /* LLInternalMacros_h */

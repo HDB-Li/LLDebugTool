@@ -37,7 +37,7 @@
     } else if (indexPath.row == 4) {
         cell.textLabel.text = NSLocalizedString(@"insert.call.log", nil);
     }
-    
+
     return cell;
 }
 
@@ -77,7 +77,7 @@
 }
 
 - (void)testEventLog {
-    LLog_Error_Event(NSLocalizedString(@"call", nil),NSLocalizedString(@"call.log.info", nil));
+    LLog_Error_Event(NSLocalizedString(@"call", nil), NSLocalizedString(@"call.log.info", nil));
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionLog];
 }
 

@@ -23,9 +23,9 @@
 
 #import "LLDetailTitleCellView.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @interface LLDetailTitleCellView ()
 
@@ -40,11 +40,11 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     [self addSubview:self.detailLabel];
-    
+
     [self addDetailLabelConstraints];
-    
+
     self.detailTitle = @"";
 }
 
@@ -55,7 +55,7 @@
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.detailLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin / 2.0];
     self.detailLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.detailLabel.superview addConstraints:@[right, top, bottom, left]];
-    
+
     self.detailLabelRightCons = right;
 }
 

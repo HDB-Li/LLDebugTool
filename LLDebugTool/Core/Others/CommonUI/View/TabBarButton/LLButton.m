@@ -38,11 +38,10 @@
 @implementation LLButton
 
 #pragma mark - Public
-+ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font tintColor:(UIColor *)tintColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor
-{
++ (instancetype)buttonWithTitle:(NSString *)title image:(UIImage *)image font:(UIFont *)font tintColor:(UIColor *)tintColor selectedBackgroundColor:(UIColor *)selectedBackgroundColor {
     LLButton *button = [self buttonWithType:UIButtonTypeCustom];
     button.tintColor = tintColor;
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName : font, NSForegroundColorAttributeName : tintColor}];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: tintColor}];
     button.attributedTitle = attributedTitle;
     button.image = image;
     button.selectedBackgroundColor = selectedBackgroundColor;
@@ -53,10 +52,8 @@
 
 #pragma mark - Primary
 
-
 #pragma mark - Overrides
-- (CGRect)titleRectForContentRect:(CGRect)contentRect
-{
+- (CGRect)titleRectForContentRect:(CGRect)contentRect {
     // The label height in tab bar.
     CGFloat titleHeight = 12;
     // The bottom margin in tab bar.
@@ -69,8 +66,7 @@
     return CGRectMake(leftMargin, contentRect.size.height - titleHeight - bottomMargin, titleWidth, titleHeight);
 }
 
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
-{
+- (CGRect)imageRectForContentRect:(CGRect)contentRect {
     // The icon size in tab bar.
     CGSize imageSize = CGSizeMake(25, 25);
     // The top margin in tab bar.

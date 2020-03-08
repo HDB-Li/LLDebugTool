@@ -23,21 +23,21 @@
 
 #import "LLFunctionViewController.h"
 
+#import "LLComponent.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLFunctionItemContainerView.h"
 #import "LLFunctionItemModel.h"
 #import "LLInternalMacros.h"
-#import "LLWindowManager.h"
 #import "LLThemeManager.h"
-#import "LLComponent.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
+#import "LLWindowManager.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "NSMutableArray+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
-@interface LLFunctionViewController ()<LLFunctionContainerViewControllerDelegate>
+@interface LLFunctionViewController () <LLFunctionContainerViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -57,29 +57,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"LLDebugTool";
-    
+
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.toolContainerView];
     [self.scrollView addSubview:self.shortCutContainerView];
     [self.scrollView addSubview:self.settingButton];
     [self.scrollView addSubview:self.stopButton];
-    
+
     [self loadData];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
+
     self.scrollView.frame = self.view.bounds;
-    
+
     self.toolContainerView.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, self.toolContainerView.LL_height);
-    
-    self.shortCutContainerView.frame = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + kLLGeneralMargin, self.toolContainerView.LL_width , self.shortCutContainerView.LL_height);
-    
+
+    self.shortCutContainerView.frame = CGRectMake(self.toolContainerView.LL_left, self.toolContainerView.LL_bottom + kLLGeneralMargin, self.toolContainerView.LL_width, self.shortCutContainerView.LL_height);
+
     self.settingButton.frame = CGRectMake(self.toolContainerView.LL_left, self.shortCutContainerView.LL_bottom + kLLGeneralMargin * 3, self.toolContainerView.LL_width, 40);
-    
+
     self.stopButton.frame = CGRectMake(self.settingButton.LL_left, self.settingButton.LL_bottom + kLLGeneralMargin, self.settingButton.LL_width, 40);
-    
+
     self.scrollView.contentSize = CGSizeMake(0, self.stopButton.LL_bottom + kLLGeneralMargin * 3);
 }
 
@@ -94,72 +94,72 @@
 #pragma mark - Primary
 - (void)loadData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    
+
     [items addObjectsFromArray:[self loadToolContainerData]];
-    
+
     self.toolContainerView.dataArray = [items copy];
     self.toolContainerView.title = LLLocalizedString(@"function.function");
     self.toolContainerView.hidden = items.count == 0;
-    
+
     [items removeAllObjects];
-    
+
     [items addObjectsFromArray:[self loadShortCutContainerDate]];
-    
+
     self.shortCutContainerView.dataArray = [items copy];
     self.shortCutContainerView.title = LLLocalizedString(@"function.short");
     self.shortCutContainerView.hidden = items.count == 0;
-    
+
     [items removeAllObjects];
 }
 
 - (NSArray *)loadToolContainerData {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    
+
     LLFunctionItemModel *network = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionNetwork];
     [items LL_addObject:network];
-    
+
     LLFunctionItemModel *log = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLog];
     [items LL_addObject:log];
-    
+
     LLFunctionItemModel *crash = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionCrash];
     [items LL_addObject:crash];
-    
+
     LLFunctionItemModel *appInfo = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionAppInfo];
     [items LL_addObject:appInfo];
-    
+
     LLFunctionItemModel *sandbox = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSandbox];
     [items LL_addObject:sandbox];
-    
+
     LLFunctionItemModel *location = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionLocation];
     [items LL_addObject:location];
-    
+
     return [items copy];
 }
 
 - (NSArray *)loadShortCutContainerDate {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    
+
     LLFunctionItemModel *screenshot = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionScreenshot];
     [items LL_addObject:screenshot];
-    
+
     LLFunctionItemModel *hierarchy = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHierarchy];
     [items LL_addObject:hierarchy];
-    
+
     LLFunctionItemModel *magnifier = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionMagnifier];
     [items LL_addObject:magnifier];
-    
+
     LLFunctionItemModel *ruler = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionRuler];
     [items LL_addObject:ruler];
-    
+
     LLFunctionItemModel *widgetBorder = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionWidgetBorder];
     [items LL_addObject:widgetBorder];
-    
+
     LLFunctionItemModel *html = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionHtml];
     [items LL_addObject:html];
-    
+
     LLFunctionItemModel *shortCut = [[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionShortCut];
     [items LL_addObject:shortCut];
-    
+
     return [items copy];
 }
 
@@ -175,9 +175,10 @@
 }
 
 - (void)stopButtonClicked:(UIButton *)sender {
-    [self LL_showAlertControllerWithMessage:LLLocalizedString(@"function.alert.stop") handler:^(NSInteger action) {
-        [[LLDebugTool sharedTool] stopWorking];
-    }];
+    [self LL_showAlertControllerWithMessage:LLLocalizedString(@"function.alert.stop")
+                                    handler:^(NSInteger action) {
+                                        [[LLDebugTool sharedTool] stopWorking];
+                                    }];
 }
 
 #pragma mark - Getters and setters

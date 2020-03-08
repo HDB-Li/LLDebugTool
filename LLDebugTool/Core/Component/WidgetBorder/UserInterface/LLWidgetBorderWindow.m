@@ -23,8 +23,8 @@
 
 #import "LLWidgetBorderWindow.h"
 
-#import "LLWidgetBorderViewController.h"
 #import "LLNavigationController.h"
+#import "LLWidgetBorderViewController.h"
 #import "LLWindowManager.h"
 
 @implementation LLWidgetBorderWindow

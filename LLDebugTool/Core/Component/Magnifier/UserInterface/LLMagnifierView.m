@@ -23,12 +23,12 @@
 
 #import "LLMagnifierView.h"
 
-#import "LLThemeManager.h"
 #import "LLDebugConfig.h"
+#import "LLThemeManager.h"
 
 #import "LLRouter+Screenshot.h"
-#import "UIImage+LL_Utils.h"
 #import "UIColor+LL_Utils.h"
+#import "UIImage+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLMagnifierView ()
@@ -42,24 +42,23 @@
 @implementation LLMagnifierView
 
 - (void)drawRect:(CGRect)rect {
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
+
     CGContextClearRect(context, self.frame);
-    
+
     NSInteger zoomLevel = [LLDebugConfig shared].magnifierZoomLevel;
     // Image's scale, default screenshot's scale is [UIScreen mainScreen].scale, but we only use 1.0 is ok.
     CGFloat scale = 1.0;
     NSInteger size = [LLDebugConfig shared].magnifierSize;
     NSInteger skip = 1;
-    
+
     CGPoint currentPoint = CGPointMake(self.targetPoint.x * scale, self.targetPoint.y * scale);
-    
+
     currentPoint.x = round(currentPoint.x - size * skip / 2.0 * scale);
     currentPoint.y = round(currentPoint.y - size * skip / 2.0 * scale);
     int i, j;
     NSInteger center = size / 2;
-    
+
     for (j = 0; j < size; j++) {
         for (i = 0; i < size; i++) {
             CGRect gridRect = CGRectMake(zoomLevel * i, zoomLevel * j, zoomLevel, zoomLevel);
@@ -77,11 +76,11 @@
             }
             currentPoint.x += round(skip * scale);
         }
-        
+
         currentPoint.x -= round(size * skip * scale);
         currentPoint.y += round(skip * scale);
     }
-    
+
     UIGraphicsEndImageContext();
 }
 
@@ -91,12 +90,12 @@
     self.overflow = YES;
     [self LL_setCornerRadius:self.LL_width / 2.0];
     [self LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
-    
+
     NSInteger zoomLevel = [LLDebugConfig shared].magnifierZoomLevel;
-    
+
     NSInteger centerX = self.LL_width / 2.0;
     NSInteger centerY = self.LL_height / 2.0;
-    
+
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.frame = self.bounds;
     layer.path = [UIBezierPath bezierPathWithRect:CGRectMake(centerX - zoomLevel / 2.0, centerY - zoomLevel / 2.0, zoomLevel, zoomLevel)].CGPath;
@@ -104,7 +103,7 @@
     layer.fillColor = nil;
     layer.lineWidth = 2;
     [self.layer addSublayer:layer];
-    
+
     [self updateScreenshot];
     self.targetPoint = self.center;
     [self setNeedsDisplay];

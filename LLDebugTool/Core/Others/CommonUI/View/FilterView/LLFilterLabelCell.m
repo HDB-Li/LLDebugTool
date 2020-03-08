@@ -23,11 +23,11 @@
 
 #import "LLFilterLabelCell.h"
 
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLFilterLabelModel.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -61,7 +61,7 @@
     [super initUI];
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.label];
-    
+
     [self addBgViewConstraints];
     [self addLabelConstraints];
 }

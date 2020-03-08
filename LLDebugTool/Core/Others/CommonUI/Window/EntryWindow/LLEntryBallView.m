@@ -23,10 +23,10 @@
 
 #import "LLEntryBallView.h"
 
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -41,20 +41,20 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
     [self.contentView LL_setCornerRadius:self.contentView.LL_width / 2];
-    
+
     self.logoImageView = [LLFactory getImageView:self.contentView frame:CGRectMake(self.LL_width / 4.0, self.LL_height / 4.0, self.LL_width / 2.0, self.LL_height / 2.0) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
 }
 
 - (void)themeColorChanged {
     [super themeColorChanged];
-    
+
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.contentView.layer.borderColor = [LLThemeManager shared].primaryColor.CGColor;
-    
+
     self.logoImageView.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.logoImageView.image = [UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor];
 }

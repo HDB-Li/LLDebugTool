@@ -26,15 +26,15 @@
 
 #import "LLHierarchyComponent.h"
 
-#import "LLHierarchyHelper.h"
 #import "LLEnumDescription.h"
+#import "LLHierarchyHelper.h"
 
 #import "NSObject+LL_Hierarchy.h"
 
 #import "LLHierarchyDetailViewController.h"
-#import "LLHierarchyViewController.h"
-#import "LLHierarchyPickerView.h"
 #import "LLHierarchyInfoView.h"
+#import "LLHierarchyPickerView.h"
+#import "LLHierarchyViewController.h"
 #import "LLHierarchyWindow.h"
 
 #import "LLWindowManager+Hierarchy.h"

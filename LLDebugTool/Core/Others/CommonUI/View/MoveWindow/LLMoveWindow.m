@@ -42,15 +42,14 @@
         _moveable = YES;
         _moveableRect = CGRectNull;
         // Pan, to moveable.
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
-        
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGR:)];
+
         [self addGestureRecognizer:self.panGestureRecognizer];
     }
     return self;
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {
-    
     if (!self.isMoved) {
         self.moved = YES;
     }
@@ -58,36 +57,33 @@
     CGPoint offsetPoint = [sender translationInView:sender.view];
 
     [self viewWillUpdateOffset:sender offset:offsetPoint];
-    
+
     [sender setTranslation:CGPointZero inView:sender.view];
-    
+
     [self changeFrameWithPoint:offsetPoint];
-    
+
     [self viewDidUpdateOffset:sender offset:offsetPoint];
 }
 
 - (void)changeFrameWithPoint:(CGPoint)point {
-    
     CGPoint center = self.center;
     center.x += point.x;
     center.y += point.y;
-    
+
     if (self.isOverflow) {
         center = [self adjustOverflow:center];
     } else {
         center = [self adjustCenter:center];
     }
-    
+
     center = [self adjustMoveableRect:center];
     self.center = center;
 }
 
 - (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
-    
 }
 
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
-    
 }
 
 #pragma mark - Primary
@@ -102,7 +98,7 @@
     CGPoint newCenter = CGPointMake(center.x, center.y);
     newCenter.x = MIN(newCenter.x, LL_SCREEN_WIDTH);
     newCenter.x = MAX(newCenter.x, 0);
-    
+
     newCenter.y = MIN(newCenter.y, LL_SCREEN_HEIGHT);
     newCenter.y = MAX(newCenter.y, 0);
     return newCenter;
@@ -110,25 +106,25 @@
 
 - (CGPoint)adjustCenter:(CGPoint)center {
     CGPoint newCenter = CGPointMake(center.x, center.y);
-    
+
     if (newCenter.x < self.LL_width / 2.0) {
         newCenter.x = self.LL_width / 2.0;
     } else if (newCenter.x > LL_SCREEN_WIDTH - self.LL_width / 2.0) {
         newCenter.x = LL_SCREEN_WIDTH - self.LL_width / 2.0;
     }
-    
+
     if (newCenter.y < self.LL_height / 2.0) {
         newCenter.y = self.LL_height / 2.0;
     } else if (newCenter.y > LL_SCREEN_HEIGHT - self.LL_height / 2.0) {
         newCenter.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0;
     }
-    
+
     return newCenter;
 }
 
 - (CGPoint)adjustMoveableRect:(CGPoint)center {
     CGPoint newCenter = CGPointMake(center.x, center.y);
-    
+
     if (!CGRectIsNull(_moveableRect) && !CGRectContainsPoint(_moveableRect, newCenter)) {
         if (newCenter.x < _moveableRect.origin.x) {
             newCenter.x = _moveableRect.origin.x;
@@ -141,7 +137,7 @@
             newCenter.y = _moveableRect.origin.y + _moveableRect.size.height;
         }
     }
-    
+
     return newCenter;
 }
 

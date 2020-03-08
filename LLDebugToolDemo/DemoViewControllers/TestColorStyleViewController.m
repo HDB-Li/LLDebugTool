@@ -31,7 +31,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    
+
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Use \"LLDebugConfigColorStyleHack\"";
         cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleHack ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -72,7 +72,7 @@
         cell.textLabel.text = @"Use \"[[LLDebugConfig sharedConfig] configBackgroundColor:[UIColor orangeColor] textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault]\"";
         cell.accessoryType = [LLDebugConfig shared].colorStyle == LLDebugConfigColorStyleCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
-    
+
     return cell;
 }
 

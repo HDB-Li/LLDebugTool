@@ -23,8 +23,8 @@
 
 #import "LLNetworkWindow.h"
 
-#import "LLNetworkViewController.h"
 #import "LLNavigationController.h"
+#import "LLNetworkViewController.h"
 #import "LLWindowManager.h"
 
 @implementation LLNetworkWindow

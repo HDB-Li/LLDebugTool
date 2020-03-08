@@ -23,10 +23,10 @@
 
 #import "LLScreenshotSelectorView.h"
 
-#import "LLScreenshotSelectorModel.h"
-#import "LLImageNameConfig.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLImageNameConfig.h"
+#import "LLScreenshotSelectorModel.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -74,69 +74,60 @@
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [self LL_setCornerRadius:5];
     self.model = [[LLScreenshotSelectorModel alloc] init];
-    
+
     NSInteger count = 9;
     CGFloat gap = kLLGeneralMargin;
     CGFloat itemWidth = 19;
     CGFloat itemHeight = 19;
     CGFloat itemGap = (self.frame.size.width - gap * 2 - itemWidth * count) / (count - 1);
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
-    
+
     for (int i = 0; i < count; i++) {
         UIButton *button = [LLFactory getButton:self frame:CGRectMake(gap + i * (itemWidth + itemGap), top, itemWidth, itemHeight) target:self action:@selector(actionButtonClicked:)];
         NSString *imageName = @"";
         NSString *selectImageName = @"";
         switch (i) {
-            case LLScreenshotSelectorSizeActionSmall:{
+            case LLScreenshotSelectorSizeActionSmall: {
                 imageName = kSelectorSmallImageName;
                 selectImageName = kSelectorSmallSelectImageName;
                 button.selected = YES;
                 self.lastSizeButton = button;
-            }
-                break;
-            case LLScreenshotSelectorSizeActionMedium:{
+            } break;
+            case LLScreenshotSelectorSizeActionMedium: {
                 imageName = kSelectorMediumImageName;
                 selectImageName = kSelectorMediumSelectImageName;
-            }
-                break;
-            case LLScreenshotSelectorSizeActionBig:{
+            } break;
+            case LLScreenshotSelectorSizeActionBig: {
                 imageName = kSelectorBigImageName;
                 selectImageName = kSelectorBigSelectImageName;
-            }
-                break;
-            case LLScreenshotSelectorColorActionRed:{
+            } break;
+            case LLScreenshotSelectorColorActionRed: {
                 imageName = kSelectorRedImageName;
                 selectImageName = kSelectorRedImageName;
                 button.selected = YES;
                 button.layer.borderWidth = 2;
                 self.lastColorButton = button;
-            }
-                break;
-            case LLScreenshotSelectorColorActionBlue:{
+            } break;
+            case LLScreenshotSelectorColorActionBlue: {
                 imageName = kSelectorBlueImageName;
                 selectImageName = kSelectorBlueImageName;
-            }
-                break;
-            case LLScreenshotSelectorColorActionGreen:{
+            } break;
+            case LLScreenshotSelectorColorActionGreen: {
                 imageName = kSelectorGreenImageName;
                 selectImageName = kSelectorGreenImageName;
-            }
-                break;
-            case LLScreenshotSelectorColorActionYellow:{
+            } break;
+            case LLScreenshotSelectorColorActionYellow: {
                 imageName = kSelectorYellowImageName;
                 selectImageName = kSelectorYellowImageName;
-            }
-                break;
-            case LLScreenshotSelectorColorActionGray:{
+            } break;
+            case LLScreenshotSelectorColorActionGray: {
                 imageName = kSelectorGrayImageName;
                 selectImageName = kSelectorGrayImageName;
-            }
-                break;
-            case LLScreenshotSelectorColorActionWhite:{
+            } break;
+            case LLScreenshotSelectorColorActionWhite: {
                 imageName = kSelectorWhiteImageName;
                 selectImageName = kSelectorWhiteImageName;
-            }
-                break;
+            } break;
         }
         [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
         [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];

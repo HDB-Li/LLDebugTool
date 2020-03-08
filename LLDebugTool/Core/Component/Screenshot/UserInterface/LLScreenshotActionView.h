@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Delegate to accept click events.
  */
-@property (nonatomic, weak, nullable) id <LLScreenshotActionViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<LLScreenshotActionViewDelegate> delegate;
 
 @end
 

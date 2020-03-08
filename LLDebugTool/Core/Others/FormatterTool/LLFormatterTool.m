@@ -97,16 +97,16 @@ static LLFormatterTool *_instance = nil;
     if (!_formatters) {
         NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
         dateFormatter1.dateFormat = [LLDebugConfig shared].dateFormatter;
-        
+
         NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
         dateFormatter2.dateFormat = @"yyyy-MM-dd";
-        
+
         NSDateFormatter *dateFormatter3 = [[NSDateFormatter alloc] init];
         dateFormatter3.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        _formatters = @{@(FormatterToolDateStyle1) : dateFormatter1,
-                        @(FormatterToolDateStyle2) : dateFormatter2,
-                        @(FormatterToolDateStyle3) : dateFormatter3};
+
+        _formatters = @{ @(FormatterToolDateStyle1): dateFormatter1,
+                         @(FormatterToolDateStyle2): dateFormatter2,
+                         @(FormatterToolDateStyle3): dateFormatter3 };
     }
     return _formatters;
 }

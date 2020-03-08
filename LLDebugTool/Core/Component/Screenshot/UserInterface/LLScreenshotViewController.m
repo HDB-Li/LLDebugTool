@@ -23,14 +23,14 @@
 
 #import "LLScreenshotViewController.h"
 
-#import "LLScreenshotPreviewViewController.h"
-#import "LLScreenshotHelper.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
+#import "LLScreenshotHelper.h"
+#import "LLScreenshotPreviewViewController.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -47,17 +47,17 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.updateBackgroundColor = NO;
-    
+
     CGFloat width = 60;
     self.captureButton = [LLFactory getButton:self.view frame:CGRectMake((self.view.LL_width - 60) / 2.0, self.view.LL_bottom - kLLGeneralMargin * 2 - width, width, width) target:self action:@selector(captureButtonClicked:)];
     [self.captureButton LL_setCornerRadius:width / 2.0];
     [self.captureButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
     self.captureButton.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.captureButton setImage:[UIImage LL_imageNamed:kCaptureImageName color:[LLThemeManager shared].primaryColor] forState:UIControlStateNormal];
-        
+
     // Pan, to moveable.
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGR:)];
-    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGR:)];
+
     [self.captureButton addGestureRecognizer:pan];
 }
 
@@ -77,31 +77,28 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-
 - (void)panGR:(UIPanGestureRecognizer *)sender {
     CGPoint offsetPoint = [sender translationInView:sender.view];
-    
+
     [sender setTranslation:CGPointZero inView:sender.view];
-    
+
     [self changeFrameWithPoint:offsetPoint];
-    
 }
 
 #pragma mark Primary
 - (void)changeFrameWithPoint:(CGPoint)point {
-    
     CGPoint center = self.captureButton.center;
     center.x += point.x;
     center.y += point.y;
-    
+
     center.x = MIN(center.x, LL_SCREEN_WIDTH);
     center.x = MAX(center.x, 0);
-    
+
     center.y = MIN(center.y, LL_SCREEN_HEIGHT);
     center.y = MAX(center.y, 0);
-    
+
     self.captureButton.center = center;
-    
+
     if (self.captureButton.LL_left < 0) {
         self.captureButton.LL_left = 0;
     }
@@ -109,6 +106,5 @@
         self.captureButton.LL_right = LL_SCREEN_WIDTH;
     }
 }
-
 
 @end

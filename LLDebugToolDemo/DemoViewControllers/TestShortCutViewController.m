@@ -26,7 +26,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    
+
     if (indexPath.row == 0) {
         cell.textLabel.text = NSLocalizedString(@"add.custom.short.cut", nil);
     } else if (indexPath.row == 1) {
@@ -45,17 +45,19 @@
 
 #pragma mark - Action
 - (void)testCustomShortCut {
-    [[LLDebugConfig shared] registerShortCutWithName:@"Toast date" action:^NSString * _Nullable{
-        return [[NSDate date] description];
-    }];
+    [[LLDebugConfig shared] registerShortCutWithName:@"Toast date"
+                                              action:^NSString *_Nullable {
+                                                  return [[NSDate date] description];
+                                              }];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionShortCut];
 }
 
 - (void)testCustomShortCutWithNoneReturn {
-    [[LLDebugConfig shared] registerShortCutWithName:@"Do anything" action:^NSString * _Nullable{
-        NSLog(@"You can do anything at here.");
-        return nil;
-    }];
+    [[LLDebugConfig shared] registerShortCutWithName:@"Do anything"
+                                              action:^NSString *_Nullable {
+                                                  NSLog(@"You can do anything at here.");
+                                                  return nil;
+                                              }];
     [[LLDebugTool sharedTool] executeAction:LLDebugToolActionShortCut];
 }
 

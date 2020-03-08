@@ -23,16 +23,16 @@
 
 #import "LLRulerViewController.h"
 
+#import "LLConst.h"
+#import "LLFactory.h"
+#import "LLInternalMacros.h"
 #import "LLRulerPickerInfoView.h"
 #import "LLRulerPickerView.h"
-#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
-@interface LLRulerViewController ()<LLRulerPickerViewDelegate, LLInfoViewDelegate>
+@interface LLRulerViewController () <LLRulerPickerViewDelegate, LLInfoViewDelegate>
 
 @property (nonatomic, strong) LLRulerPickerView *pickerView;
 
@@ -65,7 +65,7 @@
     [self.view.layer addSublayer:self.lineLayer];
     self.view.backgroundColor = [UIColor clearColor];
     self.updateBackgroundColor = NO;
-    
+
     [self.view addSubview:self.horizontalLine];
     [self.view addSubview:self.verticalLine];
     [self.view addSubview:self.topLabel];
@@ -78,9 +78,8 @@
 
 #pragma mark - LLRulerPickerViewDelegate
 - (void)LLRulerPickerView:(LLRulerPickerView *)view didUpdatePoint:(CGPoint)pointInWindow state:(UIGestureRecognizerState)state {
-    
     switch (state) {
-        case UIGestureRecognizerStateBegan:{
+        case UIGestureRecognizerStateBegan: {
             self.topLabel.hidden = NO;
             self.leftLabel.hidden = NO;
             self.rightLabel.hidden = NO;
@@ -88,8 +87,7 @@
             self.lineLayer.path = nil;
             self.startPoint = pointInWindow;
             [self.infoView updateStartPoint:pointInWindow];
-        }
-            break;
+        } break;
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded: {
             self.topLabel.hidden = YES;
@@ -100,23 +98,23 @@
         default: {
             CGFloat x = pointInWindow.x;
             CGFloat y = pointInWindow.y;
-            
-            self.topLabel.text = [NSString stringWithFormat:@"%0.2f",y];
+
+            self.topLabel.text = [NSString stringWithFormat:@"%0.2f", y];
             [self.topLabel sizeToFit];
             self.topLabel.LL_centerY = y / 2.0;
-            
-            self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_HEIGHT - y];
+
+            self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f", LL_SCREEN_HEIGHT - y];
             [self.bottomLabel sizeToFit];
             self.bottomLabel.LL_centerY = y + (LL_SCREEN_HEIGHT - y) / 2.0;
-            
-            self.leftLabel.text = [NSString stringWithFormat:@"%0.2f",x];
+
+            self.leftLabel.text = [NSString stringWithFormat:@"%0.2f", x];
             [self.leftLabel sizeToFit];
             self.leftLabel.LL_centerX = x / 2.0;
-            
-            self.rightLabel.text = [NSString stringWithFormat:@"%0.2f",LL_SCREEN_WIDTH - x];
+
+            self.rightLabel.text = [NSString stringWithFormat:@"%0.2f", LL_SCREEN_WIDTH - x];
             [self.rightLabel sizeToFit];
             self.rightLabel.LL_centerX = x + (LL_SCREEN_WIDTH - x) / 2.0;
-            
+
             self.horizontalLine.LL_centerY = y;
             if (y < LL_SCREEN_HEIGHT / 2.0) {
                 self.leftLabel.LL_y = y;
@@ -125,7 +123,7 @@
                 self.leftLabel.LL_bottom = y;
                 self.rightLabel.LL_bottom = y;
             }
-            
+
             self.verticalLine.LL_centerX = x;
             if (x < LL_SCREEN_WIDTH / 2.0) {
                 self.topLabel.LL_x = x;
@@ -134,11 +132,10 @@
                 self.topLabel.LL_right = x;
                 self.bottomLabel.LL_right = x;
             }
-            
+
             self.lineLayer.path = [self pathWithPoint:self.startPoint anotherPoint:pointInWindow].CGPath;
             [self.infoView updatePoint:pointInWindow];
-        }
-            break;
+        } break;
     }
 }
 
@@ -245,7 +242,7 @@
         _lineLayer.lineWidth = 5;
         _lineLayer.lineCap = kCALineCapRound;
         _lineLayer.frame = self.view.bounds;
-        _lineLayer.lineDashPattern = @[@(5),@(10)];
+        _lineLayer.lineDashPattern = @[@(5), @(10)];
     }
     return _lineLayer;
 }

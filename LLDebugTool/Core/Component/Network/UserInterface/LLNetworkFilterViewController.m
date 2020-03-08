@@ -23,10 +23,10 @@
 
 #import "LLNetworkFilterViewController.h"
 
-#import "LLTitleCellCategoryModel.h"
-#import "LLTitleCellModel.h"
 #import "LLFormatterTool.h"
 #import "LLNetworkModel.h"
+#import "LLTitleCellCategoryModel.h"
+#import "LLTitleCellModel.h"
 
 @interface LLNetworkFilterViewController ()
 
@@ -44,11 +44,11 @@
 }
 
 #pragma mark - Public
-- (void)configWithData:(NSArray <LLNetworkModel *>*)data {
-//    self.tableView.editing = YES;
+- (void)configWithData:(NSArray<LLNetworkModel *> *)data {
+    //    self.tableView.editing = YES;
     [self.dataArray removeAllObjects];
     NSMutableArray *settings = [[NSMutableArray alloc] init];
-    
+
     // Host
     NSMutableSet *hostSet = [NSMutableSet set];
     for (LLNetworkModel *model in data) {
@@ -56,48 +56,48 @@
             [hostSet addObject:model.url.host];
         }
     }
-    
+
     for (NSString *host in hostSet.allObjects) {
         LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:host];
         [settings addObject:model];
     }
-    
+
     LLTitleCellCategoryModel *category0 = [LLTitleCellCategoryModel modelWithTitle:@"Host" items:settings];
     [self.dataArray addObject:category0];
     [settings removeAllObjects];
-    
+
     // Filter
     for (NSString *filter in @[@"Header", @"Body", @"Response"]) {
         LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:filter];
         [settings addObject:model];
     }
-    
+
     LLTitleCellCategoryModel *category1 = [LLTitleCellCategoryModel modelWithTitle:@"Filter" items:settings];
     [self.dataArray addObject:category1];
     [settings removeAllObjects];
-    
+
     // Date
-//    NSString *fromString = data.lastObject.startDate;
-//    NSString *endString = data.firstObject.startDate;
-//
-//    NSDate *fromDate = [LLFormatterTool dateFromString:fromString style:FormatterToolDateStyle1];
-//    NSDate *endDate = [LLFormatterTool dateFromString:endString style:FormatterToolDateStyle1];
-//    if (!fromDate) {
-//        fromDate = [NSDate date];
-//    }
-//    if (!endDate) {
-//        endDate = [NSDate date];
-//    }
-//
-//    self.fromDate = fromDate;
-//    self.endDate = endDate;
-    
+    //    NSString *fromString = data.lastObject.startDate;
+    //    NSString *endString = data.firstObject.startDate;
+    //
+    //    NSDate *fromDate = [LLFormatterTool dateFromString:fromString style:FormatterToolDateStyle1];
+    //    NSDate *endDate = [LLFormatterTool dateFromString:endString style:FormatterToolDateStyle1];
+    //    if (!fromDate) {
+    //        fromDate = [NSDate date];
+    //    }
+    //    if (!endDate) {
+    //        endDate = [NSDate date];
+    //    }
+    //
+    //    self.fromDate = fromDate;
+    //    self.endDate = endDate;
+
     [settings addObject:[LLTitleCellModel modelWithTitle:@"Please Select From Date"]];
     [settings addObject:[LLTitleCellModel modelWithTitle:@"Please Select End Date"]];
     LLTitleCellCategoryModel *category2 = [LLTitleCellCategoryModel modelWithTitle:@"Date" items:settings];
     [self.dataArray addObject:category2];
     [settings removeAllObjects];
-    
+
     [self.tableView reloadData];
 }
 

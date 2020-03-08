@@ -23,9 +23,9 @@
 
 #import "LLTitleSliderCell.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @interface LLTitleSliderCell ()
 
@@ -42,7 +42,7 @@
     [super initUI];
     [self.contentView addSubview:self.slider];
     [self.contentView addSubview:self.valueLabel];
-    
+
     [self addValueLabelConstraints];
     [self addSliderConstraints];
 }
@@ -59,7 +59,7 @@
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:kLLGeneralMargin];
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeTop multiplier:1 constant:kLLGeneralMargin / 2.0];
     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:35];
-    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin /2.0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.slider attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.slider.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin / 2.0];
     bottom.priority = UILayoutPriorityDefaultHigh;
     self.slider.translatesAutoresizingMaskIntoConstraints = NO;
     [self.slider.superview addConstraints:@[right, left, top, height, bottom]];
@@ -68,7 +68,7 @@
 #pragma mark - Primary
 - (void)updateUI {
     self.model.value = (long)self.slider.value;
-    self.valueLabel.text = [NSString stringWithFormat:@"%ld",(long)self.model.value];
+    self.valueLabel.text = [NSString stringWithFormat:@"%ld", (long)self.model.value];
 }
 
 #pragma mark - Event responses
@@ -89,7 +89,7 @@
     _slider.minimumValue = model.minValue;
     _slider.maximumValue = model.maxValue;
     _slider.value = model.value;
-    _valueLabel.text = [NSString stringWithFormat:@"%ld",(long)model.value];
+    _valueLabel.text = [NSString stringWithFormat:@"%ld", (long)model.value];
 }
 
 - (UISlider *)slider {

@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id<LLFunctionContainerViewControllerDelegate> delegate;
 
 /// Items.
-@property (nonatomic, strong) NSArray <LLFunctionItemModel *>*dataArray;
+@property (nonatomic, strong) NSArray<LLFunctionItemModel *> *dataArray;
 
 /// Title.
 @property (nonatomic, copy) NSString *title;

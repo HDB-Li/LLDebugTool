@@ -23,9 +23,9 @@
 
 #import "LLFilterDatePickerView.h"
 
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
 #import "LLFactory.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
 
 @interface LLFilterDatePickerView () <UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -47,10 +47,10 @@
         if (!endDate) {
             endDate = [NSDate date];
         }
-        
+
         self.delegate = self;
         self.dataSource = self;
-        
+
         if ([endDate timeIntervalSinceDate:fromDate] >= 0) {
             NSMutableArray *days = [[NSMutableArray alloc] init];
             NSDate *date = [fromDate copy];
@@ -61,19 +61,19 @@
                 }
                 date = [date dateByAddingTimeInterval:60 * 60 * 24];
             }
-            
+
             NSMutableArray *hours = [[NSMutableArray alloc] init];
             for (int i = 0; i < 24; i++) {
-                [hours addObject:[NSString stringWithFormat:@"%02d",i]];
+                [hours addObject:[NSString stringWithFormat:@"%02d", i]];
             }
             NSMutableArray *minutes = [[NSMutableArray alloc] init];
             NSMutableArray *seconds = [[NSMutableArray alloc] init];
             for (int i = 0; i < 60; i++) {
-                [minutes addObject:[NSString stringWithFormat:@"%02d",i]];
-                [seconds addObject:[NSString stringWithFormat:@"%02d",i]];
+                [minutes addObject:[NSString stringWithFormat:@"%02d", i]];
+                [seconds addObject:[NSString stringWithFormat:@"%02d", i]];
             }
-            self.dataArray = @[days,hours,minutes,seconds];
-            
+            self.dataArray = @[days, hours, minutes, seconds];
+
             [self selectRow:1 inComponent:0 animated:NO];
         }
     }
@@ -87,7 +87,7 @@
         NSString *hour = self.dataArray[1][[self selectedRowInComponent:1]];
         NSString *min = self.dataArray[2][[self selectedRowInComponent:2]];
         NSString *sec = self.dataArray[3][[self selectedRowInComponent:3]];
-        return [NSString stringWithFormat:@"%@ %@:%@:%@",day,hour,min,sec];
+        return [NSString stringWithFormat:@"%@ %@:%@:%@", day, hour, min, sec];
     }
     return nil;
 }

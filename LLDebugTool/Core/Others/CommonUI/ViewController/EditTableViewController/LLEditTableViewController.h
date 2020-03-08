@@ -101,12 +101,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Share files action. Must call super method.
  */
-- (void)shareFilesWithIndexPaths:(NSArray <NSIndexPath *>*)indexPaths;
+- (void)shareFilesWithIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
 
 /**
  * Delete files action. Must call super method.
  */
-- (void)deleteFilesWithIndexPaths:(NSArray <NSIndexPath *>*)indexPaths;
+- (void)deleteFilesWithIndexPaths:(NSArray<NSIndexPath *> *)indexPaths;
 
 /**
  * Rewrite method to control whether is searching. Must call super method.

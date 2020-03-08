@@ -32,12 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 
 /// Action block.
-@property (nonatomic, copy) NSString *_Nullable(^action)(void);
+@property (nonatomic, copy) NSString *_Nullable (^action)(void);
 
 /// Initial method.
 /// @param name Name.
 /// @param action Action block.
-- (instancetype)initWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
+- (instancetype)initWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action;
 
 /// Visiable view controller.
 + (LLShortCutModel *)visiableViewControllerModel;

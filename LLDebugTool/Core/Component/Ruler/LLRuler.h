@@ -26,9 +26,9 @@
 
 #import "LLRulerComponent.h"
 
-#import "LLRulerViewController.h"
 #import "LLRulerPickerInfoView.h"
 #import "LLRulerPickerView.h"
+#import "LLRulerViewController.h"
 #import "LLRulerWindow.h"
 
 #import "LLWindowManager+Ruler.h"

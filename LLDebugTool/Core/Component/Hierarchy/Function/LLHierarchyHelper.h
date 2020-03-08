@@ -34,11 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype _Nonnull)shared;
 
 /// All window in application.
-- (NSArray <UIWindow *>*)allWindows;
+- (NSArray<UIWindow *> *)allWindows;
 
 /// All window in application without class.
 /// @param cls Ignore class.
-- (NSArray <UIWindow *>*)allWindowsIgnoreClass:(Class _Nullable)cls;
+- (NSArray<UIWindow *> *)allWindowsIgnoreClass:(Class _Nullable)cls;
 
 @end
 

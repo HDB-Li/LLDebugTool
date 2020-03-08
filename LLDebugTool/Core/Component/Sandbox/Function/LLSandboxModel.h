@@ -113,12 +113,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Submodels in the path.
  */
-@property (strong, nonatomic) NSMutableArray <LLSandboxModel *> *subModels;
+@property (strong, nonatomic) NSMutableArray<LLSandboxModel *> *subModels;
 
 /**
  Init of the model.
  */
-- (instancetype _Nonnull)initWithAttributes:(NSDictionary <NSString *,id>*)attributes filePath:(NSString *)filePath;
+- (instancetype _Nonnull)initWithAttributes:(NSDictionary<NSString *, id> *)attributes filePath:(NSString *)filePath;
 
 /**
  Convet file size to NSString.

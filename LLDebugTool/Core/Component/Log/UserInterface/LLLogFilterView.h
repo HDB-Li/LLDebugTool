@@ -31,11 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLLogFilterView : LLFilterView
 
 /// Filter change block.
-@property (copy, nonatomic, nullable) void(^changeBlock)(NSArray *_Nullable levels, NSArray *_Nullable events, NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
+@property (copy, nonatomic, nullable) void (^changeBlock)(NSArray *_Nullable levels, NSArray *_Nullable events, NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
 
 /// Config filter with an array of LLLogModel data.
 /// @param data An array of LLLogModel data.
-- (void)configWithData:(NSArray <LLLogModel *>*)data;
+- (void)configWithData:(NSArray<LLLogModel *> *)data;
 
 @end
 

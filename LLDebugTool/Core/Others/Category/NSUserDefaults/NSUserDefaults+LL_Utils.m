@@ -63,7 +63,7 @@
 
 #pragma mark - Primary
 + (NSString *)getKey:(NSString *)aKey {
-    return [NSString stringWithFormat:@"LLDebugTool-%@",aKey];
+    return [NSString stringWithFormat:@"LLDebugTool-%@", aKey];
 }
 
 @end

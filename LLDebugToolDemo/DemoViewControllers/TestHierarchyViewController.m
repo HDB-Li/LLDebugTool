@@ -7,8 +7,8 @@
 //
 
 #import "TestHierarchyViewController.h"
-#import "LLHierarchyHelper.h"
 #import "LLDebugTool.h"
+#import "LLHierarchyHelper.h"
 
 @interface TestHierarchyViewController () <UITextFieldDelegate>
 
@@ -34,9 +34,9 @@
         [view addSubview:btn];
         view;
     });
-    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl",@"UISlider", @"UISwitch",@"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView", @"UINavigationBar", @"UIToolbar", @"UITabBar", @"UISearchBar"];
+    self.dataArray = @[@"UIView", @"UILabel", @"UIImageView", @"UIButton", @"UITextField", @"UISegmentedControl", @"UISlider", @"UISwitch", @"UIActivityIndicatorView", @"UIProgressView", @"UIPageControl", @"UIStepper", @"UIScrollView", @"UITableView", @"UITableViewCell", @"UICollectionView", @"UICollectionReusableView", @"UITextView", @"UIDatePicker", @"UIPickerView", @"UINavigationBar", @"UIToolbar", @"UITabBar", @"UISearchBar"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(testHierarchy)];
-    
+
     [self testHierarchy];
 }
 
@@ -89,7 +89,7 @@
         textField.placeholder = @"Text Field";
         textField.delegate = self;
         view = textField;
-    } else if (index == 5)  {
+    } else if (index == 5) {
         UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:@[@"1", @"2"]];
         control.selectedSegmentIndex = 0;
         view = control;
@@ -173,11 +173,10 @@
 }
 
 - (void)touchUpInside:(UIButton *)sender {
-    
 }
 
 #pragma mark - UITextFieldDelegate
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField endEditing:YES];
     return YES;
 }

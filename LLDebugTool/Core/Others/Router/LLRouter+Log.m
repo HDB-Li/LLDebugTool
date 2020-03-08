@@ -31,7 +31,12 @@
 
 + (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
 #ifdef LLDEBUGTOOL_LOG
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLDebugConfigLogLevelDefault onEvent:onEvent message:message];
+    [[LLLogHelper shared] logInFile:file
+                           function:function
+                             lineNo:lineNo
+                              level:LLDebugConfigLogLevelDefault
+                            onEvent:onEvent
+                            message:message];
 #else
     NSLog(@"%@", message);
 #endif
@@ -39,7 +44,12 @@
 
 + (void)alertLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
 #ifdef LLDEBUGTOOL_LOG
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLDebugConfigLogLevelAlert onEvent:onEvent message:message];
+    [[LLLogHelper shared] logInFile:file
+                           function:function
+                             lineNo:lineNo
+                              level:LLDebugConfigLogLevelAlert
+                            onEvent:onEvent
+                            message:message];
 #else
     NSLog(@"%@", message);
 #endif
@@ -47,7 +57,12 @@
 
 + (void)warningLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
 #ifdef LLDEBUGTOOL_LOG
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLDebugConfigLogLevelWarning onEvent:onEvent message:message];
+    [[LLLogHelper shared] logInFile:file
+                           function:function
+                             lineNo:lineNo
+                              level:LLDebugConfigLogLevelWarning
+                            onEvent:onEvent
+                            message:message];
 #else
     NSLog(@"%@", message);
 #endif
@@ -55,7 +70,12 @@
 
 + (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
 #ifdef LLDEBUGTOOL_LOG
-    [[LLLogHelper shared] logInFile:file function:function lineNo:lineNo level:LLDebugConfigLogLevelError onEvent:onEvent message:message];
+    [[LLLogHelper shared] logInFile:file
+                           function:function
+                             lineNo:lineNo
+                              level:LLDebugConfigLogLevelError
+                            onEvent:onEvent
+                            message:message];
 #else
     NSLog(@"%@", message);
 #endif

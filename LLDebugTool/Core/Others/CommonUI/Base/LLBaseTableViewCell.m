@@ -23,10 +23,10 @@
 
 #import "LLBaseTableViewCell.h"
 
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 
 @implementation LLBaseTableViewCell
 
@@ -50,7 +50,7 @@
     self.backgroundColor = [LLThemeManager shared].backgroundColor;
     self.selectedBackgroundView = [LLFactory getView];
     self.selectedBackgroundView.backgroundColor = [[LLThemeManager shared].primaryColor colorWithAlphaComponent:0.2];
-    
+
     self.textLabel.textColor = [LLThemeManager shared].primaryColor;
     self.detailTextLabel.textColor = [LLThemeManager shared].primaryColor;
 }
@@ -75,7 +75,7 @@
                     break;
                 }
             }
-        } else if ([subview isKindOfClass: [UIButton class]]) {
+        } else if ([subview isKindOfClass:[UIButton class]]) {
             UIButton *button = (UIButton *)subview;
             if (button.currentBackgroundImage != nil && button.currentBackgroundImage.renderingMode != UIImageRenderingModeAlwaysTemplate) {
                 [button setBackgroundImage:[button.currentBackgroundImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:button.state];

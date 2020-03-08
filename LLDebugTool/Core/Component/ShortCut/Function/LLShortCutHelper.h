@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLShortCutHelper : NSObject
 
 /// Register action models.
-@property (nonatomic, strong, readonly) NSArray <LLShortCutModel *>*actions;
+@property (nonatomic, strong, readonly) NSArray<LLShortCutModel *> *actions;
 
 /// Shared instance.
 + (instancetype)shared;

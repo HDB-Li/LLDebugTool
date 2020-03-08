@@ -26,9 +26,9 @@
 #import "LLFormatterTool.h"
 #import "LLTool.h"
 
+#import "NSData+LL_Network.h"
 #import "NSDictionary+LL_Utils.h"
 #import "NSString+LL_Utils.h"
-#import "NSData+LL_Network.h"
 
 @interface LLNetworkModel ()
 
@@ -52,7 +52,7 @@
 
 @property (nonatomic, strong) NSDate *dateDescription;
 
-@property (nonatomic, strong, nullable) NSDictionary <NSString *, NSString *>*cookies;
+@property (nonatomic, strong, nullable) NSDictionary<NSString *, NSString *> *cookies;
 
 @end
 
@@ -102,7 +102,7 @@
     return _dateDescription;
 }
 
-- (NSDictionary<NSString *,NSString *> *)cookies {
+- (NSDictionary<NSString *, NSString *> *)cookies {
     if (!_cookies) {
         if (!self.url) {
             return nil;
@@ -170,7 +170,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mimeType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@",self.url.absoluteString,self.startDate,self.method,self.mimeType,self.requestBody,self.statusCode,self.headerString,self.responseString,self.totalDuration,self.totalDataTraffic,self.error.localizedDescription,self.identity];
+    return [NSString stringWithFormat:@"[LLNetworkModel] \n url:%@,\n startDate:%@,\n method:%@,\n mimeType:%@,\n requestBody:%@,\n statusCode:%@,\n header:%@,\n response:%@,\n totalDuration:%@,\n dataTraffic:%@,\n error:%@,\n identity:%@", self.url.absoluteString, self.startDate, self.method, self.mimeType, self.requestBody, self.statusCode, self.headerString, self.responseString, self.totalDuration, self.totalDataTraffic, self.error.localizedDescription, self.identity];
 }
 
 #pragma mark - Primary
@@ -187,23 +187,14 @@
     } else if ([mime isEqualToString:@"text/plain"]) {
         _isTXT = YES;
     } else if ([mime isEqualToString:@"video/quicktime"]) {
-        
     } else if ([mime isEqualToString:@"video/x-msvideo"]) {
-        
     } else if ([mime isEqualToString:@"audio/mpeg"]) {
-        
     } else if ([mime isEqualToString:@"audio/x-wav"]) {
-        
     } else if ([mime isEqualToString:@"application/json"]) {
-        
     } else if ([mime isEqualToString:@"application/pdf"]) {
-        
     } else if ([mime isEqualToString:@"application/vnd.ms-excel"]) {
-        
     } else if ([mime isEqualToString:@"application/vnd.ms-powerpoint"]) {
-        
     } else if ([mime isEqualToString:@"application/msword"]) {
-        
     }
 }
 
@@ -211,7 +202,7 @@
     if (string == nil || ![string isKindOfClass:[NSString class]] || string.length == 0) {
         return 0;
     }
-    
+
     return [string dataUsingEncoding:NSUTF8StringEncoding].length ?: string.LL_byteLength;
 }
 

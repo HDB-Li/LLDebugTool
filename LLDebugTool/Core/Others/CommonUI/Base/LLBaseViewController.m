@@ -23,11 +23,11 @@
 
 #import "LLBaseViewController.h"
 
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 
 #import "UIViewController+LL_Utils.h"
 
@@ -52,11 +52,9 @@
 
 #pragma mark - Public
 - (void)leftItemClick:(UIButton *)sender {
-    
 }
 
 - (void)rightItemClick:(UIButton *)sender {
-    
 }
 
 - (void)backAction:(UIButton *)sender {
@@ -82,7 +80,6 @@
 }
 
 - (void)becomeVisable {
-    
 }
 
 - (void)themeColorChanged {
@@ -104,8 +101,8 @@
 #pragma mark - Primary
 - (void)resetDefaultSettings {
     self.updateBackgroundColor = YES;
-    // Used to solve problems caused by modifying some systems default values with Runtime in the project.
-    // Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
+// Used to solve problems caused by modifying some systems default values with Runtime in the project.
+// Hopefully you changed these defaults at runtime in viewDidLoad, not viewWillAppear or viewDidAppear
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.automaticallyAdjustsScrollViewInsets = YES;
@@ -115,7 +112,7 @@
 - (void)setNavigationSettings {
     if (self.navigationController) {
         self.navigationItem.hidesBackButton = YES;
-        
+
         [self initCloseLeftNavigationItem];
         NSInteger index = [self.navigationController.viewControllers indexOfObject:self];
         if (index > 0) {

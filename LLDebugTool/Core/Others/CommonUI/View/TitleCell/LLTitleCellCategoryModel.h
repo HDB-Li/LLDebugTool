@@ -34,12 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) NSString *title;
 
 /// Items.
-@property (nonatomic, strong, readonly) NSArray <LLTitleCellModel *>*items;
+@property (nonatomic, strong, readonly) NSArray<LLTitleCellModel *> *items;
 
 /// Instance method.
 /// @param title Title
 /// @param items Items.
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title items:(NSArray <LLTitleCellModel *>*)items;
++ (instancetype)modelWithTitle:(NSString *_Nullable)title items:(NSArray<LLTitleCellModel *> *)items;
 
 @end
 

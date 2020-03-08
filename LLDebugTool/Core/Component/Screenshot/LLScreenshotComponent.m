@@ -27,7 +27,7 @@
 
 @implementation LLScreenshotComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
     LLScreenshotWindow *window = [LLWindowManager screenshotWindow];
     if (data[LLComponentDelegateRootViewControllerKey]) {
         Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);

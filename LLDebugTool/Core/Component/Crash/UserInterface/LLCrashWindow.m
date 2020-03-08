@@ -23,8 +23,8 @@
 
 #import "LLCrashWindow.h"
 
-#import "LLNavigationController.h"
 #import "LLCrashViewController.h"
+#import "LLNavigationController.h"
 #import "LLWindowManager.h"
 
 @implementation LLCrashWindow

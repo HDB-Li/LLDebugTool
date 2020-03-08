@@ -23,10 +23,10 @@
 
 #import "LLLogDetailViewController.h"
 
-#import "LLSubTitleTableViewCell.h"
 #import "LLInternalMacros.h"
-#import "LLToastUtils.h"
 #import "LLLogModel.h"
+#import "LLSubTitleTableViewCell.h"
+#import "LLToastUtils.h"
 
 static NSString *const kLogContentCellID = @"LogContentCellID";
 
@@ -70,7 +70,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
     if ([self.canCopyArray containsObject:title]) {
         NSString *content = self.contentArray[indexPath.row];
         [UIPasteboard generalPasteboard].string = content;
-        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"), title]];
     }
 }
 
@@ -86,7 +86,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
         self.titleArray = [[NSMutableArray alloc] init];
         self.contentArray = [[NSMutableArray alloc] init];
         [self.titleArray addObject:@"Message"];
-        [self.contentArray addObject:self.model.message?:@"None message"];
+        [self.contentArray addObject:self.model.message ?: @"None message"];
         if (self.model.file.length) {
             [self.titleArray addObject:@"File"];
             [self.contentArray addObject:self.model.file];
@@ -99,17 +99,17 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
             [self.titleArray addObject:@"LineNo"];
             [self.contentArray addObject:@(self.model.lineNo).stringValue];
         }
-        
+
         if (self.model.event.length) {
             [self.titleArray addObject:@"Event"];
             [self.contentArray addObject:self.model.event];
         }
-        
+
         if (self.model.date.length) {
             [self.titleArray addObject:@"Date"];
             [self.contentArray addObject:self.model.date];
         }
-        
+
         [self.titleArray addObject:@"Level"];
         [self.contentArray addObject:self.model.levelDescription];
 
@@ -122,7 +122,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 - (NSArray *)canCopyArray {
     if (!_canCopyArray) {
-        _canCopyArray = @[@"Message",@"File",@"Function"];
+        _canCopyArray = @[@"Message", @"File", @"Function"];
     }
     return _canCopyArray;
 }

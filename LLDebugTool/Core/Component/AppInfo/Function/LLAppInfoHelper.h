@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateAppInfoNotification;
 
-typedef NSString * LLAppInfoHelperKey NS_TYPED_ENUM;
+typedef NSString *LLAppInfoHelperKey NS_TYPED_ENUM;
 
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperCPUKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedKey;

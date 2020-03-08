@@ -25,8 +25,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "LLInternalMacros.h"
 #import "LLFactory.h"
+#import "LLInternalMacros.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -60,53 +60,60 @@ static LLToastUtils *_instance = nil;
 }
 
 - (void)toastMessage:(NSString *)message {
-    [self showToastLabel:message completion:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.toastTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self hide];
-        });
-    }];
+    [self showToastLabel:message
+              completion:^{
+                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.toastTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      [self hide];
+                  });
+              }];
 }
 
 - (void)loadingMessage:(NSString *)message {
-    [self showToastLabel:message completion:^{
-        [self startLoadingMessageTimer];
-    }];
+    [self showToastLabel:message
+              completion:^{
+                  [self startLoadingMessageTimer];
+              }];
 }
 
 - (void)hide {
     if (self.toastLabel.superview) {
         [self removeLoadingMessageTimer];
-        [UIView animateWithDuration:0.1 animations:^{
-            self.toastLabel.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self.toastLabel removeFromSuperview];
-        }];
+        [UIView animateWithDuration:0.1
+            animations:^{
+                self.toastLabel.alpha = 0;
+            }
+            completion:^(BOOL finished) {
+                [self.toastLabel removeFromSuperview];
+            }];
     }
 }
 
 #pragma mark - Primary
-- (void)showToastLabel:(NSString *)message completion:(void (^ __nullable)(void))completion {
+- (void)showToastLabel:(NSString *)message completion:(void (^__nullable)(void))completion {
     if (self.toastLabel.superview) {
         [self.toastLabel removeFromSuperview];
     }
-    
+
     self.toastLabel.frame = CGRectMake(20, 0, LL_SCREEN_WIDTH - 40, 100);
     self.toastLabel.text = message;
     self.toastLabel.alpha = 0;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[UIApplication sharedApplication].keyWindow addSubview:self.toastLabel];
+    [[UIApplication sharedApplication]
+            .keyWindow addSubview:self.toastLabel];
 #pragma clang diagnostic pop
     [self.toastLabel sizeToFit];
     self.toastLabel.center = CGPointMake(LL_SCREEN_WIDTH / 2.0, LL_SCREEN_HEIGHT / 2.0);
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        self.toastLabel.alpha = 1;
-    } completion:^(BOOL finished) {
-        if (completion) {
-            completion();
+
+    [UIView animateWithDuration:0.25
+        animations:^{
+            self.toastLabel.alpha = 1;
         }
-    }];
+        completion:^(BOOL finished) {
+            if (completion) {
+                completion();
+            }
+        }];
 }
 
 - (void)startLoadingMessageTimer {

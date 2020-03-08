@@ -23,17 +23,17 @@
 
 #import "LLCrashHelper.h"
 
-#include <libkern/OSAtomic.h>
 #include <execinfo.h>
+#include <libkern/OSAtomic.h>
 
-#import "LLStorageManager.h"
-#import "LLFormatterTool.h"
 #import "LLCrashModel.h"
 #import "LLDebugConfig.h"
+#import "LLFormatterTool.h"
+#import "LLStorageManager.h"
 #import "LLTool.h"
 
-#import "NSObject+LL_Utils.h"
 #import "LLRouter+AppInfo.h"
+#import "NSObject+LL_Utils.h"
 
 static LLCrashHelper *_instance = nil;
 
@@ -160,168 +160,138 @@ static LLCrashHelper *_instance = nil;
     NSString *appInfoDescription = [LLRouter appInfoDescription];
 
     LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:appInfoDescription launchDate:[NSObject LL_launchDate]];
-    [[LLStorageManager shared] saveModel:model complete:^(BOOL result) {
-        [LLTool log:@"Save crash model success"];
-    } synchronous:YES];
-    [LLTool log:[NSString stringWithFormat:@"%@",exception] synchronous:YES withPrompt:NO];
+    [[LLStorageManager shared] saveModel:model
+                                complete:^(BOOL result) {
+                                    [LLTool log:@"Save crash model success"];
+                                }
+                             synchronous:YES];
+    [LLTool log:[NSString stringWithFormat:@"%@", exception] synchronous:YES withPrompt:NO];
 }
 
-void HandleException(NSException *exception)
-{
+void HandleException(NSException *exception) {
     [[LLCrashHelper shared] saveException:exception];
     [exception raise];
 }
 
-void SignalHandler(int sig)
-{
+void SignalHandler(int sig) {
     // See https://stackoverflow.com/questions/40631334/how-to-intercept-exc-bad-instruction-when-unwrapping-nil.
     NSString *name = @"Unknown signal";
     switch (sig) {
-        case SIGHUP:{
+        case SIGHUP: {
             name = @"SIGHUP";
-        }
-            break;
-        case SIGINT:{
+        } break;
+        case SIGINT: {
             name = @"SIGINT";
-        }
-            break;
-        case SIGQUIT:{
+        } break;
+        case SIGQUIT: {
             name = @"SIGQUIT";
-        }
-            break;
-        case SIGILL:{
+        } break;
+        case SIGILL: {
             name = @"SIGILL";
-        }
-            break;
-        case SIGTRAP:{
+        } break;
+        case SIGTRAP: {
             name = @"SIGTRAP";
-        }
-            break;
-        case SIGABRT:{
+        } break;
+        case SIGABRT: {
             name = @"SIGABRT";
-        }
-            break;
+        } break;
 #ifdef SIGPOLL
-        case SIGPOLL:{
+        case SIGPOLL: {
             name = @"SIGPOLL";
-        }
-            break;
+        } break;
 #endif
-        case SIGEMT:{
+        case SIGEMT: {
             name = @"SIGEMT";
-        }
-            break;
-        case SIGFPE:{
+        } break;
+        case SIGFPE: {
             name = @"SIGFPE";
-        }
-            break;
-        case SIGKILL:{
+        } break;
+        case SIGKILL: {
             name = @"SIGKILL";
-        }
-            break;
-        case SIGBUS:{
+        } break;
+        case SIGBUS: {
             name = @"SIGBUS";
-        }
-            break;
-        case SIGSEGV:{
+        } break;
+        case SIGSEGV: {
             name = @"SIGSEGV";
-        }
-            break;
-        case SIGSYS:{
+        } break;
+        case SIGSYS: {
             name = @"SIGSYS";
-        }
-            break;
-        case SIGPIPE:{
+        } break;
+        case SIGPIPE: {
             name = @"SIGPIPE";
-        }
-            break;
-        case SIGALRM:{
+        } break;
+        case SIGALRM: {
             name = @"SIGALRM";
-        }
-            break;
-        case SIGTERM:{
+        } break;
+        case SIGTERM: {
             name = @"SIGTERM";
-        }
-            break;
-        case SIGURG:{
+        } break;
+        case SIGURG: {
             name = @"SIGURG";
-        }
-            break;
-        case SIGSTOP:{
+        } break;
+        case SIGSTOP: {
             name = @"SIGSTOP";
-        }
-            break;
-        case SIGTSTP:{
+        } break;
+        case SIGTSTP: {
             name = @"SIGTSTP";
-        }
-            break;
-        case SIGCONT:{
+        } break;
+        case SIGCONT: {
             name = @"SIGCONT";
-        }
-            break;
-        case SIGCHLD:{
+        } break;
+        case SIGCHLD: {
             name = @"SIGCHLD";
-        }
-            break;
-        case SIGTTIN:{
+        } break;
+        case SIGTTIN: {
             name = @"SIGTTIN";
-        }
-            break;
-        case SIGTTOU:{
+        } break;
+        case SIGTTOU: {
             name = @"SIGTTOU";
-        }
-            break;
+        } break;
 #ifdef SIGIO
-        case SIGIO:{
+        case SIGIO: {
             name = @"SIGIO";
-        }
-            break;
+        } break;
 #endif
-        case SIGXCPU:{
+        case SIGXCPU: {
             name = @"SIGXCPU";
-        }
-            break;
-        case SIGXFSZ:{
+        } break;
+        case SIGXFSZ: {
             name = @"SIGXFSZ";
-        }
-            break;
-        case SIGVTALRM:{
+        } break;
+        case SIGVTALRM: {
             name = @"SIGVTALRM";
-        }
-            break;
-        case SIGPROF:{
+        } break;
+        case SIGPROF: {
             name = @"SIGPROF";
-        }
-            break;
+        } break;
 #ifdef SIGWINCH
-        case SIGWINCH:{
+        case SIGWINCH: {
             name = @"SIGWINCH";
-        }
-            break;
+        } break;
 #endif
 #ifdef SIGINFO
-        case SIGINFO:{
+        case SIGINFO: {
             name = @"SIGINFO";
-        }
-            break;
+        } break;
 #endif
-        case SIGUSR1:{
+        case SIGUSR1: {
             name = @"SIGUSR1";
-        }
-            break;
-        case SIGUSR2:{
+        } break;
+        case SIGUSR2: {
             name = @"SIGUSR2";
-        }
-            break;
+        } break;
     }
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    LLCrashModel *model = [[LLCrashModel alloc] initWithName:name reason:[NSString stringWithFormat:@"%@ Signal",name] userInfo:nil stackSymbols:callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:[LLRouter appInfoDescription] launchDate:[NSObject LL_launchDate]];
-    [[LLStorageManager shared] saveModel:model complete:^(BOOL result) {
-        [LLTool log:@"Save signal model success"];
-    } synchronous:YES];
-    
+    LLCrashModel *model = [[LLCrashModel alloc] initWithName:name reason:[NSString stringWithFormat:@"%@ Signal", name] userInfo:nil stackSymbols:callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:[LLRouter appInfoDescription] launchDate:[NSObject LL_launchDate]];
+    [[LLStorageManager shared] saveModel:model
+                                complete:^(BOOL result) {
+                                    [LLTool log:@"Save signal model success"];
+                                }
+                             synchronous:YES];
+
     kill(getpid(), SIGKILL);
 }
 

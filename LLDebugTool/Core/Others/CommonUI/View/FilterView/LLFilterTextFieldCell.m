@@ -23,15 +23,15 @@
 
 #import "LLFilterTextFieldCell.h"
 
-#import "LLFilterFilePickerView.h"
-#import "LLFilterDatePickerView.h"
-#import "LLFilterTextFieldModel.h"
-#import "LLNoneCopyTextField.h"
-#import "LLInternalMacros.h"
-#import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
+#import "LLFilterDatePickerView.h"
+#import "LLFilterFilePickerView.h"
+#import "LLFilterTextFieldModel.h"
+#import "LLInternalMacros.h"
+#import "LLNoneCopyTextField.h"
+#import "LLThemeManager.h"
 
 @interface LLFilterTextFieldCell ()
 
@@ -86,7 +86,7 @@
     [super initUI];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.textField];
-    
+
     [self addTitleLabelConstraints];
     [self addTextFieldConstraints];
 }
@@ -153,8 +153,7 @@
         _textField.borderStyle = UITextBorderStyleRoundedRect;
         _textField.textColor = [LLThemeManager shared].primaryColor;
         _textField.backgroundColor = [LLThemeManager shared].containerColor;
-        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Please Select" attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
-        
+        _textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Please Select" attributes:@{NSForegroundColorAttributeName: [LLThemeManager shared].primaryColor}];
     }
     return _textField;
 }
@@ -182,16 +181,15 @@
         [cancel setTitle:LLLocalizedString(@"cancel") forState:UIControlStateNormal];
         [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         cancel.titleLabel.font = [UIFont systemFontOfSize:15];
-        
+
         UIButton *confirm = [LLFactory getButton:_accessoryView frame:CGRectMake(_accessoryView.frame.size.width - 60 - 12, 0, 60, _accessoryView.frame.size.height) target:self action:@selector(confirmButtonClick:)];
         [confirm setTitle:LLLocalizedString(@"confirm") forState:UIControlStateNormal];
         [confirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         confirm.titleLabel.font = [UIFont systemFontOfSize:15];
-        
+
         [LLFactory getLineView:CGRectMake(0, 0, _accessoryView.frame.size.width, 1) superView:_accessoryView];
     }
     return _accessoryView;
 }
-
 
 @end

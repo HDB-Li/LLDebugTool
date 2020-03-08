@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class LLSubTitleTableViewCell;
 
-@protocol LLSubTitleTableViewCellDelegate<NSObject>
+@protocol LLSubTitleTableViewCellDelegate <NSObject>
 
 @optional
 - (void)LLSubTitleTableViewCell:(LLSubTitleTableViewCell *)cell didSelectedContentView:(UITextView *)contentTextView;
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic, nullable) NSString *contentText;
 
 /// Action delegate.
-@property (weak, nonatomic, nullable) id <LLSubTitleTableViewCellDelegate> delegate;
+@property (weak, nonatomic, nullable) id<LLSubTitleTableViewCellDelegate> delegate;
 
 @end
 

@@ -35,7 +35,7 @@
         });
         return returnValue;
     }
-    UIView * statusBarModern = [LLTool getUIStatusBarModern];
+    UIView *statusBarModern = [LLTool getUIStatusBarModern];
     if (@available(iOS 13.0, *)) {
         returnValue = [self networkStateFromStatebarAfter13:statusBarModern];
     } else {
@@ -47,7 +47,7 @@
             returnValue = [self networkStateFromIPhoneStatebarBefore13:statusBarModern];
         }
     }
-    
+
     return returnValue;
 }
 
@@ -90,8 +90,8 @@
                     case 4:
                         returnValue = LLNetworkStatusReachableViaWWAN3G;
                         break;
-                        //                        case 1: // Return 1 when 1G.
-                        //                            break;
+                    //                        case 1: // Return 1 when 1G.
+                    //                            break;
                     case 0:
                         // Return 0 when no sim card.
                         returnValue = LLNetworkStatusNotReachable;

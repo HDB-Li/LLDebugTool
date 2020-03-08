@@ -23,8 +23,8 @@
 
 #import "LLFilterView.h"
 
-#import "LLThemeManager.h"
 #import "LLFactory.h"
+#import "LLThemeManager.h"
 
 #import "UIButton+LL_Utils.h"
 #import "UIView+LL_Utils.h"
@@ -72,7 +72,7 @@
         if (count == 0) {
             [sender setTitle:title forState:UIControlStateNormal];
         } else {
-            [sender setTitle:[NSString stringWithFormat:@"%@ (%ld)",title,(long)count] forState:UIControlStateNormal];
+            [sender setTitle:[NSString stringWithFormat:@"%@ (%ld)", title, (long)count] forState:UIControlStateNormal];
         }
     }
 }
@@ -80,14 +80,14 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     [self addSubview:self.btnsBgView];
     [self addSubview:self.lineView];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     self.btnsBgView.frame = CGRectMake(0, 0, self.LL_width, self.normalHeight);
     CGFloat gap = 20;
     CGFloat itemHeight = 25;
@@ -125,39 +125,43 @@
     view.LL_y = self.normalHeight;
     __block CGFloat height = view.LL_height;
     view.LL_height = 0;
-    [UIView animateWithDuration:0.25 animations:^{
-        view.LL_height = height;
-        self.LL_height = self.normalHeight + height;
-        self.superview.LL_height = self.superview.LL_height + height;
-    } completion:^(BOOL finished) {
-        if (self.filterChangeStateBlock) {
-            self.filterChangeStateBlock();
+    [UIView animateWithDuration:0.25
+        animations:^{
+            view.LL_height = height;
+            self.LL_height = self.normalHeight + height;
+            self.superview.LL_height = self.superview.LL_height + height;
         }
-    }];
+        completion:^(BOOL finished) {
+            if (self.filterChangeStateBlock) {
+                self.filterChangeStateBlock();
+            }
+        }];
 }
 
 - (void)hideDetailView:(NSInteger)index {
     UIView *view = self.filterViews[index];
     __block CGFloat height = view.LL_height;
-    [UIView animateWithDuration:0.1 animations:^{
-        view.LL_height = 0;
-        self.LL_height = self.normalHeight;
-        self.superview.LL_height = self.superview.LL_height - height;
-        //        view.alpha = 0;
-    } completion:^(BOOL finished) {
-        view.LL_height = height;
-        view.hidden = YES;
-        if (self.filterChangeStateBlock) {
-            self.filterChangeStateBlock();
+    [UIView animateWithDuration:0.1
+        animations:^{
+            view.LL_height = 0;
+            self.LL_height = self.normalHeight;
+            self.superview.LL_height = self.superview.LL_height - height;
+            //        view.alpha = 0;
         }
-    }];
+        completion:^(BOOL finished) {
+            view.LL_height = height;
+            view.hidden = YES;
+            if (self.filterChangeStateBlock) {
+                self.filterChangeStateBlock();
+            }
+        }];
 }
 
 #pragma mark - Primary
 - (void)updateUI:(NSArray *)titles {
     [self.filterBtns removeAllObjects];
     [self.btnsBgView LL_removeAllSubviews];
-    
+
     CGFloat gap = 20;
     CGFloat itemHeight = 25;
     NSInteger count = self.titles.count;

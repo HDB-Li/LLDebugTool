@@ -34,14 +34,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [[NSURLSessionConfiguration class] LL_swizzleClassSelector:@selector(defaultSessionConfiguration) anotherSelector:@selector(LL_defaultSessionConfiguration)];
-        
+
         [[NSURLSessionConfiguration class] LL_swizzleClassSelector:@selector(ephemeralSessionConfiguration) anotherSelector:@selector(LL_ephemeralSessionConfiguration)];
-        
-        Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ? : NSClassFromString(@"NSURLSessionConfiguration");
-        
+
+        Class cls = NSClassFromString(@"__NSCFURLSessionConfiguration") ?: NSClassFromString(@"NSURLSessionConfiguration");
+
         Method method1 = class_getInstanceMethod(cls, @selector(protocolClasses));
         Method method2 = class_getInstanceMethod([NSURLSessionConfiguration class], @selector(LL_protocolClasses));
-        
+
         [[NSURLSessionConfiguration class] LL_swizzleMethod:method1 anotherMethod:method2];
     });
 }

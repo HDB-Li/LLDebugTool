@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * LLComponentDelegateKey NS_TYPED_ENUM;
+typedef NSString *LLComponentDelegateKey NS_TYPED_ENUM;
 
 FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey;
 
@@ -36,7 +36,7 @@ FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewContro
 
 /// Component did load.
 /// @param data Extra data.
-- (void)componentDidLoad:(NSDictionary <LLComponentDelegateKey, id>*_Nullable)data;
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *_Nullable)data;
 
 @end
 

@@ -29,7 +29,7 @@ static LLShortCutHelper *_instance = nil;
 
 @interface LLShortCutHelper ()
 
-@property (nonatomic, strong) NSMutableArray <LLShortCutModel *>*actions;
+@property (nonatomic, strong) NSMutableArray<LLShortCutModel *> *actions;
 
 @end
 

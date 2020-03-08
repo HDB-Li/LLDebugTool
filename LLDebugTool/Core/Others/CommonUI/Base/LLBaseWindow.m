@@ -42,7 +42,6 @@
     return self;
 }
 
-
 - (void)becomeVisiable {
     UIViewController *vc = self.rootViewController;
     if ([vc isKindOfClass:[LLBaseViewController class]]) {

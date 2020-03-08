@@ -25,30 +25,30 @@
 #define LLScreenshotDefine_h
 
 typedef NS_ENUM(NSUInteger, LLScreenshotAction) {
-    LLScreenshotActionNone      = 0,
-    LLScreenshotActionRect      = 1,
-    LLScreenshotActionRound     = 2,
-    LLScreenshotActionLine      = 3,
-    LLScreenshotActionPen       = 4,
-    LLScreenshotActionText      = 5,
-    LLScreenshotActionBack      = 6,
-    LLScreenshotActionCancel    = 7,
-    LLScreenshotActionConfirm   = 8
+    LLScreenshotActionNone = 0,
+    LLScreenshotActionRect = 1,
+    LLScreenshotActionRound = 2,
+    LLScreenshotActionLine = 3,
+    LLScreenshotActionPen = 4,
+    LLScreenshotActionText = 5,
+    LLScreenshotActionBack = 6,
+    LLScreenshotActionCancel = 7,
+    LLScreenshotActionConfirm = 8
 };
 
 typedef NS_ENUM(NSUInteger, LLScreenshotSelectorSizeAction) {
-    LLScreenshotSelectorSizeActionSmall     = 0,
-    LLScreenshotSelectorSizeActionMedium    = 1,
-    LLScreenshotSelectorSizeActionBig       = 2,
+    LLScreenshotSelectorSizeActionSmall = 0,
+    LLScreenshotSelectorSizeActionMedium = 1,
+    LLScreenshotSelectorSizeActionBig = 2,
 };
 
 typedef NS_ENUM(NSUInteger, LLScreenshotSelectorColorAction) {
-    LLScreenshotSelectorColorActionRed       = 3,    // #d81e06
-    LLScreenshotSelectorColorActionBlue      = 4,    // #1296db
-    LLScreenshotSelectorColorActionGreen     = 5,    // #1afa29
-    LLScreenshotSelectorColorActionYellow    = 6,    // #f4ea2a
-    LLScreenshotSelectorColorActionGray      = 7,    // #2c2c2c
-    LLScreenshotSelectorColorActionWhite     = 8,    // #ffffff
+    LLScreenshotSelectorColorActionRed = 3,      // #d81e06
+    LLScreenshotSelectorColorActionBlue = 4,     // #1296db
+    LLScreenshotSelectorColorActionGreen = 5,    // #1afa29
+    LLScreenshotSelectorColorActionYellow = 6,   // #f4ea2a
+    LLScreenshotSelectorColorActionGray = 7,     // #2c2c2c
+    LLScreenshotSelectorColorActionWhite = 8,    // #ffffff
 };
 
 #endif /* LLScreenshotDefine_h */

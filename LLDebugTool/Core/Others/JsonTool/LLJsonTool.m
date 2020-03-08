@@ -26,21 +26,20 @@
 @implementation LLJsonTool
 
 + (NSString *)formatJsonString:(NSString *)jsonString {
-    
     NSString *aString = jsonString;
-    
+
     aString = [aString stringByReplacingOccurrencesOfString:@" " withString:@""];
     aString = [aString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     aString = [aString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     if ([aString length] == 0) {
         return aString;
     }
-    
+
     NSMutableString *targetString = [[NSMutableString alloc] init];
     NSString *last = @"";
     NSString *current = @"";
     NSInteger indent = 0;
-    
+
     for (NSInteger i = 0; i < [aString length]; i++) {
         last = current;
         current = [aString substringWithRange:NSMakeRange(i, 1)];

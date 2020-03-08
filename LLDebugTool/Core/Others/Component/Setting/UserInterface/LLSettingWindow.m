@@ -23,8 +23,8 @@
 
 #import "LLSettingWindow.h"
 
-#import "LLSettingViewController.h"
 #import "LLNavigationController.h"
+#import "LLSettingViewController.h"
 #import "LLWindowManager.h"
 
 @implementation LLSettingWindow

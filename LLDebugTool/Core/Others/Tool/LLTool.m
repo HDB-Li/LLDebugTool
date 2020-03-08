@@ -25,11 +25,11 @@
 
 #import <pthread/pthread.h>
 
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
-#import "LLDebugTool.h"
-#import "LLLogDefine.h"
 #import "LLDebugConfig.h"
+#import "LLDebugTool.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLLogDefine.h"
 
 #import "NSUserDefaults+LL_Utils.h"
 
@@ -45,15 +45,15 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     pthread_mutex_lock(&mutex_t);
     identity = _absolutelyIdentity++;
     pthread_mutex_unlock(&mutex_t);
-    return [NSString stringWithFormat:@"%lld",identity];
+    return [NSString stringWithFormat:@"%lld", identity];
 }
 
 + (BOOL)createDirectoryAtPath:(NSString *)path {
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSError *error;
-        [[NSFileManager  defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) {
-            [self log:[NSString stringWithFormat:@"Create folder fail, path = %@, error = %@",path,error.description]];
+            [self log:[NSString stringWithFormat:@"Create folder fail, path = %@, error = %@", path, error.description]];
             NSAssert(NO, error.description);
             return NO;
         }
@@ -63,7 +63,6 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint {
-    
     CGFloat x = MIN(point.x, otherPoint.x);
     CGFloat y = MIN(point.y, otherPoint.y);
     CGFloat maxX = MAX(point.x, otherPoint.x);
@@ -82,7 +81,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (NSString *)stringFromFrame:(CGRect)frame {
-    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}",[LLFormatterTool formatNumber:@(frame.origin.x)],[LLFormatterTool formatNumber:@(frame.origin.y)],[LLFormatterTool formatNumber:@(frame.size.width)],[LLFormatterTool formatNumber:@(frame.size.height)]];
+    return [NSString stringWithFormat:@"{{%@, %@}, {%@, %@}}", [LLFormatterTool formatNumber:@(frame.origin.x)], [LLFormatterTool formatNumber:@(frame.origin.y)], [LLFormatterTool formatNumber:@(frame.size.width)], [LLFormatterTool formatNumber:@(frame.size.height)]];
 }
 
 + (UIWindow *)topWindow {
@@ -105,7 +104,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 + (void)log:(NSString *)string {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([LLDebugConfig shared].isShowDebugToolLog) {
-            NSLog(@"%@,%@",string,kLLDebugToolLogOpenIssueInGithub);
+            NSLog(@"%@,%@", string, kLLDebugToolLogOpenIssueInGithub);
         }
     });
 }
@@ -113,12 +112,12 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 + (void)log:(NSString *)string synchronous:(BOOL)synchronous withPrompt:(BOOL)prompt {
     if (synchronous) {
         if ([LLDebugConfig shared].isShowDebugToolLog) {
-            NSLog(@"%@,%@",string,prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
+            NSLog(@"%@,%@", string, prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
         }
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([LLDebugConfig shared].isShowDebugToolLog) {
-                NSLog(@"%@,%@",string,prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
+                NSLog(@"%@,%@", string, prompt ? kLLDebugToolLogOpenIssueInGithub : @"");
             }
         });
     }

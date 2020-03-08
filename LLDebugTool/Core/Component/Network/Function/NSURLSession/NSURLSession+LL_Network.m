@@ -37,7 +37,7 @@
     });
 }
 
-+ (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id <NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue {
++ (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(nullable id<NSURLSessionDelegate>)delegate delegateQueue:(nullable NSOperationQueue *)queue {
     if ([LLNetworkHelper shared].isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:configuration.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {

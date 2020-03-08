@@ -21,8 +21,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <objc/runtime.h>
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -57,24 +57,24 @@ NS_ASSUME_NONNULL_BEGIN
 
  @return Property name array.
  */
-+ (NSArray <NSString *>*)LL_getPropertyNames;
++ (NSArray<NSString *> *)LL_getPropertyNames;
 
 /**
 Get all property names.
 
 @return Property name array.
 */
-- (NSArray <NSString *>*)LL_getPropertyNames;
+- (NSArray<NSString *> *)LL_getPropertyNames;
 
 /**
  Get all instance method names;
  */
-+ (NSArray <NSString *>*)LL_getInstanceMethodNames;
++ (NSArray<NSString *> *)LL_getInstanceMethodNames;
 
 /**
 Get all class method names;
 */
-+ (NSArray <NSString *>*)LL_getClassMethodNames;
++ (NSArray<NSString *> *)LL_getClassMethodNames;
 
 /**
  Add string property.

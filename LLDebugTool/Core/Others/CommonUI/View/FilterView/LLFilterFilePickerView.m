@@ -25,7 +25,7 @@
 
 #import "LLFilterTextFieldModel.h"
 
-@interface LLFilterFilePickerView() <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface LLFilterFilePickerView () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataArray;
 

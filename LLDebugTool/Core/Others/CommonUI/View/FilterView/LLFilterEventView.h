@@ -31,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) NSInteger averageCount;
 
-@property (copy, nonatomic, nullable) void(^changeBlock)(NSArray *_Nullable events);
+@property (copy, nonatomic, nullable) void (^changeBlock)(NSArray *_Nullable events);
 
-- (void)updateDataArray:(NSArray <LLFilterLabelModel *>*_Nullable)dataArray;
+- (void)updateDataArray:(NSArray<LLFilterLabelModel *> *_Nullable)dataArray;
 
 @end
 

@@ -43,7 +43,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)lineBreaks {
++ (NSArray<NSString *> *)lineBreaks {
     NSMutableArray *breaks = [[NSMutableArray alloc] init];
     for (NSLineBreakMode i = NSLineBreakByWordWrapping; i <= NSLineBreakByTruncatingMiddle; i++) {
         NSString *lineBreak = [self lineBreakModeDescription:i];
@@ -122,7 +122,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)viewContentModeDescriptions {
++ (NSArray<NSString *> *)viewContentModeDescriptions {
     NSMutableArray *descriptions = [[NSMutableArray alloc] init];
     for (UIViewContentMode i = UIViewContentModeScaleToFill; i <= UIViewContentModeBottomRight; i++) {
         NSString *description = [self viewContentModeDescription:i];
@@ -149,7 +149,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)textAlignments {
++ (NSArray<NSString *> *)textAlignments {
     NSMutableArray *alignments = [[NSMutableArray alloc] init];
     for (NSTextAlignment i = NSTextAlignmentLeft; i <= NSTextAlignmentNatural; i++) {
         NSString *alignment = [self textAlignmentDescription:i];
@@ -172,7 +172,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)baselineAdjustments {
++ (NSArray<NSString *> *)baselineAdjustments {
     NSMutableArray *adjustments = [[NSMutableArray alloc] init];
     for (UIBaselineAdjustment i = UIBaselineAdjustmentAlignBaselines; i <= UIBaselineAdjustmentNone; i++) {
         NSString *adjustment = [self baselineAdjustmentDescription:i];
@@ -197,7 +197,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)controlContentVerticalAlignments {
++ (NSArray<NSString *> *)controlContentVerticalAlignments {
     NSMutableArray *alignments = [[NSMutableArray alloc] init];
     for (UIControlContentVerticalAlignment i = UIControlContentVerticalAlignmentCenter; i <= UIControlContentVerticalAlignmentFill; i++) {
         NSString *alignment = [self controlContentVerticalAlignmentDescription:i];
@@ -226,7 +226,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)controlContentHorizontalAlignments {
++ (NSArray<NSString *> *)controlContentHorizontalAlignments {
     NSMutableArray *alignments = [[NSMutableArray alloc] init];
     UIControlContentHorizontalAlignment max = UIControlContentHorizontalAlignmentFill;
     if (@available(iOS 11.0, *)) {
@@ -299,7 +299,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)textBorderStyles {
++ (NSArray<NSString *> *)textBorderStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
     for (UITextBorderStyle i = UITextBorderStyleNone; i <= UITextBorderStyleRoundedRect; i++) {
         NSString *style = [self textBorderStyleDescription:i];
@@ -324,7 +324,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)textFieldViewModes {
++ (NSArray<NSString *> *)textFieldViewModes {
     NSMutableArray *modes = [[NSMutableArray alloc] init];
     for (UITextFieldViewMode i = UITextFieldViewModeNever; i <= UITextFieldViewModeAlways; i++) {
         NSString *mode = [self textFieldViewModeDescription:i];
@@ -349,7 +349,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)textAutocapitalizationTypes {
++ (NSArray<NSString *> *)textAutocapitalizationTypes {
     NSMutableArray *types = [[NSMutableArray alloc] init];
     for (UITextAutocapitalizationType i = UITextAutocapitalizationTypeNone; i <= UITextAutocapitalizationTypeAllCharacters; i++) {
         NSString *type = [self textAutocapitalizationTypeDescription:i];
@@ -372,7 +372,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)textAutocorrectionTypes {
++ (NSArray<NSString *> *)textAutocorrectionTypes {
     NSMutableArray *types = [[NSMutableArray alloc] init];
     for (UITextAutocorrectionType i = 0; i <= UITextAutocorrectionTypeYes; i++) {
         NSString *type = [self textAutocorrectionTypeDescription:i];
@@ -413,7 +413,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)keyboardTypes {
++ (NSArray<NSString *> *)keyboardTypes {
     NSMutableArray *types = [[NSMutableArray alloc] init];
     UIKeyboardType max = UIKeyboardTypeWebSearch;
     if (@available(iOS 10.0, *)) {
@@ -440,7 +440,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)keyboardAppearances {
++ (NSArray<NSString *> *)keyboardAppearances {
     NSMutableArray *appearances = [[NSMutableArray alloc] init];
     for (UIKeyboardAppearance i = UIKeyboardAppearanceDefault; i <= UIKeyboardAppearanceLight; i++) {
         NSString *appearance = [self keyboardAppearanceDescription:i];
@@ -481,7 +481,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)returnKeyTypes {
++ (NSArray<NSString *> *)returnKeyTypes {
     NSMutableArray *types = [[NSMutableArray alloc] init];
     UIReturnKeyType max = UIReturnKeyEmergencyCall;
     if (@available(iOS 9.0, *)) {
@@ -517,14 +517,14 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)activityIndicatorViewStyles {
++ (NSArray<NSString *> *)activityIndicatorViewStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    NSArray *actions = @[@(UIActivityIndicatorViewStyleWhiteLarge),@(UIActivityIndicatorViewStyleWhite),@(UIActivityIndicatorViewStyleGray)];
+    NSArray *actions = @[@(UIActivityIndicatorViewStyleWhiteLarge), @(UIActivityIndicatorViewStyleWhite), @(UIActivityIndicatorViewStyleGray)];
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
-        actions = @[@(UIActivityIndicatorViewStyleMedium),@(UIActivityIndicatorViewStyleLarge),@(UIActivityIndicatorViewStyleWhiteLarge),@(UIActivityIndicatorViewStyleWhite),@(UIActivityIndicatorViewStyleGray)];
+        actions = @[@(UIActivityIndicatorViewStyleMedium), @(UIActivityIndicatorViewStyleLarge), @(UIActivityIndicatorViewStyleWhiteLarge), @(UIActivityIndicatorViewStyleWhite), @(UIActivityIndicatorViewStyleGray)];
     }
 #endif
 #pragma clang diagnostic pop
@@ -547,7 +547,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)progressViewStyles {
++ (NSArray<NSString *> *)progressViewStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
     for (UIProgressViewStyle i = UIProgressViewStyleDefault; i <= UIProgressViewStyleBar; i++) {
         NSString *style = [self progressViewStyleDescription:i];
@@ -570,7 +570,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)scrollViewIndicatorStyles {
++ (NSArray<NSString *> *)scrollViewIndicatorStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
     for (UIScrollViewIndicatorStyle i = UIScrollViewIndicatorStyleDefault; i <= UIScrollViewIndicatorStyleWhite; i++) {
         NSString *style = [self scrollViewIndicatorStyleDescription:i];
@@ -593,7 +593,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)scrollViewKeyboardDismissModes {
++ (NSArray<NSString *> *)scrollViewKeyboardDismissModes {
     NSMutableArray *modes = [[NSMutableArray alloc] init];
     for (UIScrollViewKeyboardDismissMode i = UIScrollViewKeyboardDismissModeNone; i <= UIScrollViewKeyboardDismissModeInteractive; i++) {
         NSString *mode = [self scrollViewKeyboardDismissModeDescription:i];
@@ -633,7 +633,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)tableViewCellSeparatorStyles {
++ (NSArray<NSString *> *)tableViewCellSeparatorStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -657,7 +657,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)tableViewSeparatorInsetReferences {
++ (NSArray<NSString *> *)tableViewSeparatorInsetReferences {
     NSMutableArray *references = [[NSMutableArray alloc] init];
     for (UITableViewSeparatorInsetReference i = UITableViewSeparatorInsetFromCellEdges; i <= UITableViewSeparatorInsetFromAutomaticInsets; i++) {
         NSString *reference = [self tableViewSeparatorInsetReferenceDescription:i];
@@ -682,7 +682,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)tableViewCellSelectionStyles {
++ (NSArray<NSString *> *)tableViewCellSelectionStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
     for (UITableViewCellSelectionStyle i = UITableViewCellSelectionStyleNone; i <= UITableViewCellSelectionStyleDefault; i++) {
         NSString *style = [self tableViewCellSelectionStyleDescription:i];
@@ -709,7 +709,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)tableViewCellAccessoryTypes {
++ (NSArray<NSString *> *)tableViewCellAccessoryTypes {
     NSMutableArray *types = [[NSMutableArray alloc] init];
     for (UITableViewCellAccessoryType i = UITableViewCellAccessoryNone; i <= UITableViewCellAccessoryDetailButton; i++) {
         NSString *type = [self tableViewCellAccessoryTypeDescription:i];
@@ -734,7 +734,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)datePickerModes {
++ (NSArray<NSString *> *)datePickerModes {
     NSMutableArray *modes = [[NSMutableArray alloc] init];
     for (UIDatePickerMode i = UIDatePickerModeDate; i <= UIDatePickerModeCountDownTimer; i++) {
         NSString *mode = [self datePickerModeDescription:i];
@@ -756,11 +756,11 @@
         case UIBarStyleBlackTranslucent:
             return @"Black Translucent";
 #pragma clang diagnostic pop
-        }
+    }
     return nil;
 }
 
-+ (NSArray <NSString *>*)barStyles {
++ (NSArray<NSString *> *)barStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -786,7 +786,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)searchBarStyles {
++ (NSArray<NSString *> *)searchBarStyles {
     NSMutableArray *styles = [[NSMutableArray alloc] init];
     for (UISearchBarStyle i = UISearchBarStyleDefault; i <= UISearchBarStyleMinimal; i++) {
         NSString *style = [self searchBarStyleDescription:i];
@@ -809,7 +809,7 @@
     return nil;
 }
 
-+ (NSArray <NSString *>*)tabBarItemPositionings {
++ (NSArray<NSString *> *)tabBarItemPositionings {
     NSMutableArray *positionings = [[NSMutableArray alloc] init];
     for (UITabBarItemPositioning i = UITabBarItemPositioningAutomatic; i <= UITabBarItemPositioningCentered; i++) {
         NSString *positioning = [self tabBarItemPositioningDescription:i];
@@ -869,7 +869,7 @@
     }
 }
 
-+ (NSArray <NSString *>*)layoutAttributes {
++ (NSArray<NSString *> *)layoutAttributes {
     NSMutableArray *attributes = [[NSMutableArray alloc] init];
     for (NSLayoutAttribute i = NSLayoutAttributeNotAnAttribute; i <= NSLayoutAttributeCenterYWithinMargins; i++) {
         NSString *attribute = [self layoutAttributeDescription:i];

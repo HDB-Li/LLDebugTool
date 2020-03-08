@@ -23,11 +23,11 @@
 
 #import "LLScreenshotToolbar.h"
 
-#import "LLScreenshotSelectorView.h"
-#import "LLScreenshotActionView.h"
-#import "LLImageNameConfig.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLImageNameConfig.h"
+#import "LLScreenshotActionView.h"
+#import "LLScreenshotSelectorView.h"
 
 @interface LLScreenshotToolbar () <LLScreenshotActionViewDelegate>
 
@@ -35,7 +35,7 @@
 
 @property (nonatomic, strong) UIView *selectorBackgroundView;
 
-@property (nonatomic, strong) NSMutableArray <LLScreenshotSelectorView *>*selectorViews;
+@property (nonatomic, strong) NSMutableArray<LLScreenshotSelectorView *> *selectorViews;
 
 @property (nonatomic, strong) LLScreenshotSelectorView *lastSelectorView;
 
@@ -52,18 +52,18 @@
     [super initUI];
     self.clipsToBounds = YES;
     self.selectorViews = [[NSMutableArray alloc] init];
-    
-    CGFloat itemHeight = (self.frame.size.height - kLLGeneralMargin) /2.0;
+
+    CGFloat itemHeight = (self.frame.size.height - kLLGeneralMargin) / 2.0;
     self.actionView = [[LLScreenshotActionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, itemHeight)];
     self.actionView.delegate = self;
     [self addSubview:self.actionView];
-    
+
     [self addSubview:self.selectorBackgroundView];
     self.selectorBackgroundView.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.frame.size.height - itemHeight);
-    
+
     CGFloat triangleHeight = 10;
     self.triangleView = [LLFactory getImageView:self.selectorBackgroundView frame:CGRectMake(0, 0, triangleHeight * 2, triangleHeight) image:[UIImage LL_imageNamed:kSelectorTriangleImageName]];
-    
+
     for (int i = 0; i < 5; i++) {
         LLScreenshotSelectorView *selectorView = [[LLScreenshotSelectorView alloc] initWithFrame:CGRectMake(0, triangleHeight, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height - triangleHeight)];
         [self.selectorViews addObject:selectorView];
@@ -81,31 +81,36 @@
         self.lastSelectorView = selectedView;
         [self.selectorBackgroundView bringSubviewToFront:selectedView];
     }
-    
+
     if (self.selectorViewShowed) {
-        [UIView animateWithDuration:0.25 animations:^{
-            CGRect oriFrame = self.triangleView.frame;
-            self.triangleView.frame = CGRectMake(position - oriFrame.size.width / 2.0, oriFrame.origin.y, oriFrame.size.width, oriFrame.size.height);
-        }];
+        [UIView animateWithDuration:0.25
+                         animations:^{
+                             CGRect oriFrame = self.triangleView.frame;
+                             self.triangleView.frame = CGRectMake(position - oriFrame.size.width / 2.0, oriFrame.origin.y, oriFrame.size.width, oriFrame.size.height);
+                         }];
     } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            CGRect oriFrame = self.triangleView.frame;
-            CGFloat actionViewBottom = self.actionView.frame.size.height + self.actionView.frame.origin.y;
-            self.triangleView.frame = CGRectMake(position - oriFrame.size.width / 2.0, oriFrame.origin.y, oriFrame.size.width, oriFrame.size.height);
-            self.selectorBackgroundView.frame = CGRectMake(0, actionViewBottom, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height);
-        } completion:^(BOOL finished) {
-            self.selectorViewShowed = YES;
-        }];
+        [UIView animateWithDuration:0.25
+            animations:^{
+                CGRect oriFrame = self.triangleView.frame;
+                CGFloat actionViewBottom = self.actionView.frame.size.height + self.actionView.frame.origin.y;
+                self.triangleView.frame = CGRectMake(position - oriFrame.size.width / 2.0, oriFrame.origin.y, oriFrame.size.width, oriFrame.size.height);
+                self.selectorBackgroundView.frame = CGRectMake(0, actionViewBottom, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height);
+            }
+            completion:^(BOOL finished) {
+                self.selectorViewShowed = YES;
+            }];
     }
 }
 
 - (void)hideSelectorView {
     if (self.selectorViewShowed) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.selectorBackgroundView.frame = CGRectMake(0, self.frame.size.height, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height);
-        } completion:^(BOOL finished) {
-            self.selectorViewShowed = NO;
-        }];
+        [UIView animateWithDuration:0.25
+            animations:^{
+                self.selectorBackgroundView.frame = CGRectMake(0, self.frame.size.height, self.selectorBackgroundView.frame.size.width, self.selectorBackgroundView.frame.size.height);
+            }
+            completion:^(BOOL finished) {
+                self.selectorViewShowed = NO;
+            }];
     }
 }
 
@@ -116,14 +121,13 @@
         case LLScreenshotActionRound:
         case LLScreenshotActionLine:
         case LLScreenshotActionPen:
-        case LLScreenshotActionText:{
+        case LLScreenshotActionText: {
             if (isSelected) {
                 [self showSelectorView:action position:position];
             } else {
                 [self hideSelectorView];
             }
-        }
-            break;
+        } break;
         case LLScreenshotActionBack:
             break;
         case LLScreenshotActionCancel:
@@ -132,7 +136,7 @@
         case LLScreenshotActionNone:
             break;
     }
-    
+
     if ([_delegate respondsToSelector:@selector(LLScreenshotToolbar:didSelectedAction:selectorModel:)]) {
         LLScreenshotSelectorModel *model = nil;
         if (action < LLScreenshotActionBack) {

@@ -23,12 +23,12 @@
 
 #import "LLTitleCellModel.h"
 
-#import "LLDetailTitleSelectorCell.h"
-#import "LLTitleSliderCell.h"
-#import "LLDetailTitleCell.h"
-#import "LLTitleSwitchCell.h"
-#import "LLInternalMacros.h"
 #import "LLConst.h"
+#import "LLDetailTitleCell.h"
+#import "LLDetailTitleSelectorCell.h"
+#import "LLInternalMacros.h"
+#import "LLTitleSliderCell.h"
+#import "LLTitleSwitchCell.h"
 
 @implementation LLTitleCellModel
 
@@ -61,7 +61,7 @@
     return [self initWithTitle:title block:nil];
 }
 
-- (instancetype)initWithTitle:(NSString *_Nullable)title block:(void(^_Nullable)(void))block {
+- (instancetype)initWithTitle:(NSString *_Nullable)title block:(void (^_Nullable)(void))block {
     if (self = [super init]) {
         _title = [title copy];
         _block = [block copy];

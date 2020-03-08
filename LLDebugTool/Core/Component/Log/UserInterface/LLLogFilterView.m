@@ -23,21 +23,21 @@
 
 #import "LLLogFilterView.h"
 
-#import "LLFilterLabelModel.h"
-#import "LLFilterEventView.h"
-#import "LLFilterOtherView.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
-#import "LLThemeManager.h"
-#import "LLLogModel.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
+#import "LLFilterEventView.h"
+#import "LLFilterLabelModel.h"
+#import "LLFilterOtherView.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLLogModel.h"
+#import "LLThemeManager.h"
 
 #import "UIButton+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 
-@interface LLLogFilterView()
+@interface LLLogFilterView ()
 
 @property (nonatomic, strong) LLFilterEventView *levelView;
 
@@ -59,11 +59,11 @@
 @implementation LLLogFilterView
 
 #pragma mark - Public
-- (void)configWithData:(NSArray <LLLogModel *>*)data {
+- (void)configWithData:(NSArray<LLLogModel *> *)data {
     NSMutableSet *eventSet = [NSMutableSet set];
     NSMutableSet *userIDSet = [NSMutableSet set];
     NSMutableDictionary *fileDic = [[NSMutableDictionary alloc] init];
-    
+
     NSString *fromDateString = data.lastObject.date;
     NSString *endDateString = data.firstObject.date;
 
@@ -75,7 +75,7 @@
     if (!endDate) {
         endDate = [NSDate date];
     }
-    
+
     for (LLLogModel *model in data) {
         if (model.event.length) {
             [eventSet addObject:model.event];
@@ -94,10 +94,10 @@
             }
         }
     }
-    
+
     // Level Part
     self.levelView.hidden = YES;
-    
+
     // Event Part
     NSMutableArray *eventArray = [[NSMutableArray alloc] init];
     for (NSString *event in eventSet.allObjects) {
@@ -115,7 +115,7 @@
     CGFloat eventHeight = lineNo * 40 + kLLGeneralMargin;
     self.eventView.frame = CGRectMake(self.eventView.frame.origin.x, self.eventView.frame.origin.y, self.eventView.frame.size.width, eventHeight);
     [self.eventView updateDataArray:eventArray];
-    
+
     // Other Part
     self.otherView.hidden = YES;
     [self.otherView updateFileDataDictionary:fileDic fromDate:fromDate endDate:endDate userIdentities:userIDSet.allObjects];
@@ -123,18 +123,15 @@
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        _changeBlock(self.currentLevels,self.currentEvents,
-                     self.currentFile,self.currentFunc,
-                     self.currentFromDate,self.currentEndDate,
-                     self.currentUserIds);
+        _changeBlock(self.currentLevels, self.currentEvents, self.currentFile, self.currentFunc, self.currentFromDate, self.currentEndDate, self.currentUserIds);
     }
 }
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
-    self.titles = @[@"Level",@"Event",@"Other"];
+
+    self.titles = @[@"Level", @"Event", @"Other"];
     self.filterViews = @[self.levelView, self.eventView, self.otherView];
 }
 

@@ -30,7 +30,7 @@
 
 @implementation LLRouter (ShortCut)
 
-+ (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action {
++ (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action {
 #ifdef LLDEBUGTOOL_SHORT_CUT
     [[LLShortCutHelper shared] registerAction:[[LLShortCutModel alloc] initWithName:name action:action]];
 #endif

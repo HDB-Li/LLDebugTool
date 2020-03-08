@@ -52,11 +52,11 @@
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [LLTool log:[NSString stringWithFormat:@"UIWebView start load %@",self.urlString]];
+    [LLTool log:[NSString stringWithFormat:@"UIWebView start load %@", self.urlString]];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [LLTool log:[NSString stringWithFormat:@"UIWebView finish load %@",self.urlString]];
+    [LLTool log:[NSString stringWithFormat:@"UIWebView finish load %@", self.urlString]];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -73,7 +73,7 @@
 #pragma clang diagnostic pop
     }
     [self.view addSubview:self.webView];
-    
+
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
 }
 

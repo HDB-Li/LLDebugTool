@@ -23,20 +23,20 @@
 
 #import "LLLogViewController.h"
 
-#import "LLLogDetailViewController.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLStorageManager.h"
-#import "LLLogFilterView.h"
-#import "LLToastUtils.h"
-#import "LLLogModel.h"
 #import "LLLogCell.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
+#import "LLLogDetailViewController.h"
+#import "LLLogFilterView.h"
+#import "LLLogModel.h"
+#import "LLStorageManager.h"
+#import "LLToastUtils.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "NSObject+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 static NSString *const kLogCellID = @"LLLogCell";
 
@@ -57,8 +57,7 @@ static NSString *const kLogCellID = @"LLLogCell";
 
 @implementation LLLogViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.isSearchEnable = YES;
@@ -71,14 +70,14 @@ static NSString *const kLogCellID = @"LLLogCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = LLLocalizedString(@"function.log");
-    
+
     if (_launchDate == nil) {
         _launchDate = [NSObject LL_launchDate];
     }
-        
+
     // TableView
     [self.tableView registerClass:[LLLogCell class] forCellReuseIdentifier:kLogCellID];
-    
+
     self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
     __weak typeof(self) weakSelf = self;
     self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
@@ -86,7 +85,7 @@ static NSString *const kLogCellID = @"LLLogCell";
         weakSelf.currentEvents = events;
         weakSelf.currentFile = file;
         weakSelf.currentFunc = func;
-        weakSelf.currentFromDate= from;
+        weakSelf.currentFromDate = from;
         weakSelf.currentEndDate = end;
         weakSelf.currentUserIdentities = userIdentities;
         [weakSelf filterData];
@@ -95,10 +94,10 @@ static NSString *const kLogCellID = @"LLLogCell";
         [weakSelf.tableView reloadData];
     };
     [self.filterView configWithData:self.oriDataArray];
-    
+
     [self.headerView addSubview:self.filterView];
     self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
-    
+
     [self loadData];
 }
 
@@ -124,18 +123,20 @@ static NSString *const kLogCellID = @"LLLogCell";
     }
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"deleting")];
-    [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
-        [[LLToastUtils shared] hide];
-        if (result) {
-            [weakSelf updateAfterDelete:models indexPaths:indexPaths];
-        } else {
-            [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:^(NSInteger action) {
-                if (action == 1) {
-                    [weakSelf loadData];
-                }
-            }];
-        }
-    }];
+    [[LLStorageManager shared] removeModels:models
+                                   complete:^(BOOL result) {
+                                       [[LLToastUtils shared] hide];
+                                       if (result) {
+                                           [weakSelf updateAfterDelete:models indexPaths:indexPaths];
+                                       } else {
+                                           [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail")
+                                                                               handler:^(NSInteger action) {
+                                                                                   if (action == 1) {
+                                                                                       [weakSelf loadData];
+                                                                                   }
+                                                                               }];
+                                       }
+                                   }];
 }
 
 - (void)updateAfterDelete:(NSArray *)models indexPaths:(NSArray *)indexPaths {
@@ -144,7 +145,7 @@ static NSString *const kLogCellID = @"LLLogCell";
     if ([set count] > 0) {
         NSMutableArray *noAnimateModels = [[NSMutableArray alloc] initWithArray:models];
         NSMutableArray *animatedModels = [[NSMutableArray alloc] init];
-        
+
         for (NSIndexPath *indexPath in set.allObjects) {
             LLLogModel *model = self.datas[indexPath.row];
             [noAnimateModels removeObject:model];
@@ -163,7 +164,6 @@ static NSString *const kLogCellID = @"LLLogCell";
         [self.searchDataArray removeObjectsInArray:models];
         [self.tableView reloadData];
     }
-
 }
 
 #pragma mark - TableView
@@ -209,22 +209,24 @@ static NSString *const kLogCellID = @"LLLogCell";
     self.searchTextField.text = nil;
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
-    [[LLStorageManager shared] getModels:[LLLogModel class] launchDate:_launchDate complete:^(NSArray<LLStorageModel *> *result) {
-        [[LLToastUtils shared] hide];
-        [weakSelf.oriDataArray removeAllObjects];
-        [weakSelf.oriDataArray addObjectsFromArray:result];
-        [weakSelf.searchDataArray removeAllObjects];
-        [weakSelf.searchDataArray addObjectsFromArray:weakSelf.oriDataArray];
-        [weakSelf.filterView configWithData:weakSelf.oriDataArray];
-        [weakSelf.tableView reloadData];
-    }];
+    [[LLStorageManager shared] getModels:[LLLogModel class]
+                              launchDate:_launchDate
+                                complete:^(NSArray<LLStorageModel *> *result) {
+                                    [[LLToastUtils shared] hide];
+                                    [weakSelf.oriDataArray removeAllObjects];
+                                    [weakSelf.oriDataArray addObjectsFromArray:result];
+                                    [weakSelf.searchDataArray removeAllObjects];
+                                    [weakSelf.searchDataArray addObjectsFromArray:weakSelf.oriDataArray];
+                                    [weakSelf.filterView configWithData:weakSelf.oriDataArray];
+                                    [weakSelf.tableView reloadData];
+                                }];
 }
 
 - (void)filterData {
-    @synchronized (self) {
+    @synchronized(self) {
         [self.searchDataArray removeAllObjects];
         [self.searchDataArray addObjectsFromArray:self.oriDataArray];
-        
+
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         for (LLLogModel *model in self.oriDataArray) {
             // Filter "Search"
@@ -234,7 +236,7 @@ static NSString *const kLogCellID = @"LLLogCell";
                     continue;
                 }
             }
-            
+
             // Filter Level
             if (self.currentLevels.count) {
                 if (![self.currentLevels containsObject:model.levelDescription]) {
@@ -242,7 +244,7 @@ static NSString *const kLogCellID = @"LLLogCell";
                     continue;
                 }
             }
-            
+
             // Filter Event
             if (self.currentEvents.count) {
                 if (![self.currentEvents containsObject:model.event]) {
@@ -250,7 +252,7 @@ static NSString *const kLogCellID = @"LLLogCell";
                     continue;
                 }
             }
-            
+
             // Filter File
             if (self.currentFile.length) {
                 if (![model.file isEqualToString:self.currentFile]) {
@@ -258,7 +260,7 @@ static NSString *const kLogCellID = @"LLLogCell";
                     continue;
                 }
             }
-            
+
             // Filter Func
             if (self.currentFunc.length) {
                 if (![model.function isEqualToString:self.currentFunc]) {
@@ -266,7 +268,7 @@ static NSString *const kLogCellID = @"LLLogCell";
                     continue;
                 }
             }
-            
+
             // Filter Date
             if (self.currentFromDate) {
                 if ([model.dateDescription compare:self.currentFromDate] == NSOrderedAscending) {
@@ -274,14 +276,14 @@ static NSString *const kLogCellID = @"LLLogCell";
                     continue;
                 }
             }
-            
+
             if (self.currentEndDate) {
                 if ([model.dateDescription compare:self.currentEndDate] == NSOrderedDescending) {
                     [tempArray addObject:model];
                     continue;
                 }
             }
-            
+
             if (self.currentUserIdentities.count) {
                 if (![self.currentUserIdentities containsObject:model.userIdentity]) {
                     [tempArray addObject:model];

@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Remove all subviews but ignore in array.
 /// @param views Ignore view array.
-- (void)LL_removeAllSubviewsIgnoreIn:(NSArray <UIView *>*_Nullable)views;
+- (void)LL_removeAllSubviewsIgnoreIn:(NSArray<UIView *> *_Nullable)views;
 
 /// The most bottom view.
 - (UIView *_Nullable)LL_bottomView;

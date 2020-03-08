@@ -23,16 +23,16 @@
 
 #import "LLWidgetBorderViewController.h"
 
-#import "LLWidgetBorderHelper.h"
-#import "LLTitleSwitchCell.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLInternalMacros.h"
-#import "LLTitleCellModel.h"
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
+#import "LLTitleCellModel.h"
+#import "LLTitleSwitchCell.h"
+#import "LLWidgetBorderHelper.h"
 
-@interface LLWidgetBorderViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface LLWidgetBorderViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -55,7 +55,7 @@
 #pragma mark - Primary
 - (void)loadData {
     LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"function.widget.border") flag:[LLDebugConfig shared].isShowWidgetBorder];
-    model1.changePropertyBlock = ^(id  _Nullable obj) {
+    model1.changePropertyBlock = ^(id _Nullable obj) {
         [LLDebugConfig shared].showWidgetBorder = [obj boolValue];
         [LLSettingManager shared].showWidgetBorder = @([obj boolValue]);
         [[LLWidgetBorderHelper shared] setEnable:[obj boolValue]];

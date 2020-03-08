@@ -44,7 +44,6 @@ static LLSandboxHelper *_instance = nil;
 
 #pragma mark - Primary
 - (LLSandboxModel *)getSandboxStructureWithPath:(NSString *)path {
-    
     BOOL isDirectory = NO;
     // Check file is Exist, is Directory or not
     BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];

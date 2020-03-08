@@ -23,14 +23,14 @@
 
 #import "LLSandboxTextPreviewController.h"
 
-#import "LLInternalMacros.h"
-#import "LLThemeManager.h"
 #import "LLFactory.h"
+#import "LLInternalMacros.h"
 #import "LLJsonTool.h"
+#import "LLThemeManager.h"
 #import "LLTool.h"
 
-#import "NSDictionary+LL_Utils.h"
 #import "NSArray+LL_Utils.h"
+#import "NSDictionary+LL_Utils.h"
 
 @interface LLSandboxTextPreviewController ()
 
@@ -54,11 +54,11 @@
 #pragma mark - Primary
 - (void)setUpUI {
     [self.view addSubview:self.textView];
-    
+
     if (!self.fileURL) {
         return;
     }
-        
+
     NSString *string = nil;
     if ([self.filePath.pathExtension caseInsensitiveCompare:@"plist"] == NSOrderedSame) {
         NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfURL:self.fileURL];

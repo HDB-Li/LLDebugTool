@@ -47,68 +47,52 @@
     switch (action) {
         case LLDebugToolActionFunction: {
             component = @"LLFunctionComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionSetting: {
             component = @"LLSettingComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionNetwork: {
             component = @"LLNetworkComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionLog: {
             component = @"LLLogComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionCrash: {
             component = @"LLCrashComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionAppInfo: {
             component = @"LLAppInfoComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionSandbox: {
             component = @"LLSandboxComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionScreenshot: {
             component = @"LLScreenshotComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionConvenientScreenshot: {
             component = @"LLConvenientScreenshotComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionHierarchy: {
             component = @"LLHierarchyComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionMagnifier: {
             component = @"LLMagnifierComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionRuler: {
             component = @"LLRulerComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionWidgetBorder: {
             component = @"LLWidgetBorderComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionHtml: {
             component = @"LLHtmlComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionLocation: {
             component = @"LLLocationComponent";
-        }
-            break;
+        } break;
         case LLDebugToolActionShortCut: {
             component = @"LLShortCutComponent";
-        }
-            break;
+        } break;
     }
     if (component) {
         return [[NSClassFromString(component) alloc] init];
@@ -121,68 +105,52 @@
     switch (action) {
         case LLDebugToolActionFunction: {
             title = LLLocalizedString(@"function.function");
-        }
-            break;
+        } break;
         case LLDebugToolActionSetting: {
             title = LLLocalizedString(@"function.setting");
-        }
-            break;
+        } break;
         case LLDebugToolActionNetwork: {
             title = LLLocalizedString(@"function.net");
-        }
-            break;
+        } break;
         case LLDebugToolActionLog: {
             title = LLLocalizedString(@"function.log");
-        }
-            break;
+        } break;
         case LLDebugToolActionCrash: {
             title = LLLocalizedString(@"function.crash");
-        }
-            break;
+        } break;
         case LLDebugToolActionAppInfo: {
             title = LLLocalizedString(@"function.app.info");
-        }
-            break;
+        } break;
         case LLDebugToolActionSandbox: {
             title = LLLocalizedString(@"function.sandbox");
-        }
-            break;
+        } break;
         case LLDebugToolActionScreenshot: {
             title = LLLocalizedString(@"function.screenshot");
-        }
-            break;
+        } break;
         case LLDebugToolActionConvenientScreenshot: {
             title = LLLocalizedString(@"function.convenient.screenshot");
-        }
-            break;
+        } break;
         case LLDebugToolActionHierarchy: {
             title = LLLocalizedString(@"function.hierarchy");
-        }
-            break;
+        } break;
         case LLDebugToolActionMagnifier: {
             title = LLLocalizedString(@"function.magnifier");
-        }
-            break;
+        } break;
         case LLDebugToolActionRuler: {
             title = LLLocalizedString(@"function.ruler");
-        }
-            break;
+        } break;
         case LLDebugToolActionWidgetBorder: {
             title = LLLocalizedString(@"function.widget.border");
-        }
-            break;
+        } break;
         case LLDebugToolActionHtml: {
             title = LLLocalizedString(@"function.html");
-        }
-            break;
+        } break;
         case LLDebugToolActionLocation: {
             title = LLLocalizedString(@"function.location");
-        }
-            break;
+        } break;
         case LLDebugToolActionShortCut: {
             title = LLLocalizedString(@"function.short.cut");
-        }
-            break;
+        } break;
     }
     return title;
 }
@@ -193,61 +161,47 @@
         case LLDebugToolActionFunction:
         case LLDebugToolActionSetting: {
             imageName = @"";
-        }
-            break;
+        } break;
         case LLDebugToolActionNetwork: {
             imageName = kNetworkImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionLog: {
             imageName = kLogImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionCrash: {
             imageName = kCrashImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionAppInfo: {
             imageName = kAppImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionSandbox: {
             imageName = kSandboxImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionScreenshot:
         case LLDebugToolActionConvenientScreenshot: {
             imageName = kScreenshotImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionHierarchy: {
             imageName = kHierarchyImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionMagnifier: {
             imageName = kMagnifierImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionRuler: {
             imageName = kRulerImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionWidgetBorder: {
             imageName = kWidgetBorderImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionHtml: {
             imageName = kHtml5ImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionLocation: {
             imageName = kLocationImageName;
-        }
-            break;
+        } break;
         case LLDebugToolActionShortCut: {
             imageName = kShortCutImageName;
-        }
-            break;
+        } break;
     }
     return imageName;
 }

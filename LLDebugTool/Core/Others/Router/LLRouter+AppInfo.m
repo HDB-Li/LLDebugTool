@@ -31,7 +31,8 @@
 
 + (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
 #ifdef LLDEBUGTOOL_APP_INFO
-    [[LLAppInfoHelper shared] updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
+    [[LLAppInfoHelper shared] updateRequestDataTraffic:requestDataTraffic
+                                   responseDataTraffic:responseDataTraffic];
 #endif
 }
 

@@ -95,7 +95,7 @@
 }
 
 - (void)updateNavigationBarTheme {
-    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor}];
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [LLThemeManager shared].primaryColor}];
     self.navigationBar.tintColor = [LLThemeManager shared].primaryColor;
     self.navigationBar.barTintColor = [LLThemeManager shared].backgroundColor;
 }
@@ -104,7 +104,8 @@
     [self setNeedsStatusBarAppearanceUpdate];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle
+                                                animated:NO];
 #pragma clang diagnostic pop
 }
 

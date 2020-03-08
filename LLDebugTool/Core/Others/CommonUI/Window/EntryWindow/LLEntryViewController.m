@@ -23,15 +23,15 @@
 
 #import "LLEntryViewController.h"
 
+#import "LLComponent.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLEntryBallView.h"
 #import "LLEntryBigTitleView.h"
+#import "LLEntryTitleView.h"
 #import "LLFunctionItemModel.h"
 #import "LLInternalMacros.h"
 #import "LLSettingManager.h"
-#import "LLEntryTitleView.h"
-#import "LLEntryBallView.h"
-#import "LLComponent.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 #import "LLTool.h"
 
 #import "UIView+LL_Utils.h"
@@ -60,11 +60,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor = [UIColor clearColor];
     self.updateBackgroundColor = NO;
     self.style = [LLDebugConfig shared].entryWindowStyle;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateWindowStyleNotification:) name:LLDebugToolUpdateWindowStyleNotification object:nil];
 }
 
@@ -74,30 +74,24 @@
     switch (style) {
         case LLDebugConfigEntryWindowStyleBall: {
             self.activeView = self.ballView;
-        }
-            break;
+        } break;
         case LLDebugConfigEntryWindowStyleTitle: {
             self.activeView = self.bigTitleView;
-        }
-            break;
+        } break;
         case LLDebugConfigEntryWindowStyleLeading: {
             self.activeView = self.leadingView;
-        }
-            break;
+        } break;
         case LLDebugConfigEntryWindowStyleTrailing: {
             self.activeView = self.trailingView;
-        }
-            break;
+        } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLDebugConfigEntryWindowStyleNetBar: {
             self.activeView = self.netView;
-        }
-            break;
+        } break;
         case LLDebugConfigEntryWindowStylePowerBar: {
             self.activeView = self.powerView;
-        }
-            break;
+        } break;
 #pragma clang diagnostic pop
     }
     [self.view addSubview:self.activeView];

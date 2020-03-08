@@ -23,13 +23,13 @@
 
 #import "LLFilterDateView.h"
 
-#import "LLFilterTextFieldModel.h"
-#import "LLFilterTextFieldCell.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLDebugConfig.h"
+#import "LLFactory.h"
+#import "LLFilterTextFieldCell.h"
+#import "LLFilterTextFieldModel.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLThemeManager.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
@@ -49,14 +49,13 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
 @implementation LLFilterDateView
 
 - (void)updateFromDate:(NSDate *)fromDate endDate:(NSDate *)endDate {
-
     self.fromDateModel = [[LLFilterTextFieldModel alloc] init];
     self.fromDateModel.title = @"From";
     self.fromDateModel.titleWidth = 60;
     self.fromDateModel.useDatePicker = YES;
     self.fromDateModel.fromDate = fromDate;
     self.fromDateModel.endDate = endDate;
-    
+
     self.endDateModel = [[LLFilterTextFieldModel alloc] init];
     self.endDateModel.title = @"To";
     self.endDateModel.titleWidth = 60;
@@ -71,7 +70,7 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     if (_changeBlock) {
         NSDate *fromDate = [LLFormatterTool dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
         NSDate *endDate = [LLFormatterTool dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
-        _changeBlock(fromDate,endDate);
+        _changeBlock(fromDate, endDate);
     }
 }
 
@@ -108,7 +107,7 @@ static NSString *const kTextFieldCellID = @"TextFieldCellID";
     cell.confirmBlock = ^{
         [weakSelf reCalculateFilters];
     };
-    
+
     return cell;
 }
 

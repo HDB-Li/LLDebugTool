@@ -23,12 +23,12 @@
 
 #import "LLFilterEventView.h"
 
-#import "LLFilterLabelModel.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLFilterLabelCell.h"
+#import "LLFilterLabelModel.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 
 static NSString *const kEventCellID = @"EventCellID";
 
@@ -64,7 +64,7 @@ static NSString *const kEventCellID = @"EventCellID";
     }
 }
 
-- (void)updateDataArray:(NSArray <LLFilterLabelModel *>*)dataArray {
+- (void)updateDataArray:(NSArray<LLFilterLabelModel *> *)dataArray {
     [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:dataArray];
     [self.collectionView reloadData];
@@ -96,7 +96,7 @@ static NSString *const kEventCellID = @"EventCellID";
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.estimatedItemSize = CGSizeMake(50, 30);
     _collectionView = [LLFactory getCollectionView:self frame:self.bounds delegate:self layout:layout];
-//    _collectionView.bounces = YES;
+    //    _collectionView.bounces = YES;
     _collectionView.backgroundColor = [[LLThemeManager shared].backgroundColor colorWithAlphaComponent:0.75];
     [_collectionView registerClass:[LLFilterLabelCell class] forCellWithReuseIdentifier:kEventCellID];
     self.averageCount = 3;
@@ -122,14 +122,14 @@ static NSString *const kEventCellID = @"EventCellID";
     return 10;
 }
 
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 10;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     LLFilterLabelModel *model = self.dataArray[indexPath.item];
     model.isSelected = !model.isSelected;
-    
+
     LLFilterLabelCell *cell = (LLFilterLabelCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [cell confirmWithModel:model];
     [self reCalculateFilters];

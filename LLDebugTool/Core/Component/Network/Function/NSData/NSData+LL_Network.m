@@ -26,9 +26,8 @@
 @implementation NSData (LL_Network)
 
 - (NSString *)LL_jsonString {
-    
     NSString *string = nil;
-    
+
     id json = [NSJSONSerialization JSONObjectWithData:self options:0 error:NULL];
     if ([NSJSONSerialization isValidJSONObject:json]) {
         string = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:NULL] encoding:NSUTF8StringEncoding];
@@ -37,7 +36,7 @@
     } else {
         string = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
     }
-    
+
     return string;
 }
 

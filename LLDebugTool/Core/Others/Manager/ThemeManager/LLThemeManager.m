@@ -59,19 +59,19 @@ NSNotificationName const LLDebugToolUpdateThemeNotification = @"LLDebugToolUpdat
 
 - (void)updateWithColorStyle:(LLDebugConfigColorStyle)colorStyle {
     NSDictionary *json = @{
-        @(LLDebugConfigColorStyleHack) : [LLThemeColor hackThemeColor],
-        @(LLDebugConfigColorStyleSimple) : [LLThemeColor simpleThemeColor],
-        @(LLDebugConfigColorStyleSystem) : [LLThemeColor systemThemeColor],
-        @(LLDebugConfigColorStyleGrass) : [LLThemeColor grassThemeColor],
-        @(LLDebugConfigColorStyleHomebrew) : [LLThemeColor homebrewThemeColor],
-        @(LLDebugConfigColorStyleManPage) : [LLThemeColor manPageThemeColor],
-        @(LLDebugConfigColorStyleNovel) : [LLThemeColor novelThemeColor],
-        @(LLDebugConfigColorStyleOcean) : [LLThemeColor oceanThemeColor],
-        @(LLDebugConfigColorStylePro) : [LLThemeColor proThemeColor],
-        @(LLDebugConfigColorStyleRedSands) : [LLThemeColor redSandsThemeColor],
-        @(LLDebugConfigColorStyleSilverAerogel) : [LLThemeColor silverAerogelThemeColor],
-        @(LLDebugConfigColorStyleSolidColors) : [LLThemeColor solidColorsThemeColor],
-        @(LLDebugConfigColorStyleCustom) : [LLThemeColor hackThemeColor]
+        @(LLDebugConfigColorStyleHack): [LLThemeColor hackThemeColor],
+        @(LLDebugConfigColorStyleSimple): [LLThemeColor simpleThemeColor],
+        @(LLDebugConfigColorStyleSystem): [LLThemeColor systemThemeColor],
+        @(LLDebugConfigColorStyleGrass): [LLThemeColor grassThemeColor],
+        @(LLDebugConfigColorStyleHomebrew): [LLThemeColor homebrewThemeColor],
+        @(LLDebugConfigColorStyleManPage): [LLThemeColor manPageThemeColor],
+        @(LLDebugConfigColorStyleNovel): [LLThemeColor novelThemeColor],
+        @(LLDebugConfigColorStyleOcean): [LLThemeColor oceanThemeColor],
+        @(LLDebugConfigColorStylePro): [LLThemeColor proThemeColor],
+        @(LLDebugConfigColorStyleRedSands): [LLThemeColor redSandsThemeColor],
+        @(LLDebugConfigColorStyleSilverAerogel): [LLThemeColor silverAerogelThemeColor],
+        @(LLDebugConfigColorStyleSolidColors): [LLThemeColor solidColorsThemeColor],
+        @(LLDebugConfigColorStyleCustom): [LLThemeColor hackThemeColor]
     };
     if (colorStyle == LLDebugConfigColorStyleCustom) {
         [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property"];

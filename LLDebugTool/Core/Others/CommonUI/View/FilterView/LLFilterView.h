@@ -29,13 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLFilterView : LLBaseView
 
 /// Filter titles.
-@property (nonatomic, strong) NSArray <NSString *>*titles;
+@property (nonatomic, strong) NSArray<NSString *> *titles;
 
 /// Filter views.
-@property (nonatomic, strong) NSArray <UIView *>*filterViews;
+@property (nonatomic, strong) NSArray<UIView *> *filterViews;
 
 /// Filter change state.
-@property (nonatomic, copy, nullable) void(^filterChangeStateBlock)(void);
+@property (nonatomic, copy, nullable) void (^filterChangeStateBlock)(void);
 
 /// Is filtering.
 - (BOOL)isFiltering;

@@ -23,9 +23,9 @@
 
 #import "LLDebugConfigHelper.h"
 
+#import "LLDebugConfig.h"
 #import "LLFunctionItemModel.h"
 #import "LLThemeManager.h"
-#import "LLDebugConfig.h"
 
 #import "UIColor+LL_Utils.h"
 
@@ -63,7 +63,7 @@
         case LLDebugConfigColorStyleSolidColors:
             return @"Solid Colors";
         case LLDebugConfigColorStyleCustom:
-            return [NSString stringWithFormat:@"%@\n%@",[[LLThemeManager shared].primaryColor LL_description],[[LLThemeManager shared].backgroundColor LL_description]];
+            return [NSString stringWithFormat:@"%@\n%@", [[LLThemeManager shared].primaryColor LL_description], [[LLThemeManager shared].backgroundColor LL_description]];
     }
 }
 

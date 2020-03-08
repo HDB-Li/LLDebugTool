@@ -46,7 +46,6 @@ typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
 /// Action delegate.
 @property (nonatomic, weak, nullable) id<LLHierarchyInfoViewDelegate> delegate;
 
-
 /// Selected view, retain.
 @property (nonatomic, strong, nullable, readonly) UIView *selectedView;
 

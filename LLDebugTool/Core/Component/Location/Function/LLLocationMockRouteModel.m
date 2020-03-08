@@ -39,7 +39,7 @@
 
 @implementation LLLocationMockRouteModel
 
-- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name {
+- (instancetype)initWithLocation:(NSArray<CLLocation *> *)locations timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name {
     if (self = [super init]) {
         _locations = [locations copy];
         _timeInterval = timeInterval;
@@ -93,37 +93,37 @@
     if ([filePath length] == 0) {
         return;
     }
-    
+
     // Check file extension.
     if (![filePath.pathExtension isEqualToString:@"json"]) {
         return;
     }
-    
+
     // Convert to data.
     NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
     if ([data length] == 0) {
         return;
     }
-    
+
     id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
+
     // Check type.
     if (![object isKindOfClass:[NSDictionary class]]) {
         return;
     }
-    
+
     NSDictionary *json = (NSDictionary *)object;
     // Check key.
     if (![json[@"key"] isEqualToString:@"LLDebugTool"]) {
         return;
     }
-    
+
     NSArray *jsonData = json[@"data"];
     // Check data.
     if (![jsonData isKindOfClass:[NSArray class]]) {
         return;
     }
-    
+
     // Add data.
     NSMutableArray *locations = [[NSMutableArray alloc] init];
     for (id obj in jsonData) {
@@ -138,7 +138,7 @@
             }
         }
     }
-    
+
     _locations = [locations copy];
     _isAvailable = YES;
 }

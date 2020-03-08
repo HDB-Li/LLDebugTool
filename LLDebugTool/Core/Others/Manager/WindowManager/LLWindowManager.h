@@ -23,9 +23,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LLEntryWindow.h"
 #import "LLFunctionWindow.h"
 #import "LLSettingWindow.h"
-#import "LLEntryWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param animated Animated.
  @param completion Completion block.
  */
-- (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+- (void)showWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
 
 /**
  Hide window with alpha animate if needed.
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param animated Animated.
  @param completion Completion block.
  */
-- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+- (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
 
 /**
  Current visiable window.
@@ -112,6 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #pragma mark - Internal
+
 @interface LLWindowManager (Internal)
 
 + (LLBaseWindow *)createWindowWithClassName:(NSString *)className;

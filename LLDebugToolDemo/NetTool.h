@@ -6,8 +6,8 @@
 //  Copyright © 2018年 li. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <AFNetworking.h>
+#import <Foundation/Foundation.h>
 
 @interface NetTool : NSObject
 

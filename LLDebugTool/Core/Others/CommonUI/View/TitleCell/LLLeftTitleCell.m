@@ -27,9 +27,9 @@
 
 - (void)initUI {
     [super initUI];
-    
+
     [self.titleLabel.superview removeConstraint:self.titleLabelRightCons];
-    
+
     NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:120];
     [self.titleLabel.superview addConstraint:width];
 }

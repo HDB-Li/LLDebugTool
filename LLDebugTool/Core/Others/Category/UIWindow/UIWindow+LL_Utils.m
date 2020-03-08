@@ -23,8 +23,8 @@
 
 #import "UIWindow+LL_Utils.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "NSObject+LL_Runtime.h"
+#import "UIViewController+LL_Utils.h"
 
 @implementation UIWindow (LL_Utils)
 
@@ -33,10 +33,10 @@
     dispatch_once(&onceToken, ^{
         //    NSString *canAffectSelectorString = @"_canAffectStatusBarAppearance";
         //    SEL canAffectSelector = NSSelectorFromString(canAffectSelectorString);
-        
+
         NSString *canBecomeKeySelectorString = @"_canBecomeKeyWindow";
         SEL canBecomeKeySelector = NSSelectorFromString(canBecomeKeySelectorString);
-        
+
         //    [[UIWindow class] LL_swizzleInstanceMethodWithOriginSel:canAffectSelector swizzledSel:@selector(_LL_canAffectStatusBarAppearance)];
         [[UIWindow class] LL_swizzleInstanceSelector:canBecomeKeySelector anotherSelector:@selector(_LL_canBecomeKeyWindow)];
     });

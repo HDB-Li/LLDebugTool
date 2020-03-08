@@ -23,8 +23,8 @@
 
 #import "LLLogWindow.h"
 
-#import "LLNavigationController.h"
 #import "LLLogViewController.h"
+#import "LLNavigationController.h"
 #import "LLWindowManager.h"
 
 @implementation LLLogWindow

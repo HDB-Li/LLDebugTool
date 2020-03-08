@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLFilterTextFieldCell : LLBaseCollectionViewCell
 
 /// Confirm block.
-@property (copy, nonatomic, nullable) void(^confirmBlock)(void);
+@property (copy, nonatomic, nullable) void (^confirmBlock)(void);
 
 /// Config cell with model.
 /// @param model LLFilterTextFieldModel

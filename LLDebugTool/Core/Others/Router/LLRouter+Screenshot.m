@@ -30,51 +30,47 @@
 
 @implementation LLRouter (Screenshot)
 
-+ (nullable UIImage *)screenshotWithScale:(CGFloat)scale
-{
-    CGSize imageSize = CGSizeMake(LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);;
++ (nullable UIImage *)screenshotWithScale:(CGFloat)scale {
+    CGSize imageSize = CGSizeMake(LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
+    ;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 #pragma clang diagnostic pop
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
+
     NSMutableArray *windows = [[NSMutableArray alloc] initWithArray:[[UIApplication sharedApplication] windows]];
-    
+
     [self appendStatusBar:windows];
-    
-    for (UIView *window in windows)
-    {
+
+    for (UIView *window in windows) {
         Class cls = NSClassFromString(@"LLBaseWindow");
         if (!window.isHidden && cls != nil && ![window isKindOfClass:cls]) {
             CGContextSaveGState(context);
             CGContextTranslateCTM(context, window.center.x, window.center.y);
             CGContextConcatCTM(context, window.transform);
             CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
-            
+
             CGFloat rotate = [self rotateForOrientation:orientation];
             if (rotate) {
                 CGContextRotateCTM(context, rotate);
             }
-            
+
             CGSize translate = [self translateForOrientation:orientation imageSize:imageSize];
             if (!CGSizeEqualToSize(CGSizeZero, translate)) {
                 CGContextTranslateCTM(context, translate.width, translate.height);
             }
 
-            if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)])
-            {
+            if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
                 [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
-            }
-            else
-            {
+            } else {
                 [window.layer renderInContext:context];
             }
             CGContextRestoreGState(context);
         }
     }
-    
+
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

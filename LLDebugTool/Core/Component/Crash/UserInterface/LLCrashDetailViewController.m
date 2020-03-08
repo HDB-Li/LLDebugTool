@@ -23,15 +23,15 @@
 
 #import "LLCrashDetailViewController.h"
 
-#import "LLSubTitleTableViewCell.h"
-#import "LLInternalMacros.h"
-#import "LLStorageManager.h"
-#import "LLToastUtils.h"
 #import "LLCrashModel.h"
 #import "LLDebugConfig.h"
+#import "LLInternalMacros.h"
+#import "LLStorageManager.h"
+#import "LLSubTitleTableViewCell.h"
+#import "LLToastUtils.h"
 
-#import "LLRouter+Network.h"
 #import "LLRouter+Log.h"
+#import "LLRouter+Network.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -52,10 +52,10 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     self.title = self.model.name;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kCrashContentCellID];
-    
+
     self.titleArray = [[NSMutableArray alloc] init];
     self.contentArray = [[NSMutableArray alloc] init];
-    
+
     [self loadData];
 }
 
@@ -90,10 +90,10 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         UIViewController *vc = [LLRouter networkViewControllerWithLaunchDate:self.model.launchDate];
         if (vc) {
             [self.navigationController pushViewController:vc animated:YES];
-        }        
+        }
     } else if ([self.canCopyArray containsObject:title]) {
         [[UIPasteboard generalPasteboard] setString:self.contentArray[indexPath.row]];
-        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"),title]];
+        [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.success"), title]];
     }
 }
 
@@ -106,22 +106,26 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
-    [[LLStorageManager shared] getModels:[LLRouter logModelClass] launchDate:_model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-        // Get log models.
-        __block NSArray *logs = result;
-        [[LLStorageManager shared] getModels:[LLRouter networkModelClass] launchDate:weakSelf.model.launchDate complete:^(NSArray<LLStorageModel *> *result) {
-            [[LLToastUtils shared] hide];
-            // Get nework requests.
-            NSArray *networkRequests = result;
-            [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
-        }];
-    }];
+    [[LLStorageManager shared] getModels:[LLRouter logModelClass]
+                              launchDate:_model.launchDate
+                                complete:^(NSArray<LLStorageModel *> *result) {
+                                    // Get log models.
+                                    __block NSArray *logs = result;
+                                    [[LLStorageManager shared] getModels:[LLRouter networkModelClass]
+                                                              launchDate:weakSelf.model.launchDate
+                                                                complete:^(NSArray<LLStorageModel *> *result) {
+                                                                    [[LLToastUtils shared] hide];
+                                                                    // Get nework requests.
+                                                                    NSArray *networkRequests = result;
+                                                                    [weakSelf updateDataWithLogs:logs networkRequests:networkRequests];
+                                                                }];
+                                }];
 }
 
 - (void)updateDataWithLogs:(NSArray *)logs networkRequests:(NSArray *)networkRequests {
     [self.titleArray removeAllObjects];
     [self.contentArray removeAllObjects];
-    
+
     if (_model.name) {
         [self.titleArray addObject:@"Name"];
         [self.contentArray addObject:_model.name];
@@ -134,22 +138,22 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.titleArray addObject:@"Date"];
         [self.contentArray addObject:_model.date];
     }
-    
+
     if (logs.count) {
         [self.titleArray addObject:@"Logs"];
-        [self.contentArray addObject:[NSString stringWithFormat:@"%ld logs",(unsigned long)logs.count]];
+        [self.contentArray addObject:[NSString stringWithFormat:@"%ld logs", (unsigned long)logs.count]];
     }
-    
+
     if (networkRequests.count) {
         [self.titleArray addObject:@"Network Requests"];
-        [self.contentArray addObject:[NSString stringWithFormat:@"%ld network requests",(unsigned long)networkRequests.count]];
+        [self.contentArray addObject:[NSString stringWithFormat:@"%ld network requests", (unsigned long)networkRequests.count]];
     }
-    
+
     if (_model.thread) {
         [self.titleArray addObject:@"Thread"];
         [self.contentArray addObject:_model.thread];
     }
-    
+
     if (_model.userIdentity) {
         [self.titleArray addObject:@"User Identity"];
         [self.contentArray addObject:_model.userIdentity];
@@ -158,7 +162,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.titleArray addObject:@"Stack Symbols"];
         NSMutableString *mutStr = [[NSMutableString alloc] init];
         for (NSString *symbol in _model.stackSymbols) {
-            [mutStr appendFormat:@"%@\n\n",symbol];
+            [mutStr appendFormat:@"%@\n\n", symbol];
         }
         [self.contentArray addObject:mutStr];
     }
@@ -166,7 +170,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
         [self.titleArray addObject:@"UserInfo"];
         NSMutableString *content = [[NSMutableString alloc] init];
         for (NSString *key in _model.userInfo.allKeys) {
-            [content appendFormat:@"%@ : %@\n",key,_model.userInfo[key]];
+            [content appendFormat:@"%@ : %@\n", key, _model.userInfo[key]];
         }
         [self.contentArray addObject:content];
     }
@@ -179,7 +183,7 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
 - (NSArray *)canCopyArray {
     if (!_canCopyArray) {
-        _canCopyArray = @[@"Name",@"Reason",@"Stack Symbols"];
+        _canCopyArray = @[@"Name", @"Reason", @"Stack Symbols"];
     }
     return _canCopyArray;
 }

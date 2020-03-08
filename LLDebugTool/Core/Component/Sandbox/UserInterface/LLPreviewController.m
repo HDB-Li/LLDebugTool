@@ -29,8 +29,7 @@
 
 @implementation LLPreviewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.delegate = self;
@@ -40,11 +39,11 @@
 }
 
 #pragma mark - QLPreviewControllerDataSource
-- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller{
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
     return self.filePaths.count;
 }
 
-- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index{
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
     NSURL *url = [NSURL fileURLWithPath:self.filePaths[index]];
     return url;
 }

@@ -26,7 +26,7 @@
 CGFloat const kLLEntryWindowBallWidth = 50;
 CGFloat const kLLEntryWindowMinBallWidth = 30;
 CGFloat const kLLEntryWindowMaxBallWidth = 70;
-CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;// Golden section search.
+CGFloat const kLLEntryWindowDisplayPercent = 1 - 0.618;   // Golden section search.
 CGFloat const kLLEntryWindowMinDisplayPercent = 0.1;
 CGFloat const kLLEntryWindowMaxDisplayPercent = 1;
 CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;

@@ -31,11 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLNetworkFilterView : LLFilterView
 
 /// Filter change block.
-@property (nonatomic, copy, nullable) void(^changeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
+@property (nonatomic, copy, nullable) void (^changeBlock)(NSArray *_Nullable hosts, NSArray *_Nullable types, NSDate *_Nullable from, NSDate *_Nullable end);
 
 /// Config filter with array data.
 /// @param data An LLNetworkModel array data.
-- (void)configWithData:(NSArray <LLNetworkModel *>*_Nullable)data;
+- (void)configWithData:(NSArray<LLNetworkModel *> *_Nullable)data;
 
 @end
 

@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param message Message
 /// @param text Text field's text
 /// @param handler Action handler.
-- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString * _Nullable newText))handler;
+- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString *_Nullable newText))handler;
 
 @end
 

@@ -52,7 +52,6 @@
 }
 
 - (void)themeColorChanged {
-    
 }
 
 #pragma mark - Primary

@@ -23,15 +23,15 @@
 
 #import "LLCrashViewController.h"
 
+#import "LLCrashCell.h"
 #import "LLCrashDetailViewController.h"
+#import "LLCrashHelper.h"
+#import "LLCrashModel.h"
+#import "LLDebugConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLStorageManager.h"
-#import "LLCrashHelper.h"
 #import "LLToastUtils.h"
-#import "LLCrashModel.h"
-#import "LLCrashCell.h"
-#import "LLDebugConfig.h"
 
 #import "UIViewController+LL_Utils.h"
 
@@ -43,8 +43,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
 
 @implementation LLCrashViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.isSearchEnable = YES;
@@ -58,7 +57,7 @@ static NSString *const kCrashCellID = @"CrashCellID";
     [super viewDidLoad];
     self.title = LLLocalizedString(@"function.crash");
     [self.tableView registerClass:[LLCrashCell class] forCellReuseIdentifier:kCrashCellID];
-    
+
     [self loadData];
 }
 
@@ -66,12 +65,14 @@ static NSString *const kCrashCellID = @"CrashCellID";
 - (void)loadData {
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"loading")];
-    [[LLStorageManager shared] getModels:[LLCrashModel class] launchDate:nil complete:^(NSArray<LLStorageModel *> *result) {
-        [[LLToastUtils shared] hide];
-        [weakSelf.oriDataArray removeAllObjects];
-        [weakSelf.oriDataArray addObjectsFromArray:result];
-        [weakSelf.tableView reloadData];
-    }];
+    [[LLStorageManager shared] getModels:[LLCrashModel class]
+                              launchDate:nil
+                                complete:^(NSArray<LLStorageModel *> *result) {
+                                    [[LLToastUtils shared] hide];
+                                    [weakSelf.oriDataArray removeAllObjects];
+                                    [weakSelf.oriDataArray addObjectsFromArray:result];
+                                    [weakSelf.tableView reloadData];
+                                }];
 }
 
 #pragma mark - Rewrite
@@ -81,23 +82,25 @@ static NSString *const kCrashCellID = @"CrashCellID";
     for (NSIndexPath *indexPath in indexPaths) {
         [models addObject:self.datas[indexPath.row]];
     }
-    
+
     __weak typeof(self) weakSelf = self;
     [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"deleting")];
-    [[LLStorageManager shared] removeModels:models complete:^(BOOL result) {
-        [[LLToastUtils shared] hide];
-        if (result) {
-            [weakSelf.oriDataArray removeObjectsInArray:models];
-            [weakSelf.searchDataArray removeObjectsInArray:models];
-            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        } else {
-            [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:^(NSInteger action) {
-                if (action == 1) {
-                    [weakSelf loadData];
-                }
-            }];
-        }
-    }];
+    [[LLStorageManager shared] removeModels:models
+                                   complete:^(BOOL result) {
+                                       [[LLToastUtils shared] hide];
+                                       if (result) {
+                                           [weakSelf.oriDataArray removeObjectsInArray:models];
+                                           [weakSelf.searchDataArray removeObjectsInArray:models];
+                                           [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+                                       } else {
+                                           [weakSelf LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail")
+                                                                               handler:^(NSInteger action) {
+                                                                                   if (action == 1) {
+                                                                                       [weakSelf loadData];
+                                                                                   }
+                                                                               }];
+                                       }
+                                   }];
 }
 
 #pragma mark - UITableView

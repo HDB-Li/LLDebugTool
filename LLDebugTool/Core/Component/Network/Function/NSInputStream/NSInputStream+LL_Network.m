@@ -32,7 +32,7 @@
     }
     NSInteger readLength;
     uint8_t buffer[1024];
-    while((readLength = [self read:buffer maxLength:1024]) > 0) {
+    while ((readLength = [self read:buffer maxLength:1024]) > 0) {
         [data appendBytes:buffer length:readLength];
     }
     return [data copy];

@@ -23,8 +23,8 @@
 
 #import "LLShortCutWindow.h"
 
-#import "LLShortCutViewController.h"
 #import "LLNavigationController.h"
+#import "LLShortCutViewController.h"
 #import "LLWindowManager.h"
 
 @implementation LLShortCutWindow

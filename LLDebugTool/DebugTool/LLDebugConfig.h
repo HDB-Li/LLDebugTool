@@ -223,12 +223,12 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
 /**
  Observer network in hosts, ignore others.
  */
-@property (nonatomic, strong, nullable) NSArray <NSString *>*observerdHosts;
+@property (nonatomic, strong, nullable) NSArray<NSString *> *observerdHosts;
 
 /**
  Ignored hosts, low level than observerdHosts.
  */
-@property (nonatomic, strong, nullable) NSArray <NSString *>*ignoredHosts;
+@property (nonatomic, strong, nullable) NSArray<NSString *> *ignoredHosts;
 
 /**
  Whether observer webView request.
@@ -273,7 +273,7 @@ Whether show widget border. Default is NO.
 /**
  Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`. ViewController must set background color.
  */
-@property (nonatomic, copy, nullable) UIViewController *(^htmlViewControllerProvider)(NSString * _Nullable url);
+@property (nonatomic, copy, nullable) UIViewController * (^htmlViewControllerProvider)(NSString *_Nullable url);
 
 #pragma mark - Location
 /**
@@ -306,7 +306,7 @@ Whether show widget border. Default is NO.
 /// Register a short cut action in ShortCut function.
 /// @param name Display name for short cut.
 /// @param action Action block, return a message to toast, if nothing return nil.
-- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action;
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action;
 
 #pragma mark - Date Formatter
 /**
@@ -369,4 +369,3 @@ Whether show widget border. Default is NO.
 @end
 
 NS_ASSUME_NONNULL_END
-

@@ -35,13 +35,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self initNavigationItemWithTitle:nil imageName:kShareImageName isLeft:NO];
-    
+
     if (!self.filePath) {
         return;
     }
-    
+
     self.title = [self.filePath lastPathComponent];
 }
 

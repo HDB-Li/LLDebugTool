@@ -23,14 +23,14 @@
 
 #import "LLShortCutComponent.h"
 
-#import "LLShortCutViewController.h"
 #import "LLNavigationController.h"
+#import "LLShortCutViewController.h"
 
 #import "LLWindowManager+ShortCut.h"
 
 @implementation LLShortCutComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
     LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
     if ([window isKindOfClass:[LLFunctionWindow class]]) {
         LLNavigationController *nav = (LLNavigationController *)window.rootViewController;

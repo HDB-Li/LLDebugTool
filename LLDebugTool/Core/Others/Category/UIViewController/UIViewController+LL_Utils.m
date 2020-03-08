@@ -23,18 +23,17 @@
 
 #import "UIViewController+LL_Utils.h"
 
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 
 #import "UIImage+LL_Utils.h"
 
 @implementation UIViewController (LL_Utils)
 
 - (UIViewController *)LL_currentShowingViewController {
-    
     UIViewController *vc = self;
     if ([self presentedViewController]) {
         vc = [[self presentedViewController] LL_currentShowingViewController];
@@ -65,11 +64,13 @@
 
 - (void)LL_showConfirmAlertControllerWithMessage:(NSString *)message handler:(void (^)(void))handler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:LLLocalizedString(@"note") message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:LLLocalizedString(@"confirm") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        if (handler) {
-            handler();
-        }
-    }];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:LLLocalizedString(@"confirm")
+                                                      style:UIAlertActionStyleDestructive
+                                                    handler:^(UIAlertAction *action) {
+                                                        if (handler) {
+                                                            handler();
+                                                        }
+                                                    }];
     [alert addAction:confirm];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:alert animated:YES completion:nil];
@@ -78,16 +79,20 @@
 
 - (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:LLLocalizedString(@"note") message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LLLocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-        if (handler) {
-            handler(0);
-        }
-    }];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:LLLocalizedString(@"confirm") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        if (handler) {
-            handler(1);
-        }
-    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LLLocalizedString(@"cancel")
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction *action) {
+                                                       if (handler) {
+                                                           handler(0);
+                                                       }
+                                                   }];
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:LLLocalizedString(@"confirm")
+                                                      style:UIAlertActionStyleDestructive
+                                                    handler:^(UIAlertAction *action) {
+                                                        if (handler) {
+                                                            handler(1);
+                                                        }
+                                                    }];
     [alert addAction:cancel];
     [alert addAction:confirm];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -100,11 +105,13 @@
     for (NSInteger i = 0; i < actions.count; i++) {
         NSString *actionTitle = actions[i];
         __block NSInteger index = i;
-        UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if (completion) {
-                completion(index);
-            }
-        }];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *_Nonnull action) {
+                                                           if (completion) {
+                                                               completion(index);
+                                                           }
+                                                       }];
         if (currentAction && [actionTitle isEqualToString:currentAction]) {
             action.enabled = NO;
             [action setValue:[UIImage LL_imageNamed:kSelectImageName] forKey:@"image"];
@@ -117,17 +124,19 @@
     });
 }
 
-- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString * _Nullable))handler {
+- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString *_Nullable))handler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *_Nonnull textField) {
         textField.text = text;
     }];
     [alert addAction:[UIAlertAction actionWithTitle:LLLocalizedString(@"cancel") style:UIAlertActionStyleCancel handler:nil]];
-    [alert addAction:[UIAlertAction actionWithTitle:LLLocalizedString(@"confirm") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        if (handler) {
-            handler(alert.textFields.firstObject.text);
-        }
-    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:LLLocalizedString(@"confirm")
+                                              style:UIAlertActionStyleDestructive
+                                            handler:^(UIAlertAction *_Nonnull action) {
+                                                if (handler) {
+                                                    handler(alert.textFields.firstObject.text);
+                                                }
+                                            }]];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:alert animated:YES completion:nil];
     });

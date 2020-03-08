@@ -23,9 +23,9 @@
 
 #import "LLFactory.h"
 
+#import "LLDebugConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLDebugConfig.h"
 
 @implementation LLFactory
 
@@ -35,7 +35,7 @@
 }
 
 + (UIView *)getLineView:(CGRect)frame
-                   superView:(UIView *_Nullable)superView {
+              superView:(UIView *_Nullable)superView {
     UIView *view = [self getView];
     view.backgroundColor = [LLThemeManager shared].primaryColor;
     [superView addSubview:view];
@@ -53,15 +53,15 @@
 }
 
 + (UILabel *)getLabel:(UIView *_Nullable)toView
-                        frame:(CGRect)frame {
+                frame:(CGRect)frame {
     return [self getLabel:toView frame:frame text:nil font:17 textColor:nil];
 }
 
 + (UILabel *)getLabel:(UIView *_Nullable)toView
-                        frame:(CGRect)frame
-                         text:(NSString *_Nullable)text
-                         font:(CGFloat)fontSize
-                    textColor:(UIColor *_Nullable)textColor {
+                frame:(CGRect)frame
+                 text:(NSString *_Nullable)text
+                 font:(CGFloat)fontSize
+            textColor:(UIColor *_Nullable)textColor {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     [toView addSubview:label];
     label.text = text;
@@ -88,13 +88,13 @@
 }
 
 + (UITextView *)getTextView:(UITextView *_Nullable)toView
-                              frame:(CGRect)frame {
+                      frame:(CGRect)frame {
     return [self getTextView:toView frame:frame delegate:nil];
 }
 
 + (UITextView *)getTextView:(UITextView *_Nullable)toView
-                              frame:(CGRect)frame
-                           delegate:(id<UITextViewDelegate>_Nullable)delegate {
+                      frame:(CGRect)frame
+                   delegate:(id<UITextViewDelegate> _Nullable)delegate {
     UITextView *textView = [[UITextView alloc] initWithFrame:frame];
     [toView addSubview:textView];
     textView.delegate = delegate;
@@ -111,13 +111,13 @@
 }
 
 + (UIImageView *)getImageView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame {
+                        frame:(CGRect)frame {
     return [self getImageView:toView frame:frame image:nil];
 }
 
 + (UIImageView *)getImageView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                                image:(UIImage *_Nullable)image {
+                        frame:(CGRect)frame
+                        image:(UIImage *_Nullable)image {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
     [toView addSubview:imageView];
     imageView.image = image;
@@ -158,20 +158,20 @@
 }
 
 + (UITableView *)getTableView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame {
+                        frame:(CGRect)frame {
     return [self getTableView:toView frame:frame delegate:nil];
 }
 
 + (UITableView *)getTableView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                             delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate {
+                        frame:(CGRect)frame
+                     delegate:(id<UITableViewDelegate, UITableViewDataSource> _Nullable)delegate {
     return [self getTableView:toView frame:frame delegate:delegate style:UITableViewStylePlain];
 }
 
 + (UITableView *)getTableView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                             delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate
-                                style:(UITableViewStyle)style {
+                        frame:(CGRect)frame
+                     delegate:(id<UITableViewDelegate, UITableViewDataSource> _Nullable)delegate
+                        style:(UITableViewStyle)style {
     UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:style];
     [toView addSubview:tableView];
     tableView.delegate = delegate;
@@ -201,20 +201,20 @@
 }
 
 + (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
-                                         layout:(UICollectionViewFlowLayout *)layout {
+                                 layout:(UICollectionViewFlowLayout *)layout {
     return [self getCollectionView:toView frame:CGRectZero layout:layout];
 }
 
 + (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
-                                          frame:(CGRect)frame
-                                         layout:(UICollectionViewFlowLayout *)layout {
+                                  frame:(CGRect)frame
+                                 layout:(UICollectionViewFlowLayout *)layout {
     return [self getCollectionView:toView frame:frame delegate:nil layout:layout];
 }
 
 + (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
-                                          frame:(CGRect)frame
-                                       delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>_Nullable)delegate
-                                         layout:(UICollectionViewFlowLayout *)layout {
+                                  frame:(CGRect)frame
+                               delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource> _Nullable)delegate
+                                 layout:(UICollectionViewFlowLayout *)layout {
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
     [toView addSubview:collectionView];
     collectionView.delegate = delegate;

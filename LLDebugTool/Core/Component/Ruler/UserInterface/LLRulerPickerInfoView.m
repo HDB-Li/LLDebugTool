@@ -23,10 +23,10 @@
 
 #import "LLRulerPickerInfoView.h"
 
+#import "LLConst.h"
+#import "LLFactory.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -55,13 +55,13 @@
     [super initUI];
     self.startPoint = CGPointZero;
     [self addSubview:self.contentLabel];
-    
+
     self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.LL_height - kLLGeneralMargin - kLLGeneralMargin);
 }
 
 #pragma mark - Primary
 - (void)updateContentText:(CGPoint)point {
-    self.contentLabel.text = [NSString stringWithFormat:@"Top : %0.2f    Bottom : %0.2f\nLeft : %0.2f    Right : %0.2f\n\nStart : {%0.2f , %0.2f}\nEnd : { %0.2f , %0.2f}\nChange : {%0.2f : %0.2f}",point.y,LL_SCREEN_HEIGHT - point.y,point.x,LL_SCREEN_WIDTH - point.x,self.startPoint.x,self.startPoint.y,point.x,point.y,point.x - self.startPoint.x, point.y - self.startPoint.y];
+    self.contentLabel.text = [NSString stringWithFormat:@"Top : %0.2f    Bottom : %0.2f\nLeft : %0.2f    Right : %0.2f\n\nStart : {%0.2f , %0.2f}\nEnd : { %0.2f , %0.2f}\nChange : {%0.2f : %0.2f}", point.y, LL_SCREEN_HEIGHT - point.y, point.x, LL_SCREEN_WIDTH - point.x, self.startPoint.x, self.startPoint.y, point.x, point.y, point.x - self.startPoint.x, point.y - self.startPoint.y];
     [self updateHeightIfNeeded];
 }
 

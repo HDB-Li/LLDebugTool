@@ -23,15 +23,15 @@
 
 #import "LLEntryWindow.h"
 
+#import "LLDebugConfig.h"
+#import "LLEntryStyleModel.h"
 #import "LLEntryViewController.h"
 #import "LLFunctionItemModel.h"
-#import "LLEntryStyleModel.h"
 #import "LLInternalMacros.h"
-#import "LLDebugConfig.h"
 #import "LLTool.h"
 
-#import "UIWindow+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIWindow+LL_Utils.h"
 
 typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     LLEntryWindowDirectionLeft,
@@ -63,15 +63,15 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
             viewController.delegate = self;
             self.rootViewController = viewController;
         }
-        
+
         self.statusBarClickable = [LLTool statusBarClickable];
-        
+
         // Double tap, to screenshot.
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapGR:)];
         doubleTap.numberOfTapsRequired = 2;
-        
+
         // Tap, to show tool view.
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGR:)];
         [tap requireGestureRecognizerToFail:doubleTap];
         [self addGestureRecognizer:tap];
         [self addGestureRecognizer:doubleTap];
@@ -134,38 +134,42 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     if (![LLDebugConfig shared].isShrinkToEdgeWhenInactive) {
         return;
     }
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        switch (self.direction) {
-            case LLEntryWindowDirectionLeft:{
-                self.LL_left = 0;
+
+    [UIView animateWithDuration:0.25
+        animations:^{
+            switch (self.direction) {
+                case LLEntryWindowDirectionLeft: {
+                    self.LL_left = 0;
+                } break;
+                case LLEntryWindowDirectionRight: {
+                    self.LL_right = LL_SCREEN_WIDTH;
+                } break;
+                case LLEntryWindowDirectionTop: {
+                    self.LL_top = 0;
+                } break;
+                case LLEntryWindowDirectionBottom: {
+                    self.LL_bottom = LL_SCREEN_HEIGHT;
+                } break;
             }
-                break;
-            case LLEntryWindowDirectionRight: {
-                self.LL_right = LL_SCREEN_WIDTH;
-            }
-                break;
-            case LLEntryWindowDirectionTop: {
-                self.LL_top = 0;
-            }
-                break;
-            case LLEntryWindowDirectionBottom: {
-                self.LL_bottom = LL_SCREEN_HEIGHT;
-            }
-                break;
         }
-    } completion:^(BOOL finished) {
-        
-    }];
+        completion:^(BOOL finished){
+
+        }];
 }
 
 - (void)resignActive:(BOOL)animated {
     if (animated) {
-        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [self resetFrame];
-        } completion:^(BOOL finished) {
-            
-        }];
+        [UIView animateWithDuration:0.5
+            delay:0
+            usingSpringWithDamping:0.5
+            initialSpringVelocity:2.0
+            options:UIViewAnimationOptionCurveEaseInOut
+            animations:^{
+                [self resetFrame];
+            }
+            completion:^(BOOL finished){
+
+            }];
     } else {
         [self resetFrame];
     }
@@ -180,7 +184,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     CGFloat right = LL_SCREEN_WIDTH - self.LL_centerX;
     CGFloat bottom = LL_SCREEN_HEIGHT - self.LL_centerY;
     LLEntryWindowDirection direction = [self directionWithEdge:UIEdgeInsetsMake(top, left, bottom, right)];
-    
+
     CGPoint endPoint = self.center;
     switch (direction) {
         case LLEntryWindowDirectionLeft: {
@@ -188,23 +192,19 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
             if (!self.statusBarClickable) {
                 endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
-        }
-            break;
+        } break;
         case LLEntryWindowDirectionTop: {
             endPoint.y = self.LL_height / 2.0;
-        }
-            break;
+        } break;
         case LLEntryWindowDirectionRight: {
             endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0;
             if (!self.statusBarClickable) {
                 endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
-        }
-            break;
+        } break;
         case LLEntryWindowDirectionBottom: {
             endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0;
-        }
-            break;
+        } break;
     }
     self.direction = direction;
     self.center = endPoint;
@@ -218,28 +218,26 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
         return;
     }
     self.userInteractionEnabled = NO;
-    [UIView animateWithDuration:0.25 animations:^{
-        switch (self.direction) {
-            case LLEntryWindowDirectionLeft: {
-                self.LL_right = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
+    [UIView animateWithDuration:0.25
+        animations:^{
+            switch (self.direction) {
+                case LLEntryWindowDirectionLeft: {
+                    self.LL_right = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
+                } break;
+                case LLEntryWindowDirectionTop: {
+                    self.LL_bottom = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
+                } break;
+                case LLEntryWindowDirectionRight: {
+                    self.LL_left = LL_SCREEN_WIDTH - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
+                } break;
+                case LLEntryWindowDirectionBottom: {
+                    self.LL_top = LL_SCREEN_HEIGHT - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
+                } break;
             }
-                break;
-            case LLEntryWindowDirectionTop: {
-                self.LL_bottom = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
-            }
-                break;
-            case LLEntryWindowDirectionRight: {
-                self.LL_left = LL_SCREEN_WIDTH - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
-            }
-                break;
-            case LLEntryWindowDirectionBottom: {
-                self.LL_top = LL_SCREEN_HEIGHT - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
-            }
-                break;
         }
-    } completion:^(BOOL finished) {
-        self.userInteractionEnabled = YES;
-    }];
+        completion:^(BOOL finished) {
+            self.userInteractionEnabled = YES;
+        }];
 }
 
 - (LLEntryWindowDirection)directionWithEdge:(UIEdgeInsets)edge {

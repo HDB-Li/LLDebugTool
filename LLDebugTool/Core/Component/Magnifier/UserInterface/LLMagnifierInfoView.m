@@ -23,12 +23,12 @@
 
 #import "LLMagnifierInfoView.h"
 
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLWindowManager.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
+#import "LLWindowManager.h"
 
 #import "UIColor+LL_Utils.h"
 #import "UIView+LL_Utils.h"
@@ -50,16 +50,16 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     self.colorView.frame = CGRectMake(20, (self.LL_height - 20) / 2.0, 20, 20);
-    
+
     self.colorLabel.frame = CGRectMake(self.colorView.LL_right + 20, 0, self.LL_width - self.colorView.LL_right - 20, self.LL_height);
 }
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     [self addSubview:self.colorView];
     [self addSubview:self.colorLabel];
 }

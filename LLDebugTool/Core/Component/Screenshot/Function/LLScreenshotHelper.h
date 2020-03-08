@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Save screenShots to sandbox. Operation in child thread and callback in main thread.
  */
-- (void)saveScreenshot:(UIImage *)image name:(NSString *_Nullable)name complete:(void (^ __nullable)(BOOL finished))complete;
+- (void)saveScreenshot:(UIImage *)image name:(NSString *_Nullable)name complete:(void (^__nullable)(BOOL finished))complete;
 
 @end
 

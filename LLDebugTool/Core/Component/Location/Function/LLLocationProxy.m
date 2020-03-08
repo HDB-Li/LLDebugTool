@@ -23,8 +23,8 @@
 
 #import "LLLocationProxy.h"
 
-#import "LLLocationHelper.h"
 #import "LLDebugConfig.h"
+#import "LLLocationHelper.h"
 
 #import "CLLocation+LL_Location.h"
 
@@ -53,7 +53,7 @@
             mockLocation.LL_mock = YES;
             locations = @[mockLocation];
         }
-        
+
         [self.target locationManager:manager didUpdateLocations:locations];
     }
 }

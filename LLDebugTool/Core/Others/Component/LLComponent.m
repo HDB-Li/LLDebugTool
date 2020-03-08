@@ -28,7 +28,7 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
 
 @implementation LLComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
     NSAssert(NO, @"Sub class must rewrite componentDidLoad:");
 }
 

@@ -29,10 +29,10 @@
 #import "LLCrashHelper.h"
 #import "LLCrashModel.h"
 
+#import "LLCrashCell.h"
 #import "LLCrashDetailViewController.h"
 #import "LLCrashViewController.h"
 #import "LLCrashWindow.h"
-#import "LLCrashCell.h"
 
 #import "LLWindowManager+Crash.h"
 

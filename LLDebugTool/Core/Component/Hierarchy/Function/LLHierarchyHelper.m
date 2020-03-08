@@ -37,32 +37,32 @@ static LLHierarchyHelper *_instance = nil;
     return _instance;
 }
 
-- (NSArray <UIWindow *>*)allWindows {
+- (NSArray<UIWindow *> *)allWindows {
     return [self allWindowsIgnoreClass:nil];
 }
 
-- (NSArray <UIWindow *>*)allWindowsIgnoreClass:(Class)cls {
+- (NSArray<UIWindow *> *)allWindowsIgnoreClass:(Class)cls {
     BOOL includeInternalWindows = YES;
     BOOL onlyVisibleWindows = NO;
-    
+
     SEL allWindowsSelector = NSSelectorFromString(@"allWindowsIncludingInternalWindows:onlyVisibleWindows:");
-    
+
     NSMethodSignature *methodSignature = [[UIWindow class] methodSignatureForSelector:allWindowsSelector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-    
+
     invocation.target = [UIWindow class];
     invocation.selector = allWindowsSelector;
     [invocation setArgument:&includeInternalWindows atIndex:2];
     [invocation setArgument:&onlyVisibleWindows atIndex:3];
     [invocation invoke];
-    
+
     __unsafe_unretained NSArray<UIWindow *> *windows = nil;
     [invocation getReturnValue:&windows];
-    
-    windows = [windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow * obj1, UIWindow * obj2) {
+
+    windows = [windows sortedArrayUsingComparator:^NSComparisonResult(UIWindow *obj1, UIWindow *obj2) {
         return obj1.windowLevel > obj2.windowLevel;
     }];
-    
+
     NSMutableArray *results = [[NSMutableArray alloc] initWithArray:windows];
     NSMutableArray *removeResults = [[NSMutableArray alloc] init];
     if (cls != nil) {
@@ -73,7 +73,7 @@ static LLHierarchyHelper *_instance = nil;
         }
     }
     [results removeObjectsInArray:removeResults];
-    
+
     return [NSArray arrayWithArray:results];
 }
 

@@ -23,10 +23,10 @@
 
 #import "LLCrashCell.h"
 
-#import "LLCrashModel.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLCrashModel.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 
 @interface LLCrashCell ()
 
@@ -46,19 +46,19 @@
     _model = model;
     _nameLabel.text = model.name;
     _reasonLabel.text = model.reason;
-    _dateLabel.text = [NSString stringWithFormat:@"[ %@ ]",model.date];
+    _dateLabel.text = [NSString stringWithFormat:@"[ %@ ]", model.date];
 }
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     [self.contentView addSubview:self.reasonLabel];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.dateLabel];
-    
+
     [self addReasonLabelConstraints];
     [self addNameLabelConstraints];
     [self addDateLabelConstraints];

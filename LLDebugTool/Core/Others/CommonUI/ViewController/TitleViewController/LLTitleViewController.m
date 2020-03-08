@@ -23,17 +23,17 @@
 
 #import "LLTitleViewController.h"
 
-#import "LLDetailTitleSelectorCell.h"
-#import "LLTitleCellCategoryModel.h"
-#import "LLTitleSwitchCell.h"
-#import "LLTitleSliderCell.h"
-#import "LLInternalMacros.h"
-#import "LLTitleHeaderView.h"
 #import "LLConst.h"
+#import "LLDetailTitleSelectorCell.h"
+#import "LLInternalMacros.h"
+#import "LLTitleCellCategoryModel.h"
+#import "LLTitleHeaderView.h"
+#import "LLTitleSliderCell.h"
+#import "LLTitleSwitchCell.h"
 
 @interface LLTitleViewController ()
 
-@property (nonatomic, strong) NSMutableArray <LLTitleCellCategoryModel *>*dataArray;
+@property (nonatomic, strong) NSMutableArray<LLTitleCellCategoryModel *> *dataArray;
 
 @end
 

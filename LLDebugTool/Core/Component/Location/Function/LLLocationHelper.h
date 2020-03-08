@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Available route models.
  */
-@property (nonatomic, copy) NSArray <LLLocationMockRouteModel *>*availableRoutes;
+@property (nonatomic, copy) NSArray<LLLocationMockRouteModel *> *availableRoutes;
 
 /**
  Add a custom mock route file.

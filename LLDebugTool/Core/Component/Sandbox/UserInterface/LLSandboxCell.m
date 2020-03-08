@@ -23,15 +23,14 @@
 
 #import "LLSandboxCell.h"
 
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
+#import "LLFormatterTool.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
 #import "LLSandboxModel.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
-
 
 @interface LLSandboxCell ()
 
@@ -74,16 +73,16 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     UILongPressGestureRecognizer *longPG = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureAction:)];
     [self.contentView addGestureRecognizer:longPG];
-    
+
     [self.contentView addSubview:self.icon];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.dateLabel];
     [self.contentView addSubview:self.sizeLabel];
-    
+
     [self addIconConstraints];
     [self addNameLabelConstraints];
     [self addSizeLabelConstraints];

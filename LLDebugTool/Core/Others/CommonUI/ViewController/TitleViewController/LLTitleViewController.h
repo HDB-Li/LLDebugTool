@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLTitleViewController : LLBaseTableViewController <UITableViewDataSource>
 
 /// Data array.
-@property (nonatomic, strong, readonly) NSMutableArray <LLTitleCellCategoryModel *>*dataArray;
+@property (nonatomic, strong, readonly) NSMutableArray<LLTitleCellCategoryModel *> *dataArray;
 
 @end
 

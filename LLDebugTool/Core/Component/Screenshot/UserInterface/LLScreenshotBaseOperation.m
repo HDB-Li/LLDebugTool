@@ -23,10 +23,10 @@
 
 #import "LLScreenshotBaseOperation.h"
 
-#import "LLScreenshotSelectorModel.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLFactory.h"
+#import "LLScreenshotSelectorModel.h"
 #import "LLTool.h"
 
 #import "UIColor+LL_Utils.h"
@@ -59,8 +59,7 @@
 
 @implementation LLScreenshotBaseOperation
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         _selector = [[LLScreenshotSelectorModel alloc] initWithSize:LLScreenshotSelectorSizeActionSmall color:LLScreenshotSelectorColorActionRed];
@@ -270,7 +269,7 @@
 @interface LLScreenshotPenOperation ()
 
 // CGPoint
-@property (nonatomic, strong) NSMutableArray <NSValue *>*values;
+@property (nonatomic, strong) NSMutableArray<NSValue *> *values;
 
 @end
 

@@ -25,17 +25,17 @@
 
 #import <pthread/pthread.h>
 
-#import "LLFunctionItemModel.h"
-#import "LLDebugToolMacros.h"
-#import "LLSettingManager.h"
-#import "LLWindowManager.h"
 #import "LLComponent.h"
+#import "LLDebugToolMacros.h"
+#import "LLFunctionItemModel.h"
 #import "LLLogDefine.h"
+#import "LLSettingManager.h"
 #import "LLTool.h"
+#import "LLWindowManager.h"
 
-#import "UIResponder+LL_Utils.h"
-#import "NSObject+LL_Runtime.h"
 #import "LLRouter+Log.h"
+#import "NSObject+LL_Runtime.h"
+#import "UIResponder+LL_Utils.h"
 
 NSNotificationName const LLDebugToolStartWorkingNotification = @"LLDebugToolStartWorkingNotification";
 
@@ -66,7 +66,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     return _instance;
 }
 
-- (void)startWorking{
+- (void)startWorking {
     pthread_mutex_lock(&mutex_t);
     if (_isWorking) {
         pthread_mutex_unlock(&mutex_t);
@@ -75,7 +75,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     _isWorking = YES;
     [LLTool setStartWorkingAfterApplicationDidFinishLaunching:YES];
     pthread_mutex_unlock(&mutex_t);
-    
+
     // Open crash helper
     [LLRouter setCrashHelperEnable:YES];
     // Open log helper
@@ -130,13 +130,11 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [self hideWindow];
 }
 
-- (void)showWindow
-{
+- (void)showWindow {
     [[LLWindowManager shared] showEntryWindow];
 }
 
-- (void)hideWindow
-{
+- (void)hideWindow {
     [[LLWindowManager shared] hideEntryWindow];
 }
 
@@ -181,7 +179,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (self.isWorking) {
         return;
     }
-    
+
     NSDictionary *data = notification.userInfo[LLDebugToolStartWorkingConfigNotificationKey];
     if ([data isKindOfClass:[NSDictionary class]]) {
         NSArray *propertys = [LLDebugConfig LL_getPropertyNames];
@@ -218,12 +216,12 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (!version) {
         version = @"0.0.0";
     }
-    
+
     if ([[LLDebugTool versionNumber] compare:version] == NSOrderedDescending) {
         localInfo[@"version"] = [LLDebugTool versionNumber];
         [localInfo writeToFile:filePath atomically:YES];
     }
-    
+
     if ([LLDebugTool isBetaVersion]) {
         // This method called in instancetype, can't use macros to log.
         [LLTool log:kLLDebugToolLogUseBetaAlert];

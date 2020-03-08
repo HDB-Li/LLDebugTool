@@ -23,8 +23,8 @@
 
 #import "LLAnimateView.h"
 
-#import "LLInternalMacros.h"
 #import "LLFactory.h"
+#import "LLInternalMacros.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -39,7 +39,6 @@
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
-
     }
     return self;
 }
@@ -57,26 +56,29 @@
     [window addSubview:self];
     self.alpha = 0;
     self.LL_top = LL_SCREEN_HEIGHT;
-    [UIView animateWithDuration:0.25 animations:^{
-        self.alpha = 1;
-        self.LL_top = 0;
-    }];
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         self.alpha = 1;
+                         self.LL_top = 0;
+                     }];
 }
 
 - (void)hide {
-    [UIView animateWithDuration:0.25 animations:^{
-        self.alpha = 0;
-        self.LL_top = LL_SCREEN_HEIGHT;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
+    [UIView animateWithDuration:0.25
+        animations:^{
+            self.alpha = 0;
+            self.LL_top = LL_SCREEN_HEIGHT;
+        }
+        completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
 }
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
-    
+
     [self addSubview:self.contentView];
 }
 

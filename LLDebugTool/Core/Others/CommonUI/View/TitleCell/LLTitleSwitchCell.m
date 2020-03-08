@@ -23,9 +23,9 @@
 
 #import "LLTitleSwitchCell.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @interface LLTitleSwitchCell ()
 
@@ -39,9 +39,9 @@
 - (void)initUI {
     [super initUI];
     [self.contentView addSubview:self.swit];
-    
+
     [self.contentView removeConstraint:self.detailLabelRightCons];
-    
+
     [self addSwitConstraints];
 }
 

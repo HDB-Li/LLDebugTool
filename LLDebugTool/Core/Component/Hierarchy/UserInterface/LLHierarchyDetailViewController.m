@@ -23,20 +23,20 @@
 
 #import "LLHierarchyDetailViewController.h"
 
-#import "LLTitleCellCategoryModel.h"
-#import "LLDetailTitleCell.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
-#import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLDetailTitleCell.h"
+#import "LLFactory.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLThemeManager.h"
+#import "LLTitleCellCategoryModel.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "NSObject+LL_Hierarchy.h"
 #import "UIButton+LL_Utils.h"
 #import "UIImage+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLHierarchyDetailViewController ()
 
@@ -53,23 +53,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSAssert(self.selectView, @"SelectView can't be nil");
-    
+
     self.title = LLLocalizedString(@"function.hierarchy.detail");
     self.objectDatas = [[NSMutableArray alloc] init];
     self.sizeDatas = [[NSMutableArray alloc] init];
-    
+
     UIView *headerView = ({
         UIView *view = [LLFactory getView];
         view.frame = CGRectMake(0, 0, LL_SCREEN_WIDTH, 30 + kLLGeneralMargin * 2);
         view;
     });
-    
+
     [headerView addSubview:self.segmentedControl];
-    
+
     self.tableView.tableHeaderView = headerView;
-    
+
     [self loadData];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolChangeHierarchyNotification:) name:LLDebugToolChangeHierarchyNotification object:nil];
 }
 
@@ -105,11 +105,11 @@
     [self.objectDatas removeAllObjects];
     NSArray *models = [self.selectView LL_hierarchyCategoryModels];
     [self.objectDatas addObjectsFromArray:models];
-    
+
     [self.sizeDatas removeAllObjects];
     NSArray *sizeModels = [self.selectView LL_sizeHierarchyCategoryModels];
     [self.sizeDatas addObjectsFromArray:sizeModels];
-    
+
     [self reloadTableView];
 }
 
@@ -127,8 +127,8 @@
 - (UISegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
         _segmentedControl = [LLFactory getSegmentedControl:nil frame:CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.view.LL_width - kLLGeneralMargin * 2, 30) items:@[@"Object", @"Size"]];
-        [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].primaryColor} forState:UIControlStateNormal];
-        [_segmentedControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].backgroundColor} forState:UIControlStateSelected];
+        [_segmentedControl setTitleTextAttributes:@{ NSForegroundColorAttributeName: [LLThemeManager shared].primaryColor } forState:UIControlStateNormal];
+        [_segmentedControl setTitleTextAttributes:@{ NSForegroundColorAttributeName: [LLThemeManager shared].backgroundColor } forState:UIControlStateSelected];
         [_segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
         _segmentedControl.backgroundColor = [LLThemeManager shared].containerColor;
         _segmentedControl.tintColor = [LLThemeManager shared].primaryColor;

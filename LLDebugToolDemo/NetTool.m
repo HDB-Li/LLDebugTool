@@ -27,7 +27,7 @@ static NetTool *_instance = nil;
     return _session;
 }
 
--(AFURLSessionManager *)afURLSessionManager {
+- (AFURLSessionManager *)afURLSessionManager {
     if (!_afURLSessionManager) {
         _afURLSessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     }

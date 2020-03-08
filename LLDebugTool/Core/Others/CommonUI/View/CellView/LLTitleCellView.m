@@ -23,9 +23,9 @@
 
 #import "LLTitleCellView.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -45,11 +45,11 @@
 
 - (void)initUI {
     [super initUI];
-    
+
     self.leftMargin = kLLGeneralMargin;
-    
+
     [self addSubview:self.titleLabel];
-    
+
     [self addTitleLabelConstrains];
 }
 
@@ -60,7 +60,7 @@
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:-kLLGeneralMargin];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.titleLabel.superview addConstraints:@[left, top, width, bottom]];
-    
+
     self.titleLabelBottomCons = bottom;
 }
 

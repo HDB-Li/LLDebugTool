@@ -27,7 +27,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    
+
     if (indexPath.row == 0) {
         cell.textLabel.text = NSLocalizedString(@"show.html", nil);
     } else if (indexPath.row == 1) {
@@ -54,7 +54,7 @@
 
 - (void)testCustomHtmlViewController {
     if (![LLDebugConfig shared].htmlViewControllerProvider) {
-        [LLDebugConfig shared].htmlViewControllerProvider = ^UIViewController * _Nonnull(NSString * _Nonnull url) {
+        [LLDebugConfig shared].htmlViewControllerProvider = ^UIViewController *_Nonnull(NSString *_Nonnull url) {
             CustomWebViewController *vc = [[CustomWebViewController alloc] init];
             vc.url = url;
             return vc;

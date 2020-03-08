@@ -23,13 +23,13 @@
 
 #import "LLHierarchyInfoView.h"
 
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLToastUtils.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 #import "LLTool.h"
 
 #import "NSObject+LL_Hierarchy.h"
@@ -69,33 +69,32 @@
 @dynamic delegate;
 
 - (void)updateSelectedView:(UIView *)selectedView {
-    
     UIView *view = selectedView;
-    
+
     if (!view) {
         return;
     }
-    
+
     if (self.selectedView == view) {
         return;
     }
-    
+
     self.moreButton.enabled = YES;
     self.parentViewsButton.enabled = view.superview != nil;
     self.subviewsButton.enabled = view.subviews.count;
-    
+
     self.selectedView = view;
-    
+
     self.contentLabel.attributedText = [self attributedStringWithText:@"Name: " detail:NSStringFromClass(view.class)];
-    
+
     self.frameLabel.attributedText = [self attributedStringWithText:@"Frame: " detail:[LLTool stringFromFrame:view.frame]];
-    
+
     if (view.backgroundColor) {
         self.backgroundColorLabel.attributedText = [self attributedStringWithText:@"Background: " detail:view.backgroundColor.LL_description];
     } else {
         self.backgroundColorLabel.attributedText = nil;
     }
-    
+
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
         self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:label.textColor.LL_description];
@@ -104,20 +103,20 @@
         self.textColorLabel.attributedText = nil;
         self.fontLabel.attributedText = nil;
     }
-    
+
     if (view.tag != 0) {
         self.tagLabel.attributedText = [self attributedStringWithText:@"Tag: " detail:[NSString stringWithFormat:@"%ld", (long)view.tag]];
     } else {
         self.tagLabel.attributedText = nil;
     }
-    
+
     [self.contentLabel sizeToFit];
     [self.frameLabel sizeToFit];
     [self.backgroundColorLabel sizeToFit];
     [self.textColorLabel sizeToFit];
     [self.fontLabel sizeToFit];
     [self.tagLabel sizeToFit];
-    
+
     [self updateHeightIfNeeded];
 }
 
@@ -125,23 +124,23 @@
     [super layoutSubviews];
 
     self.actionContentView.frame = CGRectMake(0, self.LL_height - self.actionContentViewHeight - kLLGeneralMargin, self.LL_width, self.actionContentViewHeight);
-    
+
     self.parentViewsButton.frame = CGRectMake(kLLGeneralMargin, 0, self.actionContentView.LL_width / 2.0 - kLLGeneralMargin * 1.5, (self.actionContentView.LL_height - kLLGeneralMargin) / 2.0);
-    
+
     self.subviewsButton.frame = CGRectMake(self.actionContentView.LL_width / 2.0 + kLLGeneralMargin * 0.5, self.parentViewsButton.LL_top, self.parentViewsButton.LL_width, self.parentViewsButton.LL_height);
-    
+
     self.moreButton.frame = CGRectMake(kLLGeneralMargin, self.parentViewsButton.LL_bottom + kLLGeneralMargin, self.actionContentView.LL_width - kLLGeneralMargin * 2, self.parentViewsButton.LL_height);
-    
+
     self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.contentLabel.LL_height);
-    
+
     self.frameLabel.frame = CGRectMake(self.contentLabel.LL_x, self.contentLabel.LL_bottom, self.contentLabel.LL_width, self.frameLabel.LL_height);
-    
+
     self.backgroundColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.frameLabel.LL_bottom, self.contentLabel.LL_width, self.backgroundColorLabel.LL_height);
-    
+
     self.textColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.backgroundColorLabel.LL_bottom, self.contentLabel.LL_width, self.textColorLabel.LL_height);
-    
+
     self.fontLabel.frame = CGRectMake(self.contentLabel.LL_x, self.textColorLabel.LL_bottom, self.contentLabel.LL_width, self.fontLabel.LL_height);
-    
+
     self.tagLabel.frame = CGRectMake(self.contentLabel.LL_x, self.fontLabel.LL_bottom, self.contentLabel.LL_width, self.tagLabel.LL_height);
 }
 
@@ -149,7 +148,7 @@
 - (void)initUI {
     [super initUI];
     self.actionContentViewHeight = 80;
-    
+
     [self addSubview:self.contentLabel];
     [self addSubview:self.frameLabel];
     [self addSubview:self.backgroundColorLabel];
@@ -160,7 +159,7 @@
     [self.actionContentView addSubview:self.parentViewsButton];
     [self.actionContentView addSubview:self.subviewsButton];
     [self.actionContentView addSubview:self.moreButton];
-    
+
     [self updateHeightIfNeeded];
 }
 
@@ -206,10 +205,10 @@
 - (NSAttributedString *)attributedStringWithText:(NSString *)text detail:(NSString *)detail {
     NSDictionary *boldAttri = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:17]};
     NSDictionary *attri = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
-    
+
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:text attributes:boldAttri];
     [str appendAttributedString:[[NSAttributedString alloc] initWithString:detail attributes:attri]];
-    
+
     return [str copy];
 }
 

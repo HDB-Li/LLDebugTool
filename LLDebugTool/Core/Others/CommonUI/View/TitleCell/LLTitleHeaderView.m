@@ -23,9 +23,9 @@
 
 #import "LLTitleHeaderView.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -41,13 +41,13 @@
 - (void)initUI {
     [super initUI];
     self.backgroundColor = [LLThemeManager shared].containerColor;
-    
+
     [self addSubview:self.titleLabel];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     self.titleLabel.frame = CGRectMake(kLLGeneralMargin, 0, self.LL_width - kLLGeneralMargin * 2, self.LL_height);
 }
 

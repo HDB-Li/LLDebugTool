@@ -23,10 +23,10 @@
 
 #import "LLNetworkHelper.h"
 
-#import "LLReachability.h"
-#import "LLURLProtocol.h"
 #import "LLDebugConfig.h"
+#import "LLReachability.h"
 #import "LLTool.h"
+#import "LLURLProtocol.h"
 
 #import "LLRouter+Network.h"
 
@@ -60,11 +60,11 @@ static LLNetworkHelper *_instance = nil;
 }
 
 - (LLNetworkStatus)currentNetworkStatus {
-//    if (@available(iOS 13.0, *)) {
-//        return [self.reachability currentReachabilityStatus];
-//    } else {
-        return [LLRouter networkStateFromStatebar];
-//    }
+    //    if (@available(iOS 13.0, *)) {
+    //        return [self.reachability currentReachabilityStatus];
+    //    } else {
+    return [LLRouter networkStateFromStatebar];
+    //    }
 }
 
 #pragma mark - Primary
@@ -86,7 +86,8 @@ static LLNetworkHelper *_instance = nil;
         if (cls && [cls respondsToSelector:sel]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [cls performSelector:sel withObject:@"http"];
+            [cls performSelector:sel
+                      withObject:@"http"];
             [cls performSelector:sel withObject:@"https"];
 #pragma clang diagnostic pop
         }
@@ -101,7 +102,8 @@ static LLNetworkHelper *_instance = nil;
         if (cls && [cls respondsToSelector:sel]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [cls performSelector:sel withObject:@"http"];
+            [cls performSelector:sel
+                      withObject:@"http"];
             [cls performSelector:sel withObject:@"https"];
 #pragma clang diagnostic pop
         }

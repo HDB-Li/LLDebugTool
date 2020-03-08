@@ -23,8 +23,7 @@
 
 #import "LLTableViewSelectableModel.h"
 
-@interface LLTableViewSelectableModel ()
-{
+@interface LLTableViewSelectableModel () {
     BOOL _isSelected;
 }
 @end

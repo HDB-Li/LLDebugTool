@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /// Component window.
-@interface LLComponentWindow : LLBaseWindow<LLComponentCompleteDelegate>
+@interface LLComponentWindow : LLBaseWindow <LLComponentCompleteDelegate>
 
 @end
 

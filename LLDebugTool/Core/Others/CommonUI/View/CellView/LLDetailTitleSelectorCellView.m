@@ -23,10 +23,10 @@
 
 #import "LLDetailTitleSelectorCellView.h"
 
+#import "LLConst.h"
+#import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -41,13 +41,13 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     [self addSubview:self.accessoryView];
-    
+
     self.detailLabelRightCons.constant = -(kLLGeneralMargin - 2) - 14 - kLLGeneralMargin;
-    
+
     [self addAccessoryViewConstraints];
-    
+
     [self LL_addClickListener:self action:@selector(tapAction:)];
 }
 

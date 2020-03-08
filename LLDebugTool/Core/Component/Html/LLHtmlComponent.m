@@ -30,8 +30,7 @@
 
 @implementation LLHtmlComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey,id> *)data {
-   
+- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
     if (data[LLComponentDelegateRootViewControllerKey]) {
         Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);
         if (rootViewControllerClass != nil) {
@@ -48,7 +47,7 @@
             return;
         }
     }
-    
+
     LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
     if ([window isKindOfClass:[LLFunctionWindow class]]) {
         LLNavigationController *nav = (LLNavigationController *)window.rootViewController;

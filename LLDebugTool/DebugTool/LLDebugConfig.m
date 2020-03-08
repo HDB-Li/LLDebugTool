@@ -23,14 +23,14 @@
 
 #import "LLDebugConfig.h"
 
-#import "LLInternalMacros.h"
-#import "LLThemeManager.h"
-#import "LLThemeColor.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
 #import "LLDebugTool.h"
 #import "LLFactory.h"
+#import "LLInternalMacros.h"
 #import "LLRouter.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
+#import "LLThemeColor.h"
+#import "LLThemeManager.h"
 #import "LLTool.h"
 
 #import "LLRouter+Location.h"
@@ -64,7 +64,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     [LLRouter addMockRouteDirectory:fileDirectory];
 }
 
-- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action {
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action {
     [LLRouter registerShortCutWithName:name action:action];
 }
 
@@ -75,21 +75,21 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 - (void)initial {
     // Set internal
     _showDebugToolLog = YES;
-    
+
     // Set default values
     // Set folder Path
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     _folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
-    
+
     // Set XIB resources.
     [self setUpBundle];
-    
+
     // Set date formatter string.
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
-    
+
     // Set default color style.
     _colorStyle = LLDebugConfigColorStyleHack;
-    
+
     // Set default suspension ball attributes.
     _entryWindowBallWidth = kLLEntryWindowBallWidth;
     _entryWindowDisplayPercent = kLLEntryWindowDisplayPercent;
@@ -98,7 +98,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _activeAlpha = kLLActiveAlpha;
     _shrinkToEdgeWhenInactive = YES;
     _shakeToHide = YES;
-    
+
     // Set default magnifier properties.
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
     _magnifierSize = kLLMagnifierWindowSize;
@@ -107,17 +107,17 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _hierarchyIgnorePrivateClass = YES;
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
-    
+
     // Set location
     _mockRouteTimeInterval = kLLDefaultMockRouteTimeInterval;
 
     // Click action
     _clickAction = LLDebugToolActionFunction;
     _doubleClickAction = LLDebugToolActionHierarchy;
-    
+
     // Set default window's style.
     _entryWindowStyle = LLDebugConfigEntryWindowStyleBall;
-    
+
     // Start next time.
     _startWorkingNextTime = YES;
 }

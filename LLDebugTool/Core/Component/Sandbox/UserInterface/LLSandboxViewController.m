@@ -23,19 +23,19 @@
 
 #import "LLSandboxViewController.h"
 
-#import "LLUITableViewLongPressGestureRecognizerDelegate.h"
-#import "LLSandboxImagePreviewController.h"
-#import "LLSandboxVideoPreviewController.h"
-#import "LLSandboxHtmlPreviewController.h"
-#import "LLSandboxTextPreviewController.h"
-#import "LLPreviewController.h"
+#import "LLDebugConfig.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLSandboxHelper.h"
-#import "LLSandboxModel.h"
+#import "LLPreviewController.h"
 #import "LLSandboxCell.h"
+#import "LLSandboxHelper.h"
+#import "LLSandboxHtmlPreviewController.h"
+#import "LLSandboxImagePreviewController.h"
+#import "LLSandboxModel.h"
+#import "LLSandboxTextPreviewController.h"
+#import "LLSandboxVideoPreviewController.h"
 #import "LLToastUtils.h"
-#import "LLDebugConfig.h"
+#import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 
 #import "UIViewController+LL_Utils.h"
 
@@ -47,8 +47,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 @implementation LLSandboxViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.isSearchEnable = YES;
@@ -88,7 +87,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     }
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:array applicationActivities:nil];
     __weak typeof(self) weakSelf = self;
-    vc.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+    vc.completionWithItemsHandler = ^(UIActivityType _Nullable activityType, BOOL completed, NSArray *_Nullable returnedItems, NSError *_Nullable activityError) {
         [weakSelf rightItemClick:weakSelf.navigationItem.rightBarButtonItem.customView];
         if (activityError) {
             [[LLToastUtils shared] toastMessage:activityError.debugDescription];
@@ -102,7 +101,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     [super deleteFilesWithIndexPaths:indexPaths];
     NSMutableArray *finishedModels = [[NSMutableArray alloc] init];
     NSMutableArray *finishedIndexPaths = [[NSMutableArray alloc] init];
-    
+
     for (NSIndexPath *indexPath in indexPaths) {
         LLSandboxModel *model = self.datas[indexPath.row];
         BOOL ret = [self deleteFile:model];
@@ -262,7 +261,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     LLSandboxModel *model = self.datas[indexPath.row];
     [UIPasteboard generalPasteboard].string = model.filePath;
-    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.path.suceess"),model.filePath]];
+    [[LLToastUtils shared] toastMessage:[NSString stringWithFormat:LLLocalizedString(@"copy.path.suceess"), model.filePath]];
 }
 
 @end

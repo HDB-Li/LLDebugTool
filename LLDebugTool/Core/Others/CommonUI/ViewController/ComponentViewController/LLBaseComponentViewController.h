@@ -28,7 +28,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Component view controller.
-@interface LLBaseComponentViewController : LLBaseViewController<LLComponentDelegate>
+@interface LLBaseComponentViewController : LLBaseViewController <LLComponentDelegate>
 
 @end
 

@@ -25,20 +25,20 @@
 
 #import "LLTool.h"
 
+#import "NSArray+LL_Utils.h"
 #import "NSDictionary+LL_Utils.h"
 #import "NSObject+LL_Utils.h"
 #import "NSString+LL_Utils.h"
-#import "NSArray+LL_Utils.h"
 
 @interface LLCrashModel ()
 
-@property (strong, nonatomic) NSMutableArray <LLCrashSignalModel *>*signals;
+@property (strong, nonatomic) NSMutableArray<LLCrashSignalModel *> *signals;
 
 @end
 
 @implementation LLCrashModel
 
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate {
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary<NSString *, id> *_Nullable)userInfo stackSymbols:(NSArray<NSString *> *_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate {
     if (self = [super init]) {
         _name = [name copy];
         _reason = [reason copy];
@@ -68,7 +68,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfoDescription:%@,\n launchDate:%@",self.name,self.reason,self.userInfo.LL_jsonString,self.stackSymbols.LL_jsonString,self.date,self.userIdentity,self.appInfoDescription,self.launchDate];
+    return [NSString stringWithFormat:@"[LLCrashModel] \n name:%@,\n reason:%@,\n userInfo:%@,\n stackSymbols:%@,\n date:%@,\n userIdentity:%@,\n appInfoDescription:%@,\n launchDate:%@", self.name, self.reason, self.userInfo.LL_jsonString, self.stackSymbols.LL_jsonString, self.date, self.userIdentity, self.appInfoDescription, self.launchDate];
 }
 
 @end

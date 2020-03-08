@@ -24,9 +24,9 @@
 #import "LLHtmlWindow.h"
 
 #import "LLComponentNavigationController.h"
+#import "LLDebugConfig.h"
 #import "LLHtmlConfigViewController.h"
 #import "LLWindowManager.h"
-#import "LLDebugConfig.h"
 
 @implementation LLHtmlWindow
 

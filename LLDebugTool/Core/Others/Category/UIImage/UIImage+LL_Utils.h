@@ -25,7 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * LLImageName NS_TYPED_ENUM;
+typedef NSString *LLImageName NS_TYPED_ENUM;
 
 /// Image utils.
 @interface UIImage (LL_Utils)
@@ -78,7 +78,7 @@ typedef NSString * LLImageName NS_TYPED_ENUM;
 
  @return Hex colors.
  */
-- (NSArray <NSArray <NSString *>*>*)LL_hexColors;
+- (NSArray<NSArray<NSString *> *> *)LL_hexColors;
 
 /**
  Hex color at point, return nil if image's frame didn't contain point.

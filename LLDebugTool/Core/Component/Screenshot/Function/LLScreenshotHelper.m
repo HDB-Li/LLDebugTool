@@ -23,11 +23,11 @@
 
 #import "LLScreenshotHelper.h"
 
-#import "LLScreenshotPreviewViewController.h"
-#import "LLScreenshotComponent.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
 #import "LLDebugConfig.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLScreenshotComponent.h"
+#import "LLScreenshotPreviewViewController.h"
 #import "LLTool.h"
 
 #import "LLRouter+Screenshot.h"
@@ -35,9 +35,9 @@
 static LLScreenshotHelper *_instance = nil;
 
 @interface LLScreenshotHelper ()
-    
+
 @property (copy, nonatomic) NSString *screenshotFolderPath;
-    
+
 @end
 
 @implementation LLScreenshotHelper
@@ -66,10 +66,11 @@ static LLScreenshotHelper *_instance = nil;
     if (self.enable) {
         UIImage *image = [self imageFromScreen];
         if (image) {
-            NSDictionary *data = @{LLComponentDelegateRootViewControllerKey : NSStringFromClass(LLScreenshotPreviewViewController.class),LLComponentDelegateRootViewControllerPropertiesKey : @{@"image" : image}};
+            NSDictionary *data = @{ LLComponentDelegateRootViewControllerKey: NSStringFromClass(LLScreenshotPreviewViewController.class),
+                                    LLComponentDelegateRootViewControllerPropertiesKey: @{@"image": image} };
             [[[LLScreenshotComponent alloc] init] componentDidLoad:data];
         }
-    }    
+    }
 }
 
 - (UIImage *_Nullable)imageFromScreen {
@@ -81,7 +82,7 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 #pragma mark - Screenshot
-- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^ __nullable)(BOOL finished))complete {
+- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^__nullable)(BOOL finished))complete {
     if ([[NSThread currentThread] isMainThread]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self saveScreenshot:image name:name complete:complete];
@@ -94,7 +95,7 @@ static LLScreenshotHelper *_instance = nil;
     name = [name stringByAppendingPathExtension:@"png"];
     NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];
     BOOL ret = [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
-    
+
     if (complete) {
         dispatch_async(dispatch_get_main_queue(), ^{
             complete(ret);

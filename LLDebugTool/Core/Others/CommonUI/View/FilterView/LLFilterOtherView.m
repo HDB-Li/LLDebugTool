@@ -23,16 +23,16 @@
 
 #import "LLFilterOtherView.h"
 
-#import "LLFilterTextFieldModel.h"
-#import "LLFilterTextFieldCell.h"
-#import "LLFilterLabelModel.h"
-#import "LLFilterLabelCell.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
-#import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
+#import "LLFilterLabelCell.h"
+#import "LLFilterLabelModel.h"
+#import "LLFilterTextFieldCell.h"
+#import "LLFilterTextFieldModel.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLThemeManager.h"
 
 static NSString *const kHeaderID = @"HeaderID";
 static NSString *const kTextFieldCellID = @"TextFieldCellID";
@@ -62,7 +62,7 @@ static NSString *const kLabelCellID = @"LabelCellID";
 
 @implementation LLFilterOtherView
 
-- (void)updateFileDataDictionary:(NSDictionary <NSString *, NSArray *>*)dataDictionary fromDate:(NSDate *)fromDate endDate:(NSDate *)endDate userIdentities:(NSArray *)userIdentities {
+- (void)updateFileDataDictionary:(NSDictionary<NSString *, NSArray *> *)dataDictionary fromDate:(NSDate *)fromDate endDate:(NSDate *)endDate userIdentities:(NSArray *)userIdentities {
     [self.userIdDataArray removeAllObjects];
     for (NSString *userId in userIdentities) {
         LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:userId];
@@ -70,23 +70,23 @@ static NSString *const kLabelCellID = @"LabelCellID";
     }
     _fileDataArray = dataDictionary.allKeys;
     _fileDictionary = dataDictionary;
-    
+
     LLFilterTextFieldModel *model = [[LLFilterTextFieldModel alloc] init];
     model.title = @"File";
     model.titleWidth = 60;
     model.filters = dataDictionary.allKeys;
     self.fileModel = model;
-    
+
     LLFilterTextFieldModel *model2 = [[LLFilterTextFieldModel alloc] init];
     model2.title = @"Function";
     model2.titleWidth = 60;
     model2.filters = nil;
     self.funcModel = model2;
-    
+
     self.fromDateModel = [self dateModelWithTitle:@"From" from:fromDate end:endDate];
-    
+
     self.endDateModel = [self dateModelWithTitle:@"To" from:fromDate end:endDate];
-    
+
     CGFloat headerHeight = 30;
     CGFloat gap = kLLGeneralMargin;
     CGFloat itemHeight = 30;
@@ -104,16 +104,17 @@ static NSString *const kLabelCellID = @"LabelCellID";
         NSDate *fromDate = [LLFormatterTool dateFromString:_fromDateModel.currentFilter style:FormatterToolDateStyle3];
         NSDate *endDate = [LLFormatterTool dateFromString:_endDateModel.currentFilter style:FormatterToolDateStyle3];
         NSMutableArray *userIds = [[NSMutableArray alloc] init];
-        
+
         for (LLFilterLabelModel *model in self.userIdDataArray) {
             if (model.isSelected) {
                 [userIds addObject:model.message];
             }
         }
-        
+
         _changeBlock(_fileModel.currentFilter,
                      _funcModel.currentFilter,
-                     fromDate,endDate,
+                     fromDate,
+                     endDate,
                      userIds);
     }
 }

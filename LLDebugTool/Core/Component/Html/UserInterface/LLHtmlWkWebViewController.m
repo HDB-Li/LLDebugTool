@@ -55,26 +55,30 @@
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
+    NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
 #pragma mark - WKUIDelegate
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-    [self LL_showConfirmAlertControllerWithMessage:message handler:^{
-        completionHandler();
-    }];
+    [self LL_showConfirmAlertControllerWithMessage:message
+                                           handler:^{
+                                               completionHandler();
+                                           }];
 }
 
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
-    [self LL_showAlertControllerWithMessage:message handler:^(NSInteger action) {
-        completionHandler(action == 0 ? NO : YES);
-    }];
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
+    [self LL_showAlertControllerWithMessage:message
+                                    handler:^(NSInteger action) {
+                                        completionHandler(action == 0 ? NO : YES);
+                                    }];
 }
 
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
-    [self LL_showTextFieldAlertControllerWithMessage:prompt text:defaultText handler:^(NSString * _Nullable newText) {
-        completionHandler(newText);
-    }];
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *_Nullable))completionHandler {
+    [self LL_showTextFieldAlertControllerWithMessage:prompt
+                                                text:defaultText
+                                             handler:^(NSString *_Nullable newText) {
+                                                 completionHandler(newText);
+                                             }];
 }
 
 - (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
@@ -90,7 +94,7 @@
         self.webViewClass = NSStringFromClass([WKWebView class]);
     }
     [self.view addSubview:self.webView];
-        
+
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
 }
 

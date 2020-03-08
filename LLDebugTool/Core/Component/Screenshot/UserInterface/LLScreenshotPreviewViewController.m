@@ -25,18 +25,18 @@
 
 #import <Photos/PHPhotoLibrary.h>
 
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
 #import "LLScreenshotBaseOperation.h"
+#import "LLScreenshotHelper.h"
 #import "LLScreenshotImageView.h"
 #import "LLScreenshotToolbar.h"
-#import "LLScreenshotHelper.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
 #import "LLToastUtils.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLScreenshotPreviewViewController () <LLScreenshotToolbarDelegate>
 
@@ -57,7 +57,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     self.name = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
-    
+
     CGFloat rate = 0.1;
     CGFloat toolBarHeight = 80;
     CGFloat imgViewWidth = (1 - rate * 2) * LL_SCREEN_WIDTH;
@@ -68,12 +68,12 @@
     self.originalImageFrame = self.imageView.frame;
     self.imageView.image = self.image;
     [self.view addSubview:self.imageView];
-    
+
     // Init Controls
     self.toolBar = [[LLScreenshotToolbar alloc] initWithFrame:CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y + self.imageView.frame.size.height + kLLGeneralMargin, self.imageView.frame.size.width, toolBarHeight)];
     self.toolBar.delegate = self;
     [self.view addSubview:self.toolBar];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveKeyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveKeyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -85,9 +85,11 @@
 
 - (void)confirmAction {
     __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"screenshot.image.name") text:self.name handler:^(NSString * _Nullable newText) {
-        [weakSelf doConfirmAction:newText];
-    }];
+    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"screenshot.image.name")
+                                                text:self.name
+                                             handler:^(NSString *_Nullable newText) {
+                                                 [weakSelf doConfirmAction:newText];
+                                             }];
 }
 
 - (void)doConfirmAction:(NSString *)name {
@@ -132,10 +134,11 @@
         CGFloat y = operation.textView.frame.origin.y + self.originalImageFrame.origin.y;
         CGFloat gap = y - endFrame.origin.y + 100;
         if (gap > 0) {
-            [UIView animateWithDuration:duration animations:^{
-                CGRect oriRect = self.imageView.frame;
-                self.imageView.frame = CGRectMake(oriRect.origin.x, self.originalImageFrame.origin.y - gap, oriRect.size.width, oriRect.size.height);
-            }];
+            [UIView animateWithDuration:duration
+                             animations:^{
+                                 CGRect oriRect = self.imageView.frame;
+                                 self.imageView.frame = CGRectMake(oriRect.origin.x, self.originalImageFrame.origin.y - gap, oriRect.size.width, oriRect.size.height);
+                             }];
         }
     }
 }
@@ -145,9 +148,10 @@
     NSDictionary *userInfo = notification.userInfo;
     CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     if (!CGRectEqualToRect(self.imageView.frame, self.originalImageFrame)) {
-        [UIView animateWithDuration:duration animations:^{
-            self.imageView.frame = self.originalImageFrame;
-        }];
+        [UIView animateWithDuration:duration
+                         animations:^{
+                             self.imageView.frame = self.originalImageFrame;
+                         }];
     }
 }
 

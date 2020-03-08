@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLLocationMockRouteModel : LLBaseModel
 
 /// Mock locations
-@property (nonatomic, copy, nullable) NSArray <CLLocation *>*locations;
+@property (nonatomic, copy, nullable) NSArray<CLLocation *> *locations;
 
 /// Time interval between two location.
 @property (nonatomic, assign) NSTimeInterval timeInterval;
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param locations Mock locations.
 /// @param timeInterval Time interval between two location.
 /// @param name Model name.
-- (instancetype)initWithLocation:(NSArray <CLLocation *>*)locations timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name;
+- (instancetype)initWithLocation:(NSArray<CLLocation *> *)locations timeInterval:(NSTimeInterval)timeInterval name:(NSString *)name;
 
 /// Initial a model by a file.
 /// @param filePath File path.

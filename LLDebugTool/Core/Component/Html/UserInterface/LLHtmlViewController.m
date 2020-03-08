@@ -37,7 +37,7 @@
         self.urlString = @"https://github.com/HDB-Li/LLDebugTool";
         [LLTool log:@"None url string"];
     }
-    
+
     NSURL *url = [NSURL URLWithString:self.urlString];
     self.title = url.host ?: self.urlString;
 }

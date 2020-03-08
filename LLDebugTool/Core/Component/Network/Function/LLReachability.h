@@ -50,7 +50,6 @@ FOUNDATION_EXTERN NSNotificationName LLReachabilityChangeNotification;
  */
 + (instancetype)reachabilityForInternetConnection;
 
-
 #pragma mark reachabilityForLocalWiFi
 //reachabilityForLocalWiFi has been removed from the sample.  See ReadMe.md for more information.
 //+ (instancetype)reachabilityForLocalWiFi;
@@ -69,5 +68,3 @@ FOUNDATION_EXTERN NSNotificationName LLReachabilityChangeNotification;
 - (BOOL)connectionRequired;
 
 @end
-
-

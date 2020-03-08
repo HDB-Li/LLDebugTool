@@ -25,14 +25,14 @@
 
 #import <pthread/pthread.h>
 
-#import "LLLocationMockRouteModel.h"
-#import "LLInternalMacros.h"
-#import "LLFormatterTool.h"
-#import "LLToastUtils.h"
 #import "LLDebugConfig.h"
+#import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
+#import "LLLocationMockRouteModel.h"
+#import "LLToastUtils.h"
 
-#import "CLLocationManager+LL_Location.h"
 #import "CLLocation+LL_Location.h"
+#import "CLLocationManager+LL_Location.h"
 
 static LLLocationHelper *_instance = nil;
 
@@ -42,9 +42,9 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 @interface LLLocationHelper () <CLLocationManagerDelegate>
 
-@property (nonatomic, strong) NSHashTable <CLLocationManager *>*managers;
+@property (nonatomic, strong) NSHashTable<CLLocationManager *> *managers;
 
-@property (nonatomic, strong) NSMutableArray <LLLocationMockRouteModel *>*routes;
+@property (nonatomic, strong) NSMutableArray<LLLocationMockRouteModel *> *routes;
 
 @property (nonatomic, strong) LLLocationMockRouteModel *routeModel;
 
@@ -52,7 +52,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
-@property (nonatomic, strong) NSMutableArray <CLLocation *>*locations;
+@property (nonatomic, strong) NSMutableArray<CLLocation *> *locations;
 
 @end
 
@@ -72,15 +72,15 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if ([filePath length] == 0) {
         return;
     }
-    
+
     // Check file extension.
     if (![filePath.pathExtension isEqualToString:@"json"]) {
         return;
     }
-    
+
     // Get name.
     NSString *name = [filePath.lastPathComponent stringByDeletingPathExtension];
-        
+
     LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLDebugConfig shared].mockRouteTimeInterval name:name];
     [self addRoute:model];
 }
@@ -141,7 +141,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     json[@"key"] = @"LLDebugTool";
-//    NSMutableArray *data = [[NSMutableArray alloc] init];
+    //    NSMutableArray *data = [[NSMutableArray alloc] init];
     for (CLLocation *location in self.locations) {
         NSMutableDictionary *locationJson = [[NSMutableDictionary alloc] init];
         locationJson[@"lng"] = [LLFormatterTool formatLocation:@(location.coordinate.longitude)];
@@ -158,32 +158,32 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if ([path length] == 0) {
         return NO;
     }
-    
+
     NSDictionary *extendedAttributes = [self fileExtendedAttributesWithPath:path];
     if (extendedAttributes[@"LLDebugTool"]) {
         return YES;
     }
-    
+
     NSMutableDictionary *newExtendedAttributes = [[NSMutableDictionary alloc] init];
     if (extendedAttributes) {
         [newExtendedAttributes addEntriesFromDictionary:extendedAttributes];
     }
-    
+
     NSData *data = [@"LLDebugTool" dataUsingEncoding:NSUTF8StringEncoding];
     [newExtendedAttributes setObject:data forKey:@"LLDebugTool"];
-    
+
     NSError *error = nil;
     NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
     if (error) {
         return NO;
     }
-    
+
     NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
     if (attributes) {
         [newAttributes addEntriesFromDictionary:attributes];
     }
     [newAttributes setObject:newExtendedAttributes forKey:@"NSFileExtendedAttributes"];
-    
+
     if (![[NSFileManager defaultManager] setAttributes:newAttributes ofItemAtPath:path error:&error]) {
         return NO;
     }
@@ -253,7 +253,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     pthread_mutex_unlock(&mutex_t);
 }
 
-- (NSArray <CLLocationManager *>*)allManagers {
+- (NSArray<CLLocationManager *> *)allManagers {
     NSArray *managers = nil;
     pthread_mutex_lock(&mutex_t);
     managers = [self.managers allObjects];
@@ -277,7 +277,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     CLLocation *location = [self.routeModel nextLocation];
     if (location) {
         NSArray *managers = [self allManagers];
-        [managers enumerateObjectsUsingBlock:^(CLLocationManager *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [managers enumerateObjectsUsingBlock:^(CLLocationManager *obj, NSUInteger idx, BOOL *_Nonnull stop) {
             if (obj.LL_isUpdatingLocation && [obj.delegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]) {
                 [obj.delegate locationManager:obj didUpdateLocations:@[location]];
             }
@@ -291,18 +291,18 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if ([path length] == 0) {
         return nil;
     }
-    
+
     NSError *error = nil;
     NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
     if (error || !attributes) {
         return nil;
     }
-    
+
     NSDictionary *extendedAttributes = attributes[@"NSFileExtendedAttributes"];
     if (!extendedAttributes || ![extendedAttributes isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    
+
     return extendedAttributes;
 }
 

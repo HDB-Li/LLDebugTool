@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Config filter with array data.
 /// @param data An LLNetworkModel array data.
-- (void)configWithData:(NSArray <LLNetworkModel *>*_Nullable)data;
+- (void)configWithData:(NSArray<LLNetworkModel *> *_Nullable)data;
 
 @end
 

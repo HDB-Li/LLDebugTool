@@ -25,8 +25,8 @@
 
 #import <QuickLook/QuickLook.h>
 
-#import "LLImageNameConfig.h"
 #import "LLDebugConfig.h"
+#import "LLImageNameConfig.h"
 
 @interface LLSandboxModel ()
 
@@ -40,7 +40,7 @@
 
 @implementation LLSandboxModel
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes filePath:(NSString *)filePath{
+- (instancetype)initWithAttributes:(NSDictionary *)attributes filePath:(NSString *)filePath {
     if (self = [super init]) {
         _filePath = [filePath copy];
         _name = [[filePath lastPathComponent] copy];
@@ -53,28 +53,28 @@
         _isHidden = [attributes[NSFileExtensionHidden] boolValue];
         _isHomeDirectory = [filePath isEqualToString:NSHomeDirectory()];
         NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers", @"gif"];
-        [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [extensions enumerateObjectsUsingBlock:^(NSString *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
                 self->_canOpenWithWebView = YES;
                 *stop = YES;
             }
         }];
         extensions = @[@"json", @"plist"];
-        [extensions enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [extensions enumerateObjectsUsingBlock:^(NSString *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
                 self->_canOpenWithTextView = YES;
                 *stop = YES;
             }
         }];
         extensions = @[@"jpeg", @"jpg", @"png"];
-        [extensions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [extensions enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
                 self->_canOpenWithImageView = YES;
                 *stop = YES;
             }
         }];
         extensions = @[@"mp4", @"avi", @"mov", @"m4v", @"3gp", @"mpeg", @"mp3", @"wav", @"aac", @"caf"];
-        [extensions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [extensions enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
             if ([obj caseInsensitiveCompare:filePath.pathExtension] == NSOrderedSame) {
                 self->_canOpenWithVideo = YES;
                 *stop = YES;
@@ -102,8 +102,8 @@
             }
         } else {
             NSString *extension = self.filePath.pathExtension.lowercaseString;
-            
-            NSString *imageName = [NSString stringWithFormat:@"%@",extension];
+
+            NSString *imageName = [NSString stringWithFormat:@"%@", extension];
             UIImage *image = [UIImage LL_imageNamed:imageName];
             if (!image) {
                 if ([extension isEqualToString:@"docx"]) {

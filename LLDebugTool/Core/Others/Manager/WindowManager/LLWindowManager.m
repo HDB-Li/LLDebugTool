@@ -23,10 +23,10 @@
 
 #import "LLWindowManager.h"
 
+#import "LLConst.h"
+#import "LLDebugConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -81,7 +81,7 @@ static LLWindowManager *_instance = nil;
     [self showWindow:window animated:animated completion:nil];
 }
 
-- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
+- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion {
     [self addWindow:window animated:animated completion:completion];
 }
 
@@ -89,7 +89,7 @@ static LLWindowManager *_instance = nil;
     [self hideWindow:window animated:animated completion:nil];
 }
 
-- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^ _Nullable)(void))completion {
+- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion {
     [self removeWindow:window animated:animated showEntry:YES completion:nil];
 }
 
@@ -109,7 +109,6 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)addWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
-    
     // Avoid call on child thread.
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -117,8 +116,7 @@ static LLWindowManager *_instance = nil;
         });
         return;
     }
-    
-    
+
     if (!window) {
         if (completion) {
             completion();
@@ -128,9 +126,9 @@ static LLWindowManager *_instance = nil;
     [self removeAllVisibleWindows];
 
     [self recordKeywindowAndStatusBar:window animated:animated];
-    
+
     [self.visibleWindows addObject:window];
-    
+
     [self performAddWindow:window animated:animated completion:completion];
 }
 
@@ -162,32 +160,31 @@ static LLWindowManager *_instance = nil;
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
         __block CGFloat y = window.LL_y;
-        
+
         switch (window.showAnimateStyle) {
-            case LLBaseWindowShowAnimateStyleFade:{
+            case LLBaseWindowShowAnimateStyleFade: {
                 window.alpha = 0;
-            }
-                break;
-            case LLBaseWindowShowAnimateStylePresent:{
+            } break;
+            case LLBaseWindowShowAnimateStylePresent: {
                 window.LL_y = LL_SCREEN_HEIGHT;
-            }
-                break;
-            case LLBaseWindowShowAnimateStylePush:{
+            } break;
+            case LLBaseWindowShowAnimateStylePush: {
                 window.LL_x = LL_SCREEN_WIDTH;
-            }
-                break;
+            } break;
         }
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            window.alpha = alpha;
-            window.LL_x = x;
-            window.LL_y = y;
-        } completion:^(BOOL finished) {
-            [window becomeVisiable];
-            if (completion) {
-                completion();
+
+        [UIView animateWithDuration:0.25
+            animations:^{
+                window.alpha = alpha;
+                window.LL_x = x;
+                window.LL_y = y;
             }
-        }];
+            completion:^(BOOL finished) {
+                [window becomeVisiable];
+                if (completion) {
+                    completion();
+                }
+            }];
     } else {
         [window becomeVisiable];
         if (completion) {
@@ -197,7 +194,6 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)removeWindow:(LLBaseWindow *)window animated:(BOOL)animated showEntry:(BOOL)showEntry completion:(void (^)(void))completion {
-    
     // Avoid call on child thread.
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -205,16 +201,16 @@ static LLWindowManager *_instance = nil;
         });
         return;
     }
-    
+
     if (!window) {
         if (completion) {
             completion();
         }
         return;
     }
-    
+
     [self removeVisibleWindow:window showEntry:showEntry];
-    
+
     [self performRemoveWindow:window animated:animated completion:completion];
 }
 
@@ -223,31 +219,30 @@ static LLWindowManager *_instance = nil;
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
         __block CGFloat y = window.LL_y;
-        [UIView animateWithDuration:0.25 animations:^{
-            switch (window.hideAnimateStyle) {
-                case LLBaseWindowHideAnimateStyleFade: {
-                    window.alpha = 0;
+        [UIView animateWithDuration:0.25
+            animations:^{
+                switch (window.hideAnimateStyle) {
+                    case LLBaseWindowHideAnimateStyleFade: {
+                        window.alpha = 0;
+                    } break;
+                    case LLBaseWindowHideAnimateStyleDismiss: {
+                        window.LL_y = LL_SCREEN_HEIGHT;
+                    } break;
+                    case LLBaseWindowHideAnimateStylePop: {
+                        window.LL_x = LL_SCREEN_WIDTH;
+                    } break;
                 }
-                    break;
-                case LLBaseWindowHideAnimateStyleDismiss:{
-                    window.LL_y = LL_SCREEN_HEIGHT;
-                }
-                    break;
-                case LLBaseWindowHideAnimateStylePop: {
-                    window.LL_x = LL_SCREEN_WIDTH;
-                }
-                    break;
             }
-        } completion:^(BOOL finished) {
-            window.hidden = YES;
-            window.alpha = alpha;
-            window.LL_x = x;
-            window.LL_y = y;
-            window.windowLevel = self.normalWindowLevel;
-            if (completion) {
-                completion();
-            }
-        }];
+            completion:^(BOOL finished) {
+                window.hidden = YES;
+                window.alpha = alpha;
+                window.LL_x = x;
+                window.LL_y = y;
+                window.windowLevel = self.normalWindowLevel;
+                if (completion) {
+                    completion();
+                }
+            }];
     } else {
         window.hidden = YES;
         window.windowLevel = self.normalWindowLevel;
@@ -284,20 +279,21 @@ static LLWindowManager *_instance = nil;
 @end
 
 #pragma mark - Internal
+
 @implementation LLWindowManager (Internal)
 
 + (LLBaseWindow *)createWindowWithClassName:(NSString *)className {
     Class cls = NSClassFromString(className);
-    NSAssert(cls, ([NSString stringWithFormat:@"%@ can't register a class.",className]));
+    NSAssert(cls, ([NSString stringWithFormat:@"%@ can't register a class.", className]));
     __block LLBaseWindow *window = nil;
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
-           window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
         });
     } else {
         window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
-    NSAssert([window isKindOfClass:[LLBaseWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLBaseWindow class",className]));
+    NSAssert([window isKindOfClass:[LLBaseWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLBaseWindow class", className]));
     return window;
 }
 

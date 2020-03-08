@@ -23,10 +23,10 @@
 
 #import "LLLogHelper.h"
 
-#import "LLStorageManager.h"
+#import "LLDebugConfig.h"
 #import "LLFormatterTool.h"
 #import "LLLogModel.h"
-#import "LLDebugConfig.h"
+#import "LLStorageManager.h"
 
 #import "NSObject+LL_Utils.h"
 
@@ -42,8 +42,8 @@ static LLLogHelper *_instance = nil;
     return _instance;
 }
 
-+ (NSArray <NSString *>*)levelsDescription {
-    return @[@"Default",@"Alert",@"Warning",@"Error"];
++ (NSArray<NSString *> *)levelsDescription {
+    return @[@"Default", @"Alert", @"Warning", @"Error"];
 }
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLDebugConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
@@ -52,15 +52,14 @@ static LLLogHelper *_instance = nil;
     switch (logStyle) {
         case LLDebugConfigLogDetail:
         case LLDebugConfigLogFileFuncDesc:
-        case LLDebugConfigLogFileDesc:{
-            
+        case LLDebugConfigLogFileDesc: {
             NSString *header = @"\n--------Debug Tool--------";
-            NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>",onEvent];
-            NSString *fileString = [NSString stringWithFormat:@"\nFile:<%@>",file];
-            NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%ld>",(long)lineNo];
-            NSString *funcString = [NSString stringWithFormat:@"\nFunc:<%@>",function];
-            NSString *dateString = [NSString stringWithFormat:@"\nDate:<%@>",date];
-            NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>",message];
+            NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>", onEvent];
+            NSString *fileString = [NSString stringWithFormat:@"\nFile:<%@>", file];
+            NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%ld>", (long)lineNo];
+            NSString *funcString = [NSString stringWithFormat:@"\nFunc:<%@>", function];
+            NSString *dateString = [NSString stringWithFormat:@"\nDate:<%@>", date];
+            NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>", message];
             NSString *footer = @"\n--------------------------";
 
             NSMutableString *log = [[NSMutableString alloc] initWithString:header];
@@ -80,16 +79,13 @@ static LLLogHelper *_instance = nil;
             [log appendString:messageString];
             [log appendString:footer];
             NSLog(@"%@", log);
-        }
-            break;
+        } break;
         case LLDebugConfigLogNone: {
-        }
-            break;
+        } break;
         case LLDebugConfigLogNormal:
-        default:{
-            NSLog(@"%@",message);
-        }
-            break;
+        default: {
+            NSLog(@"%@", message);
+        } break;
     }
 
     if (_enable) {

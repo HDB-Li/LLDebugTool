@@ -25,21 +25,21 @@
 
 #import <MapKit/MapKit.h>
 
+#import "LLAnnotation.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
 #import "LLDetailTitleSelectorCellView.h"
-#import "LLLocationMockRouteModel.h"
-#import "LLTitleSwitchCellView.h"
-#import "LLPinAnnotationView.h"
 #import "LLInternalMacros.h"
 #import "LLLocationHelper.h"
+#import "LLLocationMockRouteModel.h"
+#import "LLPinAnnotationView.h"
 #import "LLSettingManager.h"
 #import "LLThemeManager.h"
-#import "LLAnnotation.h"
+#import "LLTitleSwitchCellView.h"
 #import "LLToastUtils.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 static NSString *const kAnnotationID = @"AnnotationID";
 
@@ -82,7 +82,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [super viewDidLoad];
     self.title = LLLocalizedString(@"function.location");
     self.view.backgroundColor = [LLThemeManager shared].backgroundColor;
-    
+
     [self.view addSubview:self.mockLocationSwitch];
     [self.view addSubview:self.locationDescriptView];
     [self.view addSubview:self.addressDescriptView];
@@ -90,7 +90,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.view addSubview:self.routeDescriptView];
     [self.view addSubview:self.recordRouteSwitch];
     [self.view addSubview:self.mapView];
-    
+
     [self addMockLocationSwitchConstraints];
     [self addLocationDescriptViewConstraints];
     [self addAddressDescriptViewConstraints];
@@ -114,7 +114,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
 #pragma mark - MKMapViewDelegate
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     if (oldState == MKAnnotationViewDragStateEnding && newState == MKAnnotationViewDragStateNone) {
-        id <MKAnnotation> annotation = view.annotation;
+        id<MKAnnotation> annotation = view.annotation;
         if (![annotation isKindOfClass:[LLAnnotation class]]) {
             return;
         }
@@ -239,13 +239,13 @@ static NSString *const kAnnotationID = @"AnnotationID";
     NSString *name = placemark.name;
     NSString *locality = placemark.locality;
     NSString *administrativeArea = placemark.administrativeArea;
-    
+
     NSString *description = @"";
     if (name) {
         description = [description stringByAppendingString:name];
     }
     if (locality && ![description hasPrefix:locality]) {
-        if (!administrativeArea || ![description hasPrefix:[NSString stringWithFormat:@"%@%@",administrativeArea, locality]]) {
+        if (!administrativeArea || ![description hasPrefix:[NSString stringWithFormat:@"%@%@", administrativeArea, locality]]) {
             description = [locality stringByAppendingString:description];
         }
     }
@@ -273,23 +273,26 @@ static NSString *const kAnnotationID = @"AnnotationID";
 - (void)reverseGeocode:(CLLocationCoordinate2D)coordinate {
     [self.geocoder cancelGeocode];
     __weak typeof(self) weakSelf = self;
-    [self.geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (!error && placemarks.count > 0) {
-            CLPlacemark *placemark = placemarks.firstObject;
-            [weakSelf updateAddressDescriptViewDetailTitle:placemark];
-        }
-    }];
+    [self.geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude]
+                        completionHandler:^(NSArray<CLPlacemark *> *_Nullable placemarks, NSError *_Nullable error) {
+                            if (!error && placemarks.count > 0) {
+                                CLPlacemark *placemark = placemarks.firstObject;
+                                [weakSelf updateAddressDescriptViewDetailTitle:placemark];
+                            }
+                        }];
 }
 
 - (void)geocodeAddress:(NSString *)address {
     [self.geocoder cancelGeocode];
     __weak typeof(self) weakSelf = self;
-    [self.geocoder geocodeAddressString:address inRegion:nil completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        if (!error && placemarks.count > 0) {
-            CLPlacemark *placemark = placemarks.firstObject;
-            [weakSelf setUpCoordinate:placemark.location.coordinate automicSetRegion:YES placemark:placemark];
-        }
-    }];
+    [self.geocoder geocodeAddressString:address
+                               inRegion:nil
+                      completionHandler:^(NSArray<CLPlacemark *> *_Nullable placemarks, NSError *_Nullable error) {
+                          if (!error && placemarks.count > 0) {
+                              CLPlacemark *placemark = placemarks.firstObject;
+                              [weakSelf setUpCoordinate:placemark.location.coordinate automicSetRegion:YES placemark:placemark];
+                          }
+                      }];
 }
 
 - (void)updateMockRouteSwitchValue:(BOOL)isOn {
@@ -321,13 +324,14 @@ static NSString *const kAnnotationID = @"AnnotationID";
     if (isOn) {
         if ([LLLocationHelper shared].isMockRoute || [LLLocationHelper shared].enable) {
             __weak typeof(self) weakSelf = self;
-            [self LL_showAlertControllerWithMessage:LLLocalizedString(@"location.record.route.alert")  handler:^(NSInteger action) {
-                if (action == 1) {
-                    [weakSelf startRecordRoute];
-                } else {
-                    [weakSelf stopRecordRoute];
-                }
-            }];
+            [self LL_showAlertControllerWithMessage:LLLocalizedString(@"location.record.route.alert")
+                                            handler:^(NSInteger action) {
+                                                if (action == 1) {
+                                                    [weakSelf startRecordRoute];
+                                                } else {
+                                                    [weakSelf stopRecordRoute];
+                                                }
+                                            }];
         } else {
             [self startRecordRoute];
         }
@@ -384,26 +388,30 @@ static NSString *const kAnnotationID = @"AnnotationID";
 #pragma mark - Event response
 - (void)locationDescriptViewDidSelect {
     __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.lat.lng") text:self.locationDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
-        NSString *text = [newText stringByReplacingOccurrencesOfString:@" " withString:@""];
-        NSArray *array = [text componentsSeparatedByString:@","];
-        if (array.count != 2) {
-            return;
-        }
-        CLLocationDegrees lat = [array[0] doubleValue];
-        CLLocationDegrees lng = [array[1] doubleValue];
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat, lng);
-        if (CLLocationCoordinate2DIsValid(coordinate)) {
-            [weakSelf setUpCoordinate:coordinate automicSetRegion:YES placemark:nil];
-        }
-    }];
+    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.lat.lng")
+                                                text:self.locationDescriptView.detailTitle
+                                             handler:^(NSString *_Nullable newText) {
+                                                 NSString *text = [newText stringByReplacingOccurrencesOfString:@" " withString:@""];
+                                                 NSArray *array = [text componentsSeparatedByString:@","];
+                                                 if (array.count != 2) {
+                                                     return;
+                                                 }
+                                                 CLLocationDegrees lat = [array[0] doubleValue];
+                                                 CLLocationDegrees lng = [array[1] doubleValue];
+                                                 CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat, lng);
+                                                 if (CLLocationCoordinate2DIsValid(coordinate)) {
+                                                     [weakSelf setUpCoordinate:coordinate automicSetRegion:YES placemark:nil];
+                                                 }
+                                             }];
 }
 
 - (void)addressDescriptViewDidSelect {
     __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.address") text:self.addressDescriptView.detailTitle handler:^(NSString * _Nullable newText) {
-        [weakSelf geocodeAddress:newText];
-    }];
+    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.address")
+                                                text:self.addressDescriptView.detailTitle
+                                             handler:^(NSString *_Nullable newText) {
+                                                 [weakSelf geocodeAddress:newText];
+                                             }];
 }
 
 - (void)routeDescriptViewDidSelect {
@@ -413,9 +421,12 @@ static NSString *const kAnnotationID = @"AnnotationID";
     for (LLLocationMockRouteModel *model in models) {
         [actions addObject:model.name];
     }
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"location.select.route") actions:actions currentAction:nil completion:^(NSInteger index) {
-        [weakSelf selectMockRoute:models[index]];
-    }];
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"location.select.route")
+                              actions:actions
+                        currentAction:nil
+                           completion:^(NSInteger index) {
+                               [weakSelf selectMockRoute:models[index]];
+                           }];
 }
 
 #pragma mark - Getters and setters
@@ -483,7 +494,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _routeDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
         _routeDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
         _routeDescriptView.title = LLLocalizedString(@"location.route");
-        _routeDescriptView.detailTitle = [LLSettingManager shared].mockRouteFileName ? : LLLocalizedString(@"location.select.route");
+        _routeDescriptView.detailTitle = [LLSettingManager shared].mockRouteFileName ?: LLLocalizedString(@"location.select.route");
         [_routeDescriptView needLine];
         __weak typeof(self) weakSelf = self;
         _routeDescriptView.block = ^{

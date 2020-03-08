@@ -23,27 +23,27 @@
 
 #import "LLURLProtocol.h"
 
-#import "LLStorageManager.h"
+#import "LLDebugConfig.h"
 #import "LLFormatterTool.h"
 #import "LLNetworkModel.h"
-#import "LLDebugConfig.h"
+#import "LLStorageManager.h"
 #import "LLTool.h"
 
+#import "LLRouter+AppInfo.h"
+#import "NSData+LL_Network.h"
 #import "NSHTTPURLResponse+LL_Network.h"
 #import "NSInputStream+LL_Network.h"
-#import "NSData+LL_Network.h"
-#import "LLRouter+AppInfo.h"
 
 static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
 
 @interface LLURLProtocol () <NSURLSessionDataDelegate>
 
 @property (nonatomic, strong) NSURLSessionDataTask *dataTask;
-@property (nonatomic, strong) NSURLSession         *session;
-@property (nonatomic, strong) NSURLResponse        *response;
-@property (nonatomic, strong) NSMutableData        *data;
-@property (nonatomic, strong) NSDate               *startDate;
-@property (nonatomic, strong) NSError              *error;
+@property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSURLResponse *response;
+@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSError *error;
 
 @end
 
@@ -54,11 +54,11 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     if ([scheme caseInsensitiveCompare:@"http"] != NSOrderedSame && [scheme caseInsensitiveCompare:@"https"] != NSOrderedSame) {
         return NO;
     }
-    
-    if ([NSURLProtocol propertyForKey:kLLURLProtocolIdentifier inRequest:request] ) {
+
+    if ([NSURLProtocol propertyForKey:kLLURLProtocolIdentifier inRequest:request]) {
         return NO;
     }
-    
+
     if ([LLDebugConfig shared].observerdHosts.count > 0) {
         NSString *host = request.URL.host;
         for (NSString *observerdHost in [LLDebugConfig shared].observerdHosts) {
@@ -68,48 +68,47 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
         }
         return NO;
     }
-    
+
     if ([LLDebugConfig shared].ignoredHosts.count > 0) {
         NSString *host = request.URL.host;
         for (NSString *ignoredHost in [LLDebugConfig shared].ignoredHosts) {
             if ([host caseInsensitiveCompare:ignoredHost] == NSOrderedSame) {
                 return NO;
             }
-        }        
+        }
     }
-    
+
     return YES;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    
     NSMutableURLRequest *mutableReqeust = [request mutableCopy];
     [NSURLProtocol setProperty:@YES
                         forKey:kLLURLProtocolIdentifier
                      inRequest:mutableReqeust];
-//    return [mutableReqeust copy];
+    //    return [mutableReqeust copy];
     return mutableReqeust;
 }
 
 - (void)startLoading {
-    self.startDate                                        = [NSDate date];
-    self.data                                             = [NSMutableData data];
-    NSURLSessionConfiguration *configuration              = [NSURLSessionConfiguration defaultSessionConfiguration];
-    self.session                                          = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    self.dataTask                                         = [self.session dataTaskWithRequest:self.request];
+    self.startDate = [NSDate date];
+    self.data = [NSMutableData data];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    self.dataTask = [self.session dataTaskWithRequest:self.request];
     [self.dataTask resume];
 }
 
 - (void)stopLoading {
     [self.dataTask cancel];
-    self.dataTask           = nil;
+    self.dataTask = nil;
     LLNetworkModel *model = [[LLNetworkModel alloc] init];
     model.startDate = [LLFormatterTool stringFromDate:self.startDate style:FormatterToolDateStyle1];
     // Request
     model.url = self.request.URL;
     model.method = self.request.HTTPMethod;
     model.headerFields = [self.request.allHTTPHeaderFields mutableCopy];
-    
+
     NSData *data = [self.request.HTTPBody copy];
     if (data == nil) {
         NSInputStream *stream = self.request.HTTPBodyStream;
@@ -120,9 +119,9 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     if (data && [data length] > 0) {
         model.requestBody = [data LL_jsonString];
     }
-    
+
     // Response
-    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)self.response;
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)self.response;
     model.stateLine = httpResponse.LL_stateLine;
     model.mimeType = self.response.MIMEType;
     if (model.mimeType.length == 0) {
@@ -133,10 +132,10 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
             model.isGif = YES;
         }
     }
-    model.statusCode = [NSString stringWithFormat:@"%d",(int)httpResponse.statusCode];
+    model.statusCode = [NSString stringWithFormat:@"%d", (int)httpResponse.statusCode];
     model.responseData = self.data;
     model.responseHeaderFields = [httpResponse.allHeaderFields mutableCopy];
-    model.totalDuration = [NSString stringWithFormat:@"%fs",[[NSDate date] timeIntervalSinceDate:self.startDate]];
+    model.totalDuration = [NSString stringWithFormat:@"%fs", [[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;
     [[LLStorageManager shared] saveModel:model complete:nil];
     [LLRouter updateRequestDataTraffic:model.requestDataTrafficValue responseDataTraffic:model.responseDataTrafficValue];
@@ -144,8 +143,7 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
 
 #pragma mark - NSURLSessionDelegate
 // This method ignores certificate validation to resolve some untrusted HTTP requests that fail, and is recommended only in debug mode.
--(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler {
-
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler {
     NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
     __block NSURLCredential *credential = nil;
 
@@ -170,7 +168,6 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     if (!error) {
         [self.client URLProtocolDidFinishLoading:self];
     } else if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled) {
-        
     } else {
         [self.client URLProtocol:self didFailWithError:error];
     }
@@ -193,8 +190,8 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     self.response = response;
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
-    if (response != nil){
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *_Nullable))completionHandler {
+    if (response != nil) {
         self.response = response;
         [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
     }

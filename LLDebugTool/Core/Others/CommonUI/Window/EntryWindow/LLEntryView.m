@@ -36,9 +36,9 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     self.styleModel = [[LLEntryStyleModel alloc] init];
-    
+
     [self addSubview:self.contentView];
     self.contentView.frame = self.bounds;
 }

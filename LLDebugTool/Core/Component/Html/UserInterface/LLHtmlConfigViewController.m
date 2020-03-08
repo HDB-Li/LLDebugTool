@@ -25,21 +25,21 @@
 
 #import <WebKit/WebKit.h>
 
-#import "LLHtmlUIWebViewController.h"
-#import "LLHtmlWkWebViewController.h"
-#import "LLTitleCellCategoryModel.h"
-#import "LLHtmlViewController.h"
-#import "LLSettingManager.h"
-#import "LLTitleCellModel.h"
-#import "LLInternalMacros.h"
-#import "LLThemeManager.h"
-#import "LLToastUtils.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
+#import "LLHtmlUIWebViewController.h"
+#import "LLHtmlViewController.h"
+#import "LLHtmlWkWebViewController.h"
+#import "LLInternalMacros.h"
+#import "LLSettingManager.h"
+#import "LLThemeManager.h"
+#import "LLTitleCellCategoryModel.h"
+#import "LLTitleCellModel.h"
+#import "LLToastUtils.h"
 
-#import "UIViewController+LL_Utils.h"
 #import "UIView+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
 
 @interface LLHtmlConfigViewController () <UITextFieldDelegate>
 
@@ -79,7 +79,7 @@
         return;
     }
     Class cls = NSClassFromString(self.webViewClass);
-    
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (cls != [UIWebView class] && cls != [WKWebView class]) {
@@ -97,9 +97,9 @@
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"html.invalid.class")];
         return;
     }
-    
+
     [LLSettingManager shared].lastWebViewUrl = urlString;
-    
+
     LLHtmlViewController *vc = nil;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -124,20 +124,20 @@
 - (void)setUpUI {
     self.title = LLLocalizedString(@"function.html");
     [self initNavigationItemWithTitle:@"Go" imageName:nil isLeft:NO];
-    
+
     self.webViewClass = [LLSettingManager shared].webViewClass ?: NSStringFromClass([WKWebView class]);
-    
+
     self.tableView.tableHeaderView = self.headerView;
 }
 
 - (void)loadData {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
-    
+
     // Short Cut
     [settings addObject:[self getWebViewStyleModel]];
     LLTitleCellCategoryModel *category0 = [LLTitleCellCategoryModel modelWithTitle:nil items:settings];
     [settings removeAllObjects];
-    
+
     [self.dataArray removeAllObjects];
     [self.dataArray addObjectsFromArray:@[category0]];
     [self.tableView reloadData];
@@ -166,9 +166,12 @@
         }
     }
     __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style") actions:actions currentAction:self.webViewClass completion:^(NSInteger index) {
-        [weakSelf setNewWebViewClass:actions[index]];
-    }];
+    [self LL_showActionSheetWithTitle:LLLocalizedString(@"style")
+                              actions:actions
+                        currentAction:self.webViewClass
+                           completion:^(NSInteger index) {
+                               [weakSelf setNewWebViewClass:actions[index]];
+                           }];
 }
 
 - (void)setNewWebViewClass:(NSString *)aClass {
@@ -208,7 +211,7 @@
         _headerTextField.textColor = [LLThemeManager shared].primaryColor;
         _headerTextField.delegate = self;
         _headerTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"html.input.url") attributes:@{NSForegroundColorAttributeName : [LLThemeManager shared].placeHolderColor}];
+        _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"html.input.url") attributes:@{NSForegroundColorAttributeName: [LLThemeManager shared].placeHolderColor}];
         _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLDebugConfig shared].defaultHtmlUrl ?: @"https://");
         UIView *leftView = [LLFactory getView];
         leftView.frame = CGRectMake(0, 0, 10, 1);

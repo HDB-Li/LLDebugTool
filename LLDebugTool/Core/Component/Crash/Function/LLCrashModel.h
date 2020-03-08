@@ -43,12 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Crash UserInfo
  */
-@property (strong, nonatomic, readonly, nullable) NSDictionary <NSString *,id>*userInfo;
+@property (strong, nonatomic, readonly, nullable) NSDictionary<NSString *, id> *userInfo;
 
 /**
  * Crash stack symbols
  */
-@property (strong, nonatomic, readonly, nullable) NSArray <NSString *>*stackSymbols;
+@property (strong, nonatomic, readonly, nullable) NSArray<NSString *> *stackSymbols;
 
 /**
  * Crash Date (yyyy-MM-dd HH:mm:ss)
@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Init method
  */
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary <NSString *, id>*_Nullable)userInfo stackSymbols:(NSArray <NSString *>*_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate;
+- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary<NSString *, id> *_Nullable)userInfo stackSymbols:(NSArray<NSString *> *_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate;
 
 /**
  Update appInfo

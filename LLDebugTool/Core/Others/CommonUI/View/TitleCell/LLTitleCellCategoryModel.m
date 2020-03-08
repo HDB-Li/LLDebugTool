@@ -30,7 +30,7 @@
 }
 
 #pragma mark - Primary
-- (instancetype)initWithTitle:(NSString *)title items:(NSArray <LLTitleCellModel *>*)items {
+- (instancetype)initWithTitle:(NSString *)title items:(NSArray<LLTitleCellModel *> *)items {
     if (self = [super init]) {
         _title = title;
         _items = [items copy];

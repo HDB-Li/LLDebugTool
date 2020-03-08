@@ -23,8 +23,8 @@
 
 #import "LLSandboxWindow.h"
 
-#import "LLSandboxViewController.h"
 #import "LLNavigationController.h"
+#import "LLSandboxViewController.h"
 #import "LLWindowManager.h"
 
 @implementation LLSandboxWindow

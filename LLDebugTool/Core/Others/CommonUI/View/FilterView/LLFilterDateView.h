@@ -29,12 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLFilterDateView : LLBaseView
 
 /// Filter change block.
-@property (copy, nonatomic, nullable) void(^changeBlock)(NSDate *_Nullable from, NSDate *_Nullable end);
+@property (copy, nonatomic, nullable) void (^changeBlock)(NSDate *_Nullable from, NSDate *_Nullable end);
 
 /// Config date.
 /// @param fromDate From date.
 /// @param endDate End date.
-- (void)updateFromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate ;
+- (void)updateFromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate;
 
 @end
 

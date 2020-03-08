@@ -26,10 +26,10 @@
 
 #import "LLMagnifierComponent.h"
 
-#import "LLMagnifierViewController.h"
 #import "LLMagnifierInfoView.h"
-#import "LLMagnifierWindow.h"
 #import "LLMagnifierView.h"
+#import "LLMagnifierViewController.h"
+#import "LLMagnifierWindow.h"
 
 #import "LLWindowManager+Magnifier.h"
 

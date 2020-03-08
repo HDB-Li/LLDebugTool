@@ -23,16 +23,16 @@
 
 #import "LLNetworkFilterView.h"
 
-#import "LLFilterLabelModel.h"
-#import "LLFilterEventView.h"
+#import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLFactory.h"
 #import "LLFilterDateView.h"
-#import "LLInternalMacros.h"
+#import "LLFilterEventView.h"
+#import "LLFilterLabelModel.h"
 #import "LLFormatterTool.h"
+#import "LLInternalMacros.h"
 #import "LLNetworkModel.h"
 #import "LLThemeManager.h"
-#import "LLFactory.h"
-#import "LLDebugConfig.h"
-#import "LLConst.h"
 
 #import "UIButton+LL_Utils.h"
 #import "UIView+LL_Utils.h"
@@ -56,13 +56,12 @@
 @implementation LLNetworkFilterView
 
 #pragma mark - Public
-- (void)configWithData:(NSArray <LLNetworkModel *>*)data {
-  
+- (void)configWithData:(NSArray<LLNetworkModel *> *)data {
     NSMutableSet *hostSet = [NSMutableSet set];
-    
+
     NSString *fromString = data.lastObject.startDate;
     NSString *endString = data.firstObject.startDate;
-    
+
     NSDate *fromDate = [LLFormatterTool dateFromString:fromString style:FormatterToolDateStyle1];
     NSDate *endDate = [LLFormatterTool dateFromString:endString style:FormatterToolDateStyle1];
     if (!fromDate) {
@@ -71,13 +70,13 @@
     if (!endDate) {
         endDate = [NSDate date];
     }
-    
+
     for (LLNetworkModel *model in data) {
         if (model.url.host.length) {
             [hostSet addObject:model.url.host];
         }
     }
-    
+
     // Host Part
     self.hostView.hidden = YES;
     NSMutableArray *hostArray = [[NSMutableArray alloc] init];
@@ -94,10 +93,10 @@
     CGFloat eventHeight = lineNo * 40 + kLLGeneralMargin;
     self.hostView.frame = CGRectMake(self.hostView.frame.origin.x, self.hostView.frame.origin.y, self.hostView.frame.size.width, eventHeight);
     [self.hostView updateDataArray:hostArray];
-    
+
     // Type Part
     self.typeView.hidden = YES;
-    
+
     // Date Part
     self.dateView.hidden = YES;
     [self.dateView updateFromDate:fromDate endDate:endDate];
@@ -105,16 +104,15 @@
 
 - (void)reCalculateFilters {
     if (_changeBlock) {
-        _changeBlock(self.currentHost,self.currentTypes,
-                     self.currentFromDate,self.currentEndDate);
+        _changeBlock(self.currentHost, self.currentTypes, self.currentFromDate, self.currentEndDate);
     }
 }
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
-    self.titles = @[@"Host",@"Filter",@"Date"];
+
+    self.titles = @[@"Host", @"Filter", @"Date"];
     self.filterViews = @[self.hostView, self.typeView, self.dateView];
 }
 
@@ -143,7 +141,7 @@
         LLFilterLabelModel *model1 = [[LLFilterLabelModel alloc] initWithMessage:@"Header"];
         LLFilterLabelModel *model2 = [[LLFilterLabelModel alloc] initWithMessage:@"Body"];
         LLFilterLabelModel *model3 = [[LLFilterLabelModel alloc] initWithMessage:@"Response"];
-        [_typeView updateDataArray:@[model1,model2,model3]];
+        [_typeView updateDataArray:@[model1, model2, model3]];
         __weak typeof(self) weakSelf = self;
         _typeView.changeBlock = ^(NSArray *types) {
             weakSelf.currentTypes = types;

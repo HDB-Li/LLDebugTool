@@ -29,14 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLFilterOtherView : LLBaseView
 
 /// Change block.
-@property (copy, nonatomic, nullable) void(^changeBlock)(NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
+@property (copy, nonatomic, nullable) void (^changeBlock)(NSString *_Nullable file, NSString *_Nullable func, NSDate *_Nullable from, NSDate *_Nullable end, NSArray *_Nullable userIdentities);
 
 /// Config datas.
 /// @param dataDictionary Data
 /// @param fromDate From date.
 /// @param endDate End date
 /// @param userIdentities User identities.
-- (void)updateFileDataDictionary:(NSDictionary <NSString *, NSArray *>*_Nullable)dataDictionary fromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate userIdentities:(NSArray *_Nullable)userIdentities;
+- (void)updateFileDataDictionary:(NSDictionary<NSString *, NSArray *> *_Nullable)dataDictionary fromDate:(NSDate *_Nullable)fromDate endDate:(NSDate *_Nullable)endDate userIdentities:(NSArray *_Nullable)userIdentities;
 
 @end
 

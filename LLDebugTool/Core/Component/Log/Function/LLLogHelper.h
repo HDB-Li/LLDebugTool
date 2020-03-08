@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Return log levels string.
  */
-+ (NSArray <NSString *>*)levelsDescription;
++ (NSArray<NSString *> *)levelsDescription;
 
 /**
  Print and save a log model with infos.

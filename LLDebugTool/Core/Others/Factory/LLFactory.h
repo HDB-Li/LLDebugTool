@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  Create lines of unity.
  */
 + (UIView *)getLineView:(CGRect)frame
-                   superView:(UIView *_Nullable)superView;
+              superView:(UIView *_Nullable)superView;
 
 #pragma mark - UILabel
 /**
@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return UILabel
  */
 + (UILabel *)getLabel:(UIView *_Nullable)toView
-                        frame:(CGRect)frame;
+                frame:(CGRect)frame;
 
 /**
  Get label with params.
@@ -79,10 +79,10 @@ NS_ASSUME_NONNULL_BEGIN
  @return UILabel
  */
 + (UILabel *)getLabel:(UIView *_Nullable)toView
-                        frame:(CGRect)frame
-                         text:(NSString *_Nullable)text
-                         font:(CGFloat)fontSize
-                    textColor:(UIColor *_Nullable)textColor;
+                frame:(CGRect)frame
+                 text:(NSString *_Nullable)text
+                 font:(CGFloat)fontSize
+            textColor:(UIColor *_Nullable)textColor;
 
 #pragma mark - UITextField
 /**
@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return UITextView.
  */
 + (UITextView *)getTextView:(UITextView *_Nullable)toView
-                              frame:(CGRect)frame;
+                      frame:(CGRect)frame;
 
 /**
  Get textView with params.
@@ -127,8 +127,8 @@ NS_ASSUME_NONNULL_BEGIN
  @return UITextView.
  */
 + (UITextView *)getTextView:(UITextView *_Nullable)toView
-                              frame:(CGRect)frame
-                           delegate:(id<UITextViewDelegate>_Nullable)delegate;
+                      frame:(CGRect)frame
+                   delegate:(id<UITextViewDelegate> _Nullable)delegate;
 
 #pragma mark - UIImageView
 /**
@@ -154,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return UIImageView.
  */
 + (UIImageView *)getImageView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame;
+                        frame:(CGRect)frame;
 
 /**
  Get imageView with params.
@@ -193,7 +193,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return UIButton
  */
 + (UIButton *)getButton:(UIView *_Nullable)toView
-                          frame:(CGRect)frame;
+                  frame:(CGRect)frame;
 
 /**
  Get button with params.
@@ -205,9 +205,9 @@ NS_ASSUME_NONNULL_BEGIN
  @return UIButton.
  */
 + (UIButton *)getButton:(UIView *_Nullable)toView
-                          frame:(CGRect)frame
-                         target:(id _Nullable)target
-                         action:(SEL _Nullable)action;
+                  frame:(CGRect)frame
+                 target:(id _Nullable)target
+                 action:(SEL _Nullable)action;
 
 #pragma mark - UITableView
 /**
@@ -233,7 +233,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return UITableView.
  */
 + (UITableView *)getTableView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame;
+                        frame:(CGRect)frame;
 
 /**
  Get tableView with params.
@@ -244,8 +244,8 @@ NS_ASSUME_NONNULL_BEGIN
  @return UITableView.
  */
 + (UITableView *)getTableView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                             delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate;
+                        frame:(CGRect)frame
+                     delegate:(id<UITableViewDelegate, UITableViewDataSource> _Nullable)delegate;
 /**
  Get tableView with params.
 
@@ -256,9 +256,9 @@ NS_ASSUME_NONNULL_BEGIN
  @return UITableView.
  */
 + (UITableView *)getTableView:(UIView *_Nullable)toView
-                                frame:(CGRect)frame
-                             delegate:(id<UITableViewDelegate, UITableViewDataSource>_Nullable)delegate
-                                style:(UITableViewStyle)style;
+                        frame:(CGRect)frame
+                     delegate:(id<UITableViewDelegate, UITableViewDataSource> _Nullable)delegate
+                        style:(UITableViewStyle)style;
 
 #pragma mark - UICollectionView
 
@@ -278,7 +278,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return UICollectionView.
  */
 + (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
-                                         layout:(UICollectionViewFlowLayout *)layout;
+                                 layout:(UICollectionViewFlowLayout *)layout;
 
 /**
  Get collectionView with params.
@@ -289,8 +289,8 @@ NS_ASSUME_NONNULL_BEGIN
  @return UICollectionView.
  */
 + (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
-                                          frame:(CGRect)frame
-                                         layout:(UICollectionViewFlowLayout *)layout;
+                                  frame:(CGRect)frame
+                                 layout:(UICollectionViewFlowLayout *)layout;
 
 /**
  Get collectionView with params.
@@ -302,9 +302,9 @@ NS_ASSUME_NONNULL_BEGIN
  @return UICollectionView.
  */
 + (UICollectionView *)getCollectionView:(UIView *_Nullable)toView
-                                          frame:(CGRect)frame
-                                       delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>_Nullable)delegate
-                                         layout:(UICollectionViewFlowLayout *)layout;
+                                  frame:(CGRect)frame
+                               delegate:(id<UICollectionViewDelegate, UICollectionViewDataSource> _Nullable)delegate
+                                 layout:(UICollectionViewFlowLayout *)layout;
 
 #pragma mark - UISegmentedControl
 

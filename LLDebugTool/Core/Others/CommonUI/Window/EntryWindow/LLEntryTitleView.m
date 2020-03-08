@@ -23,10 +23,10 @@
 
 #import "LLEntryTitleView.h"
 
-#import "LLImageNameConfig.h"
-#import "LLThemeManager.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
+#import "LLImageNameConfig.h"
+#import "LLThemeManager.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -43,10 +43,10 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-    
+
     self.icon = [LLFactory getImageView:self.contentView frame:CGRectMake(5, (self.LL_height - 14) / 2.0, 14, 14) image:[UIImage LL_imageNamed:kLogoImageName color:[LLThemeManager shared].primaryColor]];
     self.label = [LLFactory getLabel:self.contentView frame:CGRectMake(self.icon.LL_right + 5, 0, 100, self.LL_height) text:@"LLDebugTool" font:12 textColor:[LLThemeManager shared].primaryColor];
     [self.label sizeToFit];

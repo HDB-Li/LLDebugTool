@@ -27,17 +27,17 @@
 
 + (void)LL_swizzleClassSelector:(SEL)oriSel anotherSelector:(SEL)swiSel {
     Class cls = object_getClass(self);
-    
+
     Method originAddObserverMethod = class_getClassMethod(cls, oriSel);
     Method swizzledAddObserverMethod = class_getClassMethod(cls, swiSel);
-    
+
     [self LL_swizzleMethod:originAddObserverMethod anotherMethod:swizzledAddObserverMethod];
 }
 
 + (void)LL_swizzleInstanceSelector:(SEL)oriSel anotherSelector:(SEL)swiSel {
     Method originAddObserverMethod = class_getInstanceMethod(self, oriSel);
     Method swizzledAddObserverMethod = class_getInstanceMethod(self, swiSel);
-    
+
     [self LL_swizzleMethod:originAddObserverMethod anotherMethod:swizzledAddObserverMethod];
 }
 

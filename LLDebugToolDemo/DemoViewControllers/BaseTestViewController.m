@@ -16,7 +16,6 @@
 
 - (instancetype)init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        
     }
     return self;
 }
@@ -34,14 +33,12 @@
 }
 
 - (void)dealloc {
-    
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 0;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellID];

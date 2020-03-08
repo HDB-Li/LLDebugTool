@@ -33,7 +33,7 @@
     label.frame = CGRectMake(10, 10, size.width, size.height);
     header.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, size.height + 20);
     [header addSubview:label];
-    
+
     UIView *footer = [[UIView alloc] init];
     //1570 × 1050
     CGFloat imageViewWidth = [UIScreen mainScreen].bounds.size.width - 20;
@@ -43,19 +43,19 @@
     imageView1.image = [UIImage imageNamed:@"crash-1.jpg"];
     imageView1.frame = CGRectMake(10, 10, imageViewWidth, imageViewHeight);
     [footer addSubview:imageView1];
-    
+
     UILabel *tip1 = [[UILabel alloc] init];
     tip1.textAlignment = NSTextAlignmentCenter;
     tip1.font = [UIFont systemFontOfSize:14];
     tip1.text = @"Tip 1";
     tip1.frame = CGRectMake(0, 10 + imageViewHeight, [UIScreen mainScreen].bounds.size.width, tipHeight);
     [footer addSubview:tip1];
-    
+
     UIImageView *imageView2 = [[UIImageView alloc] init];
     imageView2.image = [UIImage imageNamed:@"crash-2.jpg"];
     imageView2.frame = CGRectMake(10, 10 + imageViewHeight + tipHeight + 10, imageViewWidth, imageViewHeight);
     [footer addSubview:imageView2];
-    
+
     UILabel *tip2 = [[UILabel alloc] init];
     tip2.textAlignment = NSTextAlignmentCenter;
     tip2.font = [UIFont systemFontOfSize:14];
@@ -84,7 +84,7 @@
         cell.textLabel.text = NSLocalizedString(@"try.signal", nil);
         cell.detailTextLabel.text = NSLocalizedString(@"signal.info", nil);
     }
-    
+
     return cell;
 }
 
@@ -103,7 +103,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"openCrash"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     sleep(1);
-    NSArray *array = @[@"a",@"b"];
+    NSArray *array = @[@"a", @"b"];
     __unused NSString *str = array[3];
 }
 

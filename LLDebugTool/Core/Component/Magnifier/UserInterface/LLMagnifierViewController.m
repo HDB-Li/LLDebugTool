@@ -23,13 +23,13 @@
 
 #import "LLMagnifierViewController.h"
 
-#import "LLMagnifierInfoView.h"
-#import "LLInternalMacros.h"
-#import "LLMagnifierView.h"
-#import "LLDebugConfig.h"
 #import "LLConst.h"
+#import "LLDebugConfig.h"
+#import "LLInternalMacros.h"
+#import "LLMagnifierInfoView.h"
+#import "LLMagnifierView.h"
 
-@interface LLMagnifierViewController ()<LLMagnifierViewDelegate, LLInfoViewDelegate>
+@interface LLMagnifierViewController () <LLMagnifierViewDelegate, LLInfoViewDelegate>
 
 @property (nonatomic, strong) LLMagnifierView *magnifierView;
 
@@ -44,12 +44,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
     self.updateBackgroundColor = NO;
-    
+
     CGFloat height = 60;
     self.infoView = [[LLMagnifierInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
     self.infoView.delegate = self;
     [self.view addSubview:self.infoView];
-    
+
     NSInteger width = [LLDebugConfig shared].magnifierZoomLevel * [LLDebugConfig shared].magnifierSize;
     self.magnifierView = [[LLMagnifierView alloc] initWithFrame:CGRectMake((LL_SCREEN_WIDTH - width) / 2, (LL_SCREEN_HEIGHT - width) / 2, width, width)];
     self.magnifierView.delegate = self;

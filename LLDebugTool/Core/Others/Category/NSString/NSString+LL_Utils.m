@@ -44,8 +44,8 @@
     if (jsonData) {
         NSError *error;
         NSArray *array = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                            options:0
-                                                              error:&error];
+                                                         options:0
+                                                           error:&error];
         if (!error) {
             return array;
         }
@@ -59,8 +59,7 @@
     }
     unsigned long long length = 0;
     char *p = (char *)[self cStringUsingEncoding:NSUnicodeStringEncoding];
-    for (NSInteger i = 0 ; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding] ; i++)
-    {
+    for (NSInteger i = 0; i < [self lengthOfBytesUsingEncoding:NSUnicodeStringEncoding]; i++) {
         if (*p) {
             p++;
             length++;

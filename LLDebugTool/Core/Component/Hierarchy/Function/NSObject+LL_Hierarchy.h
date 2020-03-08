@@ -31,7 +31,7 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolChangeHierarchyNotificatio
 
 @interface NSObject (LL_Hierarchy)
 
-- (NSArray <LLTitleCellCategoryModel *>*)LL_hierarchyCategoryModels;
+- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels;
 
 - (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
 
@@ -45,7 +45,7 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolChangeHierarchyNotificatio
 
 @interface UIView (LL_Hierarchy)
 
-- (NSArray <LLTitleCellCategoryModel *>*)LL_sizeHierarchyCategoryModels;
+- (NSArray<LLTitleCellCategoryModel *> *)LL_sizeHierarchyCategoryModels;
 
 @end
 

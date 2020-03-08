@@ -23,9 +23,9 @@
 
 #import "LLTitleSwitchCellView.h"
 
-#import "LLThemeManager.h"
-#import "LLFactory.h"
 #import "LLConst.h"
+#import "LLFactory.h"
+#import "LLThemeManager.h"
 
 @interface LLTitleSwitchCellView ()
 
@@ -38,11 +38,11 @@
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    
+
     [self addSubview:self.swit];
-    
+
     [self removeConstraint:self.detailLabelRightCons];
-    
+
     [self addSwitConstraints];
 }
 
