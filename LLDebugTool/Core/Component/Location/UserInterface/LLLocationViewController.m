@@ -216,13 +216,13 @@ static NSString *const kAnnotationID = @"AnnotationID";
         [self reverseGeocode:coordinate];
     }
     // Update
-    if (!self.isAddAnnotation) {
+    if (self.isAddAnnotation) {
+        [self.mapView deselectAnnotation:self.annotation animated:NO];
+        [self.mapView selectAnnotation:self.annotation animated:NO];
+    } else {
         self.isAddAnnotation = YES;
         [self.mapView addAnnotation:self.annotation];
         [self.mapView selectAnnotation:self.annotation animated:YES];
-    } else {
-        [self.mapView deselectAnnotation:self.annotation animated:NO];
-        [self.mapView selectAnnotation:self.annotation animated:NO];
     }
 }
 

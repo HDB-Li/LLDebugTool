@@ -34,9 +34,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        if (!self.rootViewController) {
-            self.rootViewController = [[LLHierarchyViewController alloc] init];
-        }
+        self.rootViewController = [[LLHierarchyViewController alloc] init];
     }
     return self;
 }

@@ -38,10 +38,11 @@
 }
 
 - (void)LL_updateUserLocationViewWithLocation:(CLLocation *)location hadUserLocation:(BOOL)hadUserLocation {
+    CLLocation *newLocation = location;
     if ([LLLocationHelper shared].enable) {
-        location = [[CLLocation alloc] initWithLatitude:[LLDebugConfig shared].mockLocationLatitude longitude:[LLDebugConfig shared].mockLocationLongitude];
+        newLocation = [[CLLocation alloc] initWithLatitude:[LLDebugConfig shared].mockLocationLatitude longitude:[LLDebugConfig shared].mockLocationLongitude];
     }
-    [self LL_updateUserLocationViewWithLocation:location hadUserLocation:hadUserLocation];
+    [self LL_updateUserLocationViewWithLocation:newLocation hadUserLocation:hadUserLocation];
 }
 
 @end

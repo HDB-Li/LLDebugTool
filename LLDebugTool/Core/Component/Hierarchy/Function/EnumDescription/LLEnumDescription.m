@@ -23,6 +23,10 @@
 
 #import "LLEnumDescription.h"
 
+#import "LLTool.h"
+
+#import "NSDictionary+LL_Utils.h"
+
 @implementation LLEnumDescription
 
 + (NSString *)lineBreakModeDescription:(NSLineBreakMode)mode {
@@ -91,35 +95,26 @@
 }
 
 + (NSString *)viewContentModeDescription:(UIViewContentMode)mode {
-    switch (mode) {
-        case UIViewContentModeScaleToFill:
-            return @"ScaleToFill";
-        case UIViewContentModeScaleAspectFit:
-            return @"ScaleAspectFit";
-        case UIViewContentModeScaleAspectFill:
-            return @"ScaleAspectFill";
-        case UIViewContentModeRedraw:
-            return @"Redraw";
-        case UIViewContentModeCenter:
-            return @"Center";
-        case UIViewContentModeTop:
-            return @"Top";
-        case UIViewContentModeBottom:
-            return @"Bottom";
-        case UIViewContentModeLeft:
-            return @"Left";
-        case UIViewContentModeRight:
-            return @"Right";
-        case UIViewContentModeTopLeft:
-            return @"TopLeft";
-        case UIViewContentModeTopRight:
-            return @"TopRight";
-        case UIViewContentModeBottomLeft:
-            return @"BottomLeft";
-        case UIViewContentModeBottomRight:
-            return @"BottomRight";
+    NSDictionary *json = @{
+        @(UIViewContentModeScaleToFill): @"ScaleToFill",
+        @(UIViewContentModeScaleAspectFit): @"ScaleAspectFit" ,
+        @(UIViewContentModeScaleAspectFill): @"ScaleAspectFill" ,
+        @(UIViewContentModeRedraw): @"Redraw" ,
+        @(UIViewContentModeCenter): @"Center" ,
+        @(UIViewContentModeTop): @"Top" ,
+        @(UIViewContentModeBottom): @"Bottom" ,
+        @(UIViewContentModeLeft): @"Left" ,
+        @(UIViewContentModeRight): @"Right" ,
+        @(UIViewContentModeTopLeft): @"TopLeft" ,
+        @(UIViewContentModeTopRight): @"TopRight" ,
+        @(UIViewContentModeBottomLeft): @"BottomLeft" ,
+        @(UIViewContentModeBottomRight): @"BottomRight"
+    };
+    NSString *desc = json[@(mode)];
+    if (!mode) {
+        [LLTool log:[NSString stringWithFormat:@"viewContentModeDescription unknown : %@", @(mode)]];
     }
-    return nil;
+    return desc;
 }
 
 + (NSArray<NSString *> *)viewContentModeDescriptions {
@@ -384,33 +379,27 @@
 }
 
 + (NSString *)keyboardTypeDescription:(UIKeyboardType)type {
-    switch (type) {
-        case UIKeyboardTypeDefault:
-            return @"Default";
-        case UIKeyboardTypeASCIICapable:
-            return @"ASCII capable";
-        case UIKeyboardTypeNumbersAndPunctuation:
-            return @"Numbers and punctuation";
-        case UIKeyboardTypeURL:
-            return @"URL";
-        case UIKeyboardTypeNumberPad:
-            return @"Number pad";
-        case UIKeyboardTypePhonePad:
-            return @"Phone pad";
-        case UIKeyboardTypeNamePhonePad:
-            return @"Name phone pad";
-        case UIKeyboardTypeEmailAddress:
-            return @"Email address";
-        case UIKeyboardTypeDecimalPad:
-            return @"Decimal pad";
-        case UIKeyboardTypeTwitter:
-            return @"Twitter";
-        case UIKeyboardTypeWebSearch:
-            return @"Web search";
-        case UIKeyboardTypeASCIICapableNumberPad:
-            return @"ASCII capable number pad";
+    NSDictionary *json = @{
+        @(UIKeyboardTypeDefault): @"Default",
+        @(UIKeyboardTypeASCIICapable): @"ASCII capable",
+        @(UIKeyboardTypeNumbersAndPunctuation) :@"Numbers and punctuation",
+        @(UIKeyboardTypeURL) :@"URL",
+        @(UIKeyboardTypeNumberPad) :@"Number pad",
+        @(UIKeyboardTypePhonePad) :@"Phone pad",
+        @(UIKeyboardTypeNamePhonePad) :@"Name phone pad",
+        @(UIKeyboardTypeEmailAddress) :@"Email address",
+        @(UIKeyboardTypeDecimalPad) :@"Decimal pad",
+        @(UIKeyboardTypeTwitter) :@"Twitter",
+        @(UIKeyboardTypeWebSearch) :@"Web search"
+    };
+    if (@available(iOS 10.0, *)) {
+        json = [json LL_addEntriesFromDictionary:@{@(UIKeyboardTypeASCIICapableNumberPad) :@"ASCII capable number pad"}];
     }
-    return nil;
+    NSString *desc = json[@(type)];
+    if (!desc) {
+        [LLTool log:[NSString stringWithFormat:@"keyboardTypeDescription unknown : %@", @(type)]];
+    }
+    return desc;
 }
 
 + (NSArray<NSString *> *)keyboardTypes {
@@ -452,33 +441,27 @@
 }
 
 + (NSString *)returnKeyTypeDescription:(UIReturnKeyType)type {
-    switch (type) {
-        case UIReturnKeyDefault:
-            return @"Default";
-        case UIReturnKeyGo:
-            return @"Go";
-        case UIReturnKeyGoogle:
-            return @"Google";
-        case UIReturnKeyJoin:
-            return @"Join";
-        case UIReturnKeyNext:
-            return @"Next";
-        case UIReturnKeyRoute:
-            return @"Route";
-        case UIReturnKeySearch:
-            return @"Search";
-        case UIReturnKeySend:
-            return @"Send";
-        case UIReturnKeyYahoo:
-            return @"Yahoo";
-        case UIReturnKeyDone:
-            return @"Done";
-        case UIReturnKeyEmergencyCall:
-            return @"Emergency call";
-        case UIReturnKeyContinue:
-            return @"Continue";
+    NSDictionary *json = @{
+        @(UIReturnKeyDefault): @"Default",
+        @(UIReturnKeyGo): @"Go",
+        @(UIReturnKeyGoogle): @"Google",
+        @(UIReturnKeyJoin): @"Join",
+        @(UIReturnKeyNext): @"Next",
+        @(UIReturnKeyRoute): @"Route",
+        @(UIReturnKeySearch): @"Search",
+        @(UIReturnKeySend): @"Send",
+        @(UIReturnKeyYahoo): @"Yahoo",
+        @(UIReturnKeyDone): @"Done",
+        @(UIReturnKeyEmergencyCall): @"Emergency call"
+    };
+    if (@available(iOS 9.0, *)) {
+        json = [json LL_addEntriesFromDictionary:@{@(UIReturnKeyContinue): @"Continue"}];
     }
-    return nil;
+    NSString *desc = json[@(type)];
+    if (!desc) {
+        [LLTool log:[NSString stringWithFormat:@"returnKeyTypeDescription unknown : %@", @(type)]];
+    }
+    return desc;
 }
 
 + (NSArray<NSString *> *)returnKeyTypes {
@@ -821,52 +804,34 @@
 }
 
 + (NSString *_Nullable)layoutAttributeDescription:(NSLayoutAttribute)attribute {
-    switch (attribute) {
-        case NSLayoutAttributeLeft:
-            return @"left";
-        case NSLayoutAttributeRight:
-            return @"right";
-        case NSLayoutAttributeTop:
-            return @"top";
-        case NSLayoutAttributeBottom:
-            return @"bottom";
-        case NSLayoutAttributeLeading:
-            return @"leading";
-        case NSLayoutAttributeTrailing:
-            return @"trailing";
-        case NSLayoutAttributeWidth:
-            return @"width";
-        case NSLayoutAttributeHeight:
-            return @"height";
-        case NSLayoutAttributeCenterX:
-            return @"centerX";
-        case NSLayoutAttributeCenterY:
-            return @"centerY";
-        case NSLayoutAttributeLastBaseline:
-            return @"lastBaseline";
-        case NSLayoutAttributeFirstBaseline:
-            return @"firstBaseline";
-        case NSLayoutAttributeLeftMargin:
-            return @"leftMargin";
-        case NSLayoutAttributeRightMargin:
-            return @"rightMargin";
-        case NSLayoutAttributeTopMargin:
-            return @"topMargin";
-        case NSLayoutAttributeBottomMargin:
-            return @"bottomMargin";
-        case NSLayoutAttributeLeadingMargin:
-            return @"leadingMargin";
-        case NSLayoutAttributeTrailingMargin:
-            return @"trailingMargin";
-        case NSLayoutAttributeCenterXWithinMargins:
-            return @"centerXMargin";
-        case NSLayoutAttributeCenterYWithinMargins:
-            return @"centerYMargin";
-        case NSLayoutAttributeNotAnAttribute:
-            return nil;
-        default:
-            return nil;
+    NSDictionary *json = @{
+        @(NSLayoutAttributeLeft): @"left",
+        @(NSLayoutAttributeRight):@"right",
+        @(NSLayoutAttributeTop): @"top",
+        @(NSLayoutAttributeBottom): @"bottom",
+        @(NSLayoutAttributeLeading): @"leading",
+        @(NSLayoutAttributeTrailing): @"trailing",
+        @(NSLayoutAttributeWidth): @"width",
+        @(NSLayoutAttributeHeight): @"height",
+        @(NSLayoutAttributeCenterX): @"centerX",
+        @(NSLayoutAttributeCenterY): @"centerY",
+        @(NSLayoutAttributeLastBaseline): @"lastBaseline",
+        @(NSLayoutAttributeFirstBaseline): @"firstBaseline",
+        @(NSLayoutAttributeLeftMargin): @"leftMargin",
+        @(NSLayoutAttributeRightMargin): @"rightMargin",
+        @(NSLayoutAttributeTopMargin): @"topMargin",
+        @(NSLayoutAttributeBottomMargin): @"bottomMargin",
+        @(NSLayoutAttributeLeadingMargin): @"leadingMargin",
+        @(NSLayoutAttributeTrailingMargin): @"trailingMargin",
+        @(NSLayoutAttributeCenterXWithinMargins): @"centerXMargin",
+        @(NSLayoutAttributeCenterYWithinMargins): @"centerYMargin",
+    };
+    
+    NSString *desc = json[@(attribute)];
+    if (!desc && attribute != NSLayoutAttributeNotAnAttribute) {
+        [LLTool log:[NSString stringWithFormat:@"layoutAttributeDescription unknown : %@", @(attribute)]];
     }
+    return desc;
 }
 
 + (NSArray<NSString *> *)layoutAttributes {

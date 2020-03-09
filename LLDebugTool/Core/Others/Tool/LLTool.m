@@ -63,10 +63,10 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint {
-    CGFloat x = MIN(point.x, otherPoint.x);
-    CGFloat y = MIN(point.y, otherPoint.y);
-    CGFloat maxX = MAX(point.x, otherPoint.x);
-    CGFloat maxY = MAX(point.y, otherPoint.y);
+    CGFloat x = LL_MIN(point.x, otherPoint.x);
+    CGFloat y = LL_MIN(point.y, otherPoint.y);
+    CGFloat maxX = LL_MAX(point.x, otherPoint.x);
+    CGFloat maxY = LL_MAX(point.y, otherPoint.y);
     CGFloat width = maxX - x;
     CGFloat height = maxY - y;
     // Return rect nearby

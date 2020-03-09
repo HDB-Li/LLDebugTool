@@ -106,55 +106,40 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
 
     // CPU Usage
     [desc appendFormat:@"CPU : %@\n", self.cpuUsage];
-
     // Memory Usage
     [desc appendFormat:@"Memory : %@\n", self.memoryUsage];
-
     // FPS
     [desc appendFormat:@"FPS : %@\n", self.fps];
-
     // Data Traffic
     [desc appendFormat:@"Data Traffic : %@\n\n", self.dataTraffic];
 
     // App Name
     [desc appendFormat:@"Name : %@\n", self.appName];
-
     // Bundle Identifier
     [desc appendFormat:@"Identifier : %@\n", self.bundleIdentifier];
-
     // App Version
     [desc appendFormat:@"Version : %@\n", self.appVersion];
-
     // Start Time
     [desc appendFormat:@"Start Time : %@\n\n", self.appStartTimeConsuming];
 
     // Model
     [desc appendFormat:@"Model : %@\n", self.deviceModel];
-
     // Name
     [desc appendFormat:@"Name : %@\n", self.deviceName];
-
     // Version
     [desc appendFormat:@"Version : %@\n", self.systemVersion];
-
     // Resolution
     [desc appendFormat:@"Resolution : %@\n", self.screenResolution];
-
     // Language
     [desc appendFormat:@"Language : %@\n", self.languageCode];
-
     // Battery
     [desc appendFormat:@"Battery : %@\n", self.batteryLevel];
-
     //CPU
     [desc appendFormat:@"CPU : %@\n", self.cpuType];
-
     // Disk
     [desc appendFormat:@"Disk : %@\n", self.disk];
-
     // SSID
     [desc appendFormat:@"SSID : %@\n", self.ssid ?: @"Unknown"];
-
     // Network
     [desc appendFormat:@"Network : %@\n\n", self.networkState];
 
@@ -260,7 +245,11 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
 }
 
 - (NSString *)batteryLevel {
-    return [UIDevice currentDevice].batteryLevel != -1 ? [NSString stringWithFormat:@"%ld%%", (long)([UIDevice currentDevice].batteryLevel * 100)] : @"Unknown";
+    CGFloat batteryLevel = [UIDevice currentDevice].batteryLevel;
+    if (batteryLevel == -1) {
+        return @"Unknown";
+    }
+    return [NSString stringWithFormat:@"%ld%%", (long)(batteryLevel * 100)];
 }
 
 - (NSString *)cpuType {
@@ -370,22 +359,26 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
 }
 
 - (NSString *)stringFromCpuType:(NSInteger)cpuType {
-    switch (cpuType) {
-        case CPU_TYPE_VAX: return @"VAX";
-        case CPU_TYPE_MC680x0: return @"MC680x0";
-        case CPU_TYPE_X86: return @"X86";
-        case CPU_TYPE_X86_64: return @"X86_64";
-        case CPU_TYPE_MC98000: return @"MC98000";
-        case CPU_TYPE_HPPA: return @"HPPA";
-        case CPU_TYPE_ARM: return @"ARM";
-        case CPU_TYPE_ARM64: return @"ARM64";
-        case CPU_TYPE_MC88000: return @"MC88000";
-        case CPU_TYPE_SPARC: return @"SPARC";
-        case CPU_TYPE_I860: return @"I860";
-        case CPU_TYPE_POWERPC: return @"POWERPC";
-        case CPU_TYPE_POWERPC64: return @"POWERPC64";
-        default: return @"Unknown";
+    NSDictionary *json = @{
+        @(CPU_TYPE_VAX): @"VAX",
+        @(CPU_TYPE_MC680x0): @"MC680x0",
+        @(CPU_TYPE_X86) :@"X86",
+        @(CPU_TYPE_X86_64) :@"X86_64",
+        @(CPU_TYPE_MC98000) :@"MC98000",
+        @(CPU_TYPE_HPPA) :@"HPPA",
+        @(CPU_TYPE_ARM) :@"ARM",
+        @(CPU_TYPE_ARM64) :@"ARM64",
+        @(CPU_TYPE_MC88000) :@"MC88000",
+        @(CPU_TYPE_SPARC) :@"SPARC",
+        @(CPU_TYPE_I860) :@"I860",
+        @(CPU_TYPE_POWERPC) :@"POWERPC",
+        @(CPU_TYPE_POWERPC64) :@"POWERPC64"
+    };
+    NSString *desc = json[@(cpuType)];
+    if (!desc) {
+        desc = @"Unknown";
     }
+    return desc;
 }
 
 #pragma mark - Memory
@@ -437,12 +430,12 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
 #pragma mark - Disk
 - (unsigned long long)getTotalDisk {
     NSDictionary *fattributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
-    return [[fattributes objectForKey:NSFileSystemSize] unsignedLongLongValue];
+    return [fattributes[NSFileSystemSize] unsignedLongLongValue];
 }
 
 - (unsigned long long)getFreeDisk {
     NSDictionary *fattributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
-    return [[fattributes objectForKey:NSFileSystemFreeSize] unsignedLongLongValue];
+    return [fattributes[NSFileSystemFreeSize] unsignedLongLongValue];
 }
 
 #pragma mark - Network
@@ -486,7 +479,7 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
         } break;
         case LLNetworkStatusReachableViaWiFi: {
             returnValue = @"WiFi";
-        }
+        } break;
     }
     return returnValue;
 }

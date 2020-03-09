@@ -54,52 +54,64 @@
 #pragma mark - Primary
 - (void)loadData {
     [self.dataArray removeAllObjects];
-    NSMutableArray *settings = [[NSMutableArray alloc] init];
+    [self loadShortCutData];
+    [self loadColorStyleData];
+    [self loadEntryWindowStyleData];
+    [self loadLogData];
+    [self loadHierarchyData];
+    [self loadMagnifierData];
+    [self.tableView reloadData];
+}
 
-    // Short Cut
-    [settings addObject:[self getDoubleClickComponentModel]];
-    LLTitleCellCategoryModel *category0 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.short.cut") items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category0];
+- (void)loadShortCutData {
+    // Short cut.
+    LLTitleCellModel *model = [self getDoubleClickComponentModel];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.short.cut") items:@[model]];
+    [self.dataArray addObject:category];
+}
 
-    // ColorStyle
-    [settings addObject:[self getColorStyleModel]];
+- (void)loadColorStyleData {
+    // Color style.
+    LLTitleCellModel *model = [self getColorStyleModel];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.color") items:@[model]];
+    [self.dataArray addObject:category];
+}
 
-    LLTitleCellCategoryModel *category1 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.color") items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category1];
-
+- (void)loadEntryWindowStyleData {
     // EntryWindowStyle
-    [settings addObject:[self getEntryWindowStyleModel]];
-    [settings addObject:[self getShrinkToEdgeWhenInactiveModel]];
-    [settings addObject:[self getShakeToHideModel]];
-    LLTitleCellCategoryModel *category2 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.entry.window") items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category2];
+    LLTitleCellModel *model1 = [self getEntryWindowStyleModel];
+    LLTitleCellModel *model2 = [self getShrinkToEdgeWhenInactiveModel];
+    LLTitleCellModel *model3 = [self getShakeToHideModel];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.entry.window") items:@[model1, model2, model3]];
+    [self.dataArray addObject:category];
+}
 
+- (void)loadLogData {
 #ifdef LLDEBUGTOOL_LOG
     // Log
-    [settings addObject:[self getLogStyleModel]];
-    LLTitleCellCategoryModel *category3 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.log") items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category3];
+    LLTitleCellModel *model = [self getLogStyleModel];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.log") items:@[model]];
+    [self.dataArray addObject:category];
 #endif
+}
+
+- (void)loadHierarchyData {
 #ifdef LLDEBUGTOOL_HIERARCHY
     // Hierarchy
-    [settings addObject:[self getHierarchyIgnorePrivateClassModel]];
-    LLTitleCellCategoryModel *category5 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.hierarchy") items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category5];
+    LLTitleCellModel *model = [self getHierarchyIgnorePrivateClassModel];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.hierarchy") items:@[model]];
+    [self.dataArray addObject:category];
 #endif
+}
+
+- (void)loadMagnifierData {
 #ifdef LLDEBUGTOOL_MAGNIFIER
     // Magnifier
-    [settings addObject:[self getMagnifierZoomLevelModel]];
-    [settings addObject:[self getMagnifierSizeModel]];
-    LLTitleCellCategoryModel *category4 = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.magnifier") items:settings];
-    [settings removeAllObjects];
-    [self.dataArray addObject:category4];
+    LLTitleCellModel *model1 = [self getMagnifierZoomLevelModel];
+    LLTitleCellModel *model2 = [self getMagnifierSizeModel];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"setting.magnifier") items:@[model1, model2]];
+    [self.dataArray addObject:category];
 #endif
-    [self.tableView reloadData];
 }
 
 - (LLTitleCellModel *)getDoubleClickComponentModel {
@@ -166,8 +178,7 @@
     if (style == [LLDebugConfig shared].colorStyle) {
         return;
     }
-    if (style == LLDebugConfigColorStyleCustom) {
-    } else {
+    if (style != LLDebugConfigColorStyleCustom) {
         [LLDebugConfig shared].colorStyle = style;
         [LLSettingManager shared].colorStyle = @(style);
         [self loadData];

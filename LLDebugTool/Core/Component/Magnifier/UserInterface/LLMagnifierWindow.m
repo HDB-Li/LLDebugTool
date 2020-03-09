@@ -30,9 +30,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        if (!self.rootViewController) {
-            self.rootViewController = [[LLMagnifierViewController alloc] init];
-        }
+        self.rootViewController = [[LLMagnifierViewController alloc] init];
     }
     return self;
 }

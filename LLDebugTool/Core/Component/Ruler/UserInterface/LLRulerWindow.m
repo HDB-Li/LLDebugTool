@@ -30,9 +30,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        if (!self.rootViewController) {
-            self.rootViewController = [[LLRulerViewController alloc] init];
-        }
+        self.rootViewController = [[LLRulerViewController alloc] init];
     }
     return self;
 }

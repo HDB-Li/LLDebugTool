@@ -38,8 +38,7 @@
 
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
-    }
+    self = [super initWithFrame:[UIScreen mainScreen].bounds];
     return self;
 }
 

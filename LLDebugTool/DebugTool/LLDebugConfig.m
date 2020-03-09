@@ -162,13 +162,13 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 }
 
 - (void)setEntryWindowBallWidth:(CGFloat)entryWindowBallWidth {
-    CGFloat max = MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth);
-    _entryWindowBallWidth = MIN(max, kLLEntryWindowMaxBallWidth);
+    CGFloat max = LL_MAX(entryWindowBallWidth, kLLEntryWindowMinBallWidth);
+    _entryWindowBallWidth = LL_MIN(max, kLLEntryWindowMaxBallWidth);
 }
 
 - (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
-    CGFloat max = MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent);
-    _entryWindowDisplayPercent = MIN(max, kLLEntryWindowMaxDisplayPercent);
+    CGFloat max = LL_MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent);
+    _entryWindowDisplayPercent = LL_MIN(max, kLLEntryWindowMaxDisplayPercent);
 }
 
 - (void)setMagnifierSize:(NSInteger)magnifierSize {

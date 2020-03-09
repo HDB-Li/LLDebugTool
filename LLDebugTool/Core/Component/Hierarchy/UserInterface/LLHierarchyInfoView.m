@@ -191,7 +191,7 @@
 #pragma mark - Primary
 - (void)updateHeightIfNeeded {
     CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height;
-    CGFloat height = kLLGeneralMargin + MAX(contentHeight, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
+    CGFloat height = kLLGeneralMargin + LL_MAX(contentHeight, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
     if (height != self.LL_height) {
         self.LL_height = height;
         if (!self.isMoved) {

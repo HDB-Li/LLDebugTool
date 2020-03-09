@@ -63,9 +63,9 @@
     if ([self.filePath.pathExtension caseInsensitiveCompare:@"plist"] == NSOrderedSame) {
         NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfURL:self.fileURL];
         NSArray *array = [[NSArray alloc] initWithContentsOfURL:self.fileURL];
-        if (dic != nil) {
+        if (dic) {
             string = [dic LL_jsonString];
-        } else if (array != nil) {
+        } else if (array) {
             string = [array LL_jsonString];
         }
         if (!string) {

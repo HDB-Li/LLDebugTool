@@ -37,4 +37,10 @@
     return nil;
 }
 
+- (NSDictionary *)LL_addEntriesFromDictionary:(NSDictionary *)otherDictionary {
+    NSMutableDictionary *mut = [NSMutableDictionary dictionaryWithDictionary:self];
+    [mut addEntriesFromDictionary:otherDictionary];
+    return [mut copy];
+}
+
 @end

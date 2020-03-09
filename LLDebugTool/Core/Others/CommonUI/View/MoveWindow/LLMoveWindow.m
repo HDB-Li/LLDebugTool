@@ -96,11 +96,11 @@
 
 - (CGPoint)adjustOverflow:(CGPoint)center {
     CGPoint newCenter = CGPointMake(center.x, center.y);
-    newCenter.x = MIN(newCenter.x, LL_SCREEN_WIDTH);
-    newCenter.x = MAX(newCenter.x, 0);
+    newCenter.x = LL_MIN(newCenter.x, LL_SCREEN_WIDTH);
+    newCenter.x = LL_MAX(newCenter.x, 0);
 
-    newCenter.y = MIN(newCenter.y, LL_SCREEN_HEIGHT);
-    newCenter.y = MAX(newCenter.y, 0);
+    newCenter.y = LL_MIN(newCenter.y, LL_SCREEN_HEIGHT);
+    newCenter.y = LL_MAX(newCenter.y, 0);
     return newCenter;
 }
 

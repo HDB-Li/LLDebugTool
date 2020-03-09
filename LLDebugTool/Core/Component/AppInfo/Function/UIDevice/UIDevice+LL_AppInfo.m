@@ -44,111 +44,15 @@ static const char kLLModelNameKey;
 - (NSString *)LL_getCurrentDeviceModel {
     NSString *platform = [self LL_platform];
     if ([platform hasPrefix:@"iPhone"]) {
-        if ([platform isEqualToString:@"iPhone12,5"]) return @"iPhone 11 Pro Max";
-        if ([platform isEqualToString:@"iPhone12,3"]) return @"iPhone 11 Pro";
-        if ([platform isEqualToString:@"iPhone12,1"]) return @"iPhone 11";
-        if ([platform isEqualToString:@"iPhone11,8"]) return @"iPhone XR";
-        if ([platform isEqualToString:@"iPhone11,6"]) return @"iPhone XS Max";
-        if ([platform isEqualToString:@"iPhone11,4"]) return @"iPhone XS Max";
-        if ([platform isEqualToString:@"iPhone11,2"]) return @"iPhone XS";
-        if ([platform isEqualToString:@"iPhone10,6"]) return @"iPhone X";
-        if ([platform isEqualToString:@"iPhone10,5"]) return @"iPhone 8 Plus";
-        if ([platform isEqualToString:@"iPhone10,4"]) return @"iPhone 8";
-        if ([platform isEqualToString:@"iPhone10,3"]) return @"iPhone X";
-        if ([platform isEqualToString:@"iPhone10,2"]) return @"iPhone 8 Plus";
-        if ([platform isEqualToString:@"iPhone10,1"]) return @"iPhone 8";
-        if ([platform isEqualToString:@"iPhone9,4"]) return @"iPhone 7 Plus";
-        if ([platform isEqualToString:@"iPhone9,3"]) return @"iPhone 7";
-        if ([platform isEqualToString:@"iPhone9,2"]) return @"iPhone 7 Plus";
-        if ([platform isEqualToString:@"iPhone9,1"]) return @"iPhone 7";
-        if ([platform isEqualToString:@"iPhone8,4"]) return @"iPhone SE";
-        if ([platform isEqualToString:@"iPhone8,2"]) return @"iPhone 6s Plus";
-        if ([platform isEqualToString:@"iPhone8,1"]) return @"iPhone 6s";
-        if ([platform isEqualToString:@"iPhone7,2"]) return @"iPhone 6";
-        if ([platform isEqualToString:@"iPhone7,1"]) return @"iPhone 6 Plus";
-        if ([platform isEqualToString:@"iPhone6,2"]) return @"iPhone 5s";
-        if ([platform isEqualToString:@"iPhone6,1"]) return @"iPhone 5s";
-        if ([platform isEqualToString:@"iPhone5,4"]) return @"iPhone 5c";
-        if ([platform isEqualToString:@"iPhone5,3"]) return @"iPhone 5c";
-        if ([platform isEqualToString:@"iPhone5,2"]) return @"iPhone 5";
-        if ([platform isEqualToString:@"iPhone5,1"]) return @"iPhone 5";
-        if ([platform isEqualToString:@"iPhone4,1"]) return @"iPhone 4S";
-        if ([platform isEqualToString:@"iPhone3,3"]) return @"iPhone 4";
-        if ([platform isEqualToString:@"iPhone3,2"]) return @"iPhone 4";
-        if ([platform isEqualToString:@"iPhone3,1"]) return @"iPhone 4";
-        if ([platform isEqualToString:@"iPhone2,1"]) return @"iPhone 3GS";
-        if ([platform isEqualToString:@"iPhone1,2"]) return @"iPhone 3G";
-        if ([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 1G";
-        return @"iPhone";
-
+        return [self getCurrentIPhoneName:platform];
     } else if ([platform hasPrefix:@"iPad"]) {
-        if ([platform isEqualToString:@"iPad11,4"]) return @"iPad Air 3";
-        if ([platform isEqualToString:@"iPad11,3"]) return @"iPad Air 3";
-        if ([platform isEqualToString:@"iPad11,2"]) return @"iPad Mini 5";
-        if ([platform isEqualToString:@"iPad11,1"]) return @"iPad Mini 5";
-        if ([platform isEqualToString:@"iPad8,8"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,7"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,6"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,5"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,4"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,3"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,2"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad8,1"]) return @"iPad Pro 3";
-        if ([platform isEqualToString:@"iPad7,6"]) return @"iPad 6";
-        if ([platform isEqualToString:@"iPad7,5"]) return @"iPad 6";
-        if ([platform isEqualToString:@"iPad7,4"]) return @"iPad Pro";
-        if ([platform isEqualToString:@"iPad7,3"]) return @"iPad Pro";
-        if ([platform isEqualToString:@"iPad7,2"]) return @"iPad Pro 2";
-        if ([platform isEqualToString:@"iPad7,1"]) return @"iPad Pro 2";
-        if ([platform isEqualToString:@"iPad6,12"]) return @"iPad 5";
-        if ([platform isEqualToString:@"iPad6,11"]) return @"iPad 5";
-        if ([platform isEqualToString:@"iPad6,8"]) return @"iPad Pro";
-        if ([platform isEqualToString:@"iPad6,7"]) return @"iPad Pro";
-        if ([platform isEqualToString:@"iPad6,4"]) return @"iPad Pro";
-        if ([platform isEqualToString:@"iPad6,3"]) return @"iPad Pro";
-        if ([platform isEqualToString:@"iPad5,4"]) return @"iPad Air 2";
-        if ([platform isEqualToString:@"iPad5,3"]) return @"iPad Air 2";
-        if ([platform isEqualToString:@"iPad5,2"]) return @"iPad Mini 4";
-        if ([platform isEqualToString:@"iPad5,1"]) return @"iPad Mini 4";
-        if ([platform isEqualToString:@"iPad4,9"]) return @"iPad Mini 3";
-        if ([platform isEqualToString:@"iPad4,8"]) return @"iPad Mini 3";
-        if ([platform isEqualToString:@"iPad4,7"]) return @"iPad Mini 3";
-        if ([platform isEqualToString:@"iPad4,6"]) return @"iPad Mini 2";
-        if ([platform isEqualToString:@"iPad4,5"]) return @"iPad Mini 2";
-        if ([platform isEqualToString:@"iPad4,4"]) return @"iPad Mini 2";
-        if ([platform isEqualToString:@"iPad4,3"]) return @"iPad Air";
-        if ([platform isEqualToString:@"iPad4,2"]) return @"iPad Air";
-        if ([platform isEqualToString:@"iPad4,1"]) return @"iPad Air";
-        if ([platform isEqualToString:@"iPad3,6"]) return @"iPad 4";
-        if ([platform isEqualToString:@"iPad3,5"]) return @"iPad 4";
-        if ([platform isEqualToString:@"iPad3,4"]) return @"iPad 4";
-        if ([platform isEqualToString:@"iPad3,3"]) return @"iPad 3";
-        if ([platform isEqualToString:@"iPad3,2"]) return @"iPad 3";
-        if ([platform isEqualToString:@"iPad3,1"]) return @"iPad 3";
-        if ([platform isEqualToString:@"iPad2,7"]) return @"iPad Mini";
-        if ([platform isEqualToString:@"iPad2,6"]) return @"iPad Mini";
-        if ([platform isEqualToString:@"iPad2,5"]) return @"iPad Mini";
-        if ([platform isEqualToString:@"iPad2,4"]) return @"iPad 2";
-        if ([platform isEqualToString:@"iPad2,3"]) return @"iPad 2";
-        if ([platform isEqualToString:@"iPad2,2"]) return @"iPad 2";
-        if ([platform isEqualToString:@"iPad2,1"]) return @"iPad 2";
-        if ([platform isEqualToString:@"iPad1,1"]) return @"iPad 1";
-        return @"iPad";
-
+        return [self getCurrentIPadName:platform];
     } else if ([platform hasPrefix:@"iPod"]) {
-        if ([platform isEqualToString:@"iPod9,1"]) return @"iPod 7";
-        if ([platform isEqualToString:@"iPod7,1"]) return @"iPod 6";
-        if ([platform isEqualToString:@"iPod5,1"]) return @"iPod 5";
-        if ([platform isEqualToString:@"iPod4,1"]) return @"iPod 4";
-        if ([platform isEqualToString:@"iPod3,1"]) return @"iPod 3";
-        if ([platform isEqualToString:@"iPod2,1"]) return @"iPod 2";
-        if ([platform isEqualToString:@"iPod1,1"]) return @"iPod 1";
-        return @"iPod";
-
-    } else {
-        if ([platform isEqualToString:@"i386"]) return @"iPhone Simulator (i386)";
-        if ([platform isEqualToString:@"x86_64"]) return @"iPhone Simulator (x86_64)";
+        return [self getCurrentIPodName:platform];
     }
+    if ([platform isEqualToString:@"i386"]) return @"iPhone Simulator (i386)";
+    if ([platform isEqualToString:@"x86_64"]) return @"iPhone Simulator (x86_64)";
+    
     return @"unknown";
 }
 
@@ -160,6 +64,96 @@ static const char kLLModelNameKey;
     NSString *platform = [NSString stringWithUTF8String:machine];
     free(machine);
     return platform;
+}
+
+#pragma mark - Primary
+- (NSString *)getCurrentIPhoneName:(NSString *)platform {
+    NSDictionary *json = @{
+        @"iPhone12,5" : @"iPhone 11 Pro Max",
+        @"iPhone12,3": @"iPhone 11 Pro",
+        @"iPhone12,1": @"iPhone 11",
+        @"iPhone11,8": @"iPhone XR",
+        @"iPhone11,6": @"iPhone XS Max",
+        @"iPhone11,4": @"iPhone XS Max",
+        @"iPhone11,2": @"iPhone XS",
+        @"iPhone10,6": @"iPhone X",
+        @"iPhone10,5": @"iPhone 8 Plus",
+        @"iPhone10,4": @"iPhone 8",
+        @"iPhone10,3": @"iPhone X",
+        @"iPhone10,2": @"iPhone 8 Plus",
+        @"iPhone10,1": @"iPhone 8",
+        @"iPhone9,4": @"iPhone 7 Plus",
+        @"iPhone9,3": @"iPhone 7",
+        @"iPhone9,2": @"iPhone 7 Plus",
+        @"iPhone9,1": @"iPhone 7",
+        @"iPhone8,4": @"iPhone SE",
+        @"iPhone8,2": @"iPhone 6s Plus",
+        @"iPhone8,1": @"iPhone 6s",
+        @"iPhone7,2": @"iPhone 6",
+        @"iPhone7,1": @"iPhone 6 Plus",
+        @"iPhone6,2": @"iPhone 5s",
+        @"iPhone6,1": @"iPhone 5s",
+        @"iPhone5,4": @"iPhone 5c",
+        @"iPhone5,3": @"iPhone 5c",
+        @"iPhone5,2": @"iPhone 5",
+        @"iPhone5,1": @"iPhone 5",
+        @"iPhone4,1": @"iPhone 4S",
+        @"iPhone3,3": @"iPhone 4",
+        @"iPhone3,2": @"iPhone 4",
+        @"iPhone3,1": @"iPhone 4",
+        @"iPhone2,1": @"iPhone 3GS",
+        @"iPhone1,2": @"iPhone 3G",
+        @"iPhone1,1": @"iPhone 1G"
+    };
+    NSString *model = json[platform];
+    if (!model) {
+        model = @"iPhone";
+    }
+    return model;
+}
+
+- (NSString *)getCurrentIPadName:(NSString *)platform {
+    NSDictionary *json = @{
+        @"iPad11,4": @"iPad Air 3", @"iPad11,3": @"iPad Air 3", @"iPad11,2": @"iPad Mini 5",
+        @"iPad11,1": @"iPad Mini 5", @"iPad8,8": @"iPad Pro 3", @"iPad8,7": @"iPad Pro 3",
+        @"iPad8,6": @"iPad Pro 3", @"iPad8,5": @"iPad Pro 3", @"iPad8,4": @"iPad Pro 3",
+        @"iPad8,3": @"iPad Pro 3", @"iPad8,2": @"iPad Pro 3", @"iPad8,1": @"iPad Pro 3",
+        @"iPad7,6": @"iPad 6", @"iPad7,5": @"iPad 6", @"iPad7,4": @"iPad Pro",
+        @"iPad7,3": @"iPad Pro", @"iPad7,2": @"iPad Pro 2", @"iPad7,1": @"iPad Pro 2",
+        @"iPad6,12": @"iPad 5", @"iPad6,11": @"iPad 5", @"iPad6,8": @"iPad Pro",
+        @"iPad6,7": @"iPad Pro", @"iPad6,4": @"iPad Pro", @"iPad6,3": @"iPad Pro",
+        @"iPad5,4": @"iPad Air 2", @"iPad5,3": @"iPad Air 2", @"iPad5,2": @"iPad Mini 4",
+        @"iPad5,1": @"iPad Mini 4", @"iPad4,9": @"iPad Mini 3", @"iPad4,8": @"iPad Mini 3",
+        @"iPad4,7": @"iPad Mini 3", @"iPad4,6": @"iPad Mini 2", @"iPad4,5": @"iPad Mini 2",
+        @"iPad4,4": @"iPad Mini 2", @"iPad4,3": @"iPad Air", @"iPad4,2": @"iPad Air",
+        @"iPad4,1": @"iPad Air", @"iPad3,6": @"iPad 4", @"iPad3,5": @"iPad 4",
+        @"iPad3,4": @"iPad 4", @"iPad3,3": @"iPad 3", @"iPad3,2": @"iPad 3",
+        @"iPad3,1": @"iPad 3", @"iPad2,7": @"iPad Mini", @"iPad2,6": @"iPad Mini",
+        @"iPad2,5": @"iPad Mini", @"iPad2,4": @"iPad 2", @"iPad2,3": @"iPad 2",
+        @"iPad2,2": @"iPad 2", @"iPad2,1": @"iPad 2", @"iPad1,1": @"iPad 1"
+    };
+    NSString *model = json[platform];
+    if (!model) {
+        model = @"iPad";
+    }
+    return model;
+}
+
+- (NSString *)getCurrentIPodName:(NSString *)platform {
+    NSDictionary *json = @{
+        @"iPod9,1": @"iPod 7",
+        @"iPod7,1": @"iPod 6",
+        @"iPod5,1": @"iPod 5",
+        @"iPod4,1": @"iPod 4",
+        @"iPod3,1": @"iPod 3",
+        @"iPod2,1": @"iPod 2",
+        @"iPod1,1": @"iPod 1"
+    };
+    NSString *model = json[platform];
+    if (!model) {
+        model = @"iPod";
+    }
+    return model;
 }
 
 @end

@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Convert to json string.
 - (NSString *_Nullable)LL_jsonString;
 
+/// Do like NSMutableDictionary.
+/// @param otherDictionary Other dictionary.
+- (NSDictionary *)LL_addEntriesFromDictionary:(NSDictionary *)otherDictionary;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -151,7 +151,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
-    return [[self fileExtendedAttributesWithPath:path] objectForKey:@"LLDebugTool"] ? YES : NO;
+    return [self fileExtendedAttributesWithPath:path][@"LLDebugTool"];
 }
 
 + (BOOL)addLLDebugToolExtendDataWithPath:(NSString *)path {
@@ -170,7 +170,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
 
     NSData *data = [@"LLDebugTool" dataUsingEncoding:NSUTF8StringEncoding];
-    [newExtendedAttributes setObject:data forKey:@"LLDebugTool"];
+    newExtendedAttributes[@"LLDebugTool"] = data;
 
     NSError *error = nil;
     NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
@@ -182,7 +182,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (attributes) {
         [newAttributes addEntriesFromDictionary:attributes];
     }
-    [newAttributes setObject:newExtendedAttributes forKey:@"NSFileExtendedAttributes"];
+    newAttributes[@"NSFileExtendedAttributes"] = newExtendedAttributes;
 
     if (![[NSFileManager defaultManager] setAttributes:newAttributes ofItemAtPath:path error:&error]) {
         return NO;

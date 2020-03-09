@@ -35,11 +35,9 @@
     if (self = [super initWithFrame:frame]) {
         self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
         self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
-        if (!self.rootViewController) {
-            LLHtmlConfigViewController *vc = [[LLHtmlConfigViewController alloc] init];
-            LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
-            self.rootViewController = nav;
-        }
+        LLHtmlConfigViewController *vc = [[LLHtmlConfigViewController alloc] init];
+        LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:vc];
+        self.rootViewController = nav;
     }
     return self;
 }

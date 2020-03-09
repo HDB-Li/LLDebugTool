@@ -91,11 +91,11 @@
     center.x += point.x;
     center.y += point.y;
 
-    center.x = MIN(center.x, LL_SCREEN_WIDTH);
-    center.x = MAX(center.x, 0);
+    center.x = LL_MIN(center.x, LL_SCREEN_WIDTH);
+    center.x = LL_MAX(center.x, 0);
 
-    center.y = MIN(center.y, LL_SCREEN_HEIGHT);
-    center.y = MAX(center.y, 0);
+    center.y = LL_MIN(center.y, LL_SCREEN_HEIGHT);
+    center.y = LL_MAX(center.y, 0);
 
     self.captureButton.center = center;
 

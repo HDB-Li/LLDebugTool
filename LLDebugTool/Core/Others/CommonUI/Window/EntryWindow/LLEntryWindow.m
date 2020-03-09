@@ -58,11 +58,9 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
-        if (!self.rootViewController) {
-            LLEntryViewController *viewController = [[LLEntryViewController alloc] init];
-            viewController.delegate = self;
-            self.rootViewController = viewController;
-        }
+        LLEntryViewController *viewController = [[LLEntryViewController alloc] init];
+        viewController.delegate = self;
+        self.rootViewController = viewController;
 
         self.statusBarClickable = [LLTool statusBarClickable];
 
@@ -190,7 +188,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
         case LLEntryWindowDirectionLeft: {
             endPoint.x = self.LL_width / 2.0;
             if (!self.statusBarClickable) {
-                endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
+                endPoint.y = LL_MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
         } break;
         case LLEntryWindowDirectionTop: {
@@ -199,7 +197,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
         case LLEntryWindowDirectionRight: {
             endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0;
             if (!self.statusBarClickable) {
-                endPoint.y = MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
+                endPoint.y = LL_MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
         } break;
         case LLEntryWindowDirectionBottom: {
@@ -245,7 +243,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     CGFloat left = edge.left;
     CGFloat right = edge.right;
     CGFloat bottom = edge.bottom;
-    CGFloat min = MIN(MIN(MIN(left, right), bottom), top);
+    CGFloat min = LL_MIN(LL_MIN(LL_MIN(left, right), bottom), top);
     LLEntryWindowDirection direction = LLEntryWindowDirectionLeft;
     if (min == right) {
         direction = LLEntryWindowDirectionRight;
@@ -255,7 +253,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
         if (self.statusBarClickable) {
             direction = LLEntryWindowDirectionTop;
         } else {
-            min = MIN(MIN(left, right), bottom);
+            min = LL_MIN(LL_MIN(left, right), bottom);
             if (min == right) {
                 direction = LLEntryWindowDirectionRight;
             } else if (min == bottom) {

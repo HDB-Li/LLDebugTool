@@ -34,9 +34,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        if (!self.rootViewController) {
-            self.rootViewController = [[LLScreenshotViewController alloc] init];
-        }
+        self.rootViewController = [[LLScreenshotViewController alloc] init];
     }
     return self;
 }
