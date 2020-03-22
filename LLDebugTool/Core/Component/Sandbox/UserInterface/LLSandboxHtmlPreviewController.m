@@ -69,7 +69,7 @@
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler {
     [self LL_showAlertControllerWithMessage:message
                                     handler:^(NSInteger action) {
-                                        completionHandler(action == 0 ? NO : YES);
+                                        completionHandler(action != 0);
                                     }];
 }
 

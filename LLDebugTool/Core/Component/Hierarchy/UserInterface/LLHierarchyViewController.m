@@ -137,9 +137,8 @@
             }
         }
         return [views lastObject];
-    } else {
-        return [selectedViews lastObject];
     }
+    return [selectedViews lastObject];
 }
 
 - (NSArray<UIView *> *)findParentViewsBySelectedView:(UIView *)selectedView {

@@ -71,11 +71,11 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 }
 
 + (instancetype)reachabilityWithHostName:(NSString *)hostName {
-    LLReachability *returnValue = NULL;
+    LLReachability *returnValue = nil;
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, [hostName UTF8String]);
     if (reachability != NULL) {
         returnValue = [[self alloc] init];
-        if (returnValue != NULL) {
+        if (returnValue) {
             returnValue->_reachabilityRef = reachability;
         } else {
             CFRelease(reachability);
@@ -87,11 +87,10 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 + (instancetype)reachabilityWithAddress:(const struct sockaddr *)hostAddress {
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, hostAddress);
 
-    LLReachability *returnValue = NULL;
-
+    LLReachability *returnValue = nil;
     if (reachability != NULL) {
         returnValue = [[self alloc] init];
-        if (returnValue != NULL) {
+        if (returnValue) {
             returnValue->_reachabilityRef = reachability;
         } else {
             CFRelease(reachability);
@@ -153,41 +152,23 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
     LLNetworkStatus returnValue = LLNetworkStatusNotReachable;
 
     if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) {
-        /*
-         If the target host is reachable and no connection is required then we'll assume (for now) that you're on Wi-Fi...
-         */
+        // If the target host is reachable and no connection is required then we'll assume (for now) that you're on Wi-Fi...
         returnValue = LLNetworkStatusReachableViaWiFi;
     }
 
-    if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand) != 0) ||
-         (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)) {
-        /*
-         ... and the connection is on-demand (or on-traffic) if the calling application is using the CFSocketStream or higher APIs...
-         */
-
+    if (((flags & kSCNetworkReachabilityFlagsConnectionOnDemand) != 0) || (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0) {
+        // and the connection is on-demand (or on-traffic) if the calling application is using the CFSocketStream or higher APIs...
         if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) {
-            /*
-             ... and no [user] intervention is needed...
-             */
+            // and no [user] intervention is needed...
             returnValue = LLNetworkStatusReachableViaWiFi;
         }
     }
 
     if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) {
-        /*
-         ... but WWAN connections are OK if the calling application is using the CFNetwork APIs.
-         */
-        NSArray *typeStrings2G = @[CTRadioAccessTechnologyEdge,
-                                   CTRadioAccessTechnologyGPRS,
-                                   CTRadioAccessTechnologyCDMA1x];
+        // but WWAN connections are OK if the calling application is using the CFNetwork APIs.
+        NSArray *typeStrings2G = @[CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyGPRS, CTRadioAccessTechnologyCDMA1x];
 
-        NSArray *typeStrings3G = @[CTRadioAccessTechnologyHSDPA,
-                                   CTRadioAccessTechnologyWCDMA,
-                                   CTRadioAccessTechnologyHSUPA,
-                                   CTRadioAccessTechnologyCDMAEVDORev0,
-                                   CTRadioAccessTechnologyCDMAEVDORevA,
-                                   CTRadioAccessTechnologyCDMAEVDORevB,
-                                   CTRadioAccessTechnologyeHRPD];
+        NSArray *typeStrings3G = @[CTRadioAccessTechnologyHSDPA, CTRadioAccessTechnologyWCDMA, CTRadioAccessTechnologyHSUPA, CTRadioAccessTechnologyCDMAEVDORev0, CTRadioAccessTechnologyCDMAEVDORevA, CTRadioAccessTechnologyCDMAEVDORevB, CTRadioAccessTechnologyeHRPD];
 
         NSArray *typeStrings4G = @[CTRadioAccessTechnologyLTE];
 

@@ -25,10 +25,11 @@
 
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
+#import "LLTool.h"
 
 @implementation LLFunctionItemModel
 
-- (instancetype _Nullable)initWithAction:(LLDebugToolAction)action {
+- (instancetype)initWithAction:(LLDebugToolAction)action {
     if (self = [super init]) {
         _action = action;
         LLComponent *component = [self componentFromAction:action];
@@ -42,166 +43,83 @@
     return self;
 }
 
-- (LLComponent *_Nullable)componentFromAction:(LLDebugToolAction)action {
-    NSString *component = nil;
-    switch (action) {
-        case LLDebugToolActionFunction: {
-            component = @"LLFunctionComponent";
-        } break;
-        case LLDebugToolActionSetting: {
-            component = @"LLSettingComponent";
-        } break;
-        case LLDebugToolActionNetwork: {
-            component = @"LLNetworkComponent";
-        } break;
-        case LLDebugToolActionLog: {
-            component = @"LLLogComponent";
-        } break;
-        case LLDebugToolActionCrash: {
-            component = @"LLCrashComponent";
-        } break;
-        case LLDebugToolActionAppInfo: {
-            component = @"LLAppInfoComponent";
-        } break;
-        case LLDebugToolActionSandbox: {
-            component = @"LLSandboxComponent";
-        } break;
-        case LLDebugToolActionScreenshot: {
-            component = @"LLScreenshotComponent";
-        } break;
-        case LLDebugToolActionConvenientScreenshot: {
-            component = @"LLConvenientScreenshotComponent";
-        } break;
-        case LLDebugToolActionHierarchy: {
-            component = @"LLHierarchyComponent";
-        } break;
-        case LLDebugToolActionMagnifier: {
-            component = @"LLMagnifierComponent";
-        } break;
-        case LLDebugToolActionRuler: {
-            component = @"LLRulerComponent";
-        } break;
-        case LLDebugToolActionWidgetBorder: {
-            component = @"LLWidgetBorderComponent";
-        } break;
-        case LLDebugToolActionHtml: {
-            component = @"LLHtmlComponent";
-        } break;
-        case LLDebugToolActionLocation: {
-            component = @"LLLocationComponent";
-        } break;
-        case LLDebugToolActionShortCut: {
-            component = @"LLShortCutComponent";
-        } break;
-    }
+- (LLComponent *)componentFromAction:(LLDebugToolAction)action {
+    NSDictionary *json = @{
+        @(LLDebugToolActionFunction): @"LLFunctionComponent",
+        @(LLDebugToolActionSetting): @"LLSettingComponent",
+        @(LLDebugToolActionNetwork): @"LLNetworkComponent",
+        @(LLDebugToolActionLog): @"LLLogComponent",
+        @(LLDebugToolActionCrash): @"LLCrashComponent",
+        @(LLDebugToolActionAppInfo): @"LLAppInfoComponent",
+        @(LLDebugToolActionSandbox): @"LLSandboxComponent",
+        @(LLDebugToolActionScreenshot): @"LLScreenshotComponent",
+        @(LLDebugToolActionConvenientScreenshot): @"LLConvenientScreenshotComponent",
+        @(LLDebugToolActionHierarchy): @"LLHierarchyComponent",
+        @(LLDebugToolActionMagnifier): @"LLMagnifierComponent",
+        @(LLDebugToolActionRuler): @"LLRulerComponent",
+        @(LLDebugToolActionWidgetBorder): @"LLWidgetBorderComponent",
+        @(LLDebugToolActionHtml): @"LLHtmlComponent",
+        @(LLDebugToolActionLocation): @"LLLocationComponent",
+        @(LLDebugToolActionShortCut): @"LLShortCutComponent"
+    };
+    NSString *component = json[@(action)];
     if (component) {
         return [[NSClassFromString(component) alloc] init];
     }
+    [LLTool log:[NSString stringWithFormat:@"componentFromAction unknown : %@", @(action)]];
     return nil;
 }
 
 - (NSString *)titleFromAction:(LLDebugToolAction)action {
-    NSString *title = @"";
-    switch (action) {
-        case LLDebugToolActionFunction: {
-            title = LLLocalizedString(@"function.function");
-        } break;
-        case LLDebugToolActionSetting: {
-            title = LLLocalizedString(@"function.setting");
-        } break;
-        case LLDebugToolActionNetwork: {
-            title = LLLocalizedString(@"function.net");
-        } break;
-        case LLDebugToolActionLog: {
-            title = LLLocalizedString(@"function.log");
-        } break;
-        case LLDebugToolActionCrash: {
-            title = LLLocalizedString(@"function.crash");
-        } break;
-        case LLDebugToolActionAppInfo: {
-            title = LLLocalizedString(@"function.app.info");
-        } break;
-        case LLDebugToolActionSandbox: {
-            title = LLLocalizedString(@"function.sandbox");
-        } break;
-        case LLDebugToolActionScreenshot: {
-            title = LLLocalizedString(@"function.screenshot");
-        } break;
-        case LLDebugToolActionConvenientScreenshot: {
-            title = LLLocalizedString(@"function.convenient.screenshot");
-        } break;
-        case LLDebugToolActionHierarchy: {
-            title = LLLocalizedString(@"function.hierarchy");
-        } break;
-        case LLDebugToolActionMagnifier: {
-            title = LLLocalizedString(@"function.magnifier");
-        } break;
-        case LLDebugToolActionRuler: {
-            title = LLLocalizedString(@"function.ruler");
-        } break;
-        case LLDebugToolActionWidgetBorder: {
-            title = LLLocalizedString(@"function.widget.border");
-        } break;
-        case LLDebugToolActionHtml: {
-            title = LLLocalizedString(@"function.html");
-        } break;
-        case LLDebugToolActionLocation: {
-            title = LLLocalizedString(@"function.location");
-        } break;
-        case LLDebugToolActionShortCut: {
-            title = LLLocalizedString(@"function.short.cut");
-        } break;
+    NSDictionary *json = @{
+        @(LLDebugToolActionFunction): LLLocalizedString(@"function.function"),
+        @(LLDebugToolActionSetting): LLLocalizedString(@"function.setting"),
+        @(LLDebugToolActionNetwork): LLLocalizedString(@"function.net"),
+        @(LLDebugToolActionLog): LLLocalizedString(@"function.log"),
+        @(LLDebugToolActionCrash): LLLocalizedString(@"function.crash"),
+        @(LLDebugToolActionAppInfo): LLLocalizedString(@"function.app.info"),
+        @(LLDebugToolActionSandbox): LLLocalizedString(@"function.sandbox"),
+        @(LLDebugToolActionScreenshot): LLLocalizedString(@"function.screenshot"),
+        @(LLDebugToolActionConvenientScreenshot): LLLocalizedString(@"function.convenient.screenshot"),
+        @(LLDebugToolActionHierarchy): LLLocalizedString(@"function.hierarchy"),
+        @(LLDebugToolActionMagnifier): LLLocalizedString(@"function.magnifier"),
+        @(LLDebugToolActionRuler): LLLocalizedString(@"function.ruler"),
+        @(LLDebugToolActionWidgetBorder): LLLocalizedString(@"function.widget.border"),
+        @(LLDebugToolActionHtml): LLLocalizedString(@"function.html"),
+        @(LLDebugToolActionLocation): LLLocalizedString(@"function.location"),
+        @(LLDebugToolActionShortCut): LLLocalizedString(@"function.short.cut")
+    };
+    NSString *title = json[@(action)];
+    if (!title) {
+        title = @"";
+        [LLTool log:[NSString stringWithFormat:@"titleFromAction unknown : %@", @(action)]];
     }
     return title;
 }
 
 - (NSString *)imageNameFromAction:(LLDebugToolAction)action {
-    NSString *imageName = @"";
-    switch (action) {
-        case LLDebugToolActionFunction:
-        case LLDebugToolActionSetting: {
-            imageName = @"";
-        } break;
-        case LLDebugToolActionNetwork: {
-            imageName = kNetworkImageName;
-        } break;
-        case LLDebugToolActionLog: {
-            imageName = kLogImageName;
-        } break;
-        case LLDebugToolActionCrash: {
-            imageName = kCrashImageName;
-        } break;
-        case LLDebugToolActionAppInfo: {
-            imageName = kAppImageName;
-        } break;
-        case LLDebugToolActionSandbox: {
-            imageName = kSandboxImageName;
-        } break;
-        case LLDebugToolActionScreenshot:
-        case LLDebugToolActionConvenientScreenshot: {
-            imageName = kScreenshotImageName;
-        } break;
-        case LLDebugToolActionHierarchy: {
-            imageName = kHierarchyImageName;
-        } break;
-        case LLDebugToolActionMagnifier: {
-            imageName = kMagnifierImageName;
-        } break;
-        case LLDebugToolActionRuler: {
-            imageName = kRulerImageName;
-        } break;
-        case LLDebugToolActionWidgetBorder: {
-            imageName = kWidgetBorderImageName;
-        } break;
-        case LLDebugToolActionHtml: {
-            imageName = kHtml5ImageName;
-        } break;
-        case LLDebugToolActionLocation: {
-            imageName = kLocationImageName;
-        } break;
-        case LLDebugToolActionShortCut: {
-            imageName = kShortCutImageName;
-        } break;
+    NSDictionary *json = @{
+        @(LLDebugToolActionFunction): @"",
+        @(LLDebugToolActionSetting): @"",
+        @(LLDebugToolActionNetwork): kNetworkImageName,
+        @(LLDebugToolActionLog): kLogImageName,
+        @(LLDebugToolActionCrash): kCrashImageName,
+        @(LLDebugToolActionAppInfo): kAppImageName,
+        @(LLDebugToolActionSandbox): kSandboxImageName,
+        @(LLDebugToolActionScreenshot): kScreenshotImageName,
+        @(LLDebugToolActionConvenientScreenshot): kScreenshotImageName,
+        @(LLDebugToolActionHierarchy): kHierarchyImageName,
+        @(LLDebugToolActionMagnifier): kMagnifierImageName,
+        @(LLDebugToolActionRuler): kRulerImageName,
+        @(LLDebugToolActionWidgetBorder): kWidgetBorderImageName,
+        @(LLDebugToolActionHtml): kHtml5ImageName,
+        @(LLDebugToolActionLocation): kLocationImageName,
+        @(LLDebugToolActionShortCut): kShortCutImageName
+    };
+    NSString *imageName = json[@(action)];
+    if (!imageName) {
+        imageName = @"";
+        [LLTool log:[NSString stringWithFormat:@"imageNameFromAction unknown : %@", @(action)]];
     }
     return imageName;
 }

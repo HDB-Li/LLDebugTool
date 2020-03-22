@@ -67,14 +67,7 @@
 
 #pragma mark - Touches
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if ([self.currentOperation isKindOfClass:[LLScreenshotTextOperation class]]) {
-        LLScreenshotTextOperation *operation = (LLScreenshotTextOperation *)self.currentOperation;
-        [operation.textView resignFirstResponder];
-        if (self.currentAction == LLScreenshotActionText) {
-            self.currentOperation = nil;
-            return;
-        }
-    }
+    [self resignTextOperationIfNeeded];
 
     UITouch *touch = touches.anyObject;
     CGPoint point = [touch locationInView:self];
@@ -83,55 +76,79 @@
     }
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
     switch (self.currentAction) {
-        case LLScreenshotActionRect: {
-            LLScreenshotRectOperation *operation = [[LLScreenshotRectOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
-            self.currentOperation = operation;
-            [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
-            operation.startValue = pointValue;
-            [self setNeedsDisplay];
-        } break;
-        case LLScreenshotActionRound: {
-            LLScreenshotRoundOperation *operation = [[LLScreenshotRoundOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
-            self.currentOperation = operation;
-            [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
-            operation.startValue = pointValue;
-            [self setNeedsDisplay];
-        } break;
+        case LLScreenshotActionRect:
+        case LLScreenshotActionRound:
         case LLScreenshotActionLine: {
-            LLScreenshotLineOperation *operation = [[LLScreenshotLineOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
-            self.currentOperation = operation;
-            [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
-            operation.startValue = pointValue;
-            [self setNeedsDisplay];
+            [self dealActionOnTouchBeginWithpointValue:pointValue];
         } break;
         case LLScreenshotActionPen: {
-            LLScreenshotPenOperation *operation = [[LLScreenshotPenOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
-            self.currentOperation = operation;
-            [self.operations addObject:operation];
-            [self.layer addSublayer:operation.layer];
-            [operation addValue:pointValue];
-            [self setNeedsDisplay];
+            [self dealPenActionOnTouchBeginWithpointValue:pointValue];
         } break;
         case LLScreenshotActionText: {
-            if (self.frame.size.height - 30 < point.y) {
-                return;
-            }
-            LLScreenshotTextOperation *operation = [[LLScreenshotTextOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
-            self.currentOperation = operation;
-            [self.operations addObject:operation];
-            [self addSubview:operation.textView];
-            operation.textView.frame = CGRectMake(point.x, point.y, self.frame.size.width - point.x - kLLGeneralMargin, 30);
-            [operation.textView becomeFirstResponder];
+            [self dealTextActionOnTouchBeginWithpointValue:pointValue];
         } break;
-        case LLScreenshotActionConfirm:
-        case LLScreenshotActionCancel:
-        case LLScreenshotActionBack:
-        case LLScreenshotActionNone:
+        default:
             break;
     }
+}
+
+- (void)resignTextOperationIfNeeded {
+    if ([self.currentOperation isKindOfClass:[LLScreenshotTextOperation class]]) {
+        LLScreenshotTextOperation *operation = (LLScreenshotTextOperation *)self.currentOperation;
+        [operation.textView resignFirstResponder];
+        if (self.currentAction == LLScreenshotActionText) {
+            self.currentOperation = nil;
+            return;
+        }
+    }
+}
+
+- (void)dealActionOnTouchBeginWithpointValue:(NSValue *)pointValue {
+    Class cls = nil;
+    if (self.currentAction == LLScreenshotActionRect) {
+        cls = [LLScreenshotRectOperation class];
+    } else if (self.currentAction == LLScreenshotActionRound) {
+        cls = [LLScreenshotRoundOperation class];
+    } else if (self.currentAction == LLScreenshotActionLine) {
+        cls = [LLScreenshotLineOperation class];
+    }
+    if (!cls) {
+        return;
+    }
+    LLScreenshotTwoValueOperation *operation = [[cls alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
+    self.currentOperation = operation;
+    [self.operations addObject:operation];
+    [self.layer addSublayer:operation.layer];
+    operation.startValue = pointValue;
+    [self setNeedsDisplay];
+}
+
+- (void)dealPenActionOnTouchBeginWithpointValue:(NSValue *)pointValue {
+    if (self.currentAction != LLScreenshotActionPen) {
+        return;
+    }
+    LLScreenshotPenOperation *operation = [[LLScreenshotPenOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
+    self.currentOperation = operation;
+    [self.operations addObject:operation];
+    [self.layer addSublayer:operation.layer];
+    [operation addValue:pointValue];
+    [self setNeedsDisplay];
+}
+
+- (void)dealTextActionOnTouchBeginWithpointValue:(NSValue *)pointValue {
+    if (self.currentAction != LLScreenshotActionText) {
+        return;
+    }
+    CGPoint point = pointValue.CGPointValue;
+    if (self.frame.size.height - 30 < point.y) {
+        return;
+    }
+    LLScreenshotTextOperation *operation = [[LLScreenshotTextOperation alloc] initWithSelector:self.currentSelectorModel action:self.currentAction];
+    self.currentOperation = operation;
+    [self.operations addObject:operation];
+    [self addSubview:operation.textView];
+    operation.textView.frame = CGRectMake(point.x, point.y, self.frame.size.width - point.x - kLLGeneralMargin, 30);
+    [operation.textView becomeFirstResponder];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -142,18 +159,10 @@
     }
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
     switch (self.currentAction) {
-        case LLScreenshotActionRect: {
-            LLScreenshotRectOperation *operation = (LLScreenshotRectOperation *)self.currentOperation;
-            operation.endValue = pointValue;
-            [self setNeedsDisplay];
-        } break;
-        case LLScreenshotActionRound: {
-            LLScreenshotRoundOperation *operation = (LLScreenshotRoundOperation *)self.currentOperation;
-            operation.endValue = pointValue;
-            [self setNeedsDisplay];
-        } break;
+        case LLScreenshotActionRect:
+        case LLScreenshotActionRound:
         case LLScreenshotActionLine: {
-            LLScreenshotLineOperation *operation = (LLScreenshotLineOperation *)self.currentOperation;
+            LLScreenshotTwoValueOperation *operation = (LLScreenshotTwoValueOperation *)self.currentOperation;
             operation.endValue = pointValue;
             [self setNeedsDisplay];
         } break;
@@ -162,11 +171,7 @@
             [operation addValue:pointValue];
             [self setNeedsDisplay];
         } break;
-        case LLScreenshotActionText:
-        case LLScreenshotActionConfirm:
-        case LLScreenshotActionCancel:
-        case LLScreenshotActionNone:
-        case LLScreenshotActionBack:
+        default:
             break;
     }
 }
@@ -184,18 +189,10 @@
     }
     NSValue *pointValue = [NSValue valueWithCGPoint:point];
     switch (self.currentAction) {
-        case LLScreenshotActionRect: {
-            LLScreenshotRectOperation *operation = (LLScreenshotRectOperation *)self.currentOperation;
-            operation.endValue = pointValue;
-            [self setNeedsDisplay];
-        } break;
-        case LLScreenshotActionRound: {
-            LLScreenshotRoundOperation *operation = (LLScreenshotRoundOperation *)self.currentOperation;
-            operation.endValue = pointValue;
-            [self setNeedsDisplay];
-        } break;
+        case LLScreenshotActionRect:
+        case LLScreenshotActionRound:
         case LLScreenshotActionLine: {
-            LLScreenshotLineOperation *operation = (LLScreenshotLineOperation *)self.currentOperation;
+            LLScreenshotTwoValueOperation *operation = (LLScreenshotTwoValueOperation *)self.currentOperation;
             operation.endValue = pointValue;
             [self setNeedsDisplay];
         } break;
@@ -204,11 +201,7 @@
             [operation addValue:pointValue];
             [self setNeedsDisplay];
         } break;
-        case LLScreenshotActionText:
-        case LLScreenshotActionConfirm:
-        case LLScreenshotActionCancel:
-        case LLScreenshotActionNone:
-        case LLScreenshotActionBack:
+        default:
             break;
     }
 }

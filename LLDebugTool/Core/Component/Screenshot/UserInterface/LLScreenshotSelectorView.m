@@ -83,58 +83,79 @@
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
 
     for (int i = 0; i < count; i++) {
-        UIButton *button = [LLFactory getButton:self frame:CGRectMake(gap + i * (itemWidth + itemGap), top, itemWidth, itemHeight) target:self action:@selector(actionButtonClicked:)];
-        NSString *imageName = @"";
-        NSString *selectImageName = @"";
-        switch (i) {
-            case LLScreenshotSelectorSizeActionSmall: {
-                imageName = kSelectorSmallImageName;
-                selectImageName = kSelectorSmallSelectImageName;
-                button.selected = YES;
-                self.lastSizeButton = button;
-            } break;
-            case LLScreenshotSelectorSizeActionMedium: {
-                imageName = kSelectorMediumImageName;
-                selectImageName = kSelectorMediumSelectImageName;
-            } break;
-            case LLScreenshotSelectorSizeActionBig: {
-                imageName = kSelectorBigImageName;
-                selectImageName = kSelectorBigSelectImageName;
-            } break;
-            case LLScreenshotSelectorColorActionRed: {
-                imageName = kSelectorRedImageName;
-                selectImageName = kSelectorRedImageName;
-                button.selected = YES;
-                button.layer.borderWidth = 2;
-                self.lastColorButton = button;
-            } break;
-            case LLScreenshotSelectorColorActionBlue: {
-                imageName = kSelectorBlueImageName;
-                selectImageName = kSelectorBlueImageName;
-            } break;
-            case LLScreenshotSelectorColorActionGreen: {
-                imageName = kSelectorGreenImageName;
-                selectImageName = kSelectorGreenImageName;
-            } break;
-            case LLScreenshotSelectorColorActionYellow: {
-                imageName = kSelectorYellowImageName;
-                selectImageName = kSelectorYellowImageName;
-            } break;
-            case LLScreenshotSelectorColorActionGray: {
-                imageName = kSelectorGrayImageName;
-                selectImageName = kSelectorGrayImageName;
-            } break;
-            case LLScreenshotSelectorColorActionWhite: {
-                imageName = kSelectorWhiteImageName;
-                selectImageName = kSelectorWhiteImageName;
-            } break;
+        UIButton *button = [self buttonWithImageName:[self imageNameWithAction:i] selectImageName:[self selectImageNameWithAction:i] tag:i];
+        button.frame = CGRectMake(gap + i * (itemWidth + itemGap), top, itemWidth, itemHeight);
+        if (i == LLScreenshotSelectorSizeActionSmall) {
+            button.selected = YES;
+            self.lastSizeButton = button;
+        } else if (i == LLScreenshotSelectorColorActionRed) {
+            button.selected = YES;
+            button.layer.borderWidth = 2;
+            self.lastColorButton = button;
         }
-        [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
-        [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
-        button.tag = i;
-        button.showsTouchWhenHighlighted = NO;
-        button.layer.borderColor = [UIColor whiteColor].CGColor;
     }
+}
+
+- (UIButton *)buttonWithImageName:(NSString *)imageName selectImageName:(NSString *)selectImageName tag:(NSInteger)tag {
+    UIButton *button = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(actionButtonClicked:)];
+    [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
+    [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
+    button.tag = tag;
+    button.showsTouchWhenHighlighted = NO;
+    button.layer.borderColor = [UIColor whiteColor].CGColor;
+    return button;
+}
+
+- (NSString *)imageNameWithAction:(NSInteger)action {
+    switch (action) {
+        case LLScreenshotSelectorSizeActionSmall:
+            return kSelectorSmallImageName;
+        case LLScreenshotSelectorSizeActionMedium:
+            return kSelectorMediumImageName;
+        case LLScreenshotSelectorSizeActionBig:
+            return kSelectorBigImageName;
+        case LLScreenshotSelectorColorActionRed:
+            return kSelectorRedImageName;
+        case LLScreenshotSelectorColorActionBlue:
+            return kSelectorBlueImageName;
+        case LLScreenshotSelectorColorActionGreen:
+            return kSelectorGreenImageName;
+        case LLScreenshotSelectorColorActionYellow:
+            return kSelectorYellowImageName;
+        case LLScreenshotSelectorColorActionGray:
+            return kSelectorGrayImageName;
+        case LLScreenshotSelectorColorActionWhite:
+            return kSelectorWhiteImageName;
+        default:
+            break;
+    }
+    return @"";
+}
+
+- (NSString *)selectImageNameWithAction:(NSInteger)action {
+    switch (action) {
+        case LLScreenshotSelectorSizeActionSmall:
+            return kSelectorSmallSelectImageName;
+        case LLScreenshotSelectorSizeActionMedium:
+            return kSelectorMediumSelectImageName;
+        case LLScreenshotSelectorSizeActionBig:
+            return kSelectorBigSelectImageName;
+        case LLScreenshotSelectorColorActionRed:
+            return kSelectorRedImageName;
+        case LLScreenshotSelectorColorActionBlue:
+            return kSelectorBlueImageName;
+        case LLScreenshotSelectorColorActionGreen:
+            return kSelectorGreenImageName;
+        case LLScreenshotSelectorColorActionYellow:
+            return kSelectorYellowImageName;
+        case LLScreenshotSelectorColorActionGray:
+            return kSelectorGrayImageName;
+        case LLScreenshotSelectorColorActionWhite:
+            return kSelectorWhiteImageName;
+        default:
+            break;
+    }
+    return @"";
 }
 
 @end

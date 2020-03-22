@@ -53,6 +53,8 @@
                 self.lastSelectButton = nil;
             }
         } break;
+        default:
+            break;
     }
     if ([_delegate respondsToSelector:@selector(LLScreenshotActionView:didSelectedAction:isSelected:position:)]) {
         CGFloat position = sender.frame.origin.x + sender.frame.size.width / 2.0;
@@ -65,64 +67,78 @@
     [super initUI];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
     [self LL_setCornerRadius:5];
+    [self addButtons];
+}
 
-    int count = 8;
+#pragma mark - Primary
+- (void)addButtons {
+    LLScreenshotAction count = LLScreenshotActionConfirm;
     CGFloat gap = kLLGeneralMargin;
     CGFloat itemWidth = (self.frame.size.width - gap * 2) / count;
     CGFloat itemHeight = self.frame.size.height;
     CGFloat top = (self.frame.size.height - itemHeight) / 2.0;
 
-    for (int i = 1; i <= count; i++) {
-        UIButton *button = [LLFactory getButton:self frame:CGRectMake(gap + (i - 1) * itemWidth, top, itemWidth, itemHeight) target:self action:@selector(buttonClicked:)];
-        NSString *imageName = @"";
-        NSString *selectImageName = @"";
-        switch (i) {
-            case LLScreenshotActionRect: {
-                imageName = kRectImageName;
-                selectImageName = kRectSelectImageName;
-                break;
-            }
-            case LLScreenshotActionRound: {
-                imageName = kRoundImageName;
-                selectImageName = kRoundSelectImageName;
-                break;
-            }
-            case LLScreenshotActionLine: {
-                imageName = kLineImageName;
-                selectImageName = kLineSelectImageName;
-                break;
-            }
-            case LLScreenshotActionPen: {
-                imageName = kPenImageName;
-                selectImageName = kPenSelectImageName;
-                break;
-            }
-            case LLScreenshotActionText: {
-                imageName = kTextImageName;
-                selectImageName = kTextSelectImageName;
-                break;
-            }
-            case LLScreenshotActionBack: {
-                imageName = kUndoImageName;
-                selectImageName = kUndoDisableImageName;
-                break;
-            }
-            case LLScreenshotActionCancel: {
-                imageName = kCancelImageName;
-                selectImageName = kCancelImageName;
-                break;
-            }
-            case LLScreenshotActionConfirm: {
-                imageName = kSureImageName;
-                selectImageName = kSureImageName;
-                break;
-            }
-        }
-        [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
-        [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
-        button.tag = i;
-        button.showsTouchWhenHighlighted = NO;
+    for (LLScreenshotAction i = LLScreenshotActionRect; i <= count; i++) {
+        UIButton *button = [self buttonWithImageName:[self imageNameWithAction:i] selectImageName:[self selectImageNameWithAction:i] tag:i];
+        button.frame = CGRectMake(gap + (i - 1) * itemWidth, top, itemWidth, itemHeight);
     }
+}
+
+- (UIButton *)buttonWithImageName:(NSString *)imageName selectImageName:(NSString *)selectImageName tag:(NSInteger)tag {
+    UIButton *button = [LLFactory getButton:self frame:CGRectZero target:self action:@selector(buttonClicked:)];
+    [button setImage:[UIImage LL_imageNamed:imageName] forState:UIControlStateNormal];
+    [button setImage:[UIImage LL_imageNamed:selectImageName] forState:UIControlStateSelected];
+    button.tag = tag;
+    button.showsTouchWhenHighlighted = NO;
+    return button;
+}
+
+- (NSString *)imageNameWithAction:(LLScreenshotAction)action {
+    switch (action) {
+        case LLScreenshotActionRect:
+            return kRectImageName;
+        case LLScreenshotActionRound:
+            return kRoundImageName;
+        case LLScreenshotActionLine:
+            return kLineImageName;
+        case LLScreenshotActionPen:
+            return kPenImageName;
+        case LLScreenshotActionText:
+            return kTextImageName;
+        case LLScreenshotActionBack:
+            return kUndoImageName;
+        case LLScreenshotActionCancel:
+            return kCancelImageName;
+        case LLScreenshotActionConfirm:
+            return kSureImageName;
+        default:
+            break;
+    }
+    return @"";
+}
+
+- (NSString *)selectImageNameWithAction:(LLScreenshotAction)action {
+    switch (action) {
+        case LLScreenshotActionRect:
+            return kRectSelectImageName;
+        case LLScreenshotActionRound:
+            return kRoundSelectImageName;
+        case LLScreenshotActionLine:
+            return kLineSelectImageName;
+        case LLScreenshotActionPen:
+            return kPenSelectImageName;
+        case LLScreenshotActionText:
+            return kTextSelectImageName;
+        case LLScreenshotActionBack:
+            return kUndoDisableImageName;
+        case LLScreenshotActionCancel:
+            return kCancelImageName;
+        case LLScreenshotActionConfirm:
+            return kSureImageName;
+        default:
+            break;
+    }
+    return @"";
 }
 
 @end

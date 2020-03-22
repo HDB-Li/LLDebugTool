@@ -46,7 +46,29 @@
 #pragma mark - Public
 - (void)configWithData:(NSArray<LLNetworkModel *> *)data {
     //    self.tableView.editing = YES;
-    [self.dataArray removeAllObjects];
+
+    [self loadFilterData:data];
+    // Date
+    //    NSString *fromString = data.lastObject.startDate;
+    //    NSString *endString = data.firstObject.startDate;
+    //
+    //    NSDate *fromDate = [LLFormatterTool dateFromString:fromString style:FormatterToolDateStyle1];
+    //    NSDate *endDate = [LLFormatterTool dateFromString:endString style:FormatterToolDateStyle1];
+    //    if (!fromDate) {
+    //        fromDate = [NSDate date];
+    //    }
+    //    if (!endDate) {
+    //        endDate = [NSDate date];
+    //    }
+    //
+    //    self.fromDate = fromDate;
+    //    self.endDate = endDate;
+    [self loadDateData];
+
+    [self.tableView reloadData];
+}
+
+- (void)loadFilterData:(NSArray<LLNetworkModel *> *)data {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // Host
@@ -72,33 +94,16 @@
         [settings addObject:model];
     }
 
-    LLTitleCellCategoryModel *category1 = [LLTitleCellCategoryModel modelWithTitle:@"Filter" items:settings];
-    [self.dataArray addObject:category1];
-    [settings removeAllObjects];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:@"Filter" items:settings];
+    [self.dataArray addObject:category];
+}
 
-    // Date
-    //    NSString *fromString = data.lastObject.startDate;
-    //    NSString *endString = data.firstObject.startDate;
-    //
-    //    NSDate *fromDate = [LLFormatterTool dateFromString:fromString style:FormatterToolDateStyle1];
-    //    NSDate *endDate = [LLFormatterTool dateFromString:endString style:FormatterToolDateStyle1];
-    //    if (!fromDate) {
-    //        fromDate = [NSDate date];
-    //    }
-    //    if (!endDate) {
-    //        endDate = [NSDate date];
-    //    }
-    //
-    //    self.fromDate = fromDate;
-    //    self.endDate = endDate;
-
+- (void)loadDateData {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
     [settings addObject:[LLTitleCellModel modelWithTitle:@"Please Select From Date"]];
     [settings addObject:[LLTitleCellModel modelWithTitle:@"Please Select End Date"]];
-    LLTitleCellCategoryModel *category2 = [LLTitleCellCategoryModel modelWithTitle:@"Date" items:settings];
-    [self.dataArray addObject:category2];
-    [settings removeAllObjects];
-
-    [self.tableView reloadData];
+    LLTitleCellCategoryModel *category = [LLTitleCellCategoryModel modelWithTitle:@"Date" items:settings];
+    [self.dataArray addObject:category];
 }
 
 #pragma mark - Over write

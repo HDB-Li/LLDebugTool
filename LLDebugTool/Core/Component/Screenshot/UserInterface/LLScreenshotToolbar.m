@@ -116,37 +116,33 @@
 
 #pragma mark - LLScreenshotActionViewDelegate
 - (void)LLScreenshotActionView:(LLScreenshotActionView *)actionView didSelectedAction:(LLScreenshotAction)action isSelected:(BOOL)isSelected position:(CGFloat)position {
-    switch (action) {
+    LLScreenshotAction newAction = action;
+    switch (newAction) {
         case LLScreenshotActionRect:
         case LLScreenshotActionRound:
         case LLScreenshotActionLine:
         case LLScreenshotActionPen:
         case LLScreenshotActionText: {
             if (isSelected) {
-                [self showSelectorView:action position:position];
+                [self showSelectorView:newAction position:position];
             } else {
                 [self hideSelectorView];
             }
         } break;
-        case LLScreenshotActionBack:
-            break;
-        case LLScreenshotActionCancel:
-            break;
-        case LLScreenshotActionConfirm:
-        case LLScreenshotActionNone:
+        default:
             break;
     }
 
     if ([_delegate respondsToSelector:@selector(LLScreenshotToolbar:didSelectedAction:selectorModel:)]) {
         LLScreenshotSelectorModel *model = nil;
-        if (action < LLScreenshotActionBack) {
+        if (newAction < LLScreenshotActionBack) {
             if (isSelected) {
-                model = [self.selectorViews[action - 1] currentSelectorModel];
+                model = [self.selectorViews[newAction - 1] currentSelectorModel];
             } else {
-                action = LLScreenshotActionNone;
+                newAction = LLScreenshotActionNone;
             }
         }
-        [_delegate LLScreenshotToolbar:self didSelectedAction:action selectorModel:model];
+        [_delegate LLScreenshotToolbar:self didSelectedAction:newAction selectorModel:model];
     }
 }
 

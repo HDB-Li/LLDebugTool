@@ -39,6 +39,7 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    NSArray<CLLocation *> *newLocations = locations;
     if ([self.target respondsToSelector:_cmd]) {
         if ([LLLocationHelper shared].isMockRoute) {
             CLLocation *location = [locations firstObject];
@@ -51,10 +52,10 @@
             // Mock location.
             CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLDebugConfig shared].mockLocationLatitude longitude:[LLDebugConfig shared].mockLocationLongitude];
             mockLocation.LL_mock = YES;
-            locations = @[mockLocation];
+            newLocations = @[mockLocation];
         }
 
-        [self.target locationManager:manager didUpdateLocations:locations];
+        [self.target locationManager:manager didUpdateLocations:newLocations];
     }
 }
 

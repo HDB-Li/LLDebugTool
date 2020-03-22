@@ -116,7 +116,7 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
             data = [stream LL_data];
         }
     }
-    if (data && [data length] > 0) {
+    if ([data length] > 0) {
         model.requestBody = [data LL_jsonString];
     }
 
@@ -126,11 +126,8 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     model.mimeType = self.response.MIMEType;
     if (model.mimeType.length == 0) {
         NSString *absoluteString = self.request.URL.absoluteString.lowercaseString;
-        if ([absoluteString hasSuffix:@".jpg"] || [absoluteString hasSuffix:@".jpeg"] || [absoluteString hasSuffix:@".png"]) {
-            model.isImage = YES;
-        } else if ([absoluteString hasSuffix:@".gif"]) {
-            model.isGif = YES;
-        }
+        model.isImage = [self isImageWithUrl:absoluteString];
+        model.isGif = [self isGifWithUrl:absoluteString];
     }
     model.statusCode = [NSString stringWithFormat:@"%d", (int)httpResponse.statusCode];
     model.responseData = self.data;
@@ -165,12 +162,12 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
 
 #pragma mark - NSURLSessionTaskDelegate
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-    if (!error) {
-        [self.client URLProtocolDidFinishLoading:self];
-    } else if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled) {
-    } else {
+    if (error && ![error.domain isEqualToString:NSURLErrorDomain] && error.code != NSURLErrorCancelled) {
         [self.client URLProtocol:self didFailWithError:error];
+    } else if (!error) {
+        [self.client URLProtocolDidFinishLoading:self];
     }
+
     self.error = error;
     self.dataTask = nil;
     [self.session finishTasksAndInvalidate];
@@ -195,6 +192,21 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
         self.response = response;
         [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
     }
+}
+
+#pragma mark - Primary
+- (BOOL)isImageWithUrl:(NSString *)absoluteString {
+    if ([absoluteString hasSuffix:@".jpg"] || [absoluteString hasSuffix:@".jpeg"] || [absoluteString hasSuffix:@".png"]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isGifWithUrl:(NSString *)absoluteString {
+    if ([absoluteString hasSuffix:@".gif"]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

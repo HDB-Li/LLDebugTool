@@ -77,10 +77,10 @@
         id currentData = [[statusBarModern valueForKeyPath:@"_statusBar"] valueForKeyPath:@"currentData"];
         id _wifiEntry = [currentData valueForKeyPath:@"wifiEntry"];
         id _cellularEntry = [currentData valueForKeyPath:@"cellularEntry"];
-        if (_wifiEntry && [[_wifiEntry valueForKeyPath:@"isEnabled"] boolValue]) {
+        if ([[_wifiEntry valueForKeyPath:@"isEnabled"] boolValue]) {
             // If wifiEntry is enabled, is WiFi.
             returnValue = LLNetworkStatusReachableViaWiFi;
-        } else if (_cellularEntry && [[_cellularEntry valueForKeyPath:@"isEnabled"] boolValue]) {
+        } else if ([[_cellularEntry valueForKeyPath:@"isEnabled"] boolValue]) {
             NSNumber *type = [_cellularEntry valueForKeyPath:@"type"];
             if (type != nil) {
                 switch (type.integerValue) {
@@ -115,20 +115,21 @@
                 returnValue = LLNetworkStatusReachableViaWiFi;
                 break;
             }
-            if ([child isKindOfClass:NSClassFromString(@"_UIStatusBarStringView")]) {
-                NSString *originalText = [child valueForKey:@"_originalText"];
-                if ([originalText containsString:@"G"]) {
-                    if ([originalText isEqualToString:@"2G"]) {
-                        returnValue = LLNetworkStatusReachableViaWWAN2G;
-                    } else if ([originalText isEqualToString:@"3G"]) {
-                        returnValue = LLNetworkStatusReachableViaWWAN3G;
-                    } else if ([originalText isEqualToString:@"4G"]) {
-                        returnValue = LLNetworkStatusReachableViaWWAN4G;
-                    } else {
-                        returnValue = LLNetworkStatusReachableViaWWAN;
-                    }
-                    break;
+            if (![child isKindOfClass:NSClassFromString(@"_UIStatusBarStringView")]) {
+                continue;
+            }
+            NSString *originalText = [child valueForKey:@"_originalText"];
+            if ([originalText containsString:@"G"]) {
+                if ([originalText isEqualToString:@"2G"]) {
+                    returnValue = LLNetworkStatusReachableViaWWAN2G;
+                } else if ([originalText isEqualToString:@"3G"]) {
+                    returnValue = LLNetworkStatusReachableViaWWAN3G;
+                } else if ([originalText isEqualToString:@"4G"]) {
+                    returnValue = LLNetworkStatusReachableViaWWAN4G;
+                } else {
+                    returnValue = LLNetworkStatusReachableViaWWAN;
                 }
+                break;
             }
         }
         if (returnValue != LLNetworkStatusNotReachable) {
@@ -165,6 +166,8 @@
             break;
         case 5:
             returnValue = LLNetworkStatusReachableViaWiFi;
+            break;
+        default:
             break;
     }
     return returnValue;

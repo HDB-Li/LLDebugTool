@@ -83,7 +83,7 @@ static LLNetworkHelper *_instance = nil;
     if ([LLDebugConfig shared].observerWebView) {
         Class cls = NSClassFromString(@"WKBrowsingContextController");
         SEL sel = NSSelectorFromString(@"registerSchemeForCustomProtocol:");
-        if (cls && [cls respondsToSelector:sel]) {
+        if ([cls respondsToSelector:sel]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [cls performSelector:sel
@@ -99,7 +99,7 @@ static LLNetworkHelper *_instance = nil;
     if ([LLDebugConfig shared].observerWebView) {
         Class cls = NSClassFromString(@"WKBrowsingContextController");
         SEL sel = NSSelectorFromString(@"unregisterSchemeForCustomProtocol:");
-        if (cls && [cls respondsToSelector:sel]) {
+        if ([cls respondsToSelector:sel]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             [cls performSelector:sel

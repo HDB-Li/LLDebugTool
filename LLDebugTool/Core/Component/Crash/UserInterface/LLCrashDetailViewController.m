@@ -32,6 +32,7 @@
 
 #import "LLRouter+Log.h"
 #import "LLRouter+Network.h"
+#import "NSDictionary+LL_Utils.h"
 
 static NSString *const kCrashContentCellID = @"CrashContentCellID";
 
@@ -126,59 +127,31 @@ static NSString *const kCrashContentCellID = @"CrashContentCellID";
     [self.titleArray removeAllObjects];
     [self.contentArray removeAllObjects];
 
-    if (_model.name) {
-        [self.titleArray addObject:@"Name"];
-        [self.contentArray addObject:_model.name];
-    }
-    if (_model.reason) {
-        [self.titleArray addObject:@"Reason"];
-        [self.contentArray addObject:_model.reason];
-    }
-    if (_model.date) {
-        [self.titleArray addObject:@"Date"];
-        [self.contentArray addObject:_model.date];
-    }
-
-    if (logs.count) {
-        [self.titleArray addObject:@"Logs"];
-        [self.contentArray addObject:[NSString stringWithFormat:@"%ld logs", (unsigned long)logs.count]];
-    }
-
-    if (networkRequests.count) {
-        [self.titleArray addObject:@"Network Requests"];
-        [self.contentArray addObject:[NSString stringWithFormat:@"%ld network requests", (unsigned long)networkRequests.count]];
-    }
-
-    if (_model.thread) {
-        [self.titleArray addObject:@"Thread"];
-        [self.contentArray addObject:_model.thread];
-    }
-
-    if (_model.userIdentity) {
-        [self.titleArray addObject:@"User Identity"];
-        [self.contentArray addObject:_model.userIdentity];
-    }
+    [self loadTitle:@"Name" value:_model.name];
+    [self loadTitle:@"Reason" value:_model.reason];
+    [self loadTitle:@"Date" value:_model.date];
+    [self loadTitle:@"Logs" value:[NSString stringWithFormat:@"%@ logs", @(logs.count)]];
+    [self loadTitle:@"Network Requests" value:[NSString stringWithFormat:@"%@ network requests", @(networkRequests.count)]];
+    [self loadTitle:@"Thread" value:_model.thread];
+    [self loadTitle:@"User Identity" value:_model.userIdentity];
     if (_model.stackSymbols.count) {
-        [self.titleArray addObject:@"Stack Symbols"];
         NSMutableString *mutStr = [[NSMutableString alloc] init];
         for (NSString *symbol in _model.stackSymbols) {
             [mutStr appendFormat:@"%@\n\n", symbol];
         }
-        [self.contentArray addObject:mutStr];
+        [self loadTitle:@"Stack Symbols" value:[mutStr copy]];
     }
-    if (_model.userInfo.allKeys.count) {
-        [self.titleArray addObject:@"UserInfo"];
-        NSMutableString *content = [[NSMutableString alloc] init];
-        for (NSString *key in _model.userInfo.allKeys) {
-            [content appendFormat:@"%@ : %@\n", key, _model.userInfo[key]];
-        }
-        [self.contentArray addObject:content];
-    }
-    if (_model.appInfoDescription) {
-        [self.titleArray addObject:@"App Infos"];
-        [self.contentArray addObject:_model.appInfoDescription];
-    }
+    [self loadTitle:@"UserInfo" value:_model.userInfo.LL_displayString];
+    [self loadTitle:@"App Infos" value:_model.appInfoDescription];
+
     [self.tableView reloadData];
+}
+
+- (void)loadTitle:(NSString *)title value:(NSString *)value {
+    if (title && value) {
+        [self.titleArray addObject:title];
+        [self.contentArray addObject:value];
+    }
 }
 
 - (NSArray *)canCopyArray {

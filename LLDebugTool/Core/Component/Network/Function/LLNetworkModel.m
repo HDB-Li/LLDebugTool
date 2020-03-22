@@ -186,6 +186,7 @@
         _isHTML = YES;
     } else if ([mime isEqualToString:@"text/plain"]) {
         _isTXT = YES;
+        /*
     } else if ([mime isEqualToString:@"video/quicktime"]) {
     } else if ([mime isEqualToString:@"video/x-msvideo"]) {
     } else if ([mime isEqualToString:@"audio/mpeg"]) {
@@ -195,6 +196,7 @@
     } else if ([mime isEqualToString:@"application/vnd.ms-excel"]) {
     } else if ([mime isEqualToString:@"application/vnd.ms-powerpoint"]) {
     } else if ([mime isEqualToString:@"application/msword"]) {
+         */
     }
 }
 

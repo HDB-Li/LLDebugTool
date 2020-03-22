@@ -89,11 +89,12 @@ static LLScreenshotHelper *_instance = nil;
         });
         return;
     }
-    if (name.length == 0) {
-        name = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
+    NSString *imageName = name;
+    if (imageName.length == 0) {
+        imageName = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
     }
-    name = [name stringByAppendingPathExtension:@"png"];
-    NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:name];
+    imageName = [imageName stringByAppendingPathExtension:@"png"];
+    NSString *path = [self.screenshotFolderPath stringByAppendingPathComponent:imageName];
     BOOL ret = [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
 
     if (complete) {

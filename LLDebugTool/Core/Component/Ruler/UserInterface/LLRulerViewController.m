@@ -94,47 +94,10 @@
             self.leftLabel.hidden = YES;
             self.rightLabel.hidden = YES;
             self.bottomLabel.hidden = YES;
-        }
+            [self updatePointInWindow:pointInWindow];
+        } break;
         default: {
-            CGFloat x = pointInWindow.x;
-            CGFloat y = pointInWindow.y;
-
-            self.topLabel.text = [NSString stringWithFormat:@"%0.2f", y];
-            [self.topLabel sizeToFit];
-            self.topLabel.LL_centerY = y / 2.0;
-
-            self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f", LL_SCREEN_HEIGHT - y];
-            [self.bottomLabel sizeToFit];
-            self.bottomLabel.LL_centerY = y + (LL_SCREEN_HEIGHT - y) / 2.0;
-
-            self.leftLabel.text = [NSString stringWithFormat:@"%0.2f", x];
-            [self.leftLabel sizeToFit];
-            self.leftLabel.LL_centerX = x / 2.0;
-
-            self.rightLabel.text = [NSString stringWithFormat:@"%0.2f", LL_SCREEN_WIDTH - x];
-            [self.rightLabel sizeToFit];
-            self.rightLabel.LL_centerX = x + (LL_SCREEN_WIDTH - x) / 2.0;
-
-            self.horizontalLine.LL_centerY = y;
-            if (y < LL_SCREEN_HEIGHT / 2.0) {
-                self.leftLabel.LL_y = y;
-                self.rightLabel.LL_y = y;
-            } else {
-                self.leftLabel.LL_bottom = y;
-                self.rightLabel.LL_bottom = y;
-            }
-
-            self.verticalLine.LL_centerX = x;
-            if (x < LL_SCREEN_WIDTH / 2.0) {
-                self.topLabel.LL_x = x;
-                self.bottomLabel.LL_x = x;
-            } else {
-                self.topLabel.LL_right = x;
-                self.bottomLabel.LL_right = x;
-            }
-
-            self.lineLayer.path = [self pathWithPoint:self.startPoint anotherPoint:pointInWindow].CGPath;
-            [self.infoView updatePoint:pointInWindow];
+            [self updatePointInWindow:pointInWindow];
         } break;
     }
 }
@@ -167,6 +130,48 @@
     [path moveToPoint:point];
     [path addLineToPoint:anotherPoint];
     return path;
+}
+
+- (void)updatePointInWindow:(CGPoint)pointInWindow {
+    CGFloat x = pointInWindow.x;
+    CGFloat y = pointInWindow.y;
+
+    self.topLabel.text = [NSString stringWithFormat:@"%0.2f", y];
+    [self.topLabel sizeToFit];
+    self.topLabel.LL_centerY = y / 2.0;
+
+    self.bottomLabel.text = [NSString stringWithFormat:@"%0.2f", LL_SCREEN_HEIGHT - y];
+    [self.bottomLabel sizeToFit];
+    self.bottomLabel.LL_centerY = y + (LL_SCREEN_HEIGHT - y) / 2.0;
+
+    self.leftLabel.text = [NSString stringWithFormat:@"%0.2f", x];
+    [self.leftLabel sizeToFit];
+    self.leftLabel.LL_centerX = x / 2.0;
+
+    self.rightLabel.text = [NSString stringWithFormat:@"%0.2f", LL_SCREEN_WIDTH - x];
+    [self.rightLabel sizeToFit];
+    self.rightLabel.LL_centerX = x + (LL_SCREEN_WIDTH - x) / 2.0;
+
+    self.horizontalLine.LL_centerY = y;
+    if (y < LL_SCREEN_HEIGHT / 2.0) {
+        self.leftLabel.LL_y = y;
+        self.rightLabel.LL_y = y;
+    } else {
+        self.leftLabel.LL_bottom = y;
+        self.rightLabel.LL_bottom = y;
+    }
+
+    self.verticalLine.LL_centerX = x;
+    if (x < LL_SCREEN_WIDTH / 2.0) {
+        self.topLabel.LL_x = x;
+        self.bottomLabel.LL_x = x;
+    } else {
+        self.topLabel.LL_right = x;
+        self.bottomLabel.LL_right = x;
+    }
+
+    self.lineLayer.path = [self pathWithPoint:self.startPoint anotherPoint:pointInWindow].CGPath;
+    [self.infoView updatePoint:pointInWindow];
 }
 
 #pragma mark - Getters and setters

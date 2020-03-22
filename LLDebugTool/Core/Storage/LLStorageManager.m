@@ -136,29 +136,18 @@ static NSString *const kDatabaseVersion = @"1";
     }
 
     // Check datas.
-    if (!cls || ![self isRegisteredClass:cls]) {
-        if (cls) {
-            [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister", NSStringFromClass(cls)]];
-        }
+    if (![self isRegisteredClass:cls]) {
+        [LLTool log:[NSString stringWithFormat:@"Get %@ failed, because model is unregister", cls ? NSStringFromClass(cls) : @"nil class"]];
         [self performArrayComplete:complete param:@[] synchronous:synchronous];
         return;
     }
 
     __block NSMutableArray *modelArray = [[NSMutableArray alloc] init];
     [_dbQueue inDatabase:^(FMDatabase *db) {
-        NSString *SQL = [NSString stringWithFormat:@"SELECT * FROM %@", [self tableNameFromClass:cls]];
-        NSArray *values = @[];
-        if (launchDate.length && storageIdentity.length) {
-            SQL = [SQL stringByAppendingFormat:@" WHERE %@ = ? AND %@ = ?", kLaunchDateColumn, kIdentityColumn];
-            values = @[launchDate, storageIdentity];
-        } else if (launchDate.length) {
-            SQL = [SQL stringByAppendingFormat:@" WHERE %@ = ?", kLaunchDateColumn];
-            values = @[launchDate];
-        } else if (storageIdentity.length) {
-            SQL = [SQL stringByAppendingFormat:@" WHERE %@ = ?", kIdentityColumn];
-            values = @[storageIdentity];
-        }
-        FMResultSet *set = [db executeQuery:SQL withArgumentsInArray:values];
+        NSMutableString *SQL = [NSMutableString string];
+        NSMutableArray *values = [NSMutableArray array];
+        [self createGetModelSQL:SQL values:values cls:cls launchDate:launchDate storageIdentity:storageIdentity];
+        FMResultSet *set = [db executeQuery:[SQL copy] withArgumentsInArray:[values copy]];
         while ([set next]) {
             NSData *data = nil;
 #pragma clang diagnostic push
@@ -169,18 +158,34 @@ static NSString *const kDatabaseVersion = @"1";
                 data = [set performSelector:@selector(objectForColumnName:) withObject:kObjectDataColumn];
             }
 #pragma clang diagnostic pop
-            if (data) {
+            if (!data) {
+                continue;
+            }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                id model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            id model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 #pragma clang diagnostic pop
-                if (model) {
-                    [modelArray insertObject:model atIndex:0];
-                }
+            if (!model) {
+                continue;
             }
+            [modelArray insertObject:model atIndex:0];
         }
     }];
     [self performArrayComplete:complete param:modelArray synchronous:synchronous];
+}
+
+- (void)createGetModelSQL:(NSMutableString *)SQL values:(NSMutableArray *)values cls:(Class)cls launchDate:(NSString *)launchDate storageIdentity:(NSString *)storageIdentity {
+    [SQL appendFormat:@"SELECT * FROM %@", [self tableNameFromClass:cls]];
+    if (launchDate.length && storageIdentity.length) {
+        [SQL appendFormat:@" WHERE %@ = ? AND %@ = ?", kLaunchDateColumn, kIdentityColumn];
+        [values addObjectsFromArray:@[launchDate, storageIdentity]];
+    } else if (launchDate.length) {
+        [SQL appendFormat:@" WHERE %@ = ?", kLaunchDateColumn];
+        [values addObject:launchDate];
+    } else if (storageIdentity.length) {
+        [SQL appendFormat:@" WHERE %@ = ?", kIdentityColumn];
+        [values addObject:storageIdentity];
+    }
 }
 
 #pragma mark - DELETE
@@ -399,7 +404,7 @@ static NSString *const kDatabaseVersion = @"1";
 }
 
 - (BOOL)isRegisteredClass:(Class)cls {
-    return [self.registerClass containsObject:cls];
+    return cls && [self.registerClass containsObject:cls];
 }
 
 - (NSString *)tableNameFromClass:(Class)cls {
@@ -464,24 +469,13 @@ static NSString *const kDatabaseVersion = @"1";
     }
 
     NSString *launchDate = [NSObject LL_launchDate];
-    if (launchDate.length == 0) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because launchDate is nil", NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
 #pragma clang diagnostic pop
-    if (data.length == 0) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's data is null", NSStringFromClass(cls)]];
-        [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
-        return;
-    }
-
     NSString *identity = model.storageIdentity;
-    if (identity.length == 0) {
-        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's identity is nil", NSStringFromClass(cls)]];
+    if (launchDate.length == 0 || data.length == 0 || identity.length == 0) {
+        [LLTool log:[NSString stringWithFormat:@"Save %@ failed, because model's launch: %@, data: %@, identity: %@", NSStringFromClass(cls), @(launchDate.length), @(data.length), @(identity.length)]];
         [self performBoolComplete:complete param:@(NO) synchronous:synchronous];
         return;
     }

@@ -86,7 +86,7 @@
 #pragma clang diagnostic pop
         if ([LLDebugConfig shared].htmlViewControllerProvider != nil) {
             UIViewController *customViewController = [LLDebugConfig shared].htmlViewControllerProvider(urlString);
-            if (customViewController && cls == [customViewController class]) {
+            if (customViewController != nil && cls == [customViewController class]) {
                 [LLSettingManager shared].lastWebViewUrl = urlString;
                 [self.navigationController pushViewController:customViewController animated:YES];
                 return;

@@ -43,4 +43,15 @@
     return [mut copy];
 }
 
+- (NSString *)LL_displayString {
+    if (self.allKeys.count == 0) {
+        return nil;
+    }
+    NSMutableString *string = [[NSMutableString alloc] init];
+    for (NSString *key in self) {
+        [string appendFormat:@"%@ : %@\n", key, self[key]];
+    }
+    return [string copy];
+}
+
 @end

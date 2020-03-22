@@ -223,77 +223,75 @@ static NSString *const kLogCellID = @"LLLogCell";
 }
 
 - (void)filterData {
-    @synchronized(self) {
-        [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
+    [self.searchDataArray removeAllObjects];
+    [self.searchDataArray addObjectsFromArray:self.oriDataArray];
 
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        for (LLLogModel *model in self.oriDataArray) {
-            // Filter "Search"
-            if (self.searchTextField.text.length) {
-                if (![model.message.lowercaseString containsString:self.searchTextField.text.lowercaseString]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    for (LLLogModel *model in self.oriDataArray) {
+        BOOL isRemove = [self needRemove:model];
 
-            // Filter Level
-            if (self.currentLevels.count) {
-                if (![self.currentLevels containsObject:model.levelDescription]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            // Filter Event
-            if (self.currentEvents.count) {
-                if (![self.currentEvents containsObject:model.event]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            // Filter File
-            if (self.currentFile.length) {
-                if (![model.file isEqualToString:self.currentFile]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            // Filter Func
-            if (self.currentFunc.length) {
-                if (![model.function isEqualToString:self.currentFunc]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            // Filter Date
-            if (self.currentFromDate) {
-                if ([model.dateDescription compare:self.currentFromDate] == NSOrderedAscending) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            if (self.currentEndDate) {
-                if ([model.dateDescription compare:self.currentEndDate] == NSOrderedDescending) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            if (self.currentUserIdentities.count) {
-                if (![self.currentUserIdentities containsObject:model.userIdentity]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
+        if (isRemove) {
+            [tempArray addObject:model];
+            continue;
         }
-        [self.searchDataArray removeObjectsInArray:tempArray];
-        [self.tableView reloadData];
     }
+    [self.searchDataArray removeObjectsInArray:tempArray];
+    [self.tableView reloadData];
+}
+
+- (BOOL)needRemove:(LLLogModel *)model {
+    BOOL isRemove = NO;
+
+    // Filter "Search"
+    isRemove = isRemove || [self ignoreInSearch:model];
+
+    // Filter Level
+    isRemove = isRemove || [self ignoreInLevel:model];
+
+    // Filter Event
+    isRemove = isRemove || [self ignoreInEvent:model];
+
+    // Filter File
+    isRemove = isRemove || [self ignoreInFile:model];
+
+    // Filter Func
+    isRemove = isRemove || [self ignoreInFunc:model];
+
+    // Filter Date
+    isRemove = isRemove || [self ignoreInDate:model];
+
+    // Filter userIdentities
+    isRemove = isRemove || [self ignoreInUserIdentities:model];
+
+    return isRemove;
+}
+
+- (BOOL)ignoreInSearch:(LLLogModel *)model {
+    return self.searchTextField.text.length && ![model.message.lowercaseString containsString:self.searchTextField.text.lowercaseString];
+}
+
+- (BOOL)ignoreInLevel:(LLLogModel *)model {
+    return self.currentLevels.count && ![self.currentLevels containsObject:model.levelDescription];
+}
+
+- (BOOL)ignoreInEvent:(LLLogModel *)model {
+    return self.currentEvents.count && ![self.currentEvents containsObject:model.event];
+}
+
+- (BOOL)ignoreInFile:(LLLogModel *)model {
+    return self.currentFile.length && ![model.file isEqualToString:self.currentFile];
+}
+
+- (BOOL)ignoreInFunc:(LLLogModel *)model {
+    return self.currentFunc.length && ![model.function isEqualToString:self.currentFunc];
+}
+
+- (BOOL)ignoreInDate:(LLLogModel *)model {
+    return (self.currentFromDate && [model.dateDescription compare:self.currentFromDate] == NSOrderedAscending) || (self.currentEndDate && [model.dateDescription compare:self.currentEndDate] == NSOrderedDescending);
+}
+
+- (BOOL)ignoreInUserIdentities:(LLLogModel *)model {
+    return self.currentUserIdentities.count && ![self.currentUserIdentities containsObject:model.userIdentity];
 }
 
 @end

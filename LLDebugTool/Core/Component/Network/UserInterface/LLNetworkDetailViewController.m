@@ -30,6 +30,7 @@
 #import "LLSubTitleTableViewCell.h"
 #import "LLToastUtils.h"
 
+#import "NSDictionary+LL_Utils.h"
 #import "UIImage+LL_Utils.h"
 
 static NSString *const kNetworkContentCellID = @"NetworkContentCellID";
@@ -121,33 +122,21 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
     if (self.model) {
         self.titleArray = [[NSMutableArray alloc] init];
         self.contentArray = [[NSMutableArray alloc] init];
+
         // Request url.
-        [self.titleArray addObject:@"Request Url"];
-        [self.contentArray addObject:self.model.url.absoluteString ?: @"unknown"];
+        [self loadTitle:@"Request Url" value:self.model.url.absoluteString ?: @"unknown"];
 
         // Method.
-        if (self.model.method) {
-            [self.titleArray addObject:@"Method"];
-            [self.contentArray addObject:self.model.method];
-        }
+        [self loadTitle:@"Method" value:self.model.method];
 
         // Status code.
-        [self.titleArray addObject:@"Status Code"];
-        [self.contentArray addObject:self.model.statusCode ?: @"0"];
+        [self loadTitle:@"Status Code" value:self.model.statusCode ?: @"0"];
 
         // Header
-        if (self.model.headerFields.count) {
-            [self.titleArray addObject:@"Header Fields"];
-            NSMutableString *string = [[NSMutableString alloc] init];
-            for (NSString *key in self.model.headerFields) {
-                [string appendFormat:@"%@ : %@\n", key, self.model.headerFields[key]];
-            }
-            [self.contentArray addObject:string];
-        }
+        [self loadTitle:@"Header Fields" value:self.model.headerFields.LL_displayString];
 
         // Request body.
-        [self.titleArray addObject:@"Request Body"];
-        [self.contentArray addObject:self.model.requestBody ?: @"Null"];
+        [self loadTitle:@"Request Body" value:self.model.requestBody ?: @"Null"];
 
         // Response data.
         if (self.model.responseData) {
@@ -160,34 +149,26 @@ static NSString *const kNetworkImageCellID = @"NetworkImageCellID";
         }
 
         // Error
-        if (self.model.error) {
-            [self.titleArray addObject:@"Error"];
-            [self.contentArray addObject:self.model.error.localizedDescription];
-        }
+        [self loadTitle:@"Error" value:self.model.error.localizedDescription];
 
         // Mime type.
-        if (self.model.mimeType) {
-            [self.titleArray addObject:@"Mime Type"];
-            [self.contentArray addObject:self.model.mimeType];
-        }
+        [self loadTitle:@"Mime Type" value:self.model.mimeType];
 
         // Start date.
-        if (self.model.startDate) {
-            [self.titleArray addObject:@"Start Date"];
-            [self.contentArray addObject:self.model.startDate];
-        }
+        [self loadTitle:@"Start Date" value:self.model.startDate];
 
         // Total duration.
-        if (self.model.totalDuration) {
-            [self.titleArray addObject:@"Total Duration"];
-            [self.contentArray addObject:self.model.totalDuration];
-        }
+        [self loadTitle:@"Total Duration" value:self.model.totalDuration];
 
         // Total data traffic.
-        if (self.model.totalDataTraffic) {
-            [self.titleArray addObject:@"Data Traffic"];
-            [self.contentArray addObject:[NSString stringWithFormat:@"%@ (%@↑ / %@↓)", self.model.totalDataTraffic, self.model.requestDataTraffic, self.model.responseDataTraffic]];
-        }
+        [self loadTitle:@"Data Traffic" value:self.model.totalDataTraffic ? [NSString stringWithFormat:@"%@ (%@↑ / %@↓)", self.model.totalDataTraffic, self.model.requestDataTraffic, self.model.responseDataTraffic] : nil];
+    }
+}
+
+- (void)loadTitle:(NSString *)title value:(NSString *)value {
+    if (title && value) {
+        [self.titleArray addObject:title];
+        [self.contentArray addObject:value];
     }
 }
 

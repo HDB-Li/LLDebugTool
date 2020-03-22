@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param otherDictionary Other dictionary.
 - (NSDictionary *)LL_addEntriesFromDictionary:(NSDictionary *)otherDictionary;
 
+/// Display string.
+- (NSString *_Nullable)LL_displayString;
+
 @end
 
 NS_ASSUME_NONNULL_END

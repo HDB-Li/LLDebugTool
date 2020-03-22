@@ -68,14 +68,8 @@
 
 @dynamic delegate;
 
-- (void)updateSelectedView:(UIView *)selectedView {
-    UIView *view = selectedView;
-
-    if (!view) {
-        return;
-    }
-
-    if (self.selectedView == view) {
+- (void)updateSelectedView:(UIView *)view {
+    if (!view || self.selectedView == view) {
         return;
     }
 
@@ -85,30 +79,7 @@
 
     self.selectedView = view;
 
-    self.contentLabel.attributedText = [self attributedStringWithText:@"Name: " detail:NSStringFromClass(view.class)];
-
-    self.frameLabel.attributedText = [self attributedStringWithText:@"Frame: " detail:[LLTool stringFromFrame:view.frame]];
-
-    if (view.backgroundColor) {
-        self.backgroundColorLabel.attributedText = [self attributedStringWithText:@"Background: " detail:view.backgroundColor.LL_description];
-    } else {
-        self.backgroundColorLabel.attributedText = nil;
-    }
-
-    if ([view isKindOfClass:[UILabel class]]) {
-        UILabel *label = (UILabel *)view;
-        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:label.textColor.LL_description];
-        self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", label.font.pointSize]];
-    } else {
-        self.textColorLabel.attributedText = nil;
-        self.fontLabel.attributedText = nil;
-    }
-
-    if (view.tag != 0) {
-        self.tagLabel.attributedText = [self attributedStringWithText:@"Tag: " detail:[NSString stringWithFormat:@"%ld", (long)view.tag]];
-    } else {
-        self.tagLabel.attributedText = nil;
-    }
+    [self updateSelectedViewAttributeInfos];
 
     [self.contentLabel sizeToFit];
     [self.frameLabel sizeToFit];
@@ -189,6 +160,34 @@
 }
 
 #pragma mark - Primary
+- (void)updateSelectedViewAttributeInfos {
+    UIView *view = self.selectedView;
+    self.contentLabel.attributedText = [self attributedStringWithText:@"Name: " detail:NSStringFromClass(view.class)];
+
+    self.frameLabel.attributedText = [self attributedStringWithText:@"Frame: " detail:[LLTool stringFromFrame:view.frame]];
+
+    if (view.backgroundColor) {
+        self.backgroundColorLabel.attributedText = [self attributedStringWithText:@"Background: " detail:view.backgroundColor.LL_description];
+    } else {
+        self.backgroundColorLabel.attributedText = nil;
+    }
+
+    if ([view isKindOfClass:[UILabel class]]) {
+        UILabel *label = (UILabel *)view;
+        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:label.textColor.LL_description];
+        self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", label.font.pointSize]];
+    } else {
+        self.textColorLabel.attributedText = nil;
+        self.fontLabel.attributedText = nil;
+    }
+
+    if (view.tag) {
+        self.tagLabel.attributedText = [self attributedStringWithText:@"Tag: " detail:[NSString stringWithFormat:@"%ld", (long)view.tag]];
+    } else {
+        self.tagLabel.attributedText = nil;
+    }
+}
+
 - (void)updateHeightIfNeeded {
     CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height;
     CGFloat height = kLLGeneralMargin + LL_MAX(contentHeight, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;

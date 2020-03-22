@@ -117,8 +117,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 }
 
 - (CGPoint)LL_pointFromString:(NSString *)string orginalPoint:(CGPoint)point {
-    CGPoint newPoint = CGPointFromString(string);
-    return newPoint;
+    return CGPointFromString(string);
 }
 
 - (NSString *)LL_hierarchySizeDescription:(CGSize)size {

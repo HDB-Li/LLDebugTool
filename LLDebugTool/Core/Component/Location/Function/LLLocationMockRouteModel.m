@@ -89,58 +89,58 @@
 
 #pragma mark - Primary
 - (void)analysisJsonFile:(NSString *)filePath {
-    // Check nil.
-    if ([filePath length] == 0) {
-        return;
-    }
-
-    // Check file extension.
-    if (![filePath.pathExtension isEqualToString:@"json"]) {
-        return;
-    }
-
-    // Convert to data.
-    NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
-    if ([data length] == 0) {
-        return;
-    }
-
-    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-    // Check type.
-    if (![object isKindOfClass:[NSDictionary class]]) {
-        return;
-    }
-
-    NSDictionary *json = (NSDictionary *)object;
-    // Check key.
-    if (![json[@"key"] isEqualToString:@"LLDebugTool"]) {
-        return;
-    }
-
-    NSArray *jsonData = json[@"data"];
-    // Check data.
-    if (![jsonData isKindOfClass:[NSArray class]]) {
-        return;
-    }
-
-    // Add data.
-    NSMutableArray *locations = [[NSMutableArray alloc] init];
-    for (id obj in jsonData) {
-        if ([obj isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dic = (NSDictionary *)obj;
-            if (dic[@"lat"] && dic[@"lng"]) {
-                CLLocationDegrees lat = [dic[@"lat"] doubleValue];
-                CLLocationDegrees lng = [dic[@"lng"] doubleValue];
-                CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
-                location.LL_mock = YES;
-                [locations addObject:location];
-            }
-        }
-    }
-
-    _locations = [locations copy];
-    _isAvailable = YES;
+    //    // Check nil.
+    //    if ([filePath length] == 0) {
+    //        return;
+    //    }
+    //
+    //    // Check file extension.
+    //    if (![filePath.pathExtension isEqualToString:@"json"]) {
+    //        return;
+    //    }
+    //
+    //    // Convert to data.
+    //    NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+    //    if ([data length] == 0) {
+    //        return;
+    //    }
+    //
+    //    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    //
+    //    // Check type.
+    //    if (![object isKindOfClass:[NSDictionary class]]) {
+    //        return;
+    //    }
+    //
+    //    NSDictionary *json = (NSDictionary *)object;
+    //    // Check key.
+    //    if (![json[@"key"] isEqualToString:@"LLDebugTool"]) {
+    //        return;
+    //    }
+    //
+    //    NSArray *jsonData = json[@"data"];
+    //    // Check data.
+    //    if (![jsonData isKindOfClass:[NSArray class]]) {
+    //        return;
+    //    }
+    //
+    //    // Add data.
+    //    NSMutableArray *locations = [[NSMutableArray alloc] init];
+    //    for (id obj in jsonData) {
+    //        if ([obj isKindOfClass:[NSDictionary class]]) {
+    //            NSDictionary *dic = (NSDictionary *)obj;
+    //            if (dic[@"lat"] && dic[@"lng"]) {
+    //                CLLocationDegrees lat = [dic[@"lat"] doubleValue];
+    //                CLLocationDegrees lng = [dic[@"lng"] doubleValue];
+    //                CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+    //                location.LL_mock = YES;
+    //                [locations addObject:location];
+    //            }
+    //        }
+    //    }
+    //
+    //    _locations = [locations copy];
+    //    _isAvailable = YES;
 }
 
 @end

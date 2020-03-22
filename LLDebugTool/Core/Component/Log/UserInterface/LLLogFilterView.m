@@ -64,18 +64,34 @@
     NSMutableSet *userIDSet = [NSMutableSet set];
     NSMutableDictionary *fileDic = [[NSMutableDictionary alloc] init];
 
-    NSString *fromDateString = data.lastObject.date;
-    NSString *endDateString = data.firstObject.date;
+    [self findEvents:eventSet userIds:userIDSet files:fileDic inData:data];
 
-    NSDate *fromDate = [LLFormatterTool dateFromString:fromDateString style:FormatterToolDateStyle1];
-    NSDate *endDate = [LLFormatterTool dateFromString:endDateString style:FormatterToolDateStyle1];
-    if (!fromDate) {
-        fromDate = [NSDate date];
-    }
-    if (!endDate) {
-        endDate = [NSDate date];
-    }
+    // Level Part
+    self.levelView.hidden = YES;
 
+    // Event Part
+    [self filterEventData:eventSet];
+
+    // Other Part
+    [self filterOtherDataWithData:data files:fileDic users:userIDSet];
+}
+
+- (void)reCalculateFilters {
+    if (_changeBlock) {
+        _changeBlock(self.currentLevels, self.currentEvents, self.currentFile, self.currentFunc, self.currentFromDate, self.currentEndDate, self.currentUserIds);
+    }
+}
+
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+
+    self.titles = @[@"Level", @"Event", @"Other"];
+    self.filterViews = @[self.levelView, self.eventView, self.otherView];
+}
+
+#pragma mark - Primary
+- (void)findEvents:(NSMutableSet *)eventSet userIds:(NSMutableSet *)userIDSet files:(NSMutableDictionary *)fileDic inData:(NSArray<LLLogModel *> *)data {
     for (LLLogModel *model in data) {
         if (model.event.length) {
             [eventSet addObject:model.event];
@@ -94,11 +110,9 @@
             }
         }
     }
+}
 
-    // Level Part
-    self.levelView.hidden = YES;
-
-    // Event Part
+- (void)filterEventData:(NSSet *)eventSet {
     NSMutableArray *eventArray = [[NSMutableArray alloc] init];
     for (NSString *event in eventSet.allObjects) {
         LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:event];
@@ -115,24 +129,23 @@
     CGFloat eventHeight = lineNo * 40 + kLLGeneralMargin;
     self.eventView.frame = CGRectMake(self.eventView.frame.origin.x, self.eventView.frame.origin.y, self.eventView.frame.size.width, eventHeight);
     [self.eventView updateDataArray:eventArray];
+}
 
-    // Other Part
+- (void)filterOtherDataWithData:(NSArray<LLLogModel *> *)data files:(NSDictionary *)fileDic users:(NSSet *)userIDSet {
+    NSString *fromDateString = data.lastObject.date;
+    NSString *endDateString = data.firstObject.date;
+
+    NSDate *fromDate = [LLFormatterTool dateFromString:fromDateString style:FormatterToolDateStyle1];
+    NSDate *endDate = [LLFormatterTool dateFromString:endDateString style:FormatterToolDateStyle1];
+    if (!fromDate) {
+        fromDate = [NSDate date];
+    }
+    if (!endDate) {
+        endDate = [NSDate date];
+    }
+
     self.otherView.hidden = YES;
     [self.otherView updateFileDataDictionary:fileDic fromDate:fromDate endDate:endDate userIdentities:userIDSet.allObjects];
-}
-
-- (void)reCalculateFilters {
-    if (_changeBlock) {
-        _changeBlock(self.currentLevels, self.currentEvents, self.currentFile, self.currentFunc, self.currentFromDate, self.currentEndDate, self.currentUserIds);
-    }
-}
-
-#pragma mark - Over write
-- (void)initUI {
-    [super initUI];
-
-    self.titles = @[@"Level", @"Event", @"Other"];
-    self.filterViews = @[self.levelView, self.eventView, self.otherView];
 }
 
 #pragma mark - Getters and setters

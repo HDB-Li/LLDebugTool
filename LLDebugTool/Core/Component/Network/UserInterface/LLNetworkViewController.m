@@ -210,72 +210,18 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 - (void)filterData {
-    @synchronized(self) {
-        [self.searchDataArray removeAllObjects];
-        [self.searchDataArray addObjectsFromArray:self.oriDataArray];
+    [self.searchDataArray removeAllObjects];
+    [self.searchDataArray addObjectsFromArray:self.oriDataArray];
 
-        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-        for (LLNetworkModel *model in self.oriDataArray) {
-            // Filter Host
-            if (self.currentHost.count) {
-                NSString *host = model.url.host;
-                if (![self.currentHost containsObject:host]) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            // Filter "Search"
-            if (self.searchTextField.text.length) {
-                NSMutableArray *filterArray = [[NSMutableArray alloc] initWithObjects:model.url.absoluteString ?: model.url.host, nil];
-                BOOL checkHeader = [self.currentTypes containsObject:@"Header"];
-                BOOL checkBody = [self.currentTypes containsObject:@"Body"];
-                BOOL checkResponse = [self.currentTypes containsObject:@"Response"];
-                BOOL needPop = YES;
-
-                if (checkHeader && model.headerString.length) {
-                    [filterArray addObject:model.headerString];
-                }
-
-                if (checkBody && model.requestBody.length) {
-                    [filterArray addObject:model.requestBody];
-                }
-
-                if (checkResponse && model.responseString.length) {
-                    [filterArray addObject:model.responseString];
-                }
-
-                for (NSString *filter in filterArray) {
-                    if ([filter.lowercaseString containsString:self.searchTextField.text.lowercaseString]) {
-                        needPop = NO;
-                        break;
-                    }
-                }
-
-                if (needPop) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            // Filter Date
-            if (self.currentFromDate) {
-                if ([model.dateDescription compare:self.currentFromDate] == NSOrderedAscending) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
-
-            if (self.currentEndDate) {
-                if ([model.dateDescription compare:self.currentEndDate] == NSOrderedDescending) {
-                    [tempArray addObject:model];
-                    continue;
-                }
-            }
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    for (LLNetworkModel *model in self.oriDataArray) {
+        if ([self isNeedRemove:model]) {
+            [tempArray addObject:model];
+            continue;
         }
-        [self.searchDataArray removeObjectsInArray:tempArray];
-        [self.tableView reloadData];
     }
+    [self.searchDataArray removeObjectsInArray:tempArray];
+    [self.tableView reloadData];
 }
 
 - (void)showFilterView {
@@ -311,6 +257,72 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
         completion:^(BOOL finished) {
             self.maskView.hidden = YES;
         }];
+}
+
+- (BOOL)isNeedRemove:(LLNetworkModel *)model {
+    BOOL isRemove = NO;
+
+    // Filter Host
+    isRemove = isRemove || [self ignoreInHost:model];
+
+    // Filter "Search"
+    isRemove = isRemove || [self ignoreInSearch:model];
+
+    // Filter Date
+    isRemove = isRemove || [self ignoreInDate:model];
+
+    return isRemove;
+}
+
+- (BOOL)ignoreInHost:(LLNetworkModel *)model {
+    return self.currentHost.count && model.url.host && ![self.currentHost containsObject:model.url.host];
+}
+
+- (BOOL)ignoreInSearch:(LLNetworkModel *)model {
+    if (self.searchTextField.text.length) {
+        NSMutableArray *filterArray = [[NSMutableArray alloc] initWithObjects:model.url.absoluteString ?: model.url.host, nil];
+        BOOL checkHeader = [self.currentTypes containsObject:@"Header"];
+        BOOL checkBody = [self.currentTypes containsObject:@"Body"];
+        BOOL checkResponse = [self.currentTypes containsObject:@"Response"];
+        BOOL needPop = YES;
+
+        if (checkHeader && model.headerString.length) {
+            [filterArray addObject:model.headerString];
+        }
+
+        if (checkBody && model.requestBody.length) {
+            [filterArray addObject:model.requestBody];
+        }
+
+        if (checkResponse && model.responseString.length) {
+            [filterArray addObject:model.responseString];
+        }
+
+        for (NSString *filter in filterArray) {
+            if ([filter.lowercaseString containsString:self.searchTextField.text.lowercaseString]) {
+                needPop = NO;
+                break;
+            }
+        }
+
+        return needPop;
+    }
+    return NO;
+}
+
+- (BOOL)ignoreInDate:(LLNetworkModel *)model {
+    if (self.currentFromDate) {
+        if ([model.dateDescription compare:self.currentFromDate] == NSOrderedAscending) {
+            return YES;
+        }
+    }
+
+    if (self.currentEndDate) {
+        if ([model.dateDescription compare:self.currentEndDate] == NSOrderedDescending) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 #pragma mark - Getters and setters

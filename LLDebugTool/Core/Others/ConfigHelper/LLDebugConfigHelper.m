@@ -26,6 +26,7 @@
 #import "LLDebugConfig.h"
 #import "LLFunctionItemModel.h"
 #import "LLThemeManager.h"
+#import "LLTool.h"
 
 #import "UIColor+LL_Utils.h"
 
@@ -37,34 +38,28 @@
 }
 
 + (NSString *)colorStyleDetailDescription:(LLDebugConfigColorStyle)colorStyle {
-    switch (colorStyle) {
-        case LLDebugConfigColorStyleHack:
-            return @"Hack";
-        case LLDebugConfigColorStyleSimple:
-            return @"Simple";
-        case LLDebugConfigColorStyleSystem:
-            return @"System";
-        case LLDebugConfigColorStyleGrass:
-            return @"Grass";
-        case LLDebugConfigColorStyleHomebrew:
-            return @"Homebrew";
-        case LLDebugConfigColorStyleManPage:
-            return @"Man Page";
-        case LLDebugConfigColorStyleNovel:
-            return @"Novel";
-        case LLDebugConfigColorStyleOcean:
-            return @"Ocean";
-        case LLDebugConfigColorStylePro:
-            return @"Pro";
-        case LLDebugConfigColorStyleRedSands:
-            return @"Red Sands";
-        case LLDebugConfigColorStyleSilverAerogel:
-            return @"Silver Aerogel";
-        case LLDebugConfigColorStyleSolidColors:
-            return @"Solid Colors";
-        case LLDebugConfigColorStyleCustom:
-            return [NSString stringWithFormat:@"%@\n%@", [[LLThemeManager shared].primaryColor LL_description], [[LLThemeManager shared].backgroundColor LL_description]];
+    NSString *customDesc = [NSString stringWithFormat:@"%@\n%@", [[LLThemeManager shared].primaryColor LL_description], [[LLThemeManager shared].backgroundColor LL_description]];
+    NSDictionary *json = @{
+        @(LLDebugConfigColorStyleHack): @"Hack",
+        @(LLDebugConfigColorStyleSimple): @"Simple",
+        @(LLDebugConfigColorStyleSystem): @"System",
+        @(LLDebugConfigColorStyleGrass): @"Grass",
+        @(LLDebugConfigColorStyleHomebrew): @"Homebrew",
+        @(LLDebugConfigColorStyleManPage): @"Man Page",
+        @(LLDebugConfigColorStyleNovel): @"Novel",
+        @(LLDebugConfigColorStyleOcean): @"Ocean",
+        @(LLDebugConfigColorStylePro): @"Pro",
+        @(LLDebugConfigColorStyleRedSands): @"Red Sands",
+        @(LLDebugConfigColorStyleSilverAerogel): @"Silver Aerogel",
+        @(LLDebugConfigColorStyleSolidColors): @"Solid Colors",
+        @(LLDebugConfigColorStyleCustom): customDesc
+    };
+    NSString *desc = json[@(colorStyle)];
+    if (!desc) {
+        desc = @"";
+        [LLTool log:[NSString stringWithFormat:@"colorStyleDetailDescription unknown : %@", @(colorStyle)]];
     }
+    return desc;
 }
 
 + (NSString *)colorStyleDescription {
@@ -72,34 +67,27 @@
 }
 
 + (NSString *)colorStyleDescription:(LLDebugConfigColorStyle)colorStyle {
-    switch (colorStyle) {
-        case LLDebugConfigColorStyleHack:
-            return @"Hack";
-        case LLDebugConfigColorStyleSimple:
-            return @"Simple";
-        case LLDebugConfigColorStyleSystem:
-            return @"System";
-        case LLDebugConfigColorStyleGrass:
-            return @"Grass";
-        case LLDebugConfigColorStyleHomebrew:
-            return @"Homebrew";
-        case LLDebugConfigColorStyleManPage:
-            return @"Man Page";
-        case LLDebugConfigColorStyleNovel:
-            return @"Novel";
-        case LLDebugConfigColorStyleOcean:
-            return @"Ocean";
-        case LLDebugConfigColorStylePro:
-            return @"Pro";
-        case LLDebugConfigColorStyleRedSands:
-            return @"Red Sands";
-        case LLDebugConfigColorStyleSilverAerogel:
-            return @"Silver Aerogel";
-        case LLDebugConfigColorStyleSolidColors:
-            return @"Solid Colors";
-        case LLDebugConfigColorStyleCustom:
-            return @"Custom";
+    NSDictionary *json = @{
+        @(LLDebugConfigColorStyleHack): @"Hack",
+        @(LLDebugConfigColorStyleSimple): @"Simple",
+        @(LLDebugConfigColorStyleSystem): @"System",
+        @(LLDebugConfigColorStyleGrass): @"Grass",
+        @(LLDebugConfigColorStyleHomebrew): @"Homebrew",
+        @(LLDebugConfigColorStyleManPage): @"Man Page",
+        @(LLDebugConfigColorStyleNovel): @"Novel",
+        @(LLDebugConfigColorStyleOcean): @"Ocean",
+        @(LLDebugConfigColorStylePro): @"Pro",
+        @(LLDebugConfigColorStyleRedSands): @"Red Sands",
+        @(LLDebugConfigColorStyleSilverAerogel): @"Silver Aerogel",
+        @(LLDebugConfigColorStyleSolidColors): @"Solid Colors",
+        @(LLDebugConfigColorStyleCustom): @"Custom"
+    };
+    NSString *desc = json[@(colorStyle)];
+    if (!desc) {
+        desc = @"";
+        [LLTool log:[NSString stringWithFormat:@"colorStyleDescription unknown : %@", @(colorStyle)]];
     }
+    return desc;
 }
 
 + (NSString *)entryWindowStyleDescription {

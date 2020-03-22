@@ -145,39 +145,51 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     if (self.tableView.isEditing == NO) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
         LLSandboxModel *model = self.datas[indexPath.row];
-        if (model.isDirectory) {
-            if (model.subModels.count) {
-                LLSandboxViewController *vc = [[LLSandboxViewController alloc] init];
-                vc.sandboxModel = model;
-                [self.navigationController pushViewController:vc animated:YES];
+        [self selectSandboxModel:model];
+    }
+}
+
+- (void)selectSandboxModel:(LLSandboxModel *)model {
+    if (model.isDirectory) {
+        [self openDirectory:model];
+    } else {
+        [self openFile:model];
+    }
+}
+
+- (void)openDirectory:(LLSandboxModel *)model {
+    if (model.subModels.count) {
+        LLSandboxViewController *vc = [[LLSandboxViewController alloc] init];
+        vc.sandboxModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
+    }
+}
+
+- (void)openFile:(LLSandboxModel *)model {
+    if (model.canOpenWithTextView) {
+        [self openWithTextPreviewController:model];
+    } else if (model.canOpenWithImageView) {
+        [self openWithImagePreviewController:model];
+    } else if (model.canOpenWithVideo) {
+        [self openWithVideoPreviewController:model];
+    } else {
+        if (@available(iOS 13.0, *)) {
+            if (model.canOpenWithWebView) {
+                [self openWithHtmlPreviewController:model];
+            } else if (model.canPreview) {
+                [self openWithPreviewController:model];
             } else {
-                [[LLToastUtils shared] toastMessage:LLLocalizedString(@"empty.folder")];
+                [self showActivityViewController:model];
             }
         } else {
-            if (model.canOpenWithTextView) {
-                [self openWithTextPreviewController:model];
-            } else if (model.canOpenWithImageView) {
-                [self openWithImagePreviewController:model];
-            } else if (model.canOpenWithVideo) {
-                [self openWithVideoPreviewController:model];
+            if (model.canPreview) {
+                [self openWithPreviewController:model];
+            } else if (model.canOpenWithWebView) {
+                [self openWithHtmlPreviewController:model];
             } else {
-                if (@available(iOS 13.0, *)) {
-                    if (model.canOpenWithWebView) {
-                        [self openWithHtmlPreviewController:model];
-                    } else if (model.canPreview) {
-                        [self openWithPreviewController:model];
-                    } else {
-                        [self showActivityViewController:model];
-                    }
-                } else {
-                    if (model.canPreview) {
-                        [self openWithPreviewController:model];
-                    } else if (model.canOpenWithWebView) {
-                        [self openWithHtmlPreviewController:model];
-                    } else {
-                        [self showActivityViewController:model];
-                    }
-                }
+                [self showActivityViewController:model];
             }
         }
     }

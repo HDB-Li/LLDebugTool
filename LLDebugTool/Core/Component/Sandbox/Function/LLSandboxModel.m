@@ -102,30 +102,33 @@
             }
         } else {
             NSString *extension = self.filePath.pathExtension.lowercaseString;
-
-            NSString *imageName = [NSString stringWithFormat:@"%@", extension];
-            UIImage *image = [UIImage LL_imageNamed:imageName];
-            if (!image) {
-                if ([extension isEqualToString:@"docx"]) {
-                    imageName = kSandboxFileDocImageName;
-                } else if ([extension isEqualToString:@"jpeg"]) {
-                    imageName = kSandboxFileJpgImageName;
-                } else if ([extension isEqualToString:@"mp4"]) {
-                    imageName = kSandboxFileMovImageName;
-                } else if ([extension isEqualToString:@"db"] || [extension isEqualToString:@"sqlite"]) {
-                    imageName = kSandboxFileSqlImageName;
-                } else if ([extension isEqualToString:@"xlsx"]) {
-                    imageName = kSandboxFileXlsImageName;
-                } else if ([extension isEqualToString:@"rar"]) {
-                    imageName = kSandboxFileZipImageName;
-                } else {
-                    imageName = kSandboxFileUnknownImageName;
-                }
-            }
-            _iconName = [imageName copy];
+            _iconName = [self imageNameWithExtension:extension];
         }
     }
     return _iconName;
+}
+
+- (NSString *)imageNameWithExtension:(NSString *)extension {
+    NSString *imageName = extension;
+    UIImage *image = [UIImage LL_imageNamed:imageName];
+    if (!image) {
+        if ([extension isEqualToString:@"docx"]) {
+            imageName = kSandboxFileDocImageName;
+        } else if ([extension isEqualToString:@"jpeg"]) {
+            imageName = kSandboxFileJpgImageName;
+        } else if ([extension isEqualToString:@"mp4"]) {
+            imageName = kSandboxFileMovImageName;
+        } else if ([extension isEqualToString:@"db"] || [extension isEqualToString:@"sqlite"]) {
+            imageName = kSandboxFileSqlImageName;
+        } else if ([extension isEqualToString:@"xlsx"]) {
+            imageName = kSandboxFileXlsImageName;
+        } else if ([extension isEqualToString:@"rar"]) {
+            imageName = kSandboxFileZipImageName;
+        } else {
+            imageName = kSandboxFileUnknownImageName;
+        }
+    }
+    return imageName;
 }
 
 #pragma mark - Lazy load

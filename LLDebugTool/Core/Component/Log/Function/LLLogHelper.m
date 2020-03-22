@@ -48,37 +48,26 @@ static LLLogHelper *_instance = nil;
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLDebugConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+
+    NSString *header = @"\n--------Debug Tool--------";
+    NSString *onEventString = onEvent.length ? [NSString stringWithFormat:@"\nEvent:<%@>", onEvent] : @"";
+    NSString *fileString = [NSString stringWithFormat:@"\nFile:<%@>", file];
+    NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%ld>", (long)lineNo];
+    NSString *funcString = [NSString stringWithFormat:@"\nFunc:<%@>", function];
+    NSString *dateString = [NSString stringWithFormat:@"\nDate:<%@>", date];
+    NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>", message];
+    NSString *footer = @"\n--------------------------";
+
     LLDebugConfigLogStyle logStyle = [LLDebugConfig shared].logStyle;
     switch (logStyle) {
-        case LLDebugConfigLogDetail:
-        case LLDebugConfigLogFileFuncDesc:
+        case LLDebugConfigLogDetail: {
+            NSLog(@"%@%@%@%@%@%@%@%@", header, onEventString, fileString, lineNoString, funcString, dateString, messageString, footer);
+        } break;
+        case LLDebugConfigLogFileFuncDesc: {
+            NSLog(@"%@%@%@%@%@%@", header, onEventString, fileString, funcString, messageString, footer);
+        } break;
         case LLDebugConfigLogFileDesc: {
-            NSString *header = @"\n--------Debug Tool--------";
-            NSString *onEventString = [NSString stringWithFormat:@"\nEvent:<%@>", onEvent];
-            NSString *fileString = [NSString stringWithFormat:@"\nFile:<%@>", file];
-            NSString *lineNoString = [NSString stringWithFormat:@"\nLine:<%ld>", (long)lineNo];
-            NSString *funcString = [NSString stringWithFormat:@"\nFunc:<%@>", function];
-            NSString *dateString = [NSString stringWithFormat:@"\nDate:<%@>", date];
-            NSString *messageString = [NSString stringWithFormat:@"\nDesc:<%@>", message];
-            NSString *footer = @"\n--------------------------";
-
-            NSMutableString *log = [[NSMutableString alloc] initWithString:header];
-            if (onEvent.length) {
-                [log appendString:onEventString];
-            }
-            [log appendString:fileString];
-            if (logStyle == LLDebugConfigLogDetail) {
-                [log appendString:lineNoString];
-            }
-            if (logStyle == LLDebugConfigLogDetail || logStyle == LLDebugConfigLogFileFuncDesc) {
-                [log appendString:funcString];
-            }
-            if (logStyle == LLDebugConfigLogDetail) {
-                [log appendString:dateString];
-            }
-            [log appendString:messageString];
-            [log appendString:footer];
-            NSLog(@"%@", log);
+            NSLog(@"%@%@%@%@%@", header, onEventString, fileString, messageString, footer);
         } break;
         case LLDebugConfigLogNone: {
         } break;

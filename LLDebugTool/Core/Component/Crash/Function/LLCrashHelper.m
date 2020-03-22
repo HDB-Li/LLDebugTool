@@ -65,94 +65,92 @@ static LLCrashHelper *_instance = nil;
 #pragma mark - Primary
 - (void)registerCatch {
     NSSetUncaughtExceptionHandler(&HandleException);
-    signal(SIGHUP, SignalHandler);
-    signal(SIGINT, SignalHandler);
-    signal(SIGQUIT, SignalHandler);
-    signal(SIGILL, SignalHandler);
-    signal(SIGTRAP, SignalHandler);
-    signal(SIGABRT, SignalHandler);
+
+    NSArray *signs = @[@(SIGHUP), @(SIGINT), @(SIGQUIT), @(SIGILL), @(SIGTRAP), @(SIGABRT),
 #ifdef SIGPOLL
-    signal(SIGPOLL, SignalHandler);
+                       @(SIGPOLL),
 #endif
 #ifdef SIGEMT
-    signal(SIGEMT, SignalHandler);
+                       @(SIGEMT),
 #endif
-    signal(SIGFPE, SignalHandler);
-    signal(SIGKILL, SignalHandler);
-    signal(SIGBUS, SignalHandler);
-    signal(SIGSEGV, SignalHandler);
-    signal(SIGSYS, SignalHandler);
-    signal(SIGPIPE, SignalHandler);
-    signal(SIGALRM, SignalHandler);
-    signal(SIGTERM, SignalHandler);
-    signal(SIGURG, SignalHandler);
-    signal(SIGSTOP, SignalHandler);
-    signal(SIGTSTP, SignalHandler);
-    signal(SIGCONT, SignalHandler);
-    signal(SIGCHLD, SignalHandler);
-    signal(SIGTTIN, SignalHandler);
-    signal(SIGTTOU, SignalHandler);
+                       @(SIGFPE),
+                       @(SIGKILL),
+                       @(SIGBUS),
+                       @(SIGSEGV),
+                       @(SIGSYS),
+                       @(SIGPIPE),
+                       @(SIGALRM),
+                       @(SIGTERM),
+                       @(SIGURG),
+                       @(SIGSTOP),
+                       @(SIGTSTP),
+                       @(SIGCONT),
+                       @(SIGCHLD),
+                       @(SIGTTIN),
+                       @(SIGTTOU),
 #ifdef SIGIO
-    signal(SIGIO, SignalHandler);
+                       @(SIGIO),
 #endif
-    signal(SIGXCPU, SignalHandler);
-    signal(SIGXFSZ, SignalHandler);
-    signal(SIGVTALRM, SignalHandler);
-    signal(SIGPROF, SignalHandler);
+                       @(SIGXCPU),
+                       @(SIGXFSZ),
+                       @(SIGVTALRM),
+                       @(SIGPROF),
 #ifdef SIGWINCH
-    signal(SIGWINCH, SignalHandler);
+                       @(SIGWINCH),
 #endif
 #ifdef SIGINFO
-    signal(SIGINFO, SignalHandler);
+                       @(SIGINFO),
 #endif
-    signal(SIGUSR1, SignalHandler);
-    signal(SIGUSR2, SignalHandler);
+                       @(SIGUSR1),
+                       @(SIGUSR2)];
+    for (NSNumber *sign in signs) {
+        signal(sign.intValue, SignalHandler);
+    }
 }
 
 - (void)unregisterCatch {
     NSSetUncaughtExceptionHandler(nil);
-    signal(SIGHUP, SIG_DFL);
-    signal(SIGINT, SIG_DFL);
-    signal(SIGQUIT, SIG_DFL);
-    signal(SIGILL, SIG_DFL);
-    signal(SIGTRAP, SIG_DFL);
-    signal(SIGABRT, SIG_DFL);
+
+    NSArray *signs = @[@(SIGHUP), @(SIGINT), @(SIGQUIT), @(SIGILL), @(SIGTRAP), @(SIGABRT),
 #ifdef SIGPOLL
-    signal(SIGPOLL, SIG_DFL);
+                       @(SIGPOLL),
 #endif
 #ifdef SIGEMT
-    signal(SIGEMT, SIG_DFL);
+                       @(SIGEMT),
 #endif
-    signal(SIGFPE, SIG_DFL);
-    signal(SIGKILL, SIG_DFL);
-    signal(SIGBUS, SIG_DFL);
-    signal(SIGSEGV, SIG_DFL);
-    signal(SIGSYS, SIG_DFL);
-    signal(SIGPIPE, SIG_DFL);
-    signal(SIGALRM, SIG_DFL);
-    signal(SIGTERM, SIG_DFL);
-    signal(SIGURG, SIG_DFL);
-    signal(SIGSTOP, SIG_DFL);
-    signal(SIGTSTP, SIG_DFL);
-    signal(SIGCONT, SIG_DFL);
-    signal(SIGCHLD, SIG_DFL);
-    signal(SIGTTIN, SIG_DFL);
-    signal(SIGTTOU, SIG_DFL);
+                       @(SIGFPE),
+                       @(SIGKILL),
+                       @(SIGBUS),
+                       @(SIGSEGV),
+                       @(SIGSYS),
+                       @(SIGPIPE),
+                       @(SIGALRM),
+                       @(SIGTERM),
+                       @(SIGURG),
+                       @(SIGSTOP),
+                       @(SIGTSTP),
+                       @(SIGCONT),
+                       @(SIGCHLD),
+                       @(SIGTTIN),
+                       @(SIGTTOU),
 #ifdef SIGIO
-    signal(SIGIO, SIG_DFL);
+                       @(SIGIO),
 #endif
-    signal(SIGXCPU, SIG_DFL);
-    signal(SIGXFSZ, SIG_DFL);
-    signal(SIGVTALRM, SIG_DFL);
-    signal(SIGPROF, SIG_DFL);
+                       @(SIGXCPU),
+                       @(SIGXFSZ),
+                       @(SIGVTALRM),
+                       @(SIGPROF),
 #ifdef SIGWINCH
-    signal(SIGWINCH, SIG_DFL);
+                       @(SIGWINCH),
 #endif
 #ifdef SIGINFO
-    signal(SIGINFO, SIG_DFL);
+                       @(SIGINFO),
 #endif
-    signal(SIGUSR1, SIG_DFL);
-    signal(SIGUSR2, SIG_DFL);
+                       @(SIGUSR1),
+                       @(SIGUSR2)];
+    for (NSNumber *sign in signs) {
+        signal(sign.intValue, SIG_DFL);
+    }
 }
 
 - (void)saveException:(NSException *)exception {
@@ -175,112 +173,51 @@ void HandleException(NSException *exception) {
 
 void SignalHandler(int sig) {
     // See https://stackoverflow.com/questions/40631334/how-to-intercept-exc-bad-instruction-when-unwrapping-nil.
-    NSString *name = @"Unknown signal";
-    switch (sig) {
-        case SIGHUP: {
-            name = @"SIGHUP";
-        } break;
-        case SIGINT: {
-            name = @"SIGINT";
-        } break;
-        case SIGQUIT: {
-            name = @"SIGQUIT";
-        } break;
-        case SIGILL: {
-            name = @"SIGILL";
-        } break;
-        case SIGTRAP: {
-            name = @"SIGTRAP";
-        } break;
-        case SIGABRT: {
-            name = @"SIGABRT";
-        } break;
+    NSDictionary *json = @{ @(SIGHUP): @"SIGHUP",
+                            @(SIGINT): @"SIGINT",
+                            @(SIGQUIT): @"SIGQUIT",
+                            @(SIGILL): @"SIGILL",
+                            @(SIGTRAP): @"SIGTRAP",
+                            @(SIGABRT): @"SIGABRT",
 #ifdef SIGPOLL
-        case SIGPOLL: {
-            name = @"SIGPOLL";
-        } break;
+                            @(SIGPOLL): @"SIGPOLL",
 #endif
-        case SIGEMT: {
-            name = @"SIGEMT";
-        } break;
-        case SIGFPE: {
-            name = @"SIGFPE";
-        } break;
-        case SIGKILL: {
-            name = @"SIGKILL";
-        } break;
-        case SIGBUS: {
-            name = @"SIGBUS";
-        } break;
-        case SIGSEGV: {
-            name = @"SIGSEGV";
-        } break;
-        case SIGSYS: {
-            name = @"SIGSYS";
-        } break;
-        case SIGPIPE: {
-            name = @"SIGPIPE";
-        } break;
-        case SIGALRM: {
-            name = @"SIGALRM";
-        } break;
-        case SIGTERM: {
-            name = @"SIGTERM";
-        } break;
-        case SIGURG: {
-            name = @"SIGURG";
-        } break;
-        case SIGSTOP: {
-            name = @"SIGSTOP";
-        } break;
-        case SIGTSTP: {
-            name = @"SIGTSTP";
-        } break;
-        case SIGCONT: {
-            name = @"SIGCONT";
-        } break;
-        case SIGCHLD: {
-            name = @"SIGCHLD";
-        } break;
-        case SIGTTIN: {
-            name = @"SIGTTIN";
-        } break;
-        case SIGTTOU: {
-            name = @"SIGTTOU";
-        } break;
+                            @(SIGEMT): @"SIGEMT",
+                            @(SIGFPE): @"SIGFPE",
+                            @(SIGKILL): @"SIGKILL",
+                            @(SIGBUS): @"SIGBUS",
+                            @(SIGSEGV): @"SIGSEGV",
+                            @(SIGSYS): @"SIGSYS",
+                            @(SIGPIPE): @"SIGPIPE",
+                            @(SIGALRM): @"SIGALRM",
+                            @(SIGTERM): @"SIGTERM",
+                            @(SIGURG): @"SIGURG",
+                            @(SIGSTOP): @"SIGSTOP",
+                            @(SIGTSTP): @"SIGTSTP",
+                            @(SIGCONT): @"SIGCONT",
+                            @(SIGCHLD): @"SIGCHLD",
+                            @(SIGTTIN): @"SIGTTIN",
+                            @(SIGTTOU): @"SIGTTOU",
 #ifdef SIGIO
-        case SIGIO: {
-            name = @"SIGIO";
-        } break;
+                            @(SIGIO): @"SIGIO",
 #endif
-        case SIGXCPU: {
-            name = @"SIGXCPU";
-        } break;
-        case SIGXFSZ: {
-            name = @"SIGXFSZ";
-        } break;
-        case SIGVTALRM: {
-            name = @"SIGVTALRM";
-        } break;
-        case SIGPROF: {
-            name = @"SIGPROF";
-        } break;
+                            @(SIGXCPU): @"SIGXCPU",
+                            @(SIGXFSZ): @"SIGXFSZ",
+                            @(SIGVTALRM): @"SIGVTALRM",
+                            @(SIGPROF): @"SIGPROF",
 #ifdef SIGWINCH
-        case SIGWINCH: {
-            name = @"SIGWINCH";
-        } break;
+                            @(SIGWINCH): @"SIGWINCH",
 #endif
 #ifdef SIGINFO
-        case SIGINFO: {
-            name = @"SIGINFO";
-        } break;
+                            @(SIGINFO): @"SIGINFO",
 #endif
-        case SIGUSR1: {
-            name = @"SIGUSR1";
-        } break;
-        case SIGUSR2: {
-            name = @"SIGUSR2";
-        } break;
+                            @(SIGUSR1): @"SIGUSR1",
+                            @(SIGUSR2): @"SIGUSR2"
+    };
+
+    NSString *name = json[@(sig)];
+    if (!name) {
+        name = @"Unknown signal";
     }
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
