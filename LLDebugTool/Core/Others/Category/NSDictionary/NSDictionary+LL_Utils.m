@@ -26,15 +26,28 @@
 @implementation NSDictionary (LL_Utils)
 
 - (NSString *)LL_jsonString {
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
-    if (!error) {
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        return jsonString;
+    NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
+    for (NSString *key in self.allKeys) {
+        if (![key isKindOfClass:[NSString class]]) {
+            continue;
+        }
+        id value = self[key];
+        if ([value isKindOfClass:[NSString class]]) {
+            newDic[key] = value;
+        } else if ([value isKindOfClass:[NSNumber class]]) {
+            newDic[key] = value;
+        } else if ([value isKindOfClass:[NSArray class]]) {
+            newDic[key] = [value LL_jsonString];
+        } else if ([value isKindOfClass:[NSDictionary class]]) {
+            newDic[key] = [value LL_jsonString];
+        } else if ([value isKindOfClass:[NSNull class]]) {
+            newDic[key] = @"<Null>";
+        } else {
+            newDic[key] = [value description];
+        }
     }
-    return nil;
+    
+    return [newDic LL_safeJsonString];
 }
 
 - (NSDictionary *)LL_addEntriesFromDictionary:(NSDictionary *)otherDictionary {
@@ -52,6 +65,19 @@
         [string appendFormat:@"%@ : %@\n", key, self[key]];
     }
     return [string copy];
+}
+
+#pragma mark - Primary
+- (NSString *)LL_safeJsonString {
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+    if (!error) {
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        return jsonString;
+    }
+    return nil;
 }
 
 @end

@@ -23,9 +23,32 @@
 
 #import "NSArray+LL_Utils.h"
 
+#import "NSMutableArray+LL_Utils.h"
+
 @implementation NSArray (LL_Utils)
 
 - (NSString *)LL_jsonString {
+    NSMutableArray *newArray = [NSMutableArray array];
+    for (id object in self) {
+        if ([object isKindOfClass:[NSString class]]) {
+            [newArray addObject:object];
+        } else if ([object isKindOfClass:[NSNumber class]]) {
+            [newArray addObject:object];
+        } else if ([object isKindOfClass:[NSArray class]]) {
+            [newArray LL_addObject:[object LL_jsonString]];
+        } else if ([object isKindOfClass:[NSDictionary class]]) {
+            [newArray LL_addObject:[object LL_jsonString]];
+        } else if ([object isKindOfClass:[NSNull class]]) {
+            [newArray addObject:@"<Null>"];
+        } else {
+            [newArray LL_addObject:[object description]];
+        }
+    }
+    return [newArray LL_SafeJsonString];
+}
+
+#pragma mark - Primary
+- (NSString *)LL_SafeJsonString {
     NSError *error;
     NSData *data = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
     if (!error) {
