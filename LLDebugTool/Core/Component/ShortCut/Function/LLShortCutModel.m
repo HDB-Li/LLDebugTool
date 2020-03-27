@@ -55,7 +55,7 @@
     dispatch_once(&onceToken, ^{
         _resetStandardUserDefaultsModel = [[LLShortCutModel alloc] initWithName:@"Reset User Defaults"
                                                                          action:^NSString *_Nullable {
-                                                                             [NSUserDefaults resetStandardUserDefaults];
+                                                                             [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[NSBundle mainBundle].bundleIdentifier];
                                                                              return nil;
                                                                          }];
     });
