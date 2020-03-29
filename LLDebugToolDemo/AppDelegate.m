@@ -19,18 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Start working with config.
-
-    NSData *data = [@"Data" dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *json = @{@"data": data, @"string": @"String", @"number": @(1), @"array": @[@"object1", @"object2"], @"dictionary": @{@"key": @"value"}};
-
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                    NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Data.plist"];
-    
-    NSData *jsonData = [NSPropertyListSerialization dataWithPropertyList:json format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
-    
-    [jsonData writeToFile:plistPath atomically:YES];
-    
     [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLDebugConfig *_Nonnull config) {
 
         //####################### Color Style #######################//
