@@ -123,13 +123,29 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 }
 
 - (void)setUpBundle {
-    NSBundle *currentBundle = [NSBundle bundleForClass:self.class];
-    NSString *imageBundlePath = [currentBundle pathForResource:@"LLDebugTool" ofType:@"bundle"];
-    if (!imageBundlePath && [NSBundle mainBundle] == currentBundle) {
-        // Can't get a bundle in a static lib. use full path to get bundle.
-        imageBundlePath = [[NSBundle mainBundle] pathForResource:@"Frameworks/LLDebugTool.framework/LLDebugTool" ofType:@"bundle"];
+    // Find in main bundle.
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:@"bundle"];
+    if (path) {
+        _imageBundle = [NSBundle bundleWithPath:path];
+        return;
     }
-    _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
+
+    // Find in dynamic framework.
+    if ([NSBundle bundleForClass:self.class] != [NSBundle mainBundle]) {
+        path = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
+        if (path) {
+            _imageBundle = [NSBundle bundleWithPath:path];
+            return;
+        }
+    }
+
+    // Find in embed frameworks.
+    path = [[NSBundle mainBundle] pathForResource:@"Frameworks/LLDebugTool.framework/LLDebugTool" ofType:@"bundle"];
+    if (path) {
+        _imageBundle = [NSBundle bundleWithPath:path];
+        return;
+    }
+
     if (!_imageBundle) {
         [LLTool log:@"Failed to load the image bundle"];
     }
