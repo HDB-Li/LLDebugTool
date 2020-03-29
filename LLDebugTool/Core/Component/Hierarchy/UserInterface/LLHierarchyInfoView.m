@@ -44,6 +44,8 @@
 
 @property (nonatomic, strong) UILabel *frameLabel;
 
+@property (nonatomic, strong) UILabel *textLabel;
+
 @property (nonatomic, strong) UILabel *backgroundColorLabel;
 
 @property (nonatomic, strong) UILabel *textColorLabel;
@@ -83,6 +85,7 @@
 
     [self.contentLabel sizeToFit];
     [self.frameLabel sizeToFit];
+    [self.textLabel sizeToFit];
     [self.backgroundColorLabel sizeToFit];
     [self.textColorLabel sizeToFit];
     [self.fontLabel sizeToFit];
@@ -106,7 +109,9 @@
 
     self.frameLabel.frame = CGRectMake(self.contentLabel.LL_x, self.contentLabel.LL_bottom, self.contentLabel.LL_width, self.frameLabel.LL_height);
 
-    self.backgroundColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.frameLabel.LL_bottom, self.contentLabel.LL_width, self.backgroundColorLabel.LL_height);
+    self.textLabel.frame = CGRectMake(self.contentLabel.LL_x, self.frameLabel.LL_bottom, self.contentLabel.LL_width, self.textLabel.LL_height);
+
+    self.backgroundColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.textLabel.LL_bottom, self.contentLabel.LL_width, self.backgroundColorLabel.LL_height);
 
     self.textColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.backgroundColorLabel.LL_bottom, self.contentLabel.LL_width, self.textColorLabel.LL_height);
 
@@ -122,6 +127,7 @@
 
     [self addSubview:self.contentLabel];
     [self addSubview:self.frameLabel];
+    [self addSubview:self.textLabel];
     [self addSubview:self.backgroundColorLabel];
     [self addSubview:self.textColorLabel];
     [self addSubview:self.fontLabel];
@@ -141,6 +147,10 @@
 
 - (void)frameLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
     [self.selectedView LL_showFrameAlertAndAutomicSetWithKeyPath:@"frame"];
+}
+
+- (void)textLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [self.selectedView LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
 }
 
 - (void)backgroundColorLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
@@ -174,9 +184,11 @@
 
     if ([view isKindOfClass:[UILabel class]]) {
         UILabel *label = (UILabel *)view;
+        self.textLabel.attributedText = [self attributedStringWithText:@"Text :" detail:label.text];
         self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:label.textColor.LL_description];
         self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", label.font.pointSize]];
     } else {
+        self.textLabel.attributedText = nil;
         self.textColorLabel.attributedText = nil;
         self.fontLabel.attributedText = nil;
     }
@@ -189,7 +201,7 @@
 }
 
 - (void)updateHeightIfNeeded {
-    CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height;
+    CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.textLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height;
     CGFloat height = kLLGeneralMargin + LL_MAX(contentHeight, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
     if (height != self.LL_height) {
         self.LL_height = height;
@@ -237,6 +249,16 @@
         [_frameLabel LL_addClickListener:self action:@selector(frameLabelTapGestureRecognizer:)];
     }
     return _frameLabel;
+}
+
+- (UILabel *)textLabel {
+    if (!_textLabel) {
+        _textLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _textLabel.numberOfLines = 0;
+        _textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_textLabel LL_addClickListener:self action:@selector(textLabelTapGestureRecognizer:)];
+    }
+    return _textLabel;
 }
 
 - (UILabel *)backgroundColorLabel {

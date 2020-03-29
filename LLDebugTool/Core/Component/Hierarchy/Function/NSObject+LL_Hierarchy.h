@@ -41,6 +41,8 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolChangeHierarchyNotificatio
 
 - (void)LL_showFontAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
 
+- (void)LL_showTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
 @end
 
 @interface UIView (LL_Hierarchy)
