@@ -63,6 +63,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)saveScreenshot:(UIImage *)image name:(NSString *_Nullable)name complete:(void (^__nullable)(BOOL finished))complete;
 
+/**
+ Whether can request photo library authorization.
+ */
+- (BOOL)canRequestPhotoLibraryAuthorization;
+
 @end
 
 NS_ASSUME_NONNULL_END

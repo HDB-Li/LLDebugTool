@@ -102,7 +102,6 @@
 "location.record.route.recording" = "记录轨迹中";
 
 // Screenshot
-"screenshot.image.name" = "输入图片名称";
 "screenshot.save.in.sandbox.album" = "保存图片到沙盒和相册";
 "screenshot.save.in.sandbox" = "保存图片到沙盒";
 "screenshot.save.fail" = "保存图片失败";

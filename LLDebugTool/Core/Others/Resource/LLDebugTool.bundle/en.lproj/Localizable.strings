@@ -102,7 +102,6 @@
 "location.record.route.recording" = "Recording location";
 
 // Screenshot
-"screenshot.image.name" = "Enter the image name";
 "screenshot.save.in.sandbox.album" = "Save image in sanbox and album";
 "screenshot.save.in.sandbox" = "Save image in sandbox";
 "screenshot.save.fail" = "Save image failed";

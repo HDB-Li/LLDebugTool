@@ -23,6 +23,7 @@
 
 #import "LLScreenshotWindow.h"
 
+#import "LLNavigationController.h"
 #import "LLScreenshotViewController.h"
 #import "LLWindowManager.h"
 
@@ -34,7 +35,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.rootViewController = [[LLScreenshotViewController alloc] init];
+        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLScreenshotViewController alloc] init]];
+        ;
     }
     return self;
 }

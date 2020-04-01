@@ -84,12 +84,7 @@
 }
 
 - (void)confirmAction {
-    __weak typeof(self) weakSelf = self;
-    [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"screenshot.image.name")
-                                                text:self.name
-                                             handler:^(NSString *_Nullable newText) {
-                                                 [weakSelf doConfirmAction:newText];
-                                             }];
+    [self doConfirmAction:self.name];
 }
 
 - (void)doConfirmAction:(NSString *)name {
@@ -97,17 +92,37 @@
     UIImage *image = [self.imageView LL_convertViewToImage];
     if (image) {
         [[LLScreenshotHelper shared] saveScreenshot:image name:name complete:nil];
-        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox.album")];
-        } else {
-            [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox")];
-        }
+        [self saveInSandboxAndAlbumWithImage:image requestAuthorization:YES];
     } else {
         self.toolBar.hidden = NO;
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.fail")];
+        [self componentDidLoad:nil];
     }
-    [self componentDidLoad:nil];
+}
+
+- (void)saveInSandboxAndAlbumWithImage:(UIImage *)image requestAuthorization:(BOOL)requestAuthorization {
+    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox.album")];
+        [self shareImage:image];
+    } else if (requestAuthorization && [[LLScreenshotHelper shared] canRequestPhotoLibraryAuthorization]) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self saveInSandboxAndAlbumWithImage:image requestAuthorization:NO];
+            });
+        }];
+    } else {
+        [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox")];
+        [self shareImage:image];
+    }
+}
+
+- (void)shareImage:(UIImage *)image {
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
+    vc.completionWithItemsHandler = ^(UIActivityType _Nullable activityType, BOOL completed, NSArray *_Nullable returnedItems, NSError *_Nullable activityError) {
+        [self componentDidLoad:nil];
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - LLScreenshotToolbarDelegate

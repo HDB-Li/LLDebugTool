@@ -45,6 +45,7 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor clearColor];
     self.updateBackgroundColor = NO;
 
@@ -74,7 +75,7 @@
 - (void)captureButtonClicked:(UIButton *)sender {
     LLScreenshotPreviewViewController *vc = [[LLScreenshotPreviewViewController alloc] init];
     vc.image = [[LLScreenshotHelper shared] imageFromScreen];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {
