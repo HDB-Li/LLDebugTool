@@ -92,7 +92,7 @@
     UIImage *image = [self.imageView LL_convertViewToImage];
     if (image) {
         [[LLScreenshotHelper shared] saveScreenshot:image name:name complete:nil];
-        [self saveInSandboxAndAlbumWithImage:image requestAuthorization:YES];
+        [self saveInAlbumAndSandboxWithImage:image requestAuthorization:YES];
     } else {
         self.toolBar.hidden = NO;
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.fail")];
@@ -100,24 +100,24 @@
     }
 }
 
-- (void)saveInSandboxAndAlbumWithImage:(UIImage *)image requestAuthorization:(BOOL)requestAuthorization {
+- (void)saveInAlbumAndSandboxWithImage:(UIImage *)image requestAuthorization:(BOOL)requestAuthorization {
     if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox.album")];
-        [self shareImage:image];
+        [self toastShareWithImage:image];
     } else if (requestAuthorization && [[LLScreenshotHelper shared] canRequestPhotoLibraryAuthorization]) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self saveInSandboxAndAlbumWithImage:image requestAuthorization:NO];
+                [self saveInAlbumAndSandboxWithImage:image requestAuthorization:NO];
             });
         }];
     } else {
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox")];
-        [self shareImage:image];
+        [self toastShareWithImage:image];
     }
 }
 
-- (void)shareImage:(UIImage *)image {
+- (void)toastShareWithImage:(UIImage *)image {
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
     vc.completionWithItemsHandler = ^(UIActivityType _Nullable activityType, BOOL completed, NSArray *_Nullable returnedItems, NSError *_Nullable activityError) {
         [self componentDidLoad:nil];
