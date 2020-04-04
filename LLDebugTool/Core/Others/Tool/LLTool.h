@@ -63,6 +63,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIWindow *)keyWindow;
 
 /**
+ Get AppDelegate's window or UISceneDelegate's window.
+ */
++ (UIWindow *_Nullable)delegateWindow;
+
+/**
  Internal log.
 
  @param string log string.

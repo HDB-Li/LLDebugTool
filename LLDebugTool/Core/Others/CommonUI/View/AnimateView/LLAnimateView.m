@@ -25,6 +25,7 @@
 
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
+#import "LLTool.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -48,10 +49,7 @@
 
 #pragma mark - Public
 - (void)show {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-#pragma clang diagnostic pop
+    UIWindow *window = [LLTool keyWindow];
     [window addSubview:self];
     self.alpha = 0;
     self.LL_top = LL_SCREEN_HEIGHT;

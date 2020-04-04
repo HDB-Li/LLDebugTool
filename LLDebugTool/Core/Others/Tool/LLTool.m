@@ -85,9 +85,9 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (UIWindow *)topWindow {
-    UIWindow *topWindow = [UIApplication sharedApplication].delegate.window;
+    UIWindow *topWindow = [self delegateWindow];
     for (UIWindow *win in [UIApplication sharedApplication].windows) {
-        if (!win.isHidden && win.windowLevel > topWindow.windowLevel) {
+        if (!win.isHidden && win.alpha > 0 && win.windowLevel > topWindow.windowLevel) {
             topWindow = win;
         }
     }
@@ -99,6 +99,32 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     return [UIApplication sharedApplication].keyWindow;
 #pragma clang diagnostic pop
+}
+
++ (UIWindow *_Nullable)delegateWindow {
+    __block UIWindow *window = nil;
+    if (@available(iOS 13.0, *)) {
+        if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
+            window = [UIApplication sharedApplication].delegate.window;
+        }
+        if (!window) {
+            [[UIApplication sharedApplication]
+                    .connectedScenes enumerateObjectsUsingBlock:^(UIScene *_Nonnull obj, BOOL *_Nonnull stop) {
+                if ([obj.delegate conformsToProtocol:@protocol(UIWindowSceneDelegate)]) {
+                    id<UIWindowSceneDelegate> delegate = (id<UIWindowSceneDelegate>)obj.delegate;
+                    if ([delegate respondsToSelector:@selector(window)]) {
+                        window = delegate.window;
+                        if (window) {
+                            *stop = YES;
+                        }
+                    }
+                }
+            }];
+        }
+    } else {
+        window = [UIApplication sharedApplication].delegate.window;
+    }
+    return window;
 }
 
 + (void)log:(NSString *)string {

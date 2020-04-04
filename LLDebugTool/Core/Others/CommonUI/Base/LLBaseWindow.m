@@ -36,10 +36,15 @@
 #ifdef __IPHONE_13_0
         if (@available(iOS 13.0, *)) {
             self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUISceneWillConnectNotification:) name:UISceneWillConnectNotification object:nil];
         }
 #endif
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)becomeVisiable {
@@ -58,5 +63,18 @@
     }
     return [super pointInside:point withEvent:event];
 }
+
+#pragma mark - UISceneWillConnectNotification
+#ifdef __IPHONE_13_0
+- (void)didReceiveUISceneWillConnectNotification:(NSNotification *)notification {
+    if (@available(iOS 13.0, *)) {
+        UIWindowScene *scene = notification.object;
+        if (![scene isKindOfClass:[UIWindowScene class]]) {
+            return;
+        }
+        self.windowScene = scene;
+    }
+}
+#endif
 
 @end

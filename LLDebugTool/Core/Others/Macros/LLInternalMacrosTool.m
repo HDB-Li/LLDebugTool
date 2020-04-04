@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import "LLInternalMacrosTool.h"
+#import "LLTool.h"
 
 static BOOL isCalculateSpecialScreen = NO;
 static BOOL isIPhoneX = NO;
@@ -52,7 +53,7 @@ static BOOL isIPhoneX = NO;
     if (!isCalculateSpecialScreen) {
         isCalculateSpecialScreen = YES;
         if (@available(iOS 11.0, *)) {
-            isIPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;
+            isIPhoneX = [LLTool delegateWindow].safeAreaInsets.bottom > 0.0;
         }
     }
     return isIPhoneX;
