@@ -122,7 +122,7 @@
 }
 
 - (CGRect)frameInLocalForView:(UIView *)view {
-    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    UIWindow *window = [LLTool delegateWindow];
     CGRect rect = [view convertRect:view.bounds toView:window];
     rect = [self.view convertRect:rect fromView:window];
     return rect;

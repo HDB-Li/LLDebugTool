@@ -27,6 +27,7 @@
 #import "LLDebugConfig.h"
 #import "LLHierarchyHelper.h"
 #import "LLThemeManager.h"
+#import "LLTool.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -40,12 +41,9 @@
 
 #pragma mark - Primary
 - (NSArray<UIView *> *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow {
-// Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.
-// Default to the the application's key window if none of the windows want the touch.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    UIWindow *windowForSelection = [[UIApplication sharedApplication] keyWindow];
-#pragma clang diagnostic pop
+    // Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.
+    // Default to the the application's key window if none of the windows want the touch.
+    UIWindow *windowForSelection = [LLTool keyWindow];
     for (UIWindow *window in [[[LLHierarchyHelper shared] allWindowsIgnoreClass:[LLBaseWindow class]] reverseObjectEnumerator]) {
         if ([window hitTest:tapPointInWindow withEvent:nil]) {
             windowForSelection = window;

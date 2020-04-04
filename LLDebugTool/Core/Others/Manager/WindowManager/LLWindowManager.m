@@ -27,6 +27,7 @@
 #import "LLDebugConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
+#import "LLTool.h"
 
 #import "UIView+LL_Utils.h"
 
@@ -144,8 +145,9 @@ static LLWindowManager *_instance = nil;
         window.hidden = NO;
         window.windowLevel = self.entryWindowLevel;
     } else {
-        if (![[UIApplication sharedApplication].keyWindow isKindOfClass:[LLBaseWindow class]]) {
-            self.keyWindow = [UIApplication sharedApplication].keyWindow;
+        UIWindow *keyWindow = [LLTool keyWindow];
+        if (![keyWindow isKindOfClass:[LLBaseWindow class]]) {
+            self.keyWindow = keyWindow;
             self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
             [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
         }
@@ -293,6 +295,11 @@ static LLWindowManager *_instance = nil;
     } else {
         window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
+#ifdef __IPHONE_13_0
+    if (@available(iOS 13.0, *)) {
+        window.windowScene = [LLTool delegateWindow].windowScene;
+    }
+#endif
     NSAssert([window isKindOfClass:[LLBaseWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLBaseWindow class", className]));
     return window;
 }
