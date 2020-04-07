@@ -87,7 +87,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     }
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:array applicationActivities:nil];
     __weak typeof(self) weakSelf = self;
-    vc.completionWithItemsHandler = ^(UIActivityType _Nullable activityType, BOOL completed, NSArray *_Nullable returnedItems, NSError *_Nullable activityError) {
+    vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         [weakSelf rightItemClick:weakSelf.navigationItem.rightBarButtonItem.customView];
         if (activityError) {
             [[LLToastUtils shared] toastMessage:activityError.debugDescription];

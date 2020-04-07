@@ -29,7 +29,7 @@ typedef CFHTTPMessageRef (*LLHTTPURLResponseGetHTTPProtocol)(CFURLRef response);
 
 @implementation NSHTTPURLResponse (LL_Network)
 
-- (NSString *_Nullable)LL_stateLine {
+- (NSString *)LL_stateLine {
     NSString *stateLine = nil;
 
     NSString *functionName = @"CFURLResponseGetHTTPResponse";

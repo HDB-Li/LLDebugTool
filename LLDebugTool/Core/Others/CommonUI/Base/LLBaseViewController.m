@@ -65,7 +65,7 @@
     return YES;
 }
 
-- (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag {
+- (void)initNavigationItemWithTitle:(NSString *)title imageName:(NSString *)imageName isLeft:(BOOL)flag {
     if (flag) {
         UIButton *btn = [self LL_navigationButtonWithTitle:title imageName:imageName target:self action:@selector(leftItemClick:)];
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

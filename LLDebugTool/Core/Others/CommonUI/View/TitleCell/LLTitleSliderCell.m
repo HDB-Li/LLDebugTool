@@ -37,6 +37,8 @@
 
 @implementation LLTitleSliderCell
 
+@dynamic model;
+
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
@@ -84,7 +86,7 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLTitleCellModel *)model {
+- (void)setModel:(LLTitleSliderCellModel *)model {
     [super setModel:model];
     _slider.minimumValue = model.minValue;
     _slider.maximumValue = model.maxValue;

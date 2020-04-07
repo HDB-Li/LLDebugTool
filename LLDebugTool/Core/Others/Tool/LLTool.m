@@ -101,7 +101,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 #pragma clang diagnostic pop
 }
 
-+ (UIWindow *_Nullable)delegateWindow {
++ (UIWindow *)delegateWindow {
     __block UIWindow *window = nil;
     if (@available(iOS 13.0, *)) {
         if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
@@ -160,7 +160,7 @@ static bool _statusBarClickable = YES;
     return _statusBarClickable;
 }
 
-+ (UIView *_Nullable)getUIStatusBarModern {
++ (UIView *)getUIStatusBarModern {
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
         // We can still get statusBar using the following code, but this is not recommended.

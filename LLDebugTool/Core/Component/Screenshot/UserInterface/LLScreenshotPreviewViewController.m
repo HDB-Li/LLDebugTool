@@ -119,7 +119,7 @@
 
 - (void)toastShareWithImage:(UIImage *)image {
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
-    vc.completionWithItemsHandler = ^(UIActivityType _Nullable activityType, BOOL completed, NSArray *_Nullable returnedItems, NSError *_Nullable activityError) {
+    vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         [self componentDidLoad:nil];
     };
     [self presentViewController:vc animated:YES completion:nil];

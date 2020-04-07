@@ -104,7 +104,6 @@
 		36B8563E237BA9F600210B94 /* LLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B8563D237BA9F600210B94 /* LLRouter.m */; };
 		36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85646237BE48D00210B94 /* LLRouter+Network.m */; };
 		36B8564A237BF0F800210B94 /* LLRouter+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */; };
-		36BB1E1B2320E679000D8F29 /* LLDetailTitleSelectorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */; };
 		36BB1E1F2320E89C000D8F29 /* LLDebugConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLDebugConfigHelper.m */; };
 		36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */; };
 		36BB1E3723211AF9000D8F29 /* LLConvenientScreenshotComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E3623211AF9000D8F29 /* LLConvenientScreenshotComponent.m */; };
@@ -145,6 +144,9 @@
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C413AE8523995CEF001EB1F9 /* LLJsonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C413AE8423995CEF001EB1F9 /* LLJsonTool.m */; };
 		C413AE8823995DD9001EB1F9 /* LLSandboxTextPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C413AE8723995DD9001EB1F9 /* LLSandboxTextPreviewController.m */; };
+		C4141C91243B16CE00C5EF86 /* LLDetailTitleCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4141C90243B16CD00C5EF86 /* LLDetailTitleCellModel.m */; };
+		C4141C94243B465F00C5EF86 /* LLTitleSwitchCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4141C93243B465F00C5EF86 /* LLTitleSwitchCellModel.m */; };
+		C4141C97243B4E4E00C5EF86 /* LLTitleSliderCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4141C96243B4E4E00C5EF86 /* LLTitleSliderCellModel.m */; };
 		C423EC4B2396A8B600A95271 /* LLDebugTool.docx in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4A2396A8B500A95271 /* LLDebugTool.docx */; };
 		C423EC4D2396AE9400A95271 /* LLDebugTool.doc in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4C2396AE9400A95271 /* LLDebugTool.doc */; };
 		C423EC4F2396B1D800A95271 /* LLDebugTool.pages in Resources */ = {isa = PBXBuildFile; fileRef = C423EC4E2396B1D800A95271 /* LLDebugTool.pages */; };
@@ -486,8 +488,6 @@
 		36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+AppInfo.m"; sourceTree = "<group>"; };
 		36B8564B237BF2A100210B94 /* LLLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLog.h; sourceTree = "<group>"; };
 		36B8564C237C0B7300210B94 /* LLCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrash.h; sourceTree = "<group>"; };
-		36BB1E192320E679000D8F29 /* LLDetailTitleSelectorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleSelectorCell.h; sourceTree = "<group>"; };
-		36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCell.m; sourceTree = "<group>"; };
 		36BB1E1D2320E89C000D8F29 /* LLDebugConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDebugConfigHelper.h; sourceTree = "<group>"; };
 		36BB1E1E2320E89C000D8F29 /* LLDebugConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugConfigHelper.m; sourceTree = "<group>"; };
 		36BB1E2C2320F954000D8F29 /* NSUserDefaults+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+LL_Utils.h"; sourceTree = "<group>"; };
@@ -576,6 +576,12 @@
 		C413AE8423995CEF001EB1F9 /* LLJsonTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLJsonTool.m; sourceTree = "<group>"; };
 		C413AE8623995DD9001EB1F9 /* LLSandboxTextPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxTextPreviewController.h; sourceTree = "<group>"; };
 		C413AE8723995DD9001EB1F9 /* LLSandboxTextPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxTextPreviewController.m; sourceTree = "<group>"; };
+		C4141C8F243B16CD00C5EF86 /* LLDetailTitleCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDetailTitleCellModel.h; sourceTree = "<group>"; };
+		C4141C90243B16CD00C5EF86 /* LLDetailTitleCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCellModel.m; sourceTree = "<group>"; };
+		C4141C92243B465F00C5EF86 /* LLTitleSwitchCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSwitchCellModel.h; sourceTree = "<group>"; };
+		C4141C93243B465F00C5EF86 /* LLTitleSwitchCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCellModel.m; sourceTree = "<group>"; };
+		C4141C95243B4E4E00C5EF86 /* LLTitleSliderCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleSliderCellModel.h; sourceTree = "<group>"; };
+		C4141C96243B4E4E00C5EF86 /* LLTitleSliderCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSliderCellModel.m; sourceTree = "<group>"; };
 		C423EC4A2396A8B500A95271 /* LLDebugTool.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.docx; sourceTree = "<group>"; };
 		C423EC4C2396AE9400A95271 /* LLDebugTool.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.doc; sourceTree = "<group>"; };
 		C423EC4E2396B1D800A95271 /* LLDebugTool.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.pages; sourceTree = "<group>"; };
@@ -940,14 +946,18 @@
 				36AB449D231FC5D800AC772B /* LLTitleCellCategoryModel.m */,
 				36AB4499231FC57D00AC772B /* LLTitleCellModel.h */,
 				36AB449A231FC57D00AC772B /* LLTitleCellModel.m */,
+				C4141C8F243B16CD00C5EF86 /* LLDetailTitleCellModel.h */,
+				C4141C90243B16CD00C5EF86 /* LLDetailTitleCellModel.m */,
+				C4141C92243B465F00C5EF86 /* LLTitleSwitchCellModel.h */,
+				C4141C93243B465F00C5EF86 /* LLTitleSwitchCellModel.m */,
+				C4141C95243B4E4E00C5EF86 /* LLTitleSliderCellModel.h */,
+				C4141C96243B4E4E00C5EF86 /* LLTitleSliderCellModel.m */,
 				36F93CB6238BB4680008C92E /* LLTitleCell.h */,
 				36F93CB7238BB4680008C92E /* LLTitleCell.m */,
 				3659124E2320B3E300FDA6A0 /* LLLeftTitleCell.h */,
 				3659124F2320B3E300FDA6A0 /* LLLeftTitleCell.m */,
 				36DDED7423331967008DD7F9 /* LLDetailTitleCell.h */,
 				36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */,
-				36BB1E192320E679000D8F29 /* LLDetailTitleSelectorCell.h */,
-				36BB1E1A2320E679000D8F29 /* LLDetailTitleSelectorCell.m */,
 				36AB44A9231FC7A700AC772B /* LLTitleSwitchCell.h */,
 				36AB44AA231FC7A700AC772B /* LLTitleSwitchCell.m */,
 				363DEC512325DFE90090E78C /* LLTitleSliderCell.h */,
@@ -2656,6 +2666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B4E44922F9C90900F70277 /* NSArray+LL_Utils.m in Sources */,
+				C4141C97243B4E4E00C5EF86 /* LLTitleSliderCellModel.m in Sources */,
 				C4AEB701238AD7EB0054CD37 /* LLShortCutComponent.m in Sources */,
 				3605940F237AB6E500C2D8FF /* LLWindowManager+Crash.m in Sources */,
 				368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */,
@@ -2767,6 +2778,7 @@
 				3678AD172354275B00AC0B2C /* LLHtmlWkWebViewController.m in Sources */,
 				C4B4E47722F9C90900F70277 /* LLBaseModel.m in Sources */,
 				36596BC222FD055C00BBB6FA /* LLMagnifierViewController.m in Sources */,
+				C4141C94243B465F00C5EF86 /* LLTitleSwitchCellModel.m in Sources */,
 				360075E2235571EF00A606AC /* TestHtmlViewController.m in Sources */,
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,
 				36C9F803237E7E850021BA2D /* LLWindowManager+Location.m in Sources */,
@@ -2859,7 +2871,6 @@
 				3629E3962136830A00226C79 /* TestNetworkViewController.m in Sources */,
 				C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */,
 				C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */,
-				36BB1E1B2320E679000D8F29 /* LLDetailTitleSelectorCell.m in Sources */,
 				C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */,
 				36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */,
 				36CDFBC823506374002A913F /* LLHtmlComponent.m in Sources */,
@@ -2888,6 +2899,7 @@
 				C49856E922EDACD200E9FBE2 /* LLComponent.m in Sources */,
 				36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
+				C4141C91243B16CE00C5EF86 /* LLDetailTitleCellModel.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,
 				361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */,
 				C4B4E45D22F9C90900F70277 /* LLFilterTextFieldCell.m in Sources */,

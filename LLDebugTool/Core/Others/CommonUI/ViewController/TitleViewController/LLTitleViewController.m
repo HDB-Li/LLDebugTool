@@ -24,7 +24,7 @@
 #import "LLTitleViewController.h"
 
 #import "LLConst.h"
-#import "LLDetailTitleSelectorCell.h"
+#import "LLDetailTitleCellModel.h"
 #import "LLInternalMacros.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleHeaderView.h"
@@ -43,9 +43,8 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLTitleCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleCell class])];
-    [self.tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
     [self.tableView registerClass:[LLDetailTitleCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleCell class])];
-    [self.tableView registerClass:[LLDetailTitleSelectorCell class] forCellReuseIdentifier:NSStringFromClass([LLDetailTitleSelectorCell class])];
+    [self.tableView registerClass:[LLTitleSwitchCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSwitchCell class])];
     [self.tableView registerClass:[LLTitleSliderCell class] forCellReuseIdentifier:NSStringFromClass([LLTitleSliderCell class])];
 }
 
@@ -60,8 +59,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LLTitleCellModel *model = self.dataArray[indexPath.section].items[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellClass];
-    [cell setValue:model forKey:@"model"];
+    LLTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellClass];
+    cell.model = model;
     return cell;
 }
 
@@ -85,8 +84,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LLTitleCellModel *model = self.dataArray[indexPath.section].items[indexPath.row];
-    if (model.block) {
-        model.block();
+    if ([model isKindOfClass:[LLDetailTitleCellModel class]]) {
+        LLDetailTitleCellModel *cellModel = (LLDetailTitleCellModel *)model;
+        if (cellModel.block) {
+            cellModel.block();
+        }
     }
 }
 

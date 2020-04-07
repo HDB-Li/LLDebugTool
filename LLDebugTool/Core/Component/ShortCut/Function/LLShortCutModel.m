@@ -29,7 +29,7 @@
 
 @implementation LLShortCutModel
 
-- (instancetype)initWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action {
+- (instancetype)initWithName:(NSString *)name action:(NSString * (^)(void))action {
     if (self = [super init]) {
         _name = [name copy];
         _action = [action copy];
@@ -42,7 +42,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _visiableViewControllerModel = [[LLShortCutModel alloc] initWithName:@"Visiable View Controller"
-                                                                      action:^NSString *_Nullable {
+                                                                      action:^NSString * {
                                                                           return [NSString stringWithFormat:@"%@", [[LLTool keyWindow].rootViewController LL_currentShowingViewController]];
                                                                       }];
     });
@@ -54,7 +54,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _resetStandardUserDefaultsModel = [[LLShortCutModel alloc] initWithName:@"Reset User Defaults"
-                                                                         action:^NSString *_Nullable {
+                                                                         action:^NSString * {
                                                                              [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[NSBundle mainBundle].bundleIdentifier];
                                                                              return nil;
                                                                          }];
@@ -67,7 +67,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _clearDiskModel = [[LLShortCutModel alloc] initWithName:@"Clear Disk"
-                                                         action:^NSString *_Nullable {
+                                                         action:^NSString * {
                                                              NSFileManager *manager = [NSFileManager defaultManager];
                                                              NSError *error = nil;
                                                              NSArray<NSString *> *paths = [manager contentsOfDirectoryAtPath:NSTemporaryDirectory() error:&error];

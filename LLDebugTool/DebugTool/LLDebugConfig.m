@@ -64,7 +64,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     [LLRouter addMockRouteDirectory:fileDirectory];
 }
 
-- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action {
+- (void)registerShortCutWithName:(NSString *)name action:(NSString * (^)(void))action {
     [LLRouter registerShortCutWithName:name action:action];
 }
 

@@ -47,7 +47,7 @@
     return vc;
 }
 
-- (UIButton *)LL_navigationButtonWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName target:(id _Nullable)target action:(SEL _Nullable)action {
+- (UIButton *)LL_navigationButtonWithTitle:(NSString *)title imageName:(NSString *)imageName target:(id)target action:(SEL)action {
     UIButton *btn = [LLFactory getButton:nil frame:CGRectMake(0, 0, 30, 40) target:target action:action];
     btn.showsTouchWhenHighlighted = NO;
     btn.tintColor = [LLThemeManager shared].primaryColor;
@@ -124,7 +124,7 @@
     });
 }
 
-- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(nullable NSString *)text handler:(nullable void (^)(NSString *_Nullable))handler {
+- (void)LL_showTextFieldAlertControllerWithMessage:(NSString *)message text:(NSString *)text handler:(void (^)(NSString *))handler {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *_Nonnull textField) {
         textField.text = text;

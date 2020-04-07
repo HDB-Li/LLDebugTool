@@ -25,103 +25,50 @@
 
 #import "LLConst.h"
 #import "LLDetailTitleCell.h"
-#import "LLDetailTitleSelectorCell.h"
 #import "LLInternalMacros.h"
 #import "LLTitleSliderCell.h"
 #import "LLTitleSwitchCell.h"
 
 @implementation LLTitleCellModel
 
+#pragma mark - Public
 + (instancetype)modelWithTitle:(NSString *)title {
     return [[self alloc] initWithTitle:title];
 }
 
-+ (instancetype)modelWithTitle:(NSString *)title block:(void (^)(void))block {
-    return [[self alloc] initWithTitle:title block:block];
-}
-
-+ (instancetype)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
-    return [[self alloc] initWithTitle:title detailTitle:detailTitle];
-}
-
-+ (instancetype)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle flag:(BOOL)flag {
-    return [[self alloc] initWithTitle:title detailTitle:detailTitle flag:flag];
-}
-
-+ (instancetype)modelWithTitle:(NSString *)title flag:(BOOL)flag {
-    return [[self alloc] initWithTitle:title flag:flag];
-}
-
-+ (instancetype)modelWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
-    return [[self alloc] initWithTitle:title value:value minValue:minValue maxValue:maxValue];
-}
-
-#pragma mark - Primary
-- (instancetype)initWithTitle:(NSString *_Nullable)title {
-    return [self initWithTitle:title block:nil];
-}
-
-- (instancetype)initWithTitle:(NSString *_Nullable)title block:(void (^_Nullable)(void))block {
-    if (self = [super init]) {
-        _title = [title copy];
-        _block = [block copy];
-        _cellClass = NSStringFromClass(LLTitleCell.class);
-        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
-    }
-    return self;
-}
-
-- (instancetype)initWithTitle:(NSString *)title flag:(BOOL)flag {
-    return [self initWithTitle:title detailTitle:nil flag:flag];
-}
-
-- (instancetype)initWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle flag:(BOOL)flag {
-    if (self = [super init]) {
-        _title = [title copy];
-        _detailTitle = [detailTitle copy];
-        _flag = flag;
-        _cellClass = NSStringFromClass(LLTitleSwitchCell.class);
-        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
-    }
-    return self;
-}
-
-- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
-    if (self = [super init]) {
-        _title = [title copy];
-        _detailTitle = [detailTitle copy];
-        _cellClass = NSStringFromClass(LLDetailTitleCell.class);
-        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
-    }
-    return self;
-}
-
-- (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
-    if (self = [super init]) {
-        _title = [title copy];
-        _value = value;
-        _minValue = minValue;
-        _maxValue = maxValue;
-        _cellClass = NSStringFromClass(LLTitleSliderCell.class);
-        _separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
-    }
-    return self;
-}
-
-- (LLTitleCellModel *)normalInsets {
+- (instancetype)normalInsets {
     self.separatorInsets = UIEdgeInsetsMake(0, kLLGeneralMargin, 0, 0);
     return self;
 }
 
-- (LLTitleCellModel *)noneInsets {
+- (instancetype)noneInsets {
     self.separatorInsets = UIEdgeInsetsMake(0, LL_SCREEN_WIDTH, 0, 0);
     return self;
 }
 
+#pragma mark - Primary
+- (instancetype)initWithTitle:(NSString *)title {
+    if (self = [super init]) {
+        self.title = title;
+        self.cellClass = NSStringFromClass(LLTitleCell.class);
+        [self normalInsets];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.cellClass = NSStringFromClass(LLTitleCell.class);
+        [self normalInsets];
+    }
+    return self;
+}
+
+#pragma mark - Getters and setters
 - (void)setBlock:(void (^)(void))block {
     if (_block != block) {
         _block = [block copy];
-        _cellClass = NSStringFromClass(block ? LLDetailTitleSelectorCell.class : LLDetailTitleCell.class);
+        self.accessoryType = block ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
     }
 }
 

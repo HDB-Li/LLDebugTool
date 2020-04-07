@@ -29,51 +29,32 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLTitleCellModel : NSObject
 
 /// Title
-@property (nonatomic, copy, nullable, readonly) NSString *title;
+@property (nonatomic, copy, nullable) NSString *title;
 
 /// Cell class.
-@property (nonatomic, copy, readonly) NSString *cellClass;
+@property (nonatomic, copy) NSString *cellClass;
 
-// Style1
-@property (nonatomic, assign) BOOL flag;
+/// Cell accessory type.
+@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 
-// Style2 / Style3
-@property (nonatomic, copy, nullable, readonly) NSString *detailTitle;
-
-// Style4
-@property (nonatomic, assign) CGFloat value;
-
-@property (nonatomic, assign, readonly) CGFloat minValue;
-
-@property (nonatomic, assign, readonly) CGFloat maxValue;
-
-// Block
-@property (nonatomic, copy, nullable) void (^block)(void);
-
-@property (nonatomic, copy, nullable) void (^changePropertyBlock)(__nullable id obj);
-
-// Separator
+/// Separator
 @property (nonatomic, assign) UIEdgeInsets separatorInsets;
 
-// LLTitleCell
+/// Tap block
+@property (nonatomic, copy, nullable) void (^block)(void);
+
+/// Value change block.
+@property (nonatomic, copy, nullable) void (^changePropertyBlock)(__nullable id obj);
+
+/// Initial method.
+/// @param title Title.
 + (instancetype)modelWithTitle:(NSString *_Nullable)title;
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title block:(void (^_Nullable)(void))block;
-
-// LLTitleSwitchCell
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title flag:(BOOL)flag;
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle flag:(BOOL)flag;
-
-// LLDetailTitleCell
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle;
-
-// LLTitleSliderCell
-+ (instancetype)modelWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
 
 /// Normal insets.
-- (LLTitleCellModel *)normalInsets;
+- (instancetype)normalInsets;
 
 /// None insets.
-- (LLTitleCellModel *)noneInsets;
+- (instancetype)noneInsets;
 
 @end
 

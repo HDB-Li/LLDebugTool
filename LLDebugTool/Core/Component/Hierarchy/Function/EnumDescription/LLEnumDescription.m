@@ -97,17 +97,17 @@
 + (NSString *)viewContentModeDescription:(UIViewContentMode)mode {
     NSDictionary *json = @{
         @(UIViewContentModeScaleToFill): @"ScaleToFill",
-        @(UIViewContentModeScaleAspectFit): @"ScaleAspectFit" ,
-        @(UIViewContentModeScaleAspectFill): @"ScaleAspectFill" ,
-        @(UIViewContentModeRedraw): @"Redraw" ,
-        @(UIViewContentModeCenter): @"Center" ,
-        @(UIViewContentModeTop): @"Top" ,
-        @(UIViewContentModeBottom): @"Bottom" ,
-        @(UIViewContentModeLeft): @"Left" ,
-        @(UIViewContentModeRight): @"Right" ,
-        @(UIViewContentModeTopLeft): @"TopLeft" ,
-        @(UIViewContentModeTopRight): @"TopRight" ,
-        @(UIViewContentModeBottomLeft): @"BottomLeft" ,
+        @(UIViewContentModeScaleAspectFit): @"ScaleAspectFit",
+        @(UIViewContentModeScaleAspectFill): @"ScaleAspectFill",
+        @(UIViewContentModeRedraw): @"Redraw",
+        @(UIViewContentModeCenter): @"Center",
+        @(UIViewContentModeTop): @"Top",
+        @(UIViewContentModeBottom): @"Bottom",
+        @(UIViewContentModeLeft): @"Left",
+        @(UIViewContentModeRight): @"Right",
+        @(UIViewContentModeTopLeft): @"TopLeft",
+        @(UIViewContentModeTopRight): @"TopRight",
+        @(UIViewContentModeBottomLeft): @"BottomLeft",
         @(UIViewContentModeBottomRight): @"BottomRight"
     };
     NSString *desc = json[@(mode)];
@@ -382,18 +382,18 @@
     NSDictionary *json = @{
         @(UIKeyboardTypeDefault): @"Default",
         @(UIKeyboardTypeASCIICapable): @"ASCII capable",
-        @(UIKeyboardTypeNumbersAndPunctuation) :@"Numbers and punctuation",
-        @(UIKeyboardTypeURL) :@"URL",
-        @(UIKeyboardTypeNumberPad) :@"Number pad",
-        @(UIKeyboardTypePhonePad) :@"Phone pad",
-        @(UIKeyboardTypeNamePhonePad) :@"Name phone pad",
-        @(UIKeyboardTypeEmailAddress) :@"Email address",
-        @(UIKeyboardTypeDecimalPad) :@"Decimal pad",
-        @(UIKeyboardTypeTwitter) :@"Twitter",
-        @(UIKeyboardTypeWebSearch) :@"Web search"
+        @(UIKeyboardTypeNumbersAndPunctuation): @"Numbers and punctuation",
+        @(UIKeyboardTypeURL): @"URL",
+        @(UIKeyboardTypeNumberPad): @"Number pad",
+        @(UIKeyboardTypePhonePad): @"Phone pad",
+        @(UIKeyboardTypeNamePhonePad): @"Name phone pad",
+        @(UIKeyboardTypeEmailAddress): @"Email address",
+        @(UIKeyboardTypeDecimalPad): @"Decimal pad",
+        @(UIKeyboardTypeTwitter): @"Twitter",
+        @(UIKeyboardTypeWebSearch): @"Web search"
     };
     if (@available(iOS 10.0, *)) {
-        json = [json LL_addEntriesFromDictionary:@{@(UIKeyboardTypeASCIICapableNumberPad) :@"ASCII capable number pad"}];
+        json = [json LL_addEntriesFromDictionary:@{ @(UIKeyboardTypeASCIICapableNumberPad): @"ASCII capable number pad" }];
     }
     NSString *desc = json[@(type)];
     if (!desc) {
@@ -455,7 +455,7 @@
         @(UIReturnKeyEmergencyCall): @"Emergency call"
     };
     if (@available(iOS 9.0, *)) {
-        json = [json LL_addEntriesFromDictionary:@{@(UIReturnKeyContinue): @"Continue"}];
+        json = [json LL_addEntriesFromDictionary:@{ @(UIReturnKeyContinue): @"Continue" }];
     }
     NSString *desc = json[@(type)];
     if (!desc) {
@@ -803,10 +803,10 @@
     return [positionings copy];
 }
 
-+ (NSString *_Nullable)layoutAttributeDescription:(NSLayoutAttribute)attribute {
++ (NSString *)layoutAttributeDescription:(NSLayoutAttribute)attribute {
     NSDictionary *json = @{
         @(NSLayoutAttributeLeft): @"left",
-        @(NSLayoutAttributeRight):@"right",
+        @(NSLayoutAttributeRight): @"right",
         @(NSLayoutAttributeTop): @"top",
         @(NSLayoutAttributeBottom): @"bottom",
         @(NSLayoutAttributeLeading): @"leading",
@@ -826,7 +826,7 @@
         @(NSLayoutAttributeCenterXWithinMargins): @"centerXMargin",
         @(NSLayoutAttributeCenterYWithinMargins): @"centerYMargin",
     };
-    
+
     NSString *desc = json[@(attribute)];
     if (!desc && attribute != NSLayoutAttributeNotAnAttribute) {
         [LLTool log:[NSString stringWithFormat:@"layoutAttributeDescription unknown : %@", @(attribute)]];
@@ -845,7 +845,7 @@
     return [attributes copy];
 }
 
-+ (NSString *_Nullable)layoutRelationDescription:(NSLayoutRelation)relation {
++ (NSString *)layoutRelationDescription:(NSLayoutRelation)relation {
     switch (relation) {
         case NSLayoutRelationLessThanOrEqual:
             return @"<=";

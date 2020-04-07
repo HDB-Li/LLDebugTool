@@ -27,6 +27,7 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLHtmlUIWebViewController.h"
 #import "LLHtmlViewController.h"
@@ -143,8 +144,8 @@
     [self.tableView reloadData];
 }
 
-- (LLTitleCellModel *)getWebViewStyleModel {
-    LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:LLLocalizedString(@"style") detailTitle:self.webViewClass];
+- (LLDetailTitleCellModel *)getWebViewStyleModel {
+    LLDetailTitleCellModel *model = [LLDetailTitleCellModel modelWithTitle:LLLocalizedString(@"style") detailTitle:self.webViewClass];
     __weak typeof(self) weakSelf = self;
     model.block = ^{
         [weakSelf showWebViewClassAlert];

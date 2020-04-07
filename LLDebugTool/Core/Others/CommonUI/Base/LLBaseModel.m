@@ -35,7 +35,7 @@
     }
 }
 
-- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
         NSArray *names = [[self class] LL_getPropertyNames];
         for (NSString *name in names) {

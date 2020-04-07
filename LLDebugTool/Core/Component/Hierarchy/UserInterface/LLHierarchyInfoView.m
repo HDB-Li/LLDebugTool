@@ -38,7 +38,7 @@
 
 @interface LLHierarchyInfoView ()
 
-@property (nonatomic, strong, nullable) UIView *selectedView;
+@property (nonatomic, strong) UIView *selectedView;
 
 @property (nonatomic, strong) UILabel *contentLabel;
 

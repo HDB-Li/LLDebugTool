@@ -31,19 +31,19 @@
     return [UIImage imageNamed:name inBundle:[LLDebugConfig shared].imageBundle compatibleWithTraitCollection:nil];
 }
 
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size {
++ (UIImage *)LL_imageNamed:(NSString *)name size:(CGSize)size {
     return [[self LL_imageNamed:name] LL_resizeTo:size];
 }
 
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name color:(UIColor *)color {
++ (UIImage *)LL_imageNamed:(NSString *)name color:(UIColor *)color {
     return [[self LL_imageNamed:name] LL_colorTo:color];
 }
 
-+ (UIImage *_Nullable)LL_imageNamed:(NSString *)name size:(CGSize)size color:(UIColor *)color {
++ (UIImage *)LL_imageNamed:(NSString *)name size:(CGSize)size color:(UIColor *)color {
     return [[self LL_imageNamed:name size:size] LL_colorTo:color];
 }
 
-+ (nullable UIImage *)LL_imageWithGIFData:(NSData *)data {
++ (UIImage *)LL_imageWithGIFData:(NSData *)data {
     if (!data) {
         return nil;
     }

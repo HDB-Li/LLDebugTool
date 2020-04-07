@@ -37,6 +37,8 @@
 
 @implementation LLDetailTitleCell
 
+@dynamic model;
+
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
@@ -64,7 +66,7 @@
 }
 
 #pragma mark - Getters and setters
-- (void)setModel:(LLTitleCellModel *)model {
+- (void)setModel:(LLDetailTitleCellModel *)model {
     [super setModel:model];
     if (model.detailTitle == nil || model.detailTitle.length == 0) {
         self.detailLabel.text = @" ";

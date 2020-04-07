@@ -35,6 +35,8 @@
 
 @implementation LLTitleSwitchCell
 
+@dynamic model;
+
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
@@ -64,16 +66,16 @@
 
 #pragma mark - Event responses
 - (void)switchValueChanged:(UISwitch *)sender {
-    self.model.flag = sender.isOn;
+    self.model.isOn = sender.isOn;
     if (self.model.changePropertyBlock) {
         self.model.changePropertyBlock(@(sender.isOn));
     }
 }
 
 #pragma mark - Getters and settings
-- (void)setModel:(LLTitleCellModel *)model {
+- (void)setModel:(LLTitleSwitchCellModel *)model {
     [super setModel:model];
-    _swit.on = model.flag;
+    _swit.on = model.isOn;
 }
 
 - (UISwitch *)swit {

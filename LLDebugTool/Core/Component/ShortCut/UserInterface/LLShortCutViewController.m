@@ -52,14 +52,14 @@
 
     for (NSInteger i = 0; i < actions.count; i++) {
         __block LLShortCutModel *action = actions[i];
-        LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:action.name
-                                                             block:^{
-                                                                 NSString *message = action.action();
-                                                                 if (![message length]) {
-                                                                     message = [NSString stringWithFormat:LLLocalizedString(@"short.cut.execute"), action.name];
-                                                                 }
-                                                                 [[LLToastUtils shared] toastMessage:message];
-                                                             }];
+        LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:action.name];
+        model.block = ^{
+            NSString *message = action.action();
+            if (![message length]) {
+                message = [NSString stringWithFormat:LLLocalizedString(@"short.cut.execute"), action.name];
+            }
+            [[LLToastUtils shared] toastMessage:message];
+        };
         [settings addObject:model];
     }
 

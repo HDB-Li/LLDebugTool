@@ -23,10 +23,15 @@
 
 #import "LLDetailTitleCell.h"
 
+#import "LLTitleSwitchCellModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Switch cell.
 @interface LLTitleSwitchCell : LLDetailTitleCell
+
+/// Config model.
+@property (nonatomic, strong) LLTitleSwitchCellModel *model;
 
 @end
 

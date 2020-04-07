@@ -113,7 +113,7 @@
     objc_setAssociatedObject(self, key, string, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (NSString *_Nullable)LL_getStringProperty:(const void *)key {
+- (NSString *)LL_getStringProperty:(const void *)key {
     return objc_getAssociatedObject(self, key);
 }
 
