@@ -33,7 +33,7 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic, strong, nullable) LLScreenshotBaseOperation *currentOperation;
+@property (nonatomic, strong) LLScreenshotBaseOperation *currentOperation;
 
 @property (nonatomic, strong) NSMutableArray<LLScreenshotBaseOperation *> *operations;
 

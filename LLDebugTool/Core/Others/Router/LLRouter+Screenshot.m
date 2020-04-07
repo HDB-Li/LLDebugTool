@@ -30,7 +30,7 @@
 
 @implementation LLRouter (Screenshot)
 
-+ (nullable UIImage *)screenshotWithScale:(CGFloat)scale {
++ (UIImage *)screenshotWithScale:(CGFloat)scale {
     CGSize imageSize = CGSizeMake(LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
     ;
 #pragma clang diagnostic push

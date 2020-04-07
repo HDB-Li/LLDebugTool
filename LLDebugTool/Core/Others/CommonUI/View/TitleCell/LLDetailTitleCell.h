@@ -23,6 +23,8 @@
 
 #import "LLLeftTitleCell.h"
 
+#import "LLDetailTitleCellModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Detail title cell.
@@ -33,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Detail title label right constraint.
 @property (nonatomic, strong, readonly) NSLayoutConstraint *detailLabelRightCons;
+
+/// Config model.
+@property (nonatomic, strong) LLDetailTitleCellModel *model;
 
 @end
 

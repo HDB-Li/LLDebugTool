@@ -1,5 +1,5 @@
 //
-//  LLTitleSliderCell.h
+//  LLDetailTitleCellModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLeftTitleCell.h"
-
-#import "LLTitleSliderCellModel.h"
+#import "LLTitleCellModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Slider cell.
-@interface LLTitleSliderCell : LLLeftTitleCell
+@interface LLDetailTitleCellModel : LLTitleCellModel
 
-/// Config model.
-@property (nonatomic, strong) LLTitleSliderCellModel *model;
+// Detail title.
+@property (nonatomic, copy, nullable) NSString *detailTitle;
+
+/// Initial method.
+/// @param title Title
+/// @param detailTitle Detail title.
++ (instancetype)modelWithTitle:(NSString *_Nullable)title detailTitle:(NSString *_Nullable)detailTitle;
+
+#pragma mark - UNAVAILABLE
+/// Unavailable method.
+/// @param title Title.
++ (instancetype)modelWithTitle:(NSString *_Nullable)title NS_UNAVAILABLE;
 
 @end
 

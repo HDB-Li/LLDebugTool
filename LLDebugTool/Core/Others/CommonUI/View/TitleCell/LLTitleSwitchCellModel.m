@@ -1,5 +1,5 @@
 //
-//  LLTitleSliderCell.h
+//  LLTitleSwitchCellModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,18 +21,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLeftTitleCell.h"
+#import "LLTitleSwitchCellModel.h"
 
-#import "LLTitleSliderCellModel.h"
+#import "LLTitleSwitchCell.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation LLTitleSwitchCellModel
 
-/// Slider cell.
-@interface LLTitleSliderCell : LLLeftTitleCell
+#pragma mark - Public
++ (instancetype)modelWithTitle:(NSString *)title isOn:(BOOL)isOn {
+    return [[self alloc] initWithTitle:title detailTitle:nil isOn:isOn];
+}
 
-/// Config model.
-@property (nonatomic, strong) LLTitleSliderCellModel *model;
++ (instancetype)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle isOn:(BOOL)isOn {
+    return [[self alloc] initWithTitle:title detailTitle:detailTitle isOn:isOn];
+}
+
+#pragma mark - Primary
+- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle isOn:(BOOL)isOn {
+    if (self = [super init]) {
+        self.title = title;
+        self.detailTitle = detailTitle;
+        self.isOn = isOn;
+        self.cellClass = NSStringFromClass(LLTitleSwitchCell.class);
+    }
+    return self;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

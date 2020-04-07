@@ -69,7 +69,7 @@
     [invocation invoke];
 }
 
-+ (id _Nullable)sharedWithClassName:(NSString *)className {
++ (id)sharedWithClassName:(NSString *)className {
     Class cls = NSClassFromString(className);
     if (!cls) {
         return nil;

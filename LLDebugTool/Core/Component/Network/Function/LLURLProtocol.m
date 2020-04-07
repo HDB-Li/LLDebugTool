@@ -140,7 +140,7 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
 
 #pragma mark - NSURLSessionDelegate
 // This method ignores certificate validation to resolve some untrusted HTTP requests that fail, and is recommended only in debug mode.
-- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler {
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
     NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
     __block NSURLCredential *credential = nil;
 
@@ -187,7 +187,7 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     self.response = response;
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *_Nullable))completionHandler {
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
     if (response != nil) {
         self.response = response;
         [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];

@@ -26,6 +26,7 @@
 #import "LLAppInfoHelper.h"
 #import "LLBaseTableViewCell.h"
 #import "LLDebugConfig.h"
+#import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
@@ -89,16 +90,16 @@
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // CPU
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"CPU" detailTitle:[LLAppInfoHelper shared].cpuUsage]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"CPU" detailTitle:[LLAppInfoHelper shared].cpuUsage]];
 
     // Memory
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Memory" detailTitle:[LLAppInfoHelper shared].memoryUsage]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Memory" detailTitle:[LLAppInfoHelper shared].memoryUsage]];
 
     // FPS
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"FPS" detailTitle:[LLAppInfoHelper shared].fps]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"FPS" detailTitle:[LLAppInfoHelper shared].fps]];
 
     // Data traffic
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Data Traffic" detailTitle:[LLAppInfoHelper shared].dataTraffic]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Data Traffic" detailTitle:[LLAppInfoHelper shared].dataTraffic]];
 
     return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.dynamic") items:settings];
 }
@@ -107,16 +108,16 @@
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // Name
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Name" detailTitle:[LLAppInfoHelper shared].appName]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Name" detailTitle:[LLAppInfoHelper shared].appName]];
 
     // Identifier
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Identifier" detailTitle:[LLAppInfoHelper shared].bundleIdentifier]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Identifier" detailTitle:[LLAppInfoHelper shared].bundleIdentifier]];
 
     // Version
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Version" detailTitle:[LLAppInfoHelper shared].appVersion]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Version" detailTitle:[LLAppInfoHelper shared].appVersion]];
 
     // Start time
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Start Time" detailTitle:[LLAppInfoHelper shared].appStartTimeConsuming]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Start Time" detailTitle:[LLAppInfoHelper shared].appStartTimeConsuming]];
 
     return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.application") items:settings];
 }
@@ -125,31 +126,31 @@
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // Name
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Name" detailTitle:[LLAppInfoHelper shared].deviceName]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Name" detailTitle:[LLAppInfoHelper shared].deviceName]];
 
     // Version
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Version" detailTitle:[LLAppInfoHelper shared].systemVersion]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Version" detailTitle:[LLAppInfoHelper shared].systemVersion]];
 
     // Resolution
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Resolution" detailTitle:[LLAppInfoHelper shared].screenResolution]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Resolution" detailTitle:[LLAppInfoHelper shared].screenResolution]];
 
     // Language
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Language" detailTitle:[LLAppInfoHelper shared].languageCode]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Language" detailTitle:[LLAppInfoHelper shared].languageCode]];
 
     // Battery
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Battery" detailTitle:[LLAppInfoHelper shared].batteryLevel]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Battery" detailTitle:[LLAppInfoHelper shared].batteryLevel]];
 
     // CPU
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"CPU" detailTitle:[LLAppInfoHelper shared].cpuType]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"CPU" detailTitle:[LLAppInfoHelper shared].cpuType]];
 
     // SSID
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"SSID" detailTitle:[LLAppInfoHelper shared].ssid]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"SSID" detailTitle:[LLAppInfoHelper shared].ssid]];
 
     // Disk
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Disk" detailTitle:[LLAppInfoHelper shared].disk]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Disk" detailTitle:[LLAppInfoHelper shared].disk]];
 
     // Network
-    [settings addObject:[LLTitleCellModel modelWithTitle:@"Network" detailTitle:[LLAppInfoHelper shared].networkState]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Network" detailTitle:[LLAppInfoHelper shared].networkState]];
 
     return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.device") items:settings];
 }

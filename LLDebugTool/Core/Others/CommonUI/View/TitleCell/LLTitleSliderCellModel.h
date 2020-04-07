@@ -1,5 +1,5 @@
 //
-//  LLTitleSliderCell.h
+//  LLTitleSliderCellModel.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,17 +21,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLLeftTitleCell.h"
-
-#import "LLTitleSliderCellModel.h"
+#import "LLTitleCellModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Slider cell.
-@interface LLTitleSliderCell : LLLeftTitleCell
+@interface LLTitleSliderCellModel : LLTitleCellModel
 
-/// Config model.
-@property (nonatomic, strong) LLTitleSliderCellModel *model;
+/// Current value.
+@property (nonatomic, assign) CGFloat value;
+
+/// Min value.
+@property (nonatomic, assign) CGFloat minValue;
+
+/// Max value.
+@property (nonatomic, assign) CGFloat maxValue;
+
+/// Initial method.
+/// @param title Title.
+/// @param value Current value.
+/// @param minValue Min value.
+/// @param maxValue Max value.
++ (instancetype)modelWithTitle:(NSString *_Nullable)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue;
+
+#pragma mark - UNAVAILABLE
+/// Unavailable method.
+/// @param title Title.
++ (instancetype)modelWithTitle:(NSString *_Nullable)title NS_UNAVAILABLE;
 
 @end
 

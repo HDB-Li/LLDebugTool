@@ -73,10 +73,10 @@
                                     }];
 }
 
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *_Nullable))completionHandler {
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString *))completionHandler {
     [self LL_showTextFieldAlertControllerWithMessage:prompt
                                                 text:defaultText
-                                             handler:^(NSString *_Nullable newText) {
+                                             handler:^(NSString *newText) {
                                                  completionHandler(newText);
                                              }];
 }

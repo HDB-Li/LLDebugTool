@@ -104,11 +104,11 @@ static NSString *const kDatabaseVersion = @"1";
 }
 
 #pragma mark - UPDATE
-- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete {
+- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete {
     [self updateModel:model complete:complete synchronous:NO];
 }
 
-- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous {
+- (void)updateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous {
     [self saveOrUpdateModel:model complete:complete synchronous:synchronous isSave:NO];
 }
 
@@ -450,7 +450,7 @@ static NSString *const kDatabaseVersion = @"1";
     }
 }
 
-- (void)saveOrUpdateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous isSave:(BOOL)isSave {
+- (void)saveOrUpdateModel:(LLStorageModel *)model complete:(LLStorageManagerBoolBlock)complete synchronous:(BOOL)synchronous isSave:(BOOL)isSave {
     __block Class cls = model.class;
 
     // Check thread.

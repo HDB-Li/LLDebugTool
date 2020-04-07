@@ -274,7 +274,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     [self.geocoder cancelGeocode];
     __weak typeof(self) weakSelf = self;
     [self.geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude]
-                        completionHandler:^(NSArray<CLPlacemark *> *_Nullable placemarks, NSError *_Nullable error) {
+                        completionHandler:^(NSArray<CLPlacemark *> *placemarks, NSError *error) {
                             if (!error && placemarks.count > 0) {
                                 CLPlacemark *placemark = placemarks.firstObject;
                                 [weakSelf updateAddressDescriptViewDetailTitle:placemark];
@@ -287,7 +287,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     __weak typeof(self) weakSelf = self;
     [self.geocoder geocodeAddressString:address
                                inRegion:nil
-                      completionHandler:^(NSArray<CLPlacemark *> *_Nullable placemarks, NSError *_Nullable error) {
+                      completionHandler:^(NSArray<CLPlacemark *> *placemarks, NSError *error) {
                           if (!error && placemarks.count > 0) {
                               CLPlacemark *placemark = placemarks.firstObject;
                               [weakSelf setUpCoordinate:placemark.location.coordinate automicSetRegion:YES placemark:placemark];
@@ -390,7 +390,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.lat.lng")
                                                 text:self.locationDescriptView.detailTitle
-                                             handler:^(NSString *_Nullable newText) {
+                                             handler:^(NSString *newText) {
                                                  NSString *text = [newText stringByReplacingOccurrencesOfString:@" " withString:@""];
                                                  NSArray *array = [text componentsSeparatedByString:@","];
                                                  if (array.count != 2) {
@@ -409,7 +409,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"location.address")
                                                 text:self.addressDescriptView.detailTitle
-                                             handler:^(NSString *_Nullable newText) {
+                                             handler:^(NSString *newText) {
                                                  [weakSelf geocodeAddress:newText];
                                              }];
 }

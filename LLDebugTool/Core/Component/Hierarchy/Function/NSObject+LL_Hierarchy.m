@@ -25,11 +25,13 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
 #import "LLInternalMacros.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
+#import "LLTitleSwitchCellModel.h"
 #import "LLTool.h"
 
 #import "UIColor+LL_Utils.h"
@@ -42,19 +44,19 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Class Name" detailTitle:NSStringFromClass(self.class)] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Class Name" detailTitle:NSStringFromClass(self.class)] noneInsets];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p", self]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Address" detailTitle:[NSString stringWithFormat:@"%p", self]] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Description" detailTitle:self.description] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Description" detailTitle:self.description] noneInsets];
     [settings addObject:model3];
 
     return @[[LLTitleCellCategoryModel modelWithTitle:@"Object" items:settings]];
 }
 
-- (NSString *)LL_hierarchyColorDescription:(UIColor *_Nullable)color {
+- (NSString *)LL_hierarchyColorDescription:(UIColor *)color {
     if (!color) {
         return @"<nil color>";
     }
@@ -169,7 +171,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [self valueForKeyPath:keyPath]]
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:@([newText integerValue]) forKeyPath:keyPath];
                                 }];
 }
@@ -177,7 +179,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (void)LL_showDoubleAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:[LLFormatterTool formatNumber:[self valueForKeyPath:keyPath]]
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:@([newText doubleValue]) forKeyPath:keyPath];
                                 }];
 }
@@ -189,7 +191,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     }
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:[color LL_hexString]
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:[weakSelf LL_colorFromString:newText originalColor:color] forKeyPath:keyPath];
                                 }];
 }
@@ -198,7 +200,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:NSStringFromCGRect([value CGRectValue])
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:[NSValue valueWithCGRect:[weakSelf LL_rectFromString:newText originalRect:[value CGRectValue]]] forKeyPath:keyPath];
                                 }];
 }
@@ -207,7 +209,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:NSStringFromCGPoint([value CGPointValue])
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:[NSValue valueWithCGPoint:[weakSelf LL_pointFromString:newText orginalPoint:[value CGPointValue]]] forKeyPath:keyPath];
                                 }];
 }
@@ -216,7 +218,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:NSStringFromUIEdgeInsets([value UIEdgeInsetsValue])
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:[NSValue valueWithUIEdgeInsets:[weakSelf LL_insetsFromString:newText originalInsets:[value UIEdgeInsetsValue]]] forKeyPath:keyPath];
                                 }];
 }
@@ -224,7 +226,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (void)LL_showTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:[self valueForKeyPath:keyPath]
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:newText forKeyPath:keyPath];
                                 }];
 }
@@ -233,7 +235,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __block NSAttributedString *attribute = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:attribute.string
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     NSMutableAttributedString *mutAttribute = [[NSMutableAttributedString alloc] initWithAttributedString:attribute];
                                     [mutAttribute replaceCharactersInRange:NSMakeRange(0, attribute.string.length) withString:newText];
                                     [weakSelf setValue:[mutAttribute copy] forKeyPath:keyPath];
@@ -244,7 +246,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:NSStringFromCGSize([value CGSizeValue])
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:[NSValue valueWithCGSize:[weakSelf LL_sizeFromString:newText originalSize:[value CGSizeValue]]] forKeyPath:keyPath];
                                 }];
 }
@@ -253,7 +255,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __block UIFont *font = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(font.pointSize)]
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     [weakSelf setValue:[font fontWithSize:[newText doubleValue]] forKeyPath:keyPath];
                                 }];
 }
@@ -262,7 +264,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     NSDate *date = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
     [self LL_showTextFieldAlertWithText:[LLFormatterTool stringFromDate:date style:FormatterToolDateStyle3]
-                                handler:^(NSString *_Nullable newText) {
+                                handler:^(NSString *newText) {
                                     NSDate *newDate = [LLFormatterTool dateFromString:newText style:FormatterToolDateStyle3];
                                     if (newDate) {
                                         [weakSelf setValue:newDate forKeyPath:keyPath];
@@ -270,12 +272,12 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
                                 }];
 }
 
-- (void)LL_showTextFieldAlertWithText:(NSString *)text handler:(nullable void (^)(NSString *_Nullable newText))handler {
+- (void)LL_showTextFieldAlertWithText:(NSString *)text handler:(void (^)(NSString *newText))handler {
     __weak typeof(self) weakSelf = self;
     [[LLTool keyWindow]
             .rootViewController.LL_currentShowingViewController LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"hierarchy.change.property")
                                                                                                       text:text
-                                                                                                   handler:^(NSString *_Nullable newText) {
+                                                                                                   handler:^(NSString *newText) {
                                                                                                        if (handler) {
                                                                                                            handler(newText);
                                                                                                        }
@@ -321,13 +323,13 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Layer" detailTitle:self.layer.description] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Layer" detailTitle:self.layer.description] noneInsets];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:@"Layer Class" detailTitle:NSStringFromClass(self.layer.class)];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Layer Class" detailTitle:NSStringFromClass(self.layer.class)];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Content Model" detailTitle:[LLEnumDescription viewContentModeDescription:self.contentMode]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Content Model" detailTitle:[LLEnumDescription viewContentModeDescription:self.contentMode]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription viewContentModeDescriptions]
                                   currentAction:[LLEnumDescription viewContentModeDescription:weakSelf.contentMode]
@@ -337,95 +339,95 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.tag]];
+    LLDetailTitleCellModel *model4 = [LLDetailTitleCellModel modelWithTitle:@"Tag" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.tag]];
     model4.block = ^{
         [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"tag"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"User Interaction" flag:self.isUserInteractionEnabled] noneInsets];
-    model5.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:@"User Interaction" isOn:self.isUserInteractionEnabled] noneInsets];
+    model5.changePropertyBlock = ^(id obj) {
         weakSelf.userInteractionEnabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Multiple Touch" flag:self.isMultipleTouchEnabled];
-    model6.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model6 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Multiple Touch" isOn:self.isMultipleTouchEnabled];
+    model6.changePropertyBlock = ^(id obj) {
         weakSelf.multipleTouchEnabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Alpha" detailTitle:[LLFormatterTool formatNumber:@(self.alpha)]] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Alpha" detailTitle:[LLFormatterTool formatNumber:@(self.alpha)]] noneInsets];
     model7.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"alpha"];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.backgroundColor]] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.backgroundColor]] noneInsets];
     model8.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"backgroundColor"];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     model9.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"tintColor"];
     };
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Drawing" detailTitle:@"Opaque" flag:self.isOpaque] noneInsets];
-    model10.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model10 = [[LLTitleSwitchCellModel modelWithTitle:@"Drawing" detailTitle:@"Opaque" isOn:self.isOpaque] noneInsets];
+    model10.changePropertyBlock = ^(id obj) {
         weakSelf.opaque = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Hidden" flag:self.isHidden] noneInsets];
-    model11.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model11 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Hidden" isOn:self.isHidden] noneInsets];
+    model11.changePropertyBlock = ^(id obj) {
         weakSelf.hidden = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Clears Graphics Context" flag:self.clearsContextBeforeDrawing] noneInsets];
-    model12.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Clears Graphics Context" isOn:self.clearsContextBeforeDrawing] noneInsets];
+    model12.changePropertyBlock = ^(id obj) {
         weakSelf.clearsContextBeforeDrawing = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Clip To Bounds" flag:self.clipsToBounds] noneInsets];
-    model13.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Clip To Bounds" isOn:self.clipsToBounds] noneInsets];
+    model13.changePropertyBlock = ^(id obj) {
         weakSelf.clipsToBounds = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Autoresizes Subviews" flag:self.autoresizesSubviews];
-    model14.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model14 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Autoresizes Subviews" isOn:self.autoresizesSubviews];
+    model14.changePropertyBlock = ^(id obj) {
         weakSelf.autoresizesSubviews = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
-    LLTitleCellModel *model15 = [[LLTitleCellModel modelWithTitle:@"Trait Collection" detailTitle:nil] noneInsets];
+    LLDetailTitleCellModel *model15 = [[LLDetailTitleCellModel modelWithTitle:@"Trait Collection" detailTitle:nil] noneInsets];
     [settings addObject:model15];
 
     if (@available(iOS 12.0, *)) {
-        LLTitleCellModel *model16 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription userInterfaceStyleDescription:self.traitCollection.userInterfaceStyle]] noneInsets];
+        LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription userInterfaceStyleDescription:self.traitCollection.userInterfaceStyle]] noneInsets];
         [settings addObject:model16];
     }
 
-    LLTitleCellModel *model17 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[@"Vertical" stringByAppendingFormat:@" %@", [LLEnumDescription userInterfaceSizeClassDescription:self.traitCollection.verticalSizeClass]]] noneInsets];
+    LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[@"Vertical" stringByAppendingFormat:@" %@", [LLEnumDescription userInterfaceSizeClassDescription:self.traitCollection.verticalSizeClass]]] noneInsets];
     [settings addObject:model17];
 
-    LLTitleCellModel *model18 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[@"Horizontal" stringByAppendingFormat:@" %@", [LLEnumDescription userInterfaceSizeClassDescription:self.traitCollection.horizontalSizeClass]]] noneInsets];
+    LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[@"Horizontal" stringByAppendingFormat:@" %@", [LLEnumDescription userInterfaceSizeClassDescription:self.traitCollection.horizontalSizeClass]]] noneInsets];
     [settings addObject:model18];
 
     if (@available(iOS 10.0, *)) {
-        LLTitleCellModel *model19 = [LLTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription traitEnvironmentLayoutDirectionDescription:self.traitCollection.layoutDirection]];
+        LLDetailTitleCellModel *model19 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription traitEnvironmentLayoutDirectionDescription:self.traitCollection.layoutDirection]];
         [settings addObject:model19];
     }
 
@@ -444,49 +446,49 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Frame" detailTitle:[self LL_hierarchyPointDescription:self.frame.origin]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Frame" detailTitle:[self LL_hierarchyPointDescription:self.frame.origin]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showFrameAlertAndAutomicSetWithKeyPath:@"frame"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchySizeDescription:self.frame.size]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchySizeDescription:self.frame.size]] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Bounds" detailTitle:[self LL_hierarchyPointDescription:self.bounds.origin]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Bounds" detailTitle:[self LL_hierarchyPointDescription:self.bounds.origin]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showFrameAlertAndAutomicSetWithKeyPath:@"bounds"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchySizeDescription:self.bounds.size]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchySizeDescription:self.bounds.size]] noneInsets];
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Center" detailTitle:[self LL_hierarchyPointDescription:self.center]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Center" detailTitle:[self LL_hierarchyPointDescription:self.center]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showPointAlertAndAutomicSetWithKeyPath:@"center"];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:@"Position" detailTitle:[self LL_hierarchyPointDescription:self.layer.position]] noneInsets];
+    LLDetailTitleCellModel *model6 = [[LLDetailTitleCellModel modelWithTitle:@"Position" detailTitle:[self LL_hierarchyPointDescription:self.layer.position]] noneInsets];
     model6.block = ^{
         [weakSelf LL_showPointAlertAndAutomicSetWithKeyPath:@"layer.position"];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [LLTitleCellModel modelWithTitle:@"Z Position" detailTitle:[LLFormatterTool formatNumber:@(self.layer.zPosition)]];
+    LLDetailTitleCellModel *model7 = [LLDetailTitleCellModel modelWithTitle:@"Z Position" detailTitle:[LLFormatterTool formatNumber:@(self.layer.zPosition)]];
     model7.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"layer.zPosition"];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Anchor Point" detailTitle:[self LL_hierarchyPointDescription:self.layer.anchorPoint]] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:@"Anchor Point" detailTitle:[self LL_hierarchyPointDescription:self.layer.anchorPoint]] noneInsets];
     model8.block = ^{
         [weakSelf LL_showPointAlertAndAutomicSetWithKeyPath:@"layer.anchorPoint"];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Anchor Point Z" detailTitle:[LLFormatterTool formatNumber:@(self.layer.anchorPointZ)]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Anchor Point Z" detailTitle:[LLFormatterTool formatNumber:@(self.layer.anchorPointZ)]];
     model9.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"layer.anchorPointZ"];
     };
@@ -500,11 +502,11 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         }
         NSString *constrainDesc = [self LL_hierarchyLayoutConstraintDescription:constrain];
         if (constrainDesc) {
-            LLTitleCellModel *mod = [[LLTitleCellModel modelWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
+            LLDetailTitleCellModel *mod = [[LLDetailTitleCellModel modelWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
             __weak NSLayoutConstraint *cons = constrain;
             mod.block = ^{
                 [weakSelf LL_showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)]
-                                                handler:^(NSString *_Nullable newText) {
+                                                handler:^(NSString *newText) {
                                                     cons.constant = [newText doubleValue];
                                                     [weakSelf setNeedsLayout];
                                                 }];
@@ -521,11 +523,11 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         if (constrain.firstItem == self || constrain.secondItem == self) {
             NSString *constrainDesc = [self LL_hierarchyLayoutConstraintDescription:constrain];
             if (constrainDesc) {
-                LLTitleCellModel *mod = [[LLTitleCellModel modelWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
+                LLDetailTitleCellModel *mod = [[LLDetailTitleCellModel modelWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
                 __weak NSLayoutConstraint *cons = constrain;
                 mod.block = ^{
                     [weakSelf LL_showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)]
-                                                    handler:^(NSString *_Nullable newText) {
+                                                    handler:^(NSString *newText) {
                                                         cons.constant = [newText doubleValue];
                                                         [weakSelf setNeedsLayout];
                                                     }];
@@ -587,28 +589,28 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:nil detailTitle:self.attributedText == nil ? @"Plain Text" : @"Attributed Text"] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:self.attributedText == nil ? @"Plain Text" : @"Attributed Text"] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showFontAlertAndAutomicSetWithKeyPath:@"font"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", [LLEnumDescription textAlignmentDescription:self.textAlignment]]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", [LLEnumDescription textAlignmentDescription:self.textAlignment]]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAlignments]
                                   currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
@@ -618,27 +620,27 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfLines]] noneInsets];
+    LLDetailTitleCellModel *model6 = [[LLDetailTitleCellModel modelWithTitle:@"Lines" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfLines]] noneInsets];
     model6.block = ^{
         [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"numberOfLines"];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Behavior" detailTitle:@"Enabled" flag:self.isEnabled] noneInsets];
-    model7.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model7 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Enabled" isOn:self.isEnabled] noneInsets];
+    model7.changePropertyBlock = ^(id obj) {
         weakSelf.enabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Highlighted" flag:self.isHighlighted];
-    model8.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model8 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Highlighted" isOn:self.isHighlighted];
+    model8.changePropertyBlock = ^(id obj) {
         weakSelf.highlighted = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [[LLTitleCellModel modelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@", [LLEnumDescription baselineAdjustmentDescription:self.baselineAdjustment]]] noneInsets];
+    LLDetailTitleCellModel *model9 = [[LLDetailTitleCellModel modelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@", [LLEnumDescription baselineAdjustmentDescription:self.baselineAdjustment]]] noneInsets];
     model9.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription baselineAdjustments]
                                   currentAction:[LLEnumDescription baselineAdjustmentDescription:weakSelf.baselineAdjustment]
@@ -648,7 +650,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:self.lineBreakMode]] noneInsets];
+    LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:self.lineBreakMode]] noneInsets];
     model10.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription lineBreaks]
                                   currentAction:[LLEnumDescription lineBreakModeDescription:weakSelf.lineBreakMode]
@@ -658,25 +660,25 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [LLTitleCellModel modelWithTitle:@"Min Font Scale" detailTitle:[LLFormatterTool formatNumber:@(self.minimumScaleFactor)]];
+    LLDetailTitleCellModel *model11 = [LLDetailTitleCellModel modelWithTitle:@"Min Font Scale" detailTitle:[LLFormatterTool formatNumber:@(self.minimumScaleFactor)]];
     model11.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"minimumScaleFactor"];
     };
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:@"Highlighted" detailTitle:[self LL_hierarchyColorDescription:self.highlightedTextColor]] noneInsets];
+    LLDetailTitleCellModel *model12 = [[LLDetailTitleCellModel modelWithTitle:@"Highlighted" detailTitle:[self LL_hierarchyColorDescription:self.highlightedTextColor]] noneInsets];
     model12.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"highlightedTextColor"];
     };
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:self.shadowColor]] noneInsets];
+    LLDetailTitleCellModel *model13 = [[LLDetailTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:self.shadowColor]] noneInsets];
     model13.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"shadowColor"];
     };
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [LLTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.shadowOffset]];
+    LLDetailTitleCellModel *model14 = [LLDetailTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.shadowOffset]];
     model14.block = ^{
         [weakSelf LL_showSizeAlertAndAutomicSetWithKeyPath:@"shadowOffset"];
     };
@@ -702,7 +704,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Alignment" detailTitle:[NSString stringWithFormat:@"%@ Horizonally", [LLEnumDescription controlContentHorizontalAlignmentDescription:self.contentHorizontalAlignment]]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Alignment" detailTitle:[NSString stringWithFormat:@"%@ Horizonally", [LLEnumDescription controlContentHorizontalAlignmentDescription:self.contentHorizontalAlignment]]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription controlContentHorizontalAlignments]
                                   currentAction:[LLEnumDescription controlContentHorizontalAlignmentDescription:weakSelf.contentHorizontalAlignment]
@@ -712,7 +714,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"%@ Vertically", [LLEnumDescription controlContentVerticalAlignmentDescription:self.contentVerticalAlignment]]];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"%@ Vertically", [LLEnumDescription controlContentVerticalAlignmentDescription:self.contentVerticalAlignment]]];
     model2.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription controlContentVerticalAlignments]
                                   currentAction:[LLEnumDescription controlContentVerticalAlignmentDescription:weakSelf.contentVerticalAlignment]
@@ -722,22 +724,22 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Content" detailTitle:self.isSelected ? @"Selected" : @"Not Selected" flag:self.isSelected] noneInsets];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:@"Content" detailTitle:self.isSelected ? @"Selected" : @"Not Selected" isOn:self.isSelected] noneInsets];
+    model3.changePropertyBlock = ^(id obj) {
         weakSelf.selected = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:nil detailTitle:self.isEnabled ? @"Enabled" : @"Not Enabled" flag:self.isEnabled] noneInsets];
-    model4.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model4 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:self.isEnabled ? @"Enabled" : @"Not Enabled" isOn:self.isEnabled] noneInsets];
+    model4.changePropertyBlock = ^(id obj) {
         weakSelf.enabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [LLTitleCellModel modelWithTitle:nil detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted" flag:self.isHighlighted];
-    model5.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model5 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted" isOn:self.isHighlighted];
+    model5.changePropertyBlock = ^(id obj) {
         weakSelf.highlighted = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -763,105 +765,105 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Type" detailTitle:[LLEnumDescription buttonTypeDescription:self.buttonType]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Type" detailTitle:[LLEnumDescription buttonTypeDescription:self.buttonType]];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"State" detailTitle:[LLEnumDescription controlStateDescription:self.state]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"State" detailTitle:[LLEnumDescription controlStateDescription:self.state]] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.currentTitle]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Title" detailTitle:[self LL_hierarchyTextDescription:self.currentTitle]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showTextFieldAlertWithText:weakSelf.currentTitle
-                                        handler:^(NSString *_Nullable newText) {
+                                        handler:^(NSString *newText) {
                                             [weakSelf setTitle:newText forState:weakSelf.state];
                                         }];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:nil detailTitle:self.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:self.currentAttributedTitle == nil ? @"Plain Text" : @"Attributed Text"] noneInsets];
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Text Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleColor]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Text Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleColor]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showTextFieldAlertWithText:[weakSelf.currentTitleColor LL_hexString]
-                                        handler:^(NSString *_Nullable newText) {
+                                        handler:^(NSString *newText) {
                                             [weakSelf setTitleColor:[weakSelf LL_colorFromString:newText originalColor:weakSelf.currentTitleColor] forState:weakSelf.state];
                                         }];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Shadow Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleShadowColor]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Shadow Color" detailTitle:[self LL_hierarchyColorDescription:self.currentTitleShadowColor]];
     model6.block = ^{
         [weakSelf LL_showTextFieldAlertWithText:[weakSelf.currentTitleShadowColor LL_hexString]
-                                        handler:^(NSString *_Nullable newText) {
+                                        handler:^(NSString *newText) {
                                             [weakSelf setTitleShadowColor:[weakSelf LL_colorFromString:newText originalColor:weakSelf.currentTitleShadowColor] forState:weakSelf.state];
                                         }];
     };
     [settings addObject:model6];
 
     id target = self.allTargets.allObjects.firstObject;
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Target" detailTitle:target ? [NSString stringWithFormat:@"%@", target] : @"<nil>"] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Target" detailTitle:target ? [NSString stringWithFormat:@"%@", target] : @"<nil>"] noneInsets];
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [LLTitleCellModel modelWithTitle:@"Action" detailTitle:[self LL_hierarchyTextDescription:[self actionsForTarget:target forControlEvent:UIControlEventTouchUpInside].firstObject]];
+    LLDetailTitleCellModel *model8 = [LLDetailTitleCellModel modelWithTitle:@"Action" detailTitle:[self LL_hierarchyTextDescription:[self actionsForTarget:target forControlEvent:UIControlEventTouchUpInside].firstObject]];
     ;
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.currentImage]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.currentImage]];
     [settings addObject:model9];
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.titleShadowOffset]] noneInsets];
+    LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:self.titleShadowOffset]] noneInsets];
     model10.block = ^{
         [weakSelf LL_showSizeAlertAndAutomicSetWithKeyPath:@"titleShadowOffset"];
     };
     [settings addObject:model10];
 #pragma clang diagnostic pop
 
-    LLTitleCellModel *model11 = [[LLTitleCellModel modelWithTitle:@"On Highlight" detailTitle:self.reversesTitleShadowWhenHighlighted ? @"Shadow Reverses" : @"Normal Shadow"] noneInsets];
+    LLDetailTitleCellModel *model11 = [[LLDetailTitleCellModel modelWithTitle:@"On Highlight" detailTitle:self.reversesTitleShadowWhenHighlighted ? @"Shadow Reverses" : @"Normal Shadow"] noneInsets];
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:nil detailTitle:self.showsTouchWhenHighlighted ? @"Shows Touch" : @"Doesn't Show Touch"] noneInsets];
+    LLDetailTitleCellModel *model12 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:self.showsTouchWhenHighlighted ? @"Shows Touch" : @"Doesn't Show Touch"] noneInsets];
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:nil detailTitle:self.adjustsImageWhenHighlighted ? @"Adjusts Image" : @"No Image Adjustment"] noneInsets];
+    LLDetailTitleCellModel *model13 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:self.adjustsImageWhenHighlighted ? @"Adjusts Image" : @"No Image Adjustment"] noneInsets];
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [[LLTitleCellModel modelWithTitle:@"When Disabled" detailTitle:self.adjustsImageWhenDisabled ? @"Adjusts Image" : @"No Image Adjustment"] noneInsets];
+    LLDetailTitleCellModel *model14 = [[LLDetailTitleCellModel modelWithTitle:@"When Disabled" detailTitle:self.adjustsImageWhenDisabled ? @"Adjusts Image" : @"No Image Adjustment"] noneInsets];
     [settings addObject:model14];
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    LLTitleCellModel *model15 = [LLTitleCellModel modelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:self.lineBreakMode]];
+    LLDetailTitleCellModel *model15 = [LLDetailTitleCellModel modelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:self.lineBreakMode]];
     [settings addObject:model15];
 #pragma clang diagnostic pop
 
-    LLTitleCellModel *model16 = [[LLTitleCellModel modelWithTitle:@"Content Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.contentEdgeInsets]] noneInsets];
+    LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:@"Content Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.contentEdgeInsets]] noneInsets];
     model16.block = ^{
         [weakSelf LL_showEdgeInsetsAndAutomicSetWithKeyPath:@"contentEdgeInsets"];
     };
     [settings addObject:model16];
 
-    LLTitleCellModel *model17 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.contentEdgeInsets]] noneInsets];
+    LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.contentEdgeInsets]] noneInsets];
     [settings addObject:model17];
 
-    LLTitleCellModel *model18 = [[LLTitleCellModel modelWithTitle:@"Title Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.titleEdgeInsets]] noneInsets];
+    LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Title Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.titleEdgeInsets]] noneInsets];
     model18.block = ^{
         [weakSelf LL_showEdgeInsetsAndAutomicSetWithKeyPath:@"titleEdgeInsets"];
     };
     [settings addObject:model18];
 
-    LLTitleCellModel *model19 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.titleEdgeInsets]] noneInsets];
+    LLDetailTitleCellModel *model19 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.titleEdgeInsets]] noneInsets];
     [settings addObject:model19];
 
-    LLTitleCellModel *model20 = [[LLTitleCellModel modelWithTitle:@"Image Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.imageEdgeInsets]] noneInsets];
+    LLDetailTitleCellModel *model20 = [[LLDetailTitleCellModel modelWithTitle:@"Image Insets" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.imageEdgeInsets]] noneInsets];
     model20.block = ^{
         [weakSelf LL_showEdgeInsetsAndAutomicSetWithKeyPath:@"imageEdgeInsets"];
     };
     [settings addObject:model20];
 
-    LLTitleCellModel *model21 = [LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.imageEdgeInsets]];
+    LLDetailTitleCellModel *model21 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.imageEdgeInsets]];
     [settings addObject:model21];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Button" items:settings];
@@ -884,14 +886,14 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.image]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.image]];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:@"Highlighted" detailTitle:[self LL_hierarchyImageDescription:self.highlightedImage]];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Highlighted" detailTitle:[self LL_hierarchyImageDescription:self.highlightedImage]];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"State" detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted" flag:self.isHighlighted];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [LLTitleSwitchCellModel modelWithTitle:@"State" detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted" isOn:self.isHighlighted];
+    model3.changePropertyBlock = ^(id obj) {
         weakSelf.highlighted = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -917,38 +919,38 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showAttributeTextAlertAndAutomicSetWithKeyPath:@"attributedText"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Allows Editing Attributes" flag:self.allowsEditingTextAttributes] noneInsets];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Allows Editing Attributes" isOn:self.allowsEditingTextAttributes] noneInsets];
+    model3.changePropertyBlock = ^(id obj) {
         weakSelf.allowsEditingTextAttributes = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showFontAlertAndAutomicSetWithKeyPath:@"font"];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]] noneInsets];
+    LLDetailTitleCellModel *model6 = [[LLDetailTitleCellModel modelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]] noneInsets];
     model6.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAlignments]
                                   currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
@@ -958,7 +960,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [LLTitleCellModel modelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder ?: self.attributedPlaceholder.string]];
+    LLDetailTitleCellModel *model7 = [LLDetailTitleCellModel modelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder ?: self.attributedPlaceholder.string]];
     model7.block = ^{
         if (weakSelf.placeholder) {
             [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"placeholder"];
@@ -968,13 +970,13 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.background]] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.background]] noneInsets];
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Disabled" detailTitle:[self LL_hierarchyImageDescription:self.disabledBackground]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Disabled" detailTitle:[self LL_hierarchyImageDescription:self.disabledBackground]];
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [LLTitleCellModel modelWithTitle:@"Border Style" detailTitle:[LLEnumDescription textBorderStyleDescription:self.borderStyle]];
+    LLDetailTitleCellModel *model10 = [LLDetailTitleCellModel modelWithTitle:@"Border Style" detailTitle:[LLEnumDescription textBorderStyleDescription:self.borderStyle]];
     model10.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textBorderStyles]
                                   currentAction:[LLEnumDescription textBorderStyleDescription:weakSelf.borderStyle]
@@ -984,7 +986,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [[LLTitleCellModel modelWithTitle:@"Clear Button" detailTitle:[LLEnumDescription textFieldViewModeDescription:self.clearButtonMode]] noneInsets];
+    LLDetailTitleCellModel *model11 = [[LLDetailTitleCellModel modelWithTitle:@"Clear Button" detailTitle:[LLEnumDescription textFieldViewModeDescription:self.clearButtonMode]] noneInsets];
     model11.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textFieldViewModes]
                                   currentAction:[LLEnumDescription textFieldViewModeDescription:weakSelf.clearButtonMode]
@@ -994,27 +996,27 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Clear when editing begins" flag:self.clearsOnBeginEditing];
-    model12.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model12 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Clear when editing begins" isOn:self.clearsOnBeginEditing];
+    model12.changePropertyBlock = ^(id obj) {
         weakSelf.clearsOnBeginEditing = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:@"Min Font Size" detailTitle:[LLFormatterTool formatNumber:@(self.minimumFontSize)]] noneInsets];
+    LLDetailTitleCellModel *model13 = [[LLDetailTitleCellModel modelWithTitle:@"Min Font Size" detailTitle:[LLFormatterTool formatNumber:@(self.minimumFontSize)]] noneInsets];
     model13.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"minimumFontSize"];
     };
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Adjusts to Fit" flag:self.adjustsFontSizeToFitWidth];
-    model14.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model14 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Adjusts to Fit" isOn:self.adjustsFontSizeToFitWidth];
+    model14.changePropertyBlock = ^(id obj) {
         weakSelf.adjustsFontSizeToFitWidth = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
-    LLTitleCellModel *model15 = [[LLTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
+    LLDetailTitleCellModel *model15 = [[LLDetailTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
     model15.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
                                   currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
@@ -1024,7 +1026,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model15];
 
-    LLTitleCellModel *model16 = [[LLTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
+    LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
     model16.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
                                   currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
@@ -1034,7 +1036,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model16];
 
-    LLTitleCellModel *model17 = [[LLTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]] noneInsets];
+    LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]] noneInsets];
     model17.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardTypes]
                                   currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
@@ -1044,7 +1046,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model17];
 
-    LLTitleCellModel *model18 = [[LLTitleCellModel modelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]] noneInsets];
+    LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]] noneInsets];
     model18.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardAppearances]
                                   currentAction:[LLEnumDescription keyboardAppearanceDescription:weakSelf.keyboardAppearance]
@@ -1054,7 +1056,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model18];
 
-    LLTitleCellModel *model19 = [[LLTitleCellModel modelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]] noneInsets];
+    LLDetailTitleCellModel *model19 = [[LLDetailTitleCellModel modelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]] noneInsets];
     model19.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription returnKeyTypes]
                                   currentAction:[LLEnumDescription returnKeyTypeDescription:weakSelf.returnKeyType]
@@ -1064,15 +1066,15 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model19];
 
-    LLTitleCellModel *model20 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Auto-enable Return Key" flag:self.enablesReturnKeyAutomatically] noneInsets];
-    model20.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model20 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Auto-enable Return Key" isOn:self.enablesReturnKeyAutomatically] noneInsets];
+    model20.changePropertyBlock = ^(id obj) {
         weakSelf.enablesReturnKeyAutomatically = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model20];
 
-    LLTitleCellModel *model21 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Secure Entry" flag:self.isSecureTextEntry];
-    model21.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model21 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Secure Entry" isOn:self.isSecureTextEntry];
+    model21.changePropertyBlock = ^(id obj) {
         weakSelf.secureTextEntry = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -1098,17 +1100,17 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Behavior" detailTitle:self.isMomentary ? @"Momentary" : @"Persistent Selection" flag:self.isMomentary] noneInsets];
-    model1.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model1 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:self.isMomentary ? @"Momentary" : @"Persistent Selection" isOn:self.isMomentary] noneInsets];
+    model1.changePropertyBlock = ^(id obj) {
         weakSelf.momentary = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:@"Segments" detailTitle:[NSString stringWithFormat:@"%ld", (unsigned long)self.numberOfSegments]];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Segments" detailTitle:[NSString stringWithFormat:@"%ld", (unsigned long)self.numberOfSegments]];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.selectedSegmentIndex]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Selected Index" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.selectedSegmentIndex]] noneInsets];
     model3.block = ^{
         NSMutableArray *actions = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < weakSelf.numberOfSegments; i++) {
@@ -1124,31 +1126,31 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
-        LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Large title" detailTitle:[self LL_hierarchyTextDescription:self.largeContentTitle]] noneInsets];
+        LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Large title" detailTitle:[self LL_hierarchyTextDescription:self.largeContentTitle]] noneInsets];
         model4.block = ^{
             [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"largeContentTitle"];
         };
         [settings addObject:model4];
 
-        LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.largeContentImage]] noneInsets];
+        LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.largeContentImage]] noneInsets];
         [settings addObject:model5];
     }
 #endif
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Selected" detailTitle:[self isEnabledForSegmentAtIndex:self.selectedSegmentIndex] ? @"Enabled" : @"Not Enabled"];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Selected" detailTitle:[self isEnabledForSegmentAtIndex:self.selectedSegmentIndex] ? @"Enabled" : @"Not Enabled"];
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Offset" detailTitle:[self LL_hierarchySizeDescription:[self contentOffsetForSegmentAtIndex:self.selectedSegmentIndex]]] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Offset" detailTitle:[self LL_hierarchySizeDescription:[self contentOffsetForSegmentAtIndex:self.selectedSegmentIndex]]] noneInsets];
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Size Mode" detailTitle:self.apportionsSegmentWidthsByContent ? @"Proportional to Content" : @"Equal Widths" flag:self.apportionsSegmentWidthsByContent] noneInsets];
-    model8.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model8 = [[LLTitleSwitchCellModel modelWithTitle:@"Size Mode" detailTitle:self.apportionsSegmentWidthsByContent ? @"Proportional to Content" : @"Equal Widths" isOn:self.apportionsSegmentWidthsByContent] noneInsets];
+    model8.changePropertyBlock = ^(id obj) {
         weakSelf.apportionsSegmentWidthsByContent = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Width" detailTitle:[LLFormatterTool formatNumber:@([self widthForSegmentAtIndex:self.selectedSegmentIndex])]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Width" detailTitle:[LLFormatterTool formatNumber:@([self widthForSegmentAtIndex:self.selectedSegmentIndex])]];
     [settings addObject:model9];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Segmented Control" items:settings];
@@ -1170,50 +1172,50 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Current" detailTitle:[LLFormatterTool formatNumber:@(self.value)]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Current" detailTitle:[LLFormatterTool formatNumber:@(self.value)]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"value"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Minimum" detailTitle:[LLFormatterTool formatNumber:@(self.minimumValue)]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Minimum" detailTitle:[LLFormatterTool formatNumber:@(self.minimumValue)]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"minimumValue"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"Maximum" detailTitle:[LLFormatterTool formatNumber:@(self.maximumValue)]];
+    LLDetailTitleCellModel *model3 = [LLDetailTitleCellModel modelWithTitle:@"Maximum" detailTitle:[LLFormatterTool formatNumber:@(self.maximumValue)]];
     model3.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"maximumValue"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Min Image" detailTitle:[self LL_hierarchyImageDescription:self.minimumValueImage]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Min Image" detailTitle:[self LL_hierarchyImageDescription:self.minimumValueImage]] noneInsets];
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [LLTitleCellModel modelWithTitle:@"Max Image" detailTitle:[self LL_hierarchyImageDescription:self.maximumValueImage]];
+    LLDetailTitleCellModel *model5 = [LLDetailTitleCellModel modelWithTitle:@"Max Image" detailTitle:[self LL_hierarchyImageDescription:self.maximumValueImage]];
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:@"Min Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.minimumTrackTintColor]] noneInsets];
+    LLDetailTitleCellModel *model6 = [[LLDetailTitleCellModel modelWithTitle:@"Min Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.minimumTrackTintColor]] noneInsets];
     model6.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"minimumTrackTintColor"];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Max Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.maximumTrackTintColor]] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Max Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.maximumTrackTintColor]] noneInsets];
     model7.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"maximumTrackTintColor"];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [LLTitleCellModel modelWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
+    LLDetailTitleCellModel *model8 = [LLDetailTitleCellModel modelWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.tintColor]];
     model8.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"tintColor"];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Events" detailTitle:@"Continuous Update" flag:self.isContinuous];
-    model9.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model9 = [LLTitleSwitchCellModel modelWithTitle:@"Events" detailTitle:@"Continuous Update" isOn:self.isContinuous];
+    model9.changePropertyBlock = ^(id obj) {
         weakSelf.continuous = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -1238,20 +1240,20 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"State" flag:self.isOn] noneInsets];
-    model1.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model1 = [[LLTitleSwitchCellModel modelWithTitle:@"State" isOn:self.isOn] noneInsets];
+    model1.changePropertyBlock = ^(id obj) {
         weakSelf.on = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"On Tint" detailTitle:[self LL_hierarchyColorDescription:self.onTintColor]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"On Tint" detailTitle:[self LL_hierarchyColorDescription:self.onTintColor]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"onTintColor"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.thumbTintColor]];
+    LLDetailTitleCellModel *model3 = [LLDetailTitleCellModel modelWithTitle:@"Thumb Tint" detailTitle:[self LL_hierarchyColorDescription:self.thumbTintColor]];
     model3.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"thumbTintColor"];
     };
@@ -1276,7 +1278,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription activityIndicatorViewStyleDescription:self.activityIndicatorViewStyle]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription activityIndicatorViewStyleDescription:self.activityIndicatorViewStyle]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription activityIndicatorViewStyles]
                                   currentAction:[LLEnumDescription activityIndicatorViewStyleDescription:weakSelf.activityIndicatorViewStyle]
@@ -1297,14 +1299,14 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.color]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.color]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"color"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Behavior" detailTitle:@"Animating" flag:self.isAnimating] noneInsets];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Animating" isOn:self.isAnimating] noneInsets];
+    model3.changePropertyBlock = ^(id obj) {
         if ([obj boolValue]) {
             if (!weakSelf.isAnimating) {
                 [weakSelf startAnimating];
@@ -1318,8 +1320,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Hides When Stopped" flag:self.hidesWhenStopped];
-    model4.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model4 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Hides When Stopped" isOn:self.hidesWhenStopped];
+    model4.changePropertyBlock = ^(id obj) {
         weakSelf.hidesWhenStopped = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -1344,7 +1346,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription progressViewStyleDescription:self.progressViewStyle]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription progressViewStyleDescription:self.progressViewStyle]];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription progressViewStyles]
                                   currentAction:[LLEnumDescription progressViewStyleDescription:weakSelf.progressViewStyle]
@@ -1354,28 +1356,28 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:@"Progress" detailTitle:[LLFormatterTool formatNumber:@(self.progress)]];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Progress" detailTitle:[LLFormatterTool formatNumber:@(self.progress)]];
     model2.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"progress"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Progress Tint" detailTitle:[self LL_hierarchyColorDescription:self.progressTintColor]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Progress Tint" detailTitle:[self LL_hierarchyColorDescription:self.progressTintColor]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"progressTintColor"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:@"Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.trackTintColor]];
+    LLDetailTitleCellModel *model4 = [LLDetailTitleCellModel modelWithTitle:@"Track Tint" detailTitle:[self LL_hierarchyColorDescription:self.trackTintColor]];
     model4.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"trackTintColor"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Progress Image" detailTitle:[self LL_hierarchyImageDescription:self.progressImage]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Progress Image" detailTitle:[self LL_hierarchyImageDescription:self.progressImage]] noneInsets];
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Track Image" detailTitle:[self LL_hierarchyImageDescription:self.trackImage]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Track Image" detailTitle:[self LL_hierarchyImageDescription:self.trackImage]];
     [settings addObject:model6];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Progress View" items:settings];
@@ -1397,13 +1399,13 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Pages" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfPages]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Pages" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfPages]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"numberOfPages"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Current Page" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.currentPage]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Current Page" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.currentPage]] noneInsets];
     model2.block = ^{
         if (weakSelf.numberOfPages < 10) {
             NSMutableArray *actions = [[NSMutableArray alloc] init];
@@ -1421,27 +1423,27 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Behavior" detailTitle:@"Hides for Single Page" flag:self.hidesForSinglePage] noneInsets];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Hides for Single Page" isOn:self.hidesForSinglePage] noneInsets];
+    model3.changePropertyBlock = ^(id obj) {
         weakSelf.hidesForSinglePage = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Defers Page Display" flag:self.defersCurrentPageDisplay];
-    model4.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model4 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Defers Page Display" isOn:self.defersCurrentPageDisplay];
+    model4.changePropertyBlock = ^(id obj) {
         weakSelf.defersCurrentPageDisplay = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Tint Color" detailTitle:[self LL_hierarchyColorDescription:self.pageIndicatorTintColor]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Tint Color" detailTitle:[self LL_hierarchyColorDescription:self.pageIndicatorTintColor]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"pageIndicatorTintColor"];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Current Page" detailTitle:[self LL_hierarchyColorDescription:self.currentPageIndicatorTintColor]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Current Page" detailTitle:[self LL_hierarchyColorDescription:self.currentPageIndicatorTintColor]];
     model6.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"currentPageIndicatorTintColor"];
     };
@@ -1467,46 +1469,46 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Value" detailTitle:[LLFormatterTool formatNumber:@(self.value)]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Value" detailTitle:[LLFormatterTool formatNumber:@(self.value)]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"value"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Minimum" detailTitle:[LLFormatterTool formatNumber:@(self.minimumValue)]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Minimum" detailTitle:[LLFormatterTool formatNumber:@(self.minimumValue)]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"minimumValue"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Maximum" detailTitle:[LLFormatterTool formatNumber:@(self.maximumValue)]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Maximum" detailTitle:[LLFormatterTool formatNumber:@(self.maximumValue)]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"maximumValue"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:@"Step" detailTitle:[LLFormatterTool formatNumber:@(self.stepValue)]];
+    LLDetailTitleCellModel *model4 = [LLDetailTitleCellModel modelWithTitle:@"Step" detailTitle:[LLFormatterTool formatNumber:@(self.stepValue)]];
     model4.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"stepValue"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Behavior" detailTitle:@"Autorepeat" flag:self.autorepeat] noneInsets];
-    model5.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Autorepeat" isOn:self.autorepeat] noneInsets];
+    model5.changePropertyBlock = ^(id obj) {
         weakSelf.autorepeat = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Continuous" flag:self.isContinuous] noneInsets];
-    model6.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model6 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Continuous" isOn:self.isContinuous] noneInsets];
+    model6.changePropertyBlock = ^(id obj) {
         weakSelf.continuous = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Wrap" flag:self.wraps];
-    model7.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model7 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Wrap" isOn:self.wraps];
+    model7.changePropertyBlock = ^(id obj) {
         weakSelf.wraps = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -1532,7 +1534,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription scrollViewIndicatorStyleDescription:self.indicatorStyle]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription scrollViewIndicatorStyleDescription:self.indicatorStyle]];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription scrollViewIndicatorStyles]
                                   currentAction:[LLEnumDescription scrollViewIndicatorStyleDescription:weakSelf.indicatorStyle]
@@ -1542,92 +1544,92 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Indicators" detailTitle:@"Shows Horizontal Indicator" flag:self.showsHorizontalScrollIndicator] noneInsets];
-    model2.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model2 = [[LLTitleSwitchCellModel modelWithTitle:@"Indicators" detailTitle:@"Shows Horizontal Indicator" isOn:self.showsHorizontalScrollIndicator] noneInsets];
+    model2.changePropertyBlock = ^(id obj) {
         weakSelf.showsHorizontalScrollIndicator = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Shows Vertical Indicator" flag:self.showsVerticalScrollIndicator];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Vertical Indicator" isOn:self.showsVerticalScrollIndicator];
+    model3.changePropertyBlock = ^(id obj) {
         weakSelf.showsVerticalScrollIndicator = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Scrolling" detailTitle:@"Enable" flag:self.isScrollEnabled] noneInsets];
-    model4.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model4 = [[LLTitleSwitchCellModel modelWithTitle:@"Scrolling" detailTitle:@"Enable" isOn:self.isScrollEnabled] noneInsets];
+    model4.changePropertyBlock = ^(id obj) {
         weakSelf.scrollEnabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Paging" flag:self.isPagingEnabled] noneInsets];
-    model5.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Paging" isOn:self.isPagingEnabled] noneInsets];
+    model5.changePropertyBlock = ^(id obj) {
         weakSelf.pagingEnabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Direction Lock" flag:self.isDirectionalLockEnabled];
-    model6.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model6 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Direction Lock" isOn:self.isDirectionalLockEnabled];
+    model6.changePropertyBlock = ^(id obj) {
         weakSelf.directionalLockEnabled = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Bounce" detailTitle:@"Bounces" flag:self.bounces] noneInsets];
-    model7.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model7 = [[LLTitleSwitchCellModel modelWithTitle:@"Bounce" detailTitle:@"Bounces" isOn:self.bounces] noneInsets];
+    model7.changePropertyBlock = ^(id obj) {
         weakSelf.bounces = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Bounce Horizontal" flag:self.alwaysBounceHorizontal] noneInsets];
-    model8.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model8 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Bounce Horizontal" isOn:self.alwaysBounceHorizontal] noneInsets];
+    model8.changePropertyBlock = ^(id obj) {
         weakSelf.alwaysBounceHorizontal = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Bounce Vertical" flag:self.alwaysBounceVertical];
-    model9.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model9 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Bounce Vertical" isOn:self.alwaysBounceVertical];
+    model9.changePropertyBlock = ^(id obj) {
         weakSelf.alwaysBounceVertical = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Zoom Min" detailTitle:[LLFormatterTool formatNumber:@(self.minimumZoomScale)]] noneInsets];
+    LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Zoom Min" detailTitle:[LLFormatterTool formatNumber:@(self.minimumZoomScale)]] noneInsets];
     model10.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"minimumZoomScale"];
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [LLTitleCellModel modelWithTitle:@"Max" detailTitle:[LLFormatterTool formatNumber:@(self.maximumZoomScale)]];
+    LLDetailTitleCellModel *model11 = [LLDetailTitleCellModel modelWithTitle:@"Max" detailTitle:[LLFormatterTool formatNumber:@(self.maximumZoomScale)]];
     model11.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"maximumZoomScale"];
     };
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:@"Touch" detailTitle:[NSString stringWithFormat:@"Zoom Bounces %@", [self LL_hierarchyBoolDescription:self.isZoomBouncing]]] noneInsets];
+    LLDetailTitleCellModel *model12 = [[LLDetailTitleCellModel modelWithTitle:@"Touch" detailTitle:[NSString stringWithFormat:@"Zoom Bounces %@", [self LL_hierarchyBoolDescription:self.isZoomBouncing]]] noneInsets];
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Delays Content Touches" flag:self.delaysContentTouches] noneInsets];
-    model13.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Delays Content Touches" isOn:self.delaysContentTouches] noneInsets];
+    model13.changePropertyBlock = ^(id obj) {
         weakSelf.delaysContentTouches = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Cancellable Content Touches" flag:self.canCancelContentTouches];
-    model14.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model14 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Cancellable Content Touches" isOn:self.canCancelContentTouches];
+    model14.changePropertyBlock = ^(id obj) {
         weakSelf.canCancelContentTouches = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
-    LLTitleCellModel *model15 = [LLTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription scrollViewKeyboardDismissModeDescription:self.keyboardDismissMode]];
+    LLDetailTitleCellModel *model15 = [LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription scrollViewKeyboardDismissModeDescription:self.keyboardDismissMode]];
     model15.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription scrollViewKeyboardDismissModes]
                                   currentAction:[LLEnumDescription scrollViewKeyboardDismissModeDescription:weakSelf.keyboardDismissMode]
@@ -1656,13 +1658,13 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfSections]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfSections]] noneInsets];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription tableViewStyleDescription:self.style]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription tableViewStyleDescription:self.style]] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Separator" detailTitle:[LLEnumDescription tableViewCellSeparatorStyleDescription:self.separatorStyle]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Separator" detailTitle:[LLEnumDescription tableViewCellSeparatorStyleDescription:self.separatorStyle]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellSeparatorStyles]
                                   currentAction:[LLEnumDescription tableViewCellSeparatorStyleDescription:weakSelf.separatorStyle]
@@ -1672,29 +1674,29 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.separatorColor]];
+    LLDetailTitleCellModel *model4 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.separatorColor]];
     model4.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"separatorColor"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]] noneInsets];
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]] noneInsets];
     model7.block = ^{
         [weakSelf LL_showEdgeInsetsAndAutomicSetWithKeyPath:@"separatorInset"];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]] noneInsets];
     [settings addObject:model8];
 
     if (@available(iOS 11.0, *)) {
-        LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:self.separatorInsetReference]];
+        LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:self.separatorInsetReference]];
         model9.block = ^{
             [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewSeparatorInsetReferences]
                                       currentAction:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:weakSelf.separatorInsetReference]
@@ -1705,53 +1707,53 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         [settings addObject:model9];
     }
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Selection" detailTitle:self.allowsSelection ? @"Allowed" : @"Disabled" flag:self.allowsSelection] noneInsets];
-    model10.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model10 = [[LLTitleSwitchCellModel modelWithTitle:@"Selection" detailTitle:self.allowsSelection ? @"Allowed" : @"Disabled" isOn:self.allowsSelection] noneInsets];
+    model10.changePropertyBlock = ^(id obj) {
         weakSelf.allowsSelection = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@", self.allowsMultipleSelection ? @"" : @"Disabled"] flag:self.allowsMultipleSelection] noneInsets];
-    model11.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model11 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@", self.allowsMultipleSelection ? @"" : @"Disabled"] isOn:self.allowsMultipleSelection] noneInsets];
+    model11.changePropertyBlock = ^(id obj) {
         weakSelf.allowsMultipleSelection = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:@"Edit Selection" detailTitle:self.allowsSelectionDuringEditing ? @"Allowed" : @"Disabled" flag:self.allowsSelectionDuringEditing] noneInsets];
-    model12.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:@"Edit Selection" detailTitle:self.allowsSelectionDuringEditing ? @"Allowed" : @"Disabled" isOn:self.allowsSelectionDuringEditing] noneInsets];
+    model12.changePropertyBlock = ^(id obj) {
         weakSelf.allowsSelectionDuringEditing = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [LLTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@", self.allowsMultipleSelectionDuringEditing ? @"" : @"Disabled"] flag:self.allowsMultipleSelectionDuringEditing];
-    model13.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model13 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@", self.allowsMultipleSelectionDuringEditing ? @"" : @"Disabled"] isOn:self.allowsMultipleSelectionDuringEditing];
+    model13.changePropertyBlock = ^(id obj) {
         weakSelf.allowsMultipleSelectionDuringEditing = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [[LLTitleCellModel modelWithTitle:@"Min Display" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.sectionIndexMinimumDisplayRowCount]] noneInsets];
+    LLDetailTitleCellModel *model14 = [[LLDetailTitleCellModel modelWithTitle:@"Min Display" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.sectionIndexMinimumDisplayRowCount]] noneInsets];
     model14.block = ^{
         [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"sectionIndexMinimumDisplayRowCount"];
     };
     [settings addObject:model14];
 
-    LLTitleCellModel *model15 = [[LLTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexColor]] noneInsets];
+    LLDetailTitleCellModel *model15 = [[LLDetailTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexColor]] noneInsets];
     model15.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"sectionIndexColor"];
     };
     [settings addObject:model15];
 
-    LLTitleCellModel *model16 = [[LLTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexBackgroundColor]] noneInsets];
+    LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexBackgroundColor]] noneInsets];
     model16.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"sectionIndexBackgroundColor"];
     };
     [settings addObject:model16];
 
-    LLTitleCellModel *model17 = [LLTitleCellModel modelWithTitle:@"Tracking" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexTrackingBackgroundColor]];
+    LLDetailTitleCellModel *model17 = [LLDetailTitleCellModel modelWithTitle:@"Tracking" detailTitle:[self LL_hierarchyColorDescription:self.sectionIndexTrackingBackgroundColor]];
     model17.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"sectionIndexTrackingBackgroundColor"];
     };
@@ -1760,19 +1762,19 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model17];
 
-    LLTitleCellModel *model18 = [[LLTitleCellModel modelWithTitle:@"Row Height" detailTitle:[LLFormatterTool formatNumber:@(self.rowHeight)]] noneInsets];
+    LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Row Height" detailTitle:[LLFormatterTool formatNumber:@(self.rowHeight)]] noneInsets];
     model18.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"rowHeight"];
     };
     [settings addObject:model18];
 
-    LLTitleCellModel *model19 = [[LLTitleCellModel modelWithTitle:@"Section Header" detailTitle:[LLFormatterTool formatNumber:@(self.sectionHeaderHeight)]] noneInsets];
+    LLDetailTitleCellModel *model19 = [[LLDetailTitleCellModel modelWithTitle:@"Section Header" detailTitle:[LLFormatterTool formatNumber:@(self.sectionHeaderHeight)]] noneInsets];
     model19.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"sectionHeaderHeight"];
     };
     [settings addObject:model19];
 
-    LLTitleCellModel *model20 = [LLTitleCellModel modelWithTitle:@"Section Footer" detailTitle:[LLFormatterTool formatNumber:@(self.sectionFooterHeight)]];
+    LLDetailTitleCellModel *model20 = [LLDetailTitleCellModel modelWithTitle:@"Section Footer" detailTitle:[LLFormatterTool formatNumber:@(self.sectionFooterHeight)]];
     model20.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"sectionFooterHeight"];
     };
@@ -1797,13 +1799,13 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.imageView.image]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Image" detailTitle:[self LL_hierarchyImageDescription:self.imageView.image]];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:@"Identifier" detailTitle:[self LL_hierarchyTextDescription:self.reuseIdentifier]];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Identifier" detailTitle:[self LL_hierarchyTextDescription:self.reuseIdentifier]];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Selection" detailTitle:[LLEnumDescription tableViewCellSelectionStyleDescription:self.selectionStyle]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Selection" detailTitle:[LLEnumDescription tableViewCellSelectionStyleDescription:self.selectionStyle]] noneInsets];
     model3.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellSelectionStyles]
                                   currentAction:[LLEnumDescription tableViewCellSelectionStyleDescription:weakSelf.selectionStyle]
@@ -1813,7 +1815,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Accessory" detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.accessoryType]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Accessory" detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.accessoryType]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes]
                                   currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.accessoryType]
@@ -1823,7 +1825,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [LLTitleCellModel modelWithTitle:@"Editing Acc." detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.editingAccessoryType]];
+    LLDetailTitleCellModel *model5 = [LLDetailTitleCellModel modelWithTitle:@"Editing Acc." detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.editingAccessoryType]];
     model5.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes]
                                   currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.editingAccessoryType]
@@ -1833,39 +1835,39 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:@"Indentation" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.indentationLevel]] noneInsets];
+    LLDetailTitleCellModel *model6 = [[LLDetailTitleCellModel modelWithTitle:@"Indentation" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.indentationLevel]] noneInsets];
     model6.block = ^{
         [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"indentationLevel"];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[LLFormatterTool formatNumber:@(self.indentationWidth)]] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[LLFormatterTool formatNumber:@(self.indentationWidth)]] noneInsets];
     model7.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"indentationWidth"];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Indent While Editing" flag:self.shouldIndentWhileEditing] noneInsets];
-    model8.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model8 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Indent While Editing" isOn:self.shouldIndentWhileEditing] noneInsets];
+    model8.changePropertyBlock = ^(id obj) {
         weakSelf.shouldIndentWhileEditing = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Shows Re-order Controls" flag:self.showsReorderControl];
-    model9.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model9 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Re-order Controls" isOn:self.showsReorderControl];
+    model9.changePropertyBlock = ^(id obj) {
         weakSelf.showsReorderControl = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]] noneInsets];
+    LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Separator Inset" detailTitle:[self LL_hierarchyInsetsTopBottomDescription:self.separatorInset]] noneInsets];
     model10.block = ^{
         [weakSelf LL_showEdgeInsetsAndAutomicSetWithKeyPath:@"separatorInset"];
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]];
+    LLDetailTitleCellModel *model11 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyInsetsLeftRightDescription:self.separatorInset]];
     [settings addObject:model11];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Table View Cell" items:settings];
@@ -1886,16 +1888,16 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfSections]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Sections" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.numberOfSections]];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]] noneInsets];
+    LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Data Source" detailTitle:[self LL_hierarchyObjectDescription:self.dataSource]] noneInsets];
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [LLTitleCellModel modelWithTitle:@"Layout" detailTitle:[self LL_hierarchyObjectDescription:self.collectionViewLayout]];
+    LLDetailTitleCellModel *model4 = [LLDetailTitleCellModel modelWithTitle:@"Layout" detailTitle:[self LL_hierarchyObjectDescription:self.collectionViewLayout]];
     [settings addObject:model4];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Collection View" items:settings];
@@ -1916,7 +1918,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Identifier" detailTitle:[self LL_hierarchyTextDescription:self.reuseIdentifier]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Identifier" detailTitle:[self LL_hierarchyTextDescription:self.reuseIdentifier]] noneInsets];
     [settings addObject:model1];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Collection Reusable View" items:settings];
@@ -1939,38 +1941,38 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Plain Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Attributed Text" detailTitle:[self LL_hierarchyObjectDescription:self.attributedText]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showAttributeTextAlertAndAutomicSetWithKeyPath:@"attributedText"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Allows Editing Attributes" flag:self.allowsEditingTextAttributes] noneInsets];
-    model3.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Allows Editing Attributes" isOn:self.allowsEditingTextAttributes] noneInsets];
+    model3.changePropertyBlock = ^(id obj) {
         weakSelf.allowsEditingTextAttributes = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Color" detailTitle:[self LL_hierarchyColorDescription:self.textColor]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Font" detailTitle:[self LL_hierarchyObjectDescription:self.font]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showFontAlertAndAutomicSetWithKeyPath:@"font"];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]];
     model6.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAlignments]
                                   currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
@@ -1980,22 +1982,22 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Behavior" detailTitle:@"Editable" flag:self.isEditable] noneInsets];
-    model7.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model7 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Editable" isOn:self.isEditable] noneInsets];
+    model7.changePropertyBlock = ^(id obj) {
         weakSelf.editable = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Selectable" flag:self.isSelectable];
-    model8.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model8 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Selectable" isOn:self.isSelectable];
+    model8.changePropertyBlock = ^(id obj) {
         weakSelf.selectable = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [[LLTitleCellModel modelWithTitle:@"Data Detectors" detailTitle:@"Phone Number" flag:self.dataDetectorTypes & UIDataDetectorTypePhoneNumber] noneInsets];
-    model9.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model9 = [[LLTitleSwitchCellModel modelWithTitle:@"Data Detectors" detailTitle:@"Phone Number" isOn:self.dataDetectorTypes & UIDataDetectorTypePhoneNumber] noneInsets];
+    model9.changePropertyBlock = ^(id obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypePhoneNumber;
         } else {
@@ -2004,8 +2006,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Link" flag:self.dataDetectorTypes & UIDataDetectorTypeLink] noneInsets];
-    model10.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model10 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Link" isOn:self.dataDetectorTypes & UIDataDetectorTypeLink] noneInsets];
+    model10.changePropertyBlock = ^(id obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeLink;
         } else {
@@ -2014,8 +2016,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Address" flag:self.dataDetectorTypes & UIDataDetectorTypeAddress] noneInsets];
-    model11.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model11 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Address" isOn:self.dataDetectorTypes & UIDataDetectorTypeAddress] noneInsets];
+    model11.changePropertyBlock = ^(id obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeAddress;
         } else {
@@ -2024,8 +2026,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Calendar Event" flag:self.dataDetectorTypes & UIDataDetectorTypeCalendarEvent] noneInsets];
-    model12.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Calendar Event" isOn:self.dataDetectorTypes & UIDataDetectorTypeCalendarEvent] noneInsets];
+    model12.changePropertyBlock = ^(id obj) {
         if ([obj boolValue]) {
             weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeCalendarEvent;
         } else {
@@ -2035,8 +2037,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     [settings addObject:model12];
 
     if (@available(iOS 10.0, *)) {
-        LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Shipment Tracking Number" flag:self.dataDetectorTypes & UIDataDetectorTypeShipmentTrackingNumber] noneInsets];
-        model13.changePropertyBlock = ^(id _Nullable obj) {
+        LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shipment Tracking Number" isOn:self.dataDetectorTypes & UIDataDetectorTypeShipmentTrackingNumber] noneInsets];
+        model13.changePropertyBlock = ^(id obj) {
             if ([obj boolValue]) {
                 weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeShipmentTrackingNumber;
             } else {
@@ -2045,8 +2047,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         };
         [settings addObject:model13];
 
-        LLTitleCellModel *model14 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Flight Number" flag:self.dataDetectorTypes & UIDataDetectorTypeFlightNumber] noneInsets];
-        model14.changePropertyBlock = ^(id _Nullable obj) {
+        LLTitleSwitchCellModel *model14 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Flight Number" isOn:self.dataDetectorTypes & UIDataDetectorTypeFlightNumber] noneInsets];
+        model14.changePropertyBlock = ^(id obj) {
             if ([obj boolValue]) {
                 weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeFlightNumber;
             } else {
@@ -2055,8 +2057,8 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         };
         [settings addObject:model14];
 
-        LLTitleCellModel *model15 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Lookup Suggestion" flag:self.dataDetectorTypes & UIDataDetectorTypeLookupSuggestion];
-        model15.changePropertyBlock = ^(id _Nullable obj) {
+        LLTitleSwitchCellModel *model15 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Lookup Suggestion" isOn:self.dataDetectorTypes & UIDataDetectorTypeLookupSuggestion];
+        model15.changePropertyBlock = ^(id obj) {
             if ([obj boolValue]) {
                 weakSelf.dataDetectorTypes = weakSelf.dataDetectorTypes | UIDataDetectorTypeLookupSuggestion;
             } else {
@@ -2068,7 +2070,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         [model12 normalInsets];
     }
 
-    LLTitleCellModel *model16 = [[LLTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
+    LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
     model16.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
                                   currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
@@ -2078,7 +2080,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model16];
 
-    LLTitleCellModel *model17 = [[LLTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
+    LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
     model17.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
                                   currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
@@ -2088,7 +2090,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model17];
 
-    LLTitleCellModel *model18 = [[LLTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]] noneInsets];
+    LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]] noneInsets];
     model18.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardTypes]
                                   currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
@@ -2098,7 +2100,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model18];
 
-    LLTitleCellModel *model19 = [[LLTitleCellModel modelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]] noneInsets];
+    LLDetailTitleCellModel *model19 = [[LLDetailTitleCellModel modelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]] noneInsets];
     model19.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardAppearances]
                                   currentAction:[LLEnumDescription keyboardAppearanceDescription:weakSelf.keyboardAppearance]
@@ -2108,7 +2110,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model19];
 
-    LLTitleCellModel *model20 = [[LLTitleCellModel modelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]] noneInsets];
+    LLDetailTitleCellModel *model20 = [[LLDetailTitleCellModel modelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]] noneInsets];
     model20.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription returnKeyTypes]
                                   currentAction:[LLEnumDescription returnKeyTypeDescription:weakSelf.returnKeyType]
@@ -2118,15 +2120,15 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model20];
 
-    LLTitleCellModel *model21 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Auto-enable Return Key" flag:self.enablesReturnKeyAutomatically] noneInsets];
-    model21.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model21 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Auto-enable Return Key" isOn:self.enablesReturnKeyAutomatically] noneInsets];
+    model21.changePropertyBlock = ^(id obj) {
         weakSelf.enablesReturnKeyAutomatically = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model21];
 
-    LLTitleCellModel *model22 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Secure Entry" flag:self.isSecureTextEntry];
-    model22.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model22 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Secure Entry" isOn:self.isSecureTextEntry];
+    model22.changePropertyBlock = ^(id obj) {
         weakSelf.secureTextEntry = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
@@ -2151,7 +2153,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Mode" detailTitle:[LLEnumDescription datePickerModeDescription:self.datePickerMode]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Mode" detailTitle:[LLEnumDescription datePickerModeDescription:self.datePickerMode]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription datePickerModes]
                                   currentAction:[LLEnumDescription datePickerModeDescription:weakSelf.datePickerMode]
@@ -2161,34 +2163,34 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Locale Identifier" detailTitle:self.locale.localeIdentifier] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Locale Identifier" detailTitle:self.locale.localeIdentifier] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"Interval" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.minuteInterval]];
+    LLDetailTitleCellModel *model3 = [LLDetailTitleCellModel modelWithTitle:@"Interval" detailTitle:[NSString stringWithFormat:@"%ld", (long)self.minuteInterval]];
     model3.block = ^{
         [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"minuteInterval"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Date" detailTitle:[self LL_hierarchyDateDescription:self.date]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Date" detailTitle:[self LL_hierarchyDateDescription:self.date]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showDateAlertAndAutomicSetWithKeyPath:@"date"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Min Date" detailTitle:[self LL_hierarchyDateDescription:self.minimumDate]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Min Date" detailTitle:[self LL_hierarchyDateDescription:self.minimumDate]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showDateAlertAndAutomicSetWithKeyPath:@"minimumDate"];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Max Date" detailTitle:[self LL_hierarchyDateDescription:self.maximumDate]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Max Date" detailTitle:[self LL_hierarchyDateDescription:self.maximumDate]];
     model6.block = ^{
         [weakSelf LL_showDateAlertAndAutomicSetWithKeyPath:@"maximumDate"];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [LLTitleCellModel modelWithTitle:@"Count Down" detailTitle:[LLFormatterTool formatNumber:@(self.countDownDuration)]];
+    LLDetailTitleCellModel *model7 = [LLDetailTitleCellModel modelWithTitle:@"Count Down" detailTitle:[LLFormatterTool formatNumber:@(self.countDownDuration)]];
     [settings addObject:model7];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Date Picker" items:settings];
@@ -2209,7 +2211,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [LLTitleCellModel modelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
+    LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Delegate" detailTitle:[self LL_hierarchyObjectDescription:self.delegate]];
     [settings addObject:model1];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Picker View" items:settings];
@@ -2232,7 +2234,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles]
                                   currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
@@ -2242,41 +2244,41 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
-    model2.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model2 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
+    model2.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model2];
 
     if (@available(iOS 11.0, *)) {
-        LLTitleCellModel *model3 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Prefers Large Titles" flag:self.prefersLargeTitles] noneInsets];
-        model3.changePropertyBlock = ^(id _Nullable obj) {
+        LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Prefers Large Titles" isOn:self.prefersLargeTitles] noneInsets];
+        model3.changePropertyBlock = ^(id obj) {
             weakSelf.prefersLargeTitles = [obj boolValue];
             [weakSelf LL_postDebugToolChangeHierarchyNotification];
         };
         [settings addObject:model3];
     }
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"barTintColor"];
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Shadow Image" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Shadow Image" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]] noneInsets];
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:@"Back Image" detailTitle:[self LL_hierarchyImageDescription:self.backIndicatorImage]] noneInsets];
+    LLDetailTitleCellModel *model6 = [[LLDetailTitleCellModel modelWithTitle:@"Back Image" detailTitle:[self LL_hierarchyImageDescription:self.backIndicatorImage]] noneInsets];
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [LLTitleCellModel modelWithTitle:@"Back Mask" detailTitle:[self LL_hierarchyImageDescription:self.backIndicatorTransitionMaskImage]];
+    LLDetailTitleCellModel *model7 = [LLDetailTitleCellModel modelWithTitle:@"Back Mask" detailTitle:[self LL_hierarchyImageDescription:self.backIndicatorTransitionMaskImage]];
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Title Attr." detailTitle:nil] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:@"Title Attr." detailTitle:nil] noneInsets];
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [[LLTitleCellModel modelWithTitle:@"Title Font" detailTitle:[self LL_hierarchyObjectDescription:self.titleTextAttributes[NSFontAttributeName]]] noneInsets];
+    LLDetailTitleCellModel *model9 = [[LLDetailTitleCellModel modelWithTitle:@"Title Font" detailTitle:[self LL_hierarchyObjectDescription:self.titleTextAttributes[NSFontAttributeName]]] noneInsets];
     if (self.titleTextAttributes[NSFontAttributeName]) {
         model9.block = ^{
             __block UIFont *font = weakSelf.titleTextAttributes[NSFontAttributeName];
@@ -2284,7 +2286,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
                 return;
             }
             [weakSelf LL_showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [LLFormatterTool formatNumber:@(font.pointSize)]]
-                                            handler:^(NSString *_Nullable newText) {
+                                            handler:^(NSString *newText) {
                                                 NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.titleTextAttributes];
                                                 attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
                                                 weakSelf.titleTextAttributes = [attributes copy];
@@ -2293,7 +2295,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     }
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.titleTextAttributes[NSForegroundColorAttributeName]]] noneInsets];
+    LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.titleTextAttributes[NSForegroundColorAttributeName]]] noneInsets];
     [settings addObject:model10];
 
     NSShadow *shadow = self.titleTextAttributes[NSShadowAttributeName];
@@ -2301,17 +2303,17 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         shadow = nil;
     }
 
-    LLTitleCellModel *model11 = [[LLTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:shadow.shadowColor]] noneInsets];
+    LLDetailTitleCellModel *model11 = [[LLDetailTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:shadow.shadowColor]] noneInsets];
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [LLTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:shadow.shadowOffset]];
+    LLDetailTitleCellModel *model12 = [LLDetailTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:shadow.shadowOffset]];
     [settings addObject:model12];
 
     if (@available(iOS 11.0, *)) {
-        LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:@"Large Title Attr." detailTitle:nil] noneInsets];
+        LLDetailTitleCellModel *model13 = [[LLDetailTitleCellModel modelWithTitle:@"Large Title Attr." detailTitle:nil] noneInsets];
         [settings addObject:model13];
 
-        LLTitleCellModel *model14 = [[LLTitleCellModel modelWithTitle:@"Title Font" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSFontAttributeName]]] noneInsets];
+        LLDetailTitleCellModel *model14 = [[LLDetailTitleCellModel modelWithTitle:@"Title Font" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSFontAttributeName]]] noneInsets];
         if (self.largeTitleTextAttributes[NSFontAttributeName]) {
             model14.block = ^{
                 __block UIFont *font = weakSelf.largeTitleTextAttributes[NSFontAttributeName];
@@ -2319,7 +2321,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
                     return;
                 }
                 [weakSelf LL_showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [LLFormatterTool formatNumber:@(font.pointSize)]]
-                                                handler:^(NSString *_Nullable newText) {
+                                                handler:^(NSString *newText) {
                                                     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.largeTitleTextAttributes];
                                                     attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
                                                     weakSelf.largeTitleTextAttributes = [attributes copy];
@@ -2328,7 +2330,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
         }
         [settings addObject:model14];
 
-        LLTitleCellModel *model15 = [[LLTitleCellModel modelWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSForegroundColorAttributeName]]] noneInsets];
+        LLDetailTitleCellModel *model15 = [[LLDetailTitleCellModel modelWithTitle:@"Title Color" detailTitle:[self LL_hierarchyColorDescription:self.largeTitleTextAttributes[NSForegroundColorAttributeName]]] noneInsets];
         [settings addObject:model15];
 
         shadow = self.largeTitleTextAttributes[NSShadowAttributeName];
@@ -2336,10 +2338,10 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
             shadow = nil;
         }
 
-        LLTitleCellModel *model16 = [[LLTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:shadow.shadowColor]] noneInsets];
+        LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyColorDescription:shadow.shadowColor]] noneInsets];
         [settings addObject:model16];
 
-        LLTitleCellModel *model17 = [LLTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:shadow.shadowOffset]];
+        LLDetailTitleCellModel *model17 = [LLDetailTitleCellModel modelWithTitle:@"Shadow Offset" detailTitle:[self LL_hierarchySizeDescription:shadow.shadowOffset]];
         [settings addObject:model17];
     }
 
@@ -2363,7 +2365,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles]
                                   currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
@@ -2373,14 +2375,14 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
-    model2.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model2 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
+    model2.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    LLDetailTitleCellModel *model3 = [LLDetailTitleCellModel modelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
     model3.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"barTintColor"];
     };
@@ -2405,16 +2407,16 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]] noneInsets];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Shadow" detailTitle:[self LL_hierarchyImageDescription:self.shadowImage]] noneInsets];
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"Selection" detailTitle:[self LL_hierarchyImageDescription:self.selectionIndicatorImage]];
+    LLDetailTitleCellModel *model3 = [LLDetailTitleCellModel modelWithTitle:@"Selection" detailTitle:[self LL_hierarchyImageDescription:self.selectionIndicatorImage]];
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles]
                                   currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
@@ -2424,20 +2426,20 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
-    model5.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
+    model5.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [LLTitleCellModel modelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Bar Tint" detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
     model6.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"barTintColor"];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [[LLTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription tabBarItemPositioningDescription:self.itemPositioning]] noneInsets];
+    LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription tabBarItemPositioningDescription:self.itemPositioning]] noneInsets];
     model7.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription tabBarItemPositionings]
                                   currentAction:[LLEnumDescription tabBarItemPositioningDescription:weakSelf.itemPositioning]
@@ -2447,13 +2449,13 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Item Width" detailTitle:[LLFormatterTool formatNumber:@(self.itemWidth)]] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:@"Item Width" detailTitle:[LLFormatterTool formatNumber:@(self.itemWidth)]] noneInsets];
     model8.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"itemWidth"];
     };
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Item Spacing" detailTitle:[LLFormatterTool formatNumber:@(self.itemSpacing)]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Item Spacing" detailTitle:[LLFormatterTool formatNumber:@(self.itemSpacing)]];
     model9.block = ^{
         [weakSelf LL_showDoubleAlertAndAutomicSetWithKeyPath:@"itemSpacing"];
     };
@@ -2478,25 +2480,25 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     __weak typeof(self) weakSelf = self;
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Text" detailTitle:[self LL_hierarchyTextDescription:self.text]] noneInsets];
     model1.block = ^{
         [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
     };
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [[LLTitleCellModel modelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder]] noneInsets];
+    LLDetailTitleCellModel *model2 = [[LLDetailTitleCellModel modelWithTitle:@"Placeholder" detailTitle:[self LL_hierarchyTextDescription:self.placeholder]] noneInsets];
     model2.block = ^{
         [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"placeholder"];
     };
     [settings addObject:model2];
 
-    LLTitleCellModel *model3 = [LLTitleCellModel modelWithTitle:@"Prompt" detailTitle:[self LL_hierarchyTextDescription:self.prompt]];
+    LLDetailTitleCellModel *model3 = [LLDetailTitleCellModel modelWithTitle:@"Prompt" detailTitle:[self LL_hierarchyTextDescription:self.prompt]];
     model3.block = ^{
         [weakSelf LL_showTextAlertAndAutomicSetWithKeyPath:@"prompt"];
     };
     [settings addObject:model3];
 
-    LLTitleCellModel *model4 = [[LLTitleCellModel modelWithTitle:@"Search Style" detailTitle:[LLEnumDescription searchBarStyleDescription:self.searchBarStyle]] noneInsets];
+    LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Search Style" detailTitle:[LLEnumDescription searchBarStyleDescription:self.searchBarStyle]] noneInsets];
     model4.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription searchBarStyles]
                                   currentAction:[LLEnumDescription searchBarStyleDescription:weakSelf.searchBarStyle]
@@ -2506,7 +2508,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model4];
 
-    LLTitleCellModel *model5 = [[LLTitleCellModel modelWithTitle:@"Bar Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
+    LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Bar Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model5.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription barStyles]
                                   currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
@@ -2516,63 +2518,63 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model5];
 
-    LLTitleCellModel *model6 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Translucent" flag:self.isTranslucent] noneInsets];
-    model6.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model6 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
+    model6.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
-    LLTitleCellModel *model7 = [LLTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
+    LLDetailTitleCellModel *model7 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[self LL_hierarchyColorDescription:self.barTintColor]];
     model7.block = ^{
         [weakSelf LL_showColorAlertAndAutomicSetWithKeyPath:@"barTintColor"];
     };
     [settings addObject:model7];
 
-    LLTitleCellModel *model8 = [[LLTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]] noneInsets];
+    LLDetailTitleCellModel *model8 = [[LLDetailTitleCellModel modelWithTitle:@"Background" detailTitle:[self LL_hierarchyImageDescription:self.backgroundImage]] noneInsets];
     [settings addObject:model8];
 
-    LLTitleCellModel *model9 = [LLTitleCellModel modelWithTitle:@"Scope Bar" detailTitle:[self LL_hierarchyImageDescription:self.scopeBarBackgroundImage]];
+    LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:@"Scope Bar" detailTitle:[self LL_hierarchyImageDescription:self.scopeBarBackgroundImage]];
     [settings addObject:model9];
 
-    LLTitleCellModel *model10 = [[LLTitleCellModel modelWithTitle:@"Text Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchTextPositionAdjustment]] noneInsets];
+    LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Text Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchTextPositionAdjustment]] noneInsets];
     [settings addObject:model10];
 
-    LLTitleCellModel *model11 = [LLTitleCellModel modelWithTitle:@"BG Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchFieldBackgroundPositionAdjustment]];
+    LLDetailTitleCellModel *model11 = [LLDetailTitleCellModel modelWithTitle:@"BG Offset" detailTitle:[self LL_hierarchyOffsetDescription:self.searchFieldBackgroundPositionAdjustment]];
     [settings addObject:model11];
 
-    LLTitleCellModel *model12 = [[LLTitleCellModel modelWithTitle:@"Options" detailTitle:@"Shows Search Results Button" flag:self.showsSearchResultsButton] noneInsets];
-    model12.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:@"Options" detailTitle:@"Shows Search Results Button" isOn:self.showsSearchResultsButton] noneInsets];
+    model12.changePropertyBlock = ^(id obj) {
         weakSelf.showsSearchResultsButton = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
-    LLTitleCellModel *model13 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Shows Bookmarks Button" flag:self.showsBookmarkButton] noneInsets];
-    model13.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Bookmarks Button" isOn:self.showsBookmarkButton] noneInsets];
+    model13.changePropertyBlock = ^(id obj) {
         weakSelf.showsBookmarkButton = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
-    LLTitleCellModel *model14 = [[LLTitleCellModel modelWithTitle:nil detailTitle:@"Shows Cancel Button" flag:self.showsCancelButton] noneInsets];
-    model14.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model14 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Cancel Button" isOn:self.showsCancelButton] noneInsets];
+    model14.changePropertyBlock = ^(id obj) {
         weakSelf.showsCancelButton = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
-    LLTitleCellModel *model15 = [LLTitleCellModel modelWithTitle:nil detailTitle:@"Shows Scope Bar" flag:self.showsScopeBar];
-    model15.changePropertyBlock = ^(id _Nullable obj) {
+    LLTitleSwitchCellModel *model15 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Scope Bar" isOn:self.showsScopeBar];
+    model15.changePropertyBlock = ^(id obj) {
         weakSelf.showsScopeBar = [obj boolValue];
         [weakSelf LL_postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model15];
 
-    LLTitleCellModel *model16 = [LLTitleCellModel modelWithTitle:@"Scope Titles" detailTitle:[self LL_hierarchyObjectDescription:self.scopeButtonTitles]];
+    LLDetailTitleCellModel *model16 = [LLDetailTitleCellModel modelWithTitle:@"Scope Titles" detailTitle:[self LL_hierarchyObjectDescription:self.scopeButtonTitles]];
     [settings addObject:model16];
 
-    LLTitleCellModel *model17 = [[LLTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
+    LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
     model17.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
                                   currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
@@ -2582,7 +2584,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model17];
 
-    LLTitleCellModel *model18 = [[LLTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
+    LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
     model18.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
                                   currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
@@ -2592,7 +2594,7 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
     };
     [settings addObject:model18];
 
-    LLTitleCellModel *model19 = [LLTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]];
+    LLDetailTitleCellModel *model19 = [LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]];
     model19.block = ^{
         [weakSelf LL_showActionSheetWithActions:[LLEnumDescription keyboardTypes]
                                   currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
@@ -2620,10 +2622,10 @@ NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolC
 - (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    LLTitleCellModel *model1 = [[LLTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Key Window %@", [self LL_hierarchyBoolDescription:self.isKeyWindow]]] noneInsets];
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Key Window %@", [self LL_hierarchyBoolDescription:self.isKeyWindow]]] noneInsets];
     [settings addObject:model1];
 
-    LLTitleCellModel *model2 = [LLTitleCellModel modelWithTitle:@"Root Controller" detailTitle:[self LL_hierarchyObjectDescription:self.rootViewController]];
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Root Controller" detailTitle:[self LL_hierarchyObjectDescription:self.rootViewController]];
     [settings addObject:model2];
 
     LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Window" items:settings];

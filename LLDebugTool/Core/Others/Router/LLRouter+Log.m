@@ -81,7 +81,7 @@
 #endif
 }
 
-+ (UIViewController *_Nullable)logViewControllerWithLaunchDate:(NSString *_Nullable)launchDate {
++ (UIViewController *)logViewControllerWithLaunchDate:(NSString *)launchDate {
     Class cls = [self logViewControllerClass];
     if (!cls) {
         return nil;
@@ -91,11 +91,11 @@
     return vc;
 }
 
-+ (Class _Nullable)logModelClass {
++ (Class)logModelClass {
     return NSClassFromString(@"LLLogModel");
 }
 
-+ (Class _Nullable)logViewControllerClass {
++ (Class)logViewControllerClass {
     return NSClassFromString(@"LLLogViewController");
 }
 

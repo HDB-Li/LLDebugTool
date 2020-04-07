@@ -25,7 +25,7 @@
 
 @implementation LLRouter (Crash)
 
-+ (Class _Nullable)crashModelClass {
++ (Class)crashModelClass {
     return NSClassFromString(@"LLCrashModel");
 }
 

@@ -89,7 +89,7 @@ static LLToastUtils *_instance = nil;
 }
 
 #pragma mark - Primary
-- (void)showToastLabel:(NSString *)message completion:(void (^__nullable)(void))completion {
+- (void)showToastLabel:(NSString *)message completion:(void (^)(void))completion {
     if (self.toastLabel.superview) {
         [self.toastLabel removeFromSuperview];
     }

@@ -88,7 +88,7 @@ static LLFormatterTool *_instance = nil;
     return [self.numberFormatter stringFromNumber:number];
 }
 
-- (NSString *_Nullable)formatLocation:(NSNumber *)number {
+- (NSString *)formatLocation:(NSNumber *)number {
     return [self.locationFormatter stringFromNumber:number];
 }
 

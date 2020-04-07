@@ -38,7 +38,7 @@
 
 @implementation LLCrashModel
 
-- (instancetype _Nonnull)initWithName:(NSString *_Nullable)name reason:(NSString *_Nullable)reason userInfo:(NSDictionary<NSString *, id> *_Nullable)userInfo stackSymbols:(NSArray<NSString *> *_Nullable)stackSymbols date:(NSString *_Nullable)date thread:(NSString *_Nullable)thread userIdentity:(NSString *_Nullable)userIdentity appInfoDescription:(NSString *_Nullable)appInfoDescription launchDate:(NSString *)launchDate {
+- (instancetype _Nonnull)initWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary<NSString *, id> *)userInfo stackSymbols:(NSArray<NSString *> *)stackSymbols date:(NSString *)date thread:(NSString *)thread userIdentity:(NSString *)userIdentity appInfoDescription:(NSString *)appInfoDescription launchDate:(NSString *)launchDate {
     if (self = [super init]) {
         _name = [name copy];
         _reason = [reason copy];

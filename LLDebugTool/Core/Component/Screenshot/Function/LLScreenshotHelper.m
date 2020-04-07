@@ -73,16 +73,16 @@ static LLScreenshotHelper *_instance = nil;
     }
 }
 
-- (UIImage *_Nullable)imageFromScreen {
+- (UIImage *)imageFromScreen {
     return [self imageFromScreen:0];
 }
 
-- (UIImage *_Nullable)imageFromScreen:(CGFloat)scale {
+- (UIImage *)imageFromScreen:(CGFloat)scale {
     return [LLRouter screenshotWithScale:scale];
 }
 
 #pragma mark - Screenshot
-- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^__nullable)(BOOL finished))complete {
+- (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^)(BOOL finished))complete {
     if ([[NSThread currentThread] isMainThread]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self saveScreenshot:image name:name complete:complete];

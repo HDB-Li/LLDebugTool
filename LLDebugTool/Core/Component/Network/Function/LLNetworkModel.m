@@ -32,11 +32,11 @@
 
 @interface LLNetworkModel ()
 
-@property (nonatomic, copy, nullable) NSString *requestDataTraffic;
+@property (nonatomic, copy) NSString *requestDataTraffic;
 
-@property (nonatomic, copy, nullable) NSString *responseDataTraffic;
+@property (nonatomic, copy) NSString *responseDataTraffic;
 
-@property (nonatomic, copy, nullable) NSString *totalDataTraffic;
+@property (nonatomic, copy) NSString *totalDataTraffic;
 
 @property (nonatomic, assign) unsigned long long requestDataTrafficValue;
 
@@ -52,7 +52,7 @@
 
 @property (nonatomic, strong) NSDate *dateDescription;
 
-@property (nonatomic, strong, nullable) NSDictionary<NSString *, NSString *> *cookies;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *cookies;
 
 @end
 

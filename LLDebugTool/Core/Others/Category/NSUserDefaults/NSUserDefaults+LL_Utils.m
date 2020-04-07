@@ -25,7 +25,7 @@
 
 @implementation NSUserDefaults (LL_Utils)
 
-+ (NSString *_Nullable)LL_stringForKey:(NSString *)aKey {
++ (NSString *)LL_stringForKey:(NSString *)aKey {
     return [[NSUserDefaults standardUserDefaults] stringForKey:[self getKey:aKey]];
 }
 

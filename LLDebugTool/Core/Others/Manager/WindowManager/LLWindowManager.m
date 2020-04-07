@@ -82,7 +82,7 @@ static LLWindowManager *_instance = nil;
     [self showWindow:window animated:animated completion:nil];
 }
 
-- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion {
+- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     [self addWindow:window animated:animated completion:completion];
 }
 
@@ -90,11 +90,11 @@ static LLWindowManager *_instance = nil;
     [self hideWindow:window animated:animated completion:nil];
 }
 
-- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion {
+- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     [self removeWindow:window animated:animated showEntry:YES completion:nil];
 }
 
-- (LLBaseWindow *_Nullable)visiableWindow {
+- (LLBaseWindow *)visiableWindow {
     return [self.visibleWindows lastObject];
 }
 

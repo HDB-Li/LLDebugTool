@@ -1,5 +1,5 @@
 //
-//  LLDetailTitleSelectorCell.m
+//  LLTitleSliderCellModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,14 +21,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLDetailTitleSelectorCell.h"
+#import "LLTitleSliderCellModel.h"
 
-@implementation LLDetailTitleSelectorCell
+#import "LLTitleSliderCell.h"
 
-#pragma mark - Over write
-- (void)initUI {
-    [super initUI];
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+@implementation LLTitleSliderCellModel
+
+#pragma mark - Public
++ (instancetype)modelWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
+    return [[self alloc] initWithTitle:title value:value minValue:minValue maxValue:maxValue];
+}
+
+#pragma mark - Primary
+- (instancetype)initWithTitle:(NSString *)title value:(CGFloat)value minValue:(CGFloat)minValue maxValue:(CGFloat)maxValue {
+    if (self = [super init]) {
+        self.title = title;
+        self.value = value;
+        self.minValue = minValue;
+        self.maxValue = maxValue;
+        self.cellClass = NSStringFromClass(LLTitleSliderCell.class);
+    }
+    return self;
 }
 
 @end

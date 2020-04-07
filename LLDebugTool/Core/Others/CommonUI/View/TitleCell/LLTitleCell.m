@@ -71,6 +71,7 @@
 - (void)setModel:(LLTitleCellModel *)model {
     _model = model;
     self.titleLabel.text = model.title;
+    self.accessoryType = model.accessoryType;
 }
 
 - (UILabel *)titleLabel {

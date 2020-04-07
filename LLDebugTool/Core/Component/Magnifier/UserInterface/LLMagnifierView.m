@@ -33,7 +33,7 @@
 
 @interface LLMagnifierView ()
 
-@property (nonatomic, strong, nullable) UIImage *screenshot;
+@property (nonatomic, strong) UIImage *screenshot;
 
 @property (nonatomic, assign) CGPoint targetPoint;
 

@@ -1,5 +1,5 @@
 //
-//  LLDetailTitleSelectorCell.h
+//  LLDetailTitleCellModel.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,13 +21,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "LLDetailTitleCellModel.h"
+
 #import "LLDetailTitleCell.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-/// Detail title selector cell.
-@interface LLDetailTitleSelectorCell : LLDetailTitleCell
+@interface LLDetailTitleCellModel ()
 
 @end
 
-NS_ASSUME_NONNULL_END
+@implementation LLDetailTitleCellModel
+
+#pragma mark - Public
++ (instancetype)modelWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
+    return [[self alloc] initWithTitle:title detailTitle:detailTitle];
+}
+
+#pragma mark - Primary
+- (instancetype)initWithTitle:(NSString *)title detailTitle:(NSString *)detailTitle {
+    if (self = [super init]) {
+        self.title = title;
+        self.detailTitle = detailTitle;
+        self.cellClass = NSStringFromClass(LLDetailTitleCell.class);
+    }
+    return self;
+}
+
+@end
