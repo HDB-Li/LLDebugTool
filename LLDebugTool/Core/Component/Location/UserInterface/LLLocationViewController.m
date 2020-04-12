@@ -378,7 +378,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
     if (mockCoordinate.latitude == 0 && mockCoordinate.longitude == 0) {
         mockCoordinate = CLLocationCoordinate2DMake(kLLDefaultMockLocationLatitude, kLLDefaultMockLocationLongitude);
         automicSetRegion = NO;
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        if ([[LLLocationHelper shared] userAgreeAuthorization]) {
             [self.locationManager startUpdatingLocation];
         }
     }

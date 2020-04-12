@@ -67,6 +67,10 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 #pragma mark - Public
+- (BOOL)userAgreeAuthorization {
+    return [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
+}
+
 - (void)addMockRouteFile:(NSString *)filePath {
     // Check nil.
     if ([filePath length] == 0) {

@@ -49,6 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<LLLocationMockRouteModel *> *availableRoutes;
 
 /**
+ Whether user agree authorization.
+ */
+- (BOOL)userAgreeAuthorization;
+
+/**
  Add a custom mock route file.
  */
 - (void)addMockRouteFile:(NSString *)filePath;
