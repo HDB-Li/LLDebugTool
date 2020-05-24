@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Convert to json string.
 - (NSString *_Nullable)LL_jsonString;
 
+/// Return object if in range of array.
+/// @param index Index
+- (id _Nullable)LL_objectAtIndex:(NSUInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

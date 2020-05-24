@@ -25,17 +25,39 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, LLAnimateViewShowAnimateStyle) {
+    LLAnimateViewShowAnimateStyleFade,
+    LLAnimateViewShowAnimateStylePresent,
+    LLAnimateViewShowAnimateStylePush,
+};
+
+typedef NS_ENUM(NSUInteger, LLAnimateViewHideAnimateStyle) {
+    LLAnimateViewHideAnimateStyleFade,
+    LLAnimateViewHideAnimateStyleDismiss,
+    LLAnimateViewHideAnimateStylePop,
+};
+
 /// Animated view.
 @interface LLAnimateView : LLBaseView
 
 /// Content view.
 @property (nonatomic, strong, readonly) UIView *contentView;
 
+/// Show animate.
+@property (nonatomic, assign) LLAnimateViewShowAnimateStyle showAnimateStyle;
+
+/// Hide animate
+@property (nonatomic, assign) LLAnimateViewHideAnimateStyle hideAnimateStyle;
+
 /// Show
 - (void)show;
+- (void)show:(BOOL)animated;
 
 /// Hide
 - (void)hide;
+- (void)hide:(BOOL)animated;
+
+- (CGRect)contentViewFrame;
 
 @end
 

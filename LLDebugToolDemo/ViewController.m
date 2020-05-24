@@ -32,8 +32,8 @@ static NSString *const kCellID = @"cellID";
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UIImageView *imgView;
+@property (strong, nonatomic) UITableView *tableView;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
@@ -42,6 +42,8 @@ static NSString *const kCellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self initUI];
 
     // LLDebugTool need time to start.
     sleep(0.5);
@@ -54,20 +56,55 @@ static NSString *const kCellID = @"cellID";
 }
 
 #pragma mark - Primary
+- (void)initUI {
+    self.imgView = [[UIImageView alloc] init];
+    self.imgView.tag = 101;
+    self.imgView.contentMode = UIViewContentModeScaleToFill;
+    [self.view addSubview:self.imgView];
+
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.sectionHeaderHeight = 28;
+    self.tableView.sectionFooterHeight = 28;
+    [self.view addSubview:self.tableView];
+
+    UIView *maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+    maskView.backgroundColor = [UIColor blackColor];
+    maskView.alpha = 0.3;
+    [self.view addSubview:maskView];
+
+    [self addImgViewConstrains];
+    [self addTableViewConstrains];
+}
+
+- (void)addImgViewConstrains {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imgView.superview attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:220];
+    self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.imgView.superview addConstraints:@[left, right, top, height]];
+}
+
+- (void)addTableViewConstrains {
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.tableView.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.tableView.superview attribute:NSLayoutAttributeTrailing multiplier:1 constant:0];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imgView attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.tableView.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.tableView.superview addConstraints:@[left, right, top, bottom]];
+}
+
 - (void)doSomeActions {
-    [self requestPhotoAuthorization];
     [self requestLocationAuthorization];
     [self doSandboxIfNeeded];
     [self doCrashIfNeeded];
     [self doNetwork];
     [self doLog];
-}
-
-- (void)requestPhotoAuthorization {
-    // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
-    //    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
-    //
-    //    }];
 }
 
 - (void)requestLocationAuthorization {
@@ -252,13 +289,17 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)testResolution {
+    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionResolution];
+}
+
 - (void)testStartWorking {
     [[LLDebugTool sharedTool] startWorking];
 }
 
 #pragma mark - UITableView
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 15;
+    return 16;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -385,7 +426,9 @@ static NSString *const kCellID = @"cellID";
         cell.textLabel.text = NSLocalizedString(@"test.short.cut", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 14) {
-        cell.textLabel.text = @"调用 [LLDebugTool startWorking]";
+        cell.textLabel.text = NSLocalizedString(@"test.resolution", nil);
+    } else if (indexPath.section == 15) {
+        cell.textLabel.text = NSLocalizedString(@"test.debug.tool", nil);
     }
     return cell;
 }
@@ -424,6 +467,8 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 13) {
         [self testShortCut];
     } else if (indexPath.section == 14) {
+        [self testResolution];
+    } else if (indexPath.section == 15) {
         [self testStartWorking];
     }
     [self.tableView reloadData];
@@ -459,6 +504,8 @@ static NSString *const kCellID = @"cellID";
     } else if (section == 13) {
         return @"Short Cut";
     } else if (section == 14) {
+        return @"Resolution";
+    } else if (section == 15) {
         return @"Action";
     }
     return nil;

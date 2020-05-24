@@ -25,6 +25,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LLBaseWindow.h"
+#import "LLDebugConfig.h"
+#import "LLTool.h"
+
 static LLHierarchyHelper *_instance = nil;
 
 @implementation LLHierarchyHelper
@@ -75,6 +79,83 @@ static LLHierarchyHelper *_instance = nil;
     [results removeObjectsInArray:removeResults];
 
     return [NSArray arrayWithArray:results];
+}
+
+- (BOOL)isPrivateClassView:(UIView *)view {
+    return view ? [NSStringFromClass(view.class) hasPrefix:@"_"] : NO;
+}
+
+- (NSArray<UIView *> *)findParentViewsByView:(UIView *)view {
+    if (!view) {
+        return @[];
+    }
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    [views addObject:view];
+    UIView *selectedView = view.superview;
+    while (selectedView) {
+        if (![LLDebugConfig shared].isHierarchyIgnorePrivateClass || ![self isPrivateClassView:selectedView]) {
+            [views addObject:selectedView];
+        }
+        selectedView = selectedView.superview;
+    }
+    return [views copy];
+}
+
+- (NSArray<UIView *> *)findSubviewsByView:(UIView *)view {
+    NSMutableArray *views = [[NSMutableArray alloc] init];
+    for (UIView *selectedView in view.subviews) {
+        if (![LLDebugConfig shared].isHierarchyIgnorePrivateClass || ![self isPrivateClassView:selectedView]) {
+            [views addObject:selectedView];
+        }
+    }
+    return [views copy];
+}
+
+- (NSArray<UIView *> *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow {
+    // Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.
+    // Default to the the application's key window if none of the windows want the touch.
+    UIWindow *windowForSelection = [LLTool keyWindow];
+    for (UIWindow *window in [[self allWindowsIgnoreClass:[LLBaseWindow class]] reverseObjectEnumerator]) {
+        if ([window hitTest:tapPointInWindow withEvent:nil]) {
+            windowForSelection = window;
+            break;
+        }
+    }
+
+    // Select the deepest visible view at the tap point. This generally corresponds to what the user wants to select.
+    return [self recursiveSubviewsAtPoint:tapPointInWindow inView:windowForSelection skipHiddenViews:YES includeParent:[LLDebugConfig shared].isIncludeParent];
+}
+
+#pragma mark - Primary
+- (NSArray<UIView *> *)recursiveSubviewsAtPoint:(CGPoint)pointInView inView:(UIView *)view skipHiddenViews:(BOOL)skipHidden includeParent:(BOOL)includeParent {
+    NSMutableArray<UIView *> *subviewsAtPoint = [NSMutableArray array];
+    for (UIView *subview in view.subviews) {
+        BOOL isHidden = subview.hidden || subview.alpha < 0.01;
+        if (skipHidden && isHidden) {
+            continue;
+        }
+
+        BOOL subviewContainsPoint = CGRectContainsPoint(subview.frame, pointInView);
+        if (includeParent && subviewContainsPoint) {
+            if (![LLDebugConfig shared].isHierarchyIgnorePrivateClass || ![self isPrivateClassView:subview]) {
+                [subviewsAtPoint addObject:subview];
+            }
+        }
+        // If this view doesn't clip to its bounds, we need to check its subviews even if it doesn't contain the selection point.
+        // They may be visible and contain the selection point.
+        if (subviewContainsPoint || !subview.clipsToBounds) {
+            CGPoint pointInSubview = [view convertPoint:pointInView toView:subview];
+            NSArray *array = [self recursiveSubviewsAtPoint:pointInSubview inView:subview skipHiddenViews:skipHidden includeParent:includeParent];
+            if (array.count || includeParent) {
+                [subviewsAtPoint addObjectsFromArray:array];
+            } else if (subviewContainsPoint) {
+                if (![LLDebugConfig shared].isHierarchyIgnorePrivateClass || ![self isPrivateClassView:subview]) {
+                    [subviewsAtPoint addObject:subview];
+                }
+            }
+        }
+    }
+    return subviewsAtPoint;
 }
 
 @end

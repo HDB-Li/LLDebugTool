@@ -38,8 +38,6 @@
 
 @interface LLHierarchyInfoView ()
 
-@property (nonatomic, strong) UIView *selectedView;
-
 @property (nonatomic, strong) UILabel *contentLabel;
 
 @property (nonatomic, strong) UILabel *frameLabel;
@@ -62,6 +60,8 @@
 
 @property (nonatomic, strong) UIButton *subviewsButton;
 
+@property (nonatomic, strong) UIButton *levelButton;
+
 @property (nonatomic, assign) CGFloat actionContentViewHeight;
 
 @end
@@ -70,26 +70,28 @@
 
 @dynamic delegate;
 
-- (void)updateSelectedView:(UIView *)view {
-    if (!view || self.selectedView == view) {
-        return;
-    }
+#pragma mark - Public
+- (void)reloadData {
+    [self updateUI];
+}
 
-    self.moreButton.enabled = YES;
-    self.parentViewsButton.enabled = view.superview != nil;
-    self.subviewsButton.enabled = view.subviews.count;
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.actionContentViewHeight = 80;
 
-    self.selectedView = view;
-
-    [self updateSelectedViewAttributeInfos];
-
-    [self.contentLabel sizeToFit];
-    [self.frameLabel sizeToFit];
-    [self.textLabel sizeToFit];
-    [self.backgroundColorLabel sizeToFit];
-    [self.textColorLabel sizeToFit];
-    [self.fontLabel sizeToFit];
-    [self.tagLabel sizeToFit];
+    [self addSubview:self.contentLabel];
+    [self addSubview:self.frameLabel];
+    [self addSubview:self.textLabel];
+    [self addSubview:self.backgroundColorLabel];
+    [self addSubview:self.textColorLabel];
+    [self addSubview:self.fontLabel];
+    [self addSubview:self.tagLabel];
+    [self addSubview:self.actionContentView];
+    [self.actionContentView addSubview:self.levelButton];
+    [self.actionContentView addSubview:self.moreButton];
+    [self.actionContentView addSubview:self.parentViewsButton];
+    [self.actionContentView addSubview:self.subviewsButton];
 
     [self updateHeightIfNeeded];
 }
@@ -99,11 +101,13 @@
 
     self.actionContentView.frame = CGRectMake(0, self.LL_height - self.actionContentViewHeight - kLLGeneralMargin, self.LL_width, self.actionContentViewHeight);
 
-    self.parentViewsButton.frame = CGRectMake(kLLGeneralMargin, 0, self.actionContentView.LL_width / 2.0 - kLLGeneralMargin * 1.5, (self.actionContentView.LL_height - kLLGeneralMargin) / 2.0);
+    self.levelButton.frame = CGRectMake(kLLGeneralMargin, 0, self.actionContentView.LL_width / 2.0 - kLLGeneralMargin * 1.5, (self.actionContentView.LL_height - kLLGeneralMargin) / 2.0);
 
-    self.subviewsButton.frame = CGRectMake(self.actionContentView.LL_width / 2.0 + kLLGeneralMargin * 0.5, self.parentViewsButton.LL_top, self.parentViewsButton.LL_width, self.parentViewsButton.LL_height);
+    self.moreButton.frame = CGRectMake(self.actionContentView.LL_width / 2.0 + kLLGeneralMargin * 0.5, self.levelButton.LL_top, self.levelButton.LL_width, self.levelButton.LL_height);
 
-    self.moreButton.frame = CGRectMake(kLLGeneralMargin, self.parentViewsButton.LL_bottom + kLLGeneralMargin, self.actionContentView.LL_width - kLLGeneralMargin * 2, self.parentViewsButton.LL_height);
+    self.parentViewsButton.frame = CGRectMake(kLLGeneralMargin, self.levelButton.LL_bottom + kLLGeneralMargin, self.levelButton.LL_width, self.levelButton.LL_height);
+
+    self.subviewsButton.frame = CGRectMake(self.moreButton.LL_left, self.parentViewsButton.LL_top, self.levelButton.LL_width, self.levelButton.LL_height);
 
     self.contentLabel.frame = CGRectMake(kLLGeneralMargin, kLLGeneralMargin, self.closeButton.LL_x - kLLGeneralMargin - kLLGeneralMargin, self.contentLabel.LL_height);
 
@@ -120,58 +124,75 @@
     self.tagLabel.frame = CGRectMake(self.contentLabel.LL_x, self.fontLabel.LL_bottom, self.contentLabel.LL_width, self.tagLabel.LL_height);
 }
 
-#pragma mark - Over write
-- (void)initUI {
-    [super initUI];
-    self.actionContentViewHeight = 80;
-
-    [self addSubview:self.contentLabel];
-    [self addSubview:self.frameLabel];
-    [self addSubview:self.textLabel];
-    [self addSubview:self.backgroundColorLabel];
-    [self addSubview:self.textColorLabel];
-    [self addSubview:self.fontLabel];
-    [self addSubview:self.tagLabel];
-    [self addSubview:self.actionContentView];
-    [self.actionContentView addSubview:self.parentViewsButton];
-    [self.actionContentView addSubview:self.subviewsButton];
-    [self.actionContentView addSubview:self.moreButton];
-
-    [self updateHeightIfNeeded];
-}
-
 #pragma mark - Event responses
 - (void)buttonClicked:(UIButton *)sender {
     [self.delegate LLHierarchyInfoView:self didSelectAt:sender.tag];
 }
 
 - (void)frameLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
-    [self.selectedView LL_showFrameAlertAndAutomicSetWithKeyPath:@"frame"];
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showFrameAlertAndAutomicSetWithKeyPath:@"frame"];
 }
 
 - (void)textLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
-    [self.selectedView LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showTextAlertAndAutomicSetWithKeyPath:@"text"];
 }
 
 - (void)backgroundColorLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
-    [self.selectedView LL_showColorAlertAndAutomicSetWithKeyPath:@"backgroundColor"];
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showColorAlertAndAutomicSetWithKeyPath:@"backgroundColor"];
 }
 
 - (void)textColorLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
-    [self.selectedView LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
 }
 
 - (void)fontLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
-    [self.selectedView LL_showFontAlertAndAutomicSetWithKeyPath:@"font"];
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showFontAlertAndAutomicSetWithKeyPath:@"font"];
 }
 
 - (void)tagLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
-    [self.selectedView LL_showIntAlertAndAutomicSetWithKeyPath:@"tag"];
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showIntAlertAndAutomicSetWithKeyPath:@"tag"];
 }
 
 #pragma mark - Primary
+- (void)updateUI {
+    if ([self.dataSource respondsToSelector:@selector(LLHierarchyInfoView:canClickAtAction:)]) {
+        self.levelButton.enabled = [self.dataSource LLHierarchyInfoView:self canClickAtAction:LLHierarchyInfoViewActionShowLevel];
+        self.moreButton.enabled = [self.dataSource LLHierarchyInfoView:self canClickAtAction:LLHierarchyInfoViewActionShowMoreInfo];
+        self.parentViewsButton.enabled = [self.dataSource LLHierarchyInfoView:self canClickAtAction:LLHierarchyInfoViewActionShowParent];
+        self.subviewsButton.enabled = [self.dataSource LLHierarchyInfoView:self canClickAtAction:LLHierarchyInfoViewActionShowSubview];
+    } else {
+        self.levelButton.enabled = NO;
+        self.moreButton.enabled = NO;
+        self.parentViewsButton.enabled = NO;
+        self.subviewsButton.enabled = NO;
+    }
+
+    [self updateSelectedViewAttributeInfos];
+
+    [self.contentLabel sizeToFit];
+    [self.frameLabel sizeToFit];
+    [self.textLabel sizeToFit];
+    [self.backgroundColorLabel sizeToFit];
+    [self.textColorLabel sizeToFit];
+    [self.fontLabel sizeToFit];
+    [self.tagLabel sizeToFit];
+
+    [self updateHeightIfNeeded];
+}
+
 - (void)updateSelectedViewAttributeInfos {
-    UIView *view = self.selectedView;
+    UIView *view = [self.dataSource displayViewInLLHierarchyInfoView:self];
+    if (!view) {
+        self.contentLabel.attributedText = nil;
+        self.frameLabel.attributedText = nil;
+        self.backgroundColorLabel.attributedText = nil;
+        self.textLabel.attributedText = nil;
+        self.textColorLabel.attributedText = nil;
+        self.fontLabel.attributedText = nil;
+        self.tagLabel.attributedText = nil;
+        return;
+    }
+
     self.contentLabel.attributedText = [self attributedStringWithText:@"Name: " detail:NSStringFromClass(view.class)];
 
     self.frameLabel.attributedText = [self attributedStringWithText:@"Frame: " detail:[LLTool stringFromFrame:view.frame]];
@@ -221,6 +242,22 @@
     [str appendAttributedString:[[NSAttributedString alloc] initWithString:detail attributes:attri]];
 
     return [str copy];
+}
+
+- (UIButton *)actionButtonWithTitle:(NSString *)title imageName:(NSString *)imageName tag:(NSInteger)tag {
+    UIButton *button = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
+    [button setTitle:title forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    button.tintColor = [LLThemeManager shared].primaryColor;
+    [button setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
+    button.backgroundColor = [LLThemeManager shared].backgroundColor;
+    [button LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
+    [button LL_setCornerRadius:5];
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
+    [button setImage:[[UIImage LL_imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    button.tag = tag;
+    button.enabled = NO;
+    return button;
 }
 
 #pragma mark - Getters and setters
@@ -310,54 +347,28 @@
 
 - (UIButton *)parentViewsButton {
     if (!_parentViewsButton) {
-        _parentViewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
-        [_parentViewsButton setTitle:LLLocalizedString(@"hierarchy.parent") forState:UIControlStateNormal];
-        [_parentViewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
-        _parentViewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        _parentViewsButton.backgroundColor = [LLThemeManager shared].backgroundColor;
-        [_parentViewsButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-        [_parentViewsButton LL_setCornerRadius:5];
-        _parentViewsButton.tintColor = [LLThemeManager shared].primaryColor;
-        _parentViewsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
-        [_parentViewsButton setImage:[[UIImage LL_imageNamed:kParentImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        _parentViewsButton.tag = LLHierarchyInfoViewActionShowParent;
-        _parentViewsButton.enabled = NO;
+        _parentViewsButton = [self actionButtonWithTitle:LLLocalizedString(@"hierarchy.parent") imageName:kParentImageName tag:LLHierarchyInfoViewActionShowParent];
     }
     return _parentViewsButton;
 }
 
 - (UIButton *)subviewsButton {
     if (!_subviewsButton) {
-        _subviewsButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
-        [_subviewsButton setTitle:LLLocalizedString(@"hierarchy.subview") forState:UIControlStateNormal];
-        [_subviewsButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
-        _subviewsButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        _subviewsButton.backgroundColor = [LLThemeManager shared].backgroundColor;
-        [_subviewsButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-        [_subviewsButton LL_setCornerRadius:5];
-        _subviewsButton.tintColor = [LLThemeManager shared].primaryColor;
-        _subviewsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
-        [_subviewsButton setImage:[[UIImage LL_imageNamed:kSubviewImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        _subviewsButton.tag = LLHierarchyInfoViewActionShowSubview;
-        _subviewsButton.enabled = NO;
+        _subviewsButton = [self actionButtonWithTitle:LLLocalizedString(@"hierarchy.subview") imageName:kSubviewImageName tag:LLHierarchyInfoViewActionShowSubview];
     }
     return _subviewsButton;
 }
 
+- (UIButton *)levelButton {
+    if (!_levelButton) {
+        _levelButton = [self actionButtonWithTitle:LLLocalizedString(@"hierarchy.level") imageName:kLevelImageName tag:LLHierarchyInfoViewActionShowLevel];
+    }
+    return _levelButton;
+}
+
 - (UIButton *)moreButton {
     if (!_moreButton) {
-        _moreButton = [LLFactory getButton:nil frame:CGRectZero target:self action:@selector(buttonClicked:)];
-        [_moreButton setTitle:LLLocalizedString(@"hierarchy.more") forState:UIControlStateNormal];
-        [_moreButton setTitleColor:[LLThemeManager shared].primaryColor forState:UIControlStateNormal];
-        _moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        _moreButton.backgroundColor = [LLThemeManager shared].backgroundColor;
-        [_moreButton LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
-        [_moreButton LL_setCornerRadius:5];
-        _moreButton.tintColor = [LLThemeManager shared].primaryColor;
-        _moreButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kLLGeneralMargin);
-        [_moreButton setImage:[[UIImage LL_imageNamed:kInfoImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        _moreButton.tag = LLHierarchyInfoViewActionShowMoreInfo;
-        _moreButton.enabled = NO;
+        _moreButton = [self actionButtonWithTitle:LLLocalizedString(@"hierarchy.more") imageName:kInfoImageName tag:LLHierarchyInfoViewActionShowMoreInfo];
     }
     return _moreButton;
 }

@@ -271,4 +271,19 @@
     return bar;
 }
 
+#pragma mark - UIPickerView
++ (UIPickerView *)getPickerView {
+    return [self getPickerView:nil frame:CGRectZero delegate:nil];
+}
+
++ (UIPickerView *)getPickerView:(UIView *_Nullable)toView
+                          frame:(CGRect)frame
+                       delegate:(id<UIPickerViewDelegate, UIPickerViewDataSource> _Nullable)delegate {
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:frame];
+    [toView addSubview:picker];
+    picker.delegate = delegate;
+    picker.dataSource = delegate;
+    return picker;
+}
+
 @end

@@ -377,6 +377,21 @@ Get Slider.
  */
 + (UISearchBar *)getSearchBar;
 
+#pragma mark - UIPickerView
+
+/**
+ Get picker view.
+ */
++ (UIPickerView *)getPickerView;
+
+/// Get picker view.
+/// @param toView Parent view.
+/// @param frame Frame
+/// @param delegate Delegate and datasource.
++ (UIPickerView *)getPickerView:(UIView *_Nullable)toView
+                          frame:(CGRect)frame
+                       delegate:(id<UIPickerViewDelegate, UIPickerViewDataSource> _Nullable)delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

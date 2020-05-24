@@ -41,6 +41,7 @@
 "function.widget.border" = "元素边框";
 "function.html" = "WebView";
 "function.short.cut" = "快捷操作";
+"function.resolution" = "分辨率";
 "function.setting" = "设置";
 "function.detail" = "详情";
 "function.stop" = "停用DebugTool";
@@ -109,6 +110,7 @@
 // Hierarchy
 "hierarchy.parent" = "父视图";
 "hierarchy.subview" = "子视图";
+"hierarchy.level" = "其他视图";
 "hierarchy.more" = "更多信息";
 "hierarchy.change.property" = "修改属性";
 
@@ -121,3 +123,9 @@
 
 // Short cut
 "short.cut.execute" = "执行 '%@' 成功";
+
+// Resolution
+"resolution.alert.title" = "模拟分辨率需要重启app。";
+"resolution.alert.message" = "【这是一个实验性的功能。】";
+"resolution.choose" = "分辨率";
+"resolution.change.success" = "修改分辨率成功，应用将重启。";

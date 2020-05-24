@@ -30,6 +30,7 @@
 #import "LLTitleHeaderView.h"
 #import "LLTitleSliderCell.h"
 #import "LLTitleSwitchCell.h"
+#import "LLTool.h"
 
 @interface LLTitleViewController ()
 
@@ -84,11 +85,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LLTitleCellModel *model = self.dataArray[indexPath.section].items[indexPath.row];
-    if ([model isKindOfClass:[LLDetailTitleCellModel class]]) {
-        LLDetailTitleCellModel *cellModel = (LLDetailTitleCellModel *)model;
-        if (cellModel.block) {
-            cellModel.block();
-        }
+    if (model.block) {
+        model.block();
     }
 }
 

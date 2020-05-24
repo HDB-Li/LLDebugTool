@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "ViewController.h"
+
 // If you integrate with cocoapods, used #import <LLDebug.h>.
 #import "LLDebug.h"
 
@@ -18,6 +20,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    [self.window makeKeyAndVisible];
+
     // Start working with config.
     [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLDebugConfig *_Nonnull config) {
 

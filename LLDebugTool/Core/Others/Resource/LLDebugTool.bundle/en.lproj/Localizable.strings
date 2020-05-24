@@ -41,6 +41,7 @@
 "function.widget.border" = "Widget Border";
 "function.html" = "WebView";
 "function.short.cut" = "Short Cut";
+"function.resolution" = "Resolution";
 "function.setting" = "Settings";
 "function.detail" = "Details";
 "function.stop" = "Stop DebugTool";
@@ -109,6 +110,7 @@
 // Hierarchy
 "hierarchy.parent" = "Parent Views";
 "hierarchy.subview" = "Subviews";
+"hierarchy.level" = "Other Views";
 "hierarchy.more" = "More Info";
 "hierarchy.change.property" = "Change Property";
 
@@ -121,3 +123,10 @@
 
 // Short cut
 "short.cut.execute" = "Execute '%@' Success";
+
+// Resolution
+"resolution.header.title" = "Mock resolution needs to restart the app.\n[This is an experimental function]";
+"resolution.alert.title" = "Mock resolution needs to restart the app.";
+"resolution.alert.message" = "[This is an experimental function]";
+"resolution.choose" = "Resolution";
+"resolution.change.success" = "Change resolution successed, app will restart.";

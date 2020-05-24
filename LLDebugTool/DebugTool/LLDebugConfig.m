@@ -105,6 +105,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 
     // Set hierarchy
     _hierarchyIgnorePrivateClass = YES;
+
     // Show LLDebugTool's log.
     _autoCheckDebugToolVersion = YES;
 

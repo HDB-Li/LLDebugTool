@@ -29,6 +29,8 @@
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 
+#import "NSArray+LL_Utils.h"
+#import "UIAlertAction+LL_Utils.h"
 #import "UIImage+LL_Utils.h"
 
 @implementation UIViewController (LL_Utils)
@@ -78,7 +80,11 @@
 }
 
 - (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(void (^)(NSInteger action))handler {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LLLocalizedString(@"note") message:message preferredStyle:UIAlertControllerStyleAlert];
+    [self LL_showAlertControllerWithTitle:LLLocalizedString(@"note") message:message handler:handler];
+}
+
+- (void)LL_showAlertControllerWithTitle:(NSString *)title message:(NSString *)message handler:(void (^)(NSInteger action))handler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:LLLocalizedString(@"cancel")
                                                      style:UIAlertActionStyleCancel
                                                    handler:^(UIAlertAction *action) {
@@ -114,7 +120,7 @@
                                                        }];
         if (currentAction && [actionTitle isEqualToString:currentAction]) {
             action.enabled = NO;
-            [action setValue:[UIImage LL_imageNamed:kSelectImageName] forKey:@"image"];
+            [action LL_setImage:[UIImage LL_imageNamed:kSelectImageName]];
         }
         [alert addAction:action];
     }

@@ -99,6 +99,7 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
  - LLDebugToolActionHtml: Html function.
  - LLDebugToolActionLocation: Mock location function.
  - LLDebugToolActionShortCut: Short cut function.
+ - LLDebugToolActionResolution: Resolution function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionFunction,
@@ -116,7 +117,8 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionWidgetBorder,
     LLDebugToolActionHtml,
     LLDebugToolActionLocation,
-    LLDebugToolActionShortCut
+    LLDebugToolActionShortCut,
+    LLDebugToolActionResolution
 };
 
 /**
@@ -246,6 +248,11 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
  Hierarchy function ignore private class or not.
  */
 @property (nonatomic, assign, getter=isHierarchyIgnorePrivateClass) BOOL hierarchyIgnorePrivateClass;
+
+/**
+ Whether show hierarchy tree or the most level view.
+ */
+@property (nonatomic, assign, getter=isIncludeParent) BOOL includeParent;
 
 #pragma mark - Magnifier
 /**

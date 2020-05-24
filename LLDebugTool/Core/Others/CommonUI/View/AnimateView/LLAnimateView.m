@@ -25,11 +25,14 @@
 
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
+#import "LLThemeManager.h"
 #import "LLTool.h"
 
 #import "UIView+LL_Utils.h"
 
 @interface LLAnimateView ()
+
+@property (nonatomic, strong) UIView *backgroundView;
 
 @property (nonatomic, strong) UIView *contentView;
 
@@ -39,8 +42,7 @@
 
 #pragma mark - Life cycle
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:[UIScreen mainScreen].bounds];
-    return self;
+    return [super initWithFrame:[UIScreen mainScreen].bounds];
 }
 
 - (instancetype)init {
@@ -49,46 +51,117 @@
 
 #pragma mark - Public
 - (void)show {
+    [self show:YES];
+}
+
+- (void)show:(BOOL)animated {
     UIWindow *window = [LLTool keyWindow];
     [window addSubview:self];
-    self.alpha = 0;
-    self.LL_top = LL_SCREEN_HEIGHT;
-    [UIView animateWithDuration:0.25
-                     animations:^{
-                         self.alpha = 1;
-                         self.LL_top = 0;
-                     }];
+    CGRect frame = [self contentViewFrame];
+    if (animated) {
+        self.backgroundView.alpha = 0;
+        switch (self.showAnimateStyle) {
+            case LLAnimateViewShowAnimateStyleFade: {
+                self.contentView.frame = frame;
+                self.contentView.alpha = 0;
+            } break;
+            case LLAnimateViewShowAnimateStylePresent: {
+                self.contentView.frame = CGRectMake(frame.origin.x, self.LL_height, frame.size.width, frame.size.height);
+            } break;
+            case LLAnimateViewShowAnimateStylePush: {
+                self.contentView.frame = CGRectMake(-frame.size.width, frame.origin.y, frame.size.width, frame.size.height);
+            } break;
+            default:
+                break;
+        }
+        [UIView animateWithDuration:0.25
+                         animations:^{
+                             self.backgroundView.alpha = 1;
+                             switch (self.showAnimateStyle) {
+                                 case LLAnimateViewShowAnimateStyleFade: {
+                                     self.contentView.alpha = 1;
+                                 } break;
+                                 case LLAnimateViewShowAnimateStylePresent:
+                                 case LLAnimateViewShowAnimateStylePush: {
+                                     self.contentView.frame = frame;
+                                 } break;
+                                 default:
+                                     break;
+                             }
+                         }];
+    } else {
+        self.backgroundView.alpha = 1;
+        self.contentView.frame = frame;
+    }
 }
 
 - (void)hide {
-    [UIView animateWithDuration:0.25
-        animations:^{
-            self.alpha = 0;
-            self.LL_top = LL_SCREEN_HEIGHT;
-        }
-        completion:^(BOOL finished) {
-            [self removeFromSuperview];
-        }];
+    [self hide:YES];
+}
+
+- (void)hide:(BOOL)animated {
+    if (animated) {
+        CGRect frame = [self contentViewFrame];
+        [UIView animateWithDuration:0.25
+            animations:^{
+                self.backgroundView.alpha = 0;
+                switch (self.hideAnimateStyle) {
+                    case LLAnimateViewHideAnimateStyleFade: {
+                        self.contentView.alpha = 0;
+                    } break;
+                    case LLAnimateViewHideAnimateStyleDismiss: {
+                        self.contentView.frame = CGRectMake(frame.origin.x, self.LL_height, frame.size.width, frame.size.height);
+                    } break;
+                    case LLAnimateViewHideAnimateStylePop: {
+                        self.contentView.frame = CGRectMake(-frame.size.width, frame.origin.y, frame.size.width, frame.size.height);
+                    } break;
+                    default:
+                        break;
+                }
+            }
+            completion:^(BOOL finished) {
+                [self removeFromSuperview];
+                self.backgroundView.alpha = 1;
+                self.contentView.frame = frame;
+            }];
+    } else {
+        [self removeFromSuperview];
+    }
+}
+
+- (CGRect)contentViewFrame {
+    return CGRectZero;
 }
 
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
 
+    [self addSubview:self.backgroundView];
     [self addSubview:self.contentView];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.contentView.frame = CGRectMake(0, self.LL_height - self.contentView.LL_height - LL_BOTTOM_DANGER_HEIGHT, self.LL_width, self.contentView.LL_height);
+    self.backgroundView.frame = self.bounds;
+    self.contentView.frame = [self contentViewFrame];
 }
 
 #pragma mark - Getters and setters
+- (UIView *)backgroundView {
+    if (!_backgroundView) {
+        _backgroundView = [LLFactory getView];
+        _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
+    }
+    return _backgroundView;
+}
+
 - (UIView *)contentView {
     if (!_contentView) {
         _contentView = [LLFactory getView];
-        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
+        [_contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:2];
+        [_contentView LL_setCornerRadius:5];
     }
     return _contentView;
 }

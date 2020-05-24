@@ -48,6 +48,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param handler Action handler.
 - (void)LL_showAlertControllerWithMessage:(NSString *)message handler:(nullable void (^)(NSInteger action))handler;
 
+/// Show alert controller with title and message.
+/// @param title Title, default is localizedString of 'note'.
+/// @param message Message
+/// @param handler Action handler.
+- (void)LL_showAlertControllerWithTitle:(NSString *_Nullable)title message:(NSString *)message handler:(nullable void (^)(NSInteger action))handler;
+
 /// Show action sheet.
 /// @param title Title
 /// @param actions Actions

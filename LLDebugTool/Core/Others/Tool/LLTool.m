@@ -187,12 +187,24 @@ static bool _statusBarClickable = YES;
     [[LLDebugTool sharedTool] startWorking];
 }
 
+@end
+
+@implementation LLTool (NSUserDefault)
+
 + (BOOL)startWorkingAfterApplicationDidFinishLaunching {
     return [NSUserDefaults LL_boolForKey:@"startWorkingAfterApplicationDidFinishLaunching"];
 }
 
 + (void)setStartWorkingAfterApplicationDidFinishLaunching:(BOOL)isStart {
     [NSUserDefaults LL_setBool:isStart forKey:@"startWorkingAfterApplicationDidFinishLaunching"];
+}
+
++ (NSInteger)resolutionStyle {
+    return [NSUserDefaults LL_integerForKey:@"resolutionStyle"];
+}
+
++ (void)setResolutionStyle:(NSInteger)resolutionStyle {
+    [NSUserDefaults LL_setInteger:resolutionStyle forKey:@"resolutionStyle"];
 }
 
 @end

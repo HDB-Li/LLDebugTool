@@ -24,32 +24,37 @@
 #import "LLHierarchyViewController.h"
 
 #import "LLConst.h"
-#import "LLDebugConfig.h"
 #import "LLFactory.h"
+#import "LLHierarchyBorderView.h"
 #import "LLHierarchyDetailViewController.h"
+#import "LLHierarchyHelper.h"
 #import "LLHierarchyInfoView.h"
 #import "LLHierarchyPickerView.h"
+#import "LLHierarchySheetView.h"
 #import "LLInternalMacros.h"
 #import "LLNavigationController.h"
 #import "LLThemeManager.h"
 #import "LLTool.h"
 #import "LLWindowManager.h"
 
+#import "NSArray+LL_Utils.h"
 #import "NSObject+LL_Utils.h"
 #import "UIView+LL_Utils.h"
 #import "UIViewController+LL_Utils.h"
 
-@interface LLHierarchyViewController () <LLHierarchyPickerViewDelegate, LLHierarchyInfoViewDelegate>
-
-@property (nonatomic, strong) UIView *borderView;
+@interface LLHierarchyViewController () <LLHierarchyPickerViewDelegate, LLHierarchyInfoViewDelegate, LLHierarchyInfoViewDataSource, LLHierarchySheetViewDelegate, LLHierarchyBorderViewDataSource>
 
 @property (nonatomic, strong) LLHierarchyPickerView *pickerView;
 
 @property (nonatomic, strong) LLHierarchyInfoView *infoView;
 
-@property (nonatomic, strong) NSMutableSet *observeViews;
+@property (nonatomic, strong) LLHierarchySheetView *sheetView;
 
-@property (nonatomic, strong) NSMutableDictionary *borderViews;
+@property (nonatomic, strong) LLHierarchyBorderView *borderView;
+
+@property (nonatomic, strong) UIView *selectedView;
+
+@property (nonatomic, strong) NSMutableArray<UIView *> *observeViews;
 
 @end
 
@@ -57,140 +62,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.observeViews = [[NSMutableArray alloc] init];
+
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
-    self.observeViews = [NSMutableSet set];
-    self.borderViews = [[NSMutableDictionary alloc] init];
-
-    CGFloat height = 100;
-    self.infoView = [[LLHierarchyInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
-    self.infoView.delegate = self;
-    [self.view addSubview:self.infoView];
-
     [self.view addSubview:self.borderView];
-
-    self.pickerView = [[LLHierarchyPickerView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
-    self.pickerView.delegate = self;
+    [self.view addSubview:self.infoView];
     [self.view addSubview:self.pickerView];
 }
 
 - (void)dealloc {
-    for (UIView *view in self.observeViews) {
-        [self stopObserveView:view];
-    }
-    [self.observeViews removeAllObjects];
-}
-
-#pragma mark - Primary
-- (void)beginObserveView:(UIView *)view borderWidth:(CGFloat)borderWidth {
-    if ([self.observeViews containsObject:view]) {
-        return;
-    }
-
-    UIView *borderView = [LLFactory getView];
-    borderView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:borderView];
-    [self.view sendSubviewToBack:borderView];
-    [borderView LL_setBorderColor:view.LL_hashColor borderWidth:borderWidth];
-    borderView.frame = [self frameInLocalForView:view];
-    [self.borderViews setObject:borderView forKey:@(view.hash)];
-
-    [view addObserver:self forKeyPath:@"frame" options:0 context:NULL];
-}
-
-- (void)stopObserveView:(UIView *)view {
-    if (![self.observeViews containsObject:view]) {
-        return;
-    }
-
-    UIView *borderView = self.borderViews[@(view.hash)];
-    [borderView removeFromSuperview];
-    [view removeObserver:self forKeyPath:@"frame"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context {
-    if ([object isKindOfClass:[UIView class]]) {
-        UIView *view = (UIView *)object;
-        [self updateOverlayIfNeeded:view];
-    }
-}
-
-- (void)updateOverlayIfNeeded:(UIView *)view {
-    UIView *borderView = self.borderViews[@(view.hash)];
-    if (borderView) {
-        borderView.frame = [self frameInLocalForView:view];
-    }
-}
-
-- (CGRect)frameInLocalForView:(UIView *)view {
-    UIWindow *window = [LLTool delegateWindow];
-    CGRect rect = [view convertRect:view.bounds toView:window];
-    rect = [self.view convertRect:rect fromView:window];
-    return rect;
-}
-
-- (UIView *)findSelectedViewInViews:(NSArray *)selectedViews {
-    if ([LLDebugConfig shared].isHierarchyIgnorePrivateClass) {
-        NSMutableArray *views = [[NSMutableArray alloc] init];
-        for (UIView *view in selectedViews) {
-            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
-                [views addObject:view];
-            }
-        }
-        return [views lastObject];
-    }
-    return [selectedViews lastObject];
-}
-
-- (NSArray<UIView *> *)findParentViewsBySelectedView:(UIView *)selectedView {
-    NSMutableArray *views = [[NSMutableArray alloc] init];
-    UIView *view = [selectedView superview];
-    while (view) {
-        if ([LLDebugConfig shared].isHierarchyIgnorePrivateClass) {
-            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
-                [views addObject:view];
-            }
-        } else {
-            [views addObject:view];
-        }
-        view = view.superview;
-    }
-    return [views copy];
-}
-
-- (NSArray<UIView *> *)findSubviewsBySelectedView:(UIView *)selectedView {
-    NSMutableArray *views = [[NSMutableArray alloc] init];
-    for (UIView *view in selectedView.subviews) {
-        if ([LLDebugConfig shared].isHierarchyIgnorePrivateClass) {
-            if (![NSStringFromClass(view.class) hasPrefix:@"_"]) {
-                [views addObject:view];
-            }
-        } else {
-            [views addObject:view];
-        }
-    }
-    return [views copy];
+    [self stopObserve];
 }
 
 #pragma mark - LLHierarchyPickerViewDelegate
 - (void)LLHierarchyPickerView:(LLHierarchyPickerView *)view didMoveTo:(NSArray<UIView *> *)selectedViews {
-    @synchronized(self) {
-        for (UIView *view in self.observeViews) {
-            [self stopObserveView:view];
-        }
-        [self.observeViews removeAllObjects];
-
-        for (NSInteger i = selectedViews.count - 1; i >= 0; i--) {
-            UIView *view = selectedViews[i];
-            CGFloat borderWidth = 1;
-            if (i == selectedViews.count - 1) {
-                borderWidth = 2;
-            }
-            [self beginObserveView:view borderWidth:borderWidth];
-        }
-        [self.observeViews addObjectsFromArray:selectedViews];
-    }
-
-    [self.infoView updateSelectedView:[self findSelectedViewInViews:selectedViews]];
+    [self loadData:selectedViews];
 }
 
 #pragma mark - LLBaseInfoViewDelegate
@@ -200,7 +87,7 @@
 
 #pragma mark - LLHierarchyInfoViewDelegate
 - (void)LLHierarchyInfoView:(LLHierarchyInfoView *)view didSelectAt:(LLHierarchyInfoViewAction)action {
-    UIView *selectView = self.infoView.selectedView;
+    UIView *selectView = self.selectedView;
     if (selectView == nil) {
         [LLTool log:@"Failed to show hierarchy detail viewController"];
         return;
@@ -212,10 +99,65 @@
         case LLHierarchyInfoViewActionShowParent: {
             [self showParentSheet:selectView];
         } break;
+        case LLHierarchyInfoViewActionShowLevel: {
+            [self showSameLevelSheet:selectView];
+        } break;
         case LLHierarchyInfoViewActionShowSubview: {
             [self showSubviewSheet:selectView];
         } break;
     }
+}
+
+- (void)showSameLevelSheet:(UIView *)selectView {
+    self.infoView.hidden = YES;
+    NSInteger index = [self.observeViews indexOfObject:selectView];
+    if (index == NSNotFound) {
+        index = 0;
+    }
+    [self.borderView hideAllSubviews];
+    [self.borderView updatePreview:selectView];
+    [self.sheetView showWithData:self.observeViews index:index];
+}
+
+- (void)showParentSheet:(UIView *)selectView {
+    self.infoView.hidden = YES;
+    NSArray *parentViews = [[LLHierarchyHelper shared] findParentViewsByView:selectView];
+    [self.borderView hideAllSubviews];
+    [self.borderView reloadDataWithViews:parentViews];
+    [self.sheetView showWithData:parentViews index:0];
+}
+
+- (void)showSubviewSheet:(UIView *)selectView {
+    self.infoView.hidden = YES;
+    NSArray *subviews = [[LLHierarchyHelper shared] findSubviewsByView:selectView];
+    [self.borderView hideAllSubviews];
+    [self.borderView reloadDataWithViews:subviews];
+    [self.sheetView showWithData:subviews index:0];
+}
+
+#pragma mark - LLHierarchyInfoViewDataSource
+- (UIView *)displayViewInLLHierarchyInfoView:(LLHierarchyInfoView *)view {
+    return self.selectedView;
+}
+
+- (BOOL)LLHierarchyInfoView:(LLHierarchyInfoView *)view canClickAtAction:(LLHierarchyInfoViewAction)action {
+    switch (action) {
+        case LLHierarchyInfoViewActionShowParent: {
+            return [[LLHierarchyHelper shared] findParentViewsByView:self.selectedView].count > 1;
+        } break;
+        case LLHierarchyInfoViewActionShowSubview: {
+            return [[LLHierarchyHelper shared] findSubviewsByView:self.selectedView].count > 0;
+        } break;
+        case LLHierarchyInfoViewActionShowLevel: {
+            return self.observeViews.count > 1;
+        } break;
+        case LLHierarchyInfoViewActionShowMoreInfo: {
+            return self.selectedView;
+        } break;
+        default:
+            break;
+    }
+    return NO;
 }
 
 - (void)showHierarchyInfo:(UIView *)selectView {
@@ -225,48 +167,118 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)showParentSheet:(UIView *)selectView {
-    NSMutableArray *actions = [[NSMutableArray alloc] init];
-    __block NSArray *parentViews = [self findParentViewsBySelectedView:selectView];
-    for (UIView *view in parentViews) {
-        [actions addObject:NSStringFromClass(view.class)];
-    }
-    __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"hierarchy.parent")
-                              actions:actions
-                        currentAction:nil
-                           completion:^(NSInteger index) {
-                               [weakSelf setNewSelectView:parentViews[index]];
-                           }];
+#pragma mark - LLHierarchySheetViewDelegate
+- (void)LLHierarchySheetViewDidSelectCancel:(LLHierarchySheetView *)sheetView {
+    [self.borderView reloadDataWithViews:self.observeViews];
+    [self.sheetView hide];
+    self.infoView.hidden = NO;
 }
 
-- (void)showSubviewSheet:(UIView *)selectView {
-    NSMutableArray *actions = [[NSMutableArray alloc] init];
-    __block NSArray *subviews = [self findSubviewsBySelectedView:selectView];
-    for (UIView *view in subviews) {
-        [actions addObject:NSStringFromClass(view.class)];
+- (void)LLHierarchySheetView:(LLHierarchySheetView *)sheetView didSelectAtView:(UIView *)view {
+    self.selectedView = view;
+    if (![self.observeViews containsObject:view]) {
+        [self loadData:@[view]];
+    } else {
+        [self.borderView reloadDataWithViews:self.observeViews];
     }
-    __weak typeof(self) weakSelf = self;
-    [self LL_showActionSheetWithTitle:LLLocalizedString(@"hierarchy.subview")
-                              actions:actions
-                        currentAction:nil
-                           completion:^(NSInteger index) {
-                               [weakSelf setNewSelectView:subviews[index]];
-                           }];
+    [self.sheetView hide];
+    self.infoView.hidden = NO;
 }
 
-- (void)setNewSelectView:(UIView *)view {
-    [self LLHierarchyPickerView:self.pickerView didMoveTo:@[view]];
+- (void)LLhierarchySheetView:(LLHierarchySheetView *)sheetView didPreviewAtView:(UIView *)view {
+    [self.borderView updatePreview:view];
+}
+
+#pragma mark - LLHierarchyBorderViewDataSource
+- (UIView *)selectedViewInLLHierarchyBorderView:(LLHierarchyBorderView *)view {
+    return self.selectedView;
+}
+
+#pragma mark - Observes
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context {
+    if ([object isKindOfClass:[UIView class]]) {
+        UIView *view = (UIView *)object;
+        [self.borderView updateOverlayIfNeeded:view];
+    }
+}
+
+#pragma mark - Primary
+- (void)loadData:(NSArray *)data {
+    if ([self.observeViews isEqualToArray:data]) {
+        return;
+    }
+
+    // Stop observe.
+    [self stopObserve];
+
+    // Data
+    [self.observeViews removeAllObjects];
+    [self.observeViews addObjectsFromArray:data];
+
+    // Start observe.
+    [self startObserve];
+
+    if ([data containsObject:self.selectedView]) {
+        [self.infoView reloadData];
+    } else {
+        self.selectedView = data.lastObject;
+    }
+
+    [self.borderView reloadDataWithViews:self.observeViews];
+}
+
+- (void)startObserve {
+    for (UIView *view in self.observeViews) {
+        [view addObserver:self forKeyPath:@"frame" options:0 context:NULL];
+    }
+}
+
+- (void)stopObserve {
+    for (UIView *view in self.observeViews) {
+        [view removeObserver:self forKeyPath:@"frame"];
+    }
 }
 
 #pragma mark - Getters and setters
-- (UIView *)borderView {
+- (LLHierarchyInfoView *)infoView {
+    if (!_infoView) {
+        CGFloat height = 100;
+        _infoView = [[LLHierarchyInfoView alloc] initWithFrame:CGRectMake(kLLGeneralMargin, LL_SCREEN_HEIGHT - kLLGeneralMargin * 2 - height, LL_SCREEN_WIDTH - kLLGeneralMargin * 2, height)];
+        _infoView.delegate = self;
+        _infoView.dataSource = self;
+    }
+    return _infoView;
+}
+
+- (LLHierarchyPickerView *)pickerView {
+    if (!_pickerView) {
+        _pickerView = [[LLHierarchyPickerView alloc] initWithFrame:CGRectMake((self.view.LL_width - 60) / 2.0, (self.view.LL_height - 60) / 2.0, 60, 60)];
+        _pickerView.delegate = self;
+    }
+    return _pickerView;
+}
+
+- (LLHierarchySheetView *)sheetView {
+    if (!_sheetView) {
+        _sheetView = [[LLHierarchySheetView alloc] init];
+        _sheetView.delegate = self;
+    }
+    return _sheetView;
+}
+
+- (LLHierarchyBorderView *)borderView {
     if (!_borderView) {
-        _borderView = [LLFactory getView];
-        _borderView.backgroundColor = [UIColor clearColor];
-        _borderView.layer.borderWidth = 2;
+        _borderView = [[LLHierarchyBorderView alloc] initWithFrame:self.view.bounds];
+        _borderView.dataSource = self;
     }
     return _borderView;
+}
+
+- (void)setSelectedView:(UIView *)selectedView {
+    if (_selectedView != selectedView) {
+        _selectedView = selectedView;
+        [self.infoView reloadData];
+    }
 }
 
 @end

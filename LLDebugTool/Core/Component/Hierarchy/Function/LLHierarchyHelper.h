@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class UIWindow;
 
@@ -39,6 +39,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// All window in application without class.
 /// @param cls Ignore class.
 - (NSArray<UIWindow *> *)allWindowsIgnoreClass:(Class _Nullable)cls;
+
+/// Whether is a private class view.
+/// @param view Selected view.
+- (BOOL)isPrivateClassView:(UIView *)view;
+
+/// Find parent views.
+/// @param view Selected view.
+- (NSArray<UIView *> *)findParentViewsByView:(UIView *)view;
+
+/// Find subviews.
+/// @param view Selected view.
+- (NSArray<UIView *> *)findSubviewsByView:(UIView *)view;
+
+/// Views at points.
+/// @param tapPointInWindow Point.
+- (NSArray<UIView *> *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow;
 
 @end
 

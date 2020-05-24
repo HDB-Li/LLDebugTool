@@ -25,6 +25,7 @@ static LLImageName const kWidgetBorderImageName = @"widget-border";
 static LLImageName const kHtml5ImageName = @"html5";
 static LLImageName const kLocationImageName = @"location";
 static LLImageName const kShortCutImageName = @"short-cut";
+static LLImageName const kResolutionImageName = @"resolution";
 
 // Navigation Item Icon
 static LLImageName const kClearImageName = @"clear";
@@ -102,6 +103,7 @@ static LLImageName const kUnselectImageName = @"unselect";
 // Hierarchy
 static LLImageName const kParentImageName = @"parent";
 static LLImageName const kSubviewImageName = @"subview";
+static LLImageName const kLevelImageName = @"level";
 static LLImageName const kInfoImageName = @"info";
 
 // Screenshot

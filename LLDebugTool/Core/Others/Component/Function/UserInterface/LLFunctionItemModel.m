@@ -60,7 +60,8 @@
         @(LLDebugToolActionWidgetBorder): @"LLWidgetBorderComponent",
         @(LLDebugToolActionHtml): @"LLHtmlComponent",
         @(LLDebugToolActionLocation): @"LLLocationComponent",
-        @(LLDebugToolActionShortCut): @"LLShortCutComponent"
+        @(LLDebugToolActionShortCut): @"LLShortCutComponent",
+        @(LLDebugToolActionResolution): @"LLResolutionComponent"
     };
     NSString *component = json[@(action)];
     if (component) {
@@ -87,7 +88,8 @@
         @(LLDebugToolActionWidgetBorder): LLLocalizedString(@"function.widget.border"),
         @(LLDebugToolActionHtml): LLLocalizedString(@"function.html"),
         @(LLDebugToolActionLocation): LLLocalizedString(@"function.location"),
-        @(LLDebugToolActionShortCut): LLLocalizedString(@"function.short.cut")
+        @(LLDebugToolActionShortCut): LLLocalizedString(@"function.short.cut"),
+        @(LLDebugToolActionResolution): LLLocalizedString(@"function.resolution")
     };
     NSString *title = json[@(action)];
     if (!title) {
@@ -114,7 +116,8 @@
         @(LLDebugToolActionWidgetBorder): kWidgetBorderImageName,
         @(LLDebugToolActionHtml): kHtml5ImageName,
         @(LLDebugToolActionLocation): kLocationImageName,
-        @(LLDebugToolActionShortCut): kShortCutImageName
+        @(LLDebugToolActionShortCut): kShortCutImageName,
+        @(LLDebugToolActionResolution): kResolutionImageName
     };
     NSString *imageName = json[@(action)];
     if (!imageName) {

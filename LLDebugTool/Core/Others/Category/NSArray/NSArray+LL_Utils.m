@@ -47,6 +47,13 @@
     return [newArray LL_SafeJsonString];
 }
 
+- (id)LL_objectAtIndex:(NSUInteger)index {
+    if (index >= self.count) {
+        return nil;
+    }
+    return [self objectAtIndex:index];
+}
+
 #pragma mark - Primary
 - (NSString *)LL_SafeJsonString {
     NSError *error;

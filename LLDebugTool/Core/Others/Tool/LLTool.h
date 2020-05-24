@@ -88,12 +88,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// Start working.
 + (void)startWorking;
 
+@end
+
+@interface LLTool (NSUserDefault)
+
 /// Whether start working after application did finish launching.
 + (BOOL)startWorkingAfterApplicationDidFinishLaunching;
 
 /// Set whether start working after application did finish launching.
 /// @param isStart Is start.
 + (void)setStartWorkingAfterApplicationDidFinishLaunching:(BOOL)isStart;
+
+/// Resolution style.
++ (NSInteger)resolutionStyle;
+
+/// Set resolution style
+/// @param resolutionStyle style. also see
++ (void)setResolutionStyle:(NSInteger)resolutionStyle;
 
 @end
 

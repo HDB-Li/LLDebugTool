@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
     LLHierarchyInfoViewActionShowParent,
     LLHierarchyInfoViewActionShowSubview,
+    LLHierarchyInfoViewActionShowLevel,
     LLHierarchyInfoViewActionShowMoreInfo
 };
 
@@ -40,18 +41,27 @@ typedef NS_ENUM(NSUInteger, LLHierarchyInfoViewAction) {
 
 @end
 
+@protocol LLHierarchyInfoViewDataSource <NSObject>
+
+@required
+
+- (UIView *)displayViewInLLHierarchyInfoView:(LLHierarchyInfoView *)view;
+
+- (BOOL)LLHierarchyInfoView:(LLHierarchyInfoView *)view canClickAtAction:(LLHierarchyInfoViewAction)action;
+
+@end
+
 /// Hierarchy info view.
 @interface LLHierarchyInfoView : LLInfoView
 
 /// Action delegate.
 @property (nonatomic, weak, nullable) id<LLHierarchyInfoViewDelegate> delegate;
 
-/// Selected view, retain.
-@property (nonatomic, strong, nullable, readonly) UIView *selectedView;
+/// Data source.
+@property (nonatomic, weak, nullable) id<LLHierarchyInfoViewDataSource> dataSource;
 
-/// Update selected view.
-/// @param view Selected view.
-- (void)updateSelectedView:(UIView *)view;
+// Refresh.
+- (void)reloadData;
 
 @end
 
