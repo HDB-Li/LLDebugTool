@@ -31,6 +31,12 @@
 
 static LLHierarchyHelper *_instance = nil;
 
+@interface LLHierarchyHelper ()
+
+@property (nonatomic, strong) NSArray<NSString *> *systemPrimaryClasses;
+
+@end
+
 @implementation LLHierarchyHelper
 
 + (instancetype)shared {
@@ -82,7 +88,17 @@ static LLHierarchyHelper *_instance = nil;
 }
 
 - (BOOL)isPrivateClassView:(UIView *)view {
-    return view ? [NSStringFromClass(view.class) hasPrefix:@"_"] : NO;
+    if (!view) {
+        return NO;
+    }
+    NSString *className = NSStringFromClass(view.class);
+    if ([className hasPrefix:@"_"]) {
+        return YES;
+    }
+    if ([self.systemPrimaryClasses containsObject:className]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (NSArray<UIView *> *)findParentViewsByView:(UIView *)view {
@@ -156,6 +172,17 @@ static LLHierarchyHelper *_instance = nil;
         }
     }
     return subviewsAtPoint;
+}
+
+- (NSArray<NSString *> *)systemPrimaryClasses {
+    if (!_systemPrimaryClasses) {
+        if (@available(iOS 13.0, *)) {
+            _systemPrimaryClasses = @[@"UITransitionView", @"UIDropShadowView", @"UILayoutContainerView", @"UINavigationTransitionView", @"UIViewControllerWrapperView"];
+        } else {
+            _systemPrimaryClasses = @[@"UILayoutContainerView", @"UINavigationTransitionView", @"UIViewControllerWrapperView"];
+        }
+    }
+    return _systemPrimaryClasses;
 }
 
 @end
