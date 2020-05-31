@@ -23,16 +23,16 @@
 
 #import "LLDebugTool.h"
 
-#import "LLFunctionItemModel.h"
-#import "LLDebugToolMacros.h"
-#import "LLSettingManager.h"
-#import "LLWindowManager.h"
 #import "LLComponent.h"
+#import "LLDebugToolMacros.h"
+#import "LLFunctionItemModel.h"
 #import "LLLogDefine.h"
+#import "LLSettingManager.h"
 #import "LLTool.h"
+#import "LLWindowManager.h"
 
-#import "UIResponder+LL_Utils.h"
 #import "LLRouter+Log.h"
+#import "UIResponder+LL_Utils.h"
 
 static LLDebugTool *_instance = nil;
 
@@ -57,7 +57,7 @@ static LLDebugTool *_instance = nil;
     return _instance;
 }
 
-- (void)startWorking{
+- (void)startWorking {
     if (!_isWorking) {
         _isWorking = YES;
 
@@ -78,7 +78,7 @@ static LLDebugTool *_instance = nil;
             self.installed = YES;
             [self showWindow];
         }
-        
+
         [self registerNotifications];
     }
 }
@@ -105,18 +105,16 @@ static LLDebugTool *_instance = nil;
         [LLRouter setCrashHelperEnable:NO];
         // hide window
         [self hideWindow];
-        
+
         [self unregisterNotifications];
     }
 }
 
-- (void)showWindow
-{
+- (void)showWindow {
     [[LLWindowManager shared] showEntryWindow];
 }
 
-- (void)hideWindow
-{
+- (void)hideWindow {
     [[LLWindowManager shared] hideEntryWindow];
 }
 
@@ -124,7 +122,7 @@ static LLDebugTool *_instance = nil;
     [self executeAction:action data:nil];
 }
 
-- (void)executeAction:(LLDebugToolAction)action data:(NSDictionary <NSString *, id>*_Nullable)data {
+- (void)executeAction:(LLDebugToolAction)action data:(NSDictionary<NSString *, id> *_Nullable)data {
     LLFunctionItemModel *model = [[LLFunctionItemModel alloc] initWithAction:action];
     [model.component componentDidLoad:data];
 }
@@ -170,43 +168,16 @@ static LLDebugTool *_instance = nil;
     if (!version) {
         version = @"0.0.0";
     }
-    
+
     if ([[LLDebugTool versionNumber] compare:version] == NSOrderedDescending) {
         [localInfo setObject:[LLDebugTool versionNumber] forKey:@"version"];
         [localInfo writeToFile:filePath atomically:YES];
     }
-    
+
     if ([LLDebugTool isBetaVersion]) {
         // This method called in instancetype, can't use macros to log.
         [LLTool log:kLLDebugToolLogUseBetaAlert];
     }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // Check whether has a new LLDebugTool version.
-        if ([LLConfig shared].autoCheckDebugToolVersion) {
-            NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
-            NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if (error == nil && data != nil) {
-                    NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
-                    if (array.count > 2) {
-                        NSString *str = array[1];
-                        NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
-                        if (array2.count >= 2) {
-                            NSString *newVersion = array2[0];
-                            if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                                if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
-                                    NSString *message = [NSString stringWithFormat:@"A new version for LLDebugTool is available, New Version : %@, Current Version : %@",newVersion,[LLDebugTool versionNumber]];
-                                    [LLTool log:message];
-                                }
-                            }
-                        }
-                    }
-                }
-            }];
-            [dataTask resume];
-        }
-    });
 }
 
 - (void)prepareToStart {
