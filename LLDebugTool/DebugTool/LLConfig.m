@@ -23,13 +23,13 @@
 
 #import "LLConfig.h"
 
-#import "LLThemeManager.h"
-#import "LLThemeColor.h"
+#import "LLConfig.h"
+#import "LLConst.h"
 #import "LLDebugTool.h"
 #import "LLFactory.h"
 #import "LLRouter.h"
-#import "LLConfig.h"
-#import "LLConst.h"
+#import "LLThemeColor.h"
+#import "LLThemeManager.h"
 #import "LLTool.h"
 
 #import "LLRouter+Location.h"
@@ -63,7 +63,7 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     [LLRouter addMockRouteDirectory:fileDirectory];
 }
 
-- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable(^)(void))action {
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action {
     [LLRouter registerShortCutWithName:name action:action];
 }
 
@@ -74,25 +74,25 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
 - (void)initial {
     // Set internal
     _showDebugToolLog = YES;
-    
+
     // Set default values
     // Set folder Path
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     _folderPath = [doc stringByAppendingPathComponent:@"LLDebugTool"];
-    
+
     // Set XIB resources.
     NSString *imageBundlePath = [[NSBundle bundleForClass:self.class] pathForResource:@"LLDebugTool" ofType:@"bundle"];
     _imageBundle = [NSBundle bundleWithPath:imageBundlePath];
     if (!_imageBundle) {
         [LLTool log:@"Failed to load the image bundle"];
     }
-    
+
     // Set date formatter string.
     _dateFormatter = @"yyyy-MM-dd HH:mm:ss";
-    
+
     // Set default color style.
     _colorStyle = LLConfigColorStyleHack;
-    
+
     // Set default suspension ball attributes.
     _entryWindowBallWidth = kLLEntryWindowBallWidth;
     _entryWindowDisplayPercent = kLLEntryWindowDisplayPercent;
@@ -101,23 +101,21 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
     _activeAlpha = kLLActiveAlpha;
     _shrinkToEdgeWhenInactive = YES;
     _shakeToHide = YES;
-    
+
     // Set default magnifier properties.
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
     _magnifierSize = kLLMagnifierWindowSize;
 
     // Set hierarchy
     _hierarchyIgnorePrivateClass = YES;
-    // Show LLDebugTool's log.
-    _autoCheckDebugToolVersion = YES;
-    
+
     // Set location
     _mockRouteTimeInterval = kLLDefaultMockRouteTimeInterval;
 
     // Click action
     _clickAction = LLDebugToolActionFunction;
     _doubleClickAction = LLDebugToolActionHierarchy;
-    
+
     // Set default window's style.
     _entryWindowStyle = LLConfigEntryWindowStyleBall;
 }
@@ -129,57 +127,44 @@ NSNotificationName const LLConfigDidUpdateWindowStyleNotificationName = @"LLConf
         switch (colorStyle) {
             case LLConfigColorStyleHack: {
                 [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleSimple: {
                 [LLThemeManager shared].themeColor = [LLThemeColor simpleThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleSystem: {
                 [LLThemeManager shared].themeColor = [LLThemeColor systemThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleGrass: {
                 [LLThemeManager shared].themeColor = [LLThemeColor grassThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleHomebrew: {
                 [LLThemeManager shared].themeColor = [LLThemeColor homebrewThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleManPage: {
                 [LLThemeManager shared].themeColor = [LLThemeColor manPageThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleNovel: {
                 [LLThemeManager shared].themeColor = [LLThemeColor novelThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleOcean: {
                 [LLThemeManager shared].themeColor = [LLThemeColor oceanThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStylePro: {
                 [LLThemeManager shared].themeColor = [LLThemeColor proThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleRedSands: {
                 [LLThemeManager shared].themeColor = [LLThemeColor redSandsThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleSilverAerogel: {
                 [LLThemeManager shared].themeColor = [LLThemeColor silverAerogelThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleSolidColors: {
                 [LLThemeManager shared].themeColor = [LLThemeColor solidColorsThemeColor];
-            }
-                break;
+            } break;
             case LLConfigColorStyleCustom: {
                 [LLTool log:@"Can't manual set custom color style, if you want to use custom color style, used themeColor property"];
                 [LLThemeManager shared].themeColor = [LLThemeColor hackThemeColor];
-            }
-                break;
+            } break;
         }
     }
 }

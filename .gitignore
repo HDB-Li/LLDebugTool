@@ -63,3 +63,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 .DS_Store
+.clang-format
