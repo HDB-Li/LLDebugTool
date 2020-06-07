@@ -12,19 +12,19 @@
 #import "LLDebug.h"
 
 // Used to example.
-#import "NetTool.h"
-#import <Photos/PHPhotoLibrary.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Photos/PHPhotoLibrary.h>
+#import "NetTool.h"
 
-#import "TestNetworkViewController.h"
-#import "TestLogViewController.h"
-#import "TestCrashViewController.h"
 #import "TestColorStyleViewController.h"
-#import "TestWindowStyleViewController.h"
+#import "TestCrashViewController.h"
 #import "TestHierarchyViewController.h"
 #import "TestHtmlViewController.h"
 #import "TestLocationViewController.h"
+#import "TestLogViewController.h"
+#import "TestNetworkViewController.h"
 #import "TestShortCutViewController.h"
+#import "TestWindowStyleViewController.h"
 
 #import "LLStorageManager.h"
 
@@ -42,7 +42,7 @@ static NSString *const kCellID = @"cellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // LLDebugTool need time to start.
     sleep(0.5);
     [self doSomeActions];
@@ -65,8 +65,8 @@ static NSString *const kCellID = @"cellID";
 
 - (void)requestPhotoAuthorization {
     // Try to get album permission, and if possible, screenshots are stored in the album at the same time.
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
+
     }];
 }
 
@@ -83,13 +83,12 @@ static NSString *const kCellID = @"cellID";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [[LLDebugTool sharedTool] executeAction:LLDebugToolActionCrash];
         });
-        
     }
 }
 
 - (void)doSandboxIfNeeded {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers", @"json", @"plist", @"jpeg", @"png", @"mp4", @"mp3", @"gif"];
+        NSArray *extensions = @[@"gif", @"html", @"jpg", @"json", @"md", @"mp3", @"mp4", @"pdf", @"plist", @"png", @"txt"];
         for (NSString *extension in extensions) {
             [self copyFileWithExtensionIfNeeded:extension];
         }
@@ -101,8 +100,8 @@ static NSString *const kCellID = @"cellID";
         return;
     }
     NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
-    NSString *targetPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"LLDebugTool.%@",extension]];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *targetPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"LLDebugTool.%@", extension]];
     if (![manager fileExistsAtPath:targetPath]) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"LLDebugTool" ofType:extension];
         if (path) {
@@ -121,47 +120,56 @@ static NSString *const kCellID = @"cellID";
     [urlRequest setHTTPMethod:@"GET"];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!connectionError) {
-                UIImage *image = [[UIImage alloc] initWithData:data];
-                weakSelf.imgView.image = image;
-            }
-        });
-    }];
+    [NSURLConnection sendAsynchronousRequest:urlRequest
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *_Nullable response, NSData *_Nullable data, NSError *_Nullable connectionError) {
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   if (!connectionError) {
+                                       UIImage *image = [[UIImage alloc] initWithData:data];
+                                       weakSelf.imgView.image = image;
+                                   }
+                               });
+                           }];
 #pragma clang diagnostic pop
-    
+
     // Json Response
-    [[NetTool shared].afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
-    
+    [[NetTool shared]
+            .afHTTPSessionManager GET:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600"
+        parameters:nil
+        progress:nil
+        success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
+
+        }
+        failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error){
+
+        }];
+
     //NSURLSession
     NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
     [htmlRequest setHTTPMethod:@"GET"];
-    NSURLSessionDataTask *dataTask = [[NetTool shared].session dataTaskWithRequest:htmlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        // Not important. Just check to see if the current Demo version is consistent with the latest version.
-        // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
-        NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
-        if (array.count > 2) {
-            NSString *str = array[1];
-            NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
-            if (array2.count >= 2) {
-                NSString *newVersion = array2[0];
-                if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                    if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
-                        UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@",NSLocalizedString(@"new.version", nil),newVersion,[LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
-                        [vc addAction:action];
-                        [self presentViewController:vc animated:YES completion:nil];
-                    }
-                }
-            }
-        }
-    }];
+    NSURLSessionDataTask *dataTask = [[NetTool shared]
+                                          .session dataTaskWithRequest:htmlRequest
+                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                         // Not important. Just check to see if the current Demo version is consistent with the latest version.
+                                                         // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
+                                                         NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                                         NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
+                                                         if (array.count > 2) {
+                                                             NSString *str = array[1];
+                                                             NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
+                                                             if (array2.count >= 2) {
+                                                                 NSString *newVersion = array2[0];
+                                                                 if ([newVersion componentsSeparatedByString:@"."].count == 3) {
+                                                                     if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
+                                                                         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@", NSLocalizedString(@"new.version", nil), newVersion, [LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
+                                                                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
+                                                                         [vc addAction:action];
+                                                                         [self presentViewController:vc animated:YES completion:nil];
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+                                                     }];
     [dataTask resume];
 }
 
@@ -170,7 +178,7 @@ static NSString *const kCellID = @"cellID";
     // NSLocalizedString is used for multiple languages.
     // You can just use as LLog(@"What you want to pring").
     LLog(NSLocalizedString(@"initial.log", nil));
-    
+
     LLog_Alert_Event(@"Demo", NSLocalizedString(@"initial.log", nil));
 }
 
@@ -272,89 +280,70 @@ static NSString *const kCellID = @"cellID";
             cell.textLabel.text = NSLocalizedString(@"test.color.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             switch ([LLConfig shared].colorStyle) {
-                case LLConfigColorStyleHack:{
+                case LLConfigColorStyleHack: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleHack";
-                }
-                    break;
-                case LLConfigColorStyleSimple:{
+                } break;
+                case LLConfigColorStyleSimple: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleSimple";
-                }
-                    break;
-                case LLConfigColorStyleSystem:{
+                } break;
+                case LLConfigColorStyleSystem: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleSystem";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleGrass: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleGrass";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleHomebrew: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleHomebrew";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleManPage: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleManPage";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleNovel: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleNovel";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleOcean: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleOcean";
-                }
-                    break;
+                } break;
                 case LLConfigColorStylePro: {
                     cell.detailTextLabel.text = @"LLConfigColorStylePro";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleRedSands: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleRedSands";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleSilverAerogel: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleSilverAerogel";
-                }
-                    break;
+                } break;
                 case LLConfigColorStyleSolidColors: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleSolidColors";
-                }
-                    break;
-                case LLConfigColorStyleCustom:{
+                } break;
+                case LLConfigColorStyleCustom: {
                     cell.detailTextLabel.text = @"LLConfigColorStyleCustom";
-                }
-                    break;
+                } break;
             }
         } else if (indexPath.row == 1) {
             cell.textLabel.text = NSLocalizedString(@"test.window.style", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             switch ([LLConfig shared].entryWindowStyle) {
-                case LLConfigEntryWindowStyleBall:{
+                case LLConfigEntryWindowStyleBall: {
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleBall";
-                }
-                    break;
-                case LLConfigEntryWindowStyleTitle:{
+                } break;
+                case LLConfigEntryWindowStyleTitle: {
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTitle";
-                }
-                    break;
+                } break;
                 case LLConfigEntryWindowStyleLeading: {
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleLeading";
-                }
-                    break;
+                } break;
                 case LLConfigEntryWindowStyleTrailing: {
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleTrailing";
-                }
-                    break;
+                } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                case LLConfigEntryWindowStylePowerBar:{
+                case LLConfigEntryWindowStylePowerBar: {
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStylePowerBar";
-                }
-                    break;
-                case LLConfigEntryWindowStyleNetBar:{
+                } break;
+                case LLConfigEntryWindowStyleNetBar: {
                     cell.detailTextLabel.text = @"LLConfigEntryWindowStyleNetBar";
-                }
-                    break;
+                } break;
 #pragma clang diagnostic pop
             }
         }
