@@ -335,11 +335,6 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign, getter=isShowDebugToolLog) BOOL showDebugToolLog;
 
 /**
- Whether check LLDebugTool has new version.
- */
-@property (nonatomic, assign) BOOL autoCheckDebugToolVersion;
-
-/**
  Whether show entry window when first install, default is NO, if set YES, entry window won't show when first initial, you can shake to show the entry window.
  */
 @property (nonatomic, assign) BOOL hideWhenInstall;

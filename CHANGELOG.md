@@ -1,3 +1,9 @@
+## [1.3.8.1](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.8.1) (05/31/2020)
+
+### Remove auto check version.
+
+* Too many visits to the website `cocoadocs.org` cause `cocoadocs.org` to disable the access to `LLDebugTool`, so this function is removed.
+
 ## [1.3.8](https://github.com/HDB-Li/LLDebugTool/releases/tag/1.3.8) (02/15/2020)
 
 ### Add `Short Cut` function and fix some bugs.

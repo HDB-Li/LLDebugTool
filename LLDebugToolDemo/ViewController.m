@@ -125,7 +125,7 @@ static NSString *const kCellID = @"cellID";
 
 - (void)doSandboxIfNeeded {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *extensions = @[@"html", @"pdf", @"docx", @"doc", @"pages", @"txt", @"md", @"xlsx", @"xls", @"numbers", @"json", @"plist", @"jpeg", @"png", @"mp4", @"mp3", @"gif"];
+        NSArray *extensions = @[@"gif", @"html", @"jpg", @"json", @"md", @"mp3", @"mp4", @"pdf", @"plist", @"png", @"txt"];
         for (NSString *extension in extensions) {
             [self copyFileWithExtensionIfNeeded:extension];
         }
@@ -182,30 +182,12 @@ static NSString *const kCellID = @"cellID";
         }];
 
     //NSURLSession
-    NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://cocoapods.org/pods/LLDebugTool"]];
+    NSMutableURLRequest *htmlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     [htmlRequest setHTTPMethod:@"GET"];
     NSURLSessionDataTask *dataTask = [[NetTool shared]
                                           .session dataTaskWithRequest:htmlRequest
-                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                         // Not important. Just check to see if the current Demo version is consistent with the latest version.
-                                                         // 只是检查一下当前Demo版本和最新版本是否一致，不一致就提示一下新版本。
-                                                         NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                                         NSArray *array = [htmlString componentsSeparatedByString:@"http://cocoadocs.org/docsets/LLDebugTool/"];
-                                                         if (array.count > 2) {
-                                                             NSString *str = array[1];
-                                                             NSArray *array2 = [str componentsSeparatedByString:@"/preview.png"];
-                                                             if (array2.count >= 2) {
-                                                                 NSString *newVersion = array2[0];
-                                                                 if ([newVersion componentsSeparatedByString:@"."].count == 3) {
-                                                                     if ([[LLDebugTool versionNumber] compare:newVersion] == NSOrderedAscending) {
-                                                                         UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Note" message:[NSString stringWithFormat:@"%@\nNew Version : %@\nCurrent Version : %@", NSLocalizedString(@"new.version", nil), newVersion, [LLDebugTool versionNumber]] preferredStyle:UIAlertControllerStyleAlert];
-                                                                         UIAlertAction *action = [UIAlertAction actionWithTitle:@"I known" style:UIAlertActionStyleDefault handler:nil];
-                                                                         [vc addAction:action];
-                                                                         [self presentViewController:vc animated:YES completion:nil];
-                                                                     }
-                                                                 }
-                                                             }
-                                                         }
+                                                     completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+
                                                      }];
     [dataTask resume];
 }
