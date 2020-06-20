@@ -35,7 +35,6 @@
         self.layer.masksToBounds = YES;
 #ifdef __IPHONE_13_0
         if (@available(iOS 13.0, *)) {
-            self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveUISceneWillConnectNotification:) name:UISceneWillConnectNotification object:nil];
         }
 #endif

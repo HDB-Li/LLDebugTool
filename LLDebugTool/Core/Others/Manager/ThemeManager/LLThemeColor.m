@@ -42,7 +42,7 @@
     static LLThemeColor *_simpleThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _simpleThemeColor = [self colorWithPrimaryColor:[UIColor darkTextColor] backgroundColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+        _simpleThemeColor = [self colorWithPrimaryColor:[UIColor darkTextColor] backgroundColor:[UIColor whiteColor] statusBarStyle:[self darkStyle]];
     });
     return _simpleThemeColor;
 }
@@ -51,7 +51,7 @@
     static LLThemeColor *_systemThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _systemThemeColor = [self colorWithPrimaryColor:[LLThemeManager systemTintColor] backgroundColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleDefault];
+        _systemThemeColor = [self colorWithPrimaryColor:[LLThemeManager systemTintColor] backgroundColor:[UIColor whiteColor] statusBarStyle:[self darkStyle]];
     });
     return _systemThemeColor;
 }
@@ -78,7 +78,7 @@
     static LLThemeColor *_manPageThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _manPageThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#FEF49C"] statusBarStyle:UIStatusBarStyleDefault];
+        _manPageThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#FEF49C"] statusBarStyle:[self darkStyle]];
     });
     return _manPageThemeColor;
 }
@@ -87,7 +87,7 @@
     static LLThemeColor *_novelThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _novelThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#3B2322"] backgroundColor:[UIColor LL_colorWithHex:@"#DFDBC3"] statusBarStyle:UIStatusBarStyleDefault];
+        _novelThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#3B2322"] backgroundColor:[UIColor LL_colorWithHex:@"#DFDBC3"] statusBarStyle:[self darkStyle]];
     });
     return _novelThemeColor;
 }
@@ -123,7 +123,7 @@
     static LLThemeColor *_silverAerogelThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _silverAerogelThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#929292"] statusBarStyle:UIStatusBarStyleDefault];
+        _silverAerogelThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#929292"] statusBarStyle:[self darkStyle]];
     });
     return _silverAerogelThemeColor;
 }
@@ -132,7 +132,7 @@
     static LLThemeColor *_solidColorsThemeColor = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _solidColorsThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#FFFFFF"] statusBarStyle:UIStatusBarStyleDefault];
+        _solidColorsThemeColor = [self colorWithPrimaryColor:[UIColor LL_colorWithHex:@"#000000"] backgroundColor:[UIColor LL_colorWithHex:@"#FFFFFF"] statusBarStyle:[self darkStyle]];
     });
     return _solidColorsThemeColor;
 }
@@ -148,7 +148,7 @@
 }
 
 - (instancetype)initWithPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor {
-    return [self initWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:UIStatusBarStyleDefault];
+    return [self initWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:[LLThemeColor darkStyle]];
 }
 
 + (instancetype)colorWithPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor statusBarStyle:(UIStatusBarStyle)statusBarStyle {
@@ -156,7 +156,7 @@
 }
 
 + (instancetype)colorWithPrimaryColor:(UIColor *)primaryColor backgroundColor:(UIColor *)backgroundColor {
-    return [self colorWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:UIStatusBarStyleDefault];
+    return [self colorWithPrimaryColor:primaryColor backgroundColor:backgroundColor statusBarStyle:[self darkStyle]];
 }
 
 #pragma mark - Primary
@@ -167,6 +167,15 @@
 
     _containerColor = [_backgroundColor LL_mixtureWithColor:_primaryColor radio:0.1];
     _placeHolderColor = [_primaryColor LL_mixtureWithColor:_backgroundColor radio:0.5];
+}
+
++ (UIStatusBarStyle)darkStyle {
+#ifdef __IPHONE_13_0
+    if (@available(iOS 13.0, *)) {
+        return UIStatusBarStyleDarkContent;
+    }
+#endif
+    return UIStatusBarStyleDefault;
 }
 
 @end
