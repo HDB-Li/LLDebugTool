@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// UIViewController utils.
 @interface UIViewController (LL_Utils)
 
-/// Current visiable view controller.
+/// Current visible view controller.
 - (UIViewController *_Nullable)LL_currentShowingViewController;
 
 /// Get navigation button

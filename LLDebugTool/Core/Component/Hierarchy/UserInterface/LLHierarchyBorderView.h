@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/// Visiable border view.
+/// Visible border view.
 @interface LLHierarchyBorderView : LLBaseView
 
 /// Data source.

@@ -105,9 +105,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hideWindow:(UIWindow *)window animated:(BOOL)animated completion:(void (^_Nullable)(void))completion;
 
 /**
- Current visiable window.
+ Current visible window.
  */
-- (LLBaseWindow *_Nullable)visiableWindow;
+- (LLBaseWindow *_Nullable)visibleWindow;
 
 @end
 

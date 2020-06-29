@@ -35,9 +35,7 @@
 
 typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     LLEntryWindowDirectionLeft,
-    LLEntryWindowDirectionRight,
-    LLEntryWindowDirectionTop,
-    LLEntryWindowDirectionBottom
+    LLEntryWindowDirectionRight
 };
 
 @interface LLEntryWindow () <LLEntryViewControllerDelegate>
@@ -85,8 +83,8 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     [self resignKeyWindow];
 }
 
-- (void)becomeVisiable {
-    [super becomeVisiable];
+- (void)windowDidShow {
+    [super windowDidShow];
     [self resignActive:NO];
 }
 
@@ -118,18 +116,19 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
 
 #pragma mark - Primary
 - (void)becomeActive {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(shrinkToEdgeWhenInactiveIfNeeded) object:nil];
     self.active = YES;
     self.alpha = [LLDebugConfig shared].activeAlpha;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)animatedBecomeActive {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(shrinkToEdgeWhenInactiveIfNeeded) object:nil];
     self.active = YES;
     self.alpha = [LLDebugConfig shared].activeAlpha;
     if (!self.moveable) {
         return;
     }
-    if (![LLDebugConfig shared].isShrinkToEdgeWhenInactive) {
+    if (!self.styleModel.isShrinkToEdgeWhenInactive) {
         return;
     }
 
@@ -141,12 +140,6 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
                 } break;
                 case LLEntryWindowDirectionRight: {
                     self.LL_right = LL_SCREEN_WIDTH;
-                } break;
-                case LLEntryWindowDirectionTop: {
-                    self.LL_top = 0;
-                } break;
-                case LLEntryWindowDirectionBottom: {
-                    self.LL_bottom = LL_SCREEN_HEIGHT;
                 } break;
             }
         }
@@ -177,11 +170,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     if (!self.isMoveable) {
         return;
     }
-    CGFloat top = self.LL_centerY;
-    CGFloat left = self.LL_centerX;
-    CGFloat right = LL_SCREEN_WIDTH - self.LL_centerX;
-    CGFloat bottom = LL_SCREEN_HEIGHT - self.LL_centerY;
-    LLEntryWindowDirection direction = [self directionWithEdge:UIEdgeInsetsMake(top, left, bottom, right)];
+    LLEntryWindowDirection direction = self.LL_centerX <= LL_SCREEN_WIDTH - self.LL_centerX ? LLEntryWindowDirectionLeft : LLEntryWindowDirectionRight;
 
     CGPoint endPoint = self.center;
     switch (direction) {
@@ -190,18 +179,18 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
             if (!self.statusBarClickable) {
                 endPoint.y = LL_MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
-        } break;
-        case LLEntryWindowDirectionTop: {
-            endPoint.y = self.LL_height / 2.0;
+            if (LL_IS_SPECIAL_SCREEN) {
+                endPoint.y = LL_MIN(LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - self.LL_height / 2.0, endPoint.y);
+            }
         } break;
         case LLEntryWindowDirectionRight: {
             endPoint.x = LL_SCREEN_WIDTH - self.LL_width / 2.0;
             if (!self.statusBarClickable) {
                 endPoint.y = LL_MAX(LL_STATUS_BAR_HEIGHT + self.LL_height / 2.0, endPoint.y);
             }
-        } break;
-        case LLEntryWindowDirectionBottom: {
-            endPoint.y = LL_SCREEN_HEIGHT - self.LL_height / 2.0;
+            if (LL_IS_SPECIAL_SCREEN) {
+                endPoint.y = LL_MIN(LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - self.LL_height / 2.0, endPoint.y);
+            }
         } break;
     }
     self.direction = direction;
@@ -212,7 +201,7 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
 - (void)shrinkToEdgeWhenInactiveIfNeeded {
     self.alpha = self.styleModel.inactiveAlpha;
     self.active = NO;
-    if (![LLDebugConfig shared].isShrinkToEdgeWhenInactive) {
+    if (!self.styleModel.isShrinkToEdgeWhenInactive) {
         return;
     }
     self.userInteractionEnabled = NO;
@@ -222,46 +211,14 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
                 case LLEntryWindowDirectionLeft: {
                     self.LL_right = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
                 } break;
-                case LLEntryWindowDirectionTop: {
-                    self.LL_bottom = [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
-                } break;
                 case LLEntryWindowDirectionRight: {
                     self.LL_left = LL_SCREEN_WIDTH - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_width;
-                } break;
-                case LLEntryWindowDirectionBottom: {
-                    self.LL_top = LL_SCREEN_HEIGHT - [LLDebugConfig shared].entryWindowDisplayPercent * self.LL_height;
                 } break;
             }
         }
         completion:^(BOOL finished) {
             self.userInteractionEnabled = YES;
         }];
-}
-
-- (LLEntryWindowDirection)directionWithEdge:(UIEdgeInsets)edge {
-    CGFloat top = edge.top;
-    CGFloat left = edge.left;
-    CGFloat right = edge.right;
-    CGFloat bottom = edge.bottom;
-    CGFloat min = LL_MIN(LL_MIN(LL_MIN(left, right), bottom), top);
-    LLEntryWindowDirection direction = LLEntryWindowDirectionLeft;
-    if (min == right) {
-        direction = LLEntryWindowDirectionRight;
-    } else if (min == bottom) {
-        direction = LLEntryWindowDirectionBottom;
-    } else if (min == top) {
-        if (self.statusBarClickable) {
-            direction = LLEntryWindowDirectionTop;
-        } else {
-            min = LL_MIN(LL_MIN(left, right), bottom);
-            if (min == right) {
-                direction = LLEntryWindowDirectionRight;
-            } else if (min == bottom) {
-                direction = LLEntryWindowDirectionBottom;
-            }
-        }
-    }
-    return direction;
 }
 
 #pragma mark - LLEntryViewControllerDelegate
@@ -271,6 +228,13 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     self.overflow = style.overflow;
     self.moveable = style.moveable;
     self.moveableRect = style.moveableRect;
+}
+
+- (void)LLEntryViewController:(LLEntryViewController *)viewController size:(CGSize)size {
+    self.LL_size = size;
+    if (!self.isActive) {
+        [self resetFrame];
+    }
 }
 
 @end

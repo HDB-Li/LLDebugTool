@@ -196,12 +196,15 @@
 }
 
 - (void)showEntryWindowStyleAlert {
-    NSInteger count = 6;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    NSInteger count = LLDebugConfigEntryWindowStylePowerBar;
+#pragma clang diagnostic pop
     if (@available(iOS 13.0, *)) {
-        count = 4;
+        count = LLDebugConfigEntryWindowStyleAppInfo;
     }
     NSMutableArray *actions = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < count; i++) {
+    for (NSInteger i = 0; i <= count; i++) {
         NSString *action = [LLDebugConfigHelper entryWindowStyleDescription:i];
         if (action) {
             [actions addObject:action];

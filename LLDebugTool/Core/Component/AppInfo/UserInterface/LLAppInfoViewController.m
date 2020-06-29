@@ -29,6 +29,7 @@
 #import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
+#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
@@ -42,25 +43,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = [[LLAppInfoHelper shared] deviceName] ?: LLLocalizedString(@"function.app.info");
+    if ([LLDebugConfig shared].entryWindowStyle != LLDebugConfigEntryWindowStyleAppInfo) {
+        [self initNavigationItemWithTitle:LLLocalizedString(@"app.info.monitor") imageName:nil isLeft:NO];
+    }
     [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self registerLLAppInfoHelperNotification];
+    [self registerNotification];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self unregisterLLAppInfoHelperNotification];
+    [self unregisterNotification];
+}
+
+- (void)rightItemClick:(UIButton *)sender {
+    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleAppInfo;
+    [LLSettingManager shared].entryWindowStyle = @(LLDebugConfigEntryWindowStyleAppInfo);
+    [self componentDidFinish];
 }
 
 #pragma mark - LLDebugToolUpdateAppInfoNotification
-- (void)registerLLAppInfoHelperNotification {
+- (void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateAppInfoNotification:) name:LLDebugToolUpdateAppInfoNotification object:nil];
 }
 
-- (void)unregisterLLAppInfoHelperNotification {
+- (void)unregisterNotification {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:LLDebugToolUpdateAppInfoNotification object:nil];
 }
 

@@ -26,6 +26,7 @@
 #import "LLComponent.h"
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLEntryAppInfoView.h"
 #import "LLEntryBallView.h"
 #import "LLEntryBigTitleView.h"
 #import "LLEntryTitleView.h"
@@ -44,9 +45,7 @@
 
 @property (nonatomic, strong) LLEntryBigTitleView *bigTitleView;
 
-@property (nonatomic, strong) LLEntryView *leadingView;
-
-@property (nonatomic, strong) LLEntryView *trailingView;
+@property (nonatomic, strong) LLEntryAppInfoView *appInfoView;
 
 @property (nonatomic, strong) LLEntryView *netView;
 
@@ -78,11 +77,8 @@
         case LLDebugConfigEntryWindowStyleTitle: {
             self.activeView = self.bigTitleView;
         } break;
-        case LLDebugConfigEntryWindowStyleLeading: {
-            self.activeView = self.leadingView;
-        } break;
-        case LLDebugConfigEntryWindowStyleTrailing: {
-            self.activeView = self.trailingView;
+        case LLDebugConfigEntryWindowStyleAppInfo: {
+            self.activeView = self.appInfoView;
         } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -104,10 +100,8 @@
             return self.ballView;
         case LLDebugConfigEntryWindowStyleTitle:
             return self.bigTitleView;
-        case LLDebugConfigEntryWindowStyleLeading:
-            return self.leadingView;
-        case LLDebugConfigEntryWindowStyleTrailing:
-            return self.trailingView;
+        case LLDebugConfigEntryWindowStyleAppInfo:
+            return self.appInfoView;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLDebugConfigEntryWindowStyleNetBar:
@@ -145,42 +139,30 @@
     if (!_bigTitleView) {
         CGRect frame = CGRectZero;
         frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
-        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
+        _bigTitleView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectZero];
         frame.size = _bigTitleView.LL_size;
         _bigTitleView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleTitle moveableRect:CGRectNull frame:frame];
     }
     return _bigTitleView;
 }
 
-- (LLEntryView *)leadingView {
-    if (!_leadingView) {
+- (LLEntryAppInfoView *)appInfoView {
+    if (!_appInfoView) {
         CGRect frame = CGRectZero;
         frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
-        _leadingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
-        frame.size = _leadingView.LL_size;
-        _leadingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleLeading moveableRect:CGRectMake(_leadingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _leadingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _leadingView.LL_height / 2.0) frame:frame];
+        _appInfoView = [[LLEntryAppInfoView alloc] initWithFrame:CGRectZero];
+        frame.size = _appInfoView.LL_size;
+        _appInfoView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleAppInfo moveableRect:CGRectNull frame:frame];
     }
-    return _leadingView;
-}
-
-- (LLEntryView *)trailingView {
-    if (!_trailingView) {
-        CGRect frame = CGRectZero;
-        frame.origin = [LLDebugConfig shared].entryWindowFirstDisplayPosition;
-        _trailingView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
-        frame.size = _trailingView.LL_size;
-        frame.origin.x = LL_SCREEN_WIDTH - frame.size.width;
-        _trailingView.styleModel = [[LLEntryStyleModel alloc] initWithWindowStyle:LLDebugConfigEntryWindowStyleTrailing moveableRect:CGRectMake(LL_SCREEN_WIDTH - _trailingView.LL_width / 2.0, LL_STATUS_BAR_HEIGHT + _trailingView.LL_height / 2.0, 0, LL_SCREEN_HEIGHT - LL_BOTTOM_DANGER_HEIGHT - LL_STATUS_BAR_HEIGHT - _trailingView.LL_height / 2.0) frame:frame];
-    }
-    return _trailingView;
+    return _appInfoView;
 }
 
 - (LLEntryView *)netView {
     if (!_netView) {
         CGRect frame = CGRectZero;
         if (LL_IS_SPECIAL_SCREEN) {
-            _netView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
-            frame = CGRectMake(LL_LAYOUT_HORIZONTAL(25), (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0, _netView.LL_width, _netView.LL_height);
+            _netView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectZero];
+            frame = CGRectMake(LL_LAYOUT_HORIZONTAL(25), (LL_STATUS_BAR_HEIGHT - _netView.LL_height) / 2.0, _netView.LL_width, _netView.LL_height);
         } else {
             _netView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
             frame = CGRectMake(0, 0, _netView.LL_width, _netView.LL_height);
@@ -197,13 +179,11 @@
     if (!_powerView) {
         CGRect frame = CGRectZero;
         if (LL_IS_SPECIAL_SCREEN) {
-            _powerView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, kLLEntryWindowBigTitleViewHeight)];
-            frame.size = _powerView.LL_size;
-            frame.origin = CGPointMake(LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) - frame.size.width, (LL_STATUS_BAR_HEIGHT - kLLEntryWindowBigTitleViewHeight) / 2.0);
+            _powerView = [[LLEntryBigTitleView alloc] initWithFrame:CGRectZero];
+            frame = CGRectMake(LL_SCREEN_WIDTH - LL_LAYOUT_HORIZONTAL(25) - _powerView.LL_width, (LL_STATUS_BAR_HEIGHT - _powerView.LL_height) / 2.0, _powerView.LL_width, _powerView.LL_height);
         } else {
             _powerView = [[LLEntryTitleView alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-            frame.size = _powerView.LL_size;
-            frame.origin.x = LL_SCREEN_WIDTH - frame.size.width;
+            frame = CGRectMake(LL_SCREEN_WIDTH - _powerView.LL_width, 0, _powerView.LL_width, _powerView.LL_height);
         }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

@@ -87,6 +87,7 @@
 "app.info.dynamic" = "动态信息";
 "app.info.application" = "应用信息";
 "app.info.device" = "设备信息";
+"app.info.monitor" = "监控";
 
 // Location
 "location.mock.location" = "模拟定位";

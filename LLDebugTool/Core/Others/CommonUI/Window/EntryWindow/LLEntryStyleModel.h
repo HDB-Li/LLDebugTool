@@ -48,6 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Origin frame.
 @property (nonatomic, assign) CGRect frame;
 
+// Automatic adjust entry window's frame to side.
+@property (nonatomic, assign) BOOL isShrinkToEdgeWhenInactive;
+
 /// Initial method
 /// @param windowStyle Window style.
 /// @param moveableRect Moveable rect.

@@ -22,19 +22,26 @@
 //  SOFTWARE.
 
 #import "LLBaseViewController.h"
+#import "LLDebugConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class LLEntryViewController;
 @class LLEntryStyleModel;
+@class LLEntryAppInfoView;
 
 /// Entry view controller delegate.
 @protocol LLEntryViewControllerDelegate <NSObject>
 
+/// Need update window frame.
+/// @param viewController Current view controller.
+/// @param style New style.
+- (void)LLEntryViewController:(LLEntryViewController *)viewController style:(LLEntryStyleModel *)style;
+
 /// Need update window size.
 /// @param viewController Current view controller.
-/// @param style New style
-- (void)LLEntryViewController:(LLEntryViewController *)viewController style:(LLEntryStyleModel *)style;
+/// @param size New size.
+- (void)LLEntryViewController:(LLEntryViewController *)viewController size:(CGSize)size;
 
 @end
 
@@ -42,6 +49,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLEntryViewController : LLBaseViewController
 
 @property (nonatomic, weak, nullable) id<LLEntryViewControllerDelegate> delegate;
+
+// Style.
+@property (nonatomic, assign, readonly) LLDebugConfigEntryWindowStyle style;
+
+// AppInfo
+@property (nonatomic, strong, readonly) LLEntryAppInfoView *appInfoView;
 
 @end
 

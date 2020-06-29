@@ -31,7 +31,7 @@
 @implementation LLNetworkComponent
 
 - (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
     if ([window isKindOfClass:[LLFunctionWindow class]]) {
         LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
         [nav pushViewController:[[LLNetworkViewController alloc] init] animated:YES];

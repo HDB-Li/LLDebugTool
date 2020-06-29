@@ -23,7 +23,9 @@
 
 #import "LLEntryStyleModel.h"
 
+#import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLInternalMacros.h"
 
 @implementation LLEntryStyleModel
 
@@ -34,6 +36,7 @@
         _frame = frame;
         _moveable = YES;
         _inactiveAlpha = 1.0;
+        _isShrinkToEdgeWhenInactive = [LLDebugConfig shared].isShrinkToEdgeWhenInactive;
         switch (windowStyle) {
             case LLDebugConfigEntryWindowStyleBall: {
                 _overflow = YES;
@@ -41,6 +44,10 @@
             } break;
             case LLDebugConfigEntryWindowStyleTitle: {
                 _inactiveAlpha = [LLDebugConfig shared].inactiveAlpha;
+            } break;
+            case LLDebugConfigEntryWindowStyleAppInfo: {
+                _inactiveAlpha = LL_MAX(kLLDisplayInactiveAlpha, [LLDebugConfig shared].inactiveAlpha);
+                _isShrinkToEdgeWhenInactive = NO;
             } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

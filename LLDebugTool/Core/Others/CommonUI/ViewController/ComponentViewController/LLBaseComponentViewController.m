@@ -40,11 +40,17 @@
     }
 }
 
-- (void)leftItemClick:(UIButton *)sender {
+- (BOOL)componentDidFinish {
     if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
         LLComponentWindow *window = (LLComponentWindow *)self.view.window;
         [window componentDidFinish];
-    } else {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)leftItemClick:(UIButton *)sender {
+    if (![self componentDidFinish]) {
         [super leftItemClick:sender];
     }
 }

@@ -1,5 +1,5 @@
 //
-//  LLSettingComponent.m
+//  LLEntryAppInfoView.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,22 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingComponent.h"
+#import "LLEntryBigTitleView.h"
 
-#import "LLNavigationController.h"
-#import "LLSettingViewController.h"
-#import "LLWindowManager.h"
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation LLSettingComponent
-
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLSettingViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager settingWindow] animated:YES];
-    }
-}
+@interface LLEntryAppInfoView : LLEntryBigTitleView
 
 @end
+
+NS_ASSUME_NONNULL_END

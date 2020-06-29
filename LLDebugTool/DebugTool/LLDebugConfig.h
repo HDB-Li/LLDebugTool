@@ -62,22 +62,18 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigColorStyle) {
 /**
  Window style. Decide how the Window displays.
  
- - LLDebugConfigEntryWindowStyleBall: Show as a ball. Moveable and clickable.
- - LLDebugConfigEntryWindowStyleTitle: Show as a big title. Moveable and clickable.
- - LLDebugConfigEntryWindowStyleLeading: Show as a big title on left. Part moveable and clickable.
- - LLDebugConfigEntryWindowStyleTrailing: Show as a big title on right. Moveable and clickable.
- - LLDebugConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable but clickable.
- - LLDebugConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable but clickable.
- - LLDebugConfigEntryWindowStyleSuspensionBall: Same to LLDebugConfigEntryWindowStyleBall.
+ - LLDebugConfigEntryWindowStyleBall: Show as a ball. Moveable.
+ - LLDebugConfigEntryWindowStyleTitle: Show as a big title. Moveable.
+ - LLDebugConfigEntryWindowStyleAppInfo: Display app info. Moveable.
+ - LLDebugConfigEntryWindowStyleNetBar: Show at network bar. Unmoveable.
+ - LLDebugConfigEntryWindowStylePowerBar: Show at power bar. Unmoveable.
  */
 typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
     LLDebugConfigEntryWindowStyleBall = 0,
     LLDebugConfigEntryWindowStyleTitle = 1,
-    LLDebugConfigEntryWindowStyleLeading = 2,
-    LLDebugConfigEntryWindowStyleTrailing = 3,
-    LLDebugConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLDebugConfigEntryWindowStyleLeading") = 4,
-    LLDebugConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLDebugConfigEntryWindowStyleTrailing") = 5,
-    LLDebugConfigEntryWindowStyleSuspensionBall NS_ENUM_DEPRECATED_IOS(2_0, 8_0, "Use LLDebugConfigEntryWindowStyleBall") = 0,
+    LLDebugConfigEntryWindowStyleAppInfo = 2,
+    LLDebugConfigEntryWindowStyleNetBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLDebugConfigEntryWindowStyleTitle") = 3,
+    LLDebugConfigEntryWindowStylePowerBar NS_ENUM_DEPRECATED_IOS(2_0, 13_0, "Use LLDebugConfigEntryWindowStyleTitle") = 4,
 };
 
 /**

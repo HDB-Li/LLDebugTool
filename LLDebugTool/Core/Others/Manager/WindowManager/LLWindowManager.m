@@ -94,7 +94,7 @@ static LLWindowManager *_instance = nil;
     [self removeWindow:window animated:animated showEntry:YES completion:nil];
 }
 
-- (LLBaseWindow *)visiableWindow {
+- (LLBaseWindow *)visibleWindow {
     return [self.visibleWindows lastObject];
 }
 
@@ -182,13 +182,13 @@ static LLWindowManager *_instance = nil;
                 window.LL_y = y;
             }
             completion:^(BOOL finished) {
-                [window becomeVisiable];
+                [window windowDidShow];
                 if (completion) {
                     completion();
                 }
             }];
     } else {
-        [window becomeVisiable];
+        [window windowDidShow];
         if (completion) {
             completion();
         }
@@ -241,6 +241,7 @@ static LLWindowManager *_instance = nil;
                 window.LL_x = x;
                 window.LL_y = y;
                 window.windowLevel = self.normalWindowLevel;
+                [window windowDidHide];
                 if (completion) {
                     completion();
                 }
@@ -248,6 +249,7 @@ static LLWindowManager *_instance = nil;
     } else {
         window.hidden = YES;
         window.windowLevel = self.normalWindowLevel;
+        [window windowDidHide];
         if (completion) {
             completion();
         }

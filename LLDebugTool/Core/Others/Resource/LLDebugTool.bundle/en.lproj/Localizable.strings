@@ -87,6 +87,7 @@
 "app.info.dynamic" = "Dynamic";
 "app.info.application" = "Application";
 "app.info.device" = "Device";
+"app.info.monitor" = "Monitor";
 
 // Location
 "location.mock.location" = "Mock Location";

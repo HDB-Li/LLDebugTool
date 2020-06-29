@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 #import <mach-o/arch.h>
-#import <mach/mach.h>
+#import <mach/mach_time.h>
 
 #import "LLDebugConfig.h"
 #import "LLFormatterTool.h"

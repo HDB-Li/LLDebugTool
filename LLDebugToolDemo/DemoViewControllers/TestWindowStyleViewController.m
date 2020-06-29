@@ -21,83 +21,50 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (@available(iOS 13.0, *)) {
-        return 4;
+        return LLDebugConfigEntryWindowStyleNetBar;
     }
-    return 6;
+    return LLDebugConfigEntryWindowStylePowerBar + 1;
+#pragma clang diagnostic pop
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
 
-    if (indexPath.row == 0) {
-        cell.textLabel.text = @"Use \"Ball\"";
-        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleBall ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Use \"Title\"";
-        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleTitle ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    } else if (indexPath.row == 2) {
-        cell.textLabel.text = @"Use \"Leading\"";
-        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleLeading ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    } else if (indexPath.row == 3) {
-        cell.textLabel.text = @"Use \"Trailing\"";
-        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleTrailing ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    } else if (indexPath.row == 4) {
-        cell.textLabel.text = @"Use \"NetBar\"";
+    LLDebugConfigEntryWindowStyle windowStyle = (LLDebugConfigEntryWindowStyle)indexPath.row;
+    BOOL isSelected = [LLDebugConfig shared].entryWindowStyle == windowStyle;
+    switch (windowStyle) {
+        case LLDebugConfigEntryWindowStyleBall: {
+            cell.textLabel.text = @"Use \"Ball\"";
+        } break;
+        case LLDebugConfigEntryWindowStyleTitle: {
+            cell.textLabel.text = @"Use \"Title\"";
+        } break;
+        case LLDebugConfigEntryWindowStyleAppInfo: {
+            cell.textLabel.text = @"Use \"AppInfo\"";
+        } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStyleNetBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        case LLDebugConfigEntryWindowStyleNetBar: {
+            cell.textLabel.text = @"Use \"NetBar\"";
+        } break;
+        case LLDebugConfigEntryWindowStylePowerBar: {
+            cell.textLabel.text = @"Use \"PowerBar\"";
+        } break;
 #pragma clang diagnostic pop
-    } else if (indexPath.row == 5) {
-        cell.textLabel.text = @"Use \"PowerBar\"";
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        cell.accessoryType = [LLDebugConfig shared].entryWindowStyle == LLDebugConfigEntryWindowStylePowerBar ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-#pragma clang diagnostic pop
+        default:
+            break;
     }
+    cell.accessoryType = isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        [self testBallWindowStyle];
-    } else if (indexPath.row == 1) {
-        [self testTitleWindowStyle];
-    } else if (indexPath.row == 2) {
-        [self testLeadingWindowStyle];
-    } else if (indexPath.row == 3) {
-        [self testTrailingWindowStyle];
-    } else if (indexPath.row == 4) {
-        [self testNetBarWindowStyle];
-    } else if (indexPath.row == 5) {
-        [self testPowerBarWindowStyle];
-    }
+    LLDebugConfigEntryWindowStyle windowStyle = (LLDebugConfigEntryWindowStyle)indexPath.row;
+    [LLDebugConfig shared].entryWindowStyle = windowStyle;
     [tableView reloadData];
-}
-
-#pragma mark - Actions
-- (void)testBallWindowStyle {
-    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleBall;
-}
-
-- (void)testTitleWindowStyle {
-    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleTitle;
-}
-
-- (void)testLeadingWindowStyle {
-    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleLeading;
-}
-
-- (void)testTrailingWindowStyle {
-    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleTrailing;
-}
-
-- (void)testNetBarWindowStyle {
-    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleNetBar;
-}
-
-- (void)testPowerBarWindowStyle {
-    [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStylePowerBar;
 }
 
 @end

@@ -100,10 +100,8 @@
             return @"Ball";
         case LLDebugConfigEntryWindowStyleTitle:
             return @"Title";
-        case LLDebugConfigEntryWindowStyleLeading:
-            return @"Leading";
-        case LLDebugConfigEntryWindowStyleTrailing:
-            return @"Trailing";
+        case LLDebugConfigEntryWindowStyleAppInfo:
+            return @"App Info";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         case LLDebugConfigEntryWindowStyleNetBar:

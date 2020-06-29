@@ -15,9 +15,7 @@
 @implementation BaseTestViewController
 
 - (instancetype)init {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-    }
-    return self;
+    return [super initWithStyle:UITableViewStyleGrouped];
 }
 
 - (void)viewDidLoad {

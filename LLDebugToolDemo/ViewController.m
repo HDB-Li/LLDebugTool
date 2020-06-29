@@ -72,11 +72,6 @@ static NSString *const kCellID = @"cellID";
     self.tableView.sectionFooterHeight = 28;
     [self.view addSubview:self.tableView];
 
-    UIView *maskView = [[UIView alloc] initWithFrame:self.view.bounds];
-    maskView.backgroundColor = [UIColor blackColor];
-    maskView.alpha = 0.3;
-    [self.view addSubview:maskView];
-
     [self addImgViewConstrains];
     [self addTableViewConstrains];
 }
@@ -357,12 +352,6 @@ static NSString *const kCellID = @"cellID";
                 case LLDebugConfigEntryWindowStyleTitle: {
                     cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleTitle";
                 } break;
-                case LLDebugConfigEntryWindowStyleLeading: {
-                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleLeading";
-                } break;
-                case LLDebugConfigEntryWindowStyleTrailing: {
-                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleTrailing";
-                } break;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 case LLDebugConfigEntryWindowStylePowerBar: {
@@ -370,6 +359,9 @@ static NSString *const kCellID = @"cellID";
                 } break;
                 case LLDebugConfigEntryWindowStyleNetBar: {
                     cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleNetBar";
+                } break;
+                case LLDebugConfigEntryWindowStyleAppInfo: {
+                    cell.detailTextLabel.text = @"LLDebugConfigEntryWindowStyleAppInfo";
                 } break;
 #pragma clang diagnostic pop
             }

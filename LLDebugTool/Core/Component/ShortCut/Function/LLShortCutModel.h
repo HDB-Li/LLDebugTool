@@ -39,8 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param action Action block.
 - (instancetype)initWithName:(NSString *)name action:(NSString *_Nullable (^)(void))action;
 
-/// Visiable view controller.
-+ (LLShortCutModel *)visiableViewControllerModel;
+/// Visible view controller.
++ (LLShortCutModel *)visibleViewControllerModel;
 
 /// Clear all user default settings.
 + (LLShortCutModel *)resetStandardUserDefaultsModel;

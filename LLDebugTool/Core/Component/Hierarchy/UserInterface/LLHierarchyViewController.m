@@ -144,16 +144,16 @@
     switch (action) {
         case LLHierarchyInfoViewActionShowParent: {
             return [[LLHierarchyHelper shared] findParentViewsByView:self.selectedView].count > 1;
-        } break;
+        }
         case LLHierarchyInfoViewActionShowSubview: {
             return [[LLHierarchyHelper shared] findSubviewsByView:self.selectedView].count > 0;
-        } break;
+        }
         case LLHierarchyInfoViewActionShowLevel: {
             return self.observeViews.count > 1;
-        } break;
+        }
         case LLHierarchyInfoViewActionShowMoreInfo: {
             return self.selectedView;
-        } break;
+        }
         default:
             break;
     }

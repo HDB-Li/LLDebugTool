@@ -1,5 +1,5 @@
 //
-//  LLSettingComponent.m
+//  LLEntryAppInfoView.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,22 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLSettingComponent.h"
+#import "LLEntryAppInfoView.h"
 
-#import "LLNavigationController.h"
-#import "LLSettingViewController.h"
-#import "LLWindowManager.h"
+@implementation LLEntryAppInfoView
 
-@implementation LLSettingComponent
-
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLSettingViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager settingWindow] animated:YES];
-    }
+#pragma mark - Over write
+- (void)initUI {
+    [super initUI];
+    self.label.numberOfLines = 0;
+    self.label.font = [UIFont boldSystemFontOfSize:18];
+    [self setText:@"Debug"];
 }
 
 @end

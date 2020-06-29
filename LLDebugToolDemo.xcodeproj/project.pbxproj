@@ -175,8 +175,10 @@
 		C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */; };
 		C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */; };
 		C46F0CBA244C29D800815D59 /* LLHierarchySheetReuseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46F0CB9244C29D800815D59 /* LLHierarchySheetReuseView.m */; };
+		C46FC33D249F54A600529169 /* LLEntryAppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */; };
 		C472443E24128FED00F623CD /* NSMutableArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */; };
 		C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C47244402412A44900F623CD /* LLInternalMacrosTool.m */; };
+		C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
 		C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561A22ED8D4700E9FBE2 /* LLScreenshotToolbar.m */; };
 		C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */; };
@@ -646,10 +648,14 @@
 		C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewViewController.m; sourceTree = "<group>"; };
 		C46F0CB8244C29D800815D59 /* LLHierarchySheetReuseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchySheetReuseView.h; sourceTree = "<group>"; };
 		C46F0CB9244C29D800815D59 /* LLHierarchySheetReuseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchySheetReuseView.m; sourceTree = "<group>"; };
+		C46FC33B249F54A600529169 /* LLEntryAppInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryAppInfoView.h; sourceTree = "<group>"; };
+		C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryAppInfoView.m; sourceTree = "<group>"; };
 		C472443C24128FED00F623CD /* NSMutableArray+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+LL_Utils.h"; sourceTree = "<group>"; };
 		C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+LL_Utils.m"; sourceTree = "<group>"; };
 		C472443F2412A44900F623CD /* LLInternalMacrosTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLInternalMacrosTool.h; sourceTree = "<group>"; };
 		C47244402412A44900F623CD /* LLInternalMacrosTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInternalMacrosTool.m; sourceTree = "<group>"; };
+		C47BD66024AA42D300F63D93 /* LLEntryViewController+AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLEntryViewController+AppInfo.h"; sourceTree = "<group>"; };
+		C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLEntryViewController+AppInfo.m"; sourceTree = "<group>"; };
 		C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
 		C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
@@ -1689,6 +1695,15 @@
 			path = NSMutableArray;
 			sourceTree = "<group>";
 		};
+		C47BD65F24AA42B200F63D93 /* LLEntryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C47BD66024AA42D300F63D93 /* LLEntryViewController+AppInfo.h */,
+				C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */,
+			);
+			path = LLEntryViewController;
+			sourceTree = "<group>";
+		};
 		C49854A522ED8D0E00E9FBE2 /* DebugTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1960,6 +1975,7 @@
 		C498567922ED8D4800E9FBE2 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				C47BD65F24AA42B200F63D93 /* LLEntryViewController */,
 				C498567B22ED8D4800E9FBE2 /* LLAppInfoViewController.h */,
 				C498567A22ED8D4800E9FBE2 /* LLAppInfoViewController.m */,
 				C49856EA22EDAEFE00E9FBE2 /* LLAppInfoWindow.h */,
@@ -2463,6 +2479,8 @@
 				36BC8E27231D1BDB00E4D29B /* LLEntryTitleView.m */,
 				36BC8E29231D1C3B00E4D29B /* LLEntryBigTitleView.h */,
 				36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */,
+				C46FC33B249F54A600529169 /* LLEntryAppInfoView.h */,
+				C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */,
 			);
 			path = EntryWindow;
 			sourceTree = "<group>";
@@ -2977,6 +2995,7 @@
 				36059415237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m in Sources */,
 				C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */,
 				C498568122ED8D4800E9FBE2 /* LLScreenshotSelectorModel.m in Sources */,
+				C46FC33D249F54A600529169 /* LLEntryAppInfoView.m in Sources */,
 				C4B4E45F22F9C90900F70277 /* LLFilterLabelCell.m in Sources */,
 				36BB1E3723211AF9000D8F29 /* LLConvenientScreenshotComponent.m in Sources */,
 				C4B4E46122F9C90900F70277 /* LLFilterLabelModel.m in Sources */,
@@ -3048,6 +3067,7 @@
 				C49856E922EDACD200E9FBE2 /* LLComponent.m in Sources */,
 				36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
+				C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */,
 				C4141C91243B16CE00C5EF86 /* LLDetailTitleCellModel.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,
 				361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */,

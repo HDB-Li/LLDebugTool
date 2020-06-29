@@ -162,10 +162,8 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     if (@available(iOS 13.0, *)) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        if (entryStyle == LLDebugConfigEntryWindowStyleNetBar) {
-            style = LLDebugConfigEntryWindowStyleLeading;
-        } else if (entryStyle == LLDebugConfigEntryWindowStylePowerBar) {
-            style = LLDebugConfigEntryWindowStyleTrailing;
+        if (entryStyle == LLDebugConfigEntryWindowStyleNetBar || entryStyle == LLDebugConfigEntryWindowStylePowerBar) {
+            style = LLDebugConfigEntryWindowStyleTitle;
         }
 #pragma clang diagnostic pop
     }

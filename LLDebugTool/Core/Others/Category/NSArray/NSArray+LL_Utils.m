@@ -51,7 +51,7 @@
     if (index >= self.count) {
         return nil;
     }
-    return [self objectAtIndex:index];
+    return self[index];
 }
 
 #pragma mark - Primary

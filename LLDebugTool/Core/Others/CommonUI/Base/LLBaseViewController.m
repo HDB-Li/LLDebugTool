@@ -79,7 +79,10 @@
     }
 }
 
-- (void)becomeVisable {
+- (void)windowDidShow {
+}
+
+- (void)windowDidHide {
 }
 
 - (void)themeColorChanged {

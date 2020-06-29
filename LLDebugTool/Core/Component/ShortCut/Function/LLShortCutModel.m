@@ -37,16 +37,16 @@
     return self;
 }
 
-+ (LLShortCutModel *)visiableViewControllerModel {
-    static LLShortCutModel *_visiableViewControllerModel = nil;
++ (LLShortCutModel *)visibleViewControllerModel {
+    static LLShortCutModel *_visibleViewControllerModel = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _visiableViewControllerModel = [[LLShortCutModel alloc] initWithName:@"Visiable View Controller"
-                                                                      action:^NSString * {
-                                                                          return [NSString stringWithFormat:@"%@", [[LLTool keyWindow].rootViewController LL_currentShowingViewController]];
-                                                                      }];
+        _visibleViewControllerModel = [[LLShortCutModel alloc] initWithName:@"Visible View Controller"
+                                                                     action:^NSString * {
+                                                                         return [NSString stringWithFormat:@"%@", [[LLTool keyWindow].rootViewController LL_currentShowingViewController]];
+                                                                     }];
     });
-    return _visiableViewControllerModel;
+    return _visibleViewControllerModel;
 }
 
 + (LLShortCutModel *)resetStandardUserDefaultsModel {

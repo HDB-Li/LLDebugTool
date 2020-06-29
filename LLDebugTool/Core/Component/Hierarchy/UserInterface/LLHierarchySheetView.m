@@ -168,7 +168,7 @@
 }
 
 - (CGFloat)pickerViewHeight {
-    return MIN(_data.count + 2, 5) * 40;
+    return LL_MIN(_data.count + 2, 5) * 40;
 }
 
 #pragma mark - Getters and setters

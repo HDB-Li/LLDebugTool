@@ -33,6 +33,7 @@
 #import "LLAppInfoViewController.h"
 #import "LLAppInfoWindow.h"
 
+#import "LLEntryViewController+AppInfo.h"
 #import "LLWindowManager+AppInfo.h"
 
 #endif /* LLAppInfo_h */

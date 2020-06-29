@@ -39,17 +39,25 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateAppInfoNotification;
 typedef NSString *LLAppInfoHelperKey NS_TYPED_ENUM;
 
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperCPUKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperCPUDescriptionKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedDescriptionKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeDescriptionKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalDescriptionKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperFPSKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficDescriptionKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficDescriptionKey;
 FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey;
+FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey;
 
 /**
  Monitoring app's properties.
  */
+//TODO: 增加GPU监控，改写FPS监控。
 @interface LLAppInfoHelper : NSObject
 
 /**
@@ -75,6 +83,21 @@ FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey;
 - (NSString *)cpuUsage;
 
 /**
+ Free memory usage.
+ */
+- (NSString *)freeMemory;
+
+/**
+ Used memory usage.
+ */
+- (NSString *)usedMemory;
+
+/**
+ Total memory usage.
+ */
+- (NSString *)totalMemory;
+
+/**
  Current memory usage.
  */
 - (NSString *)memoryUsage;
@@ -83,6 +106,21 @@ FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey;
  Current FPS.
  */
 - (NSString *)fps;
+
+/**
+ Total data traffic.
+ */
+- (NSString *)totalDataTraffic;
+
+/**
+ Request data traffic.
+ */
+- (NSString *)requestDataTraffic;
+
+/**
+ Response data traffic.
+ */
+- (NSString *)responseDataTraffic;
 
 /**
  Current data traffic.

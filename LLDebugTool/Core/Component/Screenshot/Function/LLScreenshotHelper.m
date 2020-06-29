@@ -106,7 +106,7 @@ static LLScreenshotHelper *_instance = nil;
 
 - (BOOL)canRequestPhotoLibraryAuthorization {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    return infoDictionary[@"NSPhotoLibraryUsageDescription"] ? YES : NO;
+    return (BOOL)infoDictionary[@"NSPhotoLibraryUsageDescription"];
 }
 
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification

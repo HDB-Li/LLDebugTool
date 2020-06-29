@@ -23,9 +23,11 @@
 
 #import "LLEntryBigTitleView.h"
 
+#import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
+#import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 
 #import "UIView+LL_Utils.h"
@@ -38,17 +40,25 @@
 
 @implementation LLEntryBigTitleView
 
+#pragma mark - Public
+- (void)setText:(NSString *)text {
+    self.label.frame = CGRectMake(self.insets.left, self.insets.top, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT);
+    self.label.text = text;
+    [self.label sizeToFit];
+    self.LL_size = CGSizeMake(self.label.LL_right + self.insets.right, self.label.LL_bottom + self.insets.bottom);
+}
+
 #pragma mark - Over write
 - (void)initUI {
     [super initUI];
 
+    self.insets = UIEdgeInsetsMake(kLLGeneralMargin / 2.0, kLLGeneralMargin / 2.0, kLLGeneralMargin / 2.0, kLLGeneralMargin / 2.0);
+
     self.contentView.backgroundColor = [LLThemeManager shared].backgroundColor;
     [self.contentView LL_setBorderColor:[LLThemeManager shared].primaryColor borderWidth:1];
 
-    self.label = [LLFactory getLabel:self.contentView frame:CGRectMake(5, 0, 100, self.LL_height) text:@"Debug" font:16 textColor:[LLThemeManager shared].primaryColor];
-    [self.label sizeToFit];
-    self.label.LL_height = self.LL_height;
-    self.LL_width = self.label.LL_right + 5;
+    self.label = [LLFactory getLabel:self.contentView frame:CGRectMake(self.insets.left, self.insets.top, 100, self.LL_height) text:nil font:16 textColor:[LLThemeManager shared].primaryColor];
+    [self setText:@"Debug"];
 }
 
 - (void)themeColorChanged {

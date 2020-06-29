@@ -46,11 +46,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)becomeVisiable {
+- (void)windowDidShow {
     UIViewController *vc = self.rootViewController;
     if ([vc isKindOfClass:[LLBaseViewController class]]) {
         LLBaseViewController *viewController = (LLBaseViewController *)vc;
-        [viewController becomeVisable];
+        [viewController windowDidShow];
+    }
+}
+
+- (void)windowDidHide {
+    UIViewController *vc = self.rootViewController;
+    if ([vc isKindOfClass:[LLBaseViewController class]]) {
+        LLBaseViewController *viewController = (LLBaseViewController *)vc;
+        [viewController windowDidHide];
     }
 }
 

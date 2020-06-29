@@ -38,13 +38,20 @@ static LLAppInfoHelper *_instance = nil;
 
 NSNotificationName const LLDebugToolUpdateAppInfoNotification = @"LLDebugToolUpdateAppInfoNotification";
 LLAppInfoHelperKey const LLAppInfoHelperCPUKey = @"LLAppInfoHelperCPUKey";
+LLAppInfoHelperKey const LLAppInfoHelperCPUDescriptionKey = @"LLAppInfoHelperCPUDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedKey = @"LLAppInfoHelperMemoryUsedKey";
+LLAppInfoHelperKey const LLAppInfoHelperMemoryUsedDescriptionKey = @"LLAppInfoHelperMemoryUsedDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeKey = @"LLAppInfoHelperMemoryFreeKey";
+LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeDescriptionKey = @"LLAppInfoHelperMemoryFreeDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalKey = @"LLAppInfoHelperMemoryTotalKey";
+LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalDescriptionKey = @"LLAppInfoHelperMemoryTotalDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperFPSKey = @"LLAppInfoHelperFPSKey";
 LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficKey = @"LLAppInfoHelperRequestDataTrafficKey";
+LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficDescriptionKey = @"LLAppInfoHelperRequestDataTrafficDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficKey = @"LLAppInfoHelperResponseDataTrafficKey";
+LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficDescriptionKey = @"LLAppInfoHelperResponseDataTrafficDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperTotalDataTrafficKey";
+LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLAppInfoHelperTotalDataTrafficDescriptionKey";
 
 @interface LLAppInfoHelper () {
     unsigned long long _usedMemory;
@@ -57,7 +64,7 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
     CADisplayLink *_link;
     NSUInteger _count;
     NSTimeInterval _lastTime;
-    float _fps;
+    NSInteger _fps;
 
     // Cache
     NSString *_appName;
@@ -164,9 +171,21 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
     return [NSString stringWithFormat:@"%.2f%%", _cpu];
 }
 
+- (NSString *)freeMemory {
+    return [NSByteCountFormatter stringFromByteCount:_freeMemory countStyle:NSByteCountFormatterCountStyleMemory];
+}
+
+- (NSString *)usedMemory {
+    return [NSByteCountFormatter stringFromByteCount:_usedMemory countStyle:NSByteCountFormatterCountStyleMemory];
+}
+
+- (NSString *)totalMemory {
+    return [NSByteCountFormatter stringFromByteCount:_totalMemory countStyle:NSByteCountFormatterCountStyleMemory];
+}
+
 - (NSString *)memoryUsage {
-    NSString *used = [NSByteCountFormatter stringFromByteCount:_usedMemory countStyle:NSByteCountFormatterCountStyleMemory];
-    NSString *free = [NSByteCountFormatter stringFromByteCount:_freeMemory countStyle:NSByteCountFormatterCountStyleMemory];
+    NSString *used = [self usedMemory];
+    NSString *free = [self freeMemory];
     return [NSString stringWithFormat:@"Used:%@, Free:%@", used, free];
 }
 
@@ -174,10 +193,22 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
     return [NSString stringWithFormat:@"%ld FPS", (long)_fps];
 }
 
+- (NSString *)totalDataTraffic {
+    return [NSByteCountFormatter stringFromByteCount:_totalDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+}
+
+- (NSString *)requestDataTraffic {
+    return [NSByteCountFormatter stringFromByteCount:_requestDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+}
+
+- (NSString *)responseDataTraffic {
+    return [NSByteCountFormatter stringFromByteCount:_responseDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+}
+
 - (NSString *)dataTraffic {
-    NSString *total = [NSByteCountFormatter stringFromByteCount:_totalDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
-    NSString *request = [NSByteCountFormatter stringFromByteCount:_requestDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
-    NSString *response = [NSByteCountFormatter stringFromByteCount:_responseDataTraffic countStyle:NSByteCountFormatterCountStyleFile];
+    NSString *total = [self totalDataTraffic];
+    NSString *request = [self requestDataTraffic];
+    NSString *response = [self responseDataTraffic];
     return [NSString stringWithFormat:@"%@ (%@↑ / %@↓)", total, request, response];
 }
 
@@ -362,17 +393,17 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
     NSDictionary *json = @{
         @(CPU_TYPE_VAX): @"VAX",
         @(CPU_TYPE_MC680x0): @"MC680x0",
-        @(CPU_TYPE_X86) :@"X86",
-        @(CPU_TYPE_X86_64) :@"X86_64",
-        @(CPU_TYPE_MC98000) :@"MC98000",
-        @(CPU_TYPE_HPPA) :@"HPPA",
-        @(CPU_TYPE_ARM) :@"ARM",
-        @(CPU_TYPE_ARM64) :@"ARM64",
-        @(CPU_TYPE_MC88000) :@"MC88000",
-        @(CPU_TYPE_SPARC) :@"SPARC",
-        @(CPU_TYPE_I860) :@"I860",
-        @(CPU_TYPE_POWERPC) :@"POWERPC",
-        @(CPU_TYPE_POWERPC64) :@"POWERPC64"
+        @(CPU_TYPE_X86): @"X86",
+        @(CPU_TYPE_X86_64): @"X86_64",
+        @(CPU_TYPE_MC98000): @"MC98000",
+        @(CPU_TYPE_HPPA): @"HPPA",
+        @(CPU_TYPE_ARM): @"ARM",
+        @(CPU_TYPE_ARM64): @"ARM64",
+        @(CPU_TYPE_MC88000): @"MC88000",
+        @(CPU_TYPE_SPARC): @"SPARC",
+        @(CPU_TYPE_I860): @"I860",
+        @(CPU_TYPE_POWERPC): @"POWERPC",
+        @(CPU_TYPE_POWERPC64): @"POWERPC64"
     };
     NSString *desc = json[@(cpuType)];
     if (!desc) {
@@ -397,13 +428,20 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
                                                             object:self
                                                           userInfo:@{
                                                               LLAppInfoHelperCPUKey: @(_cpu),
+                                                              LLAppInfoHelperCPUDescriptionKey: [self cpuUsage],
                                                               LLAppInfoHelperFPSKey: @(_fps),
                                                               LLAppInfoHelperMemoryFreeKey: @(_freeMemory),
+                                                              LLAppInfoHelperMemoryFreeDescriptionKey: [self freeMemory],
                                                               LLAppInfoHelperMemoryUsedKey: @(_usedMemory),
+                                                              LLAppInfoHelperMemoryUsedDescriptionKey: [self usedMemory],
                                                               LLAppInfoHelperMemoryTotalKey: @(_totalMemory),
+                                                              LLAppInfoHelperMemoryTotalDescriptionKey: [self totalMemory],
                                                               LLAppInfoHelperRequestDataTrafficKey: @(_requestDataTraffic),
+                                                              LLAppInfoHelperRequestDataTrafficDescriptionKey: [self requestDataTraffic],
                                                               LLAppInfoHelperResponseDataTrafficKey: @(_responseDataTraffic),
-                                                              LLAppInfoHelperTotalDataTrafficKey: @(_totalDataTraffic)
+                                                              LLAppInfoHelperResponseDataTrafficDescriptionKey: [self responseDataTraffic],
+                                                              LLAppInfoHelperTotalDataTrafficKey: @(_totalDataTraffic),
+                                                              LLAppInfoHelperTotalDataTrafficDescriptionKey: [self totalDataTraffic]
                                                           }];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -434,6 +472,15 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficKey = @"LLAppInfoHelperT
 }
 
 - (unsigned long long)getFreeDisk {
+    if (@available(iOS 11.0, *)) {
+        NSURL *url = [[NSURL alloc] initFileURLWithPath:NSTemporaryDirectory()];
+        NSError *error = nil;
+        NSDictionary *result = [url resourceValuesForKeys:@[NSURLVolumeAvailableCapacityForImportantUsageKey] error:&error];
+        unsigned long long freeDisk = [result[NSURLVolumeAvailableCapacityForImportantUsageKey] unsignedLongLongValue];
+        if (!error && freeDisk > 0) {
+            return freeDisk;
+        }
+    }
     NSDictionary *fattributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
     return [fattributes[NSFileSystemFreeSize] unsignedLongLongValue];
 }

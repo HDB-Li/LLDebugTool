@@ -32,8 +32,8 @@ CGFloat const kLLEntryWindowMaxDisplayPercent = 1;
 CGFloat const kLLEntryWindowFirstDisplayPositionX = 0;
 CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
 CGFloat const kLLInactiveAlpha = 0.75;
+CGFloat const kLLDisplayInactiveAlpha = 0.90;
 CGFloat const kLLActiveAlpha = 1.0;
-CGFloat const kLLEntryWindowBigTitleViewHeight = 30;
 
 NSInteger const kLLMagnifierWindowZoomLevel = 10;
 NSInteger const kLLMagnifierWindowMinZoomLevel = 6;

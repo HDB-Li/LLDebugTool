@@ -33,7 +33,7 @@
 
 - (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
     [[LLToastUtils shared] toastMessage:@"Coming soon..."];
-    //    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    //    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
     //    if ([window isKindOfClass:[LLFunctionWindow class]]) {
     //        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
     //        [nav pushViewController:[[LLResolutionViewController alloc] init] animated:YES];

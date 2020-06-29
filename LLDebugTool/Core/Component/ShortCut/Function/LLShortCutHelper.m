@@ -55,7 +55,7 @@ static LLShortCutHelper *_instance = nil;
 - (instancetype)init {
     if (self = [super init]) {
         _actions = [[NSMutableArray alloc] init];
-        [self registerAction:[LLShortCutModel visiableViewControllerModel]];
+        [self registerAction:[LLShortCutModel visibleViewControllerModel]];
         [self registerAction:[LLShortCutModel resetStandardUserDefaultsModel]];
         [self registerAction:[LLShortCutModel clearDiskModel]];
     }

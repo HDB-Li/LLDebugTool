@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIWindow (LL_Utils)
 
 /**
- Current visiable viewController.
+ Current visible viewController.
 
  @return UIViewController.
  */

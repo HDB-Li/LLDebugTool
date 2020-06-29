@@ -28,6 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// Entry big title view.
 @interface LLEntryBigTitleView : LLEntryView
 
+/// Label insets.
+@property (nonatomic, assign) UIEdgeInsets insets;
+
+/// Label.
+@property (nonatomic, strong, readonly) UILabel *label;
+
+/// Set label text.
+/// @param text Text.
+- (void)setText:(NSString *)text;
+
 @end
 
 NS_ASSUME_NONNULL_END

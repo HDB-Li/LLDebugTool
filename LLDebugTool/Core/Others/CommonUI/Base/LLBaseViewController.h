@@ -73,7 +73,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)initNavigationItemWithTitle:(NSString *_Nullable)title imageName:(NSString *_Nullable)imageName isLeft:(BOOL)flag;
 
 /// Called when window is show.
-- (void)becomeVisable;
+- (void)windowDidShow;
+
+/// Called when window is hide.
+- (void)windowDidHide;
 
 /// Called when [LLThemeManager themeColor] changed.
 - (void)themeColorChanged;

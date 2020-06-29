@@ -48,7 +48,7 @@
         }
     }
 
-    LLBaseWindow *window = [[LLWindowManager shared] visiableWindow];
+    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
     if ([window isKindOfClass:[LLFunctionWindow class]]) {
         LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
         [nav pushViewController:[[LLHtmlConfigViewController alloc] init] animated:YES];

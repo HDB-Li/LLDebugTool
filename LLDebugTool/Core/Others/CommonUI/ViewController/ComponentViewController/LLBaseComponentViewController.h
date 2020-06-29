@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Component view controller.
 @interface LLBaseComponentViewController : LLBaseViewController <LLComponentDelegate>
 
+//TODO: 统一两个Component代理方法，增加返回值。
+- (BOOL)componentDidFinish;
+
 @end
 
 NS_ASSUME_NONNULL_END
