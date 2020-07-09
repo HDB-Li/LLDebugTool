@@ -24,20 +24,17 @@
 #import "LLLocationComponent.h"
 
 #import "LLLocationViewController.h"
-#import "LLNavigationController.h"
 
 #import "LLWindowManager+Location.h"
 
 @implementation LLLocationComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLLocationViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager locationWindow] animated:YES];
-    }
++ (Class)baseViewController {
+    return LLLocationViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager locationWindow];
 }
 
 @end

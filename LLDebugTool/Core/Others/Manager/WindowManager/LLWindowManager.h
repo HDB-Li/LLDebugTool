@@ -23,6 +23,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LLDebugConfig.h"
 #import "LLEntryWindow.h"
 #import "LLFunctionWindow.h"
 #import "LLSettingWindow.h"
@@ -45,20 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return LLWindowManager.
  */
 + (instancetype)shared;
-
-/**
- Function window.
- 
- @return LLFunctionWindow.
- */
-+ (LLFunctionWindow *)functionWindow;
-
-/**
- Setting window.
- 
- @return LLSettingWindow.
- */
-+ (LLSettingWindow *)settingWindow;
 
 /**
  Show entry window.
@@ -107,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Current visible window.
  */
-- (LLBaseWindow *_Nullable)visibleWindow;
+- (LLComponentWindow *_Nullable)visibleWindow;
 
 @end
 
@@ -115,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLWindowManager (Internal)
 
-+ (LLBaseWindow *)createWindowWithClassName:(NSString *)className;
++ (LLComponentWindow *)createWindowWithClassName:(NSString *)className action:(LLDebugToolAction)action;
 
 @end
 

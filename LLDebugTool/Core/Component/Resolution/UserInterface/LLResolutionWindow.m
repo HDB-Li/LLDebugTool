@@ -38,9 +38,4 @@
     return self;
 }
 
-#pragma mark - Over write
-- (void)componentDidFinish {
-    [[LLWindowManager shared] showEntryWindow];
-}
-
 @end

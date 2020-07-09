@@ -23,7 +23,7 @@
 
 #import "LLFunctionViewController.h"
 
-#import "LLComponent.h"
+#import "LLComponentHelper.h"
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
@@ -168,13 +168,12 @@
 
 #pragma mark - LLFunctionContainerViewDelegate
 - (void)LLFunctionContainerView:(LLFunctionItemContainerView *)view didSelectAt:(LLFunctionItemModel *)model {
-    LLComponent *component = model.component;
-    [component componentDidLoad:nil];
+    [LLComponentHelper executeAction:model.action data:nil];
 }
 
 #pragma mark - Event response
 - (void)settingButtonClicked:(UIButton *)sender {
-    [[[LLFunctionItemModel alloc] initWithAction:LLDebugToolActionSetting].component componentDidLoad:nil];
+    [LLComponentHelper executeAction:LLDebugToolActionSetting data:nil];
 }
 
 - (void)stopButtonClicked:(UIButton *)sender {

@@ -55,6 +55,7 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     self.name = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
 
@@ -80,7 +81,7 @@
 
 #pragma mark - Primary
 - (void)cancelAction {
-    [self componentDidLoad:nil];
+    [self componentDidFinish];
 }
 
 - (void)confirmAction {
@@ -96,7 +97,7 @@
     } else {
         self.toolBar.hidden = NO;
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.fail")];
-        [self componentDidLoad:nil];
+        [self componentDidFinish];
     }
 }
 
@@ -120,7 +121,7 @@
 - (void)toastShareWithImage:(UIImage *)image {
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
     vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-        [self componentDidLoad:nil];
+        [self componentDidFinish];
     };
     [self presentViewController:vc animated:YES completion:nil];
 }

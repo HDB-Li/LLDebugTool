@@ -25,7 +25,7 @@
 
 #import <pthread/pthread.h>
 
-#import "LLComponent.h"
+#import "LLComponentHelper.h"
 #import "LLDebugToolMacros.h"
 #import "LLFunctionItemModel.h"
 #import "LLLogDefine.h"
@@ -90,7 +90,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [self prepareToStart];
     // show window
     if (self.installed || ![LLDebugConfig shared].hideWhenInstall) {
-        [self showWindow];
+        [LLComponentHelper executeAction:LLDebugToolActionEntry data:nil];
     }
     if (!self.installed) {
         // Check version.
@@ -139,8 +139,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)executeAction:(LLDebugToolAction)action {
-    LLFunctionItemModel *model = [[LLFunctionItemModel alloc] initWithAction:action];
-    [model.component componentDidLoad:nil];
+    [LLComponentHelper executeAction:action data:nil];
 }
 
 + (NSString *)version {
@@ -165,6 +164,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (!self.isWorking) {
         return;
     }
+    // TODO:  判断是否是在首页状态
     if ([LLDebugConfig shared].isShakeToHide) {
         if ([LLWindowManager shared].entryWindow.isHidden) {
             [self showWindow];

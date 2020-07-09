@@ -104,7 +104,7 @@
 
 #pragma mark - LLBaseInfoViewDelegate
 - (void)LLInfoViewDidSelectCloseButton:(LLInfoView *)view {
-    [self componentDidLoad:nil];
+    [self componentDidFinish];
 }
 
 #pragma mark - Primary

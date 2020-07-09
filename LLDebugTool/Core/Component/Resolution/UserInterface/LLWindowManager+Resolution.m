@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Resolution)
 
 + (LLResolutionWindow *)resolutionWindow {
-    return (LLResolutionWindow *)[self createWindowWithClassName:NSStringFromClass([LLResolutionWindow class])];
+    return (LLResolutionWindow *)[self createWindowWithClassName:NSStringFromClass([LLResolutionWindow class]) action:LLDebugToolActionResolution];
 }
 
 @end

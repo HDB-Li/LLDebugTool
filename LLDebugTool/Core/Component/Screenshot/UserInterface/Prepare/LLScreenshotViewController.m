@@ -28,8 +28,8 @@
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLScreenshotHelper.h"
-#import "LLScreenshotPreviewViewController.h"
+#import "LLConvenientScreenshotComponent.h"
+#import "LLComponentHelper.h"
 #import "LLThemeManager.h"
 
 #import "UIView+LL_Utils.h"
@@ -73,9 +73,7 @@
 
 #pragma mark - Event responses
 - (void)captureButtonClicked:(UIButton *)sender {
-    LLScreenshotPreviewViewController *vc = [[LLScreenshotPreviewViewController alloc] init];
-    vc.image = [[LLScreenshotHelper shared] imageFromScreen];
-    [self.navigationController pushViewController:vc animated:YES];
+    [LLComponentHelper executeAction:LLDebugToolActionConvenientScreenshot data:nil];
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {

@@ -23,20 +23,18 @@
 
 #import "LLSettingComponent.h"
 
-#import "LLNavigationController.h"
 #import "LLSettingViewController.h"
-#import "LLWindowManager.h"
+
+#import "LLWindowManager+Setting.h"
 
 @implementation LLSettingComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLSettingViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager settingWindow] animated:YES];
-    }
++ (Class)baseViewController {
+    return LLSettingViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager settingWindow];
 }
 
 @end

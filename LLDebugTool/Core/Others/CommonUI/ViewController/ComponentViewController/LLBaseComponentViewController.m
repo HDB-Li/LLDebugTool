@@ -23,6 +23,7 @@
 
 #import "LLBaseComponentViewController.h"
 
+#import "LLComponentHelper.h"
 #import "LLComponentWindow.h"
 
 @interface LLBaseComponentViewController ()
@@ -31,19 +32,10 @@
 
 @implementation LLBaseComponentViewController
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
-        LLComponentWindow *window = (LLComponentWindow *)self.view.window;
-        [window componentDidFinish];
-    } else {
-        NSAssert(NO, ([NSString stringWithFormat:@"%@'s window must be LLBaseComponentWindow", NSStringFromClass(self.class)]));
-    }
-}
-
 - (BOOL)componentDidFinish {
     if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
         LLComponentWindow *window = (LLComponentWindow *)self.view.window;
-        [window componentDidFinish];
+        [LLComponentHelper finishAction:window.action data:nil];
         return YES;
     }
     return NO;

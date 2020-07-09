@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Location)
 
 + (LLLocationWindow *)locationWindow {
-    return (LLLocationWindow *)[self createWindowWithClassName:NSStringFromClass([LLLocationWindow class])];
+    return (LLLocationWindow *)[self createWindowWithClassName:NSStringFromClass([LLLocationWindow class]) action:LLDebugToolActionLocation];
 }
 
 @end

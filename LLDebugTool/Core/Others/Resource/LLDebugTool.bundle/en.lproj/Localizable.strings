@@ -80,6 +80,9 @@
 "remove.fail" = "Remove data failed";
 "unknown" = "Unknown";
 
+// Component
+"component.invalid" = "Component is invalid";
+
 // Network
 "network.detail" = "Network Details";
 

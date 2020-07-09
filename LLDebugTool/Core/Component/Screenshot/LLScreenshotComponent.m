@@ -27,21 +27,8 @@
 
 @implementation LLScreenshotComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLScreenshotWindow *window = [LLWindowManager screenshotWindow];
-    if (data[LLComponentDelegateRootViewControllerKey]) {
-        Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);
-        if (rootViewControllerClass != nil) {
-            UIViewController *viewController = [[rootViewControllerClass alloc] init];
-            NSDictionary *properties = data[LLComponentDelegateRootViewControllerPropertiesKey];
-            for (NSString *key in properties) {
-                id value = properties[key];
-                [viewController setValue:value forKey:key];
-            }
-            window.rootViewController = viewController;
-        }
-    }
-    [[LLWindowManager shared] showWindow:window animated:YES];
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager screenshotWindow];
 }
 
 @end

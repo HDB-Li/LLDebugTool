@@ -26,7 +26,7 @@
 @implementation LLWindowManager (ShortCut)
 
 + (LLShortCutWindow *)shortCutWindow {
-    return (LLShortCutWindow *)[self createWindowWithClassName:NSStringFromClass([LLShortCutWindow class])];
+    return (LLShortCutWindow *)[self createWindowWithClassName:NSStringFromClass([LLShortCutWindow class]) action:LLDebugToolActionShortCut];
 }
 
 @end

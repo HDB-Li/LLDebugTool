@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Log)
 
 + (LLLogWindow *)logWindow {
-    return (LLLogWindow *)[self createWindowWithClassName:NSStringFromClass([LLLogWindow class])];
+    return (LLLogWindow *)[self createWindowWithClassName:NSStringFromClass([LLLogWindow class]) action:LLDebugToolActionLog];
 }
 
 @end

@@ -25,8 +25,4 @@
 
 @implementation LLComponentWindow
 
-- (void)componentDidFinish {
-    NSAssert(NO, @"Sub class must rewrite componentDidFinish:");
-}
-
 @end

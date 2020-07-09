@@ -41,7 +41,7 @@ typedef void (^LLStorageManagerArrayBlock)(NSArray<LLStorageModel *> *_Nullable 
 
  @return Singleton
  */
-+ (instancetype _Nonnull)shared;
++ (instancetype)shared;
 
 /**
  Register a class in database and auto create a table.

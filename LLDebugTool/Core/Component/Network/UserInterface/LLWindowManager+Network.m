@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Network)
 
 + (LLNetworkWindow *)networkWindow {
-    return (LLNetworkWindow *)[self createWindowWithClassName:NSStringFromClass([LLNetworkWindow class])];
+    return (LLNetworkWindow *)[self createWindowWithClassName:NSStringFromClass([LLNetworkWindow class]) action:LLDebugToolActionNetwork];
 }
 
 @end

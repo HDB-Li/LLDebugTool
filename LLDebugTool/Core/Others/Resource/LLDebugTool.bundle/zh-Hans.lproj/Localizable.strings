@@ -80,6 +80,9 @@
 "remove.fail" = "删除数据失败";
 "unknown" = "未知";
 
+// Component
+"component.invalid" = "组件无效";
+
 // Network
 "network.detail" = "网络详情";
 

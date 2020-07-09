@@ -23,6 +23,7 @@
 
 #import "LLWindowManager.h"
 
+#import "LLComponentWindow.h"
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLInternalMacros.h"
@@ -62,14 +63,6 @@ static LLWindowManager *_instance = nil;
     return _instance;
 }
 
-+ (LLFunctionWindow *)functionWindow {
-    return (LLFunctionWindow *)[self createWindowWithClassName:NSStringFromClass([LLFunctionWindow class])];
-}
-
-+ (LLSettingWindow *)settingWindow {
-    return (LLSettingWindow *)[self createWindowWithClassName:NSStringFromClass([LLSettingWindow class])];
-}
-
 - (void)showEntryWindow {
     [self addWindow:self.entryWindow animated:YES completion:nil];
 }
@@ -78,23 +71,23 @@ static LLWindowManager *_instance = nil;
     [self removeAllVisibleWindows];
 }
 
-- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated {
+- (void)showWindow:(LLComponentWindow *)window animated:(BOOL)animated {
     [self showWindow:window animated:animated completion:nil];
 }
 
-- (void)showWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)showWindow:(LLComponentWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     [self addWindow:window animated:animated completion:completion];
 }
 
-- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated {
+- (void)hideWindow:(LLComponentWindow *)window animated:(BOOL)animated {
     [self hideWindow:window animated:animated completion:nil];
 }
 
-- (void)hideWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)hideWindow:(LLComponentWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     [self removeWindow:window animated:animated showEntry:YES completion:nil];
 }
 
-- (LLBaseWindow *)visibleWindow {
+- (LLComponentWindow *)visibleWindow {
     return [self.visibleWindows lastObject];
 }
 
@@ -109,7 +102,7 @@ static LLWindowManager *_instance = nil;
     return self;
 }
 
-- (void)addWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)addWindow:(LLComponentWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     // Avoid call on child thread.
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -146,7 +139,7 @@ static LLWindowManager *_instance = nil;
         window.windowLevel = self.entryWindowLevel;
     } else {
         UIWindow *keyWindow = [LLTool keyWindow];
-        if (![keyWindow isKindOfClass:[LLBaseWindow class]]) {
+        if (![keyWindow isKindOfClass:[LLComponentWindow class]]) {
             self.keyWindow = keyWindow;
             self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
             [[UIApplication sharedApplication] setStatusBarStyle:[LLThemeManager shared].statusBarStyle animated:animated];
@@ -157,7 +150,7 @@ static LLWindowManager *_instance = nil;
 #pragma clang diagnostic pop
 }
 
-- (void)performAddWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)performAddWindow:(LLComponentWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
@@ -195,7 +188,7 @@ static LLWindowManager *_instance = nil;
     }
 }
 
-- (void)removeWindow:(LLBaseWindow *)window animated:(BOOL)animated showEntry:(BOOL)showEntry completion:(void (^)(void))completion {
+- (void)removeWindow:(LLComponentWindow *)window animated:(BOOL)animated showEntry:(BOOL)showEntry completion:(void (^)(void))completion {
     // Avoid call on child thread.
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -216,7 +209,7 @@ static LLWindowManager *_instance = nil;
     [self performRemoveWindow:window animated:animated completion:completion];
 }
 
-- (void)performRemoveWindow:(LLBaseWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
+- (void)performRemoveWindow:(LLComponentWindow *)window animated:(BOOL)animated completion:(void (^)(void))completion {
     if (animated) {
         __block CGFloat alpha = window.alpha;
         __block CGFloat x = window.LL_x;
@@ -257,13 +250,13 @@ static LLWindowManager *_instance = nil;
 }
 
 - (void)removeAllVisibleWindows {
-    for (LLBaseWindow *window in self.visibleWindows) {
+    for (LLComponentWindow *window in self.visibleWindows) {
         [self removeWindow:window animated:YES showEntry:NO completion:nil];
     }
     [self.visibleWindows removeAllObjects];
 }
 
-- (void)removeVisibleWindow:(LLBaseWindow *)window showEntry:(BOOL)showEntry {
+- (void)removeVisibleWindow:(LLComponentWindow *)window showEntry:(BOOL)showEntry {
     [self.visibleWindows removeObject:window];
     if (showEntry) {
         if (self.visibleWindows.count == 0) {
@@ -275,7 +268,7 @@ static LLWindowManager *_instance = nil;
 #pragma mark - Lazy
 - (LLEntryWindow *)entryWindow {
     if (!_entryWindow) {
-        _entryWindow = (LLEntryWindow *)[[self class] createWindowWithClassName:NSStringFromClass([LLEntryWindow class])];
+        _entryWindow = (LLEntryWindow *)[[self class] createWindowWithClassName:NSStringFromClass([LLEntryWindow class]) action:LLDebugToolActionEntry];
     }
     return _entryWindow;
 }
@@ -286,10 +279,10 @@ static LLWindowManager *_instance = nil;
 
 @implementation LLWindowManager (Internal)
 
-+ (LLBaseWindow *)createWindowWithClassName:(NSString *)className {
++ (LLComponentWindow *)createWindowWithClassName:(NSString *)className action:(LLDebugToolAction)action {
     Class cls = NSClassFromString(className);
     NSAssert(cls, ([NSString stringWithFormat:@"%@ can't register a class.", className]));
-    __block LLBaseWindow *window = nil;
+    __block LLComponentWindow *window = nil;
     if (![[NSThread currentThread] isMainThread]) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -297,12 +290,13 @@ static LLWindowManager *_instance = nil;
     } else {
         window = [[cls alloc] initWithFrame:[UIScreen mainScreen].bounds];
     }
+    window.action = action;
 #ifdef __IPHONE_13_0
     if (@available(iOS 13.0, *)) {
         window.windowScene = [LLTool delegateWindow].windowScene;
     }
 #endif
-    NSAssert([window isKindOfClass:[LLBaseWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLBaseWindow class", className]));
+    NSAssert([window isKindOfClass:[LLComponentWindow class]], ([NSString stringWithFormat:@"%@ isn't a LLComponentWindow class", className]));
     return window;
 }
 

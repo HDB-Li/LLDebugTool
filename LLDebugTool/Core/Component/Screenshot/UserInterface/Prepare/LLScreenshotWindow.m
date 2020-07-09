@@ -36,13 +36,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLScreenshotViewController alloc] init]];
-        ;
     }
     return self;
-}
-
-- (void)componentDidFinish {
-    [[LLWindowManager shared] showEntryWindow];
 }
 
 @end

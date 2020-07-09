@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Ruler)
 
 + (LLRulerWindow *)rulerWindow {
-    return (LLRulerWindow *)[self createWindowWithClassName:NSStringFromClass([LLRulerWindow class])];
+    return (LLRulerWindow *)[self createWindowWithClassName:NSStringFromClass([LLRulerWindow class]) action:LLDebugToolActionRuler];
 }
 
 @end

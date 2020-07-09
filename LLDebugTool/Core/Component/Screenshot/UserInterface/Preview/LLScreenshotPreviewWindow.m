@@ -1,5 +1,5 @@
 //
-//  LLComponent.m
+//  LLScreenshotPreviewWindow.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,15 +21,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLComponent.h"
+#import "LLScreenshotPreviewWindow.h"
 
-LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey = @"LLComponentWindowRootViewControllerKey";
-LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey = @"LLComponentWindowRootViewControllerPropertiesKey";
+#import "LLNavigationController.h"
+#import "LLScreenshotPreviewViewController.h"
+#import "LLWindowManager.h"
 
-@implementation LLComponent
+@implementation LLScreenshotPreviewWindow
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    NSAssert(NO, @"Sub class must rewrite componentDidLoad:");
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLScreenshotPreviewViewController alloc] init]];
+    }
+    return self;
 }
 
 @end

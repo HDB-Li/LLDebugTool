@@ -23,21 +23,18 @@
 
 #import "LLSandboxComponent.h"
 
-#import "LLNavigationController.h"
 #import "LLSandboxViewController.h"
 
 #import "LLWindowManager+Sandbox.h"
 
 @implementation LLSandboxComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLSandboxViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager sandboxWindow] animated:YES];
-    }
++ (Class)baseViewController {
+    return LLSandboxViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager sandboxWindow];
 }
 
 @end

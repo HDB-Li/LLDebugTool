@@ -23,10 +23,10 @@
 
 #import "LLScreenshotHelper.h"
 
+#import "LLConvenientScreenshotComponent.h"
 #import "LLDebugConfig.h"
 #import "LLFormatterTool.h"
 #import "LLInternalMacros.h"
-#import "LLScreenshotComponent.h"
 #import "LLScreenshotPreviewViewController.h"
 #import "LLTool.h"
 
@@ -62,15 +62,14 @@ static LLScreenshotHelper *_instance = nil;
     }
 }
 
-- (void)simulateTakeScreenshot {
-    if (self.enable) {
-        UIImage *image = [self imageFromScreen];
-        if (image) {
-            NSDictionary *data = @{ LLComponentDelegateRootViewControllerKey: NSStringFromClass(LLScreenshotPreviewViewController.class),
-                                    LLComponentDelegateRootViewControllerPropertiesKey: @{@"image": image} };
-            [[[LLScreenshotComponent alloc] init] componentDidLoad:data];
-        }
+- (BOOL)simulateTakeScreenshot {
+    UIImage *image = [self imageFromScreen];
+    if (image) {
+        NSDictionary *data = @{ LLComponentDelegateRootViewControllerPropertiesKey: @{@"image": image} };
+        [LLConvenientScreenshotComponent componentDidLoad:data];
+        return YES;
     }
+    return NO;
 }
 
 - (UIImage *)imageFromScreen {
@@ -111,7 +110,9 @@ static LLScreenshotHelper *_instance = nil;
 
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification
 - (void)didReceiveApplicationUserDidTakeScreenshotNotification:(NSNotification *)notification {
-    [self simulateTakeScreenshot];
+    if (self.enable) {
+        [self simulateTakeScreenshot];
+    }
 }
 
 #pragma mark - Primary

@@ -23,6 +23,7 @@
 
 #import "LLFunctionItemModel.h"
 
+#import "LLComponentHelper.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLTool.h"
@@ -32,43 +33,13 @@
 - (instancetype)initWithAction:(LLDebugToolAction)action {
     if (self = [super init]) {
         _action = action;
-        LLComponent *component = [self componentFromAction:action];
-        if (!component) {
+        if ([[LLComponentHelper componentForAction:action] length] < 0) {
             return nil;
         }
-        _component = component;
         _imageName = [self imageNameFromAction:action];
         _title = [self titleFromAction:action];
     }
     return self;
-}
-
-- (LLComponent *)componentFromAction:(LLDebugToolAction)action {
-    NSDictionary *json = @{
-        @(LLDebugToolActionFunction): @"LLFunctionComponent",
-        @(LLDebugToolActionSetting): @"LLSettingComponent",
-        @(LLDebugToolActionNetwork): @"LLNetworkComponent",
-        @(LLDebugToolActionLog): @"LLLogComponent",
-        @(LLDebugToolActionCrash): @"LLCrashComponent",
-        @(LLDebugToolActionAppInfo): @"LLAppInfoComponent",
-        @(LLDebugToolActionSandbox): @"LLSandboxComponent",
-        @(LLDebugToolActionScreenshot): @"LLScreenshotComponent",
-        @(LLDebugToolActionConvenientScreenshot): @"LLConvenientScreenshotComponent",
-        @(LLDebugToolActionHierarchy): @"LLHierarchyComponent",
-        @(LLDebugToolActionMagnifier): @"LLMagnifierComponent",
-        @(LLDebugToolActionRuler): @"LLRulerComponent",
-        @(LLDebugToolActionWidgetBorder): @"LLWidgetBorderComponent",
-        @(LLDebugToolActionHtml): @"LLHtmlComponent",
-        @(LLDebugToolActionLocation): @"LLLocationComponent",
-        @(LLDebugToolActionShortCut): @"LLShortCutComponent",
-        @(LLDebugToolActionResolution): @"LLResolutionComponent"
-    };
-    NSString *component = json[@(action)];
-    if (component) {
-        return [[NSClassFromString(component) alloc] init];
-    }
-    [LLTool log:[NSString stringWithFormat:@"componentFromAction unknown : %@", @(action)]];
-    return nil;
 }
 
 - (NSString *)titleFromAction:(LLDebugToolAction)action {

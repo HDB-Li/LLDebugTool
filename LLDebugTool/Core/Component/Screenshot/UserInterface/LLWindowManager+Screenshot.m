@@ -26,7 +26,11 @@
 @implementation LLWindowManager (Screenshot)
 
 + (LLScreenshotWindow *)screenshotWindow {
-    return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class])];
+    return (LLScreenshotWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotWindow class]) action:LLDebugToolActionScreenshot];
+}
+
++ (LLScreenshotPreviewWindow *)screenshotPreviewWindow {
+    return (LLScreenshotPreviewWindow *)[self createWindowWithClassName:NSStringFromClass([LLScreenshotPreviewWindow class]) action:LLDebugToolActionConvenientScreenshot];
 }
 
 @end

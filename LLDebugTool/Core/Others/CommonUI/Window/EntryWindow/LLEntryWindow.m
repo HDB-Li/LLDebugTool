@@ -23,6 +23,7 @@
 
 #import "LLEntryWindow.h"
 
+#import "LLComponentHelper.h"
 #import "LLDebugConfig.h"
 #import "LLEntryStyleModel.h"
 #import "LLEntryViewController.h"
@@ -106,12 +107,12 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
 #pragma mark - Events
 - (void)tapGR:(UITapGestureRecognizer *)sender {
     [self animatedBecomeActive];
-    [[[LLFunctionItemModel alloc] initWithAction:[LLDebugConfig shared].clickAction].component componentDidLoad:nil];
+    [LLComponentHelper executeAction:[LLDebugConfig shared].clickAction data:nil];
 }
 
 - (void)doubleTapGR:(UITapGestureRecognizer *)sender {
     [self animatedBecomeActive];
-    [[[LLFunctionItemModel alloc] initWithAction:[LLDebugConfig shared].doubleClickAction].component componentDidLoad:nil];
+    [LLComponentHelper executeAction:[LLDebugConfig shared].doubleClickAction data:nil];
 }
 
 #pragma mark - Primary

@@ -67,6 +67,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateWindowStyleNotification:) name:LLDebugToolUpdateWindowStyleNotification object:nil];
 }
 
+#pragma mark - Over write
+- (void)windowDidShow {
+    [super windowDidShow];
+}
+
+- (void)windowDidHide {
+    [super windowDidHide];
+}
+
 #pragma mark - Primary
 - (void)updateStyle:(LLDebugConfigEntryWindowStyle)style {
     [self.activeView removeFromSuperview];

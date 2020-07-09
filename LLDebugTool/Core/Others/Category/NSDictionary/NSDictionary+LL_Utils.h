@@ -38,6 +38,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// Display string.
 - (NSString *_Nullable)LL_displayString;
 
+/// Get object with a target class
+/// @param aKey Key.
+/// @param cls Target class.
+///
+/// @return Object.
+- (id _Nullable)LL_objectForKey:(id)aKey targetClass:(Class)cls;
+
 @end
 
 NS_ASSUME_NONNULL_END

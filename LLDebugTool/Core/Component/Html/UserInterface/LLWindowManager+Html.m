@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Html)
 
 + (LLHtmlWindow *)htmlWindow {
-    return (LLHtmlWindow *)[self createWindowWithClassName:NSStringFromClass([LLHtmlWindow class])];
+    return (LLHtmlWindow *)[self createWindowWithClassName:NSStringFromClass([LLHtmlWindow class]) action:LLDebugToolActionHtml];
 }
 
 @end

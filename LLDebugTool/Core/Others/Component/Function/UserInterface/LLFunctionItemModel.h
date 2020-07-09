@@ -25,8 +25,6 @@
 
 #import "LLDebugTool.h"
 
-#import "LLComponent.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -48,11 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
  Specified action.
  */
 @property (nonatomic, assign, readonly) LLDebugToolAction action;
-
-/**
- Action component.
- */
-@property (nonatomic, strong, readonly) LLComponent *component;
 
 /**
  Specifies the init method.

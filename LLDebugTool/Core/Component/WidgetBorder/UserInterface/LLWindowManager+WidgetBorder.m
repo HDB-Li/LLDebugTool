@@ -26,7 +26,7 @@
 @implementation LLWindowManager (WidgetBorder)
 
 + (LLWidgetBorderWindow *)widgetBorderWindow {
-    return (LLWidgetBorderWindow *)[self createWindowWithClassName:NSStringFromClass([LLWidgetBorderWindow class])];
+    return (LLWidgetBorderWindow *)[self createWindowWithClassName:NSStringFromClass([LLWidgetBorderWindow class]) action:LLDebugToolActionWidgetBorder];
 }
 
 @end

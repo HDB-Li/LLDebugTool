@@ -25,10 +25,30 @@
 
 #import "LLScreenshotHelper.h"
 
+#import "LLWindowManager+Screenshot.h"
+#import "NSDictionary+LL_Utils.h"
+
 @implementation LLConvenientScreenshotComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    [[LLScreenshotHelper shared] simulateTakeScreenshot];
++ (NSDictionary<LLComponentDelegateKey, id> *)verificationData:(NSDictionary<LLComponentDelegateKey, id> *)data {
+    NSDictionary *targetData = data;
+    NSDictionary *properties = [data LL_objectForKey:LLComponentDelegateRootViewControllerPropertiesKey targetClass:NSDictionary.class];
+    UIImage *image = [properties LL_objectForKey:@"image" targetClass:UIImage.class];
+    if (!image) {
+        NSMutableDictionary *newData = [NSMutableDictionary dictionaryWithDictionary:data];
+        NSMutableDictionary *newProperties = [NSMutableDictionary dictionaryWithDictionary:[data LL_objectForKey:LLComponentDelegateRootViewControllerPropertiesKey targetClass:NSDictionary.class]];
+        UIImage *newImage = [[LLScreenshotHelper shared] imageFromScreen];
+        if (newImage) {
+            newProperties[@"image"] = newImage;
+            newData[LLComponentDelegateRootViewControllerPropertiesKey] = [newProperties copy];
+            targetData = [newData copy];
+        }
+    }
+    return targetData;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager screenshotPreviewWindow];
 }
 
 @end

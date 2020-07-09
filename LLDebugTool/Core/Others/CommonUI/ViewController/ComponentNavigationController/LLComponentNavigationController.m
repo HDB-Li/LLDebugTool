@@ -24,6 +24,7 @@
 #import "LLComponentNavigationController.h"
 
 #import "LLBaseViewController.h"
+#import "LLComponentHelper.h"
 #import "LLComponentWindow.h"
 #import "LLImageNameConfig.h"
 #import "LLThemeManager.h"
@@ -56,7 +57,7 @@
 - (void)leftItemClick:(UIButton *)sender {
     if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
         LLComponentWindow *window = (LLComponentWindow *)self.view.window;
-        [window componentDidFinish];
+        [LLComponentHelper finishAction:window.action data:nil];
     }
 }
 

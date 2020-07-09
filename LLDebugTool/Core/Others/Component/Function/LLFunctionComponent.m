@@ -23,12 +23,12 @@
 
 #import "LLFunctionComponent.h"
 
-#import "LLWindowManager.h"
+#import "LLWindowManager+Function.h"
 
 @implementation LLFunctionComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager functionWindow] animated:YES];
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager functionWindow];
 }
 
 @end

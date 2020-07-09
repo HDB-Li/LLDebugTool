@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Singleton
  */
-+ (instancetype _Nonnull)shared;
++ (instancetype)shared;
 
 /**
  Set enable to screenshot.
@@ -42,8 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Simulate user screenshot.
+ 
+ @return Whether screenshot success.
  */
-- (void)simulateTakeScreenshot;
+- (BOOL)simulateTakeScreenshot;
 
 /**
  Return a image from current screen.

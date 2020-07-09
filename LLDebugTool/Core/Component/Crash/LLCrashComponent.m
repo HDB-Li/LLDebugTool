@@ -24,20 +24,17 @@
 #import "LLCrashComponent.h"
 
 #import "LLCrashViewController.h"
-#import "LLNavigationController.h"
 
 #import "LLWindowManager+Crash.h"
 
 @implementation LLCrashComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLCrashViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager crashWindow] animated:YES];
-    }
++ (Class)baseViewController {
+    return LLCrashViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager crashWindow];
 }
 
 @end

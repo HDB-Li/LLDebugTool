@@ -23,6 +23,7 @@
 
 #import "LLWindowManager.h"
 
+#import "LLScreenshotPreviewWindow.h"
 #import "LLScreenshotWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,6 +36,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return LLScreenshotWindow.
  */
 + (LLScreenshotWindow *)screenshotWindow;
+
+/**
+ Screenshot preview window.
+ 
+ @return LLScreenshotPreviewWindow;
+ */
++ (LLScreenshotPreviewWindow *)screenshotPreviewWindow;
 
 @end
 

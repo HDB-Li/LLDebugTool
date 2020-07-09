@@ -24,37 +24,17 @@
 #import "LLHtmlComponent.h"
 
 #import "LLHtmlConfigViewController.h"
-#import "LLNavigationController.h"
 
 #import "LLWindowManager+Html.h"
 
 @implementation LLHtmlComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    if (data[LLComponentDelegateRootViewControllerKey]) {
-        Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);
-        if (rootViewControllerClass != nil) {
-            UIViewController *viewController = [[rootViewControllerClass alloc] init];
-            NSDictionary *properties = data[LLComponentDelegateRootViewControllerPropertiesKey];
-            for (NSString *key in properties) {
-                id value = properties[key];
-                [viewController setValue:value forKey:key];
-            }
-            LLNavigationController *nav = [[LLNavigationController alloc] initWithRootViewController:viewController];
-            LLHtmlWindow *window = [LLWindowManager htmlWindow];
-            window.rootViewController = nav;
-            [[LLWindowManager shared] showWindow:window animated:YES];
-            return;
-        }
-    }
++ (Class)baseViewController {
+    return LLHtmlConfigViewController.class;
+}
 
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLHtmlConfigViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager htmlWindow] animated:YES];
-    }
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager htmlWindow];
 }
 
 @end

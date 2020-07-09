@@ -23,17 +23,15 @@
 
 #import "LLBaseWindow.h"
 
+#import "LLDebugConfig.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-/// Component delegate.
-@protocol LLComponentCompleteDelegate <NSObject>
-
-- (void)componentDidFinish;
-
-@end
-
 /// Component window.
-@interface LLComponentWindow : LLBaseWindow <LLComponentCompleteDelegate>
+@interface LLComponentWindow : LLBaseWindow
+
+/// Window's Action.
+@property (nonatomic, assign) LLDebugToolAction action;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  LLComponentDelegate.h
+//  LLComponentHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,20 +23,26 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LLComponentDelegate.h"
+#import "LLDebugConfig.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString *LLComponentDelegateKey NS_TYPED_ENUM;
+@interface LLComponentHelper : NSObject
 
-FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey;
+/// Whether the action is available.
+/// @param action Action.
++ (NSString *_Nullable)componentForAction:(LLDebugToolAction)action;
 
-FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey;
-
-/// Component delegate.
-@protocol LLComponentDelegate <NSObject>
-
-/// Component did load.
+/// Execute action if availabled.
+/// @param action Action.
 /// @param data Extra data.
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *_Nullable)data;
++ (BOOL)executeAction:(LLDebugToolAction)action data:(NSDictionary<LLComponentDelegateKey, id> *_Nullable)data;
+
+/// Finish action if availabled.
+/// @param action Action.
+/// @param data Extra data.
++ (BOOL)finishAction:(LLDebugToolAction)action data:(NSDictionary<LLComponentDelegateKey, id> *_Nullable)data;
 
 @end
 

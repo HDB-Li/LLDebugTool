@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLHierarchyHelper : NSObject
 
 /// Shared instance.
-+ (instancetype _Nonnull)shared;
++ (instancetype)shared;
 
 /// All window in application.
 - (NSArray<UIWindow *> *)allWindows;

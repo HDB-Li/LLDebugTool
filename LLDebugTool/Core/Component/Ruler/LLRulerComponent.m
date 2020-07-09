@@ -27,8 +27,8 @@
 
 @implementation LLRulerComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    [[LLWindowManager shared] showWindow:[LLWindowManager rulerWindow] animated:YES];
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager rulerWindow];
 }
 
 @end

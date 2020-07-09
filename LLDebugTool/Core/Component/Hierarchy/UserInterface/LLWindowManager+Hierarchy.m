@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Hierarchy)
 
 + (LLHierarchyWindow *)hierarchyWindow {
-    return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class])];
+    return (LLHierarchyWindow *)[self createWindowWithClassName:NSStringFromClass([LLHierarchyWindow class]) action:LLDebugToolActionHierarchy];
 }
 
 @end

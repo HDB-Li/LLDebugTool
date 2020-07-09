@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Crash)
 
 + (LLCrashWindow *)crashWindow {
-    return (LLCrashWindow *)[self createWindowWithClassName:NSStringFromClass([LLCrashWindow class])];
+    return (LLCrashWindow *)[self createWindowWithClassName:NSStringFromClass([LLCrashWindow class]) action:LLDebugToolActionCrash];
 }
 
 @end

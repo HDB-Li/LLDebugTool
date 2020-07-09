@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Sandbox)
 
 + (LLSandboxWindow *)sandboxWindow {
-    return (LLSandboxWindow *)[self createWindowWithClassName:NSStringFromClass([LLSandboxWindow class])];
+    return (LLSandboxWindow *)[self createWindowWithClassName:NSStringFromClass([LLSandboxWindow class]) action:LLDebugToolActionSandbox];
 }
 
 @end

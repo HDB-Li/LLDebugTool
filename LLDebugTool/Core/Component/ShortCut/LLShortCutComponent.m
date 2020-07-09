@@ -23,21 +23,18 @@
 
 #import "LLShortCutComponent.h"
 
-#import "LLNavigationController.h"
 #import "LLShortCutViewController.h"
 
 #import "LLWindowManager+ShortCut.h"
 
 @implementation LLShortCutComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLShortCutViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager shortCutWindow] animated:YES];
-    }
++ (Class)baseViewController {
+    return LLShortCutViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager shortCutWindow];
 }
 
 @end

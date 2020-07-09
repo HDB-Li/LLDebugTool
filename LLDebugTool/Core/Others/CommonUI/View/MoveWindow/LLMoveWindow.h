@@ -21,11 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLBaseWindow.h"
+#import "LLComponentWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLMoveWindow : LLBaseWindow
+@interface LLMoveWindow : LLComponentWindow
 
 /// Whether over flow.
 @property (nonatomic, assign, getter=isOverflow) BOOL overflow;

@@ -65,7 +65,7 @@ FOUNDATION_EXPORT LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescri
  
  @return Singleton
  */
-+ (instancetype _Nonnull)shared;
++ (instancetype)shared;
 
 /**
  Set enable to monitoring network request.

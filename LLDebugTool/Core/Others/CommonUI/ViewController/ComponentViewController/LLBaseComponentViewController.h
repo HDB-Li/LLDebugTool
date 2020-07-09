@@ -23,14 +23,11 @@
 
 #import "LLBaseViewController.h"
 
-#import "LLComponentDelegate.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 /// Component view controller.
-@interface LLBaseComponentViewController : LLBaseViewController <LLComponentDelegate>
+@interface LLBaseComponentViewController : LLBaseViewController
 
-//TODO: 统一两个Component代理方法，增加返回值。
 - (BOOL)componentDidFinish;
 
 @end

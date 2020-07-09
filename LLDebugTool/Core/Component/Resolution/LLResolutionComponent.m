@@ -23,7 +23,6 @@
 
 #import "LLResolutionComponent.h"
 
-#import "LLNavigationController.h"
 #import "LLResolutionViewController.h"
 #import "LLToastUtils.h"
 
@@ -31,15 +30,21 @@
 
 @implementation LLResolutionComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
++ (BOOL)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
     [[LLToastUtils shared] toastMessage:@"Coming soon..."];
-    //    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    //    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-    //        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-    //        [nav pushViewController:[[LLResolutionViewController alloc] init] animated:YES];
-    //    } else {
-    //        [[LLWindowManager shared] showWindow:[LLWindowManager resolutionWindow] animated:YES];
-    //    }
+    return NO;
+}
+
++ (Class)baseViewController {
+    return LLResolutionViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager resolutionWindow];
+}
+
++ (BOOL)isValid {
+    return NO;
 }
 
 @end

@@ -43,7 +43,7 @@ FOUNDATION_EXPORT LLDebugToolStartWorkingNotificationKey LLDebugToolStartWorking
  
  @return Singleton
  */
-+ (instancetype _Nonnull)sharedTool;
++ (instancetype)sharedTool;
 
 /**
  Start working.

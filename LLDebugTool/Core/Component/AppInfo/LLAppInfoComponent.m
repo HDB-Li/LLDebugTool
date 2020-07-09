@@ -24,20 +24,17 @@
 #import "LLAppInfoComponent.h"
 
 #import "LLAppInfoViewController.h"
-#import "LLNavigationController.h"
 
 #import "LLWindowManager+AppInfo.h"
 
 @implementation LLAppInfoComponent
 
-- (void)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
-    LLBaseWindow *window = [[LLWindowManager shared] visibleWindow];
-    if ([window isKindOfClass:[LLFunctionWindow class]]) {
-        LLNavigationController *nav = (LLNavigationController *)window.rootViewController;
-        [nav pushViewController:[[LLAppInfoViewController alloc] init] animated:YES];
-    } else {
-        [[LLWindowManager shared] showWindow:[LLWindowManager appInfoWindow] animated:YES];
-    }
++ (Class)baseViewController {
+    return LLAppInfoViewController.class;
+}
+
++ (LLComponentWindow *)baseWindow {
+    return [LLWindowManager appInfoWindow];
 }
 
 @end

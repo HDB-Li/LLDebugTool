@@ -35,8 +35,4 @@
     return self;
 }
 
-- (void)componentDidFinish {
-    [[LLWindowManager shared] showEntryWindow];
-}
-
 @end

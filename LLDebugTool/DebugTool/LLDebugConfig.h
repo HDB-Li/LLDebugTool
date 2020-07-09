@@ -79,6 +79,7 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
 /**
  Action enums.
  
+ - LLDebugToolActionEntry: Show entry window.
  - LLDebugToolActionFunction: Show function window.
  - LLDebugToolActionSetting: Show setting function.
  - LLDebugToolActionNetwork: Network function.
@@ -98,6 +99,7 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
  - LLDebugToolActionResolution: Resolution function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
+    LLDebugToolActionEntry,
     LLDebugToolActionFunction,
     LLDebugToolActionSetting,
     LLDebugToolActionNetwork,

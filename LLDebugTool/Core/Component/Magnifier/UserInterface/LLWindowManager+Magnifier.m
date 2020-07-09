@@ -26,7 +26,7 @@
 @implementation LLWindowManager (Magnifier)
 
 + (LLMagnifierWindow *)magnifierWindow {
-    return (LLMagnifierWindow *)[self createWindowWithClassName:NSStringFromClass([LLMagnifierWindow class])];
+    return (LLMagnifierWindow *)[self createWindowWithClassName:NSStringFromClass([LLMagnifierWindow class]) action:LLDebugToolActionMagnifier];
 }
 
 @end

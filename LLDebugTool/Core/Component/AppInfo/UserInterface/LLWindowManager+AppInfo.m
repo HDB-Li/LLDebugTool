@@ -26,7 +26,7 @@
 @implementation LLWindowManager (AppInfo)
 
 + (LLAppInfoWindow *)appInfoWindow {
-    return (LLAppInfoWindow *)[self createWindowWithClassName:NSStringFromClass([LLAppInfoWindow class])];
+    return (LLAppInfoWindow *)[self createWindowWithClassName:NSStringFromClass([LLAppInfoWindow class]) action:LLDebugToolActionAppInfo];
 }
 
 @end

@@ -46,7 +46,7 @@
             newDic[key] = [value description];
         }
     }
-    
+
     return [newDic LL_safeJsonString];
 }
 
@@ -65,6 +65,14 @@
         [string appendFormat:@"%@ : %@\n", key, self[key]];
     }
     return [string copy];
+}
+
+- (id _Nullable)LL_objectForKey:(id)aKey targetClass:(Class)cls {
+    id obj = self[aKey];
+    if ([obj isKindOfClass:cls]) {
+        return obj;
+    }
+    return nil;
 }
 
 #pragma mark - Primary
