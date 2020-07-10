@@ -23,6 +23,7 @@
 */
 
 // Function
+"function.entry" = "主界面";
 "function.function" = "常用功能";
 "function.short" = "快捷功能";
 

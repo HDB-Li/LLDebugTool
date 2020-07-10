@@ -44,6 +44,7 @@
 
 - (NSString *)titleFromAction:(LLDebugToolAction)action {
     NSDictionary *json = @{
+        @(LLDebugToolActionEntry): LLLocalizedString(@"function.entry"),
         @(LLDebugToolActionFunction): LLLocalizedString(@"function.function"),
         @(LLDebugToolActionSetting): LLLocalizedString(@"function.setting"),
         @(LLDebugToolActionNetwork): LLLocalizedString(@"function.net"),
@@ -72,6 +73,7 @@
 
 - (NSString *)imageNameFromAction:(LLDebugToolAction)action {
     NSDictionary *json = @{
+        @(LLDebugToolActionEntry): @"",
         @(LLDebugToolActionFunction): @"",
         @(LLDebugToolActionSetting): @"",
         @(LLDebugToolActionNetwork): kNetworkImageName,

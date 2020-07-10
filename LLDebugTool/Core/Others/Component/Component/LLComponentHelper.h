@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LLComponentHelper : NSObject
 
+/// Current action.
++ (LLDebugToolAction)currentAction;
+
 /// Whether the action is available.
 /// @param action Action.
 + (NSString *_Nullable)componentForAction:(LLDebugToolAction)action;

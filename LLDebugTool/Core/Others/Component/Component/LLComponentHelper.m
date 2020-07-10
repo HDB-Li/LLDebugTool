@@ -26,7 +26,13 @@
 #import "LLDebugTool.h"
 #import "LLTool.h"
 
+static LLDebugToolAction _currentAction;
+
 @implementation LLComponentHelper
+
++ (LLDebugToolAction)currentAction {
+    return _currentAction;
+}
 
 + (NSString *)componentForAction:(LLDebugToolAction)action {
     NSDictionary *json = @{
@@ -67,7 +73,10 @@
     }
     Class cls = NSClassFromString(component);
     if ([cls respondsToSelector:@selector(componentDidLoad:)]) {
-        return [cls componentDidLoad:data];
+        if ([cls componentDidLoad:data]) {
+            _currentAction = action;
+            return YES;
+        }
     }
     return NO;
 }

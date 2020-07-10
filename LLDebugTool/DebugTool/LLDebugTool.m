@@ -164,7 +164,11 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     if (!self.isWorking) {
         return;
     }
-    // TODO:  判断是否是在首页状态
+
+    if ([LLComponentHelper currentAction] != LLDebugToolActionEntry) {
+        return;
+    }
+
     if ([LLDebugConfig shared].isShakeToHide) {
         if ([LLWindowManager shared].entryWindow.isHidden) {
             [self showWindow];

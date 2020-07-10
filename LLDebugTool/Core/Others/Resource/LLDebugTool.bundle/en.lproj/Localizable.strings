@@ -23,6 +23,7 @@
 */
 
 // Function
+"function.entry" = "Main Entry";
 "function.function" = "Function";
 "function.short" = "Short Cut";
 
