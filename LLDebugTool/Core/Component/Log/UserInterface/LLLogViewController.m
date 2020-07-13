@@ -78,23 +78,6 @@ static NSString *const kLogCellID = @"LLLogCell";
     // TableView
     [self.tableView registerClass:[LLLogCell class] forCellReuseIdentifier:kLogCellID];
 
-    self.filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
-    __weak typeof(self) weakSelf = self;
-    self.filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
-        weakSelf.currentLevels = levels;
-        weakSelf.currentEvents = events;
-        weakSelf.currentFile = file;
-        weakSelf.currentFunc = func;
-        weakSelf.currentFromDate = from;
-        weakSelf.currentEndDate = end;
-        weakSelf.currentUserIdentities = userIdentities;
-        [weakSelf filterData];
-    };
-    self.filterView.filterChangeStateBlock = ^{
-        [weakSelf.tableView reloadData];
-    };
-    [self.filterView configWithData:self.oriDataArray];
-
     [self.headerView addSubview:self.filterView];
     self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
 
@@ -294,4 +277,26 @@ static NSString *const kLogCellID = @"LLLogCell";
     return self.currentUserIdentities.count && ![self.currentUserIdentities containsObject:model.userIdentity];
 }
 
+#pragma mark - Getters and setters
+- (LLLogFilterView *)filterView {
+    if (!_filterView) {
+        _filterView = [[LLLogFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
+        __weak typeof(self) weakSelf = self;
+        _filterView.changeBlock = ^(NSArray *levels, NSArray *events, NSString *file, NSString *func, NSDate *from, NSDate *end, NSArray *userIdentities) {
+            weakSelf.currentLevels = levels;
+            weakSelf.currentEvents = events;
+            weakSelf.currentFile = file;
+            weakSelf.currentFunc = func;
+            weakSelf.currentFromDate = from;
+            weakSelf.currentEndDate = end;
+            weakSelf.currentUserIdentities = userIdentities;
+            [weakSelf filterData];
+        };
+        _filterView.filterChangeStateBlock = ^{
+            [weakSelf.tableView reloadData];
+        };
+        [_filterView configWithData:self.oriDataArray];
+    }
+    return _filterView;
+}
 @end

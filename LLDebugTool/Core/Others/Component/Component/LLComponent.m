@@ -37,12 +37,13 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
 
 #pragma mark - LLComponentDelegate
 + (BOOL)componentDidLoad:(NSDictionary<LLComponentDelegateKey, id> *)data {
+    NSDictionary *targetData = data;
     if ([self respondsToSelector:@selector(isValid)] && ![self isValid]) {
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"component.invalid")];
         return NO;
     }
     if ([self respondsToSelector:@selector(verificationData:)]) {
-        data = [self verificationData:data];
+        targetData = [self verificationData:data];
     }
     LLBaseWindow *visibleWindow = [[LLWindowManager shared] visibleWindow];
     Class cls = nil;
@@ -61,19 +62,19 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
         if (!window) {
             return NO;
         }
-        if (data[LLComponentDelegateRootViewControllerKey]) {
-            Class rootViewControllerClass = NSClassFromString(data[LLComponentDelegateRootViewControllerKey]);
+        if (targetData[LLComponentDelegateRootViewControllerKey]) {
+            Class rootViewControllerClass = NSClassFromString(targetData[LLComponentDelegateRootViewControllerKey]);
             if (rootViewControllerClass != nil) {
                 UIViewController *viewController = [[rootViewControllerClass alloc] init];
-                if ([data[LLComponentDelegateRootViewControllerNeedNavigationKey] boolValue]) {
+                if ([targetData[LLComponentDelegateRootViewControllerNeedNavigationKey] boolValue]) {
                     window.rootViewController = [[LLNavigationController alloc] initWithRootViewController:viewController];
                 } else {
                     window.rootViewController = viewController;
                 }
             }
         }
-        if (data[LLComponentDelegateRootViewControllerPropertiesKey]) {
-            NSDictionary *properties = data[LLComponentDelegateRootViewControllerPropertiesKey];
+        if (targetData[LLComponentDelegateRootViewControllerPropertiesKey]) {
+            NSDictionary *properties = targetData[LLComponentDelegateRootViewControllerPropertiesKey];
             UIViewController *rootViewController = window.rootViewController;
             if ([rootViewController isKindOfClass:[UINavigationController class]]) {
                 rootViewController = ((UINavigationController *)rootViewController).viewControllers.firstObject;

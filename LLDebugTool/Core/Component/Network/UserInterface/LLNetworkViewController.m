@@ -30,7 +30,7 @@
 #import "LLInternalMacros.h"
 #import "LLNetworkCell.h"
 #import "LLNetworkDetailViewController.h"
-#import "LLNetworkFilterViewController.h"
+#import "LLNetworkFilterView.h"
 #import "LLNetworkModel.h"
 #import "LLStorageManager.h"
 #import "LLToastUtils.h"
@@ -43,13 +43,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
 @interface LLNetworkViewController ()
 
-@property (nonatomic, strong) LLNetworkFilterViewController *filterController;
-
-@property (nonatomic, strong) UIView *filterView;
-
-@property (nonatomic, strong) UIView *maskView;
-
-@property (nonatomic, assign) BOOL isFilter;
+@property (nonatomic, strong) LLNetworkFilterView *filterView;
 
 // Data
 @property (nonatomic, strong) NSArray *currentHost;
@@ -81,45 +75,20 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 
     [self.tableView registerClass:[LLNetworkCell class] forCellReuseIdentifier:kNetworkCellID];
 
-    //    self.filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
-    //    __weak typeof(self) weakSelf = self;
-    //    self.filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
-    //        weakSelf.currentHost = hosts;
-    //        weakSelf.currentTypes = types;
-    //        weakSelf.currentFromDate = from;
-    //        weakSelf.currentEndDate = end;
-    //        [weakSelf filterData];
-    //    };
-    //    self.filterView.filterChangeStateBlock = ^{
-    //        [weakSelf.tableView reloadData];
-    //    };
-    //    [self.filterController configWithData:self.oriDataArray];
-    //    [self.headerView addSubview:self.filterView];
-    //    self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
-
-    [self.navigationController.view addSubview:self.maskView];
-    [self.navigationController.view addSubview:self.filterView];
+    [self.headerView addSubview:self.filterView];
+    self.headerView.frame = CGRectMake(self.headerView.LL_x, self.headerView.LL_y, self.headerView.LL_width, self.filterView.LL_bottom);
 
     [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    //    [self.filterView cancelFiltering];
-}
-
-- (void)backAction:(UIButton *)sender {
-    if (self.isFilter) {
-        [self hideFilterView];
-    } else {
-        [super backAction:sender];
-    }
+    [self.filterView cancelFiltering];
 }
 
 - (void)rightItemClick:(UIButton *)sender {
-    //    [super rightItemClick:sender];
-    [self showFilterView];
-    //    [self.filterView cancelFiltering];
+    [super rightItemClick:sender];
+    [self.filterView cancelFiltering];
 }
 
 - (BOOL)isSearching {
@@ -173,23 +142,23 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     return self.headerView.LL_height;
 }
 
-//#pragma mark - UIScrollViewDelegate
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    [super scrollViewWillBeginDragging:scrollView];
-//    [self.filterView cancelFiltering];
-//}
-//
-//#pragma mark - UITextFieldDelegate
-//- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    [super textFieldDidBeginEditing:textField];
-//    [self.filterView cancelFiltering];
-//}
-//
-//- (void)textFieldDidChange:(NSString *)text {
-//    [super textFieldDidChange:text];
-//    [self.filterView cancelFiltering];
-//    [self filterData];
-//}
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [super scrollViewWillBeginDragging:scrollView];
+    [self.filterView cancelFiltering];
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [super textFieldDidBeginEditing:textField];
+    [self.filterView cancelFiltering];
+}
+
+- (void)textFieldDidChange:(NSString *)text {
+    [super textFieldDidChange:text];
+    [self.filterView cancelFiltering];
+    [self filterData];
+}
 
 #pragma mark - Primary
 - (void)loadData {
@@ -204,7 +173,7 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
                                     [weakSelf.oriDataArray addObjectsFromArray:result];
                                     [weakSelf.searchDataArray removeAllObjects];
                                     [weakSelf.searchDataArray addObjectsFromArray:weakSelf.oriDataArray];
-                                    [weakSelf.filterController configWithData:weakSelf.oriDataArray];
+                                    [weakSelf.filterView configWithData:weakSelf.oriDataArray];
                                     [weakSelf.tableView reloadData];
                                 }];
 }
@@ -222,41 +191,6 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
     }
     [self.searchDataArray removeObjectsInArray:tempArray];
     [self.tableView reloadData];
-}
-
-- (void)showFilterView {
-    if (self.isFilter) {
-        return;
-    }
-    self.isFilter = YES;
-    self.maskView.hidden = NO;
-    self.maskView.alpha = 0;
-    self.filterView.LL_right = 0;
-    [UIView animateWithDuration:0.25
-        animations:^{
-            self.filterView.LL_left = 0;
-            self.maskView.alpha = 1;
-            self.view.LL_x = self.filterView.LL_width;
-        }
-        completion:^(BOOL finished){
-
-        }];
-}
-
-- (void)hideFilterView {
-    if (!self.isFilter) {
-        return;
-    }
-    self.isFilter = NO;
-    [UIView animateWithDuration:0.25
-        animations:^{
-            self.filterView.LL_right = 0;
-            self.maskView.alpha = 0;
-            self.view.LL_x = 0;
-        }
-        completion:^(BOOL finished) {
-            self.maskView.hidden = YES;
-        }];
 }
 
 - (BOOL)isNeedRemove:(LLNetworkModel *)model {
@@ -326,29 +260,23 @@ static NSString *const kNetworkCellID = @"NetworkCellID";
 }
 
 #pragma mark - Getters and setters
-- (UIView *)filterView {
+- (LLNetworkFilterView *)filterView {
     if (!_filterView) {
-        _filterView = self.filterController.view;
-        _filterView.frame = CGRectMake(-floor(LL_SCREEN_WIDTH * 0.7), LL_NAVIGATION_HEIGHT, floor(LL_SCREEN_WIDTH * 0.7), LL_SCREEN_HEIGHT - LL_NAVIGATION_HEIGHT);
+        _filterView = [[LLNetworkFilterView alloc] initWithFrame:CGRectMake(0, self.searchTextField.LL_bottom + kLLGeneralMargin, LL_SCREEN_WIDTH, 40)];
+        __weak typeof(self) weakSelf = self;
+        _filterView.changeBlock = ^(NSArray *hosts, NSArray *types, NSDate *from, NSDate *end) {
+            weakSelf.currentHost = hosts;
+            weakSelf.currentTypes = types;
+            weakSelf.currentFromDate = from;
+            weakSelf.currentEndDate = end;
+            [weakSelf filterData];
+        };
+        _filterView.filterChangeStateBlock = ^{
+            [weakSelf.tableView reloadData];
+        };
+        [_filterView configWithData:self.oriDataArray];
     }
     return _filterView;
-}
-
-- (LLNetworkFilterViewController *)filterController {
-    if (!_filterController) {
-        _filterController = [[LLNetworkFilterViewController alloc] init];
-    }
-    return _filterController;
-}
-
-- (UIView *)maskView {
-    if (!_maskView) {
-        _maskView = [LLFactory getView];
-        _maskView.frame = CGRectMake(0, LL_NAVIGATION_HEIGHT, LL_SCREEN_WIDTH, LL_SCREEN_HEIGHT - LL_NAVIGATION_HEIGHT);
-        _maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-        _maskView.hidden = YES;
-    }
-    return _maskView;
 }
 
 @end
