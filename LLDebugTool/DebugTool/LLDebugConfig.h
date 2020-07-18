@@ -204,6 +204,11 @@ FOUNDATION_EXPORT NSNotificationName const LLDebugToolUpdateWindowStyleNotificat
 @property (nonatomic, assign, getter=isShrinkToEdgeWhenInactive) BOOL shrinkToEdgeWhenInactive;
 
 /**
+  The active duration for entry window, default is kLLActiveDuration;
+ */
+@property (nonatomic, assign) NSTimeInterval activeDuration;
+
+/**
  Automatic hide when shake, default is YES.
  */
 @property (nonatomic, assign, getter=isShakeToHide) BOOL shakeToHide;

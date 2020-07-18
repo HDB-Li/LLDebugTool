@@ -97,6 +97,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _inactiveAlpha = kLLInactiveAlpha;
     _activeAlpha = kLLActiveAlpha;
     _shrinkToEdgeWhenInactive = YES;
+    _activeDuration = kLLActiveDuration;
     _shakeToHide = YES;
 
     // Set default magnifier properties.
@@ -181,6 +182,12 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 - (void)setEntryWindowDisplayPercent:(CGFloat)entryWindowDisplayPercent {
     CGFloat max = LL_MAX(entryWindowDisplayPercent, kLLEntryWindowMinDisplayPercent);
     _entryWindowDisplayPercent = LL_MIN(max, kLLEntryWindowMaxDisplayPercent);
+}
+
+- (void)setActiveDuration:(NSTimeInterval)activeDuration {
+    if (_activeDuration != activeDuration) {
+        _activeDuration = LL_MAX(activeDuration, kLLMinActiveDuration);
+    }
 }
 
 - (void)setMagnifierSize:(NSInteger)magnifierSize {

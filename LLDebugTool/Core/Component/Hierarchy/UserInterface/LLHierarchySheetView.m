@@ -25,6 +25,7 @@
 
 #import "LLConst.h"
 #import "LLFactory.h"
+#import "LLHierarchyHelper.h"
 #import "LLHierarchySheetReuseView.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
@@ -154,7 +155,7 @@
 - (NSString *)titleForRow:(NSInteger)row {
     UIView *view = [self.data LL_objectAtIndex:row];
     NSString *title = NSStringFromClass(view.class);
-    if ([view isKindOfClass:[UILabel class]] || [view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]] || [view isKindOfClass:[UISearchBar class]]) {
+    if ([[LLHierarchyHelper shared] hasTextPropertyInClass:view.class]) {
         NSString *text = [view valueForKey:@"text"];
         if ([text length]) {
             title = [title stringByAppendingFormat:@"(%@)", text];

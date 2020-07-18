@@ -142,6 +142,30 @@ static LLHierarchyHelper *_instance = nil;
     return [self recursiveSubviewsAtPoint:tapPointInWindow inView:windowForSelection skipHiddenViews:YES includeParent:[LLDebugConfig shared].isIncludeParent];
 }
 
+- (BOOL)hasTextPropertyInClass:(Class)cls {
+    if (!cls) {
+        return NO;
+    }
+    NSArray *classes = @[UILabel.class, UITextField.class, UITextView.class, UISearchBar.class];
+    return [classes containsObject:cls];
+}
+
+- (BOOL)hasTextColorPropertyInClass:(Class)cls {
+    if (!cls) {
+        return NO;
+    }
+    NSArray *classes = @[UILabel.class, UITextField.class, UITextView.class];
+    return [classes containsObject:cls];
+}
+
+- (BOOL)hasFontPropertyInClass:(Class)cls {
+    if (!cls) {
+        return NO;
+    }
+    NSArray *classes = @[UILabel.class, UITextField.class, UITextView.class];
+    return [classes containsObject:cls];
+}
+
 #pragma mark - Primary
 - (NSArray<UIView *> *)recursiveSubviewsAtPoint:(CGPoint)pointInView inView:(UIView *)view skipHiddenViews:(BOOL)skipHidden includeParent:(BOOL)includeParent {
     NSMutableArray<UIView *> *subviewsAtPoint = [NSMutableArray array];
@@ -174,6 +198,7 @@ static LLHierarchyHelper *_instance = nil;
     return subviewsAtPoint;
 }
 
+#pragma mark - Getters and setters
 - (NSArray<NSString *> *)systemPrimaryClasses {
     if (!_systemPrimaryClasses) {
         if (@available(iOS 13.0, *)) {

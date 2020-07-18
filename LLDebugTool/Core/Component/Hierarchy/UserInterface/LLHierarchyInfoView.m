@@ -26,6 +26,7 @@
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
+#import "LLHierarchyHelper.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
@@ -203,14 +204,23 @@
         self.backgroundColorLabel.attributedText = nil;
     }
 
-    if ([view isKindOfClass:[UILabel class]]) {
-        UILabel *label = (UILabel *)view;
-        self.textLabel.attributedText = [self attributedStringWithText:@"Text :" detail:label.text];
-        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:label.textColor.LL_description];
-        self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", label.font.pointSize]];
+    if ([[LLHierarchyHelper shared] hasTextPropertyInClass:view.class]) {
+        self.textLabel.attributedText = [self attributedStringWithText:@"Text :" detail:[view valueForKey:@"text"]];
     } else {
         self.textLabel.attributedText = nil;
+    }
+
+    if ([[LLHierarchyHelper shared] hasTextColorPropertyInClass:view.class]) {
+        UIColor *textColor = [view valueForKey:@"textColor"];
+        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:textColor.LL_description];
+    } else {
         self.textColorLabel.attributedText = nil;
+    }
+
+    if ([[LLHierarchyHelper shared] hasFontPropertyInClass:view.class]) {
+        UIFont *font = [view valueForKey:@"font"];
+        self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", font.pointSize]];
+    } else {
         self.fontLabel.attributedText = nil;
     }
 

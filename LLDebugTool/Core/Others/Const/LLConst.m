@@ -34,6 +34,8 @@ CGFloat const kLLEntryWindowFirstDisplayPositionY = 200;
 CGFloat const kLLInactiveAlpha = 0.75;
 CGFloat const kLLDisplayInactiveAlpha = 0.90;
 CGFloat const kLLActiveAlpha = 1.0;
+NSTimeInterval const kLLActiveDuration = 10;
+NSTimeInterval const kLLMinActiveDuration = 1;
 
 NSInteger const kLLMagnifierWindowZoomLevel = 10;
 NSInteger const kLLMagnifierWindowMinZoomLevel = 6;

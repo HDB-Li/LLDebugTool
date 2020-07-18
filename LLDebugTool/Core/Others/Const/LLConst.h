@@ -34,6 +34,8 @@ UIKIT_EXTERN CGFloat const kLLEntryWindowFirstDisplayPositionY;
 UIKIT_EXTERN CGFloat const kLLInactiveAlpha;
 UIKIT_EXTERN CGFloat const kLLDisplayInactiveAlpha;
 UIKIT_EXTERN CGFloat const kLLActiveAlpha;
+UIKIT_EXTERN NSTimeInterval const kLLActiveDuration;
+UIKIT_EXTERN NSTimeInterval const kLLMinActiveDuration;
 
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowZoomLevel;
 UIKIT_EXTERN NSInteger const kLLMagnifierWindowMinZoomLevel;

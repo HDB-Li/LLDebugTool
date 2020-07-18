@@ -2,13 +2,15 @@
   <img src="https://raw.githubusercontent.com/HDB-Li/HDBImageRepository/master/LLDebugTool/header.png" alt="LLDebugTool" title="LLDebugTool">
 </p>
 
+
+[![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
+[![Language](https://img.shields.io/badge/Language-Objective--C%20%7C%20Swift-yellow.svg)](https://img.shields.io/badge/Language-Objective--C%20%7C%20Swift-yellow.svg)
 [![Version](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)](https://img.shields.io/badge/iOS-%3E%3D8.0-f07e48.svg)
 [![CocoaPods Compatible](https://img.shields.io/badge/Pod-v1.3.8.1-blue.svg)](https://img.shields.io/badge/Pod-v1.3.8.1-blue.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Platform](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)](https://img.shields.io/badge/Platform-iOS-lightgrey.svg)
-[![License](https://img.shields.io/badge/License-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
-[![Language](https://img.shields.io/badge/Language-Objective--C%20%7C%20Swift-yellow.svg)](https://img.shields.io/badge/Language-Objective--C%20%7C%20Swift-yellow.svg)
-[![Twitter](https://img.shields.io/badge/Twitter-@HdbLi-1DA1F2.svg)](https://twitter.com/HdbLi)
+[![GitHub stars](https://img.shields.io/github/stars/HDB-Li/LLDebugTool)](https://github.com/HDB-Li/LLDebugTool)
+[![GitHub forks](https://img.shields.io/github/forks/HDB-Li/LLDebugTool)](https://github.com/HDB-Li/LLDebugTool)
+[![GitHub issues](https://img.shields.io/github/issues/HDB-Li/LLDebugTool)](https://github.com/HDB-Li/LLDebugTool) 
 
 ## 简介
 

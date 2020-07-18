@@ -196,7 +196,8 @@ typedef NS_ENUM(NSUInteger, LLEntryWindowDirection) {
     }
     self.direction = direction;
     self.center = endPoint;
-    [self performSelector:@selector(shrinkToEdgeWhenInactiveIfNeeded) withObject:nil afterDelay:2];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(shrinkToEdgeWhenInactiveIfNeeded) withObject:nil afterDelay:[LLDebugConfig shared].activeDuration];
 }
 
 - (void)shrinkToEdgeWhenInactiveIfNeeded {

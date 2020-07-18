@@ -56,6 +56,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param tapPointInWindow Point.
 - (NSArray<UIView *> *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow;
 
+/// Whether has 'text' property.
+/// @param cls Target class.
+- (BOOL)hasTextPropertyInClass:(Class)cls;
+
+/// Whether has 'textColor' property.
+/// @param cls  Target class.
+- (BOOL)hasTextColorPropertyInClass:(Class)cls;
+
+/// Whether has 'font' property.
+/// @param cls Target class.
+- (BOOL)hasFontPropertyInClass:(Class)cls;
+
 @end
 
 NS_ASSUME_NONNULL_END

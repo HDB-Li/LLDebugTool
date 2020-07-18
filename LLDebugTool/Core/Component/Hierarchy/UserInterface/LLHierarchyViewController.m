@@ -213,16 +213,12 @@
 
     // Data
     [self.observeViews removeAllObjects];
-    [self.observeViews addObjectsFromArray:data];
+    [self.observeViews addObjectsFromArray:[[data reverseObjectEnumerator] allObjects]];
 
     // Start observe.
     [self startObserve];
 
-    if ([data containsObject:self.selectedView]) {
-        [self.infoView reloadData];
-    } else {
-        self.selectedView = data.lastObject;
-    }
+    self.selectedView = [self findBestViewInData:data];
 
     [self.borderView reloadDataWithViews:self.observeViews];
 }
@@ -237,6 +233,15 @@
     for (UIView *view in self.observeViews) {
         [view removeObserver:self forKeyPath:@"frame"];
     }
+}
+
+- (UIView *)findBestViewInData:(NSArray<UIView *> *)data {
+    for (UIView *view in data) {
+        if ([[LLHierarchyHelper shared] hasTextPropertyInClass:view.class]) {
+            return view;
+        }
+    }
+    return data.firstObject;
 }
 
 #pragma mark - Getters and setters

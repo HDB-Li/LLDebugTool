@@ -168,6 +168,7 @@
 		C43BA81A205AB095006307BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA819205AB095006307BE /* main.m */; };
 		C43DB6BF244B402700EA590B /* LLHierarchySheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43DB6BE244B402700EA590B /* LLHierarchySheetView.m */; };
 		C43DB6C6244B439E00EA590B /* UIAlertAction+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C43DB6C5244B439E00EA590B /* UIAlertAction+LL_Utils.m */; };
+		C44538FB24C351220024CB1A /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = C44538FA24C351220024CB1A /* TODO.md */; };
 		C44C3FF3243634C6009A38D5 /* UIView+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C44C3FF2243634C6009A38D5 /* UIView+LL_Resolution.m */; };
 		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
 		C45994D024387E9200E79308 /* UINavigationBar+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C45994CE24387E9200E79308 /* UINavigationBar+LL_Resolution.m */; };
@@ -638,6 +639,7 @@
 		C43DB6BE244B402700EA590B /* LLHierarchySheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchySheetView.m; sourceTree = "<group>"; };
 		C43DB6C4244B439E00EA590B /* UIAlertAction+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertAction+LL_Utils.h"; sourceTree = "<group>"; };
 		C43DB6C5244B439E00EA590B /* UIAlertAction+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertAction+LL_Utils.m"; sourceTree = "<group>"; };
+		C44538FA24C351220024CB1A /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		C44C3FF1243634C6009A38D5 /* UIView+LL_Resolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LL_Resolution.h"; sourceTree = "<group>"; };
 		C44C3FF2243634C6009A38D5 /* UIView+LL_Resolution.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Resolution.m"; sourceTree = "<group>"; };
 		C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailViewController.h; sourceTree = "<group>"; };
@@ -1627,6 +1629,7 @@
 		C43BA7FE205AB095006307BE = {
 			isa = PBXGroup;
 			children = (
+				C44538FA24C351220024CB1A /* TODO.md */,
 				364570FB2313B82200C29200 /* LLDebugTool.podspec */,
 				364570F52313B80800C29200 /* CHANGELOG.md */,
 				364570F32313B80800C29200 /* LICENSE */,
@@ -2752,6 +2755,7 @@
 				3691A61B20C7E63B00E22192 /* InfoPlist.strings in Resources */,
 				C43BA817205AB095006307BE /* LaunchScreen.storyboard in Resources */,
 				364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */,
+				C44538FB24C351220024CB1A /* TODO.md in Resources */,
 				364570F72313B80800C29200 /* LICENSE in Resources */,
 				C43BA814205AB095006307BE /* Assets.xcassets in Resources */,
 				364570F92313B80800C29200 /* CHANGELOG.md in Resources */,
