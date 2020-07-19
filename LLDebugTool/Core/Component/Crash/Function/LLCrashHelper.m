@@ -36,6 +36,7 @@
 #import "NSObject+LL_Utils.h"
 
 static LLCrashHelper *_instance = nil;
+static NSUncaughtExceptionHandler *_originExceptionHandler = nil;
 
 @interface LLCrashHelper ()
 
@@ -64,6 +65,7 @@ static LLCrashHelper *_instance = nil;
 
 #pragma mark - Primary
 - (void)registerCatch {
+    _originExceptionHandler = NSGetUncaughtExceptionHandler();
     NSSetUncaughtExceptionHandler(&HandleException);
 
     NSArray *signs = @[@(SIGHUP), @(SIGINT), @(SIGQUIT), @(SIGILL), @(SIGTRAP), @(SIGABRT),
@@ -109,7 +111,7 @@ static LLCrashHelper *_instance = nil;
 }
 
 - (void)unregisterCatch {
-    NSSetUncaughtExceptionHandler(nil);
+    NSSetUncaughtExceptionHandler(_originExceptionHandler);
 
     NSArray *signs = @[@(SIGHUP), @(SIGINT), @(SIGQUIT), @(SIGILL), @(SIGTRAP), @(SIGABRT),
 #ifdef SIGPOLL
@@ -168,7 +170,11 @@ static LLCrashHelper *_instance = nil;
 
 void HandleException(NSException *exception) {
     [[LLCrashHelper shared] saveException:exception];
-    [exception raise];
+    if (_originExceptionHandler) {
+        _originExceptionHandler(exception);
+    } else {
+        [exception raise];
+    }
 }
 
 void SignalHandler(int sig) {

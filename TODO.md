@@ -3,7 +3,7 @@
 ### **Crash**
 
 `2020.07.19`
-* [ ] 兼容多Crash工具。
+* [x] 兼容多Crash工具。
 
 ### **Sandbox**
 
@@ -21,6 +21,7 @@
 
 `2020.07.19`
 * [ ] Fixes [99](https://github.com/HDB-Li/LLDebugTool/issues/99)、[95](https://github.com/HDB-Li/LLDebugTool/issues/95)、[91](https://github.com/HDB-Li/LLDebugTool/issues/91)
+* [ ] 优化.git大小。
 
 
 # Future
