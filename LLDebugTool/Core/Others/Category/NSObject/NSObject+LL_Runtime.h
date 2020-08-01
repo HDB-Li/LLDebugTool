@@ -76,38 +76,6 @@ Get all class method names;
 */
 + (NSArray<NSString *> *)LL_getClassMethodNames;
 
-/**
- Add string property.
-
- @param string String value.
- @param key Key.
- */
-- (void)LL_setStringProperty:(NSString *_Nullable)string key:(const void *)key;
-
-/**
- Get string property.
-
- @param key Key.
- @return String value.
- */
-- (NSString *_Nullable)LL_getStringProperty:(const void *)key;
-
-/**
- Add CGFloat property.
- 
- @param number CGFloat value.
- @param key Key.
- */
-- (void)LL_setCGFloatProperty:(CGFloat)number key:(const void *)key;
-
-/**
- Get CGFloat property.
- 
- @param key Key.
- @return CGFloat value.
- */
-- (CGFloat)LL_getCGFloatProperty:(const void *)key;
-
 @end
 
 NS_ASSUME_NONNULL_END

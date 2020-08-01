@@ -9,6 +9,7 @@ target 'LLDebugToolDemo' do
 
   # Request
   pod 'FMDB','~> 2.0',:inhibit_warnings => true
+  pod 'SSZipArchive',:inhibit_warnings => true
 
   # Only for demo
   pod 'AFNetworking'

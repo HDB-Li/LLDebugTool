@@ -41,6 +41,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)createDirectoryAtPath:(NSString *)path;
 
 /**
+ Remove path if exist.
+ */
++ (BOOL)removePath:(NSString *)path;
+
+/**
  Get rect from two point
  */
 + (CGRect)rectWithPoint:(CGPoint)point otherPoint:(CGPoint)otherPoint;

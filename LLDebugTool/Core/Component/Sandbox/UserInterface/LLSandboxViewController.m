@@ -35,6 +35,7 @@
 #import "LLSandboxTextPreviewController.h"
 #import "LLSandboxVideoPreviewController.h"
 #import "LLToastUtils.h"
+#import "LLTool.h"
 #import "LLUITableViewLongPressGestureRecognizerDelegate.h"
 
 #import "UIViewController+LL_Utils.h"
@@ -80,20 +81,31 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 - (void)shareFilesWithIndexPaths:(NSArray *)indexPaths {
     [super shareFilesWithIndexPaths:indexPaths];
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:indexPaths.count];
+    NSMutableArray *paths = [[NSMutableArray alloc] initWithCapacity:indexPaths.count];
+    NSMutableArray<LLSandboxModel *> *models = [[NSMutableArray alloc] init];
     for (NSIndexPath *indexPath in indexPaths) {
         LLSandboxModel *model = self.datas[indexPath.row];
-        [array addObject:[NSURL fileURLWithPath:model.filePath]];
-    }
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:array applicationActivities:nil];
-    __weak typeof(self) weakSelf = self;
-    vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
-        [weakSelf rightItemClick:weakSelf.navigationItem.rightBarButtonItem.customView];
-        if (activityError) {
-            [[LLToastUtils shared] toastMessage:activityError.debugDescription];
+        [models addObject:model];
+        if (model.filePath) {
+            [paths addObject:model.filePath];
         }
-    };
-    [self presentViewController:vc animated:YES completion:nil];
+    }
+    if ([self needCreateZipArchiveWithFilePaths:models]) {
+        [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"sandbox.archiving")];
+        [LLTool createDirectoryAtPath:[LLSandboxHelper shared].archiveFolderPath];
+        NSString *path = [[LLSandboxHelper shared].archiveFolderPath stringByAppendingPathComponent:[self recommendNameWithFilePaths:paths]];
+        [LLTool removePath:path];
+        if ([[LLSandboxHelper shared] createZipFileAtPath:path withFilesAtPaths:paths.copy]) {
+            [[LLToastUtils shared] hide];
+            [self showActivityViewControllerWithPaths:@[path]];
+        } else {
+            [[LLToastUtils shared] hide];
+            [LLTool log:@"Create zip failed"];
+            [self showActivityViewControllerWithPaths:paths.copy];
+        }
+    } else {
+        [self showActivityViewControllerWithPaths:paths.copy];
+    }
 }
 
 #pragma mark - Primary
@@ -119,15 +131,47 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 }
 
 - (BOOL)deleteFile:(LLSandboxModel *)model {
-    NSError *error;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:model.filePath]) {
-        BOOL ret = [[NSFileManager defaultManager] removeItemAtPath:model.filePath error:&error];
-        if (!ret) {
-            [self LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:nil];
-        }
-        return ret;
+    if (![LLTool removePath:model.filePath]) {
+        [self LL_showAlertControllerWithMessage:LLLocalizedString(@"remove.fail") handler:nil];
+        return NO;
     }
     return YES;
+}
+
+- (BOOL)needCreateZipArchiveWithFilePaths:(NSArray<LLSandboxModel *> *)paths {
+    if (![LLSandboxHelper shared].enableZipArchive) {
+        return NO;
+    }
+
+    if (paths.count >= 2) {
+        return YES;
+    }
+
+    NSString *path = paths.firstObject.filePath;
+    BOOL isDir = NO;
+    [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+    if (isDir) {
+        return YES;
+    }
+
+    // Big than 100M.
+    if (paths.firstObject.fileSize > 100 * 1024 * 1024) {
+        return YES;
+    }
+
+    return NO;
+}
+
+- (NSString *)recommendNameWithFilePaths:(NSArray<NSString *> *)paths {
+    if (paths.count > 1) {
+        return @"archive.zip";
+    }
+
+    NSString *lastPathComponent = paths.firstObject.lastPathComponent;
+    if (![lastPathComponent length]) {
+        lastPathComponent = @"temp";
+    }
+    return [NSString stringWithFormat:@"%@.zip", lastPathComponent];
 }
 
 #pragma mark - TableView
@@ -238,6 +282,25 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 
 - (void)showActivityViewController:(LLSandboxModel *)model {
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL fileURLWithPath:model.filePath]] applicationActivities:nil];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)showActivityViewControllerWithPaths:(NSArray<NSString *> *)paths {
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:paths.count];
+    for (NSString *path in paths) {
+        NSURL *url = [NSURL fileURLWithPath:path];
+        if (url) {
+            [items addObject:url];
+        }
+    }
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+    __weak typeof(self) weakSelf = self;
+    vc.completionWithItemsHandler = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        [weakSelf rightItemClick:weakSelf.navigationItem.rightBarButtonItem.customView];
+        if (activityError) {
+            [[LLToastUtils shared] toastMessage:activityError.debugDescription];
+        }
+    };
     [self presentViewController:vc animated:YES completion:nil];
 }
 

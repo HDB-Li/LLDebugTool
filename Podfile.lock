@@ -17,21 +17,25 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
   - AFNetworking
   - FMDB
   - FMDB (~> 2.0)
+  - SSZipArchive
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - FMDB
+    - SSZipArchive
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
 
-PODFILE CHECKSUM: ab4957274e713562b891c02d11a1a0f6dac26a22
+PODFILE CHECKSUM: e4f066563b442eaeee2abb38cb5fefb4c3973ddf
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.8.4

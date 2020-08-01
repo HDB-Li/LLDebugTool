@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface LLSandboxHelper : NSObject
 
+/// Archive path.
+@property (copy, nonatomic, readonly) NSString *archiveFolderPath;
+
 /**
  Singleton to obtain and manipulate sandbox data.
  
@@ -43,6 +46,14 @@ NS_ASSUME_NONNULL_BEGIN
  Get the sandbox data at this point.
  */
 - (LLSandboxModel *)getCurrentSandboxStructure;
+
+/// Whether enable zip archive.
+- (BOOL)enableZipArchive;
+
+/// Create zip
+/// @param path Target path.
+/// @param paths File paths.
+- (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray<NSString *> *)paths;
 
 @end
 

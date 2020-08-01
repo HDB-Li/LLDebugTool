@@ -88,6 +88,7 @@ static LLScreenshotHelper *_instance = nil;
         });
         return;
     }
+    [LLTool createDirectoryAtPath:self.screenshotFolderPath];
     NSString *imageName = name;
     if (imageName.length == 0) {
         imageName = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle3];
@@ -118,7 +119,6 @@ static LLScreenshotHelper *_instance = nil;
 #pragma mark - Primary
 - (void)initial {
     self.screenshotFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Screenshot"];
-    [LLTool createDirectoryAtPath:self.screenshotFolderPath];
 }
 
 - (void)registerScreenshot {

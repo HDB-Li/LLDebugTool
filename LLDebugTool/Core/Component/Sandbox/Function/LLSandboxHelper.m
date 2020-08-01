@@ -23,9 +23,31 @@
 
 #import "LLSandboxHelper.h"
 
+#import "LLDebugConfig.h"
 #import "LLSandboxModel.h"
+#import "LLTool.h"
+
+#if __has_include(<SSZipArchive.h>)
+#import <SSZipArchive.h>
+#define LLDEBUGTOOL_SANDBOX_ZIPARCHIVE_ENABLE
+
+#elif __has_include(<SSZipArchive/SSZipArchive.h>)
+#import <SSZipArchive/SSZipArchive.h>
+#define LLDEBUGTOOL_SANDBOX_ZIPARCHIVE_ENABLE
+
+#elif __has_include("SSZipArchive.h")
+#import "SSZipArchive.h"
+#define LLDEBUGTOOL_SANDBOX_ZIPARCHIVE_ENABLE
+
+#endif
 
 static LLSandboxHelper *_instance = nil;
+
+@interface LLSandboxHelper ()
+
+@property (copy, nonatomic) NSString *archiveFolderPath;
+
+@end
 
 @implementation LLSandboxHelper
 
@@ -33,6 +55,7 @@ static LLSandboxHelper *_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[LLSandboxHelper alloc] init];
+        [_instance initial];
     });
     return _instance;
 }
@@ -42,7 +65,31 @@ static LLSandboxHelper *_instance = nil;
     return [self getSandboxStructureWithPath:path];
 }
 
+- (BOOL)enableZipArchive {
+#ifdef LLDEBUGTOOL_SANDBOX_ZIPARCHIVE_ENABLE
+    return YES;
+#else
+    return NO;
+#endif
+}
+
+- (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray<NSString *> *)paths {
+#ifdef LLDEBUGTOOL_SANDBOX_ZIPARCHIVE_ENABLE
+    if (paths.count == 0 || !path) {
+        return NO;
+    }
+    return [SSZipArchive createZipFileAtPath:path withFilesAtPaths:paths];
+#else
+    return NO;
+#endif
+}
+
 #pragma mark - Primary
+- (void)initial {
+    self.archiveFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Archive"];
+    [LLTool removePath:self.archiveFolderPath];
+}
+
 - (LLSandboxModel *)getSandboxStructureWithPath:(NSString *)path {
     BOOL isDirectory = NO;
     // Check file is Exist, is Directory or not

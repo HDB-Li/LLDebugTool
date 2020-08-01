@@ -35,19 +35,19 @@
 }
 
 - (void)setLL_horizontalPadding:(CGFloat)LL_horizontalPadding {
-    [self LL_setCGFloatProperty:LL_horizontalPadding key:@selector(LL_horizontalPadding)];
+    objc_setAssociatedObject(self, @selector(LL_horizontalPadding), @(LL_horizontalPadding), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGFloat)LL_horizontalPadding {
-    return [self LL_getCGFloatProperty:_cmd];
+    return [objc_getAssociatedObject(self, _cmd) floatValue];
 }
 
 - (void)setLL_verticalPadding:(CGFloat)LL_verticalPadding {
-    [self LL_setCGFloatProperty:LL_verticalPadding key:@selector(LL_verticalPadding)];
+    objc_setAssociatedObject(self, @selector(LL_verticalPadding), @(LL_verticalPadding), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (CGFloat)LL_verticalPadding {
-    return [self LL_getCGFloatProperty:_cmd];
+    return [objc_getAssociatedObject(self, _cmd) floatValue];
 }
 
 - (void)setLL_x:(CGFloat)LL_x {

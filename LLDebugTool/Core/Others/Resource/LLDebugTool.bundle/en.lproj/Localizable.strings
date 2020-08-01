@@ -93,6 +93,9 @@
 "app.info.device" = "Device";
 "app.info.monitor" = "Monitor";
 
+// Sandbox
+"sandbox.archiving" = "Archiving...";
+
 // Location
 "location.mock.location" = "Mock Location";
 "location.mock.route" = "Mock Route";

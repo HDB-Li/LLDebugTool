@@ -93,6 +93,9 @@
 "app.info.device" = "设备信息";
 "app.info.monitor" = "监控";
 
+// Sandbox
+"sandbox.archiving" = "压缩中...";
+
 // Location
 "location.mock.location" = "模拟定位";
 "location.mock.route" = "模拟轨迹";

@@ -24,14 +24,14 @@
 #ifndef LLDebugToolMacros_h
 #define LLDebugToolMacros_h
 
-#if __has_include("LLDebugTool.h") || __has_include("<LLDebugTool.h>") || __has_include("<LLDebugTool/LLDebugTool.h>")
+#if __has_include("LLDebugTool.h") || __has_include(<LLDebugTool.h>) || __has_include(<LLDebugTool / LLDebugTool.h>)
 
 #if __has_include("LLDebugTool.h")
 #import "LLDebugTool.h"
-#elif __has_include("<LLDebugTool.h>")
-#import "<LLDebugTool.h>"
+#elif __has_include(<LLDebugTool.h>)
+#import <LLDebugTool.h>
 #else
-#import "<LLDebugTool/LLDebugTool.h>"
+#import <LLDebugTool/LLDebugTool.h>
 #endif
 
 #define LLog(fmt, ...) [[LLDebugTool sharedTool] logInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ onEvent:nil message:(fmt, ##__VA_ARGS__)]

@@ -23,19 +23,16 @@
 
 #import "UIDevice+LL_AppInfo.h"
 
+#import <objc/runtime.h>
 #import <sys/sysctl.h>
-
-#import "NSObject+LL_Runtime.h"
-
-static const char kLLModelNameKey;
 
 @implementation UIDevice (LL_AppInfo)
 
 - (NSString *)LL_modelName {
-    NSString *name = [self LL_getStringProperty:&kLLModelNameKey];
+    NSString *name = objc_getAssociatedObject(self, _cmd);
     if (name == nil) {
         name = [self LL_getCurrentDeviceModel];
-        [self LL_setStringProperty:name key:&kLLModelNameKey];
+        objc_setAssociatedObject(self, _cmd, name, OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
     return name;
 }
@@ -52,7 +49,7 @@ static const char kLLModelNameKey;
     }
     if ([platform isEqualToString:@"i386"]) return @"iPhone Simulator (i386)";
     if ([platform isEqualToString:@"x86_64"]) return @"iPhone Simulator (x86_64)";
-    
+
     return @"unknown";
 }
 
@@ -69,7 +66,7 @@ static const char kLLModelNameKey;
 #pragma mark - Primary
 - (NSString *)getCurrentIPhoneName:(NSString *)platform {
     NSDictionary *json = @{
-        @"iPhone12,5" : @"iPhone 11 Pro Max",
+        @"iPhone12,5": @"iPhone 11 Pro Max",
         @"iPhone12,3": @"iPhone 11 Pro",
         @"iPhone12,1": @"iPhone 11",
         @"iPhone11,8": @"iPhone XR",
@@ -114,23 +111,57 @@ static const char kLLModelNameKey;
 
 - (NSString *)getCurrentIPadName:(NSString *)platform {
     NSDictionary *json = @{
-        @"iPad11,4": @"iPad Air 3", @"iPad11,3": @"iPad Air 3", @"iPad11,2": @"iPad Mini 5",
-        @"iPad11,1": @"iPad Mini 5", @"iPad8,8": @"iPad Pro 3", @"iPad8,7": @"iPad Pro 3",
-        @"iPad8,6": @"iPad Pro 3", @"iPad8,5": @"iPad Pro 3", @"iPad8,4": @"iPad Pro 3",
-        @"iPad8,3": @"iPad Pro 3", @"iPad8,2": @"iPad Pro 3", @"iPad8,1": @"iPad Pro 3",
-        @"iPad7,6": @"iPad 6", @"iPad7,5": @"iPad 6", @"iPad7,4": @"iPad Pro",
-        @"iPad7,3": @"iPad Pro", @"iPad7,2": @"iPad Pro 2", @"iPad7,1": @"iPad Pro 2",
-        @"iPad6,12": @"iPad 5", @"iPad6,11": @"iPad 5", @"iPad6,8": @"iPad Pro",
-        @"iPad6,7": @"iPad Pro", @"iPad6,4": @"iPad Pro", @"iPad6,3": @"iPad Pro",
-        @"iPad5,4": @"iPad Air 2", @"iPad5,3": @"iPad Air 2", @"iPad5,2": @"iPad Mini 4",
-        @"iPad5,1": @"iPad Mini 4", @"iPad4,9": @"iPad Mini 3", @"iPad4,8": @"iPad Mini 3",
-        @"iPad4,7": @"iPad Mini 3", @"iPad4,6": @"iPad Mini 2", @"iPad4,5": @"iPad Mini 2",
-        @"iPad4,4": @"iPad Mini 2", @"iPad4,3": @"iPad Air", @"iPad4,2": @"iPad Air",
-        @"iPad4,1": @"iPad Air", @"iPad3,6": @"iPad 4", @"iPad3,5": @"iPad 4",
-        @"iPad3,4": @"iPad 4", @"iPad3,3": @"iPad 3", @"iPad3,2": @"iPad 3",
-        @"iPad3,1": @"iPad 3", @"iPad2,7": @"iPad Mini", @"iPad2,6": @"iPad Mini",
-        @"iPad2,5": @"iPad Mini", @"iPad2,4": @"iPad 2", @"iPad2,3": @"iPad 2",
-        @"iPad2,2": @"iPad 2", @"iPad2,1": @"iPad 2", @"iPad1,1": @"iPad 1"
+        @"iPad11,4": @"iPad Air 3",
+        @"iPad11,3": @"iPad Air 3",
+        @"iPad11,2": @"iPad Mini 5",
+        @"iPad11,1": @"iPad Mini 5",
+        @"iPad8,8": @"iPad Pro 3",
+        @"iPad8,7": @"iPad Pro 3",
+        @"iPad8,6": @"iPad Pro 3",
+        @"iPad8,5": @"iPad Pro 3",
+        @"iPad8,4": @"iPad Pro 3",
+        @"iPad8,3": @"iPad Pro 3",
+        @"iPad8,2": @"iPad Pro 3",
+        @"iPad8,1": @"iPad Pro 3",
+        @"iPad7,6": @"iPad 6",
+        @"iPad7,5": @"iPad 6",
+        @"iPad7,4": @"iPad Pro",
+        @"iPad7,3": @"iPad Pro",
+        @"iPad7,2": @"iPad Pro 2",
+        @"iPad7,1": @"iPad Pro 2",
+        @"iPad6,12": @"iPad 5",
+        @"iPad6,11": @"iPad 5",
+        @"iPad6,8": @"iPad Pro",
+        @"iPad6,7": @"iPad Pro",
+        @"iPad6,4": @"iPad Pro",
+        @"iPad6,3": @"iPad Pro",
+        @"iPad5,4": @"iPad Air 2",
+        @"iPad5,3": @"iPad Air 2",
+        @"iPad5,2": @"iPad Mini 4",
+        @"iPad5,1": @"iPad Mini 4",
+        @"iPad4,9": @"iPad Mini 3",
+        @"iPad4,8": @"iPad Mini 3",
+        @"iPad4,7": @"iPad Mini 3",
+        @"iPad4,6": @"iPad Mini 2",
+        @"iPad4,5": @"iPad Mini 2",
+        @"iPad4,4": @"iPad Mini 2",
+        @"iPad4,3": @"iPad Air",
+        @"iPad4,2": @"iPad Air",
+        @"iPad4,1": @"iPad Air",
+        @"iPad3,6": @"iPad 4",
+        @"iPad3,5": @"iPad 4",
+        @"iPad3,4": @"iPad 4",
+        @"iPad3,3": @"iPad 3",
+        @"iPad3,2": @"iPad 3",
+        @"iPad3,1": @"iPad 3",
+        @"iPad2,7": @"iPad Mini",
+        @"iPad2,6": @"iPad Mini",
+        @"iPad2,5": @"iPad Mini",
+        @"iPad2,4": @"iPad 2",
+        @"iPad2,3": @"iPad 2",
+        @"iPad2,2": @"iPad 2",
+        @"iPad2,1": @"iPad 2",
+        @"iPad1,1": @"iPad 1"
     };
     NSString *model = json[platform];
     if (!model) {

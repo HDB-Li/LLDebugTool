@@ -49,7 +49,15 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (BOOL)createDirectoryAtPath:(NSString *)path {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if (!path) {
+        return YES;
+    }
+    BOOL isDirectory = NO;
+    BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
+    if (isExist && !isDirectory) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    }
+    if (!isExist || !isDirectory) {
         NSError *error;
         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         if (error) {
@@ -58,6 +66,21 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
             return NO;
         }
         return YES;
+    }
+    return YES;
+}
+
++ (BOOL)removePath:(NSString *)path {
+    if (!path) {
+        return YES;
+    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSError *error = nil;
+        if ([[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
+            return YES;
+        }
+        [self log:[NSString stringWithFormat:@"Remove file failed, [%@]: %@", path, error.localizedDescription]];
+        return NO;
     }
     return YES;
 }
