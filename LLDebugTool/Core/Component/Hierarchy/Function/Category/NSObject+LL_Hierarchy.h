@@ -1,5 +1,5 @@
 //
-//  LLHierarchy.h
+//  NSObject+LL_Hierarchy.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLHierarchy_h
-#define LLHierarchy_h
+#import <UIKit/UIKit.h>
 
-#import "LLHierarchyComponent.h"
+@class LLTitleCellCategoryModel;
 
-#import "LLEnumDescription.h"
-#import "LLHierarchyFormatter.h"
-#import "LLHierarchyHelper.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "LLHierarchyDetailViewController.h"
-#import "LLHierarchyInfoSwitchModel.h"
-#import "LLHierarchyInfoSwitchView.h"
-#import "LLHierarchyInfoView.h"
-#import "LLHierarchyPickerView.h"
-#import "LLHierarchyViewController.h"
-#import "LLHierarchyWindow.h"
+@interface NSObject (LL_Hierarchy)
 
-#import "LLWindowManager+Hierarchy.h"
+/// Models, subclass rewrite if needed.
+- (NSMutableArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels;
 
-#endif /* LLHierarchy_h */
+#pragma mark - Show Alert
+- (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showDoubleAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showColorAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showFontAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showPointAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showSizeAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showEdgeInsetsAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showDateAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+- (void)LL_showAttributeTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+@end
+
+NS_ASSUME_NONNULL_END

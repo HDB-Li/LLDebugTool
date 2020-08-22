@@ -38,7 +38,9 @@
 #import "LLWindowManager.h"
 
 #import "NSArray+LL_Utils.h"
+#import "NSObject+LL_Hierarchy.h"
 #import "NSObject+LL_Utils.h"
+#import "UIView+LL_Hierarchy.h"
 #import "UIView+LL_Utils.h"
 #import "UIViewController+LL_Utils.h"
 
@@ -69,10 +71,13 @@
     [self.view addSubview:self.borderView];
     [self.view addSubview:self.infoView];
     [self.view addSubview:self.pickerView];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolChangeHierarchyNotification:) name:LLDebugToolChangeHierarchyNotification object:nil];
 }
 
 - (void)dealloc {
     [self stopObserve];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - LLHierarchyPickerViewDelegate
@@ -194,6 +199,11 @@
     return self.selectedView;
 }
 
+#pragma mark - LLDebugToolChangeHierarchyNotification
+- (void)didReceiveDebugToolChangeHierarchyNotification:(NSNotification *)notification {
+    [self.infoView reloadData];
+}
+
 #pragma mark - Observes
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context {
     if ([object isKindOfClass:[UIView class]]) {
@@ -281,6 +291,7 @@
 
 - (void)setSelectedView:(UIView *)selectedView {
     if (_selectedView != selectedView) {
+        _selectedView.LL_lock = NO;
         _selectedView = selectedView;
         [self.infoView reloadData];
     }

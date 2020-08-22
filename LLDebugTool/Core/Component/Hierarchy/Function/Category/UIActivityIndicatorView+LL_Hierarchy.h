@@ -1,5 +1,5 @@
 //
-//  UIView+LL_Hierarchy_Lock.h
+//  UIActivityIndicatorView+LL_Hierarchy.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -25,18 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (LL_Hierarchy_Lock)
-
-/// Locked frame/center/alpha/hidden
-@property (nonatomic, assign, getter=LL_isLock) BOOL LL_lock;
-
-@property (nonatomic, strong, nullable) NSValue *LL_lockFrame;
-
-@property (nonatomic, strong, nullable) NSValue *LL_lockCenter;
-
-@property (nonatomic, strong, nullable) NSNumber *LL_lockAlpha;
-
-@property (nonatomic, strong, nullable) NSNumber *LL_lockHidden;
+@interface UIActivityIndicatorView (LL_Hierarchy)
 
 @end
 

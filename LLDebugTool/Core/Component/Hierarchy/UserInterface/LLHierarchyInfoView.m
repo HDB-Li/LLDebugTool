@@ -26,7 +26,10 @@
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
+#import "LLFormatterTool.h"
 #import "LLHierarchyHelper.h"
+#import "LLHierarchyInfoSwitchModel.h"
+#import "LLHierarchyInfoSwitchView.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
@@ -35,6 +38,7 @@
 
 #import "NSObject+LL_Hierarchy.h"
 #import "UIColor+LL_Utils.h"
+#import "UIView+LL_Hierarchy.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLHierarchyInfoView ()
@@ -49,9 +53,13 @@
 
 @property (nonatomic, strong) UILabel *textColorLabel;
 
+@property (nonatomic, strong) UILabel *alphaLabel;
+
 @property (nonatomic, strong) UILabel *fontLabel;
 
 @property (nonatomic, strong) UILabel *tagLabel;
+
+@property (nonatomic, strong) LLHierarchyInfoSwitchView *lockView;
 
 @property (nonatomic, strong) UIView *actionContentView;
 
@@ -86,8 +94,10 @@
     [self addSubview:self.textLabel];
     [self addSubview:self.backgroundColorLabel];
     [self addSubview:self.textColorLabel];
+    [self addSubview:self.alphaLabel];
     [self addSubview:self.fontLabel];
     [self addSubview:self.tagLabel];
+    [self addSubview:self.lockView];
     [self addSubview:self.actionContentView];
     [self.actionContentView addSubview:self.levelButton];
     [self.actionContentView addSubview:self.moreButton];
@@ -120,9 +130,13 @@
 
     self.textColorLabel.frame = CGRectMake(self.contentLabel.LL_x, self.backgroundColorLabel.LL_bottom, self.contentLabel.LL_width, self.textColorLabel.LL_height);
 
-    self.fontLabel.frame = CGRectMake(self.contentLabel.LL_x, self.textColorLabel.LL_bottom, self.contentLabel.LL_width, self.fontLabel.LL_height);
+    self.alphaLabel.frame = CGRectMake(self.contentLabel.LL_x, self.textColorLabel.LL_bottom, self.contentLabel.LL_width, self.alphaLabel.LL_height);
+
+    self.fontLabel.frame = CGRectMake(self.contentLabel.LL_x, self.alphaLabel.LL_bottom, self.contentLabel.LL_width, self.fontLabel.LL_height);
 
     self.tagLabel.frame = CGRectMake(self.contentLabel.LL_x, self.fontLabel.LL_bottom, self.contentLabel.LL_width, self.tagLabel.LL_height);
+
+    self.lockView.frame = CGRectMake(self.contentLabel.LL_x, self.tagLabel.LL_bottom, self.LL_width - kLLGeneralMargin - kLLGeneralMargin, self.lockView.LL_height);
 }
 
 #pragma mark - Event responses
@@ -144,6 +158,10 @@
 
 - (void)textColorLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
     [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showColorAlertAndAutomicSetWithKeyPath:@"textColor"];
+}
+
+- (void)alphaLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
+    [[self.dataSource displayViewInLLHierarchyInfoView:self] LL_showDoubleAlertAndAutomicSetWithKeyPath:@"alpha"];
 }
 
 - (void)fontLabelTapGestureRecognizer:(UITapGestureRecognizer *)sender {
@@ -175,6 +193,7 @@
     [self.textLabel sizeToFit];
     [self.backgroundColorLabel sizeToFit];
     [self.textColorLabel sizeToFit];
+    [self.alphaLabel sizeToFit];
     [self.fontLabel sizeToFit];
     [self.tagLabel sizeToFit];
 
@@ -189,50 +208,64 @@
         self.backgroundColorLabel.attributedText = nil;
         self.textLabel.attributedText = nil;
         self.textColorLabel.attributedText = nil;
+        self.alphaLabel.attributedText = nil;
         self.fontLabel.attributedText = nil;
         self.tagLabel.attributedText = nil;
+        self.lockView.hidden = YES;
+        self.lockView.model.enable = NO;
         return;
     }
 
-    self.contentLabel.attributedText = [self attributedStringWithText:@"Name: " detail:NSStringFromClass(view.class)];
+    self.contentLabel.attributedText = [self attributedStringWithText:@"Name\t: " detail:NSStringFromClass(view.class)];
 
-    self.frameLabel.attributedText = [self attributedStringWithText:@"Frame: " detail:[LLTool stringFromFrame:view.frame]];
+    self.frameLabel.attributedText = [self attributedStringWithText:@"Frame\t: " detail:[LLTool stringFromFrame:view.frame]];
 
     if (view.backgroundColor) {
-        self.backgroundColorLabel.attributedText = [self attributedStringWithText:@"Background: " detail:view.backgroundColor.LL_description];
+        self.backgroundColorLabel.attributedText = [self attributedStringWithText:@"Background : " detail:view.backgroundColor.LL_description];
     } else {
         self.backgroundColorLabel.attributedText = nil;
     }
 
     if ([[LLHierarchyHelper shared] hasTextPropertyInClass:view.class]) {
-        self.textLabel.attributedText = [self attributedStringWithText:@"Text :" detail:[view valueForKey:@"text"]];
+        self.textLabel.attributedText = [self attributedStringWithText:@"Text\t: " detail:[view valueForKey:@"text"]];
     } else {
         self.textLabel.attributedText = nil;
     }
 
     if ([[LLHierarchyHelper shared] hasTextColorPropertyInClass:view.class]) {
         UIColor *textColor = [view valueForKey:@"textColor"];
-        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color: " detail:textColor.LL_description];
+        self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color : " detail:textColor.LL_description];
     } else {
         self.textColorLabel.attributedText = nil;
     }
 
+    CGFloat alpha = [[view valueForKey:@"alpha"] floatValue];
+    if (alpha < 1) {
+        self.alphaLabel.attributedText = [self attributedStringWithText:@"Alpha\t: " detail:[LLFormatterTool formatNumber:@(alpha)]];
+    } else {
+        self.alphaLabel.attributedText = nil;
+    }
+
     if ([[LLHierarchyHelper shared] hasFontPropertyInClass:view.class]) {
         UIFont *font = [view valueForKey:@"font"];
-        self.fontLabel.attributedText = [self attributedStringWithText:@"Font: " detail:[NSString stringWithFormat:@"%0.2f", font.pointSize]];
+        self.fontLabel.attributedText = [self attributedStringWithText:@"Font\t: " detail:[LLFormatterTool formatNumber:@(font.pointSize)]];
     } else {
         self.fontLabel.attributedText = nil;
     }
 
     if (view.tag) {
-        self.tagLabel.attributedText = [self attributedStringWithText:@"Tag: " detail:[NSString stringWithFormat:@"%ld", (long)view.tag]];
+        self.tagLabel.attributedText = [self attributedStringWithText:@"Tag\t: " detail:[NSString stringWithFormat:@"%ld", (long)view.tag]];
     } else {
         self.tagLabel.attributedText = nil;
     }
+
+    self.lockView.hidden = NO;
+    self.lockView.model.enable = YES;
+    self.lockView.model.on = view.LL_lock;
 }
 
 - (void)updateHeightIfNeeded {
-    CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.textLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height;
+    CGFloat contentHeight = self.contentLabel.LL_height + self.frameLabel.LL_height + self.textLabel.LL_height + self.backgroundColorLabel.LL_height + self.textColorLabel.LL_height + self.alphaLabel.LL_height + self.fontLabel.LL_height + self.tagLabel.LL_height + self.lockView.LL_height;
     CGFloat height = kLLGeneralMargin + LL_MAX(contentHeight, self.closeButton.LL_height) + kLLGeneralMargin + self.actionContentViewHeight + kLLGeneralMargin;
     if (height != self.LL_height) {
         self.LL_height = height;
@@ -241,6 +274,19 @@
                 self.LL_bottom = LL_SCREEN_HEIGHT - kLLGeneralMargin * 2;
             }
         }
+    }
+}
+
+- (void)lockButtonValueChanged:(BOOL)isLock {
+    UIView *view = [self.dataSource displayViewInLLHierarchyInfoView:self];
+    if (!view) {
+        return;
+    }
+    view.LL_lock = isLock;
+    if (isLock) {
+        [[LLHierarchyHelper shared].lockViews addObject:view];
+    } else {
+        [[LLHierarchyHelper shared].lockViews removeObject:view];
     }
 }
 
@@ -328,6 +374,16 @@
     return _textColorLabel;
 }
 
+- (UILabel *)alphaLabel {
+    if (!_alphaLabel) {
+        _alphaLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
+        _alphaLabel.numberOfLines = 0;
+        _alphaLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        [_alphaLabel LL_addClickListener:self action:@selector(alphaLabelTapGestureRecognizer:)];
+    }
+    return _alphaLabel;
+}
+
 - (UILabel *)fontLabel {
     if (!_fontLabel) {
         _fontLabel = [LLFactory getLabel:nil frame:CGRectZero text:nil font:14 textColor:[LLThemeManager shared].primaryColor];
@@ -346,6 +402,21 @@
         [_tagLabel LL_addClickListener:self action:@selector(tagLabelTapGestureRecognizer:)];
     }
     return _tagLabel;
+}
+
+- (LLHierarchyInfoSwitchView *)lockView {
+    if (!_lockView) {
+        _lockView = [[LLHierarchyInfoSwitchView alloc] initWithFrame:CGRectZero];
+        __weak typeof(self) weakSelf = self;
+        LLHierarchyInfoSwitchModel *model = [LLHierarchyInfoSwitchModel modelWithTitle:[self attributedStringWithText:@"Lock\t: " detail:@"Frame/Center/Alpha/Hidden"]
+                                                                                    on:NO
+                                                                                 block:^(BOOL isOn) {
+                                                                                     [weakSelf lockButtonValueChanged:isOn];
+                                                                                 }];
+        _lockView.model = model;
+        _lockView.hidden = YES;
+    }
+    return _lockView;
 }
 
 - (UIView *)actionContentView {

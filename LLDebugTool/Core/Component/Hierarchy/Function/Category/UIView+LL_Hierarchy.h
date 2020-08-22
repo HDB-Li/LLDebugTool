@@ -1,5 +1,5 @@
 //
-//  LLHierarchy.h
+//  UIView+LL_Hierarchy.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLHierarchy_h
-#define LLHierarchy_h
+#import <UIKit/UIKit.h>
 
-#import "LLHierarchyComponent.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "LLEnumDescription.h"
-#import "LLHierarchyFormatter.h"
-#import "LLHierarchyHelper.h"
+@class LLTitleCellCategoryModel;
 
-#import "LLHierarchyDetailViewController.h"
-#import "LLHierarchyInfoSwitchModel.h"
-#import "LLHierarchyInfoSwitchView.h"
-#import "LLHierarchyInfoView.h"
-#import "LLHierarchyPickerView.h"
-#import "LLHierarchyViewController.h"
-#import "LLHierarchyWindow.h"
+@interface UIView (LL_Hierarchy)
 
-#import "LLWindowManager+Hierarchy.h"
+/// Locked frame/center/alpha/hidden
+@property (nonatomic, assign, getter=LL_isLock) BOOL LL_lock;
 
-#endif /* LLHierarchy_h */
+@property (nonatomic, strong, nullable) NSValue *LL_lockFrame;
+
+@property (nonatomic, strong, nullable) NSValue *LL_lockCenter;
+
+@property (nonatomic, strong, nullable) NSNumber *LL_lockAlpha;
+
+@property (nonatomic, strong, nullable) NSNumber *LL_lockHidden;
+
+- (NSArray<LLTitleCellCategoryModel *> *)LL_sizeHierarchyCategoryModels;
+
+- (void)LL_showFrameAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
+
+@end
+
+NS_ASSUME_NONNULL_END

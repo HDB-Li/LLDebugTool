@@ -169,6 +169,7 @@
 		C43DB6BF244B402700EA590B /* LLHierarchySheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = C43DB6BE244B402700EA590B /* LLHierarchySheetView.m */; };
 		C43DB6C6244B439E00EA590B /* UIAlertAction+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C43DB6C5244B439E00EA590B /* UIAlertAction+LL_Utils.m */; };
 		C44538FB24C351220024CB1A /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = C44538FA24C351220024CB1A /* TODO.md */; };
+		C4489B9424F0207400162231 /* LLHierarchyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C4489B9324F0207400162231 /* LLHierarchyFormatter.m */; };
 		C44C3FF3243634C6009A38D5 /* UIView+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C44C3FF2243634C6009A38D5 /* UIView+LL_Resolution.m */; };
 		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
 		C45994D024387E9200E79308 /* UINavigationBar+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C45994CE24387E9200E79308 /* UINavigationBar+LL_Resolution.m */; };
@@ -181,6 +182,28 @@
 		C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */; };
 		C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Function.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Function.m */; };
 		C47D28E624B62CF000E6BFF9 /* LLWindowManager+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E524B62CF000E6BFF9 /* LLWindowManager+Setting.m */; };
+		C49141AE24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141AD24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m */; };
+		C49141B124E91E4400A6E977 /* UITextField+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141B024E91E4400A6E977 /* UITextField+LL_Hierarchy.m */; };
+		C49141B424E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141B324E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.m */; };
+		C49141B724E91F9600A6E977 /* UISlider+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141B624E91F9600A6E977 /* UISlider+LL_Hierarchy.m */; };
+		C49141BA24E91FFA00A6E977 /* UISwitch+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141B924E91FFA00A6E977 /* UISwitch+LL_Hierarchy.m */; };
+		C49141BD24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141BC24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.m */; };
+		C49141C024E9213F00A6E977 /* UIProgressView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141BF24E9213F00A6E977 /* UIProgressView+LL_Hierarchy.m */; };
+		C49141C324E921BC00A6E977 /* UIPageControl+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141C224E921BC00A6E977 /* UIPageControl+LL_Hierarchy.m */; };
+		C49141C624E9220D00A6E977 /* UIStepper+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141C524E9220D00A6E977 /* UIStepper+LL_Hierarchy.m */; };
+		C49141C924E9226300A6E977 /* UIScrollView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141C824E9226300A6E977 /* UIScrollView+LL_Hierarchy.m */; };
+		C49141CC24E93D2100A6E977 /* UITableView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141CB24E93D2100A6E977 /* UITableView+LL_Hierarchy.m */; };
+		C49141CF24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141CE24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.m */; };
+		C49141D224E942A200A6E977 /* UICollectionView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141D124E942A200A6E977 /* UICollectionView+LL_Hierarchy.m */; };
+		C49141D524E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141D424E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.m */; };
+		C49141D824E955A000A6E977 /* UITextView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141D724E955A000A6E977 /* UITextView+LL_Hierarchy.m */; };
+		C49141DB24E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141DA24E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.m */; };
+		C49141DE24E9584000A6E977 /* UIPickerView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141DD24E9584000A6E977 /* UIPickerView+LL_Hierarchy.m */; };
+		C49141E124E9585800A6E977 /* UINavigationBar+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141E024E9585800A6E977 /* UINavigationBar+LL_Hierarchy.m */; };
+		C49141E424E9587800A6E977 /* UIToolbar+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141E324E9587800A6E977 /* UIToolbar+LL_Hierarchy.m */; };
+		C49141E724E9786500A6E977 /* UITabBar+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141E624E9786500A6E977 /* UITabBar+LL_Hierarchy.m */; };
+		C49141EA24E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141E924E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m */; };
+		C49141ED24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141EC24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
 		C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561A22ED8D4700E9FBE2 /* LLScreenshotToolbar.m */; };
 		C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */; };
@@ -306,7 +329,13 @@
 		C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F5239AB41400B2C4DC /* LLSandboxPreviewController.m */; };
 		C4D164AB23EAECE9007A141E /* LLEntryStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */; };
 		C4D51D6B23E9A8A8009DAB1A /* LLMoveWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */; };
+		C4D745CC24C458E900C44CD1 /* LLHierarchyInfoSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D745CB24C458E900C44CD1 /* LLHierarchyInfoSwitchView.m */; };
+		C4D745CF24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D745CE24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.m */; };
 		C4D82E0F2454156D00399D44 /* LLHierarchyBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D82E0E2454156D00399D44 /* LLHierarchyBorderView.m */; };
+		C4FCA04324E81F4B00EC862D /* UIView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FCA04224E81F4B00EC862D /* UIView+LL_Hierarchy.m */; };
+		C4FCA04824E8224100EC862D /* UILabel+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FCA04724E8224100EC862D /* UILabel+LL_Hierarchy.m */; };
+		C4FCA04B24E8232300EC862D /* UIControl+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FCA04A24E8232300EC862D /* UIControl+LL_Hierarchy.m */; };
+		C4FCA04E24E823BA00EC862D /* UIButton+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FCA04D24E823BA00EC862D /* UIButton+LL_Hierarchy.m */; };
 		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -640,6 +669,8 @@
 		C43DB6C4244B439E00EA590B /* UIAlertAction+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertAction+LL_Utils.h"; sourceTree = "<group>"; };
 		C43DB6C5244B439E00EA590B /* UIAlertAction+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertAction+LL_Utils.m"; sourceTree = "<group>"; };
 		C44538FA24C351220024CB1A /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		C4489B9224F0207400162231 /* LLHierarchyFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyFormatter.h; sourceTree = "<group>"; };
+		C4489B9324F0207400162231 /* LLHierarchyFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyFormatter.m; sourceTree = "<group>"; };
 		C44C3FF1243634C6009A38D5 /* UIView+LL_Resolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LL_Resolution.h"; sourceTree = "<group>"; };
 		C44C3FF2243634C6009A38D5 /* UIView+LL_Resolution.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Resolution.m"; sourceTree = "<group>"; };
 		C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailViewController.h; sourceTree = "<group>"; };
@@ -664,6 +695,50 @@
 		C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Function.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Function.m"; sourceTree = "<group>"; };
 		C47D28E424B62CF000E6BFF9 /* LLWindowManager+Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Setting.h"; sourceTree = "<group>"; };
 		C47D28E524B62CF000E6BFF9 /* LLWindowManager+Setting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Setting.m"; sourceTree = "<group>"; };
+		C49141AC24E91D8300A6E977 /* UIImageView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141AD24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141AF24E91E4400A6E977 /* UITextField+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141B024E91E4400A6E977 /* UITextField+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141B224E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141B324E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141B524E91F9600A6E977 /* UISlider+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISlider+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141B624E91F9600A6E977 /* UISlider+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISlider+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141B824E91FFA00A6E977 /* UISwitch+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISwitch+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141B924E91FFA00A6E977 /* UISwitch+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISwitch+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141BB24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141BC24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141BE24E9213F00A6E977 /* UIProgressView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141BF24E9213F00A6E977 /* UIProgressView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141C124E921BC00A6E977 /* UIPageControl+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIPageControl+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141C224E921BC00A6E977 /* UIPageControl+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIPageControl+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141C424E9220D00A6E977 /* UIStepper+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIStepper+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141C524E9220D00A6E977 /* UIStepper+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIStepper+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141C724E9226300A6E977 /* UIScrollView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141C824E9226300A6E977 /* UIScrollView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141CA24E93D2100A6E977 /* UITableView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141CB24E93D2100A6E977 /* UITableView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141CD24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141CE24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141D024E942A200A6E977 /* UICollectionView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141D124E942A200A6E977 /* UICollectionView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141D324E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionReusableView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141D424E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionReusableView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141D624E955A000A6E977 /* UITextView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141D724E955A000A6E977 /* UITextView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141D924E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDatePicker+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141DA24E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDatePicker+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141DC24E9584000A6E977 /* UIPickerView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIPickerView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141DD24E9584000A6E977 /* UIPickerView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIPickerView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141DF24E9585800A6E977 /* UINavigationBar+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141E024E9585800A6E977 /* UINavigationBar+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141E224E9587800A6E977 /* UIToolbar+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141E324E9587800A6E977 /* UIToolbar+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141E524E9786500A6E977 /* UITabBar+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141E624E9786500A6E977 /* UITabBar+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141E824E97E1600A6E977 /* UISearchBar+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141E924E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C49141EB24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C49141EC24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LL_Hierarchy.m"; sourceTree = "<group>"; };
 		C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
 		C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
@@ -910,8 +985,20 @@
 		C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryStyleModel.m; sourceTree = "<group>"; };
 		C4D51D6923E9A8A8009DAB1A /* LLMoveWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMoveWindow.h; sourceTree = "<group>"; };
 		C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMoveWindow.m; sourceTree = "<group>"; };
+		C4D745CA24C458E900C44CD1 /* LLHierarchyInfoSwitchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoSwitchView.h; sourceTree = "<group>"; };
+		C4D745CB24C458E900C44CD1 /* LLHierarchyInfoSwitchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoSwitchView.m; sourceTree = "<group>"; };
+		C4D745CD24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyInfoSwitchModel.h; sourceTree = "<group>"; };
+		C4D745CE24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoSwitchModel.m; sourceTree = "<group>"; };
 		C4D82E0D2454156D00399D44 /* LLHierarchyBorderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyBorderView.h; sourceTree = "<group>"; };
 		C4D82E0E2454156D00399D44 /* LLHierarchyBorderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyBorderView.m; sourceTree = "<group>"; };
+		C4FCA04124E81F4B00EC862D /* UIView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C4FCA04224E81F4B00EC862D /* UIView+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C4FCA04624E8224100EC862D /* UILabel+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C4FCA04724E8224100EC862D /* UILabel+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C4FCA04924E8232300EC862D /* UIControl+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C4FCA04A24E8232300EC862D /* UIControl+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C4FCA04C24E823BA00EC862D /* UIButton+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+LL_Hierarchy.h"; sourceTree = "<group>"; };
+		C4FCA04D24E823BA00EC862D /* UIButton+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LL_Hierarchy.m"; sourceTree = "<group>"; };
 		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1813,6 +1900,10 @@
 				360D8A4E22FD52A9003693AE /* LLHierarchyPickerView.m */,
 				360D8A5322FD70D3003693AE /* LLHierarchyInfoView.h */,
 				360D8A5422FD70D3003693AE /* LLHierarchyInfoView.m */,
+				C4D745CA24C458E900C44CD1 /* LLHierarchyInfoSwitchView.h */,
+				C4D745CB24C458E900C44CD1 /* LLHierarchyInfoSwitchView.m */,
+				C4D745CD24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.h */,
+				C4D745CE24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.m */,
 				C4D82E0D2454156D00399D44 /* LLHierarchyBorderView.h */,
 				C4D82E0E2454156D00399D44 /* LLHierarchyBorderView.m */,
 				C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */,
@@ -2018,11 +2109,12 @@
 		C49856C422ED90B400E9FBE2 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				C4FCA04524E8221900EC862D /* Category */,
 				3694F8712338995F007B07CA /* EnumDescription */,
 				C49856C722ED90B400E9FBE2 /* LLHierarchyHelper.h */,
 				C49856C622ED90B400E9FBE2 /* LLHierarchyHelper.m */,
-				36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */,
-				36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */,
+				C4489B9224F0207400162231 /* LLHierarchyFormatter.h */,
+				C4489B9324F0207400162231 /* LLHierarchyFormatter.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -2606,6 +2698,67 @@
 			path = MoveWindow;
 			sourceTree = "<group>";
 		};
+		C4FCA04524E8221900EC862D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */,
+				36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */,
+				C49141BB24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.h */,
+				C49141BC24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.m */,
+				C4FCA04C24E823BA00EC862D /* UIButton+LL_Hierarchy.h */,
+				C4FCA04D24E823BA00EC862D /* UIButton+LL_Hierarchy.m */,
+				C49141D324E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.h */,
+				C49141D424E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.m */,
+				C49141D024E942A200A6E977 /* UICollectionView+LL_Hierarchy.h */,
+				C49141D124E942A200A6E977 /* UICollectionView+LL_Hierarchy.m */,
+				C4FCA04924E8232300EC862D /* UIControl+LL_Hierarchy.h */,
+				C4FCA04A24E8232300EC862D /* UIControl+LL_Hierarchy.m */,
+				C49141D924E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.h */,
+				C49141DA24E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.m */,
+				C49141AC24E91D8300A6E977 /* UIImageView+LL_Hierarchy.h */,
+				C49141AD24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m */,
+				C4FCA04624E8224100EC862D /* UILabel+LL_Hierarchy.h */,
+				C4FCA04724E8224100EC862D /* UILabel+LL_Hierarchy.m */,
+				C49141DF24E9585800A6E977 /* UINavigationBar+LL_Hierarchy.h */,
+				C49141E024E9585800A6E977 /* UINavigationBar+LL_Hierarchy.m */,
+				C49141C124E921BC00A6E977 /* UIPageControl+LL_Hierarchy.h */,
+				C49141C224E921BC00A6E977 /* UIPageControl+LL_Hierarchy.m */,
+				C49141DC24E9584000A6E977 /* UIPickerView+LL_Hierarchy.h */,
+				C49141DD24E9584000A6E977 /* UIPickerView+LL_Hierarchy.m */,
+				C49141BE24E9213F00A6E977 /* UIProgressView+LL_Hierarchy.h */,
+				C49141BF24E9213F00A6E977 /* UIProgressView+LL_Hierarchy.m */,
+				C49141C724E9226300A6E977 /* UIScrollView+LL_Hierarchy.h */,
+				C49141C824E9226300A6E977 /* UIScrollView+LL_Hierarchy.m */,
+				C49141E824E97E1600A6E977 /* UISearchBar+LL_Hierarchy.h */,
+				C49141E924E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m */,
+				C49141B224E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.h */,
+				C49141B324E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.m */,
+				C49141B524E91F9600A6E977 /* UISlider+LL_Hierarchy.h */,
+				C49141B624E91F9600A6E977 /* UISlider+LL_Hierarchy.m */,
+				C49141C424E9220D00A6E977 /* UIStepper+LL_Hierarchy.h */,
+				C49141C524E9220D00A6E977 /* UIStepper+LL_Hierarchy.m */,
+				C49141B824E91FFA00A6E977 /* UISwitch+LL_Hierarchy.h */,
+				C49141B924E91FFA00A6E977 /* UISwitch+LL_Hierarchy.m */,
+				C49141E524E9786500A6E977 /* UITabBar+LL_Hierarchy.h */,
+				C49141E624E9786500A6E977 /* UITabBar+LL_Hierarchy.m */,
+				C49141CA24E93D2100A6E977 /* UITableView+LL_Hierarchy.h */,
+				C49141CB24E93D2100A6E977 /* UITableView+LL_Hierarchy.m */,
+				C49141CD24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.h */,
+				C49141CE24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.m */,
+				C49141AF24E91E4400A6E977 /* UITextField+LL_Hierarchy.h */,
+				C49141B024E91E4400A6E977 /* UITextField+LL_Hierarchy.m */,
+				C49141D624E955A000A6E977 /* UITextView+LL_Hierarchy.h */,
+				C49141D724E955A000A6E977 /* UITextView+LL_Hierarchy.m */,
+				C49141E224E9587800A6E977 /* UIToolbar+LL_Hierarchy.h */,
+				C49141E324E9587800A6E977 /* UIToolbar+LL_Hierarchy.m */,
+				C4FCA04124E81F4B00EC862D /* UIView+LL_Hierarchy.h */,
+				C4FCA04224E81F4B00EC862D /* UIView+LL_Hierarchy.m */,
+				C49141EB24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.h */,
+				C49141EC24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		E99ABDA4555CAF38A3D78EE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2877,6 +3030,7 @@
 				C4AEB701238AD7EB0054CD37 /* LLShortCutComponent.m in Sources */,
 				3605940F237AB6E500C2D8FF /* LLWindowManager+Crash.m in Sources */,
 				368CB9E1233DFC3A009DFFDB /* LLTableViewSelectableModel.m in Sources */,
+				C49141BD24E9208900A6E977 /* UIActivityIndicatorView+LL_Hierarchy.m in Sources */,
 				C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */,
 				C4B4E45922F9C90900F70277 /* LLFilterTextFieldModel.m in Sources */,
 				C498569022ED8D4800E9FBE2 /* LLNetworkCell.m in Sources */,
@@ -2890,6 +3044,7 @@
 				36AB4498231F9D0700AC772B /* LLSettingViewController.m in Sources */,
 				C4B4E46D22F9C90900F70277 /* LLComponentWindow.m in Sources */,
 				C413AE8823995DD9001EB1F9 /* LLSandboxTextPreviewController.m in Sources */,
+				C49141AE24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m in Sources */,
 				C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */,
 				C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */,
 				36C9F800237E7E080021BA2D /* LLLocationViewController.m in Sources */,
@@ -2901,6 +3056,7 @@
 				3629E3942136830A00226C79 /* TestWindowStyleViewController.m in Sources */,
 				C4B4E44B22F9C90900F70277 /* NSObject+LL_Runtime.m in Sources */,
 				C42EB0692430F38500BD1CE2 /* LLResolutionComponent.m in Sources */,
+				C4D745CF24C4902F00C44CD1 /* LLHierarchyInfoSwitchModel.m in Sources */,
 				C498570422EDB37200E9FBE2 /* LLNetworkWindow.m in Sources */,
 				36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */,
 				C4B4E44522F9C90900F70277 /* NSString+LL_Utils.m in Sources */,
@@ -2908,7 +3064,9 @@
 				360D8A4F22FD52A9003693AE /* LLHierarchyPickerView.m in Sources */,
 				3629E3932136830A00226C79 /* TestCrashViewController.m in Sources */,
 				C49856FE22EDB2DD00E9FBE2 /* LLCrashWindow.m in Sources */,
+				C49141B724E91F9600A6E977 /* UISlider+LL_Hierarchy.m in Sources */,
 				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
+				C49141E124E9585800A6E977 /* UINavigationBar+LL_Hierarchy.m in Sources */,
 				3605940C237AB69E00C2D8FF /* LLWindowManager+Log.m in Sources */,
 				C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Function.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
@@ -2919,6 +3077,7 @@
 				364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */,
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
+				C49141C924E9226300A6E977 /* UIScrollView+LL_Hierarchy.m in Sources */,
 				3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */,
 				C4CA96B124B1D8B400F78E1B /* LLComponentHelper.m in Sources */,
 				C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */,
@@ -2932,6 +3091,7 @@
 				3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
 				36059418237AB7E600C2D8FF /* LLWindowManager+Hierarchy.m in Sources */,
+				C49141C024E9213F00A6E977 /* UIProgressView+LL_Hierarchy.m in Sources */,
 				C4D51D6B23E9A8A8009DAB1A /* LLMoveWindow.m in Sources */,
 				3624D3FF2383F72B00DBE692 /* MKMapView+LL_Location.m in Sources */,
 				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
@@ -2951,6 +3111,7 @@
 				3629E3922136830A00226C79 /* BaseTestViewController.m in Sources */,
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C45994D024387E9200E79308 /* UINavigationBar+LL_Resolution.m in Sources */,
+				C49141B124E91E4400A6E977 /* UITextField+LL_Hierarchy.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
 				C42EB06F2430F41E00BD1CE2 /* LLResolutionViewController.m in Sources */,
 				363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */,
@@ -2969,11 +3130,14 @@
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,
 				361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */,
 				C413AE8523995CEF001EB1F9 /* LLJsonTool.m in Sources */,
+				C49141CC24E93D2100A6E977 /* UITableView+LL_Hierarchy.m in Sources */,
 				C498568222ED8D4800E9FBE2 /* LLScreenshotActionView.m in Sources */,
+				C49141EA24E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m in Sources */,
 				C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */,
 				362F87AB2326607A00A27F05 /* LLRulerWindow.m in Sources */,
 				36C9F7F5237E7D990021BA2D /* LLLocationComponent.m in Sources */,
 				C49856C122ED909F00E9FBE2 /* LLCrashHelper.m in Sources */,
+				C49141D824E955A000A6E977 /* UITextView+LL_Hierarchy.m in Sources */,
 				C4B4E47B22F9C90900F70277 /* LLTool.m in Sources */,
 				360AE6372330DC160073FECD /* LLSettingComponent.m in Sources */,
 				C4B4E45522F9C90900F70277 /* LLNoneCopyTextField.m in Sources */,
@@ -2987,7 +3151,10 @@
 				36E90D042339F4D400ED43B3 /* NSObject+LL_Hierarchy.m in Sources */,
 				36AB449E231FC5D800AC772B /* LLTitleCellCategoryModel.m in Sources */,
 				C46F0CBA244C29D800815D59 /* LLHierarchySheetReuseView.m in Sources */,
+				C49141DE24E9584000A6E977 /* UIPickerView+LL_Hierarchy.m in Sources */,
+				C4489B9424F0207400162231 /* LLHierarchyFormatter.m in Sources */,
 				C498568022ED8D4800E9FBE2 /* LLScreenshotBaseOperation.m in Sources */,
+				C4FCA04E24E823BA00EC862D /* UIButton+LL_Hierarchy.m in Sources */,
 				C498568322ED8D4800E9FBE2 /* LLScreenshotSelectorView.m in Sources */,
 				C49856EC22EDAEFE00E9FBE2 /* LLAppInfoWindow.m in Sources */,
 				C4B4E43B22F9C90900F70277 /* UIImage+LL_Utils.m in Sources */,
@@ -3018,6 +3185,7 @@
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
 				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
+				C49141CF24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.m in Sources */,
 				3600762D2355AEE500A606AC /* LLComponentNavigationController.m in Sources */,
 				36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */,
 				360075E5235576A800A606AC /* CustomWebViewController.m in Sources */,
@@ -3025,8 +3193,10 @@
 				C42EB0752430F6D100BD1CE2 /* LLResolutionHelper.m in Sources */,
 				C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */,
 				C49856A122ED8D4800E9FBE2 /* LLPreviewController.m in Sources */,
+				C49141D524E944AA00A6E977 /* UICollectionReusableView+LL_Hierarchy.m in Sources */,
 				C4B4E46022F9C90900F70277 /* LLFilterEventView.m in Sources */,
 				C49856A722ED8D4800E9FBE2 /* LLLogDetailViewController.m in Sources */,
+				C49141BA24E91FFA00A6E977 /* UISwitch+LL_Hierarchy.m in Sources */,
 				C42EB06C2430F3D500BD1CE2 /* LLResolutionWindow.m in Sources */,
 				362AA6AD23272E2200F33EC4 /* LLRulerPickerView.m in Sources */,
 				36F93CB8238BB4680008C92E /* LLTitleCell.m in Sources */,
@@ -3041,6 +3211,7 @@
 				36059412237AB73800C2D8FF /* LLWindowManager+Sandbox.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */,
+				C49141D224E942A200A6E977 /* UICollectionView+LL_Hierarchy.m in Sources */,
 				C4278D062438C8BC00D14CFA /* LLRouter+Resolution.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */,
@@ -3051,10 +3222,12 @@
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,
 				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
+				C49141C624E9220D00A6E977 /* UIStepper+LL_Hierarchy.m in Sources */,
 				36059415237AB7AC00C2D8FF /* LLWindowManager+Screenshot.m in Sources */,
 				C4B4E44622F9C90900F70277 /* UIViewController+LL_Utils.m in Sources */,
 				C498568122ED8D4800E9FBE2 /* LLScreenshotSelectorModel.m in Sources */,
 				C46FC33D249F54A600529169 /* LLEntryAppInfoView.m in Sources */,
+				C49141ED24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m in Sources */,
 				C4B4E45F22F9C90900F70277 /* LLFilterLabelCell.m in Sources */,
 				36BB1E3723211AF9000D8F29 /* LLConvenientScreenshotComponent.m in Sources */,
 				C4B4E46122F9C90900F70277 /* LLFilterLabelModel.m in Sources */,
@@ -3081,6 +3254,7 @@
 				C49856F222EDB0CD00E9FBE2 /* LLLogWindow.m in Sources */,
 				C49856DA22ED90DD00E9FBE2 /* LLNetworkModel.m in Sources */,
 				C44C3FF3243634C6009A38D5 /* UIView+LL_Resolution.m in Sources */,
+				C49141E424E9587800A6E977 /* UIToolbar+LL_Hierarchy.m in Sources */,
 				C49856AA22ED8D4800E9FBE2 /* LLLogCell.m in Sources */,
 				C49856A822ED8D4800E9FBE2 /* LLLogViewController.m in Sources */,
 				C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */,
@@ -3090,6 +3264,8 @@
 				36C9F80D237E8B2E0021BA2D /* LLDetailTitleCellView.m in Sources */,
 				366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */,
 				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
+				C49141DB24E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.m in Sources */,
+				C4D745CC24C458E900C44CD1 /* LLHierarchyInfoSwitchView.m in Sources */,
 				C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */,
 				C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */,
 				36C9F810237E8C8A0021BA2D /* LLTitleSwitchCellView.m in Sources */,
@@ -3099,11 +3275,14 @@
 				C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */,
 				C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */,
 				C42EB0722430F42E00BD1CE2 /* LLWindowManager+Resolution.m in Sources */,
+				C49141E724E9786500A6E977 /* UITabBar+LL_Hierarchy.m in Sources */,
 				36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */,
 				36CDFBC823506374002A913F /* LLHtmlComponent.m in Sources */,
 				C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */,
+				C4FCA04824E8224100EC862D /* UILabel+LL_Hierarchy.m in Sources */,
 				C498570122EDB35000E9FBE2 /* LLNetworkComponent.m in Sources */,
 				364AC6F3237CE8F5007F0F29 /* LLRouter+Crash.m in Sources */,
+				C49141C324E921BC00A6E977 /* UIPageControl+LL_Hierarchy.m in Sources */,
 				365912502320B3E300FDA6A0 /* LLLeftTitleCell.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
 				3629E3952136830A00226C79 /* TestLogViewController.m in Sources */,
@@ -3121,13 +3300,16 @@
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
 				C4B4E45222F9C90900F70277 /* LLSubTitleTableViewCell.m in Sources */,
 				C49856F522EDB1FE00E9FBE2 /* LLSandboxComponent.m in Sources */,
+				C4FCA04324E81F4B00EC862D /* UIView+LL_Hierarchy.m in Sources */,
 				36F93CB5238BA24E0008C92E /* LLShortCutModel.m in Sources */,
 				36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */,
 				36C9F7FD237E7DF30021BA2D /* LLLocationWindow.m in Sources */,
 				C49856E922EDACD200E9FBE2 /* LLComponent.m in Sources */,
 				36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
+				C49141B424E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.m in Sources */,
 				C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */,
+				C4FCA04B24E8232300EC862D /* UIControl+LL_Hierarchy.m in Sources */,
 				C4141C91243B16CE00C5EF86 /* LLDetailTitleCellModel.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,
 				361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */,

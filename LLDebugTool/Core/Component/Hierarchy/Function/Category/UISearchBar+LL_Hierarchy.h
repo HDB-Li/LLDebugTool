@@ -1,5 +1,5 @@
 //
-//  LLHierarchy.h
+//  UISearchBar+LL_Hierarchy.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLHierarchy_h
-#define LLHierarchy_h
+#import <UIKit/UIKit.h>
 
-#import "LLHierarchyComponent.h"
+NS_ASSUME_NONNULL_BEGIN
 
-#import "LLEnumDescription.h"
-#import "LLHierarchyFormatter.h"
-#import "LLHierarchyHelper.h"
+@interface UISearchBar (LL_Hierarchy)
 
-#import "LLHierarchyDetailViewController.h"
-#import "LLHierarchyInfoSwitchModel.h"
-#import "LLHierarchyInfoSwitchView.h"
-#import "LLHierarchyInfoView.h"
-#import "LLHierarchyPickerView.h"
-#import "LLHierarchyViewController.h"
-#import "LLHierarchyWindow.h"
+@end
 
-#import "LLWindowManager+Hierarchy.h"
-
-#endif /* LLHierarchy_h */
+NS_ASSUME_NONNULL_END

@@ -31,4 +31,10 @@
     }
 }
 
+- (void)LL_insertObject:(id)anObject atIndex:(NSUInteger)index {
+    if (self.count >= index) {
+        [self insertObject:anObject atIndex:index];
+    }
+}
+
 @end

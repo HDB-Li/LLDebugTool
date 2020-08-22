@@ -31,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param anObject Object.
 - (void)LL_addObject:(id)anObject;
 
+/// Insert object at index.
+/// @param anObject Object.
+/// @param index Index.
+- (void)LL_insertObject:(id)anObject atIndex:(NSUInteger)index;
+
 @end
 
 NS_ASSUME_NONNULL_END

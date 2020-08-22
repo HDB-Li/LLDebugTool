@@ -1,5 +1,5 @@
 //
-//  LLHierarchy.h
+//  UIWindow+LL_Hierarchy.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,23 +21,32 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLHierarchy_h
-#define LLHierarchy_h
+#import "UIWindow+LL_Hierarchy.h"
 
-#import "LLHierarchyComponent.h"
-
-#import "LLEnumDescription.h"
+#import "LLDetailTitleCellModel.h"
+#import "LLFormatterTool.h"
 #import "LLHierarchyFormatter.h"
-#import "LLHierarchyHelper.h"
+#import "LLTitleCellCategoryModel.h"
 
-#import "LLHierarchyDetailViewController.h"
-#import "LLHierarchyInfoSwitchModel.h"
-#import "LLHierarchyInfoSwitchView.h"
-#import "LLHierarchyInfoView.h"
-#import "LLHierarchyPickerView.h"
-#import "LLHierarchyViewController.h"
-#import "LLHierarchyWindow.h"
+#import "NSMutableArray+LL_Utils.h"
+#import "NSObject+LL_Hierarchy.h"
 
-#import "LLWindowManager+Hierarchy.h"
+@implementation UIWindow (LL_Hierarchy)
 
-#endif /* LLHierarchy_h */
+- (NSMutableArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels {
+    NSMutableArray *settings = [[NSMutableArray alloc] init];
+
+    LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Key Window %@", [LLHierarchyFormatter formatBool:self.isKeyWindow]]] noneInsets];
+    [settings addObject:model1];
+
+    LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:@"Root Controller" detailTitle:[LLHierarchyFormatter formatObject:self.rootViewController]];
+    [settings addObject:model2];
+
+    LLTitleCellCategoryModel *model = [LLTitleCellCategoryModel modelWithTitle:@"Window" items:settings];
+
+    NSMutableArray *result = [super LL_hierarchyCategoryModels];
+    [result LL_insertObject:model atIndex:1];
+    return result;
+}
+
+@end

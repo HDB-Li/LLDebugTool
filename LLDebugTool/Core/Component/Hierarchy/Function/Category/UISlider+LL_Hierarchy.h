@@ -1,5 +1,5 @@
 //
-//  NSObject+LL_Hierarchy.h
+//  UISlider+LL_Hierarchy.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -23,31 +23,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class LLTitleCellCategoryModel;
-
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSNotificationName const LLDebugToolChangeHierarchyNotification;
-
-@interface NSObject (LL_Hierarchy)
-
-- (NSArray<LLTitleCellCategoryModel *> *)LL_hierarchyCategoryModels;
-
-- (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
-
-- (void)LL_showFrameAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
-
-- (void)LL_showColorAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
-
-- (void)LL_showFontAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
-
-- (void)LL_showTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath;
-
-@end
-
-@interface UIView (LL_Hierarchy)
-
-- (NSArray<LLTitleCellCategoryModel *> *)LL_sizeHierarchyCategoryModels;
+@interface UISlider (LL_Hierarchy)
 
 @end
 

@@ -27,8 +27,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXPORT NSNotificationName const LLDebugToolChangeHierarchyNotification;
+
 /// Hierarchy function helper.
 @interface LLHierarchyHelper : NSObject
+
+/// Locked views.
+@property (nonatomic, strong) NSMutableArray *lockViews;
 
 /// Shared instance.
 + (instancetype)shared;
@@ -56,6 +61,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param tapPointInWindow Point.
 - (NSArray<UIView *> *)viewForSelectionAtPoint:(CGPoint)tapPointInWindow;
 
+#pragma mark - Alert
+
+/// Show action sheet on keyWindow,
+/// @param actions Actions
+/// @param currentAction Current action.
+/// @param completion Completion block.
+- (void)showActionSheetWithActions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion;
+
+/// Show text field alert on keyWindow.
+/// @param text Current text.
+/// @param handler Completion handle.
+- (void)showTextFieldAlertWithText:(NSString *)text handler:(void (^)(NSString *originText, NSString *newText))handler;
+
+/// Call listener property change.
+- (void)postDebugToolChangeHierarchyNotification;
+
+#pragma mark - Check Property
 /// Whether has 'text' property.
 /// @param cls Target class.
 - (BOOL)hasTextPropertyInClass:(Class)cls;

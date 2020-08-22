@@ -28,6 +28,7 @@
 #import "LLDetailTitleCell.h"
 #import "LLFactory.h"
 #import "LLFormatterTool.h"
+#import "LLHierarchyHelper.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellCategoryModel.h"
@@ -35,6 +36,7 @@
 #import "NSObject+LL_Hierarchy.h"
 #import "UIButton+LL_Utils.h"
 #import "UIImage+LL_Utils.h"
+#import "UIView+LL_Hierarchy.h"
 #import "UIView+LL_Utils.h"
 #import "UIViewController+LL_Utils.h"
 

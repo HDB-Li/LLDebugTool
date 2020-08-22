@@ -27,7 +27,13 @@
 
 #import "LLBaseWindow.h"
 #import "LLDebugConfig.h"
+#import "LLInternalMacros.h"
 #import "LLTool.h"
+
+#import "UIColor+LL_Utils.h"
+#import "UIViewController+LL_Utils.h"
+
+NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolChangeHierarchyNotification";
 
 static LLHierarchyHelper *_instance = nil;
 
@@ -142,6 +148,39 @@ static LLHierarchyHelper *_instance = nil;
     return [self recursiveSubviewsAtPoint:tapPointInWindow inView:windowForSelection skipHiddenViews:YES includeParent:[LLDebugConfig shared].isIncludeParent];
 }
 
+- (void)showActionSheetWithActions:(NSArray *)actions currentAction:(NSString *)currentAction completion:(void (^)(NSInteger index))completion {
+    __weak typeof(self) weakSelf = self;
+    UIViewController *viewController = [LLTool keyWindow].rootViewController.LL_currentShowingViewController;
+    [viewController LL_showActionSheetWithTitle:LLLocalizedString(@"hierarchy.change.property")
+                                        actions:actions
+                                  currentAction:currentAction
+                                     completion:^(NSInteger index) {
+                                         if (completion) {
+                                             completion(index);
+                                         }
+                                         [weakSelf postDebugToolChangeHierarchyNotification];
+                                     }];
+}
+
+- (void)showTextFieldAlertWithText:(NSString *)text handler:(void (^)(NSString *originText, NSString *newText))handler {
+    __weak typeof(self) weakSelf = self;
+    UIViewController *viewController = [LLTool keyWindow].rootViewController.LL_currentShowingViewController;
+    [viewController LL_showTextFieldAlertControllerWithMessage:LLLocalizedString(@"hierarchy.change.property")
+                                                          text:text
+                                                       handler:^(NSString *newText) {
+                                                           if (![text isEqualToString:newText]) {
+                                                               if (handler) {
+                                                                   handler(text, newText);
+                                                               }
+                                                               [weakSelf postDebugToolChangeHierarchyNotification];
+                                                           }
+                                                       }];
+}
+
+- (void)postDebugToolChangeHierarchyNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:LLDebugToolChangeHierarchyNotification object:self];
+}
+
 - (BOOL)hasTextPropertyInClass:(Class)cls {
     if (!cls) {
         return NO;
@@ -199,6 +238,13 @@ static LLHierarchyHelper *_instance = nil;
 }
 
 #pragma mark - Getters and setters
+- (NSMutableArray *)lockViews {
+    if (!_lockViews) {
+        _lockViews = [[NSMutableArray alloc] init];
+    }
+    return _lockViews;
+}
+
 - (NSArray<NSString *> *)systemPrimaryClasses {
     if (!_systemPrimaryClasses) {
         if (@available(iOS 13.0, *)) {
