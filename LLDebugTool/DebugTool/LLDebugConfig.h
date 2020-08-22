@@ -285,6 +285,12 @@ Whether show widget border. Default is NO.
  */
 @property (nonatomic, copy, nullable) UIViewController * (^htmlViewControllerProvider)(NSString *_Nullable url);
 
+#pragma mark - App Info
+/**
+ Stuck time on record fps, if the time between two frames exceeds stuckTime, it will be recorded once, default is 33(two frame, one frame is 16.67ms), debugtool will record on lost more than 1 frame. 
+ */
+@property (nonatomic, assign) NSTimeInterval stuckTime;
+
 #pragma mark - Location
 /**
  Mock location latitude.

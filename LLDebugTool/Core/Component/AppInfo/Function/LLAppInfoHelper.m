@@ -28,6 +28,7 @@
 #import <mach/mach.h>
 #import <malloc/malloc.h>
 
+#import "LLDebugConfig.h"
 #import "LLInternalMacros.h"
 
 #import "LLRouter+Network.h"
@@ -46,6 +47,9 @@ LLAppInfoHelperKey const LLAppInfoHelperMemoryFreeDescriptionKey = @"LLAppInfoHe
 LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalKey = @"LLAppInfoHelperMemoryTotalKey";
 LLAppInfoHelperKey const LLAppInfoHelperMemoryTotalDescriptionKey = @"LLAppInfoHelperMemoryTotalDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperFPSKey = @"LLAppInfoHelperFPSKey";
+LLAppInfoHelperKey const LLAppInfoHelperStuckCountKey = @"LLAppInfoHelperStuckCountKey";
+LLAppInfoHelperKey const LLAppInfoHelperMaxIntervalKey = @"LLAppInfoHelperMaxIntervalKey";
+LLAppInfoHelperKey const LLAppInfoHelperMaxIntervalDescriptionKey = @"LLAppInfoHelperMaxIntervalDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficKey = @"LLAppInfoHelperRequestDataTrafficKey";
 LLAppInfoHelperKey const LLAppInfoHelperRequestDataTrafficDescriptionKey = @"LLAppInfoHelperRequestDataTrafficDescriptionKey";
 LLAppInfoHelperKey const LLAppInfoHelperResponseDataTrafficKey = @"LLAppInfoHelperResponseDataTrafficKey";
@@ -64,6 +68,9 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
     CADisplayLink *_link;
     NSUInteger _count;
     NSTimeInterval _lastTime;
+    NSTimeInterval _lastFrameTime;
+    NSTimeInterval _maxInterval;
+    NSInteger _stuckCount;
     NSInteger _fps;
 
     // Cache
@@ -77,8 +84,6 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
     NSString *_screenResolution;
     NSString *_cpuType;
 }
-
-@property (nonatomic, strong) NSTimer *memoryTimer;
 
 @property (nonatomic, copy) NSString *cpuTypeString;
 
@@ -169,6 +174,10 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
 
 - (NSString *)cpuUsage {
     return [NSString stringWithFormat:@"%.2f%%", _cpu];
+}
+
+- (NSString *)maxInterval {
+    return [NSString stringWithFormat:@"%.2f ms", _maxInterval * 1000];
 }
 
 - (NSString *)freeMemory {
@@ -307,29 +316,29 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
  */
 - (void)initial {
     _fps = 60;
+    _lastFrameTime = 0;
+    _maxInterval = 0;
 }
 
 - (void)startTimers {
     [self removeTimers];
-
-    self.memoryTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(memoryTimerAction:) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.memoryTimer forMode:NSRunLoopCommonModes];
-    [self.memoryTimer fire];
 
     _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(fpsDisplayLinkAction:)];
     [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 - (void)removeTimers {
-    if ([self.memoryTimer isValid]) {
-        [self.memoryTimer invalidate];
-        self.memoryTimer = nil;
-    }
     if (_link) {
         [_link removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         [_link invalidate];
         _link = nil;
     }
+
+    _lastTime = 0;
+    _count = 0;
+    _fps = 0;
+    _maxInterval = 0;
+    _stuckCount = 0;
 }
 
 #pragma mark - CPU
@@ -413,13 +422,12 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
 }
 
 #pragma mark - Memory
-- (void)memoryTimerAction:(NSTimer *)timer {
+- (void)refreshMemory {
     struct mstats stat = mstats();
     _usedMemory = stat.bytes_used;
     _freeMemory = stat.bytes_free;
     _totalMemory = stat.bytes_total;
     _cpu = [self getCpuUsage];
-    [self postDebugToolUpdateAppInfoNotification];
 }
 
 - (void)postDebugToolUpdateAppInfoNotification {
@@ -430,6 +438,9 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
                                                               LLAppInfoHelperCPUKey: @(_cpu),
                                                               LLAppInfoHelperCPUDescriptionKey: [self cpuUsage],
                                                               LLAppInfoHelperFPSKey: @(_fps),
+                                                              LLAppInfoHelperStuckCountKey: @(_stuckCount),
+                                                              LLAppInfoHelperMaxIntervalKey: @(_maxInterval),
+                                                              LLAppInfoHelperMaxIntervalDescriptionKey: [self maxInterval],
                                                               LLAppInfoHelperMemoryFreeKey: @(_freeMemory),
                                                               LLAppInfoHelperMemoryFreeDescriptionKey: [self freeMemory],
                                                               LLAppInfoHelperMemoryUsedKey: @(_usedMemory),
@@ -458,11 +469,24 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
     }
 
     _count++;
+    NSTimeInterval lastFrameDelta = link.timestamp - _lastFrameTime;
+    if (lastFrameDelta > [LLDebugConfig shared].stuckTime) {
+        _stuckCount++;
+    }
+    if (_lastFrameTime != 0) {
+        _maxInterval = MAX(lastFrameDelta, _maxInterval);
+    }
+    _lastFrameTime = link.timestamp;
+
     NSTimeInterval delta = link.timestamp - _lastTime;
     if (delta < 1) return;
+    [self refreshMemory];
+    [self postDebugToolUpdateAppInfoNotification];
     _lastTime = link.timestamp;
-    _fps = _count / delta;
+    _fps = _count;
     _count = 0;
+    _stuckCount = 0;
+    _maxInterval = 0;
 }
 
 #pragma mark - Disk

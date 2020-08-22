@@ -58,7 +58,9 @@
     NSString *cpu = notification.userInfo[LLAppInfoHelperCPUDescriptionKey];
     NSString *memory = notification.userInfo[LLAppInfoHelperMemoryUsedDescriptionKey];
     NSString *fps = notification.userInfo[LLAppInfoHelperFPSKey];
-    NSString *message = [NSString stringWithFormat:@"CPU\t %@\nMEM\t %@\nFPS\t %@", cpu, memory, fps];
+    NSNumber *stuckCount = notification.userInfo[LLAppInfoHelperStuckCountKey];
+    NSString *maxInterval = notification.userInfo[LLAppInfoHelperMaxIntervalDescriptionKey];
+    NSString *message = [NSString stringWithFormat:@"CPU\t %@\nMEM\t %@\nFPS\t %@\nSTUCK\t %@\nMAX\t %@", cpu, memory, fps, stuckCount, maxInterval];
     [self.appInfoView setText:message];
     [self.delegate LLEntryViewController:self size:self.appInfoView.LL_size];
 }

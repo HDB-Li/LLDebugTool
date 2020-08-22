@@ -100,6 +100,9 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _activeDuration = kLLActiveDuration;
     _shakeToHide = YES;
 
+    // Set app info
+    _stuckTime = 33;
+
     // Set default magnifier properties.
     _magnifierZoomLevel = kLLMagnifierWindowZoomLevel;
     _magnifierSize = kLLMagnifierWindowSize;
@@ -187,6 +190,12 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 - (void)setActiveDuration:(NSTimeInterval)activeDuration {
     if (_activeDuration != activeDuration) {
         _activeDuration = LL_MAX(activeDuration, kLLMinActiveDuration);
+    }
+}
+
+- (void)setStuckTime:(NSTimeInterval)stuckTime {
+    if (_stuckTime != stuckTime) {
+        _stuckTime = LL_MAX(stuckTime, 17);
     }
 }
 

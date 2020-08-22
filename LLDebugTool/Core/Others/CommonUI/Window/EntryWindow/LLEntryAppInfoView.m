@@ -29,7 +29,7 @@
 - (void)initUI {
     [super initUI];
     self.label.numberOfLines = 0;
-    self.label.font = [UIFont boldSystemFontOfSize:18];
+    self.label.font = [UIFont boldSystemFontOfSize:16];
     [self setText:@"Debug"];
 }
 
