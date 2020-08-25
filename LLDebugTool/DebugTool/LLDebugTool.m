@@ -27,7 +27,6 @@
 
 #import "LLComponentHelper.h"
 #import "LLDebugToolMacros.h"
-#import "LLFunctionItemModel.h"
 #import "LLLogDefine.h"
 #import "LLSettingManager.h"
 #import "LLTool.h"
@@ -35,7 +34,6 @@
 
 #import "LLRouter+Log.h"
 #import "NSObject+LL_Runtime.h"
-#import "UIResponder+LL_Utils.h"
 
 NSNotificationName const LLDebugToolStartWorkingNotification = @"LLDebugToolStartWorkingNotification";
 
@@ -127,15 +125,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     // Close crash helper
     [LLRouter setCrashHelperEnable:NO];
     // hide window
-    [self hideWindow];
-}
-
-- (void)showWindow {
-    [[LLWindowManager shared] showEntryWindow];
-}
-
-- (void)hideWindow {
-    [[LLWindowManager shared] hideEntryWindow];
+    [[LLWindowManager shared] removeAllVisibleWindows];
 }
 
 - (void)executeAction:(LLDebugToolAction)action {
@@ -147,7 +137,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (NSString *)versionNumber {
-    return @"1.3.8";
+    return @"1.3.9";
 }
 
 + (BOOL)isBetaVersion {
@@ -157,25 +147,6 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 #pragma mark - Life Cycle
 - (void)dealloc {
     [self unregisterNotifications];
-}
-
-#pragma mark - LLDebugToolShakeNotification
-- (void)didReceiveDebugToolShakeNotification:(NSNotification *)notification {
-    if (!self.isWorking) {
-        return;
-    }
-
-    if ([LLComponentHelper currentAction] != LLDebugToolActionEntry) {
-        return;
-    }
-
-    if ([LLDebugConfig shared].isShakeToHide) {
-        if ([LLWindowManager shared].entryWindow.isHidden) {
-            [self showWindow];
-        } else {
-            [self hideWindow];
-        }
-    }
 }
 
 #pragma mark - LLDebugToolStartWorkingNotification
@@ -237,7 +208,6 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)registerNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolShakeNotification:) name:LLDebugToolShakeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolStartWorkingNotification:) name:LLDebugToolStartWorkingNotification object:nil];
 }
 

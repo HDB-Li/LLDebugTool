@@ -23,10 +23,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LLComponentWindow.h"
 #import "LLDebugConfig.h"
-#import "LLEntryWindow.h"
-#import "LLFunctionWindow.h"
-#import "LLSettingWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,26 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LLWindowManager : NSObject
 
 /**
- Entry window.
- */
-@property (nonatomic, strong, readonly) LLEntryWindow *entryWindow;
-
-/**
  Singleton
 
  @return LLWindowManager.
  */
 + (instancetype)shared;
-
-/**
- Show entry window.
- */
-- (void)showEntryWindow;
-
-/**
- Hide entry window.
- */
-- (void)hideEntryWindow;
 
 /**
  Show window with alpha animate if needed.
@@ -95,6 +78,11 @@ NS_ASSUME_NONNULL_BEGIN
  Current visible window.
  */
 - (LLComponentWindow *_Nullable)visibleWindow;
+
+/**
+ Remove all visible windows.
+ */
+- (void)removeAllVisibleWindows;
 
 @end
 

@@ -24,29 +24,28 @@
 
 // Function
 "function.entry" = "Main Entry";
-"function.function" = "Function";
-"function.short" = "Short Cut";
-
+"function.feature" = "Feature";
+"function.setting" = "Settings";
 "function.net" = "Net";
 "function.log" = "Log";
 "function.crash" = "Crash";
 "function.app.info" = "App Info";
 "function.sandbox" = "Sandbox";
-"function.location" = "Location";
 "function.screenshot" = "Screenshot";
 "function.convenient.screenshot" = "Convenient Screenshot";
 "function.hierarchy" = "Hierarchy";
-"function.hierarchy.detail" = "Hierarchy Details";
 "function.magnifier" = "Magnifier";
 "function.ruler" = "Ruler";
 "function.widget.border" = "Widget Border";
 "function.html" = "WebView";
+"function.location" = "Location";
 "function.short.cut" = "Short Cut";
 "function.resolution" = "Resolution";
-"function.setting" = "Settings";
-"function.detail" = "Details";
-"function.stop" = "Stop DebugTool";
-"function.alert.stop" = "Are you sure to stop?";
+
+// Feature
+"feature.short" = "Short Cut";
+"feature.stop" = "Stop DebugTool";
+"feature.alert.stop" = "Are you sure to stop?";
 
 // Setting
 "setting.short.cut" = "Short Cut";
@@ -80,6 +79,7 @@
 "copy.path.suceess" = "Copy File Path Success\n%@";
 "remove.fail" = "Remove data failed";
 "unknown" = "Unknown";
+"detail" = "Details";
 
 // Component
 "component.invalid" = "Component is invalid";
@@ -116,6 +116,7 @@
 "screenshot.save.fail" = "Save image failed";
 
 // Hierarchy
+"hierarchy.detail" = "Hierarchy Details";
 "hierarchy.parent" = "Parent Views";
 "hierarchy.subview" = "Subviews";
 "hierarchy.level" = "Other Views";

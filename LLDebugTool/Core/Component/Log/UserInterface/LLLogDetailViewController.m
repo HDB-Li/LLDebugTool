@@ -44,7 +44,7 @@ static NSString *const kLogContentCellID = @"LogContentCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = LLLocalizedString(@"function.detail");
+    self.title = LLLocalizedString(@"detail");
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LLSubTitleTableViewCell class] forCellReuseIdentifier:kLogContentCellID];
     [self loadData];

@@ -114,7 +114,7 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
     _mockRouteTimeInterval = kLLDefaultMockRouteTimeInterval;
 
     // Click action
-    _clickAction = LLDebugToolActionFunction;
+    _clickAction = LLDebugToolActionFeature;
     _doubleClickAction = LLDebugToolActionHierarchy;
 
     // Set default window's style.

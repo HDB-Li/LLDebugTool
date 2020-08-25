@@ -29,6 +29,7 @@
 `2020.07.19`
 * [ ] Fixes [99](https://github.com/HDB-Li/LLDebugTool/issues/99)、[95](https://github.com/HDB-Li/LLDebugTool/issues/95)、[91](https://github.com/HDB-Li/LLDebugTool/issues/91)
 * [ ] 优化.git大小。
+* [ ] 去掉单例。
 
 
 # Future
@@ -68,7 +69,7 @@
 ### *Other*
 
 `2020.07.19`
-* [ ] 根据使用频率动态调整Function列表顺序。
+* [ ] 根据使用频率动态调整Feature列表顺序。
 * [ ] 增加EntryWindow样式，点击直接在四周展示入口。
 * [ ] 探究Resolution的可行性。
 * [ ] 探究离屏渲染的可行性。

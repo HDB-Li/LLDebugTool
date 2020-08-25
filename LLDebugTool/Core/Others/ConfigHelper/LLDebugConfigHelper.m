@@ -23,8 +23,8 @@
 
 #import "LLDebugConfigHelper.h"
 
+#import "LLComponentHelper.h"
 #import "LLDebugConfig.h"
-#import "LLFunctionItemModel.h"
 #import "LLThemeManager.h"
 #import "LLTool.h"
 
@@ -159,7 +159,7 @@
 }
 
 + (NSString *)componentDescription:(LLDebugToolAction)action {
-    return [[LLFunctionItemModel alloc] initWithAction:action].title;
+    return [LLComponentHelper titleFromAction:action];
 }
 
 @end

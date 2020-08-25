@@ -130,7 +130,7 @@
 		36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DDED7523331967008DD7F9 /* LLDetailTitleCell.m */; };
 		36E248882123BAE300D03F44 /* LLDebugToolDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248872123BAE300D03F44 /* LLDebugToolDemoTests.m */; };
 		36E248962123BAE900D03F44 /* LLDebugToolDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */; };
-		36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E493832303E7D700B89F41 /* LLFunctionComponent.m */; };
+		36E493842303E7D700B89F41 /* LLFeatureComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E493832303E7D700B89F41 /* LLFeatureComponent.m */; };
 		36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E5602623331FA100B8D388 /* LLBaseTableViewController.m */; };
 		36E90D042339F4D400ED43B3 /* NSObject+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E90D032339F4D400ED43B3 /* NSObject+LL_Hierarchy.m */; };
 		36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F30D992301699E00976937 /* LLEntryViewController.m */; };
@@ -180,7 +180,7 @@
 		C472443E24128FED00F623CD /* NSMutableArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */; };
 		C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C47244402412A44900F623CD /* LLInternalMacrosTool.m */; };
 		C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */; };
-		C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Function.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Function.m */; };
+		C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Feature.m */; };
 		C47D28E624B62CF000E6BFF9 /* LLWindowManager+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E524B62CF000E6BFF9 /* LLWindowManager+Setting.m */; };
 		C49141AE24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141AD24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m */; };
 		C49141B124E91E4400A6E977 /* UITextField+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141B024E91E4400A6E977 /* UITextField+LL_Hierarchy.m */; };
@@ -292,11 +292,11 @@
 		C4B4E45F22F9C90900F70277 /* LLFilterLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F622F9C90900F70277 /* LLFilterLabelCell.m */; };
 		C4B4E46022F9C90900F70277 /* LLFilterEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3F722F9C90900F70277 /* LLFilterEventView.m */; };
 		C4B4E46122F9C90900F70277 /* LLFilterLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E3FA22F9C90900F70277 /* LLFilterLabelModel.m */; };
-		C4B4E46222F9C90900F70277 /* LLFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40022F9C90900F70277 /* LLFunctionViewController.m */; };
-		C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40322F9C90900F70277 /* LLFunctionWindow.m */; };
-		C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40422F9C90900F70277 /* LLFunctionItemContainerView.m */; };
-		C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */; };
-		C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */; };
+		C4B4E46222F9C90900F70277 /* LLFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40022F9C90900F70277 /* LLFeatureViewController.m */; };
+		C4B4E46322F9C90900F70277 /* LLFeatureWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40322F9C90900F70277 /* LLFeatureWindow.m */; };
+		C4B4E46422F9C90900F70277 /* LLFeatureItemContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40422F9C90900F70277 /* LLFeatureItemContainerView.m */; };
+		C4B4E46522F9C90900F70277 /* LLFeatureItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40622F9C90900F70277 /* LLFeatureItemView.m */; };
+		C4B4E46622F9C90900F70277 /* LLFeatureItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E40722F9C90900F70277 /* LLFeatureItemModel.m */; };
 		C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41622F9C90900F70277 /* LLEntryWindow.m */; };
 		C4B4E46D22F9C90900F70277 /* LLComponentWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41822F9C90900F70277 /* LLComponentWindow.m */; };
 		C4B4E46E22F9C90900F70277 /* LLBaseWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E41B22F9C90900F70277 /* LLBaseWindow.m */; };
@@ -312,6 +312,8 @@
 		C4B4E47A22F9C90900F70277 /* LLFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E43522F9C90900F70277 /* LLFactory.m */; };
 		C4B4E47B22F9C90900F70277 /* LLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B4E43822F9C90900F70277 /* LLTool.m */; };
 		C4BA3CF624B2220A00D73AB3 /* LLEntryComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BA3CF524B2220A00D73AB3 /* LLEntryComponent.m */; };
+		C4C4013724F2AE4600D432ED /* LLWindowManager+Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4013624F2AE4600D432ED /* LLWindowManager+Entry.m */; };
+		C4C4013B24F2B23A00D432ED /* LLEntryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4013A24F2B23A00D432ED /* LLEntryHelper.m */; };
 		C4C4F828248CE93F00558753 /* LLDebugTool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F81D248CE93E00558753 /* LLDebugTool.jpg */; };
 		C4C4F829248CE93F00558753 /* LLDebugTool.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F81E248CE93E00558753 /* LLDebugTool.png */; };
 		C4C4F82A248CE93F00558753 /* LLDebugTool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F81F248CE93E00558753 /* LLDebugTool.plist */; };
@@ -587,8 +589,8 @@
 		36E248932123BAE900D03F44 /* LLDebugToolDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugToolDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36E248952123BAE900D03F44 /* LLDebugToolDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolDemoUITests.m; sourceTree = "<group>"; };
 		36E248972123BAE900D03F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36E493822303E7D700B89F41 /* LLFunctionComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFunctionComponent.h; sourceTree = "<group>"; };
-		36E493832303E7D700B89F41 /* LLFunctionComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFunctionComponent.m; sourceTree = "<group>"; };
+		36E493822303E7D700B89F41 /* LLFeatureComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFeatureComponent.h; sourceTree = "<group>"; };
+		36E493832303E7D700B89F41 /* LLFeatureComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureComponent.m; sourceTree = "<group>"; };
 		36E5602523331FA100B8D388 /* LLBaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTableViewController.h; sourceTree = "<group>"; };
 		36E5602623331FA100B8D388 /* LLBaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewController.m; sourceTree = "<group>"; };
 		36E90D022339F4D400ED43B3 /* NSObject+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+LL_Hierarchy.h"; sourceTree = "<group>"; };
@@ -691,8 +693,8 @@
 		C47244402412A44900F623CD /* LLInternalMacrosTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInternalMacrosTool.m; sourceTree = "<group>"; };
 		C47BD66024AA42D300F63D93 /* LLEntryViewController+AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLEntryViewController+AppInfo.h"; sourceTree = "<group>"; };
 		C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLEntryViewController+AppInfo.m"; sourceTree = "<group>"; };
-		C47D28E124B62C7E00E6BFF9 /* LLWindowManager+Function.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Function.h"; sourceTree = "<group>"; };
-		C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Function.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Function.m"; sourceTree = "<group>"; };
+		C47D28E124B62C7E00E6BFF9 /* LLWindowManager+Feature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Feature.h"; sourceTree = "<group>"; };
+		C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Feature.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Feature.m"; sourceTree = "<group>"; };
 		C47D28E424B62CF000E6BFF9 /* LLWindowManager+Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Setting.h"; sourceTree = "<group>"; };
 		C47D28E524B62CF000E6BFF9 /* LLWindowManager+Setting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Setting.m"; sourceTree = "<group>"; };
 		C49141AC24E91D8300A6E977 /* UIImageView+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LL_Hierarchy.h"; sourceTree = "<group>"; };
@@ -922,16 +924,16 @@
 		C4B4E3F922F9C90900F70277 /* LLFilterDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterDateView.h; sourceTree = "<group>"; };
 		C4B4E3FA22F9C90900F70277 /* LLFilterLabelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFilterLabelModel.m; sourceTree = "<group>"; };
 		C4B4E3FB22F9C90900F70277 /* LLFilterTextFieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFilterTextFieldModel.h; sourceTree = "<group>"; };
-		C4B4E3FE22F9C90900F70277 /* LLFunctionWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFunctionWindow.h; sourceTree = "<group>"; };
-		C4B4E3FF22F9C90900F70277 /* LLFunctionItemContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFunctionItemContainerView.h; sourceTree = "<group>"; };
-		C4B4E40022F9C90900F70277 /* LLFunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionViewController.m; sourceTree = "<group>"; };
-		C4B4E40122F9C90900F70277 /* LLFunctionItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFunctionItemModel.h; sourceTree = "<group>"; };
-		C4B4E40222F9C90900F70277 /* LLFunctionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFunctionItemView.h; sourceTree = "<group>"; };
-		C4B4E40322F9C90900F70277 /* LLFunctionWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionWindow.m; sourceTree = "<group>"; };
-		C4B4E40422F9C90900F70277 /* LLFunctionItemContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItemContainerView.m; sourceTree = "<group>"; };
-		C4B4E40522F9C90900F70277 /* LLFunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFunctionViewController.h; sourceTree = "<group>"; };
-		C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItemView.m; sourceTree = "<group>"; };
-		C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFunctionItemModel.m; sourceTree = "<group>"; };
+		C4B4E3FE22F9C90900F70277 /* LLFeatureWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFeatureWindow.h; sourceTree = "<group>"; };
+		C4B4E3FF22F9C90900F70277 /* LLFeatureItemContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFeatureItemContainerView.h; sourceTree = "<group>"; };
+		C4B4E40022F9C90900F70277 /* LLFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFeatureViewController.m; sourceTree = "<group>"; };
+		C4B4E40122F9C90900F70277 /* LLFeatureItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFeatureItemModel.h; sourceTree = "<group>"; };
+		C4B4E40222F9C90900F70277 /* LLFeatureItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFeatureItemView.h; sourceTree = "<group>"; };
+		C4B4E40322F9C90900F70277 /* LLFeatureWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFeatureWindow.m; sourceTree = "<group>"; };
+		C4B4E40422F9C90900F70277 /* LLFeatureItemContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFeatureItemContainerView.m; sourceTree = "<group>"; };
+		C4B4E40522F9C90900F70277 /* LLFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLFeatureViewController.h; sourceTree = "<group>"; };
+		C4B4E40622F9C90900F70277 /* LLFeatureItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFeatureItemView.m; sourceTree = "<group>"; };
+		C4B4E40722F9C90900F70277 /* LLFeatureItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLFeatureItemModel.m; sourceTree = "<group>"; };
 		C4B4E41522F9C90900F70277 /* LLEntryWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLEntryWindow.h; sourceTree = "<group>"; };
 		C4B4E41622F9C90900F70277 /* LLEntryWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLEntryWindow.m; sourceTree = "<group>"; };
 		C4B4E41822F9C90900F70277 /* LLComponentWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLComponentWindow.m; sourceTree = "<group>"; };
@@ -962,6 +964,13 @@
 		C4B4E43922F9C90900F70277 /* LLTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTool.h; sourceTree = "<group>"; };
 		C4BA3CF424B2220A00D73AB3 /* LLEntryComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryComponent.h; sourceTree = "<group>"; };
 		C4BA3CF524B2220A00D73AB3 /* LLEntryComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryComponent.m; sourceTree = "<group>"; };
+		C4C4013124F25E8E00D432ED /* LLEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntry.h; sourceTree = "<group>"; };
+		C4C4013224F25ED100D432ED /* LLFeature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFeature.h; sourceTree = "<group>"; };
+		C4C4013424F25F6200D432ED /* LLSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSetting.h; sourceTree = "<group>"; };
+		C4C4013524F2AE4600D432ED /* LLWindowManager+Entry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Entry.h"; sourceTree = "<group>"; };
+		C4C4013624F2AE4600D432ED /* LLWindowManager+Entry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Entry.m"; sourceTree = "<group>"; };
+		C4C4013924F2B23A00D432ED /* LLEntryHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryHelper.h; sourceTree = "<group>"; };
+		C4C4013A24F2B23A00D432ED /* LLEntryHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryHelper.m; sourceTree = "<group>"; };
 		C4C4F81D248CE93E00558753 /* LLDebugTool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LLDebugTool.jpg; sourceTree = "<group>"; };
 		C4C4F81E248CE93E00558753 /* LLDebugTool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LLDebugTool.png; sourceTree = "<group>"; };
 		C4C4F81F248CE93E00558753 /* LLDebugTool.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LLDebugTool.plist; sourceTree = "<group>"; };
@@ -1060,10 +1069,13 @@
 		36059403237AB0B100C2D8FF /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				C4CA96B224B1DBF300F78E1B /* Component */,
-				C4BA3CF324B221C700D73AB3 /* Entry */,
-				C4B4E3FD22F9C90900F70277 /* Function */,
-				36AB4494231F9CD600AC772B /* Setting */,
+				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
+				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
+				360075DF23556DAF00A606AC /* LLComponentDelegate.h */,
+				C4CA96AF24B1D8B400F78E1B /* LLComponentHelper.h */,
+				C4CA96B024B1D8B400F78E1B /* LLComponentHelper.m */,
+				C4B4E42522F9C90900F70277 /* LLComponentWindow.h */,
+				C4B4E41822F9C90900F70277 /* LLComponentWindow.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1260,22 +1272,13 @@
 			path = UIResponder;
 			sourceTree = "<group>";
 		};
-		3668D0C72303BAF400D58C0B /* SettingManager */ = {
+		3668D0C72303BAF400D58C0B /* Function */ = {
 			isa = PBXGroup;
 			children = (
 				3668D0C82303BB1F00D58C0B /* LLSettingManager.h */,
 				3668D0C92303BB1F00D58C0B /* LLSettingManager.m */,
 			);
-			path = SettingManager;
-			sourceTree = "<group>";
-		};
-		366BC49B233C6463009BDA4A /* Window */ = {
-			isa = PBXGroup;
-			children = (
-				36DA3B862340504D0081BCC6 /* ComponentWindow */,
-				C4B4E41422F9C90900F70277 /* EntryWindow */,
-			);
-			path = Window;
+			path = Function;
 			sourceTree = "<group>";
 		};
 		368CB9DE233DFC22009DFFDB /* Model */ = {
@@ -1304,16 +1307,6 @@
 				3694F873233899E4007B07CA /* LLEnumDescription.m */,
 			);
 			path = EnumDescription;
-			sourceTree = "<group>";
-		};
-		36AB4494231F9CD600AC772B /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				360AE6342330DBEE0073FECD /* UserInterface */,
-				360AE6352330DC160073FECD /* LLSettingComponent.h */,
-				360AE6362330DC160073FECD /* LLSettingComponent.m */,
-			);
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		36B5EC7C2340512400736213 /* AnimateView */ = {
@@ -1509,15 +1502,6 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
-		36DA3B862340504D0081BCC6 /* ComponentWindow */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4E42522F9C90900F70277 /* LLComponentWindow.h */,
-				C4B4E41822F9C90900F70277 /* LLComponentWindow.m */,
-			);
-			path = ComponentWindow;
-			sourceTree = "<group>";
-		};
 		36DA3B872340508D0081BCC6 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1566,18 +1550,18 @@
 		36E493812303E7B700B89F41 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				C4B4E3FE22F9C90900F70277 /* LLFunctionWindow.h */,
-				C4B4E40322F9C90900F70277 /* LLFunctionWindow.m */,
-				C4B4E40522F9C90900F70277 /* LLFunctionViewController.h */,
-				C4B4E40022F9C90900F70277 /* LLFunctionViewController.m */,
-				C4B4E40222F9C90900F70277 /* LLFunctionItemView.h */,
-				C4B4E40622F9C90900F70277 /* LLFunctionItemView.m */,
-				C4B4E40122F9C90900F70277 /* LLFunctionItemModel.h */,
-				C4B4E40722F9C90900F70277 /* LLFunctionItemModel.m */,
-				C4B4E3FF22F9C90900F70277 /* LLFunctionItemContainerView.h */,
-				C4B4E40422F9C90900F70277 /* LLFunctionItemContainerView.m */,
-				C47D28E124B62C7E00E6BFF9 /* LLWindowManager+Function.h */,
-				C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Function.m */,
+				C4B4E3FE22F9C90900F70277 /* LLFeatureWindow.h */,
+				C4B4E40322F9C90900F70277 /* LLFeatureWindow.m */,
+				C4B4E40522F9C90900F70277 /* LLFeatureViewController.h */,
+				C4B4E40022F9C90900F70277 /* LLFeatureViewController.m */,
+				C4B4E40222F9C90900F70277 /* LLFeatureItemView.h */,
+				C4B4E40622F9C90900F70277 /* LLFeatureItemView.m */,
+				C4B4E40122F9C90900F70277 /* LLFeatureItemModel.h */,
+				C4B4E40722F9C90900F70277 /* LLFeatureItemModel.m */,
+				C4B4E3FF22F9C90900F70277 /* LLFeatureItemContainerView.h */,
+				C4B4E40422F9C90900F70277 /* LLFeatureItemContainerView.m */,
+				C47D28E124B62C7E00E6BFF9 /* LLWindowManager+Feature.h */,
+				C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Feature.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1834,6 +1818,9 @@
 		C498561222ED8D4700E9FBE2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				C4C4013024F25E3F00D432ED /* Entry */,
+				C4C4012F24F25E3A00D432ED /* Feature */,
+				C4C4012E24F25E3300D432ED /* Setting */,
 				C498563322ED8D4700E9FBE2 /* Network */,
 				C498566822ED8D4800E9FBE2 /* Log */,
 				C498564722ED8D4700E9FBE2 /* Crash */,
@@ -2228,21 +2215,22 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				C413AE8223995CE0001EB1F9 /* JsonTool */,
-				361C383B238268E700487FA4 /* Proxy */,
-				36B8563B237BA9E600210B94 /* Router */,
+				C4B4E39122F9C90900F70277 /* Category */,
+				C4B4E3D822F9C90900F70277 /* CommonUI */,
 				36059403237AB0B100C2D8FF /* Component */,
 				36BB1E1C2320E88A000D8F29 /* ConfigHelper */,
-				36DC10FA22FA60AA0078B7BC /* ToastUtils */,
-				C4B4E38F22F9C90900F70277 /* Define */,
-				C4B4E39122F9C90900F70277 /* Category */,
 				C4B4E3C722F9C90900F70277 /* Const */,
-				C4B4E3CA22F9C90900F70277 /* Manager */,
-				C4B4E3D622F9C90900F70277 /* Macros */,
-				C4B4E3D822F9C90900F70277 /* CommonUI */,
-				C4B4E42E22F9C90900F70277 /* FormatterTool */,
-				C4B4E43122F9C90900F70277 /* Resource */,
+				C4B4E38F22F9C90900F70277 /* Define */,
 				C4B4E43422F9C90900F70277 /* Factory */,
+				C4B4E42E22F9C90900F70277 /* FormatterTool */,
+				C413AE8223995CE0001EB1F9 /* JsonTool */,
+				C4B4E3D622F9C90900F70277 /* Macros */,
+				C4B4E3CA22F9C90900F70277 /* Manager */,
+				361C383B238268E700487FA4 /* Proxy */,
+				C4B4E43122F9C90900F70277 /* Resource */,
+				36B8563B237BA9E600210B94 /* Router */,
+				C4C4013324F25F3500D432ED /* Theme */,
+				36DC10FA22FA60AA0078B7BC /* ToastUtils */,
 				C4B4E43722F9C90900F70277 /* Tool */,
 			);
 			path = Others;
@@ -2427,9 +2415,7 @@
 		C4B4E3CA22F9C90900F70277 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				3668D0C72303BAF400D58C0B /* SettingManager */,
 				C4B4E3D022F9C90900F70277 /* WindowManager */,
-				C4B4E3D322F9C90900F70277 /* ThemeManager */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2441,17 +2427,6 @@
 				C4B4E3D122F9C90900F70277 /* LLWindowManager.m */,
 			);
 			path = WindowManager;
-			sourceTree = "<group>";
-		};
-		C4B4E3D322F9C90900F70277 /* ThemeManager */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4E3D522F9C90900F70277 /* LLThemeManager.h */,
-				C4B4E3D422F9C90900F70277 /* LLThemeManager.m */,
-				3652EDF22387D0BD00D5D531 /* LLThemeColor.h */,
-				3652EDF32387D0BD00D5D531 /* LLThemeColor.m */,
-			);
-			path = ThemeManager;
 			sourceTree = "<group>";
 		};
 		C4B4E3D622F9C90900F70277 /* Macros */ = {
@@ -2468,7 +2443,6 @@
 			isa = PBXGroup;
 			children = (
 				368CB9DE233DFC22009DFFDB /* Model */,
-				366BC49B233C6463009BDA4A /* Window */,
 				364CF3D6232656FC000B513F /* View */,
 				C4B4E3FC22F9C90900F70277 /* ViewController */,
 				C4B4E41722F9C90900F70277 /* Base */,
@@ -2543,17 +2517,7 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C4B4E3FD22F9C90900F70277 /* Function */ = {
-			isa = PBXGroup;
-			children = (
-				36E493812303E7B700B89F41 /* UserInterface */,
-				36E493822303E7D700B89F41 /* LLFunctionComponent.h */,
-				36E493832303E7D700B89F41 /* LLFunctionComponent.m */,
-			);
-			path = Function;
-			sourceTree = "<group>";
-		};
-		C4B4E41422F9C90900F70277 /* EntryWindow */ = {
+		C4B4E41422F9C90900F70277 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
 				C4B4E41522F9C90900F70277 /* LLEntryWindow.h */,
@@ -2572,8 +2536,10 @@
 				36BC8E2A231D1C3B00E4D29B /* LLEntryBigTitleView.m */,
 				C46FC33B249F54A600529169 /* LLEntryAppInfoView.h */,
 				C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */,
+				C4C4013524F2AE4600D432ED /* LLWindowManager+Entry.h */,
+				C4C4013624F2AE4600D432ED /* LLWindowManager+Entry.m */,
 			);
-			path = EntryWindow;
+			path = UserInterface;
 			sourceTree = "<group>";
 		};
 		C4B4E41722F9C90900F70277 /* Base */ = {
@@ -2633,13 +2599,59 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
-		C4BA3CF324B221C700D73AB3 /* Entry */ = {
+		C4C4012E24F25E3300D432ED /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				C4C4013424F25F6200D432ED /* LLSetting.h */,
+				360AE6352330DC160073FECD /* LLSettingComponent.h */,
+				360AE6362330DC160073FECD /* LLSettingComponent.m */,
+				3668D0C72303BAF400D58C0B /* Function */,
+				360AE6342330DBEE0073FECD /* UserInterface */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C4C4012F24F25E3A00D432ED /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				C4C4013224F25ED100D432ED /* LLFeature.h */,
+				36E493822303E7D700B89F41 /* LLFeatureComponent.h */,
+				36E493832303E7D700B89F41 /* LLFeatureComponent.m */,
+				36E493812303E7B700B89F41 /* UserInterface */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		C4C4013024F25E3F00D432ED /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				C4C4013124F25E8E00D432ED /* LLEntry.h */,
 				C4BA3CF424B2220A00D73AB3 /* LLEntryComponent.h */,
 				C4BA3CF524B2220A00D73AB3 /* LLEntryComponent.m */,
+				C4C4013824F2B22900D432ED /* Function */,
+				C4B4E41422F9C90900F70277 /* UserInterface */,
 			);
 			path = Entry;
+			sourceTree = "<group>";
+		};
+		C4C4013324F25F3500D432ED /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4E3D522F9C90900F70277 /* LLThemeManager.h */,
+				C4B4E3D422F9C90900F70277 /* LLThemeManager.m */,
+				3652EDF22387D0BD00D5D531 /* LLThemeColor.h */,
+				3652EDF32387D0BD00D5D531 /* LLThemeColor.m */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		C4C4013824F2B22900D432ED /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4C4013924F2B23A00D432ED /* LLEntryHelper.h */,
+				C4C4013A24F2B23A00D432ED /* LLEntryHelper.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		C4CA96AD24AF776400F78E1B /* Prepare */ = {
@@ -2675,18 +2687,6 @@
 				C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */,
 			);
 			path = Preview;
-			sourceTree = "<group>";
-		};
-		C4CA96B224B1DBF300F78E1B /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				360075DF23556DAF00A606AC /* LLComponentDelegate.h */,
-				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
-				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
-				C4CA96AF24B1D8B400F78E1B /* LLComponentHelper.h */,
-				C4CA96B024B1D8B400F78E1B /* LLComponentHelper.m */,
-			);
-			path = Component;
 			sourceTree = "<group>";
 		};
 		C4D51D6823E9A88D009DAB1A /* MoveWindow */ = {
@@ -3046,7 +3046,7 @@
 				C413AE8823995DD9001EB1F9 /* LLSandboxTextPreviewController.m in Sources */,
 				C49141AE24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m in Sources */,
 				C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */,
-				C4B4E46322F9C90900F70277 /* LLFunctionWindow.m in Sources */,
+				C4B4E46322F9C90900F70277 /* LLFeatureWindow.m in Sources */,
 				36C9F800237E7E080021BA2D /* LLLocationViewController.m in Sources */,
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
 				C4B4E44422F9C90900F70277 /* UIDevice+LL_AppInfo.m in Sources */,
@@ -3068,7 +3068,7 @@
 				C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */,
 				C49141E124E9585800A6E977 /* UINavigationBar+LL_Hierarchy.m in Sources */,
 				3605940C237AB69E00C2D8FF /* LLWindowManager+Log.m in Sources */,
-				C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Function.m in Sources */,
+				C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Feature.m in Sources */,
 				C498569422ED8D4800E9FBE2 /* LLNetworkDetailViewController.m in Sources */,
 				C4379AAD239CB7F8006D5F59 /* LLLocationMockRouteModel.m in Sources */,
 				36C9F7FA237E7DD50021BA2D /* LLLocationHelper.m in Sources */,
@@ -3147,7 +3147,7 @@
 				C4B4E44A22F9C90900F70277 /* NSObject+LL_Utils.m in Sources */,
 				C4D82E0F2454156D00399D44 /* LLHierarchyBorderView.m in Sources */,
 				C498569A22ED8D4800E9FBE2 /* LLCrashViewController.m in Sources */,
-				36E493842303E7D700B89F41 /* LLFunctionComponent.m in Sources */,
+				36E493842303E7D700B89F41 /* LLFeatureComponent.m in Sources */,
 				36E90D042339F4D400ED43B3 /* NSObject+LL_Hierarchy.m in Sources */,
 				36AB449E231FC5D800AC772B /* LLTitleCellCategoryModel.m in Sources */,
 				C46F0CBA244C29D800815D59 /* LLHierarchySheetReuseView.m in Sources */,
@@ -3184,7 +3184,7 @@
 				36C9F80A237E8A340021BA2D /* LLTitleCellView.m in Sources */,
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
 				362F87AE232660A000A27F05 /* LLRulerViewController.m in Sources */,
-				C4B4E46622F9C90900F70277 /* LLFunctionItemModel.m in Sources */,
+				C4B4E46622F9C90900F70277 /* LLFeatureItemModel.m in Sources */,
 				C49141CF24E9427900A6E977 /* UITableViewCell+LL_Hierarchy.m in Sources */,
 				3600762D2355AEE500A606AC /* LLComponentNavigationController.m in Sources */,
 				36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */,
@@ -3210,9 +3210,10 @@
 				C49856C222ED909F00E9FBE2 /* LLCrashModel.m in Sources */,
 				36059412237AB73800C2D8FF /* LLWindowManager+Sandbox.m in Sources */,
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
-				C4B4E46522F9C90900F70277 /* LLFunctionItemView.m in Sources */,
+				C4B4E46522F9C90900F70277 /* LLFeatureItemView.m in Sources */,
 				C49141D224E942A200A6E977 /* UICollectionView+LL_Hierarchy.m in Sources */,
 				C4278D062438C8BC00D14CFA /* LLRouter+Resolution.m in Sources */,
+				C4C4013724F2AE4600D432ED /* LLWindowManager+Entry.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */,
 				360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */,
@@ -3242,7 +3243,7 @@
 				C4B4E47222F9C90900F70277 /* LLBaseComponentViewController.m in Sources */,
 				C49856D122ED90C800E9FBE2 /* LLLogHelper.m in Sources */,
 				365912542320BD0C00FDA6A0 /* LLTitleHeaderView.m in Sources */,
-				C4B4E46222F9C90900F70277 /* LLFunctionViewController.m in Sources */,
+				C4B4E46222F9C90900F70277 /* LLFeatureViewController.m in Sources */,
 				C4B4E47A22F9C90900F70277 /* LLFactory.m in Sources */,
 				C498570722EDB3EF00E9FBE2 /* LLHierarchyComponent.m in Sources */,
 				3624D3FB23839DD700DBE692 /* TestLocationViewController.m in Sources */,
@@ -3257,6 +3258,7 @@
 				C49141E424E9587800A6E977 /* UIToolbar+LL_Hierarchy.m in Sources */,
 				C49856AA22ED8D4800E9FBE2 /* LLLogCell.m in Sources */,
 				C49856A822ED8D4800E9FBE2 /* LLLogViewController.m in Sources */,
+				C4C4013B24F2B23A00D432ED /* LLEntryHelper.m in Sources */,
 				C498569C22ED8D4800E9FBE2 /* LLCrashDetailViewController.m in Sources */,
 				C4B4E45022F9C90900F70277 /* LLWindowManager.m in Sources */,
 				C434C7A4239B913200D35EC8 /* LLSandboxVideoPreviewController.m in Sources */,
@@ -3273,7 +3275,7 @@
 				C406173B2431034700663B46 /* UIScreen+LL_Resolution.m in Sources */,
 				C49856AD22ED8D4800E9FBE2 /* LLAppInfoViewController.m in Sources */,
 				C4B4E43D22F9C90900F70277 /* UIWindow+LL_Utils.m in Sources */,
-				C4B4E46422F9C90900F70277 /* LLFunctionItemContainerView.m in Sources */,
+				C4B4E46422F9C90900F70277 /* LLFeatureItemContainerView.m in Sources */,
 				C42EB0722430F42E00BD1CE2 /* LLWindowManager+Resolution.m in Sources */,
 				C49141E724E9786500A6E977 /* UITabBar+LL_Hierarchy.m in Sources */,
 				36BC8E28231D1BDB00E4D29B /* LLEntryTitleView.m in Sources */,

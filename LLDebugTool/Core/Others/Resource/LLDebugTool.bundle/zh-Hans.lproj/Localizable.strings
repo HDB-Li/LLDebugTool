@@ -24,29 +24,28 @@
 
 // Function
 "function.entry" = "主界面";
-"function.function" = "常用功能";
-"function.short" = "快捷功能";
-
+"function.feature" = "常用功能";
+"function.setting" = "设置";
 "function.net" = "网络请求";
 "function.log" = "日志";
 "function.crash" = "崩溃信息";
 "function.app.info" = "应用信息";
 "function.sandbox" = "沙盒文件";
-"function.location" = "模拟定位";
 "function.screenshot" = "截屏";
 "function.convenient.screenshot" = "快速截屏";
 "function.hierarchy" = "视图结构";
-"function.hierarchy.detail" = "视图详情";
 "function.magnifier" = "放大镜";
 "function.ruler" = "格尺";
 "function.widget.border" = "元素边框";
 "function.html" = "WebView";
+"function.location" = "模拟定位";
 "function.short.cut" = "快捷操作";
 "function.resolution" = "分辨率";
-"function.setting" = "设置";
-"function.detail" = "详情";
-"function.stop" = "停用DebugTool";
-"function.alert.stop" = "确定停用么？";
+
+// Feature
+"feature.short" = "快捷功能";
+"feature.stop" = "停用DebugTool";
+"feature.alert.stop" = "确定停用么？";
 
 // Setting
 "setting.short.cut" = "快捷操作";
@@ -80,6 +79,7 @@
 "copy.path.suceess" = "复制文件路径成功\n%@";
 "remove.fail" = "删除数据失败";
 "unknown" = "未知";
+"detail" = "详情";
 
 // Component
 "component.invalid" = "组件无效";
@@ -116,6 +116,7 @@
 "screenshot.save.fail" = "保存图片失败";
 
 // Hierarchy
+"hierarchy.detail" = "视图详情";
 "hierarchy.parent" = "父视图";
 "hierarchy.subview" = "子视图";
 "hierarchy.level" = "其他视图";

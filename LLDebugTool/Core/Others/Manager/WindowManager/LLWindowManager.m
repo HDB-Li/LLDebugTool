@@ -23,6 +23,7 @@
 
 #import "LLWindowManager.h"
 
+#import "LLComponentHelper.h"
 #import "LLComponentWindow.h"
 #import "LLConst.h"
 #import "LLDebugConfig.h"
@@ -35,8 +36,6 @@
 static LLWindowManager *_instance = nil;
 
 @interface LLWindowManager ()
-
-@property (nonatomic, strong) LLEntryWindow *entryWindow;
 
 @property (nonatomic, assign) UIWindowLevel presentWindowLevel;
 
@@ -63,14 +62,6 @@ static LLWindowManager *_instance = nil;
     return _instance;
 }
 
-- (void)showEntryWindow {
-    [self addWindow:self.entryWindow animated:YES completion:nil];
-}
-
-- (void)hideEntryWindow {
-    [self removeAllVisibleWindows];
-}
-
 - (void)showWindow:(LLComponentWindow *)window animated:(BOOL)animated {
     [self showWindow:window animated:animated completion:nil];
 }
@@ -89,6 +80,13 @@ static LLWindowManager *_instance = nil;
 
 - (LLComponentWindow *)visibleWindow {
     return [self.visibleWindows lastObject];
+}
+
+- (void)removeAllVisibleWindows {
+    for (LLComponentWindow *window in self.visibleWindows) {
+        [self removeWindow:window animated:YES showEntry:NO completion:nil];
+    }
+    [self.visibleWindows removeAllObjects];
 }
 
 #pragma mark - Primary
@@ -129,7 +127,7 @@ static LLWindowManager *_instance = nil;
 - (void)recordKeywindowAndStatusBar:(UIWindow *)window animated:(BOOL)animated {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    if (window == self.entryWindow) {
+    if ([window isKindOfClass:NSClassFromString(@"LLEnryWindow")]) {
         if (self.keyWindow) {
             [self.keyWindow makeKeyWindow];
             self.keyWindow = nil;
@@ -249,28 +247,13 @@ static LLWindowManager *_instance = nil;
     }
 }
 
-- (void)removeAllVisibleWindows {
-    for (LLComponentWindow *window in self.visibleWindows) {
-        [self removeWindow:window animated:YES showEntry:NO completion:nil];
-    }
-    [self.visibleWindows removeAllObjects];
-}
-
 - (void)removeVisibleWindow:(LLComponentWindow *)window showEntry:(BOOL)showEntry {
     [self.visibleWindows removeObject:window];
     if (showEntry) {
         if (self.visibleWindows.count == 0) {
-            [self showEntryWindow];
+            [LLComponentHelper executeAction:LLDebugToolActionEntry data:nil];
         }
     }
-}
-
-#pragma mark - Lazy
-- (LLEntryWindow *)entryWindow {
-    if (!_entryWindow) {
-        _entryWindow = (LLEntryWindow *)[[self class] createWindowWithClassName:NSStringFromClass([LLEntryWindow class]) action:LLDebugToolActionEntry];
-    }
-    return _entryWindow;
 }
 
 @end

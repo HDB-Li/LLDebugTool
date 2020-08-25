@@ -80,7 +80,7 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
  Action enums.
  
  - LLDebugToolActionEntry: Show entry window.
- - LLDebugToolActionFunction: Show function window.
+ - LLDebugToolActionFeature: Show feature function.
  - LLDebugToolActionSetting: Show setting function.
  - LLDebugToolActionNetwork: Network function.
  - LLDebugToolActionLog: Log function.
@@ -100,7 +100,7 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionEntry,
-    LLDebugToolActionFunction,
+    LLDebugToolActionFeature,
     LLDebugToolActionSetting,
     LLDebugToolActionNetwork,
     LLDebugToolActionLog,
@@ -355,7 +355,7 @@ Whether show widget border. Default is NO.
 
 #pragma mark - Click Event
 /**
- Click action. Default is LLDebugToolActionFunction.
+ Click action. Default is LLDebugToolActionFeature.
 */
 @property (nonatomic, assign, readonly) LLDebugToolAction clickAction;
 
