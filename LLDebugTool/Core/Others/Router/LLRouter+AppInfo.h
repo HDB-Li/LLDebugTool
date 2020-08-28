@@ -33,6 +33,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// Call by AppInfoHelper if able.
 + (NSString *_Nullable)appInfoDescription;
 
++ (void)addAppInfoObserver:(id)observer selector:(SEL)aSelector;
+
++ (void)removeAppInfoObserver:(id)observer;
+
++ (NSString *)analysisAppInfoNotification:(NSNotification *)notification;
+
 @end
 
 NS_ASSUME_NONNULL_END

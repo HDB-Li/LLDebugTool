@@ -179,7 +179,6 @@
 		C46FC33D249F54A600529169 /* LLEntryAppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */; };
 		C472443E24128FED00F623CD /* NSMutableArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */; };
 		C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C47244402412A44900F623CD /* LLInternalMacrosTool.m */; };
-		C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */; };
 		C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Feature.m */; };
 		C47D28E624B62CF000E6BFF9 /* LLWindowManager+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E524B62CF000E6BFF9 /* LLWindowManager+Setting.m */; };
 		C49141AE24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141AD24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m */; };
@@ -325,6 +324,8 @@
 		C4C4F830248CE93F00558753 /* LLDebugTool.json in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F825248CE93F00558753 /* LLDebugTool.json */; };
 		C4C4F831248CE93F00558753 /* LLDebugTool.md in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F826248CE93F00558753 /* LLDebugTool.md */; };
 		C4C4F832248CE93F00558753 /* LLDebugTool.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F827248CE93F00558753 /* LLDebugTool.pdf */; };
+		C4C7985E24F56D78003D4C46 /* LLRouter+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C7985D24F56D78003D4C46 /* LLRouter+Setting.m */; };
+		C4C7986124F56E7B003D4C46 /* LLSettingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C7986024F56E7B003D4C46 /* LLSettingHelper.m */; };
 		C4CA96AC24AF770200F78E1B /* LLScreenshotPreviewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA96AB24AF770200F78E1B /* LLScreenshotPreviewWindow.m */; };
 		C4CA96B124B1D8B400F78E1B /* LLComponentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA96B024B1D8B400F78E1B /* LLComponentHelper.m */; };
 		C4CF72F3239AB3F100B2C4DC /* LLSandboxImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F2239AB3F100B2C4DC /* LLSandboxImagePreviewController.m */; };
@@ -691,8 +692,6 @@
 		C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+LL_Utils.m"; sourceTree = "<group>"; };
 		C472443F2412A44900F623CD /* LLInternalMacrosTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLInternalMacrosTool.h; sourceTree = "<group>"; };
 		C47244402412A44900F623CD /* LLInternalMacrosTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInternalMacrosTool.m; sourceTree = "<group>"; };
-		C47BD66024AA42D300F63D93 /* LLEntryViewController+AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLEntryViewController+AppInfo.h"; sourceTree = "<group>"; };
-		C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLEntryViewController+AppInfo.m"; sourceTree = "<group>"; };
 		C47D28E124B62C7E00E6BFF9 /* LLWindowManager+Feature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Feature.h"; sourceTree = "<group>"; };
 		C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Feature.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Feature.m"; sourceTree = "<group>"; };
 		C47D28E424B62CF000E6BFF9 /* LLWindowManager+Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLWindowManager+Setting.h"; sourceTree = "<group>"; };
@@ -982,6 +981,10 @@
 		C4C4F825248CE93F00558753 /* LLDebugTool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LLDebugTool.json; sourceTree = "<group>"; };
 		C4C4F826248CE93F00558753 /* LLDebugTool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LLDebugTool.md; sourceTree = "<group>"; };
 		C4C4F827248CE93F00558753 /* LLDebugTool.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = LLDebugTool.pdf; sourceTree = "<group>"; };
+		C4C7985C24F56D78003D4C46 /* LLRouter+Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Setting.h"; sourceTree = "<group>"; };
+		C4C7985D24F56D78003D4C46 /* LLRouter+Setting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Setting.m"; sourceTree = "<group>"; };
+		C4C7985F24F56E7B003D4C46 /* LLSettingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingHelper.h; sourceTree = "<group>"; };
+		C4C7986024F56E7B003D4C46 /* LLSettingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingHelper.m; sourceTree = "<group>"; };
 		C4CA96AA24AF770200F78E1B /* LLScreenshotPreviewWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotPreviewWindow.h; sourceTree = "<group>"; };
 		C4CA96AB24AF770200F78E1B /* LLScreenshotPreviewWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewWindow.m; sourceTree = "<group>"; };
 		C4CA96AF24B1D8B400F78E1B /* LLComponentHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentHelper.h; sourceTree = "<group>"; };
@@ -1275,6 +1278,8 @@
 		3668D0C72303BAF400D58C0B /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				C4C7985F24F56E7B003D4C46 /* LLSettingHelper.h */,
+				C4C7986024F56E7B003D4C46 /* LLSettingHelper.m */,
 				3668D0C82303BB1F00D58C0B /* LLSettingManager.h */,
 				3668D0C92303BB1F00D58C0B /* LLSettingManager.m */,
 			);
@@ -1339,6 +1344,8 @@
 				36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */,
 				C4278D042438C8BC00D14CFA /* LLRouter+Resolution.h */,
 				C4278D052438C8BC00D14CFA /* LLRouter+Resolution.m */,
+				C4C7985C24F56D78003D4C46 /* LLRouter+Setting.h */,
+				C4C7985D24F56D78003D4C46 /* LLRouter+Setting.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1784,15 +1791,6 @@
 			path = NSMutableArray;
 			sourceTree = "<group>";
 		};
-		C47BD65F24AA42B200F63D93 /* LLEntryViewController */ = {
-			isa = PBXGroup;
-			children = (
-				C47BD66024AA42D300F63D93 /* LLEntryViewController+AppInfo.h */,
-				C47BD66124AA42D300F63D93 /* LLEntryViewController+AppInfo.m */,
-			);
-			path = LLEntryViewController;
-			sourceTree = "<group>";
-		};
 		C49854A522ED8D0E00E9FBE2 /* DebugTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -2052,7 +2050,6 @@
 		C498567922ED8D4800E9FBE2 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				C47BD65F24AA42B200F63D93 /* LLEntryViewController */,
 				C498567B22ED8D4800E9FBE2 /* LLAppInfoViewController.h */,
 				C498567A22ED8D4800E9FBE2 /* LLAppInfoViewController.m */,
 				C49856EA22EDAEFE00E9FBE2 /* LLAppInfoWindow.h */,
@@ -3112,6 +3109,7 @@
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C45994D024387E9200E79308 /* UINavigationBar+LL_Resolution.m in Sources */,
 				C49141B124E91E4400A6E977 /* UITextField+LL_Hierarchy.m in Sources */,
+				C4C7985E24F56D78003D4C46 /* LLRouter+Setting.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
 				C42EB06F2430F41E00BD1CE2 /* LLResolutionViewController.m in Sources */,
 				363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */,
@@ -3297,6 +3295,7 @@
 				C498571822EDE3F800E9FBE2 /* LLMagnifierWindow.m in Sources */,
 				C4B4E46C22F9C90900F70277 /* LLEntryWindow.m in Sources */,
 				C49856E222ED90F300E9FBE2 /* LLSandboxModel.m in Sources */,
+				C4C7986124F56E7B003D4C46 /* LLSettingHelper.m in Sources */,
 				C4B4E47022F9C90900F70277 /* LLBaseViewController.m in Sources */,
 				363DEC532325DFE90090E78C /* LLTitleSliderCell.m in Sources */,
 				C43BA80C205AB095006307BE /* AppDelegate.m in Sources */,
@@ -3310,7 +3309,6 @@
 				36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */,
 				3629E3972136830A00226C79 /* TestColorStyleViewController.m in Sources */,
 				C49141B424E91F0D00A6E977 /* UISegmentedControl+LL_Hierarchy.m in Sources */,
-				C47BD66224AA42D300F63D93 /* LLEntryViewController+AppInfo.m in Sources */,
 				C4FCA04B24E8232300EC862D /* UIControl+LL_Hierarchy.m in Sources */,
 				C4141C91243B16CE00C5EF86 /* LLDetailTitleCellModel.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,
@@ -3569,6 +3567,9 @@
 					"LLDEBUGTOOL_HTML=1",
 					"LLDEBUGTOOL_SHORT_CUT=1",
 					"LLDEBUGTOOL_RESOLUTION=1",
+					"LLDEBUGTOOL_SETTING=1",
+					"LLDEBUGTOOL_ENTRY=1",
+					"LLDEBUGTOOL_FEATURE=1",
 				);
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3609,6 +3610,9 @@
 					"LLDEBUGTOOL_LOCATION=1",
 					"LLDEBUGTOOL_SHORT_CUT=1",
 					"LLDEBUGTOOL_RESOLUTION=1",
+					"LLDEBUGTOOL_SETTING=1",
+					"LLDEBUGTOOL_FEATURE=1",
+					"LLDEBUGTOOL_ENTRY=1",
 				);
 				INFOPLIST_FILE = LLDebugToolDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

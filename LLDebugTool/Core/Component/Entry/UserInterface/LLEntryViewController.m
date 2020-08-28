@@ -31,9 +31,9 @@
 #import "LLEntryBigTitleView.h"
 #import "LLEntryTitleView.h"
 #import "LLInternalMacros.h"
-#import "LLSettingManager.h"
 #import "LLTool.h"
 
+#import "LLRouter+AppInfo.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLEntryViewController ()
@@ -66,13 +66,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDebugToolUpdateWindowStyleNotification:) name:LLDebugToolUpdateWindowStyleNotification object:nil];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Over write
 - (void)windowDidShow {
     [super windowDidShow];
+    [LLRouter addAppInfoObserver:self selector:@selector(didReceiveDebugToolUpdateAppInfoNotification:)];
 }
 
 - (void)windowDidHide {
     [super windowDidHide];
+    [LLRouter removeAppInfoObserver:self];
 }
 
 #pragma mark - Primary
@@ -123,6 +129,17 @@
 #pragma mark - LLDebugToolUpdateWindowStyleNotification
 - (void)didReceiveDebugToolUpdateWindowStyleNotification:(NSNotification *)notification {
     self.style = [LLDebugConfig shared].entryWindowStyle;
+}
+
+#pragma mark - LLDebugToolUpdateAppInfoNotification
+- (void)didReceiveDebugToolUpdateAppInfoNotification:(NSNotification *)notification {
+    if (self.style != LLDebugConfigEntryWindowStyleAppInfo) {
+        return;
+    }
+    NSString *message = [LLRouter analysisAppInfoNotification:notification];
+    ;
+    [self.appInfoView setText:message];
+    [self.delegate LLEntryViewController:self size:self.appInfoView.LL_size];
 }
 
 #pragma mark - Lazy

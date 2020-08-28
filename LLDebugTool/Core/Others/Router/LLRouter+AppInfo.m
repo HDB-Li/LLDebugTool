@@ -44,4 +44,34 @@
 #endif
 }
 
++ (void)addAppInfoObserver:(id)observer selector:(SEL)aSelector {
+#ifdef LLDEBUGTOOL_APP_INFO
+    [[NSNotificationCenter defaultCenter] addObserver:observer
+                                             selector:aSelector
+                                                 name:LLDebugToolUpdateAppInfoNotification
+                                               object:nil];
+#endif
+}
+
++ (void)removeAppInfoObserver:(id)observer {
+#ifdef LLDEBUGTOOL_APP_INFO
+    [[NSNotificationCenter defaultCenter] removeObserver:observer
+                                                    name:LLDebugToolUpdateAppInfoNotification
+                                                  object:nil];
+#endif
+}
+
++ (NSString *)analysisAppInfoNotification:(NSNotification *)notification {
+#ifdef LLDEBUGTOOL_APP_INFO
+    NSString *cpu = notification.userInfo[LLAppInfoHelperCPUDescriptionKey];
+    NSString *memory = notification.userInfo[LLAppInfoHelperMemoryUsedDescriptionKey];
+    NSString *fps = notification.userInfo[LLAppInfoHelperFPSKey];
+    NSNumber *stuckCount = notification.userInfo[LLAppInfoHelperStuckCountKey];
+    NSString *maxInterval = notification.userInfo[LLAppInfoHelperMaxIntervalDescriptionKey];
+    return [NSString stringWithFormat:@"CPU\t %@\nMEM\t %@\nFPS\t %@\nSTUCK\t %@\nMAX\t %@", cpu, memory, fps, stuckCount, maxInterval];
+#else
+    return @"";
+#endif
+}
+
 @end

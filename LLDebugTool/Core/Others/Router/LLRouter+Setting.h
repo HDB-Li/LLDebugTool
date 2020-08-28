@@ -1,5 +1,5 @@
 //
-//  LLEntry.h
+//  LLRouter+Setting.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,10 +21,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLEntry_h
-#define LLEntry_h
+#import "LLRouter.h"
 
-#import "LLEntryComponent.h"
-#import "LLEntryHelper.h"
+#import "LLDebugConfig.h"
 
-#endif /* LLEntry_h */
+NS_ASSUME_NONNULL_BEGIN
+
+@interface LLRouter (Setting)
+
++ (void)setShowWidgetBorder:(BOOL)isShow;
+
++ (void)setEntryWindowStyle:(LLDebugConfigEntryWindowStyle)style;
+
++ (void)setDefaultHtmlUrl:(NSString *)url;
+
++ (void)setWebViewClass:(NSString *)aClass;
+
++ (void)setMockLocation:(BOOL)mockLocation;
+
++ (void)setMockLocationLatitude:(double)latitude;
+
++ (void)setMockLocationLongitude:(double)longitude;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -26,12 +26,13 @@
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
-#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellModel.h"
 #import "LLTitleSwitchCell.h"
 #import "LLTitleSwitchCellModel.h"
 #import "LLWidgetBorderHelper.h"
+
+#import "LLRouter+Setting.h"
 
 @interface LLWidgetBorderViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -58,7 +59,7 @@
     LLTitleSwitchCellModel *model1 = [LLTitleSwitchCellModel modelWithTitle:LLLocalizedString(@"function.widget.border") isOn:[LLDebugConfig shared].isShowWidgetBorder];
     model1.changePropertyBlock = ^(id obj) {
         [LLDebugConfig shared].showWidgetBorder = [obj boolValue];
-        [LLSettingManager shared].showWidgetBorder = @([obj boolValue]);
+        [LLRouter setShowWidgetBorder:[obj boolValue]];
         [[LLWidgetBorderHelper shared] setEnable:[obj boolValue]];
     };
     self.dataArray = @[model1];

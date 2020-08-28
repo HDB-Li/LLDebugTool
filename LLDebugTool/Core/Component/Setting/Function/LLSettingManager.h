@@ -62,22 +62,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *webViewClass;
 
 /// Last web view url.
-@property (nonatomic, copy) NSString *lastWebViewUrl;
+@property (nonatomic, copy) NSString *defaultHtmlUrl;
 
 /// Mock location enable or not.
-@property (nonatomic, strong) NSNumber *mockLocationEnable;
+@property (nonatomic, strong) NSNumber *mockLocation;
 
 /// Last mock location latitude.
 @property (nonatomic, strong) NSNumber *mockLocationLatitude;
 
 /// Last mock location longitude.
 @property (nonatomic, strong) NSNumber *mockLocationLongitude;
-
-/// Last mock route file path.
-@property (nonatomic, copy) NSString *mockRouteFilePath;
-
-/// Last mock route file display name.
-@property (nonatomic, copy) NSString *mockRouteFileName;
 
 /// Shared instance.
 + (instancetype)shared;

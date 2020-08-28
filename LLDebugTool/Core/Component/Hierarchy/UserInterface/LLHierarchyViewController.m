@@ -157,7 +157,7 @@
             return self.observeViews.count > 1;
         }
         case LLHierarchyInfoViewActionShowMoreInfo: {
-            return self.selectedView;
+            return self.selectedView ? YES : NO;
         }
         default:
             break;

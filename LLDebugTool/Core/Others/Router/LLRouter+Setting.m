@@ -1,5 +1,5 @@
 //
-//  LLEntry.h
+//  LLRouter+Setting.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,10 +21,54 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLEntry_h
-#define LLEntry_h
+#import "LLRouter+Setting.h"
 
-#import "LLEntryComponent.h"
-#import "LLEntryHelper.h"
+#ifdef LLDEBUGTOOL_SETTING
+#import "LLSettingManager.h"
+#endif
 
-#endif /* LLEntry_h */
+@implementation LLRouter (Setting)
+
++ (void)setShowWidgetBorder:(BOOL)isShow {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].showWidgetBorder = @(isShow);
+#endif
+}
+
++ (void)setEntryWindowStyle:(LLDebugConfigEntryWindowStyle)style {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].entryWindowStyle = @(style);
+#endif
+}
+
++ (void)setDefaultHtmlUrl:(NSString *)url {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].defaultHtmlUrl = url;
+#endif
+}
+
++ (void)setWebViewClass:(NSString *)aClass {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].webViewClass = aClass;
+#endif
+}
+
++ (void)setMockLocation:(BOOL)mockLocation {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].mockLocation = @(mockLocation);
+#endif
+}
+
++ (void)setMockLocationLatitude:(double)latitude {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].mockLocationLatitude = @(latitude);
+#endif
+}
+
++ (void)setMockLocationLongitude:(double)longitude {
+#ifdef LLDEBUGTOOL_SETTING
+    [LLSettingManager shared].mockLocationLongitude = @(longitude);
+#endif
+}
+
+@end

@@ -1,5 +1,5 @@
 //
-//  LLEntryViewController+AppInfo.h
+//  LLSettingHelper.h
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,11 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import "LLEntryViewController.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLEntryViewController (AppInfo)
+@interface LLSettingHelper : NSObject
+
++ (instancetype)shared;
+
+@property (nonatomic, assign, getter=isEnabled) BOOL enable;
 
 @end
 

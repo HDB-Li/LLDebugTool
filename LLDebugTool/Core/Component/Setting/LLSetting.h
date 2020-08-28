@@ -24,4 +24,7 @@
 #ifndef LLSetting_h
 #define LLSetting_h
 
+#import "LLSettingComponent.h"
+#import "LLSettingHelper.h"
+
 #endif /* LLSetting_h */

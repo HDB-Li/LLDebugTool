@@ -49,9 +49,10 @@ static LLSettingManager *_instance = nil;
     [self prepareShrinkToEdgeWhenInactive];
     [self prepareShakeToHide];
     [self prepareMagnifier];
+    [self prepareHtml];
     [self prepareShowWidgetBorder];
     [self prepareHierarchyIgnorePrivateClass];
-    [self prepareMockLocationEnable];
+    [self prepareLocation];
 }
 
 - (void)prepareDoubleClickAction {
@@ -107,6 +108,18 @@ static LLSettingManager *_instance = nil;
     }
 }
 
+- (void)prepareHtml {
+    NSString *defaultHtmlUrl = self.defaultHtmlUrl;
+    if (defaultHtmlUrl != nil) {
+        [LLDebugConfig shared].defaultHtmlUrl = defaultHtmlUrl;
+    }
+
+    NSString *webViewClass = self.webViewClass;
+    if (webViewClass != nil) {
+        [LLDebugConfig shared].webViewClass = webViewClass;
+    }
+}
+
 - (void)prepareShowWidgetBorder {
     NSNumber *showWidgetBorder = self.showWidgetBorder;
     if (showWidgetBorder != nil) {
@@ -121,10 +134,10 @@ static LLSettingManager *_instance = nil;
     }
 }
 
-- (void)prepareMockLocationEnable {
-    NSNumber *mockLocationEnable = self.mockLocationEnable;
-    if (mockLocationEnable != nil) {
-        [LLRouter setLocationHelperEnable:[mockLocationEnable boolValue]];
+- (void)prepareLocation {
+    NSNumber *mockLocation = self.mockLocation;
+    if (mockLocation != nil) {
+        [LLDebugConfig shared].mockLocation = [mockLocation boolValue];
     }
     NSNumber *mockLocationLatitude = self.mockLocationLatitude;
     NSNumber *mockLocationLogitude = self.mockLocationLongitude;
@@ -223,20 +236,20 @@ static LLSettingManager *_instance = nil;
     return [NSUserDefaults LL_stringForKey:@"webViewClass"];
 }
 
-- (void)setLastWebViewUrl:(NSString *)lastWebViewUrl {
-    [NSUserDefaults LL_setString:lastWebViewUrl forKey:@"lastWebViewUrl"];
+- (void)setDefaultHtmlUrl:(NSString *)defaultHtmlUrl {
+    [NSUserDefaults LL_setString:defaultHtmlUrl forKey:@"defaultHtmlUrl"];
 }
 
-- (NSString *)lastWebViewUrl {
-    return [NSUserDefaults LL_stringForKey:@"lastWebViewUrl"];
+- (NSString *)defaultHtmlUrl {
+    return [NSUserDefaults LL_stringForKey:@"defaultHtmlUrl"];
 }
 
-- (void)setMockLocationEnable:(NSNumber *)mockLocationEnable {
-    [NSUserDefaults LL_setNumber:mockLocationEnable forKey:@"mockLocationEnable"];
+- (void)setMockLocation:(NSNumber *)mockLocation {
+    [NSUserDefaults LL_setNumber:mockLocation forKey:@"mockLocation"];
 }
 
-- (NSNumber *)mockLocationEnable {
-    return [NSUserDefaults LL_numberForKey:@"mockLocationEnable"];
+- (NSNumber *)mockLocation {
+    return [NSUserDefaults LL_numberForKey:@"mockLocation"];
 }
 
 - (void)setMockLocationLatitude:(NSNumber *)mockLocationLatitude {
@@ -253,22 +266,6 @@ static LLSettingManager *_instance = nil;
 
 - (NSNumber *)mockLocationLongitude {
     return [NSUserDefaults LL_numberForKey:@"mockLocationLongitude"];
-}
-
-- (void)setMockRouteFilePath:(NSString *)mockRouteFilePath {
-    [NSUserDefaults LL_setString:mockRouteFilePath forKey:@"mockRouteFilePath"];
-}
-
-- (NSString *)mockRouteFilePath {
-    return [NSUserDefaults LL_stringForKey:@"mockRouteFilePath"];
-}
-
-- (void)setMockRouteFileName:(NSString *)mockRouteFileName {
-    [NSUserDefaults LL_setString:mockRouteFileName forKey:@"mockRouteFileName"];
-}
-
-- (NSString *)mockRouteFileName {
-    return [NSUserDefaults LL_stringForKey:@"mockRouteFileName"];
 }
 
 @end

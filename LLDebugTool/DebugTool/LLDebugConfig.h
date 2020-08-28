@@ -281,6 +281,11 @@ Whether show widget border. Default is NO.
 @property (nonatomic, copy, nullable) NSString *defaultHtmlUrl;
 
 /**
+ Custom web view class in Html function.
+ */
+@property (nonatomic, copy, nullable) NSString *webViewClass;
+
+/**
  Custom view controller used in html function. you can use your custom viewController to dynamic debug your web view. must comply with `LLComponentDelegate`. ViewController must set background color.
  */
 @property (nonatomic, copy, nullable) UIViewController * (^htmlViewControllerProvider)(NSString *_Nullable url);
@@ -292,6 +297,12 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign) NSTimeInterval stuckTime;
 
 #pragma mark - Location
+
+/**
+ Mock location when start application.
+ */
+@property (nonatomic, assign) BOOL mockLocation;
+
 /**
  Mock location latitude.
  */

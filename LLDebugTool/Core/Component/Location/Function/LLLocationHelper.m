@@ -155,7 +155,7 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 + (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path {
-    return [self fileExtendedAttributesWithPath:path][@"LLDebugTool"];
+    return (BOOL)([self fileExtendedAttributesWithPath:path][@"LLDebugTool"]);
 }
 
 + (BOOL)addLLDebugToolExtendDataWithPath:(NSString *)path {

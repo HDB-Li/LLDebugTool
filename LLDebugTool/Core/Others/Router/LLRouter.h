@@ -28,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Router
 @interface LLRouter : NSObject
 
+/// Set SettingHelper enable.
+/// @param isEnable Is enable.
++ (void)setSettingHelperEnable:(BOOL)isEnable;
+
 /// Set CrashHelper enable.
 /// @param isEnable Is enable.
 + (void)setCrashHelperEnable:(BOOL)isEnable;

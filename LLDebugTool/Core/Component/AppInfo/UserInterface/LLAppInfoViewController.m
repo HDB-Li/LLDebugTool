@@ -29,10 +29,11 @@
 #import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
-#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
+
+#import "LLRouter+Setting.h"
 
 @interface LLAppInfoViewController ()
 
@@ -61,7 +62,7 @@
 
 - (void)rightItemClick:(UIButton *)sender {
     [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleAppInfo;
-    [LLSettingManager shared].entryWindowStyle = @(LLDebugConfigEntryWindowStyleAppInfo);
+    [LLRouter setEntryWindowStyle:LLDebugConfigEntryWindowStyleAppInfo];
     [self componentDidFinish];
 }
 

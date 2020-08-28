@@ -33,12 +33,12 @@
 #import "LLHtmlViewController.h"
 #import "LLHtmlWkWebViewController.h"
 #import "LLInternalMacros.h"
-#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
 #import "LLToastUtils.h"
 
+#import "LLRouter+Setting.h"
 #import "UIView+LL_Utils.h"
 #import "UIViewController+LL_Utils.h"
 
@@ -88,7 +88,7 @@
         if ([LLDebugConfig shared].htmlViewControllerProvider != nil) {
             UIViewController *customViewController = [LLDebugConfig shared].htmlViewControllerProvider(urlString);
             if (customViewController != nil && cls == [customViewController class]) {
-                [LLSettingManager shared].lastWebViewUrl = urlString;
+                [LLRouter setDefaultHtmlUrl:urlString];
                 [self.navigationController pushViewController:customViewController animated:YES];
                 return;
             }
@@ -99,7 +99,7 @@
         return;
     }
 
-    [LLSettingManager shared].lastWebViewUrl = urlString;
+    [LLRouter setDefaultHtmlUrl:urlString];
 
     LLHtmlViewController *vc = nil;
 #pragma clang diagnostic push
@@ -126,7 +126,7 @@
     self.title = LLLocalizedString(@"function.html");
     [self initNavigationItemWithTitle:@"Go" imageName:nil isLeft:NO];
 
-    self.webViewClass = [LLSettingManager shared].webViewClass ?: NSStringFromClass([WKWebView class]);
+    self.webViewClass = [LLDebugConfig shared].webViewClass ?: NSStringFromClass([WKWebView class]);
 
     self.tableView.tableHeaderView = self.headerView;
 }
@@ -177,7 +177,8 @@
 
 - (void)setNewWebViewClass:(NSString *)aClass {
     self.webViewClass = aClass;
-    [LLSettingManager shared].webViewClass = aClass;
+    [LLDebugConfig shared].webViewClass = aClass;
+    [LLRouter setWebViewClass:aClass];
     [self loadData];
 }
 
@@ -213,7 +214,7 @@
         _headerTextField.delegate = self;
         _headerTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _headerTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:LLLocalizedString(@"html.input.url") attributes:@{NSForegroundColorAttributeName: [LLThemeManager shared].placeHolderColor}];
-        _headerTextField.text = [LLSettingManager shared].lastWebViewUrl ?: ([LLDebugConfig shared].defaultHtmlUrl ?: @"https://");
+        _headerTextField.text = [LLDebugConfig shared].defaultHtmlUrl ?: @"https://";
         UIView *leftView = [LLFactory getView];
         leftView.frame = CGRectMake(0, 0, 10, 1);
         _headerTextField.leftView = leftView;

@@ -31,13 +31,14 @@
 #import "LLDetailTitleSelectorCellView.h"
 #import "LLInternalMacros.h"
 #import "LLLocationHelper.h"
+#import "LLLocationHelper.h"
 #import "LLLocationMockRouteModel.h"
 #import "LLPinAnnotationView.h"
-#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLTitleSwitchCellView.h"
 #import "LLToastUtils.h"
 
+#import "LLRouter+Setting.h"
 #import "UIView+LL_Utils.h"
 #import "UIViewController+LL_Utils.h"
 
@@ -70,8 +71,6 @@ static NSString *const kAnnotationID = @"AnnotationID";
 @property (nonatomic, assign) BOOL isAddAnnotation;
 
 @property (nonatomic, assign) BOOL automicSetRegion;
-
-@property (nonatomic, strong) LLLocationMockRouteModel *routeModel;
 
 @end
 
@@ -257,7 +256,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)updateMockLocationSwitchValue:(BOOL)isOn {
     [LLLocationHelper shared].enable = isOn;
-    [LLSettingManager shared].mockLocationEnable = @(isOn);
+    [LLDebugConfig shared].mockLocation = isOn;
+    [LLRouter setMockLocation:isOn];
     if (isOn) {
         [self setUpMockCoordinate:self.annotation.coordinate];
     }
@@ -266,8 +266,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 - (void)setUpMockCoordinate:(CLLocationCoordinate2D)coordinate {
     [LLDebugConfig shared].mockLocationLatitude = coordinate.latitude;
     [LLDebugConfig shared].mockLocationLongitude = coordinate.longitude;
-    [LLSettingManager shared].mockLocationLatitude = @(coordinate.latitude);
-    [LLSettingManager shared].mockLocationLongitude = @(coordinate.longitude);
+    [LLRouter setMockLocationLatitude:coordinate.latitude];
+    [LLRouter setMockLocationLongitude:coordinate.longitude];
 }
 
 - (void)reverseGeocode:(CLLocationCoordinate2D)coordinate {
@@ -297,8 +297,8 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)updateMockRouteSwitchValue:(BOOL)isOn {
     if (isOn) {
-        if (self.routeModel) {
-            [[LLLocationHelper shared] startMockRoute:self.routeModel];
+        if ([LLLocationHelper shared].routeModel) {
+            [[LLLocationHelper shared] startMockRoute:[LLLocationHelper shared].routeModel];
         } else {
             [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.select.route")];
             self.mockRouteSwitch.on = NO;
@@ -310,11 +310,9 @@ static NSString *const kAnnotationID = @"AnnotationID";
 
 - (void)selectMockRoute:(LLLocationMockRouteModel *)model {
     if (model.isAvailable) {
-        self.routeModel = model;
         [[LLLocationHelper shared] startMockRoute:model];
+        self.routeDescriptView.detailTitle = model.name ?: LLLocalizedString(@"unknown");
         self.mockRouteSwitch.on = YES;
-        [LLSettingManager shared].mockRouteFilePath = model.filePath;
-        [LLSettingManager shared].mockRouteFileName = model.name;
     } else {
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"location.route.file.error")];
     }
@@ -494,7 +492,7 @@ static NSString *const kAnnotationID = @"AnnotationID";
         _routeDescriptView = [[LLDetailTitleSelectorCellView alloc] init];
         _routeDescriptView.backgroundColor = [LLThemeManager shared].containerColor;
         _routeDescriptView.title = LLLocalizedString(@"location.route");
-        _routeDescriptView.detailTitle = [LLSettingManager shared].mockRouteFileName ?: LLLocalizedString(@"location.select.route");
+        _routeDescriptView.detailTitle = [LLLocationHelper shared].routeModel.name ?: LLLocalizedString(@"location.select.route");
         [_routeDescriptView needLine];
         __weak typeof(self) weakSelf = self;
         _routeDescriptView.block = ^{
@@ -516,13 +514,6 @@ static NSString *const kAnnotationID = @"AnnotationID";
         [_recordRouteSwitch needFullLine];
     }
     return _recordRouteSwitch;
-}
-
-- (void)setRouteModel:(LLLocationMockRouteModel *)routeModel {
-    if (_routeModel != routeModel) {
-        _routeModel = routeModel;
-        self.routeDescriptView.detailTitle = routeModel.name ?: LLLocalizedString(@"unknown");
-    }
 }
 
 - (MKMapView *)mapView {

@@ -26,6 +26,10 @@
 @implementation LLRouter
 
 #pragma mark - Public
++ (void)setSettingHelperEnable:(BOOL)isEnable {
+    [self setEnable:isEnable className:[self settingHelper]];
+}
+
 + (void)setCrashHelperEnable:(BOOL)isEnable {
     [self setEnable:isEnable className:[self crashHelper]];
 }
@@ -82,6 +86,10 @@
 }
 
 #pragma mark Getters
++ (NSString *)settingHelper {
+    return @"LLSettingHelper";
+}
+
 /// CrashHelper class name.
 + (NSString *)crashHelper {
     return @"LLCrashHelper";

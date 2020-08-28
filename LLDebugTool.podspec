@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "LLDebugTool"
-  s.version             = "1.3.8.1"
+  s.version             = "1.3.9"
   s.summary             = "LLDebugTool is a debugging tool for developers and testers that can help you analyze and manipulate data in non-xcode situations."
   s.homepage            = "https://github.com/HDB-Li/LLDebugTool"
   s.license             = "MIT"
@@ -10,6 +10,27 @@ Pod::Spec.new do |s|
   s.source              = { :git => "https://github.com/HDB-Li/LLDebugTool.git", :tag => s.version }
   s.requires_arc        = true
 
+  s.subspec 'Entry' do |ss|
+   ss.public_header_files      = "LLDebugTool/Core/Component/Entry/**/*.h"
+   ss.source_files             = "LLDebugTool/Core/Component/Entry/**/*.{h,m}"
+   ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_ENTRY=1'}
+   ss.dependency                 "LLDebugTool/Storage"
+  end
+  
+  s.subspec 'Feature' do |ss|
+     ss.public_header_files      = "LLDebugTool/Core/Component/Feature/**/*.h"
+     ss.source_files             = "LLDebugTool/Core/Component/Feature/**/*.{h,m}"
+     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_FEATURE=1'}
+     ss.dependency                 "LLDebugTool/Storage"
+  end
+  
+  s.subspec 'Setting' do |ss|
+     ss.public_header_files      = "LLDebugTool/Core/Component/Setting/**/*.h"
+     ss.source_files             = "LLDebugTool/Core/Component/Setting/**/*.{h,m}"
+     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_SETTING=1'}
+     ss.dependency                 "LLDebugTool/Storage"
+  end
+  
   s.subspec 'Network' do |ss|
     ss.public_header_files      = "LLDebugTool/Core/Component/Network/**/*.h"
     ss.source_files             = "LLDebugTool/Core/Component/Network/**/*.{h,m}"

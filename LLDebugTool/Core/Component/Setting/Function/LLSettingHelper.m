@@ -1,5 +1,5 @@
 //
-//  LLEntry.h
+//  LLSettingHelper.m
 //
 //  Copyright (c) 2018 LLDebugTool Software Foundation (https://github.com/HDB-Li/LLDebugTool)
 //
@@ -21,10 +21,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#ifndef LLEntry_h
-#define LLEntry_h
+#import "LLSettingHelper.h"
 
-#import "LLEntryComponent.h"
-#import "LLEntryHelper.h"
+#import "LLSettingManager.h"
 
-#endif /* LLEntry_h */
+static LLSettingHelper *_instance = nil;
+
+@implementation LLSettingHelper
+
++ (instancetype)shared {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [[LLSettingHelper alloc] init];
+    });
+    return _instance;
+}
+
+- (void)setEnable:(BOOL)enable {
+    if (_enable != enable) {
+        _enable = enable;
+        if (enable) {
+            [[LLSettingManager shared] prepareForConfig];
+        }
+    }
+}
+
+@end

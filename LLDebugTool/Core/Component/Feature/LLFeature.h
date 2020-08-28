@@ -24,4 +24,6 @@
 #ifndef LLFeature_h
 #define LLFeature_h
 
+#import "LLFeatureComponent.h"
+
 #endif /* LLFeature_h */

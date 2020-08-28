@@ -28,7 +28,6 @@
 #import "LLComponentHelper.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogDefine.h"
-#import "LLSettingManager.h"
 #import "LLTool.h"
 #import "LLWindowManager.h"
 
@@ -84,8 +83,12 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [LLRouter setAppInfoHelperEnable:YES];
     // Open screenshot
     [LLRouter setScreenshotHelperEnable:YES];
-    // Prepare to start.
-    [self prepareToStart];
+    // Open setting
+    [LLRouter setSettingHelperEnable:YES];
+    // Open location
+    if ([LLDebugConfig shared].mockLocation) {
+        [LLRouter setLocationHelperEnable:YES];
+    }
     // show window
     if (self.installed || ![LLDebugConfig shared].hideWhenInstall) {
         [LLComponentHelper executeAction:LLDebugToolActionEntry data:nil];
@@ -114,6 +117,10 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [LLTool setStartWorkingAfterApplicationDidFinishLaunching:NO];
     pthread_mutex_unlock(&mutex_t);
 
+    // Close location
+    [LLRouter setLocationHelperEnable:NO];
+    // Close setting
+    [LLRouter setSettingHelperEnable:NO];
     // Close screenshot
     [LLRouter setScreenshotHelperEnable:NO];
     // Close app monitoring
@@ -201,10 +208,6 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
         // This method called in instancetype, can't use macros to log.
         [LLTool log:kLLDebugToolLogUseBetaAlert];
     }
-}
-
-- (void)prepareToStart {
-    [[LLSettingManager shared] prepareForConfig];
 }
 
 - (void)registerNotifications {
