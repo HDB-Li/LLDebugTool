@@ -21,20 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
+
+#import "LLWidgetBorderHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Widget border helper.
-@interface LLWidgetBorderHelper : NSObject
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+@interface LLWidgetBorderHelper : LLComponentHelper <LLWidgetBorderHelperDelegate>
 
 @end
 

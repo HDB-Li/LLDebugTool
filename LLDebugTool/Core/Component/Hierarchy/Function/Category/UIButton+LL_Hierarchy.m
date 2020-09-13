@@ -23,6 +23,7 @@
 
 #import "UIButton+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -49,10 +50,10 @@
 
     LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Title" detailTitle:[LLHierarchyFormatter formatText:self.currentTitle]] noneInsets];
     model3.block = ^{
-        [[LLHierarchyHelper shared] showTextFieldAlertWithText:weakSelf.currentTitle
-                                                       handler:^(NSString *originText, NSString *newText) {
-                                                           [weakSelf setTitle:newText forState:weakSelf.state];
-                                                       }];
+        [LLDT_CC_Hierarchy showTextFieldAlertWithText:weakSelf.currentTitle
+                                              handler:^(NSString *originText, NSString *newText) {
+                                                  [weakSelf setTitle:newText forState:weakSelf.state];
+                                              }];
     };
     [settings addObject:model3];
 
@@ -61,19 +62,19 @@
 
     LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Text Color" detailTitle:[LLHierarchyFormatter formatColor:self.currentTitleColor]] noneInsets];
     model5.block = ^{
-        [[LLHierarchyHelper shared] showTextFieldAlertWithText:[weakSelf.currentTitleColor LL_hexString]
-                                                       handler:^(NSString *originText, NSString *newText) {
-                                                           [weakSelf setTitleColor:[LLHierarchyFormatter colorFromString:newText defaultValue:weakSelf.currentTitleColor] forState:weakSelf.state];
-                                                       }];
+        [LLDT_CC_Hierarchy showTextFieldAlertWithText:[weakSelf.currentTitleColor LL_hexString]
+                                              handler:^(NSString *originText, NSString *newText) {
+                                                  [weakSelf setTitleColor:[LLHierarchyFormatter colorFromString:newText defaultValue:weakSelf.currentTitleColor] forState:weakSelf.state];
+                                              }];
     };
     [settings addObject:model5];
 
     LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Shadow Color" detailTitle:[LLHierarchyFormatter formatColor:self.currentTitleShadowColor]];
     model6.block = ^{
-        [[LLHierarchyHelper shared] showTextFieldAlertWithText:[weakSelf.currentTitleShadowColor LL_hexString]
-                                                       handler:^(NSString *originText, NSString *newText) {
-                                                           [weakSelf setTitleShadowColor:[LLHierarchyFormatter colorFromString:newText defaultValue:weakSelf.currentTitleShadowColor] forState:weakSelf.state];
-                                                       }];
+        [LLDT_CC_Hierarchy showTextFieldAlertWithText:[weakSelf.currentTitleShadowColor LL_hexString]
+                                              handler:^(NSString *originText, NSString *newText) {
+                                                  [weakSelf setTitleShadowColor:[LLHierarchyFormatter colorFromString:newText defaultValue:weakSelf.currentTitleShadowColor] forState:weakSelf.state];
+                                              }];
     };
     [settings addObject:model6];
 

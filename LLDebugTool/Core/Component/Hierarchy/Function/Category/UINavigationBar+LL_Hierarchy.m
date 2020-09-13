@@ -23,6 +23,7 @@
 
 #import "UINavigationBar+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -43,18 +44,18 @@
 
     LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription barStyles]
-                                                 currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.barStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription barStyles]
+                                        currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.barStyle = index;
+                                           }];
     };
     [settings addObject:model1];
 
     LLTitleSwitchCellModel *model2 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
     model2.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model2];
 
@@ -62,7 +63,7 @@
         LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Prefers Large Titles" isOn:self.prefersLargeTitles] noneInsets];
         model3.changePropertyBlock = ^(id obj) {
             weakSelf.prefersLargeTitles = [obj boolValue];
-            [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+            [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
         };
         [settings addObject:model3];
     }
@@ -92,12 +93,12 @@
             if (!font) {
                 return;
             }
-            [[LLHierarchyHelper shared] showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [LLFormatterTool formatNumber:@(font.pointSize)]]
-                                                           handler:^(NSString *originText, NSString *newText) {
-                                                               NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.titleTextAttributes];
-                                                               attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
-                                                               weakSelf.titleTextAttributes = [attributes copy];
-                                                           }];
+            [LLDT_CC_Hierarchy showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [LLFormatterTool formatNumber:@(font.pointSize)]]
+                                                  handler:^(NSString *originText, NSString *newText) {
+                                                      NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.titleTextAttributes];
+                                                      attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
+                                                      weakSelf.titleTextAttributes = [attributes copy];
+                                                  }];
         };
     }
     [settings addObject:model9];
@@ -127,12 +128,12 @@
                 if (!font) {
                     return;
                 }
-                [[LLHierarchyHelper shared] showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [LLFormatterTool formatNumber:@(font.pointSize)]]
-                                                               handler:^(NSString *originText, NSString *newText) {
-                                                                   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.largeTitleTextAttributes];
-                                                                   attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
-                                                                   weakSelf.largeTitleTextAttributes = [attributes copy];
-                                                               }];
+                [LLDT_CC_Hierarchy showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [LLFormatterTool formatNumber:@(font.pointSize)]]
+                                                      handler:^(NSString *originText, NSString *newText) {
+                                                          NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.largeTitleTextAttributes];
+                                                          attributes[NSFontAttributeName] = [font fontWithSize:[newText doubleValue]];
+                                                          weakSelf.largeTitleTextAttributes = [attributes copy];
+                                                      }];
             };
         }
         [settings addObject:model14];

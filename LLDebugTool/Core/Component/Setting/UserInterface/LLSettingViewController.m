@@ -26,11 +26,11 @@
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLDebugConfigHelper.h"
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLSettingManager.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleSliderCell.h"
@@ -145,7 +145,7 @@
 
 - (void)setNewDoubleClick:(LLDebugToolAction)action {
     [LLDebugConfig shared].doubleClickAction = action;
-    [LLSettingManager shared].doubleClickAction = @(action);
+    LLDT_CC_Setting.doubleClickAction = @(action);
     [self loadData];
 }
 
@@ -181,7 +181,7 @@
     }
     if (style != LLDebugConfigColorStyleCustom) {
         [LLDebugConfig shared].colorStyle = style;
-        [LLSettingManager shared].colorStyle = @(style);
+        LLDT_CC_Setting.colorStyle = @(style);
         [self loadData];
     }
 }
@@ -225,7 +225,7 @@
     }
 
     [LLDebugConfig shared].entryWindowStyle = style;
-    [LLSettingManager shared].entryWindowStyle = @(style);
+    LLDT_CC_Setting.entryWindowStyle = @(style);
     [self loadData];
 }
 
@@ -240,7 +240,7 @@
 
 - (void)setNewShrinkToEdgeWhenInactive:(BOOL)isShrinkToEdgeWhenInactive {
     [LLDebugConfig shared].shrinkToEdgeWhenInactive = isShrinkToEdgeWhenInactive;
-    [LLSettingManager shared].shrinkToEdgeWhenInactive = @(isShrinkToEdgeWhenInactive);
+    LLDT_CC_Setting.shrinkToEdgeWhenInactive = @(isShrinkToEdgeWhenInactive);
 }
 
 - (LLTitleCellModel *)getShakeToHideModel {
@@ -254,7 +254,7 @@
 
 - (void)setNewShakeToHide:(BOOL)isShakeToHide {
     [LLDebugConfig shared].shakeToHide = isShakeToHide;
-    [LLSettingManager shared].shakeToHide = @(isShakeToHide);
+    LLDT_CC_Setting.shakeToHide = @(isShakeToHide);
 }
 
 #ifdef LLDEBUGTOOL_LOG
@@ -290,7 +290,7 @@
     }
 
     [LLDebugConfig shared].logStyle = style;
-    [LLSettingManager shared].logStyle = @(style);
+    LLDT_CC_Setting.logStyle = @(style);
     [self loadData];
 }
 #endif
@@ -306,7 +306,7 @@
 
 - (void)setNewHierarchyIgnorePrivateClass:(BOOL)hierarchyIgnorePrivateClass {
     [LLDebugConfig shared].hierarchyIgnorePrivateClass = hierarchyIgnorePrivateClass;
-    [LLSettingManager shared].hierarchyIgnorePrivateClass = @(hierarchyIgnorePrivateClass);
+    LLDT_CC_Setting.hierarchyIgnorePrivateClass = @(hierarchyIgnorePrivateClass);
 }
 #endif
 #ifdef LLDEBUGTOOL_MAGNIFIER
@@ -321,7 +321,7 @@
 
 - (void)setNewMagnifierZoomLevel:(NSInteger)zoomLevel {
     [LLDebugConfig shared].magnifierZoomLevel = zoomLevel;
-    [LLSettingManager shared].magnifierZoomLevel = @(zoomLevel);
+    LLDT_CC_Setting.magnifierZoomLevel = @(zoomLevel);
     [self loadData];
 }
 
@@ -336,7 +336,7 @@
 
 - (void)setNewMagnifierSize:(NSInteger)size {
     [LLDebugConfig shared].magnifierSize = size;
-    [LLSettingManager shared].magnifierSize = @(size);
+    LLDT_CC_Setting.magnifierSize = @(size);
     [self loadData];
 }
 #endif

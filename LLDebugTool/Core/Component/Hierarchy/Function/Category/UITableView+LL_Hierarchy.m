@@ -23,6 +23,7 @@
 
 #import "UITableView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -48,11 +49,11 @@
 
     LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Separator" detailTitle:[LLEnumDescription tableViewCellSeparatorStyleDescription:self.separatorStyle]] noneInsets];
     model3.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription tableViewCellSeparatorStyles]
-                                                 currentAction:[LLEnumDescription tableViewCellSeparatorStyleDescription:weakSelf.separatorStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.separatorStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription tableViewCellSeparatorStyles]
+                                        currentAction:[LLEnumDescription tableViewCellSeparatorStyleDescription:weakSelf.separatorStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.separatorStyle = index;
+                                           }];
     };
     [settings addObject:model3];
 
@@ -80,11 +81,11 @@
     if (@available(iOS 11.0, *)) {
         LLDetailTitleCellModel *model9 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:self.separatorInsetReference]];
         model9.block = ^{
-            [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription tableViewSeparatorInsetReferences]
-                                                     currentAction:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:weakSelf.separatorInsetReference]
-                                                        completion:^(NSInteger index) {
-                                                            weakSelf.separatorInsetReference = index;
-                                                        }];
+            [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription tableViewSeparatorInsetReferences]
+                                            currentAction:[LLEnumDescription tableViewSeparatorInsetReferenceDescription:weakSelf.separatorInsetReference]
+                                               completion:^(NSInteger index) {
+                                                   weakSelf.separatorInsetReference = index;
+                                               }];
         };
         [settings addObject:model9];
     }
@@ -92,28 +93,28 @@
     LLTitleSwitchCellModel *model10 = [[LLTitleSwitchCellModel modelWithTitle:@"Selection" detailTitle:self.allowsSelection ? @"Allowed" : @"Disabled" isOn:self.allowsSelection] noneInsets];
     model10.changePropertyBlock = ^(id obj) {
         weakSelf.allowsSelection = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model10];
 
     LLTitleSwitchCellModel *model11 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@", self.allowsMultipleSelection ? @"" : @"Disabled"] isOn:self.allowsMultipleSelection] noneInsets];
     model11.changePropertyBlock = ^(id obj) {
         weakSelf.allowsMultipleSelection = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model11];
 
     LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:@"Edit Selection" detailTitle:self.allowsSelectionDuringEditing ? @"Allowed" : @"Disabled" isOn:self.allowsSelectionDuringEditing] noneInsets];
     model12.changePropertyBlock = ^(id obj) {
         weakSelf.allowsSelectionDuringEditing = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
     LLTitleSwitchCellModel *model13 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Multiple Selection %@", self.allowsMultipleSelectionDuringEditing ? @"" : @"Disabled"] isOn:self.allowsMultipleSelectionDuringEditing];
     model13.changePropertyBlock = ^(id obj) {
         weakSelf.allowsMultipleSelectionDuringEditing = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 

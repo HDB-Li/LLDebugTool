@@ -26,6 +26,7 @@
 #import "LLComponent.h"
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLEntryAppInfoView.h"
 #import "LLEntryBallView.h"
 #import "LLEntryBigTitleView.h"
@@ -33,7 +34,6 @@
 #import "LLInternalMacros.h"
 #import "LLTool.h"
 
-#import "LLRouter+AppInfo.h"
 #import "UIView+LL_Utils.h"
 
 @interface LLEntryViewController ()
@@ -73,12 +73,12 @@
 #pragma mark - Over write
 - (void)windowDidShow {
     [super windowDidShow];
-    [LLRouter addAppInfoObserver:self selector:@selector(didReceiveDebugToolUpdateAppInfoNotification:)];
+    [LLDT_CC_AppInfo addAppInfoObserver:self selector:@selector(didReceiveDebugToolUpdateAppInfoNotification:)];
 }
 
 - (void)windowDidHide {
     [super windowDidHide];
-    [LLRouter removeAppInfoObserver:self];
+    [LLDT_CC_AppInfo removeAppInfoObserver:self];
 }
 
 #pragma mark - Primary
@@ -136,9 +136,9 @@
     if (self.style != LLDebugConfigEntryWindowStyleAppInfo) {
         return;
     }
-    NSString *message = [LLRouter analysisAppInfoNotification:notification];
+    NSString *message = [LLDT_CC_AppInfo analysisAppInfoNotification:notification];
     ;
-    [self.appInfoView setText:message];
+    [self.appInfoView setText:message ?: @"Debug"];
     [self.delegate LLEntryViewController:self size:self.appInfoView.LL_size];
 }
 

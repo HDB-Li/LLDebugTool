@@ -23,33 +23,23 @@
 
 #import "LLEntryHelper.h"
 
-#import "LLComponentHelper.h"
+#import "LLComponentHandle.h"
 #import "LLDebugConfig.h"
 
 #import "LLWindowManager+Entry.h"
 #import "UIResponder+LL_Utils.h"
 
-static LLEntryHelper *_instance = nil;
-
 @implementation LLEntryHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLEntryHelper alloc] init];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    [super start];
+    [self registerNotification];
 }
 
-- (void)setEnable:(BOOL)enable {
-    if (_enable != enable) {
-        _enable = enable;
-        if (enable) {
-            [self registerNotification];
-        } else {
-            [self unregisterNotification];
-        }
-    }
+- (void)stop {
+    [super stop];
+    [self unregisterNotification];
 }
 
 #pragma mark - DebugToolShakeNotification
@@ -58,7 +48,7 @@ static LLEntryHelper *_instance = nil;
         return;
     }
 
-    if ([LLComponentHelper currentAction] != LLDebugToolActionEntry) {
+    if ([LLComponentHandle currentAction] != LLDebugToolActionEntry) {
         return;
     }
 

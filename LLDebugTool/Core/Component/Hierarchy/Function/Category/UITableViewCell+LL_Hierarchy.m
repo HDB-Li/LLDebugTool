@@ -23,6 +23,7 @@
 
 #import "UITableViewCell+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -48,31 +49,31 @@
 
     LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Selection" detailTitle:[LLEnumDescription tableViewCellSelectionStyleDescription:self.selectionStyle]] noneInsets];
     model3.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription tableViewCellSelectionStyles]
-                                                 currentAction:[LLEnumDescription tableViewCellSelectionStyleDescription:weakSelf.selectionStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.selectionStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription tableViewCellSelectionStyles]
+                                        currentAction:[LLEnumDescription tableViewCellSelectionStyleDescription:weakSelf.selectionStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.selectionStyle = index;
+                                           }];
     };
     [settings addObject:model3];
 
     LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Accessory" detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.accessoryType]] noneInsets];
     model4.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes]
-                                                 currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.accessoryType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.accessoryType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes]
+                                        currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.accessoryType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.accessoryType = index;
+                                           }];
     };
     [settings addObject:model4];
 
     LLDetailTitleCellModel *model5 = [LLDetailTitleCellModel modelWithTitle:@"Editing Acc." detailTitle:[LLEnumDescription tableViewCellAccessoryTypeDescription:self.editingAccessoryType]];
     model5.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes]
-                                                 currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.editingAccessoryType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.editingAccessoryType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription tableViewCellAccessoryTypes]
+                                        currentAction:[LLEnumDescription tableViewCellAccessoryTypeDescription:weakSelf.editingAccessoryType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.editingAccessoryType = index;
+                                           }];
     };
     [settings addObject:model5];
 
@@ -91,14 +92,14 @@
     LLTitleSwitchCellModel *model8 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Indent While Editing" isOn:self.shouldIndentWhileEditing] noneInsets];
     model8.changePropertyBlock = ^(id obj) {
         weakSelf.shouldIndentWhileEditing = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
     LLTitleSwitchCellModel *model9 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Re-order Controls" isOn:self.showsReorderControl];
     model9.changePropertyBlock = ^(id obj) {
         weakSelf.showsReorderControl = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model9];
 

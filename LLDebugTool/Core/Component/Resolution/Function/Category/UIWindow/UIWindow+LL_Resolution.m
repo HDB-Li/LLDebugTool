@@ -23,9 +23,9 @@
 
 #import "UIWindow+LL_Resolution.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLResolutionHelper.h"
 
-#import "LLRouter+Resolution.h"
 #import "NSObject+LL_Runtime.h"
 
 @implementation UIWindow (LL_Resolution)
@@ -33,7 +33,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if ([LLRouter isMockResolution]) {
+        if ([LLDT_CC_Resolution isMockResolution]) {
             [self LL_swizzleInstanceSelector:@selector(initWithFrame:) anotherSelector:@selector(LL_initWithFrame:)];
             [self LL_swizzleInstanceSelector:@selector(setFrame:) anotherSelector:@selector(LL_setFrame:)];
         }
@@ -51,7 +51,7 @@
 
 - (void)LL_setFrame:(CGRect)frame {
     if (!CGRectEqualToRect(frame, self.LL_mockFrame)) {
-        frame.origin = CGPointMake([LLResolutionHelper shared].horizontalPadding + frame.origin.x, [LLResolutionHelper shared].verticalPadding + frame.origin.y);
+        frame.origin = CGPointMake(LLDT_CC_Resolution.horizontalPadding + frame.origin.x, LLDT_CC_Resolution.verticalPadding + frame.origin.y);
         self.LL_mockFrame = frame;
         [self LL_setFrame:frame];
     }
@@ -62,7 +62,7 @@
     CGFloat simulateHeight = [UIScreen mainScreen].bounds.size.height;
     CGFloat simulateWidth = [UIScreen mainScreen].bounds.size.width;
 
-    return CGRectMake([LLResolutionHelper shared].horizontalPadding, [LLResolutionHelper shared].verticalPadding, simulateWidth, simulateHeight);
+    return CGRectMake(LLDT_CC_Resolution.horizontalPadding, LLDT_CC_Resolution.verticalPadding, simulateWidth, simulateHeight);
     /*
     CGFloat realRatio = realWidth / realHeight;
     CGFloat simulateRatio = simulateWidth / simulateHeight;

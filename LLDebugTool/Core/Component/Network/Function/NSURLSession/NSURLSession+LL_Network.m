@@ -23,6 +23,7 @@
 
 #import "NSURLSession+LL_Network.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLNetworkHelper.h"
 #import "LLURLProtocol.h"
 
@@ -38,7 +39,7 @@
 }
 
 + (NSURLSession *)LL_sessionWithConfiguration:(NSURLSessionConfiguration *)configuration delegate:(id<NSURLSessionDelegate>)delegate delegateQueue:(NSOperationQueue *)queue {
-    if ([LLNetworkHelper shared].isEnabled) {
+    if (LLDT_CC_Network.isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:configuration.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {
             [protocols insertObject:[LLURLProtocol class] atIndex:0];

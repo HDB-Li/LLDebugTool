@@ -23,6 +23,7 @@
 
 #import "UISegmentedControl+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyFormatter.h"
 #import "LLHierarchyHelper.h"
@@ -42,7 +43,7 @@
     LLTitleSwitchCellModel *model1 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:self.isMomentary ? @"Momentary" : @"Persistent Selection" isOn:self.isMomentary] noneInsets];
     model1.changePropertyBlock = ^(id obj) {
         weakSelf.momentary = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model1];
 
@@ -55,11 +56,11 @@
         for (NSInteger i = 0; i < weakSelf.numberOfSegments; i++) {
             [actions addObject:[NSString stringWithFormat:@"%ld", (long)i]];
         }
-        [[LLHierarchyHelper shared] showActionSheetWithActions:actions
-                                                 currentAction:[NSString stringWithFormat:@"%ld", (long)weakSelf.selectedSegmentIndex]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.selectedSegmentIndex = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:actions
+                                        currentAction:[NSString stringWithFormat:@"%ld", (long)weakSelf.selectedSegmentIndex]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.selectedSegmentIndex = index;
+                                           }];
     };
     [settings addObject:model3];
 
@@ -85,7 +86,7 @@
     LLTitleSwitchCellModel *model8 = [[LLTitleSwitchCellModel modelWithTitle:@"Size Mode" detailTitle:self.apportionsSegmentWidthsByContent ? @"Proportional to Content" : @"Equal Widths" isOn:self.apportionsSegmentWidthsByContent] noneInsets];
     model8.changePropertyBlock = ^(id obj) {
         weakSelf.apportionsSegmentWidthsByContent = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 

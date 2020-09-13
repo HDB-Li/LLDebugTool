@@ -23,6 +23,7 @@
 
 #import "UISearchBar+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -60,28 +61,28 @@
 
     LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Search Style" detailTitle:[LLEnumDescription searchBarStyleDescription:self.searchBarStyle]] noneInsets];
     model4.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription searchBarStyles]
-                                                 currentAction:[LLEnumDescription searchBarStyleDescription:weakSelf.searchBarStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.searchBarStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription searchBarStyles]
+                                        currentAction:[LLEnumDescription searchBarStyleDescription:weakSelf.searchBarStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.searchBarStyle = index;
+                                           }];
     };
     [settings addObject:model4];
 
     LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:@"Bar Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model5.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription barStyles]
-                                                 currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.barStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription barStyles]
+                                        currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.barStyle = index;
+                                           }];
     };
     [settings addObject:model5];
 
     LLTitleSwitchCellModel *model6 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
     model6.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
@@ -106,28 +107,28 @@
     LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:@"Options" detailTitle:@"Shows Search Results Button" isOn:self.showsSearchResultsButton] noneInsets];
     model12.changePropertyBlock = ^(id obj) {
         weakSelf.showsSearchResultsButton = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
     LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Bookmarks Button" isOn:self.showsBookmarkButton] noneInsets];
     model13.changePropertyBlock = ^(id obj) {
         weakSelf.showsBookmarkButton = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
     LLTitleSwitchCellModel *model14 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Cancel Button" isOn:self.showsCancelButton] noneInsets];
     model14.changePropertyBlock = ^(id obj) {
         weakSelf.showsCancelButton = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
     LLTitleSwitchCellModel *model15 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Scope Bar" isOn:self.showsScopeBar];
     model15.changePropertyBlock = ^(id obj) {
         weakSelf.showsScopeBar = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model15];
 
@@ -136,31 +137,31 @@
 
     LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
     model17.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
-                                                 currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.autocapitalizationType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
+                                        currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.autocapitalizationType = index;
+                                           }];
     };
     [settings addObject:model17];
 
     LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
     model18.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
-                                                 currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.autocorrectionType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
+                                        currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.autocorrectionType = index;
+                                           }];
     };
     [settings addObject:model18];
 
     LLDetailTitleCellModel *model19 = [LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]];
     model19.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription keyboardTypes]
-                                                 currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.keyboardType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription keyboardTypes]
+                                        currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.keyboardType = index;
+                                           }];
     };
     [settings addObject:model19];
 

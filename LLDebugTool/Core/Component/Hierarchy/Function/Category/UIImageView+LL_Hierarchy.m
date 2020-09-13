@@ -23,6 +23,7 @@
 
 #import "UIImageView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyFormatter.h"
@@ -49,7 +50,7 @@
     LLTitleSwitchCellModel *model3 = [LLTitleSwitchCellModel modelWithTitle:@"State" detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted" isOn:self.isHighlighted];
     model3.changePropertyBlock = ^(id obj) {
         weakSelf.highlighted = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 

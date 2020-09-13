@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "LLComponentCore.h"
 #import "LLDebugConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -89,6 +90,13 @@ LLDebugTool's version.
 Whether is Beta.
 */
 + (BOOL)isBetaVersion;
+
+@end
+
+@interface LLDebugTool (Component)
+
+/// Component core.
+@property (nonatomic, strong, readonly) LLComponentCore *componentCore;
 
 @end
 

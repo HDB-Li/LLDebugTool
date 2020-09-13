@@ -23,6 +23,7 @@
 
 #import "UIStepper+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyHelper.h"
@@ -66,21 +67,21 @@
     LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Autorepeat" isOn:self.autorepeat] noneInsets];
     model5.changePropertyBlock = ^(id obj) {
         weakSelf.autorepeat = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
     LLTitleSwitchCellModel *model6 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Continuous" isOn:self.isContinuous] noneInsets];
     model6.changePropertyBlock = ^(id obj) {
         weakSelf.continuous = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
     LLTitleSwitchCellModel *model7 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Wrap" isOn:self.wraps];
     model7.changePropertyBlock = ^(id obj) {
         weakSelf.wraps = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 

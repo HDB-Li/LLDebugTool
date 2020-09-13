@@ -25,6 +25,12 @@
 #define LLSetting_h
 
 #import "LLSettingComponent.h"
+
 #import "LLSettingHelper.h"
+
+#import "LLSettingViewController.h"
+#import "LLSettingWindow.h"
+
+#import "LLWindowManager+Setting.h"
 
 #endif /* LLSetting_h */

@@ -23,6 +23,7 @@
 
 #import "UISlider+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyFormatter.h"
@@ -84,7 +85,7 @@
     LLTitleSwitchCellModel *model9 = [LLTitleSwitchCellModel modelWithTitle:@"Events" detailTitle:@"Continuous Update" isOn:self.isContinuous];
     model9.changePropertyBlock = ^(id obj) {
         weakSelf.continuous = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model9];
 

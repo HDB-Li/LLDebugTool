@@ -26,15 +26,13 @@
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLDebugTool.h"
+#import "LLDebugToolMacros.h"
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
 #import "LLRouter.h"
 #import "LLThemeColor.h"
 #import "LLThemeManager.h"
 #import "LLTool.h"
-
-#import "LLRouter+Location.h"
-#import "LLRouter+ShortCut.h"
 
 static LLDebugConfig *_instance = nil;
 
@@ -57,15 +55,15 @@ NSNotificationName const LLDebugToolUpdateWindowStyleNotification = @"LLDebugToo
 }
 
 - (void)addMockRouteFile:(NSString *)filePath {
-    [LLRouter addMockRouteFile:filePath];
+    [LLDT_CC_Location addMockRouteFile:filePath];
 }
 
 - (void)addMockRouteDirectory:(NSString *)fileDirectory {
-    [LLRouter addMockRouteDirectory:fileDirectory];
+    [LLDT_CC_Location addMockRouteDirectory:fileDirectory];
 }
 
 - (void)registerShortCutWithName:(NSString *)name action:(NSString * (^)(void))action {
-    [LLRouter registerShortCutWithName:name action:action];
+    [LLDT_CC_ShortCut registerShortCutWithName:name action:action];
 }
 
 #pragma mark - Primary

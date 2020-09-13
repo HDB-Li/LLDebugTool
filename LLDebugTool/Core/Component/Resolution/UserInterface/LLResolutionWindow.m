@@ -30,7 +30,7 @@
 @implementation LLResolutionWindow
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    if ([super initWithFrame:frame]) {
+    if (self = [super initWithFrame:frame]) {
         self.showAnimateStyle = LLBaseWindowShowAnimateStylePresent;
         self.hideAnimateStyle = LLBaseWindowHideAnimateStyleDismiss;
         self.rootViewController = [[LLNavigationController alloc] initWithRootViewController:[[LLResolutionViewController alloc] init]];

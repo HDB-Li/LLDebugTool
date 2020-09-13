@@ -46,7 +46,7 @@ typedef void (^LLStorageManagerArrayBlock)(NSArray<LLStorageModel *> *_Nullable 
 /**
  Register a class in database and auto create a table.
  */
-- (BOOL)registerClass:(Class _Nonnull)cls;
+- (BOOL)registerClass:(Class _Nullable)cls;
 
 #pragma mark - SAVE
 /**
@@ -74,14 +74,14 @@ typedef void (^LLStorageManagerArrayBlock)(NSArray<LLStorageModel *> *_Nullable 
 /**
  Get models in database. If nothing, it will return an emtpy array. Operation in child thread and callback in main thread.
  */
-- (void)getModels:(Class _Nonnull)cls complete:(LLStorageManagerArrayBlock _Nullable)complete;
-- (void)getModels:(Class _Nonnull)cls launchDate:(NSString *_Nullable)launchDate complete:(LLStorageManagerArrayBlock _Nullable)complete;
-- (void)getModels:(Class _Nonnull)cls launchDate:(NSString *_Nullable)launchDate storageIdentity:(NSString *_Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nullable)cls complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nullable)cls launchDate:(NSString *_Nullable)launchDate complete:(LLStorageManagerArrayBlock _Nullable)complete;
+- (void)getModels:(Class _Nullable)cls launchDate:(NSString *_Nullable)launchDate storageIdentity:(NSString *_Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete;
 
 /**
  Get models in database. [synchronous] decision synchronous or asynchronous, if YES, all operations will work in current thread, if NO, Operations will work in child thread and callback in main thread.
  */
-- (void)getModels:(Class _Nonnull)cls launchDate:(NSString *_Nullable)launchDate storageIdentity:(NSString *_Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete synchronous:(BOOL)synchronous;
+- (void)getModels:(Class _Nullable)cls launchDate:(NSString *_Nullable)launchDate storageIdentity:(NSString *_Nullable)storageIdentity complete:(LLStorageManagerArrayBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 #pragma mark - DELETE
 /**
@@ -99,8 +99,8 @@ typedef void (^LLStorageManagerArrayBlock)(NSArray<LLStorageModel *> *_Nullable 
 /**
  Clear table.
  */
-- (void)clearTable:(Class _Nonnull)cls complete:(LLStorageManagerBoolBlock _Nullable)complete;
-- (void)clearTable:(Class _Nonnull)cls complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
+- (void)clearTable:(Class _Nullable)cls complete:(LLStorageManagerBoolBlock _Nullable)complete;
+- (void)clearTable:(Class _Nullable)cls complete:(LLStorageManagerBoolBlock _Nullable)complete synchronous:(BOOL)synchronous;
 
 /**
  Clear database.

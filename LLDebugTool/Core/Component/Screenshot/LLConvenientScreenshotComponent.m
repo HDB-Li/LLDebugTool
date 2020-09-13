@@ -23,7 +23,7 @@
 
 #import "LLConvenientScreenshotComponent.h"
 
-#import "LLScreenshotHelper.h"
+#import "LLDebugToolMacros.h"
 
 #import "LLWindowManager+Screenshot.h"
 #import "NSDictionary+LL_Utils.h"
@@ -37,7 +37,7 @@
     if (!image) {
         NSMutableDictionary *newData = [NSMutableDictionary dictionaryWithDictionary:data];
         NSMutableDictionary *newProperties = [NSMutableDictionary dictionaryWithDictionary:[data LL_objectForKey:LLComponentDelegateRootViewControllerPropertiesKey targetClass:NSDictionary.class]];
-        UIImage *newImage = [[LLScreenshotHelper shared] imageFromScreen];
+        UIImage *newImage = [LLDT_CC_Screenshot imageFromScreen];
         if (newImage) {
             newProperties[@"image"] = newImage;
             newData[LLComponentDelegateRootViewControllerPropertiesKey] = [newProperties copy];

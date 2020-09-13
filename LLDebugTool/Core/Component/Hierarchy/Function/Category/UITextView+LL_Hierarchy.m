@@ -23,6 +23,7 @@
 
 #import "UITextView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -56,7 +57,7 @@
     LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Allows Editing Attributes" isOn:self.allowsEditingTextAttributes] noneInsets];
     model3.changePropertyBlock = ^(id obj) {
         weakSelf.allowsEditingTextAttributes = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
@@ -74,25 +75,25 @@
 
     LLDetailTitleCellModel *model6 = [LLDetailTitleCellModel modelWithTitle:@"Alignment" detailTitle:[LLEnumDescription textAlignmentDescription:self.textAlignment]];
     model6.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription textAlignments]
-                                                 currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.textAlignment = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription textAlignments]
+                                        currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.textAlignment = index;
+                                           }];
     };
     [settings addObject:model6];
 
     LLTitleSwitchCellModel *model7 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Editable" isOn:self.isEditable] noneInsets];
     model7.changePropertyBlock = ^(id obj) {
         weakSelf.editable = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 
     LLTitleSwitchCellModel *model8 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Selectable" isOn:self.isSelectable];
     model8.changePropertyBlock = ^(id obj) {
         weakSelf.selectable = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
@@ -172,65 +173,65 @@
 
     LLDetailTitleCellModel *model16 = [[LLDetailTitleCellModel modelWithTitle:@"Capitalization" detailTitle:[LLEnumDescription textAutocapitalizationTypeDescription:self.autocapitalizationType]] noneInsets];
     model16.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
-                                                 currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.autocapitalizationType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription textAutocapitalizationTypes]
+                                        currentAction:[LLEnumDescription textAutocapitalizationTypeDescription:weakSelf.autocapitalizationType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.autocapitalizationType = index;
+                                           }];
     };
     [settings addObject:model16];
 
     LLDetailTitleCellModel *model17 = [[LLDetailTitleCellModel modelWithTitle:@"Correction" detailTitle:[LLEnumDescription textAutocorrectionTypeDescription:self.autocorrectionType]] noneInsets];
     model17.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
-                                                 currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.autocorrectionType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription textAutocorrectionTypes]
+                                        currentAction:[LLEnumDescription textAutocorrectionTypeDescription:weakSelf.autocorrectionType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.autocorrectionType = index;
+                                           }];
     };
     [settings addObject:model17];
 
     LLDetailTitleCellModel *model18 = [[LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription keyboardTypeDescription:self.keyboardType]] noneInsets];
     model18.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription keyboardTypes]
-                                                 currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.keyboardType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription keyboardTypes]
+                                        currentAction:[LLEnumDescription keyboardTypeDescription:weakSelf.keyboardType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.keyboardType = index;
+                                           }];
     };
     [settings addObject:model18];
 
     LLDetailTitleCellModel *model19 = [[LLDetailTitleCellModel modelWithTitle:@"Appearance" detailTitle:[LLEnumDescription keyboardAppearanceDescription:self.keyboardAppearance]] noneInsets];
     model19.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription keyboardAppearances]
-                                                 currentAction:[LLEnumDescription keyboardAppearanceDescription:weakSelf.keyboardAppearance]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.keyboardAppearance = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription keyboardAppearances]
+                                        currentAction:[LLEnumDescription keyboardAppearanceDescription:weakSelf.keyboardAppearance]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.keyboardAppearance = index;
+                                           }];
     };
     [settings addObject:model19];
 
     LLDetailTitleCellModel *model20 = [[LLDetailTitleCellModel modelWithTitle:@"Return Key" detailTitle:[LLEnumDescription returnKeyTypeDescription:self.returnKeyType]] noneInsets];
     model20.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription returnKeyTypes]
-                                                 currentAction:[LLEnumDescription returnKeyTypeDescription:weakSelf.returnKeyType]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.returnKeyType = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription returnKeyTypes]
+                                        currentAction:[LLEnumDescription returnKeyTypeDescription:weakSelf.returnKeyType]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.returnKeyType = index;
+                                           }];
     };
     [settings addObject:model20];
 
     LLTitleSwitchCellModel *model21 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Auto-enable Return Key" isOn:self.enablesReturnKeyAutomatically] noneInsets];
     model21.changePropertyBlock = ^(id obj) {
         weakSelf.enablesReturnKeyAutomatically = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model21];
 
     LLTitleSwitchCellModel *model22 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Secure Entry" isOn:self.isSecureTextEntry];
     model22.changePropertyBlock = ^(id obj) {
         weakSelf.secureTextEntry = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model22];
 

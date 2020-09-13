@@ -23,6 +23,7 @@
 
 #import "UIToolbar+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -43,18 +44,18 @@
 
     LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription barStyles]
-                                                 currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.barStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription barStyles]
+                                        currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.barStyle = index;
+                                           }];
     };
     [settings addObject:model1];
 
     LLTitleSwitchCellModel *model2 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
     model2.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model2];
 

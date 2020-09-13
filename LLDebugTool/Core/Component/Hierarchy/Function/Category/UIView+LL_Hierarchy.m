@@ -23,6 +23,7 @@
 
 #import "UIView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -61,11 +62,11 @@
 
     LLDetailTitleCellModel *model3 = [[LLDetailTitleCellModel modelWithTitle:@"Content Model" detailTitle:[LLEnumDescription viewContentModeDescription:self.contentMode]] noneInsets];
     model3.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription viewContentModeDescriptions]
-                                                 currentAction:[LLEnumDescription viewContentModeDescription:weakSelf.contentMode]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.contentMode = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription viewContentModeDescriptions]
+                                        currentAction:[LLEnumDescription viewContentModeDescription:weakSelf.contentMode]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.contentMode = index;
+                                           }];
     };
     [settings addObject:model3];
 
@@ -78,14 +79,14 @@
     LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:@"User Interaction" isOn:self.isUserInteractionEnabled] noneInsets];
     model5.changePropertyBlock = ^(id obj) {
         weakSelf.userInteractionEnabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
     LLTitleSwitchCellModel *model6 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Multiple Touch" isOn:self.isMultipleTouchEnabled];
     model6.changePropertyBlock = ^(id obj) {
         weakSelf.multipleTouchEnabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
@@ -110,35 +111,35 @@
     LLTitleSwitchCellModel *model10 = [[LLTitleSwitchCellModel modelWithTitle:@"Drawing" detailTitle:@"Opaque" isOn:self.isOpaque] noneInsets];
     model10.changePropertyBlock = ^(id obj) {
         weakSelf.opaque = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model10];
 
     LLTitleSwitchCellModel *model11 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Hidden" isOn:self.isHidden] noneInsets];
     model11.changePropertyBlock = ^(id obj) {
         weakSelf.hidden = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model11];
 
     LLTitleSwitchCellModel *model12 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Clears Graphics Context" isOn:self.clearsContextBeforeDrawing] noneInsets];
     model12.changePropertyBlock = ^(id obj) {
         weakSelf.clearsContextBeforeDrawing = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model12];
 
     LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Clip To Bounds" isOn:self.clipsToBounds] noneInsets];
     model13.changePropertyBlock = ^(id obj) {
         weakSelf.clipsToBounds = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
     LLTitleSwitchCellModel *model14 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Autoresizes Subviews" isOn:self.autoresizesSubviews];
     model14.changePropertyBlock = ^(id obj) {
         weakSelf.autoresizesSubviews = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
@@ -231,11 +232,11 @@
             LLDetailTitleCellModel *mod = [[LLDetailTitleCellModel modelWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
             __weak NSLayoutConstraint *cons = constrain;
             mod.block = ^{
-                [[LLHierarchyHelper shared] showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)]
-                                                               handler:^(NSString *originText, NSString *newText) {
-                                                                   cons.constant = [newText doubleValue];
-                                                                   [weakSelf setNeedsLayout];
-                                                               }];
+                [LLDT_CC_Hierarchy showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)]
+                                                      handler:^(NSString *originText, NSString *newText) {
+                                                          cons.constant = [newText doubleValue];
+                                                          [weakSelf setNeedsLayout];
+                                                      }];
             };
             [settings addObject:mod];
             lastConstrainModel = mod;
@@ -252,11 +253,11 @@
                 LLDetailTitleCellModel *mod = [[LLDetailTitleCellModel modelWithTitle:lastConstrainModel ? nil : @"Constrains" detailTitle:constrainDesc] noneInsets];
                 __weak NSLayoutConstraint *cons = constrain;
                 mod.block = ^{
-                    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)]
-                                                                   handler:^(NSString *originText, NSString *newText) {
-                                                                       cons.constant = [newText doubleValue];
-                                                                       [weakSelf setNeedsLayout];
-                                                                   }];
+                    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(cons.constant)]
+                                                          handler:^(NSString *originText, NSString *newText) {
+                                                              cons.constant = [newText doubleValue];
+                                                              [weakSelf setNeedsLayout];
+                                                          }];
                 };
                 [settings addObject:mod];
                 lastConstrainModel = mod;
@@ -310,21 +311,21 @@
 - (void)LL_showFrameAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[LLTool stringFromFrame:value.CGRectValue]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       NSValue *newValue = [NSValue valueWithCGRect:[LLHierarchyFormatter rectFromString:newText defaultValue:[value CGRectValue]]];
-                                                       if ([keyPath isEqualToString:@"frame"]) {
-                                                           if (self.LL_isLock) {
-                                                               [self willChangeValueForKey:@"frame"];
-                                                               [self LL_Hierarchy_setFrame:newValue.CGRectValue];
-                                                               [self didChangeValueForKey:@"frame"];
-                                                           } else {
-                                                               [weakSelf setValue:newValue forKeyPath:keyPath];
-                                                           }
-                                                       } else {
-                                                           [weakSelf setValue:newValue forKey:keyPath];
-                                                       }
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[LLTool stringFromFrame:value.CGRectValue]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              NSValue *newValue = [NSValue valueWithCGRect:[LLHierarchyFormatter rectFromString:newText defaultValue:[value CGRectValue]]];
+                                              if ([keyPath isEqualToString:@"frame"]) {
+                                                  if (self.LL_isLock) {
+                                                      [self willChangeValueForKey:@"frame"];
+                                                      [self LL_Hierarchy_setFrame:newValue.CGRectValue];
+                                                      [self didChangeValueForKey:@"frame"];
+                                                  } else {
+                                                      [weakSelf setValue:newValue forKeyPath:keyPath];
+                                                  }
+                                              } else {
+                                                  [weakSelf setValue:newValue forKey:keyPath];
+                                              }
+                                          }];
 }
 
 #pragma mark - Getters and setters

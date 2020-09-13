@@ -25,6 +25,7 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -59,18 +60,18 @@
 
 - (void)LL_showIntAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [self valueForKeyPath:keyPath]]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:@([newText integerValue]) forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[NSString stringWithFormat:@"%@", [self valueForKeyPath:keyPath]]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:@([newText integerValue]) forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showDoubleAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[LLFormatterTool formatNumber:[self valueForKeyPath:keyPath]]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:@([newText doubleValue]) forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[LLFormatterTool formatNumber:[self valueForKeyPath:keyPath]]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:@([newText doubleValue]) forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showColorAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
@@ -79,77 +80,77 @@
         return;
     }
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[color LL_hexString]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:[LLHierarchyFormatter colorFromString:newText defaultValue:color] forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[color LL_hexString]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:[LLHierarchyFormatter colorFromString:newText defaultValue:color] forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showPointAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:NSStringFromCGPoint([value CGPointValue])
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:[NSValue valueWithCGPoint:[LLHierarchyFormatter pointFromString:newText defaultValue:[value CGPointValue]]] forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:NSStringFromCGPoint([value CGPointValue])
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:[NSValue valueWithCGPoint:[LLHierarchyFormatter pointFromString:newText defaultValue:[value CGPointValue]]] forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showEdgeInsetsAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:NSStringFromUIEdgeInsets([value UIEdgeInsetsValue])
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:[NSValue valueWithUIEdgeInsets:[LLHierarchyFormatter insetsFromString:newText defaultValue:[value UIEdgeInsetsValue]]] forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:NSStringFromUIEdgeInsets([value UIEdgeInsetsValue])
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:[NSValue valueWithUIEdgeInsets:[LLHierarchyFormatter insetsFromString:newText defaultValue:[value UIEdgeInsetsValue]]] forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[self valueForKeyPath:keyPath]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:newText forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[self valueForKeyPath:keyPath]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:newText forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showAttributeTextAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __block NSAttributedString *attribute = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:attribute.string
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       NSMutableAttributedString *mutAttribute = [[NSMutableAttributedString alloc] initWithAttributedString:attribute];
-                                                       [mutAttribute replaceCharactersInRange:NSMakeRange(0, attribute.string.length) withString:newText];
-                                                       [weakSelf setValue:[mutAttribute copy] forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:attribute.string
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              NSMutableAttributedString *mutAttribute = [[NSMutableAttributedString alloc] initWithAttributedString:attribute];
+                                              [mutAttribute replaceCharactersInRange:NSMakeRange(0, attribute.string.length) withString:newText];
+                                              [weakSelf setValue:[mutAttribute copy] forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showSizeAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __block NSValue *value = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:NSStringFromCGSize([value CGSizeValue])
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:[NSValue valueWithCGSize:[LLHierarchyFormatter sizeFromString:newText defaultValue:[value CGSizeValue]]] forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:NSStringFromCGSize([value CGSizeValue])
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:[NSValue valueWithCGSize:[LLHierarchyFormatter sizeFromString:newText defaultValue:[value CGSizeValue]]] forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showFontAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     __block UIFont *font = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(font.pointSize)]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       [weakSelf setValue:[font fontWithSize:[newText doubleValue]] forKeyPath:keyPath];
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[LLFormatterTool formatNumber:@(font.pointSize)]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              [weakSelf setValue:[font fontWithSize:[newText doubleValue]] forKeyPath:keyPath];
+                                          }];
 }
 
 - (void)LL_showDateAlertAndAutomicSetWithKeyPath:(NSString *)keyPath {
     NSDate *date = [self valueForKeyPath:keyPath];
     __weak typeof(self) weakSelf = self;
-    [[LLHierarchyHelper shared] showTextFieldAlertWithText:[LLFormatterTool stringFromDate:date style:FormatterToolDateStyle3]
-                                                   handler:^(NSString *originText, NSString *newText) {
-                                                       NSDate *newDate = [LLFormatterTool dateFromString:newText style:FormatterToolDateStyle3];
-                                                       if (newDate) {
-                                                           [weakSelf setValue:newDate forKeyPath:keyPath];
-                                                       }
-                                                   }];
+    [LLDT_CC_Hierarchy showTextFieldAlertWithText:[LLFormatterTool stringFromDate:date style:FormatterToolDateStyle3]
+                                          handler:^(NSString *originText, NSString *newText) {
+                                              NSDate *newDate = [LLFormatterTool dateFromString:newText style:FormatterToolDateStyle3];
+                                              if (newDate) {
+                                                  [weakSelf setValue:newDate forKeyPath:keyPath];
+                                              }
+                                          }];
 }
 
 @end

@@ -23,6 +23,7 @@
 
 #import "UIPageControl+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyFormatter.h"
@@ -52,11 +53,11 @@
             for (NSInteger i = 0; i < weakSelf.numberOfPages; i++) {
                 [actions addObject:[NSString stringWithFormat:@"%ld", (long)i]];
             }
-            [[LLHierarchyHelper shared] showActionSheetWithActions:actions
-                                                     currentAction:[NSString stringWithFormat:@"%ld", (long)weakSelf.currentPage]
-                                                        completion:^(NSInteger index) {
-                                                            weakSelf.currentPage = index;
-                                                        }];
+            [LLDT_CC_Hierarchy showActionSheetWithActions:actions
+                                            currentAction:[NSString stringWithFormat:@"%ld", (long)weakSelf.currentPage]
+                                               completion:^(NSInteger index) {
+                                                   weakSelf.currentPage = index;
+                                               }];
         } else {
             [weakSelf LL_showIntAlertAndAutomicSetWithKeyPath:@"currentPage"];
         }
@@ -66,14 +67,14 @@
     LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Hides for Single Page" isOn:self.hidesForSinglePage] noneInsets];
     model3.changePropertyBlock = ^(id obj) {
         weakSelf.hidesForSinglePage = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
     LLTitleSwitchCellModel *model4 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Defers Page Display" isOn:self.defersCurrentPageDisplay];
     model4.changePropertyBlock = ^(id obj) {
         weakSelf.defersCurrentPageDisplay = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 

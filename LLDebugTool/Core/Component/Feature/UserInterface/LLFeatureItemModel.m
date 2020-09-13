@@ -23,7 +23,7 @@
 
 #import "LLFeatureItemModel.h"
 
-#import "LLComponentHelper.h"
+#import "LLComponentHandle.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLTool.h"
@@ -33,11 +33,11 @@
 - (instancetype)initWithAction:(LLDebugToolAction)action {
     if (self = [super init]) {
         _action = action;
-        if ([[LLComponentHelper componentForAction:action] length] < 0) {
+        if ([[LLComponentHandle componentForAction:action] length] < 0) {
             return nil;
         }
         _imageName = [self imageNameFromAction:action];
-        _title = [LLComponentHelper titleFromAction:action];
+        _title = [LLComponentHandle titleFromAction:action];
     }
     return self;
 }

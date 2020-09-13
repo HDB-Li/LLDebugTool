@@ -23,13 +23,13 @@
 
 #import "LLScreenshotViewController.h"
 
+#import "LLComponentHandle.h"
 #import "LLConst.h"
+#import "LLConvenientScreenshotComponent.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
-#import "LLConvenientScreenshotComponent.h"
-#import "LLComponentHelper.h"
 #import "LLThemeManager.h"
 
 #import "UIView+LL_Utils.h"
@@ -73,7 +73,7 @@
 
 #pragma mark - Event responses
 - (void)captureButtonClicked:(UIButton *)sender {
-    [LLComponentHelper executeAction:LLDebugToolActionConvenientScreenshot data:nil];
+    [LLComponentHandle executeAction:LLDebugToolActionConvenientScreenshot data:nil];
 }
 
 - (void)panGR:(UIPanGestureRecognizer *)sender {

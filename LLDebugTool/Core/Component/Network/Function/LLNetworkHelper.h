@@ -21,35 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
 
-#import "LLNetworkDefine.h"
+#import "LLNetworkHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  Monitoring network request or not.
  */
-@interface LLNetworkHelper : NSObject
-
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
-
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Current network status, use reachability on iOS 13 and later, use statusBar icon before iOS 13.
-
- @return NetworkStatus enum.
- */
-- (LLNetworkStatus)currentNetworkStatus;
+@interface LLNetworkHelper : LLComponentHelper <LLNetworkHelperDelegate>
 
 @end
 

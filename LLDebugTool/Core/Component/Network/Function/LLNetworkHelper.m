@@ -24,13 +24,12 @@
 #import "LLNetworkHelper.h"
 
 #import "LLDebugConfig.h"
+#import "LLNetworkModel.h"
+#import "LLNetworkTool.h"
+#import "LLNetworkViewController.h"
 #import "LLReachability.h"
 #import "LLTool.h"
 #import "LLURLProtocol.h"
-
-#import "LLRouter+Network.h"
-
-static LLNetworkHelper *_instance = nil;
 
 @interface LLNetworkHelper ()
 
@@ -40,31 +39,42 @@ static LLNetworkHelper *_instance = nil;
 
 @implementation LLNetworkHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLNetworkHelper alloc] init];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    [super start];
+    [self registerURLProtocol];
 }
 
-- (void)setEnable:(BOOL)enable {
-    if (_enable != enable) {
-        _enable = enable;
-        if (enable) {
-            [self registerLLURLProtocol];
-        } else {
-            [self unregisterLLURLProtocol];
-        }
-    }
+- (void)stop {
+    [super stop];
+    [self unregisterURLProtocol];
 }
 
+#pragma mark - LLNetworkHelperDelegate
 - (LLNetworkStatus)currentNetworkStatus {
     //    if (@available(iOS 13.0, *)) {
     //        return [self.reachability currentReachabilityStatus];
     //    } else {
-    return [LLRouter networkStateFromStatebar];
+    return [LLNetworkTool networkStateFromStatebar];
     //    }
+}
+
+- (UIViewController *)networkViewControllerWithLaunchDate:(NSString *)launchDate {
+    Class cls = [self networkViewControllerClass];
+    if (!cls) {
+        return nil;
+    }
+    UIViewController *vc = [[cls alloc] init];
+    [vc setValue:launchDate forKey:@"launchDate"];
+    return vc;
+}
+
+- (Class)networkModelClass {
+    return [LLNetworkModel class];
+}
+
+- (Class)networkViewControllerClass {
+    return [LLNetworkViewController class];
 }
 
 #pragma mark - Primary
@@ -76,7 +86,7 @@ static LLNetworkHelper *_instance = nil;
     return self;
 }
 
-- (void)registerLLURLProtocol {
+- (void)registerURLProtocol {
     if (![NSURLProtocol registerClass:[LLURLProtocol class]]) {
         [LLTool log:@"LLNetworkHelper reigsiter URLProtocol fail"];
     }
@@ -94,7 +104,7 @@ static LLNetworkHelper *_instance = nil;
     }
 }
 
-- (void)unregisterLLURLProtocol {
+- (void)unregisterURLProtocol {
     [NSURLProtocol unregisterClass:[LLURLProtocol class]];
     if ([LLDebugConfig shared].observerWebView) {
         Class cls = NSClassFromString(@"WKBrowsingContextController");

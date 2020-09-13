@@ -23,6 +23,7 @@
 
 #import "UISwitch+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyFormatter.h"
 #import "LLHierarchyHelper.h"
@@ -41,7 +42,7 @@
     LLTitleSwitchCellModel *model1 = [[LLTitleSwitchCellModel modelWithTitle:@"State" isOn:self.isOn] noneInsets];
     model1.changePropertyBlock = ^(id obj) {
         weakSelf.on = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model1];
 

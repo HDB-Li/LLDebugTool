@@ -25,8 +25,6 @@
 
 #import "LLShortCutModel.h"
 
-static LLShortCutHelper *_instance = nil;
-
 @interface LLShortCutHelper ()
 
 @property (nonatomic, strong) NSMutableArray<LLShortCutModel *> *actions;
@@ -35,20 +33,16 @@ static LLShortCutHelper *_instance = nil;
 
 @implementation LLShortCutHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLShortCutHelper alloc] init];
-    });
-    return _instance;
-}
-
 - (void)registerAction:(LLShortCutModel *)model {
     [_actions addObject:model];
 }
 
 - (void)unregisterAction:(LLShortCutModel *)model {
     [_actions removeObject:model];
+}
+
+- (void)registerShortCutWithName:(NSString *)name action:(NSString *_Nonnull (^)(void))action {
+    [self registerAction:[[LLShortCutModel alloc] initWithName:name action:action]];
 }
 
 #pragma mark - Life cycle

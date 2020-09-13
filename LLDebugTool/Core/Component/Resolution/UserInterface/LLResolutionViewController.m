@@ -24,6 +24,7 @@
 #import "LLResolutionViewController.h"
 
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLInternalMacros.h"
 #import "LLResolutionHelper.h"
 #import "LLResolutionModel.h"
@@ -57,8 +58,8 @@
 
     // Supports
     __weak typeof(self) weakSelf = self;
-    LLResolutionStyle makeStyle = [LLResolutionHelper shared].mockStyle == LLResolutionStyleInvalid ? [LLResolutionHelper shared].realStyle : [LLResolutionHelper shared].mockStyle;
-    for (NSNumber *number in [LLResolutionHelper shared].availableResolutions) {
+    LLResolutionStyle makeStyle = LLDT_CC_Resolution.mockStyle == LLResolutionStyleInvalid ? LLDT_CC_Resolution.realStyle : LLDT_CC_Resolution.mockStyle;
+    for (NSNumber *number in LLDT_CC_Resolution.availableResolutions) {
         LLResolutionStyle style = number.integerValue;
         LLResolutionModel *resolutionModel = [[LLResolutionModel alloc] initWithStyle:style];
         LLTitleCellModel *model = [LLTitleCellModel modelWithTitle:resolutionModel.name];
@@ -92,10 +93,10 @@
         return;
     }
     LLResolutionStyle mockStyle = style;
-    if (mockStyle == [LLResolutionHelper shared].realStyle) {
+    if (mockStyle == LLDT_CC_Resolution.realStyle) {
         mockStyle = LLResolutionStyleInvalid;
     }
-    [LLResolutionHelper shared].mockStyle = mockStyle;
+    LLDT_CC_Resolution.mockStyle = mockStyle;
     [[LLToastUtils shared] toastMessage:LLLocalizedString(@"resolution.change.success")];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         exit(0);

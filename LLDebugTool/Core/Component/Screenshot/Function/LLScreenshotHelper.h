@@ -21,54 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLComponentHelper.h"
+
+#import "LLScreenshotHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Screen shot helper.
-@interface LLScreenshotHelper : NSObject
-
-/**
- Singleton to control screenshot.
- 
- @return Singleton
- */
-+ (instancetype)shared;
-
-/**
- Set enable to screenshot.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Simulate user screenshot.
- 
- @return Whether screenshot success.
- */
-- (BOOL)simulateTakeScreenshot;
-
-/**
- Return a image from current screen.
- */
-- (UIImage *_Nullable)imageFromScreen;
-
-/**
- Return a image from current screen with scale.
-
- @param scale Scale
- @return UIImage.
- */
-- (UIImage *_Nullable)imageFromScreen:(CGFloat)scale;
-
-/**
- Save screenShots to sandbox. Operation in child thread and callback in main thread.
- */
-- (void)saveScreenshot:(UIImage *)image name:(NSString *_Nullable)name complete:(void (^__nullable)(BOOL finished))complete;
-
-/**
- Whether can request photo library authorization.
- */
-- (BOOL)canRequestPhotoLibraryAuthorization;
+@interface LLScreenshotHelper : LLComponentHelper <LLScreenshotHelperDelegate>
 
 @end
 

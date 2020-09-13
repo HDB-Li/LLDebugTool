@@ -23,26 +23,20 @@
 
 #import "LLWidgetBorderHelper.h"
 
-#import <UIKit/UIKit.h>
-
 #import "UIView+LLWidgetBorder.h"
-
-static LLWidgetBorderHelper *_instance = nil;
 
 @implementation LLWidgetBorderHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLWidgetBorderHelper alloc] init];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+        [window LL_updateBorderLayer:self.isEnabled];
+    }
 }
 
-- (void)setEnable:(BOOL)enable {
-    _enable = enable;
+- (void)stop {
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
-        [window LL_updateBorderLayer:enable];
+        [window LL_updateBorderLayer:self.isEnabled];
     }
 }
 

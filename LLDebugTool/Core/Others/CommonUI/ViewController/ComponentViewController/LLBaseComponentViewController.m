@@ -23,7 +23,7 @@
 
 #import "LLBaseComponentViewController.h"
 
-#import "LLComponentHelper.h"
+#import "LLComponentHandle.h"
 #import "LLComponentWindow.h"
 
 @interface LLBaseComponentViewController ()
@@ -35,7 +35,7 @@
 - (BOOL)componentDidFinish {
     if ([self.view.window isKindOfClass:[LLComponentWindow class]]) {
         LLComponentWindow *window = (LLComponentWindow *)self.view.window;
-        [LLComponentHelper finishAction:window.action data:nil];
+        [LLComponentHandle finishAction:window.action data:nil];
         return YES;
     }
     return NO;

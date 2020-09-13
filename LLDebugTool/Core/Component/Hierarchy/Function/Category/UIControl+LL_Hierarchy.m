@@ -23,6 +23,7 @@
 
 #import "UIControl+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
@@ -42,42 +43,42 @@
 
     LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Alignment" detailTitle:[NSString stringWithFormat:@"%@ Horizonally", [LLEnumDescription controlContentHorizontalAlignmentDescription:self.contentHorizontalAlignment]]] noneInsets];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription controlContentHorizontalAlignments]
-                                                 currentAction:[LLEnumDescription controlContentHorizontalAlignmentDescription:weakSelf.contentHorizontalAlignment]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.contentHorizontalAlignment = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription controlContentHorizontalAlignments]
+                                        currentAction:[LLEnumDescription controlContentHorizontalAlignmentDescription:weakSelf.contentHorizontalAlignment]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.contentHorizontalAlignment = index;
+                                           }];
     };
     [settings addObject:model1];
 
     LLDetailTitleCellModel *model2 = [LLDetailTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"%@ Vertically", [LLEnumDescription controlContentVerticalAlignmentDescription:self.contentVerticalAlignment]]];
     model2.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription controlContentVerticalAlignments]
-                                                 currentAction:[LLEnumDescription controlContentVerticalAlignmentDescription:weakSelf.contentVerticalAlignment]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.contentVerticalAlignment = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription controlContentVerticalAlignments]
+                                        currentAction:[LLEnumDescription controlContentVerticalAlignmentDescription:weakSelf.contentVerticalAlignment]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.contentVerticalAlignment = index;
+                                           }];
     };
     [settings addObject:model2];
 
     LLTitleSwitchCellModel *model3 = [[LLTitleSwitchCellModel modelWithTitle:@"Content" detailTitle:self.isSelected ? @"Selected" : @"Not Selected" isOn:self.isSelected] noneInsets];
     model3.changePropertyBlock = ^(id obj) {
         weakSelf.selected = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
     LLTitleSwitchCellModel *model4 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:self.isEnabled ? @"Enabled" : @"Not Enabled" isOn:self.isEnabled] noneInsets];
     model4.changePropertyBlock = ^(id obj) {
         weakSelf.enabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 
     LLTitleSwitchCellModel *model5 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:self.isHighlighted ? @"Highlighted" : @"Not Highlighted" isOn:self.isHighlighted];
     model5.changePropertyBlock = ^(id obj) {
         weakSelf.highlighted = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 

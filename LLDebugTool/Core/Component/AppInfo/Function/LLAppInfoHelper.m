@@ -29,13 +29,12 @@
 #import <malloc/malloc.h>
 
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLInternalMacros.h"
+#import "LLNetworkTool.h"
 
-#import "LLRouter+Network.h"
 #import "NSObject+LL_Utils.h"
 #import "UIDevice+LL_AppInfo.h"
-
-static LLAppInfoHelper *_instance = nil;
 
 NSNotificationName const LLDebugToolUpdateAppInfoNotification = @"LLDebugToolUpdateAppInfoNotification";
 LLAppInfoHelperKey const LLAppInfoHelperCPUKey = @"LLAppInfoHelperCPUKey";
@@ -93,85 +92,18 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
 
 @implementation LLAppInfoHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLAppInfoHelper alloc] init];
-        [_instance initial];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    [super start];
+    [self startTimers];
 }
 
-- (void)setEnable:(BOOL)enable {
-    if (_enable != enable) {
-        _enable = enable;
-        if (enable) {
-            [self startTimers];
-        } else {
-            [self removeTimers];
-        }
-    }
+- (void)stop {
+    [super stop];
+    [self removeTimers];
 }
 
-- (NSString *)appInfoDescription {
-    NSMutableString *desc = [[NSMutableString alloc] init];
-
-    // CPU Usage
-    [desc appendFormat:@"CPU : %@\n", self.cpuUsage];
-    // Memory Usage
-    [desc appendFormat:@"Memory : %@\n", self.memoryUsage];
-    // FPS
-    [desc appendFormat:@"FPS : %@\n", self.fps];
-    // Data Traffic
-    [desc appendFormat:@"Data Traffic : %@\n\n", self.dataTraffic];
-
-    // App Name
-    [desc appendFormat:@"Name : %@\n", self.appName];
-    // Bundle Identifier
-    [desc appendFormat:@"Identifier : %@\n", self.bundleIdentifier];
-    // App Version
-    [desc appendFormat:@"Version : %@\n", self.appVersion];
-    // Start Time
-    [desc appendFormat:@"Start Time : %@\n\n", self.appStartTimeConsuming];
-
-    // Model
-    [desc appendFormat:@"Model : %@\n", self.deviceModel];
-    // Name
-    [desc appendFormat:@"Name : %@\n", self.deviceName];
-    // Version
-    [desc appendFormat:@"Version : %@\n", self.systemVersion];
-    // Resolution
-    [desc appendFormat:@"Resolution : %@\n", self.screenResolution];
-    // Language
-    [desc appendFormat:@"Language : %@\n", self.languageCode];
-    // Battery
-    [desc appendFormat:@"Battery : %@\n", self.batteryLevel];
-    //CPU
-    [desc appendFormat:@"CPU : %@\n", self.cpuType];
-    // Disk
-    [desc appendFormat:@"Disk : %@\n", self.disk];
-    // SSID
-    [desc appendFormat:@"SSID : %@\n", self.ssid ?: @"Unknown"];
-    // Network
-    [desc appendFormat:@"Network : %@\n\n", self.networkState];
-
-    return [desc copy];
-}
-
-- (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
-    if ([[NSThread currentThread] isMainThread]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
-        });
-    } else {
-        @synchronized(self) {
-            _requestDataTraffic += requestDataTraffic;
-            _responseDataTraffic += responseDataTraffic;
-            _totalDataTraffic = _requestDataTraffic + _responseDataTraffic;
-        }
-    }
-}
-
+#pragma mark - LLAppInfoHelperDelegate
 - (NSString *)cpuUsage {
     return [NSString stringWithFormat:@"%.2f%%", _cpu];
 }
@@ -308,6 +240,87 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
 
 - (NSString *)ssid {
     return [self currentWifiSSID];
+}
+
+- (void)updateRequestDataTraffic:(unsigned long long)requestDataTraffic responseDataTraffic:(unsigned long long)responseDataTraffic {
+    if ([[NSThread currentThread] isMainThread]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self updateRequestDataTraffic:requestDataTraffic responseDataTraffic:responseDataTraffic];
+        });
+    } else {
+        @synchronized(self) {
+            _requestDataTraffic += requestDataTraffic;
+            _responseDataTraffic += responseDataTraffic;
+            _totalDataTraffic = _requestDataTraffic + _responseDataTraffic;
+        }
+    }
+}
+
+- (NSString *)appInfoDescription {
+    NSMutableString *desc = [[NSMutableString alloc] init];
+
+    // CPU Usage
+    [desc appendFormat:@"CPU : %@\n", self.cpuUsage];
+    // Memory Usage
+    [desc appendFormat:@"Memory : %@\n", self.memoryUsage];
+    // FPS
+    [desc appendFormat:@"FPS : %@\n", self.fps];
+    // Data Traffic
+    [desc appendFormat:@"Data Traffic : %@\n\n", self.dataTraffic];
+
+    // App Name
+    [desc appendFormat:@"Name : %@\n", self.appName];
+    // Bundle Identifier
+    [desc appendFormat:@"Identifier : %@\n", self.bundleIdentifier];
+    // App Version
+    [desc appendFormat:@"Version : %@\n", self.appVersion];
+    // Start Time
+    [desc appendFormat:@"Start Time : %@\n\n", self.appStartTimeConsuming];
+
+    // Model
+    [desc appendFormat:@"Model : %@\n", self.deviceModel];
+    // Name
+    [desc appendFormat:@"Name : %@\n", self.deviceName];
+    // Version
+    [desc appendFormat:@"Version : %@\n", self.systemVersion];
+    // Resolution
+    [desc appendFormat:@"Resolution : %@\n", self.screenResolution];
+    // Language
+    [desc appendFormat:@"Language : %@\n", self.languageCode];
+    // Battery
+    [desc appendFormat:@"Battery : %@\n", self.batteryLevel];
+    //CPU
+    [desc appendFormat:@"CPU : %@\n", self.cpuType];
+    // Disk
+    [desc appendFormat:@"Disk : %@\n", self.disk];
+    // SSID
+    [desc appendFormat:@"SSID : %@\n", self.ssid ?: @"Unknown"];
+    // Network
+    [desc appendFormat:@"Network : %@\n\n", self.networkState];
+
+    return [desc copy];
+}
+
+- (void)addAppInfoObserver:(id)observer selector:(SEL)aSelector {
+    [[NSNotificationCenter defaultCenter] addObserver:observer
+                                             selector:aSelector
+                                                 name:LLDebugToolUpdateAppInfoNotification
+                                               object:nil];
+}
+
+- (void)removeAppInfoObserver:(id)observer {
+    [[NSNotificationCenter defaultCenter] removeObserver:observer
+                                                    name:LLDebugToolUpdateAppInfoNotification
+                                                  object:nil];
+}
+
+- (NSString *)analysisAppInfoNotification:(NSNotification *)notification {
+    NSString *cpu = notification.userInfo[LLAppInfoHelperCPUDescriptionKey];
+    NSString *memory = notification.userInfo[LLAppInfoHelperMemoryUsedDescriptionKey];
+    NSString *fps = notification.userInfo[LLAppInfoHelperFPSKey];
+    NSNumber *stuckCount = notification.userInfo[LLAppInfoHelperStuckCountKey];
+    NSString *maxInterval = notification.userInfo[LLAppInfoHelperMaxIntervalDescriptionKey];
+    return [NSString stringWithFormat:@"CPU\t %@\nMEM\t %@\nFPS\t %@\nSTUCK\t %@\nMAX\t %@", cpu, memory, fps, stuckCount, maxInterval];
 }
 
 #pragma mark - Primary
@@ -532,7 +545,7 @@ LLAppInfoHelperKey const LLAppInfoHelperTotalDataTrafficDescriptionKey = @"LLApp
 
 - (NSString *)currentNetworkStatusDescription {
     NSString *returnValue = @"Unknown";
-    switch ([LLRouter networkStateFromStatebar]) {
+    switch ([LLNetworkTool networkStateFromStatebar]) {
         case LLNetworkStatusNotReachable: {
             returnValue = @"Unknown";
         } break;

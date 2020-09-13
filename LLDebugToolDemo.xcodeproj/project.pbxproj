@@ -70,9 +70,6 @@
 		364570F92313B80800C29200 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F52313B80800C29200 /* CHANGELOG.md */; };
 		364570FA2313B80800C29200 /* README-cn.md in Resources */ = {isa = PBXBuildFile; fileRef = 364570F62313B80800C29200 /* README-cn.md */; };
 		364570FC2313B82300C29200 /* LLDebugTool.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 364570FB2313B82200C29200 /* LLDebugTool.podspec */; };
-		364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */; };
-		364AC6F3237CE8F5007F0F29 /* LLRouter+Crash.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */; };
-		364AC6FA237CFB84007F0F29 /* LLRouter+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */; };
 		364CF3DB23265A1C000B513F /* LLRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 364CF3DA23265A1C000B513F /* LLRulerComponent.m */; };
 		364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 364EF64A2322087C0067C7D7 /* LLAnimateView.m */; };
 		3652EDF42387D0BD00D5D531 /* LLThemeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652EDF32387D0BD00D5D531 /* LLThemeColor.m */; };
@@ -85,7 +82,6 @@
 		36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCA22FD07B500BBB6FA /* LLMagnifierView.m */; };
 		36596BCE22FD172D00BBB6FA /* LLInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BCD22FD172D00BBB6FA /* LLInfoView.m */; };
 		36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */; };
-		3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3668D0C92303BB1F00D58C0B /* LLSettingManager.m */; };
 		366BC4A2233C64F4009BDA4A /* LLFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366BC4A1233C64F4009BDA4A /* LLFilterView.m */; };
 		36743D412313879700002A92 /* LLReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 36743D3F2313879700002A92 /* LLReachability.m */; };
 		3678AD142354274F00AC0B2C /* LLHtmlUIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3678AD132354274F00AC0B2C /* LLHtmlUIWebViewController.m */; };
@@ -101,8 +97,6 @@
 		36AB449B231FC57D00AC772B /* LLTitleCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449A231FC57D00AC772B /* LLTitleCellModel.m */; };
 		36AB449E231FC5D800AC772B /* LLTitleCellCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AB449D231FC5D800AC772B /* LLTitleCellCategoryModel.m */; };
 		36B8563E237BA9F600210B94 /* LLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B8563D237BA9F600210B94 /* LLRouter.m */; };
-		36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85646237BE48D00210B94 /* LLRouter+Network.m */; };
-		36B8564A237BF0F800210B94 /* LLRouter+AppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */; };
 		36BB1E1F2320E89C000D8F29 /* LLDebugConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E1E2320E89C000D8F29 /* LLDebugConfigHelper.m */; };
 		36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E2D2320F954000D8F29 /* NSUserDefaults+LL_Utils.m */; };
 		36BB1E3723211AF9000D8F29 /* LLConvenientScreenshotComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB1E3623211AF9000D8F29 /* LLConvenientScreenshotComponent.m */; };
@@ -138,7 +132,6 @@
 		36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB1238B778A0008C92E /* LLWindowManager+ShortCut.m */; };
 		36F93CB5238BA24E0008C92E /* LLShortCutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB4238BA24E0008C92E /* LLShortCutModel.m */; };
 		36F93CB8238BB4680008C92E /* LLTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CB7238BB4680008C92E /* LLTitleCell.m */; };
-		36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */; };
 		36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
 		C406173B2431034700663B46 /* UIScreen+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C406173A2431034700663B46 /* UIScreen+LL_Resolution.m */; };
@@ -149,7 +142,6 @@
 		C4141C94243B465F00C5EF86 /* LLTitleSwitchCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4141C93243B465F00C5EF86 /* LLTitleSwitchCellModel.m */; };
 		C4141C97243B4E4E00C5EF86 /* LLTitleSliderCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4141C96243B4E4E00C5EF86 /* LLTitleSliderCellModel.m */; };
 		C4278D032438815A00D14CFA /* LLResolutionStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C4278D012438815A00D14CFA /* LLResolutionStatusBarView.m */; };
-		C4278D062438C8BC00D14CFA /* LLRouter+Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C4278D052438C8BC00D14CFA /* LLRouter+Resolution.m */; };
 		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
 		C42EB0692430F38500BD1CE2 /* LLResolutionComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C42EB0682430F38500BD1CE2 /* LLResolutionComponent.m */; };
 		C42EB06C2430F3D500BD1CE2 /* LLResolutionWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C42EB06B2430F3D500BD1CE2 /* LLResolutionWindow.m */; };
@@ -160,7 +152,7 @@
 		C434C7A4239B913200D35EC8 /* LLSandboxVideoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7A3239B913200D35EC8 /* LLSandboxVideoPreviewController.m */; };
 		C434C7B5239BB1B000D35EC8 /* CLLocation+LL_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */; };
 		C4379AAD239CB7F8006D5F59 /* LLLocationMockRouteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */; };
-		C4379AB2239D35F3006D5F59 /* LLRouter+Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379AB1239D35F3006D5F59 /* LLRouter+Location.m */; };
+		C437BE5D25049556004C90FA /* LLComponentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C437BE5C25049556004C90FA /* LLComponentHelper.m */; };
 		C43BA80C205AB095006307BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80B205AB095006307BE /* AppDelegate.m */; };
 		C43BA80F205AB095006307BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BA80E205AB095006307BE /* ViewController.m */; };
 		C43BA814205AB095006307BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43BA813205AB095006307BE /* Assets.xcassets */; };
@@ -172,11 +164,16 @@
 		C4489B9424F0207400162231 /* LLHierarchyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = C4489B9324F0207400162231 /* LLHierarchyFormatter.m */; };
 		C44C3FF3243634C6009A38D5 /* UIView+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C44C3FF2243634C6009A38D5 /* UIView+LL_Resolution.m */; };
 		C45537F622F1E486001A9749 /* LLHierarchyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */; };
+		C45758A024F95A07004EE53E /* LLComponentCore.m in Sources */ = {isa = PBXBuildFile; fileRef = C457589F24F95A07004EE53E /* LLComponentCore.m */; };
 		C45994D024387E9200E79308 /* UINavigationBar+LL_Resolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C45994CE24387E9200E79308 /* UINavigationBar+LL_Resolution.m */; };
+		C45AC0E1250E10E9007BA850 /* LLMagnifierHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C45AC0E0250E10E9007BA850 /* LLMagnifierHelper.m */; };
+		C45AC0E5250E110C007BA850 /* LLRulerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C45AC0E4250E110C007BA850 /* LLRulerHelper.m */; };
+		C45AC0E9250E112B007BA850 /* LLHtmlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C45AC0E8250E112B007BA850 /* LLHtmlHelper.m */; };
 		C45BA2CE22F47986006B833A /* LLScreenshotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */; };
 		C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C45BA2D022F47997006B833A /* LLScreenshotPreviewViewController.m */; };
 		C46F0CBA244C29D800815D59 /* LLHierarchySheetReuseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46F0CB9244C29D800815D59 /* LLHierarchySheetReuseView.m */; };
 		C46FC33D249F54A600529169 /* LLEntryAppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */; };
+		C470C84B24FBDE740020120A /* LLSimpleLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C470C84A24FBDE740020120A /* LLSimpleLogHelper.m */; };
 		C472443E24128FED00F623CD /* NSMutableArray+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */; };
 		C47244412412A44900F623CD /* LLInternalMacrosTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C47244402412A44900F623CD /* LLInternalMacrosTool.m */; };
 		C47D28E324B62C7E00E6BFF9 /* LLWindowManager+Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D28E224B62C7E00E6BFF9 /* LLWindowManager+Feature.m */; };
@@ -203,6 +200,7 @@
 		C49141E724E9786500A6E977 /* UITabBar+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141E624E9786500A6E977 /* UITabBar+LL_Hierarchy.m */; };
 		C49141EA24E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141E924E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m */; };
 		C49141ED24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = C49141EC24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m */; };
+		C492D2F62503BDEC009B54C2 /* LLFeatureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C492D2F52503BDEC009B54C2 /* LLFeatureHelper.m */; };
 		C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */; };
 		C498567E22ED8D4800E9FBE2 /* LLScreenshotToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561A22ED8D4700E9FBE2 /* LLScreenshotToolbar.m */; };
 		C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C498561D22ED8D4700E9FBE2 /* LLScreenshotImageView.m */; };
@@ -313,6 +311,8 @@
 		C4BA3CF624B2220A00D73AB3 /* LLEntryComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BA3CF524B2220A00D73AB3 /* LLEntryComponent.m */; };
 		C4C4013724F2AE4600D432ED /* LLWindowManager+Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4013624F2AE4600D432ED /* LLWindowManager+Entry.m */; };
 		C4C4013B24F2B23A00D432ED /* LLEntryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4013A24F2B23A00D432ED /* LLEntryHelper.m */; };
+		C4C46BB624FE8CC80042AE1B /* LLScreenshotTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C46BB524FE8CC80042AE1B /* LLScreenshotTool.m */; };
+		C4C46BBA24FE8D420042AE1B /* LLNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C46BB924FE8D420042AE1B /* LLNetworkTool.m */; };
 		C4C4F828248CE93F00558753 /* LLDebugTool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F81D248CE93E00558753 /* LLDebugTool.jpg */; };
 		C4C4F829248CE93F00558753 /* LLDebugTool.png in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F81E248CE93E00558753 /* LLDebugTool.png */; };
 		C4C4F82A248CE93F00558753 /* LLDebugTool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F81F248CE93E00558753 /* LLDebugTool.plist */; };
@@ -324,10 +324,9 @@
 		C4C4F830248CE93F00558753 /* LLDebugTool.json in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F825248CE93F00558753 /* LLDebugTool.json */; };
 		C4C4F831248CE93F00558753 /* LLDebugTool.md in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F826248CE93F00558753 /* LLDebugTool.md */; };
 		C4C4F832248CE93F00558753 /* LLDebugTool.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C4C4F827248CE93F00558753 /* LLDebugTool.pdf */; };
-		C4C7985E24F56D78003D4C46 /* LLRouter+Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C7985D24F56D78003D4C46 /* LLRouter+Setting.m */; };
 		C4C7986124F56E7B003D4C46 /* LLSettingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C7986024F56E7B003D4C46 /* LLSettingHelper.m */; };
 		C4CA96AC24AF770200F78E1B /* LLScreenshotPreviewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA96AB24AF770200F78E1B /* LLScreenshotPreviewWindow.m */; };
-		C4CA96B124B1D8B400F78E1B /* LLComponentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA96B024B1D8B400F78E1B /* LLComponentHelper.m */; };
+		C4CA96B124B1D8B400F78E1B /* LLComponentHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CA96B024B1D8B400F78E1B /* LLComponentHandle.m */; };
 		C4CF72F3239AB3F100B2C4DC /* LLSandboxImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F2239AB3F100B2C4DC /* LLSandboxImagePreviewController.m */; };
 		C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F5239AB41400B2C4DC /* LLSandboxPreviewController.m */; };
 		C4D164AB23EAECE9007A141E /* LLEntryStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */; };
@@ -455,16 +454,10 @@
 		364570F52313B80800C29200 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		364570F62313B80800C29200 /* README-cn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-cn.md"; sourceTree = "<group>"; };
 		364570FB2313B82200C29200 /* LLDebugTool.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.podspec; sourceTree = "<group>"; };
-		364AC6EE237CE50F007F0F29 /* LLRouter+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Log.h"; sourceTree = "<group>"; };
-		364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Log.m"; sourceTree = "<group>"; };
-		364AC6F1237CE8F5007F0F29 /* LLRouter+Crash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Crash.h"; sourceTree = "<group>"; };
-		364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Crash.m"; sourceTree = "<group>"; };
 		364AC6F4237CEE98007F0F29 /* LLSandbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandbox.h; sourceTree = "<group>"; };
 		364AC6F5237CF63F007F0F29 /* LLScreenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshot.h; sourceTree = "<group>"; };
 		364AC6F6237CF7C8007F0F29 /* LLHierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchy.h; sourceTree = "<group>"; };
 		364AC6F7237CFA8D007F0F29 /* LLMagnifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifier.h; sourceTree = "<group>"; };
-		364AC6F8237CFB84007F0F29 /* LLRouter+Screenshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Screenshot.h"; sourceTree = "<group>"; };
-		364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Screenshot.m"; sourceTree = "<group>"; };
 		364AC6FB237CFCF0007F0F29 /* LLRuler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRuler.h; sourceTree = "<group>"; };
 		364AC6FC237CFDF6007F0F29 /* LLWidgetBorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorder.h; sourceTree = "<group>"; };
 		364AC6FD237D0040007F0F29 /* LLHtml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHtml.h; sourceTree = "<group>"; };
@@ -492,8 +485,6 @@
 		36596BCD22FD172D00BBB6FA /* LLInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInfoView.m; sourceTree = "<group>"; };
 		36596BCF22FD1DF300BBB6FA /* LLMagnifierInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierInfoView.h; sourceTree = "<group>"; };
 		36596BD022FD1DF300BBB6FA /* LLMagnifierInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoView.m; sourceTree = "<group>"; };
-		3668D0C82303BB1F00D58C0B /* LLSettingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingManager.h; sourceTree = "<group>"; };
-		3668D0C92303BB1F00D58C0B /* LLSettingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingManager.m; sourceTree = "<group>"; };
 		366BC4A0233C64F4009BDA4A /* LLFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFilterView.h; sourceTree = "<group>"; };
 		366BC4A1233C64F4009BDA4A /* LLFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterView.m; sourceTree = "<group>"; };
 		36743D3F2313879700002A92 /* LLReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLReachability.m; sourceTree = "<group>"; };
@@ -527,10 +518,6 @@
 		36B8563C237BA9F600210B94 /* LLRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRouter.h; sourceTree = "<group>"; };
 		36B8563D237BA9F600210B94 /* LLRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRouter.m; sourceTree = "<group>"; };
 		36B85642237BE2D900210B94 /* LLNetworkDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkDefine.h; sourceTree = "<group>"; };
-		36B85645237BE48D00210B94 /* LLRouter+Network.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Network.h"; sourceTree = "<group>"; };
-		36B85646237BE48D00210B94 /* LLRouter+Network.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Network.m"; sourceTree = "<group>"; };
-		36B85648237BF0F800210B94 /* LLRouter+AppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+AppInfo.h"; sourceTree = "<group>"; };
-		36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+AppInfo.m"; sourceTree = "<group>"; };
 		36B8564B237BF2A100210B94 /* LLLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLog.h; sourceTree = "<group>"; };
 		36B8564C237C0B7300210B94 /* LLCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrash.h; sourceTree = "<group>"; };
 		36BB1E1D2320E89C000D8F29 /* LLDebugConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLDebugConfigHelper.h; sourceTree = "<group>"; };
@@ -606,8 +593,6 @@
 		36F93CB4238BA24E0008C92E /* LLShortCutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutModel.m; sourceTree = "<group>"; };
 		36F93CB6238BB4680008C92E /* LLTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLTitleCell.h; sourceTree = "<group>"; };
 		36F93CB7238BB4680008C92E /* LLTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCell.m; sourceTree = "<group>"; };
-		36F93CB9238BC2450008C92E /* LLRouter+ShortCut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+ShortCut.h"; sourceTree = "<group>"; };
-		36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+ShortCut.m"; sourceTree = "<group>"; };
 		36F93CBC238BC59C0008C92E /* TestShortCutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestShortCutViewController.h; sourceTree = "<group>"; };
 		36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestShortCutViewController.m; sourceTree = "<group>"; };
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
@@ -633,8 +618,6 @@
 		C4141C96243B4E4E00C5EF86 /* LLTitleSliderCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSliderCellModel.m; sourceTree = "<group>"; };
 		C4278D012438815A00D14CFA /* LLResolutionStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLResolutionStatusBarView.m; sourceTree = "<group>"; };
 		C4278D022438815A00D14CFA /* LLResolutionStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLResolutionStatusBarView.h; sourceTree = "<group>"; };
-		C4278D042438C8BC00D14CFA /* LLRouter+Resolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Resolution.h"; sourceTree = "<group>"; };
-		C4278D052438C8BC00D14CFA /* LLRouter+Resolution.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Resolution.m"; sourceTree = "<group>"; };
 		C4299E6723941416005845A2 /* LLSandboxHtmlPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHtmlPreviewController.h; sourceTree = "<group>"; };
 		C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewController.m; sourceTree = "<group>"; };
 		C42EB0662430F35D00BD1CE2 /* LLResolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLResolution.h; sourceTree = "<group>"; };
@@ -656,8 +639,8 @@
 		C434C7B4239BB1B000D35EC8 /* CLLocation+LL_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+LL_Location.m"; sourceTree = "<group>"; };
 		C4379AAB239CB7F8006D5F59 /* LLLocationMockRouteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationMockRouteModel.h; sourceTree = "<group>"; };
 		C4379AAC239CB7F8006D5F59 /* LLLocationMockRouteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationMockRouteModel.m; sourceTree = "<group>"; };
-		C4379AB0239D35F3006D5F59 /* LLRouter+Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Location.h"; sourceTree = "<group>"; };
-		C4379AB1239D35F3006D5F59 /* LLRouter+Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Location.m"; sourceTree = "<group>"; };
+		C437BE5B25049556004C90FA /* LLComponentHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentHelper.h; sourceTree = "<group>"; };
+		C437BE5C25049556004C90FA /* LLComponentHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentHelper.m; sourceTree = "<group>"; };
 		C43BA807205AB095006307BE /* LLDebugToolDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugToolDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BA80A205AB095006307BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C43BA80B205AB095006307BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -678,8 +661,34 @@
 		C44C3FF2243634C6009A38D5 /* UIView+LL_Resolution.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+LL_Resolution.m"; sourceTree = "<group>"; };
 		C45537F422F1E486001A9749 /* LLHierarchyDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyDetailViewController.h; sourceTree = "<group>"; };
 		C45537F522F1E486001A9749 /* LLHierarchyDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailViewController.m; sourceTree = "<group>"; };
+		C457589D24F958FA004EE53E /* LLComponentHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentHelperDelegate.h; sourceTree = "<group>"; };
+		C457589E24F95A07004EE53E /* LLComponentCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentCore.h; sourceTree = "<group>"; };
+		C457589F24F95A07004EE53E /* LLComponentCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentCore.m; sourceTree = "<group>"; };
+		C45758A124F95A6D004EE53E /* LLNetworkHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A224F95AA0004EE53E /* LLLogHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLogHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A324F95AAD004EE53E /* LLCrashHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrashHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A424F95AB7004EE53E /* LLAppInfoHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAppInfoHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A524F95AC0004EE53E /* LLSandboxHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A724F95B08004EE53E /* LLEntryHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A824F95B12004EE53E /* LLFeatureHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFeatureHelperDelegate.h; sourceTree = "<group>"; };
+		C45758A924F95B1F004EE53E /* LLSettingHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingHelperDelegate.h; sourceTree = "<group>"; };
+		C45758AA24F95B36004EE53E /* LLScreenshotHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotHelperDelegate.h; sourceTree = "<group>"; };
+		C45758AB24F95B40004EE53E /* LLHierarchyHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHierarchyHelperDelegate.h; sourceTree = "<group>"; };
+		C45758AC24F95B50004EE53E /* LLMagnifierHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierHelperDelegate.h; sourceTree = "<group>"; };
+		C45758AD24F95B5A004EE53E /* LLRulerHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerHelperDelegate.h; sourceTree = "<group>"; };
+		C45758AE24F95B69004EE53E /* LLWidgetBorderHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderHelperDelegate.h; sourceTree = "<group>"; };
+		C45758AF24F95B73004EE53E /* LLHtmlHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHtmlHelperDelegate.h; sourceTree = "<group>"; };
+		C45758B024F95B80004EE53E /* LLLocationHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationHelperDelegate.h; sourceTree = "<group>"; };
+		C45758B124F95B8B004EE53E /* LLShortCutHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLShortCutHelperDelegate.h; sourceTree = "<group>"; };
+		C45758B224F95B9E004EE53E /* LLResolutionHelperDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLResolutionHelperDelegate.h; sourceTree = "<group>"; };
 		C45994CE24387E9200E79308 /* UINavigationBar+LL_Resolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LL_Resolution.m"; sourceTree = "<group>"; };
 		C45994CF24387E9200E79308 /* UINavigationBar+LL_Resolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+LL_Resolution.h"; sourceTree = "<group>"; };
+		C45AC0DF250E10E9007BA850 /* LLMagnifierHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierHelper.h; sourceTree = "<group>"; };
+		C45AC0E0250E10E9007BA850 /* LLMagnifierHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierHelper.m; sourceTree = "<group>"; };
+		C45AC0E3250E110C007BA850 /* LLRulerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerHelper.h; sourceTree = "<group>"; };
+		C45AC0E4250E110C007BA850 /* LLRulerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerHelper.m; sourceTree = "<group>"; };
+		C45AC0E7250E112B007BA850 /* LLHtmlHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHtmlHelper.h; sourceTree = "<group>"; };
+		C45AC0E8250E112B007BA850 /* LLHtmlHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlHelper.m; sourceTree = "<group>"; };
 		C45BA2CC22F47986006B833A /* LLScreenshotViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotViewController.h; sourceTree = "<group>"; };
 		C45BA2CD22F47986006B833A /* LLScreenshotViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotViewController.m; sourceTree = "<group>"; };
 		C45BA2CF22F47997006B833A /* LLScreenshotPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotPreviewViewController.h; sourceTree = "<group>"; };
@@ -688,6 +697,8 @@
 		C46F0CB9244C29D800815D59 /* LLHierarchySheetReuseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchySheetReuseView.m; sourceTree = "<group>"; };
 		C46FC33B249F54A600529169 /* LLEntryAppInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryAppInfoView.h; sourceTree = "<group>"; };
 		C46FC33C249F54A600529169 /* LLEntryAppInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryAppInfoView.m; sourceTree = "<group>"; };
+		C470C84924FBDE740020120A /* LLSimpleLogHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSimpleLogHelper.h; sourceTree = "<group>"; };
+		C470C84A24FBDE740020120A /* LLSimpleLogHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSimpleLogHelper.m; sourceTree = "<group>"; };
 		C472443C24128FED00F623CD /* NSMutableArray+LL_Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+LL_Utils.h"; sourceTree = "<group>"; };
 		C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+LL_Utils.m"; sourceTree = "<group>"; };
 		C472443F2412A44900F623CD /* LLInternalMacrosTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLInternalMacrosTool.h; sourceTree = "<group>"; };
@@ -740,6 +751,8 @@
 		C49141E924E97E1600A6E977 /* UISearchBar+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+LL_Hierarchy.m"; sourceTree = "<group>"; };
 		C49141EB24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWindow+LL_Hierarchy.h"; sourceTree = "<group>"; };
 		C49141EC24E97E3A00A6E977 /* UIWindow+LL_Hierarchy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+LL_Hierarchy.m"; sourceTree = "<group>"; };
+		C492D2F42503BDEC009B54C2 /* LLFeatureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFeatureHelper.h; sourceTree = "<group>"; };
+		C492D2F52503BDEC009B54C2 /* LLFeatureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureHelper.m; sourceTree = "<group>"; };
 		C49854A622ED8D0E00E9FBE2 /* LLDebugTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDebugTool.m; sourceTree = "<group>"; };
 		C49854A722ED8D0E00E9FBE2 /* LLDebugToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugToolMacros.h; sourceTree = "<group>"; };
 		C49854A822ED8D0E00E9FBE2 /* LLDebugTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDebugTool.h; sourceTree = "<group>"; };
@@ -970,6 +983,10 @@
 		C4C4013624F2AE4600D432ED /* LLWindowManager+Entry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLWindowManager+Entry.m"; sourceTree = "<group>"; };
 		C4C4013924F2B23A00D432ED /* LLEntryHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryHelper.h; sourceTree = "<group>"; };
 		C4C4013A24F2B23A00D432ED /* LLEntryHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryHelper.m; sourceTree = "<group>"; };
+		C4C46BB424FE8CC80042AE1B /* LLScreenshotTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotTool.h; sourceTree = "<group>"; };
+		C4C46BB524FE8CC80042AE1B /* LLScreenshotTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotTool.m; sourceTree = "<group>"; };
+		C4C46BB824FE8D420042AE1B /* LLNetworkTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkTool.h; sourceTree = "<group>"; };
+		C4C46BB924FE8D420042AE1B /* LLNetworkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkTool.m; sourceTree = "<group>"; };
 		C4C4F81D248CE93E00558753 /* LLDebugTool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LLDebugTool.jpg; sourceTree = "<group>"; };
 		C4C4F81E248CE93E00558753 /* LLDebugTool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LLDebugTool.png; sourceTree = "<group>"; };
 		C4C4F81F248CE93E00558753 /* LLDebugTool.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LLDebugTool.plist; sourceTree = "<group>"; };
@@ -981,14 +998,12 @@
 		C4C4F825248CE93F00558753 /* LLDebugTool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LLDebugTool.json; sourceTree = "<group>"; };
 		C4C4F826248CE93F00558753 /* LLDebugTool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LLDebugTool.md; sourceTree = "<group>"; };
 		C4C4F827248CE93F00558753 /* LLDebugTool.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = LLDebugTool.pdf; sourceTree = "<group>"; };
-		C4C7985C24F56D78003D4C46 /* LLRouter+Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LLRouter+Setting.h"; sourceTree = "<group>"; };
-		C4C7985D24F56D78003D4C46 /* LLRouter+Setting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LLRouter+Setting.m"; sourceTree = "<group>"; };
 		C4C7985F24F56E7B003D4C46 /* LLSettingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingHelper.h; sourceTree = "<group>"; };
 		C4C7986024F56E7B003D4C46 /* LLSettingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingHelper.m; sourceTree = "<group>"; };
 		C4CA96AA24AF770200F78E1B /* LLScreenshotPreviewWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotPreviewWindow.h; sourceTree = "<group>"; };
 		C4CA96AB24AF770200F78E1B /* LLScreenshotPreviewWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewWindow.m; sourceTree = "<group>"; };
-		C4CA96AF24B1D8B400F78E1B /* LLComponentHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentHelper.h; sourceTree = "<group>"; };
-		C4CA96B024B1D8B400F78E1B /* LLComponentHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentHelper.m; sourceTree = "<group>"; };
+		C4CA96AF24B1D8B400F78E1B /* LLComponentHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentHandle.h; sourceTree = "<group>"; };
+		C4CA96B024B1D8B400F78E1B /* LLComponentHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentHandle.m; sourceTree = "<group>"; };
 		C4CF72F1239AB3F100B2C4DC /* LLSandboxImagePreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxImagePreviewController.h; sourceTree = "<group>"; };
 		C4CF72F2239AB3F100B2C4DC /* LLSandboxImagePreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxImagePreviewController.m; sourceTree = "<group>"; };
 		C4CF72F4239AB41400B2C4DC /* LLSandboxPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxPreviewController.h; sourceTree = "<group>"; };
@@ -1072,13 +1087,16 @@
 		36059403237AB0B100C2D8FF /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				C45758A624F95AF1004EE53E /* Helper */,
 				C49856E722EDACD200E9FBE2 /* LLComponent.h */,
 				C49856E822EDACD200E9FBE2 /* LLComponent.m */,
 				360075DF23556DAF00A606AC /* LLComponentDelegate.h */,
-				C4CA96AF24B1D8B400F78E1B /* LLComponentHelper.h */,
-				C4CA96B024B1D8B400F78E1B /* LLComponentHelper.m */,
+				C4CA96AF24B1D8B400F78E1B /* LLComponentHandle.h */,
+				C4CA96B024B1D8B400F78E1B /* LLComponentHandle.m */,
 				C4B4E42522F9C90900F70277 /* LLComponentWindow.h */,
 				C4B4E41822F9C90900F70277 /* LLComponentWindow.m */,
+				C457589E24F95A07004EE53E /* LLComponentCore.h */,
+				C457589F24F95A07004EE53E /* LLComponentCore.m */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1241,6 +1259,7 @@
 		364CF3D7232659EB000B513F /* Ruler */ = {
 			isa = PBXGroup;
 			children = (
+				C45AC0E2250E1100007BA850 /* Function */,
 				364CF3D8232659FE000B513F /* UserInterface */,
 				364CF3D923265A1C000B513F /* LLRulerComponent.h */,
 				364CF3DA23265A1C000B513F /* LLRulerComponent.m */,
@@ -1280,8 +1299,6 @@
 			children = (
 				C4C7985F24F56E7B003D4C46 /* LLSettingHelper.h */,
 				C4C7986024F56E7B003D4C46 /* LLSettingHelper.m */,
-				3668D0C82303BB1F00D58C0B /* LLSettingManager.h */,
-				3668D0C92303BB1F00D58C0B /* LLSettingManager.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -1328,24 +1345,6 @@
 			children = (
 				36B8563C237BA9F600210B94 /* LLRouter.h */,
 				36B8563D237BA9F600210B94 /* LLRouter.m */,
-				36B85645237BE48D00210B94 /* LLRouter+Network.h */,
-				36B85646237BE48D00210B94 /* LLRouter+Network.m */,
-				364AC6EE237CE50F007F0F29 /* LLRouter+Log.h */,
-				364AC6EF237CE50F007F0F29 /* LLRouter+Log.m */,
-				364AC6F1237CE8F5007F0F29 /* LLRouter+Crash.h */,
-				364AC6F2237CE8F5007F0F29 /* LLRouter+Crash.m */,
-				36B85648237BF0F800210B94 /* LLRouter+AppInfo.h */,
-				36B85649237BF0F800210B94 /* LLRouter+AppInfo.m */,
-				364AC6F8237CFB84007F0F29 /* LLRouter+Screenshot.h */,
-				364AC6F9237CFB84007F0F29 /* LLRouter+Screenshot.m */,
-				C4379AB0239D35F3006D5F59 /* LLRouter+Location.h */,
-				C4379AB1239D35F3006D5F59 /* LLRouter+Location.m */,
-				36F93CB9238BC2450008C92E /* LLRouter+ShortCut.h */,
-				36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */,
-				C4278D042438C8BC00D14CFA /* LLRouter+Resolution.h */,
-				C4278D052438C8BC00D14CFA /* LLRouter+Resolution.m */,
-				C4C7985C24F56D78003D4C46 /* LLRouter+Setting.h */,
-				C4C7985D24F56D78003D4C46 /* LLRouter+Setting.m */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1482,6 +1481,7 @@
 		36CDFBC323506361002A913F /* Html */ = {
 			isa = PBXGroup;
 			children = (
+				C45AC0E6250E1122007BA850 /* Function */,
 				36CDFBC523506361002A913F /* UserInterface */,
 				36CDFBC623506374002A913F /* LLHtmlComponent.h */,
 				36CDFBC723506374002A913F /* LLHtmlComponent.m */,
@@ -1773,6 +1773,33 @@
 			path = LLDebugTool;
 			sourceTree = "<group>";
 		};
+		C45758A624F95AF1004EE53E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C457589D24F958FA004EE53E /* LLComponentHelperDelegate.h */,
+				C437BE5B25049556004C90FA /* LLComponentHelper.h */,
+				C437BE5C25049556004C90FA /* LLComponentHelper.m */,
+				C45758A724F95B08004EE53E /* LLEntryHelperDelegate.h */,
+				C45758A824F95B12004EE53E /* LLFeatureHelperDelegate.h */,
+				C45758A924F95B1F004EE53E /* LLSettingHelperDelegate.h */,
+				C45758A124F95A6D004EE53E /* LLNetworkHelperDelegate.h */,
+				C45758A224F95AA0004EE53E /* LLLogHelperDelegate.h */,
+				C45758A324F95AAD004EE53E /* LLCrashHelperDelegate.h */,
+				C45758A424F95AB7004EE53E /* LLAppInfoHelperDelegate.h */,
+				C45758A524F95AC0004EE53E /* LLSandboxHelperDelegate.h */,
+				C45758AA24F95B36004EE53E /* LLScreenshotHelperDelegate.h */,
+				C45758AB24F95B40004EE53E /* LLHierarchyHelperDelegate.h */,
+				C45758AC24F95B50004EE53E /* LLMagnifierHelperDelegate.h */,
+				C45758AD24F95B5A004EE53E /* LLRulerHelperDelegate.h */,
+				C45758AE24F95B69004EE53E /* LLWidgetBorderHelperDelegate.h */,
+				C45758AF24F95B73004EE53E /* LLHtmlHelperDelegate.h */,
+				C45758B024F95B80004EE53E /* LLLocationHelperDelegate.h */,
+				C45758B124F95B8B004EE53E /* LLShortCutHelperDelegate.h */,
+				C45758B224F95B9E004EE53E /* LLResolutionHelperDelegate.h */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		C45994D1243880A800E79308 /* StatusBarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1782,6 +1809,42 @@
 			path = StatusBarView;
 			sourceTree = "<group>";
 		};
+		C45AC0DE250E10D3007BA850 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C45AC0DF250E10E9007BA850 /* LLMagnifierHelper.h */,
+				C45AC0E0250E10E9007BA850 /* LLMagnifierHelper.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C45AC0E2250E1100007BA850 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C45AC0E3250E110C007BA850 /* LLRulerHelper.h */,
+				C45AC0E4250E110C007BA850 /* LLRulerHelper.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C45AC0E6250E1122007BA850 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C45AC0E7250E112B007BA850 /* LLHtmlHelper.h */,
+				C45AC0E8250E112B007BA850 /* LLHtmlHelper.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C470C84824FBDE610020120A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C470C84924FBDE740020120A /* LLSimpleLogHelper.h */,
+				C470C84A24FBDE740020120A /* LLSimpleLogHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		C472443B24128FCE00F623CD /* NSMutableArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -1789,6 +1852,15 @@
 				C472443D24128FED00F623CD /* NSMutableArray+LL_Utils.m */,
 			);
 			path = NSMutableArray;
+			sourceTree = "<group>";
+		};
+		C492D2F32503BDCC009B54C2 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C492D2F42503BDEC009B54C2 /* LLFeatureHelper.h */,
+				C492D2F52503BDEC009B54C2 /* LLFeatureHelper.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		C49854A522ED8D0E00E9FBE2 /* DebugTool */ = {
@@ -1906,11 +1978,11 @@
 		C498563322ED8D4700E9FBE2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C49856D222ED90DD00E9FBE2 /* Function */,
-				C498563A22ED8D4700E9FBE2 /* UserInterface */,
+				36059400237AAB8000C2D8FF /* LLNetwork.h */,
 				C49856FF22EDB35000E9FBE2 /* LLNetworkComponent.h */,
 				C498570022EDB35000E9FBE2 /* LLNetworkComponent.m */,
-				36059400237AAB8000C2D8FF /* LLNetwork.h */,
+				C49856D222ED90DD00E9FBE2 /* Function */,
+				C498563A22ED8D4700E9FBE2 /* UserInterface */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2148,6 +2220,7 @@
 		C498571122EDE31200E9FBE2 /* Magnifier */ = {
 			isa = PBXGroup;
 			children = (
+				C45AC0DE250E10D3007BA850 /* Function */,
 				C498571522EDE39700E9FBE2 /* UserInterface */,
 				C498571222EDE35D00E9FBE2 /* LLMagnifierComponent.h */,
 				C498571322EDE35D00E9FBE2 /* LLMagnifierComponent.m */,
@@ -2176,11 +2249,11 @@
 		C4AEB6FD238AD69D0054CD37 /* ShortCut */ = {
 			isa = PBXGroup;
 			children = (
-				C4AEB703238AD8790054CD37 /* Function */,
-				C4AEB702238AD7F50054CD37 /* UserInterface */,
+				C4AEB6FE238AD7D70054CD37 /* LLShortCut.h */,
 				C4AEB6FF238AD7EB0054CD37 /* LLShortCutComponent.h */,
 				C4AEB700238AD7EB0054CD37 /* LLShortCutComponent.m */,
-				C4AEB6FE238AD7D70054CD37 /* LLShortCut.h */,
+				C4AEB703238AD8790054CD37 /* Function */,
+				C4AEB702238AD7F50054CD37 /* UserInterface */,
 			);
 			path = ShortCut;
 			sourceTree = "<group>";
@@ -2212,6 +2285,9 @@
 		C4B4E38B22F9C90900F70277 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				C4C46BB724FE8D360042AE1B /* NetworkTool */,
+				C4C46BB324FE8CB50042AE1B /* ScreenshotTool */,
+				C470C84824FBDE610020120A /* Helper */,
 				C4B4E39122F9C90900F70277 /* Category */,
 				C4B4E3D822F9C90900F70277 /* CommonUI */,
 				36059403237AB0B100C2D8FF /* Component */,
@@ -2222,7 +2298,7 @@
 				C4B4E42E22F9C90900F70277 /* FormatterTool */,
 				C413AE8223995CE0001EB1F9 /* JsonTool */,
 				C4B4E3D622F9C90900F70277 /* Macros */,
-				C4B4E3CA22F9C90900F70277 /* Manager */,
+				C4B4E3D022F9C90900F70277 /* WindowManager */,
 				361C383B238268E700487FA4 /* Proxy */,
 				C4B4E43122F9C90900F70277 /* Resource */,
 				36B8563B237BA9E600210B94 /* Router */,
@@ -2407,14 +2483,6 @@
 				C4B4E3C822F9C90900F70277 /* LLConst.m */,
 			);
 			path = Const;
-			sourceTree = "<group>";
-		};
-		C4B4E3CA22F9C90900F70277 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4E3D022F9C90900F70277 /* WindowManager */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		C4B4E3D022F9C90900F70277 /* WindowManager */ = {
@@ -2614,6 +2682,7 @@
 				C4C4013224F25ED100D432ED /* LLFeature.h */,
 				36E493822303E7D700B89F41 /* LLFeatureComponent.h */,
 				36E493832303E7D700B89F41 /* LLFeatureComponent.m */,
+				C492D2F32503BDCC009B54C2 /* Function */,
 				36E493812303E7B700B89F41 /* UserInterface */,
 			);
 			path = Feature;
@@ -2649,6 +2718,24 @@
 				C4C4013A24F2B23A00D432ED /* LLEntryHelper.m */,
 			);
 			path = Function;
+			sourceTree = "<group>";
+		};
+		C4C46BB324FE8CB50042AE1B /* ScreenshotTool */ = {
+			isa = PBXGroup;
+			children = (
+				C4C46BB424FE8CC80042AE1B /* LLScreenshotTool.h */,
+				C4C46BB524FE8CC80042AE1B /* LLScreenshotTool.m */,
+			);
+			path = ScreenshotTool;
+			sourceTree = "<group>";
+		};
+		C4C46BB724FE8D360042AE1B /* NetworkTool */ = {
+			isa = PBXGroup;
+			children = (
+				C4C46BB824FE8D420042AE1B /* LLNetworkTool.h */,
+				C4C46BB924FE8D420042AE1B /* LLNetworkTool.m */,
+			);
+			path = NetworkTool;
 			sourceTree = "<group>";
 		};
 		C4CA96AD24AF776400F78E1B /* Prepare */ = {
@@ -3044,7 +3131,9 @@
 				C49141AE24E91D8300A6E977 /* UIImageView+LL_Hierarchy.m in Sources */,
 				C4B4E47522F9C90900F70277 /* LLBaseCollectionViewCell.m in Sources */,
 				C4B4E46322F9C90900F70277 /* LLFeatureWindow.m in Sources */,
+				C470C84B24FBDE740020120A /* LLSimpleLogHelper.m in Sources */,
 				36C9F800237E7E080021BA2D /* LLLocationViewController.m in Sources */,
+				C45AC0E5250E110C007BA850 /* LLRulerHelper.m in Sources */,
 				C49856B922ED908300E9FBE2 /* LLAppInfoHelper.m in Sources */,
 				C4B4E44422F9C90900F70277 /* UIDevice+LL_AppInfo.m in Sources */,
 				364EF64B2322087C0067C7D7 /* LLAnimateView.m in Sources */,
@@ -3071,19 +3160,18 @@
 				36C9F7FA237E7DD50021BA2D /* LLLocationHelper.m in Sources */,
 				C49856A922ED8D4800E9FBE2 /* LLLogFilterView.m in Sources */,
 				36C9F813237E9B1D0021BA2D /* LLAnnotation.m in Sources */,
-				364AC6F0237CE50F007F0F29 /* LLRouter+Log.m in Sources */,
 				36596BD122FD1DF300BBB6FA /* LLMagnifierInfoView.m in Sources */,
 				C498569F22ED8D4800E9FBE2 /* LLSandboxCell.m in Sources */,
 				C49141C924E9226300A6E977 /* UIScrollView+LL_Hierarchy.m in Sources */,
 				3655D5112329E02600490B36 /* UIResponder+LL_Utils.m in Sources */,
-				C4CA96B124B1D8B400F78E1B /* LLComponentHelper.m in Sources */,
+				C45758A024F95A07004EE53E /* LLComponentCore.m in Sources */,
+				C4CA96B124B1D8B400F78E1B /* LLComponentHandle.m in Sources */,
 				C4B4E45A22F9C90900F70277 /* LLFilterDateView.m in Sources */,
 				36F93CAF238B71170008C92E /* LLShortCutViewController.m in Sources */,
 				C498570D22EDB49700E9FBE2 /* LLScreenshotComponent.m in Sources */,
 				36CD3A7423306D6000C9C22C /* LLWidgetBorderViewController.m in Sources */,
 				362F3CE622F01AF70087B0E4 /* LLHierarchyWindow.m in Sources */,
 				C45BA2D122F47997006B833A /* LLScreenshotPreviewViewController.m in Sources */,
-				3668D0CA2303BB1F00D58C0B /* LLSettingManager.m in Sources */,
 				36CDFBD123506C9A002A913F /* LLHtmlConfigViewController.m in Sources */,
 				3605941E237AB85400C2D8FF /* LLWindowManager+Ruler.m in Sources */,
 				C4B4E44D22F9C90900F70277 /* LLConst.m in Sources */,
@@ -3109,7 +3197,6 @@
 				C49856D922ED90DD00E9FBE2 /* LLURLProtocol.m in Sources */,
 				C45994D024387E9200E79308 /* UINavigationBar+LL_Resolution.m in Sources */,
 				C49141B124E91E4400A6E977 /* UITextField+LL_Hierarchy.m in Sources */,
-				C4C7985E24F56D78003D4C46 /* LLRouter+Setting.m in Sources */,
 				C498569322ED8D4800E9FBE2 /* LLNetworkViewController.m in Sources */,
 				C42EB06F2430F41E00BD1CE2 /* LLResolutionViewController.m in Sources */,
 				363158972356C37A003DEF8C /* NSInputStream+LL_Network.m in Sources */,
@@ -3124,7 +3211,6 @@
 				C4B4E47622F9C90900F70277 /* LLBaseTableViewCell.m in Sources */,
 				36596BCB22FD07B500BBB6FA /* LLMagnifierView.m in Sources */,
 				36DC10FD22FA60B90078B7BC /* LLToastUtils.m in Sources */,
-				36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */,
 				36596BC522FD063A00BBB6FA /* LLBaseView.m in Sources */,
 				361C384523826B9200487FA4 /* CLLocationManager+LL_Location.m in Sources */,
 				C413AE8523995CEF001EB1F9 /* LLJsonTool.m in Sources */,
@@ -3163,8 +3249,8 @@
 				C4141C94243B465F00C5EF86 /* LLTitleSwitchCellModel.m in Sources */,
 				360075E2235571EF00A606AC /* TestHtmlViewController.m in Sources */,
 				36E5602723331FA100B8D388 /* LLBaseTableViewController.m in Sources */,
+				C45AC0E1250E10E9007BA850 /* LLMagnifierHelper.m in Sources */,
 				36C9F803237E7E850021BA2D /* LLWindowManager+Location.m in Sources */,
-				364AC6FA237CFB84007F0F29 /* LLRouter+Screenshot.m in Sources */,
 				C498567F22ED8D4800E9FBE2 /* LLScreenshotImageView.m in Sources */,
 				C43DB6BF244B402700EA590B /* LLHierarchySheetView.m in Sources */,
 				C4B4E44E22F9C90900F70277 /* LLStorageManager.m in Sources */,
@@ -3178,6 +3264,7 @@
 				36F30D9A2301699E00976937 /* LLEntryViewController.m in Sources */,
 				C4B4E43C22F9C90900F70277 /* NSDictionary+LL_Utils.m in Sources */,
 				C498571022EDB4B600E9FBE2 /* LLScreenshotWindow.m in Sources */,
+				C437BE5D25049556004C90FA /* LLComponentHelper.m in Sources */,
 				C49856FB22EDB2BC00E9FBE2 /* LLCrashComponent.m in Sources */,
 				36C9F80A237E8A340021BA2D /* LLTitleCellView.m in Sources */,
 				36BB1E2E2320F954000D8F29 /* NSUserDefaults+LL_Utils.m in Sources */,
@@ -3210,14 +3297,12 @@
 				36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */,
 				C4B4E46522F9C90900F70277 /* LLFeatureItemView.m in Sources */,
 				C49141D224E942A200A6E977 /* UICollectionView+LL_Hierarchy.m in Sources */,
-				C4278D062438C8BC00D14CFA /* LLRouter+Resolution.m in Sources */,
 				C4C4013724F2AE4600D432ED /* LLWindowManager+Entry.m in Sources */,
 				36A0007720BE863700AE8810 /* NetTool.m in Sources */,
 				C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */,
 				360D8A5522FD70D3003693AE /* LLHierarchyInfoView.m in Sources */,
 				C4B4E44022F9C90900F70277 /* UIColor+LL_Utils.m in Sources */,
 				360AE63A2330DC620073FECD /* LLSettingWindow.m in Sources */,
-				36B8564A237BF0F800210B94 /* LLRouter+AppInfo.m in Sources */,
 				C4B4E45C22F9C90900F70277 /* LLFilterDatePickerView.m in Sources */,
 				36DDED7623331967008DD7F9 /* LLDetailTitleCell.m in Sources */,
 				36CD3A7B23307D2600C9C22C /* UIView+LLWidgetBorder.m in Sources */,
@@ -3238,15 +3323,16 @@
 				C4B4E46F22F9C90900F70277 /* LLNavigationController.m in Sources */,
 				C498568E22ED8D4800E9FBE2 /* LLNetworkImageCell.m in Sources */,
 				C49856B522ED905F00E9FBE2 /* LLScreenshotHelper.m in Sources */,
+				C4C46BBA24FE8D420042AE1B /* LLNetworkTool.m in Sources */,
 				C4B4E47222F9C90900F70277 /* LLBaseComponentViewController.m in Sources */,
 				C49856D122ED90C800E9FBE2 /* LLLogHelper.m in Sources */,
+				C492D2F62503BDEC009B54C2 /* LLFeatureHelper.m in Sources */,
 				365912542320BD0C00FDA6A0 /* LLTitleHeaderView.m in Sources */,
 				C4B4E46222F9C90900F70277 /* LLFeatureViewController.m in Sources */,
 				C4B4E47A22F9C90900F70277 /* LLFactory.m in Sources */,
 				C498570722EDB3EF00E9FBE2 /* LLHierarchyComponent.m in Sources */,
 				3624D3FB23839DD700DBE692 /* TestLocationViewController.m in Sources */,
 				36059406237AB24000C2D8FF /* LLWindowManager+Network.m in Sources */,
-				C4379AB2239D35F3006D5F59 /* LLRouter+Location.m in Sources */,
 				C4CF72F3239AB3F100B2C4DC /* LLSandboxImagePreviewController.m in Sources */,
 				3605941B237AB82100C2D8FF /* LLWindowManager+Magnifier.m in Sources */,
 				C4B4E44122F9C90900F70277 /* UIView+LL_Utils.m in Sources */,
@@ -3266,6 +3352,7 @@
 				36CD3A7123306D4B00C9C22C /* LLWidgetBorderWindow.m in Sources */,
 				C49141DB24E957EC00A6E977 /* UIDatePicker+LL_Hierarchy.m in Sources */,
 				C4D745CC24C458E900C44CD1 /* LLHierarchyInfoSwitchView.m in Sources */,
+				C45AC0E9250E112B007BA850 /* LLHtmlHelper.m in Sources */,
 				C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */,
 				C498571422EDE35D00E9FBE2 /* LLMagnifierComponent.m in Sources */,
 				36C9F810237E8C8A0021BA2D /* LLTitleSwitchCellView.m in Sources */,
@@ -3281,7 +3368,6 @@
 				C49855A922ED8D0E00E9FBE2 /* LLDebugTool.m in Sources */,
 				C4FCA04824E8224100EC862D /* UILabel+LL_Hierarchy.m in Sources */,
 				C498570122EDB35000E9FBE2 /* LLNetworkComponent.m in Sources */,
-				364AC6F3237CE8F5007F0F29 /* LLRouter+Crash.m in Sources */,
 				C49141C324E921BC00A6E977 /* UIPageControl+LL_Hierarchy.m in Sources */,
 				365912502320B3E300FDA6A0 /* LLLeftTitleCell.m in Sources */,
 				C4B4E45722F9C90900F70277 /* LLFilterOtherView.m in Sources */,
@@ -3303,7 +3389,6 @@
 				C49856F522EDB1FE00E9FBE2 /* LLSandboxComponent.m in Sources */,
 				C4FCA04324E81F4B00EC862D /* UIView+LL_Hierarchy.m in Sources */,
 				36F93CB5238BA24E0008C92E /* LLShortCutModel.m in Sources */,
-				36B85647237BE48D00210B94 /* LLRouter+Network.m in Sources */,
 				36C9F7FD237E7DF30021BA2D /* LLLocationWindow.m in Sources */,
 				C49856E922EDACD200E9FBE2 /* LLComponent.m in Sources */,
 				36F93CB2238B778A0008C92E /* LLWindowManager+ShortCut.m in Sources */,
@@ -3312,6 +3397,7 @@
 				C4FCA04B24E8232300EC862D /* UIControl+LL_Hierarchy.m in Sources */,
 				C4141C91243B16CE00C5EF86 /* LLDetailTitleCellModel.m in Sources */,
 				C49856A022ED8D4800E9FBE2 /* LLSandboxViewController.m in Sources */,
+				C4C46BB624FE8CC80042AE1B /* LLScreenshotTool.m in Sources */,
 				361C384123826B2000487FA4 /* LLLocationProxy.m in Sources */,
 				C4B4E45D22F9C90900F70277 /* LLFilterTextFieldCell.m in Sources */,
 			);

@@ -21,45 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
 
-#import "LLDebugConfig.h"
+#import "LLLogHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  Quick print and save log.
  */
-@interface LLLogHelper : NSObject
-
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
-
-/**
- Set enable to save log model.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Return log levels string.
- */
-+ (NSArray<NSString *> *)levelsDescription;
-
-/**
- Print and save a log model with infos.
-
- @param file File name.
- @param function Function name.
- @param lineNo Line number.
- @param level Log level.
- @param onEvent Event,can filter by this.
- @param message Message.
- */
-- (void)logInFile:(NSString *_Nullable)file function:(NSString *_Nullable)function lineNo:(NSInteger)lineNo level:(LLDebugConfigLogLevel)level onEvent:(NSString *_Nullable)onEvent message:(NSString *_Nullable)message;
+@interface LLLogHelper : LLComponentHelper <LLLogHelperDelegate>
 
 @end
 

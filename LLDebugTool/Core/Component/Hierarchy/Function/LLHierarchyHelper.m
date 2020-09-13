@@ -35,23 +35,15 @@
 
 NSNotificationName const LLDebugToolChangeHierarchyNotification = @"LLDebugToolChangeHierarchyNotification";
 
-static LLHierarchyHelper *_instance = nil;
-
 @interface LLHierarchyHelper ()
 
 @property (nonatomic, strong) NSArray<NSString *> *systemPrimaryClasses;
 
+@property (nonatomic, strong) NSMutableArray *lockViews;
+
 @end
 
 @implementation LLHierarchyHelper
-
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLHierarchyHelper alloc] init];
-    });
-    return _instance;
-}
 
 - (NSArray<UIWindow *> *)allWindows {
     return [self allWindowsIgnoreClass:nil];

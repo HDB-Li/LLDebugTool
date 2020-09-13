@@ -38,51 +38,39 @@
 }
 
 + (LLShortCutModel *)visibleViewControllerModel {
-    static LLShortCutModel *_visibleViewControllerModel = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _visibleViewControllerModel = [[LLShortCutModel alloc] initWithName:@"Visible View Controller"
-                                                                     action:^NSString * {
-                                                                         return [NSString stringWithFormat:@"%@", [[LLTool keyWindow].rootViewController LL_currentShowingViewController]];
-                                                                     }];
-    });
-    return _visibleViewControllerModel;
+    LLShortCutModel *model = [[LLShortCutModel alloc] initWithName:@"Visible View Controller"
+                                                            action:^NSString * {
+                                                                return [NSString stringWithFormat:@"%@", [[LLTool keyWindow].rootViewController LL_currentShowingViewController]];
+                                                            }];
+    return model;
 }
 
 + (LLShortCutModel *)resetStandardUserDefaultsModel {
-    static LLShortCutModel *_resetStandardUserDefaultsModel = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _resetStandardUserDefaultsModel = [[LLShortCutModel alloc] initWithName:@"Reset User Defaults"
-                                                                         action:^NSString * {
-                                                                             [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[NSBundle mainBundle].bundleIdentifier];
-                                                                             return nil;
-                                                                         }];
-    });
-    return _resetStandardUserDefaultsModel;
+    LLShortCutModel *model = [[LLShortCutModel alloc] initWithName:@"Reset User Defaults"
+                                                            action:^NSString * {
+                                                                [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[NSBundle mainBundle].bundleIdentifier];
+                                                                return nil;
+                                                            }];
+    return model;
 }
 
 + (LLShortCutModel *)clearDiskModel {
-    static LLShortCutModel *_clearDiskModel = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _clearDiskModel = [[LLShortCutModel alloc] initWithName:@"Clear Disk"
-                                                         action:^NSString * {
-                                                             NSFileManager *manager = [NSFileManager defaultManager];
-                                                             NSError *error = nil;
-                                                             NSArray<NSString *> *paths = [manager contentsOfDirectoryAtPath:NSTemporaryDirectory() error:&error];
-                                                             if (error) {
-                                                                 return @"Clear Disk Failed";
-                                                             }
-                                                             for (NSString *path in paths) {
-                                                                 if (![manager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:path] error:&error]) {
-                                                                     return @"Clear Disk Failed";
-                                                                 }
-                                                             }
-                                                             return nil;
-                                                         }];
-    });
-    return _clearDiskModel;
+    LLShortCutModel *model = [[LLShortCutModel alloc] initWithName:@"Clear Disk"
+                                                            action:^NSString * {
+                                                                NSFileManager *manager = [NSFileManager defaultManager];
+                                                                NSError *error = nil;
+                                                                NSArray<NSString *> *paths = [manager contentsOfDirectoryAtPath:NSTemporaryDirectory() error:&error];
+                                                                if (error) {
+                                                                    return @"Clear Disk Failed";
+                                                                }
+                                                                for (NSString *path in paths) {
+                                                                    if (![manager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:path] error:&error]) {
+                                                                        return @"Clear Disk Failed";
+                                                                    }
+                                                                }
+                                                                return nil;
+                                                            }];
+    return model;
 }
 
 @end

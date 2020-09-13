@@ -23,6 +23,7 @@
 
 #import "UILabel+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
@@ -64,11 +65,11 @@
 
     LLDetailTitleCellModel *model5 = [[LLDetailTitleCellModel modelWithTitle:nil detailTitle:[NSString stringWithFormat:@"Aligned %@", [LLEnumDescription textAlignmentDescription:self.textAlignment]]] noneInsets];
     model5.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription textAlignments]
-                                                 currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.textAlignment = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription textAlignments]
+                                        currentAction:[LLEnumDescription textAlignmentDescription:weakSelf.textAlignment]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.textAlignment = index;
+                                           }];
     };
     [settings addObject:model5];
 
@@ -81,34 +82,34 @@
     LLTitleSwitchCellModel *model7 = [[LLTitleSwitchCellModel modelWithTitle:@"Behavior" detailTitle:@"Enabled" isOn:self.isEnabled] noneInsets];
     model7.changePropertyBlock = ^(id obj) {
         weakSelf.enabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 
     LLTitleSwitchCellModel *model8 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Highlighted" isOn:self.isHighlighted];
     model8.changePropertyBlock = ^(id obj) {
         weakSelf.highlighted = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
     LLDetailTitleCellModel *model9 = [[LLDetailTitleCellModel modelWithTitle:@"Baseline" detailTitle:[NSString stringWithFormat:@"Align %@", [LLEnumDescription baselineAdjustmentDescription:self.baselineAdjustment]]] noneInsets];
     model9.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription baselineAdjustments]
-                                                 currentAction:[LLEnumDescription baselineAdjustmentDescription:weakSelf.baselineAdjustment]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.baselineAdjustment = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription baselineAdjustments]
+                                        currentAction:[LLEnumDescription baselineAdjustmentDescription:weakSelf.baselineAdjustment]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.baselineAdjustment = index;
+                                           }];
     };
     [settings addObject:model9];
 
     LLDetailTitleCellModel *model10 = [[LLDetailTitleCellModel modelWithTitle:@"Line Break" detailTitle:[LLEnumDescription lineBreakModeDescription:self.lineBreakMode]] noneInsets];
     model10.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription lineBreaks]
-                                                 currentAction:[LLEnumDescription lineBreakModeDescription:weakSelf.lineBreakMode]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.lineBreakMode = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription lineBreaks]
+                                        currentAction:[LLEnumDescription lineBreakModeDescription:weakSelf.lineBreakMode]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.lineBreakMode = index;
+                                           }];
     };
     [settings addObject:model10];
 

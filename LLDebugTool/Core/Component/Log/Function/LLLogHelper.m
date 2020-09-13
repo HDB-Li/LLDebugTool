@@ -30,22 +30,9 @@
 
 #import "NSObject+LL_Utils.h"
 
-static LLLogHelper *_instance = nil;
-
 @implementation LLLogHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLLogHelper alloc] init];
-    });
-    return _instance;
-}
-
-+ (NSArray<NSString *> *)levelsDescription {
-    return @[@"Default", @"Alert", @"Warning", @"Error"];
-}
-
+#pragma mark - LLLogHelperDelegate
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo level:(LLDebugConfigLogLevel)level onEvent:(NSString *)onEvent message:(NSString *)message {
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
 
@@ -77,10 +64,68 @@ static LLLogHelper *_instance = nil;
         } break;
     }
 
-    if (_enable) {
+    if (self.isEnabled) {
         LLLogModel *model = [[LLLogModel alloc] initWithFile:file lineNo:lineNo function:function level:level onEvent:onEvent message:message date:date launchDate:[NSObject LL_launchDate] userIdentity:[LLDebugConfig shared].userIdentity];
         [[LLStorageManager shared] saveModel:model complete:nil];
     }
+}
+
+- (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [self logInFile:file
+           function:function
+             lineNo:lineNo
+              level:LLDebugConfigLogLevelDefault
+            onEvent:onEvent
+            message:message];
+}
+
+- (void)alertLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [self logInFile:file
+           function:function
+             lineNo:lineNo
+              level:LLDebugConfigLogLevelAlert
+            onEvent:onEvent
+            message:message];
+}
+
+- (void)warningLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [self logInFile:file
+           function:function
+             lineNo:lineNo
+              level:LLDebugConfigLogLevelWarning
+            onEvent:onEvent
+            message:message];
+}
+
+- (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
+    [self logInFile:file
+           function:function
+             lineNo:lineNo
+              level:LLDebugConfigLogLevelError
+            onEvent:onEvent
+            message:message];
+}
+
+- (NSArray<NSString *> *)levelsDescription {
+    return @[@"Default", @"Alert", @"Warning", @"Error"];
+}
+
+- (UIViewController *)logViewControllerWithLaunchDate:(NSString *)launchDate {
+    Class cls = [self logViewControllerClass];
+    if (!cls) {
+        return nil;
+    }
+    UIViewController *vc = [[cls alloc] init];
+    [vc setValue:launchDate forKey:@"launchDate"];
+    return vc;
+}
+
+- (Class)logModelClass {
+    return NSClassFromString(@"LLLogModel");
+}
+
+- (Class)logViewControllerClass {
+    return NSClassFromString(@"LLLogViewController");
 }
 
 @end

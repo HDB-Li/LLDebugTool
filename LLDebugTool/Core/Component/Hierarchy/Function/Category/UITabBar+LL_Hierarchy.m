@@ -23,6 +23,7 @@
 
 #import "UITabBar+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -51,18 +52,18 @@
 
     LLDetailTitleCellModel *model4 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription barStyleDescription:self.barStyle]] noneInsets];
     model4.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription barStyles]
-                                                 currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.barStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription barStyles]
+                                        currentAction:[LLEnumDescription barStyleDescription:weakSelf.barStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.barStyle = index;
+                                           }];
     };
     [settings addObject:model4];
 
     LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Translucent" isOn:self.isTranslucent] noneInsets];
     model5.changePropertyBlock = ^(id obj) {
         weakSelf.translucent = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
@@ -74,11 +75,11 @@
 
     LLDetailTitleCellModel *model7 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription tabBarItemPositioningDescription:self.itemPositioning]] noneInsets];
     model7.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription tabBarItemPositionings]
-                                                 currentAction:[LLEnumDescription tabBarItemPositioningDescription:weakSelf.itemPositioning]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.itemPositioning = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription tabBarItemPositionings]
+                                        currentAction:[LLEnumDescription tabBarItemPositioningDescription:weakSelf.itemPositioning]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.itemPositioning = index;
+                                           }];
     };
     [settings addObject:model7];
 

@@ -25,13 +25,14 @@
 
 #import <pthread/pthread.h>
 
-#import "LLComponentHelper.h"
+#import "LLComponentCore.h"
+#import "LLComponentHandle.h"
 #import "LLDebugToolMacros.h"
 #import "LLLogDefine.h"
+#import "LLRouter.h"
 #import "LLTool.h"
 #import "LLWindowManager.h"
 
-#import "LLRouter+Log.h"
 #import "NSObject+LL_Runtime.h"
 
 NSNotificationName const LLDebugToolStartWorkingNotification = @"LLDebugToolStartWorkingNotification";
@@ -85,13 +86,15 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [LLRouter setScreenshotHelperEnable:YES];
     // Open setting
     [LLRouter setSettingHelperEnable:YES];
+    // Open entry
+    [LLDT_CC_Entry setEnabled:YES];
     // Open location
     if ([LLDebugConfig shared].mockLocation) {
         [LLRouter setLocationHelperEnable:YES];
     }
     // show window
     if (self.installed || ![LLDebugConfig shared].hideWhenInstall) {
-        [LLComponentHelper executeAction:LLDebugToolActionEntry data:nil];
+        [LLComponentHandle executeAction:LLDebugToolActionEntry data:nil];
     }
     if (!self.installed) {
         // Check version.
@@ -117,6 +120,8 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
     [LLTool setStartWorkingAfterApplicationDidFinishLaunching:NO];
     pthread_mutex_unlock(&mutex_t);
 
+    // Close entry
+    [LLDT_CC_Entry setEnabled:NO];
     // Close location
     [LLRouter setLocationHelperEnable:NO];
     // Close setting
@@ -136,7 +141,7 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 }
 
 - (void)executeAction:(LLDebugToolAction)action {
-    [LLComponentHelper executeAction:action data:nil];
+    [LLComponentHandle executeAction:action data:nil];
 }
 
 + (NSString *)version {
@@ -220,22 +225,35 @@ static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 @end
 
+@implementation LLDebugTool (Component)
+
+- (LLComponentCore *)componentCore {
+    LLComponentCore *_componentCore = objc_getAssociatedObject(self, _cmd);
+    if (!_componentCore) {
+        _componentCore = [[LLComponentCore alloc] init];
+        objc_setAssociatedObject(self, _cmd, _componentCore, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return _componentCore;
+}
+
+@end
+
 @implementation LLDebugTool (Log)
 
 - (void)logInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
-    [LLRouter logInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+    [LLDT_CC_Log logInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
 }
 
 - (void)alertLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
-    [LLRouter alertLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+    [LLDT_CC_Log alertLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
 }
 
 - (void)warningLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
-    [LLRouter warningLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+    [LLDT_CC_Log warningLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
 }
 
 - (void)errorLogInFile:(NSString *)file function:(NSString *)function lineNo:(NSInteger)lineNo onEvent:(NSString *)onEvent message:(NSString *)message {
-    [LLRouter errorLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
+    [LLDT_CC_Log errorLogInFile:file function:function lineNo:lineNo onEvent:onEvent message:message];
 }
 
 @end

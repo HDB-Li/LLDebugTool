@@ -26,14 +26,13 @@
 #import "LLAppInfoHelper.h"
 #import "LLBaseTableViewCell.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLInternalMacros.h"
 #import "LLThemeManager.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
-
-#import "LLRouter+Setting.h"
 
 @interface LLAppInfoViewController ()
 
@@ -43,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [[LLAppInfoHelper shared] deviceName] ?: LLLocalizedString(@"function.app.info");
+    self.title = [LLDT_CC_AppInfo deviceName] ?: LLLocalizedString(@"function.app.info");
     if ([LLDebugConfig shared].entryWindowStyle != LLDebugConfigEntryWindowStyleAppInfo) {
         [self initNavigationItemWithTitle:LLLocalizedString(@"app.info.monitor") imageName:nil isLeft:NO];
     }
@@ -62,7 +61,7 @@
 
 - (void)rightItemClick:(UIButton *)sender {
     [LLDebugConfig shared].entryWindowStyle = LLDebugConfigEntryWindowStyleAppInfo;
-    [LLRouter setEntryWindowStyle:LLDebugConfigEntryWindowStyleAppInfo];
+    LLDT_CC_Setting.entryWindowStyle = @(LLDebugConfigEntryWindowStyleAppInfo);
     [self componentDidFinish];
 }
 
@@ -101,16 +100,16 @@
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // CPU
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"CPU" detailTitle:[LLAppInfoHelper shared].cpuUsage]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"CPU" detailTitle:LLDT_CC_AppInfo.cpuUsage]];
 
     // Memory
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Memory" detailTitle:[LLAppInfoHelper shared].memoryUsage]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Memory" detailTitle:LLDT_CC_AppInfo.memoryUsage]];
 
     // FPS
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"FPS" detailTitle:[LLAppInfoHelper shared].fps]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"FPS" detailTitle:LLDT_CC_AppInfo.fps]];
 
     // Data traffic
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Data Traffic" detailTitle:[LLAppInfoHelper shared].dataTraffic]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Data Traffic" detailTitle:LLDT_CC_AppInfo.dataTraffic]];
 
     return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.dynamic") items:settings];
 }
@@ -119,16 +118,16 @@
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // Name
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Name" detailTitle:[LLAppInfoHelper shared].appName]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Name" detailTitle:LLDT_CC_AppInfo.appName]];
 
     // Identifier
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Identifier" detailTitle:[LLAppInfoHelper shared].bundleIdentifier]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Identifier" detailTitle:LLDT_CC_AppInfo.bundleIdentifier]];
 
     // Version
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Version" detailTitle:[LLAppInfoHelper shared].appVersion]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Version" detailTitle:LLDT_CC_AppInfo.appVersion]];
 
     // Start time
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Start Time" detailTitle:[LLAppInfoHelper shared].appStartTimeConsuming]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Start Time" detailTitle:LLDT_CC_AppInfo.appStartTimeConsuming]];
 
     return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.application") items:settings];
 }
@@ -137,31 +136,31 @@
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
     // Name
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Name" detailTitle:[LLAppInfoHelper shared].deviceName]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Name" detailTitle:LLDT_CC_AppInfo.deviceName]];
 
     // Version
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Version" detailTitle:[LLAppInfoHelper shared].systemVersion]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Version" detailTitle:LLDT_CC_AppInfo.systemVersion]];
 
     // Resolution
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Resolution" detailTitle:[LLAppInfoHelper shared].screenResolution]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Resolution" detailTitle:LLDT_CC_AppInfo.screenResolution]];
 
     // Language
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Language" detailTitle:[LLAppInfoHelper shared].languageCode]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Language" detailTitle:LLDT_CC_AppInfo.languageCode]];
 
     // Battery
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Battery" detailTitle:[LLAppInfoHelper shared].batteryLevel]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Battery" detailTitle:LLDT_CC_AppInfo.batteryLevel]];
 
     // CPU
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"CPU" detailTitle:[LLAppInfoHelper shared].cpuType]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"CPU" detailTitle:LLDT_CC_AppInfo.cpuType]];
 
     // SSID
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"SSID" detailTitle:[LLAppInfoHelper shared].ssid]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"SSID" detailTitle:LLDT_CC_AppInfo.ssid]];
 
     // Disk
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Disk" detailTitle:[LLAppInfoHelper shared].disk]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Disk" detailTitle:LLDT_CC_AppInfo.disk]];
 
     // Network
-    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Network" detailTitle:[LLAppInfoHelper shared].networkState]];
+    [settings addObject:[LLDetailTitleCellModel modelWithTitle:@"Network" detailTitle:LLDT_CC_AppInfo.networkState]];
 
     return [LLTitleCellCategoryModel modelWithTitle:LLLocalizedString(@"app.info.device") items:settings];
 }

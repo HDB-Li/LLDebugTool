@@ -32,24 +32,33 @@ static LLResolutionHelper *_instance = nil;
 
 @interface LLResolutionHelper ()
 
-@property (nonatomic, strong) LLResolutionModel *model;
+/// Mock style.
+@property (nonatomic, assign) LLResolutionStyle mockStyle;
 
 @property (nonatomic, assign) LLResolutionStyle realStyle;
+
+/// Available resolutions.
+@property (nonatomic, strong) NSArray<NSNumber *> *availableResolutions;
+
+@property (nonatomic, strong) LLResolutionModel *model;
+
+/// Padding when mock resolution in horizontal.
+@property (nonatomic, assign) CGFloat horizontalPadding;
+
+/// Padding when mock resolution in vertical.
+@property (nonatomic, assign) CGFloat verticalPadding;
+
+/// Mock bounds.
+@property (nonatomic, assign) CGRect bounds;
+
+/// Mock scale.
+@property (nonatomic, assign) CGFloat scale;
 
 @end
 
 @implementation LLResolutionHelper
 
 #pragma mark - Public
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLResolutionHelper alloc] init];
-        [_instance initial];
-    });
-    return _instance;
-}
-
 - (CGRect)bounds {
     return CGRectMake(0, 0, _model.size.width, _model.size.height);
 }
@@ -73,6 +82,11 @@ static LLResolutionHelper *_instance = nil;
         return 44;
     }
     return 20;
+}
+
+#pragma mark - LLResolutionHelperDelegate
+- (BOOL)isMockResolution {
+    return [LLTool resolutionStyle];
 }
 
 #pragma mark - Primary

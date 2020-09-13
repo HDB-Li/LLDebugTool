@@ -24,6 +24,7 @@
 #import "LLHierarchyViewController.h"
 
 #import "LLConst.h"
+#import "LLDebugToolMacros.h"
 #import "LLFactory.h"
 #import "LLHierarchyBorderView.h"
 #import "LLHierarchyDetailViewController.h"
@@ -126,7 +127,7 @@
 
 - (void)showParentSheet:(UIView *)selectView {
     self.infoView.hidden = YES;
-    NSArray *parentViews = [[LLHierarchyHelper shared] findParentViewsByView:selectView];
+    NSArray *parentViews = [LLDT_CC_Hierarchy findParentViewsByView:selectView];
     [self.borderView hideAllSubviews];
     [self.borderView reloadDataWithViews:parentViews];
     [self.sheetView showWithData:parentViews index:0];
@@ -134,7 +135,7 @@
 
 - (void)showSubviewSheet:(UIView *)selectView {
     self.infoView.hidden = YES;
-    NSArray *subviews = [[LLHierarchyHelper shared] findSubviewsByView:selectView];
+    NSArray *subviews = [LLDT_CC_Hierarchy findSubviewsByView:selectView];
     [self.borderView hideAllSubviews];
     [self.borderView reloadDataWithViews:subviews];
     [self.sheetView showWithData:subviews index:0];
@@ -148,10 +149,10 @@
 - (BOOL)LLHierarchyInfoView:(LLHierarchyInfoView *)view canClickAtAction:(LLHierarchyInfoViewAction)action {
     switch (action) {
         case LLHierarchyInfoViewActionShowParent: {
-            return [[LLHierarchyHelper shared] findParentViewsByView:self.selectedView].count > 1;
+            return [LLDT_CC_Hierarchy findParentViewsByView:self.selectedView].count > 1;
         }
         case LLHierarchyInfoViewActionShowSubview: {
-            return [[LLHierarchyHelper shared] findSubviewsByView:self.selectedView].count > 0;
+            return [LLDT_CC_Hierarchy findSubviewsByView:self.selectedView].count > 0;
         }
         case LLHierarchyInfoViewActionShowLevel: {
             return self.observeViews.count > 1;
@@ -247,7 +248,7 @@
 
 - (UIView *)findBestViewInData:(NSArray<UIView *> *)data {
     for (UIView *view in data) {
-        if ([[LLHierarchyHelper shared] hasTextPropertyInClass:view.class]) {
+        if ([LLDT_CC_Hierarchy hasTextPropertyInClass:view.class]) {
             return view;
         }
     }

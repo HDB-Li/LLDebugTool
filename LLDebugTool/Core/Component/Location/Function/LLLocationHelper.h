@@ -21,87 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#import "LLComponentHelper.h"
+
 #import <CoreLocation/CoreLocation.h>
 
-@class LLLocationMockRouteModel;
+#import "LLLocationHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Location helper.
-@interface LLLocationHelper : NSObject
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/**
- Set enable to monitoring network request.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
-
-/**
- Is Mock route.
- */
-@property (nonatomic, assign, readonly) BOOL isMockRoute;
-
-/**
- Available route models.
- */
-@property (nonatomic, copy) NSArray<LLLocationMockRouteModel *> *availableRoutes;
-
-/**
- Current route model.
- */
-@property (nonatomic, strong, readonly) LLLocationMockRouteModel *routeModel;
-
-/**
- Whether user agree authorization.
- */
-- (BOOL)userAgreeAuthorization;
-
-/**
- Add a custom mock route file.
- */
-- (void)addMockRouteFile:(NSString *)filePath;
-
-/**
- Add all json file in directory, deep find.
- */
-- (void)addMockRouteDirectory:(NSString *)fileDirectory;
-
-/**
- Remove route from cache.
- */
-- (void)removeRoute:(LLLocationMockRouteModel *)model;
-
-/**
- Start mock route locations.
- */
-- (void)startMockRoute:(LLLocationMockRouteModel *)model;
-
-/**
- Stop current mock route.
- */
-- (void)stopMockRoute;
-
-/**
- Start record route.
- */
-- (BOOL)startRecordRoute;
-
-/**
- Stop record route.
- */
-- (NSString *_Nullable)stopRecordRoute;
-
-/**
- Whether is LLDebugTool's data in file extend.
- */
-+ (BOOL)isLLDebugToolLocationRouteFile:(NSString *)path;
-
-/**
- Add LLDebugTool extend data to file.
- */
-+ (BOOL)addLLDebugToolExtendDataWithPath:(NSString *)path;
+@interface LLLocationHelper : LLComponentHelper <LLLocationHelperDelegate>
 
 @end
 

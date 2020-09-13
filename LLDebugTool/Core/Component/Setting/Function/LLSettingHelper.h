@@ -21,15 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
+
+#import "LLSettingHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLSettingHelper : NSObject
-
-+ (instancetype)shared;
-
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+@interface LLSettingHelper : LLComponentHelper <LLSettingHelperDelegate>
 
 @end
 

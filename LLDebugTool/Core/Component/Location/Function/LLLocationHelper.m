@@ -34,8 +34,6 @@
 #import "CLLocation+LL_Location.h"
 #import "CLLocationManager+LL_Location.h"
 
-static LLLocationHelper *_instance = nil;
-
 static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
@@ -54,57 +52,17 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
 
 @property (nonatomic, strong) NSMutableArray<CLLocation *> *locations;
 
+@property (nonatomic, assign) BOOL isMockRoute;
+
+@property (nonatomic, copy) NSArray<LLLocationMockRouteModel *> *availableRoutes;
+
 @end
 
 @implementation LLLocationHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLLocationHelper alloc] init];
-    });
-    return _instance;
-}
-
 #pragma mark - Public
 - (BOOL)userAgreeAuthorization {
     return [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse;
-}
-
-- (void)addMockRouteFile:(NSString *)filePath {
-    // Check nil.
-    if ([filePath length] == 0) {
-        return;
-    }
-
-    // Check file extension.
-    if (![filePath.pathExtension isEqualToString:@"json"]) {
-        return;
-    }
-
-    // Get name.
-    NSString *name = [filePath.lastPathComponent stringByDeletingPathExtension];
-
-    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLDebugConfig shared].mockRouteTimeInterval name:name];
-    [self addRoute:model];
-}
-
-- (void)addMockRouteDirectory:(NSString *)fileDirectory {
-    if ([fileDirectory length] == 0) {
-        return;
-    }
-    BOOL isDirectory = NO;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:fileDirectory isDirectory:&isDirectory]) {
-        return;
-    }
-    if (!isDirectory) {
-        [self addMockRouteFile:fileDirectory];
-        return;
-    }
-    NSArray *filePaths = [[NSFileManager defaultManager] subpathsAtPath:fileDirectory];
-    for (NSString *filePath in filePaths) {
-        [self addMockRouteFile:[fileDirectory stringByAppendingPathComponent:filePath]];
-    }
 }
 
 - (void)removeRoute:(LLLocationMockRouteModel *)model {
@@ -195,6 +153,43 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
         return NO;
     }
     return YES;
+}
+
+#pragma mark - LLLocationHelperDelegate
+- (void)addMockRouteFile:(NSString *)filePath {
+    // Check nil.
+    if ([filePath length] == 0) {
+        return;
+    }
+
+    // Check file extension.
+    if (![filePath.pathExtension isEqualToString:@"json"]) {
+        return;
+    }
+
+    // Get name.
+    NSString *name = [filePath.lastPathComponent stringByDeletingPathExtension];
+
+    LLLocationMockRouteModel *model = [[LLLocationMockRouteModel alloc] initWithJsonFile:filePath timeInterval:[LLDebugConfig shared].mockRouteTimeInterval name:name];
+    [self addRoute:model];
+}
+
+- (void)addMockRouteDirectory:(NSString *)fileDirectory {
+    if ([fileDirectory length] == 0) {
+        return;
+    }
+    BOOL isDirectory = NO;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileDirectory isDirectory:&isDirectory]) {
+        return;
+    }
+    if (!isDirectory) {
+        [self addMockRouteFile:fileDirectory];
+        return;
+    }
+    NSArray *filePaths = [[NSFileManager defaultManager] subpathsAtPath:fileDirectory];
+    for (NSString *filePath in filePaths) {
+        [self addMockRouteFile:[fileDirectory stringByAppendingPathComponent:filePath]];
+    }
 }
 
 #pragma mark - Life cycle

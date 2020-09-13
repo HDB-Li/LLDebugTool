@@ -25,6 +25,7 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLFactory.h"
 #import "LLFormatterTool.h"
 #import "LLHierarchyHelper.h"
@@ -226,13 +227,13 @@
         self.backgroundColorLabel.attributedText = nil;
     }
 
-    if ([[LLHierarchyHelper shared] hasTextPropertyInClass:view.class]) {
+    if ([LLDT_CC_Hierarchy hasTextPropertyInClass:view.class]) {
         self.textLabel.attributedText = [self attributedStringWithText:@"Text\t: " detail:[view valueForKey:@"text"]];
     } else {
         self.textLabel.attributedText = nil;
     }
 
-    if ([[LLHierarchyHelper shared] hasTextColorPropertyInClass:view.class]) {
+    if ([LLDT_CC_Hierarchy hasTextColorPropertyInClass:view.class]) {
         UIColor *textColor = [view valueForKey:@"textColor"];
         self.textColorLabel.attributedText = [self attributedStringWithText:@"Text Color : " detail:textColor.LL_description];
     } else {
@@ -246,7 +247,7 @@
         self.alphaLabel.attributedText = nil;
     }
 
-    if ([[LLHierarchyHelper shared] hasFontPropertyInClass:view.class]) {
+    if ([LLDT_CC_Hierarchy hasFontPropertyInClass:view.class]) {
         UIFont *font = [view valueForKey:@"font"];
         self.fontLabel.attributedText = [self attributedStringWithText:@"Font\t: " detail:[LLFormatterTool formatNumber:@(font.pointSize)]];
     } else {
@@ -284,9 +285,9 @@
     }
     view.LL_lock = isLock;
     if (isLock) {
-        [[LLHierarchyHelper shared].lockViews addObject:view];
+        [LLDT_CC_Hierarchy.lockViews addObject:view];
     } else {
-        [[LLHierarchyHelper shared].lockViews removeObject:view];
+        [LLDT_CC_Hierarchy.lockViews removeObject:view];
     }
 }
 

@@ -21,67 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "LLComponentHelper.h"
 
-@class LLResolutionModel;
-
-/**
-Resolution style
-
-- LLResolutionStyleInvalid: 无效值
-- LLResolutionStyleIPhone4: 320 * 480 @2x, like 4/4s/5/5s/5c.
-- LLResolutionStyleIPhoneSE: 320 * 568 @2x, like SE.
-- LLResolutionStyleIPhone6: 375 * 667 @2x, like 6/6s/7/8.
-- LLResolutionStyleIPhone6Plus: 414 * 736 @3x, like 6+/6s+/7+/8+.
-- LLResolutionStyleIPhoneX: 375 * 812 @3x, like X/XS/11 Pro.
-- LLResolutionStyleIPhoneXSMax: 414 * 896 @3x, like XS Max/11 Pro Max.
-- LLResolutionStyleIPhoneXR: 414 * 896 @2x, like XR/11.
-*/
-typedef NS_ENUM(NSInteger, LLResolutionStyle) {
-    LLResolutionStyleInvalid,
-    LLResolutionStyleIPhone4,
-    LLResolutionStyleIPhoneSE,
-    LLResolutionStyleIPhone6,
-    LLResolutionStyleIPhone6Plus,
-    LLResolutionStyleIPhoneX,
-    LLResolutionStyleIPhoneXSMax,
-    LLResolutionStyleIPhoneXR
-};
+#import "LLResolutionHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Resolution helper.
-@interface LLResolutionHelper : NSObject
-
-/// Mock style.
-@property (nonatomic, assign) LLResolutionStyle mockStyle;
-
-/// Real style.
-@property (nonatomic, assign, readonly) LLResolutionStyle realStyle;
-
-/// Mock bounds.
-@property (nonatomic, assign, readonly) CGRect bounds;
-
-/// Mock scale.
-@property (nonatomic, assign, readonly) CGFloat scale;
-
-/// Available resolutions.
-@property (nonatomic, strong) NSArray<NSNumber *> *availableResolutions;
-
-/// Padding when mock resolution in horizontal.
-@property (nonatomic, assign, readonly) CGFloat horizontalPadding;
-
-/// Padding when mock resolution in vertical.
-@property (nonatomic, assign, readonly) CGFloat verticalPadding;
-
-/// Shared instance.
-+ (instancetype)shared;
-
-/// Whether add resolution status bar view. Add when special screen mock normal screen, or normal screen mock special screen.
-- (BOOL)addResolutionStatusBarView;
-
-/// Resolution status bar view height.
-- (CGFloat)resolutionStatusBarViewHeight;
+@interface LLResolutionHelper : LLComponentHelper <LLResolutionHelperDelegate>
 
 @end
 

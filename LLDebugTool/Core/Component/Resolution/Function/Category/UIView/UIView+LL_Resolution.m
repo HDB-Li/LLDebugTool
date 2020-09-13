@@ -23,7 +23,8 @@
 
 #import "UIView+LL_Resolution.h"
 
-#import "LLRouter+Resolution.h"
+#import "LLDebugToolMacros.h"
+
 #import "NSObject+LL_Runtime.h"
 
 @implementation UIView (LL_Resolution)
@@ -31,7 +32,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if ([LLRouter isMockResolution]) {
+        if ([LLDT_CC_Resolution isMockResolution]) {
             [self LL_swizzleInstanceSelector:@selector(safeAreaInsets) anotherSelector:@selector(LL_safeAreaInsets)];
             [self LL_swizzleInstanceSelector:NSSelectorFromString(@"setSafeAreaInsets:") anotherSelector:@selector(LL_setSafeAreaInsets:)];
         }

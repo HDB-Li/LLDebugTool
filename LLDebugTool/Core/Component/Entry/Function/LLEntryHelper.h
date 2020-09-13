@@ -21,16 +21,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
+
+#import "LLEntryHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLEntryHelper : NSObject
-
-/// Singleton to control entry window.
-+ (instancetype)shared;
-
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+@interface LLEntryHelper : LLComponentHelper <LLEntryHelperDelegate>
 
 @end
 

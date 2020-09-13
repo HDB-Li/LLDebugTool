@@ -24,7 +24,7 @@
 #import "LLLocationProxy.h"
 
 #import "LLDebugConfig.h"
-#import "LLLocationHelper.h"
+#import "LLDebugToolMacros.h"
 
 #import "CLLocation+LL_Location.h"
 
@@ -41,14 +41,14 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     NSArray<CLLocation *> *newLocations = locations;
     if ([self.target respondsToSelector:_cmd]) {
-        if ([LLLocationHelper shared].isMockRoute) {
+        if (LLDT_CC_Location.isMockRoute) {
             CLLocation *location = [locations firstObject];
             // Mocking route.
             if (location && !location.LL_isMock) {
                 // Real location, ignore.
                 return;
             }
-        } else if ([LLLocationHelper shared].enable) {
+        } else if (LLDT_CC_Location.isEnabled) {
             // Mock location.
             CLLocation *mockLocation = [[CLLocation alloc] initWithLatitude:[LLDebugConfig shared].mockLocationLatitude longitude:[LLDebugConfig shared].mockLocationLongitude];
             mockLocation.LL_mock = YES;

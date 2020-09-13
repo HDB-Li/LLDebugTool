@@ -27,6 +27,7 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLFactory.h"
 #import "LLHtmlUIWebViewController.h"
@@ -38,7 +39,6 @@
 #import "LLTitleCellModel.h"
 #import "LLToastUtils.h"
 
-#import "LLRouter+Setting.h"
 #import "UIView+LL_Utils.h"
 #import "UIViewController+LL_Utils.h"
 
@@ -88,7 +88,7 @@
         if ([LLDebugConfig shared].htmlViewControllerProvider != nil) {
             UIViewController *customViewController = [LLDebugConfig shared].htmlViewControllerProvider(urlString);
             if (customViewController != nil && cls == [customViewController class]) {
-                [LLRouter setDefaultHtmlUrl:urlString];
+                LLDT_CC_Setting.defaultHtmlUrl = urlString;
                 [self.navigationController pushViewController:customViewController animated:YES];
                 return;
             }
@@ -99,7 +99,7 @@
         return;
     }
 
-    [LLRouter setDefaultHtmlUrl:urlString];
+    LLDT_CC_Setting.defaultHtmlUrl = urlString;
 
     LLHtmlViewController *vc = nil;
 #pragma clang diagnostic push
@@ -178,7 +178,7 @@
 - (void)setNewWebViewClass:(NSString *)aClass {
     self.webViewClass = aClass;
     [LLDebugConfig shared].webViewClass = aClass;
-    [LLRouter setWebViewClass:aClass];
+    LLDT_CC_Setting.webViewClass = aClass;
     [self loadData];
 }
 

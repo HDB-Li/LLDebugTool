@@ -41,8 +41,6 @@
 
 #endif
 
-static LLSandboxHelper *_instance = nil;
-
 @interface LLSandboxHelper ()
 
 @property (copy, nonatomic) NSString *archiveFolderPath;
@@ -51,15 +49,19 @@ static LLSandboxHelper *_instance = nil;
 
 @implementation LLSandboxHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLSandboxHelper alloc] init];
-        [_instance initial];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    [super start];
+    self.archiveFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Archive"];
+    [LLTool removePath:self.archiveFolderPath];
 }
 
+- (void)stop {
+    [super stop];
+    [LLTool removePath:self.archiveFolderPath];
+}
+
+#pragma mark - LLSandboxHelperDelegate
 - (LLSandboxModel *)getCurrentSandboxStructure {
     NSString *path = NSHomeDirectory();
     return [self getSandboxStructureWithPath:path];
@@ -85,11 +87,6 @@ static LLSandboxHelper *_instance = nil;
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.archiveFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Archive"];
-    [LLTool removePath:self.archiveFolderPath];
-}
-
 - (LLSandboxModel *)getSandboxStructureWithPath:(NSString *)path {
     BOOL isDirectory = NO;
     // Check file is Exist, is Directory or not

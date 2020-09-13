@@ -21,39 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
 
-@class LLSandboxModel;
+#import "LLSandboxHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  Obtain and manipulate sandbox data.
  */
-@interface LLSandboxHelper : NSObject
-
-/// Archive path.
-@property (copy, nonatomic, readonly) NSString *archiveFolderPath;
-
-/**
- Singleton to obtain and manipulate sandbox data.
- 
- @return Singleton
- */
-+ (instancetype)shared;
-
-/**
- Get the sandbox data at this point.
- */
-- (LLSandboxModel *)getCurrentSandboxStructure;
-
-/// Whether enable zip archive.
-- (BOOL)enableZipArchive;
-
-/// Create zip
-/// @param path Target path.
-/// @param paths File paths.
-- (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray<NSString *> *)paths;
+@interface LLSandboxHelper : LLComponentHelper <LLSandboxHelperDelegate>
 
 @end
 

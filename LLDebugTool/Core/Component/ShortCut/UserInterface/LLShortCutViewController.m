@@ -24,8 +24,8 @@
 #import "LLShortCutViewController.h"
 
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLInternalMacros.h"
-#import "LLShortCutHelper.h"
 #import "LLShortCutModel.h"
 #import "LLTitleCellCategoryModel.h"
 #import "LLTitleCellModel.h"
@@ -48,7 +48,7 @@
     [self.dataArray removeAllObjects];
     NSMutableArray *settings = [[NSMutableArray alloc] init];
 
-    NSMutableArray *actions = [[LLShortCutHelper shared].actions copy];
+    NSMutableArray *actions = [LLDT_CC_ShortCut.actions copy];
 
     for (NSInteger i = 0; i < actions.count; i++) {
         __block LLShortCutModel *action = actions[i];

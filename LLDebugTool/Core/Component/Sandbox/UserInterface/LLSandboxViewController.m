@@ -24,6 +24,7 @@
 #import "LLSandboxViewController.h"
 
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLImageNameConfig.h"
 #import "LLInternalMacros.h"
 #import "LLPreviewController.h"
@@ -63,7 +64,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     [super viewDidLoad];
     // Data source
     if (_sandboxModel == nil) {
-        _sandboxModel = [[LLSandboxHelper shared] getCurrentSandboxStructure];
+        _sandboxModel = [LLDT_CC_Sandbox getCurrentSandboxStructure];
     }
     if (self.sandboxModel.isHomeDirectory) {
         self.title = LLLocalizedString(@"function.sandbox");
@@ -92,10 +93,10 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
     }
     if ([self needCreateZipArchiveWithFilePaths:models]) {
         [[LLToastUtils shared] loadingMessage:LLLocalizedString(@"sandbox.archiving")];
-        [LLTool createDirectoryAtPath:[LLSandboxHelper shared].archiveFolderPath];
-        NSString *path = [[LLSandboxHelper shared].archiveFolderPath stringByAppendingPathComponent:[self recommendNameWithFilePaths:paths]];
+        [LLTool createDirectoryAtPath:LLDT_CC_Sandbox.archiveFolderPath];
+        NSString *path = [LLDT_CC_Sandbox.archiveFolderPath stringByAppendingPathComponent:[self recommendNameWithFilePaths:paths]];
         [LLTool removePath:path];
-        if ([[LLSandboxHelper shared] createZipFileAtPath:path withFilesAtPaths:paths.copy]) {
+        if ([LLDT_CC_Sandbox createZipFileAtPath:path withFilesAtPaths:paths.copy]) {
             [[LLToastUtils shared] hide];
             [self showActivityViewControllerWithPaths:@[path]];
         } else {
@@ -139,7 +140,7 @@ static NSString *const kSandboxCellID = @"LLSandboxCell";
 }
 
 - (BOOL)needCreateZipArchiveWithFilePaths:(NSArray<LLSandboxModel *> *)paths {
-    if (![LLSandboxHelper shared].enableZipArchive) {
+    if (!LLDT_CC_Sandbox.enableZipArchive) {
         return NO;
     }
 

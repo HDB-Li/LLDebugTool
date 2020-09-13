@@ -28,11 +28,8 @@
 #import "LLFormatterTool.h"
 #import "LLInternalMacros.h"
 #import "LLScreenshotPreviewViewController.h"
+#import "LLScreenshotTool.h"
 #import "LLTool.h"
-
-#import "LLRouter+Screenshot.h"
-
-static LLScreenshotHelper *_instance = nil;
 
 @interface LLScreenshotHelper ()
 
@@ -42,26 +39,18 @@ static LLScreenshotHelper *_instance = nil;
 
 @implementation LLScreenshotHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLScreenshotHelper alloc] init];
-        [_instance initial];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    [super start];
+    [self registerScreenshot];
 }
 
-- (void)setEnable:(BOOL)enable {
-    if (_enable != enable) {
-        _enable = enable;
-        if (enable) {
-            [self registerScreenshot];
-        } else {
-            [self unregisterScreenshot];
-        }
-    }
+- (void)stop {
+    [super stop];
+    [self unregisterScreenshot];
 }
 
+#pragma mark - LLScreenshotHelperDelegate
 - (BOOL)simulateTakeScreenshot {
     UIImage *image = [self imageFromScreen];
     if (image) {
@@ -77,10 +66,9 @@ static LLScreenshotHelper *_instance = nil;
 }
 
 - (UIImage *)imageFromScreen:(CGFloat)scale {
-    return [LLRouter screenshotWithScale:scale];
+    return [LLScreenshotTool screenshotWithScale:scale];
 }
 
-#pragma mark - Screenshot
 - (void)saveScreenshot:(UIImage *)image name:(NSString *)name complete:(void (^)(BOOL finished))complete {
     if ([[NSThread currentThread] isMainThread]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -111,14 +99,17 @@ static LLScreenshotHelper *_instance = nil;
 
 #pragma mark - UIApplicationUserDidTakeScreenshotNotification
 - (void)didReceiveApplicationUserDidTakeScreenshotNotification:(NSNotification *)notification {
-    if (self.enable) {
+    if (self.isEnabled) {
         [self simulateTakeScreenshot];
     }
 }
 
 #pragma mark - Primary
-- (void)initial {
-    self.screenshotFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Screenshot"];
+- (instancetype)init {
+    if (self = [super init]) {
+        self.screenshotFolderPath = [[LLDebugConfig shared].folderPath stringByAppendingPathComponent:@"Screenshot"];
+    }
+    return self;
 }
 
 - (void)registerScreenshot {

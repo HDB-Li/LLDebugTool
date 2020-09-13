@@ -23,6 +23,7 @@
 
 #import "UIProgressView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -41,11 +42,11 @@
 
     LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription progressViewStyleDescription:self.progressViewStyle]];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription progressViewStyles]
-                                                 currentAction:[LLEnumDescription progressViewStyleDescription:weakSelf.progressViewStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.progressViewStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription progressViewStyles]
+                                        currentAction:[LLEnumDescription progressViewStyleDescription:weakSelf.progressViewStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.progressViewStyle = index;
+                                           }];
     };
     [settings addObject:model1];
 

@@ -43,6 +43,26 @@
 #define LLog_Error(fmt, ...) [[LLDebugTool sharedTool] errorLogInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ onEvent:nil message:(fmt, ##__VA_ARGS__)]
 #define LLog_Error_Event(event, fmt, ...) [[LLDebugTool sharedTool] errorLogInFile:[[NSString stringWithUTF8String:__FILE__] lastPathComponent] function:NSStringFromSelector(_cmd) lineNo:__LINE__ onEvent:event message:(fmt, ##__VA_ARGS__)]
 
+#define LLDT [LLDebugTool sharedTool]
+#define LLDT_CC [LLDT componentCore]
+#define LLDT_CC_Entry [LLDT_CC entryHelper]
+#define LLDT_CC_Setting [LLDT_CC settingHelper]
+#define LLDT_CC_Feature [LLDT_CC featureHelper]
+#define LLDT_CC_Network [LLDT_CC networkHelper]
+#define LLDT_CC_Log [LLDT_CC logHelper]
+#define LLDT_CC_Crash [LLDT_CC crashHelper]
+#define LLDT_CC_AppInfo [LLDT_CC appInfoHelper]
+#define LLDT_CC_Sandbox [LLDT_CC sandboxHelper]
+#define LLDT_CC_Screenshot [LLDT_CC screenshotHelper]
+#define LLDT_CC_Hierarchy [LLDT_CC hierarchyHelper]
+#define LLDT_CC_Magnifier [LLDT_CC magnifierHelper]
+#define LLDT_CC_Ruler [LLDT_CC rulerHelper]
+#define LLDT_CC_WidgetBorder [LLDT_CC widgetBorderHelper]
+#define LLDT_CC_Html [LLDT_CC htmlHelper]
+#define LLDT_CC_Location [LLDT_CC locationHelper]
+#define LLDT_CC_ShortCut [LLDT_CC shortCutHelper]
+#define LLDT_CC_Resolution [LLDT_CC resolutionHelper]
+
 #else
 
 #define LLog(fmt, ...) NSLog(fmt)

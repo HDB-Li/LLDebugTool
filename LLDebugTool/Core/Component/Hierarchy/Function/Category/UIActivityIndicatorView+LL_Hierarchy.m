@@ -23,6 +23,7 @@
 
 #import "UIActivityIndicatorView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -42,22 +43,22 @@
 
     LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription activityIndicatorViewStyleDescription:self.activityIndicatorViewStyle]] noneInsets];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription activityIndicatorViewStyles]
-                                                 currentAction:[LLEnumDescription activityIndicatorViewStyleDescription:weakSelf.activityIndicatorViewStyle]
-                                                    completion:^(NSInteger index) {
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription activityIndicatorViewStyles]
+                                        currentAction:[LLEnumDescription activityIndicatorViewStyleDescription:weakSelf.activityIndicatorViewStyle]
+                                           completion:^(NSInteger index) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-                                                        if (index <= UIActivityIndicatorViewStyleGray) {
-                                                            weakSelf.activityIndicatorViewStyle = index;
-                                                        } else {
+                                               if (index <= UIActivityIndicatorViewStyleGray) {
+                                                   weakSelf.activityIndicatorViewStyle = index;
+                                               } else {
 #ifdef __IPHONE_13_0
-                                                            if (@available(iOS 13.0, *)) {
-                                                                weakSelf.activityIndicatorViewStyle = index + (UIActivityIndicatorViewStyleMedium - UIActivityIndicatorViewStyleGray - 1);
-                                                            }
+                                                   if (@available(iOS 13.0, *)) {
+                                                       weakSelf.activityIndicatorViewStyle = index + (UIActivityIndicatorViewStyleMedium - UIActivityIndicatorViewStyleGray - 1);
+                                                   }
 #endif
-                                                        }
+                                               }
 #pragma clang diagnostic pop
-                                                    }];
+                                           }];
     };
     [settings addObject:model1];
 
@@ -78,14 +79,14 @@
                 [weakSelf stopAnimating];
             }
         }
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
     LLTitleSwitchCellModel *model4 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Hides When Stopped" isOn:self.hidesWhenStopped];
     model4.changePropertyBlock = ^(id obj) {
         weakSelf.hidesWhenStopped = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 

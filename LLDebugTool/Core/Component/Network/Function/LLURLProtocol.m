@@ -24,12 +24,12 @@
 #import "LLURLProtocol.h"
 
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLFormatterTool.h"
 #import "LLNetworkModel.h"
 #import "LLStorageManager.h"
 #import "LLTool.h"
 
-#import "LLRouter+AppInfo.h"
 #import "NSData+LL_Network.h"
 #import "NSHTTPURLResponse+LL_Network.h"
 #import "NSInputStream+LL_Network.h"
@@ -135,7 +135,7 @@ static NSString *const kLLURLProtocolIdentifier = @"kLLURLProtocolIdentifier";
     model.totalDuration = [NSString stringWithFormat:@"%fs", [[NSDate date] timeIntervalSinceDate:self.startDate]];
     model.error = self.error;
     [[LLStorageManager shared] saveModel:model complete:nil];
-    [LLRouter updateRequestDataTraffic:model.requestDataTrafficValue responseDataTraffic:model.responseDataTrafficValue];
+    [LLDT_CC_AppInfo updateRequestDataTraffic:model.requestDataTrafficValue responseDataTraffic:model.responseDataTrafficValue];
 }
 
 #pragma mark - NSURLSessionDelegate

@@ -25,6 +25,7 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLFactory.h"
 #import "LLFilterEventView.h"
 #import "LLFilterLabelModel.h"
@@ -155,9 +156,11 @@
         _levelView.averageCount = 4;
         _levelView.clipsToBounds = YES;
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-        for (NSString *level in [LLLogHelper levelsDescription]) {
-            LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:level];
-            [dataArray addObject:model];
+        if ([LLDT_CC_Log respondsToSelector:@selector(levelsDescription)]) {
+            for (NSString *level in [LLDT_CC_Log levelsDescription]) {
+                LLFilterLabelModel *model = [[LLFilterLabelModel alloc] initWithMessage:level];
+                [dataArray addObject:model];
+            }
         }
         [_levelView updateDataArray:dataArray];
         __weak typeof(self) weakSelf = self;

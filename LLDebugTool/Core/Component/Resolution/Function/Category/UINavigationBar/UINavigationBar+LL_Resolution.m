@@ -23,10 +23,10 @@
 
 #import "UINavigationBar+LL_Resolution.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLResolutionHelper.h"
 #import "LLResolutionStatusBarView.h"
 
-#import "LLRouter+Resolution.h"
 #import "NSObject+LL_Runtime.h"
 
 @implementation UINavigationBar (LL_Resolution)
@@ -34,7 +34,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if ([LLRouter isMockResolution]) {
+        if ([LLDT_CC_Resolution isMockResolution]) {
             [self LL_swizzleInstanceSelector:@selector(setFrame:) anotherSelector:@selector(LL_setFrame:)];
         }
     });
@@ -42,8 +42,8 @@
 
 - (void)LL_setFrame:(CGRect)frame {
     CGRect newRect = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-    if ([[LLResolutionHelper shared] addResolutionStatusBarView]) {
-        CGFloat height = [[LLResolutionHelper shared] resolutionStatusBarViewHeight];
+    if ([LLDT_CC_Resolution addResolutionStatusBarView]) {
+        CGFloat height = [LLDT_CC_Resolution resolutionStatusBarViewHeight];
         newRect.size.height = height;
         if (!self.LL_resolutionStatusBarView.superview) {
             [self addSubview:self.LL_resolutionStatusBarView];

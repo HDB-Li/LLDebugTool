@@ -23,9 +23,9 @@
 
 #import "UIScreen+LL_Resolution.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLResolutionHelper.h"
 
-#import "LLRouter+Resolution.h"
 #import "NSObject+LL_Runtime.h"
 
 @implementation UIScreen (LL_Resolution)
@@ -33,7 +33,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if ([LLRouter isMockResolution]) {
+        if ([LLDT_CC_Resolution isMockResolution]) {
             [self LL_swizzleInstanceSelector:@selector(bounds) anotherSelector:@selector(LL_bounds)];
             [self LL_swizzleInstanceSelector:@selector(scale) anotherSelector:@selector(LL_scale)];
         }
@@ -42,23 +42,23 @@
 
 #pragma mark - Primary
 - (CGRect)LL_bounds {
-    return [LLResolutionHelper shared].bounds;
+    return LLDT_CC_Resolution.bounds;
 }
 
 - (CGFloat)LL_scale {
-    return [LLResolutionHelper shared].scale;
+    return LLDT_CC_Resolution.scale;
 }
 
 #pragma mark - Getters and setters
 - (CGRect)LL_realBounds {
-    if ([LLRouter isMockResolution]) {
+    if ([LLDT_CC_Resolution isMockResolution]) {
         return [self LL_bounds];
     }
     return [self bounds];
 }
 
 - (CGFloat)LL_realScale {
-    if ([LLRouter isMockResolution]) {
+    if ([LLDT_CC_Resolution isMockResolution]) {
         return [self LL_scale];
     }
     return [self scale];

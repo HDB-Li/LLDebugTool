@@ -26,4 +26,14 @@
 
 #import "LLFeatureComponent.h"
 
+#import "LLFeatureHelper.h"
+
+#import "LLFeatureItemContainerView.h"
+#import "LLFeatureItemModel.h"
+#import "LLFeatureItemView.h"
+#import "LLFeatureViewController.h"
+#import "LLFeatureWindow.h"
+
+#import "LLWindowManager+Feature.h"
+
 #endif /* LLFeature_h */

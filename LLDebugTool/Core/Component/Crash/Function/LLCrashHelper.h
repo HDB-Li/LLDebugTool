@@ -21,28 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "LLComponentHelper.h"
 
-@class LLCrashModel;
+#import "LLCrashHelperDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  Catch crash or not.
  */
-@interface LLCrashHelper : NSObject
-
-/**
- Singleton to control enable.
- 
- @return Singleton
- */
-+ (instancetype)shared;
-
-/**
- Set enable to catch crash.
- */
-@property (nonatomic, assign, getter=isEnabled) BOOL enable;
+@interface LLCrashHelper : LLComponentHelper <LLCrashHelperDelegate>
 
 @end
 

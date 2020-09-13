@@ -25,6 +25,7 @@
 
 #import "LLBaseWindow.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLHierarchyHelper.h"
 #import "LLThemeManager.h"
 #import "LLTool.h"
@@ -35,7 +36,7 @@
 
 #pragma mark - Over write
 - (void)viewDidUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {
-    NSArray<UIView *> *views = [[LLHierarchyHelper shared] viewForSelectionAtPoint:self.center];
+    NSArray<UIView *> *views = [LLDT_CC_Hierarchy viewForSelectionAtPoint:self.center];
     [self.delegate LLHierarchyPickerView:self didMoveTo:views];
 }
 

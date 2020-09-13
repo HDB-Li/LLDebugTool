@@ -27,6 +27,7 @@
 
 #import "LLConst.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLFormatterTool.h"
 #import "LLInternalMacros.h"
 #import "LLScreenshotBaseOperation.h"
@@ -92,7 +93,7 @@
     self.toolBar.hidden = YES;
     UIImage *image = [self.imageView LL_convertViewToImage];
     if (image) {
-        [[LLScreenshotHelper shared] saveScreenshot:image name:name complete:nil];
+        [LLDT_CC_Screenshot saveScreenshot:image name:name complete:nil];
         [self saveInAlbumAndSandboxWithImage:image requestAuthorization:YES];
     } else {
         self.toolBar.hidden = NO;
@@ -106,7 +107,7 @@
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         [[LLToastUtils shared] toastMessage:LLLocalizedString(@"screenshot.save.in.sandbox.album")];
         [self toastShareWithImage:image];
-    } else if (requestAuthorization && [[LLScreenshotHelper shared] canRequestPhotoLibraryAuthorization]) {
+    } else if (requestAuthorization && [LLDT_CC_Screenshot canRequestPhotoLibraryAuthorization]) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self saveInAlbumAndSandboxWithImage:image requestAuthorization:NO];

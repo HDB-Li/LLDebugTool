@@ -24,9 +24,9 @@
 #import "LLMagnifierView.h"
 
 #import "LLDebugConfig.h"
+#import "LLScreenshotTool.h"
 #import "LLThemeManager.h"
 
-#import "LLRouter+Screenshot.h"
 #import "UIColor+LL_Utils.h"
 #import "UIImage+LL_Utils.h"
 #import "UIView+LL_Utils.h"
@@ -111,7 +111,7 @@
 
 #pragma mark - Primary
 - (void)updateScreenshot {
-    self.screenshot = [LLRouter screenshotWithScale:1];
+    self.screenshot = [LLScreenshotTool screenshotWithScale:1];
 }
 
 - (void)viewWillUpdateOffset:(UIPanGestureRecognizer *)sender offset:(CGPoint)offsetPoint {

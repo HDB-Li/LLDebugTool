@@ -23,7 +23,7 @@
 
 #import "LLFeatureViewController.h"
 
-#import "LLComponentHelper.h"
+#import "LLComponentHandle.h"
 #import "LLConst.h"
 #import "LLDebugConfig.h"
 #import "LLFactory.h"
@@ -168,12 +168,12 @@
 
 #pragma mark - LLFeatureContainerViewDelegate
 - (void)LLFeatureContainerView:(LLFeatureItemContainerView *)view didSelectAt:(LLFeatureItemModel *)model {
-    [LLComponentHelper executeAction:model.action data:nil];
+    [LLComponentHandle executeAction:model.action data:nil];
 }
 
 #pragma mark - Event response
 - (void)settingButtonClicked:(UIButton *)sender {
-    [LLComponentHelper executeAction:LLDebugToolActionSetting data:nil];
+    [LLComponentHandle executeAction:LLDebugToolActionSetting data:nil];
 }
 
 - (void)stopButtonClicked:(UIButton *)sender {

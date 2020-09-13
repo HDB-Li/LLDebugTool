@@ -23,6 +23,7 @@
 
 #import "UIScrollView+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -43,67 +44,67 @@
 
     LLDetailTitleCellModel *model1 = [LLDetailTitleCellModel modelWithTitle:@"Style" detailTitle:[LLEnumDescription scrollViewIndicatorStyleDescription:self.indicatorStyle]];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription scrollViewIndicatorStyles]
-                                                 currentAction:[LLEnumDescription scrollViewIndicatorStyleDescription:weakSelf.indicatorStyle]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.indicatorStyle = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription scrollViewIndicatorStyles]
+                                        currentAction:[LLEnumDescription scrollViewIndicatorStyleDescription:weakSelf.indicatorStyle]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.indicatorStyle = index;
+                                           }];
     };
     [settings addObject:model1];
 
     LLTitleSwitchCellModel *model2 = [[LLTitleSwitchCellModel modelWithTitle:@"Indicators" detailTitle:@"Shows Horizontal Indicator" isOn:self.showsHorizontalScrollIndicator] noneInsets];
     model2.changePropertyBlock = ^(id obj) {
         weakSelf.showsHorizontalScrollIndicator = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model2];
 
     LLTitleSwitchCellModel *model3 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Shows Vertical Indicator" isOn:self.showsVerticalScrollIndicator];
     model3.changePropertyBlock = ^(id obj) {
         weakSelf.showsVerticalScrollIndicator = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model3];
 
     LLTitleSwitchCellModel *model4 = [[LLTitleSwitchCellModel modelWithTitle:@"Scrolling" detailTitle:@"Enable" isOn:self.isScrollEnabled] noneInsets];
     model4.changePropertyBlock = ^(id obj) {
         weakSelf.scrollEnabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model4];
 
     LLTitleSwitchCellModel *model5 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Paging" isOn:self.isPagingEnabled] noneInsets];
     model5.changePropertyBlock = ^(id obj) {
         weakSelf.pagingEnabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model5];
 
     LLTitleSwitchCellModel *model6 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Direction Lock" isOn:self.isDirectionalLockEnabled];
     model6.changePropertyBlock = ^(id obj) {
         weakSelf.directionalLockEnabled = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model6];
 
     LLTitleSwitchCellModel *model7 = [[LLTitleSwitchCellModel modelWithTitle:@"Bounce" detailTitle:@"Bounces" isOn:self.bounces] noneInsets];
     model7.changePropertyBlock = ^(id obj) {
         weakSelf.bounces = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model7];
 
     LLTitleSwitchCellModel *model8 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Bounce Horizontal" isOn:self.alwaysBounceHorizontal] noneInsets];
     model8.changePropertyBlock = ^(id obj) {
         weakSelf.alwaysBounceHorizontal = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model8];
 
     LLTitleSwitchCellModel *model9 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Bounce Vertical" isOn:self.alwaysBounceVertical];
     model9.changePropertyBlock = ^(id obj) {
         weakSelf.alwaysBounceVertical = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model9];
 
@@ -125,24 +126,24 @@
     LLTitleSwitchCellModel *model13 = [[LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Delays Content Touches" isOn:self.delaysContentTouches] noneInsets];
     model13.changePropertyBlock = ^(id obj) {
         weakSelf.delaysContentTouches = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model13];
 
     LLTitleSwitchCellModel *model14 = [LLTitleSwitchCellModel modelWithTitle:nil detailTitle:@"Cancellable Content Touches" isOn:self.canCancelContentTouches];
     model14.changePropertyBlock = ^(id obj) {
         weakSelf.canCancelContentTouches = [obj boolValue];
-        [[LLHierarchyHelper shared] postDebugToolChangeHierarchyNotification];
+        [LLDT_CC_Hierarchy postDebugToolChangeHierarchyNotification];
     };
     [settings addObject:model14];
 
     LLDetailTitleCellModel *model15 = [LLDetailTitleCellModel modelWithTitle:@"Keyboard" detailTitle:[LLEnumDescription scrollViewKeyboardDismissModeDescription:self.keyboardDismissMode]];
     model15.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription scrollViewKeyboardDismissModes]
-                                                 currentAction:[LLEnumDescription scrollViewKeyboardDismissModeDescription:weakSelf.keyboardDismissMode]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.keyboardDismissMode = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription scrollViewKeyboardDismissModes]
+                                        currentAction:[LLEnumDescription scrollViewKeyboardDismissModeDescription:weakSelf.keyboardDismissMode]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.keyboardDismissMode = index;
+                                           }];
     };
     [settings addObject:model15];
 

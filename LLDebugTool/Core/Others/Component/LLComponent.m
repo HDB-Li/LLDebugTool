@@ -23,7 +23,7 @@
 
 #import "LLComponent.h"
 
-#import "LLComponentHelper.h"
+#import "LLComponentHandle.h"
 #import "LLInternalMacros.h"
 #import "LLNavigationController.h"
 #import "LLToastUtils.h"
@@ -90,7 +90,7 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
 }
 
 + (BOOL)componentDidFinish:(NSDictionary<LLComponentDelegateKey, id> *_Nullable)data {
-    return [LLComponentHelper executeAction:LLDebugToolActionEntry data:data];
+    return [LLComponentHandle executeAction:LLDebugToolActionEntry data:data];
 }
 
 + (LLComponentWindow *)baseWindow {

@@ -54,7 +54,7 @@ FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewContro
 @optional
 
 /// Base view controller class.
-+ (Class)baseViewController;
++ (Class _Nullable)baseViewController;
 
 /// Whether is support.
 + (BOOL)isValid;

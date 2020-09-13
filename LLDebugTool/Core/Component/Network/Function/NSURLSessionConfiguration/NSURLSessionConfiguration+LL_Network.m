@@ -23,6 +23,7 @@
 
 #import "NSURLSessionConfiguration+LL_Network.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLNetworkHelper.h"
 #import "LLURLProtocol.h"
 
@@ -48,7 +49,7 @@
 
 + (NSURLSessionConfiguration *)LL_defaultSessionConfiguration {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration LL_defaultSessionConfiguration];
-    if ([LLNetworkHelper shared].isEnabled) {
+    if (LLDT_CC_Network.isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] initWithArray:config.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {
             [protocols insertObject:[LLURLProtocol class] atIndex:0];
@@ -60,7 +61,7 @@
 
 + (NSURLSessionConfiguration *)LL_ephemeralSessionConfiguration {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration LL_ephemeralSessionConfiguration];
-    if ([LLNetworkHelper shared].isEnabled) {
+    if (LLDT_CC_Network.isEnabled) {
         NSMutableArray *protocols = [[NSMutableArray alloc] init];
         [protocols addObjectsFromArray:config.protocolClasses];
         if (![protocols containsObject:[LLURLProtocol class]]) {
@@ -74,7 +75,7 @@
 - (NSArray<Class> *)LL_protocolClasses {
     NSMutableArray *protocols = [[NSMutableArray alloc] init];
     [protocols addObjectsFromArray:[self LL_protocolClasses]];
-    if ([LLNetworkHelper shared].isEnabled) {
+    if (LLDT_CC_Network.isEnabled) {
         if (![protocols containsObject:[LLURLProtocol class]]) {
             [protocols insertObject:[LLURLProtocol class] atIndex:0];
         }

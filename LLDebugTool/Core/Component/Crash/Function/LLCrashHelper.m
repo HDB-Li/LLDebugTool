@@ -28,14 +28,13 @@
 
 #import "LLCrashModel.h"
 #import "LLDebugConfig.h"
+#import "LLDebugToolMacros.h"
 #import "LLFormatterTool.h"
 #import "LLStorageManager.h"
 #import "LLTool.h"
 
-#import "LLRouter+AppInfo.h"
 #import "NSObject+LL_Utils.h"
 
-static LLCrashHelper *_instance = nil;
 static NSUncaughtExceptionHandler *_originExceptionHandler = nil;
 
 @interface LLCrashHelper ()
@@ -44,23 +43,33 @@ static NSUncaughtExceptionHandler *_originExceptionHandler = nil;
 
 @implementation LLCrashHelper
 
-+ (instancetype)shared {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[LLCrashHelper alloc] init];
-    });
-    return _instance;
+#pragma mark - Over write
+- (void)start {
+    [super start];
+    [self registerCatch];
 }
 
-- (void)setEnable:(BOOL)enable {
-    if (_enable != enable) {
-        _enable = enable;
-        if (enable) {
-            [self registerCatch];
-        } else {
-            [self unregisterCatch];
-        }
-    }
+- (void)stop {
+    [super stop];
+    [self unregisterCatch];
+}
+
+#pragma mark - LLCrashHelperDelegate
+- (void)saveException:(NSException *)exception {
+    NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
+    NSString *appInfoDescription = [LLDT_CC_AppInfo appInfoDescription];
+
+    LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:appInfoDescription launchDate:[NSObject LL_launchDate]];
+    [[LLStorageManager shared] saveModel:model
+                                complete:^(BOOL result) {
+                                    [LLTool log:@"Save crash model success"];
+                                }
+                             synchronous:YES];
+    [LLTool log:[NSString stringWithFormat:@"%@", exception] synchronous:YES withPrompt:NO];
+}
+
+- (Class)crashModelClass {
+    return NSClassFromString(@"LLCrashModel");
 }
 
 #pragma mark - Primary
@@ -155,21 +164,8 @@ static NSUncaughtExceptionHandler *_originExceptionHandler = nil;
     }
 }
 
-- (void)saveException:(NSException *)exception {
-    NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    NSString *appInfoDescription = [LLRouter appInfoDescription];
-
-    LLCrashModel *model = [[LLCrashModel alloc] initWithName:exception.name reason:exception.reason userInfo:exception.userInfo stackSymbols:exception.callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:appInfoDescription launchDate:[NSObject LL_launchDate]];
-    [[LLStorageManager shared] saveModel:model
-                                complete:^(BOOL result) {
-                                    [LLTool log:@"Save crash model success"];
-                                }
-                             synchronous:YES];
-    [LLTool log:[NSString stringWithFormat:@"%@", exception] synchronous:YES withPrompt:NO];
-}
-
 void HandleException(NSException *exception) {
-    [[LLCrashHelper shared] saveException:exception];
+    [LLDT_CC_Crash saveException:exception];
     if (_originExceptionHandler) {
         _originExceptionHandler(exception);
     } else {
@@ -228,7 +224,7 @@ void SignalHandler(int sig) {
 
     NSArray *callStackSymbols = [NSThread callStackSymbols];
     NSString *date = [LLFormatterTool stringFromDate:[NSDate date] style:FormatterToolDateStyle1];
-    LLCrashModel *model = [[LLCrashModel alloc] initWithName:name reason:[NSString stringWithFormat:@"%@ Signal", name] userInfo:nil stackSymbols:callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:[LLRouter appInfoDescription] launchDate:[NSObject LL_launchDate]];
+    LLCrashModel *model = [[LLCrashModel alloc] initWithName:name reason:[NSString stringWithFormat:@"%@ Signal", name] userInfo:nil stackSymbols:callStackSymbols date:date thread:[NSThread currentThread].description userIdentity:[LLDebugConfig shared].userIdentity appInfoDescription:[LLDT_CC_AppInfo appInfoDescription] launchDate:[NSObject LL_launchDate]];
     [[LLStorageManager shared] saveModel:model
                                 complete:^(BOOL result) {
                                     [LLTool log:@"Save signal model success"];

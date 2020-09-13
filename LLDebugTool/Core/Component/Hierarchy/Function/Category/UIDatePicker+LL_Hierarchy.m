@@ -23,6 +23,7 @@
 
 #import "UIDatePicker+LL_Hierarchy.h"
 
+#import "LLDebugToolMacros.h"
 #import "LLDetailTitleCellModel.h"
 #import "LLEnumDescription.h"
 #import "LLFormatterTool.h"
@@ -41,11 +42,11 @@
 
     LLDetailTitleCellModel *model1 = [[LLDetailTitleCellModel modelWithTitle:@"Mode" detailTitle:[LLEnumDescription datePickerModeDescription:self.datePickerMode]] noneInsets];
     model1.block = ^{
-        [[LLHierarchyHelper shared] showActionSheetWithActions:[LLEnumDescription datePickerModes]
-                                                 currentAction:[LLEnumDescription datePickerModeDescription:weakSelf.datePickerMode]
-                                                    completion:^(NSInteger index) {
-                                                        weakSelf.datePickerMode = index;
-                                                    }];
+        [LLDT_CC_Hierarchy showActionSheetWithActions:[LLEnumDescription datePickerModes]
+                                        currentAction:[LLEnumDescription datePickerModeDescription:weakSelf.datePickerMode]
+                                           completion:^(NSInteger index) {
+                                               weakSelf.datePickerMode = index;
+                                           }];
     };
     [settings addObject:model1];
 
