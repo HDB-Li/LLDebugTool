@@ -60,8 +60,7 @@
         @(LLDebugToolActionWidgetBorder): kWidgetBorderImageName,
         @(LLDebugToolActionHtml): kHtml5ImageName,
         @(LLDebugToolActionLocation): kLocationImageName,
-        @(LLDebugToolActionShortCut): kShortCutImageName,
-        @(LLDebugToolActionResolution): kResolutionImageName
+        @(LLDebugToolActionShortCut): kShortCutImageName
     };
     NSString *imageName = json[@(action)];
     if (!imageName) {

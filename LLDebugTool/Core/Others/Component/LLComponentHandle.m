@@ -24,8 +24,8 @@
 #import "LLComponentHandle.h"
 
 #import "LLDebugTool.h"
-#import "LLTool.h"
 #import "LLInternalMacros.h"
+#import "LLTool.h"
 
 static LLDebugToolAction _currentAction;
 
@@ -53,8 +53,7 @@ static LLDebugToolAction _currentAction;
         @(LLDebugToolActionWidgetBorder): @"LLWidgetBorderComponent",
         @(LLDebugToolActionHtml): @"LLHtmlComponent",
         @(LLDebugToolActionLocation): @"LLLocationComponent",
-        @(LLDebugToolActionShortCut): @"LLShortCutComponent",
-        @(LLDebugToolActionResolution): @"LLResolutionComponent"
+        @(LLDebugToolActionShortCut): @"LLShortCutComponent"
     };
     NSString *component = json[@(action)];
     if (component) {
@@ -84,8 +83,7 @@ static LLDebugToolAction _currentAction;
         @(LLDebugToolActionWidgetBorder): LLLocalizedString(@"function.widget.border"),
         @(LLDebugToolActionHtml): LLLocalizedString(@"function.html"),
         @(LLDebugToolActionLocation): LLLocalizedString(@"function.location"),
-        @(LLDebugToolActionShortCut): LLLocalizedString(@"function.short.cut"),
-        @(LLDebugToolActionResolution): LLLocalizedString(@"function.resolution")
+        @(LLDebugToolActionShortCut): LLLocalizedString(@"function.short.cut")
     };
     NSString *title = json[@(action)];
     if (!title) {

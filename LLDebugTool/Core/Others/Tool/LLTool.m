@@ -222,12 +222,4 @@ static bool _statusBarClickable = YES;
     [NSUserDefaults LL_setBool:isStart forKey:@"startWorkingAfterApplicationDidFinishLaunching"];
 }
 
-+ (NSInteger)resolutionStyle {
-    return [NSUserDefaults LL_integerForKey:@"resolutionStyle"];
-}
-
-+ (void)setResolutionStyle:(NSInteger)resolutionStyle {
-    [NSUserDefaults LL_setInteger:resolutionStyle forKey:@"resolutionStyle"];
-}
-
 @end

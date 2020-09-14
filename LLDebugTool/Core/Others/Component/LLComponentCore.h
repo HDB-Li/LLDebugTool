@@ -33,7 +33,6 @@
 #import "LLLogHelperDelegate.h"
 #import "LLMagnifierHelperDelegate.h"
 #import "LLNetworkHelperDelegate.h"
-#import "LLResolutionHelperDelegate.h"
 #import "LLRulerHelperDelegate.h"
 #import "LLSandboxHelperDelegate.h"
 #import "LLScreenshotHelperDelegate.h"
@@ -76,8 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable, readonly) id<LLLocationHelperDelegate> locationHelper;
 
 @property (nonatomic, strong, nullable, readonly) id<LLShortCutHelperDelegate> shortCutHelper;
-
-@property (nonatomic, strong, nullable, readonly) id<LLResolutionHelperDelegate> resolutionHelper;
 
 @end
 

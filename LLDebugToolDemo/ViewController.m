@@ -266,10 +266,6 @@ static NSString *const kCellID = @"cellID";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)testResolution {
-    [[LLDebugTool sharedTool] executeAction:LLDebugToolActionResolution];
-}
-
 - (void)testStartWorking {
     [[LLDebugTool sharedTool] startWorking];
 }
@@ -400,8 +396,6 @@ static NSString *const kCellID = @"cellID";
         cell.textLabel.text = NSLocalizedString(@"test.short.cut", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 14) {
-        cell.textLabel.text = NSLocalizedString(@"test.resolution", nil);
-    } else if (indexPath.section == 15) {
         cell.textLabel.text = NSLocalizedString(@"test.debug.tool", nil);
     }
     return cell;
@@ -441,8 +435,6 @@ static NSString *const kCellID = @"cellID";
     } else if (indexPath.section == 13) {
         [self testShortCut];
     } else if (indexPath.section == 14) {
-        [self testResolution];
-    } else if (indexPath.section == 15) {
         [self testStartWorking];
     }
     [self.tableView reloadData];
@@ -478,8 +470,6 @@ static NSString *const kCellID = @"cellID";
     } else if (section == 13) {
         return @"Short Cut";
     } else if (section == 14) {
-        return @"Resolution";
-    } else if (section == 15) {
         return @"Action";
     }
     return nil;

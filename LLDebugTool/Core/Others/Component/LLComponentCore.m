@@ -206,10 +206,6 @@
     return _shortCutHelper;
 }
 
-- (id<LLResolutionHelperDelegate>)resolutionHelper {
-    return (id<LLResolutionHelperDelegate>)[self helperWithName:@"LLResolutionHelper" selector:_cmd];
-}
-
 #pragma mark - Primary
 - (id)helperWithName:(NSString *)name selector:(SEL)aSelector {
     if (!name) {

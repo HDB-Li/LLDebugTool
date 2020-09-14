@@ -61,7 +61,6 @@
 #define LLDT_CC_Html [LLDT_CC htmlHelper]
 #define LLDT_CC_Location [LLDT_CC locationHelper]
 #define LLDT_CC_ShortCut [LLDT_CC shortCutHelper]
-#define LLDT_CC_Resolution [LLDT_CC resolutionHelper]
 
 #else
 

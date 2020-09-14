@@ -40,7 +40,6 @@
 "function.html" = "WebView";
 "function.location" = "Location";
 "function.short.cut" = "Short Cut";
-"function.resolution" = "Resolution";
 
 // Feature
 "feature.short" = "Short Cut";
@@ -132,10 +131,3 @@
 
 // Short cut
 "short.cut.execute" = "Execute '%@' Success";
-
-// Resolution
-"resolution.header.title" = "Mock resolution needs to restart the app.\n[This is an experimental function]";
-"resolution.alert.title" = "Mock resolution needs to restart the app.";
-"resolution.alert.message" = "[This is an experimental function]";
-"resolution.choose" = "Resolution";
-"resolution.change.success" = "Change resolution successed, app will restart.";

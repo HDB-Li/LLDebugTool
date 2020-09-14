@@ -61,7 +61,6 @@
 "test.html" = "展示WebView功能";
 "test.location" = "展示模拟定位功能";
 "test.short.cut" = "展示快捷操作功能";
-"test.resolution" = "展示分辨率功能";
 "test.debug.tool" = "调用 [LLDebugTool startWorking]";
 
 "new.version" = "有新版本Demo可用";

@@ -40,7 +40,6 @@ static LLImageName const kWidgetBorderImageName = @"widget-border";
 static LLImageName const kHtml5ImageName = @"html5";
 static LLImageName const kLocationImageName = @"location";
 static LLImageName const kShortCutImageName = @"short-cut";
-static LLImageName const kResolutionImageName = @"resolution";
 
 // Navigation Item Icon
 static LLImageName const kClearImageName = @"clear";

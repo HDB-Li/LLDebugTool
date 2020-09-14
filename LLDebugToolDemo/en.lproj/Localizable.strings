@@ -61,7 +61,6 @@
 "test.html" = "Show html webview function";
 "test.location" = "Show mock location function";
 "test.short.cut" = "Show short cut function";
-"test.resolution" = "Show resolution function";
 "test.debug.tool" = "Call [LLDebugTool startWorking]";
 
 "new.version" = "A new version demo is available";

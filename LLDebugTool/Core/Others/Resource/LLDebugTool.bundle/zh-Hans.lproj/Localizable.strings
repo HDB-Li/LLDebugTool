@@ -40,7 +40,6 @@
 "function.html" = "WebView";
 "function.location" = "模拟定位";
 "function.short.cut" = "快捷操作";
-"function.resolution" = "分辨率";
 
 // Feature
 "feature.short" = "快捷功能";
@@ -132,9 +131,3 @@
 
 // Short cut
 "short.cut.execute" = "执行 '%@' 成功";
-
-// Resolution
-"resolution.alert.title" = "模拟分辨率需要重启app。";
-"resolution.alert.message" = "【这是一个实验性的功能。】";
-"resolution.choose" = "分辨率";
-"resolution.change.success" = "修改分辨率成功，应用将重启。";

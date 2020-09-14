@@ -127,7 +127,7 @@
 - (void)showDoubleClickAlert {
     NSMutableArray *actions = [[NSMutableArray alloc] init];
     __block NSMutableArray *indexs = [[NSMutableArray alloc] init];
-    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionResolution + 1; i++) {
+    for (NSInteger i = LLDebugToolActionSetting; i < LLDebugToolActionShortCut + 1; i++) {
         NSString *action = [LLDebugConfigHelper componentDescription:i];
         if (action) {
             [actions addObject:action];

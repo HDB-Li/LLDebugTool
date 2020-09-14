@@ -160,9 +160,6 @@
     LLFeatureItemModel *shortCut = [[LLFeatureItemModel alloc] initWithAction:LLDebugToolActionShortCut];
     [items LL_addObject:shortCut];
 
-    LLFeatureItemModel *resolution = [[LLFeatureItemModel alloc] initWithAction:LLDebugToolActionResolution];
-    [items LL_addObject:resolution];
-
     return [items copy];
 }
 

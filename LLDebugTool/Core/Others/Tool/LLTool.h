@@ -104,13 +104,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param isStart Is start.
 + (void)setStartWorkingAfterApplicationDidFinishLaunching:(BOOL)isStart;
 
-/// Resolution style.
-+ (NSInteger)resolutionStyle;
-
-/// Set resolution style
-/// @param resolutionStyle style. also see
-+ (void)setResolutionStyle:(NSInteger)resolutionStyle;
-
 @end
 
 NS_ASSUME_NONNULL_END

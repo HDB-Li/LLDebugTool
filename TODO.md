@@ -72,7 +72,7 @@
 `2020.07.19`
 * [ ] 根据使用频率动态调整Feature列表顺序。
 * [ ] 增加EntryWindow样式，点击直接在四周展示入口。
-* [ ] 探究Resolution的可行性。
+* [x] 探究Resolution的可行性 (不可行)。
 * [ ] 探究离屏渲染的可行性。
 * [ ] LLIconVersioning集成的可行性。
 * [ ] 组件增加单测。

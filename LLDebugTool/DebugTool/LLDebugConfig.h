@@ -96,7 +96,6 @@ typedef NS_ENUM(NSUInteger, LLDebugConfigEntryWindowStyle) {
  - LLDebugToolActionHtml: Html function.
  - LLDebugToolActionLocation: Mock location function.
  - LLDebugToolActionShortCut: Short cut function.
- - LLDebugToolActionResolution: Resolution function.
  */
 typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionEntry,
@@ -115,8 +114,7 @@ typedef NS_ENUM(NSUInteger, LLDebugToolAction) {
     LLDebugToolActionWidgetBorder,
     LLDebugToolActionHtml,
     LLDebugToolActionLocation,
-    LLDebugToolActionShortCut,
-    LLDebugToolActionResolution
+    LLDebugToolActionShortCut
 };
 
 /**
