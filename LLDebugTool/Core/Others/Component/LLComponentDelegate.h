@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString *LLComponentDelegateKey NS_TYPED_ENUM;
 
+FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateAnimateKey;
+
 FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey;
 
 FOUNDATION_EXTERN LLComponentDelegateKey const LLComponentDelegateRootViewControllerNeedNavigationKey;

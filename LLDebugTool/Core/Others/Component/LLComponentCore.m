@@ -28,182 +28,71 @@
 @implementation LLComponentCore
 
 - (id<LLEntryHelperDelegate>)entryHelper {
-    id<LLEntryHelperDelegate> _entryHelper = [self helperWithName:@"LLEntryHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_ENTRY
-    if (!_entryHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _entryHelper;
+    return [self helperWithName:@"LLEntryHelper" selector:_cmd];
 }
 
 - (id<LLFeatureHelperDelegate>)featureHelper {
-    id<LLFeatureHelperDelegate> _featureHelper = [self helperWithName:@"LLFeatureHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_FEATURE
-    if (!_featureHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _featureHelper;
+    return [self helperWithName:@"LLFeatureHelper" selector:_cmd];
 }
 
 - (id<LLSettingHelperDelegate>)settingHelper {
-    id<LLSettingHelperDelegate> _settingHelper = [self helperWithName:@"LLSettingHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_SETTING
-    if (!_settingHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _settingHelper;
+    return [self helperWithName:@"LLSettingHelper" selector:_cmd];
 }
 
 - (id<LLNetworkHelperDelegate>)networkHelper {
-    id<LLNetworkHelperDelegate> _networkHelper = [self helperWithName:@"LLNetworkHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_NETWORK
-    if (!_networkHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _networkHelper;
+    return [self helperWithName:@"LLNetworkHelper" selector:_cmd];
 }
 
 - (id<LLLogHelperDelegate>)logHelper {
-    id<LLLogHelperDelegate> _logHelper = nil;
 #ifdef LLDEBUGTOOL_LOG
-    _logHelper = [self helperWithName:@"LLLogHelper" selector:_cmd];
-    if (!_logHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
+    return [self helperWithName:@"LLLogHelper" selector:_cmd];
 #else
-    _logHelper = [self helperWithName:@"LLSimpleLogHelper" selector:_cmd];
+    return [self helperWithName:@"LLSimpleLogHelper" selector:_cmd];
 #endif
-    return _logHelper;
 }
 
 - (id<LLCrashHelperDelegate>)crashHelper {
-    id<LLCrashHelperDelegate> _crashHelper = [self helperWithName:@"LLCrashHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_CRASH
-    if (!_crashHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _crashHelper;
+    return [self helperWithName:@"LLCrashHelper" selector:_cmd];
 }
 
 - (id<LLAppInfoHelperDelegate>)appInfoHelper {
-    id<LLAppInfoHelperDelegate> _appInfoHelper = [self helperWithName:@"LLAppInfoHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_APP_INFO
-    if (!_appInfoHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _appInfoHelper;
+    return [self helperWithName:@"LLAppInfoHelper" selector:_cmd];
 }
 
 - (id<LLSandboxHelperDelegate>)sandboxHelper {
-    id<LLSandboxHelperDelegate> _sandboxHelper = [self helperWithName:@"LLSandboxHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_SANDBOX
-    if (!_sandboxHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _sandboxHelper;
+    return [self helperWithName:@"LLSandboxHelper" selector:_cmd];
 }
 
 - (id<LLScreenshotHelperDelegate>)screenshotHelper {
-    id<LLScreenshotHelperDelegate> _screenshotHelper = [self helperWithName:@"LLScreenshotHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_SCREENSHOT
-    if (!_screenshotHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _screenshotHelper;
+    return [self helperWithName:@"LLScreenshotHelper" selector:_cmd];
 }
 
 - (id<LLHierarchyHelperDelegate>)hierarchyHelper {
-    id<LLHierarchyHelperDelegate> _hierarchyHelper = [self helperWithName:@"LLHierarchyHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_HIERARCHY
-    if (!_hierarchyHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _hierarchyHelper;
+    return [self helperWithName:@"LLHierarchyHelper" selector:_cmd];
 }
 
 - (id<LLMagnifierHelperDelegate>)magnifierHelper {
-    id<LLMagnifierHelperDelegate> _magnifierHelper = [self helperWithName:@"LLMagnifierHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_MAGNIFIER
-    if (!_magnifierHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _magnifierHelper;
+    return [self helperWithName:@"LLMagnifierHelper" selector:_cmd];
 }
 
 - (id<LLRulerHelperDelegate>)rulerHelper {
-    id<LLRulerHelperDelegate> _rulerHelper = [self helperWithName:@"LLRulerHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_RULER
-    if (!_rulerHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _rulerHelper;
+    return [self helperWithName:@"LLRulerHelper" selector:_cmd];
 }
 
 - (id<LLWidgetBorderHelperDelegate>)widgetBorderHelper {
-    id<LLWidgetBorderHelperDelegate> _widgetBorderHelper = [self helperWithName:@"LLWidgetBorderHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_WIDGET_BORDER
-    if (!_widgetBorderHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _widgetBorderHelper;
+    return [self helperWithName:@"LLWidgetBorderHelper" selector:_cmd];
 }
 
 - (id<LLHtmlHelperDelegate>)htmlHelper {
-    id<LLHtmlHelperDelegate> _htmlHelper = [self helperWithName:@"LLHtmlHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_WIDGET_BORDER
-    if (!_htmlHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _htmlHelper;
+    return [self helperWithName:@"LLHtmlHelper" selector:_cmd];
 }
 
 - (id<LLLocationHelperDelegate>)locationHelper {
-    id<LLLocationHelperDelegate> _locationHelper = [self helperWithName:@"LLLocationHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_LOCATION
-    if (!_locationHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _locationHelper;
+    return [self helperWithName:@"LLLocationHelper" selector:_cmd];
 }
 
 - (id<LLShortCutHelperDelegate>)shortCutHelper {
-    id<LLShortCutHelperDelegate> _shortCutHelper = [self helperWithName:@"LLShortCutHelper" selector:_cmd];
-#ifdef LLDEBUGTOOL_SHORT_CUT
-    if (!_shortCutHelper) {
-        NSString *message = [NSString stringWithFormat:@"%@ is not exist.", NSStringFromSelector(_cmd)];
-        NSAssert(NO, message);
-    }
-#endif
-    return _shortCutHelper;
+    return [self helperWithName:@"LLShortCutHelper" selector:_cmd];
 }
 
 #pragma mark - Primary

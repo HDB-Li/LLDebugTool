@@ -29,6 +29,7 @@
 #import "LLToastUtils.h"
 #import "LLWindowManager.h"
 
+LLComponentDelegateKey const LLComponentDelegateAnimateKey = @"LLComponentDelegateAnimateKey";
 LLComponentDelegateKey const LLComponentDelegateRootViewControllerKey = @"LLComponentWindowRootViewControllerKey";
 LLComponentDelegateKey const LLComponentDelegateRootViewControllerNeedNavigationKey = @"LLComponentDelegateRootViewControllerNeedNavigationKey";
 LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey = @"LLComponentWindowRootViewControllerPropertiesKey";
@@ -45,6 +46,10 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
     if ([self respondsToSelector:@selector(verificationData:)]) {
         targetData = [self verificationData:data];
     }
+    BOOL animated = YES;
+    if (data[LLComponentDelegateAnimateKey]) {
+        animated = [data[LLComponentDelegateAnimateKey] boolValue];
+    }
     LLBaseWindow *visibleWindow = [[LLWindowManager shared] visibleWindow];
     Class cls = nil;
     if ([self respondsToSelector:@selector(baseViewController)]) {
@@ -56,7 +61,8 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
             return NO;
         }
         LLNavigationController *nav = (LLNavigationController *)visibleWindow.rootViewController;
-        [nav pushViewController:viewController animated:YES];
+        [nav pushViewController:viewController animated:animated];
+        return YES;
     } else {
         LLBaseWindow *window = self.baseWindow;
         if (!window) {
@@ -84,9 +90,10 @@ LLComponentDelegateKey const LLComponentDelegateRootViewControllerPropertiesKey 
                 [rootViewController setValue:value forKey:key];
             }
         }
-        [[LLWindowManager shared] showWindow:window animated:YES];
+        [[LLWindowManager shared] showWindow:window animated:animated];
+        return YES;
     }
-    return YES;
+    return NO;
 }
 
 + (BOOL)componentDidFinish:(NSDictionary<LLComponentDelegateKey, id> *_Nullable)data {
