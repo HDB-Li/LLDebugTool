@@ -1,0 +1,1863 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E9341ED8CEB635EBF9937E4 /* Pods_LLDebugTool_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AF36CB999E42A9DFB78FAC /* Pods_LLDebugTool_Tests.framework */; };
+		5B9CDB6B4C532B0291AB8000 /* Pods_LLDebugTool_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E73AC4A692E45AC1ECD5C2C /* Pods_LLDebugTool_Example.framework */; };
+		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
+		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
+		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
+		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
+		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
+		6003F59E195388D20070C39A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* AppDelegate.m */; };
+		6003F5A7195388D20070C39A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* ViewController.m */; };
+		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
+		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
+		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
+		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
+		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		C4279A02255EC36800687351 /* LLEntryComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A01255EC36800687351 /* LLEntryComponentTests.m */; };
+		C4279A04255ECC5D00687351 /* LLEntryHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A03255ECC5D00687351 /* LLEntryHelperTests.m */; };
+		C4279A06255ECC8700687351 /* LLEntryAppInfoViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A05255ECC8700687351 /* LLEntryAppInfoViewTests.m */; };
+		C4279A08255ECC9200687351 /* LLEntryBallViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A07255ECC9200687351 /* LLEntryBallViewTests.m */; };
+		C4279A0A255ECC9C00687351 /* LLEntryBigTitleViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A09255ECC9C00687351 /* LLEntryBigTitleViewTests.m */; };
+		C4279A0C255ECCA700687351 /* LLEntryStyleModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A0B255ECCA700687351 /* LLEntryStyleModelTests.m */; };
+		C4279A0E255ECCC900687351 /* LLEntryTitleViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A0D255ECCC900687351 /* LLEntryTitleViewTests.m */; };
+		C4279A10255ECCDE00687351 /* LLEntryViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A0F255ECCDE00687351 /* LLEntryViewTests.m */; };
+		C4279A12255ECCEB00687351 /* LLEntryViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A11255ECCEB00687351 /* LLEntryViewControllerTests.m */; };
+		C4279A14255ECCFC00687351 /* LLEntryWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A13255ECCFC00687351 /* LLEntryWindowTests.m */; };
+		C4279A16255ECD2600687351 /* LLWindowManagerEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A15255ECD2600687351 /* LLWindowManagerEntryTests.m */; };
+		C4279A17255ECDC500687351 /* LLEntryTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C42799FF255EC2F300687351 /* LLEntryTestCase.m */; };
+		C43521FB2528514D004B1648 /* NSUserDefaultsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43521FA2528514D004B1648 /* NSUserDefaultsUtilsTests.m */; };
+		C43521FE25286B08004B1648 /* UIAlertActionUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43521FD25286B08004B1648 /* UIAlertActionUtilsTests.m */; };
+		C4352201252872CC004B1648 /* UIButtonUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4352200252872CC004B1648 /* UIButtonUtilsTests.m */; };
+		C435220425287388004B1648 /* UIColorUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C435220325287388004B1648 /* UIColorUtilsTests.m */; };
+		C43522072528AA09004B1648 /* UIImageUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43522062528AA09004B1648 /* UIImageUtilsTests.m */; };
+		C435220A2528CBBC004B1648 /* UIResponderUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43522092528CBBC004B1648 /* UIResponderUtilsTests.m */; };
+		C435220D2528CE56004B1648 /* UIViewUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C435220C2528CE56004B1648 /* UIViewUtilsTests.m */; };
+		C43A6AF22529A6A900B008AF /* UIWindowUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43A6AF12529A6A900B008AF /* UIWindowUtilsTests.m */; };
+		C43F88B425296F0B00C59A6E /* UIViewControllerUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F88B325296F0B00C59A6E /* UIViewControllerUtilsTests.m */; };
+		C442A6AF25257DA800E95CAA /* NSArrayUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C442A6AE25257DA800E95CAA /* NSArrayUtilsTests.m */; };
+		C442A6B325257E6200E95CAA /* LLCoreTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C442A6B125257DE200E95CAA /* LLCoreTestCase.m */; };
+		C444AA19253005B30006965B /* LLToastUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C444AA18253005B30006965B /* LLToastUtilsTests.m */; };
+		C444AA1C253005C30006965B /* LLToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C444AA1B253005C30006965B /* LLToolTests.m */; };
+		C444AA1F253005D10006965B /* LLWindowManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C444AA1E253005D10006965B /* LLWindowManagerTests.m */; };
+		C4514533251CEDA400C15E53 /* README_cn.md in Resources */ = {isa = PBXBuildFile; fileRef = C4514530251CEDA400C15E53 /* README_cn.md */; };
+		C4514534251CEDA500C15E53 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = C4514531251CEDA400C15E53 /* CHANGELOG.md */; };
+		C4514535251CEDA500C15E53 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = C4514532251CEDA400C15E53 /* TODO.md */; };
+		C455922D25270608008FE718 /* NSDictionaryUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C455922C25270608008FE718 /* NSDictionaryUtilsTests.m */; };
+		C455923025271887008FE718 /* NSMutableArrayUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C455922F25271887008FE718 /* NSMutableArrayUtilsTests.m */; };
+		C455923325271A0C008FE718 /* NSObjectUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C455923225271A0C008FE718 /* NSObjectUtilsTests.m */; };
+		C455923525271A20008FE718 /* NSObjectRuntimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C455923425271A20008FE718 /* NSObjectRuntimeTests.m */; };
+		C455923825271D93008FE718 /* NSStringUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C455923725271D93008FE718 /* NSStringUtilsTests.m */; };
+		C45B5088252B55150060CDD0 /* LLBaseCollectionViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C45B5087252B55150060CDD0 /* LLBaseCollectionViewCellTests.m */; };
+		C45B508A252B58A90060CDD0 /* LLBaseModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C45B5089252B58A90060CDD0 /* LLBaseModelTests.m */; };
+		C45B508C252B65030060CDD0 /* LLBaseTableViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C45B508B252B65030060CDD0 /* LLBaseTableViewCellTests.m */; };
+		C45B508E252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C45B508D252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m */; };
+		C461151B2556E8D8009C96D5 /* LLBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4999154255597CC006C86FD /* LLBaseTestCase.m */; };
+		C461151C2556E8F3009C96D5 /* LLAppInfoTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C49991512555976F006C86FD /* LLAppInfoTestCase.m */; };
+		C461151E2556E98A009C96D5 /* LLAppInfoComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C461151D2556E98A009C96D5 /* LLAppInfoComponentTests.m */; };
+		C46115202556E9A9009C96D5 /* LLAppInfoHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C461151F2556E9A9009C96D5 /* LLAppInfoHelperTests.m */; };
+		C46115222556E9F5009C96D5 /* UIDeviceAppInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46115212556E9F5009C96D5 /* UIDeviceAppInfoTests.m */; };
+		C46115242556EA10009C96D5 /* LLAppInfoViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46115232556EA10009C96D5 /* LLAppInfoViewControllerTests.m */; };
+		C46115262556EA1E009C96D5 /* LLAppInfoWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46115252556EA1E009C96D5 /* LLAppInfoWindowTests.m */; };
+		C46115282556EA35009C96D5 /* LLWindowManagerAppInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46115272556EA35009C96D5 /* LLWindowManagerAppInfoTests.m */; };
+		C46D576D252C20AE00712151 /* LLBaseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46D576C252C20AE00712151 /* LLBaseViewTests.m */; };
+		C46D576F252C227000712151 /* LLBaseViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46D576E252C227000712151 /* LLBaseViewControllerTests.m */; };
+		C46D5771252CA59200712151 /* LLBaseWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46D5770252CA59200712151 /* LLBaseWindowTests.m */; };
+		C47D640A252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6409252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m */; };
+		C47D640C252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D640B252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m */; };
+		C47D640E252D97A1001A7FA0 /* LLStorageModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D640D252D97A1001A7FA0 /* LLStorageModelTests.m */; };
+		C47D6411252DAD56001A7FA0 /* LLAnimateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6410252DAD56001A7FA0 /* LLAnimateViewTests.m */; };
+		C47D6413252DADFB001A7FA0 /* LLDetailTitleCellViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6412252DADFB001A7FA0 /* LLDetailTitleCellViewTests.m */; };
+		C47D6415252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6414252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m */; };
+		C47D6417252DAE77001A7FA0 /* LLTitleCellViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6416252DAE77001A7FA0 /* LLTitleCellViewTests.m */; };
+		C47D6419252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6418252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m */; };
+		C47D641B252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D641A252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m */; };
+		C47D6420252DAF43001A7FA0 /* LLFilterDateViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D641F252DAF43001A7FA0 /* LLFilterDateViewTests.m */; };
+		C47D6422252DAF57001A7FA0 /* LLFilterEventViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6421252DAF57001A7FA0 /* LLFilterEventViewTests.m */; };
+		C47D6424252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6423252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m */; };
+		C47D6426252DAF71001A7FA0 /* LLFilterLabelCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6425252DAF71001A7FA0 /* LLFilterLabelCellTests.m */; };
+		C47D6428252DAF7D001A7FA0 /* LLFilterLabelModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6427252DAF7D001A7FA0 /* LLFilterLabelModelTests.m */; };
+		C47D642A252DAF88001A7FA0 /* LLFilterOtherViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6429252DAF88001A7FA0 /* LLFilterOtherViewTests.m */; };
+		C47D642C252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D642B252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m */; };
+		C47D642E252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D642D252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m */; };
+		C47D6430252DAFAC001A7FA0 /* LLFilterViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D642F252DAFAC001A7FA0 /* LLFilterViewTests.m */; };
+		C47D6433252DB03C001A7FA0 /* LLInfoViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6432252DB03C001A7FA0 /* LLInfoViewTests.m */; };
+		C47D6436252DB04C001A7FA0 /* LLMoveViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6435252DB04C001A7FA0 /* LLMoveViewTests.m */; };
+		C47D6439252DB061001A7FA0 /* LLMoveWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6438252DB061001A7FA0 /* LLMoveWindowTests.m */; };
+		C47D643C252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D643B252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m */; };
+		C47D643F252DB0B4001A7FA0 /* LLPickerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D643E252DB0B4001A7FA0 /* LLPickerViewTests.m */; };
+		C47D6442252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6441252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m */; };
+		C47D6444252DEF1A001A7FA0 /* LLUITableViewLongPressGestureRecognizerDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6443252DEF1A001A7FA0 /* LLUITableViewLongPressGestureRecognizerDelegateTests.m */; };
+		C47D6447252DEF35001A7FA0 /* LLDetailTitleCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6446252DEF35001A7FA0 /* LLDetailTitleCellTests.m */; };
+		C47D6449252DEF40001A7FA0 /* LLDetailTitleCellModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6448252DEF40001A7FA0 /* LLDetailTitleCellModelTests.m */; };
+		C47D644B252DEF49001A7FA0 /* LLLeftTitleCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D644A252DEF49001A7FA0 /* LLLeftTitleCellTests.m */; };
+		C47D644D252DEF5C001A7FA0 /* LLTitleCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D644C252DEF5C001A7FA0 /* LLTitleCellTests.m */; };
+		C47D644F252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D644E252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m */; };
+		C47D6451252DEF74001A7FA0 /* LLTitleCellModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6450252DEF74001A7FA0 /* LLTitleCellModelTests.m */; };
+		C47D6453252DEF80001A7FA0 /* LLTitleHeaderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6452252DEF80001A7FA0 /* LLTitleHeaderViewTests.m */; };
+		C47D6455252DEF8B001A7FA0 /* LLTitleSliderCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6454252DEF8B001A7FA0 /* LLTitleSliderCellTests.m */; };
+		C47D6457252DEF96001A7FA0 /* LLTitleSliderCellModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6456252DEF96001A7FA0 /* LLTitleSliderCellModelTests.m */; };
+		C47D6459252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6458252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m */; };
+		C47D645B252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D645A252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m */; };
+		C47D645F252DF39A001A7FA0 /* LLComponentNavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D645E252DF39A001A7FA0 /* LLComponentNavigationControllerTests.m */; };
+		C47D6462252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6461252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m */; };
+		C47D6465252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6464252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m */; };
+		C47D6468252DF3EF001A7FA0 /* LLNavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6467252DF3EF001A7FA0 /* LLNavigationControllerTests.m */; };
+		C47D646B252DF40E001A7FA0 /* LLTitleViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D646A252DF40E001A7FA0 /* LLTitleViewControllerTests.m */; };
+		C47D646E252DF442001A7FA0 /* LLBaseComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D646D252DF442001A7FA0 /* LLBaseComponentTests.m */; };
+		C47D6470252DF452001A7FA0 /* LLComponentCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D646F252DF452001A7FA0 /* LLComponentCoreTests.m */; };
+		C47D6472252DFAE4001A7FA0 /* LLComponentDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6471252DFAE4001A7FA0 /* LLComponentDelegateTests.m */; };
+		C47D6474252DFAEF001A7FA0 /* LLComponentHandleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6473252DFAEF001A7FA0 /* LLComponentHandleTests.m */; };
+		C47D6476252DFAFC001A7FA0 /* LLComponentWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6475252DFAFC001A7FA0 /* LLComponentWindowTests.m */; };
+		C47E5911252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5910252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m */; };
+		C47E5913252EBC32003AA64A /* LLComponentHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5912252EBC32003AA64A /* LLComponentHelperTests.m */; };
+		C47E5915252EBC41003AA64A /* LLComponentHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5914252EBC41003AA64A /* LLComponentHelperDelegateTests.m */; };
+		C47E5917252EBC4C003AA64A /* LLCrashHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5916252EBC4C003AA64A /* LLCrashHelperDelegateTests.m */; };
+		C47E5919252EBC5D003AA64A /* LLEntryHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5918252EBC5D003AA64A /* LLEntryHelperDelegateTests.m */; };
+		C47E591B252EBC68003AA64A /* LLFeatureHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E591A252EBC68003AA64A /* LLFeatureHelperDelegateTests.m */; };
+		C47E591D252EBC72003AA64A /* LLHierarchyHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E591C252EBC72003AA64A /* LLHierarchyHelperDelegateTests.m */; };
+		C47E591F252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E591E252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m */; };
+		C47E5921252EBC8A003AA64A /* LLLocationHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5920252EBC8A003AA64A /* LLLocationHelperDelegateTests.m */; };
+		C47E5923252EBC97003AA64A /* LLLogHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5922252EBC97003AA64A /* LLLogHelperDelegateTests.m */; };
+		C47E5925252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5924252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m */; };
+		C47E5927252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5926252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m */; };
+		C47E5929252EBCB8003AA64A /* LLRulerHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5928252EBCB8003AA64A /* LLRulerHelperDelegateTests.m */; };
+		C47E592B252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E592A252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m */; };
+		C47E592D252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E592C252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m */; };
+		C47E592F252EBCDD003AA64A /* LLSettingHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E592E252EBCDD003AA64A /* LLSettingHelperDelegateTests.m */; };
+		C47E5931252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5930252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m */; };
+		C47E5933252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5932252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m */; };
+		C47E5936252ECA37003AA64A /* LLDebugConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5935252ECA37003AA64A /* LLDebugConfigTests.m */; };
+		C47E5939252ECADC003AA64A /* LLDebugConfigHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5938252ECADC003AA64A /* LLDebugConfigHelperTests.m */; };
+		C47E593C252ECAEF003AA64A /* LLConstTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E593B252ECAEF003AA64A /* LLConstTests.m */; };
+		C47E593F252ECB01003AA64A /* LLDebugToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E593E252ECB01003AA64A /* LLDebugToolTests.m */; };
+		C47E5942252EF600003AA64A /* LLLogDefineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5941252EF600003AA64A /* LLLogDefineTests.m */; };
+		C47E5944252EF60B003AA64A /* LLNetworkDefineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5943252EF60B003AA64A /* LLNetworkDefineTests.m */; };
+		C47E5947252EF61D003AA64A /* LLFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5946252EF61D003AA64A /* LLFactoryTests.m */; };
+		C47E594A252F0CCD003AA64A /* LLFormatterToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5949252F0CCD003AA64A /* LLFormatterToolTests.m */; };
+		C47E594E252F142C003AA64A /* LLJsonToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E594D252F142C003AA64A /* LLJsonToolTests.m */; };
+		C47E5951252F1444003AA64A /* LLInternalMacrosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5950252F1444003AA64A /* LLInternalMacrosTests.m */; };
+		C47E5954252F145A003AA64A /* LLNetworkToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5953252F145A003AA64A /* LLNetworkToolTests.m */; };
+		C47E5957252F146C003AA64A /* LLProxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5956252F146C003AA64A /* LLProxyTests.m */; };
+		C47E595A252F15C9003AA64A /* LLImageNameConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5959252F15C8003AA64A /* LLImageNameConfigTests.m */; };
+		C47E595D252F15E0003AA64A /* LLScreenshotToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E595C252F15E0003AA64A /* LLScreenshotToolTests.m */; };
+		C47E5960252F15F2003AA64A /* LLThemeColorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E595F252F15F2003AA64A /* LLThemeColorTests.m */; };
+		C47E5962252F1600003AA64A /* LLThemeManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47E5961252F1600003AA64A /* LLThemeManagerTests.m */; };
+		C48DEDBF251E277C00DBDECF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDC1251E277C00DBDECF /* Localizable.strings */; };
+		C48DEDE6251E281300DBDECF /* BaseTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDC4251E281300DBDECF /* BaseTestViewController.m */; };
+		C48DEDE7251E281300DBDECF /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDC6251E281300DBDECF /* TestHierarchyViewController.m */; };
+		C48DEDE8251E281300DBDECF /* TestCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDC7251E281300DBDECF /* TestCrashViewController.m */; };
+		C48DEDE9251E281300DBDECF /* TestWindowStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDCB251E281300DBDECF /* TestWindowStyleViewController.m */; };
+		C48DEDEA251E281300DBDECF /* TestLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDCE251E281300DBDECF /* TestLogViewController.m */; };
+		C48DEDEB251E281300DBDECF /* CustomWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDCF251E281300DBDECF /* CustomWebViewController.m */; };
+		C48DEDEC251E281300DBDECF /* TestLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDD2251E281300DBDECF /* TestLocationViewController.m */; };
+		C48DEDED251E281300DBDECF /* TestNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDD3251E281300DBDECF /* TestNetworkViewController.m */; };
+		C48DEDEE251E281300DBDECF /* TestColorStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDD5251E281300DBDECF /* TestColorStyleViewController.m */; };
+		C48DEDEF251E281300DBDECF /* TestShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDD8251E281300DBDECF /* TestShortCutViewController.m */; };
+		C48DEDF0251E281300DBDECF /* TestHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDD9251E281300DBDECF /* TestHtmlViewController.m */; };
+		C48DEDF1251E281300DBDECF /* LLDebugTool.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDDB251E281300DBDECF /* LLDebugTool.mp3 */; };
+		C48DEDF2251E281300DBDECF /* LLDebugTool.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDDC251E281300DBDECF /* LLDebugTool.mp4 */; };
+		C48DEDF3251E281300DBDECF /* LLDebugTool.json in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDDD251E281300DBDECF /* LLDebugTool.json */; };
+		C48DEDF4251E281300DBDECF /* LLDebugTool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDDE251E281300DBDECF /* LLDebugTool.plist */; };
+		C48DEDF5251E281300DBDECF /* LLDebugTool.md in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDDF251E281300DBDECF /* LLDebugTool.md */; };
+		C48DEDF6251E281300DBDECF /* LLDebugTool.gif in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE0251E281300DBDECF /* LLDebugTool.gif */; };
+		C48DEDF7251E281300DBDECF /* LLDebugTool.txt in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE1251E281300DBDECF /* LLDebugTool.txt */; };
+		C48DEDF8251E281300DBDECF /* LLDebugTool.html in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE2251E281300DBDECF /* LLDebugTool.html */; };
+		C48DEDF9251E281300DBDECF /* LLDebugTool.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE3251E281300DBDECF /* LLDebugTool.pdf */; };
+		C48DEDFA251E281300DBDECF /* LLDebugTool.png in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE4251E281300DBDECF /* LLDebugTool.png */; };
+		C48DEDFB251E281300DBDECF /* LLDebugTool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE5251E281300DBDECF /* LLDebugTool.jpg */; };
+		C48DEDFE251E285700DBDECF /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDFD251E285700DBDECF /* NetTool.m */; };
+		C4C554B12557F9250081DCEC /* LLCrashComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */; };
+		C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B22557F9320081DCEC /* LLCrashHelperTests.m */; };
+		C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B42557F93E0081DCEC /* LLCrashModelTests.m */; };
+		C4C554B72557F9490081DCEC /* LLCrashCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B62557F9490081DCEC /* LLCrashCellTests.m */; };
+		C4C554B92557F9540081DCEC /* LLCrashDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B82557F9540081DCEC /* LLCrashDetailViewControllerTests.m */; };
+		C4C554BB2557F9630081DCEC /* LLCrashViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554BA2557F9630081DCEC /* LLCrashViewControllerTests.m */; };
+		C4C554BD2557F96E0081DCEC /* LLCrashWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554BC2557F96E0081DCEC /* LLCrashWindowTests.m */; };
+		C4C554BF2557F9800081DCEC /* LLWindowManagerCrashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554BE2557F9800081DCEC /* LLWindowManagerCrashTests.m */; };
+		C4C554C025581AC30081DCEC /* LLCrashTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554AC2557F8D30081DCEC /* LLCrashTestCase.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6003F5B3195388D20070C39A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6003F589195388D20070C39A;
+			remoteInfo = LLDebugTool;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0DA3CEF32399637D432965EE /* Pods-LLDebugTool_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugTool_Example.debug.xcconfig"; path = "Target Support Files/Pods-LLDebugTool_Example/Pods-LLDebugTool_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		2E73AC4A692E45AC1ECD5C2C /* Pods_LLDebugTool_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LLDebugTool_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40DD0F4F77CFBB4BD20332EF /* LLDebugTool.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LLDebugTool.podspec; path = ../LLDebugTool.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		4F78502EC3D36AF5AF438485 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		58248BA4CEDB0784786CDEE8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		6003F58A195388D20070C39A /* LLDebugTool_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLDebugTool_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6003F595195388D20070C39A /* LLDebugTool-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LLDebugTool-Info.plist"; sourceTree = "<group>"; };
+		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6003F59C195388D20070C39A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6003F59D195388D20070C39A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6003F5AE195388D20070C39A /* LLDebugTool_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLDebugTool_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		75597B7E6814953F334B4DD1 /* Pods-LLDebugTool_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugTool_Example.release.xcconfig"; path = "Target Support Files/Pods-LLDebugTool_Example/Pods-LLDebugTool_Example.release.xcconfig"; sourceTree = "<group>"; };
+		A017FFFBC4E9FF4173D6A6AA /* Pods-LLDebugTool_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugTool_Tests.release.xcconfig"; path = "Target Support Files/Pods-LLDebugTool_Tests/Pods-LLDebugTool_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B5AF36CB999E42A9DFB78FAC /* Pods_LLDebugTool_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LLDebugTool_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3C06966D3716E2D9CA18EA6 /* Pods-LLDebugTool_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugTool_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LLDebugTool_Tests/Pods-LLDebugTool_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		C42799FE255EC2F300687351 /* LLEntryTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLEntryTestCase.h; sourceTree = "<group>"; };
+		C42799FF255EC2F300687351 /* LLEntryTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryTestCase.m; sourceTree = "<group>"; };
+		C4279A01255EC36800687351 /* LLEntryComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryComponentTests.m; sourceTree = "<group>"; };
+		C4279A03255ECC5D00687351 /* LLEntryHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryHelperTests.m; sourceTree = "<group>"; };
+		C4279A05255ECC8700687351 /* LLEntryAppInfoViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryAppInfoViewTests.m; sourceTree = "<group>"; };
+		C4279A07255ECC9200687351 /* LLEntryBallViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBallViewTests.m; sourceTree = "<group>"; };
+		C4279A09255ECC9C00687351 /* LLEntryBigTitleViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryBigTitleViewTests.m; sourceTree = "<group>"; };
+		C4279A0B255ECCA700687351 /* LLEntryStyleModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryStyleModelTests.m; sourceTree = "<group>"; };
+		C4279A0D255ECCC900687351 /* LLEntryTitleViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryTitleViewTests.m; sourceTree = "<group>"; };
+		C4279A0F255ECCDE00687351 /* LLEntryViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryViewTests.m; sourceTree = "<group>"; };
+		C4279A11255ECCEB00687351 /* LLEntryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryViewControllerTests.m; sourceTree = "<group>"; };
+		C4279A13255ECCFC00687351 /* LLEntryWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryWindowTests.m; sourceTree = "<group>"; };
+		C4279A15255ECD2600687351 /* LLWindowManagerEntryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerEntryTests.m; sourceTree = "<group>"; };
+		C43521FA2528514D004B1648 /* NSUserDefaultsUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultsUtilsTests.m; sourceTree = "<group>"; };
+		C43521FD25286B08004B1648 /* UIAlertActionUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAlertActionUtilsTests.m; sourceTree = "<group>"; };
+		C4352200252872CC004B1648 /* UIButtonUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIButtonUtilsTests.m; sourceTree = "<group>"; };
+		C435220325287388004B1648 /* UIColorUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIColorUtilsTests.m; sourceTree = "<group>"; };
+		C43522062528AA09004B1648 /* UIImageUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageUtilsTests.m; sourceTree = "<group>"; };
+		C43522092528CBBC004B1648 /* UIResponderUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIResponderUtilsTests.m; sourceTree = "<group>"; };
+		C435220C2528CE56004B1648 /* UIViewUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewUtilsTests.m; sourceTree = "<group>"; };
+		C43A6AF12529A6A900B008AF /* UIWindowUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIWindowUtilsTests.m; sourceTree = "<group>"; };
+		C43F88B325296F0B00C59A6E /* UIViewControllerUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerUtilsTests.m; sourceTree = "<group>"; };
+		C442A6AE25257DA800E95CAA /* NSArrayUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtilsTests.m; sourceTree = "<group>"; };
+		C442A6B025257DE200E95CAA /* LLCoreTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCoreTestCase.h; sourceTree = "<group>"; };
+		C442A6B125257DE200E95CAA /* LLCoreTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCoreTestCase.m; sourceTree = "<group>"; };
+		C444AA18253005B30006965B /* LLToastUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLToastUtilsTests.m; sourceTree = "<group>"; };
+		C444AA1B253005C30006965B /* LLToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLToolTests.m; sourceTree = "<group>"; };
+		C444AA1E253005D10006965B /* LLWindowManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerTests.m; sourceTree = "<group>"; };
+		C4514530251CEDA400C15E53 /* README_cn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README_cn.md; path = ../../README_cn.md; sourceTree = "<group>"; };
+		C4514531251CEDA400C15E53 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../../CHANGELOG.md; sourceTree = "<group>"; };
+		C4514532251CEDA400C15E53 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = TODO.md; path = ../../TODO.md; sourceTree = "<group>"; };
+		C4514536251CEE5E00C15E53 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C4514537251CEE5F00C15E53 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C4514538251CEE6000C15E53 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C455922C25270608008FE718 /* NSDictionaryUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryUtilsTests.m; sourceTree = "<group>"; };
+		C455922F25271887008FE718 /* NSMutableArrayUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSMutableArrayUtilsTests.m; sourceTree = "<group>"; };
+		C455923225271A0C008FE718 /* NSObjectUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObjectUtilsTests.m; sourceTree = "<group>"; };
+		C455923425271A20008FE718 /* NSObjectRuntimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObjectRuntimeTests.m; sourceTree = "<group>"; };
+		C455923725271D93008FE718 /* NSStringUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringUtilsTests.m; sourceTree = "<group>"; };
+		C45B5087252B55150060CDD0 /* LLBaseCollectionViewCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseCollectionViewCellTests.m; sourceTree = "<group>"; };
+		C45B5089252B58A90060CDD0 /* LLBaseModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseModelTests.m; sourceTree = "<group>"; };
+		C45B508B252B65030060CDD0 /* LLBaseTableViewCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewCellTests.m; sourceTree = "<group>"; };
+		C45B508D252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTableViewControllerTests.m; sourceTree = "<group>"; };
+		C461151D2556E98A009C96D5 /* LLAppInfoComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoComponentTests.m; sourceTree = "<group>"; };
+		C461151F2556E9A9009C96D5 /* LLAppInfoHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoHelperTests.m; sourceTree = "<group>"; };
+		C46115212556E9F5009C96D5 /* UIDeviceAppInfoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIDeviceAppInfoTests.m; sourceTree = "<group>"; };
+		C46115232556EA10009C96D5 /* LLAppInfoViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoViewControllerTests.m; sourceTree = "<group>"; };
+		C46115252556EA1E009C96D5 /* LLAppInfoWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoWindowTests.m; sourceTree = "<group>"; };
+		C46115272556EA35009C96D5 /* LLWindowManagerAppInfoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerAppInfoTests.m; sourceTree = "<group>"; };
+		C46D576C252C20AE00712151 /* LLBaseViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewTests.m; sourceTree = "<group>"; };
+		C46D576E252C227000712151 /* LLBaseViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewControllerTests.m; sourceTree = "<group>"; };
+		C46D5770252CA59200712151 /* LLBaseWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseWindowTests.m; sourceTree = "<group>"; };
+		C47D6409252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewSelectableDelegateTests.m; sourceTree = "<group>"; };
+		C47D640B252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewSelectableModelTests.m; sourceTree = "<group>"; };
+		C47D640D252D97A1001A7FA0 /* LLStorageModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLStorageModelTests.m; sourceTree = "<group>"; };
+		C47D6410252DAD56001A7FA0 /* LLAnimateViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAnimateViewTests.m; sourceTree = "<group>"; };
+		C47D6412252DADFB001A7FA0 /* LLDetailTitleCellViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCellViewTests.m; sourceTree = "<group>"; };
+		C47D6414252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleSelectorCellViewTests.m; sourceTree = "<group>"; };
+		C47D6416252DAE77001A7FA0 /* LLTitleCellViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellViewTests.m; sourceTree = "<group>"; };
+		C47D6418252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCellViewTests.m; sourceTree = "<group>"; };
+		C47D641A252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterDatePickerViewTests.m; sourceTree = "<group>"; };
+		C47D641F252DAF43001A7FA0 /* LLFilterDateViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterDateViewTests.m; sourceTree = "<group>"; };
+		C47D6421252DAF57001A7FA0 /* LLFilterEventViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterEventViewTests.m; sourceTree = "<group>"; };
+		C47D6423252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterFilePickerViewTests.m; sourceTree = "<group>"; };
+		C47D6425252DAF71001A7FA0 /* LLFilterLabelCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterLabelCellTests.m; sourceTree = "<group>"; };
+		C47D6427252DAF7D001A7FA0 /* LLFilterLabelModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterLabelModelTests.m; sourceTree = "<group>"; };
+		C47D6429252DAF88001A7FA0 /* LLFilterOtherViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterOtherViewTests.m; sourceTree = "<group>"; };
+		C47D642B252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterTextFieldCellTests.m; sourceTree = "<group>"; };
+		C47D642D252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterTextFieldModelTests.m; sourceTree = "<group>"; };
+		C47D642F252DAFAC001A7FA0 /* LLFilterViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFilterViewTests.m; sourceTree = "<group>"; };
+		C47D6432252DB03C001A7FA0 /* LLInfoViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInfoViewTests.m; sourceTree = "<group>"; };
+		C47D6435252DB04C001A7FA0 /* LLMoveViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMoveViewTests.m; sourceTree = "<group>"; };
+		C47D6438252DB061001A7FA0 /* LLMoveWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMoveWindowTests.m; sourceTree = "<group>"; };
+		C47D643B252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNoneCopyTextFieldTests.m; sourceTree = "<group>"; };
+		C47D643E252DB0B4001A7FA0 /* LLPickerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPickerViewTests.m; sourceTree = "<group>"; };
+		C47D6441252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSubTitleTableViewCellTests.m; sourceTree = "<group>"; };
+		C47D6443252DEF1A001A7FA0 /* LLUITableViewLongPressGestureRecognizerDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLUITableViewLongPressGestureRecognizerDelegateTests.m; sourceTree = "<group>"; };
+		C47D6446252DEF35001A7FA0 /* LLDetailTitleCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCellTests.m; sourceTree = "<group>"; };
+		C47D6448252DEF40001A7FA0 /* LLDetailTitleCellModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDetailTitleCellModelTests.m; sourceTree = "<group>"; };
+		C47D644A252DEF49001A7FA0 /* LLLeftTitleCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLeftTitleCellTests.m; sourceTree = "<group>"; };
+		C47D644C252DEF5C001A7FA0 /* LLTitleCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellTests.m; sourceTree = "<group>"; };
+		C47D644E252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellCategoryModelTests.m; sourceTree = "<group>"; };
+		C47D6450252DEF74001A7FA0 /* LLTitleCellModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleCellModelTests.m; sourceTree = "<group>"; };
+		C47D6452252DEF80001A7FA0 /* LLTitleHeaderViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleHeaderViewTests.m; sourceTree = "<group>"; };
+		C47D6454252DEF8B001A7FA0 /* LLTitleSliderCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSliderCellTests.m; sourceTree = "<group>"; };
+		C47D6456252DEF96001A7FA0 /* LLTitleSliderCellModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSliderCellModelTests.m; sourceTree = "<group>"; };
+		C47D6458252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCellTests.m; sourceTree = "<group>"; };
+		C47D645A252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleSwitchCellModelTests.m; sourceTree = "<group>"; };
+		C47D645E252DF39A001A7FA0 /* LLComponentNavigationControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentNavigationControllerTests.m; sourceTree = "<group>"; };
+		C47D6461252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentViewControllerTests.m; sourceTree = "<group>"; };
+		C47D6464252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEditTableViewControllerTests.m; sourceTree = "<group>"; };
+		C47D6467252DF3EF001A7FA0 /* LLNavigationControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNavigationControllerTests.m; sourceTree = "<group>"; };
+		C47D646A252DF40E001A7FA0 /* LLTitleViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTitleViewControllerTests.m; sourceTree = "<group>"; };
+		C47D646D252DF442001A7FA0 /* LLBaseComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseComponentTests.m; sourceTree = "<group>"; };
+		C47D646F252DF452001A7FA0 /* LLComponentCoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentCoreTests.m; sourceTree = "<group>"; };
+		C47D6471252DFAE4001A7FA0 /* LLComponentDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentDelegateTests.m; sourceTree = "<group>"; };
+		C47D6473252DFAEF001A7FA0 /* LLComponentHandleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentHandleTests.m; sourceTree = "<group>"; };
+		C47D6475252DFAFC001A7FA0 /* LLComponentWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentWindowTests.m; sourceTree = "<group>"; };
+		C47E5910252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5912252EBC32003AA64A /* LLComponentHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentHelperTests.m; sourceTree = "<group>"; };
+		C47E5914252EBC41003AA64A /* LLComponentHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLComponentHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5916252EBC4C003AA64A /* LLCrashHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5918252EBC5D003AA64A /* LLEntryHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E591A252EBC68003AA64A /* LLFeatureHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E591C252EBC72003AA64A /* LLHierarchyHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E591E252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5920252EBC8A003AA64A /* LLLocationHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5922252EBC97003AA64A /* LLLogHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5924252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5926252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5928252EBCB8003AA64A /* LLRulerHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E592A252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E592C252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E592E252EBCDD003AA64A /* LLSettingHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5930252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5932252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderHelperDelegateTests.m; sourceTree = "<group>"; };
+		C47E5935252ECA37003AA64A /* LLDebugConfigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugConfigTests.m; sourceTree = "<group>"; };
+		C47E5938252ECADC003AA64A /* LLDebugConfigHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugConfigHelperTests.m; sourceTree = "<group>"; };
+		C47E593B252ECAEF003AA64A /* LLConstTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLConstTests.m; sourceTree = "<group>"; };
+		C47E593E252ECB01003AA64A /* LLDebugToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLDebugToolTests.m; sourceTree = "<group>"; };
+		C47E5941252EF600003AA64A /* LLLogDefineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogDefineTests.m; sourceTree = "<group>"; };
+		C47E5943252EF60B003AA64A /* LLNetworkDefineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkDefineTests.m; sourceTree = "<group>"; };
+		C47E5946252EF61D003AA64A /* LLFactoryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFactoryTests.m; sourceTree = "<group>"; };
+		C47E5949252F0CCD003AA64A /* LLFormatterToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFormatterToolTests.m; sourceTree = "<group>"; };
+		C47E594D252F142C003AA64A /* LLJsonToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLJsonToolTests.m; sourceTree = "<group>"; };
+		C47E5950252F1444003AA64A /* LLInternalMacrosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLInternalMacrosTests.m; sourceTree = "<group>"; };
+		C47E5953252F145A003AA64A /* LLNetworkToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkToolTests.m; sourceTree = "<group>"; };
+		C47E5956252F146C003AA64A /* LLProxyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLProxyTests.m; sourceTree = "<group>"; };
+		C47E5959252F15C8003AA64A /* LLImageNameConfigTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLImageNameConfigTests.m; sourceTree = "<group>"; };
+		C47E595C252F15E0003AA64A /* LLScreenshotToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotToolTests.m; sourceTree = "<group>"; };
+		C47E595F252F15F2003AA64A /* LLThemeColorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLThemeColorTests.m; sourceTree = "<group>"; };
+		C47E5961252F1600003AA64A /* LLThemeManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLThemeManagerTests.m; sourceTree = "<group>"; };
+		C48DEDC0251E277C00DBDECF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C48DEDC2251E277F00DBDECF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C48DEDC4251E281300DBDECF /* BaseTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTestViewController.m; sourceTree = "<group>"; };
+		C48DEDC5251E281300DBDECF /* CustomWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomWebViewController.h; sourceTree = "<group>"; };
+		C48DEDC6251E281300DBDECF /* TestHierarchyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
+		C48DEDC7251E281300DBDECF /* TestCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCrashViewController.m; sourceTree = "<group>"; };
+		C48DEDC8251E281300DBDECF /* TestColorStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestColorStyleViewController.h; sourceTree = "<group>"; };
+		C48DEDC9251E281300DBDECF /* TestNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestNetworkViewController.h; sourceTree = "<group>"; };
+		C48DEDCA251E281300DBDECF /* TestLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLocationViewController.h; sourceTree = "<group>"; };
+		C48DEDCB251E281300DBDECF /* TestWindowStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestWindowStyleViewController.m; sourceTree = "<group>"; };
+		C48DEDCC251E281300DBDECF /* TestHtmlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHtmlViewController.h; sourceTree = "<group>"; };
+		C48DEDCD251E281300DBDECF /* TestShortCutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestShortCutViewController.h; sourceTree = "<group>"; };
+		C48DEDCE251E281300DBDECF /* TestLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLogViewController.m; sourceTree = "<group>"; };
+		C48DEDCF251E281300DBDECF /* CustomWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomWebViewController.m; sourceTree = "<group>"; };
+		C48DEDD0251E281300DBDECF /* BaseTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTestViewController.h; sourceTree = "<group>"; };
+		C48DEDD1251E281300DBDECF /* TestWindowStyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestWindowStyleViewController.h; sourceTree = "<group>"; };
+		C48DEDD2251E281300DBDECF /* TestLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLocationViewController.m; sourceTree = "<group>"; };
+		C48DEDD3251E281300DBDECF /* TestNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestNetworkViewController.m; sourceTree = "<group>"; };
+		C48DEDD4251E281300DBDECF /* TestCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCrashViewController.h; sourceTree = "<group>"; };
+		C48DEDD5251E281300DBDECF /* TestColorStyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestColorStyleViewController.m; sourceTree = "<group>"; };
+		C48DEDD6251E281300DBDECF /* TestHierarchyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
+		C48DEDD7251E281300DBDECF /* TestLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLogViewController.h; sourceTree = "<group>"; };
+		C48DEDD8251E281300DBDECF /* TestShortCutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestShortCutViewController.m; sourceTree = "<group>"; };
+		C48DEDD9251E281300DBDECF /* TestHtmlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHtmlViewController.m; sourceTree = "<group>"; };
+		C48DEDDB251E281300DBDECF /* LLDebugTool.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LLDebugTool.mp3; sourceTree = "<group>"; };
+		C48DEDDC251E281300DBDECF /* LLDebugTool.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LLDebugTool.mp4; sourceTree = "<group>"; };
+		C48DEDDD251E281300DBDECF /* LLDebugTool.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LLDebugTool.json; sourceTree = "<group>"; };
+		C48DEDDE251E281300DBDECF /* LLDebugTool.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LLDebugTool.plist; sourceTree = "<group>"; };
+		C48DEDDF251E281300DBDECF /* LLDebugTool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LLDebugTool.md; sourceTree = "<group>"; };
+		C48DEDE0251E281300DBDECF /* LLDebugTool.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LLDebugTool.gif; sourceTree = "<group>"; };
+		C48DEDE1251E281300DBDECF /* LLDebugTool.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LLDebugTool.txt; sourceTree = "<group>"; };
+		C48DEDE2251E281300DBDECF /* LLDebugTool.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LLDebugTool.html; sourceTree = "<group>"; };
+		C48DEDE3251E281300DBDECF /* LLDebugTool.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = LLDebugTool.pdf; sourceTree = "<group>"; };
+		C48DEDE4251E281300DBDECF /* LLDebugTool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LLDebugTool.png; sourceTree = "<group>"; };
+		C48DEDE5251E281300DBDECF /* LLDebugTool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LLDebugTool.jpg; sourceTree = "<group>"; };
+		C48DEDFC251E285600DBDECF /* NetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
+		C48DEDFD251E285700DBDECF /* NetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
+		C49991502555976F006C86FD /* LLAppInfoTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAppInfoTestCase.h; sourceTree = "<group>"; };
+		C49991512555976F006C86FD /* LLAppInfoTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoTestCase.m; sourceTree = "<group>"; };
+		C4999153255597CC006C86FD /* LLBaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTestCase.h; sourceTree = "<group>"; };
+		C4999154255597CC006C86FD /* LLBaseTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTestCase.m; sourceTree = "<group>"; };
+		C4C554AB2557F8D30081DCEC /* LLCrashTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrashTestCase.h; sourceTree = "<group>"; };
+		C4C554AC2557F8D30081DCEC /* LLCrashTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashTestCase.m; sourceTree = "<group>"; };
+		C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashComponentTests.m; sourceTree = "<group>"; };
+		C4C554B22557F9320081DCEC /* LLCrashHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashHelperTests.m; sourceTree = "<group>"; };
+		C4C554B42557F93E0081DCEC /* LLCrashModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashModelTests.m; sourceTree = "<group>"; };
+		C4C554B62557F9490081DCEC /* LLCrashCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashCellTests.m; sourceTree = "<group>"; };
+		C4C554B82557F9540081DCEC /* LLCrashDetailViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashDetailViewControllerTests.m; sourceTree = "<group>"; };
+		C4C554BA2557F9630081DCEC /* LLCrashViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashViewControllerTests.m; sourceTree = "<group>"; };
+		C4C554BC2557F96E0081DCEC /* LLCrashWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashWindowTests.m; sourceTree = "<group>"; };
+		C4C554BE2557F9800081DCEC /* LLWindowManagerCrashTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerCrashTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6003F587195388D20070C39A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
+				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
+				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
+				5B9CDB6B4C532B0291AB8000 /* Pods_LLDebugTool_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6003F5AB195388D20070C39A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
+				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
+				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
+				2E9341ED8CEB635EBF9937E4 /* Pods_LLDebugTool_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		423E471C5CBF71A7EDFDE70A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0DA3CEF32399637D432965EE /* Pods-LLDebugTool_Example.debug.xcconfig */,
+				75597B7E6814953F334B4DD1 /* Pods-LLDebugTool_Example.release.xcconfig */,
+				C3C06966D3716E2D9CA18EA6 /* Pods-LLDebugTool_Tests.debug.xcconfig */,
+				A017FFFBC4E9FF4173D6A6AA /* Pods-LLDebugTool_Tests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6003F581195388D10070C39A = {
+			isa = PBXGroup;
+			children = (
+				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
+				6003F593195388D20070C39A /* Example for LLDebugTool */,
+				6003F5B5195388D20070C39A /* Tests */,
+				6003F58C195388D20070C39A /* Frameworks */,
+				6003F58B195388D20070C39A /* Products */,
+				423E471C5CBF71A7EDFDE70A /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		6003F58B195388D20070C39A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6003F58A195388D20070C39A /* LLDebugTool_Example.app */,
+				6003F5AE195388D20070C39A /* LLDebugTool_Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6003F58C195388D20070C39A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6003F58D195388D20070C39A /* Foundation.framework */,
+				6003F58F195388D20070C39A /* CoreGraphics.framework */,
+				6003F591195388D20070C39A /* UIKit.framework */,
+				6003F5AF195388D20070C39A /* XCTest.framework */,
+				2E73AC4A692E45AC1ECD5C2C /* Pods_LLDebugTool_Example.framework */,
+				B5AF36CB999E42A9DFB78FAC /* Pods_LLDebugTool_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6003F593195388D20070C39A /* Example for LLDebugTool */ = {
+			isa = PBXGroup;
+			children = (
+				C48DEDC3251E281300DBDECF /* DemoViewControllers */,
+				C48DEDDA251E281300DBDECF /* Resource */,
+				C451452F251CED8B00C15E53 /* Doc */,
+				6003F59C195388D20070C39A /* AppDelegate.h */,
+				6003F59D195388D20070C39A /* AppDelegate.m */,
+				6003F5A5195388D20070C39A /* ViewController.h */,
+				6003F5A6195388D20070C39A /* ViewController.m */,
+				C48DEDFC251E285600DBDECF /* NetTool.h */,
+				C48DEDFD251E285700DBDECF /* NetTool.m */,
+				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				6003F5A8195388D20070C39A /* Images.xcassets */,
+				6003F594195388D20070C39A /* Supporting Files */,
+			);
+			name = "Example for LLDebugTool";
+			path = LLDebugTool;
+			sourceTree = "<group>";
+		};
+		6003F594195388D20070C39A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6003F595195388D20070C39A /* LLDebugTool-Info.plist */,
+				6003F596195388D20070C39A /* InfoPlist.strings */,
+				6003F599195388D20070C39A /* main.m */,
+				C48DEDC1251E277C00DBDECF /* Localizable.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6003F5B5195388D20070C39A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C4279A18255EE32100687351 /* Feature */,
+				C4685704255C3C62002CA8C4 /* Entry */,
+				C4632EDE2557EC6F00060B6D /* Crash */,
+				C499914F25559751006C86FD /* AppInfo */,
+				C442A6A925257C8700E95CAA /* Core */,
+				C4999153255597CC006C86FD /* LLBaseTestCase.h */,
+				C4999154255597CC006C86FD /* LLBaseTestCase.m */,
+				6003F5B6195388D20070C39A /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		6003F5B6195388D20070C39A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5B7195388D20070C39A /* Tests-Info.plist */,
+				6003F5B8195388D20070C39A /* InfoPlist.strings */,
+				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				40DD0F4F77CFBB4BD20332EF /* LLDebugTool.podspec */,
+				4F78502EC3D36AF5AF438485 /* README.md */,
+				58248BA4CEDB0784786CDEE8 /* LICENSE */,
+			);
+			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		C42799FC255EC2BA00687351 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4279A01255EC36800687351 /* LLEntryComponentTests.m */,
+				C4279A03255ECC5D00687351 /* LLEntryHelperTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C42799FD255EC2C000687351 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4279A05255ECC8700687351 /* LLEntryAppInfoViewTests.m */,
+				C4279A07255ECC9200687351 /* LLEntryBallViewTests.m */,
+				C4279A09255ECC9C00687351 /* LLEntryBigTitleViewTests.m */,
+				C4279A0B255ECCA700687351 /* LLEntryStyleModelTests.m */,
+				C4279A0D255ECCC900687351 /* LLEntryTitleViewTests.m */,
+				C4279A0F255ECCDE00687351 /* LLEntryViewTests.m */,
+				C4279A11255ECCEB00687351 /* LLEntryViewControllerTests.m */,
+				C4279A13255ECCFC00687351 /* LLEntryWindowTests.m */,
+				C4279A15255ECD2600687351 /* LLWindowManagerEntryTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4279A18255EE32100687351 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				C4279A1A255EE32F00687351 /* UserInterface */,
+				C4279A19255EE32700687351 /* Function */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		C4279A19255EE32700687351 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4279A1A255EE32F00687351 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C43521F9252850C1004B1648 /* NSUserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				C43521FA2528514D004B1648 /* NSUserDefaultsUtilsTests.m */,
+			);
+			path = NSUserDefaults;
+			sourceTree = "<group>";
+		};
+		C43521FC25286A5A004B1648 /* UIAlertAction */ = {
+			isa = PBXGroup;
+			children = (
+				C43521FD25286B08004B1648 /* UIAlertActionUtilsTests.m */,
+			);
+			path = UIAlertAction;
+			sourceTree = "<group>";
+		};
+		C43521FF252872C0004B1648 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				C4352200252872CC004B1648 /* UIButtonUtilsTests.m */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		C43522022528737C004B1648 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				C435220325287388004B1648 /* UIColorUtilsTests.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		C43522052528A1FA004B1648 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				C43522062528AA09004B1648 /* UIImageUtilsTests.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		C43522082528CBB3004B1648 /* UIResponder */ = {
+			isa = PBXGroup;
+			children = (
+				C43522092528CBBC004B1648 /* UIResponderUtilsTests.m */,
+			);
+			path = UIResponder;
+			sourceTree = "<group>";
+		};
+		C435220B2528CE4C004B1648 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				C435220C2528CE56004B1648 /* UIViewUtilsTests.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		C43A6AF02529A6A000B008AF /* UIWindow */ = {
+			isa = PBXGroup;
+			children = (
+				C43A6AF12529A6A900B008AF /* UIWindowUtilsTests.m */,
+			);
+			path = UIWindow;
+			sourceTree = "<group>";
+		};
+		C43F88B225296F0100C59A6E /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C43F88B325296F0B00C59A6E /* UIViewControllerUtilsTests.m */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		C442A6A925257C8700E95CAA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C442A6B025257DE200E95CAA /* LLCoreTestCase.h */,
+				C442A6B125257DE200E95CAA /* LLCoreTestCase.m */,
+				C442A6AC25257D6C00E95CAA /* Category */,
+				C4DF6FD5252B4569006549BB /* CommonUI */,
+				C47D646C252DF42C001A7FA0 /* Component */,
+				C47E5934252ECA31003AA64A /* Config */,
+				C47E5937252ECAD4003AA64A /* ConfigHelper */,
+				C47E593A252ECAE5003AA64A /* Const */,
+				C47E593D252ECAF8003AA64A /* DebugTool */,
+				C47E5940252EF5F3003AA64A /* Define */,
+				C47E5945252EF615003AA64A /* Factory */,
+				C47E5948252F0CC4003AA64A /* FormatterTool */,
+				C47E594C252F141E003AA64A /* JsonTool */,
+				C47E594F252F1438003AA64A /* Macros */,
+				C47E5952252F144D003AA64A /* NetworkTool */,
+				C47E5955252F1462003AA64A /* Proxy */,
+				C47E5958252F15BA003AA64A /* Resource */,
+				C47E595B252F15D6003AA64A /* ScreenshotTool */,
+				C47E595E252F15E9003AA64A /* Theme */,
+				C444AA17253005AA0006965B /* ToastUtils */,
+				C444AA1A253005BB0006965B /* Tool */,
+				C444AA1D253005CA0006965B /* WindowManager */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C442A6AC25257D6C00E95CAA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C442A6AD25257D8200E95CAA /* NSArray */,
+				C455922B252705E1008FE718 /* NSDictionary */,
+				C455922E25271860008FE718 /* NSMutableArray */,
+				C4559231252719FC008FE718 /* NSObject */,
+				C455923625271D6A008FE718 /* NSString */,
+				C43521F9252850C1004B1648 /* NSUserDefaults */,
+				C43521FC25286A5A004B1648 /* UIAlertAction */,
+				C43521FF252872C0004B1648 /* UIButton */,
+				C43522022528737C004B1648 /* UIColor */,
+				C43522052528A1FA004B1648 /* UIImage */,
+				C43522082528CBB3004B1648 /* UIResponder */,
+				C435220B2528CE4C004B1648 /* UIView */,
+				C43F88B225296F0100C59A6E /* UIViewController */,
+				C43A6AF02529A6A000B008AF /* UIWindow */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		C442A6AD25257D8200E95CAA /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				C442A6AE25257DA800E95CAA /* NSArrayUtilsTests.m */,
+			);
+			path = NSArray;
+			sourceTree = "<group>";
+		};
+		C444AA17253005AA0006965B /* ToastUtils */ = {
+			isa = PBXGroup;
+			children = (
+				C444AA18253005B30006965B /* LLToastUtilsTests.m */,
+			);
+			path = ToastUtils;
+			sourceTree = "<group>";
+		};
+		C444AA1A253005BB0006965B /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				C444AA1B253005C30006965B /* LLToolTests.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		C444AA1D253005CA0006965B /* WindowManager */ = {
+			isa = PBXGroup;
+			children = (
+				C444AA1E253005D10006965B /* LLWindowManagerTests.m */,
+			);
+			path = WindowManager;
+			sourceTree = "<group>";
+		};
+		C451452F251CED8B00C15E53 /* Doc */ = {
+			isa = PBXGroup;
+			children = (
+				C4514531251CEDA400C15E53 /* CHANGELOG.md */,
+				C4514530251CEDA400C15E53 /* README_cn.md */,
+				C4514532251CEDA400C15E53 /* TODO.md */,
+			);
+			name = Doc;
+			sourceTree = "<group>";
+		};
+		C455922B252705E1008FE718 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				C455922C25270608008FE718 /* NSDictionaryUtilsTests.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		C455922E25271860008FE718 /* NSMutableArray */ = {
+			isa = PBXGroup;
+			children = (
+				C455922F25271887008FE718 /* NSMutableArrayUtilsTests.m */,
+			);
+			path = NSMutableArray;
+			sourceTree = "<group>";
+		};
+		C4559231252719FC008FE718 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				C455923225271A0C008FE718 /* NSObjectUtilsTests.m */,
+				C455923425271A20008FE718 /* NSObjectRuntimeTests.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		C455923625271D6A008FE718 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				C455923725271D93008FE718 /* NSStringUtilsTests.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		C4632EDE2557EC6F00060B6D /* Crash */ = {
+			isa = PBXGroup;
+			children = (
+				C4C554AF2557F8FE0081DCEC /* Function */,
+				C4C554AE2557F8F70081DCEC /* UserInterface */,
+				C4C554AB2557F8D30081DCEC /* LLCrashTestCase.h */,
+				C4C554AC2557F8D30081DCEC /* LLCrashTestCase.m */,
+			);
+			path = Crash;
+			sourceTree = "<group>";
+		};
+		C4685704255C3C62002CA8C4 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				C42799FC255EC2BA00687351 /* Function */,
+				C42799FD255EC2C000687351 /* UserInterface */,
+				C42799FE255EC2F300687351 /* LLEntryTestCase.h */,
+				C42799FF255EC2F300687351 /* LLEntryTestCase.m */,
+			);
+			path = Entry;
+			sourceTree = "<group>";
+		};
+		C46D5772252CB62A00712151 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6409252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m */,
+				C47D640B252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m */,
+				C47D640D252D97A1001A7FA0 /* LLStorageModelTests.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C47D640F252DAD44001A7FA0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6445252DEF2E001A7FA0 /* TitleCell */,
+				C47D6440252DEE38001A7FA0 /* SubTitleTableViewCell */,
+				C47D643D252DB0AA001A7FA0 /* PickerView */,
+				C47D643A252DB06C001A7FA0 /* NoneCopyTextField */,
+				C47D6437252DB056001A7FA0 /* MoveWindow */,
+				C47D6434252DB045001A7FA0 /* MoveView */,
+				C47D6431252DAFE9001A7FA0 /* InfoView */,
+				C47D641E252DAF33001A7FA0 /* FilterView */,
+				C47D641C252DAEFB001A7FA0 /* AnimateView */,
+				C47D641D252DAF09001A7FA0 /* CellView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C47D641C252DAEFB001A7FA0 /* AnimateView */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6410252DAD56001A7FA0 /* LLAnimateViewTests.m */,
+			);
+			path = AnimateView;
+			sourceTree = "<group>";
+		};
+		C47D641D252DAF09001A7FA0 /* CellView */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6412252DADFB001A7FA0 /* LLDetailTitleCellViewTests.m */,
+				C47D6414252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m */,
+				C47D6416252DAE77001A7FA0 /* LLTitleCellViewTests.m */,
+				C47D6418252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m */,
+			);
+			path = CellView;
+			sourceTree = "<group>";
+		};
+		C47D641E252DAF33001A7FA0 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				C47D641A252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m */,
+				C47D641F252DAF43001A7FA0 /* LLFilterDateViewTests.m */,
+				C47D6421252DAF57001A7FA0 /* LLFilterEventViewTests.m */,
+				C47D6423252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m */,
+				C47D6425252DAF71001A7FA0 /* LLFilterLabelCellTests.m */,
+				C47D6427252DAF7D001A7FA0 /* LLFilterLabelModelTests.m */,
+				C47D6429252DAF88001A7FA0 /* LLFilterOtherViewTests.m */,
+				C47D642B252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m */,
+				C47D642D252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m */,
+				C47D642F252DAFAC001A7FA0 /* LLFilterViewTests.m */,
+			);
+			path = FilterView;
+			sourceTree = "<group>";
+		};
+		C47D6431252DAFE9001A7FA0 /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6432252DB03C001A7FA0 /* LLInfoViewTests.m */,
+			);
+			path = InfoView;
+			sourceTree = "<group>";
+		};
+		C47D6434252DB045001A7FA0 /* MoveView */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6435252DB04C001A7FA0 /* LLMoveViewTests.m */,
+			);
+			path = MoveView;
+			sourceTree = "<group>";
+		};
+		C47D6437252DB056001A7FA0 /* MoveWindow */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6438252DB061001A7FA0 /* LLMoveWindowTests.m */,
+			);
+			path = MoveWindow;
+			sourceTree = "<group>";
+		};
+		C47D643A252DB06C001A7FA0 /* NoneCopyTextField */ = {
+			isa = PBXGroup;
+			children = (
+				C47D643B252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m */,
+			);
+			path = NoneCopyTextField;
+			sourceTree = "<group>";
+		};
+		C47D643D252DB0AA001A7FA0 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				C47D643E252DB0B4001A7FA0 /* LLPickerViewTests.m */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		C47D6440252DEE38001A7FA0 /* SubTitleTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6441252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m */,
+				C47D6443252DEF1A001A7FA0 /* LLUITableViewLongPressGestureRecognizerDelegateTests.m */,
+			);
+			path = SubTitleTableViewCell;
+			sourceTree = "<group>";
+		};
+		C47D6445252DEF2E001A7FA0 /* TitleCell */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6446252DEF35001A7FA0 /* LLDetailTitleCellTests.m */,
+				C47D6448252DEF40001A7FA0 /* LLDetailTitleCellModelTests.m */,
+				C47D644A252DEF49001A7FA0 /* LLLeftTitleCellTests.m */,
+				C47D644C252DEF5C001A7FA0 /* LLTitleCellTests.m */,
+				C47D644E252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m */,
+				C47D6450252DEF74001A7FA0 /* LLTitleCellModelTests.m */,
+				C47D6452252DEF80001A7FA0 /* LLTitleHeaderViewTests.m */,
+				C47D6454252DEF8B001A7FA0 /* LLTitleSliderCellTests.m */,
+				C47D6456252DEF96001A7FA0 /* LLTitleSliderCellModelTests.m */,
+				C47D6458252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m */,
+				C47D645A252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m */,
+			);
+			path = TitleCell;
+			sourceTree = "<group>";
+		};
+		C47D645C252DF376001A7FA0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6469252DF3F9001A7FA0 /* TitleViewController */,
+				C47D6466252DF3DF001A7FA0 /* NavigationController */,
+				C47D6463252DF3C2001A7FA0 /* EditTableViewController */,
+				C47D6460252DF3A3001A7FA0 /* ComponentViewController */,
+				C47D645D252DF388001A7FA0 /* ComponentNavigationController */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C47D645D252DF388001A7FA0 /* ComponentNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				C47D645E252DF39A001A7FA0 /* LLComponentNavigationControllerTests.m */,
+			);
+			path = ComponentNavigationController;
+			sourceTree = "<group>";
+		};
+		C47D6460252DF3A3001A7FA0 /* ComponentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6461252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m */,
+			);
+			path = ComponentViewController;
+			sourceTree = "<group>";
+		};
+		C47D6463252DF3C2001A7FA0 /* EditTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6464252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m */,
+			);
+			path = EditTableViewController;
+			sourceTree = "<group>";
+		};
+		C47D6466252DF3DF001A7FA0 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				C47D6467252DF3EF001A7FA0 /* LLNavigationControllerTests.m */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		C47D6469252DF3F9001A7FA0 /* TitleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C47D646A252DF40E001A7FA0 /* LLTitleViewControllerTests.m */,
+			);
+			path = TitleViewController;
+			sourceTree = "<group>";
+		};
+		C47D646C252DF42C001A7FA0 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				C47E590F252EBBFF003AA64A /* Helper */,
+				C47D646D252DF442001A7FA0 /* LLBaseComponentTests.m */,
+				C47D646F252DF452001A7FA0 /* LLComponentCoreTests.m */,
+				C47D6471252DFAE4001A7FA0 /* LLComponentDelegateTests.m */,
+				C47D6473252DFAEF001A7FA0 /* LLComponentHandleTests.m */,
+				C47D6475252DFAFC001A7FA0 /* LLComponentWindowTests.m */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		C47E590F252EBBFF003AA64A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5910252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m */,
+				C47E5912252EBC32003AA64A /* LLComponentHelperTests.m */,
+				C47E5914252EBC41003AA64A /* LLComponentHelperDelegateTests.m */,
+				C47E5916252EBC4C003AA64A /* LLCrashHelperDelegateTests.m */,
+				C47E5918252EBC5D003AA64A /* LLEntryHelperDelegateTests.m */,
+				C47E591A252EBC68003AA64A /* LLFeatureHelperDelegateTests.m */,
+				C47E591C252EBC72003AA64A /* LLHierarchyHelperDelegateTests.m */,
+				C47E591E252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m */,
+				C47E5920252EBC8A003AA64A /* LLLocationHelperDelegateTests.m */,
+				C47E5922252EBC97003AA64A /* LLLogHelperDelegateTests.m */,
+				C47E5924252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m */,
+				C47E5926252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m */,
+				C47E5928252EBCB8003AA64A /* LLRulerHelperDelegateTests.m */,
+				C47E592A252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m */,
+				C47E592C252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m */,
+				C47E592E252EBCDD003AA64A /* LLSettingHelperDelegateTests.m */,
+				C47E5930252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m */,
+				C47E5932252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		C47E5934252ECA31003AA64A /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5935252ECA37003AA64A /* LLDebugConfigTests.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C47E5937252ECAD4003AA64A /* ConfigHelper */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5938252ECADC003AA64A /* LLDebugConfigHelperTests.m */,
+			);
+			path = ConfigHelper;
+			sourceTree = "<group>";
+		};
+		C47E593A252ECAE5003AA64A /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				C47E593B252ECAEF003AA64A /* LLConstTests.m */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
+		C47E593D252ECAF8003AA64A /* DebugTool */ = {
+			isa = PBXGroup;
+			children = (
+				C47E593E252ECB01003AA64A /* LLDebugToolTests.m */,
+			);
+			path = DebugTool;
+			sourceTree = "<group>";
+		};
+		C47E5940252EF5F3003AA64A /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5941252EF600003AA64A /* LLLogDefineTests.m */,
+				C47E5943252EF60B003AA64A /* LLNetworkDefineTests.m */,
+			);
+			path = Define;
+			sourceTree = "<group>";
+		};
+		C47E5945252EF615003AA64A /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5946252EF61D003AA64A /* LLFactoryTests.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		C47E5948252F0CC4003AA64A /* FormatterTool */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5949252F0CCD003AA64A /* LLFormatterToolTests.m */,
+			);
+			path = FormatterTool;
+			sourceTree = "<group>";
+		};
+		C47E594C252F141E003AA64A /* JsonTool */ = {
+			isa = PBXGroup;
+			children = (
+				C47E594D252F142C003AA64A /* LLJsonToolTests.m */,
+			);
+			path = JsonTool;
+			sourceTree = "<group>";
+		};
+		C47E594F252F1438003AA64A /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5950252F1444003AA64A /* LLInternalMacrosTests.m */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
+		C47E5952252F144D003AA64A /* NetworkTool */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5953252F145A003AA64A /* LLNetworkToolTests.m */,
+			);
+			path = NetworkTool;
+			sourceTree = "<group>";
+		};
+		C47E5955252F1462003AA64A /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5956252F146C003AA64A /* LLProxyTests.m */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
+		C47E5958252F15BA003AA64A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C47E5959252F15C8003AA64A /* LLImageNameConfigTests.m */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C47E595B252F15D6003AA64A /* ScreenshotTool */ = {
+			isa = PBXGroup;
+			children = (
+				C47E595C252F15E0003AA64A /* LLScreenshotToolTests.m */,
+			);
+			path = ScreenshotTool;
+			sourceTree = "<group>";
+		};
+		C47E595E252F15E9003AA64A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				C47E595F252F15F2003AA64A /* LLThemeColorTests.m */,
+				C47E5961252F1600003AA64A /* LLThemeManagerTests.m */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		C48DEDC3251E281300DBDECF /* DemoViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C48DEDC4251E281300DBDECF /* BaseTestViewController.m */,
+				C48DEDC5251E281300DBDECF /* CustomWebViewController.h */,
+				C48DEDC6251E281300DBDECF /* TestHierarchyViewController.m */,
+				C48DEDC7251E281300DBDECF /* TestCrashViewController.m */,
+				C48DEDC8251E281300DBDECF /* TestColorStyleViewController.h */,
+				C48DEDC9251E281300DBDECF /* TestNetworkViewController.h */,
+				C48DEDCA251E281300DBDECF /* TestLocationViewController.h */,
+				C48DEDCB251E281300DBDECF /* TestWindowStyleViewController.m */,
+				C48DEDCC251E281300DBDECF /* TestHtmlViewController.h */,
+				C48DEDCD251E281300DBDECF /* TestShortCutViewController.h */,
+				C48DEDCE251E281300DBDECF /* TestLogViewController.m */,
+				C48DEDCF251E281300DBDECF /* CustomWebViewController.m */,
+				C48DEDD0251E281300DBDECF /* BaseTestViewController.h */,
+				C48DEDD1251E281300DBDECF /* TestWindowStyleViewController.h */,
+				C48DEDD2251E281300DBDECF /* TestLocationViewController.m */,
+				C48DEDD3251E281300DBDECF /* TestNetworkViewController.m */,
+				C48DEDD4251E281300DBDECF /* TestCrashViewController.h */,
+				C48DEDD5251E281300DBDECF /* TestColorStyleViewController.m */,
+				C48DEDD6251E281300DBDECF /* TestHierarchyViewController.h */,
+				C48DEDD7251E281300DBDECF /* TestLogViewController.h */,
+				C48DEDD8251E281300DBDECF /* TestShortCutViewController.m */,
+				C48DEDD9251E281300DBDECF /* TestHtmlViewController.m */,
+			);
+			path = DemoViewControllers;
+			sourceTree = "<group>";
+		};
+		C48DEDDA251E281300DBDECF /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C48DEDDB251E281300DBDECF /* LLDebugTool.mp3 */,
+				C48DEDDC251E281300DBDECF /* LLDebugTool.mp4 */,
+				C48DEDDD251E281300DBDECF /* LLDebugTool.json */,
+				C48DEDDE251E281300DBDECF /* LLDebugTool.plist */,
+				C48DEDDF251E281300DBDECF /* LLDebugTool.md */,
+				C48DEDE0251E281300DBDECF /* LLDebugTool.gif */,
+				C48DEDE1251E281300DBDECF /* LLDebugTool.txt */,
+				C48DEDE2251E281300DBDECF /* LLDebugTool.html */,
+				C48DEDE3251E281300DBDECF /* LLDebugTool.pdf */,
+				C48DEDE4251E281300DBDECF /* LLDebugTool.png */,
+				C48DEDE5251E281300DBDECF /* LLDebugTool.jpg */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C499914F25559751006C86FD /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C499915625559824006C86FD /* UserInterface */,
+				C49991572555982F006C86FD /* Function */,
+				C49991502555976F006C86FD /* LLAppInfoTestCase.h */,
+				C49991512555976F006C86FD /* LLAppInfoTestCase.m */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		C499915625559824006C86FD /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C461151D2556E98A009C96D5 /* LLAppInfoComponentTests.m */,
+				C461151F2556E9A9009C96D5 /* LLAppInfoHelperTests.m */,
+				C46115212556E9F5009C96D5 /* UIDeviceAppInfoTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C49991572555982F006C86FD /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C46115232556EA10009C96D5 /* LLAppInfoViewControllerTests.m */,
+				C46115252556EA1E009C96D5 /* LLAppInfoWindowTests.m */,
+				C46115272556EA35009C96D5 /* LLWindowManagerAppInfoTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4C554AE2557F8F70081DCEC /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4C554B62557F9490081DCEC /* LLCrashCellTests.m */,
+				C4C554B82557F9540081DCEC /* LLCrashDetailViewControllerTests.m */,
+				C4C554BA2557F9630081DCEC /* LLCrashViewControllerTests.m */,
+				C4C554BC2557F96E0081DCEC /* LLCrashWindowTests.m */,
+				C4C554BE2557F9800081DCEC /* LLWindowManagerCrashTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4C554AF2557F8FE0081DCEC /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */,
+				C4C554B22557F9320081DCEC /* LLCrashHelperTests.m */,
+				C4C554B42557F93E0081DCEC /* LLCrashModelTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4DF6FD5252B4569006549BB /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				C47D645C252DF376001A7FA0 /* ViewController */,
+				C4DF6FD6252B458F006549BB /* Base */,
+				C46D5772252CB62A00712151 /* Model */,
+				C47D640F252DAD44001A7FA0 /* View */,
+			);
+			path = CommonUI;
+			sourceTree = "<group>";
+		};
+		C4DF6FD6252B458F006549BB /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C45B5087252B55150060CDD0 /* LLBaseCollectionViewCellTests.m */,
+				C45B5089252B58A90060CDD0 /* LLBaseModelTests.m */,
+				C45B508B252B65030060CDD0 /* LLBaseTableViewCellTests.m */,
+				C45B508D252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m */,
+				C46D576E252C227000712151 /* LLBaseViewControllerTests.m */,
+				C46D576C252C20AE00712151 /* LLBaseViewTests.m */,
+				C46D5770252CA59200712151 /* LLBaseWindowTests.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6003F589195388D20070C39A /* LLDebugTool_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LLDebugTool_Example" */;
+			buildPhases = (
+				04E29E64CA6D6CF794A50C59 /* [CP] Check Pods Manifest.lock */,
+				6003F586195388D20070C39A /* Sources */,
+				6003F587195388D20070C39A /* Frameworks */,
+				6003F588195388D20070C39A /* Resources */,
+				2D9D0386F155B611006A162F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LLDebugTool_Example;
+			productName = LLDebugTool;
+			productReference = 6003F58A195388D20070C39A /* LLDebugTool_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6003F5AD195388D20070C39A /* LLDebugTool_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LLDebugTool_Tests" */;
+			buildPhases = (
+				E0EF72A3A31F5D7095C07A4D /* [CP] Check Pods Manifest.lock */,
+				6003F5AA195388D20070C39A /* Sources */,
+				6003F5AB195388D20070C39A /* Frameworks */,
+				6003F5AC195388D20070C39A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6003F5B4195388D20070C39A /* PBXTargetDependency */,
+			);
+			name = LLDebugTool_Tests;
+			productName = LLDebugToolTests;
+			productReference = 6003F5AE195388D20070C39A /* LLDebugTool_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6003F582195388D10070C39A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = "";
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "HDB-Li";
+				TargetAttributes = {
+					6003F5AD195388D20070C39A = {
+						TestTargetID = 6003F589195388D20070C39A;
+					};
+				};
+			};
+			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "LLDebugTool" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 6003F581195388D10070C39A;
+			productRefGroup = 6003F58B195388D20070C39A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6003F589195388D20070C39A /* LLDebugTool_Example */,
+				6003F5AD195388D20070C39A /* LLDebugTool_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6003F588195388D20070C39A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4514534251CEDA500C15E53 /* CHANGELOG.md in Resources */,
+				C4514535251CEDA500C15E53 /* TODO.md in Resources */,
+				C48DEDF4251E281300DBDECF /* LLDebugTool.plist in Resources */,
+				C48DEDF1251E281300DBDECF /* LLDebugTool.mp3 in Resources */,
+				C48DEDFA251E281300DBDECF /* LLDebugTool.png in Resources */,
+				C48DEDFB251E281300DBDECF /* LLDebugTool.jpg in Resources */,
+				C48DEDF9251E281300DBDECF /* LLDebugTool.pdf in Resources */,
+				C48DEDF7251E281300DBDECF /* LLDebugTool.txt in Resources */,
+				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				C48DEDBF251E277C00DBDECF /* Localizable.strings in Resources */,
+				C48DEDF2251E281300DBDECF /* LLDebugTool.mp4 in Resources */,
+				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				C48DEDF6251E281300DBDECF /* LLDebugTool.gif in Resources */,
+				C4514533251CEDA400C15E53 /* README_cn.md in Resources */,
+				C48DEDF5251E281300DBDECF /* LLDebugTool.md in Resources */,
+				C48DEDF8251E281300DBDECF /* LLDebugTool.html in Resources */,
+				C48DEDF3251E281300DBDECF /* LLDebugTool.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6003F5AC195388D20070C39A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04E29E64CA6D6CF794A50C59 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLDebugTool_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D9D0386F155B611006A162F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LLDebugTool_Example/Pods-LLDebugTool_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/LLDebugTool/LLDebugTool.framework",
+				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LLDebugTool.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LLDebugTool_Example/Pods-LLDebugTool_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0EF72A3A31F5D7095C07A4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LLDebugTool_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6003F586195388D20070C39A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
+				C48DEDFE251E285700DBDECF /* NetTool.m in Sources */,
+				C48DEDEB251E281300DBDECF /* CustomWebViewController.m in Sources */,
+				C48DEDE6251E281300DBDECF /* BaseTestViewController.m in Sources */,
+				C48DEDE9251E281300DBDECF /* TestWindowStyleViewController.m in Sources */,
+				C48DEDEE251E281300DBDECF /* TestColorStyleViewController.m in Sources */,
+				C48DEDEA251E281300DBDECF /* TestLogViewController.m in Sources */,
+				C48DEDED251E281300DBDECF /* TestNetworkViewController.m in Sources */,
+				C48DEDE8251E281300DBDECF /* TestCrashViewController.m in Sources */,
+				6003F5A7195388D20070C39A /* ViewController.m in Sources */,
+				C48DEDF0251E281300DBDECF /* TestHtmlViewController.m in Sources */,
+				C48DEDE7251E281300DBDECF /* TestHierarchyViewController.m in Sources */,
+				6003F59A195388D20070C39A /* main.m in Sources */,
+				C48DEDEC251E281300DBDECF /* TestLocationViewController.m in Sources */,
+				C48DEDEF251E281300DBDECF /* TestShortCutViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6003F5AA195388D20070C39A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C47E5915252EBC41003AA64A /* LLComponentHelperDelegateTests.m in Sources */,
+				C47E5927252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m in Sources */,
+				C47D6428252DAF7D001A7FA0 /* LLFilterLabelModelTests.m in Sources */,
+				C47D641B252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m in Sources */,
+				C45B508E252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m in Sources */,
+				C47D6424252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m in Sources */,
+				C47D640C252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m in Sources */,
+				C4279A12255ECCEB00687351 /* LLEntryViewControllerTests.m in Sources */,
+				C47D6468252DF3EF001A7FA0 /* LLNavigationControllerTests.m in Sources */,
+				C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */,
+				C461151B2556E8D8009C96D5 /* LLBaseTestCase.m in Sources */,
+				C47D645B252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m in Sources */,
+				C47D644F252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m in Sources */,
+				C47E5917252EBC4C003AA64A /* LLCrashHelperDelegateTests.m in Sources */,
+				C455923525271A20008FE718 /* NSObjectRuntimeTests.m in Sources */,
+				C4279A02255EC36800687351 /* LLEntryComponentTests.m in Sources */,
+				C43521FB2528514D004B1648 /* NSUserDefaultsUtilsTests.m in Sources */,
+				C47D6451252DEF74001A7FA0 /* LLTitleCellModelTests.m in Sources */,
+				C4279A06255ECC8700687351 /* LLEntryAppInfoViewTests.m in Sources */,
+				C47E594A252F0CCD003AA64A /* LLFormatterToolTests.m in Sources */,
+				C47D6447252DEF35001A7FA0 /* LLDetailTitleCellTests.m in Sources */,
+				C455922D25270608008FE718 /* NSDictionaryUtilsTests.m in Sources */,
+				C47E5957252F146C003AA64A /* LLProxyTests.m in Sources */,
+				C46115282556EA35009C96D5 /* LLWindowManagerAppInfoTests.m in Sources */,
+				C47D6449252DEF40001A7FA0 /* LLDetailTitleCellModelTests.m in Sources */,
+				C47D644D252DEF5C001A7FA0 /* LLTitleCellTests.m in Sources */,
+				C47E5933252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m in Sources */,
+				C47D640A252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m in Sources */,
+				C47E5944252EF60B003AA64A /* LLNetworkDefineTests.m in Sources */,
+				C47E5911252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m in Sources */,
+				C442A6B325257E6200E95CAA /* LLCoreTestCase.m in Sources */,
+				C47E5960252F15F2003AA64A /* LLThemeColorTests.m in Sources */,
+				C47D6472252DFAE4001A7FA0 /* LLComponentDelegateTests.m in Sources */,
+				C461151E2556E98A009C96D5 /* LLAppInfoComponentTests.m in Sources */,
+				C4279A0A255ECC9C00687351 /* LLEntryBigTitleViewTests.m in Sources */,
+				C47E592F252EBCDD003AA64A /* LLSettingHelperDelegateTests.m in Sources */,
+				C46D576D252C20AE00712151 /* LLBaseViewTests.m in Sources */,
+				C444AA19253005B30006965B /* LLToastUtilsTests.m in Sources */,
+				C47E5925252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m in Sources */,
+				C4C554B72557F9490081DCEC /* LLCrashCellTests.m in Sources */,
+				C444AA1C253005C30006965B /* LLToolTests.m in Sources */,
+				C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */,
+				C47D6459252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m in Sources */,
+				C47D642C252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m in Sources */,
+				C47E595D252F15E0003AA64A /* LLScreenshotToolTests.m in Sources */,
+				C47D6439252DB061001A7FA0 /* LLMoveWindowTests.m in Sources */,
+				C442A6AF25257DA800E95CAA /* NSArrayUtilsTests.m in Sources */,
+				C4279A17255ECDC500687351 /* LLEntryTestCase.m in Sources */,
+				C47D6415252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m in Sources */,
+				C435220425287388004B1648 /* UIColorUtilsTests.m in Sources */,
+				C47D643F252DB0B4001A7FA0 /* LLPickerViewTests.m in Sources */,
+				C4C554BD2557F96E0081DCEC /* LLCrashWindowTests.m in Sources */,
+				C4279A10255ECCDE00687351 /* LLEntryViewTests.m in Sources */,
+				C47E595A252F15C9003AA64A /* LLImageNameConfigTests.m in Sources */,
+				C47E5942252EF600003AA64A /* LLLogDefineTests.m in Sources */,
+				C4352201252872CC004B1648 /* UIButtonUtilsTests.m in Sources */,
+				C46115202556E9A9009C96D5 /* LLAppInfoHelperTests.m in Sources */,
+				C4279A08255ECC9200687351 /* LLEntryBallViewTests.m in Sources */,
+				C47D6419252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m in Sources */,
+				C47E593F252ECB01003AA64A /* LLDebugToolTests.m in Sources */,
+				C47E5962252F1600003AA64A /* LLThemeManagerTests.m in Sources */,
+				C47D6465252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m in Sources */,
+				C47E5923252EBC97003AA64A /* LLLogHelperDelegateTests.m in Sources */,
+				C43522072528AA09004B1648 /* UIImageUtilsTests.m in Sources */,
+				C47E592D252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m in Sources */,
+				C461151C2556E8F3009C96D5 /* LLAppInfoTestCase.m in Sources */,
+				C4C554BB2557F9630081DCEC /* LLCrashViewControllerTests.m in Sources */,
+				C47E591B252EBC68003AA64A /* LLFeatureHelperDelegateTests.m in Sources */,
+				C47D642A252DAF88001A7FA0 /* LLFilterOtherViewTests.m in Sources */,
+				C47D642E252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m in Sources */,
+				C47D6455252DEF8B001A7FA0 /* LLTitleSliderCellTests.m in Sources */,
+				C435220A2528CBBC004B1648 /* UIResponderUtilsTests.m in Sources */,
+				C47D6420252DAF43001A7FA0 /* LLFilterDateViewTests.m in Sources */,
+				C4279A16255ECD2600687351 /* LLWindowManagerEntryTests.m in Sources */,
+				C4C554C025581AC30081DCEC /* LLCrashTestCase.m in Sources */,
+				C47D6433252DB03C001A7FA0 /* LLInfoViewTests.m in Sources */,
+				C47D646B252DF40E001A7FA0 /* LLTitleViewControllerTests.m in Sources */,
+				C46115222556E9F5009C96D5 /* UIDeviceAppInfoTests.m in Sources */,
+				C47D6474252DFAEF001A7FA0 /* LLComponentHandleTests.m in Sources */,
+				C47E5929252EBCB8003AA64A /* LLRulerHelperDelegateTests.m in Sources */,
+				C47E5939252ECADC003AA64A /* LLDebugConfigHelperTests.m in Sources */,
+				C4C554B12557F9250081DCEC /* LLCrashComponentTests.m in Sources */,
+				C47D6436252DB04C001A7FA0 /* LLMoveViewTests.m in Sources */,
+				C47D644B252DEF49001A7FA0 /* LLLeftTitleCellTests.m in Sources */,
+				C43A6AF22529A6A900B008AF /* UIWindowUtilsTests.m in Sources */,
+				C4279A04255ECC5D00687351 /* LLEntryHelperTests.m in Sources */,
+				C47D6462252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m in Sources */,
+				C46D5771252CA59200712151 /* LLBaseWindowTests.m in Sources */,
+				C45B5088252B55150060CDD0 /* LLBaseCollectionViewCellTests.m in Sources */,
+				C47E5919252EBC5D003AA64A /* LLEntryHelperDelegateTests.m in Sources */,
+				C455923825271D93008FE718 /* NSStringUtilsTests.m in Sources */,
+				C47E5913252EBC32003AA64A /* LLComponentHelperTests.m in Sources */,
+				C4279A0E255ECCC900687351 /* LLEntryTitleViewTests.m in Sources */,
+				C47D6422252DAF57001A7FA0 /* LLFilterEventViewTests.m in Sources */,
+				C47E5954252F145A003AA64A /* LLNetworkToolTests.m in Sources */,
+				C47D6430252DAFAC001A7FA0 /* LLFilterViewTests.m in Sources */,
+				C435220D2528CE56004B1648 /* UIViewUtilsTests.m in Sources */,
+				C47D646E252DF442001A7FA0 /* LLBaseComponentTests.m in Sources */,
+				C46115242556EA10009C96D5 /* LLAppInfoViewControllerTests.m in Sources */,
+				C444AA1F253005D10006965B /* LLWindowManagerTests.m in Sources */,
+				C47E5947252EF61D003AA64A /* LLFactoryTests.m in Sources */,
+				C455923325271A0C008FE718 /* NSObjectUtilsTests.m in Sources */,
+				C43521FE25286B08004B1648 /* UIAlertActionUtilsTests.m in Sources */,
+				C47D6411252DAD56001A7FA0 /* LLAnimateViewTests.m in Sources */,
+				C47E5931252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m in Sources */,
+				C47E5951252F1444003AA64A /* LLInternalMacrosTests.m in Sources */,
+				C47D6453252DEF80001A7FA0 /* LLTitleHeaderViewTests.m in Sources */,
+				C4279A14255ECCFC00687351 /* LLEntryWindowTests.m in Sources */,
+				C46D576F252C227000712151 /* LLBaseViewControllerTests.m in Sources */,
+				C47D643C252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m in Sources */,
+				C47D640E252D97A1001A7FA0 /* LLStorageModelTests.m in Sources */,
+				C4279A0C255ECCA700687351 /* LLEntryStyleModelTests.m in Sources */,
+				C4C554BF2557F9800081DCEC /* LLWindowManagerCrashTests.m in Sources */,
+				C455923025271887008FE718 /* NSMutableArrayUtilsTests.m in Sources */,
+				C47E5936252ECA37003AA64A /* LLDebugConfigTests.m in Sources */,
+				C47E592B252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m in Sources */,
+				C47E594E252F142C003AA64A /* LLJsonToolTests.m in Sources */,
+				C45B508C252B65030060CDD0 /* LLBaseTableViewCellTests.m in Sources */,
+				C47E591D252EBC72003AA64A /* LLHierarchyHelperDelegateTests.m in Sources */,
+				C47D6457252DEF96001A7FA0 /* LLTitleSliderCellModelTests.m in Sources */,
+				C45B508A252B58A90060CDD0 /* LLBaseModelTests.m in Sources */,
+				C47D6476252DFAFC001A7FA0 /* LLComponentWindowTests.m in Sources */,
+				C47D6426252DAF71001A7FA0 /* LLFilterLabelCellTests.m in Sources */,
+				C47D6442252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m in Sources */,
+				C47E593C252ECAEF003AA64A /* LLConstTests.m in Sources */,
+				C47E591F252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m in Sources */,
+				C47D645F252DF39A001A7FA0 /* LLComponentNavigationControllerTests.m in Sources */,
+				C47D6444252DEF1A001A7FA0 /* LLUITableViewLongPressGestureRecognizerDelegateTests.m in Sources */,
+				C47E5921252EBC8A003AA64A /* LLLocationHelperDelegateTests.m in Sources */,
+				C47D6413252DADFB001A7FA0 /* LLDetailTitleCellViewTests.m in Sources */,
+				C43F88B425296F0B00C59A6E /* UIViewControllerUtilsTests.m in Sources */,
+				C4C554B92557F9540081DCEC /* LLCrashDetailViewControllerTests.m in Sources */,
+				C46115262556EA1E009C96D5 /* LLAppInfoWindowTests.m in Sources */,
+				C47D6470252DF452001A7FA0 /* LLComponentCoreTests.m in Sources */,
+				C47D6417252DAE77001A7FA0 /* LLTitleCellViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6003F589195388D20070C39A /* LLDebugTool_Example */;
+			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6003F596195388D20070C39A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6003F597195388D20070C39A /* en */,
+				C4514537251CEE5F00C15E53 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6003F5B9195388D20070C39A /* en */,
+				C4514538251CEE6000C15E53 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71719F9E1E33DC2100824A3D /* Base */,
+				C4514536251CEE5E00C15E53 /* zh-Hans */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C48DEDC1251E277C00DBDECF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C48DEDC0251E277C00DBDECF /* en */,
+				C48DEDC2251E277F00DBDECF /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6003F5BD195388D20070C39A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6003F5BE195388D20070C39A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6003F5C0195388D20070C39A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DA3CEF32399637D432965EE /* Pods-LLDebugTool_Example.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "LLDebugTool/LLDebugTool-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MARKETING_VERSION = 1.3.9;
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6003F5C1195388D20070C39A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75597B7E6814953F334B4DD1 /* Pods-LLDebugTool_Example.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				INFOPLIST_FILE = "LLDebugTool/LLDebugTool-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MARKETING_VERSION = 1.3.9;
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6003F5C3195388D20070C39A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3C06966D3716E2D9CA18EA6 /* Pods-LLDebugTool_Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LLDebugTool_Example.app/LLDebugTool_Example";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6003F5C4195388D20070C39A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A017FFFBC4E9FF4173D6A6AA /* Pods-LLDebugTool_Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LLDebugTool_Example.app/LLDebugTool_Example";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6003F585195388D10070C39A /* Build configuration list for PBXProject "LLDebugTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6003F5BD195388D20070C39A /* Debug */,
+				6003F5BE195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LLDebugTool_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6003F5C0195388D20070C39A /* Debug */,
+				6003F5C1195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LLDebugTool_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6003F5C3195388D20070C39A /* Debug */,
+				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6003F582195388D10070C39A /* Project object */;
+}

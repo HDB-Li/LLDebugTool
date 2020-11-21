@@ -1,0 +1,15 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'LLDebugTool_Example' do
+  pod 'LLDebugTool', :path => '../'
+  
+  pod 'AFNetworking'
+  
+  target 'LLDebugTool_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
