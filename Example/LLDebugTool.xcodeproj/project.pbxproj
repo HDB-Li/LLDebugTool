@@ -34,6 +34,9 @@
 		C4279A14255ECCFC00687351 /* LLEntryWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A13255ECCFC00687351 /* LLEntryWindowTests.m */; };
 		C4279A16255ECD2600687351 /* LLWindowManagerEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4279A15255ECD2600687351 /* LLWindowManagerEntryTests.m */; };
 		C4279A17255ECDC500687351 /* LLEntryTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C42799FF255EC2F300687351 /* LLEntryTestCase.m */; };
+		C434939F2571F4BC00670050 /* UITabBarHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C434939E2571F4BC00670050 /* UITabBarHierarchyTests.m */; };
+		C43493A12571F4D900670050 /* UITableViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43493A02571F4D900670050 /* UITableViewHierarchyTests.m */; };
+		C43493A32571F4EC00670050 /* UITableViewCellHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43493A22571F4EC00670050 /* UITableViewCellHierarchyTests.m */; };
 		C43521FB2528514D004B1648 /* NSUserDefaultsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43521FA2528514D004B1648 /* NSUserDefaultsUtilsTests.m */; };
 		C43521FE25286B08004B1648 /* UIAlertActionUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43521FD25286B08004B1648 /* UIAlertActionUtilsTests.m */; };
 		C4352201252872CC004B1648 /* UIButtonUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4352200252872CC004B1648 /* UIButtonUtilsTests.m */; };
@@ -175,6 +178,22 @@
 		C48DEDFA251E281300DBDECF /* LLDebugTool.png in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE4251E281300DBDECF /* LLDebugTool.png */; };
 		C48DEDFB251E281300DBDECF /* LLDebugTool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C48DEDE5251E281300DBDECF /* LLDebugTool.jpg */; };
 		C48DEDFE251E285700DBDECF /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C48DEDFD251E285700DBDECF /* NetTool.m */; };
+		C4919E6025733F2800DF2D60 /* LLHierarchyInfoSwitchViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E5F25733F2800DF2D60 /* LLHierarchyInfoSwitchViewTests.m */; };
+		C4919E6225733F3500DF2D60 /* LLHierarchyInfoViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E6125733F3500DF2D60 /* LLHierarchyInfoViewTests.m */; };
+		C4919E64257340DD00DF2D60 /* LLHierarchyPickerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E63257340DD00DF2D60 /* LLHierarchyPickerViewTests.m */; };
+		C4919E66257340EA00DF2D60 /* LLHierarchySheetReuseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E65257340EA00DF2D60 /* LLHierarchySheetReuseViewTests.m */; };
+		C4919E68257340F400DF2D60 /* LLHierarchySheetViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E67257340F400DF2D60 /* LLHierarchySheetViewTests.m */; };
+		C4919E6A2573410200DF2D60 /* LLHierarchyViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E692573410200DF2D60 /* LLHierarchyViewControllerTests.m */; };
+		C4919E6C2573410E00DF2D60 /* LLHierarchyWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E6B2573410E00DF2D60 /* LLHierarchyWindowTests.m */; };
+		C4919E6E2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4919E6D2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m */; };
+		C4AA36D9257288D300624B68 /* UITextFieldHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36D8257288D300624B68 /* UITextFieldHierarchyTests.m */; };
+		C4AA36DB257288F000624B68 /* UITextViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36DA257288F000624B68 /* UITextViewHierarchyTests.m */; };
+		C4AA36DF2572893100624B68 /* UIToolbarHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36DE2572893100624B68 /* UIToolbarHierarchyTests.m */; };
+		C4AA36E125728C8300624B68 /* UIViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E025728C8300624B68 /* UIViewHierarchyTests.m */; };
+		C4AA36E325728C9000624B68 /* UIWindowHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E225728C9000624B68 /* UIWindowHierarchyTests.m */; };
+		C4AA36E525729CFE00624B68 /* LLHierarchyBorderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E425729CFE00624B68 /* LLHierarchyBorderViewTests.m */; };
+		C4AA36E725729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E625729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m */; };
+		C4AA36E925729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E825729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m */; };
 		C4C554B12557F9250081DCEC /* LLCrashComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */; };
 		C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B22557F9320081DCEC /* LLCrashHelperTests.m */; };
 		C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B42557F93E0081DCEC /* LLCrashModelTests.m */; };
@@ -184,6 +203,38 @@
 		C4C554BD2557F96E0081DCEC /* LLCrashWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554BC2557F96E0081DCEC /* LLCrashWindowTests.m */; };
 		C4C554BF2557F9800081DCEC /* LLWindowManagerCrashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554BE2557F9800081DCEC /* LLWindowManagerCrashTests.m */; };
 		C4C554C025581AC30081DCEC /* LLCrashTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554AC2557F8D30081DCEC /* LLCrashTestCase.m */; };
+		C4D4B991256A0171000CEC0F /* LLFeatureTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B990256A0171000CEC0F /* LLFeatureTestCase.m */; };
+		C4D4B993256A01AC000CEC0F /* LLFeatureComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B992256A01AC000CEC0F /* LLFeatureComponentTests.m */; };
+		C4D4B995256A01DD000CEC0F /* LLFeatureHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B994256A01DD000CEC0F /* LLFeatureHelperTests.m */; };
+		C4D4B997256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B996256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m */; };
+		C4D4B999256A01F3000CEC0F /* LLFeatureItemModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B998256A01F3000CEC0F /* LLFeatureItemModelTests.m */; };
+		C4D4B99B256A021E000CEC0F /* LLFeatureItemViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B99A256A021E000CEC0F /* LLFeatureItemViewTests.m */; };
+		C4D4B99D256A023C000CEC0F /* LLFeatureViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B99C256A023C000CEC0F /* LLFeatureViewControllerTests.m */; };
+		C4D4B99F256A024A000CEC0F /* LLFeatureWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B99E256A024A000CEC0F /* LLFeatureWindowTests.m */; };
+		C4D4B9A1256A025F000CEC0F /* LLWindowManagerFeatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9A0256A025F000CEC0F /* LLWindowManagerFeatureTests.m */; };
+		C4D4B9A6256A1179000CEC0F /* LLHierarchyComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9A5256A1179000CEC0F /* LLHierarchyComponentTests.m */; };
+		C4D4B9A8256A1182000CEC0F /* LLHierarchyFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9A7256A1182000CEC0F /* LLHierarchyFormatterTests.m */; };
+		C4D4B9AA256A118B000CEC0F /* LLHierarchyHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9A9256A118B000CEC0F /* LLHierarchyHelperTests.m */; };
+		C4D4B9AD256A3923000CEC0F /* LLEnumDescriptionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9AC256A3923000CEC0F /* LLEnumDescriptionTests.m */; };
+		C4D4B9B0256A393E000CEC0F /* NSObjectHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9AF256A393E000CEC0F /* NSObjectHierarchyTests.m */; };
+		C4D4B9B2256A3955000CEC0F /* UIActivityIndicatorViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9B1256A3955000CEC0F /* UIActivityIndicatorViewHierarchyTests.m */; };
+		C4D4B9B4256A3964000CEC0F /* UIButtonHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9B3256A3964000CEC0F /* UIButtonHierarchyTests.m */; };
+		C4D4B9B6256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9B5256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m */; };
+		C4D4B9B8256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9B7256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m */; };
+		C4D4B9BA256A3E0A000CEC0F /* UIControlHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9B9256A3E0A000CEC0F /* UIControlHierarchyTests.m */; };
+		C4D4B9BC256A3E26000CEC0F /* UIDatePickerHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9BB256A3E26000CEC0F /* UIDatePickerHierarchyTests.m */; };
+		C4D4B9BE256A3E36000CEC0F /* UIImageViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9BD256A3E36000CEC0F /* UIImageViewHierarchyTests.m */; };
+		C4D4B9C0256A3E5A000CEC0F /* UILabelHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9BF256A3E5A000CEC0F /* UILabelHierarchyTests.m */; };
+		C4D4B9C2256A3EA1000CEC0F /* UINavigationBarHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9C1256A3EA1000CEC0F /* UINavigationBarHierarchyTests.m */; };
+		C4D4B9C4256A3EB1000CEC0F /* UIPageControlHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9C3256A3EB1000CEC0F /* UIPageControlHierarchyTests.m */; };
+		C4D4B9C6256A3EBF000CEC0F /* UIPickerViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9C5256A3EBF000CEC0F /* UIPickerViewHierarchyTests.m */; };
+		C4D4B9C8256A3ED0000CEC0F /* UIProgressViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9C7256A3ED0000CEC0F /* UIProgressViewHierarchyTests.m */; };
+		C4D4B9CA256A3EE3000CEC0F /* UIScrollViewHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9C9256A3EE3000CEC0F /* UIScrollViewHierarchyTests.m */; };
+		C4D4B9CC256A3EF1000CEC0F /* UISearchBarHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9CB256A3EF1000CEC0F /* UISearchBarHierarchyTests.m */; };
+		C4D4B9CE256A3FBF000CEC0F /* UISegmentedControlHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9CD256A3FBF000CEC0F /* UISegmentedControlHierarchyTests.m */; };
+		C4D4B9D0256A3FD2000CEC0F /* UISliderHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9CF256A3FD2000CEC0F /* UISliderHierarchyTests.m */; };
+		C4D4B9D2256A3FEB000CEC0F /* UIStepperHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9D1256A3FEB000CEC0F /* UIStepperHierarchyTests.m */; };
+		C4D4B9D4256A5BC5000CEC0F /* UISwitchHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9D3256A5BC5000CEC0F /* UISwitchHierarchyTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +288,9 @@
 		C4279A11255ECCEB00687351 /* LLEntryViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryViewControllerTests.m; sourceTree = "<group>"; };
 		C4279A13255ECCFC00687351 /* LLEntryWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryWindowTests.m; sourceTree = "<group>"; };
 		C4279A15255ECD2600687351 /* LLWindowManagerEntryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerEntryTests.m; sourceTree = "<group>"; };
+		C434939E2571F4BC00670050 /* UITabBarHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITabBarHierarchyTests.m; sourceTree = "<group>"; };
+		C43493A02571F4D900670050 /* UITableViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITableViewHierarchyTests.m; sourceTree = "<group>"; };
+		C43493A22571F4EC00670050 /* UITableViewCellHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellHierarchyTests.m; sourceTree = "<group>"; };
 		C43521FA2528514D004B1648 /* NSUserDefaultsUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaultsUtilsTests.m; sourceTree = "<group>"; };
 		C43521FD25286B08004B1648 /* UIAlertActionUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAlertActionUtilsTests.m; sourceTree = "<group>"; };
 		C4352200252872CC004B1648 /* UIButtonUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIButtonUtilsTests.m; sourceTree = "<group>"; };
@@ -393,10 +447,26 @@
 		C48DEDE5251E281300DBDECF /* LLDebugTool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LLDebugTool.jpg; sourceTree = "<group>"; };
 		C48DEDFC251E285600DBDECF /* NetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetTool.h; sourceTree = "<group>"; };
 		C48DEDFD251E285700DBDECF /* NetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetTool.m; sourceTree = "<group>"; };
+		C4919E5F25733F2800DF2D60 /* LLHierarchyInfoSwitchViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoSwitchViewTests.m; sourceTree = "<group>"; };
+		C4919E6125733F3500DF2D60 /* LLHierarchyInfoViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoViewTests.m; sourceTree = "<group>"; };
+		C4919E63257340DD00DF2D60 /* LLHierarchyPickerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyPickerViewTests.m; sourceTree = "<group>"; };
+		C4919E65257340EA00DF2D60 /* LLHierarchySheetReuseViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchySheetReuseViewTests.m; sourceTree = "<group>"; };
+		C4919E67257340F400DF2D60 /* LLHierarchySheetViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchySheetViewTests.m; sourceTree = "<group>"; };
+		C4919E692573410200DF2D60 /* LLHierarchyViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyViewControllerTests.m; sourceTree = "<group>"; };
+		C4919E6B2573410E00DF2D60 /* LLHierarchyWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyWindowTests.m; sourceTree = "<group>"; };
+		C4919E6D2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerHierarchyTests.m; sourceTree = "<group>"; };
 		C49991502555976F006C86FD /* LLAppInfoTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLAppInfoTestCase.h; sourceTree = "<group>"; };
 		C49991512555976F006C86FD /* LLAppInfoTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppInfoTestCase.m; sourceTree = "<group>"; };
 		C4999153255597CC006C86FD /* LLBaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLBaseTestCase.h; sourceTree = "<group>"; };
 		C4999154255597CC006C86FD /* LLBaseTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseTestCase.m; sourceTree = "<group>"; };
+		C4AA36D8257288D300624B68 /* UITextFieldHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextFieldHierarchyTests.m; sourceTree = "<group>"; };
+		C4AA36DA257288F000624B68 /* UITextViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4AA36DE2572893100624B68 /* UIToolbarHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIToolbarHierarchyTests.m; sourceTree = "<group>"; };
+		C4AA36E025728C8300624B68 /* UIViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4AA36E225728C9000624B68 /* UIWindowHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIWindowHierarchyTests.m; sourceTree = "<group>"; };
+		C4AA36E425729CFE00624B68 /* LLHierarchyBorderViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyBorderViewTests.m; sourceTree = "<group>"; };
+		C4AA36E625729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailViewControllerTests.m; sourceTree = "<group>"; };
+		C4AA36E825729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoSwitchModelTests.m; sourceTree = "<group>"; };
 		C4C554AB2557F8D30081DCEC /* LLCrashTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrashTestCase.h; sourceTree = "<group>"; };
 		C4C554AC2557F8D30081DCEC /* LLCrashTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashTestCase.m; sourceTree = "<group>"; };
 		C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashComponentTests.m; sourceTree = "<group>"; };
@@ -407,6 +477,39 @@
 		C4C554BA2557F9630081DCEC /* LLCrashViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashViewControllerTests.m; sourceTree = "<group>"; };
 		C4C554BC2557F96E0081DCEC /* LLCrashWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashWindowTests.m; sourceTree = "<group>"; };
 		C4C554BE2557F9800081DCEC /* LLWindowManagerCrashTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerCrashTests.m; sourceTree = "<group>"; };
+		C4D4B98F256A0171000CEC0F /* LLFeatureTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLFeatureTestCase.h; sourceTree = "<group>"; };
+		C4D4B990256A0171000CEC0F /* LLFeatureTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureTestCase.m; sourceTree = "<group>"; };
+		C4D4B992256A01AC000CEC0F /* LLFeatureComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureComponentTests.m; sourceTree = "<group>"; };
+		C4D4B994256A01DD000CEC0F /* LLFeatureHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureHelperTests.m; sourceTree = "<group>"; };
+		C4D4B996256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureItemContainerViewTests.m; sourceTree = "<group>"; };
+		C4D4B998256A01F3000CEC0F /* LLFeatureItemModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureItemModelTests.m; sourceTree = "<group>"; };
+		C4D4B99A256A021E000CEC0F /* LLFeatureItemViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureItemViewTests.m; sourceTree = "<group>"; };
+		C4D4B99C256A023C000CEC0F /* LLFeatureViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureViewControllerTests.m; sourceTree = "<group>"; };
+		C4D4B99E256A024A000CEC0F /* LLFeatureWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLFeatureWindowTests.m; sourceTree = "<group>"; };
+		C4D4B9A0256A025F000CEC0F /* LLWindowManagerFeatureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerFeatureTests.m; sourceTree = "<group>"; };
+		C4D4B9A5256A1179000CEC0F /* LLHierarchyComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyComponentTests.m; sourceTree = "<group>"; };
+		C4D4B9A7256A1182000CEC0F /* LLHierarchyFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyFormatterTests.m; sourceTree = "<group>"; };
+		C4D4B9A9256A118B000CEC0F /* LLHierarchyHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyHelperTests.m; sourceTree = "<group>"; };
+		C4D4B9AC256A3923000CEC0F /* LLEnumDescriptionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEnumDescriptionTests.m; sourceTree = "<group>"; };
+		C4D4B9AF256A393E000CEC0F /* NSObjectHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObjectHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9B1256A3955000CEC0F /* UIActivityIndicatorViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIActivityIndicatorViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9B3256A3964000CEC0F /* UIButtonHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIButtonHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9B5256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UICollectionReusableViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9B7256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9B9256A3E0A000CEC0F /* UIControlHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIControlHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9BB256A3E26000CEC0F /* UIDatePickerHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIDatePickerHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9BD256A3E36000CEC0F /* UIImageViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9BF256A3E5A000CEC0F /* UILabelHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UILabelHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9C1256A3EA1000CEC0F /* UINavigationBarHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9C3256A3EB1000CEC0F /* UIPageControlHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIPageControlHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9C5256A3EBF000CEC0F /* UIPickerViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIPickerViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9C7256A3ED0000CEC0F /* UIProgressViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIProgressViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9C9256A3EE3000CEC0F /* UIScrollViewHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9CB256A3EF1000CEC0F /* UISearchBarHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISearchBarHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9CD256A3FBF000CEC0F /* UISegmentedControlHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISegmentedControlHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9CF256A3FD2000CEC0F /* UISliderHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISliderHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9D1256A3FEB000CEC0F /* UIStepperHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIStepperHierarchyTests.m; sourceTree = "<group>"; };
+		C4D4B9D3256A5BC5000CEC0F /* UISwitchHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISwitchHierarchyTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +617,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C4D4B9A2256A0906000CEC0F /* Hierarchy */,
 				C4279A18255EE32100687351 /* Feature */,
 				C4685704255C3C62002CA8C4 /* Entry */,
 				C4632EDE2557EC6F00060B6D /* Crash */,
@@ -574,8 +678,10 @@
 		C4279A18255EE32100687351 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				C4279A1A255EE32F00687351 /* UserInterface */,
 				C4279A19255EE32700687351 /* Function */,
+				C4279A1A255EE32F00687351 /* UserInterface */,
+				C4D4B98F256A0171000CEC0F /* LLFeatureTestCase.h */,
+				C4D4B990256A0171000CEC0F /* LLFeatureTestCase.m */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -583,6 +689,8 @@
 		C4279A19255EE32700687351 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				C4D4B992256A01AC000CEC0F /* LLFeatureComponentTests.m */,
+				C4D4B994256A01DD000CEC0F /* LLFeatureHelperTests.m */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -590,6 +698,12 @@
 		C4279A1A255EE32F00687351 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				C4D4B996256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m */,
+				C4D4B998256A01F3000CEC0F /* LLFeatureItemModelTests.m */,
+				C4D4B99A256A021E000CEC0F /* LLFeatureItemViewTests.m */,
+				C4D4B99C256A023C000CEC0F /* LLFeatureViewControllerTests.m */,
+				C4D4B99E256A024A000CEC0F /* LLFeatureWindowTests.m */,
+				C4D4B9A0256A025F000CEC0F /* LLWindowManagerFeatureTests.m */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1247,6 +1361,87 @@
 			path = Function;
 			sourceTree = "<group>";
 		};
+		C4D4B9A2256A0906000CEC0F /* Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				C4D4B9A3256A090E000CEC0F /* Function */,
+				C4D4B9A4256A0914000CEC0F /* UserInterface */,
+			);
+			path = Hierarchy;
+			sourceTree = "<group>";
+		};
+		C4D4B9A3256A090E000CEC0F /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4D4B9AE256A392B000CEC0F /* Category */,
+				C4D4B9AB256A119E000CEC0F /* EnumDescription */,
+				C4D4B9A5256A1179000CEC0F /* LLHierarchyComponentTests.m */,
+				C4D4B9A7256A1182000CEC0F /* LLHierarchyFormatterTests.m */,
+				C4D4B9A9256A118B000CEC0F /* LLHierarchyHelperTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4D4B9A4256A0914000CEC0F /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4AA36E425729CFE00624B68 /* LLHierarchyBorderViewTests.m */,
+				C4AA36E625729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m */,
+				C4AA36E825729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m */,
+				C4919E5F25733F2800DF2D60 /* LLHierarchyInfoSwitchViewTests.m */,
+				C4919E6125733F3500DF2D60 /* LLHierarchyInfoViewTests.m */,
+				C4919E63257340DD00DF2D60 /* LLHierarchyPickerViewTests.m */,
+				C4919E65257340EA00DF2D60 /* LLHierarchySheetReuseViewTests.m */,
+				C4919E67257340F400DF2D60 /* LLHierarchySheetViewTests.m */,
+				C4919E692573410200DF2D60 /* LLHierarchyViewControllerTests.m */,
+				C4919E6B2573410E00DF2D60 /* LLHierarchyWindowTests.m */,
+				C4919E6D2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4D4B9AB256A119E000CEC0F /* EnumDescription */ = {
+			isa = PBXGroup;
+			children = (
+				C4D4B9AC256A3923000CEC0F /* LLEnumDescriptionTests.m */,
+			);
+			path = EnumDescription;
+			sourceTree = "<group>";
+		};
+		C4D4B9AE256A392B000CEC0F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C4D4B9AF256A393E000CEC0F /* NSObjectHierarchyTests.m */,
+				C4D4B9B1256A3955000CEC0F /* UIActivityIndicatorViewHierarchyTests.m */,
+				C4D4B9B3256A3964000CEC0F /* UIButtonHierarchyTests.m */,
+				C4D4B9B5256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m */,
+				C4D4B9B7256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m */,
+				C4D4B9B9256A3E0A000CEC0F /* UIControlHierarchyTests.m */,
+				C4D4B9BB256A3E26000CEC0F /* UIDatePickerHierarchyTests.m */,
+				C4D4B9BD256A3E36000CEC0F /* UIImageViewHierarchyTests.m */,
+				C4D4B9BF256A3E5A000CEC0F /* UILabelHierarchyTests.m */,
+				C4D4B9C1256A3EA1000CEC0F /* UINavigationBarHierarchyTests.m */,
+				C4D4B9C3256A3EB1000CEC0F /* UIPageControlHierarchyTests.m */,
+				C4D4B9C5256A3EBF000CEC0F /* UIPickerViewHierarchyTests.m */,
+				C4D4B9C7256A3ED0000CEC0F /* UIProgressViewHierarchyTests.m */,
+				C4D4B9C9256A3EE3000CEC0F /* UIScrollViewHierarchyTests.m */,
+				C4D4B9CB256A3EF1000CEC0F /* UISearchBarHierarchyTests.m */,
+				C4D4B9CD256A3FBF000CEC0F /* UISegmentedControlHierarchyTests.m */,
+				C4D4B9CF256A3FD2000CEC0F /* UISliderHierarchyTests.m */,
+				C4D4B9D1256A3FEB000CEC0F /* UIStepperHierarchyTests.m */,
+				C4D4B9D3256A5BC5000CEC0F /* UISwitchHierarchyTests.m */,
+				C434939E2571F4BC00670050 /* UITabBarHierarchyTests.m */,
+				C43493A02571F4D900670050 /* UITableViewHierarchyTests.m */,
+				C43493A22571F4EC00670050 /* UITableViewCellHierarchyTests.m */,
+				C4AA36D8257288D300624B68 /* UITextFieldHierarchyTests.m */,
+				C4AA36DA257288F000624B68 /* UITextViewHierarchyTests.m */,
+				C4AA36DE2572893100624B68 /* UIToolbarHierarchyTests.m */,
+				C4AA36E025728C8300624B68 /* UIViewHierarchyTests.m */,
+				C4AA36E225728C9000624B68 /* UIWindowHierarchyTests.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		C4DF6FD5252B4569006549BB /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1485,7 +1680,11 @@
 				C47E5915252EBC41003AA64A /* LLComponentHelperDelegateTests.m in Sources */,
 				C47E5927252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m in Sources */,
 				C47D6428252DAF7D001A7FA0 /* LLFilterLabelModelTests.m in Sources */,
+				C4D4B9CA256A3EE3000CEC0F /* UIScrollViewHierarchyTests.m in Sources */,
+				C4D4B9AD256A3923000CEC0F /* LLEnumDescriptionTests.m in Sources */,
+				C4D4B9BE256A3E36000CEC0F /* UIImageViewHierarchyTests.m in Sources */,
 				C47D641B252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m in Sources */,
+				C4D4B9C8256A3ED0000CEC0F /* UIProgressViewHierarchyTests.m in Sources */,
 				C45B508E252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m in Sources */,
 				C47D6424252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m in Sources */,
 				C47D640C252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m in Sources */,
@@ -1494,12 +1693,17 @@
 				C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */,
 				C461151B2556E8D8009C96D5 /* LLBaseTestCase.m in Sources */,
 				C47D645B252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m in Sources */,
+				C4919E6A2573410200DF2D60 /* LLHierarchyViewControllerTests.m in Sources */,
 				C47D644F252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m in Sources */,
 				C47E5917252EBC4C003AA64A /* LLCrashHelperDelegateTests.m in Sources */,
+				C4D4B9CE256A3FBF000CEC0F /* UISegmentedControlHierarchyTests.m in Sources */,
 				C455923525271A20008FE718 /* NSObjectRuntimeTests.m in Sources */,
+				C4D4B99F256A024A000CEC0F /* LLFeatureWindowTests.m in Sources */,
 				C4279A02255EC36800687351 /* LLEntryComponentTests.m in Sources */,
 				C43521FB2528514D004B1648 /* NSUserDefaultsUtilsTests.m in Sources */,
+				C434939F2571F4BC00670050 /* UITabBarHierarchyTests.m in Sources */,
 				C47D6451252DEF74001A7FA0 /* LLTitleCellModelTests.m in Sources */,
+				C4D4B997256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m in Sources */,
 				C4279A06255ECC8700687351 /* LLEntryAppInfoViewTests.m in Sources */,
 				C47E594A252F0CCD003AA64A /* LLFormatterToolTests.m in Sources */,
 				C47D6447252DEF35001A7FA0 /* LLDetailTitleCellTests.m in Sources */,
@@ -1511,49 +1715,70 @@
 				C47E5933252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m in Sources */,
 				C47D640A252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m in Sources */,
 				C47E5944252EF60B003AA64A /* LLNetworkDefineTests.m in Sources */,
+				C4AA36DB257288F000624B68 /* UITextViewHierarchyTests.m in Sources */,
 				C47E5911252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m in Sources */,
+				C4D4B991256A0171000CEC0F /* LLFeatureTestCase.m in Sources */,
 				C442A6B325257E6200E95CAA /* LLCoreTestCase.m in Sources */,
+				C4D4B9A1256A025F000CEC0F /* LLWindowManagerFeatureTests.m in Sources */,
 				C47E5960252F15F2003AA64A /* LLThemeColorTests.m in Sources */,
 				C47D6472252DFAE4001A7FA0 /* LLComponentDelegateTests.m in Sources */,
+				C4AA36E125728C8300624B68 /* UIViewHierarchyTests.m in Sources */,
 				C461151E2556E98A009C96D5 /* LLAppInfoComponentTests.m in Sources */,
 				C4279A0A255ECC9C00687351 /* LLEntryBigTitleViewTests.m in Sources */,
+				C4AA36E925729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m in Sources */,
 				C47E592F252EBCDD003AA64A /* LLSettingHelperDelegateTests.m in Sources */,
+				C4919E6C2573410E00DF2D60 /* LLHierarchyWindowTests.m in Sources */,
 				C46D576D252C20AE00712151 /* LLBaseViewTests.m in Sources */,
 				C444AA19253005B30006965B /* LLToastUtilsTests.m in Sources */,
 				C47E5925252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m in Sources */,
 				C4C554B72557F9490081DCEC /* LLCrashCellTests.m in Sources */,
+				C4AA36E725729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m in Sources */,
+				C4D4B9B6256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m in Sources */,
 				C444AA1C253005C30006965B /* LLToolTests.m in Sources */,
 				C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */,
 				C47D6459252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m in Sources */,
+				C4919E6225733F3500DF2D60 /* LLHierarchyInfoViewTests.m in Sources */,
 				C47D642C252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m in Sources */,
 				C47E595D252F15E0003AA64A /* LLScreenshotToolTests.m in Sources */,
+				C4AA36E525729CFE00624B68 /* LLHierarchyBorderViewTests.m in Sources */,
 				C47D6439252DB061001A7FA0 /* LLMoveWindowTests.m in Sources */,
 				C442A6AF25257DA800E95CAA /* NSArrayUtilsTests.m in Sources */,
 				C4279A17255ECDC500687351 /* LLEntryTestCase.m in Sources */,
+				C4D4B993256A01AC000CEC0F /* LLFeatureComponentTests.m in Sources */,
 				C47D6415252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m in Sources */,
 				C435220425287388004B1648 /* UIColorUtilsTests.m in Sources */,
 				C47D643F252DB0B4001A7FA0 /* LLPickerViewTests.m in Sources */,
 				C4C554BD2557F96E0081DCEC /* LLCrashWindowTests.m in Sources */,
 				C4279A10255ECCDE00687351 /* LLEntryViewTests.m in Sources */,
 				C47E595A252F15C9003AA64A /* LLImageNameConfigTests.m in Sources */,
+				C4D4B9C0256A3E5A000CEC0F /* UILabelHierarchyTests.m in Sources */,
 				C47E5942252EF600003AA64A /* LLLogDefineTests.m in Sources */,
+				C4AA36E325728C9000624B68 /* UIWindowHierarchyTests.m in Sources */,
 				C4352201252872CC004B1648 /* UIButtonUtilsTests.m in Sources */,
 				C46115202556E9A9009C96D5 /* LLAppInfoHelperTests.m in Sources */,
 				C4279A08255ECC9200687351 /* LLEntryBallViewTests.m in Sources */,
+				C4D4B9BC256A3E26000CEC0F /* UIDatePickerHierarchyTests.m in Sources */,
 				C47D6419252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m in Sources */,
 				C47E593F252ECB01003AA64A /* LLDebugToolTests.m in Sources */,
 				C47E5962252F1600003AA64A /* LLThemeManagerTests.m in Sources */,
+				C4D4B9C2256A3EA1000CEC0F /* UINavigationBarHierarchyTests.m in Sources */,
 				C47D6465252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m in Sources */,
+				C4D4B99B256A021E000CEC0F /* LLFeatureItemViewTests.m in Sources */,
 				C47E5923252EBC97003AA64A /* LLLogHelperDelegateTests.m in Sources */,
 				C43522072528AA09004B1648 /* UIImageUtilsTests.m in Sources */,
 				C47E592D252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m in Sources */,
+				C4D4B9D0256A3FD2000CEC0F /* UISliderHierarchyTests.m in Sources */,
+				C4919E64257340DD00DF2D60 /* LLHierarchyPickerViewTests.m in Sources */,
 				C461151C2556E8F3009C96D5 /* LLAppInfoTestCase.m in Sources */,
 				C4C554BB2557F9630081DCEC /* LLCrashViewControllerTests.m in Sources */,
 				C47E591B252EBC68003AA64A /* LLFeatureHelperDelegateTests.m in Sources */,
 				C47D642A252DAF88001A7FA0 /* LLFilterOtherViewTests.m in Sources */,
 				C47D642E252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m in Sources */,
+				C4AA36D9257288D300624B68 /* UITextFieldHierarchyTests.m in Sources */,
 				C47D6455252DEF8B001A7FA0 /* LLTitleSliderCellTests.m in Sources */,
 				C435220A2528CBBC004B1648 /* UIResponderUtilsTests.m in Sources */,
+				C4919E6025733F2800DF2D60 /* LLHierarchyInfoSwitchViewTests.m in Sources */,
+				C43493A32571F4EC00670050 /* UITableViewCellHierarchyTests.m in Sources */,
 				C47D6420252DAF43001A7FA0 /* LLFilterDateViewTests.m in Sources */,
 				C4279A16255ECD2600687351 /* LLWindowManagerEntryTests.m in Sources */,
 				C4C554C025581AC30081DCEC /* LLCrashTestCase.m in Sources */,
@@ -1564,8 +1789,12 @@
 				C47E5929252EBCB8003AA64A /* LLRulerHelperDelegateTests.m in Sources */,
 				C47E5939252ECADC003AA64A /* LLDebugConfigHelperTests.m in Sources */,
 				C4C554B12557F9250081DCEC /* LLCrashComponentTests.m in Sources */,
+				C4AA36DF2572893100624B68 /* UIToolbarHierarchyTests.m in Sources */,
 				C47D6436252DB04C001A7FA0 /* LLMoveViewTests.m in Sources */,
+				C4919E68257340F400DF2D60 /* LLHierarchySheetViewTests.m in Sources */,
 				C47D644B252DEF49001A7FA0 /* LLLeftTitleCellTests.m in Sources */,
+				C4D4B9C6256A3EBF000CEC0F /* UIPickerViewHierarchyTests.m in Sources */,
+				C4D4B995256A01DD000CEC0F /* LLFeatureHelperTests.m in Sources */,
 				C43A6AF22529A6A900B008AF /* UIWindowUtilsTests.m in Sources */,
 				C4279A04255ECC5D00687351 /* LLEntryHelperTests.m in Sources */,
 				C47D6462252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m in Sources */,
@@ -1574,29 +1803,39 @@
 				C47E5919252EBC5D003AA64A /* LLEntryHelperDelegateTests.m in Sources */,
 				C455923825271D93008FE718 /* NSStringUtilsTests.m in Sources */,
 				C47E5913252EBC32003AA64A /* LLComponentHelperTests.m in Sources */,
+				C4D4B99D256A023C000CEC0F /* LLFeatureViewControllerTests.m in Sources */,
 				C4279A0E255ECCC900687351 /* LLEntryTitleViewTests.m in Sources */,
 				C47D6422252DAF57001A7FA0 /* LLFilterEventViewTests.m in Sources */,
 				C47E5954252F145A003AA64A /* LLNetworkToolTests.m in Sources */,
 				C47D6430252DAFAC001A7FA0 /* LLFilterViewTests.m in Sources */,
+				C4D4B9AA256A118B000CEC0F /* LLHierarchyHelperTests.m in Sources */,
 				C435220D2528CE56004B1648 /* UIViewUtilsTests.m in Sources */,
 				C47D646E252DF442001A7FA0 /* LLBaseComponentTests.m in Sources */,
+				C4D4B9A8256A1182000CEC0F /* LLHierarchyFormatterTests.m in Sources */,
+				C4D4B9D2256A3FEB000CEC0F /* UIStepperHierarchyTests.m in Sources */,
 				C46115242556EA10009C96D5 /* LLAppInfoViewControllerTests.m in Sources */,
 				C444AA1F253005D10006965B /* LLWindowManagerTests.m in Sources */,
 				C47E5947252EF61D003AA64A /* LLFactoryTests.m in Sources */,
+				C4D4B9D4256A5BC5000CEC0F /* UISwitchHierarchyTests.m in Sources */,
 				C455923325271A0C008FE718 /* NSObjectUtilsTests.m in Sources */,
 				C43521FE25286B08004B1648 /* UIAlertActionUtilsTests.m in Sources */,
 				C47D6411252DAD56001A7FA0 /* LLAnimateViewTests.m in Sources */,
 				C47E5931252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m in Sources */,
+				C4D4B9B4256A3964000CEC0F /* UIButtonHierarchyTests.m in Sources */,
 				C47E5951252F1444003AA64A /* LLInternalMacrosTests.m in Sources */,
+				C43493A12571F4D900670050 /* UITableViewHierarchyTests.m in Sources */,
 				C47D6453252DEF80001A7FA0 /* LLTitleHeaderViewTests.m in Sources */,
 				C4279A14255ECCFC00687351 /* LLEntryWindowTests.m in Sources */,
+				C4D4B9B8256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m in Sources */,
 				C46D576F252C227000712151 /* LLBaseViewControllerTests.m in Sources */,
 				C47D643C252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m in Sources */,
+				C4D4B9B0256A393E000CEC0F /* NSObjectHierarchyTests.m in Sources */,
 				C47D640E252D97A1001A7FA0 /* LLStorageModelTests.m in Sources */,
 				C4279A0C255ECCA700687351 /* LLEntryStyleModelTests.m in Sources */,
 				C4C554BF2557F9800081DCEC /* LLWindowManagerCrashTests.m in Sources */,
 				C455923025271887008FE718 /* NSMutableArrayUtilsTests.m in Sources */,
 				C47E5936252ECA37003AA64A /* LLDebugConfigTests.m in Sources */,
+				C4D4B9C4256A3EB1000CEC0F /* UIPageControlHierarchyTests.m in Sources */,
 				C47E592B252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m in Sources */,
 				C47E594E252F142C003AA64A /* LLJsonToolTests.m in Sources */,
 				C45B508C252B65030060CDD0 /* LLBaseTableViewCellTests.m in Sources */,
@@ -1606,6 +1845,9 @@
 				C47D6476252DFAFC001A7FA0 /* LLComponentWindowTests.m in Sources */,
 				C47D6426252DAF71001A7FA0 /* LLFilterLabelCellTests.m in Sources */,
 				C47D6442252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m in Sources */,
+				C4D4B9CC256A3EF1000CEC0F /* UISearchBarHierarchyTests.m in Sources */,
+				C4919E6E2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m in Sources */,
+				C4D4B9A6256A1179000CEC0F /* LLHierarchyComponentTests.m in Sources */,
 				C47E593C252ECAEF003AA64A /* LLConstTests.m in Sources */,
 				C47E591F252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m in Sources */,
 				C47D645F252DF39A001A7FA0 /* LLComponentNavigationControllerTests.m in Sources */,
@@ -1613,8 +1855,12 @@
 				C47E5921252EBC8A003AA64A /* LLLocationHelperDelegateTests.m in Sources */,
 				C47D6413252DADFB001A7FA0 /* LLDetailTitleCellViewTests.m in Sources */,
 				C43F88B425296F0B00C59A6E /* UIViewControllerUtilsTests.m in Sources */,
+				C4919E66257340EA00DF2D60 /* LLHierarchySheetReuseViewTests.m in Sources */,
+				C4D4B999256A01F3000CEC0F /* LLFeatureItemModelTests.m in Sources */,
 				C4C554B92557F9540081DCEC /* LLCrashDetailViewControllerTests.m in Sources */,
 				C46115262556EA1E009C96D5 /* LLAppInfoWindowTests.m in Sources */,
+				C4D4B9B2256A3955000CEC0F /* UIActivityIndicatorViewHierarchyTests.m in Sources */,
+				C4D4B9BA256A3E0A000CEC0F /* UIControlHierarchyTests.m in Sources */,
 				C47D6470252DF452001A7FA0 /* LLComponentCoreTests.m in Sources */,
 				C47D6417252DAE77001A7FA0 /* LLTitleCellViewTests.m in Sources */,
 			);
