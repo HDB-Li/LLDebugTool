@@ -194,6 +194,16 @@
 		C4AA36E525729CFE00624B68 /* LLHierarchyBorderViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E425729CFE00624B68 /* LLHierarchyBorderViewTests.m */; };
 		C4AA36E725729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E625729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m */; };
 		C4AA36E925729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AA36E825729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m */; };
+		C4AF04D4257A77DF000F2559 /* LLHtmlWkWebViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AF04D3257A77DF000F2559 /* LLHtmlWkWebViewControllerTests.m */; };
+		C4AF04D6257A86B6000F2559 /* LLWindowManagerHtmlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4AF04D5257A86B6000F2559 /* LLWindowManagerHtmlTests.m */; };
+		C4B1A35125793B830034E8B3 /* LLHierarchyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A34F25793B700034E8B3 /* LLHierarchyTestCase.m */; };
+		C4B1A35525793BEC0034E8B3 /* LLHtmlTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A35325793BE80034E8B3 /* LLHtmlTestCase.m */; };
+		C4B1A35725793C2E0034E8B3 /* LLHtmlComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A35625793C2E0034E8B3 /* LLHtmlComponentTests.m */; };
+		C4B1A35925793C390034E8B3 /* LLHtmlHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A35825793C390034E8B3 /* LLHtmlHelperTests.m */; };
+		C4B1A35B25793C460034E8B3 /* LLHtmlConfigViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A35A25793C460034E8B3 /* LLHtmlConfigViewControllerTests.m */; };
+		C4B1A35D25793C510034E8B3 /* LLHtmlUIWebViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A35C25793C510034E8B3 /* LLHtmlUIWebViewControllerTests.m */; };
+		C4B1A35F25793C5B0034E8B3 /* LLHtmlViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A35E25793C5B0034E8B3 /* LLHtmlViewControllerTests.m */; };
+		C4B1A36125793C720034E8B3 /* LLHtmlWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4B1A36025793C720034E8B3 /* LLHtmlWindowTests.m */; };
 		C4C554B12557F9250081DCEC /* LLCrashComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */; };
 		C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B22557F9320081DCEC /* LLCrashHelperTests.m */; };
 		C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C554B42557F93E0081DCEC /* LLCrashModelTests.m */; };
@@ -467,6 +477,18 @@
 		C4AA36E425729CFE00624B68 /* LLHierarchyBorderViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyBorderViewTests.m; sourceTree = "<group>"; };
 		C4AA36E625729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyDetailViewControllerTests.m; sourceTree = "<group>"; };
 		C4AA36E825729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHierarchyInfoSwitchModelTests.m; sourceTree = "<group>"; };
+		C4AF04D3257A77DF000F2559 /* LLHtmlWkWebViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlWkWebViewControllerTests.m; sourceTree = "<group>"; };
+		C4AF04D5257A86B6000F2559 /* LLWindowManagerHtmlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerHtmlTests.m; sourceTree = "<group>"; };
+		C4B1A34E25793B700034E8B3 /* LLHierarchyTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LLHierarchyTestCase.h; path = Tests/Hierarchy/LLHierarchyTestCase.h; sourceTree = SOURCE_ROOT; };
+		C4B1A34F25793B700034E8B3 /* LLHierarchyTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LLHierarchyTestCase.m; path = Tests/Hierarchy/LLHierarchyTestCase.m; sourceTree = SOURCE_ROOT; };
+		C4B1A35225793BE80034E8B3 /* LLHtmlTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLHtmlTestCase.h; sourceTree = "<group>"; };
+		C4B1A35325793BE80034E8B3 /* LLHtmlTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlTestCase.m; sourceTree = "<group>"; };
+		C4B1A35625793C2E0034E8B3 /* LLHtmlComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlComponentTests.m; sourceTree = "<group>"; };
+		C4B1A35825793C390034E8B3 /* LLHtmlHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlHelperTests.m; sourceTree = "<group>"; };
+		C4B1A35A25793C460034E8B3 /* LLHtmlConfigViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlConfigViewControllerTests.m; sourceTree = "<group>"; };
+		C4B1A35C25793C510034E8B3 /* LLHtmlUIWebViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlUIWebViewControllerTests.m; sourceTree = "<group>"; };
+		C4B1A35E25793C5B0034E8B3 /* LLHtmlViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlViewControllerTests.m; sourceTree = "<group>"; };
+		C4B1A36025793C720034E8B3 /* LLHtmlWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLHtmlWindowTests.m; sourceTree = "<group>"; };
 		C4C554AB2557F8D30081DCEC /* LLCrashTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLCrashTestCase.h; sourceTree = "<group>"; };
 		C4C554AC2557F8D30081DCEC /* LLCrashTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashTestCase.m; sourceTree = "<group>"; };
 		C4C554B02557F9250081DCEC /* LLCrashComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLCrashComponentTests.m; sourceTree = "<group>"; };
@@ -617,6 +639,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C4B1A34B25793A490034E8B3 /* Html */,
 				C4D4B9A2256A0906000CEC0F /* Hierarchy */,
 				C4279A18255EE32100687351 /* Feature */,
 				C4685704255C3C62002CA8C4 /* Entry */,
@@ -1339,6 +1362,39 @@
 			path = Function;
 			sourceTree = "<group>";
 		};
+		C4B1A34B25793A490034E8B3 /* Html */ = {
+			isa = PBXGroup;
+			children = (
+				C4B1A34C25793A500034E8B3 /* Function */,
+				C4B1A34D25793B350034E8B3 /* UserInterface */,
+				C4B1A35225793BE80034E8B3 /* LLHtmlTestCase.h */,
+				C4B1A35325793BE80034E8B3 /* LLHtmlTestCase.m */,
+			);
+			path = Html;
+			sourceTree = "<group>";
+		};
+		C4B1A34C25793A500034E8B3 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4B1A35625793C2E0034E8B3 /* LLHtmlComponentTests.m */,
+				C4B1A35825793C390034E8B3 /* LLHtmlHelperTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4B1A34D25793B350034E8B3 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4B1A35A25793C460034E8B3 /* LLHtmlConfigViewControllerTests.m */,
+				C4B1A35C25793C510034E8B3 /* LLHtmlUIWebViewControllerTests.m */,
+				C4B1A35E25793C5B0034E8B3 /* LLHtmlViewControllerTests.m */,
+				C4B1A36025793C720034E8B3 /* LLHtmlWindowTests.m */,
+				C4AF04D3257A77DF000F2559 /* LLHtmlWkWebViewControllerTests.m */,
+				C4AF04D5257A86B6000F2559 /* LLWindowManagerHtmlTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
 		C4C554AE2557F8F70081DCEC /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -1364,6 +1420,8 @@
 		C4D4B9A2256A0906000CEC0F /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
+				C4B1A34E25793B700034E8B3 /* LLHierarchyTestCase.h */,
+				C4B1A34F25793B700034E8B3 /* LLHierarchyTestCase.m */,
 				C4D4B9A3256A090E000CEC0F /* Function */,
 				C4D4B9A4256A0914000CEC0F /* UserInterface */,
 			);
@@ -1693,6 +1751,7 @@
 				C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */,
 				C461151B2556E8D8009C96D5 /* LLBaseTestCase.m in Sources */,
 				C47D645B252DF364001A7FA0 /* LLTitleSwitchCellModelTests.m in Sources */,
+				C4B1A35525793BEC0034E8B3 /* LLHtmlTestCase.m in Sources */,
 				C4919E6A2573410200DF2D60 /* LLHierarchyViewControllerTests.m in Sources */,
 				C47D644F252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m in Sources */,
 				C47E5917252EBC4C003AA64A /* LLCrashHelperDelegateTests.m in Sources */,
@@ -1704,7 +1763,9 @@
 				C434939F2571F4BC00670050 /* UITabBarHierarchyTests.m in Sources */,
 				C47D6451252DEF74001A7FA0 /* LLTitleCellModelTests.m in Sources */,
 				C4D4B997256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m in Sources */,
+				C4B1A36125793C720034E8B3 /* LLHtmlWindowTests.m in Sources */,
 				C4279A06255ECC8700687351 /* LLEntryAppInfoViewTests.m in Sources */,
+				C4AF04D4257A77DF000F2559 /* LLHtmlWkWebViewControllerTests.m in Sources */,
 				C47E594A252F0CCD003AA64A /* LLFormatterToolTests.m in Sources */,
 				C47D6447252DEF35001A7FA0 /* LLDetailTitleCellTests.m in Sources */,
 				C455922D25270608008FE718 /* NSDictionaryUtilsTests.m in Sources */,
@@ -1734,6 +1795,7 @@
 				C4C554B72557F9490081DCEC /* LLCrashCellTests.m in Sources */,
 				C4AA36E725729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m in Sources */,
 				C4D4B9B6256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m in Sources */,
+				C4B1A35125793B830034E8B3 /* LLHierarchyTestCase.m in Sources */,
 				C444AA1C253005C30006965B /* LLToolTests.m in Sources */,
 				C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */,
 				C47D6459252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m in Sources */,
@@ -1765,6 +1827,7 @@
 				C47D6465252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m in Sources */,
 				C4D4B99B256A021E000CEC0F /* LLFeatureItemViewTests.m in Sources */,
 				C47E5923252EBC97003AA64A /* LLLogHelperDelegateTests.m in Sources */,
+				C4B1A35925793C390034E8B3 /* LLHtmlHelperTests.m in Sources */,
 				C43522072528AA09004B1648 /* UIImageUtilsTests.m in Sources */,
 				C47E592D252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m in Sources */,
 				C4D4B9D0256A3FD2000CEC0F /* UISliderHierarchyTests.m in Sources */,
@@ -1813,7 +1876,9 @@
 				C47D646E252DF442001A7FA0 /* LLBaseComponentTests.m in Sources */,
 				C4D4B9A8256A1182000CEC0F /* LLHierarchyFormatterTests.m in Sources */,
 				C4D4B9D2256A3FEB000CEC0F /* UIStepperHierarchyTests.m in Sources */,
+				C4B1A35725793C2E0034E8B3 /* LLHtmlComponentTests.m in Sources */,
 				C46115242556EA10009C96D5 /* LLAppInfoViewControllerTests.m in Sources */,
+				C4B1A35F25793C5B0034E8B3 /* LLHtmlViewControllerTests.m in Sources */,
 				C444AA1F253005D10006965B /* LLWindowManagerTests.m in Sources */,
 				C47E5947252EF61D003AA64A /* LLFactoryTests.m in Sources */,
 				C4D4B9D4256A5BC5000CEC0F /* UISwitchHierarchyTests.m in Sources */,
@@ -1826,6 +1891,7 @@
 				C43493A12571F4D900670050 /* UITableViewHierarchyTests.m in Sources */,
 				C47D6453252DEF80001A7FA0 /* LLTitleHeaderViewTests.m in Sources */,
 				C4279A14255ECCFC00687351 /* LLEntryWindowTests.m in Sources */,
+				C4AF04D6257A86B6000F2559 /* LLWindowManagerHtmlTests.m in Sources */,
 				C4D4B9B8256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m in Sources */,
 				C46D576F252C227000712151 /* LLBaseViewControllerTests.m in Sources */,
 				C47D643C252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m in Sources */,
@@ -1836,6 +1902,7 @@
 				C455923025271887008FE718 /* NSMutableArrayUtilsTests.m in Sources */,
 				C47E5936252ECA37003AA64A /* LLDebugConfigTests.m in Sources */,
 				C4D4B9C4256A3EB1000CEC0F /* UIPageControlHierarchyTests.m in Sources */,
+				C4B1A35B25793C460034E8B3 /* LLHtmlConfigViewControllerTests.m in Sources */,
 				C47E592B252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m in Sources */,
 				C47E594E252F142C003AA64A /* LLJsonToolTests.m in Sources */,
 				C45B508C252B65030060CDD0 /* LLBaseTableViewCellTests.m in Sources */,
@@ -1844,6 +1911,7 @@
 				C45B508A252B58A90060CDD0 /* LLBaseModelTests.m in Sources */,
 				C47D6476252DFAFC001A7FA0 /* LLComponentWindowTests.m in Sources */,
 				C47D6426252DAF71001A7FA0 /* LLFilterLabelCellTests.m in Sources */,
+				C4B1A35D25793C510034E8B3 /* LLHtmlUIWebViewControllerTests.m in Sources */,
 				C47D6442252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m in Sources */,
 				C4D4B9CC256A3EF1000CEC0F /* UISearchBarHierarchyTests.m in Sources */,
 				C4919E6E2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m in Sources */,

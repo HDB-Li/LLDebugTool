@@ -6,9 +6,9 @@
 //  Copyright © 2020 HDB-Li. All rights reserved.
 //
 
-#import "LLFeatureTestCase.h"
+#import "LLHierarchyTestCase.h"
 
-@interface UIDatePickerHierarchyTests : LLFeatureTestCase
+@interface UIDatePickerHierarchyTests : LLHierarchyTestCase
 
 @end
 

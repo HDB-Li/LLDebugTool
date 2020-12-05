@@ -1,18 +1,18 @@
 //
-//  LLHierarchyInfoViewTests.m
+//  LLWindowManagerHtmlTests.m
 //  LLDebugTool_Tests
 //
-//  Created by HDB-Li on 2020/11/29.
+//  Created by HDB-Li on 2020/12/4.
 //  Copyright © 2020 HDB-Li. All rights reserved.
 //
 
-#import "LLHierarchyTestCase.h"
+#import "LLHtmlTestCase.h"
 
-@interface LLHierarchyInfoViewTests : LLHierarchyTestCase
+@interface LLWindowManagerHtmlTests : LLHtmlTestCase
 
 @end
 
-@implementation LLHierarchyInfoViewTests
+@implementation LLWindowManagerHtmlTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.

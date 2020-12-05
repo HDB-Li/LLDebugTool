@@ -6,9 +6,9 @@
 //  Copyright © 2020 HDB-Li. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "LLHierarchyTestCase.h"
 
-@interface UITableViewCellHierarchyTests : LLFeatureTestCase
+@interface UITableViewCellHierarchyTests : LLHierarchyTestCase
 
 @end
 
