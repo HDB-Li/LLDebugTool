@@ -44,6 +44,10 @@
 		C43522072528AA09004B1648 /* UIImageUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43522062528AA09004B1648 /* UIImageUtilsTests.m */; };
 		C435220A2528CBBC004B1648 /* UIResponderUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43522092528CBBC004B1648 /* UIResponderUtilsTests.m */; };
 		C435220D2528CE56004B1648 /* UIViewUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C435220C2528CE56004B1648 /* UIViewUtilsTests.m */; };
+		C437902E257CC93300B3BDBA /* LLSandboxViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C437902D257CC93300B3BDBA /* LLSandboxViewControllerTests.m */; };
+		C4379030257CC93E00B3BDBA /* LLSandboxWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C437902F257CC93E00B3BDBA /* LLSandboxWindowTests.m */; };
+		C4379032257CCC7900B3BDBA /* LLWindowManagerSandboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379031257CCC7900B3BDBA /* LLWindowManagerSandboxTests.m */; };
+		C4379036257CCCD000B3BDBA /* LLScreenshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4379035257CCCD000B3BDBA /* LLScreenshotTestCase.m */; };
 		C43A6AF22529A6A900B008AF /* UIWindowUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43A6AF12529A6A900B008AF /* UIWindowUtilsTests.m */; };
 		C43F88B425296F0B00C59A6E /* UIViewControllerUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C43F88B325296F0B00C59A6E /* UIViewControllerUtilsTests.m */; };
 		C442A6AF25257DA800E95CAA /* NSArrayUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C442A6AE25257DA800E95CAA /* NSArrayUtilsTests.m */; };
@@ -74,6 +78,107 @@
 		C46D576D252C20AE00712151 /* LLBaseViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46D576C252C20AE00712151 /* LLBaseViewTests.m */; };
 		C46D576F252C227000712151 /* LLBaseViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46D576E252C227000712151 /* LLBaseViewControllerTests.m */; };
 		C46D5771252CA59200712151 /* LLBaseWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C46D5770252CA59200712151 /* LLBaseWindowTests.m */; };
+		C4729155257B8900007E4525 /* LLLocationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729153257B88FB007E4525 /* LLLocationTestCase.m */; };
+		C4729159257B9B8D007E4525 /* LLLocationComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729158257B9B8D007E4525 /* LLLocationComponentTests.m */; };
+		C472915B257B9B99007E4525 /* LLLocationHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472915A257B9B99007E4525 /* LLLocationHelperTests.m */; };
+		C472915D257B9BA6007E4525 /* LLLocationMockRouteModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472915C257B9BA6007E4525 /* LLLocationMockRouteModelTests.m */; };
+		C472915F257BC701007E4525 /* LLLocationProxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472915E257BC701007E4525 /* LLLocationProxyTests.m */; };
+		C4729162257BC741007E4525 /* CLLocationLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729161257BC741007E4525 /* CLLocationLocationTests.m */; };
+		C4729167257BC79D007E4525 /* CLLocationManagerLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729166257BC79D007E4525 /* CLLocationManagerLocationTests.m */; };
+		C472916A257BC7C4007E4525 /* MKMapViewLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729169257BC7C4007E4525 /* MKMapViewLocationTests.m */; };
+		C472916C257BC7E7007E4525 /* LLAnnotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472916B257BC7E7007E4525 /* LLAnnotationTests.m */; };
+		C472916E257BC7FF007E4525 /* LLLocationViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472916D257BC7FF007E4525 /* LLLocationViewControllerTests.m */; };
+		C4729170257BC810007E4525 /* LLLocationWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472916F257BC810007E4525 /* LLLocationWindowTests.m */; };
+		C4729172257BC81A007E4525 /* LLPinAnnotationViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729171257BC81A007E4525 /* LLPinAnnotationViewTests.m */; };
+		C4729174257BC827007E4525 /* LLWindowManagerLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729173257BC827007E4525 /* LLWindowManagerLocationTests.m */; };
+		C4729179257BC8F5007E4525 /* LLLogTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729177257BC8F1007E4525 /* LLLogTestCase.m */; };
+		C472917D257BC935007E4525 /* LLLogComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472917C257BC935007E4525 /* LLLogComponentTests.m */; };
+		C472917F257BC93E007E4525 /* LLLogHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472917E257BC93E007E4525 /* LLLogHelperTests.m */; };
+		C4729181257BC94B007E4525 /* LLLogModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729180257BC94B007E4525 /* LLLogModelTests.m */; };
+		C4729183257BC957007E4525 /* LLLogCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729182257BC957007E4525 /* LLLogCellTests.m */; };
+		C4729185257BC961007E4525 /* LLLogDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729184257BC961007E4525 /* LLLogDetailViewControllerTests.m */; };
+		C4729187257BC96C007E4525 /* LLLogFilterViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729186257BC96C007E4525 /* LLLogFilterViewTests.m */; };
+		C4729189257BC97C007E4525 /* LLLogViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729188257BC97C007E4525 /* LLLogViewControllerTests.m */; };
+		C472918B257BC989007E4525 /* LLLogWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472918A257BC989007E4525 /* LLLogWindowTests.m */; };
+		C472918D257BC998007E4525 /* LLWindowManagerLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472918C257BC998007E4525 /* LLWindowManagerLogTests.m */; };
+		C4729193257BCA55007E4525 /* LLMagnifierTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729192257BCA55007E4525 /* LLMagnifierTestCase.m */; };
+		C4729195257BCA7D007E4525 /* LLMagnifierComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729194257BCA7D007E4525 /* LLMagnifierComponentTests.m */; };
+		C4729197257BCA8A007E4525 /* LLMagnifierHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729196257BCA8A007E4525 /* LLMagnifierHelperTests.m */; };
+		C4729199257BCA95007E4525 /* LLMagnifierInfoViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4729198257BCA95007E4525 /* LLMagnifierInfoViewTests.m */; };
+		C472919B257BCAA0007E4525 /* LLMagnifierViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472919A257BCAA0007E4525 /* LLMagnifierViewTests.m */; };
+		C472919D257BCAAA007E4525 /* LLMagnifierViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472919C257BCAAA007E4525 /* LLMagnifierViewControllerTests.m */; };
+		C472919F257BCAB4007E4525 /* LLMagnifierWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472919E257BCAB4007E4525 /* LLMagnifierWindowTests.m */; };
+		C47291A1257BCAC8007E4525 /* LLWindowManagerMagnifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291A0257BCAC8007E4525 /* LLWindowManagerMagnifierTests.m */; };
+		C47291A5257BCAF2007E4525 /* LLNetworkTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291A4257BCAF2007E4525 /* LLNetworkTestCase.m */; };
+		C47291A9257BCB49007E4525 /* LLNetworkComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291A8257BCB49007E4525 /* LLNetworkComponentTests.m */; };
+		C47291AB257BDCB6007E4525 /* LLNetworkHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291AA257BDCB6007E4525 /* LLNetworkHelperTests.m */; };
+		C47291AD257BDCC0007E4525 /* LLNetworkModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291AC257BDCC0007E4525 /* LLNetworkModelTests.m */; };
+		C47291AF257BDCD5007E4525 /* LLURLProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291AE257BDCD5007E4525 /* LLURLProtocolTests.m */; };
+		C47291B2257BE42A007E4525 /* NSDataNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291B1257BE42A007E4525 /* NSDataNetworkTests.m */; };
+		C47291B5257BE491007E4525 /* NSHTTPURLResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291B4257BE491007E4525 /* NSHTTPURLResponseTests.m */; };
+		C47291B8257BE4DD007E4525 /* NSInputStreamNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291B7257BE4DD007E4525 /* NSInputStreamNetworkTests.m */; };
+		C47291BB257BE4F1007E4525 /* NSURLSessionNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291BA257BE4F1007E4525 /* NSURLSessionNetworkTests.m */; };
+		C47291BE257BE504007E4525 /* NSURLSessionConfigurationNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291BD257BE504007E4525 /* NSURLSessionConfigurationNetworkTests.m */; };
+		C47291C0257BE51B007E4525 /* LLNetworkCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291BF257BE51B007E4525 /* LLNetworkCellTests.m */; };
+		C47291C2257BE589007E4525 /* LLNetworkDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291C1257BE589007E4525 /* LLNetworkDetailViewControllerTests.m */; };
+		C47291C4257BE594007E4525 /* LLNetworkFilterViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291C3257BE594007E4525 /* LLNetworkFilterViewTests.m */; };
+		C47291C6257BE5A5007E4525 /* LLNetworkImageCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291C5257BE5A5007E4525 /* LLNetworkImageCellTests.m */; };
+		C47291C8257BE5B0007E4525 /* LLNetworkViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291C7257BE5B0007E4525 /* LLNetworkViewControllerTests.m */; };
+		C47291CA257BE5BB007E4525 /* LLNetworkWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291C9257BE5BB007E4525 /* LLNetworkWindowTests.m */; };
+		C47291CC257BE5CA007E4525 /* LLWindowManagerNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291CB257BE5CA007E4525 /* LLWindowManagerNetworkTests.m */; };
+		C47291D2257BE611007E4525 /* LLRulerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291D1257BE611007E4525 /* LLRulerTestCase.m */; };
+		C47291D4257BE8B0007E4525 /* LLRulerComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291D3257BE8B0007E4525 /* LLRulerComponentTests.m */; };
+		C47291D6257BE8C8007E4525 /* LLRulerHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291D5257BE8C8007E4525 /* LLRulerHelperTests.m */; };
+		C47291D8257BE8DD007E4525 /* LLRulerPickerInfoViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291D7257BE8DD007E4525 /* LLRulerPickerInfoViewTests.m */; };
+		C47291DA257BE8F2007E4525 /* LLRulerPickerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291D9257BE8F2007E4525 /* LLRulerPickerViewTests.m */; };
+		C47291DC257BE8FB007E4525 /* LLRulerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291DB257BE8FB007E4525 /* LLRulerViewControllerTests.m */; };
+		C47291DE257BE924007E4525 /* LLRulerWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291DD257BE924007E4525 /* LLRulerWindowTests.m */; };
+		C47291E0257BE935007E4525 /* LLWindowManagerRulerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291DF257BE935007E4525 /* LLWindowManagerRulerTests.m */; };
+		C47291E6257BE9EE007E4525 /* LLSandboxTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291E5257BE9EE007E4525 /* LLSandboxTestCase.m */; };
+		C47291E8257BEA0B007E4525 /* LLSandboxComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291E7257BEA0B007E4525 /* LLSandboxComponentTests.m */; };
+		C47291EA257BEA17007E4525 /* LLSandboxHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291E9257BEA17007E4525 /* LLSandboxHelperTests.m */; };
+		C47291EC257BEA4A007E4525 /* LLSandboxModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291EB257BEA4A007E4525 /* LLSandboxModelTests.m */; };
+		C47291EE257BEA5B007E4525 /* LLPreviewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291ED257BEA5B007E4525 /* LLPreviewControllerTests.m */; };
+		C47291F0257BEA66007E4525 /* LLSandboxCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291EF257BEA66007E4525 /* LLSandboxCellTests.m */; };
+		C47291F2257BEA6F007E4525 /* LLSandboxHtmlPreviewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291F1257BEA6F007E4525 /* LLSandboxHtmlPreviewControllerTests.m */; };
+		C47291F4257BEA7B007E4525 /* LLSandboxImagePreviewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291F3257BEA7B007E4525 /* LLSandboxImagePreviewControllerTests.m */; };
+		C47291F6257BEA85007E4525 /* LLSandboxPreviewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291F5257BEA85007E4525 /* LLSandboxPreviewControllerTests.m */; };
+		C47291F8257BEA93007E4525 /* LLSandboxTextPreviewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291F7257BEA93007E4525 /* LLSandboxTextPreviewControllerTests.m */; };
+		C47291FA257BEA9D007E4525 /* LLSandboxVideoPreviewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47291F9257BEA9D007E4525 /* LLSandboxVideoPreviewControllerTests.m */; };
+		C472D65B257D2FA200A42589 /* LLWindowManagerScreenshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D65A257D2FA200A42589 /* LLWindowManagerScreenshotTests.m */; };
+		C472D65D257D2FAF00A42589 /* LLScreenshotViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D65C257D2FAF00A42589 /* LLScreenshotViewControllerTests.m */; };
+		C472D65F257D2FB900A42589 /* LLScreenshotWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D65E257D2FB900A42589 /* LLScreenshotWindowTests.m */; };
+		C472D661257D2FCF00A42589 /* LLScreenshotActionViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D660257D2FCF00A42589 /* LLScreenshotActionViewTests.m */; };
+		C472D663257D2FDD00A42589 /* LLScreenshotBaseOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D662257D2FDD00A42589 /* LLScreenshotBaseOperationTests.m */; };
+		C472D665257D2FEF00A42589 /* LLScreenshotDefineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D664257D2FEF00A42589 /* LLScreenshotDefineTests.m */; };
+		C472D667257D2FF900A42589 /* LLScreenshotImageViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D666257D2FF900A42589 /* LLScreenshotImageViewTests.m */; };
+		C472D669257D35E400A42589 /* LLScreenshotPreviewViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D668257D35E400A42589 /* LLScreenshotPreviewViewControllerTests.m */; };
+		C472D66B257D3C1900A42589 /* LLScreenshotPreviewWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D66A257D3C1900A42589 /* LLScreenshotPreviewWindowTests.m */; };
+		C472D66D257D3C2800A42589 /* LLScreenshotSelectorModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D66C257D3C2800A42589 /* LLScreenshotSelectorModelTests.m */; };
+		C472D66F257D3C3300A42589 /* LLScreenshotSelectorViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D66E257D3C3300A42589 /* LLScreenshotSelectorViewTests.m */; };
+		C472D671257D3C4100A42589 /* LLScreenshotToolbarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D670257D3C4100A42589 /* LLScreenshotToolbarTests.m */; };
+		C472D675257FC9A700A42589 /* LLSettingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D674257FC9A700A42589 /* LLSettingTestCase.m */; };
+		C472D679257FC9EC00A42589 /* LLSettingComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D678257FC9EC00A42589 /* LLSettingComponentTests.m */; };
+		C472D67B257FC9F600A42589 /* LLSettingHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D67A257FC9F600A42589 /* LLSettingHelperTests.m */; };
+		C472D67D257FCA0000A42589 /* LLSettingViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D67C257FCA0000A42589 /* LLSettingViewControllerTests.m */; };
+		C472D67F257FCA0D00A42589 /* LLSettingWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D67E257FCA0D00A42589 /* LLSettingWindowTests.m */; };
+		C472D681257FCA1F00A42589 /* LLWindowManagerSettingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D680257FCA1F00A42589 /* LLWindowManagerSettingTests.m */; };
+		C472D685257FD5ED00A42589 /* LLShortCutTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D684257FD5ED00A42589 /* LLShortCutTestCase.m */; };
+		C472D689257FD63200A42589 /* LLShortCutComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D688257FD63100A42589 /* LLShortCutComponentTests.m */; };
+		C472D68B257FD63B00A42589 /* LLShortCutHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D68A257FD63B00A42589 /* LLShortCutHelperTests.m */; };
+		C472D68D257FD64600A42589 /* LLShortCutModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D68C257FD64500A42589 /* LLShortCutModelTests.m */; };
+		C472D68F257FD65900A42589 /* LLShortCutViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D68E257FD65900A42589 /* LLShortCutViewControllerTests.m */; };
+		C472D691257FD66400A42589 /* LLShortCutWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D690257FD66400A42589 /* LLShortCutWindowTests.m */; };
+		C472D693257FD67900A42589 /* LLWindowManagerShortCutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D692257FD67900A42589 /* LLWindowManagerShortCutTests.m */; };
+		C472D697257FD6A100A42589 /* LLStorageTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D696257FD6A100A42589 /* LLStorageTestCase.m */; };
+		C472D69C257FD6DB00A42589 /* LLStorageManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D69B257FD6DB00A42589 /* LLStorageManagerTests.m */; };
+		C472D6A0257FD70700A42589 /* LLWidgetBorderTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D69F257FD70700A42589 /* LLWidgetBorderTestCase.m */; };
+		C472D6A4257FD78800A42589 /* LLWidgetBorderComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D6A3257FD78800A42589 /* LLWidgetBorderComponentTests.m */; };
+		C472D6A6257FD79300A42589 /* LLWidgetBorderHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D6A5257FD79300A42589 /* LLWidgetBorderHelperTests.m */; };
+		C472D6A8257FD7A500A42589 /* UIViewWidgetBorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D6A7257FD7A500A42589 /* UIViewWidgetBorderTests.m */; };
+		C472D6AA257FD7BB00A42589 /* LLWidgetBorderViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D6A9257FD7BB00A42589 /* LLWidgetBorderViewControllerTests.m */; };
+		C472D6AC257FD7C600A42589 /* LLWidgetBorderWindowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D6AB257FD7C600A42589 /* LLWidgetBorderWindowTests.m */; };
+		C472D6AE257FD7D700A42589 /* LLWindowManagerWidgetBorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C472D6AD257FD7D700A42589 /* LLWindowManagerWidgetBorderTests.m */; };
 		C47D640A252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D6409252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m */; };
 		C47D640C252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D640B252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m */; };
 		C47D640E252D97A1001A7FA0 /* LLStorageModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C47D640D252D97A1001A7FA0 /* LLStorageModelTests.m */; };
@@ -245,6 +350,9 @@
 		C4D4B9D0256A3FD2000CEC0F /* UISliderHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9CF256A3FD2000CEC0F /* UISliderHierarchyTests.m */; };
 		C4D4B9D2256A3FEB000CEC0F /* UIStepperHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9D1256A3FEB000CEC0F /* UIStepperHierarchyTests.m */; };
 		C4D4B9D4256A5BC5000CEC0F /* UISwitchHierarchyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D4B9D3256A5BC5000CEC0F /* UISwitchHierarchyTests.m */; };
+		C4FE7C1B257D239D00EF2CF6 /* LLConvenientScreenshotComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FE7C1A257D239D00EF2CF6 /* LLConvenientScreenshotComponentTests.m */; };
+		C4FE7C1D257D23D700EF2CF6 /* LLScreenshotComponentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FE7C1C257D23D700EF2CF6 /* LLScreenshotComponentTests.m */; };
+		C4FE7C1F257D23E500EF2CF6 /* LLScreenshotHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FE7C1E257D23E500EF2CF6 /* LLScreenshotHelperTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +416,11 @@
 		C43522062528AA09004B1648 /* UIImageUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageUtilsTests.m; sourceTree = "<group>"; };
 		C43522092528CBBC004B1648 /* UIResponderUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIResponderUtilsTests.m; sourceTree = "<group>"; };
 		C435220C2528CE56004B1648 /* UIViewUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewUtilsTests.m; sourceTree = "<group>"; };
+		C437902D257CC93300B3BDBA /* LLSandboxViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxViewControllerTests.m; sourceTree = "<group>"; };
+		C437902F257CC93E00B3BDBA /* LLSandboxWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxWindowTests.m; sourceTree = "<group>"; };
+		C4379031257CCC7900B3BDBA /* LLWindowManagerSandboxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerSandboxTests.m; sourceTree = "<group>"; };
+		C4379034257CCCD000B3BDBA /* LLScreenshotTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLScreenshotTestCase.h; sourceTree = "<group>"; };
+		C4379035257CCCD000B3BDBA /* LLScreenshotTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotTestCase.m; sourceTree = "<group>"; };
 		C43A6AF12529A6A900B008AF /* UIWindowUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIWindowUtilsTests.m; sourceTree = "<group>"; };
 		C43F88B325296F0B00C59A6E /* UIViewControllerUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerUtilsTests.m; sourceTree = "<group>"; };
 		C442A6AE25257DA800E95CAA /* NSArrayUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSArrayUtilsTests.m; sourceTree = "<group>"; };
@@ -340,6 +453,117 @@
 		C46D576C252C20AE00712151 /* LLBaseViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewTests.m; sourceTree = "<group>"; };
 		C46D576E252C227000712151 /* LLBaseViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseViewControllerTests.m; sourceTree = "<group>"; };
 		C46D5770252CA59200712151 /* LLBaseWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLBaseWindowTests.m; sourceTree = "<group>"; };
+		C4729152257B88FB007E4525 /* LLLocationTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLocationTestCase.h; sourceTree = "<group>"; };
+		C4729153257B88FB007E4525 /* LLLocationTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationTestCase.m; sourceTree = "<group>"; };
+		C4729158257B9B8D007E4525 /* LLLocationComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationComponentTests.m; sourceTree = "<group>"; };
+		C472915A257B9B99007E4525 /* LLLocationHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationHelperTests.m; sourceTree = "<group>"; };
+		C472915C257B9BA6007E4525 /* LLLocationMockRouteModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationMockRouteModelTests.m; sourceTree = "<group>"; };
+		C472915E257BC701007E4525 /* LLLocationProxyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationProxyTests.m; sourceTree = "<group>"; };
+		C4729161257BC741007E4525 /* CLLocationLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLLocationLocationTests.m; sourceTree = "<group>"; };
+		C4729166257BC79D007E4525 /* CLLocationManagerLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLLocationManagerLocationTests.m; sourceTree = "<group>"; };
+		C4729169257BC7C4007E4525 /* MKMapViewLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKMapViewLocationTests.m; sourceTree = "<group>"; };
+		C472916B257BC7E7007E4525 /* LLAnnotationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAnnotationTests.m; sourceTree = "<group>"; };
+		C472916D257BC7FF007E4525 /* LLLocationViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationViewControllerTests.m; sourceTree = "<group>"; };
+		C472916F257BC810007E4525 /* LLLocationWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLocationWindowTests.m; sourceTree = "<group>"; };
+		C4729171257BC81A007E4525 /* LLPinAnnotationViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPinAnnotationViewTests.m; sourceTree = "<group>"; };
+		C4729173257BC827007E4525 /* LLWindowManagerLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerLocationTests.m; sourceTree = "<group>"; };
+		C4729176257BC8F1007E4525 /* LLLogTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLLogTestCase.h; sourceTree = "<group>"; };
+		C4729177257BC8F1007E4525 /* LLLogTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogTestCase.m; sourceTree = "<group>"; };
+		C472917C257BC935007E4525 /* LLLogComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogComponentTests.m; sourceTree = "<group>"; };
+		C472917E257BC93E007E4525 /* LLLogHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogHelperTests.m; sourceTree = "<group>"; };
+		C4729180257BC94B007E4525 /* LLLogModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogModelTests.m; sourceTree = "<group>"; };
+		C4729182257BC957007E4525 /* LLLogCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogCellTests.m; sourceTree = "<group>"; };
+		C4729184257BC961007E4525 /* LLLogDetailViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogDetailViewControllerTests.m; sourceTree = "<group>"; };
+		C4729186257BC96C007E4525 /* LLLogFilterViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogFilterViewTests.m; sourceTree = "<group>"; };
+		C4729188257BC97C007E4525 /* LLLogViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogViewControllerTests.m; sourceTree = "<group>"; };
+		C472918A257BC989007E4525 /* LLLogWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLLogWindowTests.m; sourceTree = "<group>"; };
+		C472918C257BC998007E4525 /* LLWindowManagerLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerLogTests.m; sourceTree = "<group>"; };
+		C4729191257BCA55007E4525 /* LLMagnifierTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMagnifierTestCase.h; sourceTree = "<group>"; };
+		C4729192257BCA55007E4525 /* LLMagnifierTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierTestCase.m; sourceTree = "<group>"; };
+		C4729194257BCA7D007E4525 /* LLMagnifierComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierComponentTests.m; sourceTree = "<group>"; };
+		C4729196257BCA8A007E4525 /* LLMagnifierHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierHelperTests.m; sourceTree = "<group>"; };
+		C4729198257BCA95007E4525 /* LLMagnifierInfoViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierInfoViewTests.m; sourceTree = "<group>"; };
+		C472919A257BCAA0007E4525 /* LLMagnifierViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierViewTests.m; sourceTree = "<group>"; };
+		C472919C257BCAAA007E4525 /* LLMagnifierViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierViewControllerTests.m; sourceTree = "<group>"; };
+		C472919E257BCAB4007E4525 /* LLMagnifierWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMagnifierWindowTests.m; sourceTree = "<group>"; };
+		C47291A0257BCAC8007E4525 /* LLWindowManagerMagnifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerMagnifierTests.m; sourceTree = "<group>"; };
+		C47291A3257BCAF2007E4525 /* LLNetworkTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLNetworkTestCase.h; sourceTree = "<group>"; };
+		C47291A4257BCAF2007E4525 /* LLNetworkTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkTestCase.m; sourceTree = "<group>"; };
+		C47291A8257BCB49007E4525 /* LLNetworkComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkComponentTests.m; sourceTree = "<group>"; };
+		C47291AA257BDCB6007E4525 /* LLNetworkHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkHelperTests.m; sourceTree = "<group>"; };
+		C47291AC257BDCC0007E4525 /* LLNetworkModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkModelTests.m; sourceTree = "<group>"; };
+		C47291AE257BDCD5007E4525 /* LLURLProtocolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLURLProtocolTests.m; sourceTree = "<group>"; };
+		C47291B1257BE42A007E4525 /* NSDataNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataNetworkTests.m; sourceTree = "<group>"; };
+		C47291B4257BE491007E4525 /* NSHTTPURLResponseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSHTTPURLResponseTests.m; sourceTree = "<group>"; };
+		C47291B7257BE4DD007E4525 /* NSInputStreamNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSInputStreamNetworkTests.m; sourceTree = "<group>"; };
+		C47291BA257BE4F1007E4525 /* NSURLSessionNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURLSessionNetworkTests.m; sourceTree = "<group>"; };
+		C47291BD257BE504007E4525 /* NSURLSessionConfigurationNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURLSessionConfigurationNetworkTests.m; sourceTree = "<group>"; };
+		C47291BF257BE51B007E4525 /* LLNetworkCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkCellTests.m; sourceTree = "<group>"; };
+		C47291C1257BE589007E4525 /* LLNetworkDetailViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkDetailViewControllerTests.m; sourceTree = "<group>"; };
+		C47291C3257BE594007E4525 /* LLNetworkFilterViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkFilterViewTests.m; sourceTree = "<group>"; };
+		C47291C5257BE5A5007E4525 /* LLNetworkImageCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkImageCellTests.m; sourceTree = "<group>"; };
+		C47291C7257BE5B0007E4525 /* LLNetworkViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkViewControllerTests.m; sourceTree = "<group>"; };
+		C47291C9257BE5BB007E4525 /* LLNetworkWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLNetworkWindowTests.m; sourceTree = "<group>"; };
+		C47291CB257BE5CA007E4525 /* LLWindowManagerNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerNetworkTests.m; sourceTree = "<group>"; };
+		C47291D0257BE611007E4525 /* LLRulerTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLRulerTestCase.h; sourceTree = "<group>"; };
+		C47291D1257BE611007E4525 /* LLRulerTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerTestCase.m; sourceTree = "<group>"; };
+		C47291D3257BE8B0007E4525 /* LLRulerComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerComponentTests.m; sourceTree = "<group>"; };
+		C47291D5257BE8C8007E4525 /* LLRulerHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerHelperTests.m; sourceTree = "<group>"; };
+		C47291D7257BE8DD007E4525 /* LLRulerPickerInfoViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerInfoViewTests.m; sourceTree = "<group>"; };
+		C47291D9257BE8F2007E4525 /* LLRulerPickerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerPickerViewTests.m; sourceTree = "<group>"; };
+		C47291DB257BE8FB007E4525 /* LLRulerViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerViewControllerTests.m; sourceTree = "<group>"; };
+		C47291DD257BE924007E4525 /* LLRulerWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLRulerWindowTests.m; sourceTree = "<group>"; };
+		C47291DF257BE935007E4525 /* LLWindowManagerRulerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerRulerTests.m; sourceTree = "<group>"; };
+		C47291E4257BE9EE007E4525 /* LLSandboxTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxTestCase.h; sourceTree = "<group>"; };
+		C47291E5257BE9EE007E4525 /* LLSandboxTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxTestCase.m; sourceTree = "<group>"; };
+		C47291E7257BEA0B007E4525 /* LLSandboxComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxComponentTests.m; sourceTree = "<group>"; };
+		C47291E9257BEA17007E4525 /* LLSandboxHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHelperTests.m; sourceTree = "<group>"; };
+		C47291EB257BEA4A007E4525 /* LLSandboxModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxModelTests.m; sourceTree = "<group>"; };
+		C47291ED257BEA5B007E4525 /* LLPreviewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLPreviewControllerTests.m; sourceTree = "<group>"; };
+		C47291EF257BEA66007E4525 /* LLSandboxCellTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxCellTests.m; sourceTree = "<group>"; };
+		C47291F1257BEA6F007E4525 /* LLSandboxHtmlPreviewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxHtmlPreviewControllerTests.m; sourceTree = "<group>"; };
+		C47291F3257BEA7B007E4525 /* LLSandboxImagePreviewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxImagePreviewControllerTests.m; sourceTree = "<group>"; };
+		C47291F5257BEA85007E4525 /* LLSandboxPreviewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxPreviewControllerTests.m; sourceTree = "<group>"; };
+		C47291F7257BEA93007E4525 /* LLSandboxTextPreviewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxTextPreviewControllerTests.m; sourceTree = "<group>"; };
+		C47291F9257BEA9D007E4525 /* LLSandboxVideoPreviewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSandboxVideoPreviewControllerTests.m; sourceTree = "<group>"; };
+		C472D65A257D2FA200A42589 /* LLWindowManagerScreenshotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerScreenshotTests.m; sourceTree = "<group>"; };
+		C472D65C257D2FAF00A42589 /* LLScreenshotViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotViewControllerTests.m; sourceTree = "<group>"; };
+		C472D65E257D2FB900A42589 /* LLScreenshotWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotWindowTests.m; sourceTree = "<group>"; };
+		C472D660257D2FCF00A42589 /* LLScreenshotActionViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotActionViewTests.m; sourceTree = "<group>"; };
+		C472D662257D2FDD00A42589 /* LLScreenshotBaseOperationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotBaseOperationTests.m; sourceTree = "<group>"; };
+		C472D664257D2FEF00A42589 /* LLScreenshotDefineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotDefineTests.m; sourceTree = "<group>"; };
+		C472D666257D2FF900A42589 /* LLScreenshotImageViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotImageViewTests.m; sourceTree = "<group>"; };
+		C472D668257D35E400A42589 /* LLScreenshotPreviewViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewViewControllerTests.m; sourceTree = "<group>"; };
+		C472D66A257D3C1900A42589 /* LLScreenshotPreviewWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotPreviewWindowTests.m; sourceTree = "<group>"; };
+		C472D66C257D3C2800A42589 /* LLScreenshotSelectorModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotSelectorModelTests.m; sourceTree = "<group>"; };
+		C472D66E257D3C3300A42589 /* LLScreenshotSelectorViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotSelectorViewTests.m; sourceTree = "<group>"; };
+		C472D670257D3C4100A42589 /* LLScreenshotToolbarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotToolbarTests.m; sourceTree = "<group>"; };
+		C472D673257FC9A700A42589 /* LLSettingTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSettingTestCase.h; sourceTree = "<group>"; };
+		C472D674257FC9A700A42589 /* LLSettingTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingTestCase.m; sourceTree = "<group>"; };
+		C472D678257FC9EC00A42589 /* LLSettingComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingComponentTests.m; sourceTree = "<group>"; };
+		C472D67A257FC9F600A42589 /* LLSettingHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingHelperTests.m; sourceTree = "<group>"; };
+		C472D67C257FCA0000A42589 /* LLSettingViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingViewControllerTests.m; sourceTree = "<group>"; };
+		C472D67E257FCA0D00A42589 /* LLSettingWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLSettingWindowTests.m; sourceTree = "<group>"; };
+		C472D680257FCA1F00A42589 /* LLWindowManagerSettingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerSettingTests.m; sourceTree = "<group>"; };
+		C472D683257FD5ED00A42589 /* LLShortCutTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLShortCutTestCase.h; sourceTree = "<group>"; };
+		C472D684257FD5ED00A42589 /* LLShortCutTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutTestCase.m; sourceTree = "<group>"; };
+		C472D688257FD63100A42589 /* LLShortCutComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutComponentTests.m; sourceTree = "<group>"; };
+		C472D68A257FD63B00A42589 /* LLShortCutHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutHelperTests.m; sourceTree = "<group>"; };
+		C472D68C257FD64500A42589 /* LLShortCutModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutModelTests.m; sourceTree = "<group>"; };
+		C472D68E257FD65900A42589 /* LLShortCutViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutViewControllerTests.m; sourceTree = "<group>"; };
+		C472D690257FD66400A42589 /* LLShortCutWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLShortCutWindowTests.m; sourceTree = "<group>"; };
+		C472D692257FD67900A42589 /* LLWindowManagerShortCutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerShortCutTests.m; sourceTree = "<group>"; };
+		C472D695257FD6A100A42589 /* LLStorageTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLStorageTestCase.h; sourceTree = "<group>"; };
+		C472D696257FD6A100A42589 /* LLStorageTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLStorageTestCase.m; sourceTree = "<group>"; };
+		C472D69B257FD6DB00A42589 /* LLStorageManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLStorageManagerTests.m; sourceTree = "<group>"; };
+		C472D69E257FD70700A42589 /* LLWidgetBorderTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLWidgetBorderTestCase.h; sourceTree = "<group>"; };
+		C472D69F257FD70700A42589 /* LLWidgetBorderTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderTestCase.m; sourceTree = "<group>"; };
+		C472D6A3257FD78800A42589 /* LLWidgetBorderComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderComponentTests.m; sourceTree = "<group>"; };
+		C472D6A5257FD79300A42589 /* LLWidgetBorderHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderHelperTests.m; sourceTree = "<group>"; };
+		C472D6A7257FD7A500A42589 /* UIViewWidgetBorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewWidgetBorderTests.m; sourceTree = "<group>"; };
+		C472D6A9257FD7BB00A42589 /* LLWidgetBorderViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderViewControllerTests.m; sourceTree = "<group>"; };
+		C472D6AB257FD7C600A42589 /* LLWidgetBorderWindowTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWidgetBorderWindowTests.m; sourceTree = "<group>"; };
+		C472D6AD257FD7D700A42589 /* LLWindowManagerWidgetBorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLWindowManagerWidgetBorderTests.m; sourceTree = "<group>"; };
 		C47D6409252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewSelectableDelegateTests.m; sourceTree = "<group>"; };
 		C47D640B252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLTableViewSelectableModelTests.m; sourceTree = "<group>"; };
 		C47D640D252D97A1001A7FA0 /* LLStorageModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLStorageModelTests.m; sourceTree = "<group>"; };
@@ -532,6 +756,9 @@
 		C4D4B9CF256A3FD2000CEC0F /* UISliderHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISliderHierarchyTests.m; sourceTree = "<group>"; };
 		C4D4B9D1256A3FEB000CEC0F /* UIStepperHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIStepperHierarchyTests.m; sourceTree = "<group>"; };
 		C4D4B9D3256A5BC5000CEC0F /* UISwitchHierarchyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UISwitchHierarchyTests.m; sourceTree = "<group>"; };
+		C4FE7C1A257D239D00EF2CF6 /* LLConvenientScreenshotComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLConvenientScreenshotComponentTests.m; sourceTree = "<group>"; };
+		C4FE7C1C257D23D700EF2CF6 /* LLScreenshotComponentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotComponentTests.m; sourceTree = "<group>"; };
+		C4FE7C1E257D23E500EF2CF6 /* LLScreenshotHelperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLScreenshotHelperTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,6 +866,17 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C472D69D257FD6E800A42589 /* WidgetBorder */,
+				C472D694257FD68800A42589 /* Storage */,
+				C472D682257FD5D800A42589 /* ShortCut */,
+				C472D672257FC99500A42589 /* Setting */,
+				C4379033257CCCB400B3BDBA /* Screenshot */,
+				C47291E1257BE991007E4525 /* Sandbox */,
+				C47291CD257BE5D7007E4525 /* Ruler */,
+				C47291A2257BCADF007E4525 /* Network */,
+				C472918E257BCA0E007E4525 /* Magnifier */,
+				C4729175257BC8D4007E4525 /* Log */,
+				C472914F257B8811007E4525 /* Location */,
 				C4B1A34B25793A490034E8B3 /* Html */,
 				C4D4B9A2256A0906000CEC0F /* Hierarchy */,
 				C4279A18255EE32100687351 /* Feature */,
@@ -785,6 +1023,46 @@
 				C435220C2528CE56004B1648 /* UIViewUtilsTests.m */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		C4379033257CCCB400B3BDBA /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				C4379034257CCCD000B3BDBA /* LLScreenshotTestCase.h */,
+				C4379035257CCCD000B3BDBA /* LLScreenshotTestCase.m */,
+				C4379038257CCCDD00B3BDBA /* Function */,
+				C4379037257CCCD500B3BDBA /* UserInterface */,
+			);
+			path = Screenshot;
+			sourceTree = "<group>";
+		};
+		C4379037257CCCD500B3BDBA /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C472D65A257D2FA200A42589 /* LLWindowManagerScreenshotTests.m */,
+				C472D65C257D2FAF00A42589 /* LLScreenshotViewControllerTests.m */,
+				C472D65E257D2FB900A42589 /* LLScreenshotWindowTests.m */,
+				C472D660257D2FCF00A42589 /* LLScreenshotActionViewTests.m */,
+				C472D662257D2FDD00A42589 /* LLScreenshotBaseOperationTests.m */,
+				C472D664257D2FEF00A42589 /* LLScreenshotDefineTests.m */,
+				C472D666257D2FF900A42589 /* LLScreenshotImageViewTests.m */,
+				C472D668257D35E400A42589 /* LLScreenshotPreviewViewControllerTests.m */,
+				C472D66A257D3C1900A42589 /* LLScreenshotPreviewWindowTests.m */,
+				C472D66C257D3C2800A42589 /* LLScreenshotSelectorModelTests.m */,
+				C472D66E257D3C3300A42589 /* LLScreenshotSelectorViewTests.m */,
+				C472D670257D3C4100A42589 /* LLScreenshotToolbarTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4379038257CCCDD00B3BDBA /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4FE7C1A257D239D00EF2CF6 /* LLConvenientScreenshotComponentTests.m */,
+				C4FE7C1C257D23D700EF2CF6 /* LLScreenshotComponentTests.m */,
+				C4FE7C1E257D23E500EF2CF6 /* LLScreenshotHelperTests.m */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		C43A6AF02529A6A000B008AF /* UIWindow */ = {
@@ -958,6 +1236,394 @@
 				C47D640D252D97A1001A7FA0 /* LLStorageModelTests.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C472914F257B8811007E4525 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				C4729152257B88FB007E4525 /* LLLocationTestCase.h */,
+				C4729153257B88FB007E4525 /* LLLocationTestCase.m */,
+				C4729156257B8909007E4525 /* Function */,
+				C4729157257B890F007E4525 /* UserInterface */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		C4729156257B8909007E4525 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4729158257B9B8D007E4525 /* LLLocationComponentTests.m */,
+				C472915A257B9B99007E4525 /* LLLocationHelperTests.m */,
+				C472915C257B9BA6007E4525 /* LLLocationMockRouteModelTests.m */,
+				C472915E257BC701007E4525 /* LLLocationProxyTests.m */,
+				C4729160257BC727007E4525 /* CLLocation */,
+				C4729163257BC763007E4525 /* CLLocationManager */,
+				C4729168257BC7AA007E4525 /* MKMapView */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4729157257B890F007E4525 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C472916B257BC7E7007E4525 /* LLAnnotationTests.m */,
+				C472916D257BC7FF007E4525 /* LLLocationViewControllerTests.m */,
+				C472916F257BC810007E4525 /* LLLocationWindowTests.m */,
+				C4729171257BC81A007E4525 /* LLPinAnnotationViewTests.m */,
+				C4729173257BC827007E4525 /* LLWindowManagerLocationTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C4729160257BC727007E4525 /* CLLocation */ = {
+			isa = PBXGroup;
+			children = (
+				C4729161257BC741007E4525 /* CLLocationLocationTests.m */,
+			);
+			path = CLLocation;
+			sourceTree = "<group>";
+		};
+		C4729163257BC763007E4525 /* CLLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				C4729166257BC79D007E4525 /* CLLocationManagerLocationTests.m */,
+			);
+			path = CLLocationManager;
+			sourceTree = "<group>";
+		};
+		C4729168257BC7AA007E4525 /* MKMapView */ = {
+			isa = PBXGroup;
+			children = (
+				C4729169257BC7C4007E4525 /* MKMapViewLocationTests.m */,
+			);
+			path = MKMapView;
+			sourceTree = "<group>";
+		};
+		C4729175257BC8D4007E4525 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				C4729176257BC8F1007E4525 /* LLLogTestCase.h */,
+				C4729177257BC8F1007E4525 /* LLLogTestCase.m */,
+				C472917A257BC901007E4525 /* Function */,
+				C472917B257BC909007E4525 /* UserInterface */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		C472917A257BC901007E4525 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C472917C257BC935007E4525 /* LLLogComponentTests.m */,
+				C472917E257BC93E007E4525 /* LLLogHelperTests.m */,
+				C4729180257BC94B007E4525 /* LLLogModelTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C472917B257BC909007E4525 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4729182257BC957007E4525 /* LLLogCellTests.m */,
+				C4729184257BC961007E4525 /* LLLogDetailViewControllerTests.m */,
+				C4729186257BC96C007E4525 /* LLLogFilterViewTests.m */,
+				C4729188257BC97C007E4525 /* LLLogViewControllerTests.m */,
+				C472918A257BC989007E4525 /* LLLogWindowTests.m */,
+				C472918C257BC998007E4525 /* LLWindowManagerLogTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C472918E257BCA0E007E4525 /* Magnifier */ = {
+			isa = PBXGroup;
+			children = (
+				C4729191257BCA55007E4525 /* LLMagnifierTestCase.h */,
+				C4729192257BCA55007E4525 /* LLMagnifierTestCase.m */,
+				C472918F257BCA18007E4525 /* Function */,
+				C4729190257BCA1F007E4525 /* UserInterface */,
+			);
+			path = Magnifier;
+			sourceTree = "<group>";
+		};
+		C472918F257BCA18007E4525 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C4729194257BCA7D007E4525 /* LLMagnifierComponentTests.m */,
+				C4729196257BCA8A007E4525 /* LLMagnifierHelperTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C4729190257BCA1F007E4525 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C4729198257BCA95007E4525 /* LLMagnifierInfoViewTests.m */,
+				C472919A257BCAA0007E4525 /* LLMagnifierViewTests.m */,
+				C472919C257BCAAA007E4525 /* LLMagnifierViewControllerTests.m */,
+				C472919E257BCAB4007E4525 /* LLMagnifierWindowTests.m */,
+				C47291A0257BCAC8007E4525 /* LLWindowManagerMagnifierTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C47291A2257BCADF007E4525 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C47291A3257BCAF2007E4525 /* LLNetworkTestCase.h */,
+				C47291A4257BCAF2007E4525 /* LLNetworkTestCase.m */,
+				C47291A7257BCB02007E4525 /* Function */,
+				C47291A6257BCAFB007E4525 /* UserInterface */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C47291A6257BCAFB007E4525 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C47291BF257BE51B007E4525 /* LLNetworkCellTests.m */,
+				C47291C1257BE589007E4525 /* LLNetworkDetailViewControllerTests.m */,
+				C47291C3257BE594007E4525 /* LLNetworkFilterViewTests.m */,
+				C47291C5257BE5A5007E4525 /* LLNetworkImageCellTests.m */,
+				C47291C7257BE5B0007E4525 /* LLNetworkViewControllerTests.m */,
+				C47291C9257BE5BB007E4525 /* LLNetworkWindowTests.m */,
+				C47291CB257BE5CA007E4525 /* LLWindowManagerNetworkTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C47291A7257BCB02007E4525 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C47291A8257BCB49007E4525 /* LLNetworkComponentTests.m */,
+				C47291AA257BDCB6007E4525 /* LLNetworkHelperTests.m */,
+				C47291AC257BDCC0007E4525 /* LLNetworkModelTests.m */,
+				C47291AE257BDCD5007E4525 /* LLURLProtocolTests.m */,
+				C47291BC257BE4FB007E4525 /* NSURLSessionConfiguration */,
+				C47291B9257BE4E7007E4525 /* NSURLSession */,
+				C47291B6257BE49C007E4525 /* NSInputStream */,
+				C47291B3257BE47C007E4525 /* NSHTTPURLResponse */,
+				C47291B0257BE419007E4525 /* NSData */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C47291B0257BE419007E4525 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				C47291B1257BE42A007E4525 /* NSDataNetworkTests.m */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
+		C47291B3257BE47C007E4525 /* NSHTTPURLResponse */ = {
+			isa = PBXGroup;
+			children = (
+				C47291B4257BE491007E4525 /* NSHTTPURLResponseTests.m */,
+			);
+			path = NSHTTPURLResponse;
+			sourceTree = "<group>";
+		};
+		C47291B6257BE49C007E4525 /* NSInputStream */ = {
+			isa = PBXGroup;
+			children = (
+				C47291B7257BE4DD007E4525 /* NSInputStreamNetworkTests.m */,
+			);
+			path = NSInputStream;
+			sourceTree = "<group>";
+		};
+		C47291B9257BE4E7007E4525 /* NSURLSession */ = {
+			isa = PBXGroup;
+			children = (
+				C47291BA257BE4F1007E4525 /* NSURLSessionNetworkTests.m */,
+			);
+			path = NSURLSession;
+			sourceTree = "<group>";
+		};
+		C47291BC257BE4FB007E4525 /* NSURLSessionConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				C47291BD257BE504007E4525 /* NSURLSessionConfigurationNetworkTests.m */,
+			);
+			path = NSURLSessionConfiguration;
+			sourceTree = "<group>";
+		};
+		C47291CD257BE5D7007E4525 /* Ruler */ = {
+			isa = PBXGroup;
+			children = (
+				C47291D0257BE611007E4525 /* LLRulerTestCase.h */,
+				C47291D1257BE611007E4525 /* LLRulerTestCase.m */,
+				C47291CE257BE5DE007E4525 /* Function */,
+				C47291CF257BE5E8007E4525 /* UserInterface */,
+			);
+			path = Ruler;
+			sourceTree = "<group>";
+		};
+		C47291CE257BE5DE007E4525 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C47291D3257BE8B0007E4525 /* LLRulerComponentTests.m */,
+				C47291D5257BE8C8007E4525 /* LLRulerHelperTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C47291CF257BE5E8007E4525 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C47291D7257BE8DD007E4525 /* LLRulerPickerInfoViewTests.m */,
+				C47291D9257BE8F2007E4525 /* LLRulerPickerViewTests.m */,
+				C47291DB257BE8FB007E4525 /* LLRulerViewControllerTests.m */,
+				C47291DD257BE924007E4525 /* LLRulerWindowTests.m */,
+				C47291DF257BE935007E4525 /* LLWindowManagerRulerTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C47291E1257BE991007E4525 /* Sandbox */ = {
+			isa = PBXGroup;
+			children = (
+				C47291E4257BE9EE007E4525 /* LLSandboxTestCase.h */,
+				C47291E5257BE9EE007E4525 /* LLSandboxTestCase.m */,
+				C47291E2257BE99A007E4525 /* Function */,
+				C47291E3257BE9A0007E4525 /* UserInterface */,
+			);
+			path = Sandbox;
+			sourceTree = "<group>";
+		};
+		C47291E2257BE99A007E4525 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C47291E7257BEA0B007E4525 /* LLSandboxComponentTests.m */,
+				C47291E9257BEA17007E4525 /* LLSandboxHelperTests.m */,
+				C47291EB257BEA4A007E4525 /* LLSandboxModelTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C47291E3257BE9A0007E4525 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C47291ED257BEA5B007E4525 /* LLPreviewControllerTests.m */,
+				C47291EF257BEA66007E4525 /* LLSandboxCellTests.m */,
+				C47291F1257BEA6F007E4525 /* LLSandboxHtmlPreviewControllerTests.m */,
+				C47291F3257BEA7B007E4525 /* LLSandboxImagePreviewControllerTests.m */,
+				C47291F5257BEA85007E4525 /* LLSandboxPreviewControllerTests.m */,
+				C47291F7257BEA93007E4525 /* LLSandboxTextPreviewControllerTests.m */,
+				C47291F9257BEA9D007E4525 /* LLSandboxVideoPreviewControllerTests.m */,
+				C437902D257CC93300B3BDBA /* LLSandboxViewControllerTests.m */,
+				C437902F257CC93E00B3BDBA /* LLSandboxWindowTests.m */,
+				C4379031257CCC7900B3BDBA /* LLWindowManagerSandboxTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C472D672257FC99500A42589 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C472D673257FC9A700A42589 /* LLSettingTestCase.h */,
+				C472D674257FC9A700A42589 /* LLSettingTestCase.m */,
+				C472D677257FC9D000A42589 /* Function */,
+				C472D676257FC9C700A42589 /* UserInterface */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C472D676257FC9C700A42589 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C472D67C257FCA0000A42589 /* LLSettingViewControllerTests.m */,
+				C472D67E257FCA0D00A42589 /* LLSettingWindowTests.m */,
+				C472D680257FCA1F00A42589 /* LLWindowManagerSettingTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C472D677257FC9D000A42589 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C472D678257FC9EC00A42589 /* LLSettingComponentTests.m */,
+				C472D67A257FC9F600A42589 /* LLSettingHelperTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C472D682257FD5D800A42589 /* ShortCut */ = {
+			isa = PBXGroup;
+			children = (
+				C472D683257FD5ED00A42589 /* LLShortCutTestCase.h */,
+				C472D684257FD5ED00A42589 /* LLShortCutTestCase.m */,
+				C472D687257FD60F00A42589 /* Function */,
+				C472D686257FD5F300A42589 /* UserInterface */,
+			);
+			path = ShortCut;
+			sourceTree = "<group>";
+		};
+		C472D686257FD5F300A42589 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C472D68E257FD65900A42589 /* LLShortCutViewControllerTests.m */,
+				C472D690257FD66400A42589 /* LLShortCutWindowTests.m */,
+				C472D692257FD67900A42589 /* LLWindowManagerShortCutTests.m */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		C472D687257FD60F00A42589 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C472D688257FD63100A42589 /* LLShortCutComponentTests.m */,
+				C472D68A257FD63B00A42589 /* LLShortCutHelperTests.m */,
+				C472D68C257FD64500A42589 /* LLShortCutModelTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C472D694257FD68800A42589 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				C472D695257FD6A100A42589 /* LLStorageTestCase.h */,
+				C472D696257FD6A100A42589 /* LLStorageTestCase.m */,
+				C472D69A257FD6C800A42589 /* Function */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		C472D69A257FD6C800A42589 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C472D69B257FD6DB00A42589 /* LLStorageManagerTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C472D69D257FD6E800A42589 /* WidgetBorder */ = {
+			isa = PBXGroup;
+			children = (
+				C472D69E257FD70700A42589 /* LLWidgetBorderTestCase.h */,
+				C472D69F257FD70700A42589 /* LLWidgetBorderTestCase.m */,
+				C472D6A1257FD70F00A42589 /* Function */,
+				C472D6A2257FD71C00A42589 /* UserInterface */,
+			);
+			path = WidgetBorder;
+			sourceTree = "<group>";
+		};
+		C472D6A1257FD70F00A42589 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				C472D6A3257FD78800A42589 /* LLWidgetBorderComponentTests.m */,
+				C472D6A5257FD79300A42589 /* LLWidgetBorderHelperTests.m */,
+				C472D6A7257FD7A500A42589 /* UIViewWidgetBorderTests.m */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		C472D6A2257FD71C00A42589 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C472D6A9257FD7BB00A42589 /* LLWidgetBorderViewControllerTests.m */,
+				C472D6AB257FD7C600A42589 /* LLWidgetBorderWindowTests.m */,
+				C472D6AD257FD7D700A42589 /* LLWindowManagerWidgetBorderTests.m */,
+			);
+			path = UserInterface;
 			sourceTree = "<group>";
 		};
 		C47D640F252DAD44001A7FA0 /* View */ = {
@@ -1735,6 +2401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47291AD257BDCC0007E4525 /* LLNetworkModelTests.m in Sources */,
+				C47291B2257BE42A007E4525 /* NSDataNetworkTests.m in Sources */,
 				C47E5915252EBC41003AA64A /* LLComponentHelperDelegateTests.m in Sources */,
 				C47E5927252EBCAD003AA64A /* LLNetworkHelperDelegateTests.m in Sources */,
 				C47D6428252DAF7D001A7FA0 /* LLFilterLabelModelTests.m in Sources */,
@@ -1743,9 +2411,12 @@
 				C4D4B9BE256A3E36000CEC0F /* UIImageViewHierarchyTests.m in Sources */,
 				C47D641B252DAEF1001A7FA0 /* LLFilterDatePickerViewTests.m in Sources */,
 				C4D4B9C8256A3ED0000CEC0F /* UIProgressViewHierarchyTests.m in Sources */,
+				C472915D257B9BA6007E4525 /* LLLocationMockRouteModelTests.m in Sources */,
+				C472919B257BCAA0007E4525 /* LLMagnifierViewTests.m in Sources */,
 				C45B508E252B67ED0060CDD0 /* LLBaseTableViewControllerTests.m in Sources */,
 				C47D6424252DAF63001A7FA0 /* LLFilterFilePickerViewTests.m in Sources */,
 				C47D640C252D96E8001A7FA0 /* LLTableViewSelectableModelTests.m in Sources */,
+				C472D66F257D3C3300A42589 /* LLScreenshotSelectorViewTests.m in Sources */,
 				C4279A12255ECCEB00687351 /* LLEntryViewControllerTests.m in Sources */,
 				C47D6468252DF3EF001A7FA0 /* LLNavigationControllerTests.m in Sources */,
 				C4C554B52557F93E0081DCEC /* LLCrashModelTests.m in Sources */,
@@ -1756,153 +2427,248 @@
 				C47D644F252DEF69001A7FA0 /* LLTitleCellCategoryModelTests.m in Sources */,
 				C47E5917252EBC4C003AA64A /* LLCrashHelperDelegateTests.m in Sources */,
 				C4D4B9CE256A3FBF000CEC0F /* UISegmentedControlHierarchyTests.m in Sources */,
+				C47291DE257BE924007E4525 /* LLRulerWindowTests.m in Sources */,
 				C455923525271A20008FE718 /* NSObjectRuntimeTests.m in Sources */,
+				C47291EC257BEA4A007E4525 /* LLSandboxModelTests.m in Sources */,
+				C472916E257BC7FF007E4525 /* LLLocationViewControllerTests.m in Sources */,
 				C4D4B99F256A024A000CEC0F /* LLFeatureWindowTests.m in Sources */,
 				C4279A02255EC36800687351 /* LLEntryComponentTests.m in Sources */,
+				C472D693257FD67900A42589 /* LLWindowManagerShortCutTests.m in Sources */,
+				C472D6AE257FD7D700A42589 /* LLWindowManagerWidgetBorderTests.m in Sources */,
 				C43521FB2528514D004B1648 /* NSUserDefaultsUtilsTests.m in Sources */,
+				C472D6AA257FD7BB00A42589 /* LLWidgetBorderViewControllerTests.m in Sources */,
 				C434939F2571F4BC00670050 /* UITabBarHierarchyTests.m in Sources */,
 				C47D6451252DEF74001A7FA0 /* LLTitleCellModelTests.m in Sources */,
 				C4D4B997256A01EA000CEC0F /* LLFeatureItemContainerViewTests.m in Sources */,
 				C4B1A36125793C720034E8B3 /* LLHtmlWindowTests.m in Sources */,
+				C4729187257BC96C007E4525 /* LLLogFilterViewTests.m in Sources */,
 				C4279A06255ECC8700687351 /* LLEntryAppInfoViewTests.m in Sources */,
 				C4AF04D4257A77DF000F2559 /* LLHtmlWkWebViewControllerTests.m in Sources */,
+				C4729193257BCA55007E4525 /* LLMagnifierTestCase.m in Sources */,
 				C47E594A252F0CCD003AA64A /* LLFormatterToolTests.m in Sources */,
+				C4729183257BC957007E4525 /* LLLogCellTests.m in Sources */,
 				C47D6447252DEF35001A7FA0 /* LLDetailTitleCellTests.m in Sources */,
+				C47291D8257BE8DD007E4525 /* LLRulerPickerInfoViewTests.m in Sources */,
 				C455922D25270608008FE718 /* NSDictionaryUtilsTests.m in Sources */,
+				C4729181257BC94B007E4525 /* LLLogModelTests.m in Sources */,
+				C472D67D257FCA0000A42589 /* LLSettingViewControllerTests.m in Sources */,
+				C472915B257B9B99007E4525 /* LLLocationHelperTests.m in Sources */,
 				C47E5957252F146C003AA64A /* LLProxyTests.m in Sources */,
+				C47291F4257BEA7B007E4525 /* LLSandboxImagePreviewControllerTests.m in Sources */,
 				C46115282556EA35009C96D5 /* LLWindowManagerAppInfoTests.m in Sources */,
+				C472D681257FCA1F00A42589 /* LLWindowManagerSettingTests.m in Sources */,
 				C47D6449252DEF40001A7FA0 /* LLDetailTitleCellModelTests.m in Sources */,
 				C47D644D252DEF5C001A7FA0 /* LLTitleCellTests.m in Sources */,
 				C47E5933252EBCF8003AA64A /* LLWidgetBorderHelperDelegateTests.m in Sources */,
 				C47D640A252D59CD001A7FA0 /* LLTableViewSelectableDelegateTests.m in Sources */,
 				C47E5944252EF60B003AA64A /* LLNetworkDefineTests.m in Sources */,
 				C4AA36DB257288F000624B68 /* UITextViewHierarchyTests.m in Sources */,
+				C47291DC257BE8FB007E4525 /* LLRulerViewControllerTests.m in Sources */,
 				C47E5911252EBC0E003AA64A /* LLAppInfoHelperDelegateTests.m in Sources */,
 				C4D4B991256A0171000CEC0F /* LLFeatureTestCase.m in Sources */,
 				C442A6B325257E6200E95CAA /* LLCoreTestCase.m in Sources */,
 				C4D4B9A1256A025F000CEC0F /* LLWindowManagerFeatureTests.m in Sources */,
 				C47E5960252F15F2003AA64A /* LLThemeColorTests.m in Sources */,
+				C47291F0257BEA66007E4525 /* LLSandboxCellTests.m in Sources */,
 				C47D6472252DFAE4001A7FA0 /* LLComponentDelegateTests.m in Sources */,
 				C4AA36E125728C8300624B68 /* UIViewHierarchyTests.m in Sources */,
 				C461151E2556E98A009C96D5 /* LLAppInfoComponentTests.m in Sources */,
 				C4279A0A255ECC9C00687351 /* LLEntryBigTitleViewTests.m in Sources */,
 				C4AA36E925729D5000624B68 /* LLHierarchyInfoSwitchModelTests.m in Sources */,
+				C472918B257BC989007E4525 /* LLLogWindowTests.m in Sources */,
 				C47E592F252EBCDD003AA64A /* LLSettingHelperDelegateTests.m in Sources */,
 				C4919E6C2573410E00DF2D60 /* LLHierarchyWindowTests.m in Sources */,
 				C46D576D252C20AE00712151 /* LLBaseViewTests.m in Sources */,
 				C444AA19253005B30006965B /* LLToastUtilsTests.m in Sources */,
+				C47291A1257BCAC8007E4525 /* LLWindowManagerMagnifierTests.m in Sources */,
+				C4729185257BC961007E4525 /* LLLogDetailViewControllerTests.m in Sources */,
+				C472D67B257FC9F600A42589 /* LLSettingHelperTests.m in Sources */,
 				C47E5925252EBCA2003AA64A /* LLMagnifierHelperDelegateTests.m in Sources */,
+				C472D67F257FCA0D00A42589 /* LLSettingWindowTests.m in Sources */,
 				C4C554B72557F9490081DCEC /* LLCrashCellTests.m in Sources */,
+				C4729172257BC81A007E4525 /* LLPinAnnotationViewTests.m in Sources */,
 				C4AA36E725729D0E00624B68 /* LLHierarchyDetailViewControllerTests.m in Sources */,
+				C4729189257BC97C007E4525 /* LLLogViewControllerTests.m in Sources */,
 				C4D4B9B6256A397B000CEC0F /* UICollectionReusableViewHierarchyTests.m in Sources */,
 				C4B1A35125793B830034E8B3 /* LLHierarchyTestCase.m in Sources */,
 				C444AA1C253005C30006965B /* LLToolTests.m in Sources */,
+				C4729155257B8900007E4525 /* LLLocationTestCase.m in Sources */,
 				C4C554B32557F9320081DCEC /* LLCrashHelperTests.m in Sources */,
 				C47D6459252DEFA1001A7FA0 /* LLTitleSwitchCellTests.m in Sources */,
 				C4919E6225733F3500DF2D60 /* LLHierarchyInfoViewTests.m in Sources */,
 				C47D642C252DAF94001A7FA0 /* LLFilterTextFieldCellTests.m in Sources */,
 				C47E595D252F15E0003AA64A /* LLScreenshotToolTests.m in Sources */,
+				C472D663257D2FDD00A42589 /* LLScreenshotBaseOperationTests.m in Sources */,
 				C4AA36E525729CFE00624B68 /* LLHierarchyBorderViewTests.m in Sources */,
 				C47D6439252DB061001A7FA0 /* LLMoveWindowTests.m in Sources */,
 				C442A6AF25257DA800E95CAA /* NSArrayUtilsTests.m in Sources */,
 				C4279A17255ECDC500687351 /* LLEntryTestCase.m in Sources */,
 				C4D4B993256A01AC000CEC0F /* LLFeatureComponentTests.m in Sources */,
 				C47D6415252DAE42001A7FA0 /* LLDetailTitleSelectorCellViewTests.m in Sources */,
+				C472D68D257FD64600A42589 /* LLShortCutModelTests.m in Sources */,
 				C435220425287388004B1648 /* UIColorUtilsTests.m in Sources */,
 				C47D643F252DB0B4001A7FA0 /* LLPickerViewTests.m in Sources */,
+				C4379032257CCC7900B3BDBA /* LLWindowManagerSandboxTests.m in Sources */,
 				C4C554BD2557F96E0081DCEC /* LLCrashWindowTests.m in Sources */,
+				C4729195257BCA7D007E4525 /* LLMagnifierComponentTests.m in Sources */,
 				C4279A10255ECCDE00687351 /* LLEntryViewTests.m in Sources */,
+				C472D65F257D2FB900A42589 /* LLScreenshotWindowTests.m in Sources */,
 				C47E595A252F15C9003AA64A /* LLImageNameConfigTests.m in Sources */,
 				C4D4B9C0256A3E5A000CEC0F /* UILabelHierarchyTests.m in Sources */,
 				C47E5942252EF600003AA64A /* LLLogDefineTests.m in Sources */,
+				C4379030257CC93E00B3BDBA /* LLSandboxWindowTests.m in Sources */,
 				C4AA36E325728C9000624B68 /* UIWindowHierarchyTests.m in Sources */,
+				C47291BB257BE4F1007E4525 /* NSURLSessionNetworkTests.m in Sources */,
+				C4729174257BC827007E4525 /* LLWindowManagerLocationTests.m in Sources */,
+				C472917D257BC935007E4525 /* LLLogComponentTests.m in Sources */,
 				C4352201252872CC004B1648 /* UIButtonUtilsTests.m in Sources */,
+				C472D6A6257FD79300A42589 /* LLWidgetBorderHelperTests.m in Sources */,
 				C46115202556E9A9009C96D5 /* LLAppInfoHelperTests.m in Sources */,
 				C4279A08255ECC9200687351 /* LLEntryBallViewTests.m in Sources */,
+				C4729179257BC8F5007E4525 /* LLLogTestCase.m in Sources */,
+				C47291AF257BDCD5007E4525 /* LLURLProtocolTests.m in Sources */,
 				C4D4B9BC256A3E26000CEC0F /* UIDatePickerHierarchyTests.m in Sources */,
+				C472D669257D35E400A42589 /* LLScreenshotPreviewViewControllerTests.m in Sources */,
 				C47D6419252DAEA3001A7FA0 /* LLTitleSwitchCellViewTests.m in Sources */,
 				C47E593F252ECB01003AA64A /* LLDebugToolTests.m in Sources */,
+				C47291C2257BE589007E4525 /* LLNetworkDetailViewControllerTests.m in Sources */,
 				C47E5962252F1600003AA64A /* LLThemeManagerTests.m in Sources */,
 				C4D4B9C2256A3EA1000CEC0F /* UINavigationBarHierarchyTests.m in Sources */,
 				C47D6465252DF3D5001A7FA0 /* LLEditTableViewControllerTests.m in Sources */,
 				C4D4B99B256A021E000CEC0F /* LLFeatureItemViewTests.m in Sources */,
+				C47291FA257BEA9D007E4525 /* LLSandboxVideoPreviewControllerTests.m in Sources */,
 				C47E5923252EBC97003AA64A /* LLLogHelperDelegateTests.m in Sources */,
 				C4B1A35925793C390034E8B3 /* LLHtmlHelperTests.m in Sources */,
+				C472D697257FD6A100A42589 /* LLStorageTestCase.m in Sources */,
 				C43522072528AA09004B1648 /* UIImageUtilsTests.m in Sources */,
+				C47291D2257BE611007E4525 /* LLRulerTestCase.m in Sources */,
 				C47E592D252EBCD2003AA64A /* LLScreenshotHelperDelegateTests.m in Sources */,
 				C4D4B9D0256A3FD2000CEC0F /* UISliderHierarchyTests.m in Sources */,
 				C4919E64257340DD00DF2D60 /* LLHierarchyPickerViewTests.m in Sources */,
 				C461151C2556E8F3009C96D5 /* LLAppInfoTestCase.m in Sources */,
 				C4C554BB2557F9630081DCEC /* LLCrashViewControllerTests.m in Sources */,
+				C47291EE257BEA5B007E4525 /* LLPreviewControllerTests.m in Sources */,
 				C47E591B252EBC68003AA64A /* LLFeatureHelperDelegateTests.m in Sources */,
 				C47D642A252DAF88001A7FA0 /* LLFilterOtherViewTests.m in Sources */,
 				C47D642E252DAFA2001A7FA0 /* LLFilterTextFieldModelTests.m in Sources */,
+				C4729197257BCA8A007E4525 /* LLMagnifierHelperTests.m in Sources */,
+				C472917F257BC93E007E4525 /* LLLogHelperTests.m in Sources */,
 				C4AA36D9257288D300624B68 /* UITextFieldHierarchyTests.m in Sources */,
+				C4729159257B9B8D007E4525 /* LLLocationComponentTests.m in Sources */,
+				C472918D257BC998007E4525 /* LLWindowManagerLogTests.m in Sources */,
 				C47D6455252DEF8B001A7FA0 /* LLTitleSliderCellTests.m in Sources */,
+				C47291F8257BEA93007E4525 /* LLSandboxTextPreviewControllerTests.m in Sources */,
 				C435220A2528CBBC004B1648 /* UIResponderUtilsTests.m in Sources */,
+				C4729170257BC810007E4525 /* LLLocationWindowTests.m in Sources */,
+				C47291D4257BE8B0007E4525 /* LLRulerComponentTests.m in Sources */,
+				C47291DA257BE8F2007E4525 /* LLRulerPickerViewTests.m in Sources */,
+				C472D68B257FD63B00A42589 /* LLShortCutHelperTests.m in Sources */,
+				C472D6A0257FD70700A42589 /* LLWidgetBorderTestCase.m in Sources */,
 				C4919E6025733F2800DF2D60 /* LLHierarchyInfoSwitchViewTests.m in Sources */,
 				C43493A32571F4EC00670050 /* UITableViewCellHierarchyTests.m in Sources */,
 				C47D6420252DAF43001A7FA0 /* LLFilterDateViewTests.m in Sources */,
 				C4279A16255ECD2600687351 /* LLWindowManagerEntryTests.m in Sources */,
 				C4C554C025581AC30081DCEC /* LLCrashTestCase.m in Sources */,
 				C47D6433252DB03C001A7FA0 /* LLInfoViewTests.m in Sources */,
+				C47291CA257BE5BB007E4525 /* LLNetworkWindowTests.m in Sources */,
 				C47D646B252DF40E001A7FA0 /* LLTitleViewControllerTests.m in Sources */,
 				C46115222556E9F5009C96D5 /* UIDeviceAppInfoTests.m in Sources */,
 				C47D6474252DFAEF001A7FA0 /* LLComponentHandleTests.m in Sources */,
 				C47E5929252EBCB8003AA64A /* LLRulerHelperDelegateTests.m in Sources */,
+				C47291C0257BE51B007E4525 /* LLNetworkCellTests.m in Sources */,
 				C47E5939252ECADC003AA64A /* LLDebugConfigHelperTests.m in Sources */,
 				C4C554B12557F9250081DCEC /* LLCrashComponentTests.m in Sources */,
+				C472D65B257D2FA200A42589 /* LLWindowManagerScreenshotTests.m in Sources */,
+				C47291E8257BEA0B007E4525 /* LLSandboxComponentTests.m in Sources */,
+				C472919D257BCAAA007E4525 /* LLMagnifierViewControllerTests.m in Sources */,
+				C47291C8257BE5B0007E4525 /* LLNetworkViewControllerTests.m in Sources */,
 				C4AA36DF2572893100624B68 /* UIToolbarHierarchyTests.m in Sources */,
 				C47D6436252DB04C001A7FA0 /* LLMoveViewTests.m in Sources */,
 				C4919E68257340F400DF2D60 /* LLHierarchySheetViewTests.m in Sources */,
 				C47D644B252DEF49001A7FA0 /* LLLeftTitleCellTests.m in Sources */,
 				C4D4B9C6256A3EBF000CEC0F /* UIPickerViewHierarchyTests.m in Sources */,
 				C4D4B995256A01DD000CEC0F /* LLFeatureHelperTests.m in Sources */,
+				C472D685257FD5ED00A42589 /* LLShortCutTestCase.m in Sources */,
 				C43A6AF22529A6A900B008AF /* UIWindowUtilsTests.m in Sources */,
+				C472D689257FD63200A42589 /* LLShortCutComponentTests.m in Sources */,
+				C47291E0257BE935007E4525 /* LLWindowManagerRulerTests.m in Sources */,
 				C4279A04255ECC5D00687351 /* LLEntryHelperTests.m in Sources */,
 				C47D6462252DF3B7001A7FA0 /* LLBaseComponentViewControllerTests.m in Sources */,
+				C47291B5257BE491007E4525 /* NSHTTPURLResponseTests.m in Sources */,
 				C46D5771252CA59200712151 /* LLBaseWindowTests.m in Sources */,
+				C472916C257BC7E7007E4525 /* LLAnnotationTests.m in Sources */,
 				C45B5088252B55150060CDD0 /* LLBaseCollectionViewCellTests.m in Sources */,
+				C47291E6257BE9EE007E4525 /* LLSandboxTestCase.m in Sources */,
 				C47E5919252EBC5D003AA64A /* LLEntryHelperDelegateTests.m in Sources */,
+				C47291F6257BEA85007E4525 /* LLSandboxPreviewControllerTests.m in Sources */,
 				C455923825271D93008FE718 /* NSStringUtilsTests.m in Sources */,
 				C47E5913252EBC32003AA64A /* LLComponentHelperTests.m in Sources */,
+				C47291A5257BCAF2007E4525 /* LLNetworkTestCase.m in Sources */,
 				C4D4B99D256A023C000CEC0F /* LLFeatureViewControllerTests.m in Sources */,
+				C472D665257D2FEF00A42589 /* LLScreenshotDefineTests.m in Sources */,
+				C472D69C257FD6DB00A42589 /* LLStorageManagerTests.m in Sources */,
 				C4279A0E255ECCC900687351 /* LLEntryTitleViewTests.m in Sources */,
 				C47D6422252DAF57001A7FA0 /* LLFilterEventViewTests.m in Sources */,
+				C472D68F257FD65900A42589 /* LLShortCutViewControllerTests.m in Sources */,
 				C47E5954252F145A003AA64A /* LLNetworkToolTests.m in Sources */,
 				C47D6430252DAFAC001A7FA0 /* LLFilterViewTests.m in Sources */,
 				C4D4B9AA256A118B000CEC0F /* LLHierarchyHelperTests.m in Sources */,
 				C435220D2528CE56004B1648 /* UIViewUtilsTests.m in Sources */,
+				C47291EA257BEA17007E4525 /* LLSandboxHelperTests.m in Sources */,
 				C47D646E252DF442001A7FA0 /* LLBaseComponentTests.m in Sources */,
 				C4D4B9A8256A1182000CEC0F /* LLHierarchyFormatterTests.m in Sources */,
 				C4D4B9D2256A3FEB000CEC0F /* UIStepperHierarchyTests.m in Sources */,
 				C4B1A35725793C2E0034E8B3 /* LLHtmlComponentTests.m in Sources */,
 				C46115242556EA10009C96D5 /* LLAppInfoViewControllerTests.m in Sources */,
 				C4B1A35F25793C5B0034E8B3 /* LLHtmlViewControllerTests.m in Sources */,
+				C472D679257FC9EC00A42589 /* LLSettingComponentTests.m in Sources */,
+				C472916A257BC7C4007E4525 /* MKMapViewLocationTests.m in Sources */,
+				C472D6AC257FD7C600A42589 /* LLWidgetBorderWindowTests.m in Sources */,
+				C47291D6257BE8C8007E4525 /* LLRulerHelperTests.m in Sources */,
+				C47291BE257BE504007E4525 /* NSURLSessionConfigurationNetworkTests.m in Sources */,
 				C444AA1F253005D10006965B /* LLWindowManagerTests.m in Sources */,
 				C47E5947252EF61D003AA64A /* LLFactoryTests.m in Sources */,
+				C4729162257BC741007E4525 /* CLLocationLocationTests.m in Sources */,
 				C4D4B9D4256A5BC5000CEC0F /* UISwitchHierarchyTests.m in Sources */,
 				C455923325271A0C008FE718 /* NSObjectUtilsTests.m in Sources */,
+				C472D661257D2FCF00A42589 /* LLScreenshotActionViewTests.m in Sources */,
+				C4729199257BCA95007E4525 /* LLMagnifierInfoViewTests.m in Sources */,
+				C472D66B257D3C1900A42589 /* LLScreenshotPreviewWindowTests.m in Sources */,
 				C43521FE25286B08004B1648 /* UIAlertActionUtilsTests.m in Sources */,
 				C47D6411252DAD56001A7FA0 /* LLAnimateViewTests.m in Sources */,
+				C4379036257CCCD000B3BDBA /* LLScreenshotTestCase.m in Sources */,
+				C47291C4257BE594007E4525 /* LLNetworkFilterViewTests.m in Sources */,
 				C47E5931252EBCEB003AA64A /* LLShortCutHelperDelegateTests.m in Sources */,
+				C472D675257FC9A700A42589 /* LLSettingTestCase.m in Sources */,
+				C4729167257BC79D007E4525 /* CLLocationManagerLocationTests.m in Sources */,
+				C472D6A8257FD7A500A42589 /* UIViewWidgetBorderTests.m in Sources */,
 				C4D4B9B4256A3964000CEC0F /* UIButtonHierarchyTests.m in Sources */,
 				C47E5951252F1444003AA64A /* LLInternalMacrosTests.m in Sources */,
 				C43493A12571F4D900670050 /* UITableViewHierarchyTests.m in Sources */,
+				C472915F257BC701007E4525 /* LLLocationProxyTests.m in Sources */,
+				C47291B8257BE4DD007E4525 /* NSInputStreamNetworkTests.m in Sources */,
 				C47D6453252DEF80001A7FA0 /* LLTitleHeaderViewTests.m in Sources */,
 				C4279A14255ECCFC00687351 /* LLEntryWindowTests.m in Sources */,
+				C472D691257FD66400A42589 /* LLShortCutWindowTests.m in Sources */,
 				C4AF04D6257A86B6000F2559 /* LLWindowManagerHtmlTests.m in Sources */,
 				C4D4B9B8256A3DF7000CEC0F /* UICollectionViewHierarchyTests.m in Sources */,
 				C46D576F252C227000712151 /* LLBaseViewControllerTests.m in Sources */,
+				C4FE7C1F257D23E500EF2CF6 /* LLScreenshotHelperTests.m in Sources */,
 				C47D643C252DB072001A7FA0 /* LLNoneCopyTextFieldTests.m in Sources */,
 				C4D4B9B0256A393E000CEC0F /* NSObjectHierarchyTests.m in Sources */,
 				C47D640E252D97A1001A7FA0 /* LLStorageModelTests.m in Sources */,
 				C4279A0C255ECCA700687351 /* LLEntryStyleModelTests.m in Sources */,
 				C4C554BF2557F9800081DCEC /* LLWindowManagerCrashTests.m in Sources */,
+				C47291A9257BCB49007E4525 /* LLNetworkComponentTests.m in Sources */,
 				C455923025271887008FE718 /* NSMutableArrayUtilsTests.m in Sources */,
+				C4FE7C1B257D239D00EF2CF6 /* LLConvenientScreenshotComponentTests.m in Sources */,
 				C47E5936252ECA37003AA64A /* LLDebugConfigTests.m in Sources */,
 				C4D4B9C4256A3EB1000CEC0F /* UIPageControlHierarchyTests.m in Sources */,
+				C472919F257BCAB4007E4525 /* LLMagnifierWindowTests.m in Sources */,
+				C472D65D257D2FAF00A42589 /* LLScreenshotViewControllerTests.m in Sources */,
+				C47291CC257BE5CA007E4525 /* LLWindowManagerNetworkTests.m in Sources */,
 				C4B1A35B25793C460034E8B3 /* LLHtmlConfigViewControllerTests.m in Sources */,
+				C472D6A4257FD78800A42589 /* LLWidgetBorderComponentTests.m in Sources */,
 				C47E592B252EBCC5003AA64A /* LLSandboxHelperDelegateTests.m in Sources */,
 				C47E594E252F142C003AA64A /* LLJsonToolTests.m in Sources */,
 				C45B508C252B65030060CDD0 /* LLBaseTableViewCellTests.m in Sources */,
@@ -1912,9 +2678,13 @@
 				C47D6476252DFAFC001A7FA0 /* LLComponentWindowTests.m in Sources */,
 				C47D6426252DAF71001A7FA0 /* LLFilterLabelCellTests.m in Sources */,
 				C4B1A35D25793C510034E8B3 /* LLHtmlUIWebViewControllerTests.m in Sources */,
+				C472D667257D2FF900A42589 /* LLScreenshotImageViewTests.m in Sources */,
 				C47D6442252DEF10001A7FA0 /* LLSubTitleTableViewCellTests.m in Sources */,
+				C437902E257CC93300B3BDBA /* LLSandboxViewControllerTests.m in Sources */,
+				C4FE7C1D257D23D700EF2CF6 /* LLScreenshotComponentTests.m in Sources */,
 				C4D4B9CC256A3EF1000CEC0F /* UISearchBarHierarchyTests.m in Sources */,
 				C4919E6E2573412A00DF2D60 /* LLWindowManagerHierarchyTests.m in Sources */,
+				C472D66D257D3C2800A42589 /* LLScreenshotSelectorModelTests.m in Sources */,
 				C4D4B9A6256A1179000CEC0F /* LLHierarchyComponentTests.m in Sources */,
 				C47E593C252ECAEF003AA64A /* LLConstTests.m in Sources */,
 				C47E591F252EBC7E003AA64A /* LLHtmlHelperDelegateTests.m in Sources */,
@@ -1926,11 +2696,15 @@
 				C4919E66257340EA00DF2D60 /* LLHierarchySheetReuseViewTests.m in Sources */,
 				C4D4B999256A01F3000CEC0F /* LLFeatureItemModelTests.m in Sources */,
 				C4C554B92557F9540081DCEC /* LLCrashDetailViewControllerTests.m in Sources */,
+				C47291C6257BE5A5007E4525 /* LLNetworkImageCellTests.m in Sources */,
+				C47291AB257BDCB6007E4525 /* LLNetworkHelperTests.m in Sources */,
 				C46115262556EA1E009C96D5 /* LLAppInfoWindowTests.m in Sources */,
 				C4D4B9B2256A3955000CEC0F /* UIActivityIndicatorViewHierarchyTests.m in Sources */,
 				C4D4B9BA256A3E0A000CEC0F /* UIControlHierarchyTests.m in Sources */,
+				C47291F2257BEA6F007E4525 /* LLSandboxHtmlPreviewControllerTests.m in Sources */,
 				C47D6470252DF452001A7FA0 /* LLComponentCoreTests.m in Sources */,
 				C47D6417252DAE77001A7FA0 /* LLTitleCellViewTests.m in Sources */,
+				C472D671257D3C4100A42589 /* LLScreenshotToolbarTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

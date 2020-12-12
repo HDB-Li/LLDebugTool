@@ -132,8 +132,8 @@ Pod::Spec.new do |s|
   
   # Primary
   s.subspec 'Storage' do |ss|
-    ss.public_header_files      = "LLDebugTool/Classes/Storage/**/*.h"
-    ss.source_files             = "LLDebugTool/Classes/Storage/**/*.{h,m}"
+    ss.public_header_files      = "LLDebugTool/Classes/Component/Storage/**/*.h"
+    ss.source_files             = "LLDebugTool/Classes/Component/Storage/**/*.{h,m}"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_STORAGE=1'}
     ss.dependency                 "LLDebugTool/Core"
     ss.dependency                 "FMDB", "~> 2.0"

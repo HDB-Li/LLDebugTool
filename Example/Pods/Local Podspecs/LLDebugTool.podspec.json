@@ -250,8 +250,8 @@
     },
     {
       "name": "Storage",
-      "public_header_files": "LLDebugTool/Classes/Storage/**/*.h",
-      "source_files": "LLDebugTool/Classes/Storage/**/*.{h,m}",
+      "public_header_files": "LLDebugTool/Classes/Component/Storage/**/*.h",
+      "source_files": "LLDebugTool/Classes/Component/Storage/**/*.{h,m}",
       "pod_target_xcconfig": {
         "GCC_PREPROCESSOR_DEFINITIONS": "LLDEBUGTOOL_STORAGE=1"
       },
