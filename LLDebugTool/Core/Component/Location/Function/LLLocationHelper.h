@@ -23,6 +23,9 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+double toRadians(double degrees);
+double toDegrees(double radians);
+
 @class LLLocationMockRouteModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -93,6 +96,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)addLLDebugToolExtendDataWithPath:(NSString *)path;
 
+
+/// <#Description#>
+/// - Parameters:
+///   - point: <#point description#>
+///   - distance: <#distance description#>
+///   - angle: <#angle description#>
++ (CLLocation *)pointFromPoint:(CLLocationCoordinate2D)point distance:(double)distance angle:(double)angle;
+
 @end
+
+NS_ASSUME_NONNULL_END
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSNumber (Radians)
+
++ (CGFloat)toRadians:(CGFloat)degrees;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

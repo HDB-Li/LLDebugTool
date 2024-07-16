@@ -287,6 +287,11 @@ Whether show widget border. Default is NO.
 @property (nonatomic, assign) double mockLocationLongitude;
 
 /**
+ Mock location level
+ */
+@property (nonatomic, assign) NSInteger mockLocationLevel;
+
+/**
  Time interval in mock route. default is kLLDefaultMockRouteTimeInterval.
  */
 @property (nonatomic, assign) NSTimeInterval mockRouteTimeInterval;

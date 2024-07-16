@@ -22,9 +22,7 @@
 //  SOFTWARE.
 
 #import "CLLocationManager+LL_Location.h"
-
 #import "LLLocationProxy.h"
-
 #import "NSObject+LL_Runtime.h"
 
 NSNotificationName const LLCLLocationRegisterNotificationName = @"LLCLLocationRegisterNotificationName";
@@ -102,4 +100,14 @@ NSNotificationName const LLCLLocationUnRegisterNotificationName = @"LLCLLocation
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
+@end
+
+@implementation MGLPointAnnotation (LL_PointAnnotation)
+
++ (MGLPointAnnotation *)pointAnnotation:(CLLocationCoordinate2D)coordinate {
+    MGLPointAnnotation *point = [[MGLPointAnnotation alloc] init];
+    point.coordinate = coordinate;
+    point.title = [NSString stringWithFormat:@"%0.6f, %0.6f", coordinate.latitude, coordinate.longitude];
+    return point;
+}
 @end

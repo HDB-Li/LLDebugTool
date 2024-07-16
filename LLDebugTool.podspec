@@ -98,6 +98,8 @@ Pod::Spec.new do |s|
     ss.frameworks               = "CoreLocation", "MapKit"
     ss.pod_target_xcconfig      = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'LLDEBUGTOOL_LOCATION=1'}
     ss.dependency                 "LLDebugTool/Core"
+    ss.dependency "MapxusBaseSDK", "~> 6.8.0"
+    ss.dependency "MapxusMapSDK", "~> 6.8.0"
   end
   
   s.subspec 'ShortCut' do |ss|

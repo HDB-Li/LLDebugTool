@@ -1,10 +1,13 @@
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking" "${PODS_CONFIGURATION_BUILD_DIR}/FMDB" "${PODS_CONFIGURATION_BUILD_DIR}/YYModel" "${PODS_ROOT}/MapxusBaseSDK/dynamic" "${PODS_ROOT}/MapxusComponentKit/dynamic" "${PODS_ROOT}/MapxusMapSDK/dynamic" "${PODS_ROOT}/MapxusRenderSDK" "${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusBaseSDK" "${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusComponentKit" "${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusMapSDK" "${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusRenderSDK"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/FMDB"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking" "${PODS_CONFIGURATION_BUILD_DIR}/FMDB"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FMDB"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"AFNetworking" -l"FMDB" -l"sqlite3" -framework "CoreGraphics" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AFNetworking/AFNetworking.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/YYModel/YYModel.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/FMDB/FMDB.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/FMDB"
+OTHER_LDFLAGS = $(inherited) -l"sqlite3" -framework "AFNetworking" -framework "CoreFoundation" -framework "FMDB" -framework "Foundation" -framework "Mapbox" -framework "MapxusBaseSDK" -framework "MapxusComponentKit" -framework "MapxusMapSDK" -framework "YYModel"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
 USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

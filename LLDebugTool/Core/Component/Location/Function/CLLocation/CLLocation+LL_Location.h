@@ -31,6 +31,27 @@ NS_ASSUME_NONNULL_BEGIN
 /// Whether is mock
 @property (nonatomic, assign, getter=LL_isMock) BOOL LL_mock;
 
+
+/// This property holds the floor information.
+///
+/// @discussion
+/// Because `CLLocation.floor` does not have a defined setter method, you can change the value when you get `CLLocation.floor` using this property.
+/// If it is set to nil, `CLLocation.floor` will return the original value when the getter method is called.
+@property (nonatomic, strong, nullable) CLFloor *myLLFloor;
+
++ (CLLocation *)createLocationWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude level:(NSInteger)level;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface CLFloor (Factory)
+
++ (CLFloor *)createFloorWihtLevel:(NSInteger)level;
+
 @end
 
 NS_ASSUME_NONNULL_END

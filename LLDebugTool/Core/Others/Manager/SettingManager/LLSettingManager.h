@@ -73,6 +73,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Last mock location longitude.
 @property (nonatomic, strong) NSNumber *mockLocationLongitude;
 
+/// Last mock location level.
+@property (nonatomic, assign) NSInteger mockLocationLevel;
+
 /// Last mock route file path.
 @property (nonatomic, copy) NSString *mockRouteFilePath;
 

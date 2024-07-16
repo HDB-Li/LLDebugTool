@@ -1,26 +1,32 @@
+# AFNetworking is Deprecated
+
+As of Jan. 17, 2023, AFNetworking is deprecated and there will be no further releases. This repo will remain online in perpetuity as an archive. There are a couple options for continued AFNetworking use:
+
+1. Copy AFNetworking into your project and compile it directly. This gives you full control over the code.
+2. Fork AFNetworking and use the fork in your dependency manager. There will be no official forks but anyone can fork at any time and can even publish those forks under a different name, in accordance with AFNetworking's license.
+
+Moving forward, Alamofire is the suggested migration path for networking in modern Swift. Anyone who needs help making that migration is welcome to ask on [StackOverflow](https://stackoverflow.com) and tag `alamofire` and `afnetworking`, or open a discussion on Alamofire's [GitHub Discussions](https://github.com/Alamofire/Alamofire/discussions) regarding any migration issues or missing features.
+
+---
+
 <p align="center" >
   <img src="https://raw.github.com/AFNetworking/AFNetworking/assets/afnetworking-logo.png" alt="AFNetworking" title="AFNetworking">
 </p>
 
-[![Build Status](https://travis-ci.org/AFNetworking/AFNetworking.svg)](https://travis-ci.org/AFNetworking/AFNetworking)
-[![codecov.io](https://codecov.io/github/AFNetworking/AFNetworking/coverage.svg?branch=master)](https://codecov.io/github/AFNetworking/AFNetworking?branch=master)
+[![Build Status](https://github.com/AFNetworking/AFNetworking/workflows/AFNetworking%20CI/badge.svg?branch=master)](https://github.com/AFNetworking/AFNetworking/actions)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/AFNetworking.svg)](https://img.shields.io/cocoapods/v/AFNetworking.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/AFNetworking.svg?style=flat)](http://cocoadocs.org/docsets/AFNetworking)
 [![Twitter](https://img.shields.io/badge/twitter-@AFNetworking-blue.svg?style=flat)](http://twitter.com/AFNetworking)
 
-AFNetworking is a delightful networking library for iOS, macOS, watchOS, and tvOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html), extending the powerful high-level networking abstractions built into Cocoa. It has a modular architecture with well-designed, feature-rich APIs that are a joy to use.
+AFNetworking is a delightful networking library for iOS, macOS, watchOS, and tvOS. It's built on top of the [Foundation URL Loading System](https://developer.apple.com/documentation/foundation/url_loading_system), extending the powerful high-level networking abstractions built into Cocoa. It has a modular architecture with well-designed, feature-rich APIs that are a joy to use.
 
 Perhaps the most important feature of all, however, is the amazing community of developers who use and contribute to AFNetworking every day. AFNetworking powers some of the most popular and critically-acclaimed apps on the iPhone, iPad, and Mac.
-
-Choose AFNetworking for your next project, or migrate over your existing projects—you'll be happy you did!
 
 ## How To Get Started
 
 - [Download AFNetworking](https://github.com/AFNetworking/AFNetworking/archive/master.zip) and try out the included Mac and iPhone example apps
 - Read the ["Getting Started" guide](https://github.com/AFNetworking/AFNetworking/wiki/Getting-Started-with-AFNetworking), [FAQ](https://github.com/AFNetworking/AFNetworking/wiki/AFNetworking-FAQ), or [other articles on the Wiki](https://github.com/AFNetworking/AFNetworking/wiki)
-- Check out the [documentation](http://cocoadocs.org/docsets/AFNetworking/) for a comprehensive look at all of the APIs available in AFNetworking
-- Read the [AFNetworking 3.0 Migration Guide](https://github.com/AFNetworking/AFNetworking/wiki/AFNetworking-3.0-Migration-Guide) for an overview of the architectural changes from 2.0.
 
 ## Communication
 
@@ -31,65 +37,47 @@ Choose AFNetworking for your next project, or migrate over your existing project
 - If you **want to contribute**, submit a pull request.
 
 ## Installation
+
 AFNetworking supports multiple methods for installing the library in a project.
 
 ## Installation with CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like AFNetworking in your projects. See the ["Getting Started" guide for more information](https://github.com/AFNetworking/AFNetworking/wiki/Getting-Started-with-AFNetworking). You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-> CocoaPods 0.39.0+ is required to build AFNetworking 3.0.0+.
-
-#### Podfile
-
 To integrate AFNetworking into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-
-target 'TargetName' do
-pod 'AFNetworking', '~> 3.0'
-end
+pod 'AFNetworking', '~> 4.0'
 ```
 
-Then, run the following command:
+### Installation with Swift Package Manager
 
-```bash
-$ pod install
+Once you have your Swift package set up, adding AFNetworking as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/AFNetworking/AFNetworking.git", .upToNextMajor(from: "4.0.0"))
+]
 ```
+
+> Note: AFNetworking's Swift package does not include it's UIKit extensions.
 
 ### Installation with Carthage
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate AFNetworking into your Xcode project using Carthage, specify it in your `Cartfile`:
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate AFNetworking, add the following to your `Cartfile`.
 
 ```ogdl
-github "AFNetworking/AFNetworking" ~> 3.0
+github "AFNetworking/AFNetworking" ~> 4.0
 ```
-
-Run `carthage` to build the framework and drag the built `AFNetworking.framework` into your Xcode project.
 
 ## Requirements
 
-| AFNetworking Version | Minimum iOS Target  | Minimum macOS Target  | Minimum watchOS Target  | Minimum tvOS Target  |                                   Notes                                   |
-|:--------------------:|:---------------------------:|:----------------------------:|:----------------------------:|:----------------------------:|:-------------------------------------------------------------------------:|
-| 3.x | iOS 7 | OS X 10.9 | watchOS 2.0 | tvOS 9.0 | Xcode 7+ is required. `NSURLConnectionOperation` support has been removed. |
-| 2.6 -> 2.6.3 | iOS 7 | OS X 10.9 | watchOS 2.0 | n/a | Xcode 7+ is required. |
-| 2.0 -> 2.5.4 | iOS 6 | OS X 10.8 | n/a | n/a | Xcode 5+ is required. `NSURLSession` subspec requires iOS 7 or OS X 10.9. |
-| 1.x | iOS 5 | Mac OS X 10.7 | n/a | n/a |
-| 0.10.x | iOS 4 | Mac OS X 10.6 | n/a | n/a |
+| AFNetworking Version | Minimum iOS Target | Minimum macOS Target | Minimum watchOS Target | Minimum tvOS Target |                                   Notes                                    |
+| :------------------: | :----------------: | :------------------: | :--------------------: | :-----------------: | :------------------------------------------------------------------------: |
+|         4.x          |       iOS 9        |     macOS 10.10      |      watchOS 2.0       |      tvOS 9.0       |                           Xcode 11+ is required.                           |
+|         3.x          |       iOS 7        |      OS X 10.9       |      watchOS 2.0       |      tvOS 9.0       | Xcode 7+ is required. `NSURLConnectionOperation` support has been removed. |
+|     2.6 -> 2.6.3     |       iOS 7        |      OS X 10.9       |      watchOS 2.0       |         n/a         |                           Xcode 7+ is required.                            |
+|     2.0 -> 2.5.4     |       iOS 6        |      OS X 10.8       |          n/a           |         n/a         | Xcode 5+ is required. `NSURLSession` subspec requires iOS 7 or OS X 10.9.  |
+|         1.x          |       iOS 5        |    Mac OS X 10.7     |          n/a           |         n/a         |
+|        0.10.x        |       iOS 4        |    Mac OS X 10.6     |          n/a           |         n/a         |
 
 (macOS projects must support [64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)).
 
@@ -104,11 +92,11 @@ Run `carthage` to build the framework and drag the built `AFNetworking.framework
 
 ### Serialization
 
-* `<AFURLRequestSerialization>`
+- `<AFURLRequestSerialization>`
   - `AFHTTPRequestSerializer`
   - `AFJSONRequestSerializer`
   - `AFPropertyListRequestSerializer`
-* `<AFURLResponseSerialization>`
+- `<AFURLResponseSerialization>`
   - `AFHTTPResponseSerializer`
   - `AFJSONResponseSerializer`
   - `AFXMLParserResponseSerializer`
@@ -263,12 +251,12 @@ NSDictionary *parameters = @{@"foo": @"bar", @"baz": @[@1, @2, @3]};
 
 `AFNetworkReachabilityManager` monitors the reachability of domains, and addresses for both WWAN and WiFi network interfaces.
 
-* Do not use Reachability to determine if the original request should be sent.
-	* You should try to send it.
-* You can use Reachability to determine when a request should be automatically retried.
-	* Although it may still fail, a Reachability notification that the connectivity is available is a good time to retry something.
-* Network reachability is a useful tool for determining why a request might have failed.
-	* After a network request has failed, telling the user they're offline is better than giving them a more technical but accurate error, such as "request timed out."
+- Do not use Reachability to determine if the original request should be sent.
+  - You should try to send it.
+- You can use Reachability to determine when a request should be automatically retried.
+  - Although it may still fail, a Reachability notification that the connectivity is available is a good time to retry something.
+- Network reachability is a useful tool for determining why a request might have failed.
+  - After a network request has failed, telling the user they're offline is better than giving them a more technical but accurate error, such as "request timed out."
 
 See also [WWDC 2012 session 706, "Networking Best Practices."](https://developer.apple.com/videos/play/wwdc2012-706/).
 

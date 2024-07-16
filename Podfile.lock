@@ -1,37 +1,63 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
-  - AFNetworking/NSURLSession (3.2.1):
+  - AFNetworking (4.0.2):
+    - AFNetworking/NSURLSession (= 4.0.2)
+    - AFNetworking/Reachability (= 4.0.2)
+    - AFNetworking/Security (= 4.0.2)
+    - AFNetworking/Serialization (= 4.0.2)
+    - AFNetworking/UIKit (= 4.0.2)
+  - AFNetworking/NSURLSession (4.0.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
+  - AFNetworking/Reachability (4.0.2)
+  - AFNetworking/Security (4.0.2)
+  - AFNetworking/Serialization (4.0.2)
+  - AFNetworking/UIKit (4.0.2):
     - AFNetworking/NSURLSession
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
+  - FMDB (2.7.11):
+    - FMDB/standard (= 2.7.11)
+  - FMDB/standard (2.7.11)
+  - MapxusBaseSDK (6.8.0):
+    - AFNetworking/NSURLSession (~> 4.0.2)
+    - AFNetworking/Reachability (~> 4.0.2)
+    - AFNetworking/Security (~> 4.0.2)
+    - AFNetworking/Serialization (~> 4.0.2)
+    - YYModel (~> 1.0.5)
+  - MapxusComponentKit (6.8.0):
+    - MapxusMapSDK (= 6.8.0)
+  - MapxusMapSDK (6.8.0):
+    - MapxusBaseSDK (= 6.8.0)
+    - MapxusRenderSDK (= 5.13.0)
+  - MapxusRenderSDK (5.13.0)
+  - YYModel (1.0.5)
 
 DEPENDENCIES:
   - AFNetworking
   - FMDB
   - FMDB (~> 2.0)
+  - MapxusComponentKit (= 6.8.0)
+  - MapxusMapSDK (= 6.8.0)
 
 SPEC REPOS:
-  trunk:
-    - AFNetworking
+  https://github.com/CocoaPods/Specs.git:
     - FMDB
+  https://github.com/Mapxus/mapxusSpecs.git:
+    - AFNetworking
+    - MapxusBaseSDK
+    - MapxusComponentKit
+    - MapxusMapSDK
+    - MapxusRenderSDK
+    - YYModel
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  AFNetworking: 24bbe15bca5f5c108a34a2608c8efd9d548ee884
+  FMDB: 57486c1117fd8e0e6b947b2f54c3f42bf8e57a4e
+  MapxusBaseSDK: d1ac2e7165ff2600ec81fb3af9abd4d9e607dba5
+  MapxusComponentKit: 646e65155abb23e03e873915adc77492cd4996ce
+  MapxusMapSDK: 622660fb9a76879152e2166df874a0c3b81cb044
+  MapxusRenderSDK: 9afa40a07888b84ffe8ccb03b53958fb9e670def
+  YYModel: 035c452ebe1aca91282aa570739c55f3d5e1b16e
 
-PODFILE CHECKSUM: ab4957274e713562b891c02d11a1a0f6dac26a22
+PODFILE CHECKSUM: 1d84f9877c3c87b85572a8446fe9182b85fa6a58
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.15.2

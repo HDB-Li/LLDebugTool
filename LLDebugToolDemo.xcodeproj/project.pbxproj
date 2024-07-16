@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */; };
-		256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */; };
+		143CF0EAD99342F92DB93AB4 /* Pods_LLDebugToolDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABE772361C8CAA0A74FD6100 /* Pods_LLDebugToolDemoTests.framework */; };
 		360075E2235571EF00A606AC /* TestHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360075E1235571EF00A606AC /* TestHtmlViewController.m */; };
 		360075E5235576A800A606AC /* CustomWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360075E4235576A800A606AC /* CustomWebViewController.m */; };
 		3600762D2355AEE500A606AC /* LLComponentNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3600762C2355AEE500A606AC /* LLComponentNavigationController.m */; };
@@ -129,6 +128,8 @@
 		36F93CBB238BC2450008C92E /* LLRouter+ShortCut.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBA238BC2450008C92E /* LLRouter+ShortCut.m */; };
 		36F93CBE238BC59C0008C92E /* TestShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F93CBD238BC59C0008C92E /* TestShortCutViewController.m */; };
 		36FA263B215E1F4300462EA8 /* TestHierarchyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */; };
+		53887CAA6BE8E1F02E085CC0 /* Pods_LLDebugToolDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFB9FC3A4D27DEDED51E620 /* Pods_LLDebugToolDemoUITests.framework */; };
+		90C4E4B6D323BEA83B11CABC /* Pods_LLDebugToolDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FF43B3CF7032DC3C71B71B /* Pods_LLDebugToolDemo.framework */; };
 		C413AE8523995CEF001EB1F9 /* LLJsonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C413AE8423995CEF001EB1F9 /* LLJsonTool.m */; };
 		C413AE8823995DD9001EB1F9 /* LLSandboxTextPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C413AE8723995DD9001EB1F9 /* LLSandboxTextPreviewController.m */; };
 		C4299E6923941416005845A2 /* LLSandboxHtmlPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4299E6823941416005845A2 /* LLSandboxHtmlPreviewController.m */; };
@@ -267,7 +268,7 @@
 		C4CF72F6239AB41400B2C4DC /* LLSandboxPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CF72F5239AB41400B2C4DC /* LLSandboxPreviewController.m */; };
 		C4D164AB23EAECE9007A141E /* LLEntryStyleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */; };
 		C4D51D6B23E9A8A8009DAB1A /* LLMoveWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */; };
-		D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */; };
+		DE657A082C461A6D004BFA5C /* MapxusMap+Map_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = DE657A072C461A6D004BFA5C /* MapxusMap+Map_Location.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,7 +290,6 @@
 
 /* Begin PBXFileReference section */
 		0857CAF55E62609DE772D43C /* Pods-LLDebugToolDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.release.xcconfig"; sourceTree = "<group>"; };
-		250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34ACB65EBB30B1CA47DFC39F /* Pods-LLDebugToolDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		360075DF23556DAF00A606AC /* LLComponentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLComponentDelegate.h; sourceTree = "<group>"; };
 		360075E0235571EF00A606AC /* TestHtmlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHtmlViewController.h; sourceTree = "<group>"; };
@@ -546,10 +546,11 @@
 		36FA2639215E1F4300462EA8 /* TestHierarchyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestHierarchyViewController.h; sourceTree = "<group>"; };
 		36FA263A215E1F4300462EA8 /* TestHierarchyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestHierarchyViewController.m; sourceTree = "<group>"; };
 		532D187B41D9EFF04391FD36 /* Pods-LLDebugToolDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		638C108F891808060C7ED772 /* Pods-LLDebugToolDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7630F57F70FEB38A6705DA1A /* Pods-LLDebugToolDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		ABE772361C8CAA0A74FD6100 /* Pods_LLDebugToolDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LLDebugToolDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADC0AD5C07B446A537F680CF /* Pods-LLDebugToolDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLDebugToolDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B5FF43B3CF7032DC3C71B71B /* Pods_LLDebugToolDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LLDebugToolDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C413AE8323995CEF001EB1F9 /* LLJsonTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLJsonTool.h; sourceTree = "<group>"; };
 		C413AE8423995CEF001EB1F9 /* LLJsonTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLJsonTool.m; sourceTree = "<group>"; };
 		C413AE8623995DD9001EB1F9 /* LLSandboxTextPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSandboxTextPreviewController.h; sourceTree = "<group>"; };
@@ -820,7 +821,9 @@
 		C4D164AA23EAECE9007A141E /* LLEntryStyleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLEntryStyleModel.m; sourceTree = "<group>"; };
 		C4D51D6923E9A8A8009DAB1A /* LLMoveWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLMoveWindow.h; sourceTree = "<group>"; };
 		C4D51D6A23E9A8A8009DAB1A /* LLMoveWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLMoveWindow.m; sourceTree = "<group>"; };
-		D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLDebugToolDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE657A062C461A6D004BFA5C /* MapxusMap+Map_Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapxusMap+Map_Location.h"; sourceTree = "<group>"; };
+		DE657A072C461A6D004BFA5C /* MapxusMap+Map_Location.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MapxusMap+Map_Location.m"; sourceTree = "<group>"; };
+		FEFB9FC3A4D27DEDED51E620 /* Pods_LLDebugToolDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LLDebugToolDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -828,7 +831,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D324B75781E09F9EA96AC8B5 /* libPods-LLDebugToolDemoTests.a in Frameworks */,
+				143CF0EAD99342F92DB93AB4 /* Pods_LLDebugToolDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,7 +839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				256DF576EB32FE0F9D9E099F /* libPods-LLDebugToolDemoUITests.a in Frameworks */,
+				53887CAA6BE8E1F02E085CC0 /* Pods_LLDebugToolDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,7 +847,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				208678B3E17E2AAB3B0E945F /* libPods-LLDebugToolDemo.a in Frameworks */,
+				90C4E4B6D323BEA83B11CABC /* Pods_LLDebugToolDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +961,8 @@
 			children = (
 				3624D3FD2383F72B00DBE692 /* MKMapView+LL_Location.h */,
 				3624D3FE2383F72B00DBE692 /* MKMapView+LL_Location.m */,
+				DE657A062C461A6D004BFA5C /* MapxusMap+Map_Location.h */,
+				DE657A072C461A6D004BFA5C /* MapxusMap+Map_Location.m */,
 			);
 			path = MKMapView;
 			sourceTree = "<group>";
@@ -1397,9 +1402,9 @@
 		5DAB3E295118238CB64A77C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				533ECC0E7675B1A81455CB56 /* libPods-LLDebugToolDemo.a */,
-				D1B877316C71C92C11DF5A9A /* libPods-LLDebugToolDemoTests.a */,
-				250A2DF7939C9F66F595658E /* libPods-LLDebugToolDemoUITests.a */,
+				B5FF43B3CF7032DC3C71B71B /* Pods_LLDebugToolDemo.framework */,
+				ABE772361C8CAA0A74FD6100 /* Pods_LLDebugToolDemoTests.framework */,
+				FEFB9FC3A4D27DEDED51E620 /* Pods_LLDebugToolDemoUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2357,6 +2362,7 @@
 				36E248812123BAE300D03F44 /* Sources */,
 				36E248822123BAE300D03F44 /* Frameworks */,
 				36E248832123BAE300D03F44 /* Resources */,
+				EE1814AE5FF73825FB89DE9B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2376,6 +2382,7 @@
 				36E2488F2123BAE900D03F44 /* Sources */,
 				36E248902123BAE900D03F44 /* Frameworks */,
 				36E248912123BAE900D03F44 /* Resources */,
+				C35B0509730E9C7F57391CFE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2395,6 +2402,7 @@
 				C43BA803205AB095006307BE /* Sources */,
 				C43BA804205AB095006307BE /* Frameworks */,
 				C43BA805205AB095006307BE /* Resources */,
+				F67AB4150FFB4611BFE21F60 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2534,6 +2542,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C35B0509730E9C7F57391CFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LLDebugToolDemoUITests/Pods-LLDebugToolDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D88507F3CEB58B2391736619 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2550,6 +2578,56 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE1814AE5FF73825FB89DE9B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LLDebugToolDemoTests/Pods-LLDebugToolDemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F67AB4150FFB4611BFE21F60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusBaseSDK/MapxusBaseSDK.framework/MapxusBaseSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusComponentKit/MapxusComponentKit.framework/MapxusComponentKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusMapSDK/MapxusMapSDK.framework/MapxusMapSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MapxusRenderSDK/Mapbox.framework/Mapbox",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapxusBaseSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapxusComponentKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapxusMapSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LLDebugToolDemo/Pods-LLDebugToolDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2634,6 +2712,7 @@
 				36BC8E25231D052300E4D29B /* LLEntryView.m in Sources */,
 				362F833C2302BE8F007C9168 /* LLEntryBallView.m in Sources */,
 				C498568F22ED8D4800E9FBE2 /* LLNetworkFilterView.m in Sources */,
+				DE657A082C461A6D004BFA5C /* MapxusMap+Map_Location.m in Sources */,
 				36743D412313879700002A92 /* LLReachability.m in Sources */,
 				C4B4E47322F9C90900F70277 /* LLEditTableViewController.m in Sources */,
 				C4B4E45622F9C90900F70277 /* LLButton.m in Sources */,
@@ -3051,7 +3130,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZNBZ7BZAKZ;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3074,7 +3153,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mapxus.DropInUISDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3089,7 +3168,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZNBZ7BZAKZ;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3112,7 +3191,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.3.8;
-				PRODUCT_BUNDLE_IDENTIFIER = myCompany.HDB.LLDebugToolDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mapxus.DropInUISDKExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

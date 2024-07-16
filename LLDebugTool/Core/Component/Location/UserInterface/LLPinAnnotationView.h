@@ -23,9 +23,12 @@
 
 #import <MapKit/MapKit.h>
 
+#import <MapxusMapSDK/MapxusMapSDK.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLPinAnnotationView : MKPinAnnotationView
+@interface LLPinAnnotationView : MGLAnnotationView
+
 
 @end
 

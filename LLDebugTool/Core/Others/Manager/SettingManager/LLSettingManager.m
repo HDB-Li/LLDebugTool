@@ -93,6 +93,10 @@ static LLSettingManager *_instance = nil;
         [LLConfig shared].mockLocationLatitude = [mockLocationLatitude doubleValue];
         [LLConfig shared].mockLocationLongitude = [mockLocationLogitude doubleValue];
     }
+    NSInteger mockLocationLevel = self.mockLocationLevel;
+    if (mockLocationLevel) {
+        [LLConfig shared].mockLocationLevel = mockLocationLevel;
+    }
 }
 
 #pragma mark - Getters and Setters
@@ -206,6 +210,14 @@ static LLSettingManager *_instance = nil;
 
 - (NSNumber *)mockLocationLatitude {
     return [NSUserDefaults LL_numberForKey:@"mockLocationLatitude"];
+}
+
+- (void)setMockLocationLevel:(NSInteger)mockLocationLevel {
+    [NSUserDefaults LL_setInteger:mockLocationLevel forKey:@"mockLocationLevel"];
+}
+
+- (NSInteger)mockLocationLevel {
+    return [NSUserDefaults LL_integerForKey:@"mockLocationLevel"];
 }
 
 - (void)setMockLocationLongitude:(NSNumber *)mockLocationLongitude {

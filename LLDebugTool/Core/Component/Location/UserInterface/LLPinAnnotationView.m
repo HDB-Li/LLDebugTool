@@ -22,16 +22,41 @@
 //  SOFTWARE.
 
 #import "LLPinAnnotationView.h"
+#import "UIImage+LL_Utils.h"
+#import "LLImageNameConfig.h"
+
+@interface LLPinAnnotationView ()
+
+@property (nonatomic, strong) UIImage *img;
+@property (nonatomic, strong) UIImageView *imageView;
+
+@end
 
 @implementation LLPinAnnotationView
 
-- (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithAnnotation:(id<MGLAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
         self.draggable = YES;
-        self.animatesDrop = YES;
-        self.canShowCallout = YES;
+        self.frame = CGRectMake(0, 0, self.img.size.width, 80);
+        [self addSubview:self.imageView];
+        self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     }
     return self;
+}
+
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc] initWithImage:self.img];
+        
+    }
+    return _imageView;
+}
+
+- (UIImage *)img {
+    if (!_img) {
+        _img = [UIImage LL_imageNamed:kStartPointImageName];
+    }
+    return _img;
 }
 
 @end

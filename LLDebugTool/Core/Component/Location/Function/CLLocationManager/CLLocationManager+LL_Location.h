@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 #import <CoreLocation/CoreLocation.h>
+#import <MapxusMapSDK/MapxusMapSDK.h>
 
 @class LLLocationProxy;
 
@@ -37,6 +38,17 @@ FOUNDATION_EXPORT NSNotificationName const LLCLLocationUnRegisterNotificationNam
 @property (nonatomic, strong, nullable) LLLocationProxy *LL_delegateProxy;
 
 @property (nonatomic, assign) BOOL LL_isUpdatingLocation;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MGLPointAnnotation (LL_PointAnnotation)
+
++ (MGLPointAnnotation *)pointAnnotation:(CLLocationCoordinate2D)coordinate;
 
 @end
 

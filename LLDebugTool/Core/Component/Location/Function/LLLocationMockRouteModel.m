@@ -132,13 +132,17 @@
             if (dic[@"lat"] && dic[@"lng"]) {
                 CLLocationDegrees lat = [dic[@"lat"] doubleValue];
                 CLLocationDegrees lng = [dic[@"lng"] doubleValue];
+                NSInteger level = [dic[@"lng"] intValue];
+                CLFloor *floor = [CLFloor createFloorWihtLevel:level];
+                
                 CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+                location.myLLFloor = floor;
                 location.LL_mock = YES;
                 [locations addObject:location];
             }
         }
     }
-    
+    NSLog(@"*** jsonData = %@", jsonData);
     _locations = [locations copy];
     _isAvailable = YES;
 }

@@ -34,6 +34,14 @@
 #import "CLLocationManager+LL_Location.h"
 #import "CLLocation+LL_Location.h"
 
+double toRadians(double degrees) {
+    return degrees * M_PI / 180.0;
+}
+
+double toDegrees(double radians) {
+    return radians * 180.0 / M_PI;
+}
+
 static LLLocationHelper *_instance = nil;
 
 static pthread_mutex_t mutex_t = PTHREAD_MUTEX_INITIALIZER;
@@ -141,7 +149,6 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
     }
     NSMutableDictionary *json = [[NSMutableDictionary alloc] init];
     json[@"key"] = @"LLDebugTool";
-//    NSMutableArray *data = [[NSMutableArray alloc] init];
     for (CLLocation *location in self.locations) {
         NSMutableDictionary *locationJson = [[NSMutableDictionary alloc] init];
         locationJson[@"lng"] = [LLFormatterTool formatLocation:@(location.coordinate.longitude)];
@@ -191,6 +198,29 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
         return NO;
     }
     return YES;
+}
+
+/// <#Description#>
+/// - Parameters:
+///   - point: <#point description#>
+///   - distance: <#distance description#>
+///   - angle: <#angle description#>
++ (CLLocation *)pointFromPoint:(CLLocationCoordinate2D)point distance:(double)distance angle:(double)angle {
+    double lati1 = point.latitude;
+    double long1 = point.longitude;
+    
+    double R = 6378137.0; // 球半径
+    double sinLat = sin(toRadians(lati1));
+    double cosLat = cos(toRadians(lati1));
+    double cosDistR = cos(distance / R);
+    double sinDistR = sin(distance / R);
+    double lat2 = asin(sinLat * cosDistR + cosLat * sinDistR * cos(toRadians(angle)));
+    double lon2 = toRadians(long1) + atan2(sin(toRadians(angle)) * sinDistR * cosLat, cosDistR - sinLat * sin(lat2));
+    
+    lon2 = toDegrees(lon2);
+    lon2 = lon2 > 180 ? lon2 - 360 : lon2 < -180 ? lon2 + 360 : lon2;
+    lat2 = toDegrees(lat2);
+    return [[CLLocation alloc] initWithLatitude:lat2 longitude:lon2];
 }
 
 #pragma mark - Life cycle
@@ -333,6 +363,15 @@ static pthread_mutex_t route_mutex_t = PTHREAD_MUTEX_INITIALIZER;
         _locations = [[NSMutableArray alloc] init];
     }
     return _locations;
+}
+
+@end
+
+
+@implementation NSNumber (Radians)
+
++ (CGFloat)toRadians:(CGFloat)degrees {
+    return degrees * M_PI / 180.0;
 }
 
 @end

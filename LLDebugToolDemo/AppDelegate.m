@@ -7,11 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import <MapxusBaseSDK/MapxusBaseSDK.h>
 
 // If you integrate with cocoapods, used #import <LLDebug.h>.
 #import "LLDebug.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <MXMServiceDelegate>
 
 @end
 
@@ -19,6 +20,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    NSString *mapxus_key = @"bc635fc131d04e4fb541ab9e26924976";
+    NSString *mapxus_secret = @"738fa012aeb0422189eccfb353d05698";
+    //
+    MXMMapServices *services = [MXMMapServices sharedServices];
+    services.delegate = self;
+    [services registerWithApiKey:mapxus_key secret:mapxus_secret];
+    
+    
     // Start working with config.
     [[LLDebugTool sharedTool] startWorkingWithConfigBlock:^(LLConfig * _Nonnull config) {
         
@@ -44,6 +53,20 @@
     }];
     
     return YES;
+}
+
+/// 注册成功回调
+- (void)registerMXMServiceSuccess {
+    
+}
+
+/**
+ 注册错误回调
+
+ @param error 错误信息
+ */
+- (void)registerMXMServiceFailWithError:(NSError *)error {
+    
 }
 
 

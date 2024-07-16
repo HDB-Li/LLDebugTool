@@ -28,7 +28,7 @@
 @interface AFCachedImage : NSObject
 
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, assign) UInt64 totalBytes;
 @property (nonatomic, strong) NSDate *lastAccessDate;
 @property (nonatomic, assign) UInt64 currentMemoryUsage;
@@ -37,7 +37,7 @@
 
 @implementation AFCachedImage
 
--(instancetype)initWithImage:(UIImage *)image identifier:(NSString *)identifier {
+- (instancetype)initWithImage:(UIImage *)image identifier:(NSString *)identifier {
     if (self = [self init]) {
         self.image = image;
         self.identifier = identifier;
@@ -51,7 +51,7 @@
     return self;
 }
 
-- (UIImage*)accessImage {
+- (UIImage *)accessImage {
     self.lastAccessDate = [NSDate date];
     return self.image;
 }
@@ -65,7 +65,7 @@
 @end
 
 @interface AFAutoPurgingImageCache ()
-@property (nonatomic, strong) NSMutableDictionary <NSString*, AFCachedImage*> *cachedImages;
+@property (nonatomic, strong) NSMutableDictionary <NSString* , AFCachedImage*> *cachedImages;
 @property (nonatomic, assign) UInt64 currentMemoryUsage;
 @property (nonatomic, strong) dispatch_queue_t synchronizationQueue;
 @end
@@ -134,7 +134,7 @@
                 [self.cachedImages removeObjectForKey:cachedImage.identifier];
                 bytesPurged += cachedImage.totalBytes;
                 if (bytesPurged >= bytesToPurge) {
-                    break ;
+                    break;
                 }
             }
             self.currentMemoryUsage -= bytesPurged;

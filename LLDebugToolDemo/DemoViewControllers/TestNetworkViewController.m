@@ -60,13 +60,13 @@ static NSString *const kCellID = @"cellID";
     NSString *url = @"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?&format=json&appid=379020&bk_key=%E7%81%AB%E5%BD%B1%E5%BF%8D%E8%80%85&bk_length=600";
     
     // Use AFHttpSessionManager
-    [[NetTool shared].afHTTPSessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        NSLog(@"%f",downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
-    }];
+//    [[NetTool shared].afHTTPSessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+//        NSLog(@"%f",downloadProgress.completedUnitCount * 1.0 / downloadProgress.totalUnitCount);
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [[LLDebugTool sharedTool] executeAction:LLDebugToolActionNetwork];
+//    }];
 }
 
 - (void)testNormalSessionNetworkRequest {

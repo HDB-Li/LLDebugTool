@@ -34,6 +34,7 @@ static NSString *const kDoneImageName = @"done";
 static NSString *const kBackImageName = @"back";
 static NSString *const kFilterImageName = @"filter";
 static NSString *const kShareImageName = @"share";
+static NSString *const kStartPointImageName = @"ic_start_point";
 
 // Folder
 static NSString *const kFolderImageName = @"folder";

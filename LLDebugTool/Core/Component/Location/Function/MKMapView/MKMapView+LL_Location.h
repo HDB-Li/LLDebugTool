@@ -22,10 +22,11 @@
 //  SOFTWARE.
 
 #import <MapKit/MapKit.h>
+#import <MapxusMapSDK/MapxusMapSDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MKMapView (LL_Location)
+@interface MGLMapView (MGL_Location)
 
 @end
 

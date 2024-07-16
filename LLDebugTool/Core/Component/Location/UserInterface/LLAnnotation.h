@@ -21,11 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-#import <MapKit/MapKit.h>
+//#import <MapKit/MapKit.h>
+#import <MapxusMapSDK/MapxusMapSDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LLAnnotation : NSObject <MKAnnotation>
+@interface LLAnnotation : NSObject <MGLAnnotation>
 
 /// coordinate
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
